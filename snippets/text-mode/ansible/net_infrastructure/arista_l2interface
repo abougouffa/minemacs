@@ -1,0 +1,6 @@
+# name : Manage layer 2 interfaces
+# key : arista_l2interface
+# condition: ansible
+# --
+- name: ${1:Manage layer 2 interfaces}
+  arista_l2interface: interface_id=$2 $0

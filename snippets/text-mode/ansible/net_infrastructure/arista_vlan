@@ -1,0 +1,6 @@
+# name : Manage VLAN resources
+# key : arista_vlan
+# condition: ansible
+# --
+- name: ${1:Manage VLAN resources}
+  arista_vlan: vlan_id=$2 $0

@@ -1,0 +1,6 @@
+# name : Manage physical Ethernet interfaces
+# key : arista_interface
+# condition: ansible
+# --
+- name: ${1:Manage physical Ethernet interfaces}
+  arista_interface: interface_id=$2 $0
