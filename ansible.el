@@ -41,7 +41,7 @@
 ;;  `ansible'
 ;;    Ansible minor mode.
 ;;  `ansible::find-playbooks'
-;;    Find spec files.
+;;    Find YAML files.
 ;;
 ;;; Customizable Options:
 ;;
@@ -163,14 +163,14 @@
 (eval-after-load 'yasnippet
   '(ansible::snippets-initialize))
 
-;; ;;;###autoload
-;; (defun ansible::dict-initialize ()
-;;   (let ((dict-dir (expand-file-name "dict" ansible::dir)))
-;;     (add-to-list 'ac-dictionary-files (f-join dict-dir "ansible") t)))
+;;;###autoload
+(defun ansible::dict-initialize ()
+  (let ((dict-dir (expand-file-name "dict" ansible::dir)))
+    (add-to-list 'ac-dictionary-files (f-join dict-dir "ansible") t)))
 
-;; ;;;###autoload
-;; (add-hook 'ansible::hook
-;;   'ansible::dict-initialize)
+;;;###autoload
+(add-hook 'ansible::hook
+  'ansible::dict-initialize)
 
 (provide 'ansible)
 

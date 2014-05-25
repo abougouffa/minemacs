@@ -2,6 +2,7 @@ require 'fileutils'
 require 'yaml'
 require 'erb'
 
+option_keys = []
 Dir::glob("ansible/library/**/*").each {|f|
   if File.directory? f
     FileUtils.mkdir_p(File.join("../snippets/text-mode/ansible", File.basename(f)))
@@ -22,6 +23,7 @@ Dir::glob("ansible/library/**/*").each {|f|
   index = 2
   options = ''
   doc['options'].each {|key, value|
+    option_keys << key
     next unless value['required']
     options << ' '
     options << key
@@ -51,4 +53,6 @@ EOS
   snippet = ERB.new template
   dirname = File.basename(File.dirname(f))
   File.write(File.join("../snippets/text-mode/ansible", dirname, File.basename(f)), snippet.result(binding))
+
+  File.write("../dict/ansible", option_keys.uniq.join("\n"))
 }
