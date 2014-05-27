@@ -20,7 +20,7 @@
 ;; Version: 0.0.1
 ;; Author: k1LoW (Kenichirou Oyama), <k1lowxb [at] gmail [dot] com> <k1low [at] 101000lab [dot] org>
 ;; URL: http://101000lab.org
-;; Package-Requires: ((s "1.9.0") (f "0.16.2") (helm "1.6.1"))
+;; Package-Requires: ((s "1.9.0") (f "0.16.2"))
 
 ;;; Install
 ;; Put this file into load-path'ed directory, and byte compile it if
@@ -40,8 +40,6 @@
 ;;
 ;;  `ansible'
 ;;    Ansible minor mode.
-;;  `ansible::find-playbooks'
-;;    Find YAML files.
 ;;
 ;;; Customizable Options:
 ;;
@@ -57,7 +55,6 @@
 (require 's)
 (require 'f)
 (require 'cl)
-(require 'helm-config)
 (require 'easy-mmode)
 
 (defgroup ansible nil
@@ -141,12 +138,6 @@
     (display-to-real . ansible::helm-playbooks-display-to-real)
     (action . find-file))
     "Ansible playbook helm source.")
-
-;;;###autoload
-(defun ansible::find-playbooks ()
-  "Find YAML files."
-  (interactive)
-  (helm-other-buffer `(ansible::helm-playbooks-source) "*helm yml*"))
 
 (defconst ansible::dir (file-name-directory (or (buffer-file-name)
                                                             load-file-name)))
