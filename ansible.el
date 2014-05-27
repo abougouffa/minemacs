@@ -20,7 +20,7 @@
 ;; Version: 0.0.1
 ;; Author: k1LoW (Kenichirou Oyama), <k1lowxb [at] gmail [dot] com> <k1low [at] 101000lab [dot] org>
 ;; URL: http://101000lab.org
-;; Package-Requires: ((dash "2.6.0") (s "1.9.0") (f "0.16.2") (helm "1.6.1"))
+;; Package-Requires: ((s "1.9.0") (f "0.16.2") (helm "1.6.1"))
 
 ;;; Install
 ;; Put this file into load-path'ed directory, and byte compile it if
@@ -54,7 +54,6 @@
 ;;; Code:
 
 ;;require
-(require 'dash)
 (require 's)
 (require 'f)
 (require 'cl)
@@ -92,6 +91,7 @@
         (setq minor-mode-map-alist
               (cons (cons 'ansible ansible::key-map)
                     minor-mode-map-alist))
+        (ansible::dict-initialize)
         (run-hooks 'ansible::hook))
     nil))
 
@@ -107,9 +107,7 @@
   (let ((spec-path (ansible::find-root-path)))
     (unless (not spec-path)
       (setq ansible::root-path spec-path))
-    (if ansible::root-path
-        t
-      nil)))
+    (when ansible::root-path t)))
 
 (defun ansible::find-root-path ()
   "Find ansible directory."
@@ -128,7 +126,7 @@
 
 (defun ansible::list-playbooks ()
   (if (ansible::update-root-path)
-      (-map
+      (mapcar
        (lambda (file) (f-relative file ansible::root-path))
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
@@ -167,10 +165,6 @@
 (defun ansible::dict-initialize ()
   (let ((dict-dir (expand-file-name "dict" ansible::dir)))
     (add-to-list 'ac-dictionary-files (f-join dict-dir "ansible") t)))
-
-;;;###autoload
-(add-hook 'ansible::hook
-  'ansible::dict-initialize)
 
 (provide 'ansible)
 
