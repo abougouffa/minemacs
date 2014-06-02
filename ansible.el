@@ -17,7 +17,7 @@
 ;; along with this program; if not, write to the Free Software
 ;; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Author: k1LoW (Kenichirou Oyama), <k1lowxb [at] gmail [dot] com> <k1low [at] 101000lab [dot] org>
 ;; URL: http://101000lab.org
 ;; Package-Requires: ((s "1.9.0") (f "0.16.2"))
@@ -92,13 +92,6 @@
         (run-hooks 'ansible::hook))
     nil))
 
-(defun ansible::set-default-keymap ()
-  "Set default key-map."
-  (setq ansible::key-map
-        (let ((map (make-sparse-keymap)))
-          (define-key map (kbd "C-c s") 'ansible::find-playbooks)
-          map)))
-
 (defun ansible::update-root-path ()
   "Update ansible::root-path"
   (let ((spec-path (ansible::find-root-path)))
@@ -127,17 +120,6 @@
        (lambda (file) (f-relative file ansible::root-path))
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
-
-(defun ansible::helm-playbooks-display-to-real (file)
-  (f-expand file ansible::root-path))
-
-;;;###autoload
-(defvar ansible::helm-playbooks-source
-  '((name . "Ansible playbooks.")
-    (candidates . ansible::list-playbooks)
-    (display-to-real . ansible::helm-playbooks-display-to-real)
-    (action . find-file))
-    "Ansible playbook helm source.")
 
 (defconst ansible::dir (file-name-directory (or (buffer-file-name)
                                                             load-file-name)))
