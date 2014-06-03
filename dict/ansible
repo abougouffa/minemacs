@@ -595,6 +595,7 @@ user_install
 version
 pre_release
 update_homebrew
+upgrade_all
 install_options
 tap
 list_url
