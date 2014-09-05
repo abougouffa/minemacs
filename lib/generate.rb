@@ -8,6 +8,7 @@ Dir::glob("ansible/library/**/*").each {|f|
     FileUtils.mkdir_p(File.join("../snippets/text-mode/ansible", File.basename(f)))
     next
   end
+  puts f
   yml = ''
   start = false
   open(f).each {|line|
