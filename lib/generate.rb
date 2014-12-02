@@ -3,9 +3,9 @@ require 'yaml'
 require 'erb'
 
 option_keys = []
-Dir::glob("ansible/library/**/*").each {|f|
+Dir::glob(__dir__ + "/ansible/lib/ansible/modules/**/*").each {|f|
   if File.directory? f
-    FileUtils.mkdir_p(File.join("../snippets/text-mode/ansible", File.basename(f)))
+    FileUtils.mkdir_p(File.join(__dir__ + "/../snippets/text-mode/ansible", File.basename(f)))
     next
   end
   puts f
@@ -53,7 +53,7 @@ Dir::glob("ansible/library/**/*").each {|f|
 EOS
   snippet = ERB.new template
   dirname = File.basename(File.dirname(f))
-  File.write(File.join("../snippets/text-mode/ansible", dirname, File.basename(f)), snippet.result(binding))
+  File.write(File.join(__dir__ + "/../snippets/text-mode/ansible", dirname, File.basename(f).gsub(/.py$/, '')), snippet.result(binding))
 
-  File.write("../dict/ansible", option_keys.uniq.join("\n"))
+  File.write(__dir__ + "/../dict/ansible", option_keys.uniq.join("\n"))
 }

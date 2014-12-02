@@ -1,6 +1,0 @@
-# name : Create/delete/manage a guest VM through VMware vSphere.
-# key : vsphere_guest
-# condition: ansible
-# --
-- name: ${1:Create/delete/manage a guest VM through VMware vSphere.}
-  vsphere_guest: vcenter_hostname=$2 guest=$3 user=$4 password=$5 $0

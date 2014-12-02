@@ -3,4 +3,4 @@
 # condition: ansible
 # --
 - name: ${1:Sets attributes of files}
-  file: $2 $0
+  file: path=${2:[]} $0

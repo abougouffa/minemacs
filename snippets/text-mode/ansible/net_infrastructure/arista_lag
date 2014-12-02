@@ -1,6 +1,0 @@
-# name : Manage port channel (lag) interfaces
-# key : arista_lag
-# condition: ansible
-# --
-- name: ${1:Manage port channel (lag) interfaces}
-  arista_lag: interface_id=$2 $0

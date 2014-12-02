@@ -1,6 +1,0 @@
-# name : Creates or destroys Amazon ELB. - Returns information about the load balancer. - Will be marked changed when called only if state is changed.
-# key : ec2_elb_lb
-# condition: ansible
-# --
-- name: ${1:Creates or destroys Amazon ELB. - Returns information about the load balancer. - Will be marked changed when called only if state is changed.}
-  ec2_elb_lb: state=$2 name=$3 $0
