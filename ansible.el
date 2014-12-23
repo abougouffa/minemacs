@@ -121,8 +121,8 @@
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
 
-(defconst ansible::dir (file-name-directory (or (buffer-file-name)
-                                                            load-file-name)))
+(defconst ansible::dir (file-name-directory (or load-file-name
+						buffer-file-name)))
 
 ;;;###autoload
 (defun ansible::snippets-initialize ()
