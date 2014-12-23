@@ -54,7 +54,7 @@
 ;;require
 (require 's)
 (require 'f)
-(require 'cl)
+(eval-when-compile (require 'cl))
 (require 'easy-mmode)
 
 (defgroup ansible nil
