@@ -54,7 +54,7 @@
 ;;require
 (require 's)
 (require 'f)
-(require 'cl)
+(eval-when-compile (require 'cl))
 (require 'easy-mmode)
 
 (defgroup ansible nil
@@ -121,8 +121,8 @@
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
 
-(defconst ansible::dir (file-name-directory (or (buffer-file-name)
-                                                            load-file-name)))
+(defconst ansible::dir (file-name-directory (or load-file-name
+						buffer-file-name)))
 
 ;;;###autoload
 (defun ansible::snippets-initialize ()
@@ -137,7 +137,7 @@
 ;;;###autoload
 (defun ansible::dict-initialize ()
   (let ((dict-dir (expand-file-name "dict" ansible::dir)))
-    (add-to-list 'ac-dictionary-files (f-join dict-dir "ansible") t)))
+    (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t)))
 
 (provide 'ansible)
 
