@@ -137,7 +137,8 @@
 ;;;###autoload
 (defun ansible::dict-initialize ()
   (let ((dict-dir (expand-file-name "dict" ansible::dir)))
-    (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t)))
+    (when (and (f-directory? dict-dir) (boundp 'ac-user-dictionary-files))
+      (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t))))
 
 (provide 'ansible)
 
