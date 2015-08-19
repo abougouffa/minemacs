@@ -3,7 +3,7 @@
 ## Requirement
 
 - yasnippet
-- auto-comolete
+- auto-complete
 
 ## Installation
 
