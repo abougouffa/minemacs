@@ -121,6 +121,24 @@
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
 
+(defun ansible::vault (mode)
+  (let ((temp-file (make-temp-file "ansible-vault-ansible")))
+    (append-to-file (point-min) (point-max) temp-file)
+    (let* ((command (format "ansible-vault %s --vault-password-file=~/vault_pass %s" mode temp-file))
+           (out (shell-command command)))
+      (if (= out 1)
+          (message "ansible-vault error!")
+        (insert-file-contents temp-file nil nil nil t)))
+    (delete-file temp-file)))
+
+(defun ansible::decrypt-buffer ()
+  (interactive)
+  (ansible::vault "decrypt"))
+
+(defun ansible::encrypt-buffer ()
+  (interactive)
+  (ansible::vault "encrypt"))
+
 (defconst ansible::dir (file-name-directory (or load-file-name
 						buffer-file-name)))
 
