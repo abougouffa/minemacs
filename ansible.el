@@ -67,6 +67,11 @@
   :type 'integer
   :group 'ansible)
 
+(defcustom ansible::vault-password-file "~/.vault_pass.txt"
+  "Filename containing ansible-vault password"
+  :type 'file
+  :group 'ansible)
+
 ;;;###autoload
 (defvar ansible::key-map
   (make-sparse-keymap)
@@ -124,7 +129,7 @@
 (defun ansible::vault (mode)
   (let ((temp-file (make-temp-file "ansible-vault-ansible")))
     (append-to-file (point-min) (point-max) temp-file)
-    (let* ((command (format "ansible-vault %s --vault-password-file=~/vault_pass %s" mode temp-file))
+    (let* ((command (format "ansible-vault %s --vault-password-file=%s %s" mode ansible::vault-password-file temp-file))
            (out (shell-command command)))
       (if (= out 1)
           (message "ansible-vault error!")
