@@ -131,8 +131,8 @@
     (append-to-file (point-min) (point-max) temp-file)
     (let* ((command (format "ansible-vault %s --vault-password-file=%s %s" mode ansible::vault-password-file temp-file))
            (out (shell-command command)))
-      (if (= out 1)
-          (message "ansible-vault error!")
+      (if (/= out 0)
+          (message "ansible-vault error running %s!" command)
         (insert-file-contents temp-file nil nil nil t)))
     (delete-file temp-file)))
 
