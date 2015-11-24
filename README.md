@@ -28,3 +28,12 @@ or hook
 ### Dictionary for auto-complete
 
 - Ansible module key dictionary
+
+### Ansible Vault support
+
+Set up a password in ~/vault_pass
+
+Bind keys:
+
+  (global-set-key (kbd "C-c b") 'ansible::decrypt-buffer)
+  (global-set-key (kbd "C-c g") 'ansible::encrypt-buffer)

@@ -67,6 +67,11 @@
   :type 'integer
   :group 'ansible)
 
+(defcustom ansible::vault-password-file "~/.vault_pass.txt"
+  "Filename containing ansible-vault password"
+  :type 'file
+  :group 'ansible)
+
 ;;;###autoload
 (defvar ansible::key-map
   (make-sparse-keymap)
@@ -120,6 +125,36 @@
        (lambda (file) (f-relative file ansible::root-path))
        (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
+
+(defun ansible::vault-buffer (mode)
+  (let ((str (buffer-substring-no-properties (point-min) (point-max))))
+    (delete-region (point-min) (point-max))
+    (insert (ansible::vault mode str))))
+
+(defun ansible::get-string-from-file (file-path)
+  "Return FILE-PATH's file content."
+  (with-temp-buffer
+    (insert-file-contents file-path)
+    (buffer-string)))
+
+(defun ansible::vault (mode str)
+  (let ((temp-file (make-temp-file "ansible-vault-ansible")))
+    (write-region str nil temp-file 'append)
+    (let* ((command (format "ansible-vault %s --vault-password-file=%s %s" mode ansible::vault-password-file temp-file))
+           (status (shell-command command))
+           (output (ansible::get-string-from-file temp-file)))
+      (if (/= status 0)
+          (error "Error in ansible-vault running %s!" command)
+        (delete-file temp-file)
+        output))))
+
+(defun ansible::decrypt-buffer ()
+  (interactive)
+  (ansible::vault-buffer "decrypt"))
+
+(defun ansible::encrypt-buffer ()
+  (interactive)
+  (ansible::vault-buffer "encrypt"))
 
 (defconst ansible::dir (file-name-directory (or load-file-name
 						buffer-file-name)))
