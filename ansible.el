@@ -127,9 +127,10 @@
     nil))
 
 (defun ansible::vault-buffer (mode)
-  (let ((str (buffer-substring-no-properties (point-min) (point-max))))
+  (let* ((input (buffer-substring-no-properties (point-min) (point-max)))
+         (output (ansible::vault mode input)))
     (delete-region (point-min) (point-max))
-    (insert (ansible::vault mode str))))
+    (insert output)))
 
 (defun ansible::get-string-from-file (file-path)
   "Return FILE-PATH's file content."
