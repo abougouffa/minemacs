@@ -160,6 +160,21 @@
 (defconst ansible::dir (file-name-directory (or load-file-name
 						buffer-file-name)))
 
+(defun ansible::auto-decrypt-encrypt ()
+  "Decrypt current buffer if it is a vault encrypted file.
+Also, automatically encrypts the file before saving the buffer."
+  (let ((vault-file? (string-match-p "\$ANSIBLE_VAULT;[0-9]+\.[0-9]+"
+                                     (buffer-substring-no-properties (point-min)
+                                                                     (point-max)))))
+    (when vault-file?
+      (condition-case ex
+          (progn
+            (ansible::decrypt-buffer)
+            (add-hook 'before-save-hook 'ansible::encrypt-buffer nil t)
+            (add-hook 'after-save-hook  'ansible::decrypt-buffer nil t))
+        ('error
+         (message "Could not decrypt file. Make sure `ansible::vault-password-file' is correctly set"))))))
+
 ;;;###autoload
 (defun ansible::snippets-initialize ()
   (let ((snip-dir (expand-file-name "snippets" ansible::dir)))
