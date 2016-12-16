@@ -328,7 +328,9 @@
 
 (defun ansible::decrypt-buffer ()
   (interactive)
-  (ansible::vault-buffer "decrypt"))
+  (ansible::vault-buffer "decrypt")
+  ;; force buffer to be marked as unmodified
+  (set-buffer-modified-p nil))
 
 (defun ansible::encrypt-buffer ()
   (interactive)
