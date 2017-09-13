@@ -225,8 +225,8 @@
       '("with_items" "with_dict" "with_nested" "with_first_found" "with_fileglob"
 	"with_together" "with_subelements" "with_sequence" "with_random_choice" "until"
 	"retries" "delay" "with_lines" "with_indexed_items" "with_ini" "with_flattened"
-	"with_inventory_hostnames" "when" "notify" "register" "tags" "gather_facts"
-	"connection" "tags" "become" "become_user" "args" "local_action" "delegate_to") t)
+	"with_inventory_hostnames" "when" "notify" "register" "tags"
+	"tags" "become" "become_user" "args" "local_action" "delegate_to") t)
      ":")
   "Ansible keywords used with tasks")
 
