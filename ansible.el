@@ -99,8 +99,8 @@
   (concat
      "^ *-? "
      (regexp-opt
-      '("hosts" "vars" "vars_prompt" "vars_files" "role"  "include"
-	"roles" "tasks" "handlers" "pre_tasks" "post_tasks" ) t)
+      '("hosts" "vars" "vars_prompt" "vars_files" "role" "include" "strategy"
+	"roles" "tasks" "handlers" "pre_tasks" "post_tasks" "gather_facts" ) t)
      ":")
   "Special keywords used to identify toplevel information in a playbook")
 
