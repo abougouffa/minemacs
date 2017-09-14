@@ -27,10 +27,6 @@
 ;; desired.  And put the following expression into your ~/.emacs.
 ;;
 ;; (require 'ansible)
-;;
-;; If you use default key map, Put the following expression into your ~/.emacs.
-;;
-;; (ansible::set-default-keymap)
 
 ;;; Commentary:
 
