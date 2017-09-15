@@ -59,12 +59,12 @@
   :prefix "ansible::")
 
 (defcustom ansible::dir-search-limit 5
-  "Search limit"
+  "Search limit."
   :type 'integer
   :group 'ansible)
 
 (defcustom ansible::vault-password-file "~/.vault_pass.txt"
-  "Filename containing ansible-vault password"
+  "Filename containing ansible-vault password."
   :type 'file
   :group 'ansible)
 
@@ -98,7 +98,7 @@
       '("hosts" "vars" "vars_prompt" "vars_files" "role" "include"
         "roles" "tasks" "handlers" "pre_tasks" "post_tasks" ) t)
      ":")
-  "Special keywords used to identify toplevel information in a playbook")
+  "Special keywords used to identify toplevel information in a playbook.")
 
 (defconst ansible::task-keywords-regex
   (concat
@@ -212,7 +212,7 @@
         "zabbix_hostmacro" "zabbix_maintenance" "zabbix_screen" "zfs" "znode" "zypper"
         "zypper_repository") t)
      ":")
-  "List of ansible task names")
+  "List of ansible task names.")
 
 (defconst ansible::keywords-regex
   (concat
@@ -225,7 +225,7 @@
         "connection" "tags" "become" "become_user" "args" "local_action" "delegate_to"
         "strategy") t)
      ":")
-  "Ansible keywords used with tasks")
+  "Ansible keywords used with tasks.")
 
 
 (defvar ansible::playbook-font-lock
@@ -272,7 +272,7 @@
     (ansible::remove-font-lock)))
 
 (defun ansible::update-root-path ()
-  "Update ansible::root-path"
+  "Update ansible::root-path."
   (let ((spec-path (ansible::find-root-path)))
     (unless (not spec-path)
       (setq ansible::root-path spec-path))
@@ -294,6 +294,7 @@
           finally return current-dir)))
 
 (defun ansible::list-playbooks ()
+  "Find .yml files in ansible::root-path."
   (if (ansible::update-root-path)
       (mapcar
        (lambda (file) (f-relative file ansible::root-path))
@@ -301,6 +302,7 @@
     nil))
 
 (defun ansible::vault-buffer (mode)
+  "Execute ansible-vault (MODE STR should be 'decrypt' or 'encrypt') and update current buffer."
   (let* ((input (buffer-substring-no-properties (point-min) (point-max)))
          (output (ansible::vault mode input)))
     (delete-region (point-min) (point-max))
@@ -313,6 +315,7 @@
     (buffer-string)))
 
 (defun ansible::vault (mode str)
+  "Execute ansible-vault (MODE STR should be 'decrypt' or 'encrypt')."
   (let ((temp-file (make-temp-file "ansible-vault-ansible")))
     (write-region str nil temp-file 'append)
     (let* ((command (format "ansible-vault %s --vault-password-file=%s %s" mode ansible::vault-password-file temp-file))
@@ -324,12 +327,14 @@
         output))))
 
 (defun ansible::decrypt-buffer ()
+  "Decrypt current buffer."
   (interactive)
   (ansible::vault-buffer "decrypt")
   ;; force buffer to be marked as unmodified
   (set-buffer-modified-p nil))
 
 (defun ansible::encrypt-buffer ()
+  "Encrypt current buffer."
   (interactive)
   (ansible::vault-buffer "encrypt"))
 
@@ -353,6 +358,7 @@ Also, automatically encrypts the file before saving the buffer."
 
 ;;;###autoload
 (defun ansible::snippets-initialize ()
+  "Initialize Ansible yasnippets."
   (let ((snip-dir (expand-file-name "snippets" ansible::dir)))
     (add-to-list 'yas-snippet-dirs snip-dir t)
     (yas-load-directory snip-dir)))
@@ -363,6 +369,7 @@ Also, automatically encrypts the file before saving the buffer."
 
 ;;;###autoload
 (defun ansible::dict-initialize ()
+  "Initialize Ansible auto-complete."
   (let ((dict-dir (expand-file-name "dict" ansible::dir)))
     (when (and (f-directory? dict-dir) (boundp 'ac-user-dictionary-files))
       (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t))))
