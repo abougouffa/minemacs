@@ -95,7 +95,7 @@
   (concat
      "^ *-? "
      (regexp-opt
-      '("hosts" "vars" "vars_prompt" "vars_files" "role"  "include" "strategy"
+      '("hosts" "vars" "vars_prompt" "vars_files" "role" "include"
 	"roles" "tasks" "handlers" "pre_tasks" "post_tasks" ) t)
      ":")
   "Special keywords used to identify toplevel information in a playbook")
@@ -222,7 +222,8 @@
 	"with_together" "with_subelements" "with_sequence" "with_random_choice" "until"
 	"retries" "delay" "with_lines" "with_indexed_items" "with_ini" "with_flattened"
 	"with_inventory_hostnames" "when" "notify" "register" "tags" "gather_facts"
-	"connection" "tags" "become" "become_user" "args" "local_action" "delegate_to") t)
+	"connection" "tags" "become" "become_user" "args" "local_action" "delegate_to"
+	"strategy") t)
      ":")
   "Ansible keywords used with tasks")
 
