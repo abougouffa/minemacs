@@ -255,6 +255,15 @@
    'nil
    ansible::playbook-font-lock))
 
+(defun ansible::maybe-unload-snippets(&optional buffer-count)
+  "Unload ansible snippets in case no other ansible buffers exists."
+  ;; mitigates: https://github.com/k1LoW/emacs-ansible/issues/5
+  (when (and (featurep 'yasnippet)
+	     (= (or buffer-count 1)	;when called via kill-hook, the buffer is still existent
+		(seq-count (lambda (b) (with-current-buffer b ansible)) (buffer-list))))
+    (setq yas-snippet-dirs (delete ansible::snip-dir yas-snippet-dirs))
+	(yas-reload-all)))
+
 ;;;###autoload
 (define-minor-mode ansible
   "Ansible minor mode."
@@ -268,8 +277,13 @@
         (ansible::dict-initialize)
         (ansible::remove-font-lock)
         (ansible::add-font-lock)
+	(when (featurep 'yasnippet)
+	  (add-to-list 'yas-snippet-dirs ansible::snip-dir t)
+	  (yas-load-directory ansible::snip-dir))
+	(add-hook 'kill-buffer-hook #'ansible::maybe-unload-snippets nil t)
         (run-hooks 'ansible::hook))
-    (ansible::remove-font-lock)))
+    (ansible::remove-font-lock)
+    (ansible::maybe-unload-snippets 0)))
 
 (defun ansible::update-root-path ()
   "Update ansible::root-path."
@@ -341,6 +355,8 @@
 (defconst ansible::dir (file-name-directory (or load-file-name
                                                 buffer-file-name)))
 
+(defconst ansible::snip-dir (expand-file-name "snippets" ansible::dir))
+
 (defun ansible::auto-decrypt-encrypt ()
   "Decrypt current buffer if it is a vault encrypted file.
 Also, automatically encrypts the file before saving the buffer."
@@ -355,17 +371,6 @@ Also, automatically encrypts the file before saving the buffer."
             (add-hook 'after-save-hook  'ansible::decrypt-buffer nil t))
         ('error
          (message "Could not decrypt file. Make sure `ansible::vault-password-file' is correctly set"))))))
-
-;;;###autoload
-(defun ansible::snippets-initialize ()
-  "Initialize Ansible yasnippets."
-  (let ((snip-dir (expand-file-name "snippets" ansible::dir)))
-    (add-to-list 'yas-snippet-dirs snip-dir t)
-    (yas-load-directory snip-dir)))
-
-;;;###autoload
-(eval-after-load 'yasnippet
-  '(ansible::snippets-initialize))
 
 ;;;###autoload
 (defun ansible::dict-initialize ()
