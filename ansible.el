@@ -29,6 +29,7 @@
 ;; (require 'ansible)
 
 ;;; Commentary:
+;; This is minor-mode for editing ansible files.
 
 ;;; Commands:
 ;;
@@ -242,7 +243,7 @@
 
 
 (defun ansible-add-font-lock()
-  "Extend YAML with syntax highlight for ansible playbooks"
+  "Extend YAML with syntax highlight for ansible playbooks."
   (interactive)
   (font-lock-add-keywords
    'nil
@@ -250,7 +251,7 @@
    'append ))
 
 (defun ansible-remove-font-lock()
-  "Add syntax highlight to ansible playbooks"
+  "Add syntax highlight to ansible playbooks."
   (interactive)
   (font-lock-remove-keywords
    'nil
