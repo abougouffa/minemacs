@@ -41,7 +41,7 @@
 ;;
 ;; Below are customizable option list:
 ;;
-;;  `ansible::dir-search-limit'
+;;  `ansible-dir-search-limit'
 ;;    Search limit
 ;;    default = 5
 
@@ -56,42 +56,42 @@
 (defgroup ansible nil
   "Ansible minor mode"
   :group 'languages
-  :prefix "ansible::")
+  :prefix "ansible-")
 
-(defcustom ansible::dir-search-limit 5
+(defcustom ansible-dir-search-limit 5
   "Search limit."
   :type 'integer
   :group 'ansible)
 
-(defcustom ansible::vault-password-file "~/.vault_pass.txt"
+(defcustom ansible-vault-password-file "~/.vault_pass.txt"
   "Filename containing ansible-vault password."
   :type 'file
   :group 'ansible)
 
 ;;;###autoload
-(defvar ansible::key-map
+(defvar ansible-key-map
   (make-sparse-keymap)
   "Keymap for Ansible.")
 
-(defvar ansible::root-path nil
+(defvar ansible-root-path nil
   "Ansible spec directory path.")
 
-(defvar ansible::hook nil
+(defvar ansible-hook nil
   "Hook.")
 
-(defvar ansible::section-face 'ansible::section-face)
-(defface ansible::section-face
+(defvar ansible-section-face 'ansible-section-face)
+(defface ansible-section-face
   '((((class color) (min-colors 88) (background dark))  :foreground "indian red" ))
   "Face for ansible first level section names (i.e.: vars, tasks, handlers) in playbooks."
   :group 'ansible)
 
-(defvar ansible::task-label-face 'ansible::task-label-face)
-(defface ansible::task-label-face
+(defvar ansible-task-label-face 'ansible-task-label-face)
+(defface ansible-task-label-face
   '((((class color) (min-colors 88) (background dark))  :foreground "green" ))
   "Face for ansible task names in playbooks"
   :group 'ansible)
 
-(defconst ansible::section-keywords-regex
+(defconst ansible-section-keywords-regex
   (concat
    "^ *-? "
    (regexp-opt
@@ -100,7 +100,7 @@
    ":")
   "Special keywords used to identify toplevel information in a playbook.")
 
-(defconst ansible::task-keywords-regex
+(defconst ansible-task-keywords-regex
   (concat
    "^ *-? "
    (regexp-opt
@@ -214,7 +214,7 @@
    ":")
   "List of ansible task names.")
 
-(defconst ansible::keywords-regex
+(defconst ansible-keywords-regex
   (concat
    "^ +"
    (regexp-opt
@@ -228,41 +228,41 @@
   "Ansible keywords used with tasks.")
 
 
-(defvar ansible::playbook-font-lock
+(defvar ansible-playbook-font-lock
   `(("\\({{\\)\\([^}]+\\)\\(}}\\)"
      (1 font-lock-builtin-face t)
      (2 font-lock-function-name-face t)
      (3 font-lock-builtin-face t))
-    (,ansible::section-keywords-regex    (1 ansible::section-face t))
-    (,ansible::task-keywords-regex       (1 font-lock-keyword-face t))
+    (,ansible-section-keywords-regex    (1 ansible-section-face t))
+    (,ansible-task-keywords-regex       (1 font-lock-keyword-face t))
     ("^ *- \\(name\\):\\(.*\\)"          (1 font-lock-builtin-face t)
-     (2 ansible::task-label-face t))
-    (,ansible::keywords-regex            (1 font-lock-builtin-face t)))
+     (2 ansible-task-label-face t))
+    (,ansible-keywords-regex            (1 font-lock-builtin-face t)))
   "Font lock definitions for ansible playbooks.")
 
 
-(defun ansible::add-font-lock()
+(defun ansible-add-font-lock()
   "Extend YAML with syntax highlight for ansible playbooks"
   (interactive)
   (font-lock-add-keywords
    'nil
-   ansible::playbook-font-lock
+   ansible-playbook-font-lock
    'append ))
 
-(defun ansible::remove-font-lock()
+(defun ansible-remove-font-lock()
   "Add syntax highlight to ansible playbooks"
   (interactive)
   (font-lock-remove-keywords
    'nil
-   ansible::playbook-font-lock))
+   ansible-playbook-font-lock))
 
-(defun ansible::maybe-unload-snippets(&optional buffer-count)
+(defun ansible-maybe-unload-snippets(&optional buffer-count)
   "Unload ansible snippets in case no other ansible buffers exists."
   ;; mitigates: https://github.com/k1LoW/emacs-ansible/issues/5
   (when (and (featurep 'yasnippet)
 	     (= (or buffer-count 1)	;when called via kill-hook, the buffer is still existent
 		(seq-count (lambda (b) (with-current-buffer b ansible)) (buffer-list))))
-    (setq yas-snippet-dirs (delete ansible::snip-dir yas-snippet-dirs))
+    (setq yas-snippet-dirs (delete ansible-snip-dir yas-snippet-dirs))
     (yas-reload-all)))
 
 ;;;###autoload
@@ -273,33 +273,33 @@
   (if ansible
       (progn
         (setq minor-mode-map-alist
-              (cons (cons 'ansible ansible::key-map)
+              (cons (cons 'ansible ansible-key-map)
                     minor-mode-map-alist))
-        (ansible::dict-initialize)
-        (ansible::remove-font-lock)
-        (ansible::add-font-lock)
+        (ansible-dict-initialize)
+        (ansible-remove-font-lock)
+        (ansible-add-font-lock)
 	(when (featurep 'yasnippet)
-	  (add-to-list 'yas-snippet-dirs ansible::snip-dir t)
-	  (yas-load-directory ansible::snip-dir))
-	(add-hook 'kill-buffer-hook #'ansible::maybe-unload-snippets nil t)
-        (run-hooks 'ansible::hook))
-    (ansible::remove-font-lock)
-    (ansible::maybe-unload-snippets 0)))
+	  (add-to-list 'yas-snippet-dirs ansible-snip-dir t)
+	  (yas-load-directory ansible-snip-dir))
+	(add-hook 'kill-buffer-hook #'ansible-maybe-unload-snippets nil t)
+        (run-hooks 'ansible-hook))
+    (ansible-remove-font-lock)
+    (ansible-maybe-unload-snippets 0)))
 
-(defun ansible::update-root-path ()
-  "Update ansible::root-path."
-  (let ((spec-path (ansible::find-root-path)))
+(defun ansible-update-root-path ()
+  "Update ansible-root-path."
+  (let ((spec-path (ansible-find-root-path)))
     (unless (not spec-path)
-      (setq ansible::root-path spec-path))
-    (when ansible::root-path t)))
+      (setq ansible-root-path spec-path))
+    (when ansible-root-path t)))
 
-(defun ansible::find-root-path ()
+(defun ansible-find-root-path ()
   "Find ansible directory."
   (let ((current-dir (f-expand default-directory)))
     (loop with count = 0
           until (f-exists? (f-join current-dir "roles"))
           ;; Return nil if outside the value of
-          if (= count ansible::dir-search-limit)
+          if (= count ansible-dir-search-limit)
           do (return nil)
           ;; Or search upper directories.
           else
@@ -308,58 +308,58 @@
             (setq current-dir (f-dirname current-dir)))
           finally return current-dir)))
 
-(defun ansible::list-playbooks ()
-  "Find .yml files in ansible::root-path."
-  (if (ansible::update-root-path)
+(defun ansible-list-playbooks ()
+  "Find .yml files in ansible-root-path."
+  (if (ansible-update-root-path)
       (mapcar
-       (lambda (file) (f-relative file ansible::root-path))
-       (f-files ansible::root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
+       (lambda (file) (f-relative file ansible-root-path))
+       (f-files ansible-root-path (lambda (file) (s-matches? ".yml" (f-long file))) t))
     nil))
 
-(defun ansible::vault-buffer (mode)
+(defun ansible-vault-buffer (mode)
   "Execute ansible-vault (MODE STR should be 'decrypt' or 'encrypt') and update current buffer."
   (let* ((input (buffer-substring-no-properties (point-min) (point-max)))
-         (output (ansible::vault mode input)))
+         (output (ansible-vault mode input)))
     (delete-region (point-min) (point-max))
     (insert output)))
 
-(defun ansible::get-string-from-file (file-path)
+(defun ansible-get-string-from-file (file-path)
   "Return FILE-PATH's file content."
   (with-temp-buffer
     (insert-file-contents file-path)
     (buffer-string)))
 
-(defun ansible::vault (mode str)
+(defun ansible-vault (mode str)
   "Execute ansible-vault (MODE STR should be 'decrypt' or 'encrypt')."
   (let ((temp-file (make-temp-file "ansible-vault-ansible")))
     (write-region str nil temp-file 'append)
     (let* ((command (format "ansible-vault %s --vault-password-file=%s %s"
-                            mode ansible::vault-password-file temp-file))
+                            mode ansible-vault-password-file temp-file))
            (status (shell-command command))
-           (output (ansible::get-string-from-file temp-file)))
+           (output (ansible-get-string-from-file temp-file)))
       (if (/= status 0)
           (error "Error in ansible-vault running %s!" command)
         (delete-file temp-file)
         output))))
 
-(defun ansible::decrypt-buffer ()
+(defun ansible-decrypt-buffer ()
   "Decrypt current buffer."
   (interactive)
-  (ansible::vault-buffer "decrypt")
+  (ansible-vault-buffer "decrypt")
   ;; force buffer to be marked as unmodified
   (set-buffer-modified-p nil))
 
-(defun ansible::encrypt-buffer ()
+(defun ansible-encrypt-buffer ()
   "Encrypt current buffer."
   (interactive)
-  (ansible::vault-buffer "encrypt"))
+  (ansible-vault-buffer "encrypt"))
 
-(defconst ansible::dir (file-name-directory (or load-file-name
-                                                buffer-file-name)))
+(defconst ansible-dir (file-name-directory (or load-file-name
+                                               buffer-file-name)))
 
-(defconst ansible::snip-dir (expand-file-name "snippets" ansible::dir))
+(defconst ansible-snip-dir (expand-file-name "snippets" ansible-dir))
 
-(defun ansible::auto-decrypt-encrypt ()
+(defun ansible-auto-decrypt-encrypt ()
   "Decrypt current buffer if it is a vault encrypted file.
 Also, automatically encrypts the file before saving the buffer."
   (let ((vault-file? (string-match-p "\$ANSIBLE_VAULT;[0-9]+\.[0-9]+"
@@ -368,16 +368,16 @@ Also, automatically encrypts the file before saving the buffer."
     (when vault-file?
       (condition-case ex
           (progn
-            (ansible::decrypt-buffer)
-            (add-hook 'before-save-hook 'ansible::encrypt-buffer nil t)
-            (add-hook 'after-save-hook  'ansible::decrypt-buffer nil t))
+            (ansible-decrypt-buffer)
+            (add-hook 'before-save-hook 'ansible-encrypt-buffer nil t)
+            (add-hook 'after-save-hook  'ansible-decrypt-buffer nil t))
         ('error
-         (message "Could not decrypt file. Make sure `ansible::vault-password-file' is correctly set"))))))
+         (message "Could not decrypt file. Make sure `ansible-vault-password-file' is correctly set"))))))
 
 ;;;###autoload
-(defun ansible::dict-initialize ()
+(defun ansible-dict-initialize ()
   "Initialize Ansible auto-complete."
-  (let ((dict-dir (expand-file-name "dict" ansible::dir)))
+  (let ((dict-dir (expand-file-name "dict" ansible-dir)))
     (when (and (f-directory? dict-dir) (boundp 'ac-user-dictionary-files))
       (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t))))
 
