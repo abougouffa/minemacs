@@ -236,7 +236,8 @@
      (3 font-lock-builtin-face t))
     (,ansible-section-keywords-regex    (1 ansible-section-face t))
     (,ansible-task-keywords-regex       (1 font-lock-keyword-face t))
-    ("^ *- \\(name\\):\\(.*\\)"          (1 font-lock-builtin-face t)
+    ("^ *- \\(name\\):\\(.*\\)"
+     (1 font-lock-builtin-face t)
      (2 ansible-task-label-face t))
     (,ansible-keywords-regex            (1 font-lock-builtin-face t)))
   "Font lock definitions for ansible playbooks.")
@@ -245,17 +246,14 @@
 (defun ansible-add-font-lock()
   "Extend YAML with syntax highlight for ansible playbooks."
   (interactive)
-  (font-lock-add-keywords
-   'nil
-   ansible-playbook-font-lock
-   'append ))
+  (font-lock-add-keywords 'nil ansible-playbook-font-lock 'append)
+  (font-lock-flush))
 
 (defun ansible-remove-font-lock()
   "Add syntax highlight to ansible playbooks."
   (interactive)
-  (font-lock-remove-keywords
-   'nil
-   ansible-playbook-font-lock))
+  (font-lock-remove-keywords 'nil ansible-playbook-font-lock)
+  (font-lock-flush))
 
 (defun ansible-maybe-unload-snippets(&optional buffer-count)
   "Unload ansible snippets in case no other ansible buffers exists."
