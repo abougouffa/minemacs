@@ -31,17 +31,17 @@ or hook
 
 ### Ansible Vault support
 
-Set up a password in `ansible::vault-password-file`: (default value:
+Set up a password in `ansible-vault-password-file`: (default value:
 "~/vault_pass")
 
-    (setq ansible::vault-password-file "path/to/pwd/file")
+    (setq ansible-vault-password-file "path/to/pwd/file")
 
 Bind keys:
 
-    (global-set-key (kbd "C-c b") 'ansible::decrypt-buffer)
-    (global-set-key (kbd "C-c g") 'ansible::encrypt-buffer)
+    (global-set-key (kbd "C-c b") 'ansible-decrypt-buffer)
+    (global-set-key (kbd "C-c g") 'ansible-encrypt-buffer)
 
 You can also set automatic {en,de}cryption by adding
-`ansible::auto-decrypt-encrypt` to `ansible-hook`:
+`ansible-auto-decrypt-encrypt` to `ansible-hook`:
 
-    (add-hook 'ansible-hook 'ansible::auto-decrypt-encrypt)
+    (add-hook 'ansible-hook 'ansible-auto-decrypt-encrypt)
