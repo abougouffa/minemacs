@@ -332,8 +332,11 @@
   "Execute ansible-vault (MODE STR should be 'decrypt' or 'encrypt')."
   (let ((temp-file (make-temp-file "ansible-vault-ansible")))
     (write-region str nil temp-file 'append)
-    (let* ((command (format "ansible-vault %s --vault-password-file=%s %s"
-                            mode ansible-vault-password-file temp-file))
+    (let* ((vault-str (if ansible-vault-password-file
+                          (format "--vault-password-file=%s" ansible-vault-password-file)
+                        ""))
+           (command (format "ansible-vault %s %s %s"
+                            mode vault-str temp-file))
            (status (shell-command command))
            (output (ansible-get-string-from-file temp-file)))
       (if (/= status 0)
@@ -371,7 +374,7 @@ Also, automatically encrypts the file before saving the buffer."
             (add-hook 'before-save-hook 'ansible-encrypt-buffer nil t)
             (add-hook 'after-save-hook  'ansible-decrypt-buffer nil t))
         ('error
-         (message "Could not decrypt file. Make sure `ansible-vault-password-file' is correctly set"))))))
+         (message "Could not decrypt file. Make sure `ansible-vault-password-file' or the environment variable ANSIBLE_VAULT_PASSWORD_FILE is correctly set"))))))
 
 ;;;###autoload
 (defun ansible-dict-initialize ()
