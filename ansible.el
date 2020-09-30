@@ -191,7 +191,7 @@
       "selinux" "selinux_permissive" "sendgrid" "sensu_check" "seport" "service"
       "set_fact" "setup" "shell" "sl_vm" "slack" "slackpkg" "slurp" "snmp_facts" "sns"
       "sns_topic" "solaris_zone" "sqs_queue" "stackdriver" "stat" "sts_assume_role"
-      "subversion" "supervisorctl" "svc" "svr4pkg" "swdepot" "synchronize" "sysctl"
+      "subversion" "supervisorctl" "svc" "svr4pkg" "swdepot" "synchronize" "sysctl" "systemd"
       "taiga_issue" "template" "twilio" "typetalk" "ufw" "unarchive" "uptimerobot" "uri"
       "urpmi" "user" "vca_fw" "vca_nat" "vca_vapp" "vertica_configuration" "vertica_facts"
       "vertica_role" "vertica_schema" "vertica_user" "virt" "virt_net" "virt_pool"
