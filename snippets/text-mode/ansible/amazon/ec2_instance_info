@@ -1,0 +1,6 @@
+# name : Gather information about ec2 instances in AWS.
+# key : ec2_instance_info
+# condition: ansible
+# --
+- name: ${1:Gathers facts about remote hosts within ec2 (aws)}
+  ec2_facts: $0
