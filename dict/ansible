@@ -1,3 +1,16 @@
+tower_callback
+termination_protection
+tenancy
+security_token
+purge_tags
+launch_template
+instance_role
+instance_initiated_shutdown_behavior
+ec2_url
+detailed_monitoring
+debug_botocore_endpoint_logs
+cpu_credit_specification
+cpu_options
 stack_name
 disable_rollback
 template_parameters
@@ -71,6 +84,7 @@ purge_listeners
 zones
 purge_zones
 security_group_ids
+security_group
 health_check
 subnets
 purge_subnets
@@ -521,6 +535,7 @@ enabled
 runlevel
 arguments
 filter
+filters
 fact_path
 ignoreerrors
 reload
