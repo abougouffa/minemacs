@@ -51,7 +51,14 @@
 ;;require
 (require 's)
 (require 'f)
-(eval-when-compile (require 'cl))
+
+;; the 'cl package has been deprecated in favour of 'cl-lib. Load 'cl
+;; on emacs < 26, otherwise load 'cl-lib.
+(eval-when-compile
+  (if (version< emacs-version "26")
+      (require 'cl)
+    (require 'cl-lib)))
+
 (require 'easy-mmode)
 
 (defgroup ansible nil
