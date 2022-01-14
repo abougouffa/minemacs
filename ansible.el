@@ -19,7 +19,7 @@
 
 ;; Version: 0.3.2
 ;; Author: k1LoW (Kenichirou Oyama), <k1lowxb [at] gmail [dot] com> <k1low [at] 101000lab [dot] org>
-;; URL: http://101000lab.org
+;; URL: https://github.com/k1LoW/emacs-ansible
 ;; Package-Requires: ((s "1.9.0") (f "0.16.2"))
 
 ;;; Install
