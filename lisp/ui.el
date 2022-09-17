@@ -10,8 +10,11 @@
     `(fixed-pitch-serif ((t (:inherit (default)))))
     `(variable-pitch    ((t (:font "Fira Code 15")))))))
 
+(setq-default font-lock-multiline 'undecided)
+
 ;; Icons
 (use-package all-the-icons
+	:defer t
   :straight t)
 
 ;; Themes

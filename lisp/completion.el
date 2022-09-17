@@ -3,29 +3,6 @@
 (use-package cape
   :straight t
   :config
-  ;; Add useful defaults completion sources from cape
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-
-  ;; Silence the pcomplete capf, no errors or messages!
-  ;; Important for corfu
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-
-  ;; Ensure that pcomplete does not write to the buffer
-  ;; and behaves as a pure `completion-at-point-function'.
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
-
-;;(add-hook 'eshell-mode-hook
-;;          (lambda ()
-;;            (setq-local corfu-quit-at-boundary t
-;;                        corfu-quit-no-match t
-;;                        corfu-auto nil
-;;            (corfu-mode)))
-
-(use-package consult
-  :straight t
-  :ensure t
-  :config
   (global-set-key (kbd "C-s") 'consult-line)
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
   (setq completion-in-region-function #'consult-completion-in-region))
@@ -90,21 +67,18 @@
 
 (use-package marginalia
   :straight t
-  :ensure t
   :config
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   (marginalia-mode 1))
 
 (use-package orderless
   :straight t
-  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 
 (use-package vertico
-  :ensure t
   :straight t
   :config
   (add-to-list

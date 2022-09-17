@@ -5,10 +5,16 @@
 ;; Author: Abdelhak Bougouffa <hacko@laptop>
 
 (use-package org-roam
-  :straight t)
+  :straight t
+	:defer t)
 
 (use-package org-roam-ui
-  :straight t)
+  :straight t
+	:defer t)
+
+(use-package org-contrib
+  :straight t
+	:defer t)
 
 (use-package org-modern
  :straight t

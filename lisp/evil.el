@@ -5,10 +5,19 @@
       evil-want-C-i-jump nil
       evil-respect-visual-line-mode t)
 
-(use-package evil :straight t)
-(use-package evil-collection :straight t)
-(use-package evil-nerd-commenter :straight t)
-(use-package evil-mc :straight t)
+(use-package evil
+	:straight t)
+
+(use-package evil-collection
+	:defer t
+	:straight t)
+
+(use-package evil-nerd-commenter
+	:straight t)
+
+(use-package evil-mc
+	:after evil
+	:straight t)
 
 ;; C-h is backspace in insert state
 (setq evil-want-C-h-delete t

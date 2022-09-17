@@ -6,7 +6,16 @@
 
 (use-package parinfer-rust-mode
   :straight t
-  :hook (emacs-lisp-mode scheme-mode common-lisp-mode))
+  :disabled t
+	:hook ((emacs-lisp-mode
+          clojure-mode
+          scheme-mode
+          lisp-mode
+          racket-mode
+          hy-mode) . parinfer-rust-mode))
+
+;; Temporary, Parinfer seems to crash!
+(electric-pair-mode 1)
 
 (use-package elisp-mode
   :hook (emacs-lisp-mode . hs-minor-mode))
