@@ -17,3 +17,5 @@
 ;; Try to keep the cursor from getting stuck in the read-only prompt part of the minibuffer.
 ;;(setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 ;;(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+(provide 'minemacs-defaults)

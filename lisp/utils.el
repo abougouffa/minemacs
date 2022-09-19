@@ -193,3 +193,5 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     (set-visited-file-name new-path t t)
     ;; (doom-files--update-refs old-path new-path)
     (message "File moved to %S" (abbreviate-file-name new-path))))
+
+(provide 'minemacs-utils)

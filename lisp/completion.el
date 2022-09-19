@@ -95,3 +95,5 @@
 
   (require 'vertico-directory)
   (vertico-mode 1))
+
+(provide 'minemacs-completion)

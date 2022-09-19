@@ -12,6 +12,7 @@
 
 (defconst IS-LINUX (memq system-type '(gnu gnu/linux)))
 (defconst IS-BSD   (memq system-type '(darwin berkeley-unix)))
+(defconst IS-MAC   (eq system-type 'darwin))
 (defconst IS-WIN   (memq system-type '(cygwin windwos-nt ms-dos)))
 
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
@@ -26,7 +27,6 @@
                   "completion.el"
                   "prog.el"
                   "email.el"
-                  "lisps.el"
-									"pdf.el"))
-                  
+                  "lisp.el"
+                  "pdf.el"))
   (load module))

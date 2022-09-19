@@ -6,18 +6,18 @@
       evil-respect-visual-line-mode t)
 
 (use-package evil
-	:straight t)
+  :straight t)
 
 (use-package evil-collection
-	:defer t
-	:straight t)
+  :defer t
+  :straight t)
 
 (use-package evil-nerd-commenter
-	:straight t)
+  :straight t)
 
 (use-package evil-mc
-	:after evil
-	:straight t)
+  :after evil
+  :straight t)
 
 ;; C-h is backspace in insert state
 (setq evil-want-C-h-delete t
@@ -30,3 +30,5 @@
 
 ;; Enable multi cursors
 (global-evil-mc-mode 1)
+
+(provide 'minemacs-evil)

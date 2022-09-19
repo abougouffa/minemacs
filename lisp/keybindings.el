@@ -88,5 +88,6 @@
    "c"   '(nil                :which-key "code")
    "cf"  '(format-all-buffer  :which-key "Format buffer")))
 
-(provide 'keybindings)
+(provide 'minemacs-keybindings)
+
 ;;; keybindings.el ends here

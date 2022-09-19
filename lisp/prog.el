@@ -6,48 +6,50 @@
 
 ;;; Tree sitter
 (use-package tree-sitter
-	:straight t
-	:defer t)
+  :straight t
+  :defer t)
 
 (use-package tree-sitter-langs
-	:straight t
-	:after tree-sitter)
+  :straight t
+  :after tree-sitter)
 
 (use-package tree-sitter-hl
-	:after tree-sitter)
+  :after tree-sitter)
 
 ;;; Eglot + LSP
 (use-package eglot
-	:straight t
-	:commands (eglot))
+  :straight t
+  :commands (eglot))
 
 ;;; Debug
 (use-package realgud
-	:straight t
-	:commands (realgud:gdb))
+  :straight t
+  :commands (realgud:gdb))
 
 (use-package realgud-lldb
-	:straight t
-	:commands (realgud--lldb))
+  :straight t
+  :commands (realgud--lldb))
 
 (use-package realgud-ipdb
-	:straight t
-	:commands (realgud:ipdb realgud:ipdb-remote))
+  :straight t
+  :commands (realgud:ipdb realgud:ipdb-remote))
 
 ;;; Formatting
 (use-package format-all
-	:straight t
-	:commands (format-all-ensure-formatter
-						 format-all-mode
-						 format-all-buffer
-						 format-all-region))
+  :straight t
+  :commands (format-all-ensure-formatter
+             format-all-mode
+             format-all-buffer
+             format-all-region))
 
 (use-package editorconfig
-	:straight t
-	:commands (editorconfig-display-current-properties
-						 editorconfig-conf-mode
-						 editorconfig-find-current-editorconfig
-						 editorconfig-apply
-						 editorconfig-mode))
+  :straight t
+  :commands (editorconfig-display-current-properties
+             editorconfig-conf-mode
+             editorconfig-find-current-editorconfig
+             editorconfig-apply
+             editorconfig-mode))
+
+(provide 'minemacs-prog)
 
 ;;; prog.el ends here

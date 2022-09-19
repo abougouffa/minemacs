@@ -5,16 +5,16 @@
  'emacs-startup-hook
  (lambda ()
    (custom-set-faces
-    `(default           ((t (:font "Fira Code 15"))))
+    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
     `(fixed-pitch       ((t (:inherit (default)))))
     `(fixed-pitch-serif ((t (:inherit (default)))))
-    `(variable-pitch    ((t (:font "Fira Code 15")))))))
+    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
 
 (setq-default font-lock-multiline 'undecided)
 
 ;; Icons
 (use-package all-the-icons
-	:defer t
+  :defer t
   :straight t)
 
 ;; Themes
@@ -52,3 +52,5 @@
   :config
   (setq doom-modeline-bar-width 5)
   (doom-modeline-mode 1))
+
+(provide 'minemacs-ui)
