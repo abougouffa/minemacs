@@ -13,9 +13,8 @@
       trash-directory nil ;; Use FreeDesktop.org trashcan (default)
       delete-by-moving-to-trash t)
 
-
-;; Try to keep the cursor from getting stuck in the read-only prompt part of the minibuffer.
-;;(setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
-;;(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+(setq undo-limit        10000000 ;; 1MB   (default is 160kB)
+      undo-strong-limit 100000000 ;; 100MB (default is 240kB)
+      undo-outer-limit  1000000000) ;; 1GB   (default is 24MB)
 
 (provide 'minemacs-defaults)

@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-
 (setq-default display-line-numbers-width 3
               display-line-numbers-type 'relative
               ;;truncate-lines nil
@@ -33,7 +32,11 @@
 
 (setq sentence-end-double-space nil)
 
+;; Enable line numbering globally
 (global-display-line-numbers-mode 1)
+
+;; Highlight current line
+(global-hl-line-mode 1)
 
 ;; Enable recentf-mode globally
 (recentf-mode 1)

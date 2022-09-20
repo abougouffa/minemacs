@@ -6,8 +6,7 @@
 
 ;;; Tree sitter
 (use-package tree-sitter
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package tree-sitter-langs
   :straight t

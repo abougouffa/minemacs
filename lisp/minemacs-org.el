@@ -4,17 +4,35 @@
 
 ;; Author: Abdelhak Bougouffa <hacko@laptop>
 
+(use-package org
+  :straight t
+  :mode ("\\.org\\'" . org-mode)
+  :preface
+  ;; Set to nil so we can detect user changes to them later (and fall back on
+  ;; defaults otherwise).
+  (defvar org-directory nil)
+  (defvar org-id-locations-file nil)
+  (defvar org-attach-id-dir nil)
+  (defvar org-babel-python-command nil)
+  (setq org-persist-directory (expand-file-name "org/persist/" minemacs-cache-dir)
+        org-publish-timestamp-directory (expand-file-name "org/timestamps/" minemacs-cache-dir)
+        org-preview-latex-image-directory (expand-file-name "org/latex/" minemacs-etc-dir)
+        org-list-allow-alphabetical t)
+  :config
+  (message "Org is loaded!"))
+
 (use-package org-roam
   :straight t
-  :defer t)
+  :requires org
+  :commands (org-roam))
 
 (use-package org-roam-ui
   :straight t
-  :defer t)
+  :after org-roam)
 
 (use-package org-contrib
   :straight t
-  :defer t)
+  :after org)
 
 (use-package org-modern
   :straight t
