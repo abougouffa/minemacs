@@ -9,11 +9,13 @@
 (customize-set-variable 'load-prefer-newer noninteractive)
 
 (defvar minemacs-config-dir (or (getenv "MINEMACS_DIR")
+                                (when (file-directory-p user-emacs-directory)
+                                  user-emacs-directory)
                                 (expand-file-name "~/.minemacs.d/")))
 
-(defvar minemacs-etc-dir (expand-file-name "etc/" minemacs-config-dir))
-(defvar minemacs-var-dir (expand-file-name "var/" minemacs-config-dir))
-(defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-config-dir))
+(defvar minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
+(defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
+(defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
 
 (add-to-list 'load-path (expand-file-name minemacs-config-dir))
 
@@ -33,10 +35,10 @@
   (when (fboundp 'startup-redirect-eln-cache)
     (if (version< emacs-version "29")
         (add-to-list 'native-comp-eln-load-path
-                     (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))
-      (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "var/eln-cache/" user-emacs-directory)))))
+                     (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
+      (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))))
 
-  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
+  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln" minemacs-cache-dir)))
 
 ;;; UI configuration
 ;; Remove some unneeded UI elements (the user can turn back on anything they wish)

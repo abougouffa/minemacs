@@ -24,6 +24,13 @@
   (which-key-mode)
   (which-key-setup-minibuffer))
 
+(use-package hydra
+  :straight t)
+
+(use-package use-package-hydra
+  :after hydra
+  :straight t)
+
 ;;; General.el
 (use-package general
   :straight t
@@ -97,7 +104,8 @@
    ;; VC
    "g"   '(nil  :which-key "git/vc")
    "gg"  '(magit-status :which-key "magit-status")
-   "gs"  '(magit-stage  :which-key "magit-stage")
+   "gs"  '(diff-hl-stage-current-hunk :which-key "stage hunk at point")
+   "gm"  '(smerge :which-key "sMerge")
 
    ;; Code
    "c"   '(nil                :which-key "code")

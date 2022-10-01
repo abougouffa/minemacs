@@ -18,12 +18,18 @@
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :commands (eglot))
+  :commands eglot)
 
 ;;; Debug
 (use-package realgud
   :straight t
-  :commands (realgud:gdb))
+  :commands (realgud:gdb
+             realgud:gud
+             realgud:zshdb
+             realgud:bashdb
+             realgud:kshdb
+             realgud:pdb
+             realgud:pdb-remote))
 
 (use-package realgud-lldb
   :straight t
@@ -36,18 +42,24 @@
 ;;; Formatting
 (use-package format-all
   :straight t
-  :commands (format-all-ensure-formatter
-             format-all-mode
+  :commands (format-all-mode
+             format-all-ensure-formatter
              format-all-buffer
              format-all-region))
 
 (use-package editorconfig
   :straight t
-  :commands (editorconfig-display-current-properties
-             editorconfig-conf-mode
-             editorconfig-find-current-editorconfig
+  :commands (editorconfig-mode
              editorconfig-apply
-             editorconfig-mode))
+             editorconfig-conf-mode
+             editorconfig-display-current-properties
+             editorconfig-find-current-editorconfig))
+
+(use-package clang-format
+  :straight t
+  :commands (clang-format
+             clang-format-region
+             clang-format-buffer))
 
 (provide 'minemacs-prog)
 

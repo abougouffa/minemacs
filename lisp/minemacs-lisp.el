@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <hacko@laptop>
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package parinfer-rust-mode
   :straight t
@@ -59,8 +59,17 @@
   :defer t
   :straight t)
 
-
 (use-package elisp-mode
   :hook (emacs-lisp-mode . hs-minor-mode))
+
+(use-package erefactor
+  :straight t
+  :commands (erefactor-highlight-mode
+             erefactor-rename-symbol-in-buffer
+             erefactor-rename-symbol-in-package))
+
+;; (use-package elispfl
+;;   :hook (emacs-lisp-mode . elispfl-mode)
+;;   :straight (:type git :host github :repo "cireu/elispfl"))
 
 (provide 'minemacs-lisp)

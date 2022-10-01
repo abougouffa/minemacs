@@ -15,7 +15,21 @@
 ;; Icons
 (use-package all-the-icons
   :defer t
-  :straight t)
+  :straight t
+  :config
+  ;; Show .m files as matlab/octave files
+  (setcdr (assoc "m" all-the-icons-extension-icon-alist)
+          (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
+
+;; [[file:config.org::*Tabs][Tabs:1]]
+(use-package centaur-tabs
+  :straight t
+  :config
+  (setq centaur-tabs-set-bar 'right
+        centaur-tabs-gray-out-icons 'buffer
+        centaur-tabs-set-modified-marker t
+        centaur-tabs-close-button "⨂"
+        centaur-tabs-modified-marker "⨀"))
 
 ;; Themes
 (use-package doom-themes
@@ -103,5 +117,9 @@
   (when (eq lambda-line-position 'top)
     (setq-default mode-line-format (list "%_"))
     (setq mode-line-format (list "%_"))))
+
+(use-package focus
+  :straight t
+  :commands focus-mode)
 
 (provide 'minemacs-ui)

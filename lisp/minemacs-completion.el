@@ -65,10 +65,16 @@
   :config
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
+(use-package all-the-icons-completion
+  :straight t)
+
 (use-package marginalia
   :straight t
   :config
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+
+  ;; Icons integration
+  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
   (marginalia-mode 1))
 
 (use-package orderless
