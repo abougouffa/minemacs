@@ -1,17 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-;; Font
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (custom-set-faces
-    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
-    `(fixed-pitch       ((t (:inherit (default)))))
-    `(fixed-pitch-serif ((t (:inherit (default)))))
-    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
-
-(setq-default font-lock-multiline 'undecided)
-
 ;; Icons
 (use-package all-the-icons
   :defer t
@@ -20,16 +8,6 @@
   ;; Show .m files as matlab/octave files
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
-
-;; [[file:config.org::*Tabs][Tabs:1]]
-(use-package centaur-tabs
-  :straight t
-  :config
-  (setq centaur-tabs-set-bar 'right
-        centaur-tabs-gray-out-icons 'buffer
-        centaur-tabs-set-modified-marker t
-        centaur-tabs-close-button "⨂"
-        centaur-tabs-modified-marker "⨀"))
 
 ;; Themes
 (use-package doom-themes
@@ -43,6 +21,12 @@
   :config
   (setq doom-modeline-bar-width 5)
   (doom-modeline-mode 1))
+
+(use-package focus
+  :straight t
+  :commands focus-mode)
+
+;;; Disabled, WIP...
 
 (use-package ef-themes
   :straight t
@@ -117,9 +101,3 @@
   (when (eq lambda-line-position 'top)
     (setq-default mode-line-format (list "%_"))
     (setq mode-line-format (list "%_"))))
-
-(use-package focus
-  :straight t
-  :commands focus-mode)
-
-(provide 'minemacs-ui)

@@ -2,23 +2,35 @@
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <hacko@laptop>
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;;; Tree sitter
 (use-package tree-sitter
-  :straight t)
+  :straight t
+  :after minemacs-loaded
+  :config
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-hl
+  :hook (tree-sitter-mode . tree-sitter-hl-mode))
 
 (use-package tree-sitter-langs
   :straight t
   :after tree-sitter)
 
-(use-package tree-sitter-hl
-  :after tree-sitter)
-
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :commands eglot)
+  :commands eglot
+  :config
+  ;; A hack to make Eglot work with Projectile
+  (when (featurep 'projectile)
+    (defun me-projectile-project-find-function (dir)
+      (let ((root (projectile-project-root dir)))
+        (and root (cons 'transient root)))
+
+      (with-eval-after-load 'project
+        (add-to-list 'project-find-functions 'projectile-project-find-function)))))
 
 ;;; Debug
 (use-package realgud
@@ -42,6 +54,8 @@
 ;;; Formatting
 (use-package format-all
   :straight t
+  :general
+  (me-global-def "cf" '(format-all-buffer :which-key "Format buffer"))
   :commands (format-all-mode
              format-all-ensure-formatter
              format-all-buffer
@@ -49,11 +63,9 @@
 
 (use-package editorconfig
   :straight t
-  :commands (editorconfig-mode
-             editorconfig-apply
-             editorconfig-conf-mode
-             editorconfig-display-current-properties
-             editorconfig-find-current-editorconfig))
+  :general
+  (me-global-def
+    "fc" '(editorconfig-find-current-editorconfig :which-key "Open current editorconfig")))
 
 (use-package clang-format
   :straight t
@@ -61,6 +73,7 @@
              clang-format-region
              clang-format-buffer))
 
-(provide 'minemacs-prog)
+(use-package vimrc-mode
+  :mode "\\.vim\\(rc\\)?\\'")
 
 ;;; prog.el ends here

@@ -1,5 +1,39 @@
 ;; -*- lexical-binding: t; -*-
 
+
+;;; Font
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (custom-set-faces
+    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
+    `(fixed-pitch       ((t (:inherit (default)))))
+    `(fixed-pitch-serif ((t (:inherit (default)))))
+    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
+
+(setq-default font-lock-multiline 'undecided)
+
+;;; Better defaults
+(set-default-coding-systems 'utf-8)
+
+(setq visible-bell nil ;; set to non-nil to flash!
+      ring-bell-function 'ignore
+      large-file-warning-threshold 52428800 ;; change to 50 MiB
+      use-short-answers t ;; y or n istead of yes or no
+      confirm-kill-emacs 'yes-or-no-p ;; confirm before quitting
+      initial-scratch-message ";; Scratch"
+      frame-resize-pixelwise t
+      source-directory (expand-file-name "~/Softwares/src/emacs/")
+      trash-directory nil ;; Use FreeDesktop.org trashcan (default)
+      delete-by-moving-to-trash t)
+
+;;; Undo
+(setq undo-limit        10000000 ;; 1MB   (default is 160kB)
+      undo-strong-limit 100000000 ;; 100MB (default is 240kB)
+      undo-outer-limit  1000000000) ;; 1GB   (default is 24MB)
+
+
+;;; Editing
 (setq-default display-line-numbers-width 3
               display-line-numbers-type 'relative
               ;;truncate-lines nil
@@ -8,6 +42,7 @@
               indent-tabs-mode nil
               tab-always-indent nil)
 
+;;; Backups
 ;; Disable backup and lockfiles
 (setq create-lockfiles nil
       make-backup-files nil
@@ -19,6 +54,7 @@
       backup-directory-alist (list (cons "." (concat minemacs-cache-dir "backup/")))
       tramp-backup-directory-alist backup-directory-alist)
 
+;;; Auto-Saving, sessions...
 ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
 (setq auto-save-default t
       auto-save-include-big-deletions t
@@ -32,6 +68,8 @@
 
 (setq sentence-end-double-space nil)
 
+
+;;; Enable global modes
 ;; Enable line numbering globally
 (global-display-line-numbers-mode 1)
 
@@ -41,10 +79,10 @@
 ;; Enable recentf-mode globally
 (recentf-mode 1)
 
-;; From DOOM
+;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
  'after-save-hook
- (defun doom-guess-mode-h ()
+ (defun me-guess-file-mode-h ()
    "Guess major mode when saving a file in `fundamental-mode'.
 
 Likely, something has changed since the buffer was opened. e.g. A shebang line
@@ -54,6 +92,3 @@ or file path may exist now."
        (and (buffer-file-name buffer)
             (eq buffer (window-buffer (selected-window))) ; only visible buffers
             (set-auto-mode))))))
-
-
-(provide 'minemacs-editor)

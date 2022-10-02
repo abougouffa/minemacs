@@ -1,0 +1,101 @@
+;; -*- lexical-binding: t; -*-
+
+;; (defun +mu4e-view-select-attachment ()
+;;   "Use completing-read to select a single attachment.
+;; Acts like a singular `mu4e-view-save-attachments', without the saving."
+;;   (if-let ((parts (delq nil (mapcar
+;;                              (lambda (part)
+;;                                (when (assoc "attachment" (cdr part))
+;;                                  part))
+;;                              (mu4e~view-gather-mime-parts))))
+;;            (files (+mu4e-part-selectors parts)))
+;;       (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
+;;     (user-error (mu4e-format "No attached files found"))))
+
+;; (defun +mu4e-view-open-attachment ()
+;;   "Select an attachment, and open it."
+;;   (interactive)
+;;   (mu4e~view-open-file
+;;    (mu4e~view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
+
+;; (defun +mu4e-view-select-mime-part-action ()
+;;   "Select a MIME part, and perform an action on it."
+;;   (interactive)
+;;   (let ((labeledparts (+mu4e-part-selectors (mu4e~view-gather-mime-parts))))
+;;     (if labeledparts
+;;         (mu4e-view-mime-part-action
+;;          (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
+;;                       labeledparts)))
+;;       (user-error (mu4e-format "No parts found")))))
+
+;; (defun +mu4e-part-selectors (parts)
+;;   "Generate selection strings for PARTS."
+;;   (if parts
+;;       (let (partinfo labeledparts maxfnamelen fnamefmt maxsizelen sizefmt)
+;;         (dolist (part parts)
+;;           (push (list :index (car part)
+;;                       :mimetype (if (and (string= "text/plain" (caaddr part))
+;;                                          (alist-get 'charset (cdaddr part)))
+;;                                     (format "%s (%s)"
+;;                                             (caaddr part)
+;;                                             (alist-get 'charset (cdaddr part)))
+;;                                   (caaddr part))
+;;                       :type (car (nth 5 part))
+;;                       :filename (cdr (assoc 'filename (assoc "attachment" (cdr part))))
+;;                       :size (file-size-human-readable (with-current-buffer (cadr part) (buffer-size)))
+;;                       :part part)
+;;                 partinfo))
+;;         (setq maxfnamelen (apply #'max 7 (mapcar (lambda (i) (length (plist-get i :filename))) partinfo))
+;;               fnamefmt (format " %%-%ds  " maxfnamelen)
+;;               maxsizelen (apply #'max (mapcar (lambda (i) (length (plist-get i :size))) partinfo))
+;;               sizefmt (format "%%-%ds " maxsizelen))
+;;         (dolist (pinfo partinfo)
+;;           (push (cons (concat (propertize (format "%-2s " (plist-get pinfo :index)) 'face '(bold font-lock-type-face))
+;;                               (when (featurep 'all-the-icons)
+;;                                 (all-the-icons-icon-for-file (or (plist-get pinfo :filename) "")))
+;;                               (format fnamefmt (or (plist-get pinfo :filename)
+;;                                                    (propertize (plist-get pinfo :type) 'face '(italic font-lock-doc-face))))
+;;                               (format sizefmt (propertize (plist-get pinfo :size) 'face 'font-lock-builtin-face))
+;;                               (propertize (plist-get pinfo :mimetype) 'face 'font-lock-constant-face))
+;;                       (plist-get pinfo :part))
+;;                 labeledparts))
+;;         labeledparts)))
+
+(defun +cleanse-subject (sub)
+  (replace-regexp-in-string "[^A-Z0-9]+" "-" (downcase sub)))
+
+(defun +mu4e-view-save-all-attachments (&optional arg)
+  "Save all MIME parts from current mu4e gnus view buffer."
+  ;; Copied from mu4e-view-save-attachments
+  (interactive "P")
+  (cl-assert (and (eq major-mode 'mu4e-view-mode)
+                  (derived-mode-p 'gnus-article-mode)))
+  (let* ((msg (mu4e-message-at-point))
+         (id (+cleanse-subject (mu4e-message-field msg :subject)))
+         (attachdir (expand-file-name id mu4e-attachment-dir))
+         (parts (mu4e~view-gather-mime-parts))
+         (handles '())
+         (files '())
+         dir)
+    (mkdir attachdir t)
+    (dolist (part parts)
+      (let ((fname (or (cdr (assoc 'filename (assoc "attachment" (cdr part))))
+                       (seq-find #'stringp
+                                 (mapcar (lambda (item) (cdr (assoc 'name item)))
+                                         (seq-filter 'listp (cdr part)))))))
+        (when fname
+          (push `(,fname . ,(cdr part)) handles)
+          (push fname files))))
+    (if files
+        (progn
+          (setq dir
+                (if arg (read-directory-name "Save to directory: ")
+                  attachdir))
+          (cl-loop for (f . h) in handles
+                   when (member f files)
+                   do (mm-save-part-to-file h
+                                            (me-file-name-incremental
+                                             (expand-file-name f dir)))))
+      (mu4e-message "No attached files found"))))
+
+(provide 'mu4e-extra-stuff)

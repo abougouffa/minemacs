@@ -74,25 +74,6 @@
 (setq auto-save-default t) ;; enable built-in `auto-save-mode'
 ;; Auto-save:3 ends here
 
-;; [[file:config.org::*Visual undo (=vundo=)][Visual undo (=vundo=):2]]
-(use-package vundo
-  :straight t
-  :commands (vundo)
-  :init
-  (defconst +vundo-unicode-symbols
-    '((selected-node   . ?●)
-      (node            . ?○)
-      (vertical-stem   . ?│)
-      (branch          . ?├)
-      (last-branch     . ?╰)
-      (horizontal-stem . ?─)))
-
-  :config
-  (setq vundo-glyph-alist +vundo-unicode-symbols
-        vundo-compact-display t
-        vundo-window-max-height 6))
-
-;; [[file:config.org::*Editing][Editing:1]]
 ;; Stretch cursor to the glyph width
 (setq-default x-stretch-cursor t)
 
@@ -417,8 +398,7 @@ current buffer's, reload dir-locals."
 (add-hook 'emacs-lisp-mode-hook #'+dir-locals-enable-autoreload)
 (add-hook 'lisp-data-mode-hook #'+dir-locals-enable-autoreload)
 
-;; ;; =dir-locals.el=:1 ends here
-
+;; ;; [[file:config.org::*Eglot][Eglot:1]]
 ;; (after! eglot
 ;;   ;; A hack to make it works with projectile
 ;;   (defun projectile-project-find-function (dir)
@@ -541,11 +521,22 @@ current buffer's, reload dir-locals."
 
 ;; ;; [[file:config.org::*Project CMake][Project CMake:2]]
 ;; (use-package! project-cmake
-;;   :config
-;;   (require 'eglot)
-;;   (project-cmake-scan-kits)
-;;   (project-cmake-eglot-integration))
+;;     :config
+;;     (require 'eglot)
+;;     (project-cmake-scan-kits)
+;;     (project-cmake-eglot-integration))
 ;; ;; Project CMake:2 ends here
+
+;; ;; [[file:config.org::*Clang-format][Clang-format:2]]
+;; (use-package! clang-format
+;;   :when CLANG-FORMAT-P
+;;   :commands (clang-format-region))
+;; ;; Clang-format:2 ends here
+
+;; ;; [[file:config.org::*Auto-include C++ headers][Auto-include C++ headers:2]]
+;; (use-package! cpp-auto-include
+;;   :commands cpp-auto-include)
+;; ;; Auto-include C++ headers:2 ends here
 
 ;; ;; [[file:config.org::*C/C++ preprocessor conditions][C/C++ preprocessor conditions:1]]
 ;; (unless (modulep! :lang cc +lsp) ;; Disable if LSP for C/C++ is enabled
@@ -556,6 +547,11 @@ current buffer's, reload dir-locals."
 ;;     (setq hide-ifdef-shadow t
 ;;           hide-ifdef-initially t)))
 ;; ;; C/C++ preprocessor conditions:1 ends here
+
+;; ;; [[file:config.org::*Erefactor][Erefactor:2]]
+;; (use-package! erefactor
+;;   :defer t)
+;; ;; Erefactor:2 ends here
 
 ;; ;; [[file:config.org::*Lorem ipsum][Lorem ipsum:2]]
 ;; (use-package! lorem-ipsum
@@ -604,8 +600,8 @@ current buffer's, reload dir-locals."
 
 ;; (map! :leader :prefix ("l" . "custom")
 ;;       (:when (modulep! :tools debugger +lsp)
-;;         :prefix ("d" . "debugger")
-;;         :desc "Clear last DAP session" "c" #'+debugger/clear-last-session))
+;;        :prefix ("d" . "debugger")
+;;        :desc "Clear last DAP session" "c" #'+debugger/clear-last-session))
 ;; ;; Doom store:1 ends here
 
 ;; ;; [[file:config.org::*Additional commands][Additional commands:1]]
@@ -680,8 +676,8 @@ current buffer's, reload dir-locals."
 
 ;;   (map! :leader :prefix ("l" . "custom")
 ;;         (:when (modulep! :tools debugger)
-;;           :prefix ("d" . "debugger")
-;;           :desc "RealGUD hydra" "h" #'+debugger/realgud:gdb-hydra)))
+;;          :prefix ("d" . "debugger")
+;;          :desc "RealGUD hydra" "h" #'+debugger/realgud:gdb-hydra)))
 ;; ;; Additional commands:1 ends here
 
 ;; ;; [[file:config.org::*Record and replay =rr=][Record and replay =rr=:1]]
@@ -703,9 +699,9 @@ current buffer's, reload dir-locals."
 
 ;;   (map! :leader :prefix ("l" . "custom")
 ;;         (:when (modulep! :tools debugger)
-;;           :prefix ("d" . "debugger")
-;;           :desc "rr record" "r" #'+debugger/rr-record
-;;           :desc "rr replay" "R" #'+debugger/rr-replay)))
+;;          :prefix ("d" . "debugger")
+;;          :desc "rr record" "r" #'+debugger/rr-record
+;;          :desc "rr replay" "R" #'+debugger/rr-replay)))
 ;; ;; Record and replay =rr=:1 ends here
 
 ;; ;; [[file:config.org::*Emacs GDB /a.k.a./ =gdb-mi=][Emacs GDB /a.k.a./ =gdb-mi=:2]]
@@ -985,8 +981,8 @@ current buffer's, reload dir-locals."
 
 ;; (map! :leader :prefix ("l" . "custom")
 ;;       (:when (modulep! :tools debugger)
-;;         :prefix ("d" . "debugger")
-;;         :desc "GUD/RealGUD launch.json" "d" #'launch-json-debug))
+;;        :prefix ("d" . "debugger")
+;;        :desc "GUD/RealGUD launch.json" "d" #'launch-json-debug))
 ;; ;; WIP =launch.json= support for GUD and RealGUD:4 ends here
 
 ;; ;; [[file:config.org::*Valgrind][Valgrind:2]]
@@ -1397,16 +1393,16 @@ current buffer's, reload dir-locals."
 
 ;; (map! :leader :prefix ("l" . "custom")
 ;;       (:prefix ("t" . "tools")
-;;                (:when CHEZMOI-P
-;;                  :prefix ("c" . "chezmoi")
-;;                  :desc "Magit status" "g" #'chezmoi-magit-status
-;;                  :desc "Write"        "w" #'chezmoi-write
-;;                  :desc "Write files"  "W" #'chezmoi-write-files
-;;                  :desc "Find source"  "f" #'chezmoi-find
-;;                  :desc "Sync files"   "s" #'chezmoi-sync-files
-;;                  :desc "Diff"         "d" #'chezmoi-diff
-;;                  :desc "EDiff"        "e" #'chezmoi-ediff
-;;                  :desc "Open other"   "o" #'chezmoi-open-other)))
+;;        (:when CHEZMOI-P
+;;         :prefix ("c" . "chezmoi")
+;;         :desc "Magit status" "g" #'chezmoi-magit-status
+;;         :desc "Write"        "w" #'chezmoi-write
+;;         :desc "Write files"  "W" #'chezmoi-write-files
+;;         :desc "Find source"  "f" #'chezmoi-find
+;;         :desc "Sync files"   "s" #'chezmoi-sync-files
+;;         :desc "Diff"         "d" #'chezmoi-diff
+;;         :desc "EDiff"        "e" #'chezmoi-ediff
+;;         :desc "Open other"   "o" #'chezmoi-open-other)))
 ;; ;; Chezmoi:2 ends here
 
 ;; ;; [[file:config.org::*Aweshell][Aweshell:2]]
@@ -1490,39 +1486,39 @@ current buffer's, reload dir-locals."
 
 ;; (map! :leader :prefix ("l" . "custom")
 ;;       (:prefix ("t" . "tools")
-;;                (:when ECRYPTFS-P
-;;                  :prefix ("e" . "ecryptfs")
-;;                  :desc "eCryptfs mount private"    "e" #'+ecryptfs-mount-private
-;;                  :desc "eCryptfs un-mount private" "E" #'+ecryptfs-umount-private)))
+;;        (:when ECRYPTFS-P
+;;         :prefix ("e" . "ecryptfs")
+;;         :desc "eCryptfs mount private"    "e" #'+ecryptfs-mount-private
+;;         :desc "eCryptfs un-mount private" "E" #'+ecryptfs-umount-private)))
 ;; ;; eCryptfs:1 ends here
 
 ;; ;; [[file:config.org::*Workspaces][Workspaces:1]]
 ;; (map! :leader
 ;;       (:when (modulep! :ui workspaces)
-;;         :prefix ("TAB" . "workspace")
-;;         :desc "Display tab bar"           "TAB" #'+workspace/display
-;;         :desc "Switch workspace"          "."   #'+workspace/switch-to
-;;         :desc "Switch to last workspace"  "$"   #'+workspace/other ;; Modified
-;;         :desc "New workspace"             "n"   #'+workspace/new
-;;         :desc "New named workspace"       "N"   #'+workspace/new-named
-;;         :desc "Load workspace from file"  "l"   #'+workspace/load
-;;         :desc "Save workspace to file"    "s"   #'+workspace/save
-;;         :desc "Delete session"            "x"   #'+workspace/kill-session
-;;         :desc "Delete this workspace"     "d"   #'+workspace/delete
-;;         :desc "Rename workspace"          "r"   #'+workspace/rename
-;;         :desc "Restore last session"      "R"   #'+workspace/restore-last-session
-;;         :desc "Next workspace"            ">"   #'+workspace/switch-right ;; Modified
-;;         :desc "Previous workspace"        "<"   #'+workspace/switch-left ;; Modified
-;;         :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
-;;         :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
-;;         :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
-;;         :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
-;;         :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
-;;         :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
-;;         :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
-;;         :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
-;;         :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
-;;         :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
+;;        :prefix ("TAB" . "workspace")
+;;        :desc "Display tab bar"           "TAB" #'+workspace/display
+;;        :desc "Switch workspace"          "."   #'+workspace/switch-to
+;;        :desc "Switch to last workspace"  "$"   #'+workspace/other ;; Modified
+;;        :desc "New workspace"             "n"   #'+workspace/new
+;;        :desc "New named workspace"       "N"   #'+workspace/new-named
+;;        :desc "Load workspace from file"  "l"   #'+workspace/load
+;;        :desc "Save workspace to file"    "s"   #'+workspace/save
+;;        :desc "Delete session"            "x"   #'+workspace/kill-session
+;;        :desc "Delete this workspace"     "d"   #'+workspace/delete
+;;        :desc "Rename workspace"          "r"   #'+workspace/rename
+;;        :desc "Restore last session"      "R"   #'+workspace/restore-last-session
+;;        :desc "Next workspace"            ">"   #'+workspace/switch-right ;; Modified
+;;        :desc "Previous workspace"        "<"   #'+workspace/switch-left ;; Modified
+;;        :desc "Switch to 1st workspace"   "1"   #'+workspace/switch-to-0
+;;        :desc "Switch to 2nd workspace"   "2"   #'+workspace/switch-to-1
+;;        :desc "Switch to 3rd workspace"   "3"   #'+workspace/switch-to-2
+;;        :desc "Switch to 4th workspace"   "4"   #'+workspace/switch-to-3
+;;        :desc "Switch to 5th workspace"   "5"   #'+workspace/switch-to-4
+;;        :desc "Switch to 6th workspace"   "6"   #'+workspace/switch-to-5
+;;        :desc "Switch to 7th workspace"   "7"   #'+workspace/switch-to-6
+;;        :desc "Switch to 8th workspace"   "8"   #'+workspace/switch-to-7
+;;        :desc "Switch to 9th workspace"   "9"   #'+workspace/switch-to-8
+;;        :desc "Switch to final workspace" "0"   #'+workspace/switch-to-final))
 ;; ;; Workspaces:1 ends here
 
 ;; ;; [[file:config.org::*Weather][Weather:2]]
@@ -1957,7 +1953,7 @@ current buffer's, reload dir-locals."
 ;;       calendar-location-name "Orsay, FR"
 ;;       calendar-time-display-form
 ;;       '(24-hours ":" minutes
-;;         (if time-zone " (") time-zone (if time-zone ")")))
+;;                  (if time-zone " (") time-zone (if time-zone ")")))
 ;; ;; Calendar:1 ends here
 
 ;; ;; [[file:config.org::*e-Books (=nov=)][e-Books (=nov=):2]]
@@ -2068,85 +2064,53 @@ current buffer's, reload dir-locals."
 ;;   (map! :leader
 ;;         :prefix ("l")
 ;;         (:prefix ("t")
-;;                  (:prefix ("n" . "netExtender")
-;;                   :desc "Start" "s" #'+netextender-start
-;;                   :desc "Kill"  "k" #'+netextender-kill))))
+;;          (:prefix ("n" . "netExtender")
+;;           :desc "Start" "s" #'+netextender-start
+;;           :desc "Kill"  "k" #'+netextender-kill))))
 ;; ;; Emacs + NetExtender:1 ends here
 
-;; ;; [[file:config.org::*Mail client and indexer (=mu= and =mu4e=)][Mail client and indexer (=mu= and =mu4e=):2]]
+(with-eval-after-load 'mu4e
+  (setq mail-personal-alias-file (expand-file-name "mail-aliases.mailrc" minemacs-var-dir))
+
+  ;; Add a unified inbox shortcut
+  (add-to-list
+   'mu4e-bookmarks
+   '(:name "Unified inbox" :query "maildir:/.*inbox/" :key ?i) t)
+
+  ;; Add shortcut to view yesterday's messages
+  (add-to-list
+   'mu4e-bookmarks
+   '(:name "Yesterday's messages" :query "date:1d..today" :key ?y) t)
+
+  ;; Load a list of my email addresses '+my-addresses', defined as:
+  ;; (setq +my-addresses '("user@gmail.com" "user@hotmail.com"))
+  (load "private/+my-addresses.el" :no-error :no-msg)
+
+  (when (bound-and-true-p +my-addresses)
+    ;; I like always to add myself in BCC, Lets add a bookmark to show all my BCC mails
+    (defun +mu-long-query (query oper arg-list)
+      (concat "(" (+str-join (concat " " oper " ") (mapcar (lambda (addr) (format "%s:%s" query addr)) arg-list)) ")"))
+
+    ;; Build a query to match mails send from "me" with "me" in BCC
+    (let ((bcc-query (+mu-long-query "bcc" "or" +my-addresses))
+          (from-query (+mu-long-query "from" "or" +my-addresses)))
+      (add-to-list
+       'mu4e-bookmarks
+       (list :name "My black copies" :query (format "maildir:/.*inbox/ and %s and %s" from-query bcc-query) :key ?k) t))))
+
 ;; (after! mu4e
 ;;   (require 'mu4e-contrib)
 ;;   (require 'mu4e-icalendar)
 ;;   (require 'org-agenda)
 
-;;   ;; Common parameters
-;;   (setq mu4e-update-interval (* 3 60) ;; Every 3 min
-;;         mu4e-index-update-error-warning nil ;; Do not show warning after update
-;;         mu4e-get-mail-command "mbsync -a" ;; Not needed, as +mu4e-backend is 'mbsync by default
-;;         mu4e-main-hide-personal-addresses t ;; No need to display a long list of my own addresses!
-;;         mu4e-attachment-dir (expand-file-name "~/Downloads/mu4e-attachements")
-;;         mu4e-sent-messages-behavior 'sent ;; Save sent messages
-;;         mu4e-context-policy 'pick-first   ;; Start with the first context
-;;         mu4e-compose-context-policy 'ask) ;; Always ask which context to use when composing a new mail
-
-;;   ;; Use msmtp instead of smtpmail
-;;   (setq sendmail-program (executable-find "msmtp")
-;;         send-mail-function #'smtpmail-send-it
-;;         message-sendmail-f-is-evil t
-;;         message-sendmail-extra-arguments '("--read-envelope-from")
-;;         message-send-mail-function #'message-send-mail-with-sendmail
-;;         message-sendmail-envelope-from 'obey-mail-envelope-from
-;;         mail-envelope-from 'header
-;;         mail-personal-alias-file (expand-file-name "mail-aliases.mailrc" doom-user-dir)
-;;         mail-specify-envelope-from t)
-
-;;   (setq mu4e-headers-fields '((:flags . 6) ;; 3 flags
-;;                               (:account-stripe . 2)
-;;                               (:from-or-to . 25)
-;;                               (:folder . 10)
-;;                               (:recipnum . 2)
-;;                               (:subject . 80)
-;;                               (:human-date . 8))
-;;         +mu4e-min-header-frame-width 142
-;;         mu4e-headers-date-format "%d/%m/%y"
-;;         mu4e-headers-time-format "⧖ %H:%M"
-;;         mu4e-search-results-limit 1000
-;;         mu4e-index-cleanup t)
-
-;;   (defvar +mu4e-header--folder-colors nil)
 ;;   (appendq! mu4e-header-info-custom
 ;;             '((:folder .
 ;;                (:name "Folder" :shortname "Folder" :help "Lowest level folder" :function
-;;                       (lambda (msg)
-;;                         (+mu4e-colorize-str
-;;                          (replace-regexp-in-string "\\`.*/" "" (mu4e-message-field msg :maildir))
-;;                          '+mu4e-header--folder-colors))))))
+;;                 (lambda (msg)
+;;                   (+mu4e-colorize-str
+;;                    (replace-regexp-in-string "\\`.*/" "" (mu4e-message-field msg :maildir))
+;;                    '+mu4e-header--folder-colors))))))
 
-;;   ;; Add a unified inbox shortcut
-;;   (add-to-list
-;;    'mu4e-bookmarks
-;;    '(:name "Unified inbox" :query "maildir:/.*inbox/" :key ?i) t)
-
-;;   ;; Add shortcut to view yesterday's messages
-;;   (add-to-list
-;;    'mu4e-bookmarks
-;;    '(:name "Yesterday's messages" :query "date:1d..today" :key ?y) t)
-
-;;   ;; Load a list of my email addresses '+my-addresses', defined as:
-;;   ;; (setq +my-addresses '("user@gmail.com" "user@hotmail.com"))
-;;   (load! "lisp/private/+my-addresses.el")
-
-;;   (when (bound-and-true-p +my-addresses)
-;;     ;; I like always to add myself in BCC, Lets add a bookmark to show all my BCC mails
-;;     (defun +mu-long-query (query oper arg-list)
-;;       (concat "(" (+str-join (concat " " oper " ") (mapcar (lambda (addr) (format "%s:%s" query addr)) arg-list)) ")"))
-
-;;     ;; Build a query to match mails send from "me" with "me" in BCC
-;;     (let ((bcc-query (+mu-long-query "bcc" "or" +my-addresses))
-;;           (from-query (+mu-long-query "from" "or" +my-addresses)))
-;;       (add-to-list
-;;        'mu4e-bookmarks
-;;        (list :name "My black copies" :query (format "maildir:/.*inbox/ and %s and %s" from-query bcc-query) :key ?k) t)))
 
 ;;   ;; `mu4e-alert' configuration
 ;;   ;; Use a nicer icon in alerts
@@ -2255,45 +2219,9 @@ current buffer's, reload dir-locals."
 ;; (after! mu4e
 ;;   ;; From https://github.com/sje30/emacs/blob/d7e21b94c79a5b6f244f33faff514036226e183c/mu4e-view-save-all-attachments.el
 
-;;   (defun +cleanse-subject (sub)
-;;     (replace-regexp-in-string "[^A-Z0-9]+" "-" (downcase sub)))
-
-;;   (defun +mu4e-view-save-all-attachments (&optional arg)
-;;     "Save all MIME parts from current mu4e gnus view buffer."
-;;     ;; Copied from mu4e-view-save-attachments
-;;     (interactive "P")
-;;     (cl-assert (and (eq major-mode 'mu4e-view-mode)
-;;                     (derived-mode-p 'gnus-article-mode)))
-;;     (let* ((msg (mu4e-message-at-point))
-;;            (id (+cleanse-subject (mu4e-message-field msg :subject)))
-;;            (attachdir (expand-file-name id mu4e-attachment-dir))
-;;            (parts (mu4e~view-gather-mime-parts))
-;;            (handles '())
-;;            (files '())
-;;            dir)
-;;       (mkdir attachdir t)
-;;       (dolist (part parts)
-;;         (let ((fname (or (cdr (assoc 'filename (assoc "attachment" (cdr part))))
-;;                          (seq-find #'stringp
-;;                                    (mapcar (lambda (item) (cdr (assoc 'name item)))
-;;                                            (seq-filter 'listp (cdr part)))))))
-;;           (when fname
-;;             (push `(,fname . ,(cdr part)) handles)
-;;             (push fname files))))
-;;       (if files
-;;           (progn
-;;             (setq dir
-;;                   (if arg (read-directory-name "Save to directory: ")
-;;                     attachdir))
-;;             (cl-loop for (f . h) in handles
-;;                      when (member f files)
-;;                      do (mm-save-part-to-file h
-;;                                               (+file-name-incremental
-;;                                                (expand-file-name f dir)))))
-;;         (mu4e-message "No attached files found"))))
 
 ;;   (map! :map mu4e-view-mode-map
-;;         :ne "P" #'+mu4e-view-save-all-attachments))
+;;      :ne "P" #'+mu4e-view-save-all-attachments))
 ;; ;; Save all attachements:1 ends here
 
 ;; ;; [[file:config.org::*MPD and MPC][MPD and MPC:1]]
@@ -2527,26 +2455,26 @@ current buffer's, reload dir-locals."
 ;; ;; [[file:config.org::*Keybindings][Keybindings:1]]
 ;; (map! :leader :prefix ("l" . "custom")
 ;;       (:when (modulep! :app emms)
-;;         :prefix ("m" . "media")
-;;         :desc "Playlist go"                 "g" #'emms-playlist-mode-go
-;;         :desc "Add playlist"                "D" #'emms-add-playlist
-;;         :desc "Toggle random playlist"      "r" #'emms-toggle-random-playlist
-;;         :desc "Add directory"               "d" #'emms-add-directory
-;;         :desc "Add file"                    "f" #'emms-add-file
-;;         :desc "Smart browse"                "b" #'emms-smart-browse
-;;         :desc "Play/Pause"                  "p" #'emms-pause
-;;         :desc "Start"                       "S" #'emms-start
-;;         :desc "Stop"                        "s" #'emms-stop))
+;;        :prefix ("m" . "media")
+;;        :desc "Playlist go"                 "g" #'emms-playlist-mode-go
+;;        :desc "Add playlist"                "D" #'emms-add-playlist
+;;        :desc "Toggle random playlist"      "r" #'emms-toggle-random-playlist
+;;        :desc "Add directory"               "d" #'emms-add-directory
+;;        :desc "Add file"                    "f" #'emms-add-file
+;;        :desc "Smart browse"                "b" #'emms-smart-browse
+;;        :desc "Play/Pause"                  "p" #'emms-pause
+;;        :desc "Start"                       "S" #'emms-start
+;;        :desc "Stop"                        "s" #'emms-stop))
 ;; ;; Keybindings:1 ends here
 
 ;; ;; [[file:config.org::*Keybindings][Keybindings:2]]
 ;; (map! :leader :prefix ("l m")
 ;;       (:when (and (modulep! :app emms) MPD-P)
-;;         :prefix ("m" . "mpd/mpc")
-;;         :desc "Start daemon"              "s" #'+mpd-daemon-start
-;;         :desc "Stop daemon"               "k" #'+mpd-daemon-stop
-;;         :desc "EMMS player (MPD update)"  "R" #'emms-player-mpd-update-all-reset-cache
-;;         :desc "Update database"           "u" #'+mpd-mpc-update))
+;;        :prefix ("m" . "mpd/mpc")
+;;        :desc "Start daemon"              "s" #'+mpd-daemon-start
+;;        :desc "Stop daemon"               "k" #'+mpd-daemon-stop
+;;        :desc "EMMS player (MPD update)"  "R" #'emms-player-mpd-update-all-reset-cache
+;;        :desc "Update database"           "u" #'+mpd-mpc-update))
 ;; ;; Keybindings:2 ends here
 
 ;; ;; [[file:config.org::*Cycle song information in mode line][Cycle song information in mode line:2]]
@@ -2580,7 +2508,7 @@ current buffer's, reload dir-locals."
 ;;     ;; Trigger a forced update of mode line (useful when pausing)
 ;;     (emms-mode-line-alter-mode-line))
 
-;;   ;; Hook the function to the 'emms-player-paused-hook'
+;;       ;; Hook the function to the 'emms-player-paused-hook'
 ;;   (add-hook 'emms-player-paused-hook '+emms-mode-line-toggle-format-hook)
 
 ;;   (emms-mode-line-cycle 1))
@@ -2620,206 +2548,29 @@ current buffer's, reload dir-locals."
 ;;   :commands (fricas-mode fricas-eval fricas))
 ;; ;; FriCAS:1 ends here
 
-;; ;; [[file:config.org::*Roam][Roam:1]]
-;; (use-package! websocket
-;;   :after org-roam-ui)
 
-;; (use-package! org-roam-ui
-;;   :commands org-roam-ui-open
-;;   :config (setq org-roam-ui-sync-theme t
-;;                 org-roam-ui-follow t
-;;                 org-roam-ui-update-on-save t
-;;                 org-roam-ui-open-on-start t))
-;; ;; Roam:1 ends here
+;;; Org mode related stuff
+;; Basic settings
+(with-eval-after-load 'org-roam
+  (setq org-roam-directory "~/Dropbox/Org/slip-box"
+        org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
 
-;; ;; [[file:config.org::*Basic settings][Basic settings:1]]
-;; (use-package! org-roam
-;;   :init
-;;   (setq org-roam-directory "~/Dropbox/Org/slip-box"
-;;         org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)))
-;; ;; Basic settings:1 ends here
+  (advice-add #'doom-modeline-buffer-file-name
+              :around
+              (lambda (orig-fun)
+                (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+                    (replace-regexp-in-string
+                     "\\(?:^\\|.*/\\)\\([0-9]\\{4\\}\\)\\([0-9]\\{2\\}\\)\\([0-9]\\{2\\}\\)[0-9]*-"
+                     "🢔(\\1-\\2-\\3) "
+                     (subst-char-in-string ?_ ?  buffer-file-name))
+                  (funcall orig-fun))))
 
-;; ;; [[file:config.org::*Mode line file name][Mode line file name:1]]
-;; (defadvice! doom-modeline--buffer-file-name-roam-aware-a (orig-fun)
-;;   :around #'doom-modeline-buffer-file-name ; takes no args
-;;   (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-;;       (replace-regexp-in-string
-;;        "\\(?:^\\|.*/\\)\\([0-9]\\{4\\}\\)\\([0-9]\\{2\\}\\)\\([0-9]\\{2\\}\\)[0-9]*-"
-;;        "🢔(\\1-\\2-\\3) "
-;;        (subst-char-in-string ?_ ?  buffer-file-name))
-;;     (funcall orig-fun)))
-;; ;; Mode line file name:1 ends here
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain "%?"
+           :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
+           :unnarrowed t))))
 
-;; ;; [[file:config.org::*Org Roam Capture template][Org Roam Capture template:1]]
-;; (after! org-roam
-;;   (setq org-roam-capture-ref-templates
-;;         '(("r" "ref" plain "%?"
-;;            :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
-;;            :unnarrowed t))))
-;; ;; Org Roam Capture template:1 ends here
 
-;; ;; [[file:config.org::*View notes in Deft][View notes in Deft:1]]
-;; ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
-(use-package deft
-  :straight t
-  :after (org org-roam)
-  :bind
-  ("C-c n d" . deft)
-  :commands (deft)
-  :init
-  (setq deft-directory org-roam-directory
-        ;; deft-recursive t
-        deft-use-filter-string-for-filename t
-        deft-default-extension "org")
-  :config
-  (defun +deft-parse-title (file contents)
-    "Parse the given FILE and CONTENTS and determine the title.
-     If `deft-use-filename-as-title' is nil, the title is taken to
-     be the first non-empty line of the FILE.  Else the base name of the FILE is
-     used as title."
-    (let ((begin (string-match "^#\\+[tT][iI][tT][lL][eE]: .*$" contents)))
-      (if begin
-          (string-trim (substring contents begin (match-end 0)) "#\\+[tT][iI][tT][lL][eE]: *" "[\n\t ]+")
-        (deft-base-filename file))))
-
-  (advice-add 'deft-parse-title :override #'+deft-parse-title)
-
-  (setq deft-strip-summary-regexp
-        (concat "\\("
-                "[\n\t]" ;; blank
-                "\\|^#\\+[[:alpha:]_]+:.*$" ;; org-mode metadata
-                "\\|^:PROPERTIES:\n\\(.+\n\\)+:END:\n" ;; org-roam ID
-                "\\|\\[\\[\\(.*\\]\\)" ;; any link
-                "\\)")))
-;; ;; View notes in Deft:1 ends here
-
-;; ;; [[file:config.org::*CSV rainbow][CSV rainbow:1]]
-;; (after! csv-mode
-;;   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
-;;   (require 'cl-lib)
-;;   (require 'color)
-
-;;   (map! :localleader
-;;         :map csv-mode-map
-;;         "R" #'+csv-rainbow)
-
-;;   (defun +csv-rainbow (&optional separator)
-;;     (interactive (list (when current-prefix-arg (read-char "Separator: "))))
-;;     (font-lock-mode 1)
-;;     (let* ((separator (or separator ?\,))
-;;            (n (count-matches (string separator) (point-at-bol) (point-at-eol)))
-;;            (colors (cl-loop for i from 0 to 1.0 by (/ 2.0 n)
-;;                             collect (apply #'color-rgb-to-hex
-;;                                            (color-hsl-to-rgb i 0.3 0.5)))))
-;;       (cl-loop for i from 2 to n by 2
-;;                for c in colors
-;;                for r = (format "^\\([^%c\n]+%c\\)\\{%d\\}" separator separator i)
-;;                do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
-
-;; ;; provide CSV mode setup
-;; ;; (add-hook 'csv-mode-hook (lambda () (+csv-rainbow)))
-;; ;; CSV rainbow:1 ends here
-
-;; ;; [[file:config.org::*Vimrc][Vimrc:2]]
-;; (use-package! vimrc-mode
-;;   :mode "\\.vim\\(rc\\)?\\'")
-;; ;; Vimrc:2 ends here
-
-;; ;; [[file:config.org::*Python IDE][Python IDE:2]]
-;; (use-package! elpy
-;;   :hook ((elpy-mode . flycheck-mode)
-;;          (elpy-mode . (lambda ()
-;;                         (set (make-local-variable 'company-backends)
-;;                              '((elpy-company-backend :with company-yasnippet))))))
-;;   :config
-;;   (elpy-enable))
-;; ;; Python IDE:2 ends here
-
-;; ;; [[file:config.org::*GNU Octave][GNU Octave:1]]
-;; (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
-;; ;; GNU Octave:1 ends here
-
-;; ;; [[file:config.org::*GNU Octave][GNU Octave:2]]
-;; (defun +octave-eval-last-sexp ()
-;;   "Evaluate Octave sexp before point and print value into current buffer."
-;;   (interactive)
-;;   (inferior-octave t)
-;;   (let ((print-escape-newlines nil)
-;;         (opoint (point)))
-;;     (prin1
-;;      (save-excursion
-;;        (forward-sexp -1)
-;;        (inferior-octave-send-list-and-digest
-;;         (list (concat (buffer-substring-no-properties (point) opoint)
-;;                       "\n")))
-;;        (mapconcat 'identity inferior-octave-output-list "\n")))))
-
-;; (defun +eros-octave-eval-last-sexp ()
-;;   "Wrapper for `+octave-eval-last-sexp' that overlays results."
-;;   (interactive)
-;;   (eros--eval-overlay
-;;    (+octave-eval-last-sexp)
-;;    (point)))
-
-;; (map! :localleader
-;;       :map (octave-mode-map)
-;;       (:prefix ("e" . "eval")
-;;        :desc "Eval and print last sexp" "e" #'+eros-octave-eval-last-sexp))
-;; ;; GNU Octave:2 ends here
-
-;; ;; [[file:config.org::*File extensions][File extensions:1]]
-(add-to-list 'auto-mode-alist '("\\.rviz\\'"   . conf-unix-mode))
-(add-to-list 'auto-mode-alist '("\\.urdf\\'"   . xml-mode))
-(add-to-list 'auto-mode-alist '("\\.xacro\\'"  . xml-mode))
-(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
-
-;; ;; Use gdb-script-mode for msg and srv files
-(add-to-list 'auto-mode-alist '("\\.msg\\'"    . gdb-script-mode))
-(add-to-list 'auto-mode-alist '("\\.srv\\'"    . gdb-script-mode))
-(add-to-list 'auto-mode-alist '("\\.action\\'" . gdb-script-mode))
-;; ;; File extensions:1 ends here
-
-;; ;; [[file:config.org::*ROS bags][ROS bags:1]]
-;; (when ROSBAG-P
-;;   (define-derived-mode rosbag-view-mode
-;;     fundamental-mode "Rosbag view mode"
-;;     "Major mode for viewing ROS bag files."
-;;     (let ((f (buffer-file-name)))
-;;       (let ((buffer-read-only nil))
-;;         (erase-buffer)
-;;         (message "Calling rosbag info")
-;;         (call-process "rosbag" nil (current-buffer) nil
-;;                       "info" f)
-;;         (set-buffer-modified-p nil))
-;;       (view-mode)
-;;       (set-visited-file-name nil t)))
-
-;;   ;; rosbag view mode
-;;   (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode)))
-;; ;; ROS bags:1 ends here
-
-;; ;; [[file:config.org::*=ros.el=][=ros.el=:2]]
-;; (use-package! ros
-;;   :init
-;;   (map! :leader
-;;         :prefix ("l" . "custom")
-;;         :desc "Hydra ROS" "r" #'hydra-ros-main/body)
-;;   :commands (hydra-ros-main/body ros-set-workspace)
-;;   :config
-;;   (setq ros-workspaces
-;;         (list (ros-dump-workspace
-;;                :tramp-prefix (format "/docker:%s@%s:" "ros" "ros-machine")
-;;                :workspace "~/ros_ws"
-;;                :extends '("/opt/ros/noetic/"))
-;;               (ros-dump-workspace
-;;                :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
-;;                :workspace "~/ros_ws"
-;;                :extends '("/opt/ros/noetic/"))
-;;               (ros-dump-workspace
-;;                :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
-;;                :workspace "~/ros2_ws"
-;;                :extends '("/opt/ros/foxy/")))))
-;; ;; =ros.el=:2 ends here
 
 ;; ;; [[file:config.org::*Scheme][Scheme:1]]
 ;; (after! geiser
@@ -2837,11 +2588,11 @@ current buffer's, reload dir-locals."
 ;;   :init
 ;;   (map! :leader :prefix ("l" . "custom")
 ;;         (:when (modulep! :tools debugger +lsp)
-;;           :prefix ("e" . "embedded")
-;;           :desc "Start OpenOCD"    "o" #'embed-openocd-start
-;;           :desc "Stop OpenOCD"     "O" #'embed-openocd-stop
-;;           :desc "OpenOCD GDB"      "g" #'embed-openocd-gdb
-;;           :desc "OpenOCD flash"    "f" #'embed-openocd-flash)))
+;;          :prefix ("e" . "embedded")
+;;          :desc "Start OpenOCD"    "o" #'embed-openocd-start
+;;          :desc "Stop OpenOCD"     "O" #'embed-openocd-stop
+;;          :desc "OpenOCD GDB"      "g" #'embed-openocd-gdb
+;;          :desc "OpenOCD flash"    "f" #'embed-openocd-flash)))
 ;; ;; Embed.el:2 ends here
 
 ;; ;; [[file:config.org::*Bitbake (Yocto)][Bitbake (Yocto):2]]
@@ -3035,8 +2786,1248 @@ current buffer's, reload dir-locals."
 ;;   :commands (inspect-expression inspect-last-sexp))
 ;; ;; Inspector:2 ends here
 
-;; (after! org)
+;; (after! org
+;;   (setq org-directory "~/Dropbox/Org/" ; let's put files here
+;;         org-use-property-inheritance t ; it's convenient to have properties inherited
+;;         org-log-done 'time             ; having the time an item is done sounds convenient
+;;         org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
+;;         org-export-in-background nil   ; run export processes in external emacs process
+;;         org-export-async-debug t
+;;         org-tags-column 0
+;;         org-catch-invisible-edits 'smart ;; try not to accidently do weird stuff in invisible regions
+;;         org-export-with-sub-superscripts '{} ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
+;;         org-pretty-entities-include-sub-superscripts nil
+;;         org-auto-align-tags nil
+;;         org-special-ctrl-a/e t
+;;         org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
+;;         org-insert-heading-respect-content t)
+;;   (setq org-babel-default-header-args
+;;         '((:session  . "none")
+;;           (:results  . "replace")
+;;           (:exports  . "code")
+;;           (:cache    . "no")
+;;           (:noweb    . "no")
+;;           (:hlines   . "no")
+;;           (:tangle   . "no")
+;;           (:comments . "link")))
+;;   ;; stolen from https://github.com/yohan-pereira/.emacs#babel-config
+;;   (defun +org-confirm-babel-evaluate (lang body)
+;;     (not (string= lang "scheme"))) ;; Don't ask for scheme
 
+;;   (setq org-confirm-babel-evaluate #'+org-confirm-babel-evaluate)
+;;   (map! :map evil-org-mode-map
+;;         :after evil-org
+;;         :n "g <up>" #'org-backward-heading-same-level
+;;         :n "g <down>" #'org-forward-heading-same-level
+;;         :n "g <left>" #'org-up-element
+;;         :n "g <right>" #'org-down-element)
+;;   (setq org-todo-keywords
+;;         '((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "PROJ(p)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "DONE(d)" "KILL(k)")
+;;           (sequence "[ ](T)" "[-](S)" "|" "[X](D)")
+;;           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")))
+
+;;   (setq org-todo-keyword-faces
+;;         '(("IDEA" . (:foreground "goldenrod" :weight bold))
+;;           ("NEXT" . (:foreground "IndianRed1" :weight bold))
+;;           ("STRT" . (:foreground "OrangeRed" :weight bold))
+;;           ("WAIT" . (:foreground "coral" :weight bold))
+;;           ("KILL" . (:foreground "DarkGreen" :weight bold))
+;;           ("PROJ" . (:foreground "LimeGreen" :weight bold))
+;;           ("HOLD" . (:foreground "orange" :weight bold))))
+
+;;   (defun +log-todo-next-creation-date (&rest ignore)
+;;     "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+;;     (when (and (string= (org-get-todo-state) "NEXT")
+;;                (not (org-entry-get nil "ACTIVATED")))
+;;       (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+
+;;   (add-hook 'org-after-todo-state-change-hook #'+log-todo-next-creation-date)
+;;   (setq org-tag-persistent-alist
+;;         '((:startgroup . nil)
+;;           ("home"      . ?h)
+;;           ("research"  . ?r)
+;;           ("work"      . ?w)
+;;           (:endgroup   . nil)
+;;           (:startgroup . nil)
+;;           ("tool"      . ?o)
+;;           ("dev"       . ?d)
+;;           ("report"    . ?p)
+;;           (:endgroup   . nil)
+;;           (:startgroup . nil)
+;;           ("easy"      . ?e)
+;;           ("medium"    . ?m)
+;;           ("hard"      . ?a)
+;;           (:endgroup   . nil)
+;;           ("urgent"    . ?u)
+;;           ("key"       . ?k)
+;;           ("bonus"     . ?b)
+;;           ("ignore"    . ?i)
+;;           ("noexport"  . ?x)))
+
+;;   (setq org-tag-faces
+;;         '(("home"     . (:foreground "goldenrod"  :weight bold))
+;;           ("research" . (:foreground "goldenrod"  :weight bold))
+;;           ("work"     . (:foreground "goldenrod"  :weight bold))
+;;           ("tool"     . (:foreground "IndianRed1" :weight bold))
+;;           ("dev"      . (:foreground "IndianRed1" :weight bold))
+;;           ("report"   . (:foreground "IndianRed1" :weight bold))
+;;           ("urgent"   . (:foreground "red"        :weight bold))
+;;           ("key"      . (:foreground "red"        :weight bold))
+;;           ("easy"     . (:foreground "green4"     :weight bold))
+;;           ("medium"   . (:foreground "orange"     :weight bold))
+;;           ("hard"     . (:foreground "red"        :weight bold))
+;;           ("bonus"    . (:foreground "goldenrod"  :weight bold))
+;;           ("ignore"   . (:foreground "Gray"       :weight bold))
+;;           ("noexport" . (:foreground "LimeGreen"  :weight bold))))
+
+;;   (setq org-agenda-files
+;;         (list (expand-file-name "inbox.org" org-directory)
+;;               (expand-file-name "agenda.org" org-directory)
+;;               (expand-file-name "gcal-agenda.org" org-directory)
+;;               (expand-file-name "notes.org" org-directory)
+;;               (expand-file-name "projects.org" org-directory)
+;;               (expand-file-name "archive.org" org-directory)))
+;;   ;; Agenda styling
+;;   (setq org-agenda-block-separator ?─
+;;         org-agenda-time-grid
+;;         '((daily today require-timed)
+;;           (800 1000 1200 1400 1600 1800 2000)
+;;           " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+;;         org-agenda-current-time-string
+;;         "⭠ now ─────────────────────────────────────────────────")
+;;   (use-package! org-super-agenda
+;;     :defer t
+;;     :config
+;;     (org-super-agenda-mode)
+;;     :init
+;;     (setq org-agenda-skip-scheduled-if-done t
+;;           org-agenda-skip-deadline-if-done t
+;;           org-agenda-include-deadlines t
+;;           org-agenda-block-separator nil
+;;           org-agenda-tags-column 100 ;; from testing this seems to be a good value
+;;           org-agenda-compact-blocks t)
+
+;;     (setq org-agenda-custom-commands
+;;           '(("o" "Overview"
+;;              ((agenda "" ((org-agenda-span 'day)
+;;                           (org-super-agenda-groups
+;;                            '((:name "Today"
+;;                               :time-grid t
+;;                               :date today
+;;                               :todo "TODAY"
+;;                               :scheduled today
+;;                               :order 1)))))
+;;               (alltodo "" ((org-agenda-overriding-header "")
+;;                            (org-super-agenda-groups
+;;                             '((:name "Next to do" :todo "NEXT" :order 1)
+;;                               (:name "Important" :tag "Important" :priority "A" :order 6)
+;;                               (:name "Due Today" :deadline today :order 2)
+;;                               (:name "Due Soon" :deadline future :order 8)
+;;                               (:name "Overdue" :deadline past :face error :order 7)
+;;                               (:name "Assignments" :tag "Assignment" :order 10)
+;;                               (:name "Issues" :tag "Issue" :order 12)
+;;                               (:name "Emacs" :tag "Emacs" :order 13)
+;;                               (:name "Projects" :tag "Project" :order 14)
+;;                               (:name "Research" :tag "Research" :order 15)
+;;                               (:name "To read" :tag "Read" :order 30)
+;;                               (:name "Waiting" :todo "WAIT" :order 20)
+;;                               (:name "University" :tag "Univ" :order 32)
+;;                               (:name "Trivial" :priority<= "E" :tag ("Trivial" "Unimportant") :todo ("SOMEDAY") :order 90)
+;;                               (:discard (:tag ("Chore" "Routine" "Daily"))))))))))))
+;;   (after! org-gcal
+;;     (load! "lisp/private/+org-gcal.el"))
+;;   (use-package! caldav
+;;     :commands (org-caldav-sync))
+;;   (setq +org-capture-emails-file (expand-file-name "inbox.org" org-directory)
+;;         +org-capture-todo-file (expand-file-name "inbox.org" org-directory)
+;;         +org-capture-projects-file (expand-file-name "projects.org" org-directory))
+;;   (use-package! doct
+;;     :commands (doct))
+;;   (after! org-capture
+;;     (defun org-capture-select-template-prettier (&optional keys)
+;;       "Select a capture template, in a prettier way than default
+;;     Lisp programs can force the template by setting KEYS to a string."
+;;       (let ((org-capture-templates
+;;              (or (org-contextualize-keys
+;;                   (org-capture-upgrade-templates org-capture-templates)
+;;                   org-capture-templates-contexts)
+;;                  '(("t" "Task" entry (file+headline "" "Tasks")
+;;                     "* TODO %?\n  %u\n  %a")))))
+;;         (if keys
+;;             (or (assoc keys org-capture-templates)
+;;                 (error "No capture template referred to by \"%s\" keys" keys))
+;;           (org-mks org-capture-templates
+;;                    "Select a capture template\n━━━━━━━━━━━━━━━━━━━━━━━━━"
+;;                    "Template key: "
+;;                    `(("q" ,(concat (all-the-icons-octicon "stop" :face 'all-the-icons-red :v-adjust 0.01) "\tAbort")))))))
+;;     (advice-add 'org-capture-select-template :override #'org-capture-select-template-prettier)
+
+;;     (defun org-mks-pretty (table title &optional prompt specials)
+;;       "Select a member of an alist with multiple keys. Prettified.
+
+;;     TABLE is the alist which should contain entries where the car is a string.
+;;     There should be two types of entries.
+
+;;     1. prefix descriptions like (\"a\" \"Description\")
+;;        This indicates that `a' is a prefix key for multi-letter selection, and
+;;        that there are entries following with keys like \"ab\", \"ax\"…
+
+;;     2. Select-able members must have more than two elements, with the first
+;;        being the string of keys that lead to selecting it, and the second a
+;;        short description string of the item.
+
+;;     The command will then make a temporary buffer listing all entries
+;;     that can be selected with a single key, and all the single key
+;;     prefixes.  When you press the key for a single-letter entry, it is selected.
+;;     When you press a prefix key, the commands (and maybe further prefixes)
+;;     under this key will be shown and offered for selection.
+
+;;     TITLE will be placed over the selection in the temporary buffer,
+;;     PROMPT will be used when prompting for a key.  SPECIALS is an
+;;     alist with (\"key\" \"description\") entries.  When one of these
+;;     is selected, only the bare key is returned."
+;;       (save-window-excursion
+;;         (let ((inhibit-quit t)
+;;               (buffer (org-switch-to-buffer-other-window "*Org Select*"))
+;;               (prompt (or prompt "Select: "))
+;;               case-fold-search
+;;               current)
+;;           (unwind-protect
+;;               (catch 'exit
+;;                 (while t
+;;                   (setq-local evil-normal-state-cursor (list nil))
+;;                   (erase-buffer)
+;;                   (insert title "\n\n")
+;;                   (let ((des-keys nil)
+;;                         (allowed-keys '("\C-g"))
+;;                         (tab-alternatives '("\s" "\t" "\r"))
+;;                         (cursor-type nil))
+;;                     ;; Populate allowed keys and descriptions keys
+;;                     ;; available with CURRENT selector.
+;;                     (let ((re (format "\\`%s\\(.\\)\\'"
+;;                                       (if current (regexp-quote current) "")))
+;;                           (prefix (if current (concat current " ") "")))
+;;                       (dolist (entry table)
+;;                         (pcase entry
+;;                           ;; Description.
+;;                           (`(,(and key (pred (string-match re))) ,desc)
+;;                            (let ((k (match-string 1 key)))
+;;                              (push k des-keys)
+;;                              ;; Keys ending in tab, space or RET are equivalent.
+;;                              (if (member k tab-alternatives)
+;;                                  (push "\t" allowed-keys)
+;;                                (push k allowed-keys))
+;;                              (insert (propertize prefix 'face 'font-lock-comment-face) (propertize k 'face 'bold) (propertize "›" 'face 'font-lock-comment-face) "  " desc "…" "\n")))
+;;                           ;; Usable entry.
+;;                           (`(,(and key (pred (string-match re))) ,desc . ,_)
+;;                            (let ((k (match-string 1 key)))
+;;                              (insert (propertize prefix 'face 'font-lock-comment-face) (propertize k 'face 'bold) "   " desc "\n")
+;;                              (push k allowed-keys)))
+;;                           (_ nil))))
+;;                     ;; Insert special entries, if any.
+;;                     (when specials
+;;                       (insert "─────────────────────────\n")
+;;                       (pcase-dolist (`(,key ,description) specials)
+;;                         (insert (format "%s   %s\n" (propertize key 'face '(bold all-the-icons-red)) description))
+;;                         (push key allowed-keys)))
+;;                     ;; Display UI and let user select an entry or
+;;                     ;; a sublevel prefix.
+;;                     (goto-char (point-min))
+;;                     (unless (pos-visible-in-window-p (point-max))
+;;                       (org-fit-window-to-buffer))
+;;                     (let ((pressed (org--mks-read-key allowed-keys
+;;                                                       prompt
+;;                                                       (not (pos-visible-in-window-p (1- (point-max)))))))
+;;                       (setq current (concat current pressed))
+;;                       (cond
+;;                        ((equal pressed "\C-g") (user-error "Abort"))
+;;                        ;; Selection is a prefix: open a new menu.
+;;                        ((member pressed des-keys))
+;;                        ;; Selection matches an association: return it.
+;;                        ((let ((entry (assoc current table)))
+;;                           (and entry (throw 'exit entry))))
+;;                        ;; Selection matches a special entry: return the
+;;                        ;; selection prefix.
+;;                        ((assoc current specials) (throw 'exit current))
+;;                        (t (error "No entry available")))))))
+;;             (when buffer (kill-buffer buffer))))))
+;;     (advice-add 'org-mks :override #'org-mks-pretty)
+
+;;     (defun +doct-icon-declaration-to-icon (declaration)
+;;       "Convert :icon declaration to icon"
+;;       (let ((name (pop declaration))
+;;             (set  (intern (concat "all-the-icons-" (plist-get declaration :set))))
+;;             (face (intern (concat "all-the-icons-" (plist-get declaration :color))))
+;;             (v-adjust (or (plist-get declaration :v-adjust) 0.01)))
+;;         (apply set `(,name :face ,face :v-adjust ,v-adjust))))
+
+;;     (defun +doct-iconify-capture-templates (groups)
+;;       "Add declaration's :icon to each template group in GROUPS."
+;;       (let ((templates (doct-flatten-lists-in groups)))
+;;         (setq doct-templates
+;;               (mapcar (lambda (template)
+;;                         (when-let* ((props (nthcdr (if (= (length template) 4) 2 5) template))
+;;                                     (spec (plist-get (plist-get props :doct) :icon)))
+;;                           (setf (nth 1 template) (concat (+doct-icon-declaration-to-icon spec)
+;;                                                          "\t"
+;;                                                          (nth 1 template))))
+;;                         template)
+;;                       templates))))
+
+;;     (setq doct-after-conversion-functions '(+doct-iconify-capture-templates))
+
+;;     (defun set-org-capture-templates ()
+;;       (setq org-capture-templates
+;;             (doct `(("Personal todo" :keys "t"
+;;                      :icon ("checklist" :set "octicon" :color "green")
+;;                      :file +org-capture-todo-file
+;;                      :prepend t
+;;                      :headline "Inbox"
+;;                      :type entry
+;;                      :template ("* TODO %?"
+;;                                 "%i %a"))
+;;                     ("Personal note" :keys "n"
+;;                      :icon ("sticky-note-o" :set "faicon" :color "green")
+;;                      :file +org-capture-todo-file
+;;                      :prepend t
+;;                      :headline "Inbox"
+;;                      :type entry
+;;                      :template ("* %?"
+;;                                 "%i %a"))
+;;                     ("Email" :keys "e"
+;;                      :icon ("envelope" :set "faicon" :color "blue")
+;;                      :file +org-capture-todo-file
+;;                      :prepend t
+;;                      :headline "Inbox"
+;;                      :type entry
+;;                      :template ("* TODO %^{type|reply to|contact} %\\3 %? :email:"
+;;                                 "Send an email %^{urgancy|soon|ASAP|anon|at some point|eventually} to %^{recipiant}"
+;;                                 "about %^{topic}"
+;;                                 "%U %i %a"))
+;;                     ("Interesting" :keys "i"
+;;                      :icon ("eye" :set "faicon" :color "lcyan")
+;;                      :file +org-capture-todo-file
+;;                      :prepend t
+;;                      :headline "Interesting"
+;;                      :type entry
+;;                      :template ("* [ ] %{desc}%? :%{i-type}:"
+;;                                 "%i %a")
+;;                      :children (("Webpage" :keys "w"
+;;                                  :icon ("globe" :set "faicon" :color "green")
+;;                                  :desc "%(org-cliplink-capture) "
+;;                                  :i-type "read:web")
+;;                                 ("Article" :keys "a"
+;;                                  :icon ("file-text" :set "octicon" :color "yellow")
+;;                                  :desc ""
+;;                                  :i-type "read:reaserch")
+;;                                 ("Information" :keys "i"
+;;                                  :icon ("info-circle" :set "faicon" :color "blue")
+;;                                  :desc ""
+;;                                  :i-type "read:info")
+;;                                 ("Idea" :keys "I"
+;;                                  :icon ("bubble_chart" :set "material" :color "silver")
+;;                                  :desc ""
+;;                                  :i-type "idea")))
+;;                     ("Tasks" :keys "k"
+;;                      :icon ("inbox" :set "octicon" :color "yellow")
+;;                      :file +org-capture-todo-file
+;;                      :prepend t
+;;                      :headline "Tasks"
+;;                      :type entry
+;;                      :template ("* TODO %? %^G%{extra}"
+;;                                 "%i %a")
+;;                      :children (("General Task" :keys "k"
+;;                                  :icon ("inbox" :set "octicon" :color "yellow")
+;;                                  :extra "")
+
+;;                                 ("Task with deadline" :keys "d"
+;;                                  :icon ("timer" :set "material" :color "orange" :v-adjust -0.1)
+;;                                  :extra "\nDEADLINE: %^{Deadline:}t")
+
+;;                                 ("Scheduled Task" :keys "s"
+;;                                  :icon ("calendar" :set "octicon" :color "orange")
+;;                                  :extra "\nSCHEDULED: %^{Start time:}t")))
+;;                     ("Project" :keys "p"
+;;                      :icon ("repo" :set "octicon" :color "silver")
+;;                      :prepend t
+;;                      :type entry
+;;                      :headline "Inbox"
+;;                      :template ("* %{time-or-todo} %?"
+;;                                 "%i"
+;;                                 "%a")
+;;                      :file ""
+;;                      :custom (:time-or-todo "")
+;;                      :children (("Project-local todo" :keys "t"
+;;                                  :icon ("checklist" :set "octicon" :color "green")
+;;                                  :time-or-todo "TODO"
+;;                                  :file +org-capture-project-todo-file)
+;;                                 ("Project-local note" :keys "n"
+;;                                  :icon ("sticky-note" :set "faicon" :color "yellow")
+;;                                  :time-or-todo "%U"
+;;                                  :file +org-capture-project-notes-file)
+;;                                 ("Project-local changelog" :keys "c"
+;;                                  :icon ("list" :set "faicon" :color "blue")
+;;                                  :time-or-todo "%U"
+;;                                  :heading "Unreleased"
+;;                                  :file +org-capture-project-changelog-file)))
+;;                     ("\tCentralised project templates"
+;;                      :keys "o"
+;;                      :type entry
+;;                      :prepend t
+;;                      :template ("* %{time-or-todo} %?"
+;;                                 "%i"
+;;                                 "%a")
+;;                      :children (("Project todo"
+;;                                  :keys "t"
+;;                                  :prepend nil
+;;                                  :time-or-todo "TODO"
+;;                                  :heading "Tasks"
+;;                                  :file +org-capture-central-project-todo-file)
+;;                                 ("Project note"
+;;                                  :keys "n"
+;;                                  :time-or-todo "%U"
+;;                                  :heading "Notes"
+;;                                  :file +org-capture-central-project-notes-file)
+;;                                 ("Project changelog"
+;;                                  :keys "c"
+;;                                  :time-or-todo "%U"
+;;                                  :heading "Unreleased"
+;;                                  :file +org-capture-central-project-changelog-file)))))))
+
+;;     (set-org-capture-templates)
+;;     (unless (display-graphic-p)
+;;       (add-hook 'server-after-make-frame-hook
+;;                 (defun org-capture-reinitialise-hook ()
+;;                   (when (display-graphic-p)
+;;                     (set-org-capture-templates)
+;;                     (remove-hook 'server-after-make-frame-hook
+;;                                  #'org-capture-reinitialise-hook))))))
+;;   (defun org-capture-select-template-prettier (&optional keys)
+;;     "Select a capture template, in a prettier way than default
+;;   Lisp programs can force the template by setting KEYS to a string."
+;;     (let ((org-capture-templates
+;;            (or (org-contextualize-keys
+;;                 (org-capture-upgrade-templates org-capture-templates)
+;;                 org-capture-templates-contexts)
+;;                '(("t" "Task" entry (file+headline "" "Tasks")
+;;                   "* TODO %?\n  %u\n  %a")))))
+;;       (if keys
+;;           (or (assoc keys org-capture-templates)
+;;               (error "No capture template referred to by \"%s\" keys" keys))
+;;         (org-mks org-capture-templates
+;;                  "Select a capture template\n━━━━━━━━━━━━━━━━━━━━━━━━━"
+;;                  "Template key: "
+;;                  `(("q" ,(concat (all-the-icons-octicon "stop" :face 'all-the-icons-red :v-adjust 0.01) "\tAbort")))))))
+;;   (advice-add 'org-capture-select-template :override #'org-capture-select-template-prettier)
+
+;;   (defun org-mks-pretty (table title &optional prompt specials)
+;;     "Select a member of an alist with multiple keys. Prettified.
+
+;;   TABLE is the alist which should contain entries where the car is a string.
+;;   There should be two types of entries.
+
+;;   1. prefix descriptions like (\"a\" \"Description\")
+;;      This indicates that `a' is a prefix key for multi-letter selection, and
+;;      that there are entries following with keys like \"ab\", \"ax\"…
+
+;;   2. Select-able members must have more than two elements, with the first
+;;      being the string of keys that lead to selecting it, and the second a
+;;      short description string of the item.
+
+;;   The command will then make a temporary buffer listing all entries
+;;   that can be selected with a single key, and all the single key
+;;   prefixes.  When you press the key for a single-letter entry, it is selected.
+;;   When you press a prefix key, the commands (and maybe further prefixes)
+;;   under this key will be shown and offered for selection.
+
+;;   TITLE will be placed over the selection in the temporary buffer,
+;;   PROMPT will be used when prompting for a key.  SPECIALS is an
+;;   alist with (\"key\" \"description\") entries.  When one of these
+;;   is selected, only the bare key is returned."
+;;     (save-window-excursion
+;;       (let ((inhibit-quit t)
+;;             (buffer (org-switch-to-buffer-other-window "*Org Select*"))
+;;             (prompt (or prompt "Select: "))
+;;             case-fold-search
+;;             current)
+;;         (unwind-protect
+;;             (catch 'exit
+;;               (while t
+;;                 (setq-local evil-normal-state-cursor (list nil))
+;;                 (erase-buffer)
+;;                 (insert title "\n\n")
+;;                 (let ((des-keys nil)
+;;                       (allowed-keys '("\C-g"))
+;;                       (tab-alternatives '("\s" "\t" "\r"))
+;;                       (cursor-type nil))
+;;                   ;; Populate allowed keys and descriptions keys
+;;                   ;; available with CURRENT selector.
+;;                   (let ((re (format "\\`%s\\(.\\)\\'"
+;;                                     (if current (regexp-quote current) "")))
+;;                         (prefix (if current (concat current " ") "")))
+;;                     (dolist (entry table)
+;;                       (pcase entry
+;;                         ;; Description.
+;;                         (`(,(and key (pred (string-match re))) ,desc)
+;;                          (let ((k (match-string 1 key)))
+;;                            (push k des-keys)
+;;                            ;; Keys ending in tab, space or RET are equivalent.
+;;                            (if (member k tab-alternatives)
+;;                                (push "\t" allowed-keys)
+;;                              (push k allowed-keys))
+;;                            (insert (propertize prefix 'face 'font-lock-comment-face) (propertize k 'face 'bold) (propertize "›" 'face 'font-lock-comment-face) "  " desc "…" "\n")))
+;;                         ;; Usable entry.
+;;                         (`(,(and key (pred (string-match re))) ,desc . ,_)
+;;                          (let ((k (match-string 1 key)))
+;;                            (insert (propertize prefix 'face 'font-lock-comment-face) (propertize k 'face 'bold) "   " desc "\n")
+;;                            (push k allowed-keys)))
+;;                         (_ nil))))
+;;                   ;; Insert special entries, if any.
+;;                   (when specials
+;;                     (insert "─────────────────────────\n")
+;;                     (pcase-dolist (`(,key ,description) specials)
+;;                       (insert (format "%s   %s\n" (propertize key 'face '(bold all-the-icons-red)) description))
+;;                       (push key allowed-keys)))
+;;                   ;; Display UI and let user select an entry or
+;;                   ;; a sublevel prefix.
+;;                   (goto-char (point-min))
+;;                   (unless (pos-visible-in-window-p (point-max))
+;;                     (org-fit-window-to-buffer))
+;;                   (let ((pressed (org--mks-read-key allowed-keys
+;;                                                     prompt
+;;                                                     (not (pos-visible-in-window-p (1- (point-max)))))))
+;;                     (setq current (concat current pressed))
+;;                     (cond
+;;                      ((equal pressed "\C-g") (user-error "Abort"))
+;;                      ;; Selection is a prefix: open a new menu.
+;;                      ((member pressed des-keys))
+;;                      ;; Selection matches an association: return it.
+;;                      ((let ((entry (assoc current table)))
+;;                         (and entry (throw 'exit entry))))
+;;                      ;; Selection matches a special entry: return the
+;;                      ;; selection prefix.
+;;                      ((assoc current specials) (throw 'exit current))
+;;                      (t (error "No entry available")))))))
+;;           (when buffer (kill-buffer buffer))))))
+;;   (advice-add 'org-mks :override #'org-mks-pretty)
+;;   (setf (alist-get 'height +org-capture-frame-parameters) 15)
+;;   ;; (alist-get 'name +org-capture-frame-parameters) "❖ Capture") ;; ATM hardcoded in other places, so changing breaks stuff
+;;   (setq +org-capture-fn
+;;         (lambda ()
+;;           (interactive)
+;;           (set-window-parameter nil 'mode-line-format 'none)
+;;           (org-capture)))
+;;   (defun +yas/org-src-header-p ()
+;;     "Determine whether `point' is within a src-block header or header-args."
+;;     (pcase (org-element-type (org-element-context))
+;;       ('src-block (< (point) ; before code part of the src-block
+;;                      (save-excursion (goto-char (org-element-property :begin (org-element-context)))
+;;                                      (forward-line 1)
+;;                                      (point))))
+;;       ('inline-src-block (< (point) ; before code part of the inline-src-block
+;;                             (save-excursion (goto-char (org-element-property :begin (org-element-context)))
+;;                                             (search-forward "]{")
+;;                                             (point))))
+;;       ('keyword (string-match-p "^header-args" (org-element-property :value (org-element-context))))))
+;;   (defun +yas/org-prompt-header-arg (arg question values)
+;;     "Prompt the user to set ARG header property to one of VALUES with QUESTION.
+;;   The default value is identified and indicated. If either default is selected,
+;;   or no selection is made: nil is returned."
+;;     (let* ((src-block-p (not (looking-back "^#\\+property:[ \t]+header-args:.*" (line-beginning-position))))
+;;            (default
+;;              (or
+;;               (cdr (assoc arg
+;;                           (if src-block-p
+;;                               (nth 2 (org-babel-get-src-block-info t))
+;;                             (org-babel-merge-params
+;;                              org-babel-default-header-args
+;;                              (let ((lang-headers
+;;                                     (intern (concat "org-babel-default-header-args:"
+;;                                                     (+yas/org-src-lang)))))
+;;                                (when (boundp lang-headers) (eval lang-headers t)))))))
+;;               ""))
+;;            default-value)
+;;       (setq values (mapcar
+;;                     (lambda (value)
+;;                       (if (string-match-p (regexp-quote value) default)
+;;                           (setq default-value
+;;                                 (concat value " "
+;;                                         (propertize "(default)" 'face 'font-lock-doc-face)))
+;;                         value))
+;;                     values))
+;;       (let ((selection (consult--read question values :default default-value)))
+;;         (unless (or (string-match-p "(default)$" selection)
+;;                     (string= "" selection))
+;;           selection))))
+;;   (defun +yas/org-src-lang ()
+;;     "Try to find the current language of the src/header at `point'.
+;;   Return nil otherwise."
+;;     (let ((context (org-element-context)))
+;;       (pcase (org-element-type context)
+;;         ('src-block (org-element-property :language context))
+;;         ('inline-src-block (org-element-property :language context))
+;;         ('keyword (when (string-match "^header-args:\\([^ ]+\\)" (org-element-property :value context))
+;;                     (match-string 1 (org-element-property :value context)))))))
+
+;;   (defun +yas/org-last-src-lang ()
+;;     "Return the language of the last src-block, if it exists."
+;;     (save-excursion
+;;       (beginning-of-line)
+;;       (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
+;;         (org-element-property :language (org-element-context)))))
+
+;;   (defun +yas/org-most-common-no-property-lang ()
+;;     "Find the lang with the most source blocks that has no global header-args, else nil."
+;;     (let (src-langs header-langs)
+;;       (save-excursion
+;;         (goto-char (point-min))
+;;         (while (re-search-forward "^[ \t]*#\\+begin_src" nil t)
+;;           (push (+yas/org-src-lang) src-langs))
+;;         (goto-char (point-min))
+;;         (while (re-search-forward "^[ \t]*#\\+property: +header-args" nil t)
+;;           (push (+yas/org-src-lang) header-langs)))
+
+;;       (setq src-langs
+;;             (mapcar #'car
+;;                     ;; sort alist by frequency (desc.)
+;;                     (sort
+;;                      ;; generate alist with form (value . frequency)
+;;                      (cl-loop for (n . m) in (seq-group-by #'identity src-langs)
+;;                               collect (cons n (length m)))
+;;                      (lambda (a b) (> (cdr a) (cdr b))))))
+
+;;       (car (cl-set-difference src-langs header-langs :test #'string=))))
+;;   (defun +org-syntax-convert-keyword-case-to-lower ()
+;;     "Convert all #+KEYWORDS to #+keywords."
+;;     (interactive)
+;;     (save-excursion
+;;       (goto-char (point-min))
+;;       (let ((count 0)
+;;             (case-fold-search nil))
+;;         (while (re-search-forward "^[ \t]*#\\+[A-Z_]+" nil t)
+;;           (unless (s-matches-p "RESULTS" (match-string 0))
+;;             (replace-match (downcase (match-string 0)) t)
+;;             (setq count (1+ count))))
+;;         (message "Replaced %d occurances" count))))
+;;   (use-package! org-wild-notifier
+;;     :hook (org-load . org-wild-notifier-mode)
+;;     :config
+;;     (setq org-wild-notifier-alert-time '(60 30)))
+;;   (use-package! org-menu
+;;     :commands (org-menu)
+;;     :init
+;;     (map! :localleader
+;;           :map org-mode-map
+;;           :desc "Org menu" "M" #'org-menu))
+;;   (when (and (modulep! :tools lsp) (not (modulep! :tools lsp +eglot)))
+;;     (cl-defmacro +lsp-org-babel-enable (lang)
+;;       "Support LANG in org source code block."
+;;       ;; (setq centaur-lsp 'lsp-mode)
+;;       (cl-check-type lang stringp)
+;;       (let* ((edit-pre (intern (format "org-babel-edit-prep:%s" lang)))
+;;              (intern-pre (intern (format "lsp--%s" (symbol-name edit-pre)))))
+;;         `(progn
+;;            (defun ,intern-pre (info)
+;;              (let ((file-name (->> info caddr (alist-get :file))))
+;;                (unless file-name
+;;                  (setq file-name (make-temp-file "babel-lsp-")))
+;;                (setq buffer-file-name file-name)
+;;                (lsp-deferred)))
+;;            (put ',intern-pre 'function-documentation
+;;                 (format "Enable lsp-mode in the buffer of org source block (%s)."
+;;                         (upcase ,lang)))
+;;            (if (fboundp ',edit-pre)
+;;                (advice-add ',edit-pre :after ',intern-pre)
+;;              (progn
+;;                (defun ,edit-pre (info)
+;;                  (,intern-pre info))
+;;                (put ',edit-pre 'function-documentation
+;;                     (format "Prepare local buffer environment for org source block (%s)."
+;;                             (upcase ,lang))))))))
+
+;;     (defvar +org-babel-lang-list
+;;       '("go" "python" "ipython" "bash" "sh"))
+
+;;     (dolist (lang +org-babel-lang-list)
+;;       (eval `(+lsp-org-babel-enable ,lang))))
+;;   (org-link-set-parameters
+;;    "subfig"
+;;    :follow (lambda (file) (find-file file))
+;;    :face '(:foreground "chocolate" :weight bold :underline t)
+;;    :display 'full
+;;    :export
+;;    (lambda (file desc backend)
+;;      (when (eq backend 'latex)
+;;        (if (string-match ">(\\(.+\\))" desc)
+;;            (concat "\\begin{subfigure}[b]"
+;;                    "\\caption{" (replace-regexp-in-string "\s+>(.+)" "" desc) "}"
+;;                    "\\includegraphics" "[" (match-string 1 desc) "]" "{" file "}" "\\end{subfigure}")
+;;          (format "\\begin{subfigure}\\includegraphics{%s}\\end{subfigure}" desc file)))))
+;;   (org-add-link-type
+;;    "latex" nil
+;;    (lambda (path desc format)
+;;      (cond
+;;       ((eq format 'html)
+;;        (format "<span class=\"%s\">%s</span>" path desc))
+;;       ((eq format 'latex)
+;;        (format "\\%s{%s}" path desc)))))
+;;   (custom-set-faces!
+;;     '(org-document-title :height 1.2))
+
+;;   (custom-set-faces!
+;;     '(outline-1 :weight extra-bold :height 1.25)
+;;     '(outline-2 :weight bold :height 1.15)
+;;     '(outline-3 :weight bold :height 1.12)
+;;     '(outline-4 :weight semi-bold :height 1.09)
+;;     '(outline-5 :weight semi-bold :height 1.06)
+;;     '(outline-6 :weight semi-bold :height 1.03)
+;;     '(outline-8 :weight semi-bold)
+;;     '(outline-9 :weight semi-bold))
+;;   (setq org-agenda-deadline-faces
+;;         '((1.001 . error)
+;;           (1.000 . org-warning)
+;;           (0.500 . org-upcoming-deadline)
+;;           (0.000 . org-upcoming-distant-deadline)))
+;;   (setq org-fontify-quote-and-verse-blocks t)
+;;   (use-package! org-appear
+;;     :hook (org-mode . org-appear-mode)
+;;     :config
+;;     (setq org-appear-autoemphasis t
+;;           org-appear-autosubmarkers t
+;;           org-appear-autolinks nil)
+;;     ;; for proper first-time setup, `org-appear--set-elements'
+;;     ;; needs to be run after other hooks have acted.
+;;     (run-at-time nil nil #'org-appear--set-elements))
+;;   (setq org-inline-src-prettify-results '("⟨" . "⟩")
+;;         doom-themes-org-fontify-special-tags nil)
+;;   (use-package! org-modern
+;;     :hook (org-mode . org-modern-mode)
+;;     :config
+;;     (setq org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶")
+;;           org-modern-table-vertical 2
+;;           org-modern-table-horizontal 4
+;;           org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
+;;           org-modern-footnote (cons nil (cadr org-script-display))
+;;           org-modern-priority t
+;;           org-modern-block t
+;;           org-modern-block-fringe nil
+;;           org-modern-horizontal-rule t
+;;           org-modern-keyword
+;;           '((t                     . t)
+;;             ("title"               . "𝙏")
+;;             ("subtitle"            . "𝙩")
+;;             ("author"              . "𝘼")
+;;             ("email"               . "@")
+;;             ("date"                . "𝘿")
+;;             ("lastmod"             . "✎")
+;;             ("property"            . "☸")
+;;             ("options"             . "⌥")
+;;             ("startup"             . "⏻")
+;;             ("macro"               . "𝓜")
+;;             ("bind"                . #("" 0 1 (display (raise -0.1))))
+;;             ("bibliography"        . "")
+;;             ("print_bibliography"  . #("" 0 1 (display (raise -0.1))))
+;;             ("cite_export"         . "⮭")
+;;             ("print_glossary"      . #("ᴬᶻ" 0 1 (display (raise -0.1))))
+;;             ("glossary_sources"    . #("" 0 1 (display (raise -0.14))))
+;;             ("export_file_name"    . "⇒")
+;;             ("include"             . "⇤")
+;;             ("setupfile"           . "⇐")
+;;             ("html_head"           . "🅷")
+;;             ("html"                . "🅗")
+;;             ("latex_class"         . "🄻")
+;;             ("latex_class_options" . #("🄻" 1 2 (display (raise -0.14))))
+;;             ("latex_header"        . "🅻")
+;;             ("latex_header_extra"  . "🅻⁺")
+;;             ("latex"               . "🅛")
+;;             ("beamer_theme"        . "🄱")
+;;             ("beamer_color_theme"  . #("🄱" 1 2 (display (raise -0.12))))
+;;             ("beamer_font_theme"   . "🄱𝐀")
+;;             ("beamer_header"       . "🅱")
+;;             ("beamer"              . "🅑")
+;;             ("attr_latex"          . "🄛")
+;;             ("attr_html"           . "🄗")
+;;             ("attr_org"            . "⒪")
+;;             ("name"                . "⁍")
+;;             ("header"              . "›")
+;;             ("caption"             . "☰")
+;;             ("RESULTS"             . "🠶")
+;;             ("language"            . "𝙇")
+;;             ("hugo_base_dir"       . "𝐇")
+;;             ("latex_compiler"      . "⟾")
+;;             ("results"             . "🠶")
+;;             ("filetags"            . "#")
+;;             ("created"             . "⏱")
+;;             ("export_select_tags"  . "✔")
+;;             ("export_exclude_tags" . "❌")))
+
+;;     ;; Change faces
+;;     (custom-set-faces! '(org-modern-tag :inherit (region org-modern-label)))
+;;     (custom-set-faces! '(org-modern-statistics :inherit org-checkbox-statistics-todo)))
+;;   (when (modulep! :ui ligatures)
+;;     (defadvice! +org-init-appearance-h--no-ligatures-a ()
+;;       :after #'+org-init-appearance-h
+;;       (set-ligatures! 'org-mode
+;;                       :name nil
+;;                       :src_block nil
+;;                       :src_block_end nil
+;;                       :quote nil
+;;                       :quote_end nil)))
+;;   (use-package! org-ol-tree
+;;     :commands org-ol-tree
+;;     :config
+;;     (setq org-ol-tree-ui-icon-set
+;;           (if (and (display-graphic-p)
+;;                    (fboundp 'all-the-icons-material))
+;;               'all-the-icons
+;;             'unicode))
+;;     (org-ol-tree-ui--update-icon-set))
+
+;;   (map! :localleader
+;;         :map org-mode-map
+;;         :desc "Outline" "O" #'org-ol-tree)
+;;   (defvar +org-responsive-image-percentage 0.4)
+;;   (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min-width . max-width)
+
+;;   (defun +org--responsive-image-h ()
+;;     (when (eq major-mode 'org-mode)
+;;       (setq org-image-actual-width
+;;             (max (car +org-responsive-image-width-limits)
+;;                  (min (cdr +org-responsive-image-width-limits)
+;;                       (truncate (* (window-pixel-width) +org-responsive-image-percentage)))))))
+
+;;   (add-hook 'window-configuration-change-hook #'+org--responsive-image-h)
+;;   (setq org-list-demote-modify-bullet
+;;         '(("+"  . "-")
+;;           ("-"  . "+")
+;;           ("*"  . "+")
+;;           ("1." . "a.")))
+;;   ;; Org styling, hide markup etc.
+;;   (setq org-hide-emphasis-markers t
+;;         org-pretty-entities t
+;;         org-ellipsis " ↩"
+;;         org-hide-leading-stars t)
+;;         ;; org-priority-highest ?A
+;;         ;; org-priority-lowest ?E
+;;         ;; org-priority-faces
+;;         ;; '((?A . 'all-the-icons-red)
+;;         ;;   (?B . 'all-the-icons-orange)
+;;         ;;   (?C . 'all-the-icons-yellow)
+;;         ;;   (?D . 'all-the-icons-green)
+;;         ;;   (?E . 'all-the-icons-blue)))
+;;   (setq org-highlight-latex-and-related '(native script entities))
+
+;;   (require 'org-src)
+;;   (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
+;;   (setq org-format-latex-options
+;;         (plist-put org-format-latex-options :background "Transparent"))
+
+;;   ;; Can be dvipng, dvisvgm, imagemagick
+;;   (setq org-preview-latex-default-process 'dvisvgm)
+
+;;   ;; Define a function to set the format latex scale (to be reused in hooks)
+;;   (defun +org-format-latex-set-scale (scale)
+;;     (setq-local org-format-latex-options
+;;                 (plist-put org-format-latex-options :scale scale)))
+
+;;   ;; Set the default scale
+;;   (+org-format-latex-set-scale 1.4)
+;;   (defun +parse-the-fun (str)
+;;     "Parse the LaTeX environment STR.
+;;   Return an AST with newlines counts in each level."
+;;     (let (ast)
+;;       (with-temp-buffer
+;;         (insert str)
+;;         (goto-char (point-min))
+;;         (while (re-search-forward
+;;                 (rx "\\"
+;;                     (group (or "\\" "begin" "end" "nonumber"))
+;;                     (zero-or-one "{" (group (zero-or-more not-newline)) "}"))
+;;                 nil t)
+;;           (let ((cmd (match-string 1))
+;;                 (env (match-string 2)))
+;;             (cond ((string= cmd "begin")
+;;                    (push (list :env (intern env)) ast))
+;;                   ((string= cmd "\\")
+;;                    (let ((curr (pop ast)))
+;;                      (push (plist-put curr :newline (1+ (or (plist-get curr :newline) 0))) ast)))
+;;                   ((string= cmd "nonumber")
+;;                    (let ((curr (pop ast)))
+;;                      (push (plist-put curr :nonumber (1+ (or (plist-get curr :nonumber) 0))) ast)))
+;;                   ((string= cmd "end")
+;;                    (let ((child (pop ast))
+;;                          (parent (pop ast)))
+;;                      (push (plist-put parent :childs (cons child (plist-get parent :childs))) ast)))))))
+;;       (plist-get (car ast) :childs)))
+
+;;   (defun +scimax-org-renumber-environment (orig-func &rest args)
+;;     "A function to inject numbers in LaTeX fragment previews."
+;;     (let ((results '())
+;;           (counter -1))
+;;       (setq results
+;;             (cl-loop for (begin . env) in
+;;                      (org-element-map (org-element-parse-buffer) 'latex-environment
+;;                        (lambda (env)
+;;                          (cons
+;;                           (org-element-property :begin env)
+;;                           (org-element-property :value env))))
+;;                      collect
+;;                      (cond
+;;                       ((and (string-match "\\\\begin{equation}" env)
+;;                             (not (string-match "\\\\tag{" env)))
+;;                        (cl-incf counter)
+;;                        (cons begin counter))
+;;                       ((string-match "\\\\begin{align}" env)
+;;                        (cl-incf counter)
+;;                        (let ((p (car (+parse-the-fun env))))
+;;                          ;; Parse the `env', count new lines in the align env as equations, unless
+;;                          (cl-incf counter (- (or (plist-get p :newline) 0)
+;;                                              (or (plist-get p :nonumber) 0))))
+;;                        (cons begin counter))
+;;                       (t
+;;                        (cons begin nil)))))
+;;       (when-let ((number (cdr (assoc (point) results))))
+;;         (setf (car args)
+;;               (concat
+;;                (format "\\setcounter{equation}{%s}\n" number)
+;;                (car args)))))
+;;     (apply orig-func args))
+
+;;   (defun +scimax-toggle-latex-equation-numbering (&optional enable)
+;;     "Toggle whether LaTeX fragments are numbered."
+;;     (interactive)
+;;     (if (or enable (not (get '+scimax-org-renumber-environment 'enabled)))
+;;         (progn
+;;           (advice-add 'org-create-formula-image :around #'+scimax-org-renumber-environment)
+;;           (put '+scimax-org-renumber-environment 'enabled t)
+;;           (message "LaTeX numbering enabled."))
+;;       (advice-remove 'org-create-formula-image #'+scimax-org-renumber-environment)
+;;       (put '+scimax-org-renumber-environment 'enabled nil)
+;;       (message "LaTeX numbering disabled.")))
+
+;;   (defun +scimax-org-inject-latex-fragment (orig-func &rest args)
+;;     "Advice function to inject latex code before and/or after the equation in a latex fragment.
+;;   You can use this to set \\mathversion{bold} for example to make
+;;   it bolder. The way it works is by defining
+;;   :latex-fragment-pre-body and/or :latex-fragment-post-body in the
+;;   variable `org-format-latex-options'. These strings will then be
+;;   injected before and after the code for the fragment before it is
+;;   made into an image."
+;;     (setf (car args)
+;;           (concat
+;;            (or (plist-get org-format-latex-options :latex-fragment-pre-body) "")
+;;            (car args)
+;;            (or (plist-get org-format-latex-options :latex-fragment-post-body) "")))
+;;     (apply orig-func args))
+
+;;   (defun +scimax-toggle-inject-latex ()
+;;     "Toggle whether you can insert latex in fragments."
+;;     (interactive)
+;;     (if (not (get '+scimax-org-inject-latex-fragment 'enabled))
+;;         (progn
+;;           (advice-add 'org-create-formula-image :around #'+scimax-org-inject-latex-fragment)
+;;           (put '+scimax-org-inject-latex-fragment 'enabled t)
+;;           (message "Inject latex enabled"))
+;;       (advice-remove 'org-create-formula-image #'+scimax-org-inject-latex-fragment)
+;;       (put '+scimax-org-inject-latex-fragment 'enabled nil)
+;;       (message "Inject latex disabled")))
+
+;;   ;; Enable renumbering by default
+;;   (+scimax-toggle-latex-equation-numbering t)
+;;   (use-package! org-fragtog
+;;     :hook (org-mode . org-fragtog-mode))
+;;   (after! org-plot
+;;     (defun org-plot/generate-theme (_type)
+;;       "Use the current Doom theme colours to generate a GnuPlot preamble."
+;;       (format "
+;;   fgt = \"textcolor rgb '%s'\"  # foreground text
+;;   fgat = \"textcolor rgb '%s'\" # foreground alt text
+;;   fgl = \"linecolor rgb '%s'\"  # foreground line
+;;   fgal = \"linecolor rgb '%s'\" # foreground alt line
+
+;;   # foreground colors
+;;   set border lc rgb '%s'
+;;   # change text colors of  tics
+;;   set xtics @fgt
+;;   set ytics @fgt
+;;   # change text colors of labels
+;;   set title @fgt
+;;   set xlabel @fgt
+;;   set ylabel @fgt
+;;   # change a text color of key
+;;   set key @fgt
+
+;;   # line styles
+;;   set linetype 1 lw 2 lc rgb '%s' # red
+;;   set linetype 2 lw 2 lc rgb '%s' # blue
+;;   set linetype 3 lw 2 lc rgb '%s' # green
+;;   set linetype 4 lw 2 lc rgb '%s' # magenta
+;;   set linetype 5 lw 2 lc rgb '%s' # orange
+;;   set linetype 6 lw 2 lc rgb '%s' # yellow
+;;   set linetype 7 lw 2 lc rgb '%s' # teal
+;;   set linetype 8 lw 2 lc rgb '%s' # violet
+
+;;   # palette
+;;   set palette maxcolors 8
+;;   set palette defined ( 0 '%s',\
+;;   1 '%s',\
+;;   2 '%s',\
+;;   3 '%s',\
+;;   4 '%s',\
+;;   5 '%s',\
+;;   6 '%s',\
+;;   7 '%s' )
+;;   "
+;;               (doom-color 'fg)
+;;               (doom-color 'fg-alt)
+;;               (doom-color 'fg)
+;;               (doom-color 'fg-alt)
+;;               (doom-color 'fg)
+;;               ;; colours
+;;               (doom-color 'red)
+;;               (doom-color 'blue)
+;;               (doom-color 'green)
+;;               (doom-color 'magenta)
+;;               (doom-color 'orange)
+;;               (doom-color 'yellow)
+;;               (doom-color 'teal)
+;;               (doom-color 'violet)
+;;               ;; duplicated
+;;               (doom-color 'red)
+;;               (doom-color 'blue)
+;;               (doom-color 'green)
+;;               (doom-color 'magenta)
+;;               (doom-color 'orange)
+;;               (doom-color 'yellow)
+;;               (doom-color 'teal)
+;;               (doom-color 'violet)))
+
+;;     (defun org-plot/gnuplot-term-properties (_type)
+;;       (format "background rgb '%s' size 1050,650"
+;;               (doom-color 'bg)))
+
+;;     (setq org-plot/gnuplot-script-preamble #'org-plot/generate-theme
+;;           org-plot/gnuplot-term-extra #'org-plot/gnuplot-term-properties))
+;;   (use-package! org-phscroll
+;;     :hook (org-mode . org-phscroll-mode))
+;;   (setq bibtex-completion-bibliography +my/biblio-libraries-list
+;;         bibtex-completion-library-path +my/biblio-storage-list
+;;         bibtex-completion-notes-path +my/biblio-notes-path
+;;         bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
+;;         bibtex-completion-additional-search-fields '(keywords)
+;;         bibtex-completion-display-formats
+;;         '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+;;           (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+;;           (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+;;           (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+;;           (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+;;         bibtex-completion-pdf-open-function
+;;         (lambda (fpath)
+;;           (call-process "open" nil 0 nil fpath)))
+;;   (use-package! org-bib
+;;     :commands (org-bib-mode))
+;;   (after! oc
+;;     (setq org-cite-csl-styles-dir +my/biblio-styles-path)
+;;           ;; org-cite-global-bibliography +my/biblio-libraries-list)
+
+;;     (defun +org-ref-to-org-cite ()
+;;       "Simple conversion of org-ref citations to org-cite syntax."
+;;       (interactive)
+;;       (save-excursion
+;;         (goto-char (point-min))
+;;         (while (re-search-forward "\\[cite\\(.*\\):\\([^]]*\\)\\]" nil t)
+;;           (let* ((old (substring (match-string 0) 1 (1- (length (match-string 0)))))
+;;                  (new (s-replace "&" "@" old)))
+;;             (message "Replaced citation %s with %s" old new)
+;;             (replace-match new))))))
+;;   (after! citar
+;;     (setq citar-library-paths +my/biblio-storage-list
+;;           citar-notes-paths  (list +my/biblio-notes-path)
+;;           citar-bibliography  +my/biblio-libraries-list
+;;           citar-symbol-separator "  ")
+
+;;     (when (display-graphic-p)
+;;       (setq citar-symbols
+;;             `((file ,(all-the-icons-octicon "file-pdf"      :face 'error) . " ")
+;;               (note ,(all-the-icons-octicon "file-text"     :face 'warning) . " ")
+;;               (link ,(all-the-icons-octicon "link-external" :face 'org-link) . " ")))))
+
+;;   (use-package! citar-org-roam
+;;     :after citar org-roam
+;;     :no-require
+;;     :config (citar-org-roam-mode)
+;;     :init
+;;     ;; Modified form: https://jethrokuan.github.io/org-roam-guide/
+;;     (defun +org-roam-node-from-cite (entry-key)
+;;       (interactive (list (citar-select-ref)))
+;;       (let ((title (citar-format--entry
+;;                     "${author editor} (${date urldate}) :: ${title}"
+;;                     (citar-get-entry entry-key))))
+;;         (org-roam-capture- :templates
+;;                            '(("r" "reference" plain
+;;                               "%?"
+;;                               :if-new (file+head "references/${citekey}.org"
+;;                                                  ":properties:
+;;   :roam_refs: [cite:@${citekey}]
+;;   :end:
+;;   #+title: ${title}\n")
+;;                               :immediate-finish t
+;;                               :unnarrowed t))
+;;                            :info (list :citekey entry-key)
+;;                            :node (org-roam-node-create :title title)
+;;                            :props '(:finalize find-file)))))
+;;   (setq org-export-headline-levels 5)
+;;   (require 'ox-extra)
+;;   (ox-extras-activate '(ignore-headlines))
+;;   (setq org-export-creator-string
+;;         (format "Made with Emacs %s and Org %s" emacs-version (org-release)))
+;;   ;; `org-latex-compilers' contains a list of possible values for the `%latex' argument.
+;;   (setq org-latex-pdf-process
+;;         '("latexmk -shell-escape -pdf -quiet -f -%latex -interaction=nonstopmode -output-directory=%o %f"))
+;;   ;; 'svg' package depends on inkscape, imagemagik and ghostscript
+;;   (when (+all (mapcar 'executable-find '("inkscape" "magick" "gs")))
+;;     (add-to-list 'org-latex-packages-alist '("" "svg")))
+
+;;   (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
+;;   ;; (add-to-list 'org-latex-packages-alist '("" "fontspec")) ;; for xelatex
+;;   ;; (add-to-list 'org-latex-packages-alist '("utf8" "inputenc"))
+;;   ;; Should be configured per document, as a local variable
+;;   ;; (setq org-latex-listings 'minted)
+;;   ;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+
+;;   ;; Default `minted` options, can be overwritten in file/dir locals
+;;   (setq org-latex-minted-options
+;;         '(("frame"         "lines")
+;;           ("fontsize"      "\\footnotesize")
+;;           ("tabsize"       "2")
+;;           ("breaklines"    "true")
+;;           ("breakanywhere" "true") ;; break anywhere, no just on spaces
+;;           ("style"         "default")
+;;           ("bgcolor"       "GhostWhite")
+;;           ("linenos"       "true")))
+
+;;   ;; Link some org-mode blocks languages to lexers supported by minted
+;;   ;; via (pygmentize), you can see supported lexers by running this command
+;;   ;; in a terminal: `pygmentize -L lexers'
+;;   (dolist (pair '((ipython    "python")
+;;                   (jupyter    "python")
+;;                   (scheme     "scheme")
+;;                   (lisp-data  "lisp")
+;;                   (conf-unix  "unixconfig")
+;;                   (conf-space "unixconfig")
+;;                   (authinfo   "unixconfig")
+;;                   (gdb-script "unixconfig")
+;;                   (conf-toml  "yaml")
+;;                   (conf       "ini")
+;;                   (gitconfig  "ini")
+;;                   (systemd    "ini")))
+;;     (unless (member pair org-latex-minted-langs)
+;;       (add-to-list 'org-latex-minted-langs pair)))
+;;   (after! ox-latex
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("scr-article"
+;;        "\\documentclass{scrartcl}"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("lettre"
+;;        "\\documentclass{lettre}"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("blank"
+;;        "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("IEEEtran"
+;;        "\\documentclass{IEEEtran}"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("ieeeconf"
+;;        "\\documentclass{ieeeconf}"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("sagej"
+;;        "\\documentclass{sagej}"
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("thesis"
+;;        "\\documentclass[11pt]{book}"
+;;        ("\\chapter{%s}"       . "\\chapter*{%s}")
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")))
+
+;;     (add-to-list
+;;      'org-latex-classes
+;;      '("thesis-fr"
+;;        "\\documentclass[french,12pt,a4paper]{book}"
+;;        ("\\chapter{%s}"       . "\\chapter*{%s}")
+;;        ("\\section{%s}"       . "\\section*{%s}")
+;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
+;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
+
+;;   (setq org-latex-default-class "article")
+
+;;   ;; org-latex-tables-booktabs t
+;;   ;; org-latex-reference-command "\\cref{%s}")
+;;   (defvar +org-export-to-pdf-main-file nil
+;;     "The main (entry point) Org file for a multi-files document.")
+
+;;   (advice-add
+;;    'org-latex-export-to-pdf :around
+;;    (lambda (orig-fn &rest orig-args)
+;;      (message
+;;       "PDF exported to: %s."
+;;       (let ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org")))
+;;         (if (file-exists-p (expand-file-name main-file))
+;;             (with-current-buffer (find-file-noselect main-file)
+;;               (apply orig-fn orig-args))
+;;           (apply orig-fn orig-args))))))
+;;   (setq time-stamp-active t
+;;         time-stamp-start  "#\\+lastmod:[ \t]*"
+;;         time-stamp-end    "$"
+;;         time-stamp-format "%04Y-%02m-%02d")
+
+;;   (add-hook 'before-save-hook 'time-stamp nil)
+;;   (setq org-hugo-auto-set-lastmod t))
 
 
 ;; ;; [[file:config.org::*Plain text][Plain text:1]]

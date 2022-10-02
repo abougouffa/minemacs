@@ -4,23 +4,18 @@
 ;; Increase the GC threshold for faster startup
 (setq gc-cons-threshold (* 50 1000 1000))
 
+;; Add direcotries to `load-path'
+(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+
+(load "vars.el" nil (not init-file-debug))
+(load "utils.el" nil (not init-file-debug))
+
+;;; Write user custom variables to separate file instead of init.el
+(setq custom-file (expand-file-name "custom.el" minemacs-config-dir))
+
 ;;; Emacs lisp source/compiled preference
 ;; Prefer loading newest compiled .el file
 (customize-set-variable 'load-prefer-newer noninteractive)
-
-(defvar minemacs-config-dir (or (getenv "MINEMACS_DIR")
-                                (when (file-directory-p user-emacs-directory)
-                                  user-emacs-directory)
-                                (expand-file-name "~/.minemacs.d/")))
-
-(defvar minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
-(defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
-(defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
-
-(add-to-list 'load-path (expand-file-name minemacs-config-dir))
-
-(unless (file-exists-p minemacs-config-dir)
-  (mkdir minemacs-config-dir t))
 
 ;;; Native compilation settings
 (when (featurep 'native-compile)

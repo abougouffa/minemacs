@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; docs.el --- Documents (PDF, EPUB, DOC...) -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package pdf-tools
   :straight t
@@ -10,5 +14,5 @@
                 pdf-view-image-relief 2
                 pdf-view-use-scaling t))
 
-
-(provide 'minemacs-pdf)
+;; (use-package nov
+;;   :straight t)

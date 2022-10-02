@@ -20,5 +20,3 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
-
-(provide 'minemacs-bootstrap)
