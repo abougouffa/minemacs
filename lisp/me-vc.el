@@ -100,3 +100,6 @@ otherwise in default state."
     ;; the bottom of the window
     ("n" (progn (smerge-vc-next-conflict) (recenter-top-bottom (/ (window-height) 8))))
     ("q" nil :color blue)))
+
+
+(provide 'me-vc)

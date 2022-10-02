@@ -6,9 +6,10 @@
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(load "vars.el" nil (not init-file-debug))
-(load "utils.el" nil (not init-file-debug))
+(require 'me-vars)
+(require 'me-utils)
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (expand-file-name "custom.el" minemacs-config-dir))

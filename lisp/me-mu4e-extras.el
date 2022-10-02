@@ -160,4 +160,4 @@ preferred alias"
         (message "Sending...")))))
 
 
-(provide 'mu4e-extra-stuff)
+(provide 'mu-mu4e-extras)

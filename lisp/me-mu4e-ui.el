@@ -199,4 +199,4 @@ will also be the width of all other printable characters."
   (advice-add #'mu4e--main-action-str :override #'+mu4e~main-action-str-prettier-a))
 
 
-(provide 'mu4e-ui-setup)
+(provide 'me-mu4e-ui)

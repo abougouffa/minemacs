@@ -14,5 +14,9 @@
                 pdf-view-image-relief 2
                 pdf-view-use-scaling t))
 
-;; (use-package nov
-;;   :straight t)
+(use-package nov
+  :straight t
+  :defer t)
+
+
+(provide 'me-docs)

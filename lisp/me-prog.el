@@ -76,4 +76,7 @@
 (use-package vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
 
+
+(provide 'me-prog)
+
 ;;; prog.el ends here

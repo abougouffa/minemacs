@@ -30,3 +30,6 @@
   :after undo-fu
   :config
   (global-undo-fu-session-mode 1))
+
+
+(provide 'me-editor)

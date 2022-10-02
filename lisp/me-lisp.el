@@ -71,3 +71,6 @@
 ;; (use-package elispfl
 ;;   :hook (emacs-lisp-mode . elispfl-mode)
 ;;   :straight (:type git :host github :repo "cireu/elispfl"))
+
+
+(provide 'me-lisp)

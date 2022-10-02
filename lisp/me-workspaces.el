@@ -23,3 +23,6 @@
 ;; https://www.masteringemacs.org/article/demystifying-emacs-window-manager
 
 ;;; workspaces.el ends here
+
+
+(provide 'me-workspaces)

@@ -5,6 +5,12 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package csv-mode
+  :straight t
+  :mode ("\\.csv\\'" . cvs-mode)
+  :general
+  (me-local-def :keymaps csv-mode-map
+    "r" '(me-csv-rainbow :which-key "CSV Rainbow"))
+  :config
   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
   (require 'cl-lib)
   (require 'color)
@@ -21,3 +27,6 @@
                for c in colors
                for r = (format "^\\([^%c\n]+%c\\)\\{%d\\}" separator separator i)
                do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
+
+
+(provide 'me-data)

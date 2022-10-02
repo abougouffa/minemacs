@@ -100,3 +100,6 @@
 
   (require 'vertico-directory)
   (vertico-mode 1))
+
+
+(provide 'me-completion)

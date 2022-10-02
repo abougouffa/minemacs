@@ -92,3 +92,6 @@ or file path may exist now."
        (and (buffer-file-name buffer)
             (eq buffer (window-buffer (selected-window))) ; only visible buffers
             (set-auto-mode))))))
+
+
+(provide 'me-defaults)

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <hacko@laptop>
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
@@ -14,19 +14,26 @@
    (dolist (fun minemacs-lazy-funs)
      (funcall fun))))
 
+(defvar minemacs-modules '(evil keybindings completion ui
+                                editor vc
+                                prog lisp data
+                                org email docs tools))
+
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
   (interactive)
   ;; Core modules
   (unless without-core
     (dolist (module '("bootstrap" "defaults"))
-      (load (concat module ".el") nil (not init-file-debug))))
+      (when init-file-debug
+        (message "[MinEmacs] Loading core module \"%s\"" module))
+      (require (intern (concat "me-" module)))))
 
   ;; Modules
-  (dolist (module '("evil" "keybindings" "completion" "ui"
-                    "editor" "version-control" "prog" "lisp"
-                    "org" "email" "docs" "tools"))
-    (load (expand-file-name (concat "lisp/" module ".el") user-emacs-directory) nil (not init-file-debug)))
+  (dolist (module minemacs-modules)
+    (when init-file-debug
+      (message "[MinEmacs] Loading module \"%s\"" module))
+    (require (intern (concat "me-" (symbol-name module)))))
 
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))

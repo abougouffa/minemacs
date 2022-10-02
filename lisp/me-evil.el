@@ -32,3 +32,6 @@
   :config
   ;; Enable multi cursors
   (global-evil-mc-mode 1))
+
+
+(provide 'me-evil)

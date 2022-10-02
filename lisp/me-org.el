@@ -142,4 +142,7 @@
           ("export_select_tags"  . "✔")
           ("export_exclude_tags" . "❌"))))
 
+
+(provide 'me-org)
+
 ;;; org.el ends here

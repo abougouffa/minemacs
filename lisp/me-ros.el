@@ -50,3 +50,6 @@
                :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
                :workspace "~/ros2_ws"
                :extends '("/opt/ros/foxy/")))))
+
+
+(provide 'me-ros)

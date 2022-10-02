@@ -9,8 +9,7 @@
   :general
   (me-global-def "om" '(mu4e :which-key "Mu4e"))
   :config
-  (load (expand-file-name "lisp/mu4e-extra-stuff.el" user-emacs-directory)
-        nil (not init-file-debug))
+  (require 'mu-mu4e-extras)
 
   ;; (me-local-def :keymaps mu4e-compose-mode-map
   ;;   "s" #'message-send-and-exit
@@ -56,15 +55,13 @@
   ;; Setup UI
   (if (display-graphic-p)
       (progn
-        (load (expand-file-name "lisp/mu4e-ui-setup.el" user-emacs-directory)
-              nil (not init-file-debug))
+        (require 'me-mu4e-ui)
         (me-mu4e--ui-setup))
     (add-hook
      'server-after-make-frame-hook
      (defun +mu4e--setup-ui-hook ()
        (when (display-graphic-p)
-         (load (expand-file-name "lisp/mu4e-ui-setup.el" user-emacs-directory)
-               nil (not init-file-debug))
+         (require 'me-mu4e-ui)
          (me-mu4e--ui-setup)
          (remove-hook 'server-after-make-frame-hook
                       #'+mu4e--setup-ui-hook)))))
@@ -101,3 +98,6 @@
   :disabled t
   :straight t
   :after mu4e)
+
+
+(provide 'me-email)

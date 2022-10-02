@@ -26,3 +26,6 @@ i.e. After loading all the configs.")
 (defconst BSD-P (memq system-type '(darwin berkeley-unix)))
 (defconst WIN-P (memq system-type '(cygwin windwos-nt ms-dos)))
 (defconst MAC-P (eq system-type 'darwin))
+
+
+(provide 'me-vars)

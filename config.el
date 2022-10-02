@@ -1,5 +1,9 @@
 ;;; config.el -*- coding: utf-8-unix; lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 (setq user-full-name "Abdelhak Bougouffa"
       user-mail-address "abougouffa@fedoraproject.org")
 

@@ -25,3 +25,6 @@
             (lambda ()
               (setq confirm-kill-processes nil
                     hscroll-margin 0))))
+
+
+(provide 'me-tools)
