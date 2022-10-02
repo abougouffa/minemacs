@@ -18,13 +18,14 @@
   "Reload all configuration, including user's config.el."
   (interactive)
   ;; Core modules
-  (dolist (module '("bootstrap" "defaults"))
-    (load (concat module ".el") nil (not init-file-debug)))
+  (unless without-core
+    (dolist (module '("bootstrap" "defaults"))
+      (load (concat module ".el") nil (not init-file-debug))))
 
   ;; Modules
   (dolist (module '("evil" "keybindings" "completion" "ui"
-                     "editor" "version-control" "prog" "lisp"
-                     "email" "docs" "tools"))
+                    "editor" "version-control" "prog" "lisp"
+                    "org" "email" "docs" "tools"))
     (load (expand-file-name (concat "lisp/" module ".el") user-emacs-directory) nil (not init-file-debug)))
 
   ;; Load user config when available
