@@ -6,9 +6,9 @@
 
 (use-package csv-mode
   :straight t
-  :mode ("\\.csv\\'" . cvs-mode)
+  :mode ("\\.csv\\'" . csv-mode)
   :general
-  (me-local-def :keymaps csv-mode-map
+  (me-local-def :keymaps 'csv-mode-map
     "r" '(me-csv-rainbow :which-key "CSV Rainbow"))
   :config
   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
