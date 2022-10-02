@@ -14,10 +14,11 @@
    (dolist (fun minemacs-lazy-funs)
      (funcall fun))))
 
-(defvar minemacs-modules '(evil keybindings completion ui
-                                editor vc
-                                prog lisp data
-                                org email docs tools))
+(defvar minemacs-modules
+  '(evil keybindings completion ui
+         editor vc
+         prog lisp data
+         org notes email docs tools))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
@@ -41,5 +42,4 @@
       (load user-config))))
 
 ;; Load for the first time
-(let ((inhibit-message))
-  (minemacs-reload))
+(minemacs-reload)

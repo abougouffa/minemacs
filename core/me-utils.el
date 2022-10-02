@@ -205,4 +205,31 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
      (,@body)))
 
 
+(defun me-dir-locals-reload-for-current-buffer ()
+  "reload dir locals for the current buffer"
+  (interactive)
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer)))
+
+(defun me-dir-locals-reload-for-all-buffers-in-this-directory ()
+  "For every buffer with the same `default-directory` as the
+current buffer's, reload dir-locals."
+  (interactive)
+  (let ((dir default-directory))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (when (equal default-directory dir)
+          (me-dir-locals-reload-for-current-buffer))))))
+
+(defun me-dir-locals-enable-autoreload ()
+  (when (and (buffer-file-name)
+             (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
+    (message "Dir-locals will be reloaded after saving.")
+    (add-hook 'after-save-hook 'me-dir-locals-reload-for-all-buffers-in-this-directory nil t)))
+
+;; (add-hook 'emacs-lisp-mode-hook #'me-dir-locals-enable-autoreload)
+;; (add-hook 'lisp-data-mode-hook #'me-dir-locals-enable-autoreload)
+
+
+
 (provide 'me-utils)
