@@ -32,6 +32,14 @@
       (with-eval-after-load 'project
         (add-to-list 'project-find-functions 'projectile-project-find-function)))))
 
+(use-package project-cmake
+  :straight (:type git :host github :repo "juanjosegarciaripoll/project-cmake")
+  :defer t
+  :config
+  (require 'eglot)
+  (project-cmake-scan-kits)
+  (project-cmake-eglot-integration))
+
 ;;; Debug
 (use-package realgud
   :straight t
@@ -47,9 +55,11 @@
   :straight t
   :commands (realgud--lldb))
 
+
 (use-package realgud-ipdb
   :straight t
   :commands (realgud:ipdb realgud:ipdb-remote))
+
 
 ;;; Formatting
 (use-package format-all
@@ -61,11 +71,13 @@
              format-all-buffer
              format-all-region))
 
+
 (use-package editorconfig
   :straight t
   :general
   (me-global-def
     "fc" '(editorconfig-find-current-editorconfig :which-key "Open current editorconfig")))
+
 
 (use-package clang-format
   :straight t
@@ -73,8 +85,21 @@
              clang-format-region
              clang-format-buffer))
 
+
 (use-package vimrc-mode
+  :straight t
   :mode "\\.vim\\(rc\\)?\\'")
+
+
+(use-package cmake-mode
+  :mode "CMakeLists\\.txt\\'"
+  :mode "\\.cmake\\'"
+  :straight (:type git :host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+
+
+(use-package cmake-font-lock
+  :straight (:type git :host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :defer t)
 
 
 (provide 'me-prog)
