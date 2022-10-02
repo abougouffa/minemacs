@@ -38,7 +38,6 @@
 (dolist (fn '(evil-window-split evil-window-vsplit))
   (advice-add fn :after (lambda (&rest _) (consult-buffer))))
 
-;; [[file:config.org::*Messages buffer][Messages buffer:1]]
 (defvar +messages--auto-tail-enabled nil)
 
 (defun +messages--auto-tail-a (&rest arg)
@@ -72,11 +71,6 @@
     (advice-add 'message :after '+messages--auto-tail-a)
     (setq +messages--auto-tail-enabled t)
     (message "+messages-auto-tail: Enabled.")))
-;; Messages buffer:1 ends here
-
-;; [[file:config.org::*Auto-save][Auto-save:3]]
-(setq auto-save-default t) ;; enable built-in `auto-save-mode'
-;; Auto-save:3 ends here
 
 ;; Stretch cursor to the glyph width
 (setq-default x-stretch-cursor t)
@@ -102,12 +96,13 @@
   ;; mu4e
   (when (and (require 'mu4e nil t) nil) ;; DISABLED ATM
     ;; Automatically start `mu4e' in background.
-    (run-at-time nil ;; Launch now
-                 (* 60 5) ;; Check each 5 minutes
-                 (lambda ()
-                   (when (not (mu4e-running-p))
-                     (mu4e--start)
-                     (message "Started `mu4e' in background.")))))
+    (run-at-time
+     nil ;; Launch now
+     (* 60 5) ;; Check each 5 minutes
+     (lambda ()
+       (when (not (mu4e-running-p))
+         (mu4e--start)
+         (message "Started `mu4e' in background.")))))
 
   ;; RSS
   (when (and (require 'elfeed nil t) nil)
@@ -161,23 +156,14 @@
 ;;       process vcs checker time "      ")))
 ;; ;; Clock:1 ends here
 
-;; [[file:config.org::*Battery][Battery:1]]
 (with-eval-after-load 'doom-modeline
   (let ((battery-str (battery)))
     (unless (or (equal "Battery status not available" battery-str)
                 (string-match-p (regexp-quote "unknown") battery-str)
                 (string-match-p (regexp-quote "N/A") battery-str))
-      (display-battery-mode 1)))
-
-  (setq doom-modeline-bar-width 4
-        doom-modeline-mu4e t
-        doom-modeline-major-mode-icon t
-        doom-modeline-major-mode-color-icon t
-        doom-modeline-buffer-file-name-style 'truncate-upto-project))
-;; Mode line customization:1 ends here
+      (display-battery-mode 1))))
 
 (with-eval-after-load 'which-key
-  ;; [[file:config.org::*Which key][Which key:2]]
   (setq which-key-allow-multiple-replacements t)
 
   (push '((""       . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅔·\\1"))
@@ -185,7 +171,6 @@
 
   (push '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)")       . (nil . "Ⓔ·\\1"))
         which-key-replacement-alist))
-;; Which key:2 ends here
 
 (if (>= emacs-major-version 29)
     (pixel-scroll-precision-mode 1)
@@ -202,11 +187,7 @@
       scroll-down-aggressively 0.01
       scroll-preserve-screen-position 'always
       auto-window-vscroll nil
-      fast-but-imprecise-scrolling nil)
-
-;; [[file:config.org::*All the icons][All the icons:1]]
-(with-eval-after-load 'all-the-icons)
-;; All the icons:1 ends here
+      fast-but-imprecise-scrolling t)
 
 ;; [[file:config.org::*Zen (writeroom) mode][Zen (writeroom) mode:1]]
 ;; (after! writeroom-mode
@@ -377,31 +358,6 @@
 ;; ;; Eros-eval:1 ends here
 
 ;; ;; [[file:config.org::*=dir-locals.el=][=dir-locals.el=:1]]
-(defun +dir-locals-reload-for-current-buffer ()
-  "reload dir locals for the current buffer"
-  (interactive)
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer)))
-
-(defun +dir-locals-reload-for-all-buffers-in-this-directory ()
-  "For every buffer with the same `default-directory` as the
-current buffer's, reload dir-locals."
-  (interactive)
-  (let ((dir default-directory))
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when (equal default-directory dir)
-          (+dir-locals-reload-for-current-buffer))))))
-
-(defun +dir-locals-enable-autoreload ()
-  (when (and (buffer-file-name)
-             (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
-    (message "Dir-locals will be reloaded after saving.")
-    (add-hook 'after-save-hook '+dir-locals-reload-for-all-buffers-in-this-directory nil t)))
-
-(add-hook 'emacs-lisp-mode-hook #'+dir-locals-enable-autoreload)
-(add-hook 'lisp-data-mode-hook #'+dir-locals-enable-autoreload)
-
 ;; ;; [[file:config.org::*Eglot][Eglot:1]]
 ;; (after! eglot
 ;;   ;; A hack to make it works with projectile
@@ -1063,21 +1019,12 @@ current buffer's, reload dir-locals."
 ;; ;; Ligatures:1 ends here
 
 ;; ;; [[file:config.org::*Spell-Fu][Spell-Fu:1]]
-;; (after! spell-fu
-;;   (defun +spell-fu-register-dictionary (lang)
-;;     "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
-;;     ;; Add the dictionary
-;;     (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))
-;;     (let ((personal-dict-file (expand-file-name (format "aspell.%s.pws" lang) doom-user-dir)))
-;;       ;; Create an empty personal dictionary if it doesn't exists
-;;       (unless (file-exists-p personal-dict-file) (write-region "" nil personal-dict-file))
-;;       ;; Add the personal dictionary
-;;       (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
-
-;;   (add-hook 'spell-fu-mode-hook
-;;             (lambda ()
-;;               (+spell-fu-register-dictionary +my/lang-main)
-;;               (+spell-fu-register-dictionary +my/lang-secondary))))
+(with-eval-after-load 'spell-fu
+  (add-hook
+   'spell-fu-mode-hook
+   (lambda ()
+     (me-spell-fu-register-dictionary "en")
+     (me-spell-fu-register-dictionary "fr"))))
 ;; ;; Spell-Fu:1 ends here
 
 ;; ;; [[file:config.org::*Proselint][Proselint:1]]
@@ -2555,6 +2502,57 @@ current buffer's, reload dir-locals."
 
 ;;; Org mode related stuff
 ;; Basic settings
+
+(with-eval-after-load 'org
+  (setq org-directory "~/Dropbox/Org/" ; let's put files here
+        org-use-property-inheritance t ; it's convenient to have properties inherited
+        org-log-done 'time             ; having the time an item is done sounds convenient
+        org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
+        org-export-in-background nil   ; run export processes in external emacs process
+        org-export-async-debug t
+        org-tags-column 0
+        org-catch-invisible-edits 'smart ;; try not to accidently do weird stuff in invisible regions
+        org-export-with-sub-superscripts '{} ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
+        org-pretty-entities-include-sub-superscripts nil
+        org-fontify-quote-and-verse-blocks t
+        org-inline-src-prettify-results '("⟨" . "⟩")
+        doom-themes-org-fontify-special-tags nil
+        org-auto-align-tags nil
+        org-special-ctrl-a/e t
+        org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
+        org-insert-heading-respect-content t
+        org-hide-emphasis-markers t
+        org-pretty-entities t
+        org-ellipsis " ↩"
+        org-hide-leading-stars t
+        org-babel-default-header-args
+        '((:session  . "none")
+          (:results  . "replace")
+          (:exports  . "code")
+          (:cache    . "no")
+          (:noweb    . "no")
+          (:hlines   . "no")
+          (:tangle   . "no")
+          (:comments . "link"))
+        org-todo-keywords
+        '((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "PROJ(p)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "DONE(d)" "KILL(k)")
+          (sequence "[ ](T)" "[-](S)" "|" "[X](D)")
+          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
+        org-todo-keyword-faces
+        '(("IDEA" . (:foreground "goldenrod" :weight bold))
+          ("NEXT" . (:foreground "IndianRed1" :weight bold))
+          ("STRT" . (:foreground "OrangeRed" :weight bold))
+          ("WAIT" . (:foreground "coral" :weight bold))
+          ("KILL" . (:foreground "DarkGreen" :weight bold))
+          ("PROJ" . (:foreground "LimeGreen" :weight bold))
+          ("HOLD" . (:foreground "orange" :weight bold))))
+
+  ;; stolen from https://github.com/yohan-pereira/.emacs#babel-config
+  (defun +org-confirm-babel-evaluate (lang body)
+    (not (string= lang "scheme"))) ;; Don't ask for scheme
+
+  (setq org-confirm-babel-evaluate #'+org-confirm-babel-evaluate))
+
 (with-eval-after-load 'org-roam
   (setq org-roam-directory "~/Dropbox/Org/slip-box"
         org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
@@ -2791,53 +2789,12 @@ current buffer's, reload dir-locals."
 ;; ;; Inspector:2 ends here
 
 ;; (after! org
-;;   (setq org-directory "~/Dropbox/Org/" ; let's put files here
-;;         org-use-property-inheritance t ; it's convenient to have properties inherited
-;;         org-log-done 'time             ; having the time an item is done sounds convenient
-;;         org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
-;;         org-export-in-background nil   ; run export processes in external emacs process
-;;         org-export-async-debug t
-;;         org-tags-column 0
-;;         org-catch-invisible-edits 'smart ;; try not to accidently do weird stuff in invisible regions
-;;         org-export-with-sub-superscripts '{} ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
-;;         org-pretty-entities-include-sub-superscripts nil
-;;         org-auto-align-tags nil
-;;         org-special-ctrl-a/e t
-;;         org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
-;;         org-insert-heading-respect-content t)
-;;   (setq org-babel-default-header-args
-;;         '((:session  . "none")
-;;           (:results  . "replace")
-;;           (:exports  . "code")
-;;           (:cache    . "no")
-;;           (:noweb    . "no")
-;;           (:hlines   . "no")
-;;           (:tangle   . "no")
-;;           (:comments . "link")))
-;;   ;; stolen from https://github.com/yohan-pereira/.emacs#babel-config
-;;   (defun +org-confirm-babel-evaluate (lang body)
-;;     (not (string= lang "scheme"))) ;; Don't ask for scheme
-
-;;   (setq org-confirm-babel-evaluate #'+org-confirm-babel-evaluate)
 ;;   (map! :map evil-org-mode-map
 ;;         :after evil-org
 ;;         :n "g <up>" #'org-backward-heading-same-level
 ;;         :n "g <down>" #'org-forward-heading-same-level
 ;;         :n "g <left>" #'org-up-element
 ;;         :n "g <right>" #'org-down-element)
-;;   (setq org-todo-keywords
-;;         '((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "PROJ(p)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "DONE(d)" "KILL(k)")
-;;           (sequence "[ ](T)" "[-](S)" "|" "[X](D)")
-;;           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")))
-
-;;   (setq org-todo-keyword-faces
-;;         '(("IDEA" . (:foreground "goldenrod" :weight bold))
-;;           ("NEXT" . (:foreground "IndianRed1" :weight bold))
-;;           ("STRT" . (:foreground "OrangeRed" :weight bold))
-;;           ("WAIT" . (:foreground "coral" :weight bold))
-;;           ("KILL" . (:foreground "DarkGreen" :weight bold))
-;;           ("PROJ" . (:foreground "LimeGreen" :weight bold))
-;;           ("HOLD" . (:foreground "orange" :weight bold))))
 
 ;;   (defun +log-todo-next-creation-date (&rest ignore)
 ;;     "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
@@ -3492,135 +3449,14 @@ current buffer's, reload dir-locals."
 ;;           (1.000 . org-warning)
 ;;           (0.500 . org-upcoming-deadline)
 ;;           (0.000 . org-upcoming-distant-deadline)))
-;;   (setq org-fontify-quote-and-verse-blocks t)
-;;   (use-package! org-appear
-;;     :hook (org-mode . org-appear-mode)
-;;     :config
-;;     (setq org-appear-autoemphasis t
-;;           org-appear-autosubmarkers t
-;;           org-appear-autolinks nil)
-;;     ;; for proper first-time setup, `org-appear--set-elements'
-;;     ;; needs to be run after other hooks have acted.
-;;     (run-at-time nil nil #'org-appear--set-elements))
-;;   (setq org-inline-src-prettify-results '("⟨" . "⟩")
-;;         doom-themes-org-fontify-special-tags nil)
-;;   (use-package! org-modern
-;;     :hook (org-mode . org-modern-mode)
-;;     :config
-;;     (setq org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶")
-;;           org-modern-table-vertical 2
-;;           org-modern-table-horizontal 4
-;;           org-modern-list '((43 . "➤") (45 . "–") (42 . "•"))
-;;           org-modern-footnote (cons nil (cadr org-script-display))
-;;           org-modern-priority t
-;;           org-modern-block t
-;;           org-modern-block-fringe nil
-;;           org-modern-horizontal-rule t
-;;           org-modern-keyword
-;;           '((t                     . t)
-;;             ("title"               . "𝙏")
-;;             ("subtitle"            . "𝙩")
-;;             ("author"              . "𝘼")
-;;             ("email"               . "@")
-;;             ("date"                . "𝘿")
-;;             ("lastmod"             . "✎")
-;;             ("property"            . "☸")
-;;             ("options"             . "⌥")
-;;             ("startup"             . "⏻")
-;;             ("macro"               . "𝓜")
-;;             ("bind"                . #("" 0 1 (display (raise -0.1))))
-;;             ("bibliography"        . "")
-;;             ("print_bibliography"  . #("" 0 1 (display (raise -0.1))))
-;;             ("cite_export"         . "⮭")
-;;             ("print_glossary"      . #("ᴬᶻ" 0 1 (display (raise -0.1))))
-;;             ("glossary_sources"    . #("" 0 1 (display (raise -0.14))))
-;;             ("export_file_name"    . "⇒")
-;;             ("include"             . "⇤")
-;;             ("setupfile"           . "⇐")
-;;             ("html_head"           . "🅷")
-;;             ("html"                . "🅗")
-;;             ("latex_class"         . "🄻")
-;;             ("latex_class_options" . #("🄻" 1 2 (display (raise -0.14))))
-;;             ("latex_header"        . "🅻")
-;;             ("latex_header_extra"  . "🅻⁺")
-;;             ("latex"               . "🅛")
-;;             ("beamer_theme"        . "🄱")
-;;             ("beamer_color_theme"  . #("🄱" 1 2 (display (raise -0.12))))
-;;             ("beamer_font_theme"   . "🄱𝐀")
-;;             ("beamer_header"       . "🅱")
-;;             ("beamer"              . "🅑")
-;;             ("attr_latex"          . "🄛")
-;;             ("attr_html"           . "🄗")
-;;             ("attr_org"            . "⒪")
-;;             ("name"                . "⁍")
-;;             ("header"              . "›")
-;;             ("caption"             . "☰")
-;;             ("RESULTS"             . "🠶")
-;;             ("language"            . "𝙇")
-;;             ("hugo_base_dir"       . "𝐇")
-;;             ("latex_compiler"      . "⟾")
-;;             ("results"             . "🠶")
-;;             ("filetags"            . "#")
-;;             ("created"             . "⏱")
-;;             ("export_select_tags"  . "✔")
-;;             ("export_exclude_tags" . "❌")))
 
-;;     ;; Change faces
-;;     (custom-set-faces! '(org-modern-tag :inherit (region org-modern-label)))
-;;     (custom-set-faces! '(org-modern-statistics :inherit org-checkbox-statistics-todo)))
-;;   (when (modulep! :ui ligatures)
-;;     (defadvice! +org-init-appearance-h--no-ligatures-a ()
-;;       :after #'+org-init-appearance-h
-;;       (set-ligatures! 'org-mode
-;;                       :name nil
-;;                       :src_block nil
-;;                       :src_block_end nil
-;;                       :quote nil
-;;                       :quote_end nil)))
-;;   (use-package! org-ol-tree
-;;     :commands org-ol-tree
-;;     :config
-;;     (setq org-ol-tree-ui-icon-set
-;;           (if (and (display-graphic-p)
-;;                    (fboundp 'all-the-icons-material))
-;;               'all-the-icons
-;;             'unicode))
-;;     (org-ol-tree-ui--update-icon-set))
-
-;;   (map! :localleader
-;;         :map org-mode-map
-;;         :desc "Outline" "O" #'org-ol-tree)
-;;   (defvar +org-responsive-image-percentage 0.4)
-;;   (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min-width . max-width)
-
-;;   (defun +org--responsive-image-h ()
-;;     (when (eq major-mode 'org-mode)
-;;       (setq org-image-actual-width
-;;             (max (car +org-responsive-image-width-limits)
-;;                  (min (cdr +org-responsive-image-width-limits)
-;;                       (truncate (* (window-pixel-width) +org-responsive-image-percentage)))))))
-
-;;   (add-hook 'window-configuration-change-hook #'+org--responsive-image-h)
 ;;   (setq org-list-demote-modify-bullet
 ;;         '(("+"  . "-")
 ;;           ("-"  . "+")
 ;;           ("*"  . "+")
 ;;           ("1." . "a.")))
 ;;   ;; Org styling, hide markup etc.
-;;   (setq org-hide-emphasis-markers t
-;;         org-pretty-entities t
-;;         org-ellipsis " ↩"
-;;         org-hide-leading-stars t)
-;;         ;; org-priority-highest ?A
-;;         ;; org-priority-lowest ?E
-;;         ;; org-priority-faces
-;;         ;; '((?A . 'all-the-icons-red)
-;;         ;;   (?B . 'all-the-icons-orange)
-;;         ;;   (?C . 'all-the-icons-yellow)
-;;         ;;   (?D . 'all-the-icons-green)
-;;         ;;   (?E . 'all-the-icons-blue)))
 ;;   (setq org-highlight-latex-and-related '(native script entities))
-
 ;;   (require 'org-src)
 ;;   (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
 ;;   (setq org-format-latex-options
