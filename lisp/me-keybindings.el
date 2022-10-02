@@ -44,7 +44,7 @@
   ;; Local leader
   (general-create-definer me-local-def
     :states '(normal motion visual)
-    :prefix "SPC l")
+    :prefix "SPC m")
 
   ;; Local leader
   (general-create-definer me-map-def
