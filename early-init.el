@@ -2,7 +2,7 @@
 
 ;;; Garbage collection
 ;; Increase the GC threshold for faster startup
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold (* 64 1024 1024))
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
@@ -29,7 +29,7 @@
   ;; Set the right directory to store the native compilation cache
   ;; NOTE the method for setting the eln-cache directory depends on the emacs version
   (when (fboundp 'startup-redirect-eln-cache)
-    (if (version< emacs-version "29")
+    (if (< emacs-major-version 29)
         (add-to-list 'native-comp-eln-load-path
                      (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
       (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))))
@@ -50,4 +50,29 @@
 ;;; Load the early config file if it exists
 (let ((early-config-path (expand-file-name "early-config.el" minemacs-config-dir)))
   (when (file-exists-p early-config-path)
+    (me-log! "Loading early config from '%s'" early-config-path)
     (load early-config-path nil 'nomessage)))
+
+;; Syncronization point!
+;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (me-info! "Loaded Emacs in %s." (emacs-init-time))
+   ;; Require the virtual package to triggre loading packages depending on it
+   (require 'minemacs-loaded)
+   ;; (require 'me-gc)
+
+   ;; Run hooks
+   (run-hooks minemacs-after-startup)
+
+   ;; After 1m, launch Emacs server if we aren't in daemon mode
+   (run-at-time
+    60 nil
+    (lambda ()
+      (unless (daemonp)
+        (let ((inhibit-message nil))
+          (me-info! "Starting Emacs daemon in background.")
+          (server-start)))))))
+
+(me-log! "Loaded early-config.el")
