@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
+
+;; See https://github.com/emacsorphanage/popwin
+
+
 ;; Icons
 (use-package all-the-icons
   :defer t
