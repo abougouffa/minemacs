@@ -17,7 +17,9 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-one-light t)
+  (with-eval-after-load 'org
+    (require 'doom-themes-ext-org)))
 
 ;; Modeline
 (use-package doom-modeline
