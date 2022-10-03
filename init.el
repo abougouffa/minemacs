@@ -1,4 +1,4 @@
-;;; init.el --- MinEmacs -*- lexical-binding: t; -*-
+;; init.el --- MinEmacs -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
@@ -18,10 +18,11 @@
         (funcall fun))))))
 
 (defvar minemacs-modules
-  '(evil keybindings completion ui
-         editor vc
-         prog lisp data
-         org notes email docs tools))
+  '(keybindings
+    evil completion ui
+    editor vc
+    prog lisp data
+    org notes email docs tools))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
