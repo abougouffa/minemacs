@@ -16,15 +16,18 @@
   ;; Enable Evil globally
   (evil-mode 1))
 
+
 (use-package evil-collection
   :after evil
   :straight t
   :config
   (evil-collection-init))
 
+
 (use-package evil-nerd-commenter
   :after evil
   :straight t)
+
 
 (use-package evil-mc
   :after evil
@@ -32,6 +35,11 @@
   :config
   ;; Enable multi cursors
   (global-evil-mc-mode 1))
+
+
+(use-package evil-escape
+  :after evil
+  :straight t)
 
 
 (provide 'me-evil)

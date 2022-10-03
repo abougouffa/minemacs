@@ -10,9 +10,12 @@
  'emacs-startup-hook
  (lambda ()
    (message "MinEmacs loaded in %s, loading lazy stuff." (emacs-init-time))
-   (require 'minemacs-loaded)
-   (dolist (fun minemacs-lazy-funs)
-     (funcall fun))))
+   (run-at-time
+    5 nil
+    (lambda ()
+      (require 'minemacs-loaded)
+      (dolist (fun minemacs-lazy-funs)
+        (funcall fun))))))
 
 (defvar minemacs-modules
   '(evil keybindings completion ui

@@ -16,6 +16,16 @@
 ;;; Better defaults
 (set-default-coding-systems 'utf-8)
 
+;;; Set files and directories for built-in packages
+(setq project-list-file (expand-file-name "projects" minemacs-var-dir)
+      recentf-save-file (expand-file-name "recentf" minemacs-var-dir)
+      auto-save-list-file-prefix (expand-file-name "autosave/" minemacs-var-dir)
+      tramp-auto-save-directory  (expand-file-name "tramp-autosave/" minemacs-var-dir)
+      backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-var-dir)))
+      transient-history-file (expand-file-name "transient/history.el" minemacs-var-dir)
+      transient-levels-file (expand-file-name "transient/levels.el" minemacs-var-dir)
+      transient-values-file (expand-file-name "transient/values.el" minemacs-var-dir))
+
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore
       large-file-warning-threshold 52428800 ;; change to 50 MiB
@@ -51,15 +61,12 @@
       delete-old-versions t ;; clean up after itself
       kept-old-versions 5
       kept-new-versions 5
-      backup-directory-alist (list (cons "." (concat minemacs-cache-dir "backup/")))
       tramp-backup-directory-alist backup-directory-alist)
 
 ;;; Auto-Saving, sessions...
 ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
 (setq auto-save-default t
       auto-save-include-big-deletions t
-      auto-save-list-file-prefix (concat minemacs-cache-dir "autosave/")
-      tramp-auto-save-directory  (concat minemacs-cache-dir "tramp-autosave/")
       auto-save-file-name-transforms
       (list (list "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
                   ;; Prefix tramp autosaves to prevent conflicts with local ones
@@ -67,7 +74,6 @@
             (list ".*" auto-save-list-file-prefix t)))
 
 (setq sentence-end-double-space nil)
-
 
 ;;; Enable global modes
 ;; Enable line numbering globally
