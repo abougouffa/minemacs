@@ -88,8 +88,9 @@
   :config
   (add-to-list
    'load-path
-   (expand-file-name "straight/build/vertico/extensions"
-                     straight-base-dir))
+   (expand-file-name
+    (format "straight/%s/vertico/extensions" straight-build-dir)
+    straight-base-dir))
 
   (setq vertico-cycle t)
 
