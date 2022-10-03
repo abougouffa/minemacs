@@ -28,7 +28,10 @@
 
 (use-package macrostep
   :straight t
-  :defer t)
+  :defer t
+  :general
+  (me-local-def :keymaps 'emacs-lisp-mode-map
+    "m" '(macrostep-expand :which-key "Expand macro")))
 
 ;; Scheme
 (use-package geiser
@@ -37,7 +40,12 @@
 
 (use-package macrostep-geiser
   :straight t
-  :defer t)
+  :after geiser
+  :general
+  (me-local-def :keymaps '(scheme-mode-map racket-mode-map)
+    "m" '(macrostep-geiser-expand-all :which-key "Expand macro"))
+  :config
+  (macrostep-geiser-setup))
 
 (use-package geiser-chez
   :straight t
@@ -60,7 +68,23 @@
   :defer t)
 
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . hs-minor-mode))
+  :hook (emacs-lisp-mode . hs-minor-mode)
+  :general
+  (me-local-def :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+    "d"  '(nil :which-key "debug")
+    "df" 'edebug-defun
+    "dF" 'edebug-all-forms
+    "dd" 'edebug-all-defs
+    "e"  '(nil :which-key "eval")
+    "eb" 'eval-buffer
+    "ed" 'eval-defun
+    "ee" 'eval-last-sexp
+    "er" 'eval-region
+    "el" 'load-library
+    "g"  '(nil :which-key "goto")
+    "gf" 'find-function
+    "gv" 'find-variable
+    "gl" 'find-library))
 
 (use-package erefactor
   :straight t
@@ -68,9 +92,11 @@
              erefactor-rename-symbol-in-buffer
              erefactor-rename-symbol-in-package))
 
-;; (use-package elispfl
-;;   :hook (emacs-lisp-mode . elispfl-mode)
-;;   :straight (:type git :host github :repo "cireu/elispfl"))
-
+(use-package elisp-demos
+  :straight t
+  :defer t
+  :init
+  (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (provide 'me-lisp)
