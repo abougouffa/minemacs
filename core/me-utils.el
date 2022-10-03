@@ -7,6 +7,17 @@
 
 ;;; === Primitives ===
 
+;;;###autoload
+(defun me-log! (msg &rest vars)
+  "Log MSG and VARS using `message' when `init-file-debug' is non-nil."
+  (when init-file-debug
+    (apply #'message (cons (concat "[MinEmacs] " msg) vars))))
+
+;;;###autoload
+(defun me-info! (msg &rest vars)
+  "Log info MSG and VARS using `message'."
+  (apply #'message (cons (concat "[MinEmacs] " msg) vars)))
+
 ;; (me-bool "someval") ;; ==> t
 ;;;###autoload
 (defun me-bool (val) (not (null val)))
@@ -229,7 +240,6 @@ current buffer's, reload dir-locals."
 
 ;; (add-hook 'emacs-lisp-mode-hook #'me-dir-locals-enable-autoreload)
 ;; (add-hook 'lisp-data-mode-hook #'me-dir-locals-enable-autoreload)
-
 
 
 (provide 'me-utils)
