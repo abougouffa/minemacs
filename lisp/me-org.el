@@ -6,19 +6,51 @@
 
 (use-package org
   :straight t
-  :mode ("\\.org\\'" . org-mode)
+  :after minemacs-loaded ;; load Org after finishing Emacs startup
   :preface
-  ;; Set to nil so we can detect user changes to them later (and fall back on
-  ;; defaults otherwise).
+  ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
   (defvar org-id-locations-file nil)
   (defvar org-attach-id-dir nil)
   (defvar org-babel-python-command nil)
   (setq org-persist-directory (expand-file-name "org/persist/" minemacs-cache-dir)
         org-publish-timestamp-directory (expand-file-name "org/timestamps/" minemacs-cache-dir)
-        org-preview-latex-image-directory (expand-file-name "org/latex/" minemacs-etc-dir)
+        org-preview-latex-image-directory (expand-file-name "org/latex/" minemacs-cache-dir)
         org-list-allow-alphabetical t)
+  (let ((dir (expand-file-name "org/" minemacs-cache-dir)))
+    (unless (file-directory-p dir)
+      (mkdir dir t)))
   :config
+  (setq org-use-property-inheritance t ; it's convenient to have properties inherited
+        org-log-done 'time             ; having the time an item is done sounds convenient
+        org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
+        org-export-in-background nil   ; run export processes in external emacs process
+        org-export-async-debug t
+        org-tags-column 0
+        org-catch-invisible-edits 'smart ;; try not to accidently do weird stuff in invisible regions
+        org-export-with-sub-superscripts t ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
+        org-pretty-entities-include-sub-superscripts nil
+        org-fontify-quote-and-verse-blocks t
+        org-inline-src-prettify-results '("⟨" . "⟩")
+        doom-themes-org-fontify-special-tags nil
+        org-auto-align-tags nil
+        org-special-ctrl-a/e t
+        org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
+        org-insert-heading-respect-content t
+        org-hide-emphasis-markers t
+        org-pretty-entities t
+        org-ellipsis " ↩"
+        org-hide-leading-stars t
+        org-babel-default-header-args
+        '((:session  . "none")
+          (:results  . "replace")
+          (:exports  . "code")
+          (:cache    . "no")
+          (:noweb    . "no")
+          (:hlines   . "no")
+          (:tangle   . "no")
+          (:comments . "link")))
+
   (defvar +org-responsive-image-percentage 0.4)
   (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
 
@@ -54,7 +86,6 @@
 
 (use-package org-modern
   :straight t
-  :after org
   :hook (org-mode . org-modern-mode)
   :config
   (setq org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶")
