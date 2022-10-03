@@ -1,9 +1,10 @@
 (use-package spell-fu
   :straight t
   :when (executable-find "aspell")
-  :general ([remap ispell-word] #'+spell/correct)
+  ;; :general ([remap ispell-word] #'+spell/correct)
   :hook (text-mode . spell-fu-mode)
   :init
+  (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-var-dir))
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face
@@ -49,14 +50,15 @@
           font-lock-keyword-face
           font-lock-variable-name-face)))
     "Faces in certain major modes that spell-fu will not spellcheck.")
-
-  (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-var-dir))
   :config
+  (unless (file-exists-p spell-fu-directory)
+    (mkdir spell-fu-directory t))
+
   (defun me-spell-fu-register-dictionary (lang)
     "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
     ;; Add the dictionary
     (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))
-    (let ((personal-dict-file (expand-file-name (format "spell-fu/personal-aspell.%s.pws" lang))))
+    (let ((personal-dict-file (expand-file-name (format "personal-aspell.%s.pws" lang) spell-fu-directory)))
       ;; Create an empty personal dictionary if it doesn't exists
       (unless (file-exists-p personal-dict-file) (write-region "" nil personal-dict-file))
       ;; Add the personal dictionary
@@ -68,4 +70,6 @@
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
        (setq-local spell-fu-faces-exclude excluded)))))
-;; Spell-Fu:1 ends here
+
+
+(provide 'me-spell)
