@@ -11,12 +11,15 @@
   :config
   (global-tree-sitter-mode))
 
+
 (use-package tree-sitter-hl
   :hook (tree-sitter-mode . tree-sitter-hl-mode))
+
 
 (use-package tree-sitter-langs
   :straight t
   :after tree-sitter)
+
 
 ;;; Eglot + LSP
 (use-package eglot
@@ -32,6 +35,7 @@
       (with-eval-after-load 'project
         (add-to-list 'project-find-functions 'projectile-project-find-function)))))
 
+
 (use-package project-cmake
   :straight (:type git :host github :repo "juanjosegarciaripoll/project-cmake")
   :defer t
@@ -40,9 +44,16 @@
   (project-cmake-scan-kits)
   (project-cmake-eglot-integration))
 
+
 ;;; Debug
 (use-package realgud
   :straight t
+  :general
+  (me-local-def :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
+    "d" `((me-cmdfy! (pcase major-mode
+                       ('python-mode (realgud:pdb))
+                       ((or 'c-mode 'c++-mode) (realgud:gdb))))
+          :which-key "realgud"))
   :commands (realgud:gdb
              realgud:gud
              realgud:zshdb
@@ -50,6 +61,7 @@
              realgud:kshdb
              realgud:pdb
              realgud:pdb-remote))
+
 
 (use-package realgud-lldb
   :straight t
@@ -69,7 +81,9 @@
   :commands (format-all-mode
              format-all-ensure-formatter
              format-all-buffer
-             format-all-region))
+             format-all-region)
+  :config
+  (add-hook 'before-save-hook #'format-all-buffer))
 
 
 (use-package editorconfig
@@ -100,6 +114,11 @@
 (use-package cmake-font-lock
   :straight (:type git :host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :defer t)
+
+
+(use-package rainbow-delimiters
+  :straight t
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 
 (provide 'me-prog)
