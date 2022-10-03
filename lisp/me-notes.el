@@ -38,7 +38,7 @@
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
 (use-package deft
   :straight t
-  :after org
+  :after org-roam
   :general
   (me-global-def
     "nd" '(deft :which-key "Deft"))

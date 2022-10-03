@@ -9,7 +9,7 @@
   :general
   (me-global-def "om" '(mu4e :which-key "Mu4e"))
   :config
-  (require 'mu-mu4e-extras)
+  (require 'me-mu4e-extras)
 
   ;; (me-local-def :keymaps mu4e-compose-mode-map
   ;;   "s" #'message-send-and-exit
