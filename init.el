@@ -22,7 +22,7 @@
     evil completion ui
     editor vc
     prog lisp data
-    org notes email docs tools))
+    org notes email docs spell tools))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
