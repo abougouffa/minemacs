@@ -65,6 +65,12 @@
 
 (use-package realgud-lldb
   :straight t
+  :general
+  (me-local-def :keymaps '(rust-mode-map)
+    "d" `((me-cmdfy! (pcase major-mode
+                       ('python-mode (realgud:pdb))
+                       ((or 'c-mode 'c++-mode) (realgud:gdb))))
+          :which-key "realgud"))
   :commands (realgud--lldb))
 
 
@@ -119,6 +125,12 @@
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+
+(use-package smartparens
+  :straight t
+  :config
+  (smartparens-global-mode))
 
 
 (provide 'me-prog)
