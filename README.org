@@ -5,7 +5,7 @@ inspired by Doom Emacs.
 
 ** Why
 I was using Doom Emacs, it is an excellent piece of software, which introduced
-me to the Emacs world. However, I have a not very pleasent experience with it.
+me to the Emacs world. However, I have a not very pleasant experience with it.
 I'm using Emacs at the core of my workflow, I use it to write documents, write
 programs in different programming languages, manage my emails, etc.
 
@@ -16,6 +16,6 @@ works properly, it happens only in my most busy days, causing additional stress
 to manage. And to be honest, it is a bit too much for a configuration framework!
 it implements a command line interface, a library with extra features,
 configuration modules gluing a bunch of packages in an opinionated way, CI
-commads, and recently a profile manager! Which adds extra complexity at each
+commands, and recently a profile manager! Which adds extra complexity at each
 layer.
 
