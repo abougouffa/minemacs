@@ -145,7 +145,6 @@ will also be the width of all other printable characters."
         mu4e-headers-thread-child-prefix         '("├>" . "├▶")
         mu4e-headers-thread-last-child-prefix    '("└>" . "╰▶")
         mu4e-headers-fields '((:account-stripe . 2)
-                              (:account . 8)
                               (:flags . 6) ;; 3 flags
                               (:human-date . 8)
                               (:from-or-to . 25)

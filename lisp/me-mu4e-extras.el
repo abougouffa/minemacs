@@ -3,6 +3,10 @@
 (defvar +mu4e-account-aliases nil
   "Per-account alias list.")
 
+  ;; Gmail specifics
+(defvar +mu4e-gmail-accounts nil
+  "Gmail accounts.")
+
 ;; Some of these functions are taken from Doom Emacs
 
 (defun +mu4e-view-select-attachment ()
