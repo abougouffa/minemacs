@@ -75,9 +75,23 @@
 
 (setq sentence-end-double-space nil)
 
+;;; Scrolling
+(setq hscroll-step 1
+      hscroll-margin 0
+      scroll-step 1
+      scroll-margin 0
+      scroll-conservatively 101
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01
+      scroll-preserve-screen-position 'always
+      auto-window-vscroll nil
+      fast-but-imprecise-scrolling t)
+
 ;;; Enable global modes
-;; Enable line numbering globally
-(global-display-line-numbers-mode 1)
+;; Enable line numbering globally adds line numbers to mu4e!
+;; (global-display-line-numbers-mode 1)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
 
 ;; Highlight current line
 (global-hl-line-mode 1)
