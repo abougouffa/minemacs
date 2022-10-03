@@ -107,4 +107,12 @@
     (setq mode-line-format (list "%_"))))
 
 
+(use-package emojify
+  :straight t
+  :config
+  (setq emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir)
+        emojify-display-style 'image
+        emojify-emoji-set "emojione-v2.2.6"))
+
+
 (provide 'me-ui)
