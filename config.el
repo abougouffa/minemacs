@@ -178,17 +178,6 @@
     :straight t
     :config (good-scroll-mode 1)))
 
-(setq hscroll-step 1
-      hscroll-margin 0
-      scroll-step 1
-      scroll-margin 0
-      scroll-conservatively 101
-      scroll-up-aggressively 0.01
-      scroll-down-aggressively 0.01
-      scroll-preserve-screen-position 'always
-      auto-window-vscroll nil
-      fast-but-imprecise-scrolling t)
-
 ;; [[file:config.org::*Zen (writeroom) mode][Zen (writeroom) mode:1]]
 ;; (after! writeroom-mode
 ;;   ;; Show mode line
@@ -2505,35 +2494,6 @@
 
 (with-eval-after-load 'org
   (setq org-directory "~/Dropbox/Org/" ; let's put files here
-        org-use-property-inheritance t ; it's convenient to have properties inherited
-        org-log-done 'time             ; having the time an item is done sounds convenient
-        org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
-        org-export-in-background nil   ; run export processes in external emacs process
-        org-export-async-debug t
-        org-tags-column 0
-        org-catch-invisible-edits 'smart ;; try not to accidently do weird stuff in invisible regions
-        org-export-with-sub-superscripts '{} ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
-        org-pretty-entities-include-sub-superscripts nil
-        org-fontify-quote-and-verse-blocks t
-        org-inline-src-prettify-results '("⟨" . "⟩")
-        doom-themes-org-fontify-special-tags nil
-        org-auto-align-tags nil
-        org-special-ctrl-a/e t
-        org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
-        org-insert-heading-respect-content t
-        org-hide-emphasis-markers t
-        org-pretty-entities t
-        org-ellipsis " ↩"
-        org-hide-leading-stars t
-        org-babel-default-header-args
-        '((:session  . "none")
-          (:results  . "replace")
-          (:exports  . "code")
-          (:cache    . "no")
-          (:noweb    . "no")
-          (:hlines   . "no")
-          (:tangle   . "no")
-          (:comments . "link"))
         org-todo-keywords
         '((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "PROJ(p)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "DONE(d)" "KILL(k)")
           (sequence "[ ](T)" "[-](S)" "|" "[X](D)")
@@ -3574,354 +3534,163 @@
 
 ;;   ;; Enable renumbering by default
 ;;   (+scimax-toggle-latex-equation-numbering t)
-;;   (use-package! org-fragtog
-;;     :hook (org-mode . org-fragtog-mode))
-;;   (after! org-plot
-;;     (defun org-plot/generate-theme (_type)
-;;       "Use the current Doom theme colours to generate a GnuPlot preamble."
-;;       (format "
-;;   fgt = \"textcolor rgb '%s'\"  # foreground text
-;;   fgat = \"textcolor rgb '%s'\" # foreground alt text
-;;   fgl = \"linecolor rgb '%s'\"  # foreground line
-;;   fgal = \"linecolor rgb '%s'\" # foreground alt line
 
-;;   # foreground colors
-;;   set border lc rgb '%s'
-;;   # change text colors of  tics
-;;   set xtics @fgt
-;;   set ytics @fgt
-;;   # change text colors of labels
-;;   set title @fgt
-;;   set xlabel @fgt
-;;   set ylabel @fgt
-;;   # change a text color of key
-;;   set key @fgt
+(with-eval-after-load 'oc
+  (setq org-cite-csl-styles-dir +my/biblio-styles-path
+        org-cite-global-bibliography +my/biblio-libraries-list))
 
-;;   # line styles
-;;   set linetype 1 lw 2 lc rgb '%s' # red
-;;   set linetype 2 lw 2 lc rgb '%s' # blue
-;;   set linetype 3 lw 2 lc rgb '%s' # green
-;;   set linetype 4 lw 2 lc rgb '%s' # magenta
-;;   set linetype 5 lw 2 lc rgb '%s' # orange
-;;   set linetype 6 lw 2 lc rgb '%s' # yellow
-;;   set linetype 7 lw 2 lc rgb '%s' # teal
-;;   set linetype 8 lw 2 lc rgb '%s' # violet
+(with-eval-after-load 'citar
+  (setq citar-library-paths +my/biblio-storage-list
+        citar-notes-paths (list +my/biblio-notes-path)
+        citar-bibliography +my/biblio-libraries-list))
 
-;;   # palette
-;;   set palette maxcolors 8
-;;   set palette defined ( 0 '%s',\
-;;   1 '%s',\
-;;   2 '%s',\
-;;   3 '%s',\
-;;   4 '%s',\
-;;   5 '%s',\
-;;   6 '%s',\
-;;   7 '%s' )
-;;   "
-;;               (doom-color 'fg)
-;;               (doom-color 'fg-alt)
-;;               (doom-color 'fg)
-;;               (doom-color 'fg-alt)
-;;               (doom-color 'fg)
-;;               ;; colours
-;;               (doom-color 'red)
-;;               (doom-color 'blue)
-;;               (doom-color 'green)
-;;               (doom-color 'magenta)
-;;               (doom-color 'orange)
-;;               (doom-color 'yellow)
-;;               (doom-color 'teal)
-;;               (doom-color 'violet)
-;;               ;; duplicated
-;;               (doom-color 'red)
-;;               (doom-color 'blue)
-;;               (doom-color 'green)
-;;               (doom-color 'magenta)
-;;               (doom-color 'orange)
-;;               (doom-color 'yellow)
-;;               (doom-color 'teal)
-;;               (doom-color 'violet)))
+(with-eval-after-load 'org
+  (setq org-export-headline-levels 5)
+  (require 'ox-extra)
+  (ox-extras-activate '(ignore-headlines))
+  ;; Needs to make a src_latex{\textsc{text}}?, with this hack you can write [[latex:textsc][Some text]].
 
-;;     (defun org-plot/gnuplot-term-properties (_type)
-;;       (format "background rgb '%s' size 1050,650"
-;;               (doom-color 'bg)))
+  (org-add-link-type
+   "latex" nil
+   (lambda (path desc format)
+     (cond
+      ((eq format 'html)
+       (format "<span class=\"%s\">%s</span>" path desc))
+      ((eq format 'latex)
+       (format "\\%s{%s}" path desc)))))
 
-;;     (setq org-plot/gnuplot-script-preamble #'org-plot/generate-theme
-;;           org-plot/gnuplot-term-extra #'org-plot/gnuplot-term-properties))
-;;   (use-package! org-phscroll
-;;     :hook (org-mode . org-phscroll-mode))
-;;   (setq bibtex-completion-bibliography +my/biblio-libraries-list
-;;         bibtex-completion-library-path +my/biblio-storage-list
-;;         bibtex-completion-notes-path +my/biblio-notes-path
-;;         bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
-;;         bibtex-completion-additional-search-fields '(keywords)
-;;         bibtex-completion-display-formats
-;;         '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-;;           (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-;;           (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;;           (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;;           (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-;;         bibtex-completion-pdf-open-function
-;;         (lambda (fpath)
-;;           (call-process "open" nil 0 nil fpath)))
-;;   (use-package! org-bib
-;;     :commands (org-bib-mode))
-;;   (after! oc
-;;     (setq org-cite-csl-styles-dir +my/biblio-styles-path)
-;;           ;; org-cite-global-bibliography +my/biblio-libraries-list)
+  (setq time-stamp-active t
+        time-stamp-start  "#\\+lastmod:[ \t]*"
+        time-stamp-end    "$"
+        time-stamp-format "%04Y-%02m-%02d")
 
-;;     (defun +org-ref-to-org-cite ()
-;;       "Simple conversion of org-ref citations to org-cite syntax."
-;;       (interactive)
-;;       (save-excursion
-;;         (goto-char (point-min))
-;;         (while (re-search-forward "\\[cite\\(.*\\):\\([^]]*\\)\\]" nil t)
-;;           (let* ((old (substring (match-string 0) 1 (1- (length (match-string 0)))))
-;;                  (new (s-replace "&" "@" old)))
-;;             (message "Replaced citation %s with %s" old new)
-;;             (replace-match new))))))
-;;   (after! citar
-;;     (setq citar-library-paths +my/biblio-storage-list
-;;           citar-notes-paths  (list +my/biblio-notes-path)
-;;           citar-bibliography  +my/biblio-libraries-list
-;;           citar-symbol-separator "  ")
+  (add-hook 'before-save-hook 'time-stamp nil)
+  (setq org-hugo-auto-set-lastmod t)
 
-;;     (when (display-graphic-p)
-;;       (setq citar-symbols
-;;             `((file ,(all-the-icons-octicon "file-pdf"      :face 'error) . " ")
-;;               (note ,(all-the-icons-octicon "file-text"     :face 'warning) . " ")
-;;               (link ,(all-the-icons-octicon "link-external" :face 'org-link) . " ")))))
+  ;; `org-latex-compilers' contains a list of possible values for the `%latex' argument.
+  (setq org-latex-pdf-process
+        '("latexmk -shell-escape -pdf -quiet -f -%latex -interaction=nonstopmode -output-directory=%o %f"))
 
-;;   (use-package! citar-org-roam
-;;     :after citar org-roam
-;;     :no-require
-;;     :config (citar-org-roam-mode)
-;;     :init
-;;     ;; Modified form: https://jethrokuan.github.io/org-roam-guide/
-;;     (defun +org-roam-node-from-cite (entry-key)
-;;       (interactive (list (citar-select-ref)))
-;;       (let ((title (citar-format--entry
-;;                     "${author editor} (${date urldate}) :: ${title}"
-;;                     (citar-get-entry entry-key))))
-;;         (org-roam-capture- :templates
-;;                            '(("r" "reference" plain
-;;                               "%?"
-;;                               :if-new (file+head "references/${citekey}.org"
-;;                                                  ":properties:
-;;   :roam_refs: [cite:@${citekey}]
-;;   :end:
-;;   #+title: ${title}\n")
-;;                               :immediate-finish t
-;;                               :unnarrowed t))
-;;                            :info (list :citekey entry-key)
-;;                            :node (org-roam-node-create :title title)
-;;                            :props '(:finalize find-file)))))
-;;   (setq org-export-headline-levels 5)
-;;   (require 'ox-extra)
-;;   (ox-extras-activate '(ignore-headlines))
-;;   (setq org-export-creator-string
-;;         (format "Made with Emacs %s and Org %s" emacs-version (org-release)))
-;;   ;; `org-latex-compilers' contains a list of possible values for the `%latex' argument.
-;;   (setq org-latex-pdf-process
-;;         '("latexmk -shell-escape -pdf -quiet -f -%latex -interaction=nonstopmode -output-directory=%o %f"))
-;;   ;; 'svg' package depends on inkscape, imagemagik and ghostscript
-;;   (when (+all (mapcar 'executable-find '("inkscape" "magick" "gs")))
-;;     (add-to-list 'org-latex-packages-alist '("" "svg")))
+  (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
 
-;;   (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
-;;   ;; (add-to-list 'org-latex-packages-alist '("" "fontspec")) ;; for xelatex
-;;   ;; (add-to-list 'org-latex-packages-alist '("utf8" "inputenc"))
-;;   ;; Should be configured per document, as a local variable
-;;   ;; (setq org-latex-listings 'minted)
-;;   ;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;;; Should be configured per document, as a local variable
+  ;; (setq org-latex-listings 'minted)
+  ;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;; (add-to-list 'org-latex-packages-alist '("" "fontspec")) ;; for xelatex
+  ;; (add-to-list 'org-latex-packages-alist '("utf8" "inputenc"))
 
-;;   ;; Default `minted` options, can be overwritten in file/dir locals
-;;   (setq org-latex-minted-options
-;;         '(("frame"         "lines")
-;;           ("fontsize"      "\\footnotesize")
-;;           ("tabsize"       "2")
-;;           ("breaklines"    "true")
-;;           ("breakanywhere" "true") ;; break anywhere, no just on spaces
-;;           ("style"         "default")
-;;           ("bgcolor"       "GhostWhite")
-;;           ("linenos"       "true")))
+  ;; 'svg' package depends on inkscape, imagemagik and ghostscript
+  ;; (when (me-all (mapcar 'executable-find '("inkscape" "magick" "gs")))
+  ;;   (add-to-list 'org-latex-packages-alist '("" "svg")))
 
-;;   ;; Link some org-mode blocks languages to lexers supported by minted
-;;   ;; via (pygmentize), you can see supported lexers by running this command
-;;   ;; in a terminal: `pygmentize -L lexers'
-;;   (dolist (pair '((ipython    "python")
-;;                   (jupyter    "python")
-;;                   (scheme     "scheme")
-;;                   (lisp-data  "lisp")
-;;                   (conf-unix  "unixconfig")
-;;                   (conf-space "unixconfig")
-;;                   (authinfo   "unixconfig")
-;;                   (gdb-script "unixconfig")
-;;                   (conf-toml  "yaml")
-;;                   (conf       "ini")
-;;                   (gitconfig  "ini")
-;;                   (systemd    "ini")))
-;;     (unless (member pair org-latex-minted-langs)
-;;       (add-to-list 'org-latex-minted-langs pair)))
-;;   (after! ox-latex
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("scr-article"
-;;        "\\documentclass{scrartcl}"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  ;; Default `minted` options, can be overwritten in file/dir locals
+  (setq org-latex-minted-options
+        '(("frame"         "lines")
+          ("fontsize"      "\\footnotesize")
+          ("tabsize"       "2")
+          ("breaklines"    "true")
+          ("breakanywhere" "true") ;; break anywhere, no just on spaces
+          ("style"         "default")
+          ("bgcolor"       "GhostWhite")
+          ("linenos"       "true")))
 
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("lettre"
-;;        "\\documentclass{lettre}"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  ;; Link some org-mode blocks languages to lexers supported by minted
+  ;; via (pygmentize), you can see supported lexers by running this command
+  ;; in a terminal: `pygmentize -L lexers'
+  (dolist (pair '((ipython    "python")
+                  (jupyter    "python")
+                  (scheme     "scheme")
+                  (lisp-data  "lisp")
+                  (conf-unix  "unixconfig")
+                  (conf-space "unixconfig")
+                  (authinfo   "unixconfig")
+                  (gdb-script "unixconfig")
+                  (conf-toml  "yaml")
+                  (conf       "ini")
+                  (gitconfig  "ini")
+                  (systemd    "ini")))
+    (unless (member pair org-latex-minted-langs)
+      (add-to-list 'org-latex-minted-langs pair))))
 
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("blank"
-;;        "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+(with-eval-after-load 'ox-latex
+  (add-to-list
+   'org-latex-classes
+   '("lettre"
+     "\\documentclass{lettre}"
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("blank"
+     "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("ieeetran"
+     "\\documentclass{IEEEtran}"
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("ieeeconf"
+     "\\documentclass{ieeeconf}"
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("sagej"
+     "\\documentclass{sagej}"
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("thesis"
+     "\\documentclass[11pt]{book}"
+     ("\\chapter{%s}"       . "\\chapter*{%s}")
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")))
+  (add-to-list
+   'org-latex-classes
+   '("thesis-fr"
+     "\\documentclass[french,12pt,a4paper]{book}"
+     ("\\chapter{%s}"       . "\\chapter*{%s}")
+     ("\\section{%s}"       . "\\section*{%s}")
+     ("\\subsection{%s}"    . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}"     . "\\paragraph*{%s}")))
 
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("IEEEtran"
-;;        "\\documentclass{IEEEtran}"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (setq org-latex-default-class "article")
+  ;; org-latex-tables-booktabs t
+  ;; org-latex-reference-command "\\cref{%s}")
 
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("ieeeconf"
-;;        "\\documentclass{ieeeconf}"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
+  (defvar +org-export-to-pdf-main-file nil
+    "The main (entry point) Org file for a multi-files document.")
 
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("sagej"
-;;        "\\documentclass{sagej}"
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-;;        ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))
-
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("thesis"
-;;        "\\documentclass[11pt]{book}"
-;;        ("\\chapter{%s}"       . "\\chapter*{%s}")
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}")))
-
-;;     (add-to-list
-;;      'org-latex-classes
-;;      '("thesis-fr"
-;;        "\\documentclass[french,12pt,a4paper]{book}"
-;;        ("\\chapter{%s}"       . "\\chapter*{%s}")
-;;        ("\\section{%s}"       . "\\section*{%s}")
-;;        ("\\subsection{%s}"    . "\\subsection*{%s}")
-;;        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;        ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
-
-;;   (setq org-latex-default-class "article")
-
-;;   ;; org-latex-tables-booktabs t
-;;   ;; org-latex-reference-command "\\cref{%s}")
-;;   (defvar +org-export-to-pdf-main-file nil
-;;     "The main (entry point) Org file for a multi-files document.")
-
-;;   (advice-add
-;;    'org-latex-export-to-pdf :around
-;;    (lambda (orig-fn &rest orig-args)
-;;      (message
-;;       "PDF exported to: %s."
-;;       (let ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org")))
-;;         (if (file-exists-p (expand-file-name main-file))
-;;             (with-current-buffer (find-file-noselect main-file)
-;;               (apply orig-fn orig-args))
-;;           (apply orig-fn orig-args))))))
-;;   (setq time-stamp-active t
-;;         time-stamp-start  "#\\+lastmod:[ \t]*"
-;;         time-stamp-end    "$"
-;;         time-stamp-format "%04Y-%02m-%02d")
-
-;;   (add-hook 'before-save-hook 'time-stamp nil)
-;;   (setq org-hugo-auto-set-lastmod t))
-
-
-;; ;; [[file:config.org::*Plain text][Plain text:1]]
-;; (after! text-mode
-;;   (add-hook! 'text-mode-hook
-;;     (unless (derived-mode-p 'org-mode)
-;;       ;; Apply ANSI color codes
-;;       (with-silent-modifications
-;;         (ansi-color-apply-on-region (point-min) (point-max) t)))))
-;; ;; Plain text:1 ends here
-
-;; ;; [[file:config.org::*Academic phrases][Academic phrases:1]]
-;; (use-package! academic-phrases
-;;   :commands (academic-phrases
-;;              academic-phrases-by-section))
-;; ;; Academic phrases:1 ends here
-
-;; ;; [[file:config.org::*French apostrophes][French apostrophes:1]]
-;; (defun +helper--in-buffer-replace (old new)
-;;   "Replace OLD with NEW in the current buffer."
-;;   (save-excursion
-;;     (goto-char (point-min))
-;;     (let ((case-fold-search nil)
-;;           (cnt 0))
-;;       (while (re-search-forward old nil t)
-;;         (replace-match new)
-;;         (setq cnt (1+ cnt)))
-;;       cnt)))
-
-;; (defun +helper-clear-frenchy-ponctuations ()
-;;   "Replace french apostrophes (’) by regular quotes (')."
-;;   (interactive)
-;;   (let ((chars '((" " . "") ("’" . "'")))
-;;         (cnt 0))
-;;     (dolist (pair chars)
-;;       (setq cnt (+ cnt (+helper--in-buffer-replace (car pair) (cdr pair)))))
-;;     (message "Replaced %d matche(s)." cnt)))
-;; ;; French apostrophes:1 ends here
-
-;; ;; [[file:config.org::*Yanking multi-lines paragraphs][Yanking multi-lines paragraphs:1]]
-;; (defun +helper-paragraphized-yank ()
-;;   "Copy, then remove newlines and Org styling (/*_~)."
-;;   (interactive)
-;;   (copy-region-as-kill nil nil t)
-;;   (with-temp-buffer
-;;     (yank)
-;;     ;; Remove newlines, and Org styling (/*_~)
-;;     (goto-char (point-min))
-;;     (let ((case-fold-search nil))
-;;       (while (re-search-forward "[\n/*_~]" nil t)
-;;         (replace-match (if (s-matches-p (match-string 0) "\n") " " "") t)))
-;;     (kill-region (point-min) (point-max))))
-
-;; (map! :localleader
-;;       :map (org-mode-map markdown-mode-map latex-mode-map text-mode-map)
-;;       :desc "Paragraphized yank" "y" #'+helper-paragraphized-yank)
-;; ;; Yanking multi-lines paragraphs:1 ends here
+  (advice-add
+   'org-latex-export-to-pdf :around
+   (lambda (orig-fn &rest orig-args)
+     (message
+      "PDF exported to: %s."
+      (let ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org")))
+        (if (file-exists-p (expand-file-name main-file))
+            (with-current-buffer (find-file-noselect main-file)
+              (apply orig-fn orig-args))
+          (apply orig-fn orig-args)))))))
