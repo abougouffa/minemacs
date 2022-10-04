@@ -25,6 +25,10 @@
 (use-package eglot
   :straight t
   :commands eglot
+  :general
+  (me-global-def
+    "ca" '(eglot-code-actions :which-key "Code actions")
+    "cF" '(eglot-code-actions :which-key "Format buffer (eglot)"))
   :config
   ;; A hack to make Eglot work with Projectile
   (when (featurep 'projectile)
