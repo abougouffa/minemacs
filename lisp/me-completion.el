@@ -26,6 +26,16 @@
         corfu-scroll-margin 4
         corfu-preselect-first t
         corfu-echo-documentation 0.25) ; Echo docs for current completion option
+
+  (defun +corfu-enable-always-in-minibuffer ()
+    "Enable Corfu in the minibuffer if Vertico/Mct are not active."
+    (unless (or (bound-and-true-p mct--active)
+                (bound-and-true-p vertico--input))
+      ;; Disable auto completion
+      (setq-local corfu-auto nil)
+      (corfu-mode 1)))
+
+  (add-hook 'minibuffer-setup-hook #'+corfu-enable-always-in-minibuffer 1)
   (global-corfu-mode 1))
 
 
