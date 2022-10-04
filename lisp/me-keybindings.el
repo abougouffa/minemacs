@@ -60,24 +60,25 @@
     "X"   '(org-capture :which-key "Org capture")
     "."   '(find-file :which-key "Find file")
 
-    ;; Quit
-    "q"   '(nil :which-key "quit")
+    ;; Quit/Session
+    "q"   '(nil :which-key "quit/session")
     "qq"  '(save-buffers-kill-terminal :which-key "Quit Emacs")
     "qQ"  '(kill-emacs :which-key "Kill Emacs")
     "qs"  '(server-start :which-key "Start daemon")
 
     ;; Files
-    "f"   '(nil                :which-key "file")
-    "ff"  '(find-file          :which-key "Find file")
+    "f"   '(nil                 :which-key "file")
+    "ff"  '(find-file           :which-key "Find file")
     "fD"  '(me-delete-this-file :which-key "Delete this file")
-    "fs"  '(save-buffer        :which-key "Save")
-    "fS"  '(write-file         :which-key "Save as ...")
-    "fu"  '(nil                :which-key "Sudo find file") ;; TODO
-    "fU"  '(nil                :which-key "Sudo this file") ;; TODO
-    "fr"  '(consult-recent-file :which-key "Recent files")
-    "fR"  '(me-move-this-file  :which-key "Move/rename this file")
-    "fy"  '(nil  :which-key "Yank file path") ;; TODO
-    "fE"  `(,(me-cmdfy! (dired user-emacs-directory)) :which-key ".emacs.d")
+    "fs"  '(save-buffer         :which-key "Save")
+    "fS"  '(write-file          :which-key "Save as ...")
+    "fu"  '(me-sudo-find-file   :which-key "Sudo find file")
+    "fU"  '(me-sudo-this-file   :which-key "Sudo this file")
+    "fR"  '(me-move-this-file   :which-key "Move/rename this file")
+    "fy"  '(nil                 :which-key "Yank file path") ;; TODO
+    "ft"  '(recover-this-file   :which-key "Recover this file")
+    "fT"  '(recover-file        :which-key "Recover file")
+    "fE"  `(,(me-cmdfy! (funcall (if (fboundp 'dirvish) 'dirvish 'dired) user-emacs-directory)) :which-key ".emacs.d")
 
     ;; Files / Local variables
     "fv"  '(nil :which-key "Local variable")
@@ -87,31 +88,29 @@
     "fvD" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
 
     ;; Buffers
-    "b"   '(nil                :which-key "buffer")
-    "bb"  '(consult-buffer     :which-key "Switch to buffer")
+    "b"   '(nil :which-key "buffer")
+    "bi"  '(ibuffer :which-key "ibuffer")
+    "bu"  '(me-sudo-save-buffer :which-key "Sudo save buffer")
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
-    "bi"  '(ibuffer            :which-key "ibuffer")
 
-    ;; Input
-    "i"   '(nil                  :which-key "input")
-    "ie"  '(emojify-insert-emoji :which-key "Emoji")
-    "iu"  '(insert-char          :which-key "Unicode char")
-    "iy"  '(consult-yank-pop     :which-key "From clipboard")
+    ;; Insert
+    "i"   '(nil :which-key "insert")
+    "iu"  '(insert-char :which-key "Unicode char")
 
-    ;; Windows
-    "w"   '(nil                :which-key "window")
-    "ww"  '(evil-window-next   :which-key "Next")
-    "wW"  '(evil-window-prev   :which-key "Previous")
-    "ws"  '(evil-window-split  :which-key "Split")
+    ;; Window
+    "w"   '(nil :which-key "window")
+    "ww"  '(evil-window-next :which-key "Next")
+    "wW"  '(evil-window-prev :which-key "Previous")
+    "ws"  '(evil-window-split :which-key "Split")
     "wv"  '(evil-window-vsplit :which-key "Vertical split")
-    "wr"  '(evil-window-rotate-upwards   :which-key "Rotate upwards")
+    "wr"  '(evil-window-rotate-upwards :which-key "Rotate upwards")
     "wR"  '(evil-window-rotate-downwards :which-key "Rotate downwards")
     "wd"  '(evil-window-delete :which-key "Delete")
     "w+"  '(evil-window-increase-width :which-key "Increase width")
     "w-"  '(evil-window-decrease-width :which-key "Decrease width")
 
     ;; Applications (Open)
-    "o"   '(nil   :which-key "open")
+    "o"   '(nil   :which-key "app/open")
     "o-"  '(dired :which-key "Dired") ;; Will be overwritten if dirvish is used
 
     ;; Search
@@ -130,4 +129,3 @@
 (provide 'me-keybindings)
 
 ;;; keybindings.el ends here
-
