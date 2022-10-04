@@ -65,16 +65,6 @@
     (setq +messages--auto-tail-enabled t)
     (message "+messages-auto-tail: Enabled.")))
 
-;; Stretch cursor to the glyph width
-(setq-default x-stretch-cursor t)
-
-;; Enable relative line numbers
-(setq display-line-numbers-type 'relative)
-
-;; Iterate through CamelCase words
-(global-subword-mode 1)
-;; Editing:1 ends here
-
 ;; [[file:config.org::*Emacs sources][Emacs sources:1]]
 (setq source-directory
       (expand-file-name "~/Softwares/src/emacs/"))
