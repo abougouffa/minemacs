@@ -4,12 +4,12 @@
 ;;; Font
 (add-hook
  'emacs-startup-hook
- (lambda ()
+ (defun me-set-fonts ()
    (custom-set-faces
-    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
+    `(default           ((t (:font "Iosevka Fixed Curly Slab 16"))))
     `(fixed-pitch       ((t (:inherit (default)))))
     `(fixed-pitch-serif ((t (:inherit (default)))))
-    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
+    `(variable-pitch    ((t (:font "Iosevka Curly Slab 16")))))))
 
 (setq-default font-lock-multiline 'undecided)
 
