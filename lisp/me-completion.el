@@ -6,6 +6,7 @@
 
 (use-package cape
   :straight t
+  :after minemacs-loaded
   :config
   (global-set-key (kbd "C-s") 'consult-line)
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
@@ -13,6 +14,7 @@
 
 (use-package corfu
   :straight t
+  :after minemacs-loaded
   :config
   ;; Setup corfu for popup like completion
   (setq corfu-cycle t ; Allows cycling through candidates
@@ -54,6 +56,7 @@
 
 (use-package embark
   :straight t
+  :after minemacs-loaded
   :config
   (global-set-key [remap describe-bindings] #'embark-bindings)
   (global-set-key (kbd "C-.") 'embark-act)
@@ -61,14 +64,17 @@
 
 (use-package embark-consult
   :straight t
+  :after minemacs-loaded
   :config
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
 (use-package all-the-icons-completion
-  :straight t)
+  :straight t
+  :after minemacs-loaded)
 
 (use-package marginalia
   :straight t
+  :after minemacs-loaded
   :config
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
 
@@ -78,13 +84,14 @@
 
 (use-package orderless
   :straight t
+  :after minemacs-loaded
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-
 (use-package vertico
   :straight t
+  :after minemacs-loaded
   :config
   (add-to-list
    'load-path
@@ -92,7 +99,8 @@
     (format "straight/%s/vertico/extensions" straight-build-dir)
     straight-base-dir))
 
-  (setq vertico-cycle t)
+  (setq vertico-cycle t
+        vertico-count 12)
 
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "C-j") 'vertico-next)
@@ -101,6 +109,13 @@
 
   (require 'vertico-directory)
   (vertico-mode 1))
+
+(use-package consult
+  :straight t
+  :after minemacs-loaded
+  :general
+  (me-global-def
+    "iy"  '(consult-yank-pop :which-key "From clipboard")))
 
 
 (provide 'me-completion)
