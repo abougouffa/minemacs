@@ -7,9 +7,9 @@
 (defvar minemacs-modules
   '(keybindings
     evil completion ui
-    editor vc
-    prog lisp data
-    org notes email docs spell biblio tools))
+    editor vc prog lisp data
+    org notes email docs spell
+    files tools biblio daemon))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
