@@ -4,6 +4,6 @@
 ;;; Used to synchronize loading some other stuff after loading Emacs
 
 ;; Maybe useful
-(setq minemacs-loaded-p t)
+(setq minemacs-loaded t)
 
 (provide 'minemacs-loaded)

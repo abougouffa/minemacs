@@ -27,7 +27,7 @@
   "This hook will be fired when the first file is open.")
 
 ;; This will be set by the virtual package `minemacs-loaded'
-(defvar minemacs-loaded-p nil
+(defvar minemacs-loaded nil
   "MinEmacs has been loaded.")
 
 (provide 'me-vars)
