@@ -24,27 +24,28 @@
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :commands eglot
   :general
   (me-global-def
-    "ca" '(eglot-code-actions :which-key "Code actions")
-    "cF" '(eglot-code-actions :which-key "Format buffer (eglot)"))
-  :config
-  ;; A hack to make Eglot work with Projectile
-  (when (featurep 'projectile)
-    (defun me-projectile-project-find-function (dir)
-      (let ((root (projectile-project-root dir)))
-        (and root (cons 'transient root)))
-
-      (with-eval-after-load 'project
-        (add-to-list 'project-find-functions 'projectile-project-find-function)))))
+    "ca"  '(eglot-code-actions :which-key "Code actions")
+    "cF"  '(eglot-code-actions :which-key "Format buffer (eglot)")
+    "cs"  '(nil :which-key "eglot session")
+    "css" '(eglot :which-key "Start")
+    "csq" '(eglot-shutdown :which-key "Shutdown")
+    "csQ" '(eglot-shutdown-all :which-key "Shutdown all")))
 
 
 (use-package project-cmake
-  :straight (:type git :host github :repo "juanjosegarciaripoll/project-cmake")
-  :defer t
+  :straight (:host github :repo "sawyerzheng/project-cmake" :branch "fix-unix-kits")
+  :after eglot
+  :general
+  (me-global-def
+    "pc"  '(nil :which-key "CMake")
+    "pct" '(project-cmake-test :which-key "Test")
+    "pcb" '(project-cmake-build :which-key "Build")
+    "pcs" '(project-cmake-shell :which-key "Shell")
+    "pci" '(project-cmake-install :which-key "Install")
+    "pcc" '(project-cmake-configure :which-key "Configure"))
   :config
-  (require 'eglot)
   (project-cmake-scan-kits)
   (project-cmake-eglot-integration))
 
@@ -54,9 +55,10 @@
   :straight t
   :general
   (me-local-def :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
-    "d" `((me-cmdfy! (pcase major-mode
-                       ('python-mode (realgud:pdb))
-                       ((or 'c-mode 'c++-mode) (realgud:gdb))))
+    "d" `(,(me-cmdfy!
+            (pcase major-mode
+              ('python-mode (realgud:pdb))
+              ((or 'c-mode 'c++-mode) (realgud:gdb))))
           :which-key "realgud"))
   :commands (realgud:gdb
              realgud:gud
@@ -91,9 +93,9 @@
   :commands (format-all-mode
              format-all-ensure-formatter
              format-all-buffer
-             format-all-region)
-  :config
-  (add-hook 'before-save-hook #'format-all-buffer))
+             format-all-region))
+;; config)
+;; (add-hook 'before-save-hook #'format-all-buffer))
 
 
 (use-package editorconfig
@@ -118,11 +120,11 @@
 (use-package cmake-mode
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'"
-  :straight (:type git :host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
 
 
 (use-package cmake-font-lock
-  :straight (:type git :host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
 
 
@@ -140,6 +142,13 @@
   :straight t
   :config
   (smartparens-global-mode))
+
+
+(use-package flymake
+  :straight t
+  :general
+  (me-global-def
+    "tf" '(flymake-mode :which-key "Toggle flymake-mode")))
 
 
 (provide 'me-prog)
