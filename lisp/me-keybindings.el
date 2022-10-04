@@ -16,7 +16,7 @@
   :straight t
   :custom
   (which-key-idle-delay          0.3)
-  (which-key-prefix-prefix       "+")
+  (which-key-prefix-prefix       "↪ ")
   (which-key-sort-order          'which-key-key-order-alpha)
   (which-key-min-display-lines   6)
   (which-key-max-display-columns nil)
@@ -25,7 +25,8 @@
   (which-key-setup-minibuffer))
 
 (use-package hydra
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package use-package-hydra
   :after hydra
@@ -91,6 +92,12 @@
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
     "bi"  '(ibuffer            :which-key "ibuffer")
 
+    ;; Input
+    "i"   '(nil                  :which-key "input")
+    "ie"  '(emojify-insert-emoji :which-key "Emoji")
+    "iu"  '(insert-char          :which-key "Unicode char")
+    "iy"  '(consult-yank-pop     :which-key "From clipboard")
+
     ;; Windows
     "w"   '(nil                :which-key "window")
     "ww"  '(evil-window-next   :which-key "Next")
@@ -105,13 +112,19 @@
 
     ;; Applications (Open)
     "o"   '(nil   :which-key "open")
-    "o-"  '(dired :which-key "Dired")
+    "o-"  '(dired :which-key "Dired") ;; Will be overwritten if dirvish is used
+
+    ;; Search
+    "s"   '(nil   :which-key "search")
 
     ;; VC
-    "g"   '(nil  :which-key "git/vc")
+    "g"   '(nil :which-key "git/vc")
+
+    ;; Toggle
+    "t"   '(nil :which-key "toggle")
 
     ;; Code
-    "c"   '(nil                :which-key "code")))
+    "c"   '(nil :which-key "code")))
 
 
 (provide 'me-keybindings)
