@@ -2004,7 +2004,7 @@
   (when (bound-and-true-p +my-addresses)
     ;; I like always to add myself in BCC, Lets add a bookmark to show all my BCC mails
     (defun +mu-long-query (query oper arg-list)
-      (concat "(" (+str-join (concat " " oper " ") (mapcar (lambda (addr) (format "%s:%s" query addr)) arg-list)) ")"))
+      (concat "(" (me-str-join (concat " " oper " ") (mapcar (lambda (addr) (format "%s:%s" query addr)) arg-list)) ")"))
 
     ;; Build a query to match mails send from "me" with "me" in BCC
     (let ((bcc-query (+mu-long-query "bcc" "or" +my-addresses))
