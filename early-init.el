@@ -11,6 +11,19 @@
 (require 'me-vars)
 (require 'me-utils)
 
+;; Syncronization point!
+;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (me-info! "Loaded Emacs in %s." (emacs-init-time))
+   ;; Require the virtual package to triggre loading packages depending on it
+   (require 'minemacs-loaded)
+   (when (getenv "EMACS_GC_HACK")
+     (require 'me-gc))
+   ;; Run hooks
+   (run-hooks minemacs-after-startup)))
+
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (expand-file-name "custom.el" minemacs-config-dir))
 
@@ -50,29 +63,7 @@
 ;;; Load the early config file if it exists
 (let ((early-config-path (expand-file-name "early-config.el" minemacs-config-dir)))
   (when (file-exists-p early-config-path)
-    (me-log! "Loading early config from '%s'" early-config-path)
+    (me-log! "Loading early config from \"%s\"" early-config-path)
     (load early-config-path nil 'nomessage)))
-
-;; Syncronization point!
-;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (me-info! "Loaded Emacs in %s." (emacs-init-time))
-   ;; Require the virtual package to triggre loading packages depending on it
-   (require 'minemacs-loaded)
-   ;; (require 'me-gc)
-
-   ;; Run hooks
-   (run-hooks minemacs-after-startup)
-
-   ;; After 1m, launch Emacs server if we aren't in daemon mode
-   (run-at-time
-    60 nil
-    (lambda ()
-      (unless (daemonp)
-        (let ((inhibit-message nil))
-          (me-info! "Starting Emacs daemon in background.")
-          (server-start)))))))
 
 (me-log! "Loaded early-config.el")
