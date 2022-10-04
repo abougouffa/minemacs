@@ -11,10 +11,10 @@
         parinfer-rust-auto-download t
         parinfer-rust-library
         (expand-file-name
-         (cond (MAC-P "parinfer-rust-darwin.so")
-               (LINUX-P "parinfer-rust-linux.so")
+         (cond (LINUX-P "parinfer-rust-linux.so")
+               (BSD-P "libparinfer_rust.so")
                (WIN-P "parinfer-rust-windows.dll")
-               (BSD-P "libparinfer_rust.so"))
+               (MAC-P "parinfer-rust-darwin.so"))
          parinfer-rust-library-directory))
   :hook ((emacs-lisp-mode
           clojure-mode
@@ -88,9 +88,12 @@
 
 (use-package erefactor
   :straight t
-  :commands (erefactor-highlight-mode
-             erefactor-rename-symbol-in-buffer
-             erefactor-rename-symbol-in-package))
+  :hook ((emacs-lisp-mode lisp-interaction-mode) . erefactor-lazy-highlight-turn-on)
+  :general
+  (me-local-def :keymaps '(emacs-lisp-mode-map lisp-data-mode-map)
+    "r"  '(nil :which-key "refactor")
+    "rr" '(erefactor-rename-symbol-in-buffer :which-key "Rename symbol in buffer")
+    "rR" '(erefactor-rename-symbol-in-package :which-key "Rename symbol in package")))
 
 (use-package elisp-demos
   :straight t
