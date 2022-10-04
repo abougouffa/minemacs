@@ -10,6 +10,7 @@
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
+
 ;; Themes
 (use-package doom-themes
   :straight t
@@ -18,12 +19,14 @@
   (with-eval-after-load 'org
     (require 'doom-themes-ext-org)))
 
+
 ;; Modeline
 (use-package doom-modeline
   :straight t
   :config
   (setq doom-modeline-bar-width 5)
   (doom-modeline-mode 1))
+
 
 (use-package focus
   :straight t
@@ -32,8 +35,8 @@
     "tf" '(focus-mode :which-key "Focus mode"))
   :commands focus-mode)
 
-;;; Disabled, WIP...
 
+;;; Disabled, WIP...
 (use-package ef-themes
   :straight t
   :disabled t
@@ -44,8 +47,8 @@
   :config
   (setq ef-themes-to-toggle '(ef-light ef-day))
 
-    ;; Make customisations that affect Emacs faces BEFORE loading a theme
-    ;; (any change needs a theme re-load to take effect).
+  ;; Make customisations that affect Emacs faces BEFORE loading a theme
+  ;; (any change needs a theme re-load to take effect).
 
   (setq ef-themes-headings ; read the manual's entry or the doc string
         '((0 . (variable-pitch light 1.9))
@@ -58,22 +61,23 @@
           (7 . (variable-pitch 1.2))
           (t . (variable-pitch 1.1))))
 
-    ;; They are nil by default...
+  ;; They are nil by default...
   (setq ef-themes-mixed-fonts t
         ef-themes-variable-pitch-ui t)
 
-    ;; ;; Disable all other themes to avoid awkward blending:
-    ;; (mapc #'disable-theme custom-enabled-themes)
+  ;; ;; Disable all other themes to avoid awkward blending:
+  ;; (mapc #'disable-theme custom-enabled-themes)
 
-    ;; ;; Load the theme of choice:
-    ;; (load-theme 'ef-light :no-confirm)
+  ;; ;; Load the theme of choice:
+  ;; (load-theme 'ef-light :no-confirm)
 
-    ;; OR use this to load the theme which also calls `ef-themes-post-load-hook':
+  ;; OR use this to load the theme which also calls `ef-themes-post-load-hook':
   (ef-themes-select 'ef-light))
+
 
 (use-package lambda-themes
   :disabled t
-  :straight (:type git :host github :repo "lambda-emacs/lambda-themes") 
+  :straight (:type git :host github :repo "lambda-emacs/lambda-themes")
   :init
   (setq lambda-themes-set-italic-comments t
         lambda-themes-set-italic-keywords t
@@ -83,26 +87,27 @@
   ;; load preferred theme
   (load-theme 'lambda-light t))
 
+
 (use-package lambda-line
   :disabled t
-  :straight (:type git :host github :repo "lambda-emacs/lambda-line") 
+  :straight (:type git :host github :repo "lambda-emacs/lambda-line")
   :custom
   (lambda-line-icon-time t) ;; requires all-the-icons
-  (lambda-line-position 'top) ;; Set position of status-line 
+  (lambda-line-position 'top) ;; Set position of status-line
   (lambda-line-abbrev t) ;; abbreviate major modes
   (lambda-line-hspace "  ")  ;; add some cushion
   (lambda-line-prefix t) ;; use a prefix symbol
-  (lambda-line-prefix-padding nil) ;; no extra space for prefix 
-  (lambda-line-status-invert nil)  ;; no invert colors
-  (lambda-line-gui-mod-symbol " ⬤") 
-  (lambda-line-gui-ro-symbol  " ⨂") ;; symbols
-  (lambda-line-gui-rw-symbol  " ◯") 
-  (lambda-line-space-top +.50)  ;; padding on top and bottom of line
-  (lambda-line-space-bottom -.50)
+  (lambda-line-prefix-padding nil) ;; no extra space for prefix
+  (lambda-line-status-invert nil) ;; no invert colors
+  (lambda-line-gui-mod-symbol " ⬤")
+  (lambda-line-gui-ro-symbol " ⨂") ;; symbols
+  (lambda-line-gui-rw-symbol " ◯")
+  (lambda-line-space-top 0.50) ;; padding on top and bottom of line
+  (lambda-line-space-bottom -0.50)
   (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
   :config
-  ;; activate lambda-line 
-  (lambda-line-mode) 
+  ;; activate lambda-line
+  (lambda-line-mode)
   ;; set divider line in footer
   (when (eq lambda-line-position 'top)
     (setq-default mode-line-format (list "%_"))
@@ -111,7 +116,10 @@
 
 (use-package emojify
   :straight t
-  :defer t
+  :after minemacs-loaded
+  :general
+  (me-global-def
+    "ie" '(emojify-insert-emoji :which-key "Emoji"))
   :config
   (setq emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir)
         emojify-display-style 'image
@@ -119,8 +127,16 @@
 
 
 (use-package popwin
-  :straight t
+  :straight (:host github :repo "emacsorphanage/popwin" :files (:defaults "*"))
+  :after minemacs-loaded
   :config
+  (defun +popwin-register (pred &rest args)
+    (if (listp pred)
+        (dolist (p pred)
+          (push (cons p args) popwin:special-display-config))
+      (push (cons pred args) popwin:special-display-config)))
+
+  (+popwin-register '("*Warnings*" compilation-mode) :height 8 :noselect t)
   (popwin-mode 1))
 
 
