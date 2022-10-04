@@ -87,9 +87,9 @@
       auto-window-vscroll nil
       fast-but-imprecise-scrolling t)
 
+(setq-default window-combination-resize t)
+
 ;;; Enable global modes
-;; Enable line numbering globally adds line numbers to mu4e!
-;; (global-display-line-numbers-mode 1)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 
