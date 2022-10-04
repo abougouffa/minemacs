@@ -98,6 +98,7 @@
     "bu"  '(me-sudo-save-buffer :which-key "Sudo save buffer")
     "bp"  '(project-switch-to-buffer :which-key "Switch to buffer in project")
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
+    "bK"  '(kill-some-buffers :which-key "Kill some buffers")
 
     ;; Insert
     "i"   '(nil :which-key "insert")
