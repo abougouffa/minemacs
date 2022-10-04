@@ -11,16 +11,15 @@
   :config
   (require 'me-mu4e-extras)
 
-  ;; (me-local-def :keymaps mu4e-compose-mode-map
-  ;;   "s" #'message-send-and-exit
-  ;;   "d" #'message-kill-buffer
-  ;;   "S" #'message-dont-send)
-
-  ;; (me-map-def :keymaps 'mu4e-view-mode-map
-  ;;   "A" #'+mu4e-view-select-mime-part-action
-  ;;   "p" #'mu4e-view-save-attachments
-  ;;   "P" #'+mu4e-view-save-all-attachments
-  ;;   "o" #'+mu4e-view-open-attachment)
+  (me-local-def :keymaps 'mu4e-compose-mode-map
+    "s" #'message-send-and-exit
+    "d" #'message-kill-buffer
+    "S" #'message-dont-send)
+  (me-map-def :keymaps 'mu4e-view-mode-map
+    "A" #'+mu4e-view-select-mime-part-action
+    "p" #'mu4e-view-save-attachments
+    "P" #'+mu4e-view-save-all-attachments
+    "o" #'+mu4e-view-open-attachment)
 
   (setq mu4e-confirm-quit nil
         mu4e-view-use-gnus t
@@ -79,11 +78,7 @@
   (when (fboundp 'make-xwidget)
     (add-to-list 'mu4e-view-actions '("View in xwidgets" . mu4e-action-view-in-xwidget)))
 
-  (add-hook 'message-send-hook #'+mu4e-check-for-subject)
-
-  (with-eval-after-load 'evil
-    ;; As +mu4e~main-action-str-prettier replaces [k]ey with key q]uit should become quit
-    (setq evil-collection-mu4e-end-region-misc "quit")))
+  (add-hook 'message-send-hook #'+mu4e-check-for-subject))
 
 
 (use-package org-msg
@@ -118,6 +113,7 @@
   :config
   (setq doom-modeline-mu4e t
         mu4e-alert-set-window-urgency nil
+        mu4e-alert-email-notification-types '(subjects)
         mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
 
   (defvar +mu4e-alert-bell-cmd '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
@@ -156,8 +152,6 @@
   (setq mu4e-alert-grouped-mail-notification-formatter
         #'+mu4e-alert-grouped-mail-notif-formatter)
 
-  ;; I use an auto-hiding task manager, setting window urgency shows
-  ;; the entier task bar (in KDE), which I find annoying.
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications))
 

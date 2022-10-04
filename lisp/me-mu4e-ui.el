@@ -1,7 +1,7 @@
-(defvar +mu4e-main-bullet "⚫"
+(defvar +mu4e-main-bullet "⦿"
   "Prefix to use instead of \"  *\" in the mu4e main view.
-This is enacted by `+mu4e~main-action-str-prettier-a' and
-`+mu4e~main-keyval-str-prettier-a'.")
+This is enacted by `+mu4e--main-action-str-prettier-a' and
+`+mu4e--main-keyval-str-prettier-a'.")
 
 (defvar +mu4e-header-colorized-faces
   '(all-the-icons-green
@@ -60,7 +60,7 @@ STR and any integer OFFSET."
     color))
 
 
-(defun +mu4e~main-action-str-prettier-a (str &optional func-or-shortcut)
+(defun +mu4e--main-action-str-prettier-a (str &optional func-or-shortcut)
   "Highlight the first occurrence of [.] in STR.
 If FUNC-OR-SHORTCUT is non-nil and if it is a function, call it
 when STR is clicked (using RET or mouse-2); if FUNC-OR-SHORTCUT is
@@ -77,7 +77,8 @@ clicked."
         (func (if (functionp func-or-shortcut)
                   func-or-shortcut
                 (if (stringp func-or-shortcut)
-                    (lambda()(interactive)
+                    (lambda()
+                      (interactive)
                       (execute-kbd-macro func-or-shortcut))))))
     (define-key map [mouse-2] func)
     (define-key map (kbd "RET") func)
@@ -87,7 +88,7 @@ clicked."
     newstr))
 
 
-(defun +mu4e~main-keyval-str-prettier-a (str)
+(defun +mu4e--main-keyval-str-prettier-a (str)
   "Replace '*' with `+mu4e-main-bullet' in STR."
   (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str))
 
@@ -194,8 +195,19 @@ will also be the width of all other printable characters."
                                              (length (mu4e-message-field msg :cc))))
                                   'face 'mu4e-footer-face))))))
 
-  (advice-add #'mu4e--key-val :filter-return #'+mu4e~main-keyval-str-prettier-a)
-  (advice-add #'mu4e--main-action-str :override #'+mu4e~main-action-str-prettier-a))
+  ;; Evil collection overwrite the jump, search, compose and quit commands
+  (with-eval-after-load 'evil-collection
+    (setq evil-collection-mu4e-new-region-basic
+          (concat (+mu4e--main-action-str-prettier-a
+                   "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
+                  (+mu4e--main-action-str-prettier-a
+                   "\t* Enter a [s]earch query\n" 'mu4e-search)
+                  (+mu4e--main-action-str-prettier-a
+                   "\t* [C]ompose a new message\n" 'mu4e-compose-new))
+          evil-collection-mu4e-end-region-misc "quit"))
+
+  (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
+  (advice-add #'mu4e--main-action-str :override #'+mu4e--main-action-str-prettier-a))
 
 
 (provide 'me-mu4e-ui)
