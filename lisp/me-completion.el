@@ -27,15 +27,13 @@
         corfu-preselect-first t
         corfu-echo-documentation 0.25) ; Echo docs for current completion option
 
-  (defun +corfu-enable-always-in-minibuffer ()
-    "Enable Corfu in the minibuffer if Vertico/Mct are not active."
-    (unless (or (bound-and-true-p mct--active)
-                (bound-and-true-p vertico--input))
-      ;; Disable auto completion
-      (setq-local corfu-auto nil)
+  (defun +corfu-enable-in-minibuffer ()
+    "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+    (when (where-is-internal #'completion-at-point (list (current-local-map)))
+      (setq-local corfu-auto nil) ;; Enable/disable auto completion
       (corfu-mode 1)))
 
-  (add-hook 'minibuffer-setup-hook #'+corfu-enable-always-in-minibuffer 1)
+  (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer)
   (global-corfu-mode 1))
 
 
