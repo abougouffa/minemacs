@@ -19,3 +19,9 @@ configuration modules gluing a bunch of packages in an opinionated way, CI
 commands, and recently a profile manager! Which adds extra complexity at each
 layer.
 
+
+** Fast and minimal
+
+#+begin_src
+[MinEmacs] Loaded Emacs in 0.563918 seconds.
+#+end_src
