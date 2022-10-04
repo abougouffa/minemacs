@@ -16,7 +16,8 @@
 ;;;###autoload
 (defun me-info! (msg &rest vars)
   "Log info MSG and VARS using `message'."
-  (apply #'message (cons (concat "[MinEmacs] " msg) vars)))
+  (let ((inhibit-message))
+    (apply #'message (cons (concat "[MinEmacs] " msg) vars))))
 
 ;; (me-bool "someval") ;; ==> t
 ;;;###autoload
