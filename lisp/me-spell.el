@@ -4,7 +4,10 @@
 (use-package spell-fu
   :straight t
   :when (executable-find "aspell")
-  ;; :general ([remap ispell-word] #'+spell/correct)
+  :general
+  (me-global-def
+    "ts" '(spell-fu-mode :which-key "Toggle spell-fu-mode"))
+  ;; ([remap ispell-word] #'+spell/correct)
   :hook (text-mode . spell-fu-mode)
   :init
   (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-var-dir))
