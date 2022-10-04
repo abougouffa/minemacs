@@ -71,8 +71,8 @@
 ;; (me-str-join ", " '("foo" "10" "bar")) ;; ==> "foo, 10, bar"
 ;;;###autoload
 (defun me-str-join (sep seq)
-  (me-foldl (lambda (l r) (concat l sep r)
-              (car seq) (cdr seq))))
+  (me-foldl (lambda (l r) (concat l sep r))
+            (car seq) (cdr seq)))
 
 ;; (me-str-split "foo, 10, bar" ", ") ;; ==> ("foo" "10" "bar")
 ;;;###autoload
