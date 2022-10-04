@@ -32,24 +32,10 @@
 (use-package ros
   :init
   :general
-  (me-local-def :leader
-                :prefix ("l" . "custom")
-                :desc "Hydra ROS" "r" #'hydra-ros-main/body)
-  :commands (hydra-ros-main/body ros-set-workspace)
-  :config
-  (setq ros-workspaces
-        (list (ros-dump-workspace
-               :tramp-prefix (format "/docker:%s@%s:" "ros" "ros-machine")
-               :workspace "~/ros_ws"
-               :extends '("/opt/ros/noetic/"))
-              (ros-dump-workspace
-               :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
-               :workspace "~/ros_ws"
-               :extends '("/opt/ros/noetic/"))
-              (ros-dump-workspace
-               :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
-               :workspace "~/ros2_ws"
-               :extends '("/opt/ros/foxy/")))))
+  (me-global-def
+    "or" '(nil :which-key "ROS")
+    "orr" '(hydra-ros-main/body :which-key "Hydra")
+    "ors" '(hydra-ros-main/body :which-key "Set workspace")))
 
 
 (provide 'me-ros)
