@@ -2,15 +2,16 @@
 
 (use-package magit
   :straight t
+  :after minemacs-loaded
   :general
   (me-global-def
     "gg" '(magit-status :which-key "Status")
     "gC" '(magit-clone :which-key "Clone repo"))
   :config
   ;; Granular diff-highlights for /all/ hunks (disable if it causes performance issues)
-  (setq magit-diff-refine-hunk t)
-  ;; Show gravatars
-  (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+  (setq magit-diff-refine-hunk t
+        magit-revision-show-gravatars ;; Show gravatars
+        '("^Author:     " . "^Commit:     ")))
 
 (use-package code-review
   :straight t
@@ -20,20 +21,28 @@
 
 (use-package diff-hl
   :straight t
-  :after minemacs-loaded
+  :hook (find-file    . diff-hl-mode)
+  :hook (dired-mode   . diff-hl-dired-mode)
+  :hook (vc-dir-mode  . diff-hl-dir-mode)
+  :hook (diff-hl-mode . diff-hl-flydiff-mode)
+  :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
   (me-global-def
     "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
   :config
-  (global-diff-hl-mode))
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh))
+
 
 (use-package git-timemachine
   :straight t
+  :after minemacs-loaded
   :general
   (me-global-def
     "gt" '(git-timemachine-toggle :which-key "Time machine"))
   :config
   (setq git-timemachine-show-minibuffer-details t))
+
 
 (use-package git-commit
   :after magit
@@ -54,12 +63,12 @@ otherwise in default state."
                 (evil-insert-state))))
   (global-git-commit-mode))
 
+
 (use-package smerge-mode
   :straight t
   :general
   (me-global-def "gm" '(+vc/smerge-hydra/body :which-key "sMerge"))
   :config
-  (message "Loaded smerge-mode")
   (defhydra +vc/smerge-hydra (:hint nil
                                     :pre (if (not smerge-mode) (smerge-mode 1))
                                     ;; Disable `smerge-mode' when quitting hydra if
@@ -67,14 +76,15 @@ otherwise in default state."
                                     :post (smerge-auto-leave))
     "
                                                          [smerge]
-  Movement   Keep           Diff              Other
+  Movement   Keep           Diff              Other         │
   ╭─────────────────────────────────────────────────────────╯
-     ^_g_^       [_b_] base       [_<_] upper/base    [_C_] Combine
-     ^_C-k_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
-     ^_k_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
-     ^_j_ ↓^     [_a_] all        [_H_] hightlight    [_n_] next in project
-     ^_C-j_^     [_RET_] current  [_E_] ediff                 ╭──────────
-     ^_G_^                                                │ [_q_] quit
+  │  ^_g_^       [_b_] base       [_<_] upper/base    [_C_] Combine
+  │  ^_C-k_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
+  │  ^_k_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
+  │  ^_j_ ↓^     [_a_] all        [_H_] hightlight    [_n_] next in project
+  │  ^_C-j_^     [_RET_] current  [_E_] ediff
+  │  ^_G_^                                                 [_q_] quit
+  ╰─────────────────────────────────────────────────────╯
 "
     ("g" (progn (goto-char (point-min)) (smerge-next)))
     ("G" (progn (goto-char (point-max)) (smerge-prev)))
