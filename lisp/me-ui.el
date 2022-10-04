@@ -118,4 +118,10 @@
         emojify-emoji-set "emojione-v2.2.6"))
 
 
+(use-package popwin
+  :straight t
+  :config
+  (popwin-mode 1))
+
+
 (provide 'me-ui)
