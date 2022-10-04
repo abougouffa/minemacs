@@ -10,11 +10,11 @@ I'm using Emacs at the core of my workflow, I use it to write documents, write
 programs in different programming languages, manage my emails, etc.
 
 Therefore, I want a robust yet simple framework. Doom Emacs is a good choice,
-and it is moving in a good direction, but recently, I'm experiencing a lot of
-problems with it, some times I do a ~doom upgrade~, and just after, nothing
+And it is moving in a good direction, but recently, I'm experiencing a lot of
+problems with it, sometimes I do a ~doom upgrade~, and just after, nothing
 works properly, it happens only in my most busy days, causing additional stress
 to manage. And to be honest, it is a bit too much for a configuration framework!
-it implements a command line interface, a library with extra features,
+It implements a command line interface, a library with extra features,
 configuration modules gluing a bunch of packages in an opinionated way, CI
 commands, and recently a profile manager! Which adds extra complexity at each
 layer.
