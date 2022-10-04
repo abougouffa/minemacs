@@ -1,3 +1,6 @@
+;; -*- lexical-binding: t; -*-
+
+
 (use-package spell-fu
   :straight t
   :when (executable-find "aspell")
@@ -70,6 +73,17 @@
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
        (setq-local spell-fu-faces-exclude excluded)))))
+
+
+(use-package eglot-ltex
+  :straight (:host github :repo "emacs-languagetool/eglot-ltex")
+  :init
+  ;; Download from: https://github.com/valentjn/ltex-ls/releases
+  ;; Add this to .dir-locals.el
+  ;; ((nil
+  ;;   (eglot-workspace-configuration
+  ;;    . ((ltex-ls . ((language . "en-US"))))
+  (setq eglot-languagetool-server-path "/usr"))
 
 
 (provide 'me-spell)
