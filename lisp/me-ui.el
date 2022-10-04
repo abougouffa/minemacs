@@ -1,13 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 
-;; See https://github.com/emacsorphanage/popwin
-
-
 ;; Icons
 (use-package all-the-icons
-  :defer t
   :straight t
+  :defer t
   :config
   ;; Show .m files as matlab/octave files
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
@@ -30,6 +27,9 @@
 
 (use-package focus
   :straight t
+  :general
+  (me-global-def
+    "tf" '(focus-mode :which-key "Focus mode"))
   :commands focus-mode)
 
 ;;; Disabled, WIP...
@@ -94,11 +94,11 @@
   (lambda-line-prefix t) ;; use a prefix symbol
   (lambda-line-prefix-padding nil) ;; no extra space for prefix 
   (lambda-line-status-invert nil)  ;; no invert colors
-  (lambda-line-gui-ro-symbol  " ⨂") ;; symbols
   (lambda-line-gui-mod-symbol " ⬤") 
+  (lambda-line-gui-ro-symbol  " ⨂") ;; symbols
   (lambda-line-gui-rw-symbol  " ◯") 
-  ;;(lambda-line-space-top +.50)  ;; padding on top and bottom of line
-  ;;(lambda-line-space-bottom -.50)
+  (lambda-line-space-top +.50)  ;; padding on top and bottom of line
+  (lambda-line-space-bottom -.50)
   (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
   :config
   ;; activate lambda-line 
@@ -111,6 +111,7 @@
 
 (use-package emojify
   :straight t
+  :defer t
   :config
   (setq emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir)
         emojify-display-style 'image
