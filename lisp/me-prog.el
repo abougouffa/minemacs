@@ -27,10 +27,17 @@
   :general
   (me-global-def
     "ca"  '(eglot-code-actions :which-key "Code actions")
-    "cF"  '(eglot-code-actions :which-key "Format buffer (eglot)")
+    "cq"  '(eglot-code-action-quickfix :which-key "Code action quickfix")
+    "cF"  '(eglot-format-buffer :which-key "Format buffer (eglot)")
+    "cr"  '(nil :which-key "refactor")
+    "crr" '(eglot-rename :which-key "Rename")
+    "cd"  '(eglot-find-declaration :which-key "Find declaration")
+    "ci"  '(eglot-find-implementation :which-key "Find implementation")
+    "ct"  '(eglot-find-typeDefinition :which-key "Find type definition")
     "cs"  '(nil :which-key "eglot session")
     "css" '(eglot :which-key "Start")
     "csq" '(eglot-shutdown :which-key "Shutdown")
+    "csr" '(eglot-reconnect :which-key "Reconnect")
     "csQ" '(eglot-shutdown-all :which-key "Shutdown all")))
 
 
