@@ -22,7 +22,8 @@
    (when (getenv "EMACS_GC_HACK")
      (require 'me-gc))
    ;; Run hooks
-   (run-hooks minemacs-after-startup)))
+   (when (boundp 'minemacs-after-startup-hook)
+     (run-hooks minemacs-after-startup-hook))))
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (expand-file-name "custom.el" minemacs-config-dir))
