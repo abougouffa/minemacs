@@ -87,15 +87,16 @@
     "fvV" '(delete-file-local-variable :which-key "Delete")
     "fvp" '(add-file-local-variable-prop-line :which-key "Add in prop line")
     "fvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
-    "fvd" '(add-dir-local-variable :which-key "Add in dir-local")
-    "fvD" '(delete-dir-local-variable :which-key "Add in dir-local")
+    "fvd" '(add-dir-local-variable :which-key "Add to dir-locals")
+    "fvD" '(delete-dir-local-variable :which-key "Delete from dir-locals")
     "fvr" '(me-dir-locals-reload-for-current-buffer :which-key "Reload dir-locals for this buffer")
     "fvR" '(me-dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
 
     ;; Buffers
     "b"   '(nil :which-key "buffer")
-    "bi"  '(ibuffer :which-key "ibuffer")
+    "bi"  '(ibuffer :which-key "Ibuffer")
     "bu"  '(me-sudo-save-buffer :which-key "Sudo save buffer")
+    "bp"  '(project-switch-to-buffer :which-key "Switch to buffer in project")
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
 
     ;; Insert
@@ -128,7 +129,19 @@
     "t"   '(nil :which-key "toggle")
 
     ;; Code
-    "c"   '(nil :which-key "code")))
+    "c"   '(nil :which-key "code")
+
+    ;; Toggle
+    "p"   '(nil :which-key "project")
+    "pp"  '(project-switch-project :which-key "Decrease width")
+    "ps"  '(project-search :which-key "Search project")
+    "pc"  '(project-compile :which-key "Compile")
+    "pd"  '(project-find-dir :which-key "Find directory")
+    "pf"  '(project-find-file :which-key "Find file")
+    "pF"  '(nil :which-key "Forget")
+    "pFz" '(project-forget-zombie-projects :which-key "Zombie projects")
+    "pFp" '(project-forget-project :which-key "Project")
+    "pFu" '(project-forget-projects-under :which-key "Projects under...")))
 
 
 (provide 'me-keybindings)
