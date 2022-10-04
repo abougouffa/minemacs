@@ -1982,7 +1982,7 @@
 ;; ;; Emacs + NetExtender:1 ends here
 
 (with-eval-after-load 'mu4e
-  (setq mail-personal-alias-file (expand-file-name "mail-aliases.mailrc" minemacs-var-dir))
+  (setq mail-personal-alias-file (expand-file-name "private/mail-aliases.mailrc" minemacs-config-dir))
 
   ;; Add a unified inbox shortcut
   (add-to-list
@@ -1994,9 +1994,12 @@
    'mu4e-bookmarks
    '(:name "Yesterday's messages" :query "date:1d..today" :key ?y) t)
 
+  ;; Load my accounts
+  (load (expand-file-name "private/mu4e-accounts.el" minemacs-config-dir) :no-error :no-msg)
+
   ;; Load a list of my email addresses '+my-addresses', defined as:
   ;; (setq +my-addresses '("user@gmail.com" "user@hotmail.com"))
-  (load "private/+my-addresses.el" :no-error :no-msg)
+  (load (expand-file-name "private/my-addresses.el" minemacs-config-dir) :no-error :no-msg)
 
   (when (bound-and-true-p +my-addresses)
     ;; I like always to add myself in BCC, Lets add a bookmark to show all my BCC mails
@@ -2008,7 +2011,14 @@
           (from-query (+mu-long-query "from" "or" +my-addresses)))
       (add-to-list
        'mu4e-bookmarks
-       (list :name "My black copies" :query (format "maildir:/.*inbox/ and %s and %s" from-query bcc-query) :key ?k) t))))
+       (list :name "My black copies" :query (format "maildir:/.*inbox/ and %s and %s" from-query bcc-query) :key ?k) t)))
+
+  ;; I like to always BCC myself
+  (defun +bbc-me ()
+    "Add my email to BCC."
+    (save-excursion (message-add-header (format "Bcc: %s\n" +my-bcc-trash))))
+
+  (add-hook 'mu4e-compose-mode-hook '+bbc-me))
 
 ;; (after! mu4e
 ;;   (require 'mu4e-contrib)
@@ -2081,16 +2091,6 @@
 ;;         :map (mu4e-headers-mode-map mu4e-view-mode-map)
 ;;         :desc "Open URL in Brave"   "b" #'browse-url-chrome ;; Brave
 ;;         :desc "Open URL in Firefox" "f" #'browse-url-firefox)
-
-;;   ;; I like to always BCC myself
-;;   (defun +bbc-me ()
-;;     "Add my email to BCC."
-;;     (save-excursion (message-add-header (format "Bcc: %s\n" +my-bcc-trash))))
-
-;;   (add-hook 'mu4e-compose-mode-hook '+bbc-me)
-
-;;   ;; Load my accounts
-;;   (load! "lisp/private/+mu4e-accounts.el")
 
 ;;   ;; iCalendar / Org
 ;;   (mu4e-icalendar-setup)
