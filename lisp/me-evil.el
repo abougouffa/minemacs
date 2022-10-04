@@ -3,13 +3,15 @@
 (use-package evil
   :straight t
   :init
-  (setq evil-want-integration t
-        evil-want-keybinding nil
-        evil-want-C-i-jump nil
-        evil-respect-visual-line-mode t
+  (setq evil-want-C-i-jump nil
         evil-want-C-h-delete t ;; C-h is backspace in insert state
+        evil-want-fine-undo t
+        evil-want-keybinding nil
+        evil-want-integration t
         evil-want-Y-yank-to-eol t
-        evil-want-fine-undo t)
+        evil-split-window-below t
+        evil-vsplit-window-right t
+        evil-respect-visual-line-mode t)
   :config
   (evil-mode 1))
 
@@ -28,10 +30,8 @@
 
 (use-package evil-mc
   :straight t
-  :after evil evil-collection
+  :after evil evil-collection minemacs-loaded
   :config
-  ;; (evil-collection-swap-key nil 'evil-normal-state-map
-  ;;   "gz" "gZ")
   (me-map-def
     :states '(normal visual)
     :keymaps 'evil-mc-key-map
@@ -77,8 +77,8 @@
   (global-evil-mc-mode 1))
 
 (use-package evil-escape
-  :after (evil minemacs-loaded)
   :straight t
+  :after evil minemacs-loaded
   :config
   (evil-escape-mode 1))
 
