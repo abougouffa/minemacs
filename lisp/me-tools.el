@@ -8,12 +8,10 @@
 
 (use-package vterm
   :straight t
-  :when (featurep 'dynamic-modules)
-  :defer t
   :general
-  (me-global-def "ot" '(vterm :which-key "vTerm"))
-  :commands vterm-mode
-  :hook (vterm-mode . hide-mode-line-mode)
+  (me-global-def
+    "ot" '(+popwin:vterm :which-key "vTerm popup")
+    "oT" '(vterm :which-key "vTerm"))
   :preface
   (when noninteractive
     (advice-add #'vterm-module-compile :override #'ignore)
@@ -21,10 +19,28 @@
   :config
   (setq vterm-kill-buffer-on-exit t
         vterm-max-scrollback 5000)
-  (add-hook 'vterm-mode-hook
-            (lambda ()
-              (setq confirm-kill-processes nil
-                    hscroll-margin 0))))
+
+  (with-eval-after-load 'popwin
+    (defun +popwin:vterm ()
+      (interactive)
+      (popwin:display-buffer-1
+       (or (get-buffer "*vterm*")
+           (save-window-excursion
+             (call-interactively 'vterm)))
+       :default-config-keywords '(:position :bottom :height 12)))))
+
+
+(with-eval-after-load 'popwin
+  (me-global-def
+    "oe" '(+popwin:eshell :which-key "Eshell popup")
+    "oE" '(eshell :which-key "Eshell"))
+  (defun +popwin:eshell ()
+    (interactive)
+    (popwin:display-buffer-1
+     (or (get-buffer "*eshell*")
+         (save-window-excursion
+           (call-interactively 'eshell)))
+     :default-config-keywords '(:position :bottom :height 12))))
 
 
 (provide 'me-tools)
