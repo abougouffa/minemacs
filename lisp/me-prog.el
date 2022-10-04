@@ -119,12 +119,17 @@
 
 (use-package cmake-font-lock
   :straight (:type git :host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
-  :defer t)
+  :hook (cmake-mode . cmake-font-lock-activate))
 
 
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+
+(use-package highlight-numbers
+  :straight t
+  :hook (prog-mode . highlight-numbers-mode))
 
 
 (use-package smartparens
