@@ -65,13 +65,14 @@
     "qq"  '(save-buffers-kill-terminal :which-key "Quit Emacs")
     "qQ"  '(kill-emacs :which-key "Kill Emacs")
     "qs"  '(server-start :which-key "Start daemon")
+    "qR"  '(recover-session :which-key "Recover session")
 
     ;; Files
     "f"   '(nil                 :which-key "file")
     "ff"  '(find-file           :which-key "Find file")
-    "fD"  '(me-delete-this-file :which-key "Delete this file")
     "fs"  '(save-buffer         :which-key "Save")
     "fS"  '(write-file          :which-key "Save as ...")
+    "fD"  '(me-delete-this-file :which-key "Delete this file")
     "fu"  '(me-sudo-find-file   :which-key "Sudo find file")
     "fU"  '(me-sudo-this-file   :which-key "Sudo this file")
     "fR"  '(me-move-this-file   :which-key "Move/rename this file")
@@ -83,9 +84,13 @@
     ;; Files / Local variables
     "fv"  '(nil :which-key "Local variable")
     "fvv" '(add-file-local-variable :which-key "Add")
-    "fvd" '(delete-file-local-variable :which-key "Delete")
-    "fvV" '(add-file-local-variable-prop-line :which-key "Add in prop line")
-    "fvD" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
+    "fvV" '(delete-file-local-variable :which-key "Delete")
+    "fvp" '(add-file-local-variable-prop-line :which-key "Add in prop line")
+    "fvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
+    "fvd" '(add-dir-local-variable :which-key "Add in dir-local")
+    "fvD" '(delete-dir-local-variable :which-key "Add in dir-local")
+    "fvr" '(me-dir-locals-reload-for-current-buffer :which-key "Reload dir-locals for this buffer")
+    "fvR" '(me-dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
 
     ;; Buffers
     "b"   '(nil :which-key "buffer")
