@@ -51,6 +51,16 @@
           (:tangle   . "no")
           (:comments . "link")))
 
+  (let ((size 1.3))
+    (dolist (face '(org-level-1
+                    org-level-2
+                    org-level-3
+                    org-level-4
+                    org-level-5))
+      (set-face-attribute face nil :weight 'semi-bold :height size)
+      (let ((new-size (* size 0.9)))
+        (setq size (if (> new-size 1.0) new-size 1.0)))))
+
   (defvar +org-responsive-image-percentage 0.4)
   (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
 
