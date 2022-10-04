@@ -2004,18 +2004,6 @@
   ;; (setq +my-addresses '("user@gmail.com" "user@hotmail.com"))
   (load (expand-file-name "private/my-addresses.el" minemacs-config-dir) :no-error :no-msg)
 
-  (when (bound-and-true-p +my-addresses)
-    ;; I like always to add myself in BCC, Lets add a bookmark to show all my BCC mails
-    (defun +mu-long-query (query oper arg-list)
-      (concat "(" (me-str-join (concat " " oper " ") (mapcar (lambda (addr) (format "%s:%s" query addr)) arg-list)) ")"))
-
-    ;; Build a query to match mails send from "me" with "me" in BCC
-    (let ((bcc-query (+mu-long-query "bcc" "or" +my-addresses))
-          (from-query (+mu-long-query "from" "or" +my-addresses)))
-      (add-to-list
-       'mu4e-bookmarks
-       (list :name "My black copies" :query (format "maildir:/.*inbox/ and %s and %s" from-query bcc-query) :key ?k) t)))
-
   ;; I like to always BCC myself
   (defun +bbc-me ()
     "Add my email to BCC."
