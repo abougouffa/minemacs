@@ -6,10 +6,10 @@
  'emacs-startup-hook
  (defun me-set-fonts ()
    (custom-set-faces
-    `(default           ((t (:font "Iosevka Fixed Curly Slab 16"))))
+    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
     `(fixed-pitch       ((t (:inherit (default)))))
     `(fixed-pitch-serif ((t (:inherit (default)))))
-    `(variable-pitch    ((t (:font "Iosevka Curly Slab 16")))))))
+    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
 
 (setq-default font-lock-multiline 'undecided)
 
@@ -21,6 +21,7 @@
       recentf-save-file (expand-file-name "recentf" minemacs-var-dir)
       auto-save-list-file-prefix (expand-file-name "autosave/" minemacs-var-dir)
       tramp-auto-save-directory  (expand-file-name "tramp-autosave/" minemacs-var-dir)
+      tramp-persistency-file-name (expand-file-name "tramp-persistency" minemacs-var-dir)
       backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-var-dir)))
       transient-history-file (expand-file-name "transient/history.el" minemacs-var-dir)
       transient-levels-file (expand-file-name "transient/levels.el" minemacs-var-dir)
@@ -38,9 +39,9 @@
       delete-by-moving-to-trash t)
 
 ;;; Undo
-(setq undo-limit        10000000 ;; 1MB   (default is 160kB)
+(setq undo-limit        10000000 ;; 1MB (default is 160kB)
       undo-strong-limit 100000000 ;; 100MB (default is 240kB)
-      undo-outer-limit  1000000000) ;; 1GB   (default is 24MB)
+      undo-outer-limit  1000000000) ;; 1GB (default is 24MB)
 
 
 ;;; Editing
@@ -110,7 +111,7 @@ or file path may exist now."
    (when (eq major-mode 'fundamental-mode)
      (let ((buffer (or (buffer-base-buffer) (current-buffer))))
        (and (buffer-file-name buffer)
-            (eq buffer (window-buffer (selected-window))) ; only visible buffers
+            (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
 
 
