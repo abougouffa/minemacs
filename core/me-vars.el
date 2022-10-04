@@ -20,15 +20,11 @@
 (defconst WIN-P (memq system-type '(cygwin windwos-nt ms-dos)))
 (defconst MAC-P (eq system-type 'darwin))
 
-(defcustom minemacs-after-startup nil
-  "This hook will be run after loading Emacs."
-  :group 'minemacs
-  :type 'hook)
+(defvar minemacs-after-startup nil
+  "This hook will be run after loading Emacs.")
 
-(defcustom minemacs-first-file nil
-  "This hook will be fired when the first file is open."
-  :group 'minemacs
-  :type 'hook)
+(defvar minemacs-first-file nil
+  "This hook will be fired when the first file is open.")
 
 ;; This will be set by the virtual package `minemacs-loaded'
 (defvar minemacs-loaded-p nil
