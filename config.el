@@ -4,8 +4,12 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+
+;; Personal info
 (setq user-full-name "Abdelhak Bougouffa"
       user-mail-address "abougouffa@fedoraproject.org")
+
+(setq-default epa-file-encrypt-to '("F808A020A3E1AC37"))
 
 (defvar +my/lang-main          "en")
 (defvar +my/lang-secondary     "fr")
@@ -23,17 +27,6 @@
       auth-source-cache-expiry 86400 ; All day, defaut is 2h (7200)
       password-cache t
       password-cache-expiry 86400)
-
-(with-eval-after-load 'epa
-  (setq-default epa-file-encrypt-to '("F808A020A3E1AC37")))
-
-(setq-default delete-by-moving-to-trash t
-              trash-directory nil) ;; Use freedesktop.org trashcan
-
-(setq-default window-combination-resize t)
-
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
 
 (dolist (fn '(evil-window-split evil-window-vsplit))
   (advice-add fn :after (lambda (&rest _) (consult-buffer))))
@@ -90,27 +83,6 @@
 ;; [[file:config.org::*Browsers][Browsers:1]]
 (setq browse-url-chrome-program "brave")
 ;; Browsers:1 ends here
-
-;; [[file:config.org::*Initialization][Initialization:1]]
-(defun +daemon-startup ()
-  ;; mu4e
-  (when (and (require 'mu4e nil t) nil) ;; DISABLED ATM
-    ;; Automatically start `mu4e' in background.
-    (run-at-time
-     nil ;; Launch now
-     (* 60 5) ;; Check each 5 minutes
-     (lambda ()
-       (when (not (mu4e-running-p))
-         (mu4e--start)
-         (message "Started `mu4e' in background.")))))
-
-  ;; RSS
-  (when (and (require 'elfeed nil t) nil)
-    (run-at-time nil (* 2 60 60) #'elfeed-update))) ;; Check every 2h
-
-(when (daemonp)
-  ;; At daemon startup
-  (add-hook 'emacs-startup-hook #'+daemon-startup))
 
 ;; After creating a new frame (via emacsclient)
 ;; Reload Doom's theme
@@ -3548,8 +3520,8 @@
   (setq org-export-headline-levels 5)
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
-  ;; Needs to make a src_latex{\textsc{text}}?, with this hack you can write [[latex:textsc][Some text]].
 
+  ;; Needs to make a src_latex{\textsc{text}}?, with this hack you can write [[latex:textsc][Some text]].
   (org-add-link-type
    "latex" nil
    (lambda (path desc format)
@@ -3694,3 +3666,23 @@
             (with-current-buffer (find-file-noselect main-file)
               (apply orig-fn orig-args))
           (apply orig-fn orig-args)))))))
+
+;; ROS
+(with-eval-after-load 'ros
+  (setq ros-workspaces
+        (list (ros-dump-workspace
+               :tramp-prefix (format "/docker:%s@%s:" "ros" "ros-machine")
+               :workspace "~/ros_ws"
+               :extends '("/opt/ros/noetic/"))
+              (ros-dump-workspace
+               :tramp-prefix (format "/docker:%s@%s:" "ros" "ros-machine")
+               :workspace "~/ros2_ws"
+               :extends '("/opt/ros/foxy/"))
+              (ros-dump-workspace
+               :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
+               :workspace "~/ros_ws"
+               :extends '("/opt/ros/noetic/"))
+              (ros-dump-workspace
+               :tramp-prefix (format "/ssh:%s@%s:" "swd_sk" "172.16.96.42")
+               :workspace "~/ros2_ws"
+               :extends '("/opt/ros/foxy/")))))
