@@ -88,6 +88,9 @@
       auto-window-vscroll nil
       fast-but-imprecise-scrolling t)
 
+;; Stretch cursor to the glyph width
+(setq-default x-stretch-cursor t)
+
 (setq-default window-combination-resize t)
 
 ;;; Enable global modes
@@ -99,6 +102,9 @@
 
 ;; Enable recentf-mode globally
 (recentf-mode 1)
+
+;; Global SubWord mode
+(global-subword-mode 1)
 
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
