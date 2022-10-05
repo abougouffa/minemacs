@@ -18,7 +18,11 @@
       backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-var-dir)))
       transient-history-file (expand-file-name "transient/history.el" minemacs-var-dir)
       transient-levels-file (expand-file-name "transient/levels.el" minemacs-var-dir)
-      transient-values-file (expand-file-name "transient/values.el" minemacs-var-dir))
+      transient-values-file (expand-file-name "transient/values.el" minemacs-var-dir)
+      eshell-aliases-file (expand-file-name "eshell/aliases" minemacs-var-dir)
+      eshell-directory-name (expand-file-name "eshell/" minemacs-var-dir)
+      eshell-history-file-name (expand-file-name "eshell/history" minemacs-var-dir)
+      eshell-last-dir-ring-file-name (expand-file-name "eshell/lastdir" minemacs-var-dir))
 
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore
