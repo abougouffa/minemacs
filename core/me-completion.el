@@ -49,13 +49,6 @@
   (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle))
 
 
-(use-package svg-lib
-  :straight t
-  :defer t
-  :custom
-  (svg-lib-icons-dir (expand-file-name "svg-lib" minemacs-cache-dir))) ; Change cache dir
-
-
 (use-package kind-icon
   :straight t
   :after corfu
