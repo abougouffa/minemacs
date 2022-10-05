@@ -74,10 +74,6 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
         labeledparts)))
 
 
-(defun +cleanse-subject (sub)
-  (replace-regexp-in-string "[^A-Z0-9]+" "-" (downcase sub)))
-
-
 (defun +mu4e-view-save-all-attachments (&optional arg)
   "Save all MIME parts from current mu4e gnus view buffer."
   ;; Copied from mu4e-view-save-attachments
@@ -85,7 +81,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
   (cl-assert (and (eq major-mode 'mu4e-view-mode)
                   (derived-mode-p 'gnus-article-mode)))
   (let* ((msg (mu4e-message-at-point))
-         (id (+cleanse-subject (mu4e-message-field msg :subject)))
+         (id (me-clean-file-name (mu4e-message-field msg :subject) :downcase))
          (attachdir (expand-file-name id mu4e-attachment-dir))
          (parts (mu4e~view-gather-mime-parts))
          (handles '())

@@ -285,8 +285,11 @@ current buffer's, reload dir-locals."
               (revert-buffer t t))))
       (user-error "Unable to open %S" file))))
 
-;; (add-hook 'emacs-lisp-mode-hook #'me-dir-locals-enable-autoreload)
-;; (add-hook 'lisp-data-mode-hook #'me-dir-locals-enable-autoreload)
+
+(defun me-clean-file-name (filename &optional conv-downcase)
+  "Clean file name."
+  (replace-regexp-in-string "[:;\t \\]+" "-" (if conv-downcase (downcase filename) filename)))
+
 
 (defun me-set-fonts (&optional default-family default-size variable-pitch-family variable-pitch-size)
   (custom-set-faces
