@@ -19,18 +19,18 @@
   (unless without-core
     (dolist (module (mapcar #'symbol-name minemacs-core-modules))
       (me-log! "Loading core module \"%s\"" module)
-      (load (expand-file-name (format "core/me-%s.el" module) minemacs-config-dir) nil t)))
+      (load (expand-file-name (format "core/me-%s.el" module) minemacs-config-dir) nil (not init-file-debug))))
 
   ;; Modules
   (dolist (module (mapcar #'symbol-name minemacs-modules))
     (me-log! "Loading module \"%s\"" module)
-    (load (expand-file-name (format "lisp/me-%s.el" module) minemacs-config-dir) nil t))
+    (load (expand-file-name (format "modules/me-%s.el" module) minemacs-config-dir) nil (not init-file-debug)))
 
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
     (when (file-exists-p user-config)
       (me-log! "Loading user config file from \"%s\"" user-config)
-      (load user-config))))
+      (load user-config nil (not init-file-debug)))))
 
 ;; Load for the first time
 (minemacs-reload)
