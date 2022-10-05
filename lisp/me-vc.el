@@ -13,11 +13,22 @@
         magit-revision-show-gravatars ;; Show gravatars
         '("^Author:     " . "^Commit:     ")))
 
+
+(use-package forge
+  :straight t
+  :defer t
+  :config
+  (setq forge-database-file (expand-file-name "forge/database.sqlite" minemacs-var-dir)))
+
+
 (use-package code-review
   :straight t
   :defer t
   :config
-  (setq code-review-auth-login-marker 'forge))
+  (setq code-review-auth-login-marker 'forge
+        code-review-log-file (expand-file-name "code-review/error.log" minemacs-var-dir)
+        code-review-db-database-file (expand-file-name "code-review/db-file.sqlite" minemacs-var-dir)))
+
 
 (use-package diff-hl
   :straight t
