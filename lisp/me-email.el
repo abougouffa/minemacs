@@ -10,18 +10,16 @@
   (me-global-def "om" '(mu4e :which-key "Mu4e"))
   :config
   (require 'me-mu4e-extras)
+  (require 'me-mu4e-gmail)
 
   (me-local-def :keymaps 'mu4e-compose-mode-map
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
   (me-map-def :keymaps 'mu4e-view-mode-map
-    "A" #'+mu4e-view-select-mime-part-action
-    "p" #'mu4e-view-save-attachments
-    "P" #'+mu4e-view-save-all-attachments
-    "o" #'+mu4e-view-open-attachment)
+    "p" #'mu4e-view-save-attachments)
 
-  (setq mu4e-confirm-quit nil
+  (setq mu4e-confirm-quit t
         mu4e-view-use-gnus t
         mu4e-view-show-images t
         mu4e-view-show-addresses t
@@ -52,33 +50,23 @@
         message-mail-user-agent 'mu4e-user-agent)
 
   ;; Setup UI
+  (require 'me-mu4e-ui)
   (if (display-graphic-p)
-      (progn
-        (require 'me-mu4e-ui)
-        (me-mu4e--ui-setup))
-    (add-hook
-     'server-after-make-frame-hook
-     (defun +mu4e--setup-ui-hook ()
-       (when (display-graphic-p)
-         (require 'me-mu4e-ui)
-         (me-mu4e--ui-setup)
-         (remove-hook 'server-after-make-frame-hook
-                      #'+mu4e--setup-ui-hook)))))
+      (me-mu4e--ui-setup)
+    (add-hook 'server-after-make-frame-hook
+              (defun +mu4e--setup-ui-hook ()
+                (when (display-graphic-p)
+                  (me-mu4e--ui-setup)
+                  (remove-hook 'server-after-make-frame-hook
+                               #'+mu4e--setup-ui-hook)))))
 
-  ;; Don't save message to Sent, Gmail's IMAP takes care of this.
-  (setq mu4e-sent-messages-behavior
-        (lambda ()
-          (if (or (string-match-p "@gmail.com\\'" (message-sendmail-envelope-from))
-                  (member (message-sendmail-envelope-from)
-                          (mapcar #'car +mu4e-gmail-accounts)))
-              'delete 'sent)))
+  (+mu4e-extras-setup)
+  (+mu4e-gmail-setup)
 
   ;; Html mails might be better rendered in a browser
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser))
   (when (fboundp 'make-xwidget)
-    (add-to-list 'mu4e-view-actions '("View in xwidgets" . mu4e-action-view-in-xwidget)))
-
-  (add-hook 'message-send-hook #'+mu4e-check-for-subject))
+    (add-to-list 'mu4e-view-actions '("View in xwidgets" . mu4e-action-view-in-xwidget))))
 
 
 (use-package org-msg
@@ -112,14 +100,19 @@
   :after mu4e
   :config
   (setq doom-modeline-mu4e t
+        mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"
         mu4e-alert-set-window-urgency nil
         mu4e-alert-email-notification-types '(subjects)
-        mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
+        mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
 
-  (defvar +mu4e-alert-bell-cmd '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
+  (mu4e-alert-enable-mode-line-display)
+  (mu4e-alert-enable-notifications)
+
   (mu4e-alert-set-default-style 'libnotify)
 
-  (defun +mu4e-alert-helper-name-or-email (msg)
+  (defvar +mu4e-alert-bell-cmd '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
+
+  (defun +mu4e-name-or-email (msg)
     (let* ((from (car (plist-get msg :from)))
            (name (plist-get from :name)))
       (if (or (null name) (eq name ""))
@@ -129,12 +122,7 @@
   (defun +mu4e-alert-grouped-mail-notif-formatter (mail-group _all-mails)
     (when +mu4e-alert-bell-cmd
       (start-process "mu4e-alert-bell" nil (car +mu4e-alert-bell-cmd) (cdr +mu4e-alert-bell-cmd)))
-    (let* ((filtered-mails (me-filter
-                            (lambda (msg)
-                              (not (string-match-p "\\(junk\\|spam\\|trash\\|deleted\\)"
-                                                   (downcase (plist-get msg :maildir)))))
-                            mail-group))
-           (mail-count (length filtered-mails)))
+    (let* ((mail-count (length mail-group)))
       (list
        :title (format "You have %d unread email%s"
                       mail-count (if (> mail-count 1) "s" ""))
@@ -145,21 +133,12 @@
                (mapcar
                 (lambda (msg)
                   (format "<b>%s</b>: %s"
-                          (+mu4e-alert-helper-name-or-email msg)
+                          (+mu4e-name-or-email msg)
                           (plist-get msg :subject)))
-                filtered-mails))))))
+                mail-group))))))
 
   (setq mu4e-alert-grouped-mail-notification-formatter
-        #'+mu4e-alert-grouped-mail-notif-formatter)
-
-  (mu4e-alert-enable-mode-line-display)
-  (mu4e-alert-enable-notifications))
-
-
-(use-package evil-mu4e
-  :disabled t
-  :straight t
-  :after mu4e)
+        #'+mu4e-alert-grouped-mail-notif-formatter))
 
 
 (provide 'me-email)

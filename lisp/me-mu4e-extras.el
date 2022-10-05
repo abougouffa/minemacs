@@ -3,11 +3,15 @@
 (defvar +mu4e-account-aliases nil
   "Per-account alias list.")
 
-  ;; Gmail specifics
-(defvar +mu4e-gmail-accounts nil
-  "Gmail accounts.")
+(defvar +mu4e-auto-bcc-address nil
+  "BCC address.")
 
-;; Some of these functions are taken from Doom Emacs
+;; I like to always BCC myself
+(defun +mu4e--auto-bbc ()
+  "Add BCC address from `+mu4e-auto-bcc-address'."
+  (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address))))
+
+;; Some of these functions are adapted from Doom Emacs
 
 (defun +mu4e-view-select-attachment ()
   "Use completing-read to select a single attachment.
@@ -158,6 +162,31 @@ preferred alias"
         (end-of-line)
         (insert (read-string "Subject (optional): "))
         (message "Sending...")))))
+
+
+(defun +mu4e-save-message-at-point (&optional dir)
+  "Copy message at point to somewhere else as <date>_<subject>.eml."
+  (interactive)
+  (let* ((msg (mu4e-message-at-point))
+         (target (format "%s_%s.eml"
+                         (format-time-string "%F" (mu4e-message-field msg :date))
+                         (me-clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))))
+    (copy-file
+     (mu4e-message-field msg :path)
+     (format "%s/%s" (or dir mu4e-attachment-dir (read-directory-name "Copy message to: ")) target) 1)))
+
+
+;;;###autoload
+(defun +mu4e-extras-setup ()
+  (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc)
+
+  ;; Setup keybindings
+  (me-map-def :keymaps 'mu4e-view-mode-map
+    "p" #'mu4e-view-save-attachments
+    "P" #'+mu4e-view-save-all-attachments
+    "A" #'+mu4e-view-select-mime-part-action
+    "o" #'+mu4e-view-open-attachment
+    "O" #'+mu4e-save-message-at-point))
 
 
 (provide 'me-mu4e-extras)
