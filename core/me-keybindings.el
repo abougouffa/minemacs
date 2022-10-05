@@ -139,6 +139,7 @@
     "pc"  '(project-compile :which-key "Compile")
     "pd"  '(project-find-dir :which-key "Find directory")
     "pf"  '(project-find-file :which-key "Find file")
+    "pD"  '(me-dir-locals-open-or-create :which-key "Open/create dir-locals file")
     "pF"  '(nil :which-key "Forget")
     "pFz" '(project-forget-zombie-projects :which-key "Zombie projects")
     "pFp" '(project-forget-project :which-key "Project")

@@ -311,4 +311,16 @@ current buffer's, reload dir-locals."
                              (plist-get me-default-fonts :variable-pitch-font-size)))))))))
 
 
+(defun me-dir-locals-open-or-create ()
+  "Open or create the dir-locals.el for the current project."
+  (interactive)
+  (let* ((file-name (buffer-file-name))
+         (base-dir (car (ensure-list (dir-locals-find-file file-name)))))
+    (find-file
+     (cond (base-dir (expand-file-name dir-locals-file base-dir))
+           ((project-current) (expand-file-name dir-locals-file (project-root (project-current))))
+           ((vc-root-dir) (expand-file-name dir-locals-file (vc-root-dir)))
+           (t (expand-file-name dir-locals-file (file-name-directory file-name)))))))
+
+
 (provide 'me-utils)
