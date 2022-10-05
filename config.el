@@ -65,19 +65,9 @@
     (setq +messages--auto-tail-enabled t)
     (message "+messages-auto-tail: Enabled.")))
 
-;; [[file:config.org::*Emacs sources][Emacs sources:1]]
-(setq source-directory
-      (expand-file-name "~/Softwares/src/emacs/"))
-;; Emacs sources:1 ends here
+(setq source-directory (expand-file-name "~/Softwares/src/emacs/"))
 
-;; [[file:config.org::*Browsers][Browsers:1]]
 (setq browse-url-chrome-program "brave")
-;; Browsers:1 ends here
-
-;; After creating a new frame (via emacsclient)
-;; Reload Doom's theme
-;; (add-hook 'server-after-make-frame-hookmu4e-lock-available) #'doom/reload-theme)
-;; Initialization:1 ends here
 
 ;; [[file:config.org::*Save recent files][Save recent files:1]]
 ;; (when (daemonp)
@@ -86,44 +76,6 @@
 ;;       (recentf-save-list)
 ;;       (savehist-save))))
 ;; Save recent files:1 ends here
-
-;; ;; [[file:config.org::*Clock][Clock:1]]
-;; (after! doom-modeline
-;;   (setq display-time-string-forms
-;;         '((propertize (concat 24-hours ":" minutes))))
-;;   (display-time-mode 1) ; Enable time in the mode-line
-
-;;   ;; Restore my 🕘 symbol instead of calendar!
-;;   (doom-modeline-def-segment time
-;;     (when (and doom-modeline-time
-;;                (bound-and-true-p display-time-mode)
-;;                (not doom-modeline--limited-width-p))
-;;       (concat
-;;        doom-modeline-spc
-;;        (when doom-modeline-time-icon
-;;          (concat
-;;           (doom-modeline-icon 'faicon "clock-o" "🕘" ""
-;;                               :face 'mode-line
-;;                               :v-adjust -0.05)
-;;           (and (or doom-modeline-icon doom-modeline-unicode-fallback)
-;;                doom-modeline-spc)))
-;;        (propertize display-time-string
-;;                    'face (doom-modeline-face 'doom-modeline-time)))))
-
-;;   (doom-modeline-def-modeline 'main
-;;     '(bar workspace-name window-number modals matches follow buffer-info
-;;       remote-host buffer-position word-count parrot selection-info)
-;;     '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug
-;;       repl lsp minor-modes input-method indent-info buffer-encoding major-mode
-;;       process vcs checker time "      ")))
-;; ;; Clock:1 ends here
-
-(with-eval-after-load 'doom-modeline
-  (let ((battery-str (battery)))
-    (unless (or (equal "Battery status not available" battery-str)
-                (string-match-p (regexp-quote "unknown") battery-str)
-                (string-match-p (regexp-quote "N/A") battery-str))
-      (display-battery-mode 1))))
 
 (with-eval-after-load 'which-key
   (setq which-key-allow-multiple-replacements t)
@@ -1988,18 +1940,7 @@
    '(:name "Yesterday's messages" :query "date:1d..today" :key ?y) t)
 
   ;; Load my accounts
-  (load (expand-file-name "private/mu4e-accounts.el" minemacs-config-dir) :no-error :no-msg)
-
-  ;; Load a list of my email addresses '+my-addresses', defined as:
-  ;; (setq +my-addresses '("user@gmail.com" "user@hotmail.com"))
-  (load (expand-file-name "private/my-addresses.el" minemacs-config-dir) :no-error :no-msg)
-
-  ;; I like to always BCC myself
-  (defun +bbc-me ()
-    "Add my email to BCC."
-    (save-excursion (message-add-header (format "Bcc: %s\n" +my-bcc-trash))))
-
-  (add-hook 'mu4e-compose-mode-hook '+bbc-me))
+  (load (expand-file-name "private/mu4e-accounts.el" minemacs-config-dir) :no-error :no-msg))
 
 ;; (after! mu4e
 ;;   (require 'mu4e-contrib)
