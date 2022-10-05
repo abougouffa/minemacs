@@ -63,28 +63,29 @@
   (setq git-commit-summary-max-length 50
         git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
-
-  (add-hook 'git-commit-setup-hook
-            (defun +vc-start-in-insert-state-maybe-h ()
-              "Start git-commit-mode in insert state if in a blank commit message,
+  (add-hook
+   'git-commit-setup-hook
+   (defun +git-commit-start-in-insert-state-maybe-h ()
+     "Start git-commit-mode in insert state if in a blank commit message,
 otherwise in default state."
-              (when (and (bound-and-true-p evil-mode)
-                         (not (evil-emacs-state-p))
-                         (bobp) (eolp))
-                (evil-insert-state))))
+     (when (and (bound-and-true-p evil-mode)
+                (not (evil-emacs-state-p))
+                (bobp) (eolp))
+       (evil-insert-state))))
   (global-git-commit-mode))
 
 
 (use-package smerge-mode
   :straight t
   :general
-  (me-global-def "gm" '(+vc/smerge-hydra/body :which-key "sMerge"))
+  (me-global-def
+    "gm" '(+smerge-hydra/body :which-key "sMerge"))
   :config
-  (defhydra +vc/smerge-hydra (:hint nil
-                                    :pre (if (not smerge-mode) (smerge-mode 1))
-                                    ;; Disable `smerge-mode' when quitting hydra if
-                                    ;; no merge conflicts remain.
-                                    :post (smerge-auto-leave))
+  (defhydra +smerge-hydra (:hint nil
+                                 :pre (if (not smerge-mode) (smerge-mode 1))
+                                 ;; Disable `smerge-mode' when quitting hydra if
+                                 ;; no merge conflicts remain.
+                                 :post (smerge-auto-leave))
     "
                                                          [smerge]
   Movement   Keep           Diff              Other         │
