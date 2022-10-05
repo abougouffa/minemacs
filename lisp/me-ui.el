@@ -125,4 +125,73 @@
   (popwin-mode 1))
 
 
+(use-package writeroom-mode
+  :straight t
+  :defer t
+  :general
+  (me-global-def
+    "tz" '(writeroom-mode :which-key "Writeroom mode"))
+  :init
+  (defvar +writeroom-mixed-pitch-modes '(adoc-mode rst-mode markdown-mode org-mode)
+    "What major-modes to enable `mixed-pitch-mode' in with `writeroom-mode'.")
+  (defvar +writeroom-text-scale 2
+    "The text-scaling level for `writeroom-mode'.")
+  :config
+  (require 'mixed-pitch)
+
+  (setq writeroom-width 80
+        writeroom-mode-line t
+        writeroom-global-effects nil
+        writeroom-maximize-window nil
+        writeroom-fullscreen-effect 'maximized)
+
+  (defun +writeroom-enable-mixed-pitch-mode-h ()
+    "Enable `mixed-pitch-mode' when in `+writeroom-mixed-pitch-modes'."
+    (when (apply #'derived-mode-p +writeroom-mixed-pitch-modes)
+      (mixed-pitch-mode (if writeroom-mode 1 -1))))
+
+  (defun +writeroom-enable-text-scaling-mode-h ()
+    "Enable `mixed-pitch-mode' when in `+writeroom-mixed-pitch-modes'."
+    (when (/= +writeroom-text-scale 0)
+      (text-scale-set (if writeroom-mode +writeroom-text-scale 0))
+      (visual-fill-column-adjust)))
+
+  (add-hook 'writeroom-mode-hook #'+writeroom-enable-mixed-pitch-mode-h)
+  (add-hook 'writeroom-mode-hook #'+writeroom-enable-text-scaling-mode-h))
+
+
+(use-package mixed-pitch
+  :straight t
+  :defer t
+  :general
+  (me-global-def
+    "tm" '(mixed-pitch-mode :which-key "Mixed-pitch mode"))
+  :config
+  (setq mixed-pitch-fixed-pitch-faces
+        (append mixed-pitch-fixed-pitch-faces
+                '(org-date
+                  org-footnote
+                  org-special-keyword
+                  org-property-value
+                  org-ref-cite-face
+                  org-tag
+                  org-todo-keyword-todo
+                  org-todo-keyword-habt
+                  org-todo-keyword-done
+                  org-todo-keyword-wait
+                  org-todo-keyword-kill
+                  org-todo-keyword-outd
+                  org-todo
+                  org-done
+                  font-lock-comment-face))))
+
+
+(use-package focus
+  :straight t
+  :general
+  (me-global-def
+    "tf" '(focus-mode :which-key "Focus mode"))
+  :commands focus-mode)
+
+
 (provide 'me-ui)
