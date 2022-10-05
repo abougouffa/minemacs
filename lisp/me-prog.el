@@ -1,4 +1,4 @@
-;;; prog.el --- Programming stuff -*- lexical-binding: t; -*-
+;;; me-prog.el --- Programming stuff -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
@@ -158,6 +158,19 @@
     "tf" '(flymake-mode :which-key "Toggle flymake-mode")))
 
 
+(use-package plantuml-mode
+  :straight t
+  :defer t
+  :mode "\\.plantuml\\'"
+  :config
+  (setq plantuml-jar-path (expand-file-name "plantuml.jar" minemacs-var-dir)
+        org-plantuml-jar-path plantuml-jar-path
+        plantuml-default-exec-mode
+        (cond ((executable-find "plantuml") 'executable)
+              ((file-exists-p plantuml-jar-path) 'jar)
+              (t (plantuml-download-jar) 'jar))))
+
+
 (provide 'me-prog)
 
-;;; prog.el ends here
+;;; me-prog.el ends here
