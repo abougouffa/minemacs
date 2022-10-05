@@ -3,6 +3,7 @@
 ;; Visual Undo
 (use-package vundo
   :straight t
+  :defer t
   :general
   (me-global-def "ov" '(vundo :which-key "Visual Undo"))
   :config
@@ -31,6 +32,13 @@
   (setq undo-fu-session-compression 'zst
         undo-fu-session-directory (expand-file-name "undo-fu-session" minemacs-var-dir))
   (global-undo-fu-session-mode 1))
+
+
+(use-package unicode-fonts
+  :straight t
+  :after minemacs-loaded
+  :config
+  (unicode-fonts-setup))
 
 
 (provide 'me-editor)
