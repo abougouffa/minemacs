@@ -28,6 +28,9 @@
       (mkdir dir t)))
 
   :config
+  (require 'ox-latex nil :noerror)
+  (require 'ob-tangle nil :noerror)
+
   (setq org-use-property-inheritance t ; it's convenient to have properties inherited
         org-log-done 'time             ; having the time an item is done sounds convenient
         org-list-allow-alphabetical t  ; have a. A. a) A) list bullets
@@ -59,14 +62,9 @@
           (:comments . "link")))
 
   (let ((size 1.3))
-    (dolist (face '(org-level-1
-                    org-level-2
-                    org-level-3
-                    org-level-4
-                    org-level-5))
+    (dolist (face '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5))
       (set-face-attribute face nil :weight 'semi-bold :height size)
-      (let ((new-size (* size 0.9)))
-        (setq size (if (> new-size 1.0) new-size 1.0)))))
+      (setq size (max (* size 0.9) 1.0))))
 
   (defvar +org-responsive-image-percentage 0.4)
   (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
@@ -75,10 +73,10 @@
     (when (derived-mode-p 'org-mode)
       (setq-local
        org-image-actual-width
-       (max (car +org-responsive-image-width-limits)
-            (min (cdr +org-responsive-image-width-limits)
-                 (truncate (* (window-pixel-width)
-                              +org-responsive-image-percentage)))))))
+       (list (max (car +org-responsive-image-width-limits)
+                  (min (cdr +org-responsive-image-width-limits)
+                       (truncate (* (window-pixel-width)
+                                    +org-responsive-image-percentage))))))))
 
   (add-hook 'window-configuration-change-hook
             #'+org--responsive-image-h)
@@ -112,37 +110,37 @@
       (plist-get (car ast) :childs)))
 
   (defun +scimax-org-renumber-environment (orig-func &rest args)
-     "A function to inject numbers in LaTeX fragment previews."
-     (let ((results '())
-           (counter -1))
-       (setq results
-             (cl-loop for (begin . env) in
-                      (org-element-map (org-element-parse-buffer) 'latex-environment
-                        (lambda (env)
-                          (cons
-                           (org-element-property :begin env)
-                           (org-element-property :value env))))
-                      collect
-                      (cond
-                       ((and (string-match "\\\\begin{equation}" env)
-                             (not (string-match "\\\\tag{" env)))
-                        (cl-incf counter)
-                        (cons begin counter))
-                       ((string-match "\\\\begin{align}" env)
-                        (cl-incf counter)
-                        (let ((p (car (+parse-the-fun env))))
-                          ;; Parse the `env', count new lines in the align env as equations, unless
-                          (cl-incf counter (- (or (plist-get p :newline) 0)
-                                              (or (plist-get p :nonumber) 0))))
-                        (cons begin counter))
-                       (t
-                        (cons begin nil)))))
-       (when-let ((number (cdr (assoc (point) results))))
-         (setf (car args)
-               (concat
-                (format "\\setcounter{equation}{%s}\n" number)
-                (car args)))))
-     (apply orig-func args))
+    "A function to inject numbers in LaTeX fragment previews."
+    (let ((results '())
+          (counter -1))
+      (setq results
+            (cl-loop for (begin . env) in
+                     (org-element-map (org-element-parse-buffer) 'latex-environment
+                       (lambda (env)
+                         (cons
+                          (org-element-property :begin env)
+                          (org-element-property :value env))))
+                     collect
+                     (cond
+                      ((and (string-match "\\\\begin{equation}" env)
+                            (not (string-match "\\\\tag{" env)))
+                       (cl-incf counter)
+                       (cons begin counter))
+                      ((string-match "\\\\begin{align}" env)
+                       (cl-incf counter)
+                       (let ((p (car (+parse-the-fun env))))
+                         ;; Parse the `env', count new lines in the align env as equations, unless
+                         (cl-incf counter (- (or (plist-get p :newline) 0)
+                                             (or (plist-get p :nonumber) 0))))
+                       (cons begin counter))
+                      (t
+                       (cons begin nil)))))
+      (when-let ((number (cdr (assoc (point) results))))
+        (setf (car args)
+              (concat
+               (format "\\setcounter{equation}{%s}\n" number)
+               (car args)))))
+    (apply orig-func args))
 
   (defun +scimax-toggle-latex-equation-numbering (&optional enable)
     "Toggle whether LaTeX fragments are numbered."
