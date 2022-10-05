@@ -53,7 +53,8 @@
 
   (me-global-def
     ;; Top level functions
-    "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
+    "TAB" '(switch-to-next-buffer :which-key "Next buffer")
+    "<backtab>" '(switch-to-prev-buffer :which-key "Previous buffer")
     "SPC" '(execute-extended-command :which-key "M-x")
     ";"   '(pp-eval-expression :which-key "Eval expression")
     ":"   '(project-find-file :which-key "Find file in project")
@@ -80,7 +81,6 @@
     "ft"  '(recover-this-file   :which-key "Recover this file")
     "fT"  '(recover-file        :which-key "Recover file")
     "fE"  `(,(me-cmdfy! (funcall (if (fboundp 'dirvish) 'dirvish 'dired) user-emacs-directory)) :which-key ".emacs.d")
-
     ;; Files / Local variables
     "fv"  '(nil :which-key "Local variable")
     "fvv" '(add-file-local-variable :which-key "Add")
@@ -99,6 +99,11 @@
     "bp"  '(project-switch-to-buffer :which-key "Switch to buffer in project")
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
     "bK"  '(kill-some-buffers :which-key "Kill some buffers")
+    "bN"  '(evil-buffer-new :which-key "New buffer")
+    "bm"  '(bookmark-set :which-key "Set bookmark")
+    "bM"  '(bookmark-delete :which-key "Delete bookmark")
+    "br"  '(revert-buffer :which-key "Revert")
+    "bR"  '(rename-buffer :which-key "Rename")
 
     ;; Insert
     "i"   '(nil :which-key "insert")
@@ -113,6 +118,7 @@
     "wr"  '(evil-window-rotate-upwards :which-key "Rotate upwards")
     "wR"  '(evil-window-rotate-downwards :which-key "Rotate downwards")
     "wd"  '(evil-window-delete :which-key "Delete")
+    "wm"  '(maximize-window :which-key "Maximize")
     "w+"  '(evil-window-increase-width :which-key "Increase width")
     "w-"  '(evil-window-decrease-width :which-key "Decrease width")
 
@@ -132,10 +138,13 @@
     ;; Code
     "c"   '(nil :which-key "code")
 
+    ;; Code
+    "r"   '(nil :which-key "workspace") ;; TODO (using tab-bar-mode and tab-line-mode)
+
     ;; Toggle
     "p"   '(nil :which-key "project")
-    "pp"  '(project-switch-project :which-key "Decrease width")
-    "ps"  '(project-search :which-key "Search project")
+    "pp"  '(project-switch-project :which-key "Switch")
+    "ps"  '(project-search :which-key "Search")
     "pc"  '(project-compile :which-key "Compile")
     "pd"  '(project-find-dir :which-key "Find directory")
     "pf"  '(project-find-file :which-key "Find file")
