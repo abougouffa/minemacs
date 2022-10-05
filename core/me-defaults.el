@@ -90,6 +90,21 @@
 
 (setq-default window-combination-resize t)
 
+;; Mode-line stuff
+;; Enable time in the mode-line
+(setq display-time-string-forms
+      '((propertize (concat 24-hours ":" minutes))))
+
+(display-time-mode 1)
+
+;; Enable battery (if available) in mode-line
+(let ((battery-str (battery)))
+  (unless (or (equal "Battery status not available" battery-str)
+              (string-match-p "unknown" battery-str)
+              (string-match-p "N/A" battery-str))
+    (display-battery-mode 1)))
+
+
 ;;; Enable global modes
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
