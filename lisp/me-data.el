@@ -39,6 +39,11 @@
   :mode "Procfile\\'")
 
 
+(use-package toml-mode
+  :straight t
+  :mode "\\.toml\\'")
+
+
 (use-package json-mode
   :straight t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
