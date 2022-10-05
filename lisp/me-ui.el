@@ -11,6 +11,13 @@
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
 
+(use-package svg-lib
+  :straight t
+  :defer t
+  :custom
+  (svg-lib-icons-dir (expand-file-name "svg-lib" minemacs-cache-dir))) ; Change cache dir
+
+
 ;; Themes
 (use-package doom-themes
   :straight t
@@ -24,16 +31,33 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-bar-width 5)
+  (setq doom-modeline-bar-width 5
+        doom-modeline-height 37)
+
+  (doom-modeline-def-segment time
+    (when (and doom-modeline-time
+               (bound-and-true-p display-time-mode)
+               (not doom-modeline--limited-width-p))
+      (concat
+       doom-modeline-spc
+       (when doom-modeline-time-icon
+         (concat
+          (doom-modeline-icon 'faicon "clock-o" "🕘" ""
+                              :face 'mode-line
+                              :v-adjust -0.05)
+          (and (or doom-modeline-icon doom-modeline-unicode-fallback)
+               doom-modeline-spc)))
+       (propertize display-time-string
+                   'face (doom-modeline-face 'doom-modeline-time)))))
+
+  (doom-modeline-def-modeline 'main
+    '(bar workspace-name window-number modals matches follow buffer-info
+          remote-host buffer-position word-count parrot selection-info)
+    '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug
+                  repl lsp minor-modes input-method indent-info buffer-encoding major-mode
+                  process vcs checker time "    "))
+
   (doom-modeline-mode 1))
-
-
-(use-package focus
-  :straight t
-  :general
-  (me-global-def
-    "tf" '(focus-mode :which-key "Focus mode"))
-  :commands focus-mode)
 
 
 ;;; Disabled, WIP...
@@ -62,8 +86,8 @@
           (t . (variable-pitch 1.1))))
 
   ;; They are nil by default...
-  (setq ef-themes-mixed-fonts t
-        ef-themes-variable-pitch-ui t)
+  (setq ef-themes-mixed-fonts nil
+        ef-themes-variable-pitch-ui nil)
 
   ;; ;; Disable all other themes to avoid awkward blending:
   ;; (mapc #'disable-theme custom-enabled-themes)
@@ -73,45 +97,6 @@
 
   ;; OR use this to load the theme which also calls `ef-themes-post-load-hook':
   (ef-themes-select 'ef-light))
-
-
-(use-package lambda-themes
-  :disabled t
-  :straight (:type git :host github :repo "lambda-emacs/lambda-themes")
-  :init
-  (setq lambda-themes-set-italic-comments t
-        lambda-themes-set-italic-keywords t
-        lambda-themes-set-variable-pitch t
-        lambda-themes-set-evil-cursors t)
-  :config
-  ;; load preferred theme
-  (load-theme 'lambda-light t))
-
-
-(use-package lambda-line
-  :disabled t
-  :straight (:type git :host github :repo "lambda-emacs/lambda-line")
-  :custom
-  (lambda-line-icon-time t) ;; requires all-the-icons
-  (lambda-line-position 'top) ;; Set position of status-line
-  (lambda-line-abbrev t) ;; abbreviate major modes
-  (lambda-line-hspace "  ")  ;; add some cushion
-  (lambda-line-prefix t) ;; use a prefix symbol
-  (lambda-line-prefix-padding nil) ;; no extra space for prefix
-  (lambda-line-status-invert nil) ;; no invert colors
-  (lambda-line-gui-mod-symbol " ⬤")
-  (lambda-line-gui-ro-symbol " ⨂") ;; symbols
-  (lambda-line-gui-rw-symbol " ◯")
-  (lambda-line-space-top 0.50) ;; padding on top and bottom of line
-  (lambda-line-space-bottom -0.50)
-  (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
-  :config
-  ;; activate lambda-line
-  (lambda-line-mode)
-  ;; set divider line in footer
-  (when (eq lambda-line-position 'top)
-    (setq-default mode-line-format (list "%_"))
-    (setq mode-line-format (list "%_"))))
 
 
 (use-package emojify
