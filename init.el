@@ -4,26 +4,27 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+(defvar minemacs-core-modules
+ '(bootstrap defaults keybindings evil completion))
+
 (defvar minemacs-modules
-  '(keybindings
-    evil completion ui
-    editor vc prog lisp data
-    org notes email docs spell
-    files tools biblio daemon rss))
+  '(ui editor vc prog lisp data
+       org notes email docs spell
+       files tools biblio daemon rss))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
   (interactive)
   ;; Core modules
   (unless without-core
-    (dolist (module '("bootstrap" "defaults"))
+    (dolist (module (mapcar #'symbol-name minemacs-core-modules))
       (me-log! "Loading core module \"%s\"" module)
-      (require (intern (concat "me-" module)))))
+      (load (expand-file-name (format "core/me-%s.el" module) minemacs-config-dir) nil t)))
 
   ;; Modules
-  (dolist (module minemacs-modules)
+  (dolist (module (mapcar #'symbol-name minemacs-modules))
     (me-log! "Loading module \"%s\"" module)
-    (require (intern (concat "me-" (symbol-name module)))))
+    (load (expand-file-name (format "lisp/me-%s.el" module) minemacs-config-dir) nil t))
 
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
