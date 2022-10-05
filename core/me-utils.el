@@ -288,5 +288,16 @@ current buffer's, reload dir-locals."
 ;; (add-hook 'emacs-lisp-mode-hook #'me-dir-locals-enable-autoreload)
 ;; (add-hook 'lisp-data-mode-hook #'me-dir-locals-enable-autoreload)
 
+(defun me-set-fonts (&optional default-family default-size variable-pitch-family variable-pitch-size)
+  (custom-set-faces
+   `(default           ((t (:font ,(format "%s %d"
+                                           (or default-family "Iosevka Fixed Curly Slab")
+                                           (or default-size 15))))))
+   `(fixed-pitch       ((t (:inherit (default)))))
+   `(fixed-pitch-serif ((t (:inherit (default)))))
+   `(variable-pitch    ((t (:font ,(format "%s %d"
+                                           (or variable-pitch-family "Lato")
+                                           (or variable-pitch-size 15))))))))
+
 
 (provide 'me-utils)

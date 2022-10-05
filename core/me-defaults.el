@@ -2,14 +2,7 @@
 
 
 ;;; Font
-(add-hook
- 'emacs-startup-hook
- (defun me-set-fonts ()
-   (custom-set-faces
-    `(default           ((t (:font "Iosevka Fixed Curly Slab 15"))))
-    `(fixed-pitch       ((t (:inherit (default)))))
-    `(fixed-pitch-serif ((t (:inherit (default)))))
-    `(variable-pitch    ((t (:font "Iosevka Curly Slab 15")))))))
+(add-hook 'emacs-startup-hook #'me-set-fonts)
 
 (setq-default font-lock-multiline 'undecided)
 
