@@ -1,9 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
 
-;;; Font
-(add-hook 'emacs-startup-hook #'me-set-fonts)
-
 (setq-default font-lock-multiline 'undecided)
 
 ;;; Better defaults
@@ -131,6 +128,10 @@ or file path may exist now."
        (and (buffer-file-name buffer)
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
+
+;;; Load fonts at startup, values are read from `me-fonts' if set in config.el,
+;; and fallback to `me-default-fonts'
+(add-hook 'emacs-startup-hook #'me-set-fonts)
 
 
 (provide 'me-defaults)

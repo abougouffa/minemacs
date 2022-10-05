@@ -291,16 +291,24 @@ current buffer's, reload dir-locals."
   (replace-regexp-in-string "[:;\t \\]+" "-" (if conv-downcase (downcase filename) filename)))
 
 
-(defun me-set-fonts (&optional default-family default-size variable-pitch-family variable-pitch-size)
+(defun me-set-fonts ()
   (custom-set-faces
-   `(default           ((t (:font ,(format "%s %d"
-                                           (or default-family "Iosevka Fixed Curly Slab")
-                                           (or default-size 15))))))
-   `(fixed-pitch       ((t (:inherit (default)))))
-   `(fixed-pitch-serif ((t (:inherit (default)))))
-   `(variable-pitch    ((t (:font ,(format "%s %d"
-                                           (or variable-pitch-family "Lato")
-                                           (or variable-pitch-size 15))))))))
+   `(default
+      ((t (:font ,(format "%s %d"
+                          (or (plist-get me-fonts :font-family)
+                              (plist-get me-default-fonts :font-family))
+                          (or (plist-get me-fonts :font-size)
+                              (plist-get me-default-fonts :font-size)))))))
+   `(fixed-pitch
+     ((t (:inherit (default)))))
+   `(fixed-pitch-serif
+     ((t (:inherit (default)))))
+   `(variable-pitch
+     ((t (:font ,(format "%s %d"
+                         (or (plist-get me-fonts :variable-pitch-font-family)
+                             (plist-get me-default-fonts :variable-pitch-font-family))
+                         (or (plist-get me-fonts :variable-pitch-font-size)
+                             (plist-get me-default-fonts :variable-pitch-font-size)))))))))
 
 
 (provide 'me-utils)
