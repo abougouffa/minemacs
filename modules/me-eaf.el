@@ -12,11 +12,11 @@
              eaf-install-and-update
              +eaf-open-mail-as-html)
   :init
-  (defvar +eaf-enabled-apps
+  (setq eaf-apps-to-install
     '(org browser mindmap jupyter org-previewer markdown-previewer file-sender video-player))
 
   (defun +eaf-app-p (app-symbol)
-    (memq app-symbol +eaf-enabled-apps))
+    (memq app-symbol eaf-apps-to-install))
 
   (when (+eaf-app-p 'browser)
     ;; Make EAF Browser my default browser
