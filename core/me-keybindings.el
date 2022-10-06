@@ -18,7 +18,7 @@
   (which-key-idle-delay          0.3)
   (which-key-prefix-prefix       "↪ ")
   (which-key-sort-order          'which-key-key-order-alpha)
-  (which-key-min-display-lines   6)
+  (which-key-min-display-lines   5)
   (which-key-max-display-columns nil)
   :config
   (which-key-mode)
@@ -53,8 +53,8 @@
 
   (me-global-def
     ;; Top level functions
-    "TAB" '(switch-to-next-buffer :which-key "Next buffer")
-    "<backtab>" '(switch-to-prev-buffer :which-key "Previous buffer")
+    "TAB" '(switch-to-next-buffer :which-key "Buffer next")
+    "<backtab>" '(switch-to-prev-buffer :which-key "Buffer prev")
     "SPC" '(execute-extended-command :which-key "M-x")
     ";"   '(pp-eval-expression :which-key "Eval expression")
     ":"   '(project-find-file :which-key "Find file in project")
