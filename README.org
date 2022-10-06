@@ -3,7 +3,7 @@
 This is a WIP for a personal lightweight Emacs configuration, it is highly
 inspired by Doom Emacs.
 
-[[MinEmacs][.github/minemacs.png]]
+[[https://github.com/abougouffa/minemacs][.github/minemacs.png]]
 
 ** Why
 I was using Doom Emacs, it is an excellent piece of software, which introduced
