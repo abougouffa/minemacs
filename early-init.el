@@ -58,6 +58,10 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 (push '(mouse-color . "blue") default-frame-alist)
 
+(setq tool-bar-mode nil
+      menu-bar-mode nil
+      scroll-bar-mode nil)
+
 ;; Make the initial buffer load faster by setting its mode to fundamental-mode
 (customize-set-variable 'initial-major-mode 'fundamental-mode)
 
