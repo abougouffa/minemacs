@@ -42,7 +42,6 @@
         org-pretty-entities-include-sub-superscripts nil
         org-fontify-quote-and-verse-blocks t
         org-inline-src-prettify-results '("⟨" . "⟩")
-        doom-themes-org-fontify-special-tags nil
         org-auto-align-tags nil
         org-special-ctrl-a/e t
         org-startup-indented t ;; Enable 'org-indent-mode' by default, override with '+#startup: noindent' for big files
@@ -223,11 +222,11 @@
           ("email"               . "@")
           ("date"                . "𝘿")
           ("lastmod"             . "✎")
-          ("property"            . "☸")
+          ("property"            . "𝐏")
           ("options"             . "⌥")
           ("startup"             . "⏻")
-          ("macro"               . "𝓜")
-          ("bind"                . "")
+          ("macro"               . "𝐌")
+          ("bind"                . "𝐁")
           ("bibliography"        . "")
           ("print_bibliography"  . "")
           ("cite_export"         . "⮭")
@@ -257,7 +256,7 @@
           ("RESULTS"             . "➤")
           ("language"            . "𝙇")
           ("hugo_base_dir"       . "𝐇")
-          ("latex_compiler"      . "⟾")
+          ("latex_compiler"      . "𝐂")
           ("results"             . "➤")
           ("filetags"            . "#")
           ("created"             . "⏱")
