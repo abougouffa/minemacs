@@ -10,7 +10,7 @@
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
        org notes email docs spell
-       files tools biblio daemon rss))
+       files tools biblio daemon rss eaf))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
