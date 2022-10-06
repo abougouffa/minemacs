@@ -5,10 +5,14 @@
 
 (setq inhibit-splash-screen nil)
 
+;; Adapted from: https://github.com/rougier/emacs-splash
+
+(defvar me-splash-buffer-name "*minemacs-splash*")
+
 (defun me-splash-screen ()
-  "Emacs splash screen"
+  "MinEmacs splash screen"
   (interactive)
-  (let* ((splash-buffer  (get-buffer-create "*minemacs-splash*"))
+  (let* ((splash-buffer  (get-buffer-create me-splash-buffer-name))
          (recover-session (and auto-save-list-file-prefix
                                (file-directory-p (file-name-directory
                                                   auto-save-list-file-prefix))))
@@ -72,20 +76,20 @@
           (goto-char 0)
           (read-only-mode t)
 
-          (local-set-key (kbd "C-[")       'splash-screen-kill)
-          (local-set-key (kbd "<escape>")  'splash-screen-kill)
-          (local-set-key (kbd "q")         'splash-screen-kill)
+          (local-set-key (kbd "C-[")       'me-splash-screen-kill)
+          (local-set-key (kbd "<escape>")  'me-splash-screen-kill)
+          (local-set-key (kbd "q")         'me-splash-screen-kill)
           (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
           (local-set-key (kbd "<mouse-2>") 'operate-this-button)
           (display-buffer-same-window splash-buffer nil)
           (when evil-mode
             (evil-local-mode -1))))))
 
-(defun splash-screen-kill ()
+(defun me-splash-screen-kill ()
   "Kill the splash screen buffer (immediately)."
   (interactive)
-  (when (get-buffer "*minemacs-splash*")
-    (kill-buffer "*minemacs-splash*")))
+  (when (get-buffer me-splash-buffer-name)
+    (kill-buffer me-splash-buffer-name)))
 
 ;; Suppress any startup message in the echo area
 (run-with-idle-timer 0.05 nil (lambda() (message nil)))
