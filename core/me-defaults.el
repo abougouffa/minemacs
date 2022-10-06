@@ -27,8 +27,8 @@
       ring-bell-function 'ignore
       large-file-warning-threshold 52428800 ;; change to 50 MiB
       use-short-answers t ;; y or n istead of yes or no
-      confirm-kill-emacs 'yes-or-no-p ;; confirm before quitting
-      initial-scratch-message ";; Scratch"
+      confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
+      initial-scratch-message ""
       frame-resize-pixelwise t
       source-directory (expand-file-name "~/Softwares/src/emacs/")
       trash-directory nil ;; Use FreeDesktop.org trashcan (default)
