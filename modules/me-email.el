@@ -47,6 +47,7 @@
         mail-envelope-from 'header
         mail-specify-envelope-from t
         mail-user-agent 'mu4e-user-agent
+        read-mail-command 'mu4e
         message-mail-user-agent 'mu4e-user-agent)
 
   ;; Setup UI
@@ -71,11 +72,15 @@
 
 (use-package org-msg
   :straight t
-  :after mu4e org
-  :general
+  :after mu4e
+  :config
   (me-map-def :keymaps 'org-msg-edit-mode-map
     "TAB" '(org-msg-tab :which-key "org-msg-tab"))
-  :config
+  (me-local-def :keymaps 'org-msg-edit-mode-map
+    "a"  '(nil :which-key "attach")
+    "aa" '(org-msg-attach-attach :which-key "Attach")
+    "ad" '(org-msg-attach-delete :which-key "Delete"))
+
   (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng"
         org-msg-startup "hidestars indent inlineimages"
         org-msg-greeting-name-limit 3
@@ -88,11 +93,13 @@
         (rx (or (seq "attach" (or "ment" "ed"))
                 (seq "enclosed")
                 (seq "attach" (any ?é ?e) (? "e") (? "s"))
-                (seq "ci" (or " " "-") "joint" (? "e"))
-                (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")))))
+                (seq "ci" (or " " "-") "joint" (? "e")) ;; ci-joint
+                (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
+                (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
 
   ;; Setup Org-msg for mu4e
-  (org-msg-mode-mu4e))
+  (org-msg-mode-mu4e)
+  (org-msg-mode 1))
 
 
 (use-package mu4e-alert
@@ -102,6 +109,7 @@
   (setq doom-modeline-mu4e t
         mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"
         mu4e-alert-set-window-urgency nil
+        mu4e-alert-group-by :to
         mu4e-alert-email-notification-types '(subjects)
         mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
 
