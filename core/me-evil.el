@@ -17,9 +17,14 @@
 
 
 (use-package evil-collection
-  :after evil
+  :after evil minemacs-loaded
   :straight t
   :config
+  (setq evil-collection-mode-list
+        (me-filter
+         (lambda (a) ;; Maybe add elisp-mode!
+           (not (memq a '(evil-mc))))
+         evil-collection-mode-list))
   (evil-collection-init))
 
 
@@ -30,7 +35,10 @@
 
 (use-package evil-mc
   :straight t
-  :after evil evil-collection minemacs-loaded
+  :after evil-collection minemacs-loaded
+  :init
+  ;; We will redefine the keybindngs
+  (defvar evil-mc-key-map (make-sparse-keymap))
   :config
   (me-map-def
     :states '(normal visual)
@@ -57,6 +65,10 @@
     :prefix "gz"
     "i" #'evil-mc-make-cursor-in-visual-selection-beg
     "a" #'evil-mc-make-cursor-in-visual-selection-end)
+
+  ;; Enable globally
+  (global-evil-mc-mode 1)
+
   ;; Add support to repeat these commands when prefixed with a number
   (dolist (cmd '(evil-mc-make-and-goto-first-cursor
                  evil-mc-make-and-goto-last-cursor
@@ -73,8 +85,27 @@
      (lambda (fn)
        (dotimes (i (if (integerp current-prefix-arg) current-prefix-arg 1))
          (funcall fn)))))
-  ;; Enable globally
-  (global-evil-mc-mode 1))
+
+  ;; Custom commands to execute with evil-mc
+  (dolist (fn '((backward-kill-word)
+                (corfu-complete . evil-mc-execute-default-complete)
+                (undo-fu-only-undo . evil-mc-execute-default-undo)
+                (undo-fu-only-redo . evil-mc-execute-default-redo)
+                (evil-delete-back-to-indentation . evil-mc-execute-default-call)
+                (evil-escape . evil-mc-execute-default-evil-normal-state) ;; C-g
+                (evil-numbers/inc-at-pt-incremental)
+                (evil-numbers/dec-at-pt-incremental)
+                (evil-digit-argument-or-evil-beginning-of-visual-line
+                 (:default . evil-mc-execute-default-call)
+                 (visual . evil-mc-execute-visual-call))
+                (ess-smart-comma . evil-mc-execute-call)
+                (evil-org-delete . evil-mc-execute-default-evil-delete)))
+    (setf (alist-get (car fn) evil-mc-custom-known-commands)
+          (if (and (cdr fn) (listp (cdr fn)))
+              (cdr fn)
+            (list (cons :default
+                        (or (cdr fn)
+                            #'evil-mc-execute-default-call-with-count)))))))
 
 (use-package evil-escape
   :straight t
