@@ -7,9 +7,12 @@
 ;;; Tree sitter
 (use-package tree-sitter
   :straight t
-  :after minemacs-loaded
-  :config
-  (global-tree-sitter-mode))
+  :hook (python-mode . tree-sitter-mode)
+  :hook (c-mode . tree-sitter-mode)
+  :hook (c++-mode . tree-sitter-mode)
+  :hook (rust-mode . tree-sitter-mode)
+  :hook (json-mode . tree-sitter-mode)
+  :hook (xml-mode . tree-sitter-mode))
 
 
 (use-package tree-sitter-hl
@@ -101,8 +104,6 @@
              format-all-ensure-formatter
              format-all-buffer
              format-all-region))
-;; config)
-;; (add-hook 'before-save-hook #'format-all-buffer))
 
 
 (use-package editorconfig
@@ -119,6 +120,7 @@
              clang-format-buffer))
 
 
+;;; Modes
 (use-package vimrc-mode
   :straight t
   :mode "\\.vim\\(rc\\)?\\'")
@@ -147,8 +149,17 @@
 
 (use-package smartparens
   :straight t
+  :hook (prog-mode . smartparens-mode)
+  :hook (text-mode . smartparens-mode)
   :config
-  (smartparens-global-mode))
+
+  (when nil
+    (with-eval-after-load 'evil-collection
+      ;; Make evil-mc cooperate with smartparens better
+      (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
+        (unless (memq (car sp--mc/cursor-specific-vars) vars)
+          (setcdr (assq :default evil-mc-cursor-variables)
+                  (append vars sp--mc/cursor-specific-vars)))))))
 
 
 (use-package flymake
@@ -169,6 +180,9 @@
         (cond ((executable-find "plantuml") 'executable)
               ((file-exists-p plantuml-jar-path) 'jar)
               (t (plantuml-download-jar) 'jar))))
+
+
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'"   . conf-mode))
 
 
 (provide 'me-prog)
