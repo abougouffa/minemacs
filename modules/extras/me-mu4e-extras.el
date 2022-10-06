@@ -7,7 +7,7 @@
   "BCC address.")
 
 ;; I like to always BCC myself
-(defun +mu4e--auto-bbc ()
+(defun +mu4e--auto-bcc ()
   "Add BCC address from `+mu4e-auto-bcc-address'."
   (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address))))
 
