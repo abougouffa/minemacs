@@ -8,7 +8,7 @@
   :straight t
   :after minemacs-loaded ;; load Org after finishing Emacs startup
   :general
-  (me-local-def :keymaps 'org-mode-map
+  (me-map-local :keymaps 'org-mode-map
     "l"  '(nil :which-key "link")
     "ll" '(org-insert-link :which-key "Insert link")
     "e" '(org-export-dispatch :which-key "Export dispatch"))

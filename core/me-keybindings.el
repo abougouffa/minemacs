@@ -37,13 +37,13 @@
   :straight t
   :config
   ;; Global leader
-  (general-create-definer me-global-def
+  (general-create-definer me-map
     :states '(normal motion visual)
     :keymaps 'override
     :prefix "SPC")
 
   ;; Local leader
-  (general-create-definer me-local-def
+  (general-create-definer me-map-local
     :states '(normal motion visual)
     :prefix "SPC m")
 
@@ -51,7 +51,7 @@
   (general-create-definer me-map-def
     :states '(normal motion visual))
 
-  (me-global-def
+  (me-map
     ;; Top level functions
     "TAB" '(switch-to-next-buffer :which-key "Buffer next")
     "<backtab>" '(switch-to-prev-buffer :which-key "Buffer prev")

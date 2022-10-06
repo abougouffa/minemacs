@@ -28,7 +28,7 @@
 (use-package eglot
   :straight t
   :general
-  (me-global-def
+  (me-map
     "ca"  '(eglot-code-actions :which-key "Code actions")
     "cq"  '(eglot-code-action-quickfix :which-key "Code action quickfix")
     "cF"  '(eglot-format-buffer :which-key "Format buffer (eglot)")
@@ -48,7 +48,7 @@
   :straight (:host github :repo "sawyerzheng/project-cmake" :branch "fix-unix-kits")
   :after eglot
   :general
-  (me-global-def
+  (me-map
     "pc"  '(nil :which-key "CMake")
     "pct" '(project-cmake-test :which-key "Test")
     "pcb" '(project-cmake-build :which-key "Build")
@@ -64,7 +64,7 @@
 (use-package realgud
   :straight t
   :general
-  (me-local-def :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
+  (me-map-local :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
     "d" `(,(me-cmdfy!
             (pcase major-mode
               ('python-mode (realgud:pdb))
@@ -82,7 +82,7 @@
 (use-package realgud-lldb
   :straight t
   :general
-  (me-local-def :keymaps '(rust-mode-map)
+  (me-map-local :keymaps '(rust-mode-map)
     "d" `((me-cmdfy! (pcase major-mode
                        ('python-mode (realgud:pdb))
                        ((or 'c-mode 'c++-mode) (realgud:gdb))))
@@ -99,7 +99,7 @@
 (use-package format-all
   :straight t
   :general
-  (me-global-def "cf" '(format-all-buffer :which-key "Format buffer"))
+  (me-map "cf" '(format-all-buffer :which-key "Format buffer"))
   :commands (format-all-mode
              format-all-ensure-formatter
              format-all-buffer
@@ -109,7 +109,7 @@
 (use-package editorconfig
   :straight t
   :general
-  (me-global-def
+  (me-map
     "fc" '(editorconfig-find-current-editorconfig :which-key "Open current editorconfig")))
 
 
@@ -165,7 +165,7 @@
 (use-package flymake
   :straight t
   :general
-  (me-global-def
+  (me-map
     "tf" '(flymake-mode :which-key "Toggle flymake-mode")))
 
 

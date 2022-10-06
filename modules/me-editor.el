@@ -5,7 +5,7 @@
   :straight t
   :defer t
   :general
-  (me-global-def "ov" '(vundo :which-key "Visual Undo"))
+  (me-map "ov" '(vundo :which-key "Visual Undo"))
   :config
   (setq vundo-compact-display t
         vundo-window-max-height 6

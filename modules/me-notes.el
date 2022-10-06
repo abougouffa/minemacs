@@ -9,7 +9,7 @@
   :straight t
   :after org
   :general
-  (me-global-def
+  (me-map
     "nf" '(org-capture :which-key "Org-Roam find node")
     "nr" '(org-capture :which-key "Org-Roam find node")
     "nR" '(org-capture :which-key "Org-Roam find node"))
@@ -26,7 +26,7 @@
   :commands (org-roam-ui-open org-roam-ui-sync-mode)
   :after org-roam
   :general
-  (me-global-def
+  (me-map
     "nR" '(org-roam-ui-open :which-key "Org-Roam UI"))
   :config
   (setq org-roam-ui-sync-theme t
@@ -40,7 +40,7 @@
   :straight t
   :after org-roam
   :general
-  (me-global-def
+  (me-map
     "nd" '(deft :which-key "Deft"))
   :init
   (setq deft-directory org-roam-directory

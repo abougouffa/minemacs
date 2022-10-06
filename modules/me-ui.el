@@ -103,7 +103,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-global-def
+  (me-map
     "ie" '(emojify-insert-emoji :which-key "Emoji"))
   :config
   (setq emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir)
@@ -129,7 +129,7 @@
   :straight t
   :defer t
   :general
-  (me-global-def
+  (me-map
     "tz" '(writeroom-mode :which-key "Writeroom mode"))
   :init
   (defvar +writeroom-mixed-pitch-modes '(adoc-mode rst-mode markdown-mode org-mode)
@@ -180,7 +180,7 @@
   :straight t
   :defer t
   :general
-  (me-global-def
+  (me-map
     "tm" '(mixed-pitch-mode :which-key "Mixed-pitch mode"))
   :config
   (setq mixed-pitch-fixed-pitch-faces
@@ -206,7 +206,7 @@
   :straight t
   :commands focus-mode
   :general
-  (me-global-def
+  (me-map
     "tf" '(focus-mode :which-key "Focus mode")))
 
 

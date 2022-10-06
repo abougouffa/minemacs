@@ -30,7 +30,7 @@
   :straight t
   :defer t
   :general
-  (me-local-def :keymaps 'emacs-lisp-mode-map
+  (me-map-local :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :which-key "Expand macro")))
 
 ;; Scheme
@@ -42,7 +42,7 @@
   :straight t
   :after geiser
   :general
-  (me-local-def :keymaps '(scheme-mode-map racket-mode-map)
+  (me-map-local :keymaps '(scheme-mode-map racket-mode-map)
     "m" '(macrostep-geiser-expand-all :which-key "Expand macro"))
   :config
   (macrostep-geiser-setup))
@@ -70,7 +70,7 @@
 (use-package elisp-mode
   :hook (emacs-lisp-mode . hs-minor-mode)
   :general
-  (me-local-def :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+  (me-map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"  '(nil :which-key "debug")
     "df" 'edebug-defun
     "dF" 'edebug-all-forms
@@ -90,7 +90,7 @@
   :straight t
   :hook ((emacs-lisp-mode lisp-interaction-mode) . erefactor-lazy-highlight-turn-on)
   :general
-  (me-local-def :keymaps '(emacs-lisp-mode-map lisp-data-mode-map)
+  (me-map-local :keymaps '(emacs-lisp-mode-map lisp-data-mode-map)
     "r"  '(nil :which-key "refactor")
     "rr" '(erefactor-rename-symbol-in-buffer :which-key "Rename symbol in buffer")
     "rR" '(erefactor-rename-symbol-in-package :which-key "Rename symbol in package")))

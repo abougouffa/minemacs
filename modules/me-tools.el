@@ -4,12 +4,12 @@
   :straight t
   :defer t
   :general
-  (me-global-def "/" '(rg :which-key "ripgrep")))
+  (me-map "/" '(rg :which-key "ripgrep")))
 
 (use-package vterm
   :straight t
   :general
-  (me-global-def
+  (me-map
     "ot" '(+popwin:vterm :which-key "vTerm popup")
     "oT" '(vterm :which-key "vTerm"))
   :preface
@@ -31,7 +31,7 @@
 
 
 (with-eval-after-load 'popwin
-  (me-global-def
+  (me-map
     "oe" '(+popwin:eshell :which-key "Eshell popup")
     "oE" '(eshell :which-key "Eshell"))
   (defun +popwin:eshell ()

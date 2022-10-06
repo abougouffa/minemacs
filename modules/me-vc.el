@@ -4,7 +4,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-global-def
+  (me-map
     "gg" '(magit-status :which-key "Status")
     "gC" '(magit-clone :which-key "Clone repo"))
   :config
@@ -38,7 +38,7 @@
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
-  (me-global-def
+  (me-map
     "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
@@ -49,7 +49,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-global-def
+  (me-map
     "gt" '(git-timemachine-toggle :which-key "Time machine"))
   :config
   (setq git-timemachine-show-minibuffer-details t))
@@ -78,7 +78,7 @@ otherwise in default state."
 (use-package smerge-mode
   :straight t
   :general
-  (me-global-def
+  (me-map
     "gm" '(+smerge-hydra/body :which-key "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil

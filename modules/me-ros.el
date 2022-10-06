@@ -32,7 +32,7 @@
 (use-package ros
   :init
   :general
-  (me-global-def
+  (me-map
     "or" '(nil :which-key "ROS")
     "orr" '(hydra-ros-main/body :which-key "Hydra")
     "ors" '(hydra-ros-main/body :which-key "Set workspace")))

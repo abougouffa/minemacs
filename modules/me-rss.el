@@ -4,7 +4,7 @@
   :straight t
   :defer t
   :general
-  (me-global-def "or" #'elfeed)
+  (me-map "or" #'elfeed)
   :config
   (setq elfeed-db-directory (expand-file-name "elfeed" minemacs-var-dir)))
 

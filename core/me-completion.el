@@ -125,7 +125,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-global-def
+  (me-map
     "bl" '(consult-line :which-key "Consult line")
     "ss" '(consult-ripgrep :which-key "ripgrep")
     "ss" '(consult-find :which-key "ripgrep")

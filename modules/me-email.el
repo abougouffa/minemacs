@@ -7,12 +7,12 @@
   :load-path MU4E-LOAD-PATH
   :commands mu4e mu4e-compose-new mu4e--start
   :general
-  (me-global-def "om" '(mu4e :which-key "Mu4e"))
+  (me-map "om" '(mu4e :which-key "Mu4e"))
   :config
   (require 'me-mu4e-extras)
   (require 'me-mu4e-gmail)
 
-  (me-local-def :keymaps 'mu4e-compose-mode-map
+  (me-map-local :keymaps 'mu4e-compose-mode-map
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
@@ -76,7 +76,7 @@
   :config
   (me-map-def :keymaps 'org-msg-edit-mode-map
     "TAB" '(org-msg-tab :which-key "org-msg-tab"))
-  (me-local-def :keymaps 'org-msg-edit-mode-map
+  (me-map-local :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :which-key "attach")
     "aa" '(org-msg-attach-attach :which-key "Attach")
     "ad" '(org-msg-attach-delete :which-key "Delete"))

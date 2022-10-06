@@ -5,7 +5,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-global-def
+  (me-map
     ;; Open
     "o-"  '(dirvish :which-key "Dirvish")
     "op"  '(dirvish-side :which-key "Side panel")

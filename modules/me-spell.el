@@ -5,7 +5,7 @@
   :straight t
   :when (executable-find "aspell")
   :general
-  (me-global-def
+  (me-map
     "ts" '(spell-fu-mode :which-key "Toggle spell-fu-mode"))
   ;; ([remap ispell-word] #'+spell/correct)
   :hook (text-mode . spell-fu-mode)
