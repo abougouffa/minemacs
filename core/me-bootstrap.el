@@ -6,13 +6,15 @@
 ;; Keywords:
 
 (setq package-enable-at-startup nil)
+
+(setq straight-base-dir minemacs-var-dir
+      straight-repository-branch "develop"
+      straight-vc-git-default-clone-depth '(1 single-branch)
+      straight-build-dir (format "build-%s" emacs-version)
+      straight-check-for-modifications nil)
+
 (defvar bootstrap-version)
-
-(defvar straight-base-dir minemacs-var-dir)
-(defvar straight-build-dir (format "build-%s" emacs-version))
-(defvar straight-check-for-modifications nil)
-
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-var-dir))
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" straight-base-dir))
       (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
