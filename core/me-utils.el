@@ -206,6 +206,11 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   "Reset SYM to its standard value."
   (set sym (eval (car (get sym 'standard-value)))))
 
+;;;###autoload
+(defmacro me-with-shutup! (&rest body)
+  "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+  `(let ((message-log-max nil))
+     (with-temp-message (or (current-message) "") ,@body)))
 
 ;;;###autoload
 (defmacro me-reset-var! (var)
