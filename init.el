@@ -17,13 +17,13 @@
   (interactive)
   ;; Core modules
   (unless without-core
-    (dolist (module (mapcar #'symbol-name minemacs-core-modules))
+    (dolist (module minemacs-core-modules)
       (me-log! "Loading core module \"%s\"" module)
       (load (expand-file-name (format "core/me-%s.el" module) minemacs-config-dir)
             nil (not init-file-debug))))
 
   ;; Modules
-  (dolist (module (mapcar #'symbol-name minemacs-modules))
+  (dolist (module minemacs-modules)
     (me-log! "Loading module \"%s\"" module)
     (load (expand-file-name (format "modules/me-%s.el" module) minemacs-config-dir)
           nil (not init-file-debug)))
