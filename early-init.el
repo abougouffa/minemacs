@@ -19,8 +19,6 @@
    (me-info! "Loaded Emacs in %s." (emacs-init-time))
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
-   (unless (getenv "EMACS_NO_GC_HACK")
-     (require 'me-gc))
    ;; Run hooks
    (when (boundp 'minemacs-after-startup-hook)
      (run-hooks minemacs-after-startup-hook))))
