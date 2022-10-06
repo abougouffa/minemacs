@@ -10,7 +10,7 @@
       user-mail-address "abougouffa@fedoraproject.org")
 
 (setq me-fonts ;; or Cascadia Code
-  '(:font-family "Iosevka Fixed Curly Slab" :variable-pitch-font-family "Lato"))
+      '(:font-family "Iosevka Fixed Curly Slab" :variable-pitch-font-family "Lato"))
 
 (setq-default epa-file-encrypt-to '("F808A020A3E1AC37"))
 
@@ -99,35 +99,11 @@
     :config (good-scroll-mode 1)))
 
 ;; [[file:config.org::*Zen (writeroom) mode][Zen (writeroom) mode:1]]
-;; (after! writeroom-mode
-;;   ;; Show mode line
-;;   (setq writeroom-mode-line t)
-
-;;   ;; Disable line numbers
-;;   (add-hook! 'writeroom-mode-enable-hook
-;;     (when (bound-and-true-p display-line-numbers-mode)
-;;       (setq-local +line-num--was-activate-p display-line-numbers-type)
-;;       (display-line-numbers-mode -1)))
-
-;;   (add-hook! 'writeroom-mode-disable-hook
-;;     (when (bound-and-true-p +line-num--was-activate-p)
-;;       (display-line-numbers-mode +line-num--was-activate-p)))
-
-;;   (after! org
-;;     ;; Increase latex previews scale in Zen mode
-;;     (add-hook! 'writeroom-mode-enable-hook (+org-format-latex-set-scale 2.0))
-;;     (add-hook! 'writeroom-mode-disable-hook (+org-format-latex-set-scale 1.4)))
-
-;;   (after! blamer
-;;     ;; Disable blamer in zen (writeroom) mode
-;;     (add-hook! 'writeroom-mode-enable-hook
-;;       (when (bound-and-true-p blamer-mode)
-;;         (setq +blamer-mode--was-active-p t)
-;;         (blamer-mode -1)))
-;;     (add-hook! 'writeroom-mode-disable-hook
-;;       (when (bound-and-true-p +blamer-mode--was-active-p)
-;;         (blamer-mode 1)))))
-;; ;; Zen (writeroom) mode:1 ends here
+(with-eval-after-load 'writeroom-mode
+  (with-eval-after-load 'org
+    ;; Increase latex previews scale in Zen mode
+    (add-hook! 'writeroom-mode-enable-hook (+org-format-latex-set-scale 2.0))
+    (add-hook! 'writeroom-mode-disable-hook (+org-format-latex-set-scale 1.4))))
 
 ;; [[file:config.org::*Highlight indent guides][Highlight indent guides:1]]
 ;; (after! highlight-indent-guides
