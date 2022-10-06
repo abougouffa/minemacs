@@ -9,7 +9,8 @@
 (setq user-full-name "Abdelhak Bougouffa"
       user-mail-address "abougouffa@fedoraproject.org")
 
-(setq me-fonts '(:font-family "Cascadia Code" :variable-pitch-font-family "Lato"))
+(setq me-fonts ;; or Cascadia Code
+  '(:font-family "FiraCode Nerd Font" :variable-pitch-font-family "Lato"))
 
 (setq-default epa-file-encrypt-to '("F808A020A3E1AC37"))
 
