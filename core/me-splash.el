@@ -29,29 +29,20 @@
           ;; Buffer local settings
           (if (one-window-p)
               (setq mode-line-format nil))
-          (setq cursor-type nil)
-          (setq vertical-scroll-bar nil)
-          (setq horizontal-scroll-bar nil)
-          (setq fill-column width)
+          (setq cursor-type nil
+                vertical-scroll-bar nil
+                horizontal-scroll-bar nil
+                fill-column width)
           (face-remap-add-relative 'link :underline nil)
 
           ;; Vertical padding to center
           (insert-char ?\n padding-center)
 
           ;; Central text
-          (insert (concat (propertize "MinEmacs " 'face 'bold)
-                          (format "(GNU Emacs %s)" emacs-version)))
+          (insert (concat (propertize " MinEmacs " 'face 'bold)
+                          (format "(GNU Emacs %s) " emacs-version)))
           (center-line) (insert "\n")
-          (insert-text-button " github.com/abougouffa/minemacs "
-                              'action (lambda (_) (browse-url "https://github.com/abougouffa/minemacs"))
-                              'help-echo "Visit MinEmacs repo"
-                              'follow-link t)
-          (center-line) (insert "\n")
-          (insert (concat
-                   "Loaded in "
-                   (propertize (emacs-init-time) 'face 'italic)))
-          (center-line) (insert "\n")
-          (insert (propertize "A free/libre editor" 'face 'shadow))
+          (insert (propertize (format "Loaded in %s" (emacs-init-time)) 'face 'shadow))
           (center-line)
 
 
@@ -69,11 +60,13 @@
             (center-line) (insert "\n") (insert "\n"))
 
           ;; Copyright text
-          (insert (propertize
-                   "GNU Emacs comes with ABSOLUTELY NO WARRANTY" 'face 'shadow))
           (center-line) (insert "\n")
-          (insert (propertize
-                   "Copyright (C) 2022 Free Software Foundation, Inc." 'face 'shadow))
+          (insert (propertize (format "Minimal Emacs configuration" (emacs-init-time)) 'face 'shadow))
+          (center-line) (insert "\n")
+          (insert-text-button " github.com/abougouffa/minemacs "
+                              'action (lambda (_) (browse-url "https://github.com/abougouffa/minemacs"))
+                              'help-echo "Visit MinEmacs repo"
+                              'follow-link t)
           (center-line) (insert "\n")
 
           (goto-char 0)
@@ -82,11 +75,11 @@
           (local-set-key (kbd "C-[")       'splash-screen-kill)
           (local-set-key (kbd "<escape>")  'splash-screen-kill)
           (local-set-key (kbd "q")         'splash-screen-kill)
-          (local-set-key (kbd "q")         'splash-screen-kill)
           (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
           (local-set-key (kbd "<mouse-2>") 'operate-this-button)
           (display-buffer-same-window splash-buffer nil)
-          (evil-insert-state)))))
+          (when evil-mode
+            (evil-local-mode -1))))))
 
 (defun splash-screen-kill ()
   "Kill the splash screen buffer (immediately)."
@@ -99,15 +92,14 @@
 
 ;; Install hook after frame parameters have been applied and only if
 ;; no option on the command line
-(if (and (not (member "-no-splash"  command-line-args))
-         (not (member "--file"      command-line-args))
-         (not (member "--insert"    command-line-args))
-         (not (member "--find-file" command-line-args))
-         (not inhibit-startup-screen))
-    (progn
-      (add-hook 'window-setup-hook 'me-splash-screen)
-      (setq inhibit-startup-screen t
-            inhibit-startup-message t
-            inhibit-startup-echo-area-message t)))
+(when (and (not inhibit-startup-screen)
+           (not (member "-no-splash"  command-line-args))
+           (not (member "--file"      command-line-args))
+           (not (member "--insert"    command-line-args))
+           (not (member "--find-file" command-line-args)))
+  (add-hook 'window-setup-hook 'me-splash-screen)
+  (setq inhibit-startup-screen t
+        inhibit-startup-message t
+        inhibit-startup-echo-area-message t))
 
 (provide 'me-splash)
