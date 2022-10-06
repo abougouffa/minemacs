@@ -20,18 +20,21 @@
 (defconst WIN-P (memq system-type '(cygwin windwos-nt ms-dos)))
 (defconst MAC-P (eq system-type 'darwin))
 
-(defvar minemacs-after-startup nil
-  "This hook will be run after loading Emacs.")
-
-(defvar minemacs-first-file nil
-  "This hook will be fired when the first file is open.")
+(defcustom minemacs-after-startup-hook nil
+  "This hook will be run after loading Emacs."
+  :group 'minemacs
+  :type 'hook
+  :local 'permenant-local)
 
 ;; This will be set by the virtual package `minemacs-loaded'
 (defvar minemacs-loaded nil
   "MinEmacs has been loaded.")
 
 (defconst me-default-fonts
-  '(:font-family "DejaVu Sans Mono" :font-size 15 :variable-pitch-font-family "DejaVu Sans" :variable-pitch-font-size 15))
+  '(:font-family "DejaVu Sans Mono"
+                 :font-size 15
+                 :variable-pitch-font-family "DejaVu Sans"
+                 :variable-pitch-font-size 15))
 
 (defvar me-fonts nil)
 
