@@ -157,7 +157,23 @@
       (visual-fill-column-adjust)))
 
   (add-hook 'writeroom-mode-hook #'+writeroom-enable-mixed-pitch-mode-h)
-  (add-hook 'writeroom-mode-hook #'+writeroom-enable-text-scaling-mode-h))
+  (add-hook 'writeroom-mode-hook #'+writeroom-enable-text-scaling-mode-h)
+
+  ;; Disable line numbers when in Org mode
+  (add-hook
+   'writeroom-mode-enable-hook
+   (lambda ()
+     (when (and (derived-mode-p 'org-mode)
+                (bound-and-true-p display-line-numbers-mode))
+       (setq-local +line-num--was-activate-p display-line-numbers-type)
+       (display-line-numbers-mode -1))))
+
+  (add-hook
+   'writeroom-mode-disable-hook
+   (lambda ()
+     (when (and (derived-mode-p 'org-mode)
+                (bound-and-true-p +line-num--was-activate-p))
+       (display-line-numbers-mode +line-num--was-activate-p)))))
 
 
 (use-package mixed-pitch
