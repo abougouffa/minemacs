@@ -7,7 +7,7 @@
 
 (use-package org-roam
   :straight t
-  :requires org
+  :after org
   :general
   (me-global-def
     "nf" '(org-capture :which-key "Org-Roam find node")
