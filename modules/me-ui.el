@@ -188,10 +188,10 @@
 
 (use-package focus
   :straight t
+  :commands focus-mode
   :general
   (me-global-def
-    "tf" '(focus-mode :which-key "Focus mode"))
-  :commands focus-mode)
+    "tf" '(focus-mode :which-key "Focus mode")))
 
 
 (provide 'me-ui)
