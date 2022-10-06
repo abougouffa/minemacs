@@ -4,7 +4,9 @@
 (setq-default font-lock-multiline 'undecided)
 
 ;;; Better defaults
+(set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
+(setq default-input-method nil)
 
 ;;; Set files and directories for built-in packages
 (setq project-list-file (expand-file-name "projects" minemacs-var-dir)
@@ -92,28 +94,9 @@
 (setq display-time-string-forms
       '((propertize (concat 24-hours ":" minutes))))
 
-(display-time-mode 1)
-
-;; Enable battery (if available) in mode-line
-(let ((battery-str (battery)))
-  (unless (or (equal "Battery status not available" battery-str)
-              (string-match-p "unknown" battery-str)
-              (string-match-p "N/A" battery-str))
-    (display-battery-mode 1)))
-
-
 ;;; Enable global modes
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
-
-;; Highlight current line
-(global-hl-line-mode 1)
-
-;; Enable recentf-mode globally
-(recentf-mode 1)
-
-;; Global SubWord mode
-(global-subword-mode 1)
 
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
@@ -132,6 +115,27 @@ or file path may exist now."
 ;;; Load fonts at startup, values are read from `me-fonts' if set in config.el,
 ;; and fallback to `me-default-fonts'
 (add-hook 'emacs-startup-hook #'me-set-fonts)
+
+(with-eval-after-load 'minemacs-loaded
+  ;; Enable battery (if available) in mode-line
+  (me-with-shutup!
+   (let ((battery-str (battery)))
+     (unless (or (equal "Battery status not available" battery-str)
+                 (string-match-p "unknown" battery-str)
+                 (string-match-p "N/A" battery-str))
+       (display-battery-mode 1)))
+
+   ;; Display time in mode-line
+   (display-time-mode 1)
+
+   ;; Highlight current line
+   (global-hl-line-mode 1)
+
+   ;; Enable recentf-mode globally
+   (recentf-mode 1)
+
+   ;; Global SubWord mode
+   (global-subword-mode 1)))
 
 
 (provide 'me-defaults)
