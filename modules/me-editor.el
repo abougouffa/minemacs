@@ -71,4 +71,11 @@
                 "\\\\" "://")))
 
 
+(use-package page-break-lines
+  :straight t
+  :after minemacs-loaded
+  :config
+  (global-page-break-lines-mode))
+
+
 (provide 'me-editor)
