@@ -80,18 +80,6 @@
 ;;       (savehist-save))))
 ;; Save recent files:1 ends here
 
-(with-eval-after-load 'which-key
-  (setq which-key-allow-multiple-replacements t)
-
-  (push '((""       . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
-        which-key-replacement-alist)
-  (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)")             . (nil . "⌶·\\1"))
-        which-key-replacement-alist)
-  (push '(("\\`g c" . "\\`evilnc-\\(.*\\)")              . (nil . "#·\\1"))
-        which-key-replacement-alist)
-  (push '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)")     . (nil . "m·\\1"))
-        which-key-replacement-alist))
-
 (if (>= emacs-major-version 29)
     (pixel-scroll-precision-mode 1)
   (use-package good-scroll

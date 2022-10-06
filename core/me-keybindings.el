@@ -15,12 +15,21 @@
 (use-package which-key
   :straight t
   :custom
-  (which-key-idle-delay          0.3)
-  (which-key-prefix-prefix       "↪ ")
-  (which-key-sort-order          'which-key-key-order-alpha)
-  (which-key-min-display-lines   5)
+  (which-key-idle-delay 0.3)
+  (which-key-prefix-prefix "↪ ")
+  (which-key-sort-order 'which-key-key-order-alpha)
+  (which-key-min-display-lines 5)
   (which-key-max-display-columns nil)
+  (which-key-allow-multiple-replacements t)
   :config
+  (push '(("\\`g"   . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
+        which-key-replacement-alist)
+  (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)")             . (nil . "⌶·\\1"))
+        which-key-replacement-alist)
+  (push '(("\\`g c" . "\\`evilnc-\\(.*\\)")              . (nil . "#·\\1"))
+        which-key-replacement-alist)
+  (push '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)")     . (nil . "m·\\1"))
+        which-key-replacement-alist)
   (which-key-mode)
   (which-key-setup-minibuffer))
 
