@@ -180,7 +180,6 @@ If FORCE-P, delete without confirmation."
         (when (file-exists-p path)
           (error "Failed to delete %S" short-path))))))
 
-
 ;;;###autoload
 (defun me-move-this-file (new-path &optional force-p)
   "Move current buffer's file to NEW-PATH.
@@ -202,27 +201,32 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     (message "File moved to %S" (abbreviate-file-name new-path))))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
+;;;###autoload
 (defun me-reset-sym (sym)
   "Reset SYM to its standard value."
   (set sym (eval (car (get sym 'standard-value)))))
 
+
+;;;###autoload
 (defmacro me-reset-var! (var)
   "Reset VAR to its standard value."
   `(setq ,var (eval (car (get ',var 'standard-value)))))
 
+;;;###autoload
 (defmacro me-cmdfy! (body)
   "Convert BODY to an interactive command."
   `(lambda ()
      (interactive)
      (,@body)))
 
-
+;;;###autoload
 (defun me-dir-locals-reload-for-current-buffer ()
   "reload dir locals for the current buffer"
   (interactive)
   (let ((enable-local-variables :all))
     (hack-dir-local-variables-non-file-buffer)))
 
+;;;###autoload
 (defun me-dir-locals-reload-for-all-buffers-in-this-directory ()
   "For every buffer with the same `default-directory` as the
 current buffer's, reload dir-locals."
@@ -233,6 +237,7 @@ current buffer's, reload dir-locals."
         (when (equal default-directory dir)
           (me-dir-locals-reload-for-current-buffer))))))
 
+;;;###autoload
 (defun me-dir-locals-enable-autoreload ()
   (when (and (buffer-file-name)
              (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
@@ -285,12 +290,12 @@ current buffer's, reload dir-locals."
               (revert-buffer t t))))
       (user-error "Unable to open %S" file))))
 
-
+;;;###autoload
 (defun me-clean-file-name (filename &optional conv-downcase)
   "Clean file name."
   (replace-regexp-in-string "[:;\t \\]+" "-" (if conv-downcase (downcase filename) filename)))
 
-
+;;;###autoload
 (defun me-set-fonts ()
   (custom-set-faces
    `(default
@@ -310,7 +315,7 @@ current buffer's, reload dir-locals."
                          (or (plist-get me-fonts :variable-pitch-font-size)
                              (plist-get me-default-fonts :variable-pitch-font-size)))))))))
 
-
+;;;###autoload
 (defun me-dir-locals-open-or-create ()
   "Open or create the dir-locals.el for the current project."
   (interactive)
