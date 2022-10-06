@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defvar minemacs-core-modules
- '(defaults bootstrap keybindings evil completion))
+  '(defaults bootstrap keybindings evil completion))
 
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
