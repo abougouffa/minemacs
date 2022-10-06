@@ -134,6 +134,8 @@
 
     ;; Toggle
     "t"   '(nil :which-key "toggle")
+    "td"  '(toggle-debug-on-error :which-key "Debug on error")
+    "tr"  '(toggle-read-only :which-key "Read-only")
 
     ;; Code
     "c"   '(nil :which-key "code")
