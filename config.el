@@ -102,8 +102,8 @@
 (with-eval-after-load 'writeroom-mode
   (with-eval-after-load 'org
     ;; Increase latex previews scale in Zen mode
-    (add-hook! 'writeroom-mode-enable-hook (+org-format-latex-set-scale 2.0))
-    (add-hook! 'writeroom-mode-disable-hook (+org-format-latex-set-scale 1.4))))
+    (add-hook 'writeroom-mode-enable-hook (lambda () (+org-format-latex-set-scale 2.0)))
+    (add-hook 'writeroom-mode-disable-hook (lambda () (+org-format-latex-set-scale 1.4)))))
 
 ;; [[file:config.org::*Highlight indent guides][Highlight indent guides:1]]
 ;; (after! highlight-indent-guides
