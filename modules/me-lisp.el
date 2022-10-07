@@ -11,10 +11,10 @@
         parinfer-rust-auto-download t
         parinfer-rust-library
         (expand-file-name
-         (cond (LINUX-P "parinfer-rust-linux.so")
-               (BSD-P "libparinfer_rust.so")
-               (WIN-P "parinfer-rust-windows.dll")
-               (MAC-P "parinfer-rust-darwin.so"))
+         (cond (sys/linux "parinfer-rust-linux.so")
+               (sys/bsd "libparinfer_rust.so")
+               (sys/win "parinfer-rust-windows.dll")
+               (sys/mac "parinfer-rust-darwin.so"))
          parinfer-rust-library-directory))
   :hook ((emacs-lisp-mode
           clojure-mode

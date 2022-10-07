@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;; MinEmacs directories
+
 (defvar minemacs-config-dir
   (or (getenv "MINEMACS_DIR")
       ;; Temporary use this
@@ -15,10 +16,18 @@
 (defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
 (defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
 
-(defconst LINUX-P (memq system-type '(gnu gnu/linux)))
-(defconst BSD-P (memq system-type '(darwin berkeley-unix)))
-(defconst WIN-P (memq system-type '(cygwin windwos-nt ms-dos)))
-(defconst MAC-P (eq system-type 'darwin))
+(defconst sys/linux (memq system-type '(gnu gnu/linux)))
+(defconst sys/bsd (memq system-type '(darwin berkeley-unix)))
+(defconst sys/win (memq system-type '(cygwin windwos-nt ms-dos)))
+(defconst sys/mac (eq system-type 'darwin))
+
+(let ((feats (me-str-split system-configuration-features " ")))
+  (defconst feat/gpm (member "GPM" feats))
+  (defconst feat/cairo (member "CAIRO" feats))
+  (defconst feat/lucid (member "LUCID" feats))
+  (defconst feat/harfbuzz (member "HARFBUZZ" feats))
+  (defconst feat/xwidgets (member "XWIDGETS" feats))
+  (defconst feat/nativecomp (member "NATIVE_COMP" feats)))
 
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs."

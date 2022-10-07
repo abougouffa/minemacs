@@ -118,7 +118,9 @@
 
   (mu4e-alert-set-default-style 'libnotify)
 
-  (defvar +mu4e-alert-bell-cmd '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
+  (defvar +mu4e-alert-bell-cmd
+    (when (or sys/linux sys/bsd)
+      '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga")))
 
   (defun +mu4e-name-or-email (msg)
     (let* ((from (car (plist-get msg :from)))
