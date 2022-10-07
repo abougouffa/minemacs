@@ -6,8 +6,7 @@
   :when (executable-find "aspell")
   :general
   (me-map
-    "ts" '(spell-fu-mode :which-key "Toggle spell-fu-mode"))
-  ;; ([remap ispell-word] #'+spell/correct)
+    "ts" #'spell-fu-mode)
   :hook (text-mode . spell-fu-mode)
   :init
   (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-var-dir))
@@ -82,10 +81,10 @@
   :straight (:host github :repo "emacs-languagetool/eglot-ltex")
   :init
   ;; Add this to .dir-locals.el
-  ;; ((nil (eglot-workspace-configuration)
-  ;;       . ((ltex . ((language . "fr")
-  ;;                   (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
-  ;;                   (additionalRules . ((languageModel . "/usr/share/ngrams/"))))))))
+  ;; ((nil (eglot-workspace-configuration
+  ;;        . ((ltex . ((language . "fr")
+  ;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
+  ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/"))))))))
   (setq eglot-languagetool-server-path "/usr"))
 
 
