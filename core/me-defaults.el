@@ -121,6 +121,9 @@ or file path may exist now."
 ;; and fallback to `me-default-fonts'
 (add-hook 'emacs-startup-hook #'me-set-fonts)
 
+(when feat/xwidgets
+  (setq browse-url-browser-function #'xwidget-webkit-browse-url))
+
 (with-eval-after-load 'minemacs-loaded
   ;; Enable battery (if available) in mode-line
   (me-with-shutup!

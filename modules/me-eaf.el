@@ -19,8 +19,9 @@
     (memq app-symbol eaf-apps-to-install))
 
   (when (+eaf-app-p 'browser)
-    ;; Make EAF Browser my default browser
-    (setq browse-url-browser-function #'eaf-open-browser)
+    (unless feat/xwidgets
+      ;; Make EAF Browser my default browser
+      (setq browse-url-browser-function #'eaf-open-browser))
     (defalias 'browse-web #'eaf-open-browser)
     (me-map-local :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
       "h" '(+eaf-open-mail-as-html :which-key "Open mail as HTML")
