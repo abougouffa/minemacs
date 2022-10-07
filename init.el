@@ -28,6 +28,10 @@
     (load (expand-file-name (format "modules/me-%s.el" module) minemacs-config-dir)
           nil (not init-file-debug)))
 
+  (when (and custom-file (file-exists-p custom-file))
+    (me-log! "Loafing user customs from custom.el")
+    (load custom-file nil (not init-file-debug)))
+
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
     (when (file-exists-p user-config)

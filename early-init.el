@@ -31,9 +31,6 @@
    (me-info! "Loaded Emacs in %s." (emacs-init-time))
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
-   (let ((f (expand-file-name "custom.el" user-emacs-directory)))
-     (when (file-exists-p f))
-     (load f nil (not init-file-debug)))
    ;; Run hooks
    (when (boundp 'minemacs-after-startup-hook)
      (run-hooks minemacs-after-startup-hook))))
