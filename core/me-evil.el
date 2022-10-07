@@ -13,7 +13,12 @@
         evil-vsplit-window-right t
         evil-respect-visual-line-mode t)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+
+  ;; Ask for a buffer when splitting windows
+  (with-eval-after-load 'consult
+    (dolist (fn '(evil-window-split evil-window-vsplit))
+      (advice-add fn :after (lambda (&rest _) (consult-buffer))))))
 
 
 (use-package evil-collection
