@@ -8,6 +8,13 @@
   (me-map "/" '(rg :which-key "ripgrep")))
 
 
+(use-package tldr
+  :straight t
+  :commands (tldr-update-docs tldr)
+  :custom
+  (tldr-enabled-categories '("common" "linux" "osx" "sunos")))
+
+
 (use-package vterm
   :straight t
   :general
