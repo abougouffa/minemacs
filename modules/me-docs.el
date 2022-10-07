@@ -14,6 +14,7 @@
                 pdf-view-image-relief 2
                 pdf-view-use-scaling t))
 
+
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . nov-mode)
@@ -22,14 +23,12 @@
     "RET" #'nov-scroll-up)
 
   (defun doom-modeline-segment--nov-info ()
-    (concat " "
-            (propertize (cdr (assoc 'creator nov-metadata))
-                        'face 'doom-modeline-project-parent-dir)
-            " "
-            (cdr (assoc 'title nov-metadata))
-            " "
-            (propertize (format "%d/%d" (1+ nov-documents-index) (length nov-documents))
-                        'face 'doom-modeline-info)))
+    (concat " " (propertize (cdr (assoc 'creator nov-metadata))
+                            'face 'doom-modeline-project-parent-dir)
+            " " (cdr (assoc 'title nov-metadata))
+            " " (propertize (format "%d/%d" (1+ nov-documents-index)
+                                    (length nov-documents))
+                            'face 'doom-modeline-info)))
 
   (advice-add 'nov-render-title :override #'ignore)
 
