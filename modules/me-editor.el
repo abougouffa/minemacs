@@ -78,4 +78,11 @@
   (global-page-break-lines-mode))
 
 
+(use-package good-scroll
+  :straight t
+  :when (<= emacs-major-version 28)
+  :config
+  (good-scroll-mode 1))
+
+
 (provide 'me-editor)
