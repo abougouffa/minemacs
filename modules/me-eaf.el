@@ -13,7 +13,7 @@
              +eaf-open-mail-as-html)
   :init
   (setq eaf-apps-to-install
-    '(org browser mindmap jupyter org-previewer markdown-previewer file-sender video-player))
+        '(org browser mindmap jupyter org-previewer markdown-previewer file-sender video-player))
 
   (defun +eaf-app-p (app-symbol)
     (memq app-symbol eaf-apps-to-install))
@@ -50,9 +50,8 @@
   (setq eaf-start-python-process-when-require t
         eaf-kill-process-after-last-buffer-closed t
         eaf-fullscreen-p nil
-        eaf-config-location (expand-file-name "eaf" minemacs-var-dir)
-        eaf-evil-leader-keymap nil)
-  
+        eaf-config-location (expand-file-name "eaf" minemacs-var-dir))
+
   ;; Debug
   (setq eaf-enable-debug nil)
 
@@ -195,22 +194,23 @@
 
   ;; Fix EVIL keybindings
   (with-eval-after-load 'evil
-    (require 'eaf-evil)
-    (define-key key-translation-map (kbd "SPC")
-      (lambda (prompt)
-        (if (derived-mode-p 'eaf-mode)
-            (pcase eaf--buffer-app-name
-              ("browser" (if (eaf-call-sync "execute_function" eaf--buffer-id "is_focus")
-                             (kbd "SPC")
-                           (kbd eaf-evil-leader-key)))
-              ("pdf-viewer" (kbd eaf-evil-leader-key))
-              ("image-viewer" (kbd eaf-evil-leader-key))
-              ("music-player" (kbd eaf-evil-leader-key))
-              ("video-player" (kbd eaf-evil-leader-key))
-              ("file-sender" (kbd eaf-evil-leader-key))
-              ("mindmap" (kbd eaf-evil-leader-key))
-              (_  (kbd "SPC")))
-          (kbd "SPC"))))))
+    (defvar eaf-evil-leader-key "C-SPC")
+    (define-key
+     key-translation-map (kbd "SPC")
+     (lambda (prompt)
+       (if (derived-mode-p 'eaf-mode)
+           (pcase eaf--buffer-app-name
+             ("browser" (if (eaf-call-sync "execute_function" eaf--buffer-id "is_focus")
+                            (kbd "SPC")
+                          (kbd eaf-evil-leader-key)))
+             ("pdf-viewer" (kbd eaf-evil-leader-key))
+             ("image-viewer" (kbd eaf-evil-leader-key))
+             ("music-player" (kbd eaf-evil-leader-key))
+             ("video-player" (kbd eaf-evil-leader-key))
+             ("file-sender" (kbd eaf-evil-leader-key))
+             ("mindmap" (kbd eaf-evil-leader-key))
+             (_ (kbd "SPC")))
+         (kbd "SPC"))))))
 
 
 (provide 'me-eaf)
