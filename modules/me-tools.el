@@ -1,10 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
+
 (use-package rg
   :straight t
   :defer t
   :general
   (me-map "/" '(rg :which-key "ripgrep")))
+
 
 (use-package vterm
   :straight t
