@@ -15,7 +15,8 @@
 (defvar minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
 (defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
 (defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
-(defvar minemacs-autoloads-dir (expand-file-name "core/autoloads" user-emacs-directory))
+(defvar minemacs-autoloads-dirs (list (expand-file-name "core/autoloads" user-emacs-directory)
+                                      (expand-file-name "modules/autoloads" user-emacs-directory)))
 (defvar minemacs-autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory))
 
 (defconst sys/linux (memq system-type '(gnu gnu/linux)))

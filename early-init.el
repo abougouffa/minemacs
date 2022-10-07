@@ -12,9 +12,13 @@
 
 (defun me-generate-autoloads ()
   (interactive)
+  (when (file-exists-p minemacs-autoloads-file)
+    (delete-file minemacs-autoloads-file))
+
   (if (<= emacs-major-version 28)
-      (make-directory-autoloads minemacs-autoloads-dir minemacs-autoloads-file)
-    (loaddefs-generate minemacs-autoloads-dir minemacs-autoloads-file)))
+      (make-directory-autoloads minemacs-autoloads-dirs minemacs-autoloads-file)
+    (loaddefs-generate minemacs-autoloads-dirs
+                       minemacs-autoloads-file)))
 
 ;; Auto-loads
 (unless (file-exists-p minemacs-autoloads-file)
