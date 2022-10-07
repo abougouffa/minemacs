@@ -146,6 +146,7 @@
     "td"  '(toggle-debug-on-error :which-key "Debug on error")
     "tr"  '(toggle-read-only :which-key "Read-only")
     "tM"  '(me-messages-auto-tail-toggle :which-key "Auto-tail *Messages*")
+    "tV"  '(netextender-toggle :which-key "NetExtender")
 
     ;; Code
     "c"   '(nil :which-key "code")
