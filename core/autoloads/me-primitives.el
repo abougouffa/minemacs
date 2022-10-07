@@ -60,7 +60,7 @@
 (defun me-str-split (str sep)
   (let ((s (string-search sep str)))
     (if s (cons (substring str 0 s)
-                (me-str-split (substring str (me- s (length sep))) sep))
+                (me-str-split (substring str (+ s (length sep))) sep))
       (list str))))
 
 ;;;###autoload
