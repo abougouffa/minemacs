@@ -30,9 +30,14 @@
       confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
       initial-scratch-message ""
       frame-resize-pixelwise t
-      source-directory (expand-file-name "~/Softwares/src/emacs/")
       trash-directory nil ;; Use FreeDesktop.org trashcan (default)
       delete-by-moving-to-trash t)
+
+(setq auth-sources '("~/.authinfo.gpg") ;; Defaults to GPG
+      auth-source-do-cache t
+      auth-source-cache-expiry 86400 ; All day, defaut is 2h (7200)
+      password-cache t
+      password-cache-expiry 86400)
 
 ;;; Undo
 (setq undo-limit        10000000 ;; 1MB (default is 160kB)
