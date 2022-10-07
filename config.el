@@ -9,8 +9,8 @@
 (setq user-full-name "Abdelhak Bougouffa"
       user-mail-address "abougouffa@fedoraproject.org")
 
-(setq me-fonts ;; or Cascadia Code
-      '(:font-family "Iosevka Fixed Curly Slab" :variable-pitch-font-family "Lato"))
+(setq me-fonts ;; or Cascadia Code, Fira Code, FiraCode Nerd Font, Iosevka Fixed Curly Slab
+      '(:font-family "Iosevka" :variable-pitch-font-family "Lato"))
 
 (setq-default epa-file-encrypt-to '("F808A020A3E1AC37"))
 
@@ -36,11 +36,6 @@
 ;;       (savehist-save))))
 ;; Save recent files:1 ends here
 
-(if (>= emacs-major-version 29)
-    (pixel-scroll-precision-mode 1)
-  (use-package good-scroll
-    :straight t
-    :config (good-scroll-mode 1)))
 
 ;; [[file:config.org::*Zen (writeroom) mode][Zen (writeroom) mode:1]]
 (with-eval-after-load 'writeroom-mode
