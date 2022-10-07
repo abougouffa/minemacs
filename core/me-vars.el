@@ -15,13 +15,15 @@
 (defvar minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
 (defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
 (defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
+(defvar minemacs-autoloads-dir (expand-file-name "core/autoloads" user-emacs-directory))
+(defvar minemacs-autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory))
 
 (defconst sys/linux (memq system-type '(gnu gnu/linux)))
 (defconst sys/bsd (memq system-type '(darwin berkeley-unix)))
 (defconst sys/win (memq system-type '(cygwin windwos-nt ms-dos)))
 (defconst sys/mac (eq system-type 'darwin))
 
-(let ((feats (me-str-split system-configuration-features " ")))
+(let ((feats (split-string system-configuration-features)))
   (defconst feat/gpm (member "GPM" feats))
   (defconst feat/cairo (member "CAIRO" feats))
   (defconst feat/lucid (member "LUCID" feats))
