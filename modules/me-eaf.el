@@ -1,11 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
 
-(defconst IS-LUCID (string-search "LUCID" system-configuration-features))
-
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
-  :unless IS-LUCID
+  :unless feat/lucid
   :commands (eaf-open
              eaf-open-browser
              eaf-open-jupyter

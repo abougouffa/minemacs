@@ -45,9 +45,7 @@
   :straight t
   :after minemacs-loaded
   :hook (prog-mode . ligature-mode)
-  :when (and (>= emacs-major-version 28)
-             (string-search "HARFBUZZ" system-configuration-features)
-             (string-search "CAIRO" system-configuration-features))
+  :when (and (>= emacs-major-version 28) feat/harfbuzz feat/cairo)
   :config
   ;; Enable the "www" ligature in every possible major mode
   (ligature-set-ligatures 't '("www"))
