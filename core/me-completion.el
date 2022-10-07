@@ -9,6 +9,7 @@
   :after minemacs-loaded
   :config
   (add-to-list 'completion-at-point-functions #'cape-file) ;; complete file names
+  (add-to-list 'completion-at-point-functions #'cape-tex) ;; complete TeX commands
   (add-to-list 'completion-at-point-functions #'cape-dabbrev))
 
 
@@ -32,6 +33,10 @@
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
       (setq-local corfu-auto nil) ;; Enable/disable auto completion
       (corfu-mode 1)))
+
+  (with-eval-after-load 'evil
+    (define-key corfu-map (kbd "C-j") 'corfu-next)
+    (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
   (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer)
   (global-corfu-mode 1))
@@ -72,12 +77,15 @@
 
 (use-package embark-consult
   :straight t
-  :after minemacs-loaded)
+  :after embark consult)
 
 
 (use-package all-the-icons-completion
   :straight t
-  :after minemacs-loaded)
+  :after marginalia
+  :config
+  ;; Icons integration
+  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
 
 (use-package marginalia
@@ -85,9 +93,6 @@
   :after minemacs-loaded
   :config
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-
-  ;; Icons integration
-  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
   (marginalia-mode 1))
 
 
@@ -102,6 +107,9 @@
 (use-package vertico
   :straight t
   :after minemacs-loaded
+  :custom
+  (vertico-cycle t)
+  (vertico-count 12)
   :config
   (add-to-list
    'load-path
@@ -109,15 +117,19 @@
     (format "straight/%s/vertico/extensions" straight-build-dir)
     straight-base-dir))
 
-  (setq vertico-cycle t
-        vertico-count 12)
+  (require 'vertico-mouse)
+  (require 'vertico-repeat)
+  (require 'vertico-buffer)
+  (require 'vertico-directory)
 
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "C-j") 'vertico-next)
     (define-key vertico-map (kbd "C-k") 'vertico-previous)
     (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
 
-  (require 'vertico-directory)
+  (me-map-key :keymaps 'vertico-map "DEL" #'vertico-directory-delete-char)
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
   (vertico-mode 1))
 
 
@@ -136,7 +148,7 @@
   (global-set-key (kbd "C-s") 'consult-line)
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
-  (setq completion-in-region-function #'consult-completion-in-region))
+  (setq-default completion-in-region-function #'consult-completion-in-region))
 
 
 (provide 'me-completion)
