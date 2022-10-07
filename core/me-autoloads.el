@@ -52,6 +52,13 @@ Return the deserialized object, or nil if the SYM.el file dont exist.
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
 
 
+;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el
+
+(autoload 'ecryptfs-mount-private "../modules/autoloads/me-ecryptfs" nil t)
+(autoload 'ecryptfs-umount-private "../modules/autoloads/me-ecryptfs" nil t)
+(register-definition-prefixes "../modules/autoloads/me-ecryptfs" '("ecryptfs-"))
+
+
 ;;; Generated autoloads from autoloads/me-emacs.el
 
 (autoload 'me-dir-locals-reload-for-current-buffer "autoloads/me-emacs" "\
