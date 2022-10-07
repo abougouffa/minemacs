@@ -43,8 +43,7 @@
           (insert-char ?\n padding-center)
 
           ;; Central text
-          (insert (concat (propertize " MinEmacs " 'face 'bold)
-                          (format "(GNU Emacs %s) " emacs-version)))
+          (insert (propertize " MinEmacs " 'face 'bold))
           (center-line) (insert "\n")
           (insert (propertize (format "Loaded in %s" (emacs-init-time)) 'face 'shadow))
           (center-line)
@@ -65,12 +64,15 @@
 
           ;; Copyright text
           (center-line) (insert "\n")
-          (insert (propertize (format "Minimal Emacs configuration" (emacs-init-time)) 'face 'shadow))
-          (center-line) (insert "\n")
           (insert-text-button " github.com/abougouffa/minemacs "
                               'action (lambda (_) (browse-url "https://github.com/abougouffa/minemacs"))
                               'help-echo "Visit MinEmacs repo"
                               'follow-link t)
+          (center-line) (insert "\n")
+          (insert (propertize (format "Running GNU Emacs %s (%s)"
+                                      emacs-version
+                                      (substring emacs-repository-version 0 10))
+                              'face 'shadow))
           (center-line) (insert "\n")
 
           (goto-char 0)
