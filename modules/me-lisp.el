@@ -6,6 +6,7 @@
 
 (use-package parinfer-rust-mode
   :straight t
+  :when feat/modules
   :init
   (setq parinfer-rust-library-directory (expand-file-name "parinfer-rust" minemacs-var-dir)
         parinfer-rust-auto-download t

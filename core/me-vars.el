@@ -28,6 +28,7 @@
   (defconst feat/gpm (member "GPM" feats))
   (defconst feat/cairo (member "CAIRO" feats))
   (defconst feat/lucid (member "LUCID" feats))
+  (defconst feat/modules (member "MODULES" feats))
   (defconst feat/harfbuzz (member "HARFBUZZ" feats))
   (defconst feat/xwidgets (member "XWIDGETS" feats))
   (defconst feat/nativecomp (member "NATIVE_COMP" feats)))
