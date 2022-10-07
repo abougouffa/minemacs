@@ -12,7 +12,8 @@
   :straight t
   :commands (tldr-update-docs tldr)
   :custom
-  (tldr-enabled-categories '("common" "linux" "osx" "sunos")))
+  (tldr-enabled-categories '("common" "linux" "osx"))
+  (tldr-directory-path (expand-file-name "tldr" minemacs-var-dir)))
 
 
 (use-package vterm
