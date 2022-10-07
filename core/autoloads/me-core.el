@@ -55,3 +55,45 @@
                              (plist-get me-default-fonts :variable-pitch-font-family))
                          (or (plist-get me-fonts :variable-pitch-font-size)
                              (plist-get me-default-fonts :variable-pitch-font-size)))))))))
+
+;;;###autoload
+(defun me-plist-keys (plist)
+  "Return the keys of PLIST."
+  (let (keys)
+    (while plist
+      (push (car plist) keys)
+      (setq plist (cddr plist)))
+    keys))
+
+;;;###autoload
+(defun me-serialize-symbol (sym dir &optional filename-format)
+  "Serialize SYM to DIR.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the written file name, or nil if SYM is not bound."
+  (when (boundp sym)
+    (let ((out-file (expand-file-name
+                     (format (or filename-format "%s.el") (symbol-name sym))
+                     dir)))
+      (me-log! "Saving `%s' to file \"%s\"" (symbol-name sym) out-file)
+      (with-temp-buffer
+        (prin1 (eval sym) (current-buffer))
+        (me-with-shutup! (write-file out-file)))
+      out-file)))
+
+;;;###autoload
+(defun me-deserialize-symbol (sym dir &optional mutate filename-format)
+  "Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the deserialized object, or nil if the SYM.el file dont exist."
+  (let ((in-file (expand-file-name
+                  (format (or filename-format "%s.el") (symbol-name sym))
+                  dir))
+        res)
+    (when (file-exists-p in-file)
+      (me-log! "Loading `%s' from file \"%s\"" sym in-file)
+      (with-temp-buffer
+        (insert-file-contents in-file)
+        (goto-char (point-min))
+        (ignore-errors (setq res (read (current-buffer)))))
+      (when mutate (set sym res)))
+    res))

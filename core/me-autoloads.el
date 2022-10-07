@@ -34,6 +34,22 @@ Convert BODY to an interactive command.
 
 (fn BODY)" nil t)
 (autoload 'me-set-fonts "autoloads/me-core")
+(autoload 'me-plist-keys "autoloads/me-core" "\
+Return the keys of PLIST.
+
+(fn PLIST)")
+(autoload 'me-serialize-symbol "autoloads/me-core" "\
+Serialize SYM to DIR.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the written file name, or nil if SYM is not bound.
+
+(fn SYM DIR &optional FILENAME-FORMAT)")
+(autoload 'me-deserialize-symbol "autoloads/me-core" "\
+Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the deserialized object, or nil if the SYM.el file dont exist.
+
+(fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
 
 
 ;;; Generated autoloads from autoloads/me-emacs.el
