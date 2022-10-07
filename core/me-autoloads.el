@@ -130,6 +130,13 @@ Make *Messages* buffer auto-scroll to the end after each message.
 Auto tail the '*Messages*' buffer." t)
 
 
+;;; Generated autoloads from ../modules/autoloads/me-netextender.el
+
+(autoload 'netextender-start "../modules/autoloads/me-netextender" "\
+Launch a NetExtender VPN session" t)
+(register-definition-prefixes "../modules/autoloads/me-netextender" '("netextender-"))
+
+
 ;;; Generated autoloads from autoloads/me-primitives.el
 
 (autoload 'me-bool "autoloads/me-primitives" "\
