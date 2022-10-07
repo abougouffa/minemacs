@@ -12,18 +12,16 @@
     "oq"  '(dirvish-quick-access :which-key "Dirvish quick access")
     ;; Search
     "sd"  '(dirvish-fd :which-key "Dirvish fd"))
+  (me-map-key :keymaps 'dirvish-mode-map
+    "q" #'dirvish-quit)
   :config
+  (require 'dirvish-yank)
   (require 'dirvish-icons)
+  (require 'dirvish-emerge)
   (setq dirvish-cache-dir (expand-file-name "dirvish/" minemacs-cache-dir)
-        dirvish-fd-default-dir (expand-file-name "~")
-        dirvish-mode-line-format
-        '(:left (sort file-time symlink) :right (omit yank index)))
-  ;; Set attributes
-  (setq dirvish-attributes
-        (delete-dups
-         (append
-          dirvish-attributes
-          '(vc-state git-msg all-the-icons))))
+        dirvish-fd-default-dir (expand-file-name "~/")
+        dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index))
+        dirvish-attributes '(file-size vc-state git-msg all-the-icons))
   (dirvish-override-dired-mode))
 
 
