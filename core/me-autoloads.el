@@ -133,7 +133,9 @@ Auto tail the '*Messages*' buffer." t)
 ;;; Generated autoloads from ../modules/autoloads/me-netextender.el
 
 (autoload 'netextender-start "../modules/autoloads/me-netextender" "\
-Launch a NetExtender VPN session" t)
+Launch a NetExtender VPN session." t)
+(autoload 'netextender-toggle "../modules/autoloads/me-netextender" "\
+Toggle connection to NetExtender." t)
 (register-definition-prefixes "../modules/autoloads/me-netextender" '("netextender-"))
 
 
