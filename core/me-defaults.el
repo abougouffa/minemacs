@@ -130,6 +130,9 @@ or file path may exist now."
                  (string-match-p "N/A" battery-str))
        (display-battery-mode 1)))
 
+   (when (>= emacs-major-version 29)
+     (pixel-scroll-precision-mode 1))
+
    ;; Display time in mode-line
    (display-time-mode 1)
 
