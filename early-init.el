@@ -8,8 +8,6 @@
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "modules/extras" user-emacs-directory))
 
-(require 'me-vars)
-
 ;; Auto-loads
 (let* ((autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory)))
   (unless (file-exists-p autoloads-file)
@@ -22,6 +20,8 @@
        (expand-file-name "core/autoloads/" user-emacs-directory)
        autoloads-file)))
   (load autoloads-file nil (not init-file-debug)))
+
+(require 'me-vars)
 
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
