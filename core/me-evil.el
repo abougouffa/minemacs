@@ -112,6 +112,7 @@
                         (or (cdr fn)
                             #'evil-mc-execute-default-call-with-count)))))))
 
+
 (use-package evil-escape
   :straight t
   :after evil minemacs-loaded
