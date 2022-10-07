@@ -30,7 +30,7 @@
   :straight t
   :config
   (setq doom-modeline-bar-width 5
-        doom-modeline-height 37)
+        doom-modeline-height 32)
 
   (doom-modeline-def-segment time
     (when (and doom-modeline-time
