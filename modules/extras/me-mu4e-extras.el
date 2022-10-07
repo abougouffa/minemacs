@@ -181,7 +181,7 @@ preferred alias"
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc)
 
   ;; Setup keybindings
-  (me-map-def :keymaps 'mu4e-view-mode-map
+  (me-map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments
     "P" #'+mu4e-view-save-all-attachments
     "A" #'+mu4e-view-select-mime-part-action

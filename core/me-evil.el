@@ -40,7 +40,7 @@
   ;; We will redefine the keybindngs
   (defvar evil-mc-key-map (make-sparse-keymap))
   :config
-  (me-map-def
+  (me-map-key
     :states '(normal visual)
     :keymaps 'evil-mc-key-map
     :prefix "gz"
@@ -59,7 +59,7 @@
     "p" #'evil-mc-make-and-goto-prev-cursor
     "P" #'evil-mc-make-and-goto-first-cursor
     "q" #'evil-mc-undo-all-cursors)
-  (me-map-def
+  (me-map-key
     :states 'visual
     :keymaps 'evil-mc-key-map
     :prefix "gz"

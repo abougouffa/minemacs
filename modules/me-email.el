@@ -16,7 +16,7 @@
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
-  (me-map-def :keymaps 'mu4e-view-mode-map
+  (me-map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
 
   (setq mu4e-confirm-quit t
@@ -74,7 +74,7 @@
   :straight t
   :after mu4e
   :config
-  (me-map-def :keymaps 'org-msg-edit-mode-map
+  (me-map-key :keymaps 'org-msg-edit-mode-map
     "TAB" '(org-msg-tab :which-key "org-msg-tab"))
   (me-map-local :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :which-key "attach")

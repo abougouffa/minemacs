@@ -57,7 +57,7 @@
     :prefix "SPC m")
 
   ;; Local leader
-  (general-create-definer me-map-def
+  (general-create-definer me-map-key
     :states '(normal motion visual))
 
   (me-map
