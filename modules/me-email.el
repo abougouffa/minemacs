@@ -12,7 +12,7 @@
   (require 'me-mu4e-extras)
   (require 'me-mu4e-gmail)
 
-  (me-map-local :keymaps 'mu4e-compose-mode-map
+  (me-map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
@@ -62,12 +62,7 @@
                                #'+mu4e--setup-ui-hook)))))
 
   (+mu4e-extras-setup)
-  (+mu4e-gmail-setup)
-
-  ;; Html mails might be better rendered in a browser
-  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser))
-  (when (fboundp 'make-xwidget)
-    (add-to-list 'mu4e-view-actions '("View in xwidgets" . mu4e-action-view-in-xwidget))))
+  (+mu4e-gmail-setup))
 
 
 (use-package org-msg
@@ -75,11 +70,13 @@
   :after mu4e
   :config
   (me-map-key :keymaps 'org-msg-edit-mode-map
-    "TAB" '(org-msg-tab :which-key "org-msg-tab"))
+    "TAB" #'org-msg-tab
+    "gg"  #'org-msg-goto-body)
   (me-map-local :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :which-key "attach")
     "aa" '(org-msg-attach-attach :which-key "Attach")
-    "ad" '(org-msg-attach-delete :which-key "Delete"))
+    "ad" '(org-msg-attach-delete :which-key "Delete")
+    "p"  '(org-msg-preview :which-key "Preview"))
 
   (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng"
         org-msg-startup "hidestars indent inlineimages"

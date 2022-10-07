@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defvar +mu4e-main-bullet "⦿"
   "Prefix to use instead of \"  *\" in the mu4e main view.
 This is enacted by `+mu4e--main-action-str-prettier-a' and
