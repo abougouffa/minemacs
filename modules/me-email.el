@@ -1,9 +1,13 @@
 ;; -*- lexical-binding: t; -*-
 
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
+(defconst MU4E-P (me-all (list (executable-find "mu")
+                               (executable-find "mbsync")
+                               (executable-find "msmtp")
+                               (file-directory-p MU4E-LOAD-PATH))))
 
 (use-package mu4e
-  :when (file-directory-p MU4E-LOAD-PATH)
+  :when MU4E-P
   :load-path MU4E-LOAD-PATH
   :commands mu4e mu4e-compose-new mu4e--start
   :general
