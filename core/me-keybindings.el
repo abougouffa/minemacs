@@ -156,15 +156,21 @@
     ;; Toggle
     "p"   '(nil :which-key "project")
     "pp"  '(project-switch-project :which-key "Switch")
-    "ps"  '(project-search :which-key "Search")
     "pc"  '(project-compile :which-key "Compile")
     "pd"  '(project-find-dir :which-key "Find directory")
     "pf"  '(project-find-file :which-key "Find file")
     "pD"  '(me-dir-locals-open-or-create :which-key "Open/create dir-locals file")
+    ;; Forget
     "pF"  '(nil :which-key "Forget")
     "pFz" '(project-forget-zombie-projects :which-key "Zombie projects")
     "pFp" '(project-forget-project :which-key "Project")
-    "pFu" '(project-forget-projects-under :which-key "Projects under...")))
+    "pFu" '(project-forget-projects-under :which-key "Projects under...")
+    ;; Search/replace
+    "ps"  '(nil :which-key "Search/replace")
+    "pss" '(project-search :which-key "Search")
+    "psn" '(fileloop-continue :which-key "Next match")
+    "psr" #'project-query-replace-regexp
+    "psf" #'project-find-regexp))
 
 
 (provide 'me-keybindings)
