@@ -29,7 +29,7 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-bar-width 5
+  (setq doom-modeline-bar-width 6
         doom-modeline-height 32)
 
   (doom-modeline-def-segment time
@@ -161,7 +161,7 @@
   (add-hook
    'writeroom-mode-enable-hook
    (lambda ()
-     (when (and (derived-mode-p 'org-mode)
+     (when (and (derived-mode-p '(markdown-mode org-mode))
                 (bound-and-true-p display-line-numbers-mode))
        (setq-local +line-num--was-activate-p display-line-numbers-type)
        (display-line-numbers-mode -1))))
