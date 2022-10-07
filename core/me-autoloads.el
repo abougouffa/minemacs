@@ -50,6 +50,8 @@ If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
+(autoload 'me-check-dependencies "autoloads/me-core" "\
+Check for MinEmacs dependencies." t)
 
 
 ;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el

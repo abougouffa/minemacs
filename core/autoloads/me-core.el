@@ -97,3 +97,22 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
         (ignore-errors (setq res (read (current-buffer)))))
       (when mutate (set sym res)))
     res))
+
+;;;###autoload
+(defun me-check-dependencies ()
+  "Check for MinEmacs dependencies."
+  (interactive)
+  (let ((buf (get-buffer-create "*minemacs-dependencies*")))
+    (with-current-buffer buf
+      (erase-buffer)
+      (insert "-----------------------\n")
+      (insert " MinEmacs dependencies \n")
+      (insert "-----------------------\n")
+      (dolist (dep me-deps-executables)
+        (let ((path (executable-find (symbol-name dep))))
+          (insert " ⦿ ")
+          (insert (propertize (symbol-name dep) 'face (list 'bold (if path 'success 'error))))
+          (insert (if path (concat " found at " (propertize path 'face 'shadow)) " not found!"))
+          (insert (propertize (if path " [✓]" " [❌]") 'face (list 'bold (if path 'success 'error)))))
+        (insert "\n"))))
+  (switch-to-buffer "*minemacs-dependencies*"))
