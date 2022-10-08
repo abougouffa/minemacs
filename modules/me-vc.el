@@ -2,7 +2,6 @@
 
 (use-package magit
   :straight t
-  :after minemacs-loaded
   :general
   (me-map
     "gg" '(magit-status :which-key "Status")
@@ -16,7 +15,10 @@
 
 (use-package forge
   :straight t
-  :defer t
+  :after magit
+  :init
+  ;; Keybindings will be overriten by evil-collection
+  (setq forge-add-default-bindings nil)
   :config
   (setq forge-database-file (expand-file-name "forge/database.sqlite" minemacs-var-dir)))
 
@@ -40,9 +42,11 @@
   :general
   (me-map
     "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
+  :custom
+  (diff-hl-draw-borders nil)
   :config
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh))
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 
 (use-package git-timemachine
@@ -51,8 +55,8 @@
   :general
   (me-map
     "gt" '(git-timemachine-toggle :which-key "Time machine"))
-  :config
-  (setq git-timemachine-show-minibuffer-details t))
+  :custom
+  (git-timemachine-show-minibuffer-details t))
 
 
 (use-package git-commit
