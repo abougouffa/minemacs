@@ -12,6 +12,12 @@
        org notes email docs spell
        files tools biblio daemon rss ros eaf math))
 
+;; The modules.el file can override minemacs-modules and minemacs-core-modules
+(let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
+  (when (file-exists-p mods)
+    (me-log! "Loading modules file from \"%s\"" mods)
+    (load mods nil (not init-file-debug))))
+
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
   (interactive)
