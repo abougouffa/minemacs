@@ -9,8 +9,9 @@
   :config
   ;; Granular diff-highlights for /all/ hunks (disable if it causes performance issues)
   (setq magit-diff-refine-hunk t
-        magit-revision-show-gravatars ;; Show gravatars
-        '("^Author:     " . "^Commit:     ")))
+        magit-save-repository-buffers nil
+        magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1 ;; Show in new window
+        magit-revision-show-gravatars t))
 
 
 (use-package forge
@@ -66,15 +67,15 @@
   ;; See https://chris.beams.io/posts/git-commit/
   (setq git-commit-summary-max-length 50
         git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
-  (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
+  (add-hook 'git-commit-mode-hook (lambda () (setq-local fill-column 72)))
   (add-hook
    'git-commit-setup-hook
-   (defun +git-commit-start-in-insert-state-maybe-h ()
-     "Start git-commit-mode in insert state if in a blank commit message,
-otherwise in default state."
+   ;; Enter evil-insert-state for new commits
+   (lambda ()
      (when (and (bound-and-true-p evil-mode)
                 (not (evil-emacs-state-p))
-                (bobp) (eolp))
+                (bobp)
+                (eolp))
        (evil-insert-state))))
   (global-git-commit-mode))
 
