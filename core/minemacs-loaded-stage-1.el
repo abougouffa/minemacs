@@ -4,12 +4,12 @@
 ;;; Used to synchronize loading some other stuff after loading Emacs
 
 ;; Maybe useful
-(setq minemacs-loaded t)
+(setq minemacs-loaded-stage-1 t)
 
 (run-at-time
  (* 2 60) ;; after 2 min
  nil
  (lambda ()
-   (require 'minemacs-loaded-stage-1)))
+   (require 'minemacs-loaded-stage-2)))
 
-(provide 'minemacs-loaded)
+(provide 'minemacs-loaded-stage-1)

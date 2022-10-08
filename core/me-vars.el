@@ -43,6 +43,12 @@
 (defvar minemacs-loaded nil
   "MinEmacs has been loaded.")
 
+(defvar minemacs-loaded-stage-1 nil
+  "MinEmacs has been loaded.")
+
+(defvar minemacs-loaded-stage-2 nil
+  "MinEmacs has been loaded.")
+
 (defconst me-default-fonts
   '(:font-family "DejaVu Sans Mono"
                  :font-size 15
