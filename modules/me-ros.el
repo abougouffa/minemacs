@@ -43,6 +43,11 @@
   :straight t
   :defer t)
 
+(when (< emacs-major-version 29)
+  (use-package docker-tramp
+    :straight t
+    :defer t))
+
 
 ;; ROS package
 (use-package ros
