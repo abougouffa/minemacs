@@ -4,9 +4,6 @@
 
 (defvar minemacs-config-dir
   (or (getenv "MINEMACS_DIR")
-      ;; Temporary use this
-      (when (file-directory-p user-emacs-directory)
-        user-emacs-directory)
       (expand-file-name "~/.minemacs.d/")))
 
 (unless (file-exists-p minemacs-config-dir)
