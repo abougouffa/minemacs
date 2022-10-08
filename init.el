@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defvar minemacs-core-modules
-  '(defaults bootstrap keybindings evil completion gc splash))
+  '(defaults bootstrap core-ui keybindings evil completion gc splash))
 
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
@@ -15,6 +15,8 @@
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
   (interactive)
+  ;; Set fonts early
+  (run-at-time nil nil (lambda () (me-set-fonts)))
   ;; Core modules
   (unless without-core
     (dolist (module minemacs-core-modules)
