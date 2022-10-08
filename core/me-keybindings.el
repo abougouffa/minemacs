@@ -33,13 +33,6 @@
   (which-key-mode)
   (which-key-setup-minibuffer))
 
-(use-package hydra
-  :straight t
-  :defer t)
-
-(use-package use-package-hydra
-  :after hydra
-  :straight t)
 
 ;;; General.el
 (use-package general
@@ -69,6 +62,7 @@
     ":"   '(project-find-file :which-key "Find file in project")
     "X"   '(org-capture :which-key "Org capture")
     "."   '(find-file :which-key "Find file")
+    "u"   '(universal-argument :which-key "Universal arg")
 
     ;; Quit/Session
     "q"   '(nil :which-key "quit/session")
@@ -172,6 +166,16 @@
     "psn" '(fileloop-continue :which-key "Next match")
     "psr" #'project-query-replace-regexp
     "psf" #'project-find-regexp))
+
+
+(use-package hydra
+  :straight t
+  :defer t)
+
+
+(use-package use-package-hydra
+  :after hydra
+  :straight t)
 
 
 (provide 'me-keybindings)

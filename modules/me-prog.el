@@ -141,7 +141,7 @@
   :straight t
   :general
   (me-map
-    "tf" '(flymake-mode :which-key "Toggle flymake-mode")))
+    "tf" #'flymake-mode))
 
 
 (use-package plantuml-mode

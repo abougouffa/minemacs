@@ -64,7 +64,6 @@
   (global-tempel-abbrev-mode))
 
 
-
 (use-package unicode-fonts
   :straight t
   :after minemacs-loaded
