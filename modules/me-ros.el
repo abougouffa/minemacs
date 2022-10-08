@@ -31,6 +31,14 @@
 
 
 ;; Needed by ros.el
+(use-package kv
+  :straight t
+  :defer t)
+
+(use-package string-inflection
+  :straight t
+  :defer t)
+
 (use-package with-shell-interpreter
   :straight t
   :defer t)
