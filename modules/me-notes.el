@@ -7,12 +7,12 @@
 
 (use-package org-roam
   :straight t
-  :after org
   :general
   (me-map
-    "nf" '(org-capture :which-key "Org-Roam find node")
-    "nr" '(org-capture :which-key "Org-Roam find node")
-    "nR" '(org-capture :which-key "Org-Roam find node"))
+    "nf" '(org-roam-node-find :which-key "Org-Roam find node")
+    "nr" '(org-roam-ref-find :which-key "Org-Roam find ref")
+    "ni" '(org-roam-ref-find :which-key "Org-Roam insert node")
+    "nR" '(org-roam-node-random :which-key "Org-Roam random node"))
   :commands (org-roam
              org-roam-ref-find
              org-roam-node-find
@@ -24,7 +24,6 @@
 (use-package org-roam-ui
   :straight t
   :commands (org-roam-ui-open org-roam-ui-sync-mode)
-  :after org-roam
   :general
   (me-map
     "nR" '(org-roam-ui-open :which-key "Org-Roam UI"))

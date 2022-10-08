@@ -56,6 +56,7 @@
             (car seq) (cdr seq)))
 
 ;; (me-str-split "foo, 10, bar" ", ") ;; ==> ("foo" "10" "bar")
+;; Use built-in split-string instead!
 ;;;###autoload
 (defun me-str-split (str sep)
   (let ((s (string-search sep str)))

@@ -4,7 +4,7 @@
 (use-package dirvish
   :straight t
   :after minemacs-loaded
-  :general
+  :config
   (me-map
     ;; Open
     "o-"  '(dirvish :which-key "Dirvish")
@@ -14,7 +14,6 @@
     "sd"  '(dirvish-fd :which-key "Dirvish fd"))
   (me-map-key :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit)
-  :config
   (require 'dirvish-yank)
   (require 'dirvish-icons)
   (require 'dirvish-emerge)
