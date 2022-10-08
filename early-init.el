@@ -38,7 +38,7 @@
    (require 'minemacs-loaded)
    ;; Run hooks
    (when (boundp 'minemacs-after-startup-hook)
-     (run-hooks minemacs-after-startup-hook))))
+     (run-hooks 'minemacs-after-startup-hook))))
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (expand-file-name "custom.el" minemacs-config-dir))
