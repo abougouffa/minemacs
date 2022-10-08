@@ -12,11 +12,11 @@
 (autoload 'me-log! "autoloads/me-core" "\
 Log MSG and VARS using `message' when `init-file-debug' is non-nil.
 
-(fn MSG &rest VARS)")
+(fn MSG &rest VARS)" nil t)
 (autoload 'me-info! "autoloads/me-core" "\
 Log info MSG and VARS using `message'.
 
-(fn MSG &rest VARS)")
+(fn MSG &rest VARS)" nil t)
 (autoload 'me-reset-sym "autoloads/me-core" "\
 Reset SYM to its standard value.
 
@@ -104,10 +104,6 @@ Move current buffer's file to NEW-PATH.
 If FORCE-P, overwrite the destination file if it exists, without confirmation.
 
 (fn NEW-PATH &optional FORCE-P)" t)
-(autoload 'me--sudo-file-path "autoloads/me-io" "\
-
-
-(fn FILE)")
 (autoload 'me-sudo-find-file "autoloads/me-io" "\
 Open FILE as root.
 
@@ -120,6 +116,7 @@ Save this file as root." t)
 Clean file name.
 
 (fn FILENAME &optional CONV-DOWNCASE)")
+(register-definition-prefixes "autoloads/me-io" '("me--sudo-file-path"))
 
 
 ;;; Generated autoloads from autoloads/me-messages.el
