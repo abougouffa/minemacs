@@ -3,6 +3,7 @@ private/
 var/
 eln-cache/
 custom.el
+modules.el
 .directory
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs
