@@ -20,3 +20,13 @@ It implements a command line interface, a library with extra features,
 configuration modules gluing a bunch of packages in an opinionated way, CI
 commands, and recently a profile manager! Which adds extra complexity at each
 layer.
+
+** Install
+Open a shell and run:
+
+#+begin_src shell
+git clone https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
+#+end_src
+
+This will clone the repo, and launches Emacs, which, in the first run, will
+install the required packages.
