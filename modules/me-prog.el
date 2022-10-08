@@ -137,31 +137,6 @@
   :hook (cmake-mode . cmake-font-lock-activate))
 
 
-(use-package rainbow-delimiters
-  :straight t
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-
-(use-package highlight-numbers
-  :straight t
-  :hook (prog-mode . highlight-numbers-mode))
-
-
-(use-package smartparens
-  :straight t
-  :hook (prog-mode . smartparens-mode)
-  :hook (text-mode . smartparens-mode)
-  :config
-
-  (when nil
-    (with-eval-after-load 'evil-collection
-      ;; Make evil-mc cooperate with smartparens better
-      (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
-        (unless (memq (car sp--mc/cursor-specific-vars) vars)
-          (setcdr (assq :default evil-mc-cursor-variables)
-                  (append vars sp--mc/cursor-specific-vars)))))))
-
-
 (use-package flymake
   :straight t
   :general
