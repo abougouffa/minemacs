@@ -1,16 +1,16 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun me-log! (msg &rest vars)
+(defmacro me-log! (msg &rest vars)
   "Log MSG and VARS using `message' when `init-file-debug' is non-nil."
-  (when init-file-debug
-    (apply #'message (cons (concat "[MinEmacs] " msg) vars))))
+  `(when init-file-debug
+     (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;;;###autoload
-(defun me-info! (msg &rest vars)
+(defmacro me-info! (msg &rest vars)
   "Log info MSG and VARS using `message'."
-  (let ((inhibit-message))
-    (apply #'message (cons (concat "[MinEmacs] " msg) vars))))
+  `(let ((inhibit-message))
+     (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
