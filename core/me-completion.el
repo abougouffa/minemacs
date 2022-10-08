@@ -16,27 +16,22 @@
 (use-package corfu
   :straight t
   :after minemacs-loaded
+  :custom
+  (corfu-auto t) ; Enable auto completion
+  (corfu-cycle t) ; Allows cycling through candidates
+  (corfu-min-width 25)
+  (corfu-auto-delay 0.2)
+  (corfu-echo-documentation nil)
   :config
-  ;; Setup corfu for popup like completion
-  (setq corfu-cycle t ; Allows cycling through candidates
-        corfu-auto t ; Enable auto completion
-        corfu-auto-prefix 2 ; Complete with less prefix keys
-        corfu-auto-delay 0.0 ; No delay for completion
-        corfu-min-width 25
-        corfu-count 10
-        corfu-scroll-margin 4
-        corfu-preselect-first t
-        corfu-echo-documentation 0.25) ; Echo docs for current completion option
+  (with-eval-after-load 'evil
+    (define-key corfu-map (kbd "C-j") 'corfu-next)
+    (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
   (defun +corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
       (setq-local corfu-auto nil) ;; Enable/disable auto completion
       (corfu-mode 1)))
-
-  (with-eval-after-load 'evil
-    (define-key corfu-map (kbd "C-j") 'corfu-next)
-    (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
   (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer)
   (global-corfu-mode 1))
@@ -58,10 +53,11 @@
   :straight t
   :after corfu
   :custom
+  (kind-icon-default-style ;; Fix the scaling/height
+   '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
   (kind-icon-use-icons t)
   (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
-  (kind-icon-blend-background nil)  ; Use midpoint color between foreground and background colors ("blended")?
-  (kind-icon-blend-frac 0.08)
+  (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)) ; Enable `kind-icon'
 
