@@ -87,7 +87,7 @@
   :config
   (require 'mixed-pitch)
 
-  (setq writeroom-width 80
+  (setq writeroom-width 0.5
         writeroom-mode-line t
         writeroom-global-effects nil
         writeroom-maximize-window nil
@@ -111,7 +111,7 @@
   (add-hook
    'writeroom-mode-enable-hook
    (lambda ()
-     (when (and (derived-mode-p '(markdown-mode org-mode))
+     (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
                 (bound-and-true-p display-line-numbers-mode))
        (setq-local +line-num--was-activate-p display-line-numbers-type)
        (display-line-numbers-mode -1))))
@@ -119,7 +119,7 @@
   (add-hook
    'writeroom-mode-disable-hook
    (lambda ()
-     (when (and (derived-mode-p 'org-mode)
+     (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
                 (bound-and-true-p +line-num--was-activate-p))
        (display-line-numbers-mode +line-num--was-activate-p)))))
 
