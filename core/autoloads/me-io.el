@@ -74,7 +74,6 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     ;; (doom-files--update-refs old-path new-path)
     (message "File moved to %S" (abbreviate-file-name new-path))))
 
-;;;###autoload
 (defun me--sudo-file-path (file)
   (let ((host (or (file-remote-p file 'host) "localhost")))
     (concat "/" (when (file-remote-p file)
@@ -97,29 +96,34 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 (defun me-sudo-this-file ()
   "Open the current file as root."
   (interactive)
-  (find-file
-   (me--sudo-file-path
-    (or buffer-file-name
-        (when (or (derived-mode-p 'dired-mode)
-                  (derived-mode-p 'wdired-mode))
-          default-directory)))))
+  (if-let ((this-file (or buffer-file-name
+                          (when (or (derived-mode-p 'dired-mode)
+                                    (derived-mode-p 'wdired-mode))
+                            default-directory))))
+      (find-file (me--sudo-file-path this-file))
+    (user-error "Current buffer not bound to a file")))
+
 
 ;;;###autoload
 (defun me-sudo-save-buffer ()
   "Save this file as root."
   (interactive)
-  (let ((file (me--sudo-file-path buffer-file-name)))
-    (if-let (buffer (find-file-noselect file))
-        (let ((origin (current-buffer)))
-          (copy-to-buffer buffer (point-min) (point-max))
-          (unwind-protect
-              (with-current-buffer buffer
-                (save-buffer))
-            (unless (eq origin buffer)
-              (kill-buffer buffer))
-            (with-current-buffer origin
-              (revert-buffer t t))))
-      (user-error "Unable to open %S" file))))
+  (if buffer-file-name
+      (if-let ((file (me--sudo-file-path buffer-file-name))
+               (buffer (find-file-noselect file))
+               (origin (current-buffer)))
+          (progn
+            (copy-to-buffer buffer (point-min) (point-max))
+            (unwind-protect
+                (with-current-buffer buffer
+                  (save-buffer))
+              (unless (eq origin buffer)
+                (kill-buffer buffer))
+              (with-current-buffer origin
+                (revert-buffer t t))))
+        (user-error "Unable to open %S" file))
+    (user-error "Current buffer not bound to a file")))
+
 
 ;;;###autoload
 (defun me-clean-file-name (filename &optional conv-downcase)
