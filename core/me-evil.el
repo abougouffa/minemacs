@@ -11,10 +11,13 @@
         evil-want-Y-yank-to-eol t
         evil-split-window-below t
         evil-vsplit-window-right t
+        evil-kill-on-visual-paste nil
         evil-respect-visual-line-mode t)
   :config
+  ;; Better but may cause problems with org-fold
+  ;; https://github.com/emacs-evil/evil/issues/1630
+  (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-mode 1)
-
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
     (dolist (fn '(evil-window-split evil-window-vsplit))
