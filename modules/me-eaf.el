@@ -90,9 +90,9 @@
           eaf-browser-remember-history t
           eaf-browser-ignore-history-list '("google.com/search" "file://")
           eaf-browser-text-selection-color "auto"
-          eaf-browser-translate-language +my/lang-main
+          eaf-browser-translate-language "en"
           eaf-browser-blank-page-url "https://www.duckduckgo.com"
-          eaf-browser-chrome-history-file "~/.config/google-chrome/Default/History"
+          eaf-browser-chrome-history-file (expand-file-name "eaf/browser/Default/History" minemacs-var-dir)
           eaf-browser-default-search-engine "duckduckgo"
           eaf-browser-continue-where-left-off t
           eaf-browser-aria2-auto-file-renaming t)
@@ -140,12 +140,6 @@
   (when (+eaf-app-p 'org)
     (require 'eaf-org))
 
-  ;; Mail
-  ;; BUG The `eaf-open-mail-as-html' is not working,
-  ;;     I use `+eaf-open-mail-as-html' instead
-  (when (+eaf-app-p 'mail)
-    (require 'eaf-mail))
-
   ;; Org Previewer
   (when (+eaf-app-p 'org-previewer)
     (setq eaf-org-dark-mode "follow")
@@ -166,7 +160,7 @@
   ;; Mindmap
   (when (+eaf-app-p 'mindmap)
     (setq eaf-mindmap-dark-mode "follow"
-          eaf-mindmap-save-path "~/Dropbox/Mindmap")
+          eaf-mindmap-save-path "~/Documents/")
     (require 'eaf-mindmap))
 
   ;; File Sender
