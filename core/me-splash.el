@@ -84,8 +84,9 @@
           (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
           (local-set-key (kbd "<mouse-2>") 'operate-this-button)
           (display-buffer-same-window splash-buffer nil)
-          (when evil-mode
-            (evil-local-mode -1))))))
+
+          ;; Exit splash after 5s
+          (run-at-time 5 nil #'me-splash-screen-kill)))))
 
 (defun me-splash-screen-kill ()
   "Kill the splash screen buffer (immediately)."
