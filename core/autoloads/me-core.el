@@ -4,13 +4,13 @@
 (defmacro me-log! (msg &rest vars)
   "Log MSG and VARS using `message' when `init-file-debug' is non-nil."
   `(when init-file-debug
-     (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
+    (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;;;###autoload
 (defmacro me-info! (msg &rest vars)
   "Log info MSG and VARS using `message'."
-  `(let ((inhibit-message))
-     (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
+  `(let ((inhibit-message t))
+    (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
@@ -22,7 +22,7 @@
 (defmacro me-with-shutup! (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
   `(let ((message-log-max nil))
-     (with-temp-message (or (current-message) "") ,@body)))
+    (with-temp-message (or (current-message) "") ,@body)))
 
 ;;;###autoload
 (defmacro me-reset-var! (var)
@@ -41,20 +41,20 @@
   (custom-set-faces
    `(default
      ((t (:font ,(format "%s %d"
-                         (or (plist-get me-fonts :font-family)
-                             (plist-get me-default-fonts :font-family))
-                         (or (plist-get me-fonts :font-size)
-                             (plist-get me-default-fonts :font-size)))))))
+                  (or (plist-get me-fonts :font-family)
+                   (plist-get me-default-fonts :font-family))
+                  (or (plist-get me-fonts :font-size)
+                   (plist-get me-default-fonts :font-size)))))))
    `(fixed-pitch
      ((t (:inherit (default)))))
    `(fixed-pitch-serif
      ((t (:inherit (default)))))
    `(variable-pitch
      ((t (:font ,(format "%s %d"
-                         (or (plist-get me-fonts :variable-pitch-font-family)
-                             (plist-get me-default-fonts :variable-pitch-font-family))
-                         (or (plist-get me-fonts :variable-pitch-font-size)
-                             (plist-get me-default-fonts :variable-pitch-font-size)))))))))
+                  (or (plist-get me-fonts :variable-pitch-font-family)
+                   (plist-get me-default-fonts :variable-pitch-font-family))
+                  (or (plist-get me-fonts :variable-pitch-font-size)
+                   (plist-get me-default-fonts :variable-pitch-font-size)))))))))
 
 ;;;###autoload
 (defun me-plist-keys (plist)
