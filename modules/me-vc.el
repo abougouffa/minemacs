@@ -6,12 +6,12 @@
   (me-map
     "gg" '(magit-status :which-key "Status")
     "gC" '(magit-clone :which-key "Clone repo"))
-  :config
-  ;; Granular diff-highlights for /all/ hunks (disable if it causes performance issues)
-  (setq magit-diff-refine-hunk t
-        magit-save-repository-buffers nil
-        magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1 ;; Show in new window
-        magit-revision-show-gravatars t))
+  :custom
+  (magit-diff-refine-hunk t)
+  (magit-revision-show-gravatars t)
+  (magit-save-repository-buffers nil)
+  ;; Show in new window
+  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1))
 
 
 (use-package forge
