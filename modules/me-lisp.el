@@ -130,7 +130,7 @@
 
 (use-package elisp-demos
   :straight t
-  :after elisp-mode
+  :after elisp-mode minemacs-loaded
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))

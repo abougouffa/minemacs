@@ -5,8 +5,7 @@
   :straight t
   :when (executable-find "aspell")
   :general
-  (me-map
-    "ts" #'spell-fu-mode)
+  (me-map "ts" #'spell-fu-mode)
   :hook (text-mode . spell-fu-mode)
   :init
   (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-var-dir))
@@ -79,6 +78,7 @@
 
 (use-package eglot-ltex
   :straight (:host github :repo "emacs-languagetool/eglot-ltex")
+  :after eglot
   :init
   ;; Add this to .dir-locals.el
   ;; ((nil (eglot-workspace-configuration

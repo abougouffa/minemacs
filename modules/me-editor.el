@@ -20,6 +20,7 @@
 
 (use-package undo-fu
   :straight t
+  :after minemacs-loaded
   :config
   (with-eval-after-load 'evil
     (evil-set-undo-system 'undo-fu)))
@@ -61,6 +62,7 @@
   ;; Optionally make the Tempel templates available to Abbrev,
   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
   (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
+  :config
   (global-tempel-abbrev-mode))
 
 

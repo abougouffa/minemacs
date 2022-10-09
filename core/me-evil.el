@@ -2,6 +2,7 @@
 
 (use-package evil
   :straight t
+  :after minemacs-loaded
   :init
   (setq evil-want-C-i-jump nil
         evil-want-C-h-delete t ;; C-h is backspace in insert state
