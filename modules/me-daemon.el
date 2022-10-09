@@ -4,7 +4,7 @@
 (defun me-daemon--start ()
   (with-eval-after-load 'minemacs-loaded-stage-2
     (unless (daemonp)
-      (let ((inhibit-message nil))
+      (let ((inhibit-message t))
         (me-info! "Starting Emacs daemon in background.")
         (server-start)))))
 
@@ -18,7 +18,7 @@
        (* 60 3) ;; Check each 3m
        (lambda ()
          (unless (mu4e-running-p)
-           (let ((inhibit-message nil))
+           (let ((inhibit-message t))
              (mu4e--start)
              (me-info! "Started `mu4e' in background."))))))
 
@@ -27,7 +27,10 @@
       (run-at-time
        (* 60 5)
        (* 60 60 3)
-       #'elfeed-update)))) ;; Check every 2h
+       (lambda ()
+         (let ((inhibit-message t))
+           (me-info! "Updating RSS feed.")
+           (elfeed-update))))))) ;; Check every 2h
 
 
 ;; At daemon startup
