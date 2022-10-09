@@ -10,7 +10,7 @@
   :init
   (setq parinfer-rust-library-directory (expand-file-name "parinfer-rust" minemacs-var-dir)
         parinfer-rust-auto-download t
-        parinfer-rust-library (expand-file-name 
+        parinfer-rust-library (expand-file-name
                                (cond (sys/linux "parinfer-rust-linux.so")
                                      (sys/bsd "libparinfer_rust.so")
                                      (sys/win "parinfer-rust-windows.dll")
@@ -33,10 +33,6 @@
   (me-map-local :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :which-key "Expand macro")))
 
-;; Scheme
-(use-package geiser
-  :straight t
-  :defer t)
 
 (use-package macrostep-geiser
   :straight t
@@ -47,44 +43,80 @@
   :config
   (macrostep-geiser-setup))
 
+
+;; Scheme
+(use-package geiser
+  :straight t
+  :defer t)
+
+
 (use-package geiser-chez
   :straight t
   :defer t)
+
 
 (use-package geiser-guile
   :straight t
   :defer t)
 
+
 (use-package geiser-mit
   :straight t
   :defer t)
+
 
 (use-package geiser-racket
   :straight t
   :defer t)
 
+
 (use-package racket-mode
   :straight t
   :defer t)
 
+
+;; TODO: Add elisp-def
 (use-package elisp-mode
   :hook (emacs-lisp-mode . hs-minor-mode)
-  :general
+  :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
+  :config
+  (me-log! "Loaded elisp-mode")
+  (require 'me-elisp-extras)
+
   (me-map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "d"  '(nil :which-key "debug")
-    "df" 'edebug-defun
-    "dF" 'edebug-all-forms
-    "dd" 'edebug-all-defs
-    "e"  '(nil :which-key "eval")
-    "eb" 'eval-buffer
-    "ed" 'eval-defun
-    "ee" 'eval-last-sexp
-    "er" 'eval-region
-    "el" 'load-library
-    "g"  '(nil :which-key "goto")
-    "gf" 'find-function
-    "gv" 'find-variable
-    "gl" 'find-library))
+    "d"   '(nil :which-key "edebug")
+    "df"  'edebug-defun
+    "dF"  'edebug-all-forms
+    "dd"  'edebug-all-defs
+    "dr"  'edebug-remove-instrumentation
+    "do"  'edebug-on-entry
+    "dO"  'edebug-cancel-on-entry
+    "db"  '(nil :which-key "breakpoints")
+    "dbb" 'edebug-set-breakpoint
+    "dbr" 'edebug-unset-breakpoint
+    "dbn" 'edebug-next-breakpoint
+    "e"   '(nil :which-key "eval")
+    "eb"  'eval-buffer
+    "ed"  'eval-defun
+    "ee"  'eval-last-sexp
+    "er"  'eval-region
+    "el"  'load-library
+    "g"   '(nil :which-key "goto/find")
+    "gf"  'find-function-at-point
+    "gR"  'find-function
+    "gv"  'find-variable-at-point
+    "gV"  'find-variable
+    "gL"  'find-library)
+
+  (me-map-local :keymaps '(edebug-mode-map)
+    "e"   '(nil :which-key "eval")
+    "ee"  'edebug-eval-last-sexp
+    "eE"  'edebug-eval-expression
+    "et"  'edebug-eval-top-level-form)
+
+  (me-elisp-indent-setup)
+  (me-elisp-highlighting-setup))
+
 
 (use-package erefactor
   :straight t
@@ -95,11 +127,18 @@
     "rr" '(erefactor-rename-symbol-in-buffer :which-key "Rename symbol in buffer")
     "rR" '(erefactor-rename-symbol-in-package :which-key "Rename symbol in package")))
 
+
 (use-package elisp-demos
   :straight t
-  :defer t
+  :after elisp-mode
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
+
+
+(use-package helpful
+  :straight t
+  :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point))
+
 
 (provide 'me-lisp)
