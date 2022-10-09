@@ -60,7 +60,7 @@
   '(grep find tar zip unzip zstd bzip2 gzip file ssh
     fd rg curl mu msmtp mbsync git mpv valgrind
     python gcc gdb cmake make clang-format
-    cargo clangd ccls maxima octave)
+    cargo clangd ccls maxima octave fortune)
   "A list of programs I use within Emacs.")
 
 

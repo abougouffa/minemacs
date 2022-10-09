@@ -28,7 +28,12 @@
       large-file-warning-threshold (* 50 1024 1024) ;; change to 50 MiB
       use-short-answers t ;; y or n istead of yes or no
       confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
-      initial-scratch-message ""
+      initial-scratch-message
+      (if (executable-find "fortune")
+          (string-join (mapcar (lambda (l) (concat ";; " l))
+                               (string-lines (shell-command-to-string "fortune")))
+                       "\n")
+        ";; MinEmacs -- start here!")
       frame-resize-pixelwise t
       delete-by-moving-to-trash t)
 
