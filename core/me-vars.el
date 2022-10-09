@@ -2,35 +2,35 @@
 
 ;;; MinEmacs directories
 
-(defvar minemacs-config-dir
+(defconst minemacs-config-dir
   (or (getenv "MINEMACS_DIR")
       (expand-file-name "~/.minemacs.d/")))
 
-(defvar minemacs-verbose (not (null (getenv "MINEMACS_VERBOSE"))))
+(defconst minemacs-verbose (not (null (getenv "MINEMACS_VERBOSE"))))
 
 (unless (file-exists-p minemacs-config-dir)
   (mkdir minemacs-config-dir t))
 
-(defvar minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
-(defvar minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
-(defvar minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
-(defvar minemacs-autoloads-dirs (list (expand-file-name "core/autoloads" user-emacs-directory)
-                                      (expand-file-name "modules/autoloads" user-emacs-directory)))
-(defvar minemacs-autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory))
+(defconst minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
+(defconst minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
+(defconst minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
+(defconst minemacs-autoloads-dirs (list (expand-file-name "core/autoloads" user-emacs-directory)
+                                        (expand-file-name "modules/autoloads" user-emacs-directory)))
+(defconst minemacs-autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory))
 
-(defconst sys/linux (memq system-type '(gnu gnu/linux)))
-(defconst sys/bsd (memq system-type '(darwin berkeley-unix)))
-(defconst sys/win (memq system-type '(cygwin windwos-nt ms-dos)))
-(defconst sys/mac (eq system-type 'darwin))
+(defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
+(defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))
+(defconst os/win (not (null (memq system-type '(cygwin windwos-nt ms-dos)))))
+(defconst os/mac (eq system-type 'darwin))
 
 (let ((feats (split-string system-configuration-features)))
-  (defconst feat/gpm (member "GPM" feats))
-  (defconst feat/cairo (member "CAIRO" feats))
-  (defconst feat/lucid (member "LUCID" feats))
-  (defconst feat/modules (member "MODULES" feats))
-  (defconst feat/harfbuzz (member "HARFBUZZ" feats))
-  (defconst feat/xwidgets (member "XWIDGETS" feats))
-  (defconst feat/nativecomp (member "NATIVE_COMP" feats)))
+  (defconst feat/gpm (not (null (member "GPM" feats))))
+  (defconst feat/cairo (not (null (member "CAIRO" feats))))
+  (defconst feat/lucid (not (null (member "LUCID" feats))))
+  (defconst feat/modules (not (null (member "MODULES" feats))))
+  (defconst feat/harfbuzz (not (null (member "HARFBUZZ" feats))))
+  (defconst feat/xwidgets (not (null (member "XWIDGETS" feats))))
+  (defconst feat/nativecomp (not (null (member "NATIVE_COMP" feats)))))
 
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs."

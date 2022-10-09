@@ -11,10 +11,10 @@
   (setq parinfer-rust-library-directory (expand-file-name "parinfer-rust" minemacs-var-dir)
         parinfer-rust-auto-download t
         parinfer-rust-library (expand-file-name
-                               (cond (sys/linux "parinfer-rust-linux.so")
-                                     (sys/bsd "libparinfer_rust.so")
-                                     (sys/win "parinfer-rust-windows.dll")
-                                     (sys/mac "parinfer-rust-darwin.so"))
+                               (cond (os/linux "parinfer-rust-linux.so")
+                                     (os/bsd "libparinfer_rust.so")
+                                     (os/win "parinfer-rust-windows.dll")
+                                     (os/mac "parinfer-rust-darwin.so"))
                                parinfer-rust-library-directory))
   :hook ((emacs-lisp-mode
           clojure-mode

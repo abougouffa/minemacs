@@ -107,7 +107,7 @@
   (mu4e-alert-set-default-style 'libnotify)
 
   (defvar +mu4e-alert-bell-cmd
-    (when (or sys/linux sys/bsd)
+    (when (or os/linux os/bsd)
       '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga")))
 
   (defun +mu4e-name-or-email (msg)
