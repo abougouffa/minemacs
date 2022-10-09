@@ -25,12 +25,11 @@
 
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore
-      large-file-warning-threshold 52428800 ;; change to 50 MiB
+      large-file-warning-threshold (* 50 1024 1024) ;; change to 50 MiB
       use-short-answers t ;; y or n istead of yes or no
       confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
       initial-scratch-message ""
       frame-resize-pixelwise t
-      trash-directory nil ;; Use FreeDesktop.org trashcan (default)
       delete-by-moving-to-trash t)
 
 (setq auth-sources '("~/.authinfo.gpg") ;; Defaults to GPG
