@@ -6,12 +6,6 @@
 (defvar +mu4e-auto-bcc-address nil
   "BCC address.")
 
-;; I like to always BCC myself
-(defun +mu4e--auto-bcc ()
-  "Add BCC address from `+mu4e-auto-bcc-address'."
-  (when +mu4e-auto-bcc-address
-    (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address)))))
-
 ;; Some of these functions are adapted from Doom Emacs
 
 (defun +mu4e-view-select-attachment ()
@@ -132,7 +126,14 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
     context))
 
 
-(defun +mu4e-set-from-address-h ()
+;; I like to always BCC myself
+(defun +mu4e--auto-bcc-h ()
+  "Add BCC address from `+mu4e-auto-bcc-address'."
+  (when +mu4e-auto-bcc-address
+    (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address)))))
+
+
+(defun +mu4e--set-from-address-h ()
   "If the user defines multiple `+mu4e-account-aliases' for email aliases
 within a context, set `user-mail-address' to an alias found in the 'To' or
 'From' headers of the parent message if present, or prompt the user for a
@@ -152,7 +153,7 @@ preferred alias"
 
 
 ;; Detect empty subjects, and give users an opotunity to fill something in
-(defun +mu4e-check-for-subject ()
+(defun +mu4e--check-for-subject-h ()
   "Check that a subject is present, and prompt for a subject if not."
   (save-excursion
     (goto-char (point-min))
@@ -178,8 +179,10 @@ preferred alias"
 
 
 ;;;###autoload
-(defun +mu4e-extras-setup ()
-  (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc)
+(defun me-mu4e-extras-setup ()
+  (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)
+  (add-hook 'mu4e-compose-pre-hook '+mu4e--set-from-address-h)
+  (add-hook 'message-send-hook #'+mu4e--check-for-subject-h)
 
   ;; Setup keybindings
   (me-map-key :keymaps 'mu4e-view-mode-map

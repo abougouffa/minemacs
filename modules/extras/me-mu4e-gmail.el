@@ -2,7 +2,7 @@
 
 ;; Taken form Doom Emacs
 
-(defvar +mu4e-gmail-accounts nil
+(defcustom +mu4e-gmail-accounts nil
   "Gmail accounts that do not contain \"gmail\" in address and maildir.
 An alist of Gmail addresses of the format \((\"username@domain.com\" . \"account-maildir\"))
 to which Gmail integrations (behind the `+gmail' flag of the `mu4e' module) should be applied.
@@ -19,15 +19,13 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 ;; In my workflow, emails won't be moved at all. Only their flags/labels are
 ;; changed. Se we redefine the trash and refile marks not to do any moving.
 ;; However, the real magic happens in `+mu4e-gmail-fix-flags-h'.
-;;
 ;; Gmail will handle the rest.
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
-(defvar +mu4e--last-invalid-gmail-action 0.0)
 
-;;;###autoload
-(defun +mu4e-gmail-setup ()
+(defvar +mu4e--last-invalid-gmail-action 0.0)
+(defun me-mu4e-gmail-setup ()
   ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior
         (lambda () ;; TODO make use +mu4e-msg-gmail-p

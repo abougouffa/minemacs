@@ -212,4 +212,16 @@ will also be the width of all other printable characters."
   (advice-add #'mu4e--main-action-str :override #'+mu4e--main-action-str-prettier-a))
 
 
+(defun me-mu4e-ui-setup ()
+  (if (display-graphic-p)
+      (me-mu4e--ui-setup)
+    (add-hook
+     'server-after-make-frame-hook
+     (defun +mu4e--ui-setup-once-h ()
+       (when (display-graphic-p)
+         (me-mu4e--ui-setup)
+         (remove-hook 'server-after-make-frame-hook
+                      #'+mu4e--ui-setup-once-h))))))
+
+
 (provide 'me-mu4e-ui)

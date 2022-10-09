@@ -10,13 +10,36 @@
   :when MU4E-P
   :load-path MU4E-LOAD-PATH
   :commands mu4e mu4e-compose-new mu4e--start
-  :general
+  :init
   (me-map "om" '(mu4e :which-key "Mu4e"))
+  :custom
+  (mu4e-confirm-quit nil)
+  (mu4e-search-results-limit 1000)
+  (mu4e-index-cleanup t)
+  (mu4e-attachment-dir (expand-file-name "~/Downloads/mu4e-attachements"))
+  (mu4e-main-hide-personal-addresses t)
+  (mu4e-update-interval (* 3 60)) ;; Every 3 min
+  (mu4e-context-policy 'pick-first) ;; Start with the first context
+  (mu4e-compose-context-policy 'ask) ;; Always ask which context to use when composing a new mail
+  (mu4e-sent-messages-behavior 'sent) ;; Will be overwritten for Gmail accounts
+  (mu4e-get-mail-command "mbsync -a") ;; Use mbsync to get mails
+  (mu4e-index-update-error-warning nil) ;; Do not show warning after update
+  (mu4e-main-hide-personal-addresses t) ;; No need to display a long list of my own addresses!
+  (mu4e-change-filenames-when-moving t)
+  (mu4e-completing-read-function (if (featurep 'vertico) #'completing-read #'ido-completing-read))
+  (sendmail-program (executable-find "msmtp")) ;; Use msmtp to send mails
+  (send-mail-function #'smtpmail-send-it)
+  (message-sendmail-f-is-evil t)
+  (message-sendmail-extra-arguments '("--read-envelope-from"))
+  (message-send-mail-function #'message-send-mail-with-sendmail)
+  (message-sendmail-envelope-from 'obey-mail-envelope-from)
+  (message-mail-user-agent 'mu4e-user-agent)
+  (message-kill-buffer-on-exit t) ;; close after sending
+  (mail-envelope-from 'header)
+  (mail-specify-envelope-from t)
+  (mail-user-agent 'mu4e-user-agent)
+  (read-mail-command 'mu4e)
   :config
-  (require 'me-mu4e-ui)
-  (require 'me-mu4e-gmail)
-  (require 'me-mu4e-extras)
-
   (me-map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
@@ -24,45 +47,13 @@
   (me-map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
 
-  (setq mu4e-confirm-quit nil
-        mu4e-search-results-limit 1000
-        mu4e-index-cleanup t
-        mu4e-attachment-dir (expand-file-name "~/Downloads/mu4e-attachements")
-        mu4e-update-interval (* 3 60) ;; Every 3 min
-        mu4e-context-policy 'pick-first ;; Start with the first context
-        mu4e-compose-context-policy 'ask ;; Always ask which context to use when composing a new mail
-        mu4e-sent-messages-behavior 'sent ;; Will be overwritten for Gmail accounts
-        mu4e-get-mail-command "mbsync -a" ;; Use mbsync to get mails
-        mu4e-index-update-error-warning nil ;; Do not show warning after update
-        mu4e-main-hide-personal-addresses t ;; No need to display a long list of my own addresses!
-        mu4e-change-filenames-when-moving t
-        mu4e-completing-read-function (if (featurep 'vertico) #'completing-read #'ido-completing-read))
+  (require 'me-mu4e-ui)
+  (require 'me-mu4e-gmail)
+  (require 'me-mu4e-extras)
 
-  (setq sendmail-program (executable-find "msmtp") ;; Use msmtp to send mails
-        send-mail-function #'smtpmail-send-it
-        message-sendmail-f-is-evil t
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail
-        message-sendmail-envelope-from 'obey-mail-envelope-from
-        message-mail-user-agent 'mu4e-user-agent
-        message-kill-buffer-on-exit t ;; close after sending
-        mail-envelope-from 'header
-        mail-specify-envelope-from t
-        mail-user-agent 'mu4e-user-agent
-        read-mail-command 'mu4e)
-
-  ;; Setup UI
-  (if (display-graphic-p)
-      (me-mu4e--ui-setup)
-    (add-hook 'server-after-make-frame-hook
-              (defun +mu4e--setup-ui-h ()
-                (when (display-graphic-p)
-                  (me-mu4e--ui-setup)
-                  (remove-hook 'server-after-make-frame-hook
-                               #'+mu4e--setup-ui-h)))))
-
-  (+mu4e-extras-setup) ;; Extra features
-  (+mu4e-gmail-setup)) ;; Gmail specifics
+  (me-mu4e-ui-setup) ;; Setup UI
+  (me-mu4e-extras-setup) ;; Extra features
+  (me-mu4e-gmail-setup)) ;; Gmail specifics
 
 
 (use-package org-msg
