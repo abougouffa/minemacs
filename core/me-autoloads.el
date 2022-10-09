@@ -52,6 +52,10 @@ Return the deserialized object, or nil if the SYM.el file dont exist.
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
 (autoload 'me-check-dependencies "autoloads/me-core" "\
 Check for MinEmacs dependencies." t)
+(autoload 'me-compile-functions "autoloads/me-core" "\
+Queue FNS to be byte/natively-compiled after a brief delay.
+
+(fn &rest FNS)")
 
 
 ;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el
