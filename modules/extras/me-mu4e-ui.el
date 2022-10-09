@@ -159,43 +159,43 @@ will also be the width of all other printable characters."
   (setq mu4e-header-info-custom
         '((:account
            . (:name "Account"
-                    :shortname "Account"
-                    :help "which account/maildir this email belongs to"
-                    :function
-                    (lambda (msg)
-                      (let ((maildir (replace-regexp-in-string
-                                      "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                                      (mu4e-message-field msg :maildir))))
-                        (+mu4e-colorize-str
-                         (replace-regexp-in-string
-                          "^gmail"
-                          (propertize "g" 'face 'bold-italic)
-                          maildir)
-                         '+mu4e-header--maildir-colors
-                         maildir)))))
+              :shortname "Account"
+              :help "which account/maildir this email belongs to"
+              :function
+              (lambda (msg)
+                (let ((maildir (replace-regexp-in-string
+                                "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                                (mu4e-message-field msg :maildir))))
+                 (+mu4e-colorize-str
+                  (replace-regexp-in-string
+                   "^gmail"
+                   (propertize "g" 'face 'bold-italic)
+                   maildir)
+                  '+mu4e-header--maildir-colors
+                  maildir)))))
           (:account-stripe
            . (:name "Account"
-                    :shortname "▐"
-                    :help "Which account/maildir this email belongs to"
-                    :function
-                    (lambda (msg)
-                      (let ((account
-                             (replace-regexp-in-string
-                              "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                              (mu4e-message-field msg :maildir))))
-                        (propertize
-                         (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
-                         'help-echo account)))))
+              :shortname "▐"
+              :help "Which account/maildir this email belongs to"
+              :function
+              (lambda (msg)
+                (let ((account
+                       (replace-regexp-in-string
+                        "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                        (mu4e-message-field msg :maildir))))
+                 (propertize
+                  (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
+                  'help-echo account)))))
           (:recipnum
            . (:name "Number of recipients"
-                    :shortname " ⭷"
-                    :help "Number of recipients for this message"
-                    :function
-                    (lambda (msg)
-                      (propertize (format "%2d"
-                                          (+ (length (mu4e-message-field msg :to))
-                                             (length (mu4e-message-field msg :cc))))
-                                  'face 'mu4e-footer-face))))))
+              :shortname " ⭷"
+              :help "Number of recipients for this message"
+              :function
+              (lambda (msg)
+                (propertize (format "%2d"
+                             (+ (length (mu4e-message-field msg :to))
+                              (length (mu4e-message-field msg :cc))))
+                 'face 'mu4e-footer-face))))))
 
   ;; Evil collection overwrite the jump, search, compose and quit commands
   (with-eval-after-load 'evil-collection

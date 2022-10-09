@@ -67,8 +67,8 @@
   (me-map-local :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
     "d" `(,(me-cmdfy!
             (pcase major-mode
-              ('python-mode (realgud:pdb))
-              ((or 'c-mode 'c++-mode) (realgud:gdb))))
+             ('python-mode (realgud:pdb))
+             ((or 'c-mode 'c++-mode) (realgud:gdb))))
           :which-key "realgud"))
   :commands (realgud:gdb
              realgud:gud
@@ -84,8 +84,8 @@
   :general
   (me-map-local :keymaps '(rust-mode-map)
     "d" `((me-cmdfy! (pcase major-mode
-                       ('python-mode (realgud:pdb))
-                       ((or 'c-mode 'c++-mode) (realgud:gdb))))
+                      ('python-mode (realgud:pdb))
+                      ((or 'c-mode 'c++-mode) (realgud:gdb))))
           :which-key "realgud"))
   :commands (realgud--lldb))
 

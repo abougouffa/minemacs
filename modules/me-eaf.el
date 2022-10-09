@@ -11,14 +11,8 @@
              +eaf-open-mail-as-html)
   :init
   (setq eaf-apps-to-install
-        '(org
-          browser
-          mindmap
-          jupyter
-          org-previewer
-          markdown-previewer
-          file-sender
-          video-player))
+        '(org browser mindmap jupyter org-previewer
+          markdown-previewer file-sender video-player))
 
   (defun +eaf-app-p (app-symbol)
     (memq app-symbol eaf-apps-to-install))
@@ -130,7 +124,7 @@
           eaf-pdf-notify-file-changed t)
     (require 'eaf-pdf-viewer))
 
-  ;; Org
+  ;; RSS
   (when (+eaf-app-p 'rss-reader)
     (setq eaf-rss-reader-split-horizontally nil
           eaf-rss-reader-web-page-other-window t)

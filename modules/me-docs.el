@@ -67,13 +67,13 @@
          'display `((space
                      :align-to
                      (- (+ right right-fringe right-margin)
-                        ,(* (let ((width (doom-modeline--font-width)))
-                              (or (and (= width 1) 1)
-                                  (/ width (frame-char-width) 1.0)))
-                            (string-width
-                             (format-mode-line
-                              (cons ""
-                                    '(:eval (doom-modeline-segment--major-mode))))))))))
+                      ,(* (let ((width (doom-modeline--font-width)))
+                           (or (and (= width 1) 1)
+                            (/ width (frame-char-width) 1.0)))
+                        (string-width
+                         (format-mode-line
+                          (cons ""
+                           '(:eval (doom-modeline-segment--major-mode))))))))))
        (:eval (doom-modeline-segment--major-mode)))))
 
   (add-hook 'nov-mode-hook #'+nov-mode-setup))

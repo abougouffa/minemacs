@@ -50,13 +50,14 @@
                   "${author editor} (${date urldate}) :: ${title}"
                   (citar-get-entry entry-key))))
       (org-roam-capture- :templates
-                         '(("r" "reference" plain
+                         `(("r" "reference" plain
                             "%?"
                             :if-new (file+head "references/${citekey}.org"
-                                               ":properties:
-  :roam_refs: [cite:@${citekey}]
-  :end:
-  #+title: ${title}\n")
+                                     ,(concat
+                                       ":properties:\n"
+                                       "  :roam_refs: [cite:@${citekey}]\n"
+                                       "  :end:\n"
+                                       "  #+title: ${title}\n"))
                             :immediate-finish t
                             :unnarrowed t))
                          :info (list :citekey entry-key)

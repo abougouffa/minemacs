@@ -48,17 +48,17 @@
 
 (defconst me-default-fonts
   '(:font-family "DejaVu Sans Mono"
-                 :font-size 15
-                 :variable-pitch-font-family "DejaVu Sans"
-                 :variable-pitch-font-size 15))
+    :font-size 15
+    :variable-pitch-font-family "DejaVu Sans"
+    :variable-pitch-font-size 15))
 
 (defvar me-fonts nil)
 
 (defvar me-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh
-         fd rg curl mu msmtp mbsync git mpv valgrind
-         python gcc gdb cmake make clang-format
-         cargo clangd ccls maxima octave)
+    fd rg curl mu msmtp mbsync git mpv valgrind
+    python gcc gdb cmake make clang-format
+    cargo clangd ccls maxima octave)
   "A list of programs I use within Emacs.")
 
 
