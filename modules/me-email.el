@@ -13,8 +13,9 @@
   :general
   (me-map "om" '(mu4e :which-key "Mu4e"))
   :config
-  (require 'me-mu4e-extras)
+  (require 'me-mu4e-ui)
   (require 'me-mu4e-gmail)
+  (require 'me-mu4e-extras)
 
   (me-map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
@@ -47,26 +48,25 @@
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-send-mail-function #'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'obey-mail-envelope-from
+        message-mail-user-agent 'mu4e-user-agent
         message-kill-buffer-on-exit t ;; close after sending
         mail-envelope-from 'header
         mail-specify-envelope-from t
         mail-user-agent 'mu4e-user-agent
-        read-mail-command 'mu4e
-        message-mail-user-agent 'mu4e-user-agent)
+        read-mail-command 'mu4e)
 
   ;; Setup UI
-  (require 'me-mu4e-ui)
   (if (display-graphic-p)
       (me-mu4e--ui-setup)
     (add-hook 'server-after-make-frame-hook
-              (defun +mu4e--setup-ui-hook ()
+              (defun +mu4e--setup-ui-h ()
                 (when (display-graphic-p)
                   (me-mu4e--ui-setup)
                   (remove-hook 'server-after-make-frame-hook
-                               #'+mu4e--setup-ui-hook)))))
+                               #'+mu4e--setup-ui-h)))))
 
-  (+mu4e-extras-setup)
-  (+mu4e-gmail-setup))
+  (+mu4e-extras-setup) ;; Extra features
+  (+mu4e-gmail-setup)) ;; Gmail specifics
 
 
 (use-package org-msg

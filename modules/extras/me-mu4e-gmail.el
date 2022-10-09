@@ -24,7 +24,7 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
-(defvar +mu4e--last-invalid-gmail-action 0)
+(defvar +mu4e--last-invalid-gmail-action 0.0)
 
 ;;;###autoload
 (defun +mu4e-gmail-setup ()
@@ -45,7 +45,7 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
                    (if (+mu4e-msg-gmail-p msg)
                        (progn (message "The delete operation is invalid for Gmail accounts. Trashing instead.")
                               (+mu4e--mark-seen docid msg target)
-                              (when (< 2 (- (float-time) +mu4e--last-invalid-gmail-action))
+                              (when (< 2.0 (- (float-time) +mu4e--last-invalid-gmail-action))
                                 (sit-for 1))
                               (setq +mu4e--last-invalid-gmail-action (float-time)))
                      (mu4e--server-remove docid))))
