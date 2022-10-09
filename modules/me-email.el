@@ -24,11 +24,7 @@
   (me-map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
 
-  (setq mu4e-confirm-quit t
-        mu4e-view-use-gnus t
-        mu4e-view-show-images t
-        mu4e-view-show-addresses t
-        mu4e-view-image-max-width 800
+  (setq mu4e-confirm-quit nil
         mu4e-search-results-limit 1000
         mu4e-index-cleanup t
         mu4e-attachment-dir (expand-file-name "~/Downloads/mu4e-attachements")
