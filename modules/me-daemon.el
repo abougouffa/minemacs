@@ -4,11 +4,15 @@
 (defun me-daemon--setup-background-apps ()
   (with-eval-after-load 'minemacs-loaded
     ;; mu4e
-    (when (require 'mu4e nil t)
-      (unless (mu4e-running-p)
-        (let ((inhibit-message t))
-          (mu4e--start)
-          (me-info! "Started `mu4e' in background.")))))
+    (run-at-time
+     1
+     nil
+     (lambda ()
+       (when (require 'mu4e nil t)
+         (unless (mu4e-running-p)
+           (let ((inhibit-message t))
+             (mu4e :background)
+             (me-info! "Started `mu4e' in background.")))))))
 
   (with-eval-after-load 'minemacs-loaded-stage-1
     ;; RSS
@@ -25,7 +29,7 @@
     (unless (daemonp)
       (let ((inhibit-message t))
         (me-info! "Starting Emacs daemon in background.")
-        (server-start)))))
+        (server-start nil t)))))
 
 
 ;; At daemon startup
