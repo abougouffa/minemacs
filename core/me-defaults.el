@@ -121,6 +121,14 @@ or file path may exist now."
 ;; and fallback to `me-default-fonts'
 (add-hook 'emacs-startup-hook #'me-set-fonts)
 
+;; From https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+(add-hook
+ 'mouse-leave-buffer-hook
+ (defun me--kill-minibuffer ()
+   "Kill the minibuffer when switching to window with mouse."
+   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+     (abort-recursive-edit))))
+
 (when feat/xwidgets
   (setq browse-url-browser-function #'xwidget-webkit-browse-url))
 
