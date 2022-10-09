@@ -129,9 +129,6 @@ or file path may exist now."
    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
      (abort-recursive-edit))))
 
-(when feat/xwidgets
-  (setq browse-url-browser-function #'xwidget-webkit-browse-url))
-
 (with-eval-after-load 'minemacs-loaded
   ;; Enable battery (if available) in mode-line
   (me-with-shutup!
