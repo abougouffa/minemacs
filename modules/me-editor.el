@@ -121,6 +121,8 @@
   :hook (prog-mode . smartparens-mode)
   :hook (text-mode . smartparens-mode)
   :config
+  ;; Default configurations
+  (require 'smartparens-config)
 
   (when nil
     (with-eval-after-load 'evil-collection
