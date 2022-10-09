@@ -16,7 +16,7 @@
 (let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
   (when (file-exists-p mods)
     (me-log! "Loading modules file from \"%s\"" mods)
-    (load mods nil (not init-file-debug))))
+    (load mods nil (not minemacs-verbose))))
 
 (defun minemacs-reload (&optional without-core)
   "Reload all configuration, including user's config.el."
@@ -28,23 +28,23 @@
     (dolist (module minemacs-core-modules)
       (me-log! "Loading core module \"%s\"" module)
       (load (expand-file-name (format "core/me-%s.el" module) user-emacs-directory)
-            nil (not init-file-debug))))
+            nil (not minemacs-verbose))))
 
   ;; Modules
   (dolist (module minemacs-modules)
     (me-log! "Loading module \"%s\"" module)
     (load (expand-file-name (format "modules/me-%s.el" module) user-emacs-directory)
-          nil (not init-file-debug)))
+          nil (not minemacs-verbose)))
 
   (when (and custom-file (file-exists-p custom-file))
     (me-log! "Loafing user customs from custom.el")
-    (load custom-file nil (not init-file-debug)))
+    (load custom-file nil (not minemacs-verbose)))
 
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
     (when (file-exists-p user-config)
       (me-log! "Loading user config file from \"%s\"" user-config)
-      (load user-config nil (not init-file-debug)))))
+      (load user-config nil (not minemacs-verbose)))))
 
 ;; Load for the first time
 (minemacs-reload)

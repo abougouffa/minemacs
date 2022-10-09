@@ -6,6 +6,8 @@
   (or (getenv "MINEMACS_DIR")
       (expand-file-name "~/.minemacs.d/")))
 
+(defvar minemacs-verbose (not (null (getenv "MINEMACS_VERBOSE"))))
+
 (unless (file-exists-p minemacs-config-dir)
   (mkdir minemacs-config-dir t))
 

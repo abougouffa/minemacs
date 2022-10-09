@@ -10,7 +10,7 @@
 ;;; Generated autoloads from autoloads/me-core.el
 
 (autoload 'me-log! "autoloads/me-core" "\
-Log MSG and VARS using `message' when `init-file-debug' is non-nil.
+Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
 
 (fn MSG &rest VARS)" nil t)
 (autoload 'me-info! "autoloads/me-core" "\

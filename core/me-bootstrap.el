@@ -27,5 +27,6 @@
 
 (straight-use-package 'use-package)
 
+(setq use-package-verbose minemacs-verbose)
 
 (provide 'me-bootstrap)

@@ -2,8 +2,8 @@
 
 ;;;###autoload
 (defmacro me-log! (msg &rest vars)
-  "Log MSG and VARS using `message' when `init-file-debug' is non-nil."
-  `(when init-file-debug
+  "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
+  `(when minemacs-verbose
     (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;;;###autoload

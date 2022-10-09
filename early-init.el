@@ -26,13 +26,14 @@
   (me-generate-autoloads))
 
 ;; Load autoloads file
-(load minemacs-autoloads-file nil (not init-file-debug))
+(load minemacs-autoloads-file nil (not minemacs-verbose))
 
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
 (add-hook
  'emacs-startup-hook
  (lambda ()
+   (me-log! "================ Loaded Emacs ================")
    (me-info! "Loaded Emacs in %s." (emacs-init-time))
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
@@ -86,4 +87,5 @@
     (me-log! "Loading early config from \"%s\"" early-config-path)
     (load early-config-path nil 'nomessage)))
 
-(me-log! "Loaded early-config.el")
+
+(me-log! "End of early-init.el")
