@@ -105,6 +105,7 @@
   :after minemacs-loaded
   :custom
   (vertico-cycle t)
+  (vertico-resize nil)
   (vertico-count 12)
   :config
   (add-to-list
