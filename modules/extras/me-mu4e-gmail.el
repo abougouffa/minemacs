@@ -63,22 +63,24 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
               :action (lambda (docid msg target)
                         (if (+mu4e-msg-gmail-p msg)
                             (+mu4e--mark-seen docid msg target)
-                          (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))
-              #'+mu4e--mark-seen))
+                          (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
 
   ;; This hook correctly modifies gmail flags on emails when they are marked.
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
   ;; won't properly result in the corresponding gmail action, since the marks
   ;; are ineffectual otherwise.
   (add-hook 'mu4e-mark-execute-pre-hook
-            (defun +mu4e-gmail-fix-flags-h (mark msg)
+            (defun +mu4e-gmail--fix-flags-h (mark msg)
               (when (+mu4e-msg-gmail-p msg)
                 (pcase mark
-                  (`trash  (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
-                  (`delete (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
-                  (`refile (mu4e-action-retag-message msg "-\\Inbox"))
-                  (`flag   (mu4e-action-retag-message msg "+\\Starred"))
-                  (`unflag (mu4e-action-retag-message msg "-\\Starred")))))))
+                  ((or 'trash 'delete)
+                   (mu4e-action-retag-message msg "-\\Inbox,-\\Draft,+\\Trash"))
+                  ('refile
+                   (mu4e-action-retag-message msg "-\\Inbox"))
+                  ('flag
+                   (mu4e-action-retag-message msg "+\\Starred"))
+                  ('unflag
+                   (mu4e-action-retag-message msg "-\\Starred")))))))
 
 
 (provide 'me-mu4e-gmail)
