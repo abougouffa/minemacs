@@ -115,7 +115,9 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
           :enter-func
           (lambda () (mu4e-message "Switched to %s" label))
           :leave-func
-          (lambda () (mu4e-clear-caches))
+          (lambda ()
+            (setq +mu4e-account-aliases nil)
+            (mu4e-clear-caches))
           :match-func
           (lambda (msg)
             (when msg
@@ -138,14 +140,16 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
 within a context, set `user-mail-address' to an alias found in the 'To' or
 'From' headers of the parent message if present, or prompt the user for a
 preferred alias"
-  (when-let ((addresses (if (and (or mu4e-contexts +mu4e-account-aliases)
-                                 (> (length +mu4e-account-aliases) 1))
-                            +mu4e-account-aliases
+  (when-let ((addresses (if (or mu4e-contexts +mu4e-account-aliases)
+                            (cons user-mail-address ;; the main address
+                                  +mu4e-account-aliases) ;; the aliases
                           (mu4e-personal-addresses))))
     (setq user-mail-address
           (if mu4e-compose-parent-message
-              (let ((to (mapcar #'cdr (mu4e-message-field mu4e-compose-parent-message :to)))
-                    (from (mapcar #'cdr (mu4e-message-field mu4e-compose-parent-message :from))))
+              (let ((to (mapcar (lambda (a) (plist-get a :email))
+                                (mu4e-message-field mu4e-compose-parent-message :to)))
+                    (from (mapcar (lambda (a) (plist-get a :email))
+                                  (mu4e-message-field mu4e-compose-parent-message :from))))
                 (or (car (seq-intersection to addresses))
                     (car (seq-intersection from addresses))
                     (completing-read "From: " addresses)))
