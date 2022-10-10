@@ -41,7 +41,11 @@
     "css" '(eglot :which-key "Start")
     "csq" '(eglot-shutdown :which-key "Shutdown")
     "csr" '(eglot-reconnect :which-key "Reconnect")
-    "csQ" '(eglot-shutdown-all :which-key "Shutdown all")))
+    "csQ" '(eglot-shutdown-all :which-key "Shutdown all"))
+  :custom
+  (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
+  (eglot-sync-connect 0) ;; async, do not block
+  (eglot-extend-to-xref t)) ;; can be interesting!
 
 
 (use-package project-cmake

@@ -76,16 +76,16 @@
        (setq-local spell-fu-faces-exclude excluded)))))
 
 
+;; Add this to .dir-locals.el
+;; ((nil (eglot-workspace-configuration
+;;        . ((ltex . ((language . "fr")
+;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
+;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/"))))))))
 (use-package eglot-ltex
   :straight (:host github :repo "emacs-languagetool/eglot-ltex")
   :after eglot
-  :init
-  ;; Add this to .dir-locals.el
-  ;; ((nil (eglot-workspace-configuration
-  ;;        . ((ltex . ((language . "fr")
-  ;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
-  ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/"))))))))
-  (setq eglot-languagetool-server-path "/usr"))
+  :custom
+  (eglot-languagetool-server-path "/usr"))
 
 
 (provide 'me-spell)
