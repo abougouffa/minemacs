@@ -11,14 +11,13 @@
 (defun me-splash-screen ()
   "MinEmacs splash screen"
   (interactive)
-  (me-log! "Entering splash")
   (let* ((splash-buffer  (get-buffer-create me-splash-buffer-name))
-         (height         (- (window-body-height nil) 1))
-         (padding-center (min 7 (- (/ height 2) 1)))
-         (padding-bottom (min 7 (- height (/ height 2) 3))))
+         (height (- (window-body-height nil) 1))
+         (padding-center (min 5 (- (/ height 3) 1)))
+         (padding-bottom (min 2 (- height (/ height 3) 3))))
 
     ;; If there are buffer associated with filenames,
-    ;;  we don't show splash screen.
+    ;; we don't show splash screen.
     (if (eq 0 (length (cl-loop for buf in (buffer-list)
                                if (buffer-file-name buf)
                                collect (buffer-file-name buf))))
@@ -40,8 +39,10 @@
           (insert (propertize "MinEmacs" 'face 'bold))
           (insert "\n")
           (insert-char ?\s 10)
-          (insert (propertize "Minimal Emacs configuration" 'face 'shadow))
-          (insert "\n")
+          (insert (propertize (format "Running GNU Emacs %s (%s)"
+                                      emacs-version
+                                      (substring emacs-repository-version 0 10))
+                              'face 'shadow))
 
           ;; Vertical padding to bottom
           (insert-char ?\n padding-bottom)
@@ -49,16 +50,13 @@
           ;; Copyright text
           (insert "\n")
           (insert-char ?\s 10)
+          (insert (propertize "Minimal Emacs configuration for daily use" 'face 'shadow))
+          (insert "\n")
+          (insert-char ?\s 10)
           (insert-text-button "github.com/abougouffa/minemacs"
                               'action (lambda (_) (browse-url "https://github.com/abougouffa/minemacs"))
                               'help-echo "Visit MinEmacs repo"
                               'follow-link t)
-          (insert "\n")
-          (insert-char ?\s 10)
-          (insert (propertize (format "Running GNU Emacs %s (%s)"
-                                      emacs-version
-                                      (substring emacs-repository-version 0 10))
-                              'face 'shadow))
           (insert "\n")
 
           (goto-char 0)
@@ -77,16 +75,14 @@
   (when (get-buffer me-splash-buffer-name)
     (kill-buffer me-splash-buffer-name)))
 
-;; Suppress any startup message in the echo area
-(run-with-idle-timer 0.05 nil (lambda() (message nil)))
-
+;; Display splash screen
 (me-splash-screen)
 
-;; Close it automatically 3s after Emacs gets loaded
+;; Close splash screen automatically 3s after Emacs gets loaded
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (run-at-time 3 nil #'me-splash-screen-kill)))
+   (run-at-time 2 nil #'me-splash-screen-kill)))
 
 
 (provide 'me-splash)
