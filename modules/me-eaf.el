@@ -15,8 +15,12 @@
   :general
   (me-map
     "oo" '(eaf-open :which-key "Open with EAF"))
+  (me-map-local
+    :states 'normal
+    :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
+    "h" '(+eaf-open-mail-as-html :which-key "Open mail as HTML")
+    "o" '(eaf-open-browser :which-key "Open URL (EAF)"))
   :custom
-  (eaf-apps-to-install (message "CUSTOM"))
   ;; Generic
   (eaf-apps-to-install '(browser pdf-viewer mindmap jupyter org-previewer
                          markdown-previewer file-sender video-player))
@@ -100,11 +104,6 @@
       (if msg
           (mu4e-action-view-in-browser msg)
         (message "No message at point."))))
-
-  ;; (with-eval-after-load 'mu4e
-  ;;   (me-map-local :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
-  ;;     "h" '(+eaf-open-mail-as-html :which-key "Open mail as HTML")
-  ;;     "o" '(eaf-open-browser :which-key "Open URL (EAF)")))
 
   (require 'eaf-pdf-viewer)
 
