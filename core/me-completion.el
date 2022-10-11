@@ -135,8 +135,8 @@
   :general
   (me-map
     "bl" '(consult-line :which-key "Consult line")
-    "ss" '(consult-ripgrep :which-key "ripgrep")
-    "ss" '(consult-find :which-key "ripgrep")
+    "ss" #'consult-ripgrep
+    "sc" #'consult-find
     "iy" '(consult-yank-pop :which-key "From clipboard")
     "bb" '(consult-buffer :which-key "Switch to buffer")
     "fr" '(consult-recent-file :which-key "Recent files"))
