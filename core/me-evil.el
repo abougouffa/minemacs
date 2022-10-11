@@ -3,17 +3,17 @@
 (use-package evil
   :straight t
   :after minemacs-loaded
-  :init
-  (setq evil-want-C-i-jump nil
-        evil-want-C-h-delete t ;; C-h is backspace in insert state
-        evil-want-fine-undo t
-        evil-want-keybinding nil
-        evil-want-integration t
-        evil-want-Y-yank-to-eol t
-        evil-split-window-below t
-        evil-vsplit-window-right t
-        evil-kill-on-visual-paste nil
-        evil-respect-visual-line-mode t)
+  :custom
+  (evil-want-C-i-jump nil)
+  (evil-want-C-h-delete t) ;; C-h is backspace in insert state
+  (evil-want-fine-undo t)
+  (evil-want-keybinding nil)
+  (evil-want-integration t)
+  (evil-want-Y-yank-to-eol t)
+  (evil-split-window-below t)
+  (evil-vsplit-window-right t)
+  (evil-kill-on-visual-paste nil)
+  (evil-respect-visual-line-mode t)
   :config
   ;; Better but may cause problems with org-fold
   ;; https://github.com/emacs-evil/evil/issues/1630

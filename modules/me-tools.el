@@ -26,10 +26,9 @@
   (when noninteractive
     (advice-add #'vterm-module-compile :override #'ignore)
     (provide 'vterm-module))
+  :custom
+  (vterm-max-scrollback 5000)
   :config
-  (setq vterm-kill-buffer-on-exit t
-        vterm-max-scrollback 5000)
-
   (with-eval-after-load 'popwin
     (defun +popwin:vterm ()
       (interactive)

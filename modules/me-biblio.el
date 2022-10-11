@@ -1,25 +1,33 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package oc
-  :defer t
   :after org
-  :config
-  (require 'oc-csl)
-  (require 'oc-natbib)
-  (require 'oc-biblatex)
-  (setq org-cite-export-processors '((latex biblatex) (t csl))
-        org-support-shift-select t))
+  :custom
+  (org-cite-export-processors '((latex biblatex) (t csl)))
+  (org-support-shift-select t))
+
+
+(use-package oc-csl
+  :after oc)
+
+
+(use-package oc-natbib
+  :after oc)
+
+
+(use-package oc-biblatex
+  :after oc)
 
 
 (use-package citar
   :straight t
   :after oc
+  :custom
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-symbol-separator "  ")
   :config
-  (setq org-cite-insert-processor 'citar
-        org-cite-follow-processor 'citar
-        org-cite-activate-processor 'citar
-        citar-symbol-separator "  ")
-
   (defun +citar--set-symbols ()
     (setq citar-symbols
           `((file ,(all-the-icons-octicon "file-pdf"      :face 'error) . " ")

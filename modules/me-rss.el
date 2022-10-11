@@ -5,8 +5,8 @@
   :defer t
   :general
   (me-map "of" #'elfeed)
-  :config
-  (setq elfeed-db-directory (expand-file-name "elfeed" minemacs-var-dir)))
+  :custom
+  (elfeed-db-directory (expand-file-name "elfeed" minemacs-var-dir)))
 
 
 (provide 'me-rss)

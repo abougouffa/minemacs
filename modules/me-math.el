@@ -20,9 +20,8 @@
                    :files ("interfaces/emacs/imaxima/*"))
   :when MAXIMA-P
   :commands (imaxima imath-mode)
-  :init
-  (setq imaxima-use-maxima-mode-flag nil ;; otherwise, it don't render equations with LaTeX.
-        imaxima-scale-factor 2.0)
-
+  :custom
+  (imaxima-use-maxima-mode-flag nil) ;; otherwise, it don't render equations with LaTeX.
+  :config
   ;; Hook the `maxima-inferior-mode' to get Company completion.
   (add-hook 'imaxima-startup-hook #'maxima-inferior-mode))

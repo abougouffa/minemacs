@@ -45,20 +45,45 @@
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
   (me-map-key :keymaps 'mu4e-view-mode-map
-    "p" #'mu4e-view-save-attachments)
+    "p" #'mu4e-view-save-attachments))
 
-  (require 'me-mu4e-ui)
-  (require 'me-mu4e-gmail)
-  (require 'me-mu4e-extras)
 
-  (me-mu4e-ui-setup) ;; Setup UI
-  (me-mu4e-extras-setup) ;; Extra features
+(use-package me-mu4e-ui
+  :after mu4e
+  :config
+  (me-mu4e-ui-setup)) ;; Setup UI
+
+
+(use-package me-mu4e-gmail
+  :after mu4e
+  :config
   (me-mu4e-gmail-setup)) ;; Gmail specifics
+
+
+(use-package me-mu4e-extras
+  :after mu4e
+  :config
+  (me-mu4e-extras-setup)) ;; Extra features
 
 
 (use-package org-msg
   :straight t
   :after mu4e
+  :custom
+  (org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng")
+  (org-msg-startup "hidestars indent inlineimages")
+  (org-msg-greeting-name-limit 3)
+  (org-msg-convert-citation t)
+  (org-msg-default-alternatives '((new . (utf-8 html))
+                                  (reply-to-text . (utf-8 html))
+                                  (reply-to-html . (utf-8 html))))
+  (org-msg-attached-file-reference
+   (rx (or (seq "attach" (or "ment" "ed"))
+           (seq "enclosed")
+           (seq "attach" (any ?é ?e) (? "e") (? "s"))
+           (seq "ci" (or " " "-") "joint" (? "e")) ;; ci-joint
+           (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
+           (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
   (me-map-key :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab
@@ -69,22 +94,6 @@
     "ad" '(org-msg-attach-delete :which-key "Delete")
     "p"  '(org-msg-preview :which-key "Preview"))
 
-  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng"
-        org-msg-startup "hidestars indent inlineimages"
-        org-msg-greeting-name-limit 3
-        org-msg-default-alternatives '((new . (utf-8 html))
-                                       (reply-to-text . (utf-8 html))
-                                       (reply-to-html . (utf-8 html)))
-        org-msg-convert-citation t
-        ;; TODO: See https://regex101.com/r/EtaiSP/4 for a better alternative!
-        org-msg-attached-file-reference
-        (rx (or (seq "attach" (or "ment" "ed"))
-                (seq "enclosed")
-                (seq "attach" (any ?é ?e) (? "e") (? "s"))
-                (seq "ci" (or " " "-") "joint" (? "e")) ;; ci-joint
-                (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
-                (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
-
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)
   (org-msg-mode 1))
@@ -93,17 +102,16 @@
 (use-package mu4e-alert
   :straight t
   :after mu4e
+  :custom
+  (doom-modeline-mu4e t)
+  (mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
+  (mu4e-alert-set-window-urgency nil)
+  (mu4e-alert-group-by :to)
+  (mu4e-alert-email-notification-types '(subjects))
+  (mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
   :config
-  (setq doom-modeline-mu4e t
-        mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"
-        mu4e-alert-set-window-urgency nil
-        mu4e-alert-group-by :to
-        mu4e-alert-email-notification-types '(subjects)
-        mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
-
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications)
-
   (mu4e-alert-set-default-style 'libnotify)
 
   (defvar +mu4e-alert-bell-cmd

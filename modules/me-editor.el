@@ -6,16 +6,16 @@
   :defer t
   :general
   (me-map "ov" '(vundo :which-key "Visual Undo"))
-  :config
-  (setq vundo-compact-display t
-        vundo-window-max-height 6
-        vundo-glyph-alist
-        '((selected-node   . ?●)
-          (node            . ?○)
-          (vertical-stem   . ?│)
-          (branch          . ?├)
-          (last-branch     . ?╰)
-          (horizontal-stem . ?─))))
+  :custom
+  (vundo-compact-display t)
+  (vundo-window-max-height 6)
+  (vundo-glyph-alist
+   '((selected-node   . ?●)
+     (node            . ?○)
+     (vertical-stem   . ?│)
+     (branch          . ?├)
+     (last-branch     . ?╰)
+     (horizontal-stem . ?─))))
 
 
 (use-package undo-fu
@@ -29,9 +29,10 @@
 (use-package undo-fu-session
   :straight t
   :after undo-fu
+  :custom
+  (undo-fu-session-compression 'zst)
+  (undo-fu-session-directory (expand-file-name "undo-fu-session" minemacs-var-dir))
   :config
-  (setq undo-fu-session-compression 'zst
-        undo-fu-session-directory (expand-file-name "undo-fu-session" minemacs-var-dir))
   (global-undo-fu-session-mode 1))
 
 
@@ -123,16 +124,17 @@
   :hook (prog-mode . smartparens-mode)
   :hook (text-mode . smartparens-mode)
   :config
-  ;; Default configurations
-  (require 'smartparens-config)
+  (with-eval-after-load 'evil-collection
+    ;; Make evil-mc cooperate with smartparens better
+    (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
+      (unless (memq (car sp--mc/cursor-specific-vars) vars)
+        (setcdr (assq :default evil-mc-cursor-variables)
+                (append vars sp--mc/cursor-specific-vars))))))
 
-  (when nil
-    (with-eval-after-load 'evil-collection
-      ;; Make evil-mc cooperate with smartparens better
-      (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
-        (unless (memq (car sp--mc/cursor-specific-vars) vars)
-          (setcdr (assq :default evil-mc-cursor-variables)
-                  (append vars sp--mc/cursor-specific-vars)))))))
+
+;; Default `smartparens' configuration (example, do not complete single quote)
+(use-package smartparens-config
+  :after smartparens)
 
 
 (when (<= emacs-major-version 28)

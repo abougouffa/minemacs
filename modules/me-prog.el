@@ -46,6 +46,18 @@
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t)) ;; can be interesting!
+;; :init
+;; (defvar-local +eglot-ltex--document-lang nil)
+;; (setq-default
+;;  eglot-workspace-configuration
+;;  (lambda (dir)
+;;    (cond ((or (eq (derived-mode-p major-mode) 'org-mode)
+;;               (eq (derived-mode-p major-mode) 'markdown-mode))
+;;           ;; Setup language for ltex-ls
+;;           (let ((lang (or +eglot-ltex--document-lang
+;;                           (completing-read "LTeX language: " '("en" "fr")))))
+;;             (setq-local +eglot-ltex--document-lang lang)
+;;             `(:ltex (:language ,lang))))))))
 
 
 (use-package project-cmake
@@ -87,10 +99,7 @@
   :straight t
   :general
   (me-map-local :keymaps '(rust-mode-map)
-    "d" `((me-cmdfy! (pcase major-mode
-                      ('python-mode (realgud:pdb))
-                      ((or 'c-mode 'c++-mode) (realgud:gdb))))
-          :which-key "realgud"))
+    "d" `(#'realgud--lldb :which-key "realgud"))
   :commands (realgud--lldb))
 
 
@@ -152,16 +161,17 @@
   :straight t
   :defer t
   :mode "\\.plantuml\\'"
+  :custom
+  (plantuml-jar-path (expand-file-name "plantuml.jar" minemacs-var-dir))
+  (org-plantuml-jar-path plantuml-jar-path)
   :config
-  (setq plantuml-jar-path (expand-file-name "plantuml.jar" minemacs-var-dir)
-        org-plantuml-jar-path plantuml-jar-path
-        plantuml-default-exec-mode
+  (setq plantuml-default-exec-mode
         (cond ((executable-find "plantuml") 'executable)
               ((file-exists-p plantuml-jar-path) 'jar)
               (t (plantuml-download-jar) 'jar))))
 
 
-(add-to-list 'auto-mode-alist '("\\.gitignore\\'"   . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
 
 
 (provide 'me-prog)

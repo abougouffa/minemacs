@@ -170,12 +170,8 @@
 
 (use-package hydra
   :straight t
+  :after minemacs-loaded
   :defer t)
-
-
-(use-package use-package-hydra
-  :after hydra
-  :straight t)
 
 
 (provide 'me-keybindings)

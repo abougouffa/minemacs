@@ -21,10 +21,10 @@
 ;; Modeline
 (use-package doom-modeline
   :straight t
+  :custom
+  (doom-modeline-height 32)
+  (doom-modeline-bar-width 6)
   :config
-  (setq doom-modeline-bar-width 6
-        doom-modeline-height 32)
-
   (doom-modeline-def-segment time
     (when (and doom-modeline-time
                (bound-and-true-p display-time-mode)

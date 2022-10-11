@@ -7,15 +7,9 @@
 (use-package parinfer-rust-mode
   :straight t
   :when feat/modules
-  :init
-  (setq parinfer-rust-library-directory (expand-file-name "parinfer-rust" minemacs-var-dir)
-        parinfer-rust-auto-download t
-        parinfer-rust-library (expand-file-name
-                               (cond (os/linux "parinfer-rust-linux.so")
-                                     (os/bsd "libparinfer_rust.so")
-                                     (os/win "parinfer-rust-windows.dll")
-                                     (os/mac "parinfer-rust-darwin.so"))
-                               parinfer-rust-library-directory))
+  :custom
+  (parinfer-rust-library-directory (expand-file-name "parinfer-rust" minemacs-var-dir))
+  (parinfer-rust-auto-download t)
   :hook ((emacs-lisp-mode
           clojure-mode
           scheme-mode
@@ -23,8 +17,6 @@
           racket-mode
           hy-mode) . parinfer-rust-mode))
 
-;; Temporary, Parinfer seems to crash!
-;; (electric-pair-mode 1)
 
 (use-package macrostep
   :straight t
@@ -80,9 +72,6 @@
   :hook (emacs-lisp-mode . hs-minor-mode)
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
   :config
-  (me-log! "Loaded elisp-mode")
-  (require 'me-elisp-extras)
-
   (me-map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :which-key "edebug")
     "df"  'edebug-defun
@@ -112,8 +101,12 @@
     "e"   '(nil :which-key "eval")
     "ee"  'edebug-eval-last-sexp
     "eE"  'edebug-eval-expression
-    "et"  'edebug-eval-top-level-form)
+    "et"  'edebug-eval-top-level-form))
 
+
+(use-package me-elisp-extras
+  :after elisp-mode minemacs-loaded
+  :config
   (me-elisp-indent-setup)
   (me-elisp-highlighting-setup))
 

@@ -26,12 +26,7 @@
   :commands (org-roam-ui-open org-roam-ui-sync-mode)
   :general
   (me-map
-    "nR" '(org-roam-ui-open :which-key "Org-Roam UI"))
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
+    "nR" '(org-roam-ui-open :which-key "Org-Roam UI")))
 
 
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
@@ -42,10 +37,18 @@
   (me-map
     "nd" '(deft :which-key "Deft"))
   :init
-  (setq deft-directory org-roam-directory
-        deft-recursive t
-        deft-use-filter-string-for-filename t
-        deft-default-extension "org")
+  (setq deft-default-extension "org")
+  :custom
+  (deft-directory org-roam-directory)
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-strip-summary-regexp
+   (concat "\\("
+           "[\n\t]" ;; blank
+           "\\|^#\\+[[:alpha:]_]+:.*$" ;; org-mode metadata
+           "\\|^:PROPERTIES:\n\\(.+\n\\)+:END:\n" ;; org-roam ID
+           "\\|\\[\\[\\(.*\\]\\)" ;; any link
+           "\\)"))
   :config
   (defun +deft-parse-title (file contents)
     "Parse the given FILE and CONTENTS and determine the title.
@@ -57,15 +60,7 @@
           (string-trim (substring contents begin (match-end 0)) "#\\+[tT][iI][tT][lL][eE]: *" "[\n\t ]+")
         (deft-base-filename file))))
 
-  (advice-add 'deft-parse-title :override #'+deft-parse-title)
-
-  (setq deft-strip-summary-regexp
-        (concat "\\("
-                "[\n\t]" ;; blank
-                "\\|^#\\+[[:alpha:]_]+:.*$" ;; org-mode metadata
-                "\\|^:PROPERTIES:\n\\(.+\n\\)+:END:\n" ;; org-roam ID
-                "\\|\\[\\[\\(.*\\]\\)" ;; any link
-                "\\)")))
+  (advice-add 'deft-parse-title :override #'+deft-parse-title))
 
 
 (provide 'me-notes)

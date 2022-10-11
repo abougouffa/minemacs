@@ -44,12 +44,13 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-map
-    "ie" '(emojify-insert-emoji :which-key "Emoji"))
+  (me-map "ie" '(emojify-insert-emoji :which-key "Emoji"))
+  :custom
+  (emojify-emoji-set "emojione-v2.2.6")
+  (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))
+  (emojify-display-style 'image)
   :config
-  (setq emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir)
-        emojify-display-style 'image
-        emojify-emoji-set "emojione-v2.2.6"))
+  (global-emojify-mode 1))
 
 
 (use-package svg-lib
@@ -80,37 +81,35 @@
   (me-map
     "tz" '(writeroom-mode :which-key "Writeroom mode"))
   :init
-  (defvar +writeroom-mixed-pitch-modes '(adoc-mode rst-mode markdown-mode org-mode)
-    "What major-modes to enable `mixed-pitch-mode' in with `writeroom-mode'.")
   (defvar +writeroom-text-scale 2
     "The text-scaling level for `writeroom-mode'.")
+  :custom
+  (writeroom-width 0.5)
+  (writeroom-mode-line t)
+  (writeroom-global-effects nil)
+  (writeroom-maximize-window nil)
+  (writeroom-fullscreen-effect 'maximized)
   :config
   (require 'mixed-pitch)
+  (add-hook
+   'writeroom-mode-hook
+   (defun +writeroom--enable-mixed-pitch-mode-h ()
+     "Enable `mixed-pitch-mode' when in supported modes."
+     (when (apply #'derived-mode-p '(adoc-mode rst-mode markdown-mode org-mode))
+       (mixed-pitch-mode (if writeroom-mode 1 -1)))))
 
-  (setq writeroom-width 0.5
-        writeroom-mode-line t
-        writeroom-global-effects nil
-        writeroom-maximize-window nil
-        writeroom-fullscreen-effect 'maximized)
-
-  (defun +writeroom-enable-mixed-pitch-mode-h ()
-    "Enable `mixed-pitch-mode' when in `+writeroom-mixed-pitch-modes'."
-    (when (apply #'derived-mode-p +writeroom-mixed-pitch-modes)
-      (mixed-pitch-mode (if writeroom-mode 1 -1))))
-
-  (defun +writeroom-enable-text-scaling-mode-h ()
-    "Enable `mixed-pitch-mode' when in `+writeroom-mixed-pitch-modes'."
-    (when (/= +writeroom-text-scale 0)
-      (text-scale-set (if writeroom-mode +writeroom-text-scale 0))
-      (visual-fill-column-adjust)))
-
-  (add-hook 'writeroom-mode-hook #'+writeroom-enable-mixed-pitch-mode-h)
-  (add-hook 'writeroom-mode-hook #'+writeroom-enable-text-scaling-mode-h)
+  (add-hook
+   'writeroom-mode-hook
+   (defun +writeroom--enable-text-scaling-mode-h ()
+     "Enable text scaling."
+     (when (/= +writeroom-text-scale 0)
+       (text-scale-set (if writeroom-mode +writeroom-text-scale 0))
+       (visual-fill-column-adjust))))
 
   ;; Disable line numbers when in Org mode
   (add-hook
    'writeroom-mode-enable-hook
-   (lambda ()
+   (defun +writeroom--disable-line-numbers-mode-h ()
      (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
                 (bound-and-true-p display-line-numbers-mode))
        (setq-local +line-num--was-activate-p display-line-numbers-type)
@@ -118,7 +117,7 @@
 
   (add-hook
    'writeroom-mode-disable-hook
-   (lambda ()
+   (defun +writeroom--restore-line-numbers-mode-h ()
      (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
                 (bound-and-true-p +line-num--was-activate-p))
        (display-line-numbers-mode +line-num--was-activate-p)))))

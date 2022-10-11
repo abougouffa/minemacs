@@ -20,17 +20,17 @@
   :init
   ;; Keybindings will be overriten by evil-collection
   (setq forge-add-default-bindings nil)
-  :config
-  (setq forge-database-file (expand-file-name "forge/database.sqlite" minemacs-var-dir)))
+  :custom
+  (forge-database-file (expand-file-name "forge/database.sqlite" minemacs-var-dir)))
 
 
 (use-package code-review
   :straight t
   :defer t
-  :config
-  (setq code-review-auth-login-marker 'forge
-        code-review-log-file (expand-file-name "code-review/error.log" minemacs-var-dir)
-        code-review-db-database-file (expand-file-name "code-review/db-file.sqlite" minemacs-var-dir)))
+  :custom
+  (code-review-auth-login-marker 'forge)
+  (code-review-log-file (expand-file-name "code-review/error.log" minemacs-var-dir))
+  (code-review-db-database-file (expand-file-name "code-review/db-file.sqlite" minemacs-var-dir)))
 
 
 (use-package diff-hl
@@ -60,13 +60,14 @@
   (git-timemachine-show-minibuffer-details t))
 
 
+;; Enforce git commit conventions.
+;; See https://chris.beams.io/posts/git-commit/
 (use-package git-commit
   :after magit
+  :custom
+  (git-commit-summary-max-length 50)
+  (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
-  ;; Enforce git commit conventions.
-  ;; See https://chris.beams.io/posts/git-commit/
-  (setq git-commit-summary-max-length 50
-        git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   (add-hook 'git-commit-mode-hook (lambda () (setq-local fill-column 72)))
   (add-hook
    'git-commit-setup-hook
@@ -77,7 +78,7 @@
                 (bobp)
                 (eolp))
        (evil-insert-state))))
-  (global-git-commit-mode))
+  (global-git-commit-mode 1))
 
 
 (use-package smerge-mode

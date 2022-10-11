@@ -40,10 +40,11 @@
 (use-package corfu-doc
   :straight t
   :hook (corfu-mode . corfu-doc-mode)
+  :custom
+  (corfu-doc-auto t)
+  (corfu-doc-delay 0.1)
+  (corfu-doc-max-height 15)
   :config
-  (setq corfu-doc-auto t
-        corfu-doc-delay 0.1
-        corfu-doc-max-height 15)
   (define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down)
   (define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)
   (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle))
@@ -66,9 +67,9 @@
   :straight t
   :after minemacs-loaded
   :config
+  (setq prefix-help-command #'embark-prefix-help-command)
   (global-set-key [remap describe-bindings] #'embark-bindings)
-  (global-set-key (kbd "C-.") 'embark-act)
-  (setq prefix-help-command #'embark-prefix-help-command))
+  (global-set-key (kbd "C-.") 'embark-act))
 
 
 (use-package embark-consult
@@ -80,7 +81,6 @@
   :straight t
   :after marginalia
   :config
-  ;; Icons integration
   (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
 
@@ -88,7 +88,6 @@
   :straight t
   :after minemacs-loaded
   :config
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   (marginalia-mode 1))
 
 
