@@ -124,15 +124,23 @@
 
 (use-package elisp-demos
   :straight t
-  :after elisp-mode minemacs-loaded
+  :after elisp-mode
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 
 (use-package helpful
+  :after elisp-mode
   :straight t
-  :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point))
+  :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point)
+  :general
+  (me-map
+    "hp" #'helpful-at-point
+    "ho" #'helpful-symbol
+    "hc" #'helpful-command
+    "hF" #'helpful-function
+    "hf" #'helpful-callable))
 
 
 (provide 'me-lisp)
