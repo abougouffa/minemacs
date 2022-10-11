@@ -13,15 +13,18 @@
 (defconst minemacs-verbose
   (not (null (or (getenv "MINEMACS_VERBOSE") init-file-debug))))
 
-(unless (file-exists-p minemacs-config-dir)
-  (mkdir minemacs-config-dir t))
+(defconst minemacs-root-dir (expand-file-name user-emacs-directory))
+(defconst minemacs-core-dir (expand-file-name "core/" minemacs-root-dir))
+(defconst minemacs-modules-dir (expand-file-name "modules/" minemacs-root-dir))
 
-(defconst minemacs-etc-dir (expand-file-name "etc/" user-emacs-directory))
-(defconst minemacs-var-dir (expand-file-name "var/" user-emacs-directory))
-(defconst minemacs-cache-dir (expand-file-name "cache/" minemacs-var-dir))
-(defconst minemacs-autoloads-dirs (list (expand-file-name "core/autoloads" user-emacs-directory)
-                                        (expand-file-name "modules/autoloads" user-emacs-directory)))
-(defconst minemacs-autoloads-file (expand-file-name "core/me-autoloads.el" user-emacs-directory))
+(defconst minemacs-local-dir (expand-file-name "local/" minemacs-root-dir))
+(defconst minemacs-cache-dir (expand-file-name "cache/" minemacs-local-dir))
+(defconst minemacs-autoloads-dirs (list (expand-file-name "autoloads" minemacs-core-dir)
+                                        (expand-file-name "autoloads" minemacs-modules-dir)))
+(defconst minemacs-autoloads-file (expand-file-name "me-autoloads.el" minemacs-core-dir))
+
+;; Replace the default Emacs directory with /var
+(setq user-emacs-directory minemacs-local-dir)
 
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
 (defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))

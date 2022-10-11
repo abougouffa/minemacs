@@ -27,13 +27,13 @@
   (unless without-core
     (dolist (module minemacs-core-modules)
       (me-log! "Loading core module \"%s\"" module)
-      (load (expand-file-name (format "core/me-%s.el" module) user-emacs-directory)
+      (load (expand-file-name (format "me-%s.el" module) minemacs-core-dir)
             nil (not minemacs-verbose))))
 
   ;; Modules
   (dolist (module minemacs-modules)
     (me-log! "Loading module \"%s\"" module)
-    (load (expand-file-name (format "modules/me-%s.el" module) user-emacs-directory)
+    (load (expand-file-name (format "me-%s.el" module) minemacs-modules-dir)
           nil (not minemacs-verbose)))
 
   (when (and custom-file (file-exists-p custom-file))

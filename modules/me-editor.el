@@ -31,7 +31,7 @@
   :after undo-fu
   :custom
   (undo-fu-session-compression 'zst)
-  (undo-fu-session-directory (expand-file-name "undo-fu-session" minemacs-var-dir))
+  (undo-fu-session-directory (expand-file-name "undo-fu-session" minemacs-local-dir))
   :config
   (global-undo-fu-session-mode 1))
 
@@ -40,7 +40,7 @@
   :straight t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
-  (tempel-path (expand-file-name "templates/*.eld" user-emacs-directory))
+  (tempel-path (expand-file-name "templates/*.eld" minemacs-root-dir))
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert))
   :init

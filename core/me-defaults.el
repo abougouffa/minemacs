@@ -13,22 +13,8 @@
 (setq default-input-method nil)
 
 ;;; Set files and directories for built-in packages
-(setq project-list-file (expand-file-name "projects" minemacs-var-dir)
-      recentf-save-file (expand-file-name "recentf" minemacs-var-dir)
-      auto-save-list-file-prefix (expand-file-name "autosave/" minemacs-var-dir)
-      tramp-auto-save-directory  (expand-file-name "tramp-autosave/" minemacs-var-dir)
-      tramp-persistency-file-name (expand-file-name "tramp-persistency" minemacs-var-dir)
-      backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-var-dir)))
-      transient-history-file (expand-file-name "transient/history.el" minemacs-var-dir)
-      transient-levels-file (expand-file-name "transient/levels.el" minemacs-var-dir)
-      transient-values-file (expand-file-name "transient/values.el" minemacs-var-dir)
-      eshell-aliases-file (expand-file-name "eshell/aliases" minemacs-var-dir)
-      eshell-directory-name (expand-file-name "eshell/" minemacs-var-dir)
-      eshell-history-file-name (expand-file-name "eshell/history" minemacs-var-dir)
-      eshell-last-dir-ring-file-name (expand-file-name "eshell/lastdir" minemacs-var-dir)
-      eww-bookmarks-directory (expand-file-name "eww/bookmarks" minemacs-var-dir)
-      xwidget-webkit-cookie-file (expand-file-name "xwidget-webkit/cookies" minemacs-cache-dir)
-      url-configuration-directory (expand-file-name "url" minemacs-cache-dir))
+(setq backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-local-dir)))
+      auto-save-list-file-prefix (expand-file-name "auto-save-list/" minemacs-local-dir))
 
 
 (setq visible-bell nil ;; set to non-nil to flash!

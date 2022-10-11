@@ -48,7 +48,7 @@
                                       (substring emacs-repository-version 0 10))
                               'face 'shadow))
           ;; Bootstraping
-          (unless (file-exists-p (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-var-dir))
+          (unless (file-exists-p (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-local-dir))
             (insert "\n")
             (insert-char ?\s 10)
             (insert (propertize "You are running MinEmacs for the first time."

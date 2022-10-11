@@ -7,7 +7,7 @@
 
 (setq package-enable-at-startup nil)
 
-(setq straight-base-dir minemacs-var-dir
+(setq straight-base-dir minemacs-local-dir
       straight-repository-branch "develop"
       straight-vc-git-default-clone-depth '(1 single-branch)
       straight-build-dir (format "build-%s" emacs-version)

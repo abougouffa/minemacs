@@ -4,11 +4,12 @@
 ;; Increase the GC threshold for faster startup
 (setq gc-cons-threshold (* 64 1024 1024))
 
-;; Add direcotries to `load-path'
-(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "modules/extras" user-emacs-directory))
+;; Load MinEmacs variables first
+(load (expand-file-name "core/me-vars.el" user-emacs-directory))
 
-(require 'me-vars)
+;; Add direcotries to `load-path'
+(add-to-list 'load-path minemacs-core-dir)
+(add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
 
 (defun me-generate-autoloads ()
   (interactive)

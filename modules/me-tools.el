@@ -13,7 +13,7 @@
   :commands (tldr-update-docs tldr)
   :custom
   (tldr-enabled-categories '("common" "linux" "osx"))
-  (tldr-directory-path (expand-file-name "tldr" minemacs-var-dir)))
+  (tldr-directory-path (expand-file-name "tldr" minemacs-local-dir)))
 
 
 (use-package vterm
