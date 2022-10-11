@@ -56,7 +56,6 @@
               display-line-numbers-type 'relative
               truncate-lines nil
               fill-column 80
-              tab-width 2
               indent-tabs-mode nil
               tab-always-indent nil)
 
