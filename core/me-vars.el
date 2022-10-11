@@ -10,7 +10,8 @@
   (or (getenv "MINEMACS_DIR")
       (expand-file-name "~/.minemacs.d/")))
 
-(defconst minemacs-verbose (not (null (getenv "MINEMACS_VERBOSE"))))
+(defconst minemacs-verbose
+  (not (null (or (getenv "MINEMACS_VERBOSE") init-file-debug))))
 
 (unless (file-exists-p minemacs-config-dir)
   (mkdir minemacs-config-dir t))
