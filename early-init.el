@@ -49,7 +49,7 @@
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
    ;; Run hooks
-   (when (bound-and-true-p 'minemacs-after-startup-hook)
+   (when (boundp 'minemacs-after-startup-hook)
      (run-hooks 'minemacs-after-startup-hook))))
 
 ;;; Write user custom variables to separate file instead of init.el
