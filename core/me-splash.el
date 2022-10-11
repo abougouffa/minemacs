@@ -47,6 +47,16 @@
                                       emacs-version
                                       (substring emacs-repository-version 0 10))
                               'face 'shadow))
+          ;; Bootstraping
+          (unless (file-exists-p (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-var-dir))
+            (insert "\n")
+            (insert-char ?\s 10)
+            (insert (propertize "You are running MinEmacs for the first time."
+                                'face 'warning))
+            (insert "\n")
+            (insert-char ?\s 10)
+            (insert (propertize "Please wait while MinEmacs installs the required packages."
+                                'face 'warning)))
 
           ;; Vertical padding to bottom
           (insert-char ?\n padding-bottom)
@@ -82,11 +92,11 @@
 ;; Display splash screen
 (me-splash-screen)
 
-;; Close splash screen automatically 3s after Emacs gets loaded
+;; Close splash screen automatically after Emacs gets loaded
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (run-at-time 2 nil #'me-splash-screen-kill)))
+   (run-at-time nil nil #'me-splash-screen-kill)))
 
 
 (provide 'me-splash)
