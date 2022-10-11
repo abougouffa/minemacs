@@ -32,12 +32,7 @@
       large-file-warning-threshold (* 50 1024 1024) ;; change to 50 MiB
       use-short-answers t ;; y or n istead of yes or no
       confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
-      initial-scratch-message
-      (if (executable-find "fortune")
-          (string-join (mapcar (lambda (l) (concat ";; " l))
-                               (string-lines (shell-command-to-string "fortune")))
-                       "\n")
-        ";; MinEmacs -- start here!")
+      initial-scratch-message ";; MinEmacs -- start here!"
       frame-resize-pixelwise t
       delete-by-moving-to-trash t)
 
@@ -51,7 +46,6 @@
 (setq undo-limit        10000000 ;; 1MB (default is 160kB)
       undo-strong-limit 100000000 ;; 100MB (default is 240kB)
       undo-outer-limit  1000000000) ;; 1GB (default is 24MB)
-
 
 ;;; Editing
 (setq-default display-line-numbers-width 3
