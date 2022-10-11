@@ -2,7 +2,8 @@
 
 ;;; Garbage collection
 ;; Increase the GC threshold for faster startup
-(setq gc-cons-threshold (* 64 1024 1024))
+;; This will be overriten when `gcmh' is loaded
+(setq gc-cons-threshold most-positive-fixnum)
 
 ;; Load MinEmacs variables first
 (load (expand-file-name "core/me-vars.el" user-emacs-directory))
