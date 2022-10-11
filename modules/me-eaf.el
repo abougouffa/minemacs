@@ -68,29 +68,6 @@
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-aria2-auto-file-renaming t)
   :config
-  ;; Fix EVIL keybindings
-  (with-eval-after-load 'evil
-    (defvar eaf-evil-leader-key "C-SPC")
-    (define-key
-     key-translation-map (kbd "SPC")
-     (lambda (prompt)
-       (if (derived-mode-p 'eaf-mode)
-           (pcase eaf--buffer-app-name
-             ("browser" (if (eaf-call-sync "execute_function" eaf--buffer-id "is_focus")
-                            (kbd "SPC")
-                          (kbd eaf-evil-leader-key)))
-             ((or "pdf-viewer"
-                  "image-viewer"
-                  "music-player"
-                  "video-player"
-                  "file-sender"
-                  "jupyter"
-                  "mindmap")
-              (kbd eaf-evil-leader-key))
-             (_ (kbd "SPC")))
-         (kbd "SPC")))))
-
-
   ;; Extensions
   (require 'eaf-org)
   (require 'eaf-all-the-icons)
