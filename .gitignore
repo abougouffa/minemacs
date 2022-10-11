@@ -1,6 +1,6 @@
 # Project specific
 private/
-var/
+local/
 eln-cache/
 .directory
 
