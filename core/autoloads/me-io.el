@@ -128,4 +128,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 ;;;###autoload
 (defun me-clean-file-name (filename &optional conv-downcase)
   "Clean file name."
-  (replace-regexp-in-string "[:;\t \\]+" "-" (if conv-downcase (downcase filename) filename)))
+  ;; Clean slashes, backslashes, ":", ";", spaces, and tabs
+  (replace-regexp-in-string
+   "[:;\t /\\_]+" "-"
+   (if conv-downcase (downcase filename) filename)))
