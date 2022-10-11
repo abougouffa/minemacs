@@ -83,7 +83,7 @@
     "fy"  '(nil                 :which-key "Yank file path") ;; TODO
     "ft"  '(recover-this-file   :which-key "Recover this file")
     "fT"  '(recover-file        :which-key "Recover file")
-    "fE"  `(,(me-cmdfy! (funcall (if (fboundp 'dirvish) 'dirvish 'dired) user-emacs-directory)) :which-key ".emacs.d")
+    "fE"  `(,(me-cmdfy! (dired (or minemacs-config-dir minemacs-root-dir))) :which-key "User config directory")
     ;; Files / Local variables
     "fv"  '(nil :which-key "Local variable")
     "fvv" '(add-file-local-variable :which-key "Add")
@@ -145,8 +145,14 @@
     ;; Code
     "c"   '(nil :which-key "code")
 
-    ;; Code
+    ;; Workspaces TODO
     "r"   '(nil :which-key "workspace") ;; TODO (using tab-bar-mode and tab-line-mode)
+
+    ;; Notes
+    "n"   '(nil :which-key "notes")
+
+    ;; Help
+    "h"   '(nil :which-key "help")
 
     ;; Toggle
     "p"   '(nil :which-key "project")
