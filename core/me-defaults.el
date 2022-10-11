@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;; me-defaults.el --- MinEmacs -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (setq-default font-lock-multiline 'undecided)

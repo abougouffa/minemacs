@@ -1,9 +1,9 @@
-;;; bootstrap.el --- Bootstrap -*- lexical-binding: t; -*-
+;; me-bootstrap.el --- MinEmacs -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <hacko@laptop>
-;; Keywords:
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (setq package-enable-at-startup nil)
 

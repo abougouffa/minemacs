@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;; me-splash.el --- MinEmacs -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (require 'cl-lib)

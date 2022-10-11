@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*- Garbage collector
+;; me-gc.el --- MinEmacs -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package gcmh
