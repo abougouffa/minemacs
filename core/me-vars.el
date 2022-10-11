@@ -64,6 +64,12 @@
 
 (defvar me-fonts nil)
 
+(defcustom me-leader-key "SPC"
+  "Leader key.")
+
+(defcustom me-localleader-key "SPC m"
+  "Localleader key.")
+
 (defvar me-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh
     fd rg curl mu msmtp mbsync git mpv valgrind

@@ -42,12 +42,12 @@
   (general-create-definer me-map
     :states '(normal motion visual)
     :keymaps 'override
-    :prefix "SPC")
+    :prefix me-leader-key)
 
   ;; Local leader
   (general-create-definer me-map-local
     :states '(normal motion visual)
-    :prefix "SPC m")
+    :prefix me-localleader-key)
 
   ;; Local leader
   (general-create-definer me-map-key
