@@ -1,9 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+(defconst ASPELL-P (executable-find "aspell"))
 
 (use-package spell-fu
   :straight t
-  :when (executable-find "aspell")
+  :when ASPELL-P
   :general
   (me-map "ts" #'spell-fu-mode)
   :hook (text-mode . spell-fu-mode)
@@ -70,7 +71,7 @@
 
   (add-hook
    'spell-fu-mode-hook
-   (defun +spell-init-excluded-faces-h ()
+   (defun +spell-fu--init-excluded-faces-h ()
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
        (setq-local spell-fu-faces-exclude excluded)))))
