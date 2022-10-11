@@ -15,10 +15,10 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
   (let* ((ext (file-name-extension filename))
          (dir (file-name-directory filename))
          (file (file-name-base filename))
-         (filename-regex (concat "^" file "\\(?:-\\(?1:[[:digit:]]me-\\)\\)?" (if ext (concat "\\." ext) "")))
+         (filename-regex (concat "^" file "\\(?:-\\(?1:[[:digit:]]+\\)\\)?" (if ext (concat "\\." ext) "")))
          (last-file (car (last (directory-files dir nil filename-regex))))
          (last-file-num (when (and last-file (string-match filename-regex last-file) (match-string 1 last-file))))
-         (num (1me- (string-to-number (or last-file-num "-1"))))
+         (num (1+ (string-to-number (or last-file-num "-1"))))
          (filename (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
     filename))
 
