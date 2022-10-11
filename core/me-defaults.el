@@ -25,7 +25,11 @@
       eshell-aliases-file (expand-file-name "eshell/aliases" minemacs-var-dir)
       eshell-directory-name (expand-file-name "eshell/" minemacs-var-dir)
       eshell-history-file-name (expand-file-name "eshell/history" minemacs-var-dir)
-      eshell-last-dir-ring-file-name (expand-file-name "eshell/lastdir" minemacs-var-dir))
+      eshell-last-dir-ring-file-name (expand-file-name "eshell/lastdir" minemacs-var-dir)
+      eww-bookmarks-directory (expand-file-name "eww/bookmarks" minemacs-var-dir)
+      xwidget-webkit-cookie-file (expand-file-name "xwidget-webkit/cookies" minemacs-cache-dir)
+      url-configuration-directory (expand-file-name "url" minemacs-cache-dir))
+
 
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore
