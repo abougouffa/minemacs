@@ -5,7 +5,9 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(setq-default font-lock-multiline 'undecided)
+;; NOTE: Setting `font-lock-multiline' to 'undecided' org-mode to become unusable:
+;; Error during redisplay: (jit-lock-function 22138) signaled (args-out-of-range 0 16341)
+(setq-default font-lock-multiline nil)
 
 ;;; Better defaults
 (set-language-environment "UTF-8")
