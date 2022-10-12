@@ -43,10 +43,13 @@
           (insert (propertize "MinEmacs" 'face 'bold))
           (insert "\n")
           (insert-char ?\s 10)
-          (insert (propertize (format "Running GNU Emacs %s (%s)"
-                                      emacs-version
-                                      (substring emacs-repository-version 0 10))
-                              'face 'shadow))
+          (insert (propertize
+                   (format "Running GNU Emacs %s%s"
+                           emacs-version
+                           (if emacs-repository-version
+                               (format " (%s)" (substring emacs-repository-version 0 10))
+                             ""))
+                   'face 'shadow))
           ;; Bootstraping
           (unless (file-exists-p (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-local-dir))
             (insert "\n")
