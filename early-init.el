@@ -8,6 +8,25 @@
 ;; Load MinEmacs variables first
 (load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
 
+;;; Byte compilation
+(setq byte-compile-warnings minemacs-verbose)
+
+;;; Native compilation settings
+(when (featurep 'native-compile)
+  ;; Silence compiler warnings as they can be pretty disruptive
+  (setq native-comp-async-report-warnings-errors nil)
+
+  ;; Make native compilation happens asynchronously
+  (setq native-comp-deferred-compilation t)
+
+  ;; Set the right directory to store the native compilation cache
+  ;; NOTE the method for setting the eln-cache directory depends on the emacs version
+  (when (fboundp 'startup-redirect-eln-cache)
+    (if (< emacs-major-version 29)
+        (add-to-list 'native-comp-eln-load-path
+                     (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
+      (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir))))))
+
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
 (add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
@@ -60,24 +79,6 @@
 ;;; Emacs lisp source/compiled preference
 ;; Prefer loading newest compiled .el file
 (customize-set-variable 'load-prefer-newer noninteractive)
-
-;;; Native compilation settings
-(when (featurep 'native-compile)
-  ;; Silence compiler warnings as they can be pretty disruptive
-  (setq native-comp-async-report-warnings-errors nil)
-
-  ;; Make native compilation happens asynchronously
-  (setq native-comp-deferred-compilation t)
-
-  ;; Set the right directory to store the native compilation cache
-  ;; NOTE the method for setting the eln-cache directory depends on the emacs version
-  (when (fboundp 'startup-redirect-eln-cache)
-    (if (< emacs-major-version 29)
-        (add-to-list 'native-comp-eln-load-path
-                     (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
-      (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))))
-
-  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln" minemacs-cache-dir)))
 
 ;;; UI configuration
 ;; Remove some unneeded UI elements (the user can turn back on anything they wish)
