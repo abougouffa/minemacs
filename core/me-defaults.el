@@ -163,6 +163,9 @@ or file path may exist now."
    ;; Enable recentf-mode globally
    (recentf-mode 1)
 
+   ;; Enable saving minibuffer history
+   (savehist-mode 1)
+
    ;; Global SubWord mode
    (global-subword-mode 1)))
 
