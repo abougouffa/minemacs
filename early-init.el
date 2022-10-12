@@ -6,7 +6,7 @@
 (setq gc-cons-threshold (* 1 1024 1024 1024)) ;; 1GB
 
 ;; Load MinEmacs variables first
-(load (expand-file-name "core/me-vars.el" user-emacs-directory))
+(load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)

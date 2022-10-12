@@ -15,7 +15,7 @@
 
 (defun +parse-the-fun (str)
   "Parse the LaTeX environment STR.
-  Return an AST with newlines counts in each level."
+Return an AST with newlines counts in each level."
   (let (ast)
     (with-temp-buffer
       (insert str)
@@ -76,17 +76,17 @@
   (apply orig-func args))
 
 
-(defun +scimax-toggle-latex-equation-numbering (&optional enable quite)
+(defun +scimax-toggle-latex-equation-numbering (&optional enable)
   "Toggle whether LaTeX fragments are numbered."
   (interactive)
   (if (or enable (not (get '+scimax-org-renumber-environment 'enabled)))
       (progn
         (advice-add 'org-create-formula-image :around #'+scimax-org-renumber-environment)
         (put '+scimax-org-renumber-environment 'enabled t)
-        (unless quite (message "LaTeX numbering enabled.")))
+        (message "LaTeX numbering enabled."))
     (advice-remove 'org-create-formula-image #'+scimax-org-renumber-environment)
     (put '+scimax-org-renumber-environment 'enabled nil)
-    (unless quite (message "LaTeX numbering disabled."))))
+    (message "LaTeX numbering disabled.")))
 
 
 (defun +scimax-org-inject-latex-fragment (orig-func &rest args)
@@ -121,8 +121,9 @@
 (defun me-org-extras-setup ()
   (add-hook 'window-configuration-change-hook
             #'+org--responsive-image-h)
-  ;; Enable renumbering by default
-  (+scimax-toggle-latex-equation-numbering t))
+  ;; Enable LaTeX equations renumbering
+  (me-with-shutup!
+   (+scimax-toggle-latex-equation-numbering :enable)))
 
 
 (provide 'me-org-extras)
