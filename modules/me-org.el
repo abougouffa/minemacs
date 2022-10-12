@@ -27,39 +27,81 @@
       (mkdir dir t)))
   :custom
   (org-tags-column 0)
+  (org-auto-align-tags nil)
   (org-fold-catch-invisible-edits 'smart) ;; try not to accidently do weird stuff in invisible regions
-  (org-export-with-sub-superscripts t) ;; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
   (org-pretty-entities-include-sub-superscripts nil)
   (org-fontify-quote-and-verse-blocks t)
-  (org-auto-align-tags nil)
   (org-special-ctrl-a/e t)
   (org-insert-heading-respect-content t)
   (org-hide-emphasis-markers t)
-  (org-pretty-entities t)
-  (org-ellipsis " ↩")
-  (org-hide-leading-stars t)
   (org-use-property-inheritance t) ; it's convenient to have properties inherited
+  (org-ellipsis " ↩")
   (org-log-done 'time)             ; having the time an item is done sounds convenient
   (org-list-allow-alphabetical t)  ; have a. A. a) A) list bullets
   (org-export-in-background nil)   ; run export processes in external emacs process
 
   :config
-  (require 'ox-latex nil :noerror)
-  (require 'ob-tangle nil :noerror)
-
   (setq org-export-async-debug t) ;; Can be useful!
 
   (let ((size 1.3))
     (dolist (face '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5))
       (set-face-attribute face nil :weight 'semi-bold :height size)
-      (setq size (max (* size 0.9) 1.0))))
+      (setq size (max (* size 0.9) 1.0)))))
 
-  (require 'me-org-extras)
-  (me-org-extras-setup))
 
 (use-package org-contrib
   :straight t
   :after org)
+
+
+(use-package ox-latex
+  :after org
+  :custom
+  (org-latex-prefer-user-labels t)
+  ;; Default `minted` options, can be overwritten in file/dir locals
+  (org-latex-minted-options
+   '(("frame"         "lines")
+     ("fontsize"      "\\footnotesize")
+     ("tabsize"       "2")
+     ("breaklines"    "true")
+     ("breakanywhere" "true") ;; break anywhere, no just on spaces
+     ("style"         "default")
+     ("bgcolor"       "GhostWhite")
+     ("linenos"       "true")))
+  :config
+  ;; Map some org-mode blocks' languages to lexers supported by minted
+  ;; you can see supported lexers by running this command in a terminal:
+  ;; 'pygmentize -L lexers'
+  (dolist (pair '((ipython    "python")
+                  (jupyter    "python")
+                  (scheme     "scheme")
+                  (lisp-data  "lisp")
+                  (conf-unix  "unixconfig")
+                  (conf-space "unixconfig")
+                  (authinfo   "unixconfig")
+                  (gdb-script "unixconfig")
+                  (conf-toml  "yaml")
+                  (conf       "ini")
+                  (conf       "ini")
+                  (gitconfig  "ini")
+                  (systemd    "ini")))
+    (unless (member pair org-latex-minted-langs)
+      (add-to-list 'org-latex-minted-langs pair))))
+
+
+(use-package ob-tangle
+  :after org)
+
+
+(use-package ox-extra
+  :config
+  (ox-extras-activate '(latex-header-blocks ignore-headlines)))
+
+
+(use-package me-org-extras
+  :after org
+  :config
+  (me-org-extras-setup))
 
 
 (use-package org-appear

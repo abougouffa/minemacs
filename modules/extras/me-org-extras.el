@@ -2,6 +2,9 @@
 
 (defvar +org-responsive-image-percentage 0.4)
 (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
+(defvar +org-export-to-pdf-main-file nil
+  "The main (entry point) Org file for a multi-files document.")
+
 
 (defun +org--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
@@ -123,7 +126,73 @@ Return an AST with newlines counts in each level."
             #'+org--responsive-image-h)
   ;; Enable LaTeX equations renumbering
   (me-with-shutup!
-   (+scimax-toggle-latex-equation-numbering :enable)))
+   (+scimax-toggle-latex-equation-numbering :enable))
+
+  (advice-add
+   'org-latex-export-to-pdf :around
+   (defun +org-latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
+     (let* ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org"))
+            (out-file
+             (if (file-exists-p (expand-file-name main-file))
+                 (with-current-buffer (find-file-noselect main-file)
+                   (apply orig-fn orig-args))
+               (apply orig-fn orig-args))))
+       (message "PDF exported to: %s." (file-name-nondirectory out-file)))))
+
+
+  (with-eval-after-load 'ox-latex
+    (dolist
+        (class
+         '(("lettre"
+            "\\documentclass{lettre}"
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+           ("blank"
+            "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+           ("IEEEtran"
+            "\\documentclass{IEEEtran}"
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+           ("ieeeconf"
+            "\\documentclass{ieeeconf}"
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+           ("sagej"
+            "\\documentclass{sagej}"
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+           ("thesis"
+            "\\documentclass[11pt]{book}"
+            ("\\chapter{%s}"       . "\\chapter*{%s}")
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+           ("thesis-fr"
+            "\\documentclass[french,12pt,a4paper]{book}"
+            ("\\chapter{%s}"       . "\\chapter*{%s}")
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
+      (add-to-list 'org-latex-classes class))))
 
 
 (provide 'me-org-extras)
