@@ -143,4 +143,13 @@
     "hf" #'helpful-callable))
 
 
+(use-package eros
+  :straight t
+  :after elisp-mode
+  :custom
+  (eros-eval-result-prefix "⟹ ")
+  :config
+  (eros-mode 1))
+
+
 (provide 'me-lisp)
