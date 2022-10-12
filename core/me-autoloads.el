@@ -33,7 +33,7 @@ Reset VAR to its standard value.
 Convert BODY to an interactive command.
 
 (fn BODY)" nil t)
-(autoload 'me-set-fonts "autoloads/me-core")
+(autoload 'me-set-fonts "autoloads/me-core" nil t)
 (autoload 'me-plist-keys "autoloads/me-core" "\
 Return the keys of PLIST.
 

@@ -38,6 +38,7 @@
 
 ;;;###autoload
 (defun me-set-fonts ()
+  (interactive)
   (custom-set-faces
    `(default
      ((t (:font ,(format "%s %d"
