@@ -22,7 +22,7 @@
     "o" '(eaf-open-browser :which-key "Open URL (EAF)"))
   :custom
   ;; Generic
-  (eaf-apps-to-install '(browser pdf-viewer mindmap jupyter org-previewer
+  (eaf-apps-to-install '(browser mindmap jupyter org-previewer
                          markdown-previewer file-sender video-player))
   (eaf-start-python-process-when-require t)
   (eaf-kill-process-after-last-buffer-closed t)
@@ -103,26 +103,7 @@
           (browse-url-browser-function #'eaf-open-browser))
       (if msg
           (mu4e-action-view-in-browser msg)
-        (message "No message at point."))))
-
-  (require 'eaf-pdf-viewer)
-
-  (with-eval-after-load 'org
-    ;; Use EAF PDF Viewer in Org
-    (defun +eaf--org-open-file-fn (file &optional link)
-      "An wrapper function on `eaf-open'."
-      (eaf-open file))
-    ;; use `emacs-application-framework' to open PDF file: link
-    (add-to-list 'org-file-apps '("\\.pdf\\'" . +eaf--org-open-file-fn)))
-
-  (with-eval-after-load 'latex
-    ;; Link EAF with the LaTeX compiler in emacs. When a .tex file is open,
-    ;; the Command>Compile and view (C-c C-a) option will compile the .tex
-    ;; file into a .pdf file and display it using EAF. Double clicking on the
-    ;; PDF side jumps to editing the clicked section.
-    (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))
-    (add-to-list 'TeX-view-program-list '("eaf" eaf-pdf-synctex-forward-view))
-    (add-to-list 'TeX-view-program-selection '(output-pdf "eaf"))))
+        (message "No message at point.")))))
 
 
 (provide 'me-eaf)
