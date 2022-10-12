@@ -4,7 +4,7 @@
 (use-package emojify
   :straight t
   :after minemacs-loaded
-  :unless (<= 29 emacs-major-version)
+  :disabled (>= emacs-major-version 29)
   :general
   (me-map "ie" '(emojify-insert-emoji :which-key "Emoji"))
   :custom

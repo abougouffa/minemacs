@@ -111,6 +111,7 @@
     ;; Insert
     "i"   '(nil :which-key "insert")
     "iu"  '(insert-char :which-key "Unicode char")
+    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-insert) :which-key "Emoji")
 
     ;; Window
     "w"   '(nil :which-key "window")
