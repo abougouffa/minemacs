@@ -8,6 +8,7 @@
   (dirvish-attributes '(file-size vc-state git-msg all-the-icons))
   (dirvish-cache-dir (expand-file-name "dirvish/" minemacs-cache-dir))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
+  (dirvish-side-width 30)
   :config
   (me-map
     ;; Open
