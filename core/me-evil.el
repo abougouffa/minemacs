@@ -7,7 +7,6 @@
 
 (use-package evil
   :straight t
-  :after minemacs-loaded
   :custom
   (evil-want-C-i-jump nil)
   (evil-want-C-h-delete t) ;; C-h is backspace in insert state
@@ -31,20 +30,22 @@
 
 
 (use-package evil-collection
-  :after evil minemacs-loaded
+  :after evil
   :straight t
   :config
-  (setq evil-collection-mode-list
-        (me-filter
-         (lambda (a) ;; Maybe add elisp-mode!
-           (not (memq a '(evil-mc))))
-         evil-collection-mode-list))
-  (evil-collection-init))
+  (defvar +evil-collection-modes
+    (me-filter
+     (lambda (a) ;; Maybe add elisp-mode!
+       (not (memq a '(evil-mc))))
+     evil-collection-mode-list))
+  (evil-collection-init +evil-collection-modes))
 
 
 (use-package evil-nerd-commenter
+  :straight t
   :after evil minemacs-loaded
-  :straight t)
+  :general
+  (me-map-key "gc" #'evilnc-comment-operator))
 
 
 (use-package evil-mc
@@ -73,6 +74,7 @@
     "p" #'evil-mc-make-and-goto-prev-cursor
     "P" #'evil-mc-make-and-goto-first-cursor
     "q" #'evil-mc-undo-all-cursors)
+
   (me-map-key
     :states 'visual
     :keymaps 'evil-mc-key-map
@@ -120,13 +122,6 @@
             (list (cons :default
                         (or (cdr fn)
                             #'evil-mc-execute-default-call-with-count)))))))
-
-
-(use-package evil-escape
-  :straight t
-  :after evil minemacs-loaded
-  :config
-  (evil-escape-mode 1))
 
 
 (provide 'me-evil)
