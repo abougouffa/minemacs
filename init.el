@@ -21,9 +21,6 @@
 (defun minemacs-reload (&optional load-core-modules)
   "Reload all configuration, including user's config.el."
   (interactive)
-  ;; Set default fonts early
-  (run-at-time nil nil (lambda () (me-set-fonts)))
-
   ;; Core modules
   (when load-core-modules
     (dolist (module minemacs-core-modules)
@@ -46,6 +43,10 @@
     (when (file-exists-p user-config)
       (me-log! "Loading user config file from \"%s\"" user-config)
       (load user-config nil (not minemacs-verbose))))
+
+  ;; Load fonts, values are read from `me-fonts' if set in config.el,
+  ;; otherwise, they are read from the default `me-default-fonts'.
+  (me-set-fonts)
 
   ;; Load GC module lastly
   (run-at-time

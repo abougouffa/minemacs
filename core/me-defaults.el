@@ -111,10 +111,6 @@ or file path may exist now."
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
 
-;;; Load fonts at startup, values are read from `me-fonts' if set in config.el,
-;; and fallback to `me-default-fonts'
-(add-hook 'emacs-startup-hook #'me-set-fonts)
-
 ;; From https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 (add-hook
  'mouse-leave-buffer-hook
