@@ -124,7 +124,7 @@
   :hook (prog-mode . smartparens-mode)
   :hook (text-mode . smartparens-mode)
   :config
-  (with-eval-after-load 'evil-collection
+  (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
       (unless (memq (car sp--mc/cursor-specific-vars) vars)
