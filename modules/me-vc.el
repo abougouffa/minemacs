@@ -44,7 +44,7 @@
   (me-map
     "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
   :custom
-  (diff-hl-draw-borders nil)
+  (diff-hl-draw-borders t)
   :config
   (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
