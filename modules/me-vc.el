@@ -24,15 +24,6 @@
   (forge-database-file (expand-file-name "forge/database.sqlite" minemacs-local-dir)))
 
 
-(use-package code-review
-  :straight t
-  :defer t
-  :custom
-  (code-review-auth-login-marker 'forge)
-  (code-review-log-file (expand-file-name "code-review/error.log" minemacs-local-dir))
-  (code-review-db-database-file (expand-file-name "code-review/db-file.sqlite" minemacs-local-dir)))
-
-
 (use-package diff-hl
   :straight t
   :hook (find-file    . diff-hl-mode)
