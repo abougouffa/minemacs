@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package org
-  :straight t
+  :straight (:host sourcehut :repo "bzg/org-mode")
   :after minemacs-loaded ;; load Org after finishing Emacs startup
   :general
   (me-map-local :keymaps 'org-mode-map
@@ -50,7 +50,7 @@
 
 
 (use-package org-contrib
-  :straight t
+  :straight (:host sourcehut :repo "bzg/org-contrib")
   :after org)
 
 
