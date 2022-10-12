@@ -1,48 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 
-;;; Disabled, WIP...
-(use-package ef-themes
-  :straight t
-  :disabled t
-  ;; If you like two specific themes and want to switch between them, you
-  ;; can specify them in `ef-themes-to-toggle' and then invoke the command
-  ;; `ef-themes-toggle'.  All the themes are included in the variable
-  ;; `ef-themes-collection'.
-  :config
-  (setq ef-themes-to-toggle '(ef-light ef-day))
-
-  ;; Make customisations that affect Emacs faces BEFORE loading a theme
-  ;; (any change needs a theme re-load to take effect).
-
-  (setq ef-themes-headings ; read the manual's entry or the doc string
-        '((0 . (variable-pitch light 1.9))
-          (1 . (variable-pitch light 1.8))
-          (2 . (variable-pitch regular 1.7))
-          (3 . (variable-pitch regular 1.6))
-          (4 . (variable-pitch regular 1.5))
-          (5 . (variable-pitch 1.4)) ; absence of weight means `bold'
-          (6 . (variable-pitch 1.3))
-          (7 . (variable-pitch 1.2))
-          (t . (variable-pitch 1.1))))
-
-  ;; They are nil by default...
-  (setq ef-themes-mixed-fonts nil
-        ef-themes-variable-pitch-ui nil)
-
-  ;; ;; Disable all other themes to avoid awkward blending:
-  ;; (mapc #'disable-theme custom-enabled-themes)
-
-  ;; ;; Load the theme of choice:
-  ;; (load-theme 'ef-light :no-confirm)
-
-  ;; OR use this to load the theme which also calls `ef-themes-post-load-hook':
-  (ef-themes-select 'ef-light))
-
-
 (use-package emojify
   :straight t
   :after minemacs-loaded
+  :unless (<= 29 emacs-major-version)
   :general
   (me-map "ie" '(emojify-insert-emoji :which-key "Emoji"))
   :custom
@@ -57,7 +19,7 @@
   :straight t
   :defer t
   :custom
-  (svg-lib-icons-dir (expand-file-name "svg-lib" minemacs-cache-dir))) ; Change cache dir
+  (svg-lib-icons-dir (expand-file-name "svg-lib/" minemacs-cache-dir)))
 
 
 (use-package popwin
@@ -76,15 +38,13 @@
 
 (use-package writeroom-mode
   :straight t
-  :defer t
   :general
-  (me-map
-    "tz" '(writeroom-mode :which-key "Writeroom mode"))
+  (me-map "tw" #'writeroom-mode)
   :init
-  (defvar +writeroom-text-scale 2
+  (defvar +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'.")
   :custom
-  (writeroom-width 0.5)
+  (writeroom-width 80)
   (writeroom-mode-line t)
   (writeroom-global-effects nil)
   (writeroom-maximize-window nil)
@@ -102,8 +62,8 @@
    'writeroom-mode-hook
    (defun +writeroom--enable-text-scaling-mode-h ()
      "Enable text scaling."
-     (when (/= +writeroom-text-scale 0)
-       (text-scale-set (if writeroom-mode +writeroom-text-scale 0))
+     (when (/= +writeroom-text-scale 0.0)
+       (text-scale-set (if writeroom-mode +writeroom-text-scale 0.0))
        (visual-fill-column-adjust))))
 
   ;; Disable line numbers when in Org mode
@@ -125,10 +85,10 @@
 
 (use-package mixed-pitch
   :straight t
-  :defer t
   :general
-  (me-map
-    "tm" '(mixed-pitch-mode :which-key "Mixed-pitch mode"))
+  (me-map "tm" #'mixed-pitch-mode)
+  :custom
+  (mixed-pitch-variable-pitch-cursor t)
   :config
   (setq mixed-pitch-fixed-pitch-faces
         (append mixed-pitch-fixed-pitch-faces
@@ -151,10 +111,9 @@
 
 (use-package focus
   :straight t
-  :commands focus-mode
   :general
-  (me-map
-    "tf" '(focus-mode :which-key "Focus mode")))
+  (me-map "tF" #'focus-mode))
+
 
 
 (provide 'me-ui)

@@ -15,17 +15,16 @@
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
 
-(me-with-shutup! ;; To suppress the :background message
- ;; Themes
- (use-package doom-themes
-   :straight t
-   :config
-   (load-theme 'doom-one-light t)))
+(use-package doom-themes
+  :straight t
+  :defer t
+  :config
+  (load-theme 'doom-one-light t))
 
 
 (use-package modus-themes
   :straight t
-  :disabled t
+  :defer t
   :custom
   (modus-themes-hl-line '(accented intense))
   (modus-themes-subtle-line-numbers t)
@@ -103,44 +102,63 @@
 
   (add-hook 'modus-themes-after-load-theme-hook #'+modus-themes-tweak-packages)
 
-  (modus-themes-load-operandi)
+  (modus-themes-load-operandi))
 
-  (me-map
-    "tT" #'modus-themes-toggle))
+
+(use-package ef-themes
+  :straight t
+  :custom
+  (ef-themes-to-toggle '(ef-light ef-spring))
+  (ef-themes-mixed-fonts nil)
+  (ef-themes-variable-pitch-ui nil)
+  (ef-themes-headings ; read the manual's entry or the doc string
+   '((0 . (variable-pitch light 1.9))
+     (1 . (variable-pitch light 1.8))
+     (2 . (variable-pitch regular 1.7))
+     (3 . (variable-pitch regular 1.6))
+     (4 . (variable-pitch regular 1.5))
+     (5 . (variable-pitch 1.4)) ; absence of weight means `bold'
+     (6 . (variable-pitch 1.3))
+     (7 . (variable-pitch 1.2))
+     (t . (variable-pitch 1.1))))
+  :config
+  ;; Disable all other themes to avoid awkward blending:
+  (mapc #'disable-theme custom-enabled-themes)
+
+  (ef-themes-select 'ef-light))
 
 
 ;; Modeline
-(me-with-shutup! ;; To suppress the :background message
- (use-package doom-modeline
-   :straight t
-   :custom
-   (doom-modeline-height 32)
-   (doom-modeline-bar-width 6)
-   :config
-   (doom-modeline-def-segment time
-     (when (and doom-modeline-time
-                (bound-and-true-p display-time-mode)
-                (not doom-modeline--limited-width-p))
-       (concat
-        doom-modeline-spc
-        (when doom-modeline-time-icon
-          (concat
-           (doom-modeline-icon 'faicon "clock-o" "🕘" ""
-                               :face 'mode-line
-                               :v-adjust -0.05)
-           (and (or doom-modeline-icon doom-modeline-unicode-fallback)
-                doom-modeline-spc)))
-        (propertize display-time-string
-                    'face (doom-modeline-face 'doom-modeline-time)))))
+(use-package doom-modeline
+  :straight t
+  :custom
+  (doom-modeline-height 32)
+  (doom-modeline-bar-width 6)
+  :config
+  (doom-modeline-def-segment time
+    (when (and doom-modeline-time
+               (bound-and-true-p display-time-mode)
+               (not doom-modeline--limited-width-p))
+      (concat
+       doom-modeline-spc
+       (when doom-modeline-time-icon
+         (concat
+          (doom-modeline-icon 'faicon "clock-o" "🕘" ""
+                              :face 'mode-line
+                              :v-adjust -0.05)
+          (and (or doom-modeline-icon doom-modeline-unicode-fallback)
+               doom-modeline-spc)))
+       (propertize display-time-string
+                   'face (doom-modeline-face 'doom-modeline-time)))))
 
-   (doom-modeline-def-modeline 'main
-     '(bar workspace-name window-number modals matches follow buffer-info
-       remote-host buffer-position word-count parrot selection-info)
-     '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug
-       repl lsp minor-modes input-method indent-info buffer-encoding major-mode
-       process vcs checker time "   "))
+  (doom-modeline-def-modeline 'main
+    '(bar workspace-name window-number modals matches follow buffer-info
+      remote-host buffer-position word-count parrot selection-info)
+    '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug
+      repl lsp minor-modes input-method indent-info buffer-encoding major-mode
+      process vcs checker time "   "))
 
-   (doom-modeline-mode 1)))
+  (doom-modeline-mode 1))
 
 
 (provide 'me-core-ui)
