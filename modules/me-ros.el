@@ -58,7 +58,26 @@
     "orr" '(hydra-ros-main/body :which-key "Hydra")
     "ors" '(ros-set-workspace :which-key "Set workspace")
     "orp" '(ros-go-to-package :which-key "Go to package")
-    "orC" '(ros-cache-clean :which-key "Clean cache")))
+    "orC" '(ros-cache-clean :which-key "Clean cache"))
+
+  :config
+  (defhydra hydra-ros-main (:color blue :hint nil :foreign-keys warn)
+    "
+[ROS]                                                  [_q_] quit           
+  ├──────────────────────────────────────────────────────────────────────╮
+  │  [_c_] Compile    [_t_] Test       [_w_] Set workspace   [_p_] Packages      │
+  │  [_m_] Messages   [_s_] Services   [_a_] Actions         [_x_] Clean cache   │
+  ╰──────────────────────────────────────────────────────────────────────╯
+"
+    ("c" ros-colcon-build-transient)
+    ("t" ros-colcon-test-transient)
+    ("w" ros-set-workspace)
+    ("p" hydra-ros-packages/body)
+    ("m" hydra-ros-messages/body)
+    ("s" hydra-ros-srvs/body)
+    ("a" hydra-ros-actions/body)
+    ("x" ros-cache-clean)
+    ("q" nil :color blue)))
 
 
 (provide 'me-ros)
