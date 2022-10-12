@@ -96,7 +96,7 @@
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (run-at-time nil nil #'me-splash-screen-kill)))
+   (run-at-time 1 nil #'me-splash-screen-kill)))
 
 
 (provide 'me-splash)
