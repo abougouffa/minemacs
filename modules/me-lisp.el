@@ -124,15 +124,15 @@
 
 (use-package elisp-demos
   :straight t
-  :after elisp-mode
+  :after elisp-mode minemacs-loaded
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 
 (use-package helpful
-  :after elisp-mode
   :straight t
+  :after elisp-mode minemacs-loaded
   :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point)
   :general
   (me-map
@@ -145,7 +145,7 @@
 
 (use-package eros
   :straight t
-  :after elisp-mode
+  :after elisp-mode minemacs-loaded
   :custom
   (eros-eval-result-prefix "⟹ ")
   :config
