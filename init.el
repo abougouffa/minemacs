@@ -18,9 +18,9 @@
     (me-log! "Loading modules file from \"%s\"" mods)
     (load mods nil (not minemacs-verbose))))
 
-(defun minemacs-reload (&optional load-core-modules)
+(defun minemacs-load (&optional load-core-modules)
   "Reload all configuration, including user's config.el."
-  (interactive)
+
   ;; Core modules
   (when load-core-modules
     (dolist (module minemacs-core-modules)
@@ -56,6 +56,6 @@
            nil (not minemacs-verbose)))))
 
 ;; Load for the first time
-(minemacs-reload :load-core-modules)
+(minemacs-load :load-core-modules)
 
 (me-log! "Loaded early-config.el")
