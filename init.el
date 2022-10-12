@@ -50,9 +50,8 @@
   (run-at-time
    5 nil
    (lambda ()
-     (me-with-shutup!
-      (load (expand-file-name "me-gc.el" minemacs-core-dir)
-            nil (not minemacs-verbose))))))
+     (load (expand-file-name "me-gc.el" minemacs-core-dir)
+           nil (not minemacs-verbose)))))
 
 ;; Load for the first time
 (minemacs-reload :load-core-modules)
