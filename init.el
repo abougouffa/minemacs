@@ -18,13 +18,13 @@
     (me-log! "Loading modules file from \"%s\"" mods)
     (load mods nil (not minemacs-verbose))))
 
-(defun minemacs-reload (&optional without-core)
+(defun minemacs-reload (&optional load-core-modules)
   "Reload all configuration, including user's config.el."
   (interactive)
   ;; Set fonts early
   (run-at-time nil nil (lambda () (me-set-fonts)))
   ;; Core modules
-  (unless without-core
+  (unless load-core-modules
     (dolist (module minemacs-core-modules)
       (me-log! "Loading core module \"%s\"" module)
       (load (expand-file-name (format "me-%s.el" module) minemacs-core-dir)
@@ -50,10 +50,11 @@
   (run-at-time
    5 nil
    (lambda ()
-     (load (expand-file-name "me-gc.el" minemacs-core-dir)
-           nil (not minemacs-verbose)))))
+     (me-with-shutup!
+      (load (expand-file-name "me-gc.el" minemacs-core-dir)
+            nil (not minemacs-verbose))))))
 
 ;; Load for the first time
-(minemacs-reload)
+(minemacs-reload :load-core-modules)
 
 (me-log! "Loaded early-config.el")
