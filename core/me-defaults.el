@@ -166,6 +166,10 @@ or file path may exist now."
    ;; Enable saving minibuffer history
    (savehist-mode 1)
 
+   ;; Show line number, column number in mode line
+   (line-number-mode 1)
+   (column-number-mode 1)
+
    ;; Global SubWord mode
    (global-subword-mode 1)))
 
