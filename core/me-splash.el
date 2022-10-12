@@ -14,8 +14,7 @@
 
 (defun me-splash-screen ()
   "MinEmacs splash screen"
-  (interactive)
-  (let* ((splash-buffer  (get-buffer-create me-splash-buffer-name))
+  (let* ((splash-buffer (get-buffer-create me-splash-buffer-name))
          (height (- (window-body-height nil) 1))
          (padding-center (min 5 (- (/ height 3) 1)))
          (padding-bottom (min 2 (- height (/ height 3) 3))))
@@ -47,7 +46,7 @@
                    (format "Running GNU Emacs %s%s"
                            emacs-version
                            (if emacs-repository-version
-                               (format " (%s)" (substring emacs-repository-version 0 10))
+                               (format " (%s)" (substring emacs-repository-version 0 8))
                              ""))
                    'face 'shadow))
           ;; Bootstraping
@@ -88,7 +87,6 @@
 
 (defun me-splash-screen-kill ()
   "Kill the splash screen buffer (immediately)."
-  (interactive)
   (when (get-buffer me-splash-buffer-name)
     (kill-buffer me-splash-buffer-name)))
 
