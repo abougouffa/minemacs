@@ -14,7 +14,8 @@
 
 ;;; Set files and directories for built-in packages
 (setq backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-local-dir)))
-      auto-save-list-file-prefix (expand-file-name "auto-save-list/" minemacs-local-dir))
+      auto-save-list-file-prefix (expand-file-name "auto-save-list/" minemacs-local-dir)
+      pcache-directory (expand-file-name "pcache/" minemacs-cache-dir))
 
 
 (setq visible-bell nil ;; set to non-nil to flash!
