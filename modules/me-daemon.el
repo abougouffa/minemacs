@@ -5,7 +5,7 @@
   (with-eval-after-load 'minemacs-loaded
     ;; mu4e
     (run-at-time
-     1
+     nil
      nil
      (lambda ()
        (when (require 'mu4e nil t)
@@ -23,7 +23,7 @@
        (lambda ()
          (let ((inhibit-message t))
            (me-info! "Updating RSS feed.")
-           (elfeed-update)))))) ;; Check every 2h
+           (elfeed-update))))))
 
   (with-eval-after-load 'minemacs-loaded-stage-2
     (unless (daemonp)
