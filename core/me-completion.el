@@ -106,27 +106,42 @@
   (vertico-cycle t)
   (vertico-resize nil)
   (vertico-count 12)
-  :config
+  :init
   (add-to-list
    'load-path
    (expand-file-name
     (format "straight/%s/vertico/extensions" straight-build-dir)
     straight-base-dir))
+  :config
+  (with-eval-after-load 'evil
+    (define-key vertico-map (kbd "C-j") #'vertico-next)
+    (define-key vertico-map (kbd "C-k") #'vertico-previous))
 
-  (require 'vertico-mouse)
-  (require 'vertico-repeat)
-  (require 'vertico-buffer)
+  (vertico-mode 1))
+
+
+(use-package vertico-directory
+  :after vertico
+  :custom
+  (vertico-buffer-display-action
+   `(display-buffer-at-bottom
+     (window-height . ,(+ 3 vertico-count))))
+  :config
   (require 'vertico-directory)
 
-  (with-eval-after-load 'evil
-    (define-key vertico-map (kbd "C-j") 'vertico-next)
-    (define-key vertico-map (kbd "C-k") 'vertico-previous)
-    (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
-
-  (me-map-key :keymaps 'vertico-map "DEL" #'vertico-directory-delete-char)
+  (define-key vertico-map "\r" #'vertico-directory-enter)
+  (define-key vertico-map "\d" #'vertico-directory-delete-char)
+  (define-key vertico-map "\M-\d" #'vertico-directory-delete-word)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
-  (vertico-mode 1))
+
+  (with-eval-after-load 'evil
+    (define-key vertico-map (kbd "M-h") #'vertico-directory-up)))
+
+
+(use-package vertico-repeat
+  :after vertico
+  :config
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 
 (use-package consult
