@@ -17,7 +17,6 @@
 
 (use-package doom-themes
   :straight t
-  :defer t
   :config
   (load-theme 'doom-one-light t))
 
@@ -107,6 +106,7 @@
 
 (use-package ef-themes
   :straight t
+  :defer t
   :custom
   (ef-themes-to-toggle '(ef-light ef-spring))
   (ef-themes-mixed-fonts nil)

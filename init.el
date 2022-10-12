@@ -21,8 +21,9 @@
 (defun minemacs-reload (&optional load-core-modules)
   "Reload all configuration, including user's config.el."
   (interactive)
-  ;; Set fonts early
+  ;; Set default fonts early
   (run-at-time nil nil (lambda () (me-set-fonts)))
+
   ;; Core modules
   (when load-core-modules
     (dolist (module minemacs-core-modules)
