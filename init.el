@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defvar minemacs-core-modules
-  '(defaults splash bootstrap core-ui keybindings evil completion gc))
+  '(defaults splash bootstrap core-ui keybindings evil completion))
 
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
@@ -44,7 +44,14 @@
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
     (when (file-exists-p user-config)
       (me-log! "Loading user config file from \"%s\"" user-config)
-      (load user-config nil (not minemacs-verbose)))))
+      (load user-config nil (not minemacs-verbose))))
+
+  ;; Load GC module lastly
+  (run-at-time
+   5 nil
+   (lambda ()
+     (load (expand-file-name "me-gc.el" minemacs-core-dir)
+           nil (not minemacs-verbose)))))
 
 ;; Load for the first time
 (minemacs-reload)
