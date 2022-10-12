@@ -24,7 +24,7 @@
   ;; Set fonts early
   (run-at-time nil nil (lambda () (me-set-fonts)))
   ;; Core modules
-  (unless load-core-modules
+  (when load-core-modules
     (dolist (module minemacs-core-modules)
       (me-log! "Loading core module \"%s\"" module)
       (load (expand-file-name (format "me-%s.el" module) minemacs-core-dir)
