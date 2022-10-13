@@ -109,6 +109,7 @@
 
 
 (use-package ox-extra
+  :after org
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
