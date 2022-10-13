@@ -30,10 +30,17 @@
 
 
 (use-package evil-collection
-  :after evil
+  :after evil minemacs-loaded
   :straight t
   :config
-  (evil-collection-init))
+  (defvar +evil-collection-modes
+    (me-filter
+     (lambda (a)
+       ;; elisp-mode uses gz to open ielm, which I never use!
+       ;; and uses gr to xref-find-references
+       (not (memq a '(elisp-mode))))
+     evil-collection-mode-list))
+  (evil-collection-init +evil-collection-modes))
 
 
 (use-package evil-nerd-commenter
