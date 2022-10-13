@@ -121,13 +121,18 @@ Return an AST with newlines counts in each level."
     (message "Inject latex disabled")))
 
 
-(defun me-org-extras-setup ()
+(defun me-org-extras-responsive-images-setup ()
   (add-hook 'window-configuration-change-hook
-            #'+org--responsive-image-h)
+            #'+org--responsive-image-h))
+
+
+(defun me-org-extras-equation-numbering-setup ()
   ;; Enable LaTeX equations renumbering
   (me-with-shutup!
-   (+scimax-toggle-latex-equation-numbering :enable))
+   (+scimax-toggle-latex-equation-numbering :enable)))
 
+
+(defun me-org-extras-multifiles-document-setup ()
   (advice-add
    'org-latex-export-to-pdf :around
    (defun +org-latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
@@ -137,9 +142,10 @@ Return an AST with newlines counts in each level."
                  (with-current-buffer (find-file-noselect main-file)
                    (apply orig-fn orig-args))
                (apply orig-fn orig-args))))
-       (message "PDF exported to: %s." (file-name-nondirectory out-file)))))
+       (message "PDF exported to: %s." (file-name-nondirectory out-file))))))
 
 
+(defun me-org-extras-latex-classes-setup ()
   (with-eval-after-load 'ox-latex
     (dolist
         (class
@@ -193,6 +199,13 @@ Return an AST with newlines counts in each level."
             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
             ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
       (add-to-list 'org-latex-classes class))))
+
+
+(defun me-org-extras-setup ()
+  (me-org-extras-latex-classes-setup)
+  (me-org-extras-responsive-images-setup)
+  (me-org-extras-equation-numbering-setup)
+  (me-org-extras-multifiles-document-setup))
 
 
 (provide 'me-org-extras)
