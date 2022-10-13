@@ -167,23 +167,9 @@
   :custom
   (doom-modeline-height 35)
   (doom-modeline-bar-width 8)
+  (doom-modeline-time-icon nil)
   :config
-  (doom-modeline-def-segment time
-    (when (and doom-modeline-time
-               (bound-and-true-p display-time-mode)
-               (not doom-modeline--limited-width-p))
-      (concat
-       doom-modeline-spc
-       (when doom-modeline-time-icon
-         (concat
-          (doom-modeline-icon 'faicon "clock-o" "🕘" ""
-                              :face 'mode-line
-                              :v-adjust -0.05)
-          (and (or doom-modeline-icon doom-modeline-unicode-fallback)
-               doom-modeline-spc)))
-       (propertize display-time-string
-                   'face (doom-modeline-face 'doom-modeline-time)))))
-
+  ;; Add padding
   (doom-modeline-def-modeline 'main
     '(bar workspace-name window-number modals matches follow buffer-info
       remote-host buffer-position word-count parrot selection-info)
