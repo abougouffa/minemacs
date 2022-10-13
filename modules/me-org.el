@@ -22,21 +22,23 @@
       (mkdir dir t)))
   :custom
   (org-tags-column 0)
-  (org-return-follows-link t)
   (org-auto-align-tags nil)
-  (org-fold-catch-invisible-edits 'smart) ;; try not to accidently do weird stuff in invisible regions
-  (org-pretty-entities-include-sub-superscripts nil)
+  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
+  (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
   (org-fontify-quote-and-verse-blocks t)
   (org-special-ctrl-a/e t)
   (org-insert-heading-respect-content t)
   (org-hide-emphasis-markers t)
   (org-use-property-inheritance t) ; it's convenient to have properties inherited
   (org-ellipsis " ↩")
-  (org-log-done 'time)             ; having the time an item is done sounds convenient
-  (org-list-allow-alphabetical t)  ; have a. A. a) A) list bullets
-  (org-export-in-background nil)   ; run export processes in external emacs process
+  (org-log-done 'time) ; having the time an item is done sounds convenient
+  (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
+  (org-export-in-background nil) ; run export processes in external emacs process
   (org-export-with-smart-quotes t) ; convert "this" to « this »
-
+  (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
+  (org-pretty-entities t)
+  (org-pretty-entities-include-sub-superscripts t)
+  (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
   (setq org-latex-line-break-safe "\\\\")
 
