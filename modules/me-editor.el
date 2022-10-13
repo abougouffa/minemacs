@@ -111,7 +111,7 @@
   :straight t
   :after minemacs-loaded
   :config
-  (global-page-break-lines-mode))
+  (global-page-break-lines-mode 1))
 
 
 (use-package rainbow-delimiters
@@ -126,8 +126,7 @@
 
 (use-package smartparens
   :straight t
-  :hook (prog-mode . smartparens-mode)
-  :hook (text-mode . smartparens-mode)
+  :hook ((prog-mode text-mode) . smartparens-mode)
   :config
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
