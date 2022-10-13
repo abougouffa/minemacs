@@ -28,6 +28,8 @@
       frame-resize-pixelwise t
       delete-by-moving-to-trash t)
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (setq auth-sources '("~/.authinfo.gpg") ;; Defaults to GPG
       auth-source-do-cache t
       auth-source-cache-expiry 86400 ; All day, defaut is 2h (7200)
@@ -112,26 +114,26 @@ or file path may exist now."
             (set-auto-mode))))))
 
 ;; From https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
-(add-hook
- 'mouse-leave-buffer-hook
- (defun me-minibuffer--kill-on-mouse-h ()
-   "Kill the minibuffer when switching to window with mouse."
-   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-     (abort-recursive-edit))))
+;; (add-hook
+;;  'mouse-leave-buffer-hook
+;;  (defun me-minibuffer--kill-on-mouse-h ()
+;;    "Kill the minibuffer when switching to window with mouse."
+;;    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+;;      (abort-recursive-edit))))
 
 ;; Automatically cancel the minibuffer when  you avoid
 ;; "attempted to use minibuffer" error.
 ;; From https://stackoverflow.com/a/39672208/3058915
-(advice-add
- 'read-from-minibuffer :around
- (defun me-minibuffer--kill-on-read-a (sub-read &rest args)
-   (let ((active (active-minibuffer-window)))
-     (if active
-         (progn
-           ;; We have to trampoline, since we're IN the minibuffer right now.
-           (apply 'run-at-time 0 nil sub-read args)
-           (abort-recursive-edit))
-       (apply sub-read args)))))
+;; (advice-add
+;;  'read-from-minibuffer :around
+;;  (defun me-minibuffer--kill-on-read-a (sub-read &rest args)
+;;    (let ((active (active-minibuffer-window)))
+;;      (if active
+;;          (progn
+;;            ;; We have to trampoline, since we're IN the minibuffer right now.
+;;            (apply 'run-at-time 0 nil sub-read args)
+;;            (abort-recursive-edit))
+;;        (apply sub-read args)))))
 
 (when feat/xwidgets
   ;; Make xwidget-webkit the default browser
