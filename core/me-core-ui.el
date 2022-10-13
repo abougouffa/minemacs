@@ -17,8 +17,27 @@
 
 (use-package doom-themes
   :straight t
+  :defer t
   :config
   (load-theme 'doom-one-light t))
+
+
+(use-package spacemacs-theme
+  :defer t ;; to prevent requiring 'spacemacs-theme, which doesn't exist
+  :straight (:host github :repo "nashamri/spacemacs-theme")
+  :custom
+  (spacemacs-theme-comment-italic t)
+  (spacemacs-theme-keyword-italic t)
+  (spacemacs-theme-comment-bg nil)
+  (spacemacs-theme-underline-parens nil)
+  :init
+  (load-theme 'spacemacs-light t)
+  ;; Use the background color for line numbers
+  (set-face-attribute
+   'line-number nil
+   :background "#fbf8ef"
+   :height 130
+   :weight 'semi-bold))
 
 
 (use-package apropospriate-theme
