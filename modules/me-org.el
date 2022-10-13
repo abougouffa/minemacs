@@ -35,17 +35,24 @@
   (org-log-done 'time)             ; having the time an item is done sounds convenient
   (org-list-allow-alphabetical t)  ; have a. A. a) A) list bullets
   (org-export-in-background nil)   ; run export processes in external emacs process
+  (org-export-with-smart-quotes t) ; convert "this" to « this »
 
   :config
+  (setq org-latex-line-break-safe "\\\\")
+
   (me-map-local :keymaps 'org-mode-map
     "l"  '(nil :which-key "link")
     "ll" '(org-insert-link :which-key "Insert link")
-    "e" '(org-export-dispatch :which-key "Export dispatch"))
+    "e"  '(org-export-dispatch :which-key "Export dispatch"))
 
   (me-map-key
     :keymaps 'org-mode-map
     :states 'normal
     "RET" #'org-open-at-point)
+
+  (when (and (executable-find "tectonic") nil)
+    (setq org-latex-pdf-process
+          '("tectonic -Z shell-escape -Z continue-on-errors --outdir=%o %f"))) ;; --synctex
 
   (setq org-export-async-debug t) ;; Can be useful!
 
