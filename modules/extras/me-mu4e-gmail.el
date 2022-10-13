@@ -10,8 +10,8 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 
 (defun +mu4e-msg-gmail-p (msg)
   (let ((root-maildir
-         (replace-regexp-in-string "/.*" ""
-                                   (substring (mu4e-message-field msg :maildir) 1))))
+         (replace-regexp-in-string
+          "/.*" "" (substring (mu4e-message-field msg :maildir) 1))))
     (or (string-match-p "gmail" root-maildir)
         (string-match-p "google" root-maildir)
         (member (concat "/" root-maildir) (mapcar #'cdr +mu4e-gmail-accounts)))))
@@ -33,6 +33,8 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
                   (member (message-sendmail-envelope-from)
                           (mapcar #'car +mu4e-gmail-accounts)))
               'delete 'sent)))
+
+  (setq mu4e-marks (delq (assq 'delete mu4e-marks) mu4e-marks))
 
   (setf (alist-get 'delete mu4e-marks)
         (list
@@ -73,14 +75,10 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
             (defun +mu4e-gmail--fix-flags-h (mark msg)
               (when (+mu4e-msg-gmail-p msg)
                 (pcase mark
-                  ((or 'trash 'delete)
-                   (mu4e-action-retag-message msg "-\\Inbox,-\\Draft,+\\Trash"))
-                  ('refile
-                   (mu4e-action-retag-message msg "-\\Inbox"))
-                  ('flag
-                   (mu4e-action-retag-message msg "+\\Starred"))
-                  ('unflag
-                   (mu4e-action-retag-message msg "-\\Starred")))))))
+                  ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
+                  ('refile (mu4e-action-retag-message msg "-\\Inbox"))
+                  ('flag (mu4e-action-retag-message msg "+\\Starred"))
+                  ('unflag (mu4e-action-retag-message msg "-\\Starred")))))))
 
 
 (provide 'me-mu4e-gmail)
