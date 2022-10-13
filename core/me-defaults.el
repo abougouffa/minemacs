@@ -166,6 +166,9 @@ or file path may exist now."
    (line-number-mode 1)
    (column-number-mode 1)
 
+   ;; Wrap long lines
+   (global-visual-line-mode 1)
+
    ;; Global SubWord mode
    (global-subword-mode 1)))
 
