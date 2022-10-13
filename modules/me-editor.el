@@ -26,6 +26,11 @@
     (evil-set-undo-system 'undo-fu)))
 
 
+(use-package iedit
+  :straight t
+  :after minemacs-loaded)
+
+
 (use-package undo-fu-session
   :straight t
   :after undo-fu
