@@ -11,7 +11,6 @@
   (parinfer-rust-library-directory (expand-file-name "parinfer-rust/" minemacs-local-dir))
   (parinfer-rust-auto-download t)
   :hook ((emacs-lisp-mode
-          lisp-data-mode
           clojure-mode
           scheme-mode
           lisp-mode
