@@ -56,6 +56,7 @@ Check for MinEmacs dependencies." t)
 Queue FNS to be byte/natively-compiled after a brief delay.
 
 (fn &rest FNS)")
+(autoload 'me-update "autoloads/me-core" nil t)
 
 
 ;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el

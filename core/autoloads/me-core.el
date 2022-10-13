@@ -136,3 +136,9 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
              (unless fns
                (cancel-timer (get 'me-compile-function 'timer))
                (put 'me-compile-function 'timer nil))))))
+
+;;;###autoload
+(defun me-update ()
+  (interactive)
+  (straight-pull-all)
+  (straight-check-all))
