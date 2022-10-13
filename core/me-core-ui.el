@@ -22,9 +22,40 @@
   (load-theme 'doom-one-light t))
 
 
+(use-package lambda-line
+  :defer t
+  :straight (:type git :host github :repo "lambda-emacs/lambda-line")
+  :custom
+  (lambda-line-icon-time t) ;; requires ClockFace font (see below)
+  (lambda-line-position 'top) ;; Set position of status-line
+  (lambda-line-abbrev t) ;; abbreviate major modes
+  (lambda-line-hspace "  ") ;; add some cushion
+  (lambda-line-prefix t) ;; use a prefix symbol
+  (lambda-line-prefix-padding t)
+  (lambda-line-status-invert t)
+  (lambda-line-gui-ro-symbol " ⨂") ;; symbols
+  (lambda-line-gui-rw-symbol " ◯")
+  (lambda-line-gui-mod-symbol " ⬤")
+  (lambda-line-space-top +.2) ;; padding on top and bottom of line
+  (lambda-line-space-bottom -.2)
+  (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
+  (lambda-line-vc-symbol "  ")
+  (lambda-line-visual-bell nil)
+  :config
+  (lambda-line-mode 1)
+  (lambda-line-clockface-update-fontset "ClockFaceRect"))
+
+
+(use-package gruvbox-theme
+  :straight t
+  :defer t
+  :config
+  (load-theme 'gruvbox-light-hard t))
+
+
 (use-package spacemacs-theme
-  :defer t ;; to prevent requiring 'spacemacs-theme, which doesn't exist
   :straight (:host github :repo "nashamri/spacemacs-theme")
+  :defer t ;; to prevent requiring 'spacemacs-theme, which doesn't exist
   :custom
   (spacemacs-theme-comment-italic t)
   (spacemacs-theme-keyword-italic t)
