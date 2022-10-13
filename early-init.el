@@ -87,6 +87,8 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 (push '(mouse-color . "blue") default-frame-alist)
+(push '(left-fringe . 8)  default-frame-alist)
+(push '(right-fringe . 8) default-frame-alist)
 
 (setq tool-bar-mode nil
       menu-bar-mode nil
