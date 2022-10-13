@@ -137,10 +137,6 @@
   :after smartparens)
 
 
-(use-package hideshowvis
-  :hook (prog-mode . hideshowvis-symbols))
-
-
 (when (<= emacs-major-version 28)
   (use-package good-scroll
     :straight t
