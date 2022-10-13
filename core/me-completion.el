@@ -144,6 +144,29 @@
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 
+(use-package mini-popup
+  :straight (:host github :repo "minad/mini-popup")
+  :after vertico
+  :config
+  (defun mini-popup-height-resize ()
+    (* (1+ (min vertico--total vertico-count)) (default-line-height)))
+
+  (defun mini-popup-height-fixed ()
+    (* (1+ (if vertico--input vertico-count 0)) (default-line-height)))
+
+  (setq mini-popup--height-function #'mini-popup-height-fixed)
+
+  ;; Disable the minibuffer resizing of Vertico (HACK)
+  (advice-add #'vertico--resize-window :around
+              (lambda (&rest args)
+                (unless mini-popup-mode
+                  (apply args))))
+
+  ;; Ensure that the popup is updated after refresh (Consult-specific)
+  (add-hook 'consult--completion-refresh-hook
+            (lambda (&rest _) (mini-popup--setup)) 99))
+
+
 (use-package consult
   :straight t
   :after minemacs-loaded
