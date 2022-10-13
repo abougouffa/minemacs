@@ -33,12 +33,7 @@
   :after evil
   :straight t
   :config
-  (defvar +evil-collection-modes
-    (me-filter
-     (lambda (a) ;; Maybe add elisp-mode!
-       (not (memq a '(evil-mc))))
-     evil-collection-mode-list))
-  (evil-collection-init +evil-collection-modes))
+  (evil-collection-init))
 
 
 (use-package evil-nerd-commenter
@@ -51,10 +46,9 @@
 (use-package evil-mc
   :straight t
   :after evil-collection minemacs-loaded
-  :init
+  :config
   ;; We will redefine the keybindngs
   (defvar evil-mc-key-map (make-sparse-keymap))
-  :config
   (me-map-key
     :states '(normal visual)
     :keymaps 'evil-mc-key-map
