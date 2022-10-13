@@ -22,6 +22,7 @@
       (mkdir dir t)))
   :custom
   (org-tags-column 0)
+  (org-return-follows-link t)
   (org-auto-align-tags nil)
   (org-fold-catch-invisible-edits 'smart) ;; try not to accidently do weird stuff in invisible regions
   (org-pretty-entities-include-sub-superscripts nil)
@@ -40,6 +41,11 @@
     "l"  '(nil :which-key "link")
     "ll" '(org-insert-link :which-key "Insert link")
     "e" '(org-export-dispatch :which-key "Export dispatch"))
+
+  (me-map-key
+    :keymaps 'org-mode-map
+    :states 'normal
+    "RET" #'org-open-at-point)
 
   (setq org-export-async-debug t) ;; Can be useful!
 
