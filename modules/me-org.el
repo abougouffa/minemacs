@@ -108,9 +108,12 @@
   :straight t
   :hook (org-mode . org-appear-mode)
   :custom
+  (org-appear-inside-latex t)
+  (org-appear-autokeywords t)
+  (org-appear-autoentities t)
   (org-appear-autoemphasis t)
   (org-appear-autosubmarkers t)
-  (org-appear-autolinks nil)
+  (org-appear-autolinks 'just-brackets)
   :config
   ;; for proper first-time setup, `org-appear--set-elements'
   ;; needs to be run after other hooks have acted.
@@ -131,7 +134,9 @@
 ;; for latex fragments
 (use-package org-fragtog
   :straight t
-  :hook (org-mode . org-fragtog-mode))
+  :hook (org-mode . org-fragtog-mode)
+  :custom
+  (org-fragtog-preview-delay 0.1))
 
 
 (provide 'me-org)
