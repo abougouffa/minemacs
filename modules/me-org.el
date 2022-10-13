@@ -7,11 +7,6 @@
 (use-package org
   :straight (:host sourcehut :repo "bzg/org-mode")
   :after minemacs-loaded ;; load Org after finishing Emacs startup
-  :general
-  (me-map-local :keymaps 'org-mode-map
-    "l"  '(nil :which-key "link")
-    "ll" '(org-insert-link :which-key "Insert link")
-    "e" '(org-export-dispatch :which-key "Export dispatch"))
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
@@ -41,6 +36,11 @@
   (org-export-in-background nil)   ; run export processes in external emacs process
 
   :config
+  (me-map-local :keymaps 'org-mode-map
+    "l"  '(nil :which-key "link")
+    "ll" '(org-insert-link :which-key "Insert link")
+    "e" '(org-export-dispatch :which-key "Export dispatch"))
+
   (setq org-export-async-debug t) ;; Can be useful!
 
   (let ((size 1.3))

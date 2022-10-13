@@ -49,7 +49,6 @@
 (use-package citar-org-roam
   :straight t
   :after citar org-roam
-  :no-require
   :init
   ;; Modified form: https://jethrokuan.github.io/org-roam-guide/
   (defun +org-roam-node-from-cite (entry-key)
