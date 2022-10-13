@@ -126,6 +126,15 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
     (add-to-list 'mu4e-contexts context default)
     context))
 
+(defun +org-msg-make-signature (closing-phrase firstname lastname &rest lines)
+  (concat
+   "\n\n" closing-phrase "\n\n"
+   "#+begin_signature" "\n\n"
+   "*" (capitalize firstname) " " (upcase lastname) "*" "\n\n"
+   (me-foldr (lambda (l r) (concat l "\n\n" r))
+             "" lines)
+   "#+end_signature"))
+
 
 ;; I like to always BCC myself
 (defun +mu4e--auto-bcc-h ()
