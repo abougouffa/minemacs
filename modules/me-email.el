@@ -10,6 +10,7 @@
   :when MU4E-P
   :load-path MU4E-LOAD-PATH
   :commands mu4e mu4e-compose-new mu4e--start
+  :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :init
   (me-map "om" '(mu4e :which-key "Mu4e"))
   (defvar mu4e-main-hide-personal-addresses t)
