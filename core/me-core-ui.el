@@ -132,7 +132,7 @@
 (use-package doom-modeline
   :straight t
   :custom
-  (doom-modeline-height 32)
+  (doom-modeline-height 35)
   (doom-modeline-bar-width 6)
   :config
   (doom-modeline-def-segment time
