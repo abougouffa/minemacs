@@ -21,6 +21,20 @@
   (load-theme 'doom-one-light t))
 
 
+(use-package apropospriate-theme
+  :straight t
+  :defer t
+  :config
+  (load-theme 'apropospriate-light t))
+
+
+(use-package humanoid-themes
+  :straight (:host github :repo "humanoid-colors/emacs-humanoid-themes")
+  :defer t
+  :config
+  (load-theme 'humanoid-light t))
+
+
 (use-package modus-themes
   :straight t
   :defer t
