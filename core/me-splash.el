@@ -78,15 +78,15 @@
           (goto-char 0)
           (read-only-mode t)
 
-          (local-set-key (kbd "C-[")       'me-splash-screen-kill)
-          (local-set-key (kbd "<escape>")  'me-splash-screen-kill)
-          (local-set-key (kbd "q")         'me-splash-screen-kill)
-          (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
-          (local-set-key (kbd "<mouse-2>") 'operate-this-button)
+          (let ((k))
+            (local-set-key (kbd "<escape>")  (lambda () (interactive) (me-splash-screen-kill)))
+            (local-set-key (kbd "q")         (lambda () (interactive) (me-splash-screen-kill)))
+            (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
+            (local-set-key (kbd "<mouse-2>") 'operate-this-button))
+
           (display-buffer-same-window splash-buffer nil)))))
 
 (defun me-splash-screen-kill ()
-  "Kill the splash screen buffer (immediately)."
   (when (get-buffer me-splash-buffer-name)
     (kill-buffer me-splash-buffer-name)))
 
