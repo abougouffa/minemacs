@@ -112,16 +112,6 @@
   (me-elisp-highlighting-setup))
 
 
-(use-package erefactor
-  :straight t
-  :hook ((emacs-lisp-mode lisp-interaction-mode) . erefactor-lazy-highlight-turn-on)
-  :general
-  (me-map-local :keymaps '(emacs-lisp-mode-map lisp-data-mode-map)
-    "r"  '(nil :which-key "refactor")
-    "rr" '(erefactor-rename-symbol-in-buffer :which-key "Rename symbol in buffer")
-    "rR" '(erefactor-rename-symbol-in-package :which-key "Rename symbol in package")))
-
-
 (use-package elisp-demos
   :straight t
   :after elisp-mode minemacs-loaded
