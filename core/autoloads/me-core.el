@@ -39,6 +39,7 @@
 ;;;###autoload
 (defun me-set-fonts ()
   (interactive)
+  ;; TODO: use (font-family-list) to check if the font is available
   (custom-set-faces
    `(default
      ((t (:font ,(format "%s %d"
