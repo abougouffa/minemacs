@@ -173,11 +173,14 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (dolist (env-var me-env-save-vars)
       (when-let ((var-val (getenv env-var)))
         (when (equal "PATH" env-var)
-          (dolist (path (split-string var-val path-separator))
-            (insert
-             (format
-              "(unless (member \"%s\" exec-path) (add-to-list 'exec-path \"%s\"))\n"
-              path path))))
+          (insert "\n;; Adding PATH content to `exec-path'\n")
+          (dolist (path (parse-colon-path var-val))
+            (when path
+              (insert
+               (format
+                "(unless (member \"%s\" exec-path) (add-to-list 'exec-path \"%s\"))\n"
+                path path))))
+          (insert "\n"))
         (insert
          (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
     (write-file (expand-file-name "env" minemacs-local-dir))))
