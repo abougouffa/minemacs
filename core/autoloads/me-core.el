@@ -148,7 +148,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (dolist (env-var me-env-save-vars)
       (when-let ((var-val (getenv env-var)))
         (when (equal "PATH" env-var)
-          (dolist (path (split-string var-val ":"))
+          (dolist (path (split-string var-val path-separator))
             (insert
              (format
               "(unless (member \"%s\" exec-path) (add-to-list 'exec-path \"%s\"))\n"
