@@ -81,12 +81,19 @@
 ;; ((nil (eglot-workspace-configuration
 ;;        . ((ltex . ((language . "fr")
 ;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
-;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/"))))))))
+;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
 (use-package eglot-ltex
   :straight (:host github :repo "emacs-languagetool/eglot-ltex")
   :after eglot
   :custom
-  (eglot-languagetool-server-path "/usr"))
+  (eglot-languagetool-server-path "/usr")
+  :init
+  (add-hook
+   'org-mode-hook
+   (defun +eglot-ltex--set-workspace ()
+     (setq-local
+      eglot-workspace-configuration
+      '(:ltex (:language "fr"))))))
 
 
 (provide 'me-spell)
