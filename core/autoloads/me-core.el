@@ -155,7 +155,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 (defun me-compile-functions (&rest fns)
   "Queue FNS to be byte/natively-compiled after a brief delay."
   (dolist (fn fns)
-    (me-do-when-idle!
+    (me-eval-when-idle!
      (me-info! "Compiling function %s" fn)
      (or (when (featurep 'native-compile)
            (or (subr-native-elisp-p (indirect-function fn))
