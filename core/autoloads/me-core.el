@@ -3,8 +3,8 @@
 ;;;###autoload
 (defmacro me-log! (msg &rest vars)
   "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
-  `(when minemacs-verbose
-    (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
+  (when minemacs-verbose
+    `(apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
 
 ;;;###autoload
 (defmacro me-info! (msg &rest vars)
@@ -135,10 +135,10 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
        1.5 t
        (lambda ()
          (when-let (fn (pop fns))
-           (me-info! "Running task %d, calling function `%s'"
-                     task-num
-                     (truncate-string-to-width
-                      (format "%s" fn) 40 nil nil "..."))
+           (me-log! "Running task %d, calling function `%s'"
+                    task-num
+                    (truncate-string-to-width
+                     (format "%s" fn) 40 nil nil "..."))
            (funcall fn))
          (unless fns
            (cancel-timer (get task-name 'timer))
@@ -157,7 +157,6 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   "Queue FNS to be byte/natively-compiled after a brief delay."
   (dolist (fn fns)
     (me-eval-when-idle!
-     (me-info! "Compiling function %s" fn)
      (or (and (featurep 'native-compile)
               (or (subr-native-elisp-p (indirect-function fn))
                   (ignore-errors (native-compile fn))))
