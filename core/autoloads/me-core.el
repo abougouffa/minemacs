@@ -127,15 +127,16 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 ;;;###autoload
 (defun me-eval-when-idle (&rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
-  (setq me--eval-when-idle-task (1+ me--eval-when-idle-task))
-  (let ((task-name (make-symbol (format "me--do-when-idle-task%d" me--eval-when-idle-task))))
+  (let* ((task-num (atomic-change-group
+                     (setq me--eval-when-idle-task (1+ me--eval-when-idle-task))))
+         (task-name (make-symbol (format "me--do-when-idle-task%d" task-num))))
     (with-memoization (get task-name 'timer)
       (run-with-idle-timer
        1.5 t
        (lambda ()
          (when-let (fn (pop fns))
            (me-info! "Running task %d, calling function `%s'"
-                     me--eval-when-idle-task
+                     task-num
                      (truncate-string-to-width
                       (format "%s" fn) 40 nil nil "..."))
            (funcall fn))
@@ -157,9 +158,9 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   (dolist (fn fns)
     (me-eval-when-idle!
      (me-info! "Compiling function %s" fn)
-     (or (when (featurep 'native-compile)
-           (or (subr-native-elisp-p (indirect-function fn))
-               (ignore-errors (native-compile fn))))
+     (or (and (featurep 'native-compile)
+              (or (subr-native-elisp-p (indirect-function fn))
+                  (ignore-errors (native-compile fn))))
          (byte-code-function-p fn)
          (let (byte-compile-warnings)
            (byte-compile fn))))))
