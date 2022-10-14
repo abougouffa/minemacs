@@ -4,7 +4,10 @@
   :after org
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
-  (org-support-shift-select t))
+  (org-support-shift-select t)
+  :config
+  (me-map-local :keymaps 'org-mode-map
+    "C" #'org-cite-insert))
 
 
 (use-package oc-csl
