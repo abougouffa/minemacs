@@ -117,7 +117,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
             (let ((path (executable-find (symbol-name d))))
               (insert (concat (if (length> dep 1) "   ● " "") (propertize (symbol-name d) 'face (list 'bold (if path 'success 'error)))))
               (insert (if path (concat " found at " (propertize path 'face 'shadow)) " not found!"))
-              (insert (propertize (if path " [✓]" " [❌]") 'face (list 'bold (if path 'success 'error))))
+              (insert (propertize (if path " [✓]" " [⨯]") 'face (list 'bold (if path 'success 'error))))
               (insert "\n")))))))
   (switch-to-buffer "*minemacs-dependencies*"))
 
