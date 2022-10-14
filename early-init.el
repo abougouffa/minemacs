@@ -91,6 +91,9 @@
 (push '(left-fringe . 8)  default-frame-alist)
 (push '(right-fringe . 8) default-frame-alist)
 
+(when (and (>= emacs-major-version 29) nil)
+  (push '(alpha-background . 90) default-frame-alist))
+
 (setq tool-bar-mode nil
       menu-bar-mode nil
       scroll-bar-mode nil)
