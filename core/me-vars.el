@@ -57,9 +57,9 @@
   "MinEmacs has been loaded.")
 
 (defconst me-default-fonts
-  '(:font-family "DejaVu Sans Mono"
+  '(:font-family "monospace"
     :font-size 15
-    :variable-pitch-font-family "DejaVu Sans"
+    :variable-pitch-font-family "serif"
     :variable-pitch-font-size 15))
 
 (defvar me-fonts nil)
