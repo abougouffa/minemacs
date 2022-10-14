@@ -46,18 +46,6 @@
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t)) ;; can be interesting!
-;; :init
-;; (defvar-local +eglot-ltex--document-lang nil)
-;; (setq-default
-;;  eglot-workspace-configuration
-;;  (lambda (dir)
-;;    (cond ((or (eq (derived-mode-p major-mode) 'org-mode)
-;;               (eq (derived-mode-p major-mode) 'markdown-mode))
-;;           ;; Setup language for ltex-ls
-;;           (let ((lang (or +eglot-ltex--document-lang
-;;                           (completing-read "LTeX language: " '("en" "fr")))))
-;;             (setq-local +eglot-ltex--document-lang lang)
-;;             `(:ltex (:language ,lang))))))))
 
 
 (use-package project-cmake

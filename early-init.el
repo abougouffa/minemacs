@@ -55,13 +55,13 @@
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (me-log! "================ Loaded Emacs ================")
+   (me-log! "=============== Loaded Emacs ===============")
    (me-info! "Loaded Emacs in %s." (emacs-init-time))
    ;; Print load time, and a quote to *scratch*
    (with-current-buffer "*scratch*"
      (erase-buffer)
      (insert (format ";; Loaded MinEmacs in %s.\n" (emacs-init-time)))
-     (insert ";; ================================\n")
+     (insert ";; ==============================\n")
      (when (and (executable-find "fortune")
                 (version<= "28.1" emacs-version)) ;; to use string-lines
        (insert (string-join (mapcar (lambda (l) (concat ";; " l))
