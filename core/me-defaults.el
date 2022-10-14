@@ -100,6 +100,7 @@
 ;;; Enable global modes
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
