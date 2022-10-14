@@ -42,13 +42,14 @@
       undo-outer-limit  1000000000) ;; 1GB (default is 24MB)
 
 ;;; Editing
-(setq-default display-line-numbers-width 3
-              display-line-numbers-type 'relative
-              truncate-lines nil
+(setq display-line-numbers-type 'relative
+      tab-always-indent nil)
+
+(setq-default truncate-lines nil
               fill-column 80
-              tab-width 2
               indent-tabs-mode nil
-              tab-always-indent nil)
+              display-line-numbers-width 3
+              tab-width 2)
 
 ;;; Backups
 ;; Disable backup and lockfiles
@@ -79,16 +80,17 @@
       scroll-step 1
       scroll-margin 0
       scroll-conservatively 101
-      scroll-up-aggressively 0.01
-      scroll-down-aggressively 0.01
       scroll-preserve-screen-position 'always
       auto-window-vscroll nil
       fast-but-imprecise-scrolling t)
 
-;; Stretch cursor to the glyph width
-(setq-default x-stretch-cursor t)
+(setq-default scroll-up-aggressively 0.01
+              scroll-down-aggressively 0.01)
 
-(setq-default window-combination-resize t)
+;; Stretch cursor to the glyph width
+(setq x-stretch-cursor t)
+
+(setq window-combination-resize t)
 
 ;; Mode-line stuff
 ;; Enable time in the mode-line
@@ -102,7 +104,7 @@
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
  'after-save-hook
- (defun me-guess-file-mode-h ()
+ (defun me--guess-file-mode-h ()
    "Guess major mode when saving a file in `fundamental-mode'.
 
 Likely, something has changed since the buffer was opened. e.g. A shebang line
@@ -149,6 +151,10 @@ or file path may exist now."
                  (string-match-p "N/A" battery-str))
        (display-battery-mode 1)))
 
+   ;; Scroll pixel by pixel
+   (pixel-scroll-mode 1)
+
+   ;; Precision scroll
    (when (>= emacs-major-version 29)
      (pixel-scroll-precision-mode 1))
 
@@ -164,12 +170,15 @@ or file path may exist now."
    ;; Enable saving minibuffer history
    (savehist-mode 1)
 
-   ;; Show line number, column number in mode line
+   ;; Show line and column numbers (cursor position) in mode-line
    (line-number-mode 1)
    (column-number-mode 1)
 
    ;; Wrap long lines
    (global-visual-line-mode 1)
+
+   ;; Better handling for files with so long lines
+   (global-so-long-mode 1)
 
    ;; Global SubWord mode
    (global-subword-mode 1)))
