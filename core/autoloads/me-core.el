@@ -154,20 +154,16 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 ;;;###autoload
 (defun me-compile-functions (&rest fns)
   "Queue FNS to be byte/natively-compiled after a brief delay."
-  (with-memoization (get 'me-compile-function 'timer)
-    (run-with-idle-timer
-     1.5 t (lambda ()
-             (when-let (fn (pop fns))
-               (me-info! "compile-functions: %s" fn)
-               (or (if (featurep 'native-compile)
-                       (or (subr-native-elisp-p (indirect-function fn))
-                           (ignore-errors (native-compile fn))))
-                   (byte-code-function-p fn)
-                   (let (byte-compile-warnings)
-                     (byte-compile fn))))
-             (unless fns
-               (cancel-timer (get 'me-compile-function 'timer))
-               (put 'me-compile-function 'timer nil))))))
+  (dolist (fn fns)
+    (me-do-when-idle!
+     (me-info! "Compiling function %s" fn)
+     (or (when (featurep 'native-compile)
+           (or (subr-native-elisp-p (indirect-function fn))
+               (ignore-errors (native-compile fn))))
+         (byte-code-function-p fn)
+         (let (byte-compile-warnings)
+           (byte-compile fn))))))
+
 
 ;;;###autoload
 (defun me-env-save ()
