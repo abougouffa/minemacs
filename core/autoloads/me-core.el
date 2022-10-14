@@ -121,6 +121,35 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
               (insert "\n")))))))
   (switch-to-buffer "*minemacs-dependencies*"))
 
+;; An internal variable to keep track of the tasks
+(defvar me--eval-when-idle-task 0)
+
+;;;###autoload
+(defun me-eval-when-idle (&rest fns)
+  "Queue FNS to be processed when Emacs becomes idle."
+  (setq me--eval-when-idle-task (1+ me--eval-when-idle-task))
+  (let ((task-name (make-symbol (format "me--do-when-idle-task%d" me--eval-when-idle-task))))
+    (with-memoization (get task-name 'timer)
+      (run-with-idle-timer
+       1.5 t
+       (lambda ()
+         (when-let (fn (pop fns))
+           (me-info! "Running task %d, calling function `%s'"
+                     me--eval-when-idle-task
+                     (truncate-string-to-width
+                      (format "%s" fn) 40 nil nil "..."))
+           (funcall fn))
+         (unless fns
+           (cancel-timer (get task-name 'timer))
+           (put task-name 'timer nil)))))))
+
+;;;###autoload
+(defmacro me-eval-when-idle! (&rest body)
+  "Push BODY to be processed when Emacs becomes idle."
+  `(me-eval-when-idle
+    (lambda ()
+      ,@body)))
+
 ;; Adapted from `doom-lib'
 ;;;###autoload
 (defun me-compile-functions (&rest fns)

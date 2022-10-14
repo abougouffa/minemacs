@@ -52,6 +52,14 @@ Return the deserialized object, or nil if the SYM.el file dont exist.
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
 (autoload 'me-check-dependencies "autoloads/me-core" "\
 Check for MinEmacs dependencies." t)
+(autoload 'me-eval-when-idle "autoloads/me-core" "\
+Queue FNS to be processed when Emacs becomes idle.
+
+(fn &rest FNS)")
+(autoload 'me-eval-when-idle! "autoloads/me-core" "\
+Push BODY to be processed when Emacs becomes idle.
+
+(fn &rest BODY)" nil t)
 (autoload 'me-compile-functions "autoloads/me-core" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
 
@@ -59,6 +67,7 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (autoload 'me-env-save "autoloads/me-core" nil t)
 (autoload 'me-env-load "autoloads/me-core" nil t)
 (autoload 'me-update "autoloads/me-core" nil t)
+(register-definition-prefixes "autoloads/me-core" '("me--eval-when-idle-task"))
 
 
 ;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el
