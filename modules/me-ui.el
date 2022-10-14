@@ -66,21 +66,25 @@
        (text-scale-set (if writeroom-mode +writeroom-text-scale 0.0))
        (visual-fill-column-adjust))))
 
+  (defvar-local +writeroom-line-num-was-activate-p nil)
+
   ;; Disable line numbers when in Org mode
   (add-hook
    'writeroom-mode-enable-hook
    (defun +writeroom--disable-line-numbers-mode-h ()
-     (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
+     (when (and (or (derived-mode-p 'org-mode)
+                    (derived-mode-p 'markdown-mode))
                 (bound-and-true-p display-line-numbers-mode))
-       (setq-local +line-num--was-activate-p display-line-numbers-type)
+       (setq-local +writeroom-line-num-was-activate-p display-line-numbers-type)
        (display-line-numbers-mode -1))))
 
   (add-hook
    'writeroom-mode-disable-hook
    (defun +writeroom--restore-line-numbers-mode-h ()
-     (when (and (or (derived-mode-p 'org-mode) (derived-mode-p 'markdown-mode))
-                (bound-and-true-p +line-num--was-activate-p))
-       (display-line-numbers-mode +line-num--was-activate-p)))))
+     (when (and (or (derived-mode-p 'org-mode)
+                    (derived-mode-p 'markdown-mode))
+                +writeroom-line-num-was-activate-p)
+       (display-line-numbers-mode +writeroom-line-num-was-activate-p)))))
 
 
 (use-package mixed-pitch
