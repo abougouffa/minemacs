@@ -23,8 +23,8 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
-
 (defvar +mu4e--last-invalid-gmail-action 0.0)
+
 (defun me-mu4e-gmail-setup ()
   ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior

@@ -17,7 +17,6 @@ This is enacted by `+mu4e--main-action-str-prettier-a' and
 (defvar +mu4e-min-header-frame-width 120
   "Minimum reasonable with for the header view.")
 
-
 (defun +mu4e-colorize-str (str &optional unique herring)
   "Apply a face from `+mu4e-header-colorized-faces' to STR.
 If HERRING is set, it will be used to determine the face instead of STR.
@@ -51,7 +50,6 @@ a quoted symbol for a alist of current strings and faces provided."
    str)
   str)
 
-
 (defun +mu4e--str-color-face (str &optional offset)
   "Select a face from `+mu4e-header-colorized-faces' based on
 STR and any integer OFFSET."
@@ -60,7 +58,6 @@ STR and any integer OFFSET."
                         (length +mu4e-header-colorized-faces))
                      +mu4e-header-colorized-faces)))
     color))
-
 
 (defun +mu4e--main-action-str-prettier-a (str &optional func-or-shortcut)
   "Highlight the first occurrence of [.] in STR.
@@ -89,11 +86,9 @@ clicked."
                        (- (length newstr) 1) 'mouse-face 'highlight newstr)
     newstr))
 
-
 (defun +mu4e--main-keyval-str-prettier-a (str)
   "Replace '*' with `+mu4e-main-bullet' in STR."
   (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str))
-
 
 (defun +mu4e--get-string-width (str)
   "Return the width in pixels of a string in the current
@@ -108,7 +103,6 @@ will also be the width of all other printable characters."
       (insert str)
       (car (window-text-pixel-size)))))
 
-
 (cl-defun +normalized-icon (name &key set color height v-adjust)
   "Convert :icon declaration to icon"
   (let* ((icon-set (intern (concat "all-the-icons-" (or set "material"))))
@@ -121,7 +115,6 @@ will also be the width of all other printable characters."
          (space-width (+mu4e--get-string-width " "))
          (space-factor (- 2 (/ (float icon-width) space-width))))
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
-
 
 (defun me-mu4e--ui-setup ()
   (setq mu4e-use-fancy-chars t
@@ -210,7 +203,6 @@ will also be the width of all other printable characters."
 
   (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
   (advice-add #'mu4e--main-action-str :override #'+mu4e--main-action-str-prettier-a))
-
 
 (defun me-mu4e-ui-setup ()
   (if (display-graphic-p)

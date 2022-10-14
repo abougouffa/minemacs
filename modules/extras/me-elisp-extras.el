@@ -3,7 +3,6 @@
 
 (defvar +emacs-lisp--face nil)
 
-
 ;; Extracted from https://github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
 (defun +emacs-lisp--highlight-vars-and-faces (end)
   "Match defined variables and functions.
@@ -39,7 +38,6 @@ library/userland functions"
                                          'font-lock-function-name-face))))))
                       (throw 'matcher t)))))))
     nil))
-
 
 ;; Taken from https://www.reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
 (defun +emacs-lisp--calculate-lisp-indent (&optional parse-start)
@@ -217,19 +215,16 @@ library/userland functions"
               (t
                normal-indent))))))
 
-
 (defun me-elisp-indent-setup ()
   ;; Fixed indenter that intends plists sensibly.
   (advice-add #'calculate-lisp-indent :override
               #'+emacs-lisp--calculate-lisp-indent))
-
 
 (defun me-elisp-highlighting-setup ()
   ;; Fixed indenter that intends plists sensibly.
   (font-lock-add-keywords
    'emacs-lisp-mode
    `((+emacs-lisp--highlight-vars-and-faces . +emacs-lisp--face))))
-
 
 ;; HACK: Quite a few functions here are called often, and so are especially
 ;; performance sensitive, so we compile this file on-demand, at least, until

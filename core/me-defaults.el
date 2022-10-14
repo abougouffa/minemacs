@@ -18,7 +18,6 @@
 (setq backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-local-dir)))
       auto-save-list-file-prefix (expand-file-name "auto-save-list/" minemacs-local-dir))
 
-
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore
       large-file-warning-threshold (* 50 1024 1024) ;; change to 50 MiB

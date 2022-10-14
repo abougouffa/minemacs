@@ -20,13 +20,11 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
       (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
     (user-error (mu4e-format "No attached files found"))))
 
-
 (defun +mu4e-view-open-attachment ()
   "Select an attachment, and open it."
   (interactive)
   (mu4e~view-open-file
    (mu4e~view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
-
 
 (defun +mu4e-view-select-mime-part-action ()
   "Select a MIME part, and perform an action on it."
@@ -37,7 +35,6 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
          (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
                       labeledparts)))
       (user-error (mu4e-format "No parts found")))))
-
 
 (defun +mu4e-part-selectors (parts)
   "Generate selection strings for PARTS."
@@ -71,7 +68,6 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                       (plist-get pinfo :part))
                 labeledparts))
         labeledparts)))
-
 
 (defun +mu4e-view-save-all-attachments (&optional arg)
   "Save all MIME parts from current mu4e gnus view buffer."
@@ -107,7 +103,6 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                                              (expand-file-name f dir)))))
       (mu4e-message "No attached files found"))))
 
-
 (defun +mu4e-register-account (label maildir letvars &optional default)
   (let ((context
          (make-mu4e-context
@@ -135,13 +130,11 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
              "" lines)
    "#+end_signature"))
 
-
 ;; I like to always BCC myself
 (defun +mu4e--auto-bcc-h ()
   "Add BCC address from `+mu4e-auto-bcc-address'."
   (when +mu4e-auto-bcc-address
     (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address)))))
-
 
 (defun +mu4e--set-from-address-h ()
   "If the user defines multiple `+mu4e-account-aliases' for email aliases
@@ -163,7 +156,6 @@ preferred alias"
                     (completing-read "From: " addresses)))
             (completing-read "From: " addresses)))))
 
-
 ;; Detect empty subjects, and give users an opotunity to fill something in
 (defun +mu4e--check-for-subject-h ()
   "Check that a subject is present, and prompt for a subject if not."
@@ -177,7 +169,6 @@ preferred alias"
         (insert (read-string "Subject (optional): "))
         (message "Sending...")))))
 
-
 (defun +mu4e-save-message-at-point (&optional dir)
   "Copy message at point to somewhere else as <date>_<subject>.eml."
   (interactive)
@@ -188,7 +179,6 @@ preferred alias"
     (copy-file
      (mu4e-message-field msg :path)
      (format "%s/%s" (or dir mu4e-attachment-dir (read-directory-name "Copy message to: ")) target) 1)))
-
 
 ;;;###autoload
 (defun me-mu4e-extras-setup ()

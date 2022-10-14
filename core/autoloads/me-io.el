@@ -103,7 +103,6 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
       (find-file (me--sudo-file-path this-file))
     (user-error "Current buffer not bound to a file")))
 
-
 ;;;###autoload
 (defun me-sudo-save-buffer ()
   "Save this file as root."
@@ -123,7 +122,6 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
                 (revert-buffer t t))))
         (user-error "Unable to open %S" file))
     (user-error "Current buffer not bound to a file")))
-
 
 ;;;###autoload
 (defun me-clean-file-name (filename &optional conv-downcase)

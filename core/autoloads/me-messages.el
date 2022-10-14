@@ -22,7 +22,6 @@
       (with-current-buffer buf
         (goto-char (point-max))))))
 
-
 ;;;###autoload
 (defun me-messages-auto-tail-toggle ()
   "Auto tail the '*Messages*' buffer."
