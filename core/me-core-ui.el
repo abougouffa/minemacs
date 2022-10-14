@@ -196,7 +196,7 @@
 (use-package doom-modeline
   :straight t
   :custom
-  (doom-modeline-height 35)
+  (doom-modeline-height 30)
   (doom-modeline-bar-width 8)
   (doom-modeline-time-icon nil)
   :config
