@@ -34,7 +34,7 @@
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
-(add-to-list 'load-path (expand-file-name "lisp" minemacs-root-dir))
+(add-to-list 'load-path (expand-file-name "elisp" minemacs-root-dir))
 (add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
 
 (defun me-generate-autoloads ()
