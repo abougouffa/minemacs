@@ -19,14 +19,17 @@
         native-comp-verbose (if minemacs-verbose 3 0))
 
   ;; Make native compilation happens asynchronously
-  (setq native-comp-deferred-compilation t)
+  (if (version< emacs-version "29.0.50") ;; 29.1
+      (setq native-comp-deferred-compilation t)
+    (setq inhibit-automatic-native-compilation nil))
 
   ;; Set the right directory to store the native compilation cache
   ;; NOTE the method for setting the eln-cache directory depends on the emacs version
   (when (fboundp 'startup-redirect-eln-cache)
     (if (< emacs-major-version 29)
-        (add-to-list 'native-comp-eln-load-path
-                     (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
+        (add-to-list
+         'native-comp-eln-load-path
+         (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
       (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir))))))
 
 ;; Add direcotries to `load-path'
