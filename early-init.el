@@ -9,12 +9,14 @@
 (load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
 
 ;;; Byte compilation
-(setq byte-compile-warnings minemacs-verbose)
+(setq byte-compile-warnings minemacs-verbose
+      byte-compile-verbose minemacs-verbose)
 
 ;;; Native compilation settings
 (when (featurep 'native-compile)
   ;; Silence compiler warnings as they can be pretty disruptive
-  (setq native-comp-async-report-warnings-errors nil)
+  (setq native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
+        native-comp-verbose (if minemacs-verbose 3 0))
 
   ;; Make native compilation happens asynchronously
   (setq native-comp-deferred-compilation t)
