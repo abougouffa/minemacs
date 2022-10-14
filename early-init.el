@@ -8,6 +8,11 @@
 ;; Load MinEmacs variables first
 (load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
 
+;; Load environment variables when available
+(let ((env-file (expand-file-name "env" minemacs-local-dir)))
+  (when (file-exists-p env-file)
+    (load env-file (not minemacs-verbose) (not minemacs-verbose))))
+
 ;;; Byte compilation
 (setq byte-compile-warnings minemacs-verbose
       byte-compile-verbose minemacs-verbose)

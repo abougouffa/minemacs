@@ -139,6 +139,32 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
                (put 'me-compile-function 'timer nil))))))
 
 ;;;###autoload
+(defun me-env-save ()
+  (interactive)
+  (with-temp-buffer
+    (insert ";; -*- mode: emacs-lisp; -*-\n\n")
+    (dolist (env-var me-env-save-vars)
+      (when-let ((var-val (getenv env-var)))
+        (when (equal "PATH" env-var)
+          (dolist (path (split-string var-val ":"))
+            (insert
+             (format
+              "(unless (member \"%s\" exec-path) (add-to-list 'exec-path \"%s\"))\n"
+              path path))))
+        (insert
+         (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
+    (write-file (expand-file-name "env" minemacs-local-dir))))
+
+;;;###autoload
+(defun me-env-load ()
+  (interactive)
+  (let ((env-file (expand-file-name "env" minemacs-local-dir)))
+    (when (file-exists-p env-file))
+    (with-temp-buffer
+      (insert-file env-file)
+      (eval-buffer))))
+
+;;;###autoload
 (defun me-update ()
   (interactive)
   (straight-pull-all)

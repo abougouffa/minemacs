@@ -77,5 +77,11 @@
     cargo clangd ccls maxima octave fortune)
   "A list of programs I use within Emacs.")
 
+(defvar me-env-save-vars
+  '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH")
+  "List of environment variables saved by `me-env-save'.
+You need to run Emacs from terminal to get the environment variables.
+MinEmacs then save them to be used in GUI sessions as well.")
+
 
 (provide 'me-vars)
