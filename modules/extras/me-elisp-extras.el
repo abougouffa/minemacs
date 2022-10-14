@@ -238,8 +238,8 @@ library/userland functions"
 ;; HACK: Quite a few functions here are called often, and so are especially
 ;; performance sensitive, so we compile this file on-demand, at least, until
 ;; Doom adds a formal compile step to 'doom sync'.
-;; (me-compile-functions #'+emacs-lisp--highlight-vars-and-faces
-;;                       #'+emacs-lisp--calculate-lisp-indent-a)
+(me-compile-functions #'+emacs-lisp--highlight-vars-and-faces
+                      #'+emacs-lisp--calculate-lisp-indent-a)
 
 
 (provide 'me-elisp-extras)
