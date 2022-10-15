@@ -180,6 +180,12 @@
     "CF" #'rust-goto-format-problem))
 
 
+(use-package dumb-jump
+  :straight t
+  :defer t
+  :init
+  ;; use as xref backend
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 
 (provide 'me-prog)
