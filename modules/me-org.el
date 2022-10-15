@@ -117,7 +117,11 @@
 (use-package me-org-extras
   :after org
   :config
-  (me-org-extras-setup))
+  (me-org-extras-outline-path-setup)
+  (me-org-extras-latex-classes-setup)
+  (me-org-extras-responsive-images-setup)
+  (me-org-extras-equation-numbering-setup)
+  (me-org-extras-multifiles-document-setup))
 
 
 (use-package org-appear

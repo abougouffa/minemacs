@@ -201,7 +201,19 @@ Return an AST with newlines counts in each level."
       (add-to-list 'org-latex-classes class))))
 
 
+(defun me-org-extras-outline-path-setup ()
+  (advice-add
+   #'org-format-outline-path :around
+   (defun +org--strip-properties-from-outline-a (fn &rest args)
+     (let ((org-level-faces
+            (cl-loop for face in org-level-faces
+                     collect `(:foreground ,(face-foreground face nil t)
+                               :weight bold))))
+       (apply fn args)))))
+
+
 (defun me-org-extras-setup ()
+  (me-org-extras-outline-path-setup)
   (me-org-extras-latex-classes-setup)
   (me-org-extras-responsive-images-setup)
   (me-org-extras-equation-numbering-setup)
