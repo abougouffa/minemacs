@@ -27,7 +27,8 @@
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :general
+  :hook ((c-mode c++-mode rust-mode python-mode latex-mode LaTeX-mode) . eglot-ensure)
+  :init
   (me-map
     "ca"  '(eglot-code-actions :which-key "Code actions")
     "cq"  '(eglot-code-action-quickfix :which-key "Code action quickfix")
