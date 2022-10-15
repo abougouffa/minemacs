@@ -125,6 +125,8 @@
     "wm"  '(maximize-window :which-key "Maximize")
     "w+"  '(evil-window-increase-width :which-key "Increase width")
     "w-"  '(evil-window-decrease-width :which-key "Decrease width")
+    "wu"  #'winner-undo
+    "wU"  #'winner-redo
 
     ;; Applications (Open)
     "o"   '(nil   :which-key "app/open")
@@ -177,8 +179,7 @@
 
 (use-package hydra
   :straight t
-  :after minemacs-loaded
-  :defer t)
+  :after minemacs-loaded)
 
 
 (provide 'me-keybindings)

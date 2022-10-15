@@ -143,6 +143,9 @@ or file path may exist now."
    ;; Scroll pixel by pixel
    (pixel-scroll-mode 1)
 
+   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
+   (winner-mode 1)
+
    ;; Precision scroll
    (when (>= emacs-major-version 29)
      (pixel-scroll-precision-mode 1))
