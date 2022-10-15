@@ -99,6 +99,10 @@
 (setq display-time-string-forms
       '((propertize (concat 24-hours ":" minutes))))
 
+;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
+;; Use completing-read interface instead of definitions buffer
+(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
 ;;; Enable global modes
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
