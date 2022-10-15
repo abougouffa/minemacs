@@ -72,7 +72,7 @@
 
 (defvar me-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget
-    mu msmtp mbsync git mpv valgrind (gcc clang) (gdb lldb) cmake make clang-format
+    mu msmtp mbsync git mpv valgrind (gcc clang) (gdb lldb) cmake make clang-format aspell
     (python3 python) rosbag cargo maxima octave fortune (xelatex pdflatex lualatex) (latexmk tectonic)
     (clangd ccls) (pyls pylsp pyright) dot-language-server rust-analyzer
     cmake-language-server bash-language-server docker-langserver
