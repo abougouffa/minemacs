@@ -95,22 +95,31 @@
   (mixed-pitch-variable-pitch-cursor t)
   :config
   (setq mixed-pitch-fixed-pitch-faces
-        (append mixed-pitch-fixed-pitch-faces
-                '(org-date
-                  org-footnote
-                  org-special-keyword
-                  org-property-value
-                  org-ref-cite-face
-                  org-tag
-                  org-todo-keyword-todo
-                  org-todo-keyword-habt
-                  org-todo-keyword-done
-                  org-todo-keyword-wait
-                  org-todo-keyword-kill
-                  org-todo-keyword-outd
-                  org-todo
-                  org-done
-                  font-lock-comment-face))))
+        (delete-dups
+         (append mixed-pitch-fixed-pitch-faces
+                 '(org-date
+                   org-footnote
+                   org-drawer
+                   org-special-keyword
+                   org-property-value
+                   org-cite-key
+                   org-ref-cite-face
+                   org-tag
+                   org-tag-group
+                   org-block
+                   org-inline-src-block
+                   org-todo-keyword-todo
+                   org-latex-and-related
+                   org-macro
+                   org-link
+                   org-todo-keyword-habt
+                   org-todo-keyword-done
+                   org-todo-keyword-wait
+                   org-todo-keyword-kill
+                   org-todo-keyword-outd
+                   org-todo
+                   org-done
+                   font-lock-comment-face)))))
 
 
 (use-package focus
