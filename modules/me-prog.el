@@ -50,15 +50,19 @@
 
 (use-package project-cmake
   :straight (:host github :repo "sawyerzheng/project-cmake" :branch "fix-unix-kits")
-  :after eglot
-  :general
-  (me-map
-    "pc"  '(nil :which-key "CMake")
-    "pct" '(project-cmake-test :which-key "Test")
-    "pcb" '(project-cmake-build :which-key "Build")
-    "pcs" '(project-cmake-shell :which-key "Shell")
-    "pci" '(project-cmake-install :which-key "Install")
-    "pcc" '(project-cmake-configure :which-key "Configure"))
+  :commands (project-cmake-test
+             project-cmake-build
+             project-cmake-shell
+             project-cmake-install
+             project-cmake-configure)
+  :init
+  (me-map :keymaps '(c++-mode-map c-mode-map)
+    "pC"  '(nil :which-key "cmake")
+    "pCt" '(project-cmake-test :which-key "Test")
+    "pCb" '(project-cmake-build :which-key "Build")
+    "pCs" '(project-cmake-shell :which-key "Shell")
+    "pCi" '(project-cmake-install :which-key "Install")
+    "pCc" '(project-cmake-configure :which-key "Configure"))
   :config
   (project-cmake-scan-kits)
   (project-cmake-eglot-integration))
