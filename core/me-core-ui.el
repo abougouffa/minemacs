@@ -17,40 +17,22 @@
 
 (use-package doom-themes
   :straight t
-  :defer t
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-one-light t)
 
+  (defun +me-theme-tweaks (&rest _args)
+    (set-face-attribute
+     'line-number nil
+     :background (face-attribute 'default :background)
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'semi-light)
+    (set-face-attribute
+     'line-number-current-line nil
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'bold))
 
-(use-package lambda-line
-  :defer t
-  :straight (:type git :host github :repo "lambda-emacs/lambda-line")
-  :custom
-  (lambda-line-icon-time t) ;; requires ClockFace font (see below)
-  (lambda-line-position 'top) ;; Set position of status-line
-  (lambda-line-abbrev t) ;; abbreviate major modes
-  (lambda-line-hspace "  ") ;; add some cushion
-  (lambda-line-prefix t) ;; use a prefix symbol
-  (lambda-line-prefix-padding t)
-  (lambda-line-status-invert t)
-  (lambda-line-gui-ro-symbol " ⨂") ;; symbols
-  (lambda-line-gui-rw-symbol " ◯")
-  (lambda-line-gui-mod-symbol " ⬤")
-  (lambda-line-space-top +.2) ;; padding on top and bottom of line
-  (lambda-line-space-bottom -.2)
-  (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
-  (lambda-line-vc-symbol "  ")
-  (lambda-line-visual-bell nil)
-  :config
-  (lambda-line-mode 1)
-  (lambda-line-clockface-update-fontset "ClockFaceRect"))
-
-
-(use-package gruvbox-theme
-  :straight t
-  :defer t
-  :config
-  (load-theme 'gruvbox-light-hard t))
+  (add-hook 'after-init-hook #'+me-theme-tweaks)
+  (add-hook 'enable-theme-functions #'+me-theme-tweaks))
 
 
 (use-package spacemacs-theme
@@ -61,28 +43,25 @@
   (spacemacs-theme-keyword-italic t)
   (spacemacs-theme-comment-bg nil)
   (spacemacs-theme-underline-parens nil)
-  :init
-  (load-theme 'spacemacs-light t)
-  ;; Use the background color for line numbers
-  (set-face-attribute
-   'line-number nil
-   :background "#fbf8ef"
-   :height 130
-   :weight 'semi-bold))
+  :config ;; :init
+  (defun me-spacemacs-setup ()
+    ;; Disable any previously loaded themes
+    (mapc #'disable-theme custom-enabled-themes)
+    ;; Load spacemacs-light
+    (load-theme 'spacemacs-light t)
+    ;; Tweaks:
+    ;; Use the background color for line numbers
+    (set-face-attribute
+     'line-number nil
+     :background (face-attribute 'default :background)
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'semi-bold)
+    (set-face-attribute
+     'line-number-current-line nil
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'bold))
 
-
-(use-package apropospriate-theme
-  :straight t
-  :defer t
-  :config
-  (load-theme 'apropospriate-light t))
-
-
-(use-package humanoid-themes
-  :straight (:host github :repo "humanoid-colors/emacs-humanoid-themes")
-  :defer t
-  :config
-  (load-theme 'humanoid-light t))
+  (me-spacemacs-setup))
 
 
 (use-package modus-themes
@@ -135,6 +114,10 @@
       `(git-gutter-fr:added ((,class :foreground ,green-fringe-bg)))
       `(git-gutter-fr:deleted ((,class :foreground ,red-fringe-bg)))
       `(git-gutter-fr:modified ((,class :foreground ,yellow-fringe-bg)))
+      ;; Tweak `diff-hl-mode'
+      `(diff-hl-insert ((,class :foreground ,green-fringe-bg)))
+      `(diff-hl-delete ((,class :foreground ,red-fringe-bg)))
+      `(diff-hl-change ((,class :foreground ,yellow-fringe-bg)))
       ;; Tweak `doom-modeline'
       `(doom-modeline-evil-normal-state ((,class :foreground ,green-alt-other)))
       `(doom-modeline-evil-insert-state ((,class :foreground ,red-alt-other)))
@@ -142,10 +125,6 @@
       `(doom-modeline-evil-operator-state ((,class :foreground ,blue-alt)))
       `(doom-modeline-evil-motion-state ((,class :foreground ,blue-alt-other)))
       `(doom-modeline-evil-replace-state ((,class :foreground ,yellow-alt)))
-      ;; Tweak `diff-hl-mode'
-      `(diff-hl-insert ((,class :foreground ,green-fringe-bg)))
-      `(diff-hl-delete ((,class :foreground ,red-fringe-bg)))
-      `(diff-hl-change ((,class :foreground ,yellow-fringe-bg)))
       ;; Tweak `solaire-mode'
       `(solaire-default-face ((,class :inherit default :background ,bg-alt :foreground ,fg-dim)))
       `(solaire-line-number-face ((,class :inherit solaire-default-face :foreground ,fg-unfocused)))
@@ -190,6 +169,30 @@
   (mapc #'disable-theme custom-enabled-themes)
 
   (ef-themes-select 'ef-light))
+
+
+(use-package lambda-line
+  :straight (:type git :host github :repo "lambda-emacs/lambda-line")
+  :defer t
+  :custom
+  (lambda-line-icon-time t) ;; requires ClockFace font (see below)
+  (lambda-line-position 'top) ;; Set position of status-line
+  (lambda-line-abbrev t) ;; abbreviate major modes
+  (lambda-line-hspace "  ") ;; add some cushion
+  (lambda-line-prefix t) ;; use a prefix symbol
+  (lambda-line-prefix-padding t)
+  (lambda-line-status-invert t)
+  (lambda-line-gui-ro-symbol " ⨂") ;; symbols
+  (lambda-line-gui-rw-symbol " ◯")
+  (lambda-line-gui-mod-symbol " ⬤")
+  (lambda-line-space-top +.2) ;; padding on top and bottom of line
+  (lambda-line-space-bottom -.2)
+  (lambda-line-symbol-position 0.1) ;; adjust the vertical placement of symbol
+  (lambda-line-vc-symbol "  ")
+  (lambda-line-visual-bell nil)
+  :config
+  (lambda-line-mode 1)
+  (lambda-line-clockface-update-fontset "ClockFaceRect"))
 
 
 ;; Modeline

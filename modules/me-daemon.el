@@ -33,5 +33,10 @@
 ;; At daemon startup
 (add-hook 'emacs-startup-hook #'me-daemon--setup-background-apps)
 
+;; Reload theme on Daemon
+(add-hook
+ 'server-after-make-frame-hook
+ (lambda ()
+   (load-theme 'doom-one-light t)))
 
 (provide 'me-daemon)
