@@ -7,12 +7,12 @@
                    :files (:defaults
                            "keywords"
                            "poly-maxima.el"))
-  :mode ("\\.ma[cx]\\'" . maxima-mode)
   :when MAXIMA-P
-  :commands (maxima-mode maxima-inferior-mode maxima)
-  :init
-  (setq maxima-font-lock-keywords-directory ;; a workaround to undo the straight workaround!
-        (expand-file-name (format "straight/%s/maxima/keywords" straight-build-dir) straight-base-dir)))
+  :mode ("\\.ma[cx]\\'" . maxima-mode)
+  :interpreter ("maxima" . maxima-mode)
+  :hook ((maxima-mode maxima-inferior-mode) . maxima-font-lock-setup)
+  :custom
+  (maxima-display-maxima-buffer nil))
 
 
 (use-package imaxima
@@ -21,7 +21,7 @@
   :when MAXIMA-P
   :commands (imaxima imath-mode)
   :custom
-  (imaxima-use-maxima-mode-flag nil) ;; otherwise, it don't render equations with LaTeX.
+  (setq imaxima-use-maxima-mode-flag nil)
   :config
-  ;; Hook the `maxima-inferior-mode' to get Company completion.
+  ;; Hook the `maxima-inferior-mode' to get syntax highlighting
   (add-hook 'imaxima-startup-hook #'maxima-inferior-mode))
