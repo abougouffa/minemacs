@@ -10,7 +10,10 @@
   :config
   (add-to-list 'completion-at-point-functions #'cape-file) ;; complete file names
   (add-to-list 'completion-at-point-functions #'cape-tex) ;; complete TeX commands
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev))
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-ispell)
+  (add-to-list 'completion-at-point-functions #'cape-symbol)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
 
 
 (use-package corfu
