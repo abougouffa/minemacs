@@ -159,7 +159,8 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (me-eval-when-idle!
      (or (and (featurep 'native-compile)
               (or (subr-native-elisp-p (indirect-function fn))
-                  (ignore-errors (native-compile fn))))
+                  (me-with-shutup!
+                   (ignore-errors (native-compile fn)))))
          (byte-code-function-p fn)
          (let (byte-compile-warnings)
            (byte-compile fn))))))
