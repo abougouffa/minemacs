@@ -9,9 +9,8 @@
        (unless (mu4e-running-p)
          (let ((inhibit-message t))
            (mu4e t)
-           (me-info! "Started `mu4e' in background."))))))
+           (me-info! "Started `mu4e' in background.")))))
 
-  (with-eval-after-load 'minemacs-loaded-stage-1
     ;; RSS
     (me-eval-when-idle!
      (run-at-time
@@ -20,9 +19,8 @@
       (lambda ()
         (let ((inhibit-message t))
           (me-info! "Updating RSS feed.")
-          (elfeed-update))))))
+          (elfeed-update)))))
 
-  (with-eval-after-load 'minemacs-loaded-stage-2
     (me-eval-when-idle!
      (unless (daemonp)
        (let ((inhibit-message t))
