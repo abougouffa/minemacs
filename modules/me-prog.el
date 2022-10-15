@@ -159,7 +159,6 @@
               (t (plantuml-download-jar) 'jar))))
 
 
-(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
 
 
 (provide 'me-prog)

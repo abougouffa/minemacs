@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
+
+
 (use-package magit
   :straight t
   :general
