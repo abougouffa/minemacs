@@ -6,6 +6,11 @@
   "The main (entry point) Org file for a multi-files document.")
 
 
+(defun +org-format-latex-set-scale (scale)
+  (setq-local org-format-latex-options
+              (plist-put org-format-latex-options :scale scale)))
+
+
 (defun +org--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
     (setq-local
@@ -212,9 +217,24 @@ Return an AST with newlines counts in each level."
        (apply fn args)))))
 
 
+(defun me-org-extras-pretty-latex-fragments-setup ()
+  (require 'org-src)
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
+
+  ;; Can be dvipng, dvisvgm, imagemagick
+  (setq org-preview-latex-default-process 'dvisvgm)
+
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :background "Transparent"))
+
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :scale 1.4)))
+
+
 (defun me-org-extras-setup ()
   (me-org-extras-outline-path-setup)
   (me-org-extras-latex-classes-setup)
+  (me-org-extras-pretty-latex-fragments-setup)
   (me-org-extras-responsive-images-setup)
   (me-org-extras-equation-numbering-setup)
   (me-org-extras-multifiles-document-setup))

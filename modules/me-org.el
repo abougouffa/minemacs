@@ -36,6 +36,7 @@
   (org-export-in-background nil) ; run export processes in external emacs process
   (org-export-with-smart-quotes t) ; convert "this" to « this »
   (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
+  (org-highlight-latex-and-related t)
   (org-pretty-entities t)
   (org-pretty-entities-include-sub-superscripts t)
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
@@ -118,6 +119,7 @@
   :after org
   :config
   (me-org-extras-outline-path-setup)
+  (me-org-extras-pretty-latex-fragments-setup)
   (me-org-extras-latex-classes-setup)
   (me-org-extras-responsive-images-setup)
   (me-org-extras-equation-numbering-setup)
