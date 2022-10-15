@@ -42,7 +42,8 @@
 
 ;;; Editing
 (setq display-line-numbers-type 'relative
-      tab-always-indent nil)
+      tab-always-indent nil
+      whitespace-action '(cleanup auto-cleanup))
 
 (setq-default truncate-lines nil
               fill-column 80
