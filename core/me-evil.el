@@ -38,7 +38,7 @@
      (lambda (a)
        ;; elisp-mode uses gz to open ielm, which I never use!
        ;; and uses gr to xref-find-references
-       (not (memq a '(elisp-mode))))
+       (not (memq a '(elisp-mode evil-mc))))
      evil-collection-mode-list))
   (evil-collection-init +evil-collection-modes))
 
@@ -52,39 +52,77 @@
 
 (use-package evil-mc
   :straight t
-  :after evil-collection minemacs-loaded
-  :config
+  :after evil-collection
+  :init
   ;; We will redefine the keybindngs
   (defvar evil-mc-key-map (make-sparse-keymap))
-  (me-map-key
-    :states '(normal visual)
-    :keymaps 'evil-mc-key-map
-    :prefix "gz"
-    "" '(nil :which-key "evil-mc")
-    "d" #'evil-mc-make-and-goto-next-match
-    "D" #'evil-mc-make-and-goto-prev-match
-    "s" #'evil-mc-skip-and-goto-next-match
-    "S" #'evil-mc-skip-and-goto-prev-match
-    "c" #'evil-mc-skip-and-goto-next-cursor
-    "C" #'evil-mc-skip-and-goto-prev-cursor
-    "j" #'evil-mc-make-cursor-move-next-line
-    "k" #'evil-mc-make-cursor-move-prev-line
-    "m" #'evil-mc-make-all-cursors
-    "n" #'evil-mc-make-and-goto-next-cursor
-    "N" #'evil-mc-make-and-goto-last-cursor
-    "p" #'evil-mc-make-and-goto-prev-cursor
-    "P" #'evil-mc-make-and-goto-first-cursor
-    "q" #'evil-mc-undo-all-cursors)
+  (defvar evil-mc-cursors-map (make-sparse-keymap))
+  (defconst evil-collection-evil-mc-maps '(evil-mc-key-map evil-mc-cursors-map))
 
-  (me-map-key
-    :states 'visual
-    :keymaps 'evil-mc-key-map
-    :prefix "gz"
-    "i" #'evil-mc-make-cursor-in-visual-selection-beg
-    "a" #'evil-mc-make-cursor-in-visual-selection-end)
+  (define-key evil-mc-cursors-map (kbd "u") 'evil-mc-undo-last-added-cursor)
+  (define-key evil-mc-cursors-map (kbd "q") 'evil-mc-undo-all-cursors)
+  (define-key evil-mc-cursors-map (kbd "P") 'evil-mc-pause-cursors)
+  (define-key evil-mc-cursors-map (kbd "R") 'evil-mc-resume-cursors)
+  (define-key evil-mc-cursors-map (kbd "m") 'evil-mc-make-all-cursors)
+  (define-key evil-mc-cursors-map (kbd "f") 'evil-mc-make-and-goto-first-cursor)
+  (define-key evil-mc-cursors-map (kbd "l") 'evil-mc-make-and-goto-last-cursor)
+  (define-key evil-mc-cursors-map (kbd "n") 'evil-mc-make-and-goto-next-cursor)
+  (define-key evil-mc-cursors-map (kbd "p") 'evil-mc-make-and-goto-prev-cursor)
+  (define-key evil-mc-cursors-map (kbd "h") 'evil-mc-make-cursor-here)
+  (define-key evil-mc-cursors-map (kbd "j") 'evil-mc-make-cursor-move-next-line)
+  (define-key evil-mc-cursors-map (kbd "k") 'evil-mc-make-cursor-move-prev-line)
+  (define-key evil-mc-cursors-map (kbd "s") 'evil-mc-skip-and-goto-next-cursor)
+  (define-key evil-mc-cursors-map (kbd "S") 'evil-mc-skip-and-goto-prev-cursor)
+  (define-key evil-mc-cursors-map (kbd "c") 'evil-mc-skip-and-goto-next-match)
+  (define-key evil-mc-cursors-map (kbd "C") 'evil-mc-skip-and-goto-prev-match)
+  (define-key evil-mc-cursors-map (kbd "i") 'evil-mc-make-cursor-in-visual-selection-beg)
+  (define-key evil-mc-cursors-map (kbd "a") 'evil-mc-make-cursor-in-visual-selection-end)
 
-  ;; Enable globally
-  (global-evil-mc-mode 1)
+  (evil-define-key '(normal visual) 'evil-mc-key-map (kbd "gz") evil-mc-cursors-map)
+
+  :commands (evil-mc-undo-last-added-cursor
+             evil-mc-undo-all-cursors
+             evil-mc-pause-cursors
+             evil-mc-resume-cursors
+             evil-mc-make-all-cursors
+             evil-mc-make-and-goto-first-cursor
+             evil-mc-make-and-goto-last-cursor
+             evil-mc-make-and-goto-next-cursor
+             evil-mc-make-and-goto-prev-cursor
+             evil-mc-make-cursor-here
+             evil-mc-make-cursor-move-next-line
+             evil-mc-make-cursor-move-prev-line
+             evil-mc-skip-and-goto-next-cursor
+             evil-mc-skip-and-goto-prev-cursor
+             evil-mc-skip-and-goto-next-match
+             evil-mc-skip-and-goto-prev-match
+             evil-mc-make-cursor-in-visual-selection-beg
+             evil-mc-make-cursor-in-visual-selection-end)
+
+  :config
+  ;; HACK (from Doom Emacs),
+  ;; evil-mc's design is bizarre. Its variables and hooks are lazy loaded
+  ;; rather than declared at top-level, some hooks aren't defined or
+  ;; documented, it's a bit initializer-function drunk, and its minor modes
+  ;; are intended to be perpetually active -- even when no cursors are active.
+  ;; I undo all of that here.
+  (evil-mc-define-vars)
+  (evil-mc-initialize-vars)
+  (add-hook 'evil-mc-before-cursors-created #'evil-mc-pause-incompatible-modes)
+  (add-hook 'evil-mc-before-cursors-created #'evil-mc-initialize-active-state)
+  (add-hook 'evil-mc-after-cursors-deleted  #'evil-mc-teardown-active-state)
+  (add-hook 'evil-mc-after-cursors-deleted  #'evil-mc-resume-incompatible-modes)
+  (advice-add #'evil-mc-initialize-hooks :override #'ignore)
+  (advice-add #'evil-mc-teardown-hooks :override #'evil-mc-initialize-vars)
+  (advice-add #'evil-mc-initialize-active-state :before #'turn-on-evil-mc-mode)
+  (advice-add #'evil-mc-teardown-active-state :after #'turn-off-evil-mc-mode)
+  (setq cursor-type t)
+  (setq evil-default-cursor 'box)
+  ;; https://github.com/gabesoft/evil-mc/issues/70
+  (add-hook
+   'evil-mc-after-cursors-deleted
+   (lambda ()
+     (setq evil-was-yanked-without-register t)))
 
   ;; Add support to repeat these commands when prefixed with a number
   (dolist (cmd '(evil-mc-make-and-goto-first-cursor
