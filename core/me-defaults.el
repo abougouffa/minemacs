@@ -91,6 +91,8 @@
 
 (setq window-combination-resize t)
 
+(setq recentf-max-saved-items 100)
+
 ;; Mode-line stuff
 ;; Enable time in the mode-line
 (setq display-time-string-forms
