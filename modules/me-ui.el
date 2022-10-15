@@ -22,20 +22,6 @@
   (svg-lib-icons-dir (expand-file-name "svg-lib/" minemacs-cache-dir)))
 
 
-(use-package popwin
-  :straight (:host github :repo "emacsorphanage/popwin" :files (:defaults "*"))
-  :after minemacs-loaded
-  :config
-  (defun +popwin-register (pred &rest args)
-    (if (listp pred)
-        (dolist (p pred)
-          (push (cons p args) popwin:special-display-config))
-      (push (cons pred args) popwin:special-display-config)))
-
-  (+popwin-register '("*Warnings*" compilation-mode) :height 8 :noselect t)
-  (popwin-mode 1))
-
-
 (use-package writeroom-mode
   :straight t
   :general
@@ -126,7 +112,6 @@
   :straight t
   :general
   (me-map "tF" #'focus-mode))
-
 
 
 (provide 'me-ui)
