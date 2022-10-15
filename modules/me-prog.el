@@ -163,6 +163,23 @@
               (t (plantuml-download-jar) 'jar))))
 
 
+(use-package rust-mode
+  :straight t
+  :mode "\\.rs\\'"
+  :config
+  (me-map :keymaps 'rust-mode-map
+    "C" '(nil :which-key "compile/test")
+    "Cc" #'rust-compile
+    "CC" #'rust-compile-release
+    "Ck" #'rust-check
+    "Ct" #'rust-test
+    "Cr" #'rust-run
+    "CR" #'rust-run
+    "Cy" #'rust-run-clippy
+    "Cf" #'rust-format-buffer
+    "CF" #'rust-goto-format-problem))
+
+
 
 
 (provide 'me-prog)
