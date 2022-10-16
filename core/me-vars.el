@@ -10,8 +10,11 @@
   (or (getenv "MINEMACS_DIR")
       (expand-file-name "~/.minemacs.d/")))
 
+(defconst minemacs-debug
+  (not (null (or (getenv "MINEMACS_DEBUG") init-file-debug))))
+
 (defconst minemacs-verbose
-  (not (null (or (getenv "MINEMACS_VERBOSE") init-file-debug))))
+  (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug))))
 
 (defconst minemacs-root-dir (expand-file-name user-emacs-directory))
 (defconst minemacs-core-dir (expand-file-name "core/" minemacs-root-dir))

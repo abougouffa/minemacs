@@ -8,6 +8,10 @@
 ;; Load MinEmacs variables first
 (load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
 
+;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
+(when minemacs-debug
+  (setq debug-on-error t))
+
 ;; Load environment variables when available
 (let ((env-file (expand-file-name "env" minemacs-local-dir)))
   (when (file-exists-p env-file)
