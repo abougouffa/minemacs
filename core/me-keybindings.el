@@ -84,29 +84,29 @@
     "ft"  '(recover-this-file   :which-key "Recover this file")
     "fT"  '(recover-file        :which-key "Recover file")
     "fE"  `(,(me-cmdfy! (dired (or minemacs-config-dir minemacs-root-dir))) :which-key "User config directory")
-    ;; Files / Local variables
-    "fv"  '(nil :which-key "Local variable")
-    "fvv" '(add-file-local-variable :which-key "Add")
-    "fvV" '(delete-file-local-variable :which-key "Delete")
-    "fvp" '(add-file-local-variable-prop-line :which-key "Add in prop line")
-    "fvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
-    "fvd" '(add-dir-local-variable :which-key "Add to dir-locals")
-    "fvD" '(delete-dir-local-variable :which-key "Delete from dir-locals")
-    "fvr" '(me-dir-locals-reload-for-current-buffer :which-key "Reload dir-locals for this buffer")
-    "fvR" '(me-dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
 
     ;; Buffers
     "b"   '(nil :which-key "buffer")
-    "bi"  '(ibuffer :which-key "Ibuffer")
+    "bi"  #'ibuffer
     "bu"  '(me-sudo-save-buffer :which-key "Sudo save buffer")
     "bp"  '(project-switch-to-buffer :which-key "Switch to buffer in project")
     "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
     "bK"  '(kill-some-buffers :which-key "Kill some buffers")
     "bN"  '(evil-buffer-new :which-key "New buffer")
-    "bm"  '(bookmark-set :which-key "Set bookmark")
-    "bM"  '(bookmark-delete :which-key "Delete bookmark")
+    "bm"  #'bookmark-set
+    "bM"  #'bookmark-delete
     "br"  '(revert-buffer :which-key "Revert")
     "bR"  '(rename-buffer :which-key "Rename")
+    ;; Files / Local variables
+    "bv"  '(nil :which-key "locals")
+    "bvv" '(add-file-local-variable :which-key "Add")
+    "bvV" '(delete-file-local-variable :which-key "Delete")
+    "bvp" '(add-file-local-variable-prop-line :which-key "Add in prop line")
+    "bvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
+    "bvd" '(add-dir-local-variable :which-key "Add to dir-locals")
+    "bvD" '(delete-dir-local-variable :which-key "Delete from dir-locals")
+    "bvr" '(me-dir-locals-reload-for-current-buffer :which-key "Reload dir-locals for this buffer")
+    "bvR" '(me-dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
 
     ;; Insert
     "i"   '(nil :which-key "insert")
@@ -121,10 +121,11 @@
     "wv"  '(evil-window-vsplit :which-key "Vertical split")
     "wr"  '(evil-window-rotate-upwards :which-key "Rotate upwards")
     "wR"  '(evil-window-rotate-downwards :which-key "Rotate downwards")
-    "wd"  '(evil-window-delete :which-key "Delete")
-    "wm"  '(maximize-window :which-key "Maximize")
     "w+"  '(evil-window-increase-width :which-key "Increase width")
     "w-"  '(evil-window-decrease-width :which-key "Decrease width")
+    "wd"  #'delete-window
+    "wD"  #'delete-window-on
+    "wm"  #'maximize-window
     "wu"  #'winner-undo
     "wU"  #'winner-redo
 
@@ -133,7 +134,10 @@
     "o-"  '(dired :which-key "Dired") ;; Will be overwritten if dirvish is used
 
     ;; Search
-    "s"   '(nil   :which-key "search")
+    "s"   '(nil :which-key "search")
+
+    ;; Mode specific a.k.a. "local leader"
+    "m"   '(nil :which-key "mode-specific")
 
     ;; VC
     "g"   '(nil :which-key "git/vc")
@@ -141,7 +145,8 @@
     ;; Toggle
     "t"   '(nil :which-key "toggle")
     "td"  '(toggle-debug-on-error :which-key "Debug on error")
-    "tr"  '(read-only-mode :which-key "Read-only")
+    "tr"  #'read-only-mode
+    "tl"  #'follow-mode
     "tM"  '(me-messages-auto-tail-toggle :which-key "Auto-tail *Messages*")
     "tV"  '(netextender-toggle :which-key "NetExtender")
 
@@ -157,7 +162,7 @@
     ;; Help
     "h"   '(nil :which-key "help")
 
-    ;; Toggle
+    ;; Project
     "p"   '(nil :which-key "project")
     "pp"  '(project-switch-project :which-key "Switch")
     "pc"  '(project-compile :which-key "Compile")
