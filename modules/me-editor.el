@@ -148,4 +148,9 @@
     (good-scroll-mode 1)))
 
 
+(use-package goggles
+  :straight t
+  :hook ((prog-mode text-mode) . goggles-mode))
+
+
 (provide 'me-editor)
