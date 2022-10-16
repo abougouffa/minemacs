@@ -34,7 +34,7 @@
   :straight t
   :config
   (defvar +evil-collection-modes
-    (me-filter
+    (+filter
      (lambda (a)
        ;; elisp-mode uses gz to open ielm, which I never use!
        ;; and uses gr to xref-find-references
@@ -47,7 +47,7 @@
   :straight t
   :after evil minemacs-loaded
   :general
-  (me-map-key "gc" #'evilnc-comment-operator))
+  (+map-key "gc" #'evilnc-comment-operator))
 
 
 (use-package evil-mc

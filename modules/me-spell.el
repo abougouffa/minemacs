@@ -6,7 +6,7 @@
   :straight t
   :when ASPELL-P
   :general
-  (me-map "ts" #'spell-fu-mode)
+  (+map "ts" #'spell-fu-mode)
   :hook (text-mode . spell-fu-mode)
   :init
   (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-local-dir))
@@ -80,7 +80,7 @@
 (use-package me-spell-fu
   :after spell-fu
   :general
-  (me-map-key "z=" #'+spell-fu-correct))
+  (+map-key "z=" #'+spell-fu-correct))
 
 
 ;; Add this to .dir-locals.el

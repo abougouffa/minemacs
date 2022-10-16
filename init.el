@@ -15,7 +15,7 @@
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
 (let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
   (when (file-exists-p mods)
-    (me-log! "Loading modules file from \"%s\"" mods)
+    (+log! "Loading modules file from \"%s\"" mods)
     (load mods nil (not minemacs-verbose))))
 
 (defun minemacs-load (&optional load-core-modules)
@@ -24,29 +24,29 @@
   ;; Core modules
   (when load-core-modules
     (dolist (module minemacs-core-modules)
-      (me-log! "Loading core module \"%s\"" module)
+      (+log! "Loading core module \"%s\"" module)
       (load (expand-file-name (format "me-%s.el" module) minemacs-core-dir)
             nil (not minemacs-verbose))))
 
   ;; Modules
   (dolist (module minemacs-modules)
-    (me-log! "Loading module \"%s\"" module)
+    (+log! "Loading module \"%s\"" module)
     (load (expand-file-name (format "me-%s.el" module) minemacs-modules-dir)
           nil (not minemacs-verbose)))
 
   (when (and custom-file (file-exists-p custom-file))
-    (me-log! "Loafing user customs from custom.el")
+    (+log! "Loafing user customs from custom.el")
     (load custom-file nil (not minemacs-verbose)))
 
   ;; Load user config when available
   (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
     (when (file-exists-p user-config)
-      (me-log! "Loading user config file from \"%s\"" user-config)
+      (+log! "Loading user config file from \"%s\"" user-config)
       (load user-config nil (not minemacs-verbose))))
 
   ;; Load fonts, values are read from `me-fonts' if set in config.el,
   ;; otherwise, they are read from the default `me-default-fonts'.
-  (me-set-fonts)
+  (+set-fonts)
 
   ;; Load GC module lastly
   (run-at-time
@@ -58,4 +58,4 @@
 ;; Load for the first time
 (minemacs-load :load-core-modules)
 
-(me-log! "Loaded early-config.el")
+(+log! "Loaded early-config.el")

@@ -65,8 +65,8 @@
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (me-log! "=============== Loaded Emacs ===============")
-   (me-info! "Loaded Emacs in %s." (emacs-init-time))
+   (+log! "=============== Loaded Emacs ===============")
+   (+info! "Loaded Emacs in %s." (emacs-init-time))
    ;; Print load time, and a quote to *scratch*
    (with-current-buffer "*scratch*"
      (erase-buffer)
@@ -114,8 +114,8 @@
 ;;; Load the early config file if it exists
 (let ((early-config-path (expand-file-name "early-config.el" minemacs-config-dir)))
   (when (file-exists-p early-config-path)
-    (me-log! "Loading early config from \"%s\"" early-config-path)
+    (+log! "Loading early config from \"%s\"" early-config-path)
     (load early-config-path nil 'nomessage)))
 
 
-(me-log! "End of early-init.el")
+(+log! "End of early-init.el")

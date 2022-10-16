@@ -39,62 +39,62 @@
   :straight t
   :config
   ;; Global leader
-  (general-create-definer me-map
+  (general-create-definer +map
     :states '(normal motion visual)
     :keymaps 'override
     :prefix me-leader-key)
 
   ;; Local leader
-  (general-create-definer me-map-local
+  (general-create-definer +map-local
     :states '(normal motion visual)
     :prefix me-localleader-key)
 
   ;; Local leader
-  (general-create-definer me-map-key
+  (general-create-definer +map-key
     :states '(normal motion visual))
 
-  (me-map
+  (+map
     ;; Top level functions
-    "TAB" '(switch-to-next-buffer :which-key "Buffer next")
-    "<backtab>" '(switch-to-prev-buffer :which-key "Buffer prev")
+    "TAB" '(switch-to-next-buffer :which-key "Next buffer")
+    "<backtab>" '(switch-to-prev-buffer :which-key "Previous buffer")
     "SPC" '(execute-extended-command :which-key "M-x")
     ";"   '(pp-eval-expression :which-key "Eval expression")
-    ":"   '(project-find-file :which-key "Find file in project")
-    "X"   '(org-capture :which-key "Org capture")
-    "."   '(find-file :which-key "Find file")
-    "u"   '(universal-argument :which-key "Universal arg")
+    ":"   #'project-find-file
+    "X"   #'org-capture
+    "."   #'find-file
+    "u"   '(universal-argument :which-key "C-u")
 
     ;; Quit/Session
     "q"   '(nil :which-key "quit/session")
-    "qq"  '(save-buffers-kill-terminal :which-key "Quit Emacs")
-    "qQ"  '(kill-emacs :which-key "Kill Emacs")
-    "qs"  '(server-start :which-key "Start daemon")
-    "qR"  '(recover-session :which-key "Recover session")
+    "qq"  #'save-buffers-kill-terminal
+    "qQ"  #'kill-emacs
+    "qs"  #'server-start
+    "qR"  #'recover-session
 
     ;; Files
-    "f"   '(nil                 :which-key "file")
-    "ff"  '(find-file           :which-key "Find file")
-    "fs"  '(save-buffer         :which-key "Save")
-    "fS"  '(write-file          :which-key "Save as ...")
-    "fD"  '(me-delete-this-file :which-key "Delete this file")
-    "fu"  '(me-sudo-find-file   :which-key "Sudo find file")
-    "fU"  '(me-sudo-this-file   :which-key "Sudo this file")
-    "fR"  '(me-move-this-file   :which-key "Move/rename this file")
-    "fy"  '(nil                 :which-key "Yank file path") ;; TODO
-    "ft"  '(recover-this-file   :which-key "Recover this file")
-    "fT"  '(recover-file        :which-key "Recover file")
-    "fE"  `(,(me-cmdfy! (dired (or minemacs-config-dir minemacs-root-dir))) :which-key "User config directory")
+    "f"   '(nil               :which-key "file")
+    "fS"  '(write-file        :which-key "Save as ...")
+    "fD"  #'+delete-this-file
+    "fu"  #'+sudo-find-file
+    "fU"  #'+sudo-this-file
+    "fR"  #'+move-this-file
+    "ff"  #'find-file
+    "fs"  #'save-buffer
+    "ft"  #'recover-this-file
+    "fT"  #'recover-file
+    "fy"  `((+cmdfy! (when-let ((f (buffer-file-name))) (with-temp-buffer (insert f) (kill-ring-save (point-min) (point-max))))))
+    "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir))) :which-key "User config directory")
 
     ;; Buffers
     "b"   '(nil :which-key "buffer")
     "bi"  #'ibuffer
-    "bu"  '(me-sudo-save-buffer :which-key "Sudo save buffer")
-    "bp"  '(project-switch-to-buffer :which-key "Switch to buffer in project")
-    "bk"  `(,(me-cmdfy! (kill-buffer (current-buffer))) :which-key "Kill buffer")
-    "bK"  '(kill-some-buffers :which-key "Kill some buffers")
-    "bN"  '(evil-buffer-new :which-key "New buffer")
+    "bu"  #'+sudo-save-buffer
+    "bp"  #'project-switch-to-buffer
+    "bK"  #'kill-some-buffers
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete
+    "bk"  `(,(+cmdfy! (kill-buffer (current-buffer))) :which-key "Kill this buffer")
+    "bN"  '(evil-buffer-new :which-key "New buffer")
     "br"  '(revert-buffer :which-key "Revert")
     "bR"  '(rename-buffer :which-key "Rename")
     ;; Files / Local variables
@@ -105,8 +105,8 @@
     "bvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
     "bvd" '(add-dir-local-variable :which-key "Add to dir-locals")
     "bvD" '(delete-dir-local-variable :which-key "Delete from dir-locals")
-    "bvr" '(me-dir-locals-reload-for-current-buffer :which-key "Reload dir-locals for this buffer")
-    "bvR" '(me-dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
+    "bvr" '(+dir-locals-reload-for-this-buffer :which-key "Reload dir-locals for this buffer")
+    "bvR" '(+dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
 
     ;; Insert
     "i"   '(nil :which-key "insert")
@@ -147,7 +147,7 @@
     "td"  '(toggle-debug-on-error :which-key "Debug on error")
     "tr"  #'read-only-mode
     "tl"  #'follow-mode
-    "tM"  '(me-messages-auto-tail-toggle :which-key "Auto-tail *Messages*")
+    "tM"  '(+messages-auto-tail-toggle :which-key "Auto-tail *Messages*")
     "tV"  '(netextender-toggle :which-key "NetExtender")
 
     ;; Code
@@ -168,7 +168,7 @@
     "pc"  '(project-compile :which-key "Compile")
     "pd"  '(project-find-dir :which-key "Find directory")
     "pf"  '(project-find-file :which-key "Find file")
-    "pD"  '(me-dir-locals-open-or-create :which-key "Open/create dir-locals file")
+    "pD"  '(+dir-locals-open-or-create :which-key "Open/create dir-locals file")
     ;; Forget
     "pF"  '(nil :which-key "Forget")
     "pFz" '(project-forget-zombie-projects :which-key "Zombie projects")

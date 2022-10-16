@@ -6,7 +6,7 @@
   :after minemacs-loaded
   :disabled (>= emacs-major-version 29)
   :general
-  (me-map "ie" '(emojify-insert-emoji :which-key "Emoji"))
+  (+map "ie" '(emojify-insert-emoji :which-key "Emoji"))
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))
@@ -25,7 +25,7 @@
 (use-package writeroom-mode
   :straight t
   :general
-  (me-map "tw" #'writeroom-mode)
+  (+map "tw" #'writeroom-mode)
   :init
   (defvar +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'.")
@@ -76,7 +76,7 @@
 (use-package mixed-pitch
   :straight t
   :general
-  (me-map "tm" #'mixed-pitch-mode)
+  (+map "tm" #'mixed-pitch-mode)
   :custom
   (mixed-pitch-variable-pitch-cursor t)
   :config
@@ -111,7 +111,7 @@
 (use-package focus
   :straight t
   :general
-  (me-map "tF" #'focus-mode))
+  (+map "tF" #'focus-mode))
 
 
 (provide 'me-ui)

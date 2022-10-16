@@ -4,7 +4,7 @@
   :straight t
   :defer t
   :general
-  (me-map "of" #'elfeed)
+  (+map "of" #'elfeed)
   :custom
   (elfeed-db-directory (expand-file-name "elfeed" minemacs-local-dir)))
 

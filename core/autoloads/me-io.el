@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun me-file-mime-type (file)
+(defun +file-mime-type (file)
   "Get MIME type for FILE based on magic codes provided by the 'file' command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
 `application/x-object', `application/octet-stream', etc."
@@ -9,7 +9,7 @@ Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
     (intern (string-trim-right mime-type))))
 
 ;;;###autoload
-(defun me-file-name-incremental (filename)
+(defun +file-name-incremental (filename)
   "Return an unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\"."
   (let* ((ext (file-name-extension filename))
@@ -23,7 +23,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
     filename))
 
 ;;;###autoload
-(defun me-file-read-to-string (filename)
+(defun +file-read-to-string (filename)
   "Return a string with the contents of FILENAME."
   (when (and (file-exists-p filename) (not (file-directory-p filename)))
     (with-temp-buffer
@@ -31,7 +31,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
       (buffer-string))))
 
 ;;;###autoload
-(defun me-delete-this-file (&optional path force-p)
+(defun +delete-this-file (&optional path force-p)
   "Delete PATH.
 
 If PATH is not specified, default to the current buffer's file.
@@ -55,7 +55,7 @@ If FORCE-P, delete without confirmation."
           (error "Failed to delete %S" short-path))))))
 
 ;;;###autoload
-(defun me-move-this-file (new-path &optional force-p)
+(defun +move-this-file (new-path &optional force-p)
   "Move current buffer's file to NEW-PATH.
 
 If FORCE-P, overwrite the destination file if it exists, without confirmation."
@@ -74,7 +74,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     ;; (doom-files--update-refs old-path new-path)
     (message "File moved to %S" (abbreviate-file-name new-path))))
 
-(defun me--sudo-file-path (file)
+(defun +sudo-file-path (file)
   (let ((host (or (file-remote-p file 'host) "localhost")))
     (concat "/" (when (file-remote-p file)
                   (concat (file-remote-p file 'method) ":"
@@ -87,28 +87,28 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
                     file))))
 
 ;;;###autoload
-(defun me-sudo-find-file (file)
+(defun +sudo-find-file (file)
   "Open FILE as root."
   (interactive "FOpen file as root: ")
-  (find-file (me--sudo-file-path file)))
+  (find-file (+sudo-file-path file)))
 
 ;;;###autoload
-(defun me-sudo-this-file ()
+(defun +sudo-this-file ()
   "Open the current file as root."
   (interactive)
   (if-let ((this-file (or buffer-file-name
                           (when (or (derived-mode-p 'dired-mode)
                                     (derived-mode-p 'wdired-mode))
                             default-directory))))
-      (find-file (me--sudo-file-path this-file))
+      (find-file (+sudo-file-path this-file))
     (user-error "Current buffer not bound to a file")))
 
 ;;;###autoload
-(defun me-sudo-save-buffer ()
+(defun +sudo-save-buffer ()
   "Save this file as root."
   (interactive)
   (if buffer-file-name
-      (if-let ((file (me--sudo-file-path buffer-file-name))
+      (if-let ((file (+sudo-file-path buffer-file-name))
                (buffer (find-file-noselect file))
                (origin (current-buffer)))
           (progn
@@ -124,7 +124,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     (user-error "Current buffer not bound to a file")))
 
 ;;;###autoload
-(defun me-clean-file-name (filename &optional conv-downcase)
+(defun +clean-file-name (filename &optional conv-downcase)
   "Clean file name."
   ;; Clean slashes, backslashes, ":", ";", spaces, and tabs
   (replace-regexp-in-string

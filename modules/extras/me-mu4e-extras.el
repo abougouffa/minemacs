@@ -99,7 +99,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
           (cl-loop for (f . h) in handles
                    when (member f files)
                    do (mm-save-part-to-file h
-                                            (me-file-name-incremental
+                                            (+file-name-incremental
                                              (expand-file-name f dir)))))
       (mu4e-message "No attached files found"))))
 
@@ -126,8 +126,8 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
    "\n\n" closing-phrase "\n\n"
    "#+begin_signature" "\n\n"
    "*" (capitalize firstname) " " (upcase lastname) "*" "\n\n"
-   (me-foldr (lambda (l r) (concat l "\n\n" r))
-             "" lines)
+   (+foldr (lambda (l r) (concat l "\n\n" r))
+           "" lines)
    "#+end_signature"))
 
 ;; I like to always BCC myself
@@ -181,13 +181,13 @@ preferred alias"
      (format "%s/%s" (or dir mu4e-attachment-dir (read-directory-name "Copy message to: ")) target) 1)))
 
 ;;;###autoload
-(defun me-mu4e-extras-setup ()
+(defun +mu4e-extras-setup ()
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)
   (add-hook 'mu4e-compose-pre-hook '+mu4e--set-from-address-h)
   (add-hook 'message-send-hook #'+mu4e--check-for-subject-h)
 
   ;; Setup keybindings
-  (me-map-key :keymaps 'mu4e-view-mode-map
+  (+map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments
     "P" #'+mu4e-view-save-all-attachments
     "A" #'+mu4e-view-select-mime-part-action

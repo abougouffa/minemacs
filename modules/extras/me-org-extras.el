@@ -126,18 +126,18 @@ Return an AST with newlines counts in each level."
     (message "Inject latex disabled")))
 
 
-(defun me-org-extras-responsive-images-setup ()
+(defun +org-extras-responsive-images-setup ()
   (add-hook 'window-configuration-change-hook
             #'+org--responsive-image-h))
 
 
-(defun me-org-extras-equation-numbering-setup ()
+(defun +org-extras-equation-numbering-setup ()
   ;; Enable LaTeX equations renumbering
-  (me-with-shutup!
+  (+with-shutup!
    (+scimax-toggle-latex-equation-numbering :enable)))
 
 
-(defun me-org-extras-multifiles-document-setup ()
+(defun +org-extras-multifiles-document-setup ()
   (advice-add
    'org-latex-export-to-pdf :around
    (defun +org-latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
@@ -150,7 +150,7 @@ Return an AST with newlines counts in each level."
        (message "PDF exported to: %s." (file-name-nondirectory out-file))))))
 
 
-(defun me-org-extras-latex-classes-setup ()
+(defun +org-extras-latex-classes-setup ()
   (with-eval-after-load 'ox-latex
     (dolist
         (class
@@ -206,7 +206,7 @@ Return an AST with newlines counts in each level."
       (add-to-list 'org-latex-classes class))))
 
 
-(defun me-org-extras-outline-path-setup ()
+(defun +org-extras-outline-path-setup ()
   (advice-add
    #'org-format-outline-path :around
    (defun +org--strip-properties-from-outline-a (fn &rest args)
@@ -217,7 +217,7 @@ Return an AST with newlines counts in each level."
        (apply fn args)))))
 
 
-(defun me-org-extras-pretty-latex-fragments-setup ()
+(defun +org-extras-pretty-latex-fragments-setup ()
   (require 'org-src)
   (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
 
@@ -231,13 +231,13 @@ Return an AST with newlines counts in each level."
         (plist-put org-format-latex-options :scale 1.4)))
 
 
-(defun me-org-extras-setup ()
-  (me-org-extras-outline-path-setup)
-  (me-org-extras-latex-classes-setup)
-  (me-org-extras-pretty-latex-fragments-setup)
-  (me-org-extras-responsive-images-setup)
-  (me-org-extras-equation-numbering-setup)
-  (me-org-extras-multifiles-document-setup))
+(defun +org-extras-setup ()
+  (+org-extras-outline-path-setup)
+  (+org-extras-latex-classes-setup)
+  (+org-extras-pretty-latex-fragments-setup)
+  (+org-extras-responsive-images-setup)
+  (+org-extras-equation-numbering-setup)
+  (+org-extras-multifiles-document-setup))
 
 
 (provide 'me-org-extras)

@@ -53,7 +53,7 @@
 (use-package ros
   :straight (:host github :repo "abougouffa/ros.el" :branch "fix-deps")
   :general
-  (me-map
+  (+map
     "or" '(nil :which-key "ROS")
     "orr" '(hydra-ros-main/body :which-key "Hydra")
     "ors" '(ros-set-workspace :which-key "Set workspace")
@@ -63,7 +63,7 @@
   :config
   (defhydra hydra-ros-main (:color blue :hint nil :foreign-keys warn)
     "
-[ROS]                                                  [_q_] quit           
+[ROS]                                                  [_q_] quit
   ├──────────────────────────────────────────────────────────────────────╮
   │  [_c_] Compile    [_t_] Test       [_w_] Set workspace   [_p_] Packages      │
   │  [_m_] Messages   [_s_] Services   [_a_] Actions         [_x_] Clean cache   │

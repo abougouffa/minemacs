@@ -2,7 +2,7 @@
 
 
 ;;;###autoload
-(defun me-messages--auto-tail-a (&rest arg)
+(defun +messages--auto-tail-a (&rest arg)
   "Make *Messages* buffer auto-scroll to the end after each message."
   (let* ((buf-name (buffer-name (messages-buffer)))
          ;; Create *Messages* buffer if it does not exist
@@ -23,14 +23,14 @@
         (goto-char (point-max))))))
 
 ;;;###autoload
-(defun me-messages-auto-tail-toggle ()
+(defun +messages-auto-tail-toggle ()
   "Auto tail the '*Messages*' buffer."
   (interactive)
   (if (bound-and-true-p me-messages--auto-tail-enabled)
       (progn
-        (advice-remove 'message 'me-messages--auto-tail-a)
+        (advice-remove 'message '+messages--auto-tail-a)
         (setq me-messages--auto-tail-enabled nil)
         (message "me-messages-auto-tail: Disabled."))
-    (advice-add 'message :after 'me-messages--auto-tail-a)
+    (advice-add 'message :after '+messages--auto-tail-a)
     (setq me-messages--auto-tail-enabled t)
     (message "me-messages-auto-tail: Enabled.")))

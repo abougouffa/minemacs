@@ -13,9 +13,9 @@
              eaf-open-browser
              +eaf-open-mail-as-html)
   :general
-  (me-map
+  (+map
     "oo" '(eaf-open :which-key "Open with EAF"))
-  (me-map-local
+  (+map-local
     :states 'normal
     :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
     "h" '(+eaf-open-mail-as-html :which-key "Open mail as HTML")

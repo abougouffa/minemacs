@@ -215,12 +215,12 @@ library/userland functions"
               (t
                normal-indent))))))
 
-(defun me-elisp-indent-setup ()
+(defun +elisp-indent-setup ()
   ;; Fixed indenter that intends plists sensibly.
   (advice-add #'calculate-lisp-indent :override
               #'+emacs-lisp--calculate-lisp-indent))
 
-(defun me-elisp-highlighting-setup ()
+(defun +elisp-highlighting-setup ()
   ;; Fixed indenter that intends plists sensibly.
   (font-lock-add-keywords
    'emacs-lisp-mode
@@ -229,8 +229,8 @@ library/userland functions"
 ;; HACK: Quite a few functions here are called often, and so are especially
 ;; performance sensitive, so we compile this file on-demand, at least, until
 ;; Doom adds a formal compile step to 'doom sync'.
-(me-compile-functions #'+emacs-lisp--highlight-vars-and-faces
-                      #'+emacs-lisp--calculate-lisp-indent-a)
+(+compile-functs #'+emacs-lisp--highlight-vars-and-faces
+                 #'+emacs-lisp--calculate-lisp-indent-a)
 
 
 (provide 'me-elisp-extras)

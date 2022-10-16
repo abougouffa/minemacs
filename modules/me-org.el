@@ -43,12 +43,12 @@
   :config
   (setq org-latex-line-break-safe "\\\\")
 
-  (me-map-local :keymaps 'org-mode-map
+  (+map-local :keymaps 'org-mode-map
     "l"  '(nil :which-key "link")
     "ll" '(org-insert-link :which-key "Insert link")
     "e"  '(org-export-dispatch :which-key "Export dispatch"))
 
-  (me-map-key
+  (+map-key
     :keymaps 'org-mode-map
     :states 'normal
     "RET" #'org-open-at-point)
@@ -118,12 +118,12 @@
 (use-package me-org-extras
   :after org
   :config
-  (me-org-extras-outline-path-setup)
-  (me-org-extras-pretty-latex-fragments-setup)
-  (me-org-extras-latex-classes-setup)
-  (me-org-extras-responsive-images-setup)
-  (me-org-extras-equation-numbering-setup)
-  (me-org-extras-multifiles-document-setup))
+  (+org-extras-outline-path-setup)
+  (+org-extras-pretty-latex-fragments-setup)
+  (+org-extras-latex-classes-setup)
+  (+org-extras-responsive-images-setup)
+  (+org-extras-equation-numbering-setup)
+  (+org-extras-multifiles-document-setup))
 
 
 (use-package org-appear

@@ -1,14 +1,14 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun me-dir-locals-reload-for-current-buffer ()
+(defun +dir-locals-reload-for-this-buffer ()
   "reload dir locals for the current buffer"
   (interactive)
   (let ((enable-local-variables :all))
     (hack-dir-local-variables-non-file-buffer)))
 
 ;;;###autoload
-(defun me-dir-locals-reload-for-all-buffers-in-this-directory ()
+(defun +dir-locals-reload-for-all-buffers-in-this-directory ()
   "For every buffer with the same `default-directory` as the
 current buffer's, reload dir-locals."
   (interactive)
@@ -16,17 +16,17 @@ current buffer's, reload dir-locals."
     (dolist (buffer (buffer-list))
       (with-current-buffer buffer
         (when (equal default-directory dir)
-          (me-dir-locals-reload-for-current-buffer))))))
+          (+dir-locals-reload-for-this-buffer))))))
 
 ;;;###autoload
-(defun me-dir-locals-enable-autoreload ()
+(defun +dir-locals-enable-autoreload ()
   (when (and (buffer-file-name)
              (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
     (message "Dir-locals will be reloaded after saving.")
-    (add-hook 'after-save-hook 'me-dir-locals-reload-for-all-buffers-in-this-directory nil t)))
+    (add-hook 'after-save-hook '+dir-locals-reload-for-all-buffers-in-this-directory nil t)))
 
 ;;;###autoload
-(defun me-dir-locals-open-or-create ()
+(defun +dir-locals-open-or-create ()
   "Open or create the dir-locals.el for the current project."
   (interactive)
   (let* ((file-name (buffer-file-name))

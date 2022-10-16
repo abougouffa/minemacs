@@ -8,7 +8,7 @@
 (use-package org-roam
   :straight t
   :general
-  (me-map
+  (+map
     "nf" '(org-roam-node-find :which-key "Org-Roam find node")
     "nr" '(org-roam-ref-find :which-key "Org-Roam find ref")
     "ni" '(org-roam-ref-find :which-key "Org-Roam insert node")
@@ -25,7 +25,7 @@
   :straight t
   :commands (org-roam-ui-open org-roam-ui-sync-mode)
   :general
-  (me-map
+  (+map
     "nR" '(org-roam-ui-open :which-key "Org-Roam UI")))
 
 
@@ -34,7 +34,7 @@
   :straight t
   :after org-roam
   :general
-  (me-map
+  (+map
     "nd" '(deft :which-key "Deft"))
   :init
   (setq deft-default-extension "org")

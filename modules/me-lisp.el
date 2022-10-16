@@ -22,7 +22,7 @@
   :straight t
   :defer t
   :general
-  (me-map-local :keymaps 'emacs-lisp-mode-map
+  (+map-local :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :which-key "Expand macro")))
 
 
@@ -30,7 +30,7 @@
   :straight t
   :after geiser
   :general
-  (me-map-local :keymaps '(scheme-mode-map racket-mode-map)
+  (+map-local :keymaps '(scheme-mode-map racket-mode-map)
     "m" '(macrostep-geiser-expand-all :which-key "Expand macro"))
   :config
   (macrostep-geiser-setup))
@@ -73,7 +73,7 @@
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to better view built-in packages
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
   :config
-  (me-map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+  (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :which-key "edebug")
     "df"  'edebug-defun
     "dF"  'edebug-all-forms
@@ -98,7 +98,7 @@
     "gV"  'find-variable
     "gL"  'find-library)
 
-  (me-map-local :keymaps '(edebug-mode-map)
+  (+map-local :keymaps '(edebug-mode-map)
     "e"   '(nil :which-key "eval")
     "ee"  'edebug-eval-last-sexp
     "eE"  'edebug-eval-expression
@@ -108,8 +108,8 @@
 (use-package me-elisp-extras
   :after elisp-mode minemacs-loaded
   :config
-  (me-elisp-indent-setup)
-  (me-elisp-highlighting-setup))
+  (+elisp-indent-setup)
+  (+elisp-highlighting-setup))
 
 
 (use-package elisp-demos
@@ -125,7 +125,7 @@
   :after elisp-mode minemacs-loaded
   :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point)
   :general
-  (me-map
+  (+map
     "hp" #'helpful-at-point
     "ho" #'helpful-symbol
     "hc" #'helpful-command

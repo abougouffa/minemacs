@@ -21,7 +21,7 @@
   :custom
   (nov-save-place-file (expand-file-name "nov-places" minemacs-local-dir))
   :config
-  (me-map-key :keymaps 'nov-mode-map :states 'normal
+  (+map-key :keymaps 'nov-mode-map :states 'normal
     "RET" #'nov-scroll-up)
 
   (defun doom-modeline-segment--nov-info ()

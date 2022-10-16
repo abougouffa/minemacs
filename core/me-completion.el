@@ -174,7 +174,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-map
+  (+map
     "bl" '(consult-line :which-key "Consult line")
     "ss" #'consult-ripgrep
     "sc" #'consult-find

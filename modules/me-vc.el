@@ -6,7 +6,7 @@
 (use-package magit
   :straight t
   :general
-  (me-map
+  (+map
     "gg" '(magit-status :which-key "Status")
     "gC" '(magit-clone :which-key "Clone repo"))
   :custom
@@ -35,7 +35,7 @@
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
-  (me-map
+  (+map
     "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
   :custom
   (diff-hl-draw-borders nil)
@@ -48,7 +48,7 @@
   :straight t
   :after minemacs-loaded
   :general
-  (me-map
+  (+map
     "gt" '(git-timemachine-toggle :which-key "Time machine"))
   :custom
   (git-timemachine-show-minibuffer-details t))
@@ -78,7 +78,7 @@
 (use-package smerge-mode
   :straight t
   :general
-  (me-map
+  (+map
     "gm" '(+smerge-hydra/body :which-key "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil

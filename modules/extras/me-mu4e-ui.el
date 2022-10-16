@@ -116,7 +116,7 @@ will also be the width of all other printable characters."
          (space-factor (- 2 (/ (float icon-width) space-width))))
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
 
-(defun me-mu4e--ui-setup ()
+(defun +mu4e--ui-setup ()
   (setq mu4e-use-fancy-chars t
         mu4e-headers-draft-mark      (cons "D" (+normalized-icon "edit"))
         mu4e-headers-flagged-mark    (cons "F" (+normalized-icon "flag"))
@@ -204,14 +204,14 @@ will also be the width of all other printable characters."
   (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
   (advice-add #'mu4e--main-action-str :override #'+mu4e--main-action-str-prettier-a))
 
-(defun me-mu4e-ui-setup ()
+(defun +mu4e-ui-setup ()
   (if (display-graphic-p)
-      (me-mu4e--ui-setup)
+      (+mu4e--ui-setup)
     (add-hook
      'server-after-make-frame-hook
      (defun +mu4e--ui-setup-once-h ()
        (when (display-graphic-p)
-         (me-mu4e--ui-setup)
+         (+mu4e--ui-setup)
          (remove-hook 'server-after-make-frame-hook
                       #'+mu4e--ui-setup-once-h))))))
 

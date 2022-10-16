@@ -1,10 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
-(defconst MU4E-P (me-all (list (executable-find "mu")
-                               (executable-find "mbsync")
-                               (executable-find "msmtp")
-                               (file-directory-p MU4E-LOAD-PATH))))
+(defconst MU4E-P (+all (list (executable-find "mu")
+                             (executable-find "mbsync")
+                             (executable-find "msmtp")
+                             (file-directory-p MU4E-LOAD-PATH))))
 
 (use-package mu4e
   :when MU4E-P
@@ -12,7 +12,7 @@
   :commands mu4e mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :init
-  (me-map "om" '(mu4e :which-key "Mu4e"))
+  (+map "om" '(mu4e :which-key "Mu4e"))
   (defvar mu4e-main-hide-personal-addresses t)
   :custom
   (mu4e-confirm-quit nil)
@@ -41,30 +41,30 @@
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
   :config
-  (me-map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
-  (me-map-key :keymaps 'mu4e-view-mode-map
+  (+map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments))
 
 
 (use-package me-mu4e-ui
   :after mu4e
   :config
-  (me-mu4e-ui-setup)) ;; Setup UI
+  (+mu4e-ui-setup)) ;; Setup UI
 
 
 (use-package me-mu4e-gmail
   :after mu4e
   :config
-  (me-mu4e-gmail-setup)) ;; Gmail specifics
+  (+mu4e-gmail-setup)) ;; Gmail specifics
 
 
 (use-package me-mu4e-extras
   :after mu4e
   :config
-  (me-mu4e-extras-setup)) ;; Extra features
+  (+mu4e-extras-setup)) ;; Extra features
 
 
 (use-package org-msg
@@ -86,10 +86,10 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
-  (me-map-key :keymaps 'org-msg-edit-mode-map
+  (+map-key :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab
     "gg"  #'org-msg-goto-body)
-  (me-map-local :keymaps 'org-msg-edit-mode-map
+  (+map-local :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :which-key "attach")
     "aa" '(org-msg-attach-attach :which-key "Attach")
     "ad" '(org-msg-attach-delete :which-key "Delete")
@@ -135,7 +135,7 @@
                       mail-count (if (> mail-count 1) "s" ""))
        :body (concat
               "• "
-              (me-str-join
+              (+str-join
                "\n• "
                (mapcar
                 (lambda (msg)

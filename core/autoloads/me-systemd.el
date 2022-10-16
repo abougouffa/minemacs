@@ -1,12 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun me-systemd-running-p (service)
+(defun +systemd-running-p (service)
   "Check if the systemd SERVICE is running."
   (zerop (call-process "systemctl" nil nil nil "--user" "is-active" "--quiet" service ".service")))
 
 ;;;###autoload
-(defun me-systemd-command (service command &optional pre-fn post-fn)
+(defun +systemd-command (service command &optional pre-fn post-fn)
   "Call systemd with COMMAND and SERVICE."
   (interactive)
   (when pre-fn (funcall pre-fn))
@@ -17,13 +17,13 @@
     success))
 
 ;;;###autoload
-(defun me-systemd-start (service &optional pre-fn post-fn)
+(defun +systemd-start (service &optional pre-fn post-fn)
   "Start systemd SERVICE."
   (interactive)
-  (me-systemd-command service "start" pre-fn post-fn))
+  (+systemd-command service "start" pre-fn post-fn))
 
 ;;;###autoload
-(defun me-systemd-stop (service &optional pre-fn post-fn)
+(defun +systemd-stop (service &optional pre-fn post-fn)
   "Stops the systemd SERVICE."
   (interactive)
-  (me-systemd-command service "stop" pre-fn post-fn))
+  (+systemd-command service "stop" pre-fn post-fn))

@@ -25,7 +25,7 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 
 (defvar +mu4e--last-invalid-gmail-action 0.0)
 
-(defun me-mu4e-gmail-setup ()
+(defun +mu4e-gmail-setup ()
   ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior
         (lambda () ;; TODO make use +mu4e-msg-gmail-p

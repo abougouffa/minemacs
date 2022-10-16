@@ -29,7 +29,7 @@
   :straight t
   :hook ((c-mode c++-mode rust-mode python-mode latex-mode LaTeX-mode) . eglot-ensure)
   :init
-  (me-map
+  (+map
     "ca"  '(eglot-code-actions :which-key "Code actions")
     "cq"  '(eglot-code-action-quickfix :which-key "Code action quickfix")
     "cF"  '(eglot-format-buffer :which-key "Format buffer (eglot)")
@@ -57,7 +57,7 @@
              project-cmake-install
              project-cmake-configure)
   :init
-  (me-map :keymaps '(c++-mode-map c-mode-map)
+  (+map :keymaps '(c++-mode-map c-mode-map)
     "pC"  '(nil :which-key "cmake")
     "pCt" '(project-cmake-test :which-key "Test")
     "pCb" '(project-cmake-build :which-key "Build")
@@ -73,8 +73,8 @@
 (use-package realgud
   :straight t
   :general
-  (me-map-local :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
-    "d" `(,(me-cmdfy!
+  (+map-local :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
+    "d" `(,(+cmdfy!
             (pcase major-mode
              ('python-mode (realgud:pdb))
              ((or 'c-mode 'c++-mode) (realgud:gdb))))
@@ -91,7 +91,7 @@
 (use-package realgud-lldb
   :straight t
   :general
-  (me-map-local :keymaps '(rust-mode-map)
+  (+map-local :keymaps '(rust-mode-map)
     "d" `(#'realgud--lldb :which-key "realgud"))
   :commands (realgud--lldb))
 
@@ -105,7 +105,7 @@
 (use-package format-all
   :straight t
   :general
-  (me-map "cf" '(format-all-buffer :which-key "Format buffer"))
+  (+map "cf" '(format-all-buffer :which-key "Format buffer"))
   :commands (format-all-mode
              format-all-ensure-formatter
              format-all-buffer
@@ -115,7 +115,7 @@
 (use-package editorconfig
   :straight t
   :general
-  (me-map
+  (+map
     "fc" '(editorconfig-find-current-editorconfig :which-key "Open current editorconfig")))
 
 
@@ -146,7 +146,7 @@
 (use-package flymake
   :straight t
   :general
-  (me-map
+  (+map
     "tf" #'flymake-mode))
 
 
@@ -168,7 +168,7 @@
   :straight t
   :mode "\\.rs\\'"
   :config
-  (me-map :keymaps 'rust-mode-map
+  (+map :keymaps 'rust-mode-map
     "C" '(nil :which-key "compile/test")
     "Cc" #'rust-compile
     "CC" #'rust-compile-release
