@@ -3,7 +3,6 @@
 
 (use-package rg
   :straight t
-  :defer t
   :general
   (me-map "/" '(rg :which-key "ripgrep")))
 
@@ -30,10 +29,10 @@
 
 (use-package tldr
   :straight t
-  :commands (tldr-update-docs tldr)
+  :general
+  (me-map "ht" #'tldr)
   :custom
-  (tldr-enabled-categories '("common" "linux" "osx"))
-  (tldr-directory-path (expand-file-name "tldr" minemacs-local-dir)))
+  (tldr-enabled-categories '("common" "linux" "osx")))
 
 
 (use-package vterm
