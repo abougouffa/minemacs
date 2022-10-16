@@ -77,6 +77,12 @@
        (setq-local spell-fu-faces-exclude excluded)))))
 
 
+(use-package me-spell-fu
+  :after spell-fu
+  :general
+  (me-map-key "z=" #'+spell-fu-correct))
+
+
 ;; Add this to .dir-locals.el
 ;; ((nil (eglot-workspace-configuration
 ;;        . ((ltex . ((language . "fr")
