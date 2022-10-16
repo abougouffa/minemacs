@@ -8,6 +8,26 @@
   (me-map "/" '(rg :which-key "ripgrep")))
 
 
+(use-package affe
+  :straight t
+  :after consult orderless
+  :general
+  (me-map
+    "sg" #'affe-grep
+    "sf" #'affe-find)
+  :config
+  ;; Use orderless to compile regexps
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (orderless-pattern-compiler input))
+    (cons input (lambda (str) (orderless--highlight input str))))
+
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
+
+  ;; Manual preview keys
+  (consult-customize affe-grep :preview-key (kbd "M-p"))
+  (consult-customize affe-find :preview-key (kbd "M-p")))
+
+
 (use-package tldr
   :straight t
   :commands (tldr-update-docs tldr)
