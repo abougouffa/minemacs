@@ -26,11 +26,11 @@
 (defun +messages-auto-tail-toggle ()
   "Auto tail the '*Messages*' buffer."
   (interactive)
-  (if (bound-and-true-p me-messages--auto-tail-enabled)
+  (if (bound-and-true-p +messages--auto-tail-enabled)
       (progn
         (advice-remove 'message '+messages--auto-tail-a)
-        (setq me-messages--auto-tail-enabled nil)
-        (message "me-messages-auto-tail: Disabled."))
+        (setq +messages--auto-tail-enabled nil)
+        (message "+messages-auto-tail: Disabled."))
     (advice-add 'message :after '+messages--auto-tail-a)
-    (setq me-messages--auto-tail-enabled t)
-    (message "me-messages-auto-tail: Enabled.")))
+    (setq +messages--auto-tail-enabled t)
+    (message "+messages-auto-tail: Enabled.")))

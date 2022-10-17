@@ -20,7 +20,7 @@
   :config
   (load-theme 'doom-one-light t)
 
-  (defun +me-theme-tweaks (&rest _args)
+  (defun +theme-tweaks (&rest _args)
     (set-face-attribute
      'line-number nil
      :background (face-attribute 'default :background)
@@ -31,8 +31,8 @@
      :height (truncate (* 0.75 (face-attribute 'default :height)))
      :weight 'bold))
 
-  (add-hook 'after-init-hook #'+me-theme-tweaks)
-  (add-hook 'enable-theme-functions #'+me-theme-tweaks))
+  (add-hook 'after-init-hook #'+theme-tweaks)
+  (add-hook 'enable-theme-functions #'+theme-tweaks))
 
 
 (use-package spacemacs-theme

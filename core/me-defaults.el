@@ -111,7 +111,7 @@
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
  'after-save-hook
- (defun me--guess-file-mode-h ()
+ (defun +guess-file-mode-h ()
    "Guess major mode when saving a file in `fundamental-mode'.
 
 Likely, something has changed since the buffer was opened. e.g. A shebang line
@@ -125,7 +125,7 @@ or file path may exist now."
 ;; From: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 (add-hook
  'mouse-leave-buffer-hook
- (defun me-minibuffer--kill-on-mouse-h ()
+ (defun +minibuffer--kill-on-mouse-h ()
    "Kill the minibuffer when switching to window with mouse."
    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
      (abort-recursive-edit))))

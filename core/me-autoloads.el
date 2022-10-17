@@ -67,7 +67,7 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (autoload '+env-save "autoloads/me-core" nil t)
 (autoload '+env-load "autoloads/me-core" nil t)
 (autoload 'minemacs-update "autoloads/me-core" nil t)
-(register-definition-prefixes "autoloads/me-core" '("me--eval-when-idle-task"))
+(register-definition-prefixes "autoloads/me-core" '("+eval-when-idle--task-num"))
 
 
 ;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el

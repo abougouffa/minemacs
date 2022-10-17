@@ -76,7 +76,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
   (cl-assert (and (eq major-mode 'mu4e-view-mode)
                   (derived-mode-p 'gnus-article-mode)))
   (let* ((msg (mu4e-message-at-point))
-         (id (me-clean-file-name (mu4e-message-field msg :subject) :downcase))
+         (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
          (attachdir (expand-file-name id mu4e-attachment-dir))
          (parts (mu4e~view-gather-mime-parts))
          (handles '())
@@ -175,7 +175,7 @@ preferred alias"
   (let* ((msg (mu4e-message-at-point))
          (target (format "%s_%s.eml"
                          (format-time-string "%F" (mu4e-message-field msg :date))
-                         (me-clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))))
+                         (+clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))))
     (copy-file
      (mu4e-message-field msg :path)
      (format "%s/%s" (or dir mu4e-attachment-dir (read-directory-name "Copy message to: ")) target) 1)))

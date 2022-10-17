@@ -10,11 +10,11 @@
 ;; Adapted from: https://github.com/rougier/emacs-splash
 
 (setq inhibit-splash-screen t)
-(defvar me-splash-buffer-name "*minemacs-splash*")
+(defvar minemacs-splash-buffer-name "*minemacs-splash*")
 
-(defun me-splash-screen ()
+(defun minemacs-splash-screen ()
   "MinEmacs splash screen"
-  (let* ((splash-buffer (get-buffer-create me-splash-buffer-name))
+  (let* ((splash-buffer (get-buffer-create minemacs-splash-buffer-name))
          (height (- (window-body-height nil) 1))
          (padding-center (min 5 (- (/ height 3) 1)))
          (padding-bottom (min 2 (- height (/ height 3) 3))))
@@ -79,25 +79,25 @@
           (read-only-mode t)
 
           (let ((k))
-            (local-set-key (kbd "<escape>")  (lambda () (interactive) (me-splash-screen-kill)))
-            (local-set-key (kbd "q")         (lambda () (interactive) (me-splash-screen-kill)))
+            (local-set-key (kbd "<escape>")  (lambda () (interactive) (minemacs-splash-screen-kill)))
+            (local-set-key (kbd "q")         (lambda () (interactive) (minemacs-splash-screen-kill)))
             (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
             (local-set-key (kbd "<mouse-2>") 'operate-this-button))
 
           (display-buffer-same-window splash-buffer nil)))))
 
-(defun me-splash-screen-kill ()
-  (when (get-buffer me-splash-buffer-name)
-    (kill-buffer me-splash-buffer-name)))
+(defun minemacs-splash-screen-kill ()
+  (when (get-buffer minemacs-splash-buffer-name)
+    (kill-buffer minemacs-splash-buffer-name)))
 
 ;; Display splash screen
-(me-splash-screen)
+(minemacs-splash-screen)
 
 ;; Close splash screen automatically after Emacs gets loaded
 (add-hook
  'emacs-startup-hook
  (lambda ()
-   (run-at-time 1 nil #'me-splash-screen-kill)))
+   (run-at-time 1 nil #'minemacs-splash-screen-kill)))
 
 
 (provide 'me-splash)

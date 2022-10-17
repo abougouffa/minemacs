@@ -59,7 +59,7 @@
   (unless (file-exists-p spell-fu-directory)
     (mkdir spell-fu-directory t))
 
-  (defun me-spell-fu-register-dictionary (lang)
+  (defun +spell-fu-register-dictionary (lang)
     "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
     ;; Add the dictionary
     (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))

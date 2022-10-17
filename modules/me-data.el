@@ -9,7 +9,7 @@
   :mode ("\\.csv\\'" . csv-mode)
   :general
   (+map-local :keymaps 'csv-mode-map
-    "r" '(me-csv-rainbow :which-key "CSV Rainbow")
+    "r" '(+csv-rainbow :which-key "CSV Rainbow")
     "a" #'csv-align-fields
     "u" #'csv-unalign-fields
     "s" #'csv-sort-fields
@@ -18,7 +18,7 @@
     "t" #'csv-transpose)
   :config
   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
-  (defun me-csv-rainbow (&optional separator)
+  (defun +csv-rainbow (&optional separator)
     (require 'cl-lib)
     (require 'color)
     (interactive (list (when current-prefix-arg (read-char "Separator: "))))

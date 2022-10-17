@@ -46,7 +46,7 @@
 (add-to-list 'load-path (expand-file-name "elisp" minemacs-root-dir))
 (add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
 
-(defun me-generate-autoloads ()
+(defun minemacs-generate-autoloads ()
   (interactive)
   (when (file-exists-p minemacs-autoloads-file)
     (delete-file minemacs-autoloads-file))
@@ -59,7 +59,7 @@
 
 ;; Auto-loads
 (unless (file-exists-p minemacs-autoloads-file)
-  (me-generate-autoloads))
+  (minemacs-generate-autoloads))
 
 ;; Load autoloads file
 (load minemacs-autoloads-file nil (not minemacs-verbose))

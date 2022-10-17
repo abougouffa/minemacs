@@ -110,7 +110,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
       (insert "-----------------------\n")
       (insert " MinEmacs dependencies \n")
       (insert "-----------------------\n")
-      (dolist (dep me-deps-executables)
+      (dolist (dep minemacs-deps-executables)
         (let ((dep (ensure-list dep)))
           (insert (concat " ⦿ " (if (length> dep 1) (concat (+str-join ", " (mapcar #'symbol-name dep)) "\n") "")))
           (dolist (d (ensure-list dep))
@@ -122,14 +122,14 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   (switch-to-buffer "*minemacs-dependencies*"))
 
 ;; An internal variable to keep track of the tasks
-(defvar me--eval-when-idle-task 0)
+(defvar +eval-when-idle--task-num 0)
 
 ;;;###autoload
 (defun +eval-when-idle (&rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
   (let* ((task-num (atomic-change-group
-                     (setq me--eval-when-idle-task (1+ me--eval-when-idle-task))))
-         (task-name (make-symbol (format "me--do-when-idle-task%d" task-num))))
+                     (setq +eval-when-idle--task-num (1+ +eval-when-idle--task-num))))
+         (task-name (make-symbol (format "+eval-when-idle--task%d" task-num))))
     (with-memoization (get task-name 'timer)
       (run-with-idle-timer
        1.5 t

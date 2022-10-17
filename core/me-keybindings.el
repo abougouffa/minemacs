@@ -42,12 +42,12 @@
   (general-create-definer +map
     :states '(normal motion visual)
     :keymaps 'override
-    :prefix me-leader-key)
+    :prefix minemacs-leader-key)
 
   ;; Local leader
   (general-create-definer +map-local
     :states '(normal motion visual)
-    :prefix me-localleader-key)
+    :prefix minemacs-localleader-key)
 
   ;; Local leader
   (general-create-definer +map-key
