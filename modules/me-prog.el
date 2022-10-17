@@ -27,22 +27,27 @@
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :hook ((c-mode c++-mode rust-mode python-mode latex-mode LaTeX-mode) . eglot-ensure)
+  :defer t
   :init
   (+map
-    "ca"  '(eglot-code-actions :which-key "Code actions")
-    "cq"  '(eglot-code-action-quickfix :which-key "Code action quickfix")
     "cF"  '(eglot-format-buffer :which-key "Format buffer (eglot)")
-    "cr"  '(nil :which-key "refactor")
-    "crr" '(eglot-rename :which-key "Rename")
     "cd"  '(eglot-find-declaration :which-key "Find declaration")
     "ci"  '(eglot-find-implementation :which-key "Find implementation")
     "ct"  '(eglot-find-typeDefinition :which-key "Find type definition")
+    "ca"  '(eglot-code-actions :which-key "Code actions")
+    "cr"  '(nil :which-key "refactor")
+    "crr" '(eglot-rename :which-key "Rename")
+    "crR" '(eglot-code-action-rewrite :which-key "Rewrite")
+    "crf" '(eglot-code-action-quickfix :which-key "Quick fix")
+    "cri" '(eglot-code-action-inline :which-key "Inline")
+    "cre" '(eglot-code-action-extract :which-key "Extract")
+    "cro" '(eglot-code-action-organize-imports :which-key "Organize imports")
     "cs"  '(nil :which-key "eglot session")
     "css" '(eglot :which-key "Start")
     "csq" '(eglot-shutdown :which-key "Shutdown")
     "csr" '(eglot-reconnect :which-key "Reconnect")
-    "csQ" '(eglot-shutdown-all :which-key "Shutdown all"))
+    "csQ" '(eglot-shutdown-all :which-key "Shutdown all")
+    "cw"  '(eglot-show-workspace-configuration :which-key "Eglot workspace config"))
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
@@ -116,7 +121,7 @@
   :straight t
   :general
   (+map
-    "fc" '(editorconfig-find-current-editorconfig :which-key "Open current editorconfig")))
+    "fc" '(editorconfig-find-current-editorconfig :which-key "Find current EditorConfig")))
 
 
 (use-package clang-format
@@ -168,17 +173,17 @@
   :straight t
   :mode "\\.rs\\'"
   :config
-  (+map :keymaps 'rust-mode-map
-    "C" '(nil :which-key "compile/test")
-    "Cc" #'rust-compile
-    "CC" #'rust-compile-release
-    "Ck" #'rust-check
-    "Ct" #'rust-test
-    "Cr" #'rust-run
-    "CR" #'rust-run
-    "Cy" #'rust-run-clippy
-    "Cf" #'rust-format-buffer
-    "CF" #'rust-goto-format-problem))
+  (+map-local :keymaps 'rust-mode-map
+    "c" #'rust-compile
+    "C" #'rust-compile-release
+    "k" #'rust-check
+    "t" #'rust-test
+    "r" #'rust-run
+    "R" #'rust-run-release
+    "y" #'rust-run-clippy
+    "f" #'rust-format-buffer
+    "F" #'rust-goto-format-problem
+    "S" #'rust-enable-format-on-save))
 
 
 (use-package dumb-jump
