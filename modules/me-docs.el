@@ -9,7 +9,7 @@
   :magic ("%PDF" . pdf-view-mode)
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
-  (pdf-tools-install-noverify)
+  (pdf-tools-install t)
   (setq-default pdf-view-display-size 'fit-page
                 pdf-view-image-relief 2
                 pdf-view-use-scaling t))
