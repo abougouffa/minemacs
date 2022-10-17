@@ -82,8 +82,12 @@
     "fs"  #'save-buffer
     "ft"  #'recover-this-file
     "fT"  #'recover-file
-    "fy"  `((+cmdfy! (when-let ((f (buffer-file-name))) (with-temp-buffer (insert f) (kill-ring-save (point-min) (point-max))))))
-    "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir))) :which-key "User config directory")
+    "fy"  `(,(+cmdfy! (when-let ((f (buffer-file-name)))
+                       (with-temp-buffer (insert f)
+                        (kill-ring-save (point-min) (point-max)))))
+            :which-key "Yank file name")
+    "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
+            :which-key "User config directory")
 
     ;; Buffers
     "b"   '(nil :which-key "buffer")
@@ -93,7 +97,8 @@
     "bK"  #'kill-some-buffers
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete
-    "bk"  `(,(+cmdfy! (kill-buffer (current-buffer))) :which-key "Kill this buffer")
+    "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
+            :which-key "Kill this buffer")
     "bN"  '(evil-buffer-new :which-key "New buffer")
     "br"  '(revert-buffer :which-key "Revert")
     "bR"  '(rename-buffer :which-key "Rename")
