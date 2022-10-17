@@ -1,18 +1,18 @@
 ;; -*- lexical-binding: t; -*-
 
 
-(use-package emojify
-  :straight t
-  :after minemacs-loaded
-  :disabled (>= emacs-major-version 29)
-  :general
-  (+map "ie" '(emojify-insert-emoji :which-key "Emoji"))
-  :custom
-  (emojify-emoji-set "emojione-v2.2.6")
-  (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))
-  (emojify-display-style 'image)
-  :config
-  (global-emojify-mode 1))
+(when (< emacs-major-version 29)
+  (use-package emojify
+    :straight t
+    :after minemacs-loaded
+    :general
+    (+map "ie" '(emojify-insert-emoji :which-key "Emoji"))
+    :custom
+    (emojify-emoji-set "emojione-v2.2.6")
+    (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))
+    (emojify-display-style 'image)
+    :config
+    (global-emojify-mode 1)))
 
 
 (use-package svg-lib

@@ -141,9 +141,10 @@
   :after smartparens)
 
 
-(when (<= emacs-major-version 28)
+(when (< emacs-major-version 29)
   (use-package good-scroll
     :straight t
+    :after minemacs-loaded
     :config
     (good-scroll-mode 1)))
 
