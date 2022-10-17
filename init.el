@@ -44,8 +44,8 @@
       (+log! "Loading user config file from \"%s\"" user-config)
       (load user-config nil (not minemacs-verbose))))
 
-  ;; Load fonts, values are read from `me-fonts' if set in config.el,
-  ;; otherwise, they are read from the default `me-default-fonts'.
+  ;; Load fonts, values are read from `minemacs-fonts' if set in config.el,
+  ;; otherwise, they are read from the default `minemacs-default-fonts'.
   (+set-fonts)
 
   ;; Load GC module lastly

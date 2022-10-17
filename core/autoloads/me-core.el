@@ -43,20 +43,20 @@
   (custom-set-faces
    `(default
      ((t (:font ,(format "%s %d"
-                  (or (plist-get me-fonts :font-family)
-                   (plist-get me-default-fonts :font-family))
-                  (or (plist-get me-fonts :font-size)
-                   (plist-get me-default-fonts :font-size)))))))
+                  (or (plist-get minemacs-fonts :font-family)
+                   (plist-get minemacs-default-fonts :font-family))
+                  (or (plist-get minemacs-fonts :font-size)
+                   (plist-get minemacs-default-fonts :font-size)))))))
    `(fixed-pitch
      ((t (:inherit (default)))))
    `(fixed-pitch-serif
      ((t (:inherit (default)))))
    `(variable-pitch
      ((t (:font ,(format "%s %d"
-                  (or (plist-get me-fonts :variable-pitch-font-family)
-                   (plist-get me-default-fonts :variable-pitch-font-family))
-                  (or (plist-get me-fonts :variable-pitch-font-size)
-                   (plist-get me-default-fonts :variable-pitch-font-size)))))))))
+                  (or (plist-get minemacs-fonts :variable-pitch-font-family)
+                   (plist-get minemacs-default-fonts :variable-pitch-font-family))
+                  (or (plist-get minemacs-fonts :variable-pitch-font-size)
+                   (plist-get minemacs-default-fonts :variable-pitch-font-size)))))))))
 
 ;;;###autoload
 (defun +plist-keys (plist)
@@ -136,9 +136,9 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
        (lambda ()
          (when-let (fn (pop fns))
            (+log! "Running task %d, calling function `%s'"
-                    task-num
-                    (truncate-string-to-width
-                     (format "%s" fn) 40 nil nil "..."))
+                  task-num
+                  (truncate-string-to-width
+                   (format "%s" fn) 40 nil nil "..."))
            (funcall fn))
          (unless fns
            (cancel-timer (get task-name 'timer))
@@ -195,7 +195,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
       (eval-buffer))))
 
 ;;;###autoload
-(defun me-update ()
+(defun minemacs-update ()
   (interactive)
   (straight-pull-all)
   (straight-check-all))

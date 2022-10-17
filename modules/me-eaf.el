@@ -31,9 +31,9 @@
   ;; Debug
   (eaf-enable-debug nil)
   ;; Web engine
-  (eaf-webengine-font-family (plist-get me-fonts :font-family))
-  (eaf-webengine-fixed-font-family (plist-get me-fonts :font-family))
-  (eaf-webengine-serif-font-family (plist-get me-fonts :variable-pitch-font-family))
+  (eaf-webengine-font-family (plist-get minemacs-fonts :font-family))
+  (eaf-webengine-fixed-font-family (plist-get minemacs-fonts :font-family))
+  (eaf-webengine-serif-font-family (plist-get minemacs-fonts :variable-pitch-font-family))
   (eaf-webengine-font-size 16)
   (eaf-webengine-fixed-font-size 16)
   (eaf-webengine-enable-scrollbar t)
@@ -45,7 +45,7 @@
   (eaf-webengine-enable-javascript t)
   (eaf-webengine-enable-javascript-access-clipboard t)
   ;; Jupyter
-  (eaf-jupyter-font-family (plist-get me-fonts :font-family))
+  (eaf-jupyter-font-family (plist-get minemacs-fonts :font-family))
   (eaf-jupyter-font-size 14)
   ;; Video player
   (eaf-video-player-keybinding

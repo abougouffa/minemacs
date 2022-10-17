@@ -66,7 +66,7 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (fn &rest FNS)")
 (autoload '+env-save "autoloads/me-core" nil t)
 (autoload '+env-load "autoloads/me-core" nil t)
-(autoload 'me-update "autoloads/me-core" nil t)
+(autoload 'minemacs-update "autoloads/me-core" nil t)
 (register-definition-prefixes "autoloads/me-core" '("me--eval-when-idle-task"))
 
 

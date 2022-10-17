@@ -59,13 +59,13 @@
 (defvar minemacs-loaded-stage-2 nil
   "MinEmacs has been loaded.")
 
-(defconst me-default-fonts
+(defconst minemacs-default-fonts
   '(:font-family "monospace"
     :font-size 15
-    :variable-pitch-font-family "serif"
+    :variable-pitch-font-family "monospace"
     :variable-pitch-font-size 15))
 
-(defvar me-fonts nil)
+(defvar minemacs-fonts nil)
 
 (defcustom me-leader-key "SPC"
   "Leader key.")
