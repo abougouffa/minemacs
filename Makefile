@@ -6,5 +6,5 @@ clean:
 clean_all: clean
 	rm -rf $(EMACS_DIR)/local/straight/
 
-prune:
+prune: clean
 	rm -rf $(EMACS_DIR)/local
