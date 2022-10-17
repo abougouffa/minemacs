@@ -41,6 +41,7 @@
   (global-undo-fu-session-mode 1))
 
 
+;; Maybe replace with yasnippet + https://github.com/elken/cape-yasnippet
 (use-package tempel
   :straight t
   :custom
