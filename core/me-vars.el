@@ -49,16 +49,6 @@
   :type 'hook
   :local 'permenant-local)
 
-;; This will be set by the virtual package `minemacs-loaded'
-(defvar minemacs-loaded nil
-  "MinEmacs has been loaded.")
-
-(defvar minemacs-loaded-stage-1 nil
-  "MinEmacs has been loaded.")
-
-(defvar minemacs-loaded-stage-2 nil
-  "MinEmacs has been loaded.")
-
 (defconst minemacs-default-fonts
   '(:font-family "monospace"
     :font-size 15
