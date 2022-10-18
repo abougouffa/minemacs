@@ -7,8 +7,8 @@
   :straight t
   :general
   (+map
-    "gg" '(magit-status :which-key "Status")
-    "gC" '(magit-clone :which-key "Clone repo"))
+    "gg" '(magit-status :wk "Status")
+    "gC" '(magit-clone :wk "Clone repo"))
   :custom
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
@@ -36,7 +36,7 @@
   :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
   (+map
-    "gs" '(diff-hl-stage-current-hunk :which-key "Stage hunk at point"))
+    "gs" '(diff-hl-stage-current-hunk :wk "Stage hunk at point"))
   :custom
   (diff-hl-draw-borders nil)
   :config
@@ -49,7 +49,7 @@
   :after minemacs-loaded
   :general
   (+map
-    "gt" '(git-timemachine-toggle :which-key "Time machine"))
+    "gt" '(git-timemachine-toggle :wk "Time machine"))
   :custom
   (git-timemachine-show-minibuffer-details t))
 
@@ -79,7 +79,7 @@
   :straight t
   :general
   (+map
-    "gm" '(+smerge-hydra/body :which-key "sMerge"))
+    "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil
                                  :pre (if (not smerge-mode) (smerge-mode 1))

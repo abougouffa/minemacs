@@ -175,12 +175,12 @@
   :after minemacs-loaded
   :general
   (+map
-    "bl" '(consult-line :which-key "Consult line")
+    "bl" '(consult-line :wk "Consult line")
     "ss" #'consult-ripgrep
     "sc" #'consult-find
-    "iy" '(consult-yank-pop :which-key "From clipboard")
-    "bb" '(consult-buffer :which-key "Switch to buffer")
-    "fr" '(consult-recent-file :which-key "Recent files"))
+    "iy" '(consult-yank-pop :wk "From clipboard")
+    "bb" '(consult-buffer :wk "Switch to buffer")
+    "fr" '(consult-recent-file :wk "Recent files"))
   :config
   (global-set-key (kbd "C-s") 'consult-line)
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)

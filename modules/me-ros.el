@@ -54,11 +54,11 @@
   :straight (:host github :repo "abougouffa/ros.el" :branch "fix-deps")
   :general
   (+map
-    "or" '(nil :which-key "ROS")
-    "orr" '(hydra-ros-main/body :which-key "Hydra")
-    "ors" '(ros-set-workspace :which-key "Set workspace")
-    "orp" '(ros-go-to-package :which-key "Go to package")
-    "orC" '(ros-cache-clean :which-key "Clean cache"))
+    "or" '(nil :wk "ROS")
+    "orr" '(hydra-ros-main/body :wk "Hydra")
+    "ors" '(ros-set-workspace :wk "Set workspace")
+    "orp" '(ros-go-to-package :wk "Go to package")
+    "orC" '(ros-cache-clean :wk "Clean cache"))
 
   :config
   (defhydra hydra-ros-main (:color blue :hint nil :foreign-keys warn)

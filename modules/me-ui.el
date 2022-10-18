@@ -6,7 +6,7 @@
     :straight t
     :after minemacs-loaded
     :general
-    (+map "ie" '(emojify-insert-emoji :which-key "Emoji"))
+    (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
     :custom
     (emojify-emoji-set "emojione-v2.2.6")
     (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))

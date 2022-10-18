@@ -30,24 +30,24 @@
   :defer t
   :init
   (+map
-    "cF"  '(eglot-format-buffer :which-key "Format buffer (eglot)")
-    "cd"  '(eglot-find-declaration :which-key "Find declaration")
-    "ci"  '(eglot-find-implementation :which-key "Find implementation")
-    "ct"  '(eglot-find-typeDefinition :which-key "Find type definition")
-    "ca"  '(eglot-code-actions :which-key "Code actions")
-    "cr"  '(nil :which-key "refactor")
-    "crr" '(eglot-rename :which-key "Rename")
-    "crR" '(eglot-code-action-rewrite :which-key "Rewrite")
-    "crf" '(eglot-code-action-quickfix :which-key "Quick fix")
-    "cri" '(eglot-code-action-inline :which-key "Inline")
-    "cre" '(eglot-code-action-extract :which-key "Extract")
-    "cro" '(eglot-code-action-organize-imports :which-key "Organize imports")
-    "cs"  '(nil :which-key "eglot session")
-    "css" '(eglot :which-key "Start")
-    "csq" '(eglot-shutdown :which-key "Shutdown")
-    "csr" '(eglot-reconnect :which-key "Reconnect")
-    "csQ" '(eglot-shutdown-all :which-key "Shutdown all")
-    "cw"  '(eglot-show-workspace-configuration :which-key "Eglot workspace config"))
+    "cF"  '(eglot-format-buffer :wk "Format buffer (eglot)")
+    "cd"  '(eglot-find-declaration :wk "Find declaration")
+    "ci"  '(eglot-find-implementation :wk "Find implementation")
+    "ct"  '(eglot-find-typeDefinition :wk "Find type definition")
+    "ca"  '(eglot-code-actions :wk "Code actions")
+    "cr"  '(nil :wk "refactor")
+    "crr" '(eglot-rename :wk "Rename")
+    "crR" '(eglot-code-action-rewrite :wk "Rewrite")
+    "crf" '(eglot-code-action-quickfix :wk "Quick fix")
+    "cri" '(eglot-code-action-inline :wk "Inline")
+    "cre" '(eglot-code-action-extract :wk "Extract")
+    "cro" '(eglot-code-action-organize-imports :wk "Organize imports")
+    "cs"  '(nil :wk "eglot session")
+    "css" '(eglot :wk "Start")
+    "csq" '(eglot-shutdown :wk "Shutdown")
+    "csr" '(eglot-reconnect :wk "Reconnect")
+    "csQ" '(eglot-shutdown-all :wk "Shutdown all")
+    "cw"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
@@ -63,12 +63,12 @@
              project-cmake-configure)
   :init
   (+map :keymaps '(c++-mode-map c-mode-map)
-    "pC"  '(nil :which-key "cmake")
-    "pCt" '(project-cmake-test :which-key "Test")
-    "pCb" '(project-cmake-build :which-key "Build")
-    "pCs" '(project-cmake-shell :which-key "Shell")
-    "pCi" '(project-cmake-install :which-key "Install")
-    "pCc" '(project-cmake-configure :which-key "Configure"))
+    "pC"  '(nil :wk "cmake")
+    "pCt" '(project-cmake-test :wk "Test")
+    "pCb" '(project-cmake-build :wk "Build")
+    "pCs" '(project-cmake-shell :wk "Shell")
+    "pCi" '(project-cmake-install :wk "Install")
+    "pCc" '(project-cmake-configure :wk "Configure"))
   :config
   (project-cmake-scan-kits)
   (project-cmake-eglot-integration))
@@ -83,7 +83,7 @@
             (pcase major-mode
              ('python-mode (realgud:pdb))
              ((or 'c-mode 'c++-mode) (realgud:gdb))))
-          :which-key "realgud"))
+          :wk "realgud"))
   :commands (realgud:gdb
              realgud:gud
              realgud:zshdb
@@ -97,7 +97,7 @@
   :straight t
   :general
   (+map-local :keymaps '(rust-mode-map)
-    "d" `(#'realgud--lldb :which-key "realgud"))
+    "d" `(#'realgud--lldb :wk "realgud"))
   :commands (realgud--lldb))
 
 
@@ -111,7 +111,7 @@
   :straight t
   :defer t
   :general
-  (+map "cf" '(apheleia-format-buffer :which-key "Format buffer"))
+  (+map "cf" '(apheleia-format-buffer :wk "Format buffer"))
   :config
   (dolist (mode '(emacs-lisp-mode lisp-data-mode scheme-mode))
     (push (cons mode 'lisp-indent) apheleia-mode-alist)))
@@ -121,7 +121,7 @@
   :straight t
   :general
   (+map
-    "fc" '(editorconfig-find-current-editorconfig :which-key "Find current EditorConfig")))
+    "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")))
 
 
 (use-package clang-format

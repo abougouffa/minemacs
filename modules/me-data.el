@@ -9,7 +9,7 @@
   :mode ("\\.csv\\'" . csv-mode)
   :general
   (+map-local :keymaps 'csv-mode-map
-    "r" '(+csv-rainbow :which-key "CSV Rainbow")
+    "r" '(+csv-rainbow :wk "CSV Rainbow")
     "a" #'csv-align-fields
     "u" #'csv-unalign-fields
     "s" #'csv-sort-fields

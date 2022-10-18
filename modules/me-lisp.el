@@ -23,7 +23,7 @@
   :defer t
   :general
   (+map-local :keymaps 'emacs-lisp-mode-map
-    "m" '(macrostep-expand :which-key "Expand macro")))
+    "m" '(macrostep-expand :wk "Expand macro")))
 
 
 (use-package macrostep-geiser
@@ -31,7 +31,7 @@
   :after geiser
   :general
   (+map-local :keymaps '(scheme-mode-map racket-mode-map)
-    "m" '(macrostep-geiser-expand-all :which-key "Expand macro"))
+    "m" '(macrostep-geiser-expand-all :wk "Expand macro"))
   :config
   (macrostep-geiser-setup))
 
@@ -74,24 +74,24 @@
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
   :config
   (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "d"   '(nil :which-key "edebug")
+    "d"   '(nil :wk "edebug")
     "df"  'edebug-defun
     "dF"  'edebug-all-forms
     "dd"  'edebug-all-defs
     "dr"  'edebug-remove-instrumentation
     "do"  'edebug-on-entry
     "dO"  'edebug-cancel-on-entry
-    "db"  '(nil :which-key "breakpoints")
+    "db"  '(nil :wk "breakpoints")
     "dbb" 'edebug-set-breakpoint
     "dbr" 'edebug-unset-breakpoint
     "dbn" 'edebug-next-breakpoint
-    "e"   '(nil :which-key "eval")
+    "e"   '(nil :wk "eval")
     "eb"  'eval-buffer
     "ed"  'eval-defun
     "ee"  'eval-last-sexp
     "er"  'eval-region
     "el"  'load-library
-    "g"   '(nil :which-key "goto/find")
+    "g"   '(nil :wk "goto/find")
     "gf"  'find-function-at-point
     "gR"  'find-function
     "gv"  'find-variable-at-point
@@ -99,7 +99,7 @@
     "gL"  'find-library)
 
   (+map-local :keymaps '(edebug-mode-map)
-    "e"   '(nil :which-key "eval")
+    "e"   '(nil :wk "eval")
     "ee"  'edebug-eval-last-sexp
     "eE"  'edebug-eval-expression
     "et"  'edebug-eval-top-level-form))

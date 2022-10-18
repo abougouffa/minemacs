@@ -4,7 +4,7 @@
 (use-package rg
   :straight t
   :general
-  (+map "/" '(rg :which-key "ripgrep")))
+  (+map "/" '(rg :wk "ripgrep")))
 
 
 (use-package affe
@@ -39,8 +39,8 @@
   :straight t
   :general
   (+map
-    "ot" '(+popwin:vterm :which-key "vTerm popup")
-    "oT" '(vterm :which-key "vTerm"))
+    "ot" '(+popwin:vterm :wk "vTerm popup")
+    "oT" '(vterm :wk "vTerm"))
   :preface
   (when noninteractive
     (advice-add #'vterm-module-compile :override #'ignore)
@@ -60,8 +60,8 @@
 
 (with-eval-after-load 'popwin
   (+map
-    "oe" '(+popwin:eshell :which-key "Eshell popup")
-    "oE" '(eshell :which-key "Eshell"))
+    "oe" '(+popwin:eshell :wk "Eshell popup")
+    "oE" '(eshell :wk "Eshell"))
   (defun +popwin:eshell ()
     (interactive)
     (popwin:display-buffer-1

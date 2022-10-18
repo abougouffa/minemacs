@@ -12,11 +12,11 @@
   :config
   (+map
     ;; Open
-    "o-"  '(dirvish :which-key "Dirvish")
-    "op"  '(dirvish-side :which-key "Side panel")
-    "oq"  '(dirvish-quick-access :which-key "Dirvish quick access")
+    "o-"  '(dirvish :wk "Dirvish")
+    "op"  '(dirvish-side :wk "Side panel")
+    "oq"  '(dirvish-quick-access :wk "Dirvish quick access")
     ;; Search
-    "sd"  '(dirvish-fd :which-key "Dirvish fd"))
+    "sd"  '(dirvish-fd :wk "Dirvish fd"))
   (+map-key :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit)
   (dirvish-override-dired-mode))

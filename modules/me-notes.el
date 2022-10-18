@@ -9,10 +9,10 @@
   :straight t
   :general
   (+map
-    "nf" '(org-roam-node-find :which-key "Org-Roam find node")
-    "nr" '(org-roam-ref-find :which-key "Org-Roam find ref")
-    "ni" '(org-roam-ref-find :which-key "Org-Roam insert node")
-    "nR" '(org-roam-node-random :which-key "Org-Roam random node"))
+    "nf" '(org-roam-node-find :wk "Org-Roam find node")
+    "nr" '(org-roam-ref-find :wk "Org-Roam find ref")
+    "ni" '(org-roam-ref-find :wk "Org-Roam insert node")
+    "nR" '(org-roam-node-random :wk "Org-Roam random node"))
   :commands (org-roam
              org-roam-ref-find
              org-roam-node-find
@@ -26,7 +26,7 @@
   :commands (org-roam-ui-open org-roam-ui-sync-mode)
   :general
   (+map
-    "nR" '(org-roam-ui-open :which-key "Org-Roam UI")))
+    "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
 
 
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
@@ -35,7 +35,7 @@
   :after org-roam
   :general
   (+map
-    "nd" '(deft :which-key "Deft"))
+    "nd" '(deft :wk "Deft"))
   :init
   (setq deft-default-extension "org")
   :custom

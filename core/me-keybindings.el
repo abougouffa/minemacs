@@ -55,25 +55,25 @@
 
   (+map
     ;; Top level functions
-    "TAB" '(switch-to-next-buffer :which-key "Next buffer")
-    "<backtab>" '(switch-to-prev-buffer :which-key "Previous buffer")
-    "SPC" '(execute-extended-command :which-key "M-x")
-    ";"   '(pp-eval-expression :which-key "Eval expression")
+    "TAB" '(switch-to-next-buffer :wk "Next buffer")
+    "<backtab>" '(switch-to-prev-buffer :wk "Previous buffer")
+    "SPC" '(execute-extended-command :wk "M-x")
+    ";"   '(pp-eval-expression :wk "Eval expression")
     ":"   #'project-find-file
     "X"   #'org-capture
     "."   #'find-file
-    "u"   '(universal-argument :which-key "C-u")
+    "u"   '(universal-argument :wk "C-u")
 
     ;; Quit/Session
-    "q"   '(nil :which-key "quit/session")
+    "q"   '(nil :wk "quit/session")
     "qq"  #'save-buffers-kill-terminal
     "qQ"  #'kill-emacs
     "qs"  #'server-start
     "qR"  #'recover-session
 
     ;; Files
-    "f"   '(nil               :which-key "file")
-    "fS"  '(write-file        :which-key "Save as ...")
+    "f"   '(nil               :wk "file")
+    "fS"  '(write-file        :wk "Save as ...")
     "fD"  #'+delete-this-file
     "fu"  #'+sudo-find-file
     "fU"  #'+sudo-this-file
@@ -85,12 +85,12 @@
     "fy"  `(,(+cmdfy! (when-let ((f (buffer-file-name)))
                        (with-temp-buffer (insert f)
                         (kill-ring-save (point-min) (point-max)))))
-            :which-key "Yank file name")
+            :wk "Yank file name")
     "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
-            :which-key "User config directory")
+            :wk "User config directory")
 
     ;; Buffers
-    "b"   '(nil :which-key "buffer")
+    "b"   '(nil :wk "buffer")
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
     "bp"  #'project-switch-to-buffer
@@ -98,36 +98,36 @@
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete
     "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
-            :which-key "Kill this buffer")
-    "bN"  '(evil-buffer-new :which-key "New buffer")
-    "br"  '(revert-buffer :which-key "Revert")
-    "bR"  '(rename-buffer :which-key "Rename")
+            :wk "Kill this buffer")
+    "bN"  '(evil-buffer-new :wk "New buffer")
+    "br"  '(revert-buffer :wk "Revert")
+    "bR"  '(rename-buffer :wk "Rename")
     ;; Files / Local variables
-    "bv"  '(nil :which-key "locals")
-    "bvv" '(add-file-local-variable :which-key "Add")
-    "bvV" '(delete-file-local-variable :which-key "Delete")
-    "bvp" '(add-file-local-variable-prop-line :which-key "Add in prop line")
-    "bvP" '(delete-file-local-variable-prop-line :which-key "Delete from prop line")
-    "bvd" '(add-dir-local-variable :which-key "Add to dir-locals")
-    "bvD" '(delete-dir-local-variable :which-key "Delete from dir-locals")
-    "bvr" '(+dir-locals-reload-for-this-buffer :which-key "Reload dir-locals for this buffer")
-    "bvR" '(+dir-locals-reload-for-all-buffers-in-this-directory :which-key "Reload dir-locals for this directory")
+    "bv"  '(nil :wk "locals")
+    "bvv" '(add-file-local-variable :wk "Add")
+    "bvV" '(delete-file-local-variable :wk "Delete")
+    "bvp" '(add-file-local-variable-prop-line :wk "Add in prop line")
+    "bvP" '(delete-file-local-variable-prop-line :wk "Delete from prop line")
+    "bvd" '(add-dir-local-variable :wk "Add to dir-locals")
+    "bvD" '(delete-dir-local-variable :wk "Delete from dir-locals")
+    "bvr" '(+dir-locals-reload-for-this-buffer :wk "Reload dir-locals for this buffer")
+    "bvR" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "Reload dir-locals for this directory")
 
     ;; Insert
-    "i"   '(nil :which-key "insert")
-    "iu"  '(insert-char :which-key "Unicode char")
-    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-insert) :which-key "Emoji")
+    "i"   '(nil :wk "insert")
+    "iu"  '(insert-char :wk "Unicode char")
+    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-insert) :wk "Emoji")
 
     ;; Window
-    "w"   '(nil :which-key "window")
-    "ww"  '(evil-window-next :which-key "Next")
-    "wW"  '(evil-window-prev :which-key "Previous")
-    "ws"  '(evil-window-split :which-key "Split")
-    "wv"  '(evil-window-vsplit :which-key "Vertical split")
-    "wr"  '(evil-window-rotate-upwards :which-key "Rotate upwards")
-    "wR"  '(evil-window-rotate-downwards :which-key "Rotate downwards")
-    "w+"  '(evil-window-increase-width :which-key "Increase width")
-    "w-"  '(evil-window-decrease-width :which-key "Decrease width")
+    "w"   '(nil :wk "window")
+    "ww"  '(evil-window-next :wk "Next")
+    "wW"  '(evil-window-prev :wk "Previous")
+    "ws"  '(evil-window-split :wk "Split")
+    "wv"  '(evil-window-vsplit :wk "Vertical split")
+    "wr"  '(evil-window-rotate-upwards :wk "Rotate upwards")
+    "wR"  '(evil-window-rotate-downwards :wk "Rotate downwards")
+    "w+"  '(evil-window-increase-width :wk "Increase width")
+    "w-"  '(evil-window-decrease-width :wk "Decrease width")
     "wd"  #'delete-window
     "wD"  #'delete-window-on
     "wm"  #'maximize-window
@@ -135,54 +135,54 @@
     "wU"  #'winner-redo
 
     ;; Applications (Open)
-    "o"   '(nil   :which-key "app/open")
-    "o-"  '(dired :which-key "Dired") ;; Will be overwritten if dirvish is used
+    "o"   '(nil   :wk "app/open")
+    "o-"  '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
 
     ;; Search
-    "s"   '(nil :which-key "search")
+    "s"   '(nil :wk "search")
 
     ;; Mode specific a.k.a. "local leader"
-    "m"   '(nil :which-key "mode-specific")
+    "m"   '(nil :wk "mode-specific")
 
     ;; VC
-    "g"   '(nil :which-key "git/vc")
+    "g"   '(nil :wk "git/vc")
 
     ;; Toggle
-    "t"   '(nil :which-key "toggle")
-    "td"  '(toggle-debug-on-error :which-key "Debug on error")
+    "t"   '(nil :wk "toggle")
+    "td"  '(toggle-debug-on-error :wk "Debug on error")
     "tr"  #'read-only-mode
     "tl"  #'follow-mode
-    "tM"  '(+messages-auto-tail-toggle :which-key "Auto-tail *Messages*")
-    "tV"  '(netextender-toggle :which-key "NetExtender")
+    "tM"  '(+messages-auto-tail-toggle :wk "Auto-tail *Messages*")
+    "tV"  '(netextender-toggle :wk "NetExtender")
 
     ;; Code
-    "c"   '(nil :which-key "code")
+    "c"   '(nil :wk "code")
 
     ;; Workspaces TODO
-    "r"   '(nil :which-key "workspace") ;; TODO (using tab-bar-mode and tab-line-mode)
+    "r"   '(nil :wk "workspace") ;; TODO (using tab-bar-mode and tab-line-mode)
 
     ;; Notes
-    "n"   '(nil :which-key "notes")
+    "n"   '(nil :wk "notes")
 
     ;; Help
-    "h"   '(nil :which-key "help")
+    "h"   '(nil :wk "help")
 
     ;; Project
-    "p"   '(nil :which-key "project")
-    "pp"  '(project-switch-project :which-key "Switch")
-    "pc"  '(project-compile :which-key "Compile")
-    "pd"  '(project-find-dir :which-key "Find directory")
-    "pf"  '(project-find-file :which-key "Find file")
-    "pD"  '(+dir-locals-open-or-create :which-key "Open/create dir-locals file")
+    "p"   '(nil :wk "project")
+    "pp"  '(project-switch-project :wk "Switch")
+    "pc"  '(project-compile :wk "Compile")
+    "pd"  '(project-find-dir :wk "Find directory")
+    "pf"  '(project-find-file :wk "Find file")
+    "pD"  '(+dir-locals-open-or-create :wk "Open/create dir-locals file")
     ;; Forget
-    "pF"  '(nil :which-key "Forget")
-    "pFz" '(project-forget-zombie-projects :which-key "Zombie projects")
-    "pFp" '(project-forget-project :which-key "Project")
-    "pFu" '(project-forget-projects-under :which-key "Projects under...")
+    "pF"  '(nil :wk "Forget")
+    "pFz" '(project-forget-zombie-projects :wk "Zombie projects")
+    "pFp" '(project-forget-project :wk "Project")
+    "pFu" '(project-forget-projects-under :wk "Projects under...")
     ;; Search/replace
-    "ps"  '(nil :which-key "Search/replace")
-    "pss" '(project-search :which-key "Search")
-    "psn" '(fileloop-continue :which-key "Next match")
+    "ps"  '(nil :wk "Search/replace")
+    "pss" '(project-search :wk "Search")
+    "psn" '(fileloop-continue :wk "Next match")
     "psr" #'project-query-replace-regexp
     "psf" #'project-find-regexp))
 

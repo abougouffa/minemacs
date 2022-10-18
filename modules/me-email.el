@@ -12,7 +12,7 @@
   :commands mu4e mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :init
-  (+map "om" '(mu4e :which-key "Mu4e"))
+  (+map "om" '(mu4e :wk "Mu4e"))
   (defvar mu4e-main-hide-personal-addresses t)
   :custom
   (mu4e-confirm-quit nil)
@@ -90,10 +90,10 @@
     "TAB" #'org-msg-tab
     "gg"  #'org-msg-goto-body)
   (+map-local :keymaps 'org-msg-edit-mode-map
-    "a"  '(nil :which-key "attach")
-    "aa" '(org-msg-attach-attach :which-key "Attach")
-    "ad" '(org-msg-attach-delete :which-key "Delete")
-    "p"  '(org-msg-preview :which-key "Preview"))
+    "a"  '(nil :wk "attach")
+    "aa" '(org-msg-attach-attach :wk "Attach")
+    "ad" '(org-msg-attach-delete :wk "Delete")
+    "p"  '(org-msg-preview :wk "Preview"))
 
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)

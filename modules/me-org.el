@@ -44,9 +44,9 @@
   (setq org-latex-line-break-safe "\\\\")
 
   (+map-local :keymaps 'org-mode-map
-    "l"  '(nil :which-key "link")
-    "ll" '(org-insert-link :which-key "Insert link")
-    "e"  '(org-export-dispatch :which-key "Export dispatch"))
+    "l"  '(nil :wk "link")
+    "ll" '(org-insert-link :wk "Insert link")
+    "e"  '(org-export-dispatch :wk "Export dispatch"))
 
   (+map-key
     :keymaps 'org-mode-map
