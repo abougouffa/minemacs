@@ -61,7 +61,7 @@
   "Leader key.")
 
 (defcustom minemacs-localleader-key "SPC m"
-  "Localleader key.")
+  "Localleader (mode specific) key.")
 
 (defvar minemacs-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget
