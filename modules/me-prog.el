@@ -107,14 +107,11 @@
 
 
 ;;; Formatting
-(use-package format-all
+(use-package apheleia
   :straight t
+  :defer t
   :general
-  (+map "cf" '(format-all-buffer :which-key "Format buffer"))
-  :commands (format-all-mode
-             format-all-ensure-formatter
-             format-all-buffer
-             format-all-region))
+  (+map "cf" '(apheleia-format-buffer :which-key "Format buffer")))
 
 
 (use-package editorconfig
