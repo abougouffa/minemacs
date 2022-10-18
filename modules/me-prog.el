@@ -111,7 +111,10 @@
   :straight t
   :defer t
   :general
-  (+map "cf" '(apheleia-format-buffer :which-key "Format buffer")))
+  (+map "cf" '(apheleia-format-buffer :which-key "Format buffer"))
+  :config
+  (dolist (mode '(emacs-lisp-mode lisp-data-mode scheme-mode))
+    (push (cons mode 'lisp-indent) apheleia-mode-alist)))
 
 
 (use-package editorconfig
