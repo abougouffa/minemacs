@@ -50,4 +50,23 @@
      (window-width . 70))))
 
 
+(setq frame-title-format
+      '(""
+        (:eval
+         (if (and
+              (boundp 'org-roam-directory)
+              (s-contains-p org-roam-directory (or buffer-file-name "")))
+             (replace-regexp-in-string ".*/[0-9]*-?" "☰ "
+              (subst-char-in-string ?_ ?\s buffer-file-name))
+           "%b"))
+        (:eval
+         (when-let*
+             ((project-name (project-current))
+              (project-name (project-root project-name))
+              (project-name (if (string= "-" project-name)
+                                (ignore-errors (file-name-base (string-trim-right (vc-root-dir))))
+                              project-name)))
+           (format (if (buffer-modified-p) " ○ %s" " ● %s") project-name)))))
+
+
 (provide 'me-window)
