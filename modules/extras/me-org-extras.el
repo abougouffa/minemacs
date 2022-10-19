@@ -6,11 +6,6 @@
   "The main (entry point) Org file for a multi-files document.")
 
 
-(defun +org-extras-format-latex-set-scale (scale)
-  (setq-local org-format-latex-options
-              (plist-put org-format-latex-options :scale scale)))
-
-
 (defun +org-extras--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
     (setq-local
