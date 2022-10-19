@@ -9,7 +9,7 @@
 
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
-    org notes email docs spell window
+    org notes email docs natural-langs window
     files tools biblio daemon rss ros eaf math))
 
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
