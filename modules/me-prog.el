@@ -194,6 +194,11 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 
+(use-package hl-todo
+  :straight (:host github :repo "tarsius/hl-todo")
+  :hook (prog-mode . hl-todo-mode))
+
+
 (provide 'me-prog)
 
 ;;; me-prog.el ends here
