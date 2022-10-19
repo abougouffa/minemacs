@@ -10,7 +10,7 @@
 (defvar minemacs-modules
   '(ui editor vc prog lisp data
     org notes email docs natural-langs window
-    files tools biblio daemon rss ros eaf math))
+    files tools biblio daemon rss ros eaf math media))
 
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
 (let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
