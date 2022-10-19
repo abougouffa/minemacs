@@ -14,9 +14,6 @@ This is enacted by `+mu4e--main-action-str-prettier-a' and
     all-the-icons-yellow)
   "Faces to use when coloring folders and account stripes.")
 
-(defvar +mu4e-min-header-frame-width 120
-  "Minimum reasonable with for the header view.")
-
 (defun +mu4e-colorize-str (str &optional unique herring)
   "Apply a face from `+mu4e-header-colorized-faces' to STR.
 If HERRING is set, it will be used to determine the face instead of STR.
@@ -144,7 +141,7 @@ will also be the width of all other printable characters."
                               (:flags . 6) ;; 3 flags
                               (:human-date . 8)
                               (:from-or-to . 25)
-                              (:subject)))
+                              (:subject-truncated)))
 
   ;; Add a column to display what email account the email belongs to,
   ;; and an account color stripe column
@@ -166,6 +163,15 @@ will also be the width of all other printable characters."
                    maildir)
                   '+mu4e-header--maildir-colors
                   maildir)))))
+          (:subject-truncated
+           . (:name "Subject"
+              :shortname "Subject"
+              :help "Subject of the message"
+              :sortable t
+              :function
+              (lambda (msg)
+                (truncate-string-to-width
+                 (mu4e-message-field msg :subject) 100 nil nil "…"))))
           (:account-stripe
            . (:name "Account"
               :shortname "▐"
