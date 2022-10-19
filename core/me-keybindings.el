@@ -72,8 +72,8 @@
     "qR"  #'recover-session
 
     ;; Files
-    "f"   '(nil               :wk "file")
-    "fS"  '(write-file        :wk "Save as ...")
+    "f"   '(nil :wk "file")
+    "fS"  '(write-file :wk "Save as ...")
     "fD"  #'+delete-this-file
     "fu"  #'+sudo-find-file
     "fU"  #'+sudo-this-file
@@ -110,13 +110,14 @@
     "bvP" '(delete-file-local-variable-prop-line :wk "Delete from prop line")
     "bvd" '(add-dir-local-variable :wk "Add to dir-locals")
     "bvD" '(delete-dir-local-variable :wk "Delete from dir-locals")
-    "bvr" '(+dir-locals-reload-for-this-buffer :wk "Reload dir-locals for this buffer")
-    "bvR" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "Reload dir-locals for this directory")
+    "bvr"  '(nil :wk "reload dir-locals for...")
+    "bvrr" '(+dir-locals-reload-for-this-buffer :wk "This buffer")
+    "bvrd" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "All buffers in this directory")
 
     ;; Insert
     "i"   '(nil :wk "insert")
     "iu"  '(insert-char :wk "Unicode char")
-    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-insert) :wk "Emoji")
+    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
 
     ;; Window
     "w"   '(nil :wk "window")
