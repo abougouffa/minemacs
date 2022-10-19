@@ -36,7 +36,7 @@
   (org-export-in-background nil) ; run export processes in external emacs process
   (org-export-with-smart-quotes t) ; convert "this" to « this »
   (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
-  (org-highlight-latex-and-related t)
+  (org-highlight-latex-and-related '(native script entities))
   (org-pretty-entities t)
   (org-pretty-entities-include-sub-superscripts t)
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
