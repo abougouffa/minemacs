@@ -83,6 +83,92 @@
   (+map-key "z=" #'+spell-fu-correct))
 
 
+(use-package go-translate
+  :straight (:host github :repo "lorniu/go-translate")
+  :commands (gts-do-translate
+             +gts-yank-translated-region
+             +gts-translate-with)
+  :init
+  ;; Your languages pairs
+  (setq gts-translate-list '(("en" "fr")
+                             ("en" "ar")
+                             ("fr" "ar")
+                             ("fr" "en")))
+
+  (+map-local :keymaps '(org-mode-map markdown-mode-map latex-mode-map text-mode-map)
+    "R" '(+gts-yank-translated-region :wk "Yank translated region")
+    "G" '(nil "go-translate")
+    "Gb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Bing")
+    "Gd" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "DeepL")
+    "Gg" `(,(+cmdfy! (+gts-translate-with))) :wk "Google"
+    "GR" '(+gts-yank-translated-region :wk "Yank translated region")
+    "Gt" '(gts-do-translate :wk "gts-do-translate"))
+
+  :config
+  ;; Config the default translator, which will be used by the command `gts-do-translate'
+  (setq gts-default-translator
+        (gts-translator
+         ;; Used to pick source text, from, to. choose one.
+         :picker (gts-prompt-picker)
+         ;; One or more engines, provide a parser to give different output.
+         :engines (gts-google-engine :parser (gts-google-summary-parser))
+         ;; Render, only one, used to consumer the output result.
+         :render (gts-buffer-render)))
+
+  ;; Custom texter which remove newlines in the same paragraph
+  (defclass +gts-translate-paragraph (gts-texter) ())
+
+  (cl-defmethod gts-text ((_ +gts-translate-paragraph))
+    (when (use-region-p)
+      (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
+        (with-temp-buffer
+          (insert text)
+          (goto-char (point-min))
+          (let ((case-fold-search nil))
+            (while (re-search-forward "\n[^\n]" nil t)
+              (replace-region-contents
+               (- (point) 2) (- (point) 1)
+               (lambda (&optional a b) " ")))
+            (buffer-string))))))
+
+  ;; Custom picker to use the paragraph texter
+  (defclass +gts-paragraph-picker (gts-picker)
+    ((texter :initarg :texter :initform (+gts-translate-paragraph))))
+
+  (cl-defmethod gts-pick ((o +gts-paragraph-picker))
+    (let ((text (gts-text (oref o texter))))
+      (when (or (null text) (zerop (length text)))
+        (user-error "Make sure there is any word at point, or selection exists"))
+      (let ((path (gts-path o text)))
+        (setq gts-picker-current-path path)
+        (cl-values text path))))
+
+  (defun +gts-yank-translated-region ()
+    (interactive)
+    (gts-translate
+     (gts-translator
+      :picker (+gts-paragraph-picker)
+      :engines (gts-google-engine)
+      :render (gts-kill-ring-render))))
+
+  (defun +gts-translate-with (&optional engine)
+    (interactive)
+    (gts-translate
+     (gts-translator
+      :picker (+gts-paragraph-picker)
+      :engines
+      (cond ((eq engine 'deepl)
+             (gts-deepl-engine
+              :auth-key ;; Get API key from ~/.authinfo.gpg (machine api-free.deepl.com)
+              (funcall
+               (plist-get (car (auth-source-search :host "api-free.deepl.com" :max 1))
+                          :secret))
+              :pro nil))
+            ((eq engine 'bing) (gts-bing-engine))
+            (t (gts-google-engine)))
+      :render (gts-buffer-render)))))
+
+
 ;; Add this to .dir-locals.el
 ;; ((nil (eglot-workspace-configuration
 ;;        . ((ltex . ((language . "fr")
