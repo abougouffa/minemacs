@@ -38,6 +38,8 @@
 (use-package general
   :straight t
   :config
+  (general-auto-unbind-keys)
+
   ;; Global leader
   (general-create-definer +map
     :states '(normal motion visual)
