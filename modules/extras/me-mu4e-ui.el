@@ -170,8 +170,12 @@ will also be the width of all other printable characters."
               :sortable t
               :function
               (lambda (msg)
-                (truncate-string-to-width
-                 (mu4e-message-field msg :subject) 100 nil nil "…"))))
+                (let ((prefix (mu4e~headers-thread-prefix (mu4e-message-field msg :meta))))
+                 (concat
+                  prefix
+                  (truncate-string-to-width
+                   (mu4e-message-field msg :subject)
+                   (- 100 (length prefix)) nil nil "…"))))))
           (:account-stripe
            . (:name "Account"
               :shortname "▐"
