@@ -6,12 +6,12 @@
   "The main (entry point) Org file for a multi-files document.")
 
 
-(defun +org-format-latex-set-scale (scale)
+(defun +org-extras-format-latex-set-scale (scale)
   (setq-local org-format-latex-options
               (plist-put org-format-latex-options :scale scale)))
 
 
-(defun +org--responsive-image-h ()
+(defun +org-extras--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
     (setq-local
      org-image-actual-width
@@ -21,7 +21,7 @@
                                   +org-responsive-image-percentage))))))))
 
 
-(defun +parse-the-fun (str)
+(defun +org-extras--parse-latex-env (str)
   "Parse the LaTeX environment STR.
 Return an AST with newlines counts in each level."
   (let (ast)
@@ -50,7 +50,8 @@ Return an AST with newlines counts in each level."
     (plist-get (car ast) :childs)))
 
 
-(defun +scimax-org-renumber-environment (orig-func &rest args)
+;; Adapted from Scimax
+(defun +org-extras-renumber-env (orig-func &rest args)
   "A function to inject numbers in LaTeX fragment previews."
   (let ((results '())
         (counter -1))
@@ -69,7 +70,7 @@ Return an AST with newlines counts in each level."
                      (cons begin counter))
                     ((string-match "\\\\begin{align}" env)
                      (cl-incf counter)
-                     (let ((p (car (+parse-the-fun env))))
+                     (let ((p (car (+org-extras--parse-latex-env env))))
                        ;; Parse the `env', count new lines in the align env as equations, unless
                        (cl-incf counter (- (or (plist-get p :newline) 0)
                                            (or (plist-get p :nonumber) 0))))
@@ -84,20 +85,20 @@ Return an AST with newlines counts in each level."
   (apply orig-func args))
 
 
-(defun +scimax-toggle-latex-equation-numbering (&optional enable)
+(defun +org-extras-toggle-latex-equation-numbering (&optional enable)
   "Toggle whether LaTeX fragments are numbered."
   (interactive)
-  (if (or enable (not (get '+scimax-org-renumber-environment 'enabled)))
+  (if (or enable (not (get '+org-extras-renumber-env 'enabled)))
       (progn
-        (advice-add 'org-create-formula-image :around #'+scimax-org-renumber-environment)
-        (put '+scimax-org-renumber-environment 'enabled t)
+        (advice-add 'org-create-formula-image :around #'+org-extras-renumber-env)
+        (put '+org-extras-renumber-env 'enabled t)
         (message "LaTeX numbering enabled."))
-    (advice-remove 'org-create-formula-image #'+scimax-org-renumber-environment)
-    (put '+scimax-org-renumber-environment 'enabled nil)
+    (advice-remove 'org-create-formula-image #'+org-extras-renumber-env)
+    (put '+org-extras-renumber-env 'enabled nil)
     (message "LaTeX numbering disabled.")))
 
 
-(defun +scimax-org-inject-latex-fragment (orig-func &rest args)
+(defun +org-extras-inject-latex-fragment (orig-func &rest args)
   "Advice function to inject latex code before and/or after the equation in a latex fragment.
   You can use this to set \\mathversion{bold} for example to make
   it bolder. The way it works is by defining
@@ -113,28 +114,28 @@ Return an AST with newlines counts in each level."
   (apply orig-func args))
 
 
-(defun +scimax-toggle-inject-latex ()
+(defun +org-extras-inject-latex-fragments ()
   "Toggle whether you can insert latex in fragments."
   (interactive)
-  (if (not (get '+scimax-org-inject-latex-fragment 'enabled))
+  (if (not (get '+org-extras-inject-latex-fragment 'enabled))
       (progn
-        (advice-add 'org-create-formula-image :around #'+scimax-org-inject-latex-fragment)
-        (put '+scimax-org-inject-latex-fragment 'enabled t)
+        (advice-add 'org-create-formula-image :around #'+org-extras-inject-latex-fragment)
+        (put '+org-extras-inject-latex-fragment 'enabled t)
         (message "Inject latex enabled"))
-    (advice-remove 'org-create-formula-image #'+scimax-org-inject-latex-fragment)
-    (put '+scimax-org-inject-latex-fragment 'enabled nil)
+    (advice-remove 'org-create-formula-image #'+org-extras-inject-latex-fragment)
+    (put '+org-extras-inject-latex-fragment 'enabled nil)
     (message "Inject latex disabled")))
 
 
 (defun +org-extras-responsive-images-setup ()
   (add-hook 'window-configuration-change-hook
-            #'+org--responsive-image-h))
+            #'+org-extras--responsive-image-h))
 
 
 (defun +org-extras-equation-numbering-setup ()
   ;; Enable LaTeX equations renumbering
   (+with-shutup!
-   (+scimax-toggle-latex-equation-numbering :enable)))
+   (+org-extras-toggle-latex-equation-numbering :enable)))
 
 
 (defun +org-extras-multifiles-document-setup ()
