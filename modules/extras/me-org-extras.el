@@ -229,7 +229,7 @@ Return an AST with newlines counts in each level."
         (plist-put org-format-latex-options :background "Transparent"))
 
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :scale 1.4)))
+        (plist-put org-format-latex-options :scale 1.5)))
 
 
 (defun +org-extras-setup ()
