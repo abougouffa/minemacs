@@ -66,7 +66,7 @@
                         (ignore-errors
                           (file-name-nondirectory
                            (string-trim-right (expand-file-name (vc-root-dir)) "/"))))))
-          (format (if (buffer-modified-p) " ○ %s" " ● %s") proj)))))
+          (concat (if (buffer-modified-p) " ○" " ●") (when proj (format " %s" proj)))))))
 
 
 (provide 'me-window)
