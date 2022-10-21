@@ -187,12 +187,11 @@ preferred alias"
   (add-hook 'message-send-hook #'+mu4e--check-for-subject-h)
 
   ;; Setup keybindings
-  (+map :keymaps 'mu4e-view-mode-map
-    "l" '(nil :wk "mu4e")
-    "lP" #'+mu4e-view-save-all-attachments
-    "lA" #'+mu4e-view-select-mime-part-action
-    "lo" #'+mu4e-view-open-attachment
-    "ls" #'+mu4e-save-message-at-point))
+  (+map-local :keymaps 'mu4e-view-mode-map
+    "P" #'+mu4e-view-save-all-attachments
+    "A" #'+mu4e-view-select-mime-part-action
+    "o" #'+mu4e-view-open-attachment
+    "s" #'+mu4e-save-message-at-point))
 
 
 (provide 'me-mu4e-extras)

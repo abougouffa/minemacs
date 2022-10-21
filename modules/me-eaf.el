@@ -15,11 +15,10 @@
   :general
   (+map
     "oo" '(eaf-open :wk "Open with EAF"))
-  (+map
+  (+map-local
     :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
-    "l" '(nil :wk "mu4e")
-    "lh" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
-    "lo" '(eaf-open-browser :wy "Open URL (EAF)"))
+    "h" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
+    "o" '(eaf-open-browser :wy "Open URL (EAF)"))
   :custom
   ;; Generic
   (eaf-apps-to-install '(browser mindmap jupyter org-previewer
