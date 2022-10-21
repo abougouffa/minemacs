@@ -6,10 +6,8 @@
   :after minemacs-loaded
   :config
   (defun +popwin-register (pred &rest args)
-    (if (listp pred)
-        (dolist (p pred)
-          (push (cons p args) popwin:special-display-config))
-      (push (cons pred args) popwin:special-display-config)))
+    (dolist (p (ensure-list pred))
+      (push (cons p args) popwin:special-display-config)))
 
   (+popwin-register '("*Warnings*" compilation-mode) :height 8 :noselect t)
   (popwin-mode 1))
