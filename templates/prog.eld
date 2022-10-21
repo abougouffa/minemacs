@@ -54,6 +54,25 @@ emacs-lisp-mode
         "(advice-add #'" (p "fun") " " (p ":around") " #'" (s name) ")")
 (provide "(provide '" (file-name-base (or (buffer-file-name) (buffer-name))) ")" n
          ";;; " (file-name-nondirectory (or (buffer-file-name) (buffer-name))) " ends here" n)
+(pkg ";;; " (file-name-base (or (buffer-file-name) (buffer-name))) ".el --- " p " -*- lexical-binding: t; -*-" n>
+     ";;" n>
+     ";; Copyright (C) " (format-time-string "%Y") " " user-full-name n>
+     ";;" n>
+     ";; Author: " user-full-name " <" user-mail-address ">" n>
+     ";; Maintainer: " user-full-name " <" user-mail-address ">" n>
+     ";; Created: " (format-time-string "%A %d, %Y") n>
+     ";; Modified: " (format-time-string "%A %d, %Y") n>
+     ";; Version: 0.0.1" n>
+     ";; Keywords: abbrev bib c calendar comm convenience data docs emulations extensions faces files frames games hardware help hypermedia i18n internal languages lisp local maint mail matching mouse multimedia news outlines processes terminals tex tools unix vc wp" n>
+     ";; Homepage: " p n>
+     ";; Package-Requires: ((emacs \"24.3\"))" n>
+     ";;" n>
+     ";; This file is not part of GNU Emacs." n>
+     ";;" n>
+     ";;; Commentary:" n>
+     ";;" n>
+     ";;; Code:" n> n> q n> n>
+     ";;; " (file-name-base (or (buffer-file-name) (buffer-name))) ".el ends here" n>)
 
 eshell-mode
 
