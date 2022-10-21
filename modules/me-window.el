@@ -55,18 +55,20 @@
         (:eval
          (if (and
               (boundp 'org-roam-directory)
-              (s-contains-p org-roam-directory (or buffer-file-name "")))
+              (string-prefix-p
+               (expand-file-name org-roam-directory)
+               (expand-file-name (or buffer-file-name ""))))
              (replace-regexp-in-string ".*/[0-9]*-?" "☰ "
               (subst-char-in-string ?_ ?\s buffer-file-name))
            "%b"))
         (:eval
-         (when-let*
-             ((project-name (project-current))
-              (project-name (project-root project-name))
-              (project-name (if (string= "-" project-name)
-                                (ignore-errors (file-name-base (string-trim-right (vc-root-dir))))
-                              project-name)))
-           (format (if (buffer-modified-p) " ○ %s" " ● %s") project-name)))))
+         (let* ((proj (project-current))
+                (proj (if proj
+                          (project-root proj)
+                        (ignore-errors
+                          (file-name-nondirectory
+                           (string-trim-right (expand-file-name (vc-root-dir)) "/"))))))
+          (format (if (buffer-modified-p) " ○ %s" " ● %s") proj)))))
 
 
 (provide 'me-window)
