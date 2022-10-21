@@ -53,6 +53,8 @@
     :states 'normal
     "RET" #'org-open-at-point)
 
+  ;; Tectonic can be interesting, however, it don't work right now
+  ;; with some of my documents (natbib + sagej...)
   (when (and (executable-find "tectonic") nil)
     (setq org-latex-pdf-process
           '("tectonic -Z shell-escape -Z continue-on-errors --outdir=%o %f"))) ;; --synctex
