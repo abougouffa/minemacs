@@ -25,14 +25,18 @@
   (when load-core-modules
     (dolist (module minemacs-core-modules)
       (+log! "Loading core module \"%s\"" module)
-      (load (expand-file-name (format "me-%s.el" module) minemacs-core-dir)
-            nil (not minemacs-verbose))))
+      (let ((filename (expand-file-name (format "me-%s.el" module) minemacs-core-dir)))
+        (if (file-exists-p filename)
+            (load filename nil (not minemacs-verbose))
+          (+info! "Core module \"%s\" not found!" module)))))
 
   ;; Modules
   (dolist (module minemacs-modules)
     (+log! "Loading module \"%s\"" module)
-    (load (expand-file-name (format "me-%s.el" module) minemacs-modules-dir)
-          nil (not minemacs-verbose)))
+    (let ((filename (expand-file-name (format "me-%s.el" module) minemacs-modules-dir)))
+      (if (file-exists-p filename)
+          (load filename nil (not minemacs-verbose))
+        (+info! "Module \"%s\" not found!" module))))
 
   (when (and custom-file (file-exists-p custom-file))
     (+log! "Loafing user customs from custom.el")
@@ -56,6 +60,6 @@
            nil (not minemacs-verbose)))))
 
 ;; Load for the first time
-(minemacs-load :load-core-modules)
+(minemacs-load t)
 
 (+log! "Loaded early-config.el")
