@@ -68,6 +68,18 @@
     keys))
 
 ;;;###autoload
+(defmacro +plist-push! (plist &rest key-vals)
+  "Push KEY-VALS to PLIST."
+  (let ((out (list 'progn)))
+    (while (> (length key-vals) 0)
+      (let ((key (pop key-vals))
+            (val (pop key-vals)))
+        (add-to-list
+         'out
+         `(setq ,plist (plist-put ,plist ,key ,val)) t)))
+    out))
+
+;;;###autoload
 (defun +serialize-sym (sym dir &optional filename-format)
   "Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").

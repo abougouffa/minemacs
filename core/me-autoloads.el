@@ -38,6 +38,10 @@ Convert BODY to an interactive command.
 Return the keys of PLIST.
 
 (fn PLIST)")
+(autoload '+plist-push! "autoloads/me-core" "\
+Push KEY-VALS to PLIST.
+
+(fn PLIST &rest KEY-VALS)" nil t)
 (autoload '+serialize-sym "autoloads/me-core" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
