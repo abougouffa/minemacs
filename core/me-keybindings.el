@@ -22,12 +22,16 @@
   (which-key-max-display-columns nil)
   (which-key-allow-multiple-replacements t)
   :config
-  (push '(("\\`g" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
+  ;; g, [, ]
+  (push '(("\\`[][g]" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
         which-key-replacement-alist)
-  (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
+  ;; g r
+  (push '(("\\`g r" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
         which-key-replacement-alist)
+  ;; g c
   (push '(("\\`g c" . "\\`evilnc-\\(.*\\)") . (nil . "#·\\1"))
         which-key-replacement-alist)
+  ;; g s
   (push '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "m·\\1"))
         which-key-replacement-alist)
   (which-key-mode)
