@@ -5,6 +5,21 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
+(defun +theme-tweaks (&rest _args)
+  (set-face-attribute
+   'line-number nil
+   :background (face-attribute 'default :background)
+   :height (truncate (* 0.75 (face-attribute 'default :height)))
+   :weight 'semi-light)
+  (set-face-attribute
+   'line-number-current-line nil
+   :height (truncate (* 0.75 (face-attribute 'default :height)))
+   :weight 'bold))
+
+(add-hook 'after-init-hook #'+theme-tweaks)
+(add-hook 'enable-theme-functions #'+theme-tweaks)
+
+
 ;; Icons
 (use-package all-the-icons
   :straight t
@@ -18,21 +33,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one-light t)
-
-  (defun +theme-tweaks (&rest _args)
-    (set-face-attribute
-     'line-number nil
-     :background (face-attribute 'default :background)
-     :height (truncate (* 0.75 (face-attribute 'default :height)))
-     :weight 'semi-light)
-    (set-face-attribute
-     'line-number-current-line nil
-     :height (truncate (* 0.75 (face-attribute 'default :height)))
-     :weight 'bold))
-
-  (add-hook 'after-init-hook #'+theme-tweaks)
-  (add-hook 'enable-theme-functions #'+theme-tweaks))
+  (load-theme 'doom-one-light t))
 
 
 (use-package spacemacs-theme
