@@ -96,7 +96,7 @@
      (run-hooks 'minemacs-after-startup-hook))))
 
 ;;; Write user custom variables to separate file instead of init.el
-(setq custom-file (expand-file-name "custom.el" minemacs-config-dir))
+(setq custom-file (expand-file-name "custom-vars.el" minemacs-config-dir))
 
 ;;; Emacs lisp source/compiled preference
 ;; Prefer loading newest compiled .el file
