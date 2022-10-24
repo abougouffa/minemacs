@@ -71,6 +71,12 @@
  (lambda ()
    (+log! "=============== Loaded Emacs ===============")
    (+info! "Loaded Emacs in %s." (emacs-init-time))
+
+   (+log! "Applying `minemacs-fonts'.")
+   ;; Load fonts, values are read from `minemacs-fonts' if set in config.el,
+   ;; otherwise, they are read from the default `minemacs-default-fonts'.
+   (+set-fonts)
+
    ;; Print load time, and a quote to *scratch*
    (with-current-buffer "*scratch*"
      (erase-buffer)
@@ -78,9 +84,10 @@
      (insert ";; ==============================\n")
      (when (and (executable-find "fortune")
                 (version<= "28.1" emacs-version)) ;; to use string-lines
-       (insert (string-join (mapcar (lambda (l) (concat ";; " l))
-                                    (string-lines (shell-command-to-string "fortune")))
-                            "\n"))))
+       (insert (string-join
+                (mapcar (lambda (l) (concat ";; " l))
+                        (string-lines (shell-command-to-string "fortune")))
+                "\n"))))
 
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
