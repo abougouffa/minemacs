@@ -4,13 +4,19 @@
 (defmacro +log! (msg &rest vars)
   "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
   (when minemacs-verbose
-    `(apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
+    `(apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars))))
 
 ;;;###autoload
 (defmacro +info! (msg &rest vars)
   "Log info MSG and VARS using `message'."
   `(let ((inhibit-message t))
-    (apply #'message (list (concat "[MinEmacs] " ,msg) ,@vars))))
+    (apply #'message (list (concat "[MinEmacs:Info] " ,msg) ,@vars))))
+
+;;;###autoload
+(defmacro +error! (msg &rest vars)
+  "Log error MSG and VARS using `message'."
+  `(let ((inhibit-message t))
+    (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars))))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
@@ -158,7 +164,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 
 ;;;###autoload
 (defmacro +eval-when-idle! (&rest body)
-  "Push BODY to be processed when Emacs becomes idle."
+  "Evaluate BODY when Emacs becomes idle."
   `(+eval-when-idle
     (lambda ()
       ,@body)))
