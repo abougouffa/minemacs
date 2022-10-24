@@ -218,7 +218,6 @@
        (visual-fill-column-mode 1)))))
 
 
-
 (provide 'me-org)
 
 ;;; me-org.el ends here
