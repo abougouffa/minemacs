@@ -55,7 +55,7 @@
 
 
 (use-package project-cmake
-  :straight (:host github :repo "sawyerzheng/project-cmake" :branch "fix-unix-kits")
+  :straight (:host github :repo "juanjosegarciaripoll/project-cmake")
   :commands (project-cmake-test
              project-cmake-build
              project-cmake-shell
