@@ -7,7 +7,8 @@
 
 (use-package org-roam
   :straight t
-  :general
+  :after org minemacs-loaded
+  :init
   (+map
     "nf" '(org-roam-node-find :wk "Org-Roam find node")
     "nr" '(org-roam-ref-find :wk "Org-Roam find ref")
@@ -23,7 +24,6 @@
 
 (use-package org-roam-ui
   :straight t
-  :commands (org-roam-ui-open org-roam-ui-sync-mode)
   :general
   (+map
     "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
