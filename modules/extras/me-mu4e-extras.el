@@ -124,10 +124,11 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
 (defun +org-msg-make-signature (closing-phrase firstname lastname &rest lines)
   (concat
    "\n\n" closing-phrase "\n\n"
-   "#+begin_signature" "\n\n"
-   "*" (capitalize firstname) " " (upcase lastname) "*" "\n\n"
-   (+foldr (lambda (l r) (concat l "\n\n" r))
-           "" lines)
+   "#+begin_signature"
+   "\n"
+   "-- *" (capitalize firstname) " " (upcase lastname) "*" "\\\\\n"
+   (string-join lines "\\\\\n")
+   "\n"
    "#+end_signature"))
 
 ;; I like to always BCC myself
