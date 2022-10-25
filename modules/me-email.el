@@ -135,14 +135,14 @@
                       mail-count (if (> mail-count 1) "s" ""))
        :body (concat
               "• "
-              (+str-join
-               "\n• "
+              (string-join
                (mapcar
                 (lambda (msg)
                   (format "<b>%s</b>: %s"
                           (+mu4e-name-or-email msg)
                           (plist-get msg :subject)))
-                mail-group))))))
+                mail-group)
+               "\n• ")))))
 
   (setq mu4e-alert-grouped-mail-notification-formatter
         #'+mu4e-alert-grouped-mail-notif-formatter))

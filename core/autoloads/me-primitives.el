@@ -49,21 +49,6 @@
 
 ;;; === Strings ===
 
-;; (+str-join ", " '("foo" "10" "bar")) ;; ==> "foo, 10, bar"
-;;;###autoload
-(defun +str-join (sep seq)
-  (+foldl (lambda (l r) (concat l sep r)
-            (car seq) (cdr seq))))
-
-;; (+str-split "foo, 10, bar" ", ") ;; ==> ("foo" "10" "bar")
-;; Use built-in split-string instead!
-;;;###autoload
-(defun +str-split (str sep)
-  (let ((s (string-search sep str)))
-    (if s (cons (substring str 0 s)
-                (+str-split (substring str (+ s (length sep))) sep))
-      (list str))))
-
 ;;;###autoload
 (defun +str-replace (old new s)
   "Replaces OLD with NEW in S."

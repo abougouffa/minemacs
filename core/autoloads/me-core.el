@@ -130,7 +130,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
       (insert "-----------------------\n")
       (dolist (dep minemacs-deps-executables)
         (let ((dep (ensure-list dep)))
-          (insert (concat " ⦿ " (if (length> dep 1) (concat (+str-join ", " (mapcar #'symbol-name dep)) "\n") "")))
+          (insert (concat " ⦿ " (if (length> dep 1) (concat (string-join (mapcar #'symbol-name dep) ", ") "\n") "")))
           (dolist (d (ensure-list dep))
             (let ((path (executable-find (symbol-name d))))
               (insert (concat (if (length> dep 1) "   ● " "") (propertize (symbol-name d) 'face (list 'bold (if path 'success 'error)))))

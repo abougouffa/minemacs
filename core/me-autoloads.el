@@ -17,6 +17,10 @@ Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
 Log info MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
+(autoload '+error! "autoloads/me-core" "\
+Log error MSG and VARS using `message'.
+
+(fn MSG &rest VARS)" nil t)
 (autoload '+reset-sym "autoloads/me-core" "\
 Reset SYM to its standard value.
 
@@ -61,7 +65,7 @@ Queue FNS to be processed when Emacs becomes idle.
 
 (fn &rest FNS)")
 (autoload '+eval-when-idle! "autoloads/me-core" "\
-Push BODY to be processed when Emacs becomes idle.
+Evaluate BODY when Emacs becomes idle.
 
 (fn &rest BODY)" nil t)
 (autoload '+compile-functs "autoloads/me-core" "\
@@ -188,14 +192,6 @@ Toggle connection to NetExtender." t)
 
 
 (fn &rest SEQS)")
-(autoload '+str-join "autoloads/me-primitives" "\
-
-
-(fn SEP SEQ)")
-(autoload '+str-split "autoloads/me-primitives" "\
-
-
-(fn STR SEP)")
 (autoload '+str-replace "autoloads/me-primitives" "\
 Replaces OLD with NEW in S.
 
