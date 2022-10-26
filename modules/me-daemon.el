@@ -35,6 +35,6 @@
 (add-hook
  'server-after-make-frame-hook
  (lambda ()
-   (load-theme 'doom-one-light t)))
+   (load-theme minemacs-theme t)))
 
 (provide 'me-daemon)

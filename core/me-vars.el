@@ -55,6 +55,8 @@
     :variable-pitch-font-family "monospace"
     :variable-pitch-font-size 15))
 
+(defvar minemacs-theme 'doom-one-light)
+
 (defvar minemacs-fonts nil)
 
 (defcustom minemacs-leader-key "SPC"

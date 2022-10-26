@@ -17,9 +17,12 @@
      :height (truncate (* 0.75 (face-attribute 'default :height)))
      :weight 'bold)))
 
+;; Apply tweaks
 (add-hook 'after-init-hook #'+theme-tweaks)
 (add-hook 'enable-theme-functions #'+theme-tweaks)
 
+;; Save enabled theme
+(add-hook 'enable-theme-functions (lambda (theme) (setq minemacs-theme theme)))
 
 ;; Icons
 (use-package all-the-icons
@@ -33,17 +36,17 @@
 
 (use-package doom-themes
   :straight t
+  :defer t
   :config
   (load-theme 'doom-one-light t))
 
 
 (use-package modus-themes
   :straight t
-  :defer t
   :custom
   (modus-themes-hl-line '(accented intense))
   (modus-themes-subtle-line-numbers t)
-  (modus-themes-region '(bg-only no-extend)) ;; accented
+  (modus-themes-region '(bg-only no-extend accented)) ;; 
   (modus-themes-variable-pitch-ui nil)
   (modus-themes-fringes nil)
   (modus-themes-diffs nil)
@@ -78,42 +81,42 @@
   :config
   (defun +modus-themes-tweak-packages ()
     (modus-themes-with-colors
-      (set-face-attribute 'cursor nil :background (modus-themes-color 'blue))
-      (set-face-attribute 'font-lock-type-face nil :foreground (modus-themes-color 'magenta-alt))
-      (custom-set-faces
-       ;; Tweak `evil-mc-mode'
-       `(evil-mc-cursor-default-face ((,class :background ,magenta-intense-bg)))
-       ;; Tweak `git-gutter-mode'
-       `(git-gutter-fr:added ((,class :foreground ,green-fringe-bg)))
-       `(git-gutter-fr:deleted ((,class :foreground ,red-fringe-bg)))
-       `(git-gutter-fr:modified ((,class :foreground ,yellow-fringe-bg)))
-       ;; Tweak `diff-hl-mode'
-       `(diff-hl-insert ((,class :foreground ,green-fringe-bg)))
-       `(diff-hl-delete ((,class :foreground ,red-fringe-bg)))
-       `(diff-hl-change ((,class :foreground ,yellow-fringe-bg)))
-       ;; Tweak `doom-modeline'
-       `(doom-modeline-evil-normal-state ((,class :foreground ,green-alt-other)))
-       `(doom-modeline-evil-insert-state ((,class :foreground ,red-alt-other)))
-       `(doom-modeline-evil-visual-state ((,class :foreground ,magenta-alt)))
-       `(doom-modeline-evil-operator-state ((,class :foreground ,blue-alt)))
-       `(doom-modeline-evil-motion-state ((,class :foreground ,blue-alt-other)))
-       `(doom-modeline-evil-replace-state ((,class :foreground ,yellow-alt)))
-       ;; Tweak `solaire-mode'
-       `(solaire-default-face ((,class :inherit default :background ,bg-alt :foreground ,fg-dim)))
-       `(solaire-line-number-face ((,class :inherit solaire-default-face :foreground ,fg-unfocused)))
-       `(solaire-hl-line-face ((,class :background ,bg-active)))
-       `(solaire-org-hide-face ((,class :background ,bg-alt :foreground ,bg-alt)))
-       ;; Tweak `display-fill-column-indicator-mode'
-       `(fill-column-indicator ((,class :height 0.3 :background ,bg-inactive :foreground ,bg-inactive)))
-       ;; Tweak `mmm-mode'
-       `(mmm-cleanup-submode-face ((,class :background ,yellow-refine-bg)))
-       `(mmm-code-submode-face ((,class :background ,bg-active)))
-       `(mmm-comment-submode-face ((,class :background ,blue-refine-bg)))
-       `(mmm-declaration-submode-face ((,class :background ,cyan-refine-bg)))
-       `(mmm-default-submode-face ((,class :background ,bg-alt)))
-       `(mmm-init-submode-face ((,class :background ,magenta-refine-bg)))
-       `(mmm-output-submode-face ((,class :background ,red-refine-bg)))
-       `(mmm-special-submode-face ((,class :background ,green-refine-bg))))))
+     (set-face-attribute 'cursor nil :background (modus-themes-color 'blue))
+     (set-face-attribute 'font-lock-type-face nil :foreground (modus-themes-color 'magenta-alt))
+     (custom-set-faces
+      ;; Tweak `evil-mc-mode'
+      `(evil-mc-cursor-default-face ((,class :background ,magenta-intense-bg)))
+      ;; Tweak `git-gutter-mode'
+      `(git-gutter-fr:added ((,class :foreground ,green-fringe-bg)))
+      `(git-gutter-fr:deleted ((,class :foreground ,red-fringe-bg)))
+      `(git-gutter-fr:modified ((,class :foreground ,yellow-fringe-bg)))
+      ;; Tweak `diff-hl-mode'
+      `(diff-hl-insert ((,class :foreground ,green-fringe-bg)))
+      `(diff-hl-delete ((,class :foreground ,red-fringe-bg)))
+      `(diff-hl-change ((,class :foreground ,yellow-fringe-bg)))
+      ;; Tweak `doom-modeline'
+      `(doom-modeline-evil-normal-state ((,class :foreground ,green-alt-other)))
+      `(doom-modeline-evil-insert-state ((,class :foreground ,red-alt-other)))
+      `(doom-modeline-evil-visual-state ((,class :foreground ,magenta-alt)))
+      `(doom-modeline-evil-operator-state ((,class :foreground ,blue-alt)))
+      `(doom-modeline-evil-motion-state ((,class :foreground ,blue-alt-other)))
+      `(doom-modeline-evil-replace-state ((,class :foreground ,yellow-alt)))
+      ;; Tweak `solaire-mode'
+      `(solaire-default-face ((,class :inherit default :background ,bg-alt :foreground ,fg-dim)))
+      `(solaire-line-number-face ((,class :inherit solaire-default-face :foreground ,fg-unfocused)))
+      `(solaire-hl-line-face ((,class :background ,bg-active)))
+      `(solaire-org-hide-face ((,class :background ,bg-alt :foreground ,bg-alt)))
+      ;; Tweak `display-fill-column-indicator-mode'
+      `(fill-column-indicator ((,class :height 0.3 :background ,bg-inactive :foreground ,bg-inactive)))
+      ;; Tweak `mmm-mode'
+      `(mmm-cleanup-submode-face ((,class :background ,yellow-refine-bg)))
+      `(mmm-code-submode-face ((,class :background ,bg-active)))
+      `(mmm-comment-submode-face ((,class :background ,blue-refine-bg)))
+      `(mmm-declaration-submode-face ((,class :background ,cyan-refine-bg)))
+      `(mmm-default-submode-face ((,class :background ,bg-alt)))
+      `(mmm-init-submode-face ((,class :background ,magenta-refine-bg)))
+      `(mmm-output-submode-face ((,class :background ,red-refine-bg)))
+      `(mmm-special-submode-face ((,class :background ,green-refine-bg))))))
 
   (add-hook 'modus-themes-after-load-theme-hook #'+modus-themes-tweak-packages)
 
