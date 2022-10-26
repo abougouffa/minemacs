@@ -6,15 +6,16 @@
 
 
 (defun +theme-tweaks (&rest _args)
-  (set-face-attribute
-   'line-number nil
-   :background (face-attribute 'default :background)
-   :height (truncate (* 0.75 (face-attribute 'default :height)))
-   :weight 'semi-light)
-  (set-face-attribute
-   'line-number-current-line nil
-   :height (truncate (* 0.75 (face-attribute 'default :height)))
-   :weight 'bold))
+  (when (display-graphic-p)
+    (set-face-attribute
+     'line-number nil
+     :background (face-attribute 'default :background)
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'semi-light)
+    (set-face-attribute
+     'line-number-current-line nil
+     :height (truncate (* 0.75 (face-attribute 'default :height)))
+     :weight 'bold)))
 
 (add-hook 'after-init-hook #'+theme-tweaks)
 (add-hook 'enable-theme-functions #'+theme-tweaks)
