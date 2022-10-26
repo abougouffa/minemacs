@@ -36,13 +36,13 @@
 
 (use-package doom-themes
   :straight t
-  :defer t
   :config
   (load-theme 'doom-one-light t))
 
 
 (use-package modus-themes
   :straight t
+  :defer t
   :custom
   (modus-themes-hl-line '(accented intense))
   (modus-themes-subtle-line-numbers t)
