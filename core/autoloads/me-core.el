@@ -36,11 +36,11 @@
   `(setq ,var (eval (car (get ',var 'standard-value)))))
 
 ;;;###autoload
-(defmacro +cmdfy! (body)
+(defmacro +cmdfy! (&rest body)
   "Convert BODY to an interactive command."
   `(lambda ()
      (interactive)
-     (,@body)))
+     ,@body))
 
 ;;;###autoload
 (defun +set-fonts ()
