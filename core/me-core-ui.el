@@ -37,35 +37,6 @@
   (load-theme 'doom-one-light t))
 
 
-(use-package spacemacs-theme
-  :straight (:host github :repo "nashamri/spacemacs-theme")
-  :defer t ;; to prevent requiring 'spacemacs-theme, which doesn't exist
-  :custom
-  (spacemacs-theme-comment-italic t)
-  (spacemacs-theme-keyword-italic t)
-  (spacemacs-theme-comment-bg nil)
-  (spacemacs-theme-underline-parens nil)
-  :config ;; :init
-  (defun me-spacemacs-setup ()
-    ;; Disable any previously loaded themes
-    (mapc #'disable-theme custom-enabled-themes)
-    ;; Load spacemacs-light
-    (load-theme 'spacemacs-light t)
-    ;; Tweaks:
-    ;; Use the background color for line numbers
-    (set-face-attribute
-     'line-number nil
-     :background (face-attribute 'default :background)
-     :height (truncate (* 0.75 (face-attribute 'default :height)))
-     :weight 'semi-bold)
-    (set-face-attribute
-     'line-number-current-line nil
-     :height (truncate (* 0.75 (face-attribute 'default :height)))
-     :weight 'bold))
-
-  (me-spacemacs-setup))
-
-
 (use-package modus-themes
   :straight t
   :defer t
