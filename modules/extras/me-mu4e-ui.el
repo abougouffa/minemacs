@@ -130,7 +130,7 @@ will also be the width of all other printable characters."
         mu4e-headers-personal-mark   (cons "p" (+normalized-icon "person"))
         mu4e-headers-calendar-mark   (cons "c" (+normalized-icon "date_range"))
         mu4e-headers-date-format "%d/%m/%y"
-        mu4e-headers-time-format "⧖ %H:%M"
+        mu4e-headers-time-format "%H:%M"
         mu4e-headers-thread-single-orphan-prefix '("─>" . "─▶")
         mu4e-headers-thread-orphan-prefix        '("┬>" . "┬▶ ")
         mu4e-headers-thread-connection-prefix    '("│ " . "│ ")
