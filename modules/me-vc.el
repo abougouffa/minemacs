@@ -66,7 +66,7 @@
   (add-hook
    'git-commit-setup-hook
    ;; Enter evil-insert-state for new commits
-   (lambda ()
+   (defun +git-commit--enter-evil-insert-state-maybe ()
      (when (and (bound-and-true-p evil-mode)
                 (not (evil-emacs-state-p))
                 (bobp)
