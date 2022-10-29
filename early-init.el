@@ -69,7 +69,7 @@
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
 (add-hook
  'emacs-startup-hook
- (lambda ()
+ (defun +minemacs--loaded-h ()
    (+log! "=============== Loaded Emacs ===============")
    (+info! "Loaded Emacs in %s." (emacs-init-time))
 

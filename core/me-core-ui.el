@@ -22,7 +22,10 @@
 (add-hook 'enable-theme-functions #'+theme-tweaks)
 
 ;; Save enabled theme
-(add-hook 'enable-theme-functions (lambda (theme) (setq minemacs-theme theme)))
+(add-hook
+ 'enable-theme-functions
+ (defun +theme--save-enabled-theme-h (theme)
+   (setq minemacs-theme theme)))
 
 ;; Icons
 (use-package all-the-icons

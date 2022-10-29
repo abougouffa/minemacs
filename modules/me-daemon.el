@@ -40,14 +40,14 @@
   :config
   (add-hook
    'tty-setup-hook
-   (defun +xclip--enable-in-tty ()
+   (defun +xclip--enable-in-tty-h ()
      (with-demoted-errors "%s" (xclip-mode 1)))))
 
 
 ;; Reload theme on Daemon
 (add-hook
  'server-after-make-frame-hook
- (lambda ()
+ (defun +daemon--reload-theme-h ()
    (load-theme minemacs-theme t)))
 
 (provide 'me-daemon)

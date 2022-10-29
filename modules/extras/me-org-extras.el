@@ -136,7 +136,7 @@ Return an AST with newlines counts in each level."
 (defun +org-extras-multifiles-document-setup ()
   (advice-add
    'org-latex-export-to-pdf :around
-   (defun +org-latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
+   (defun +org--latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
      (let* ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org"))
             (out-file
              (if (file-exists-p (expand-file-name main-file))

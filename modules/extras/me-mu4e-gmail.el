@@ -71,14 +71,15 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
   ;; won't properly result in the corresponding gmail action, since the marks
   ;; are ineffectual otherwise.
-  (add-hook 'mu4e-mark-execute-pre-hook
-            (defun +mu4e-gmail--fix-flags-h (mark msg)
-              (when (+mu4e-msg-gmail-p msg)
-                (pcase mark
-                  ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
-                  ('refile (mu4e-action-retag-message msg "-\\Inbox"))
-                  ('flag (mu4e-action-retag-message msg "+\\Starred"))
-                  ('unflag (mu4e-action-retag-message msg "-\\Starred")))))))
+  (add-hook
+   'mu4e-mark-execute-pre-hook
+   (defun +mu4e-gmail--fix-flags-h (mark msg)
+     (when (+mu4e-msg-gmail-p msg)
+       (pcase mark
+         ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
+         ('refile (mu4e-action-retag-message msg "-\\Inbox"))
+         ('flag (mu4e-action-retag-message msg "+\\Starred"))
+         ('unflag (mu4e-action-retag-message msg "-\\Starred")))))))
 
 
 (provide 'me-mu4e-gmail)

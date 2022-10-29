@@ -111,7 +111,7 @@
 ;; Guess major mode when saving a file (from Doom Emacs)
 (add-hook
  'after-save-hook
- (defun +guess-file-mode-h ()
+ (defun +save--guess-file-mode-h ()
    "Guess major mode when saving a file in `fundamental-mode'.
 
 Likely, something has changed since the buffer was opened. e.g. A shebang line

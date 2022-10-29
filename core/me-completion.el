@@ -160,14 +160,18 @@
   (setq mini-popup--height-function #'mini-popup-height-fixed)
 
   ;; Disable the minibuffer resizing of Vertico (HACK)
-  (advice-add #'vertico--resize-window :around
-              (lambda (&rest args)
-                (unless mini-popup-mode
-                  (apply args))))
+  (advice-add
+   #'vertico--resize-window :around
+   (defun +mini-popup--disable-resizing-minibuffer-a (&rest args)
+     (unless mini-popup-mode
+       (apply args))))
 
   ;; Ensure that the popup is updated after refresh (Consult-specific)
-  (add-hook 'consult--completion-refresh-hook
-            (lambda (&rest _) (mini-popup--setup)) 99))
+  (add-hook
+   'consult--completion-refresh-hook
+   (defun +consult--update-after-refresh-h (&rest _)
+     (mini-popup--setup))
+   99))
 
 
 (use-package consult

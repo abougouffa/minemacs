@@ -62,11 +62,14 @@
   (git-commit-summary-max-length 50)
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
-  (add-hook 'git-commit-mode-hook (lambda () (setq-local fill-column 72)))
+  (add-hook
+   'git-commit-mode-hook
+   (defun +git-gommit--set-fill-column-h ()
+     (setq-local fill-column 72)))
   (add-hook
    'git-commit-setup-hook
    ;; Enter evil-insert-state for new commits
-   (defun +git-commit--enter-evil-insert-state-maybe ()
+   (defun +git-commit--enter-evil-insert-state-maybe-h ()
      (when (and (bound-and-true-p evil-mode)
                 (not (evil-emacs-state-p))
                 (bobp)
