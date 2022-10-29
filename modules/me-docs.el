@@ -89,9 +89,4 @@
      '(graphviz-dot-mode . ("dot-language-server" "--stdio")))))
 
 
-(use-package xenops
-  :straight t
-  :hook ((latex-mode LaTeX-mode) . xenops-mode))
-
-
 (provide 'me-docs)
