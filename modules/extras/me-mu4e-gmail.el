@@ -50,22 +50,24 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
                               (setq +mu4e--last-invalid-gmail-action (float-time)))
                      (mu4e--server-remove docid))))
         (alist-get 'trash mu4e-marks)
-        (list :char '("d" . "▼")
-              :prompt "dtrash"
-              :dyn-target (lambda (_target msg) (mu4e-get-trash-folder msg))
-              :action (lambda (docid msg target)
-                        (if (+mu4e-msg-gmail-p msg)
-                            (+mu4e--mark-seen docid msg target)
-                          (mu4e--server-move docid (mu4e--mark-check-target target) "+T-N"))))
+        (list
+         :char '("d" . "▼")
+         :prompt "dtrash"
+         :dyn-target (lambda (_target msg) (mu4e-get-trash-folder msg))
+         :action (lambda (docid msg target)
+                   (if (+mu4e-msg-gmail-p msg)
+                       (+mu4e--mark-seen docid msg target)
+                     (mu4e--server-move docid (mu4e--mark-check-target target) "+T-N"))))
         ;; Refile will be my "archive" function.
         (alist-get 'refile mu4e-marks)
-        (list :char '("r" . "▼")
-              :prompt "rrefile"
-              :dyn-target (lambda (_target msg) (mu4e-get-refile-folder msg))
-              :action (lambda (docid msg target)
-                        (if (+mu4e-msg-gmail-p msg)
-                            (+mu4e--mark-seen docid msg target)
-                          (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
+        (list
+         :char '("r" . "▼")
+         :prompt "rrefile"
+         :dyn-target (lambda (_target msg) (mu4e-get-refile-folder msg))
+         :action (lambda (docid msg target)
+                   (if (+mu4e-msg-gmail-p msg)
+                       (+mu4e--mark-seen docid msg target)
+                     (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
 
   ;; This hook correctly modifies gmail flags on emails when they are marked.
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
