@@ -110,9 +110,7 @@
 
 (use-package page-break-lines
   :straight t
-  :after minemacs-loaded
-  :config
-  (global-page-break-lines-mode 1))
+  :hook ((prog-mode text-mode) . page-break-lines-mode))
 
 
 (use-package rainbow-delimiters
