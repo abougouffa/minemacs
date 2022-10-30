@@ -58,6 +58,10 @@ If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
+(autoload '+add-dependencies "autoloads/me-core" "\
+
+
+(fn &rest DEPS)")
 (autoload '+check-dependencies "autoloads/me-core" "\
 Check for MinEmacs dependencies." t)
 (autoload '+eval-when-idle "autoloads/me-core" "\

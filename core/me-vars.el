@@ -26,7 +26,7 @@
                                         (expand-file-name "autoloads" minemacs-modules-dir)))
 (defconst minemacs-autoloads-file (expand-file-name "me-autoloads.el" minemacs-core-dir))
 
-;; Replace the default Emacs directory with /var
+;; Replace the default Emacs directory with the "local" directory
 (setq user-emacs-directory minemacs-local-dir)
 
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
@@ -57,7 +57,8 @@
 
 (defvar minemacs-theme 'doom-one-light)
 
-(defvar minemacs-fonts nil)
+(defcustom minemacs-fonts nil
+  "MinEmacs theme.")
 
 (defcustom minemacs-leader-key "SPC"
   "Leader key.")
