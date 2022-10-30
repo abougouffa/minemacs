@@ -81,8 +81,7 @@
 (use-package smerge-mode
   :straight t
   :general
-  (+map
-    "gm" '(+smerge-hydra/body :wk "sMerge"))
+  (+map "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil
                                  :pre (if (not smerge-mode) (smerge-mode 1))

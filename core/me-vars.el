@@ -22,8 +22,6 @@
 
 (defconst minemacs-local-dir (expand-file-name "local/" minemacs-root-dir))
 (defconst minemacs-cache-dir (expand-file-name "cache/" minemacs-local-dir))
-(defconst minemacs-autoloads-dirs (list (expand-file-name "autoloads" minemacs-core-dir)
-                                        (expand-file-name "autoloads" minemacs-modules-dir)))
 (defconst minemacs-autoloads-file (expand-file-name "me-autoloads.el" minemacs-core-dir))
 
 ;; Replace the default Emacs directory with the "local" directory

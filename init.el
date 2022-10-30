@@ -12,6 +12,36 @@
     org notes email docs natural-langs window
     files tools biblio daemon rss ros eaf math media))
 
+(defun minemacs-generate-autoloads ()
+  (interactive)
+  (when (file-exists-p minemacs-autoloads-file)
+    (delete-file minemacs-autoloads-file))
+
+  (let ((autoload-dirs nil)) 
+    (dolist (dir (list minemacs-core-dir
+                       minemacs-modules-dir
+                       (expand-file-name "elisp" minemacs-root-dir)))
+      (when (file-directory-p dir)
+        (setq autoload-dirs
+              (append
+               autoload-dirs
+               (list dir)
+               (seq-filter
+                (apply-partially #'file-directory-p)
+                (directory-files-recursively dir ".*" t))))))
+    (if (<= emacs-major-version 28)
+        (make-directory-autoloads autoload-dirs
+                                  minemacs-autoloads-file)
+      (loaddefs-generate autoload-dirs
+                         minemacs-autoloads-file))))
+
+;; Auto-loads
+(unless (file-exists-p minemacs-autoloads-file)
+  (minemacs-generate-autoloads))
+
+;; Load autoloads file
+(load minemacs-autoloads-file nil (not minemacs-verbose))
+
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
 (let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
   (when (file-exists-p mods)

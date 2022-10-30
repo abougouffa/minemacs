@@ -7,118 +7,143 @@
 
 
 
-;;; Generated autoloads from autoloads/me-core.el
+;;; Generated autoloads from me-core.el
 
-(autoload '+log! "autoloads/me-core" "\
+(autoload '+log! "me-core" "\
 Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
 
 (fn MSG &rest VARS)" nil t)
-(autoload '+info! "autoloads/me-core" "\
+(autoload '+info! "me-core" "\
 Log info MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
-(autoload '+error! "autoloads/me-core" "\
+(autoload '+error! "me-core" "\
 Log error MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
-(autoload '+reset-sym "autoloads/me-core" "\
+(autoload '+reset-sym "me-core" "\
 Reset SYM to its standard value.
 
 (fn SYM)")
-(autoload '+with-shutup! "autoloads/me-core" "\
+(autoload '+with-shutup! "me-core" "\
 Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
 
 (fn &rest BODY)" nil t)
-(autoload '+reset-var! "autoloads/me-core" "\
+(autoload '+reset-var! "me-core" "\
 Reset VAR to its standard value.
 
 (fn VAR)" nil t)
-(autoload '+cmdfy! "autoloads/me-core" "\
+(autoload '+cmdfy! "me-core" "\
 Convert BODY to an interactive command.
 
 (fn &rest BODY)" nil t)
-(autoload '+set-fonts "autoloads/me-core" nil t)
-(autoload '+plist-keys "autoloads/me-core" "\
+(autoload '+set-fonts "me-core" nil t)
+(autoload '+plist-keys "me-core" "\
 Return the keys of PLIST.
 
 (fn PLIST)")
-(autoload '+plist-push! "autoloads/me-core" "\
+(autoload '+plist-push! "me-core" "\
 Push KEY-VALS to PLIST.
 
 (fn PLIST &rest KEY-VALS)" nil t)
-(autoload '+serialize-sym "autoloads/me-core" "\
+(autoload '+serialize-sym "me-core" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the written file name, or nil if SYM is not bound.
 
 (fn SYM DIR &optional FILENAME-FORMAT)")
-(autoload '+deserialize-sym "autoloads/me-core" "\
+(autoload '+deserialize-sym "me-core" "\
 Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
-(autoload '+add-dependencies "autoloads/me-core" "\
+(autoload '+add-dependencies "me-core" "\
 
 
 (fn &rest DEPS)")
-(autoload '+check-dependencies "autoloads/me-core" "\
+(autoload '+check-dependencies "me-core" "\
 Check for MinEmacs dependencies." t)
-(autoload '+eval-when-idle "autoloads/me-core" "\
+(autoload '+eval-when-idle "me-core" "\
 Queue FNS to be processed when Emacs becomes idle.
 
 (fn &rest FNS)")
-(autoload '+eval-when-idle! "autoloads/me-core" "\
+(autoload '+eval-when-idle! "me-core" "\
 Evaluate BODY when Emacs becomes idle.
 
 (fn &rest BODY)" nil t)
-(autoload '+compile-functs "autoloads/me-core" "\
+(autoload '+compile-functs "me-core" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
 
 (fn &rest FNS)")
-(autoload '+env-save "autoloads/me-core" nil t)
-(autoload '+env-load "autoloads/me-core" nil t)
-(autoload 'minemacs-update "autoloads/me-core" nil t)
-(register-definition-prefixes "autoloads/me-core" '("+eval-when-idle--task-num"))
+(autoload '+env-save "me-core" nil t)
+(autoload '+env-load "me-core" nil t)
+(autoload 'minemacs-update "me-core" nil t)
+(register-definition-prefixes "me-core" '("+eval-when-idle--task-num"))
 
 
-;;; Generated autoloads from ../modules/autoloads/me-ecryptfs.el
+;;; Generated autoloads from me-core-ui.el
 
-(autoload 'ecryptfs-mount-private "../modules/autoloads/me-ecryptfs" nil t)
-(autoload 'ecryptfs-umount-private "../modules/autoloads/me-ecryptfs" nil t)
-(register-definition-prefixes "../modules/autoloads/me-ecryptfs" '("ecryptfs-"))
+(register-definition-prefixes "me-core-ui" '("+theme-tweaks"))
 
 
-;;; Generated autoloads from autoloads/me-emacs.el
+;;; Generated autoloads from ../modules/me-daemon.el
 
-(autoload '+dir-locals-reload-for-this-buffer "autoloads/me-emacs" "\
+(register-definition-prefixes "../modules/me-daemon" '("+daemon--setup-background-apps"))
+
+
+;;; Generated autoloads from me-defaults.el
+
+(register-definition-prefixes "me-defaults" '("yes-or-no-p"))
+
+
+;;; Generated autoloads from ../modules/me-ecryptfs.el
+
+(autoload 'ecryptfs-mount-private "../modules/me-ecryptfs" nil t)
+(autoload 'ecryptfs-umount-private "../modules/me-ecryptfs" nil t)
+(register-definition-prefixes "../modules/me-ecryptfs" '("ecryptfs-"))
+
+
+;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
+
+(register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
+
+
+;;; Generated autoloads from me-emacs.el
+
+(autoload '+dir-locals-reload-for-this-buffer "me-emacs" "\
 reload dir locals for the current buffer" t)
-(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "autoloads/me-emacs" "\
+(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-emacs" "\
 For every buffer with the same `default-directory` as the
 current buffer's, reload dir-locals." t)
-(autoload '+dir-locals-enable-autoreload "autoloads/me-emacs")
-(autoload '+dir-locals-open-or-create "autoloads/me-emacs" "\
+(autoload '+dir-locals-enable-autoreload "me-emacs")
+(autoload '+dir-locals-open-or-create "me-emacs" "\
 Open or create the dir-locals.el for the current project." t)
 
 
-;;; Generated autoloads from autoloads/me-io.el
+;;; Generated autoloads from ../modules/me-email.el
 
-(autoload '+file-mime-type "autoloads/me-io" "\
+(register-definition-prefixes "../modules/me-email" '("MU4E-"))
+
+
+;;; Generated autoloads from me-io.el
+
+(autoload '+file-mime-type "me-io" "\
 Get MIME type for FILE based on magic codes provided by the 'file' command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
 `application/x-object', `application/octet-stream', etc.
 
 (fn FILE)")
-(autoload '+file-name-incremental "autoloads/me-io" "\
+(autoload '+file-name-incremental "me-io" "\
 Return an unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
 
 (fn FILENAME)")
-(autoload '+file-read-to-string "autoloads/me-io" "\
+(autoload '+file-read-to-string "me-io" "\
 Return a string with the contents of FILENAME.
 
 (fn FILENAME)")
-(autoload '+delete-this-file "autoloads/me-io" "\
+(autoload '+delete-this-file "me-io" "\
 Delete PATH.
 
 If PATH is not specified, default to the current buffer's file.
@@ -126,104 +151,157 @@ If PATH is not specified, default to the current buffer's file.
 If FORCE-P, delete without confirmation.
 
 (fn &optional PATH FORCE-P)" t)
-(autoload '+move-this-file "autoloads/me-io" "\
+(autoload '+move-this-file "me-io" "\
 Move current buffer's file to NEW-PATH.
 
 If FORCE-P, overwrite the destination file if it exists, without confirmation.
 
 (fn NEW-PATH &optional FORCE-P)" t)
-(autoload '+sudo-find-file "autoloads/me-io" "\
+(autoload '+sudo-find-file "me-io" "\
 Open FILE as root.
 
 (fn FILE)" t)
-(autoload '+sudo-this-file "autoloads/me-io" "\
+(autoload '+sudo-this-file "me-io" "\
 Open the current file as root." t)
-(autoload '+sudo-save-buffer "autoloads/me-io" "\
+(autoload '+sudo-save-buffer "me-io" "\
 Save this file as root." t)
-(autoload '+clean-file-name "autoloads/me-io" "\
+(autoload '+clean-file-name "me-io" "\
 Clean file name.
 
 (fn FILENAME &optional CONV-DOWNCASE)")
-(register-definition-prefixes "autoloads/me-io" '("+sudo-file-path"))
+(register-definition-prefixes "me-io" '("+sudo-file-path"))
 
 
-;;; Generated autoloads from autoloads/me-messages.el
+;;; Generated autoloads from ../modules/me-math.el
 
-(autoload '+messages--auto-tail-a "autoloads/me-messages" "\
+(register-definition-prefixes "../modules/me-math" '("MAXIMA-P"))
+
+
+;;; Generated autoloads from ../modules/me-media.el
+
+(register-definition-prefixes "../modules/me-media" '("MPV-P"))
+
+
+;;; Generated autoloads from me-messages.el
+
+(autoload '+messages--auto-tail-a "me-messages" "\
 Make *Messages* buffer auto-scroll to the end after each message.
 
 (fn &rest ARG)")
-(autoload '+messages-auto-tail-toggle "autoloads/me-messages" "\
+(autoload '+messages-auto-tail-toggle "me-messages" "\
 Auto tail the '*Messages*' buffer." t)
 
 
-;;; Generated autoloads from ../modules/autoloads/me-netextender.el
+;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
-(autoload 'netextender-start "../modules/autoloads/me-netextender" "\
-Launch a NetExtender VPN session." t)
-(autoload 'netextender-toggle "../modules/autoloads/me-netextender" "\
-Toggle connection to NetExtender." t)
-(register-definition-prefixes "../modules/autoloads/me-netextender" '("netextender-"))
+(autoload '+mu4e-extras-setup "../modules/extras/me-mu4e-extras")
+(register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-" "+org-msg-make-signature"))
 
 
-;;; Generated autoloads from autoloads/me-primitives.el
+;;; Generated autoloads from ../modules/extras/me-mu4e-gmail.el
 
-(autoload '+bool "autoloads/me-primitives" "\
+(register-definition-prefixes "../modules/extras/me-mu4e-gmail" '("+mu4e-"))
+
+
+;;; Generated autoloads from ../modules/extras/me-mu4e-ui.el
+
+(register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
+
+
+;;; Generated autoloads from ../modules/me-natural-langs.el
+
+(register-definition-prefixes "../modules/me-natural-langs" '("ASPELL-P"))
+
+
+;;; Generated autoloads from ../modules/me-netextender.el
+
+(autoload 'netextender-start "../modules/me-netextender" "\
+Launch a NetExtender VPN session." t)
+(autoload 'netextender-toggle "../modules/me-netextender" "\
+Toggle connection to NetExtender." t)
+(register-definition-prefixes "../modules/me-netextender" '("netextender-"))
+
+
+;;; Generated autoloads from ../modules/extras/me-org-extras.el
+
+(register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
+
+
+;;; Generated autoloads from me-primitives.el
+
+(autoload '+bool "me-primitives" "\
 
 
 (fn VAL)")
-(autoload '+foldr "autoloads/me-primitives" "\
+(autoload '+foldr "me-primitives" "\
 
 
 (fn FUN ACC SEQ)")
-(autoload '+foldl "autoloads/me-primitives" "\
+(autoload '+foldl "me-primitives" "\
 
 
 (fn FUN ACC SEQ)")
-(autoload '+all "autoloads/me-primitives" "\
+(autoload '+all "me-primitives" "\
 
 
 (fn SEQ)")
-(autoload '+some "autoloads/me-primitives" "\
+(autoload '+some "me-primitives" "\
 
 
 (fn SEQ)")
-(autoload '+filter "autoloads/me-primitives" "\
+(autoload '+filter "me-primitives" "\
 
 
 (fn FUN SEQ)")
-(autoload '+zip "autoloads/me-primitives" "\
+(autoload '+zip "me-primitives" "\
 
 
 (fn &rest SEQS)")
-(autoload '+str-replace "autoloads/me-primitives" "\
+(autoload '+str-replace "me-primitives" "\
 Replaces OLD with NEW in S.
 
 (fn OLD NEW S)")
-(autoload '+str-replace-all "autoloads/me-primitives" "\
+(autoload '+str-replace-all "me-primitives" "\
 REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
 
 (fn REPLACEMENTS S)")
 
 
-;;; Generated autoloads from autoloads/me-systemd.el
+;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
-(autoload '+systemd-running-p "autoloads/me-systemd" "\
+(autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
+Correct spelling of word at point." t)
+(register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--correct"))
+
+
+;;; Generated autoloads from me-splash.el
+
+(register-definition-prefixes "me-splash" '("minemacs-splash-"))
+
+
+;;; Generated autoloads from me-systemd.el
+
+(autoload '+systemd-running-p "me-systemd" "\
 Check if the systemd SERVICE is running.
 
 (fn SERVICE)")
-(autoload '+systemd-command "autoloads/me-systemd" "\
+(autoload '+systemd-command "me-systemd" "\
 Call systemd with COMMAND and SERVICE.
 
 (fn SERVICE COMMAND &optional PRE-FN POST-FN)" t)
-(autoload '+systemd-start "autoloads/me-systemd" "\
+(autoload '+systemd-start "me-systemd" "\
 Start systemd SERVICE.
 
 (fn SERVICE &optional PRE-FN POST-FN)" t)
-(autoload '+systemd-stop "autoloads/me-systemd" "\
+(autoload '+systemd-stop "me-systemd" "\
 Stops the systemd SERVICE.
 
 (fn SERVICE &optional PRE-FN POST-FN)" t)
+
+
+;;; Generated autoloads from me-vars.el
+
+(register-definition-prefixes "me-vars" '("+env-save-vars" "minemacs-" "os/"))
 
 ;;; End of scraped data
 

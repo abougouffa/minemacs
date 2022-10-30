@@ -47,24 +47,6 @@
 (add-to-list 'load-path (expand-file-name "elisp" minemacs-root-dir))
 (add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
 
-(defun minemacs-generate-autoloads ()
-  (interactive)
-  (when (file-exists-p minemacs-autoloads-file)
-    (delete-file minemacs-autoloads-file))
-
-  (if (<= emacs-major-version 28)
-      (make-directory-autoloads minemacs-autoloads-dirs
-                                minemacs-autoloads-file)
-    (loaddefs-generate minemacs-autoloads-dirs
-                       minemacs-autoloads-file)))
-
-;; Auto-loads
-(unless (file-exists-p minemacs-autoloads-file)
-  (minemacs-generate-autoloads))
-
-;; Load autoloads file
-(load minemacs-autoloads-file nil (not minemacs-verbose))
-
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
 (add-hook
@@ -92,6 +74,7 @@
 
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
+
    ;; Run hooks
    (when (boundp 'minemacs-after-startup-hook)
      (run-hooks 'minemacs-after-startup-hook))))
@@ -126,8 +109,4 @@
 ;;; Load the early config file if it exists
 (let ((early-config-path (expand-file-name "early-config.el" minemacs-config-dir)))
   (when (file-exists-p early-config-path)
-    (+log! "Loading early config from \"%s\"" early-config-path)
     (load early-config-path nil 'nomessage)))
-
-
-(+log! "End of early-init.el")
