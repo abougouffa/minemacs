@@ -249,10 +249,6 @@ Toggle connection to NetExtender." t)
 
 
 (fn SEQ)")
-(autoload '+filter "me-primitives" "\
-
-
-(fn FUN SEQ)")
 (autoload '+zip "me-primitives" "\
 
 

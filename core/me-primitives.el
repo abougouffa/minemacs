@@ -30,16 +30,6 @@
 (defun +some (seq)
   (+bool (+foldr (lambda (r l) (or r l)) nil seq)))
 
-;; (+filter 'stringp '("A" 2 "C" nil 3)) ;; ==> ("A" "C")
-;;;###autoload
-(defun +filter (fun seq)
-  (when seq
-    (let ((head (car seq))
-          (tail (cdr seq)))
-      (if (funcall fun head)
-          (cons head (+filter fun tail))
-        (+filter fun tail)))))
-
 ;; (+zip '(1 2 3 4) '(a b c d) '("A" "B" "C" "D")) ;; ==> ((1 a "A") (2 b "B") (3 c "C") (4 d "D"))
 ;;;###autoload
 (defun +zip (&rest seqs)
