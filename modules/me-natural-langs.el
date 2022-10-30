@@ -171,8 +171,7 @@
 
 (use-package lexic
   :straight t
-  :commands (lexic-search lexic-list-dictionary lexic-search-word-at-point)
-  :config
+  :general
   (+map
     "sl" #'lexic-search-word-at-point
     "sL" #'lexic-search)
