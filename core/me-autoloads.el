@@ -299,6 +299,19 @@ Stops the systemd SERVICE.
 (fn SERVICE &optional PRE-FN POST-FN)" t)
 
 
+;;; Generated autoloads from ../modules/me-valgrind.el
+
+(autoload 'valgrind "../modules/me-valgrind" "\
+Run valgrind.
+Runs COMMAND, a shell command, in a separate process asynchronously
+with output going to the buffer `*valgrind*'.
+You can then use the command \\[next-error] to find the next error message
+and move to the source code that caused it.
+
+(fn COMMAND)" t)
+(register-definition-prefixes "../modules/me-valgrind" '("valgrind-"))
+
+
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+env-save-vars" "minemacs-" "os/"))
