@@ -66,7 +66,7 @@
   "Localleader (mode specific) key.")
 
 (defvar minemacs-deps-executables
-  '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget
+  '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget (xsel xclip)
     mu msmtp mbsync git mpv valgrind (gcc clang) (gdb lldb) cmake make clang-format aspell
     (python3 python) rosbag cargo maxima octave fortune (xelatex pdflatex lualatex) (latexmk tectonic)
     (clangd ccls) (pyls pylsp pyright) dot-language-server rust-analyzer prettier
