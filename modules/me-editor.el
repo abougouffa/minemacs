@@ -77,7 +77,17 @@
   :straight t
   :after minemacs-loaded
   :config
-  (unicode-fonts-setup))
+  (unicode-fonts-setup)
+
+  (when (daemonp)
+    (add-hook
+     'server-after-make-frame-hook
+     (defun +unicode-fonts--setup-once-h ()
+       (when (display-graphic-p)
+         (unicode-fonts-setup)
+         (remove-hook
+          'server-after-make-frame-hook
+          #'+unicode-fonts--setup-once-h))))))
 
 
 (use-package ligature
