@@ -119,6 +119,12 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     res))
 
 ;;;###autoload
+(defun +add-dependencies (&rest deps)
+  (setq minemacs-deps-executables
+        (delete-dups
+         (append minemacs-deps-executables deps))))
+
+;;;###autoload
 (defun +check-dependencies ()
   "Check for MinEmacs dependencies."
   (interactive)
