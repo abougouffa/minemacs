@@ -129,7 +129,7 @@ Return an AST with newlines counts in each level."
 
 (defun +org-extras-equation-numbering-setup ()
   ;; Enable LaTeX equations renumbering
-  (+with-shutup!
+  (+shutup!
    (+org-extras-toggle-latex-equation-numbering :enable)))
 
 

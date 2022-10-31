@@ -25,7 +25,7 @@
   (set sym (eval (car (get sym 'standard-value)))))
 
 ;;;###autoload
-(defmacro +with-shutup! (&rest body)
+(defmacro +shutup! (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
   `(let ((message-log-max nil))
     (with-temp-message (or (current-message) "") ,@body)))
@@ -97,7 +97,7 @@ Return the written file name, or nil if SYM is not bound."
       (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) out-file)
       (with-temp-buffer
         (prin1 (eval sym) (current-buffer))
-        (+with-shutup! (write-file out-file)))
+        (+shutup! (write-file out-file)))
       out-file)))
 
 ;;;###autoload
@@ -183,7 +183,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (+eval-when-idle!
      (or (and (featurep 'native-compile)
               (or (subr-native-elisp-p (indirect-function fn))
-                  (+with-shutup!
+                  (+shutup!
                    (ignore-errors (native-compile fn)))))
          (byte-code-function-p fn)
          (let (byte-compile-warnings)

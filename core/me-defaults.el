@@ -137,7 +137,7 @@ or file path may exist now."
 
 (with-eval-after-load 'minemacs-loaded
   ;; Enable battery (if available) in mode-line
-  (+with-shutup!
+  (+shutup!
    (let ((battery-str (battery)))
      (unless (or (equal "Battery status not available" battery-str)
                  (string-match-p "unknown" battery-str)

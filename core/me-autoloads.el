@@ -42,7 +42,7 @@ Log error MSG and VARS using `message'.
 Reset SYM to its standard value.
 
 (fn SYM)")
-(autoload '+with-shutup! "me-core" "\
+(autoload '+shutup! "me-core" "\
 Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
 
 (fn &rest BODY)" nil t)
