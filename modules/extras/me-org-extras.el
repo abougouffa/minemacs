@@ -143,7 +143,9 @@ Return an AST with newlines counts in each level."
                  (with-current-buffer (find-file-noselect main-file)
                    (apply orig-fn orig-args))
                (apply orig-fn orig-args))))
-       (message "PDF exported to: %s." (file-name-nondirectory out-file))))))
+       (message "PDF exported to: %s."
+                (abbreviate-file-name
+                 (file-name-nondirectory out-file)))))))
 
 
 (defun +org-extras-latex-classes-setup ()
