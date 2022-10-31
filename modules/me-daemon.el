@@ -25,7 +25,7 @@
      (unless (daemonp)
        (let ((inhibit-message t))
          (+info! "Starting Emacs daemon in background.")
-         (server-start nil t))))))
+         (ignore-errors (server-start nil t)))))))
 
 
 ;; At daemon startup
