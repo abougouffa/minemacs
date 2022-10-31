@@ -7,6 +7,7 @@
   :when ASPELL-P
   :general
   (+map "ts" #'spell-fu-mode)
+  (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
   :hook (text-mode . spell-fu-mode)
   :init
   (setq spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
@@ -75,12 +76,6 @@
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
        (setq-local spell-fu-faces-exclude excluded)))))
-
-
-(use-package me-spell-fu
-  :after spell-fu
-  :general
-  (+map-key "z=" #'+spell-fu-correct))
 
 
 (use-package go-translate
