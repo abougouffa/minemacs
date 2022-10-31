@@ -22,10 +22,11 @@
           (elfeed-update)))))
 
     (+eval-when-idle!
-     (unless (daemonp)
+     (require 'server)
+     (unless (or (daemonp) (server-running-p))
        (let ((inhibit-message t))
          (+info! "Starting Emacs daemon in background.")
-         (ignore-errors (server-start nil t)))))))
+         (server-start nil t))))))
 
 
 ;; At daemon startup
