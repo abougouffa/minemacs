@@ -48,7 +48,7 @@
                (let ((d (expand-file-name "empv-downloads" empv-audio-dir)))
                  (unless (file-directory-p d) (mkdir d t)) d)))
           (vids (seq-filter
-                 (apply-partially #'identity) ;; Filter nils
+                 #'identity ;; Filter nils
                  (mapcar
                   (lambda (item)
                     (when-let

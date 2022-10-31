@@ -27,7 +27,7 @@
                autoload-dirs
                (list dir)
                (seq-filter
-                (apply-partially #'file-directory-p)
+                #'file-directory-p
                 (directory-files-recursively dir ".*" t))))))
     (if (<= emacs-major-version 28)
         (make-directory-autoloads autoload-dirs

@@ -38,11 +38,10 @@
   :config
   (defvar +evil-collection-modes
     (seq-filter
-     (apply-partially
-      (lambda (a)
-        ;; elisp-mode uses gz to open ielm, which I never use!
-        ;; and uses gr to xref-find-references
-        (not (memq a '(elisp-mode evil-mc)))))
+     (lambda (a)
+       ;; elisp-mode uses gz to open ielm, which I never use!
+       ;; and uses gr to xref-find-references
+       (not (memq a '(elisp-mode evil-mc))))
      evil-collection-mode-list))
   (evil-collection-init +evil-collection-modes))
 
