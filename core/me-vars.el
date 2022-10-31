@@ -7,8 +7,9 @@
 ;;; MinEmacs directories
 
 (defconst minemacs-config-dir
-  (or (getenv "MINEMACS_DIR")
-      (expand-file-name "~/.minemacs.d/")))
+  (file-name-as-directory
+   (or (getenv "MINEMACS_DIR")
+       "~/.minemacs.d/")))
 
 (defconst minemacs-debug
   (not (null (or (getenv "MINEMACS_DEBUG") init-file-debug))))
@@ -16,13 +17,13 @@
 (defconst minemacs-verbose
   (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug))))
 
-(defconst minemacs-root-dir (expand-file-name user-emacs-directory))
-(defconst minemacs-core-dir (expand-file-name "core/" minemacs-root-dir))
-(defconst minemacs-modules-dir (expand-file-name "modules/" minemacs-root-dir))
+(defconst minemacs-root-dir (file-name-as-directory user-emacs-directory))
+(defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
+(defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
 
-(defconst minemacs-local-dir (expand-file-name "local/" minemacs-root-dir))
-(defconst minemacs-cache-dir (expand-file-name "cache/" minemacs-local-dir))
-(defconst minemacs-autoloads-file (expand-file-name "me-autoloads.el" minemacs-core-dir))
+(defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
+(defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
+(defconst minemacs-autoloads-file (concat minemacs-core-dir "me-autoloads.el"))
 
 ;; Replace the default Emacs directory with the "local" directory
 (setq user-emacs-directory minemacs-local-dir)

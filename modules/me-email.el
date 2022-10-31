@@ -18,7 +18,7 @@
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
   (mu4e-index-cleanup t)
-  (mu4e-attachment-dir (expand-file-name "~/Downloads/mu4e-attachements"))
+  (mu4e-attachment-dir "~/Downloads/mu4e-attachements")
   (mu4e-update-interval (* 3 60)) ;; Every 3 min
   (mu4e-context-policy 'pick-first) ;; Start with the first context
   (mu4e-compose-context-policy 'ask) ;; Always ask which context to use when composing a new mail

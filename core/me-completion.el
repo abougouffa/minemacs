@@ -112,9 +112,9 @@
   :init
   (add-to-list
    'load-path
-   (expand-file-name
-    (format "straight/%s/vertico/extensions" straight-build-dir)
-    straight-base-dir))
+   (concat
+    straight-base-dir
+    (format "straight/%s/vertico/extensions" straight-build-dir)))
   :config
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "C-j") #'vertico-next)

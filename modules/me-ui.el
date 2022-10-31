@@ -9,7 +9,7 @@
     (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
     :custom
     (emojify-emoji-set "emojione-v2.2.6")
-    (emojify-emojis-dir (expand-file-name "emojify" minemacs-cache-dir))
+    (emojify-emojis-dir (concat minemacs-cache-dir "emojify/"))
     (emojify-display-style 'image)
     :config
     (global-emojify-mode 1)))
@@ -19,7 +19,7 @@
   :straight t
   :defer t
   :custom
-  (svg-lib-icons-dir (expand-file-name "svg-lib/" minemacs-cache-dir)))
+  (svg-lib-icons-dir (concat minemacs-cache-dir "svg-lib/")))
 
 
 (use-package writeroom-mode

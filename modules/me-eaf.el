@@ -26,7 +26,7 @@
   (eaf-start-python-process-when-require t)
   (eaf-kill-process-after-last-buffer-closed t)
   (eaf-fullscreen-p nil)
-  (eaf-config-location (expand-file-name "eaf" minemacs-local-dir))
+  (eaf-config-location (concat minemacs-local-dir "eaf"))
   ;; Debug
   (eaf-enable-debug nil)
   ;; Web engine
@@ -66,7 +66,7 @@
   (eaf-browser-ignore-history-list '("google.com/search" "file://"))
   (eaf-browser-translate-language "en")
   (eaf-browser-blank-page-url "https://www.duckduckgo.com")
-  (eaf-browser-chrome-history-file (expand-file-name "eaf/browser/Default/History" minemacs-local-dir))
+  (eaf-browser-chrome-history-file (concat minemacs-local-dir "eaf/browser/Default/History"))
   (eaf-browser-default-search-engine "duckduckgo")
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-aria2-auto-file-renaming t)

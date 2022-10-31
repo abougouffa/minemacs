@@ -9,7 +9,7 @@
   (+map "ts" #'spell-fu-mode)
   :hook (text-mode . spell-fu-mode)
   :init
-  (setq spell-fu-directory (expand-file-name "spell-fu" minemacs-local-dir))
+  (setq spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face

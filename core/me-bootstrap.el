@@ -14,7 +14,7 @@
       straight-check-for-modifications nil)
 
 (defvar bootstrap-version)
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" straight-base-dir))
+(let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
       (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer

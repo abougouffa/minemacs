@@ -15,8 +15,8 @@
 (setq default-input-method nil)
 
 ;;; Set files and directories for built-in packages
-(setq backup-directory-alist (list (cons "." (expand-file-name "backup/" minemacs-local-dir)))
-      auto-save-list-file-prefix (expand-file-name "auto-save-list/" minemacs-local-dir))
+(setq backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
+      auto-save-list-file-prefix (concat minemacs-local-dir "auto-save-list/"))
 
 (setq visible-bell nil ;; set to non-nil to flash!
       ring-bell-function 'ignore

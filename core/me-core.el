@@ -94,7 +94,7 @@ Return the written file name, or nil if SYM is not bound."
     (let ((out-file (expand-file-name
                      (format (or filename-format "%s.el") (symbol-name sym))
                      dir)))
-      (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) out-file)
+      (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
       (with-temp-buffer
         (prin1 (eval sym) (current-buffer))
         (+shutup! (write-file out-file)))
@@ -110,7 +110,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
                   dir))
         res)
     (when (file-exists-p in-file)
-      (+log! "Loading `%s' from file \"%s\"" sym in-file)
+      (+log! "Loading `%s' from file \"%s\"" sym (abbreviate-file-name in-file))
       (with-temp-buffer
         (insert-file-contents in-file)
         (goto-char (point-min))
@@ -213,12 +213,12 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
           (insert "\n"))
         (insert
          (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
-    (write-file (expand-file-name "env" minemacs-local-dir))))
+    (write-file (concat minemacs-local-dir "env"))))
 
 ;;;###autoload
 (defun +env-load ()
   (interactive)
-  (let ((env-file (expand-file-name "env" minemacs-local-dir)))
+  (let ((env-file (concat minemacs-local-dir "env")))
     (when (file-exists-p env-file))
     (with-temp-buffer
       (insert-file env-file)

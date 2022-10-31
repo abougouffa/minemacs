@@ -6,7 +6,7 @@
   :after minemacs-loaded
   :custom
   (dirvish-attributes '(file-size vc-state git-msg all-the-icons))
-  (dirvish-cache-dir (expand-file-name "dirvish/" minemacs-cache-dir))
+  (dirvish-cache-dir (concat minemacs-cache-dir "dirvish/"))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
   :config
@@ -25,7 +25,7 @@
 (use-package dirvish-fd
   :after dirvish
   :custom
-  (dirvish-fd-default-dir (expand-file-name "~/")))
+  (dirvish-fd-default-dir "~/"))
 
 
 (use-package dirvish-yank

@@ -50,7 +50,7 @@
                              ""))
                    'face 'shadow))
           ;; Bootstraping
-          (unless (file-exists-p (expand-file-name "straight/repos/straight.el/bootstrap.el" minemacs-local-dir))
+          (unless (file-exists-p (concat minemacs-local-dir "straight/repos/straight.el/bootstrap.el"))
             (insert "\n")
             (insert-char ?\s 10)
             (insert (propertize "You are running MinEmacs for the first time."

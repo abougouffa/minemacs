@@ -24,7 +24,7 @@
   ;; Keybindings will be overriten by evil-collection
   (setq forge-add-default-bindings nil)
   :custom
-  (forge-database-file (expand-file-name "forge/database.sqlite" minemacs-local-dir)))
+  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
 
 (use-package diff-hl

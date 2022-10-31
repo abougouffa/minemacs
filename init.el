@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Load MinEmacs variables first
-(load (expand-file-name "core/me-vars.el" user-emacs-directory) nil :no-message)
+(load (concat user-emacs-directory "core/me-vars.el") nil :no-message)
 
 ;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
 (when minemacs-debug
@@ -13,7 +13,7 @@
         eval-expression-debug-on-error t))
 
 ;; Load environment variables when available
-(let ((env-file (expand-file-name "env" minemacs-local-dir)))
+(let ((env-file (concat minemacs-local-dir "env")))
   (when (file-exists-p env-file)
     (load env-file (not minemacs-verbose) (not minemacs-verbose))))
 
@@ -38,13 +38,13 @@
     (if (< emacs-major-version 29)
         (add-to-list
          'native-comp-eln-load-path
-         (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir)))
-      (startup-redirect-eln-cache (convert-standard-filename (expand-file-name "eln" minemacs-cache-dir))))))
+         (convert-standard-filename (concat minemacs-cache-dir "eln")))
+      (startup-redirect-eln-cache (convert-standard-filename (concat minemacs-cache-dir "eln"))))))
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
-(add-to-list 'load-path (expand-file-name "elisp" minemacs-root-dir))
-(add-to-list 'load-path (expand-file-name "extras" minemacs-modules-dir))
+(add-to-list 'load-path (concat minemacs-root-dir "elisp/"))
+(add-to-list 'load-path (concat minemacs-modules-dir "extras/"))
 
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
@@ -79,10 +79,10 @@
      (run-hooks 'minemacs-after-startup-hook))))
 
 ;;; Write user custom variables to separate file instead of init.el
-(setq custom-file (expand-file-name "custom-vars.el" minemacs-config-dir))
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
 ;;; Load the early config file if it exists
-(let ((early-config-path (expand-file-name "early-config.el" minemacs-config-dir)))
+(let ((early-config-path (concat minemacs-config-dir "early-config.el")))
   (when (file-exists-p early-config-path)
     (load early-config-path nil 'nomessage)))
 
@@ -101,7 +101,7 @@
   (let ((autoload-dirs nil)) 
     (dolist (dir (list minemacs-core-dir
                        minemacs-modules-dir
-                       (expand-file-name "elisp" minemacs-root-dir)))
+                       (concat minemacs-root-dir "elisp/")))
       (when (file-directory-p dir)
         (setq autoload-dirs
               (append
@@ -124,7 +124,7 @@
 (load minemacs-autoloads-file nil (not minemacs-verbose))
 
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
-(let ((mods (expand-file-name "modules.el" minemacs-config-dir)))
+(let ((mods (concat minemacs-config-dir "modules.el")))
   (when (file-exists-p mods)
     (+log! "Loading modules file from \"%s\"" mods)
     (load mods nil (not minemacs-verbose))))
@@ -139,7 +139,7 @@
   (when load-core-modules
     (dolist (module minemacs-core-modules)
       (+log! "Loading core module \"%s\"" module)
-      (let ((filename (expand-file-name (format "me-%s.el" module) minemacs-core-dir)))
+      (let ((filename (concat minemacs-core-dir (format "me-%s.el" module))))
         (if (file-exists-p filename)
             (load filename nil (not minemacs-verbose))
           (+info! "Core module \"%s\" not found!" module)))))
@@ -147,7 +147,7 @@
   ;; Modules
   (dolist (module minemacs-modules)
     (+log! "Loading module \"%s\"" module)
-    (let ((filename (expand-file-name (format "me-%s.el" module) minemacs-modules-dir)))
+    (let ((filename (concat minemacs-modules-dir (format "me-%s.el" module))))
       (if (file-exists-p filename)
           (load filename nil (not minemacs-verbose))
         (+info! "Module \"%s\" not found!" module))))
@@ -157,7 +157,7 @@
     (load custom-file nil (not minemacs-verbose)))
 
   ;; Load user config when available
-  (let ((user-config (expand-file-name "config.el" minemacs-config-dir)))
+  (let ((user-config (concat minemacs-config-dir "config.el")))
     (when (file-exists-p user-config)
       (+log! "Loading user config file from \"%s\"" user-config)
       (load user-config nil (not minemacs-verbose))))
@@ -166,7 +166,7 @@
   (run-at-time
    5 nil
    (lambda ()
-     (load (expand-file-name "me-gc.el" minemacs-core-dir)
+     (load (concat minemacs-core-dir "me-gc.el")
            nil (not minemacs-verbose)))))
 
 ;; Load for the first time
