@@ -8,9 +8,8 @@
   '(defaults splash bootstrap core-ui keybindings evil completion))
 
 (defvar minemacs-modules
-  '(ui editor vc prog lisp data
-    org notes email docs natural-langs window
-    files tools biblio daemon rss ros eaf math media))
+  '(ui editor vc prog lisp data org notes window email docs
+    natural-langs files tools biblio daemon rss ros eaf math media binary))
 
 (defun minemacs-generate-autoloads ()
   (interactive)

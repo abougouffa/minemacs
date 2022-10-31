@@ -3,10 +3,10 @@
 (defvar +binary-objdump-executable (executable-find "objdump"))
 
 ;;;###autoload
-(defun +binary-objdump-p (&optional buffer)
+(defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
   (when-let ((file (buffer-file-name (or buffer (current-buffer)))))
-    (and (bound-and-true-p +binary-objdump-executable)
+    (and +binary-objdump-executable
          (file-exists-p file)
          (not (file-directory-p file))
          (not (zerop (file-attribute-size (file-attributes file))))
@@ -36,13 +36,13 @@ Returns either nil, or the position of the first null byte."
 (defun +binary-hexl-buffer-p ()
   (and (+binary-buffer-p)
        ;; Executables are viewed with objdump mode
-       (not (+binary-objdump-p))))
+       (not (+binary-objdump-buffer-p))))
 
 ;;;###autoload
 (define-derived-mode objdump-disassemble-mode
   asm-mode "Objdump Mode"
   "Major mode for viewing executable files disassembled using objdump."
-  (if (not (+binary-objdump-p))
+  (if (not (+binary-objdump-buffer-p))
       (message "Objdump can not be used with this buffer.")
     (let ((file (buffer-file-name))
           (buffer-read-only nil))
@@ -63,5 +63,7 @@ is binary, activate `hexl-mode'."
     (when (+binary-hexl-buffer-p)
       (hexl-mode))))
 
-(add-to-list 'magic-fallback-mode-alist '(+binary-objdump-p . objdump-disassemble-mode) t)
-(add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t)
+;;;###autoload
+(defun +binary-setup-modes ()
+  (add-to-list 'magic-fallback-mode-alist '(+binary-objdump-buffer-p . objdump-disassemble-mode) t)
+  (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))

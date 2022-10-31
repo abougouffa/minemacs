@@ -9,7 +9,7 @@
 
 ;;; Generated autoloads from ../elisp/binary.el
 
-(autoload '+binary-objdump-p "../elisp/binary" "\
+(autoload '+binary-objdump-buffer-p "../elisp/binary" "\
 Can the BUFFER be viewed as a disassembled code with objdump.
 
 (fn &optional BUFFER)")
@@ -21,6 +21,7 @@ Major mode for viewing executable files disassembled using objdump.
 (autoload '+binary-hexl-mode-maybe "../elisp/binary" "\
 If `hexl-mode' is not already active, and the current buffer
 is binary, activate `hexl-mode'." t)
+(autoload '+binary-setup-modes "../elisp/binary")
 (register-definition-prefixes "../elisp/binary" '("+binary-"))
 
 
