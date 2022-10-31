@@ -120,8 +120,7 @@
 (use-package editorconfig
   :straight t
   :general
-  (+map
-    "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")))
+  (+map "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")))
 
 
 (use-package clang-format
@@ -151,8 +150,7 @@
 (use-package flymake
   :straight t
   :general
-  (+map
-    "tf" #'flymake-mode))
+  (+map "tf" #'flymake-mode))
 
 
 (use-package plantuml-mode
