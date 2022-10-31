@@ -62,7 +62,8 @@
    ;; Print load time, and a quote to *scratch*
    (with-current-buffer "*scratch*"
      (erase-buffer)
-     (insert (format ";; Loaded MinEmacs in %s.\n" (emacs-init-time)))
+     (insert (format ";; Loaded MinEmacs in %.3f seconds.\n"
+                     (string-to-number (car (string-split (emacs-init-time))))))
      (insert ";; ==============================\n")
      (when (and (executable-find "fortune")
                 (version<= "28.1" emacs-version)) ;; to use string-lines
