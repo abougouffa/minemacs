@@ -40,7 +40,7 @@ library/userland functions"
     nil))
 
 ;; Taken from https://www.reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
-(defun +emacs-lisp--calculate-lisp-indent (&optional parse-start)
+(defun +emacs-lisp--calculate-lisp-indent-a (&optional parse-start)
   "Add better indentation for quoted and backquoted lists."
   ;; This line because `calculate-lisp-indent-last-sexp` was defined with `defvar`
   ;; with it's value ommited, marking it special and only defining it locally. So
@@ -78,8 +78,7 @@ library/userland functions"
             (let ((peek (parse-partial-sexp calculate-lisp-indent-last-sexp
                                             indent-point 0)))
               (if (setq retry (car (cdr peek))) (setq state peek)))))
-      (if retry
-          nil
+      (unless retry
         ;; Innermost containing sexp found
         (goto-char (1+ containing-sexp))
         (if (not calculate-lisp-indent-last-sexp)
@@ -218,7 +217,7 @@ library/userland functions"
 (defun +elisp-indent-setup ()
   ;; Fixed indenter that intends plists sensibly.
   (advice-add #'calculate-lisp-indent :override
-              #'+emacs-lisp--calculate-lisp-indent))
+              #'+emacs-lisp--calculate-lisp-indent-a))
 
 (defun +elisp-highlighting-setup ()
   ;; Fixed indenter that intends plists sensibly.
