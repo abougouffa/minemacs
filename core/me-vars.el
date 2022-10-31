@@ -35,6 +35,7 @@
 
 (let ((feats (split-string system-configuration-features)))
   (defconst feat/gpm (not (null (member "GPM" feats))))
+  (defconst feat/pgtk (not (null (member "PGTK" feats))))
   (defconst feat/cairo (not (null (member "CAIRO" feats))))
   (defconst feat/lucid (not (null (member "LUCID" feats))))
   (defconst feat/modules (not (null (member "MODULES" feats))))
