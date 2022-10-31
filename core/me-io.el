@@ -5,8 +5,10 @@
   "Get MIME type for FILE based on magic codes provided by the 'file' command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
 `application/x-object', `application/octet-stream', etc."
-  (let ((mime-type (shell-command-to-string (format "file --brief --mime-type %s" file))))
-    (intern (string-trim-right mime-type))))
+  (if (executable-find "file")
+      (let ((mime-type (shell-command-to-string (format "file --brief --mime-type %s" file))))
+        (intern (string-trim-right mime-type)))
+    (error "The \"file\" tool isn't installed.")))
 
 ;;;###autoload
 (defun +file-name-incremental (filename)
