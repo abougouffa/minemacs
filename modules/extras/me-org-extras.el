@@ -144,9 +144,16 @@ Return an AST with newlines counts in each level."
                    (apply orig-fn orig-args))
                (apply orig-fn orig-args))))
        (if org-export-in-background
-           (message "Exporting file %s asynchronously."
-                    (abbreviate-file-name
-                     (file-name-nondirectory main-file)))
+           (progn
+             (message "Started exporting \"%s\" asynchronously."
+                      (abbreviate-file-name
+                       (file-name-nondirectory main-file)))
+             (when-let ((org-export-process (get-process "org-export-process")))
+               (set-process-sentinel
+                org-export-process
+                (lambda (process event)
+                  (unless (process-live-p process)
+                    (message "Org async export finised, see *Org Export Buffer* for more details.")))))) 
          (message "PDF exported to: %s."
                   (abbreviate-file-name
                    (file-name-nondirectory out-file))))))))
