@@ -209,4 +209,4 @@
    '((org-mode latex-mode LaTeX-mode markdown-mode) . ("ltex-ls"))))
 
 
-(provide 'me-spell)
+(provide 'me-natural-langs)
