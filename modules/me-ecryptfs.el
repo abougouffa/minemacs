@@ -4,11 +4,13 @@
 
 (defvar ecryptfs-private-dir "Private")
 
-(defvar ecryptfs-wrapping-independent-p (file-exists-p "~/.ecryptfs/wrapping-independent"))
+(defvar ecryptfs-root-dir "~/.ecryptfs/")
 
-(defvar ecryptfs-wrapped-passphrase-file (expand-file-name "~/.ecryptfs/wrapped-passphrase"))
+(defvar ecryptfs-wrapping-independent-p (file-exists-p (concat ecryptfs-root-dir "wrapping-independent")))
 
-(defvar ecryptfs-mount-passphrase-sig-file (expand-file-name (concat "~/.ecryptfs/" ecryptfs-private-dir ".sig")))
+(defvar ecryptfs-wrapped-passphrase-file (expand-file-name (concat ecryptfs-root-dir "wrapped-passphrase")))
+
+(defvar ecryptfs-mount-passphrase-sig-file (expand-file-name (concat ecryptfs-root-dir ecryptfs-private-dir ".sig")))
 
 (defvar ecryptfs-buffer-name "*emacs-ecryptfs*")
 
@@ -21,9 +23,10 @@
 (defvar ecryptfs--passphrase
   (lambda ()
     (s-trim-right
-     (epg-decrypt-file (epg-make-context)
-                       (expand-file-name "~/.ecryptfs/my-pass.gpg")
-                       nil))))
+     (epg-decrypt-file
+      (epg-make-context)
+      (expand-file-name (concat ecryptfs-root-dir "my-pass.gpg"))
+      nil))))
 
 (defvar ecryptfs-encrypt-filenames-p
   (not (eq 1
