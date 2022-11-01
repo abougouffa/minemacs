@@ -88,10 +88,7 @@
     "fs"  #'save-buffer
     "ft"  #'recover-this-file
     "fT"  #'recover-file
-    "fy"  `(,(+cmdfy! (when-let ((f (buffer-file-name)))
-                       (with-temp-buffer (insert f)
-                        (kill-ring-save (point-min) (point-max)))))
-            :wk "Yank file name")
+    "fy"  #'+yank-this-file-name
     "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
             :wk "User config directory")
 

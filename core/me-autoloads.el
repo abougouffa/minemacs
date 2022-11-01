@@ -183,6 +183,8 @@ Open FILE as root.
 Open the current file as root." t)
 (autoload '+sudo-save-buffer "me-io" "\
 Save this file as root." t)
+(autoload '+yank-this-file-name "me-io" "\
+Yank the file name of this buffer." t)
 (autoload '+clean-file-name "me-io" "\
 Clean file name.
 
