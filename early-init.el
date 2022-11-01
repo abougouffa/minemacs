@@ -9,8 +9,11 @@
 ;; Prefer loading newest compiled .el file
 (customize-set-variable 'load-prefer-newer noninteractive)
 
+;; Make the initial buffer load faster by setting its mode to fundamental-mode
+(customize-set-variable 'initial-major-mode 'fundamental-mode)
+
 ;;; UI configuration
-;; Remove some unneeded UI elements (the user can turn back on anything they wish)
+;; Remove some unneeded UI elements
 (setq inhibit-startup-message t)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(menu-bar-lines . 0) default-frame-alist)
@@ -25,6 +28,3 @@
 (setq tool-bar-mode nil
       menu-bar-mode nil
       scroll-bar-mode nil)
-
-;; Make the initial buffer load faster by setting its mode to fundamental-mode
-(customize-set-variable 'initial-major-mode 'fundamental-mode)
