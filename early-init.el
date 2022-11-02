@@ -35,5 +35,4 @@
 ;;; Load the early config file if it exists
 (let ((early-config-path (concat minemacs-config-dir "early-config.el")))
   (when (file-exists-p early-config-path)
-    (load early-config-path nil 'nomessage)
-    (+log! "Loaded early-config.el")))
+    (load early-config-path nil 'nomessage)))
