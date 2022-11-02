@@ -4,8 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-;; Load MinEmacs variables first
-(load (concat user-emacs-directory "core/me-vars.el") nil :no-message)
+;; Load vars if they have not been loaded (if Emacs has been loaded
+;; directly from "init.el" without passing by "early-init.el")
+(unless (featurep 'me-vars)
+  ;; Load MinEmacs variables first
+  (load (concat user-emacs-directory "core/me-vars.el") nil :no-message))
 
 ;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
 (when minemacs-debug
@@ -81,11 +84,6 @@
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
-
-;;; Load the early config file if it exists
-(let ((early-config-path (concat minemacs-config-dir "early-config.el")))
-  (when (file-exists-p early-config-path)
-    (load early-config-path nil 'nomessage)))
 
 (defvar minemacs-core-modules
   '(defaults splash bootstrap core-ui keybindings evil completion))
@@ -173,4 +171,4 @@
 ;; Load for the first time
 (minemacs-load t)
 
-(+log! "Loaded early-config.el")
+(+log! "Loaded init.el")

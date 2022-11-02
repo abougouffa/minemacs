@@ -28,3 +28,12 @@
 (setq tool-bar-mode nil
       menu-bar-mode nil
       scroll-bar-mode nil)
+
+;; Load MinEmacs variables first
+(load (concat user-emacs-directory "core/me-vars.el") nil :no-message)
+
+;;; Load the early config file if it exists
+(let ((early-config-path (concat minemacs-config-dir "early-config.el")))
+  (when (file-exists-p early-config-path)
+    (load early-config-path nil 'nomessage)
+    (+log! "Loaded early-config.el")))
