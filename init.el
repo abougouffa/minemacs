@@ -8,7 +8,7 @@
 ;; directly from "init.el" without passing by "early-init.el")
 (unless (featurep 'me-vars)
   ;; Load MinEmacs variables first
-  (load (concat user-emacs-directory "core/me-vars.el") nil :no-message))
+  (load (concat user-emacs-directory "core/me-vars.el") nil t))
 
 ;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
 (when minemacs-debug
@@ -167,9 +167,8 @@
       (load user-config nil (not minemacs-verbose))))
 
   ;; Load GC module lastly
-  (run-at-time
-   5 nil
-   (lambda ()
+  (with-eval-after-load 'minemacs-loaded-stage-1
+    (+eval-when-idle!
      (load (concat minemacs-core-dir "me-gc.el")
            nil (not minemacs-verbose)))))
 
