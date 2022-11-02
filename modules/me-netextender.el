@@ -14,7 +14,7 @@
                       :buffer netextender-buffer-name
                       :command netextender-command)
         (message "Started NetExtender VPN session")
-      (message "Cannot start NetExtender"))))
+      (user-error "Cannot start NetExtender"))))
 
 
 (defun netextender-kill ()
@@ -23,7 +23,7 @@
   (when (get-process netextender-process-name)
     (if (kill-buffer netextender-buffer-name)
         (message "Killed NetExtender VPN session")
-      (message "Cannot kill NetExtender"))))
+      (user-error "Cannot kill NetExtender"))))
 
 
 ;;;###autoload
