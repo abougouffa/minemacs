@@ -159,7 +159,6 @@
   :mode "\\.plantuml\\'"
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml.jar"))
-  (org-plantuml-jar-path plantuml-jar-path)
   :config
   (setq plantuml-default-exec-mode
         (cond ((executable-find "plantuml") 'executable)

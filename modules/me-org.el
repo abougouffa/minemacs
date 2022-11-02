@@ -65,7 +65,52 @@
   (let ((size 1.3))
     (dolist (face '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5))
       (set-face-attribute face nil :weight 'semi-bold :height size)
-      (setq size (max (* size 0.9) 1.0)))))
+      (setq size (max (* size 0.9) 1.0))))
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (R . t)
+     (js . t)
+     (dot . t)
+     (awk . t)
+     (sed . t)
+     (sql . t)
+     (org . t)
+     (shell . t)
+     (ditaa . t)
+     (latex . t)
+     (eshell . t)
+     (julia . t)
+     (sqlite . t)
+     (octave . t)
+     (maxima . t)
+     (scheme . t)
+     (python . t)
+     (gnuplot . t)
+     (plantuml . t)
+     (makefile . t)))
+
+  (setq org-src-lang-modes
+        '(("C" . c)
+          ("C++" . c++)
+          ("asymptote" . asy)
+          ("bash" . sh)
+          ("beamer" . latex)
+          ("calc" . fundamental)
+          ("cpp" . c++)
+          ("ditaa" . artist)
+          ("desktop" . conf-desktop)
+          ("dot" . graphviz-dot) ;; changed
+          ("elisp" . emacs-lisp)
+          ("ocaml" . tuareg)
+          ("screen" . shell-script)
+          ("shell" . sh)
+          ("sqlite" . sql)
+          ("toml" . conf-toml)))
+
+  (with-eval-after-load 'plantuml-mode
+    (setq org-plantuml-jar-path plantuml-jar-path)))
 
 
 (use-package org-contrib
@@ -100,7 +145,6 @@
                   (authinfo   "unixconfig")
                   (gdb-script "unixconfig")
                   (conf-toml  "yaml")
-                  (conf       "ini")
                   (conf       "ini")
                   (gitconfig  "ini")
                   (systemd    "ini")))
