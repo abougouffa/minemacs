@@ -43,25 +43,23 @@
 ;;;###autoload
 (defun ecryptfs-mount-private ()
   (interactive)
-  (unless (and (file-exists-p ecryptfs-wrapped-passphrase-file)
-               (file-exists-p ecryptfs-mount-passphrase-sig-file))
-    (error "Encrypted private directory \"%s\" is not setup properly."
-           ecryptfs-private-dir)
-    (return))
-
-  (let ((try-again t))
-    (while (and ;; In the first iteration, we try to silently mount the ecryptfs private directory,
-            ;; this would succeed if the key is available in the keyring.
-            (shell-command ecryptfs--mount-private-cmd
-                           ecryptfs-buffer-name)
-            try-again)
-      (setq try-again nil)
-      (message "Encrypted filenames mode [%s]." (if ecryptfs-encrypt-filenames-p "ENABLED" "DISABLED"))
-      (shell-command
-       (format ecryptfs--command-format
-               ecryptfs-wrapped-passphrase-file
-               (funcall ecryptfs--passphrase))
-       ecryptfs-buffer-name))))
+  (if (not (and (file-exists-p ecryptfs-wrapped-passphrase-file)
+                (file-exists-p ecryptfs-mount-passphrase-sig-file)))
+      (user-error "Encrypted private directory \"%s\" is not setup properly."
+                  ecryptfs-private-dir)
+    (let ((try-again t))
+      (while (and ;; In the first iteration, we try to silently mount the ecryptfs private directory,
+              ;; this would succeed if the key is available in the keyring.
+              (shell-command ecryptfs--mount-private-cmd
+                             ecryptfs-buffer-name)
+              try-again)
+        (setq try-again nil)
+        (message "Encrypted filenames mode [%s]." (if ecryptfs-encrypt-filenames-p "ENABLED" "DISABLED"))
+        (shell-command
+         (format ecryptfs--command-format
+                 ecryptfs-wrapped-passphrase-file
+                 (funcall ecryptfs--passphrase))
+         ecryptfs-buffer-name)))))
 
 
 ;;;###autoload
@@ -70,4 +68,4 @@
   (if (zerop (shell-command ecryptfs--umount-private-cmd
                             ecryptfs-buffer-name))
       (message "Unmounted private directory successfully.")
-    (message "Cannot unmount the private directory, seems to be already unmounted.")))
+    (user-error "Cannot unmount the private directory, seems to be already unmounted.")))
