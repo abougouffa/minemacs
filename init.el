@@ -85,12 +85,17 @@
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
-(defvar minemacs-core-modules
-  '(defaults splash bootstrap core-ui keybindings evil completion))
+;; Define default modules if they aren't already defined
+(unless (bound-and-true-p minemacs-core-modules)
+  (defcustom minemacs-core-modules
+    '(defaults splash bootstrap core-ui keybindings evil completion)
+    "MinEmacs enabled core modules."))
 
-(defvar minemacs-modules
-  '(ui editor vc prog lisp data org notes window email docs
-    natural-langs files tools biblio daemon rss ros eaf math media binary))
+(unless (bound-and-true-p minemacs-modules)
+  (defcustom minemacs-modules
+    '(ui editor vc prog lisp data org notes window email docs
+      natural-langs files tools biblio daemon rss ros eaf math media binary)
+    "MinEmacs enabled modules."))
 
 (defun minemacs-generate-autoloads ()
   (interactive)
