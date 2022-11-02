@@ -162,7 +162,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
            (+log! "Running task %d, calling function `%s'"
                   task-num
                   (truncate-string-to-width
-                   (format "%s" fn) 40 nil nil "..."))
+                   (format "%s" fn) 40 nil nil "…"))
            (funcall fn))
          (unless fns
            (cancel-timer (get task-name 'timer))
