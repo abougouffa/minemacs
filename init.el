@@ -88,13 +88,39 @@
 ;; Define default modules if they aren't already defined
 (unless (bound-and-true-p minemacs-core-modules)
   (defcustom minemacs-core-modules
-    '(defaults splash bootstrap core-ui keybindings evil completion)
+    '(defaults
+      splash
+      bootstrap
+      core-ui
+      keybindings
+      evil
+      completion)
     "MinEmacs enabled core modules."))
 
 (unless (bound-and-true-p minemacs-modules)
   (defcustom minemacs-modules
-    '(ui editor vc prog lisp data org notes window email docs
-      natural-langs files tools biblio daemon rss ros eaf math media binary)
+    '(ui
+      editor
+      vc
+      prog
+      lisp
+      data
+      org
+      notes
+      ;; email
+      docs
+      natural-langs
+      files
+      tools
+      biblio
+      ;; daemon
+      rss
+      ;; ros
+      eaf
+      ;; math
+      window
+      media
+      binary)
     "MinEmacs enabled modules."))
 
 (defun minemacs-generate-autoloads ()
