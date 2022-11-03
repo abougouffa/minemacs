@@ -10,18 +10,16 @@
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
-  (defvar org-id-locations-file nil)
-  (defvar org-attach-id-dir nil)
-  (defvar org-babel-python-command nil)
-  (setq org-persist-directory (concat minemacs-cache-dir "org/persist/")
-        org-publish-timestamp-directory (concat minemacs-cache-dir "org/timestamps/")
-        org-preview-latex-image-directory (concat minemacs-cache-dir "org/latex/")
-        org-list-allow-alphabetical t)
-  (let ((dir (concat minemacs-cache-dir "org/")))
-    (unless (file-directory-p dir)
-      (mkdir dir t)))
+  ;; Create the Org cache directory if it doesn't exist
+  (let ((cache-dir (concat minemacs-cache-dir "org/")))
+    (unless (file-directory-p cache-dir)
+      (mkdir cache-dir t)))
   :custom
   (org-tags-column 0)
+  (org-id-locations-file (concat minemacs-cache-dir "org/org-id-locations"))
+  (org-persist-directory (concat minemacs-cache-dir "org/persist/"))
+  (org-publish-timestamp-directory (concat minemacs-cache-dir "org/timestamps/"))
+  (org-preview-latex-image-directory (concat minemacs-cache-dir "org/latex/"))
   (org-auto-align-tags nil)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
   (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
