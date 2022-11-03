@@ -117,8 +117,10 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 
 ;;; Generated autoloads from ../modules/me-ecryptfs.el
 
-(autoload 'ecryptfs-mount-private "../modules/me-ecryptfs" nil t)
-(autoload 'ecryptfs-umount-private "../modules/me-ecryptfs" nil t)
+(autoload 'ecryptfs-mount-private "../modules/me-ecryptfs" "\
+Mount eCryptfs' private directory." t)
+(autoload 'ecryptfs-umount-private "../modules/me-ecryptfs" "\
+Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../modules/me-ecryptfs" '("ecryptfs-"))
 
 
