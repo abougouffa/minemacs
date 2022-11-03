@@ -40,8 +40,6 @@
   (org-pretty-entities-include-sub-superscripts t)
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
-  (setq org-latex-line-break-safe "\\\\")
-
   (+map-local :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
     "ll" '(org-insert-link :wk "Insert link")
