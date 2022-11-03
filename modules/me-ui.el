@@ -53,6 +53,7 @@
        (visual-fill-column-adjust))))
 
   (defvar-local +writeroom-line-num-was-activate-p nil)
+  (defvar-local +writeroom-org-format-latex-scale nil)
 
   ;; Disable line numbers when in Org mode
   (add-hook
@@ -70,7 +71,23 @@
      (when (and (or (derived-mode-p 'org-mode)
                     (derived-mode-p 'markdown-mode))
                 +writeroom-line-num-was-activate-p)
-       (display-line-numbers-mode +writeroom-line-num-was-activate-p)))))
+       (display-line-numbers-mode +writeroom-line-num-was-activate-p))))
+
+  (with-eval-after-load 'org
+    ;; Increase latex previews scale in Zen mode
+    (add-hook 'writeroom-mode-enable-hook
+              (defun +writeroom--scale-up-latex ()
+                (setq-local +writeroom-org-format-latex-scale
+                            (plist-get org-format-latex-options :scale))
+                (setq org-format-latex-options
+                      (plist-put org-format-latex-options
+                                 :scale (if feat/pgtk 1.4 2.1)))))
+
+    (add-hook 'writeroom-mode-disable-hook
+              (defun +writeroom--scale-down-latex ()
+                (setq org-format-latex-options
+                      (plist-put org-format-latex-options
+                                 :scale (or +writeroom-org-format-latex-scale 1.0)))))))
 
 
 (use-package mixed-pitch

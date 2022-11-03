@@ -236,8 +236,9 @@ Return an AST with newlines counts in each level."
   (setq org-format-latex-options
         (plist-put org-format-latex-options :background "Transparent"))
 
-  (setq org-format-latex-options
-        (plist-put org-format-latex-options :scale 1.5)))
+  (unless feat/pgtk ;; PGTK not need extra up-scaling
+    (setq org-format-latex-options
+          (plist-put org-format-latex-options :scale 1.5))))
 
 
 (defun +org-extras-setup ()
