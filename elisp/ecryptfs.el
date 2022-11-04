@@ -22,7 +22,7 @@
 
 (defvar ecryptfs--passphrase
   (lambda ()
-    (s-trim-right
+    (string-trim-right
      (epg-decrypt-file
       (epg-make-context)
       (expand-file-name (concat ecryptfs-root-dir "my-pass.gpg"))
