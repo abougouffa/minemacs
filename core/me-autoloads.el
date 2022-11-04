@@ -25,6 +25,15 @@ is binary, activate `hexl-mode'." t)
 (register-definition-prefixes "../elisp/binary" '("+binary-"))
 
 
+;;; Generated autoloads from ../elisp/ecryptfs.el
+
+(autoload 'ecryptfs-mount-private "../elisp/ecryptfs" "\
+Mount eCryptfs' private directory." t)
+(autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\
+Unmount eCryptfs' private directory." t)
+(register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
+
+
 ;;; Generated autoloads from me-core.el
 
 (autoload '+log! "me-core" "\
@@ -113,15 +122,6 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 ;;; Generated autoloads from me-defaults.el
 
 (register-definition-prefixes "me-defaults" '("yes-or-no-p"))
-
-
-;;; Generated autoloads from ../modules/me-ecryptfs.el
-
-(autoload 'ecryptfs-mount-private "../modules/me-ecryptfs" "\
-Mount eCryptfs' private directory." t)
-(autoload 'ecryptfs-umount-private "../modules/me-ecryptfs" "\
-Unmount eCryptfs' private directory." t)
-(register-definition-prefixes "../modules/me-ecryptfs" '("ecryptfs-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
@@ -235,15 +235,6 @@ Auto tail the '*Messages*' buffer." t)
 (register-definition-prefixes "../modules/me-natural-langs" '("ASPELL-P"))
 
 
-;;; Generated autoloads from ../modules/me-netextender.el
-
-(autoload 'netextender-start "../modules/me-netextender" "\
-Launch a NetExtender VPN session." t)
-(autoload 'netextender-toggle "../modules/me-netextender" "\
-Toggle connection to NetExtender." t)
-(register-definition-prefixes "../modules/me-netextender" '("netextender-"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-org-export-async-init.el
 
 (register-definition-prefixes "../modules/extras/me-org-export-async-init" '("minemacs-"))
@@ -325,6 +316,15 @@ Stops the systemd SERVICE.
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+env-save-vars" "minemacs-" "os/"))
+
+
+;;; Generated autoloads from ../elisp/netextender.el
+
+(autoload 'netextender-start "../elisp/netextender" "\
+Launch a NetExtender VPN session." t)
+(autoload 'netextender-toggle "../elisp/netextender" "\
+Toggle connection to NetExtender." t)
+(register-definition-prefixes "../elisp/netextender" '("netextender-"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
