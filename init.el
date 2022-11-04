@@ -41,8 +41,8 @@
     (if (< emacs-major-version 29)
         (add-to-list
          'native-comp-eln-load-path
-         (convert-standard-filename (concat minemacs-cache-dir "eln")))
-      (startup-redirect-eln-cache (convert-standard-filename (concat minemacs-cache-dir "eln"))))))
+         (convert-standard-filename (concat minemacs-cache-dir "eln/")))
+      (startup-redirect-eln-cache (convert-standard-filename (concat minemacs-cache-dir "eln/"))))))
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
