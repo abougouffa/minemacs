@@ -73,6 +73,12 @@ Return the keys of PLIST.
 Push KEY-VALS to PLIST.
 
 (fn PLIST &rest KEY-VALS)" nil t)
+(autoload '+plist-combine "me-core" "\
+Create a single property list from all plists in PLISTS.
+Modified from `org-combine-plists'. This supposes the values to be vectors,
+and concatenate them.
+
+(fn &rest PLISTS)")
 (autoload '+serialize-sym "me-core" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").

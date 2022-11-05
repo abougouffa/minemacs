@@ -86,6 +86,20 @@
     out))
 
 ;;;###autoload
+(defun +plist-combine (&rest plists)
+  "Create a single property list from all plists in PLISTS.
+Modified from `org-combine-plists'. This supposes the values to be vectors,
+and concatenate them."
+  (let ((res (copy-sequence (pop plists)))
+        prop val plist)
+    (while plists
+      (setq plist (pop plists))
+      (while plist
+        (setq prop (pop plist) val (pop plist))
+        (setq res (plist-put res prop (vconcat val (plist-get res prop))))))
+    res))
+
+;;;###autoload
 (defun +serialize-sym (sym dir &optional filename-format)
   "Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
