@@ -34,85 +34,64 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
-;;; Generated autoloads from me-core.el
+;;; Generated autoloads from ../elisp/emacs.el
 
-(autoload '+log! "me-core" "\
-Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
+(autoload '+dir-locals-reload-for-this-buffer "../elisp/emacs" "\
+reload dir locals for the current buffer" t)
+(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "../elisp/emacs" "\
+For every buffer with the same `default-directory` as the
+current buffer's, reload dir-locals." t)
+(autoload '+dir-locals-enable-autoreload "../elisp/emacs")
+(autoload '+dir-locals-open-or-create "../elisp/emacs" "\
+Open or create the dir-locals.el for the current project." t)
 
-(fn MSG &rest VARS)" nil t)
-(autoload '+info! "me-core" "\
-Log info MSG and VARS using `message'.
+
+;;; Generated autoloads from ../elisp/io.el
 
-(fn MSG &rest VARS)" nil t)
-(autoload '+error! "me-core" "\
-Log error MSG and VARS using `message'.
+(autoload '+file-mime-type "../elisp/io" "\
+Get MIME type for FILE based on magic codes provided by the 'file' command.
+Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
+`application/x-object', `application/octet-stream', etc.
 
-(fn MSG &rest VARS)" nil t)
-(autoload '+reset-sym "me-core" "\
-Reset SYM to its standard value.
+(fn FILE)")
+(autoload '+file-name-incremental "../elisp/io" "\
+Return an unique file name for FILENAME.
+If \"file.ext\" exists, returns \"file-0.ext\".
 
-(fn SYM)")
-(autoload '+shutup! "me-core" "\
-Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
+(fn FILENAME)")
+(autoload '+file-read-to-string "../elisp/io" "\
+Return a string with the contents of FILENAME.
 
-(fn &rest BODY)" nil t)
-(autoload '+reset-var! "me-core" "\
-Reset VAR to its standard value.
+(fn FILENAME)")
+(autoload '+delete-this-file "../elisp/io" "\
+Delete PATH.
 
-(fn VAR)" nil t)
-(autoload '+cmdfy! "me-core" "\
-Convert BODY to an interactive command.
+If PATH is not specified, default to the current buffer's file.
 
-(fn &rest BODY)" nil t)
-(autoload '+set-fonts "me-core" nil t)
-(autoload '+plist-keys "me-core" "\
-Return the keys of PLIST.
+If FORCE-P, delete without confirmation.
 
-(fn PLIST)")
-(autoload '+plist-push! "me-core" "\
-Push KEY-VALS to PLIST.
+(fn &optional PATH FORCE-P)" t)
+(autoload '+move-this-file "../elisp/io" "\
+Move current buffer's file to NEW-PATH.
 
-(fn PLIST &rest KEY-VALS)" nil t)
-(autoload '+plist-combine "me-core" "\
-Create a single property list from all plists in PLISTS.
-Modified from `org-combine-plists'. This supposes the values to be vectors,
-and concatenate them.
+If FORCE-P, overwrite the destination file if it exists, without confirmation.
 
-(fn &rest PLISTS)")
-(autoload '+serialize-sym "me-core" "\
-Serialize SYM to DIR.
-If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
-Return the written file name, or nil if SYM is not bound.
+(fn NEW-PATH &optional FORCE-P)" t)
+(autoload '+sudo-find-file "../elisp/io" "\
+Open FILE as root.
 
-(fn SYM DIR &optional FILENAME-FORMAT)")
-(autoload '+deserialize-sym "me-core" "\
-Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
-If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
-Return the deserialized object, or nil if the SYM.el file dont exist.
+(fn FILE)" t)
+(autoload '+sudo-this-file "../elisp/io" "\
+Open the current file as root." t)
+(autoload '+sudo-save-buffer "../elisp/io" "\
+Save this file as root." t)
+(autoload '+yank-this-file-name "../elisp/io" "\
+Yank the file name of this buffer." t)
+(autoload '+clean-file-name "../elisp/io" "\
+Clean file name.
 
-(fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
-(autoload '+add-dependencies "me-core" "\
-
-
-(fn &rest DEPS)")
-(autoload '+check-dependencies "me-core" "\
-Check for MinEmacs dependencies." t)
-(autoload '+eval-when-idle "me-core" "\
-Queue FNS to be processed when Emacs becomes idle.
-
-(fn &rest FNS)")
-(autoload '+eval-when-idle! "me-core" "\
-Evaluate BODY when Emacs becomes idle.
-
-(fn &rest BODY)" nil t)
-(autoload '+compile-functs "me-core" "\
-Queue FNS to be byte/natively-compiled after a brief delay.
-
-(fn &rest FNS)")
-(autoload '+env-save "me-core" nil t)
-(autoload '+env-load "me-core" nil t)
-(autoload 'minemacs-update "me-core" nil t)
-(register-definition-prefixes "me-core" '("+eval-when-idle--task-num"))
+(fn FILENAME &optional CONV-DOWNCASE)")
+(register-definition-prefixes "../elisp/io" '("+sudo-file-path"))
 
 
 ;;; Generated autoloads from me-core-ui.el
@@ -130,74 +109,19 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (register-definition-prefixes "me-defaults" '("yes-or-no-p"))
 
 
+;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
+
+(register-definition-prefixes "../modules/extras/me-eglot-ltex-extras" '("eglot-ltex-"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
 
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
 
 
-;;; Generated autoloads from me-emacs.el
-
-(autoload '+dir-locals-reload-for-this-buffer "me-emacs" "\
-reload dir locals for the current buffer" t)
-(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-emacs" "\
-For every buffer with the same `default-directory` as the
-current buffer's, reload dir-locals." t)
-(autoload '+dir-locals-enable-autoreload "me-emacs")
-(autoload '+dir-locals-open-or-create "me-emacs" "\
-Open or create the dir-locals.el for the current project." t)
-
-
 ;;; Generated autoloads from ../modules/me-email.el
 
 (register-definition-prefixes "../modules/me-email" '("MU4E-"))
-
-
-;;; Generated autoloads from me-io.el
-
-(autoload '+file-mime-type "me-io" "\
-Get MIME type for FILE based on magic codes provided by the 'file' command.
-Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
-`application/x-object', `application/octet-stream', etc.
-
-(fn FILE)")
-(autoload '+file-name-incremental "me-io" "\
-Return an unique file name for FILENAME.
-If \"file.ext\" exists, returns \"file-0.ext\".
-
-(fn FILENAME)")
-(autoload '+file-read-to-string "me-io" "\
-Return a string with the contents of FILENAME.
-
-(fn FILENAME)")
-(autoload '+delete-this-file "me-io" "\
-Delete PATH.
-
-If PATH is not specified, default to the current buffer's file.
-
-If FORCE-P, delete without confirmation.
-
-(fn &optional PATH FORCE-P)" t)
-(autoload '+move-this-file "me-io" "\
-Move current buffer's file to NEW-PATH.
-
-If FORCE-P, overwrite the destination file if it exists, without confirmation.
-
-(fn NEW-PATH &optional FORCE-P)" t)
-(autoload '+sudo-find-file "me-io" "\
-Open FILE as root.
-
-(fn FILE)" t)
-(autoload '+sudo-this-file "me-io" "\
-Open the current file as root." t)
-(autoload '+sudo-save-buffer "me-io" "\
-Save this file as root." t)
-(autoload '+yank-this-file-name "me-io" "\
-Yank the file name of this buffer." t)
-(autoload '+clean-file-name "me-io" "\
-Clean file name.
-
-(fn FILENAME &optional CONV-DOWNCASE)")
-(register-definition-prefixes "me-io" '("+sudo-file-path"))
 
 
 ;;; Generated autoloads from ../modules/me-math.el
@@ -208,16 +132,6 @@ Clean file name.
 ;;; Generated autoloads from ../modules/me-media.el
 
 (register-definition-prefixes "../modules/me-media" '("MPV-P"))
-
-
-;;; Generated autoloads from me-messages.el
-
-(autoload '+messages--auto-tail-a "me-messages" "\
-Make *Messages* buffer auto-scroll to the end after each message.
-
-(fn &rest ARG)")
-(autoload '+messages-auto-tail-toggle "me-messages" "\
-Auto tail the '*Messages*' buffer." t)
 
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
@@ -251,42 +165,6 @@ Auto tail the '*Messages*' buffer." t)
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
-;;; Generated autoloads from me-primitives.el
-
-(autoload '+bool "me-primitives" "\
-
-
-(fn VAL)")
-(autoload '+foldr "me-primitives" "\
-
-
-(fn FUN ACC SEQ)")
-(autoload '+foldl "me-primitives" "\
-
-
-(fn FUN ACC SEQ)")
-(autoload '+all "me-primitives" "\
-
-
-(fn SEQ)")
-(autoload '+some "me-primitives" "\
-
-
-(fn SEQ)")
-(autoload '+zip "me-primitives" "\
-
-
-(fn &rest SEQS)")
-(autoload '+str-replace "me-primitives" "\
-Replaces OLD with NEW in S.
-
-(fn OLD NEW S)")
-(autoload '+str-replace-all "me-primitives" "\
-REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
-
-(fn REPLACEMENTS S)")
-
-
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
@@ -299,29 +177,100 @@ Correct spelling of word at point." t)
 (register-definition-prefixes "me-splash" '("minemacs-splash-"))
 
 
-;;; Generated autoloads from me-systemd.el
-
-(autoload '+systemd-running-p "me-systemd" "\
-Check if the systemd SERVICE is running.
-
-(fn SERVICE)")
-(autoload '+systemd-command "me-systemd" "\
-Call systemd with COMMAND and SERVICE.
-
-(fn SERVICE COMMAND &optional PRE-FN POST-FN)" t)
-(autoload '+systemd-start "me-systemd" "\
-Start systemd SERVICE.
-
-(fn SERVICE &optional PRE-FN POST-FN)" t)
-(autoload '+systemd-stop "me-systemd" "\
-Stops the systemd SERVICE.
-
-(fn SERVICE &optional PRE-FN POST-FN)" t)
-
-
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+env-save-vars" "minemacs-" "os/"))
+
+
+;;; Generated autoloads from ../elisp/messages.el
+
+(autoload '+messages--auto-tail-a "../elisp/messages" "\
+Make *Messages* buffer auto-scroll to the end after each message.
+
+(fn &rest ARG)")
+(autoload '+messages-auto-tail-toggle "../elisp/messages" "\
+Auto tail the '*Messages*' buffer." t)
+
+
+;;; Generated autoloads from ../elisp/minemacs-core.el
+
+(autoload '+log! "../elisp/minemacs-core" "\
+Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
+
+(fn MSG &rest VARS)" nil t)
+(autoload '+info! "../elisp/minemacs-core" "\
+Log info MSG and VARS using `message'.
+
+(fn MSG &rest VARS)" nil t)
+(autoload '+error! "../elisp/minemacs-core" "\
+Log error MSG and VARS using `message'.
+
+(fn MSG &rest VARS)" nil t)
+(autoload '+reset-sym "../elisp/minemacs-core" "\
+Reset SYM to its standard value.
+
+(fn SYM)")
+(autoload '+shutup! "../elisp/minemacs-core" "\
+Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
+
+(fn &rest BODY)" nil t)
+(autoload '+reset-var! "../elisp/minemacs-core" "\
+Reset VAR to its standard value.
+
+(fn VAR)" nil t)
+(autoload '+cmdfy! "../elisp/minemacs-core" "\
+Convert BODY to an interactive command.
+
+(fn &rest BODY)" nil t)
+(autoload '+set-fonts "../elisp/minemacs-core" nil t)
+(autoload '+plist-keys "../elisp/minemacs-core" "\
+Return the keys of PLIST.
+
+(fn PLIST)")
+(autoload '+plist-push! "../elisp/minemacs-core" "\
+Push KEY-VALS to PLIST.
+
+(fn PLIST &rest KEY-VALS)" nil t)
+(autoload '+plist-combine "../elisp/minemacs-core" "\
+Create a single property list from all plists in PLISTS.
+Modified from `org-combine-plists'. This supposes the values to be vectors,
+and concatenate them.
+
+(fn &rest PLISTS)")
+(autoload '+serialize-sym "../elisp/minemacs-core" "\
+Serialize SYM to DIR.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the written file name, or nil if SYM is not bound.
+
+(fn SYM DIR &optional FILENAME-FORMAT)")
+(autoload '+deserialize-sym "../elisp/minemacs-core" "\
+Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
+If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
+Return the deserialized object, or nil if the SYM.el file dont exist.
+
+(fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
+(autoload '+add-dependencies "../elisp/minemacs-core" "\
+
+
+(fn &rest DEPS)")
+(autoload '+check-dependencies "../elisp/minemacs-core" "\
+Check for MinEmacs dependencies." t)
+(autoload '+eval-when-idle "../elisp/minemacs-core" "\
+Queue FNS to be processed when Emacs becomes idle.
+
+(fn &rest FNS)")
+(autoload '+eval-when-idle! "../elisp/minemacs-core" "\
+Evaluate BODY when Emacs becomes idle.
+
+(fn &rest BODY)" nil t)
+(autoload '+compile-functs "../elisp/minemacs-core" "\
+Queue FNS to be byte/natively-compiled after a brief delay.
+
+(fn &rest FNS)")
+(autoload '+env-save "../elisp/minemacs-core" nil t)
+(autoload '+env-load "../elisp/minemacs-core" nil t)
+(autoload 'minemacs-update "../elisp/minemacs-core" nil t)
+(register-definition-prefixes "../elisp/minemacs-core" '("+eval-when-idle--task-num"))
 
 
 ;;; Generated autoloads from ../elisp/netextender.el
@@ -331,6 +280,62 @@ Launch a NetExtender VPN session." t)
 (autoload 'netextender-toggle "../elisp/netextender" "\
 Toggle connection to NetExtender." t)
 (register-definition-prefixes "../elisp/netextender" '("netextender-"))
+
+
+;;; Generated autoloads from ../elisp/primitives.el
+
+(autoload '+bool "../elisp/primitives" "\
+
+
+(fn VAL)")
+(autoload '+foldr "../elisp/primitives" "\
+
+
+(fn FUN ACC SEQ)")
+(autoload '+foldl "../elisp/primitives" "\
+
+
+(fn FUN ACC SEQ)")
+(autoload '+all "../elisp/primitives" "\
+
+
+(fn SEQ)")
+(autoload '+some "../elisp/primitives" "\
+
+
+(fn SEQ)")
+(autoload '+zip "../elisp/primitives" "\
+
+
+(fn &rest SEQS)")
+(autoload '+str-replace "../elisp/primitives" "\
+Replaces OLD with NEW in S.
+
+(fn OLD NEW S)")
+(autoload '+str-replace-all "../elisp/primitives" "\
+REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
+
+(fn REPLACEMENTS S)")
+
+
+;;; Generated autoloads from ../elisp/systemd.el
+
+(autoload '+systemd-running-p "../elisp/systemd" "\
+Check if the systemd SERVICE is running.
+
+(fn SERVICE)")
+(autoload '+systemd-command "../elisp/systemd" "\
+Call systemd with COMMAND and SERVICE.
+
+(fn SERVICE COMMAND &optional PRE-FN POST-FN)" t)
+(autoload '+systemd-start "../elisp/systemd" "\
+Start systemd SERVICE.
+
+(fn SERVICE &optional PRE-FN POST-FN)" t)
+(autoload '+systemd-stop "../elisp/systemd" "\
+Stops the systemd SERVICE.
+
+(fn SERVICE &optional PRE-FN POST-FN)" t)
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
