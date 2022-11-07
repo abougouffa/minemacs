@@ -27,7 +27,7 @@
   (mu4e-index-update-error-warning nil) ;; Do not show warning after update
   (mu4e-main-hide-personal-addresses t) ;; No need to display a long list of my own addresses!
   (mu4e-change-filenames-when-moving t)
-  (mu4e-completing-read-function (if (featurep 'vertico) #'completing-read #'ido-completing-read))
+  (mu4e-completing-read-function #'completing-read) ;; Use `vertico' instead of `ido'
   (sendmail-program (executable-find "msmtp")) ;; Use msmtp to send mails
   (send-mail-function #'smtpmail-send-it)
   (message-sendmail-f-is-evil t)
@@ -35,7 +35,7 @@
   (message-send-mail-function #'message-send-mail-with-sendmail)
   (message-sendmail-envelope-from 'obey-mail-envelope-from)
   (message-mail-user-agent 'mu4e-user-agent)
-  (message-kill-buffer-on-exit t) ;; close after sending
+  (message-kill-buffer-on-exit t) ;; Close after sending
   (mail-envelope-from 'header)
   (mail-specify-envelope-from t)
   (mail-user-agent 'mu4e-user-agent)
