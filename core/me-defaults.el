@@ -74,23 +74,20 @@
 
 (setq sentence-end-double-space nil)
 
-;;; Scrolling
-(setq hscroll-step 1
-      hscroll-margin 0
-      scroll-step 1
-      scroll-margin 0
-      scroll-conservatively 101
-      scroll-preserve-screen-position 'always
-      auto-window-vscroll nil
-      fast-but-imprecise-scrolling t)
-
+;; Buffer -- scrolling
+;; Do not scroll to the center when point exceeds the beginning/end of buffer.
 (setq-default scroll-up-aggressively 0.01
               scroll-down-aggressively 0.01)
 
+;;; Windwo -- scrolling
+(setq auto-window-vscroll nil
+      fast-but-imprecise-scrolling t)
+
+;;; Windwo -- resize
+(setq window-combination-resize t)
+
 ;; Stretch cursor to the glyph width
 (setq x-stretch-cursor t)
-
-(setq window-combination-resize t)
 
 (setq recentf-max-saved-items 100)
 
