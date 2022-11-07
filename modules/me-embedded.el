@@ -15,6 +15,13 @@
     "obf" #'embed-openocd-flash))
 
 
+(use-package arduino-mode
+  :straight (:type git :host github :repo "bookest/arduino-mode")
+  :defer t
+  :hook (arduino-mode . display-line-numbers-mode)
+  :hook (arduino-mode . hs-minor-mode))
+
+
 (provide 'me-prog)
 
 ;;; me-embedded.el ends here
