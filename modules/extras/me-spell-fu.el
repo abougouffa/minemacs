@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
-;; Adapted from Doom Emacs
 
 (defun +spell-fu--correct (replace poss word orig-pt start end)
+  "Correct word with spell-fu (adapted from Doom Emacs)."
   (cond ((eq replace 'ignore)
          (goto-char orig-pt)
          nil)
@@ -37,7 +37,7 @@
 
 ;;;###autoload
 (defun +spell-fu-correct ()
-  "Correct spelling of word at point."
+  "Correct spelling of word at point (adapted from Doom Emacs)."
   (interactive)
   ;; spell-fu fails to initialize correctly if it can't find aspell or a similar
   ;; program. We want to signal the error, not tell the user that every word is
@@ -93,6 +93,24 @@
                 (unless (string-equal wrd word)
                   (+spell-fu--correct wrd poss word orig-pt start end))))))
           (ispell-pdict-save t)))))))
+
+(defun +spell-fu--add-dictionary (lang)
+  "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
+  ;; Add the dictionary
+  (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))
+  (let ((personal-dict-file (expand-file-name (format "personal-aspell.%s.pws" lang) spell-fu-directory)))
+    ;; Create an empty personal dictionary if it doesn't exists
+    (unless (file-exists-p personal-dict-file) (write-region "" nil personal-dict-file))
+    ;; Add the personal dictionary
+    (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
+
+;;;###autoload
+(defmacro +spell-fu-register-dictionaries (&rest langs)
+  "Register dictionaries for `LANGS` to spell-fu's multi-dict."
+  (let ((fun '(lambda ())))
+    (dolist (lang langs)
+      (add-to-list 'fun `(+spell-fu--add-dictionary ,lang) t))
+    (append '(add-hook (quote spell-fu-mode-hook)) (list fun))))
 
 
 (provide 'me-spell-fu)

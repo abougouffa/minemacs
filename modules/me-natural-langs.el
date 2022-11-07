@@ -60,16 +60,6 @@
   (unless (file-exists-p spell-fu-directory)
     (mkdir spell-fu-directory t))
 
-  (defun +spell-fu-register-dictionary (lang)
-    "Add `LANG` to spell-fu multi-dict, with a personal dictionary."
-    ;; Add the dictionary
-    (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary lang))
-    (let ((personal-dict-file (expand-file-name (format "personal-aspell.%s.pws" lang) spell-fu-directory)))
-      ;; Create an empty personal dictionary if it doesn't exists
-      (unless (file-exists-p personal-dict-file) (write-region "" nil personal-dict-file))
-      ;; Add the personal dictionary
-      (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
-
   (add-hook
    'spell-fu-mode-hook
    (defun +spell-fu--init-excluded-faces-h ()

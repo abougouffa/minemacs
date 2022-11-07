@@ -168,8 +168,12 @@ Clean file name.
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
-Correct spelling of word at point." t)
-(register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--correct"))
+Correct spelling of word at point (adapted from Doom Emacs)." t)
+(autoload '+spell-fu-register-dictionaries "../modules/extras/me-spell-fu" "\
+Register dictionaries for `LANGS` to spell-fu's multi-dict.
+
+(fn &rest LANGS)" nil t)
+(register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--"))
 
 
 ;;; Generated autoloads from me-splash.el
