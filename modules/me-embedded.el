@@ -22,6 +22,11 @@
   :hook (arduino-mode . hs-minor-mode))
 
 
+(use-package bitbake-modes
+  :straight (:type git :host bitbucket :repo "olanilsson/bitbake-modes")
+  :defer t)
+
+
 (provide 'me-prog)
 
 ;;; me-embedded.el ends here
