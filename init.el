@@ -116,6 +116,7 @@
       ;; daemon
       rss
       ;; ros
+      ;; embedded
       eaf
       ;; math
       window

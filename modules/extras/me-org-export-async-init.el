@@ -12,7 +12,7 @@
 ;; To force loading Org and other stuff
 (provide 'minemacs-loaded)
 
+(load (concat user-emacs-directory "init.el"))
+
 ;; Maybe useful, it signals that we are running in a org-export-async context
 (provide 'me-org-export-async-init)
-
-(load (concat user-emacs-directory "init.el"))
