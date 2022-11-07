@@ -1,7 +1,7 @@
 * MinEmacs
 
-This is a WIP for a personal lightweight Emacs configuration, it is highly
-inspired by Doom Emacs.
+*MinEmacs* is a lightweight Emacs configuration framework, the keybinding is
+highly inspired by Doom Emacs.
 
 [[https://github.com/abougouffa/minemacs][.github/minemacs.png]]
 
@@ -28,5 +28,15 @@ Open a shell and run:
 git clone https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
 #+end_src
 
-This will clone the repo, and launches Emacs, which, in the first run, will
-install the required packages.
+This will clone the repository, and launches Emacs, which, in the first run,
+will install the required packages.
+
+** Customize
+You can customize MinEmacs by adding these files under the =~/.minemacs.d=
+directory:
+
+1. Defining the list of enabled modules in =~/.minemacs.d/modules.el=.
+2. Custom configuration in =~/.minemacs.d/config.el=.
+
+This repository contains skeleton files for [[file:skel/modules.el][modules.el]] and [[file:skel/config.el][config.el]] (under
+[[file:skel][skel/]]).
