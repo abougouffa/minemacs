@@ -105,7 +105,7 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
-;; Guess major mode when saving a file (from Doom Emacs)
+;; Guess major mode when saving a file (adapted from Doom Emacs)
 (add-hook
  'after-save-hook
  (defun +save--guess-file-mode-h ()
@@ -119,7 +119,8 @@ or file path may exist now."
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
 
-;; From: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+;; Kill minibuffer when switching by mouse to another window
+;; Taken from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 (add-hook
  'mouse-leave-buffer-hook
  (defun +minibuffer--kill-on-mouse-h ()
