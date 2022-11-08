@@ -37,8 +37,6 @@
      ("Beur FM" . "http://broadcast.infomaniak.ch/beurfm-high.aac")
      ("Skyrock" . "http://icecast.skyrock.net/s/natio_mp3_128k")))
   :config
-  (empv-playlist-loop-on)
-
   (defun +empv--dl-playlist (playlist &optional dist)
     (let ((default-directory
            (or dist
