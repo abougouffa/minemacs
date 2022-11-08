@@ -53,13 +53,13 @@
 
 (add-hook
  'server-after-make-frame-hook
- (defun +daemon--reload-battery-mode-h ()
+ (defun +daemon--reload-battery-mode-once-h ()
    (when (and (display-graphic-p)
               (bound-and-true-p display-battery-mode))
      (display-battery-mode -1)
      (display-battery-mode 1)
      (remove-hook 'server-after-make-frame-hook
-                  #'+daemon--reload-battery-mode-h))))
+                  #'+daemon--reload-battery-mode-once-h))))
 
 
 (provide 'me-daemon)
