@@ -56,10 +56,6 @@
      ("k" . "increase_volume")
      ("f" . "toggle_fullscreen")
      ("R" . "restart")))
-  ;; PDF viewer
-  (eaf-pdf-show-progress-on-page nil)
-  (eaf-pdf-dark-exclude-image t)
-  (eaf-pdf-notify-file-changed t)
   ;; Browser
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-enable-adblocker t)
@@ -71,22 +67,30 @@
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-aria2-auto-file-renaming t)
   :config
-  ;; Extensions
-  (require 'eaf-org)
-  (require 'eaf-all-the-icons)
-  (when (display-graphic-p)
-    (mapc (lambda (v) (eaf-all-the-icons-icon (car v)))
-          eaf-all-the-icons-alist))
-
   ;; Apps
-  (require 'eaf-org-previewer)
-  (require 'eaf-markdown-previewer)
+  (require 'eaf-browser)
   (require 'eaf-jupyter)
   (require 'eaf-mindmap)
   (require 'eaf-file-sender)
   (require 'eaf-video-player)
 
-  (require 'eaf-browser)
+  (defun +eaf-all-the-icons--setup ()
+    (require 'eaf-all-the-icons)
+    (mapc (lambda (v) (eaf-all-the-icons-icon (car v)))
+          eaf-all-the-icons-alist))
+
+  (cond
+   ((display-graphic-p)
+    (+eaf-all-the-icons--setup))
+   ((daemonp)
+    (add-hook
+     'server-after-make-frame-hook
+     (defun +eaf-all-the-icons--setup-once-h ()
+       (when (display-graphic-p)
+         (+eaf-all-the-icons--setup)
+         (remove-hook
+          'server-after-make-frame-hook
+          #'+eaf-all-the-icons--setup-once-h))))))
 
   (unless feat/xwidgets
     ;; Make EAF Browser my default browser
@@ -96,13 +100,12 @@
   (defun +eaf-open-mail-as-html ()
     "Open the html mail in EAF Browser."
     (interactive)
-    (let ((msg (mu4e-message-at-point t))
-          ;; Bind browse-url-browser-function locally, so it works
-          ;; even if EAF Browser is not set as a default browser.
-          (browse-url-browser-function #'eaf-open-browser))
-      (if msg
-          (mu4e-action-view-in-browser msg)
-        (message "No message at point.")))))
+    (if-let ((msg (mu4e-message-at-point t))
+             ;; Bind browse-url-browser-function locally, so it works
+             ;; even if EAF Browser is not set as a default browser.
+             (browse-url-browser-function #'eaf-open-browser))
+        (mu4e-action-view-in-browser msg)
+      (message "No message at point."))))
 
 
 (provide 'me-eaf)
