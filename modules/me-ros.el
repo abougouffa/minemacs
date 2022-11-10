@@ -29,7 +29,6 @@
     ;; rosbag view mode
     (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode))))
 
-
 ;; Needed by ros.el
 (use-package kv
   :straight t
@@ -48,13 +47,12 @@
     :straight t
     :defer t))
 
-
 ;; ROS package
 (use-package ros
-  :straight (:host github :repo "abougouffa/ros.el" :branch "fix-deps")
+  :straight (:host github :repo "DerBeutlin/ros.el")
   :general
   (+map
-    "or" '(nil :wk "ROS")
+    "or"  '(nil :wk "ROS")
     "orr" '(hydra-ros-main/body :wk "Hydra")
     "ors" '(ros-set-workspace :wk "Set workspace")
     "orp" '(ros-go-to-package :wk "Go to package")
