@@ -68,7 +68,9 @@
   (eaf-browser-aria2-auto-file-renaming t)
   :config
   ;; Apps
-  (require 'eaf-browser)
+  (unless (require 'eaf-browser nil t)
+    (eaf-install-and-update)
+    (require 'eaf-browser))
   (require 'eaf-jupyter)
   (require 'eaf-mindmap)
   (require 'eaf-file-sender)
