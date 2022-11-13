@@ -34,6 +34,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
 
 ;;;###autoload
 (defun +file-directories (dir)
+  "Return a list of sub-directories in DIR."
   (when dir
     (seq-filter #'file-directory-p
                 (mapcar #'abbreviate-file-name

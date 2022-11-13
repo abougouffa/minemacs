@@ -66,7 +66,7 @@ Return a string with the contents of FILENAME.
 
 (fn FILENAME)")
 (autoload '+file-directories "../elisp/io" "\
-
+Return a list of sub-directories in DIR.
 
 (fn DIR)")
 (autoload '+delete-this-file "../elisp/io" "\
