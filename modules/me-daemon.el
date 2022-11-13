@@ -38,7 +38,9 @@
 (use-package xclip ;; or clipetty for OSX
   :straight t
   :when os/linux
-  :config
+  :defer t
+  :defines +xclip--enable-in-tty-h
+  :init
   (add-hook
    'tty-setup-hook
    (defun +xclip--enable-in-tty-h ()
