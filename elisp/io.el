@@ -37,7 +37,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
   (when dir
     (seq-filter #'file-directory-p
                 (mapcar #'abbreviate-file-name
-                        (directory-files dir t)))))
+                        (directory-files dir t "[^.][^.]?$")))))
 
 ;;;###autoload
 (defun +delete-this-file (&optional path force-p)
