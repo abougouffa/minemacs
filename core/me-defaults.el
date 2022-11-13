@@ -109,7 +109,7 @@
 ;; from `prog-mode', `org-mode' or `markdown-mode'
 (add-hook
  'before-save-hook
- (defun +save--delete-trailing-whitespace ()
+ (defun +save--delete-trailing-whitespace-h ()
    (when (or (derived-mode-p 'prog-mode)
              (derived-mode-p 'org-mode)
              (derived-mode-p 'markdown-mode))

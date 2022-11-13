@@ -42,6 +42,6 @@ current buffer's, reload dir-locals."
 (defun +toggle-auto-delete-trailing-whitespaces ()
   "Toggle auto-deleting trailing whitespaces."
   (interactive)
-  (if (member #'+save--delete-trailing-whitespace before-save-hook)
-      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace)
-    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace)))
+  (if (member #'+save--delete-trailing-whitespace-h before-save-hook)
+      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)
+    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)))
