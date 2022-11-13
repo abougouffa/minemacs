@@ -328,6 +328,13 @@ REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
 (fn REPLACEMENTS S)")
 
 
+;;; Generated autoloads from ../elisp/project.el
+
+(autoload '+project-scan-for-projects "../elisp/project" "\
+Scan and remember projects under `+project-scan-dir-paths'." t)
+(register-definition-prefixes "../elisp/project" '("+project-scan-dir-paths"))
+
+
 ;;; Generated autoloads from ../elisp/systemd.el
 
 (autoload '+systemd-running-p "../elisp/systemd" "\
