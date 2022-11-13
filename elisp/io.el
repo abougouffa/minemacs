@@ -33,6 +33,13 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
       (buffer-string))))
 
 ;;;###autoload
+(defun +file-directories (dir)
+  (when dir
+    (seq-filter #'file-directory-p
+                (mapcar #'abbreviate-file-name
+                        (directory-files dir t)))))
+
+;;;###autoload
 (defun +delete-this-file (&optional path force-p)
   "Delete PATH.
 

@@ -63,6 +63,10 @@ If \"file.ext\" exists, returns \"file-0.ext\".
 Return a string with the contents of FILENAME.
 
 (fn FILENAME)")
+(autoload '+file-directories "../elisp/io" "\
+
+
+(fn DIR)")
 (autoload '+delete-this-file "../elisp/io" "\
 Delete PATH.
 
