@@ -115,13 +115,6 @@
              (derived-mode-p 'markdown-mode))
      (delete-trailing-whitespace))))
 
-(defun +toggle-auto-delete-trailing-whitespaces ()
-  "Toggle auto-deleting trailing whitespaces."
-  (interactive)
-  (if (member #'+save--delete-trailing-whitespace before-save-hook)
-      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace)
-    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace)))
-
 ;; Guess major mode when saving a file (adapted from Doom Emacs)
 (add-hook
  'after-save-hook

@@ -36,3 +36,12 @@ current buffer's, reload dir-locals."
            ((project-current) (expand-file-name dir-locals-file (project-root (project-current))))
            ((vc-root-dir) (expand-file-name dir-locals-file (vc-root-dir)))
            (t (expand-file-name dir-locals-file (file-name-directory file-name)))))))
+
+;; The hook is defined and enabled by default in `me-defaults'
+;;;###autoload
+(defun +toggle-auto-delete-trailing-whitespaces ()
+  "Toggle auto-deleting trailing whitespaces."
+  (interactive)
+  (if (member #'+save--delete-trailing-whitespace before-save-hook)
+      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace)
+    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace)))

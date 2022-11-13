@@ -44,6 +44,8 @@ current buffer's, reload dir-locals." t)
 (autoload '+dir-locals-enable-autoreload "../elisp/emacs")
 (autoload '+dir-locals-open-or-create "../elisp/emacs" "\
 Open or create the dir-locals.el for the current project." t)
+(autoload '+toggle-auto-delete-trailing-whitespaces "../elisp/emacs" "\
+Toggle auto-deleting trailing whitespaces." t)
 
 
 ;;; Generated autoloads from ../elisp/io.el
