@@ -105,6 +105,23 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
+;; Remove trailing whitespaces on save, for modes derived
+;; from `prog-mode', `org-mode' or `markdown-mode'
+(add-hook
+ 'before-save-hook
+ (defun +save--delete-trailing-whitespace ()
+   (when (or (derived-mode-p 'prog-mode)
+             (derived-mode-p 'org-mode)
+             (derived-mode-p 'markdown-mode))
+     (delete-trailing-whitespace))))
+
+(defun +toggle-auto-delete-trailing-whitespaces ()
+  "Toggle auto-deleting trailing whitespaces."
+  (interactive)
+  (if (member #'+save--delete-trailing-whitespace before-save-hook)
+      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace)
+    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace)))
+
 ;; Guess major mode when saving a file (adapted from Doom Emacs)
 (add-hook
  'after-save-hook
