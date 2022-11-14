@@ -3,6 +3,8 @@
 
 (defalias 'string-split #'split-string)
 
+(defalias 'loaddefs-generate #'make-directory-autoloads)
+
 (defmacro with-memoization (place &rest code)
   "Return the value of CODE and stash it in PLACE.
 If PLACE's value is non-nil, then don't bother evaluating CODE

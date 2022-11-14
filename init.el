@@ -145,11 +145,8 @@
                (seq-filter
                 #'file-directory-p
                 (directory-files-recursively dir ".*" t))))))
-    (if (<= emacs-major-version 28)
-        (make-directory-autoloads autoload-dirs
-                                  minemacs-autoloads-file)
-      (loaddefs-generate autoload-dirs
-                         minemacs-autoloads-file))))
+    (loaddefs-generate autoload-dirs
+                       minemacs-autoloads-file)))
 
 ;; Auto-loads
 (unless (file-exists-p minemacs-autoloads-file)
