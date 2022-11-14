@@ -129,7 +129,7 @@
   (when (file-exists-p minemacs-autoloads-file)
     (delete-file minemacs-autoloads-file))
 
-  (let ((autoload-dirs nil)) 
+  (let ((autoload-dirs nil))
     (dolist (dir (list minemacs-core-dir
                        minemacs-modules-dir
                        (concat minemacs-root-dir "elisp/")))
