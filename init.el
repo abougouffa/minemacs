@@ -49,6 +49,10 @@
 (add-to-list 'load-path (concat minemacs-root-dir "elisp/"))
 (add-to-list 'load-path (concat minemacs-modules-dir "extras/"))
 
+;; Load Emacs 29 backports for earlier Emacs versions
+(when (< emacs-major-version 29)
+  (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
+
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
 (add-hook
