@@ -7,6 +7,7 @@
 
 ;;; Better defaults
 (set-language-environment "UTF-8")
+(set-charset-priority 'unicode)
 (set-default-coding-systems 'utf-8)
 
 (setq
