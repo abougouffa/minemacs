@@ -220,6 +220,8 @@ or file path may exist now."
    ;; Display time in mode-line
    (display-time-mode 1)
 
+   ;; Replace selection after start typing
+   (delete-selection-mode 1)
 
    ;; Enable recentf-mode globally
    (recentf-mode 1)
