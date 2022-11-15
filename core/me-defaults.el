@@ -156,6 +156,8 @@
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
 
 ;; Remove trailing whitespaces on save, for modes derived
 ;; from `prog-mode', `org-mode' or `markdown-mode'
@@ -217,8 +219,6 @@ or file path may exist now."
    ;; Display time in mode-line
    (display-time-mode 1)
 
-   ;; Highlight current line
-   (global-hl-line-mode 1)
 
    ;; Enable recentf-mode globally
    (recentf-mode 1)
