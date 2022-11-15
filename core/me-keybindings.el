@@ -96,6 +96,7 @@
     "b"   '(nil :wk "buffer")
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
+    "bS"  #'save-some-buffers
     "bp"  #'project-switch-to-buffer
     "bK"  #'kill-some-buffers
     "bm"  #'bookmark-set
