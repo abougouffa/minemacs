@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
+
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
 (defconst MU4E-P (+all (list (executable-find "mu")
                              (executable-find "mbsync")
