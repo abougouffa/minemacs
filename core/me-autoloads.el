@@ -65,7 +65,7 @@ If \"file.ext\" exists, returns \"file-0.ext\".
 Return a string with the contents of FILENAME.
 
 (fn FILENAME)")
-(autoload '+file-directories "../elisp/io" "\
+(autoload '+directory-subdirs "../elisp/io" "\
 Return a list of sub-directories in DIR.
 
 (fn DIR)")

@@ -33,7 +33,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
       (buffer-string))))
 
 ;;;###autoload
-(defun +file-directories (dir)
+(defun +directory-subdirs (dir)
   "Return a list of sub-directories in DIR."
   (when dir
     (seq-filter #'file-directory-p
