@@ -100,6 +100,11 @@ Clean file name.
 (register-definition-prefixes "../elisp/io" '("+sudo-file-path"))
 
 
+;;; Generated autoloads from ../modules/me-backports-29.el
+
+(register-definition-prefixes "../modules/me-backports-29" '("loaddefs-generate" "string-split" "with-memoization"))
+
+
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme-tweaks"))
@@ -108,11 +113,6 @@ Clean file name.
 ;;; Generated autoloads from ../modules/me-daemon.el
 
 (register-definition-prefixes "../modules/me-daemon" '("+daemon--setup-background-apps"))
-
-
-;;; Generated autoloads from me-defaults.el
-
-(register-definition-prefixes "me-defaults" '("yes-or-no-p"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
@@ -247,6 +247,11 @@ Modified from `org-combine-plists'. This supposes the values to be vectors,
 and concatenate them.
 
 (fn &rest PLISTS)")
+(autoload '+plist-delete "../elisp/minemacs-core" "\
+Delete property PROP from PLIST.
+Adapted from `org-plist-delete'.
+
+(fn PLIST PROP)")
 (autoload '+serialize-sym "../elisp/minemacs-core" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
