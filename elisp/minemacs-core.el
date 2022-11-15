@@ -200,6 +200,30 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (lambda ()
       ,@body)))
 
+;; Adapted from `evil-unquote'
+;;;###autoload
+(defun +unquote (exp)
+  "Return EXP unquoted."
+  (declare (pure t) (side-effect-free t))
+  (while (memq (car-safe exp) '(quote function))
+    (setq exp (cadr exp)))
+  exp)
+
+;; Adapted from github.com/d12frosted/environment
+;;;###autoload
+(defmacro +hook-with-delay! (hook secs function &optional depth local)
+  "Add the FUNCTION to the value of HOOK.
+The FUNCTION is delayed to be evaluated in SECS once HOOK is
+triggered.
+DEPTH and LOCAL are passed as is to `add-hook'."
+  (let* ((f-name (make-symbol (format "%s-on-%s-delayed-%ds-h" (+unquote function) (+unquote hook) secs)))
+         (f-doc (format "Call `%s' in %d seconds" (symbol-name (+unquote function)) secs)))
+    `(progn
+       (eval-when-compile
+         (defun ,f-name () ,f-doc
+          (run-with-idle-timer ,secs nil ,function))
+         (add-hook ,hook #',f-name ,depth ,local)))))
+
 ;; Adapted from `doom-lib'
 ;;;###autoload
 (defun +compile-functs (&rest fns)

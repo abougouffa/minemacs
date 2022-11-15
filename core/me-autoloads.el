@@ -278,6 +278,19 @@ Queue FNS to be processed when Emacs becomes idle.
 Evaluate BODY when Emacs becomes idle.
 
 (fn &rest BODY)" nil t)
+(autoload '+unquote "../elisp/minemacs-core" "\
+Return EXP unquoted.
+
+(fn EXP)")
+(function-put '+unquote 'pure 't)
+(function-put '+unquote 'side-effect-free 't)
+(autoload '+hook-with-delay! "../elisp/minemacs-core" "\
+Add the FUNCTION to the value of HOOK.
+The FUNCTION is delayed to be evaluated in SECS once HOOK is
+triggered.
+DEPTH and LOCAL are passed as is to `add-hook'.
+
+(fn HOOK SECS FUNCTION &optional DEPTH LOCAL)" nil t)
 (autoload '+compile-functs "../elisp/minemacs-core" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
 
