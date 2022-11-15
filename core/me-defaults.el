@@ -5,100 +5,152 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; NOTE: Setting `font-lock-multiline' to 'undecided' org-mode to become unusable:
-;; Error during redisplay: (jit-lock-function 22138) signaled (args-out-of-range 0 16341)
-(setq-default font-lock-multiline nil)
-
 ;;; Better defaults
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(setq default-input-method nil)
 
-;;; Set files and directories for built-in packages
-(setq backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
-      auto-save-list-file-prefix (concat minemacs-local-dir "auto-save-list/"))
+(setq
+ ;; ====== Default behavior ======
+ ;; Do not ring
+ ring-bell-function 'ignore
+ ;; Increase the large file threshold to 50 MiB
+ large-file-warning-threshold (* 50 1024 1024)
+ ;; Initial scratch message (will be overriten if "fortune" is installed)
+ initial-scratch-message ";; MinEmacs -- start here!"
+ ;; Set initial buffer to fundamental-mode for faster load
+ initial-major-mode 'fundamental-mode
+ ;; Always prompt in minibuffer (no GUI)
+ use-dialog-box nil
+ ;; Use y or n istead of yes or no
+ use-short-answers t
+ ;; Confirm before quitting
+ confirm-kill-emacs 'y-or-n-p
+ ;; Filter duplicate entries in kill ring
+ kill-do-not-save-duplicates t
+ ;; Save existing clipboard text into the kill ring before replacing it.
+ save-interprogram-paste-before-kill t
+ ;; Save files only in subdirs of current project
+ save-some-buffers-default-predicate 'save-some-buffers-root
+ ;; Use single space between sentences
+ sentence-end-double-space nil
+ ;; Move stuff to trash
+ delete-by-moving-to-trash t
+ ;; Select help window to fastly quit!
+ help-window-select t
+ ;; More info on completions
+ completions-detailed t
+ ;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
+ ;; Use completing-read interface instead of definitions buffer
+ xref-show-definitions-function #'xref-show-definitions-completing-read
 
-(setq visible-bell nil ;; set to non-nil to flash!
-      ring-bell-function 'ignore
-      large-file-warning-threshold (* 50 1024 1024) ;; change to 50 MiB
-      use-short-answers t ;; y or n istead of yes or no
-      confirm-kill-emacs 'y-or-n-p ;; confirm before quitting
-      initial-scratch-message ";; MinEmacs -- start here!"
-      frame-resize-pixelwise t
-      delete-by-moving-to-trash t)
+ ;; ====== Default directories ======
+ ;; Default directory to save backups
+ backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
+ ;; Locally save backups for files edited via Trump
+ tramp-backup-directory-alist backup-directory-alist
+ ;; Prefix for auto saved files
+ auto-save-list-file-prefix (concat minemacs-local-dir "auto-save-list/")
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+ ;; ====== Aesthetics ======
+ ;; Set to non-nil to flash!
+ visible-bell nil
+ ;; Better unicode glyph for string truncate
+ truncate-string-ellipsis "…"
+ ;; Do force frame size to be a multiple of char size
+ frame-resize-pixelwise t
+ ;; Stretch cursor to the glyph width
+ x-stretch-cursor t
+ ;; Resize window combinations proportionally
+ window-combination-resize t
+ ;; Enable time in the mode-line
+ display-time-string-forms
+ '((propertize (concat 24-hours ":" minutes)))
 
-(setq auth-sources '("~/.authinfo.gpg") ;; Defaults to GPG
-      auth-source-do-cache t
-      auth-source-cache-expiry 86400 ; All day, defaut is 2h (7200)
-      password-cache t
-      password-cache-expiry 86400)
+ ;; ====== Authentication and encryption ======
+ ;; Default auth-sources to GPG
+ auth-sources '("~/.authinfo.gpg")
+ ;; Enable caching, do not keep asking about GPG key
+ auth-source-do-cache t
+ ;; All day, default is 2h (7200)
+ auth-source-cache-expiry 86400
+ ;; Enable password caching
+ password-cache t
+ ;; One minute, default is 16
+ password-cache-expiry 60
 
-;;; Undo
-(setq undo-limit        10000000 ;; 1MB (default is 160kB)
-      undo-strong-limit 100000000 ;; 100MB (default is 240kB)
-      undo-outer-limit  1000000000) ;; 1GB (default is 24MB)
+ ;; ====== Undo ======
+ ;; 1MB (default is 160kB)
+ undo-limit 10000000
+ ;; 100MB (default is 240kB)
+ undo-strong-limit 100000000
+ ;; 1GB (default is 24MB)
+ undo-outer-limit 1000000000
 
-;;; Editing
-(setq display-line-numbers-type 'relative
-      tab-always-indent nil
-      whitespace-action '(cleanup auto-cleanup))
+ ;; ====== Editing ======
+ ;; Relative line numbering
+ display-line-numbers-type 'relative
+ ;; Hitting TAB behavior
+ tab-always-indent nil
+ ;; Default behavior for `whitespace-cleanup'
+ whitespace-action '(cleanup auto-cleanup)
 
-(setq-default truncate-lines nil
-              fill-column 80
-              indent-tabs-mode nil
-              display-line-numbers-width 3
-              tab-width 2)
+ ;; ====== Backups ======
+ ;; Disable backup and lockfiles
+ create-lockfiles nil
+ ;; Disable making backup files
+ make-backup-files nil
+ ;; Number each backup file
+ version-control t
+ ;; Copy instead of renaming current file
+ backup-by-copying t
+ ;; Clean up after itself
+ delete-old-versions t
+ ;; Keep up to 5 old versions of each file
+ kept-old-versions 5
+ ;; Keep up to 5 new versions of each file
+ kept-new-versions 5
 
-;;; Backups
-;; Disable backup and lockfiles
-(setq create-lockfiles nil
-      make-backup-files nil
-      version-control t ;; number each backup file
-      backup-by-copying t ;; copy instead of renaming current file
-      delete-old-versions t ;; clean up after itself
-      kept-old-versions 5
-      kept-new-versions 5
-      tramp-backup-directory-alist backup-directory-alist)
+ ;; ====== Scrolling ======
+ ;; Do not adjust window-vscroll to view tall lines
+ auto-window-vscroll nil
+ ;; Fast scrolling
+ fast-but-imprecise-scrolling t
+ ;; Keep the point in the same position while scrolling
+ scroll-preserve-screen-position t
 
-;;; Auto-Saving, sessions...
-;; Enable auto-save (use `recover-file' or `recover-session' to recover)
-(setq auto-save-default t
-      auto-save-include-big-deletions t
-      auto-save-file-name-transforms
-      (list (list "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
-                  ;; Prefix tramp autosaves to prevent conflicts with local ones
-                  (concat auto-save-list-file-prefix "tramp-\\2") t)
-            (list ".*" auto-save-list-file-prefix t)))
+ ;; ====== Recent files ======
+ ;; Increase the maximum number of saved items
+ recentf-max-saved-items 100
 
-(setq sentence-end-double-space nil)
+ ;; ====== Auto-Saving, sessions ======
+ ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
+ auto-save-default t
+ ;; Include big deletions
+ auto-save-include-big-deletions t
+ ;; Set file naming transform
+ auto-save-file-name-transforms
+ (list (list "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
+             ;; Prefix tramp autosaves to prevent conflicts with local ones
+             (concat auto-save-list-file-prefix "tramp-\\2") t)
+       (list ".*" auto-save-list-file-prefix t)))
 
-;; Buffer -- scrolling
-;; Do not scroll to the center when point exceeds the beginning/end of buffer.
-(setq-default scroll-up-aggressively 0.01
-              scroll-down-aggressively 0.01)
+(setq-default
+ ;; ====== Editing ======
+ ;; Display long lines
+ truncate-lines nil
+ ;; Default fill column width
+ fill-column 80
+ ;; Never mix, use only spaces
+ indent-tabs-mode nil
+ ;; Width for line numbers
+ display-line-numbers-width 4
+ ;; Small tab is enough!
+ tab-width 2
 
-;;; Windwo -- scrolling
-(setq auto-window-vscroll nil
-      fast-but-imprecise-scrolling t)
-
-;;; Windwo -- resize
-(setq window-combination-resize t)
-
-;; Stretch cursor to the glyph width
-(setq x-stretch-cursor t)
-
-(setq recentf-max-saved-items 100)
-
-;; Mode-line stuff
-;; Enable time in the mode-line
-(setq display-time-string-forms
-      '((propertize (concat 24-hours ":" minutes))))
-
-;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
-;; Use completing-read interface instead of definitions buffer
-(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+ ;; ======= Scrolling =======
+ ;; Do not scroll to the center when point exceeds the beginning/end of buffer.
+ scroll-up-aggressively 0.01
+ scroll-down-aggressively 0.01)
 
 ;;; Enable global modes
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)

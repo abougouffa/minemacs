@@ -5,12 +5,8 @@
 ;; This will be overriten when `gcmh' is loaded
 (setq gc-cons-threshold (* 1 1024 1024 1024)) ;; 1GB
 
-;;; Emacs lisp source/compiled preference
 ;; Prefer loading newest compiled .el file
-(customize-set-variable 'load-prefer-newer noninteractive)
-
-;; Make the initial buffer load faster by setting its mode to fundamental-mode
-(customize-set-variable 'initial-major-mode 'fundamental-mode)
+(setq load-prefer-newer t)
 
 ;;; UI configuration
 ;; Remove some unneeded UI elements
