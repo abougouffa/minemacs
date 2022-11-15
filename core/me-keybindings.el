@@ -60,7 +60,7 @@
     :states '(normal motion visual))
 
   (+map
-    ;; Top level functions
+    ;; ====== Top level functions ======
     "TAB" '(switch-to-next-buffer :wk "Next buffer")
     "<backtab>" '(switch-to-prev-buffer :wk "Previous buffer")
     "SPC" '(execute-extended-command :wk "M-x")
@@ -70,14 +70,14 @@
     "."   #'find-file
     "u"   '(universal-argument :wk "C-u")
 
-    ;; Quit/Session
+    ;; ====== Quit/Session ======
     "q"   '(nil :wk "quit/session")
     "qq"  #'save-buffers-kill-terminal
     "qQ"  #'kill-emacs
     "qs"  #'server-start
     "qR"  #'recover-session
 
-    ;; Files
+    ;; ====== Files ======
     "f"   '(nil :wk "file")
     "fS"  '(write-file :wk "Save as ...")
     "fD"  #'+delete-this-file
@@ -92,7 +92,7 @@
     "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
             :wk "User config directory")
 
-    ;; Buffers
+    ;; ====== Buffers ======
     "b"   '(nil :wk "buffer")
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
@@ -118,12 +118,12 @@
     "bvrr" '(+dir-locals-reload-for-this-buffer :wk "This buffer")
     "bvrd" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "All buffers in this directory")
 
-    ;; Insert
+    ;; ====== Insert ======
     "i"   '(nil :wk "insert")
     "iu"  '(insert-char :wk "Unicode char")
     "ie"  `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
 
-    ;; Window
+    ;; ====== Window ======
     "w"   '(nil :wk "window")
     "ww"  '(evil-window-next :wk "Next")
     "wW"  '(evil-window-prev :wk "Previous")
@@ -139,20 +139,20 @@
     "wu"  #'winner-undo
     "wU"  #'winner-redo
 
-    ;; Applications (Open)
+    ;; ====== Applications (Open) ======
     "o"   '(nil   :wk "app/open")
     "o-"  '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
 
-    ;; Search
+    ;; ====== Search ======
     "s"   '(nil :wk "search")
 
-    ;; Mode specific a.k.a. "local leader"
+    ;; ======  Mode specific a.k.a. "local leader" ======
     "m"   '(nil :wk "mode-specific")
 
-    ;; VC
+    ;; ====== VC ======
     "g"   '(nil :wk "git/vc")
 
-    ;; Toggle
+    ;; ====== Toggle ======
     "t"   '(nil :wk "toggle")
     "td"  '(toggle-debug-on-error :wk "Debug on error")
     "tr"  #'read-only-mode
@@ -160,19 +160,19 @@
     "tM"  '(+messages-auto-tail-toggle :wk "Auto-tail *Messages*")
     "tV"  '(netextender-toggle :wk "NetExtender")
 
-    ;; Code
+    ;; ====== Code ======
     "c"   '(nil :wk "code")
 
-    ;; Workspaces TODO
-    "r"   '(nil :wk "workspace") ;; TODO (using tab-bar-mode and tab-line-mode)
+    ;; ====== Workspaces ======
+    "r"   '(nil :wk "workspace") ;; TODO (use tab-bar-mode and tab-line-mode)
 
-    ;; Notes
+    ;; ====== Notes ======
     "n"   '(nil :wk "notes")
 
-    ;; Help
+    ;; ====== Help ======
     "h"   '(nil :wk "help")
 
-    ;; Project
+    ;; ====== Project ======
     "p"   '(nil :wk "project")
     "pp"  '(project-switch-project :wk "Switch")
     "pc"  '(project-compile :wk "Compile")
