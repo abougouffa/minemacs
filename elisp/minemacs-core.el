@@ -100,6 +100,17 @@ and concatenate them."
     res))
 
 ;;;###autoload
+(defun +plist-delete (plist prop)
+  "Delete property PROP from PLIST.
+Adapted from `org-plist-delete'."
+  (let (p)
+    (while plist
+      (if (not (eq prop (car plist)))
+          (setq p (plist-put p (car plist) (nth 1 plist))))
+      (setq plist (cddr plist)))
+    p))
+
+;;;###autoload
 (defun +serialize-sym (sym dir &optional filename-format)
   "Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
