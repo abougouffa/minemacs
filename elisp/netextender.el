@@ -7,6 +7,7 @@
 
 
 (defun netextender-check-system ()
+  "Return non-nil if system setup is OK."
   (let ((pppd-modes (file-modes "/usr/sbin/pppd")))
     (if (executable-find (car netextender-command))
         ;; pppd must be run as root (via setuid)
