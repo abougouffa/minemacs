@@ -8,15 +8,16 @@
 
 (defun netextender-check-system ()
   "Return non-nil if system setup is OK."
-  (let ((pppd-modes (file-modes "/usr/sbin/pppd")))
+  (let* ((pppd-command "/usr/sbin/pppd")
+         (pppd-modes (file-modes pppd-command)))
     (if (executable-find (car netextender-command))
         ;; pppd must be run as root (via setuid)
         (if (and pppd-modes (zerop (logand (lsh 1 11) pppd-modes))) ;; Check if the setuid bit isn't set
             (prog1 nil ;; return nil
-              (message "pppd needs to be run as root, please set the setuid bit of /use/sbin/pppd."))
+              (message "pppd needs root permissions, please set the setuid bit of %s." pppd-command))
           t)
       (prog1 nil ;; return nil
-        (message "The custom netExtender command %s is not found!" (car netextender-command))))))
+        (message "The custom NetExtender command %s is not found!" (car netextender-command))))))
 
 
 ;;;###autoload
@@ -28,18 +29,21 @@
         (if (make-process :name netextender-process-name
                           :buffer netextender-buffer-name
                           :command netextender-command)
-            (message "Started NetExtender VPN session")
-          (user-error "Cannot start NetExtender")))
+            (message "Started NetExtender VPN session.")
+          (user-error "Cannot start NetExtender.")))
     (user-error "Cannot start a netExtender VPN session.")))
 
 
 (defun netextender-kill ()
   "Kill the created NetExtender VPN session."
   (interactive)
-  (when (get-process netextender-process-name)
-    (if (kill-buffer netextender-buffer-name)
-        (message "Killed NetExtender VPN session")
-      (user-error "Cannot kill NetExtender"))))
+  (let ((netextender-process (get-process netextender-process-name)))
+    (if netextender-process
+        (if (kill-process netextender-process)
+            (message "Killed NetExtender VPN session.")
+          (user-error "Cannot kill NetExtender."))
+      (message "No running NetExtender session."))))
+
 
 
 ;;;###autoload
