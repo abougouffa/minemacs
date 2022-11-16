@@ -205,45 +205,45 @@ or file path may exist now."
      (unless (or (equal "Battery status not available" battery-str)
                  (string-match-p "unknown" battery-str)
                  (string-match-p "N/A" battery-str))
-       (display-battery-mode 1)))
+       (display-battery-mode 1))))
 
-   ;; Scroll pixel by pixel
-   (pixel-scroll-mode 1)
+  ;; Scroll pixel by pixel
+  (pixel-scroll-mode 1)
 
-   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
-   (winner-mode 1)
+  ;; Window layout undo/redo (`winner-undo' / `winner-redo')
+  (winner-mode 1)
 
-   ;; Precision scroll
-   (when (>= emacs-major-version 29)
-     (pixel-scroll-precision-mode 1))
+  ;; Precision scroll
+  (when (>= emacs-major-version 29)
+    (pixel-scroll-precision-mode 1))
 
-   ;; Display time in mode-line
-   (display-time-mode 1)
+  ;; Display time in mode-line
+  (display-time-mode 1)
 
-   ;; Replace selection after start typing
-   (delete-selection-mode 1)
+  ;; Replace selection after start typing
+  (delete-selection-mode 1)
 
-   ;; Enable recentf-mode globally
-   (recentf-mode 1)
+  ;; Enable recentf-mode globally
+  (recentf-mode 1)
 
-   ;; Save place in files
-   (save-place-mode 1)
+  ;; Save place in files
+  (save-place-mode 1)
 
-   ;; Enable saving minibuffer history
-   (savehist-mode 1)
+  ;; Enable saving minibuffer history
+  (savehist-mode 1)
 
-   ;; Show line and column numbers (cursor position) in mode-line
-   (line-number-mode 1)
-   (column-number-mode 1)
+  ;; Show line and column numbers (cursor position) in mode-line
+  (line-number-mode 1)
+  (column-number-mode 1)
 
-   ;; Wrap long lines
-   (global-visual-line-mode 1)
+  ;; Wrap long lines
+  (global-visual-line-mode 1)
 
-   ;; Better handling for files with so long lines
-   (global-so-long-mode 1)
+  ;; Better handling for files with so long lines
+  (global-so-long-mode 1)
 
-   ;; Global SubWord mode
-   (global-subword-mode 1)))
+  ;; Global SubWord mode
+  (global-subword-mode 1))
 
 
 (provide 'me-defaults)
