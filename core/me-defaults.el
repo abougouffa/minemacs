@@ -123,6 +123,7 @@
  ;; ====== Recent files ======
  ;; Increase the maximum number of saved items
  recentf-max-saved-items 100
+ recentf-case-fold-search t
 
  ;; ====== Compilation ======
  ;; Scroll compilation buffer until first error
