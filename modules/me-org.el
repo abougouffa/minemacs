@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package org
-  :straight (:host sourcehut :repo "bzg/org-mode")
+  :straight (:type built-in)
   :after minemacs-loaded ;; load Org after finishing Emacs startup
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
