@@ -107,7 +107,7 @@ Clean file name.
 
 ;;; Generated autoloads from me-core-ui.el
 
-(register-definition-prefixes "me-core-ui" '("+theme-tweaks"))
+(register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
 
 
 ;;; Generated autoloads from ../modules/me-daemon.el

@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(defun +theme-tweaks (&rest _args)
+(defun +theme--tweaks-h (&rest _args)
   (when (display-graphic-p)
     (set-face-attribute
      'line-number nil
@@ -18,14 +18,21 @@
      :weight 'bold)))
 
 ;; Apply tweaks
-(add-hook 'after-init-hook #'+theme-tweaks)
-(add-hook 'enable-theme-functions #'+theme-tweaks)
+(add-hook 'after-init-hook #'+theme--tweaks-h)
+(add-hook 'enable-theme-functions #'+theme--tweaks-h)
 
 ;; Save enabled theme
 (add-hook
  'enable-theme-functions
  (defun +theme--save-enabled-theme-h (theme)
    (setq minemacs-theme theme)))
+
+;; Disable previously enabled custom themes before enabling a new one.
+(advice-add
+ 'load-theme :before
+ (defun +theme--disable-previous-themes-a (&rest _)
+   (mapc #'disable-theme custom-enabled-themes)))
+
 
 ;; Icons
 (use-package all-the-icons
@@ -49,7 +56,7 @@
   :custom
   (modus-themes-hl-line '(accented intense))
   (modus-themes-subtle-line-numbers t)
-  (modus-themes-region '(bg-only no-extend accented)) ;; 
+  (modus-themes-region '(bg-only no-extend accented)) ;;
   (modus-themes-variable-pitch-ui nil)
   (modus-themes-fringes nil)
   (modus-themes-diffs nil)
