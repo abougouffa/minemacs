@@ -51,6 +51,8 @@
  tramp-backup-directory-alist backup-directory-alist
  ;; Prefix for auto saved files
  auto-save-list-file-prefix (concat minemacs-local-dir "auto-save-list/")
+ ;; Abbrev definitions file
+ abbrev-file-name (concat minemacs-local-dir "abbrev-defs")
 
  ;; ====== Aesthetics ======
  ;; Set to non-nil to flash!
