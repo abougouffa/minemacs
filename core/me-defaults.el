@@ -66,8 +66,7 @@
  ;; Resize window combinations proportionally
  window-combination-resize t
  ;; Enable time in the mode-line
- display-time-string-forms
- '((propertize (concat 24-hours ":" minutes)))
+ display-time-string-forms '((propertize (concat 24-hours ":" minutes)))
 
  ;; ====== Authentication and encryption ======
  ;; Default auth-sources to GPG
@@ -139,11 +138,13 @@
  ;; Include big deletions
  auto-save-include-big-deletions t
  ;; Set file naming transform
- auto-save-file-name-transforms
- (list (list "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
-             ;; Prefix tramp autosaves to prevent conflicts with local ones
-             (concat auto-save-list-file-prefix "tramp-\\2") t)
-       (list ".*" auto-save-list-file-prefix t)))
+ auto-save-file-name-transforms (list
+                                 ;; Prefix tramp autosaves with "tramp-"
+                                 (list
+                                  "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
+                                  (concat auto-save-list-file-prefix "tramp-\\2") t)
+                                 ;; Local autosaves
+                                 (list ".*" auto-save-list-file-prefix t)))
 
 (setq-default
  ;; ====== Editing ======
