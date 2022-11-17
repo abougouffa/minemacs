@@ -123,6 +123,14 @@
  ;; Increase the maximum number of saved items
  recentf-max-saved-items 100
 
+ ;; ====== Compilation ======
+ ;; Scroll compilation buffer until first error
+ compilation-scroll-output 'first-error
+ ;; Don't need enter
+ compilation-read-command nil
+ ;; Keep it readable
+ compilation-window-height 12
+
  ;; ====== Auto-Saving, sessions ======
  ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
  auto-save-default t
