@@ -70,14 +70,16 @@
    ;; Print load time, and a quote to *scratch*
    (with-current-buffer "*scratch*"
      (erase-buffer)
-     (insert (format ";; Loaded MinEmacs in %.3f seconds.\n"
+     (insert (format ";; MinEmacs loaded in %.3f seconds.\n"
                      (string-to-number (car (string-split (emacs-init-time))))))
      (insert ";; ==============================\n")
      (when (executable-find "fortune")
        (insert (string-join
                 (mapcar (lambda (l) (concat ";; " l))
                         (string-lines (shell-command-to-string "fortune")))
-                "\n"))))
+                "\n")))
+     ;; Set initial scratch message.
+     (setq initial-scratch-message (buffer-string)))
 
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
