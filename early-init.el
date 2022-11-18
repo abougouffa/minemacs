@@ -9,8 +9,11 @@
 (setq load-prefer-newer t)
 
 ;;; UI configuration
+;; Inhibit startup messages
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+
 ;; Remove some unneeded UI elements
-(setq inhibit-startup-message t)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
