@@ -21,7 +21,7 @@
 ;; (setq source-directory "~/Sources/emacs-git/")
 
 ;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
-;; (setq browse-url-chrome-program "brave")
+;; (setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
 
 ;; Module: `me-natural-langs' -- Package: `spell-fu'
 (with-eval-after-load 'spell-fu
@@ -101,6 +101,26 @@
         '(("r" "ref" plain "%?"
            :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
            :unnarrowed t))))
+
+;; Module: `me-media' -- Package: `empv'
+(with-eval-after-load 'empv
+  ;; Set the radio channels, you can get streams from https://www.radio-browser.info
+  (setq empv-radio-channels
+        '(("El-Bahdja FM" . "http://webradio.tda.dz:8001/ElBahdja_64K.mp3")
+          ("El-Chaabia" . "https://radio-dzair.net/proxy/chaabia?mp=/stream")
+          ("Quran Radio" . "http://stream.radiojar.com/0tpy1h0kxtzuv")
+          ("Algeria International" . "https://webradio.tda.dz/Internationale_64K.mp3")
+          ("JOW Radio" . "https://str0.creacast.com/jowradio")
+          ("Europe1" . "http://ais-live.cloud-services.paris:8000/europe1.mp3")
+          ("France Iter" . "http://direct.franceinter.fr/live/franceinter-hifi.aac")
+          ("France Info" . "http://direct.franceinfo.fr/live/franceinfo-hifi.aac")
+          ("France Culture" . "http://icecast.radiofrance.fr/franceculture-hifi.aac")
+          ("France Musique" . "http://icecast.radiofrance.fr/francemusique-hifi.aac")
+          ("FIP" . "http://icecast.radiofrance.fr/fip-hifi.aac")
+          ("Beur FM" . "http://broadcast.infomaniak.ch/beurfm-high.aac")
+          ("Skyrock" . "http://icecast.skyrock.net/s/natio_mp3_128k"))
+        ;; See https://docs.invidious.io/instances/
+        empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1"))
 
 ;; Module: `me-ros' -- Package: `ros'
 (with-eval-after-load 'ros
