@@ -176,10 +176,14 @@
  scroll-up-aggressively 0.01
  scroll-down-aggressively 0.01)
 
-;;; Enable global modes
+;;; Enable `display-line-numbers-mode' in `prog-mode' and `text-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
+
+;;; Enable hide/show `hs-minor-mode' in `prog-mode'
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
+;; Highlight the current line in `prog-mode' and `text-mode'
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'text-mode-hook #'hl-line-mode)
 
