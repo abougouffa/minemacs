@@ -7,7 +7,7 @@
   :straight (:host github :repo "isamert/empv.el")
   :when MPV-P
   :general
-  (+map 
+  (+map
     "ov"  '(nil :wk "empv")
     "ovp" '(empv-play :wk "Play")
     "ovy" '(consult-empv-youtube :wk "Seach Youtube")
@@ -21,21 +21,6 @@
   (empv-max-directory-search-depth 6)
   (empv-radio-log-file (expand-file-name "logged-radio-songs.org" org-directory))
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
-  ;; Links from https://www.radio-browser.info
-  (empv-radio-channels
-   '(("El-Bahdja FM" . "http://webradio.tda.dz:8001/ElBahdja_64K.mp3")
-     ("El-Chaabia" . "https://radio-dzair.net/proxy/chaabia?mp=/stream")
-     ("Quran Radio" . "http://stream.radiojar.com/0tpy1h0kxtzuv")
-     ("Algeria International" . "https://webradio.tda.dz/Internationale_64K.mp3")
-     ("JOW Radio" . "https://str0.creacast.com/jowradio")
-     ("Europe1" . "http://ais-live.cloud-services.paris:8000/europe1.mp3")
-     ("France Iter" . "http://direct.franceinter.fr/live/franceinter-hifi.aac")
-     ("France Info" . "http://direct.franceinfo.fr/live/franceinfo-midfi.mp3")
-     ("France Culture" . "http://icecast.radiofrance.fr/franceculture-hifi.aac")
-     ("France Musique" . "http://icecast.radiofrance.fr/francemusique-hifi.aac")
-     ("FIP" . "http://icecast.radiofrance.fr/fip-hifi.aac")
-     ("Beur FM" . "http://broadcast.infomaniak.ch/beurfm-high.aac")
-     ("Skyrock" . "http://icecast.skyrock.net/s/natio_mp3_128k")))
   :config
   (defun +empv--dl-playlist (playlist &optional dist)
     (let ((default-directory
