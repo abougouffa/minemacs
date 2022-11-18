@@ -70,6 +70,8 @@
  window-combination-resize t
  ;; Enable time in the mode-line
  display-time-string-forms '((propertize (concat 24-hours ":" minutes)))
+ ;; Relative line numbering
+ display-line-numbers-type 'relative
 
  ;; ====== Authentication and encryption ======
  ;; Default auth-sources to GPG
@@ -92,8 +94,6 @@
  undo-outer-limit 1000000000
 
  ;; ====== Editing ======
- ;; Relative line numbering
- display-line-numbers-type 'relative
  ;; Hitting TAB behavior
  tab-always-indent nil
  ;; Default behavior for `whitespace-cleanup'
@@ -170,6 +170,8 @@
  display-line-numbers-width 4
  ;; Small tab is enough!
  tab-width 2
+ ;; End files with newline
+ require-final-newline t
 
  ;; ======= Scrolling =======
  ;; Do not scroll to the center when point exceeds the beginning/end of buffer.
