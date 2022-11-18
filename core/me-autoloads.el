@@ -297,7 +297,6 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (fn &rest FNS)")
 (autoload '+env-save "../elisp/minemacs-core" nil t)
 (autoload '+env-load "../elisp/minemacs-core" nil t)
-(autoload 'minemacs-update "../elisp/minemacs-core" nil t)
 (register-definition-prefixes "../elisp/minemacs-core" '("+eval-when-idle--task-num"))
 
 

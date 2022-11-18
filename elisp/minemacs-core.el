@@ -272,9 +272,3 @@ DEPTH and LOCAL are passed as is to `add-hook'."
     (with-temp-buffer
       (insert-file env-file)
       (eval-buffer))))
-
-;;;###autoload
-(defun minemacs-update ()
-  (interactive)
-  (straight-pull-all)
-  (straight-check-all))
