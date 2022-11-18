@@ -136,6 +136,14 @@
  ;; Keep it readable
  compilation-window-height 12
 
+ ;; ====== Timestamps ======
+ ;; Do enable time-stamps
+ time-stamp-active t
+ ;; Check the first 12 buffer lines for Time-stamp: <>
+ time-stamp-line-limit 12
+ ;; Timestamp format
+ time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"
+
  ;; ====== Auto-Saving, sessions ======
  ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
  auto-save-default t
@@ -174,6 +182,9 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'text-mode-hook #'hl-line-mode)
+
+;; Update time stamp when saving a file
+(add-hook 'before-save-hook 'time-stamp)
 
 ;; Remove trailing whitespaces on save, for modes derived
 ;; from `prog-mode', `org-mode' or `markdown-mode'
