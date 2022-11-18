@@ -152,6 +152,11 @@
   :after org)
 
 
+(use-package ox-hugo
+  :straight t
+  :after org)
+
+
 (use-package ox-extra
   :after org
   :config
