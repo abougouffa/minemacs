@@ -26,6 +26,7 @@
   (mu4e-sent-messages-behavior 'sent) ;; Will be overwritten for Gmail accounts
   (mu4e-get-mail-command "mbsync -a") ;; Use mbsync to get mails
   (mu4e-index-update-error-warning nil) ;; Do not show warning after update
+  (mu4e-hide-index-messages t) ;; Hide minibuffer messages after indexing
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read) ;; Use `vertico' instead of `ido'
   (sendmail-program (executable-find "msmtp")) ;; Use msmtp to send mails
