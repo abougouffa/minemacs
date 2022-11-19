@@ -15,7 +15,6 @@
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :init
   (+map "om" '(mu4e :wk "Mu4e"))
-  (defvar mu4e-main-hide-personal-addresses t)
   :custom
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
@@ -27,7 +26,6 @@
   (mu4e-sent-messages-behavior 'sent) ;; Will be overwritten for Gmail accounts
   (mu4e-get-mail-command "mbsync -a") ;; Use mbsync to get mails
   (mu4e-index-update-error-warning nil) ;; Do not show warning after update
-  (mu4e-main-hide-personal-addresses t) ;; No need to display a long list of my own addresses!
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read) ;; Use `vertico' instead of `ido'
   (sendmail-program (executable-find "msmtp")) ;; Use msmtp to send mails
@@ -43,6 +41,9 @@
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
   :config
+  ;; No need to display a long list of my own addresses!
+  (setq mu4e-main-hide-personal-addresses t)
+
   (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
