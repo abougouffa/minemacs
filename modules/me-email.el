@@ -3,10 +3,10 @@
 (add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
-(defconst MU4E-P (+all (list (executable-find "mu")
-                             (executable-find "mbsync")
-                             (executable-find "msmtp")
-                             (file-directory-p MU4E-LOAD-PATH))))
+(defconst MU4E-P (and (executable-find "mu")
+                      (executable-find "msmtp")
+                      (executable-find "mbsync")
+                      (file-directory-p MU4E-LOAD-PATH)))
 
 (use-package mu4e
   :when MU4E-P
