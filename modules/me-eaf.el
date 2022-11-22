@@ -68,16 +68,14 @@
   (eaf-browser-aria2-auto-file-renaming t)
   :config
   ;; Apps
-  (unless (require 'eaf-browser nil t)
-    (eaf-install-and-update)
-    (require 'eaf-browser))
-  (require 'eaf-jupyter)
-  (require 'eaf-mindmap)
-  (require 'eaf-file-sender)
-  (require 'eaf-video-player)
+  (require 'eaf-browser nil t)
+  (require 'eaf-jupyter nil t)
+  (require 'eaf-mindmap nil t)
+  (require 'eaf-file-sender nil t)
+  (require 'eaf-video-player nil t)
 
   (defun +eaf-all-the-icons--setup ()
-    (require 'eaf-all-the-icons)
+    (require 'eaf-all-the-icons nil t)
     (mapc (lambda (v) (eaf-all-the-icons-icon (car v)))
           eaf-all-the-icons-alist))
 
