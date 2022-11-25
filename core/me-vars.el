@@ -41,6 +41,7 @@
   (defconst feat/modules (not (null (member "MODULES" feats))))
   (defconst feat/harfbuzz (not (null (member "HARFBUZZ" feats))))
   (defconst feat/xwidgets (not (null (member "XWIDGETS" feats))))
+  (defconst feat/treesitter (not (null (member "TREE_SITTER" feats))))
   (defconst feat/nativecomp (not (null (member "NATIVE_COMP" feats)))))
 
 (defcustom minemacs-after-startup-hook nil
