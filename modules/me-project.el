@@ -10,11 +10,8 @@
     ;; Buffer
     "bp"  #'projectile-switch-to-buffer
     ;; Project
-    "pp"  '(projectile-switch-project :wk "Switch")
-    "pP"  '(projectile-add-known-project :wk "Add")
+    "pa"  '(projectile-add-known-project :wk "Add")
     "pc"  '(projectile-compile-project :wk "Compile")
-    "pd"  '(projectile-find-dir :wk "Find directory")
-    "pf"  '(projectile-find-file :wk "Find file")
     "pD"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
     ;; Forget
     "pF"  '(nil :wk "Forget")
@@ -48,6 +45,17 @@
   ;; inhibit this cleanup process at startup (see bbatsov/projectile#1649).
   (cl-letf (((symbol-function 'projectile--cleanup-known-projects) #'ignore))
     (projectile-mode +1)))
+
+
+(use-package consult-projectile
+  :straight t
+  :general
+  (+map
+    "pp"  #'consult-projectile
+    "pP"  '(consult-projectile-switch-project :wk "Switch")
+    "pr"  #'consult-projectile-recentf
+    "pd"  '(consult-projectile-find-dir :wk "Find directory")
+    "pf"  '(consult-projectile-find-file :wk "Find file")))
 
 
 ;; Use keybindings for built-in project.el
