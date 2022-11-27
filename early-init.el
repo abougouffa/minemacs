@@ -1,17 +1,18 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
 
-;;; Garbage collection
-;; Increase the GC threshold for faster startup
-;; This will be overriten when `gcmh' is loaded
-(setq gc-cons-threshold (* 1 1024 1024 1024)) ;; 1GB
+(setq
+ ;; Garbage collection
+ ;; Increase the GC threshold for faster startup
+ ;; This will be overriten when `gcmh' is loaded
+ gc-cons-threshold (* 1 1024 1024 1024) ;; 1GB
 
-;; Prefer loading newest compiled .el file
-(setq load-prefer-newer t)
+ ;; Prefer loading newest compiled .el file
+ load-prefer-newer t
 
-;;; UI configuration
-;; Inhibit startup messages
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
+ ;; Inhibit startup messages
+ inhibit-startup-message t
+ ;; Inhibit startup message in echo area
+ inhibit-startup-echo-area-message t)
 
 ;; Remove some unneeded UI elements
 (push '(tool-bar-lines . 0) default-frame-alist)
