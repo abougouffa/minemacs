@@ -173,23 +173,7 @@
     "h"   '(nil :wk "help")
 
     ;; ====== Project ======
-    "p"   '(nil :wk "project")
-    "pp"  '(project-switch-project :wk "Switch")
-    "pc"  '(project-compile :wk "Compile")
-    "pd"  '(project-find-dir :wk "Find directory")
-    "pf"  '(project-find-file :wk "Find file")
-    "pD"  '(+dir-locals-open-or-create :wk "Open/create dir-locals file")
-    ;; Forget
-    "pF"  '(nil :wk "Forget")
-    "pFz" '(project-forget-zombie-projects :wk "Zombie projects")
-    "pFp" '(project-forget-project :wk "Project")
-    "pFu" '(project-forget-projects-under :wk "Projects under...")
-    ;; Search/replace
-    "ps"  '(nil :wk "Search/replace")
-    "pss" '(project-search :wk "Search")
-    "psn" '(fileloop-continue :wk "Next match")
-    "psr" #'project-query-replace-regexp
-    "psf" #'project-find-regexp))
+    "p"   '(nil :wk "project")))
 
 
 (use-package hydra
