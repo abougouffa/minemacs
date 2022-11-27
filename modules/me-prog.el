@@ -27,7 +27,11 @@
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
-  :defer t
+  :hook ((c++-mode
+          c-mode
+          python-mode
+          rust-mode
+          cmake-mode) . eglot-ensure)
   :init
   (+map
     "cF"  '(eglot-format-buffer :wk "Format buffer (eglot)")
