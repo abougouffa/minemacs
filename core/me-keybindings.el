@@ -65,7 +65,6 @@
     "<backtab>" '(switch-to-prev-buffer :wk "Previous buffer")
     "SPC" '(execute-extended-command :wk "M-x")
     ";"   '(pp-eval-expression :wk "Eval expression")
-    ":"   #'project-find-file
     "X"   #'org-capture
     "."   #'find-file
     "u"   '(universal-argument :wk "C-u")
@@ -97,7 +96,6 @@
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
     "bS"  #'save-some-buffers
-    "bp"  #'project-switch-to-buffer
     "bK"  #'kill-some-buffers
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete

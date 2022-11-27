@@ -6,6 +6,10 @@
   :after minemacs-loaded
   :general
   (+map
+    ":"   #'projectile-find-file
+    ;; Buffer
+    "bp"  #'projectile-switch-to-buffer
+    ;; Project
     "pp"  '(projectile-switch-project :wk "Switch")
     "pP"  '(projectile-add-known-project :wk "Add")
     "pc"  '(projectile-compile-project :wk "Compile")
@@ -49,6 +53,10 @@
 ;; Use keybindings for built-in project.el
 (unless t
   (+map
+    ":"   #'project-find-file
+    ;; Buffer
+    "bp"  #'project-switch-to-buffer
+    ;; Project
     "pp"  '(project-switch-project :wk "Switch")
     "pc"  '(project-compile :wk "Compile")
     "pd"  '(project-find-dir :wk "Find directory")
