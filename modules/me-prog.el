@@ -25,7 +25,7 @@
 
 
 (use-package ts-fold
-  :straight (ts-fold-indicators :type git :host github :repo "emacs-tree-sitter/ts-fold")
+  :straight (:type git :host github :repo "emacs-tree-sitter/ts-fold")
   :hook (prog-mode . +ts-fold-ensure)
   :init
   (defun +ts-fold-ensure ()
