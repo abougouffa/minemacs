@@ -24,6 +24,21 @@
   :after tree-sitter)
 
 
+(use-package ts-fold
+  :straight (ts-fold-indicators :type git :host github :repo "emacs-tree-sitter/ts-fold")
+  :hook (prog-mode . +ts-fold-ensure)
+  :init
+  (defun +ts-fold-ensure ()
+    (if (derived-mode-p 'emacs-lisp-mode)
+        (hs-minor-mode) ;; Fall back to builtin
+      (ts-fold-mode))))
+
+
+;; Needed by `ts-fold'
+(use-package fringe-helper
+  :straight t)
+
+
 ;;; Eglot + LSP
 (use-package eglot
   :straight t
