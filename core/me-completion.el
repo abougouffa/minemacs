@@ -56,6 +56,15 @@
   (define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle))
 
 
+(use-package corfu-history
+  :after corfu
+  :config
+  (corfu-history-mode +1)
+  (unless (bound-and-true-p savehist-mode)
+    (savehist-mode +1))
+  (add-to-list 'savehist-additional-variables 'corfu-history))
+
+
 (use-package kind-icon
   :straight t
   :after corfu
