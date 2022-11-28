@@ -108,6 +108,7 @@
     '(ui
       editor
       vc
+      project
       prog
       lisp
       data
