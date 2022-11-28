@@ -69,7 +69,7 @@
           (concat
            (format " in %s mode" (car (ensure-list mode-name)))
            (if (buffer-modified-p) " ○" " ●")
-           (when proj (format " %s" proj)))))))
+           (when proj (format " %s" (abbreviate-file-name proj))))))))
 
 
 (provide 'me-window)
