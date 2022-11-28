@@ -64,8 +64,7 @@
                 (proj (if proj
                           (project-root proj)
                         (ignore-errors
-                          (file-name-nondirectory
-                           (string-trim-right (expand-file-name (vc-root-dir)) "/"))))))
+                          (string-trim-right (expand-file-name (vc-root-dir)) "/")))))
           (concat
            (format " in %s mode" (car (ensure-list mode-name)))
            (if (buffer-modified-p) " ○" " ●")
