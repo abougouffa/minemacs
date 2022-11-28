@@ -19,18 +19,18 @@
     "pct"  #'projectile-test-project
     "pci"  #'projectile-install-project
     ;; Forget
-    "pF"  '(nil :wk "Forget")
+    "pF"  '(nil :wk "forget")
     "pFz" '(projectile-cleanup-known-projects :wk "Zombie projects")
     "pFp" '(projectile-remove-known-project :wk "Project")
     "pFP" '(projectile-remove-current-project-from-known-projects :wk "Current project")
     ;; Search/replace
-    "ps"  '(nil :wk "Search/replace")
+    "ps"  '(nil :wk "search/replace")
     "pss" 'projectile-grep
     "psn" '(fileloop-continue :wk "Next match")
     "psr" #'projectile-replace-regexp)
   :custom
   (projectile-cache-file (concat minemacs-cache-dir "projectile.cache"))
-  (projectile-known-projects-file (concat minemacs-cache-dir "projectile.projects"))
+  (projectile-known-projects-file (concat minemacs-local-dir "projectile.projects"))
   (projectile-ignored-projects '("~/"))
   (projectile-ignored-project-function nil) ;; TODO: customize it
   (projectile-auto-discover nil)
@@ -76,12 +76,12 @@
     "pf"  '(project-find-file :wk "Find file")
     "pD"  '(+dir-locals-open-or-create :wk "Open/create dir-locals file")
     ;; Forget
-    "pF"  '(nil :wk "Forget")
+    "pF"  '(nil :wk "forget")
     "pFz" '(project-forget-zombie-projects :wk "Zombie projects")
     "pFp" '(project-forget-project :wk "Project")
     "pFu" '(project-forget-projects-under :wk "Projects under...")
     ;; Search/replace
-    "ps"  '(nil :wk "Search/replace")
+    "ps"  '(nil :wk "search/replace")
     "pss" '(project-search :wk "Search")
     "psn" '(fileloop-continue :wk "Next match")
     "psr" #'project-query-replace-regexp
