@@ -19,12 +19,17 @@
 (use-package corfu
   :straight t
   :after minemacs-loaded
+  :init
+  (add-to-list
+   'load-path
+   (concat
+    straight-base-dir
+    (format "straight/%s/corfu/extensions" straight-build-dir)))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
-  (corfu-echo-documentation nil)
   :config
   (with-eval-after-load 'evil
     (define-key corfu-map (kbd "C-j") 'corfu-next)
@@ -40,17 +45,15 @@
   (global-corfu-mode 1))
 
 
-(use-package corfu-doc
-  :straight t
-  :hook (corfu-mode . corfu-doc-mode)
+(use-package corfu-popupinfo
+  :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
-  (corfu-doc-auto t)
-  (corfu-doc-delay 0.1)
-  (corfu-doc-max-height 15)
+  (corfu-popupinfo-delay 0.1)
+  (corfu-popupinfo-max-height 15)
   :config
-  (define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down)
-  (define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)
-  (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle))
+  (define-key corfu-map (kbd "M-p") #'corfu-popupinfo-scroll-down)
+  (define-key corfu-map (kbd "M-n") #'corfu-popupinfo-scroll-up)
+  (define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle))
 
 
 (use-package kind-icon
