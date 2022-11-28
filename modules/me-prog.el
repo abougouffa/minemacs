@@ -55,7 +55,13 @@
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
-  (eglot-extend-to-xref t)) ;; can be interesting!
+  (eglot-extend-to-xref t) ;; can be interesting!
+  :config
+
+  ;; Prioritize ccls
+  (add-to-list 'eglot-server-programs
+               `((c++-mode c-mode) . ,(eglot-alternatives
+                                       '("ccls" "clangd")))))
 
 
 (use-package project-cmake
