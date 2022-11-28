@@ -11,8 +11,13 @@
     "bp"  #'projectile-switch-to-buffer
     ;; Project
     "pa"  '(projectile-add-known-project :wk "Add")
-    "pc"  '(projectile-compile-project :wk "Compile")
     "pD"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
+    ;;
+    "pc"  '(nil :wk "compile/test")
+    "pcc"  #'projectile-compile-project
+    "pcg"  #'projectile-configure-project
+    "pct"  #'projectile-test-project
+    "pci"  #'projectile-install-project
     ;; Forget
     "pF"  '(nil :wk "Forget")
     "pFz" '(projectile-cleanup-known-projects :wk "Zombie projects")
