@@ -79,26 +79,6 @@
                                        '("ccls" "clangd")))))
 
 
-(use-package project-cmake
-  :straight (:host github :repo "juanjosegarciaripoll/project-cmake")
-  :commands (project-cmake-test
-             project-cmake-build
-             project-cmake-shell
-             project-cmake-install
-             project-cmake-configure)
-  :init
-  (+map :keymaps '(c++-mode-map c-mode-map)
-    "pC"  '(nil :wk "cmake")
-    "pCt" '(project-cmake-test :wk "Test")
-    "pCb" '(project-cmake-build :wk "Build")
-    "pCs" '(project-cmake-shell :wk "Shell")
-    "pCi" '(project-cmake-install :wk "Install")
-    "pCc" '(project-cmake-configure :wk "Configure"))
-  :config
-  (project-cmake-scan-kits)
-  (project-cmake-eglot-integration))
-
-
 ;;; Debug
 (use-package realgud
   :straight t
