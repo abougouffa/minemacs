@@ -18,6 +18,13 @@
           hy-mode) . parinfer-rust-mode))
 
 
+(use-package slime
+  :straight t
+  :defer t
+  :init
+  (setq inferior-lisp-program "sbcl"))
+
+
 (use-package macrostep
   :straight t
   :defer t
