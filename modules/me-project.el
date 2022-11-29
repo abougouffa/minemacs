@@ -6,9 +6,6 @@
   :after minemacs-loaded
   :general
   (+map
-    ":"   #'projectile-find-file
-    ;; Buffer
-    "bp"  #'projectile-switch-to-buffer
     ;; Project
     "pa"  '(projectile-add-known-project :wk "Add")
     "pD"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
@@ -56,6 +53,10 @@
   :straight t
   :general
   (+map
+    ":"   '(consult-projectile-find-file :wk "Find file in project")
+    ;; Buffer
+    "bp"  #'consult-projectile-switch-to-buffer
+    ;; Project
     "pp"  #'consult-projectile
     "pP"  '(consult-projectile-switch-project :wk "Switch")
     "pr"  #'consult-projectile-recentf
