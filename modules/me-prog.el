@@ -7,13 +7,21 @@
 ;;; Tree sitter
 (use-package tree-sitter
   :straight t
-  :hook (python-mode . tree-sitter-mode)
-  :hook (c-mode . tree-sitter-mode)
-  :hook (c++-mode . tree-sitter-mode)
-  :hook (rust-mode . tree-sitter-mode)
-  :hook (json-mode . tree-sitter-mode)
-  :hook (xml-mode . tree-sitter-mode))
+  :hook ((python-mode
+          c-mode
+          c++-mode
+          csharp-mode
+          rust-mode
+          json-mode
+          xml-mode
+          sh-mode
+          typescript-ts-mode
+          js-mode) . tree-sitter-mode))
 
+;; (if feat/treesitter
+;;     (use-package treesit-langs
+;;       :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
+;;       :after treesit))
 
 (use-package tree-sitter-hl
   :hook (tree-sitter-mode . tree-sitter-hl-mode))
