@@ -44,6 +44,10 @@
  ;; Use completing-read interface instead of definitions buffer
  xref-show-definitions-function #'xref-show-definitions-completing-read
 
+ ;; ====== Performances ======
+ ;; Increase single chunk bytes to read from subprocess (default 4096)
+ read-process-output-max (* 1024 1024)
+
  ;; ====== Default directories ======
  ;; Default directory to save backups
  backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
