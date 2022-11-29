@@ -4,6 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+;; Adapted from Doom Emacs
 (use-package tex
   :straight auctex ; (auctex :files ("*.el" "*.info" "dir" "doc" "etc" "images" "latex" "style"))
   :general
@@ -28,6 +29,22 @@
   (when (featurep 'pdf-tools)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools")))
   (setq-default TeX-master nil))
+
+
+;; Adapted from Doom Emacs
+(use-package auctex-latexmk
+  :straight t
+  :after latex
+  :init
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
+  ;; Set LatexMk as the default.
+  (add-hook
+   'LaTeX-mode
+   (defun +tex--set-latexmk-as-default-cmd-h ()
+     (setq TeX-command-default "LatexMk")))
+  :config
+  ;; Add LatexMk as a TeX target.
+  (auctex-latexmk-setup))
 
 
 ;; Set up mode for bib files.
