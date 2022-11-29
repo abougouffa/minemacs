@@ -116,6 +116,7 @@
       notes
       ;; email
       docs
+      ;; latex
       natural-langs
       files
       tools
