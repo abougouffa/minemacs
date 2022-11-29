@@ -229,17 +229,18 @@ or file path may exist now."
  'compilation-finish-functions
  (defun +compilation--bury-if-successful-h (buf str)
    "Bury a compilation buffer if succeeded without warnings."
-   (if (and
-        (string-match "compilation" (buffer-name buf))
-        (string-match "finished" str)
-        (not (with-current-buffer buf
-               (save-excursion
-                 (goto-char (point-min))
-                 (search-forward "warning" nil t)))))
-       (run-with-timer 5 nil
-                       (lambda (b)
-                         (with-selected-window (get-buffer-window b)
-                           (kill-buffer-and-window))) buf))))
+   (when (and
+          (string-match "compilation" (buffer-name buf))
+          (string-match "finished" str)
+          (not (with-current-buffer buf
+                 (save-excursion
+                   (goto-char (point-min))
+                   (search-forward "warning" nil t)))))
+     (run-with-timer
+      2 nil
+      (lambda (b)
+        (with-selected-window (get-buffer-window b)
+          (kill-buffer-and-window))) buf))))
 
 (when feat/xwidgets
   ;; Make xwidget-webkit the default browser
