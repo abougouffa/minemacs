@@ -198,7 +198,7 @@
       (load user-config nil (not minemacs-verbose))))
 
   ;; Load GC module lastly
-  (with-eval-after-load 'minemacs-loaded-stage-1
+  (with-eval-after-load 'minemacs-loaded
     (+eval-when-idle!
      (load (concat minemacs-core-dir "me-gc.el")
            nil (not minemacs-verbose)))))
