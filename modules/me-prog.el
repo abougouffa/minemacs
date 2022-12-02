@@ -18,8 +18,8 @@
       (let ((old-new-modes
              (mapcar
               (lambda (m)
-                (let ((old (if (consp m) (car m) m))
-                      (new (if (consp m) (cdr m) m)))
+                (let ((old (+symbol-or-car m))
+                      (new (+symbol-or-cdr m)))
                   (cons (intern (format "%s-mode" old)) (intern (format "%s-ts-mode" new)))))
               modes))
             (num 0))
@@ -33,11 +33,22 @@
         num))
 
     ;; Prefer treesitter modes for supported languages
-    (+treesit-prefer-ts-modes 'c 'c++ 'csharp 'js 'typescript 'python 'json '(sh . bash))))
+    (dolist (mode-lib '(c
+                        json
+                        python
+                        typescript
+                        (c++ . cpp)
+                        (js . javascript)
+                        (csharp . c-sharp)
+                        ((sh . bash) . bash)))
+      (let ((mode (+symbol-or-car mode-lib))
+            (lib (+symbol-or-cdr mode-lib)))
+        (when (treesit-language-available-p lib)
+          (+treesit-prefer-ts-modes mode))))))
 
 
-(unless feat/treesitter
-  (require 'me-external-tree-sitter))
+(use-package me-external-tree-sitter
+  :unless feat/treesitter)
 
 
 ;;; Eglot + LSP
