@@ -22,7 +22,7 @@
         (pcase f
           ((rx (seq ".bag" eol))
            (call-process "rosbag" nil (current-buffer) nil "info" f))
-          ((rx (seq "." ("bag" "mcap") eol))
+          ((rx (seq "." (or "db3" "mcap") eol))
            (call-process "ros2" nil (current-buffer) nil "bag" "info" f)))
         (set-buffer-modified-p nil))
       (view-mode
