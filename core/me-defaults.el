@@ -242,7 +242,7 @@ or file path may exist now."
         (with-selected-window (get-buffer-window b)
           (kill-buffer-and-window))) buf))))
 
-(when feat/xwidgets
+(when (and feat/xwidgets nil)
   ;; Make xwidget-webkit the default browser
   (setq browse-url-browser-function #'xwidget-webkit-browse-url)
   (defalias 'browse-web #'xwidget-webkit-browse-url))
