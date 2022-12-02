@@ -40,6 +40,8 @@
  help-window-select t
  ;; More info on completions
  completions-detailed t
+ ;; Do not ask obvious questions, follow symlinks
+ vc-follow-symlinks t
  ;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
  ;; Use completing-read interface instead of definitions buffer
  xref-show-definitions-function #'xref-show-definitions-completing-read
