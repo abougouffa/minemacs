@@ -19,7 +19,9 @@
 
 (use-package tree-sitter-langs
   :straight t
-  :after tree-sitter)
+  :after tree-sitter
+  :config
+  (tree-sitter-langs-install-grammars t))
 
 (use-package ts-fold
   :straight (:type git :host github :repo "emacs-tree-sitter/ts-fold")

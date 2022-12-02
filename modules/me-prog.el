@@ -4,8 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+(setq +treesitter-use-builtin (and feat/treesitter nil))
+
 ;;; Tree sitter
-(when feat/treesitter
+(when +treesitter-use-builtin
   (use-package treesit-langs
     :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
     :when feat/treesitter
@@ -48,7 +50,7 @@
 
 
 (use-package me-external-tree-sitter
-  :unless feat/treesitter)
+  :unless +treesitter-use-builtin)
 
 
 ;;; Eglot + LSP
