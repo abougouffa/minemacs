@@ -50,3 +50,19 @@
   (replace-regexp-in-string (regexp-opt (mapcar 'car replacements))
                             (lambda (it) (cdr (assoc-string it replacements)))
                             s t t))
+
+;;;###autoload
+(defun +symbol-or-car (sym-or-cons)
+  (if (symbolp sym-or-cons) sym-or-cons (car sym-or-cons)))
+
+;;;###autoload
+(defun +symbol-or-cdr (sym-or-cons)
+  (if (symbolp sym-or-cons) sym-or-cons (cdr sym-or-cons)))
+
+;;;###autoload
+(defun +symbol-or-cadr (sym-or-cons)
+  (if (symbolp sym-or-cons) sym-or-cons (cadr sym-or-cons)))
+
+;;;###autoload
+(defun +symbol-or-cddr (sym-or-cons)
+  (if (symbolp sym-or-cons) sym-or-cons (cddr sym-or-cons)))

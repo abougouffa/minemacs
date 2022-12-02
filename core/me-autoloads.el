@@ -343,6 +343,22 @@ Replaces OLD with NEW in S.
 REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
 
 (fn REPLACEMENTS S)")
+(autoload '+symbol-or-car "../elisp/primitives" "\
+
+
+(fn SYM-OR-CONS)")
+(autoload '+symbol-or-cdr "../elisp/primitives" "\
+
+
+(fn SYM-OR-CONS)")
+(autoload '+symbol-or-cadr "../elisp/primitives" "\
+
+
+(fn SYM-OR-CONS)")
+(autoload '+symbol-or-cddr "../elisp/primitives" "\
+
+
+(fn SYM-OR-CONS)")
 
 
 ;;; Generated autoloads from ../elisp/project.el
