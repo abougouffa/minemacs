@@ -5,12 +5,39 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;;; Tree sitter
-(if feat/treesitter
-    (use-package treesit-langs
-      :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
-      :after treesit
-      :config
-      (tree-sitter-langs-install-grammars t "0.12.63")))
+(unless feat/treesitter
+  (use-package treesit-langs
+    :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
+    :when feat/treesitter
+    :after treesit
+    :config
+    (tree-sitter-langs-install-grammars t "0.12.63"))
+
+  (with-eval-after-load 'treesit
+    (defun +treesit-prefer-ts-modes (&rest modes)
+      (let ((old-new-modes
+             (mapcar
+              (lambda (m)
+                (let ((old (if (consp m) (car m) m))
+                      (new (if (consp m) (cdr m) m)))
+                  (cons (intern (format "%s-mode" old)) (intern (format "%s-ts-mode" new)))))
+              modes))
+            (num 0))
+        (dolist (old-new-mode old-new-modes)
+          (dolist (mode auto-mode-alist)
+            (when (eq (cdr mode) (car old-new-mode))
+              (setq auto-mode-alist (delete mode auto-mode-alist))
+              (setq num (1+ num))
+              (message "Replacing %s with %s." (symbol-name (car old-new-mode)) (symbol-name (cdr old-new-mode)))
+              (add-to-list 'auto-mode-alist (cons (car mode) (cdr old-new-mode))))))
+        num))
+
+    ;; Prefer treesitter modes for supported languages
+    (+treesit-prefer-ts-modes 'c 'c++ 'csharp 'js 'typescript 'python 'json '(sh . bash))))
+
+
+(unless feat/treesitter
+  (require 'me-external-tree-sitter))
 
 
 ;;; Eglot + LSP
