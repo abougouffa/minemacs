@@ -12,22 +12,30 @@
   (add-to-list 'auto-mode-alist '("\\.action\\'" . gdb-script-mode))
 
   ;; A mode to display infos for ROS bag files
-  (when (executable-find "rosbag")
-    (define-derived-mode rosbag-view-mode
-      fundamental-mode "Rosbag view mode"
-      "Major mode for viewing ROS bag files."
-      (let ((f (buffer-file-name)))
-        (let ((buffer-read-only nil))
-          (erase-buffer)
-          (message "Calling rosbag info")
-          (call-process "rosbag" nil (current-buffer) nil
-                        "info" f)
-          (set-buffer-modified-p nil))
-        (view-mode
-         (set-visited-file-name nil t))))
+  (define-derived-mode rosbag-view-mode
+    fundamental-mode "ROS bag view mode"
+    "Major mode for viewing ROS/ROS2 bag files."
+    (let ((f (buffer-file-name)))
+      (let ((buffer-read-only nil))
+        (erase-buffer)
+        (message "Calling rosbag info")
+        (pcase f
+          ((rx (seq ".bag" eol))
+           (call-process "rosbag" nil (current-buffer) nil "info" f))
+          ((rx (seq "." ("bag" "mcap") eol))
+           (call-process "ros2" nil (current-buffer) nil "bag" "info" f)))
+        (set-buffer-modified-p nil))
+      (view-mode
+       (set-visited-file-name nil t))))
 
-    ;; rosbag view mode
-    (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode))))
+  (when (executable-find "rosbag")
+    (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode)))
+
+  (when (executable-find "ros2")
+    (add-to-list 'auto-mode-alist '("\\.db3$" . rosbag-view-mode)))
+
+  (when (executable-find "mcap")
+    (add-to-list 'auto-mode-alist '("\\.mcap$" . rosbag-view-mode))))
 
 ;; Needed by ros.el
 (use-package kv
