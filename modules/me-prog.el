@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;;; Tree sitter
-(unless feat/treesitter
+(when feat/treesitter
   (use-package treesit-langs
     :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
     :when feat/treesitter
