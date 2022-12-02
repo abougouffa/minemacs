@@ -44,8 +44,9 @@
 (use-package eglot
   :straight t
   :hook ((c++-mode
-          c-mode
-          python-mode
+          c++-ts-mode
+          c-mode c-ts-mode
+          python-mode python-ts-mode
           rust-mode
           cmake-mode) . eglot-ensure)
   :init
@@ -76,8 +77,8 @@
 
   ;; Prioritize ccls
   (add-to-list 'eglot-server-programs
-               `((c++-mode c-mode) . ,(eglot-alternatives
-                                       '("ccls" "clangd")))))
+               `((c++-mode c++-ts-mode c-mode c-ts-mode) . ,(eglot-alternatives
+                                                             '("ccls" "clangd")))))
 
 
 ;;; Debug
