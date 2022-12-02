@@ -16,13 +16,13 @@
  ring-bell-function 'ignore
  ;; Increase the large file threshold to 50 MiB
  large-file-warning-threshold (* 50 1024 1024)
- ;; Initial scratch message (will be overriten if "fortune" is installed)
+ ;; Initial scratch message (will be overridden if "fortune" is installed)
  initial-scratch-message ";; MinEmacs -- start here!"
  ;; Set initial buffer to fundamental-mode for faster load
  initial-major-mode 'fundamental-mode
  ;; Always prompt in minibuffer (no GUI)
  use-dialog-box nil
- ;; Use y or n istead of yes or no
+ ;; Use y or n instead of yes or no
  use-short-answers t
  ;; Confirm before quitting
  confirm-kill-emacs 'y-or-n-p
@@ -30,13 +30,13 @@
  kill-do-not-save-duplicates t
  ;; Save existing clipboard text into the kill ring before replacing it.
  save-interprogram-paste-before-kill t
- ;; Save files only in subdirs of current project
+ ;; Save files only in sub-directories of current project
  save-some-buffers-default-predicate 'save-some-buffers-root
  ;; Use single space between sentences
  sentence-end-double-space nil
  ;; Move stuff to trash
  delete-by-moving-to-trash t
- ;; Select help window to fastly quit!
+ ;; Select help window for faster quit!
  help-window-select t
  ;; More info on completions
  completions-detailed t
