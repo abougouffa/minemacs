@@ -38,13 +38,18 @@
   :config
   (defvar +evil-collection-modes
     (seq-filter
-     (lambda (a)
-       ;; elisp-mode uses gz to open ielm, which I never use!
-       ;; and uses gr to xref-find-references
-       (not (memq a '(elisp-mode evil-mc))))
+     (lambda (mode)
+       (not (memq mode '(evil-mc ;; Default bindings for evil-mc are messy
+                         elisp-mode)))) ;; I don't like gz for ielm, I like gr though
      evil-collection-mode-list))
-  (evil-collection-init +evil-collection-modes))
 
+  (evil-collection-init +evil-collection-modes)
+
+  ;; Define find references for elisp mode
+  (with-eval-after-load 'elisp-mode
+    (when evil-collection-want-find-usages-bindings
+      (evil-collection-define-key 'normal 'emacs-lisp-mode-map
+        "gr" 'xref-find-references))))
 
 (use-package evil-nerd-commenter
   :straight t
