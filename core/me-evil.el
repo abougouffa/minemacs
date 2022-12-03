@@ -62,6 +62,19 @@
   :straight t
   :after evil-collection
   :config
+  ;; Use gz instead of gr
+  (setcdr
+   evil-mc-key-map ;; Redefine the default binting
+   (let ((map (make-sparse-keymap)))
+     (evil-define-key* '(normal visual) map
+       (kbd "gz") evil-mc-cursors-map
+       (kbd "M-n") 'evil-mc-make-and-goto-next-cursor
+       (kbd "M-p") 'evil-mc-make-and-goto-prev-cursor
+       (kbd "C-n") 'evil-mc-make-and-goto-next-match
+       (kbd "C-t") 'evil-mc-skip-and-goto-next-match
+       (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
+     map))
+
   ;; https://github.com/gabesoft/evil-mc/issues/70
   (add-hook
    'evil-mc-after-cursors-deleted
