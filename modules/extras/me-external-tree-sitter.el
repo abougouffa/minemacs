@@ -25,12 +25,7 @@
 
 (use-package ts-fold
   :straight (:type git :host github :repo "emacs-tree-sitter/ts-fold")
-  :hook (prog-mode . +ts-fold-ensure)
-  :init
-  (defun +ts-fold-ensure ()
-    (if (derived-mode-p 'emacs-lisp-mode)
-        (hs-minor-mode) ;; Fall back to builtin
-      (ts-fold-mode))))
+  :hook (tree-sitter-mode . ts-fold-mode))
 
 ;; Needed by `ts-fold'
 (use-package fringe-helper
