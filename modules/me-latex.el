@@ -58,7 +58,7 @@
 ;; Adapted from Doom Emacs
 (use-package reftex
   :straight (:type built-in)
-  :hook (LaTeX-mode . reftex-mode)
+  :hook (LaTeX-mode . turn-on-reftex)
   :config
   ;; Set up completion for citations and references.
   ;; (set-company-backend! 'reftex-mode 'company-reftex-labels 'company-reftex-citations)
