@@ -45,6 +45,8 @@
  ;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
  ;; Use completing-read interface instead of definitions buffer
  xref-show-definitions-function #'xref-show-definitions-completing-read
+ ;; Enable recursive calls to minibuffer
+ enable-recursive-minibuffers t
 
  ;; ====== Performances ======
  ;; Increase single chunk bytes to read from subprocess (default 4096)
