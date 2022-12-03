@@ -283,6 +283,9 @@ or file path may exist now."
   ;; Enable saving minibuffer history
   (savehist-mode 1)
 
+  ;; Auto load files changed on disk
+  (global-auto-revert-mode 1)
+
   ;; Show line and column numbers (cursor position) in mode-line
   (line-number-mode 1)
   (column-number-mode 1)
