@@ -175,6 +175,7 @@
   (setq flycheck-cppcheck-checks '("all")))
 
 (use-package me-flycheck-eglot)
+(use-package me-flycheck-cmake)
 
 (use-package plantuml-mode
   :straight t
