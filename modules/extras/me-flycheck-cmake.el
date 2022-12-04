@@ -32,7 +32,7 @@
             (setq-local +flycheck-cmake-compiler (car lst))
             (setq cmake-args (cdr lst))))))))
 
-(defun +flycheck-cmake--setup ()
+(defun +flycheck-cmake--setup (&rest _)
   (let ((args (+flycheck-cmake-extract-args)))
     (setq flycheck-gcc-args args
           flycheck-clang-args args)))
