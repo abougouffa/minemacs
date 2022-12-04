@@ -58,4 +58,12 @@
     "f" #'json-mode-beautify))
 
 
+(when (executable-find "lemminx")
+  (with-eval-after-load 'nxml-mode
+    (with-eval-after-load 'eglot
+      (add-to-list
+       'eglot-server-programs
+       '((nxml-mode xml-mode) . ("lemminx"))))))
+
+
 (provide 'me-data)
