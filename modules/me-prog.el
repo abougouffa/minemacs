@@ -232,6 +232,18 @@
   :hook (prog-mode . hl-todo-mode))
 
 
+(use-package lua-mode
+  :straight t
+  :custom
+  (lua-indent-level 2)
+  :config
+  (when (executable-find "lua-language-server")
+    (with-eval-after-load 'eglot
+      (add-to-list
+       'eglot-server-programs
+       `(lua-mode . ,(eglot-alternatives '(("lua-language-server") ("lua-lsp"))))))))
+
+
 (provide 'me-prog)
 
 ;;; me-prog.el ends here
