@@ -172,7 +172,11 @@
   :init
   (+map "tf" #'flycheck-mode)
   :config
-  (setq flycheck-cppcheck-checks '("all")))
+  (setq flycheck-cppcheck-checks
+        '("warning"
+          "performance"
+          "information"
+          "style"))) ;; could be "all"
 
 (use-package me-flycheck-eglot
   :after eglot)
