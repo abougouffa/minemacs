@@ -1,4 +1,5 @@
 ;;; flycheck-eglot --- Hacky eglot support in flycheck -*- lexical-binding: t; -*-
+;;
 ;;; Commentary:
 ;; This file sets up flycheck so that, when eglot receives a publishDiagnostics method
 ;; from the server, flycheck updates the reports.
@@ -15,16 +16,17 @@
 
 ;; Adapted from Doom Emacs
 
+(defvar-local +flycheck-eglot--current-errors nil)
 
-(defvar-local +eglot--flycheck-eglot--current-errors nil)
-
-(defun +lsp--flycheck-eglot-init (checker callback)
+(defun +flycheck-eglot--init (_checker callback)
   "CHECKER is the checker (eglot).
-CALLBACK is the function that we need to call when we are done, on all the errors."
-  (eglot-flymake-backend #'+eglot--flycheck-eglot--on-diagnostics)
-  (funcall callback 'finished +eglot--flycheck-eglot--current-errors))
+CALLBACK is the function that we need to call when we are done,
+on all the errors."
+  (eglot-flymake-backend #'+flycheck-eglot--on-diagnostics)
+  (funcall callback 'finished +flycheck-eglot--current-errors))
 
-(defun +eglot--flycheck-eglot--on-diagnostics (diags &rest _)
+(defun +flycheck-eglot--on-diagnostics (diags &rest _)
+  "Bind Flycheck diagnostics DIAGS to Flymake's."
   (cl-labels
       ((flymake-diag->flycheck-err
          (diag)
@@ -41,26 +43,28 @@ CALLBACK is the function that we need to call when we are done, on all the error
             :checker 'eglot
             :buffer (current-buffer)
             :filename (buffer-file-name)))))
-    (setq +eglot--flycheck-eglot--current-errors
+    (setq +flycheck-eglot--current-errors
           (mapcar #'flymake-diag->flycheck-err diags))
     ;; Call Flycheck to update the diagnostics annotations
     (flycheck-buffer-deferred)))
 
-(defun +lsp--flycheck-eglot-available-p ()
+(defun +flycheck-eglot--available-p ()
+  "Return non-nil if the current buffer is managed by some Eglot project."
   (bound-and-true-p eglot--managed-mode))
 
 (flycheck-define-generic-checker
- 'eglot
- "Report `eglot' diagnostics using `flycheck'."
- :start #'+lsp--flycheck-eglot-init
- :predicate #'+lsp--flycheck-eglot-available-p
- :modes '(prog-mode text-mode))
+    'eglot
+  "Report `eglot' diagnostics using `flycheck'."
+  :start #'+flycheck-eglot--init
+  :predicate #'+flycheck-eglot--available-p
+  :modes '(prog-mode text-mode))
 
 (push 'eglot flycheck-checkers)
 
 (add-hook
  'eglot-managed-mode-hook
  (defun +eglot-prefer-flycheck-h ()
+   "Prefer Flycheck over Flymake to use with Eglot."
    (when eglot--managed-mode
      (flymake-mode -1)
      (when-let ((current-checker (flycheck-get-checker-for-buffer)))
@@ -79,3 +83,5 @@ CALLBACK is the function that we need to call when we are done, on all the error
 
 
 (provide 'me-flycheck-eglot)
+
+;;; me-flycheck-eglot.el ends here
