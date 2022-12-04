@@ -167,10 +167,12 @@
   :hook (cmake-mode . cmake-font-lock-activate))
 
 
-(use-package flymake
+(use-package flycheck
   :straight t
-  :general
-  (+map "tf" #'flymake-mode))
+  :init
+  (+map "tf" #'flycheck-mode)
+  :config
+  (setq flycheck-cppcheck-checks '("all")))
 
 
 (use-package plantuml-mode
