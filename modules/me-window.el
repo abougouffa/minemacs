@@ -52,7 +52,7 @@
       '(""
         (:eval
          (if (and
-              (boundp 'org-roam-directory)
+              (bound-and-true-p org-roam-directory)
               (string-prefix-p
                (expand-file-name org-roam-directory)
                (expand-file-name (or buffer-file-name ""))))
@@ -60,15 +60,21 @@
               (subst-char-in-string ?_ ?\s buffer-file-name))
            "%b"))
         (:eval
-         (let* ((proj (project-current))
-                (proj (if proj
-                          (project-root proj)
-                        (ignore-errors
-                          (string-trim-right (expand-file-name (vc-root-dir)) "/")))))
+         (let ((proj
+                (ignore-errors
+                  (cond
+                   ((featurep 'projectile)
+                    (projectile-project-name))
+                   (t
+                    (or
+                     (project-name (project-current))
+                     (file-name-nondirectory
+                      (string-trim-right (expand-file-name (vc-root-dir)) "/"))))))))
           (concat
            (format " in %s mode" (car (ensure-list mode-name)))
            (if (buffer-modified-p) " ○" " ●")
-           (when proj (format " %s" (abbreviate-file-name proj))))))))
+           (when (and proj (not (string= proj "-")))
+            (format " %s" proj)))))))
 
 
 (provide 'me-window)
