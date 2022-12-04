@@ -15,7 +15,20 @@
   (setq-local +flycheck-cmake-json nil
               +flycheck-cmake-compiler nil))
 
-(defun +flycheck-cmake-extract-args (&optinal filename)
+(defun +flycheck-cmake-get-compile-db-file (&optional root)
+  "Get the \"compile_commands.json\" file starting from ROOT path.
+When ROOT is nil, use the project root."
+  (catch 'file-found
+    (let ((proj-root (or root (project-root (project-current)))))
+      (dolist (file '("compile_commands.json"
+                      "build/compile_commands.json"
+                      "build/release/compile_commands.json"
+                      "build/debug/compile_commands.json"))
+        (let ((full-file-name (expand-file-name file proj-root)))
+          (when (file-exists-p full-file-name)
+            (throw 'file-found full-file-name)))))))
+
+(defun +flycheck-cmake-extract-args (&optional filename)
   "Extract compiler arguments for FILENAME.
 When FILENAME is nil, use the file name of the current buffer."
   (let ((file (replace-regexp-in-string
@@ -26,16 +39,12 @@ When FILENAME is nil, use the file name of the current buffer."
                (string-match
                 (file-truename (project-root (project-current))) file))
       (unless +flycheck-cmake-json
-        (setq-local +flycheck-cmake-json
-                    (json-read-file
-                     (expand-file-name
-                      "compile_commands.json"
-                      (project-root (project-current))))))
-      (let* ((js +flycheck-cmake-json)
-             (matched-entry (cl-find-if
+        (when-let ((db-file (+flycheck-cmake-get-compile-db-file)))
+          (setq-local +flycheck-cmake-json (json-read-file db-file))))
+      (let* ((matched-entry (cl-find-if
                              (lambda (entry)
                                (equal (file-truename (cdr (assq 'file entry))) file))
-                             js))
+                             +flycheck-cmake-json))
              (cmd (cdr (assq 'command matched-entry)))
              (cmake-args ""))
         (when cmd
@@ -46,9 +55,11 @@ When FILENAME is nil, use the file name of the current buffer."
 
 (defun +flycheck-cmake--setup (&rest _)
   "Setup GCC and Clang checkers with the right arguments."
-  (let ((args (+flycheck-cmake-extract-args)))
-    (setq-local flycheck-gcc-args args
-                flycheck-clang-args args)))
+  (when (derived-mode-p 'c-mode 'c-ts-mode 'c++-mode 'c++-ts-mode)
+    (ignore-errors
+      (let ((args (+flycheck-cmake-extract-args)))
+        (setq-local flycheck-gcc-args args
+                    flycheck-clang-args args)))))
 
 (advice-add 'flycheck-mode :before #'+flycheck-cmake--setup)
 
