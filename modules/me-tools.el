@@ -27,6 +27,13 @@
   (consult-customize affe-find :preview-key (kbd "M-p")))
 
 
+;; Should be configured in per-project basis, good documentation at:
+;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+(use-package ssh-deploy
+  :straight t
+  :defer t)
+
+
 (use-package tldr
   :straight t
   :general
