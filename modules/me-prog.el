@@ -174,6 +174,7 @@
   :config
   (setq flycheck-cppcheck-checks '("all")))
 
+(use-package me-flycheck-eglot)
 
 (use-package plantuml-mode
   :straight t
