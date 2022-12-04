@@ -167,21 +167,27 @@
   :hook (cmake-mode . cmake-font-lock-activate))
 
 
-(use-package flycheck
+;; (use-package flycheck
+;;   :straight t
+;;   :init
+;;   (+map "tf" #'flycheck-mode)
+;;   :config
+;;   (setq flycheck-cppcheck-checks
+;;         '("warning"
+;;           "performance"
+;;           "information"
+;;           "style") ;; could be "all"
+;;         flycheck-disabled-checkers '(python-flake8)))
+
+;; (use-package me-flycheck-eglot
+;;   :after eglot)
+
+;; (use-package me-flycheck-cmake)
+
+(use-package flymake
   :straight t
   :init
-  (+map "tf" #'flycheck-mode)
-  :config
-  (setq flycheck-cppcheck-checks
-        '("warning"
-          "performance"
-          "information"
-          "style"))) ;; could be "all"
-
-(use-package me-flycheck-eglot
-  :after eglot)
-
-(use-package me-flycheck-cmake)
+  (+map "tf" #'flymake-mode))
 
 (use-package plantuml-mode
   :straight t
