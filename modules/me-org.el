@@ -106,7 +106,40 @@
           ("toml" . conf-toml)))
 
   (with-eval-after-load 'plantuml-mode
-    (setq org-plantuml-jar-path plantuml-jar-path)))
+    (setq org-plantuml-jar-path plantuml-jar-path))
+
+  ;; Adapted from: https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
+  (defun +org-lower-case-keywords-and-properties ()
+    "Lower case Org keywords and properties and block identifiers.
+Example: \"#+TITLE\" -> \"#+title\"
+         \"#+BEGIN_EXAMPLE\" -> \"#+begin_example\"
+         \":PROPERTIES:\" -> \":properties:\"."
+    (interactive)
+    (save-excursion
+      (goto-char (point-min))
+      (let ((case-fold-search nil)
+            (count 0))
+        ;; Match examples: "#+FOO bar", "#+FOO:", "=#+FOO=", "~#+FOO~",
+        ;;                 "‘#+FOO’", "“#+FOO”", ",#+FOO bar",
+        ;;                 "#+FOO_bar<eol>", "#+FOO<eol>".
+        ;; Original regexp, replaced with rx based one
+        ;; "\\(?1:#\\+[A-Z_]+\\(?:_[[:alpha:]]+\\)*\\)\\(?:[ :=~’”]\\|$\\)"
+        (while (re-search-forward
+                (rx (group-n 1
+                      (or "#+" ":")
+                      (one-or-more (any "A-Z"))
+                      (zero-or-more (seq "_" (one-or-more alpha)))
+                      (or (any " " ":" "=") eol)))
+                nil :noerror)
+          (setq count (1+ count))
+          (replace-match (downcase (match-string-no-properties 1)) :fixedcase nil nil 1))
+        (message "Lower-cased %d matches" count))))
+
+  (add-hook
+   'before-save-hook
+   (defun +org--lower-case-keywords-and-properties-h ()
+     (when (derived-mode-p 'org-mode)
+       (+org-lower-case-keywords-and-properties)))))
 
 
 (use-package org-contrib
