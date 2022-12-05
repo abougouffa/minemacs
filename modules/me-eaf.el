@@ -93,7 +93,7 @@
           #'+eaf-all-the-icons--setup-once-h))))))
 
   (defun +eaf-open-mail-as-html ()
-    "Open the html mail in EAF Browser."
+    "Open the HTML mail in EAF Browser."
     (interactive)
     (if-let ((msg (mu4e-message-at-point t))
              ;; Bind browse-url-browser-function locally, so it works
