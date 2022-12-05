@@ -191,9 +191,10 @@
 (use-package me-eglot-ltex-extras
   :after eglot
   :config
-  (add-to-list
-   'eglot-server-programs
-   '((org-mode latex-mode LaTeX-mode markdown-mode) . ("ltex-ls"))))
+  (when (executable-find "ltex-ls")
+    (add-to-list
+     'eglot-server-programs
+     '((org-mode latex-mode LaTeX-mode markdown-mode) . ("ltex-ls")))))
 
 
 (provide 'me-natural-langs)
