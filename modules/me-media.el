@@ -12,7 +12,8 @@
     "ovp" '(empv-play :wk "Play")
     "ovy" '(consult-empv-youtube :wk "Seach Youtube")
     "ovr" '(empv-play-radio :wk "Play radio")
-    "ovs" '(empv-playtlist-save-to-file :wk "Save current playlist"))
+    "ovs" '(empv-playtlist-save-to-file :wk "Save current playlist")
+    "ovD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
   :custom
   ;; See https://docs.invidious.io/instances/
   (empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")
