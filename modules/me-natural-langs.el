@@ -9,8 +9,9 @@
   (+map "ts" #'spell-fu-mode)
   (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
   :hook (text-mode . spell-fu-mode)
+  :custom
+  (spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
   :init
-  (setq spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face
@@ -73,14 +74,14 @@
   :commands (gts-do-translate
              +gts-yank-translated-region
              +gts-translate-with)
-  :init
+  :custom
   ;; Your languages pairs
-  (setq gts-translate-list '(("en" "fr")
-                             ("en" "ar")
-                             ("fr" "ar")
-                             ("fr" "en")))
-
-  (+map-local :keymaps '(org-mode-map markdown-mode-map latex-mode-map text-mode-map)
+  (gts-translate-list '(("en" "fr")
+                        ("en" "ar")
+                        ("fr" "ar")
+                        ("fr" "en")))
+  :init
+  (+map-local :keymaps '(org-mode-map markdown-mode-map latex-mode-map tex-mode-map text-mode-map)
     "R" '(+gts-yank-translated-region :wk "Yank translated region")
     "G" '(nil "go-translate")
     "Gb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Bing")
@@ -88,7 +89,6 @@
     "Gg" `(,(+cmdfy! (+gts-translate-with))) :wk "Google"
     "GR" '(+gts-yank-translated-region :wk "Yank translated region")
     "Gt" '(gts-do-translate :wk "gts-do-translate"))
-
   :config
   ;; Config the default translator, which will be used by the command `gts-do-translate'
   (setq gts-default-translator
