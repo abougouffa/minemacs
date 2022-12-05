@@ -27,8 +27,10 @@
 ;;;###autoload
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
-  `(let ((message-log-max nil))
-    (with-temp-message (or (current-message) "") ,@body)))
+  (if (not minemacs-verbose)
+      `(let ((message-log-max nil))
+        (with-temp-message (or (current-message) "") ,@body))
+    `(progn ,@body)))
 
 ;;;###autoload
 (defmacro +reset-var! (var)
