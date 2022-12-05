@@ -244,6 +244,13 @@
        `(lua-mode . ,(eglot-alternatives '(("lua-language-server") ("lua-lsp"))))))))
 
 
+(use-package disaster
+  :straight t
+  :general
+  (+map-local :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
+    "D" #'disaster))
+
+
 (provide 'me-prog)
 
 ;;; me-prog.el ends here
