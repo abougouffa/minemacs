@@ -27,6 +27,6 @@
   :defer t)
 
 
-(provide 'me-prog)
+(provide 'me-embedded)
 
 ;;; me-embedded.el ends here
