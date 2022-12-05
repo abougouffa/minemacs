@@ -31,7 +31,7 @@
         native-comp-verbose (if minemacs-verbose 3 0))
 
   ;; Make native compilation happens asynchronously
-  (if (version< emacs-version "29.0.50") ;; 29.1
+  (if (< emacs-major-version 29)
       (setq native-comp-deferred-compilation t)
     (setq inhibit-automatic-native-compilation nil))
 
