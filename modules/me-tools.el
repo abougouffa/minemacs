@@ -85,4 +85,10 @@
   :defer t)
 
 
+(use-package discomfort
+  :straight (:host codeberg :repo "emacs-weirdware/discomfort")
+  :general
+  (+map "oD" #'discomfort))
+
+
 (provide 'me-tools)
