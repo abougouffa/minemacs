@@ -81,6 +81,15 @@
      ;; Set initial scratch message.
      (setq initial-scratch-message (buffer-string)))
 
+   ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
+   ;; to enhance startup time. However, I like to use the scratch buffer to
+   ;; evaluate Elisp code, so we switch back to Elisp mode in the scratch
+   ;; buffer when idle.
+   (+eval-when-idle!
+    (setq initial-major-mode 'emacs-lisp-mode)
+    (with-current-buffer "*scratch*"
+      (emacs-lisp-mode)))
+
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)
 
