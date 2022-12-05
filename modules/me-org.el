@@ -126,6 +126,8 @@ Example: \"#+TITLE\" -> \"#+title\"
         ;; "\\(?1:#\\+[A-Z_]+\\(?:_[[:alpha:]]+\\)*\\)\\(?:[ :=~’”]\\|$\\)"
         (while (re-search-forward
                 (rx (group-n 1
+                      bol
+                      (zero-or-more " ")
                       (or "#+" ":")
                       (one-or-more (any "A-Z"))
                       (zero-or-more (seq "_" (one-or-more alpha)))
