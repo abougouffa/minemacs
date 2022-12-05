@@ -65,17 +65,20 @@
        :default-config-keywords '(:position :bottom :height 12)))))
 
 
-(with-eval-after-load 'popwin
-  (+map
-    "oe" '(+popwin:eshell :wk "Eshell popup")
-    "oE" '(eshell :wk "Eshell"))
-  (defun +popwin:eshell ()
-    (interactive)
-    (popwin:display-buffer-1
-     (or (get-buffer "*eshell*")
-         (save-window-excursion
-           (call-interactively 'eshell)))
-     :default-config-keywords '(:position :bottom :height 12))))
+(use-package eshell
+  :defer t
+  :general
+  (+map "oE" '(eshell :wk "Eshell"))
+  :config
+  (with-eval-after-load 'popwin
+    (+map "oe" '(+popwin:eshell :wk "Eshell popup"))
+    (defun +popwin:eshell ()
+      (interactive)
+      (popwin:display-buffer-1
+       (or (get-buffer "*eshell*")
+           (save-window-excursion
+             (call-interactively 'eshell)))
+       :default-config-keywords '(:position :bottom :height 12)))))
 
 
 ;; Can be useful for interfacing Emacs with other apps
