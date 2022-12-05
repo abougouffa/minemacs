@@ -130,6 +130,16 @@ Clean file name.
 (register-definition-prefixes "../modules/me-email" '("MU4E-"))
 
 
+;;; Generated autoloads from ../modules/extras/me-flycheck-cmake.el
+
+(register-definition-prefixes "../modules/extras/me-flycheck-cmake" '("+flycheck-cmake-"))
+
+
+;;; Generated autoloads from ../modules/extras/me-flycheck-eglot.el
+
+(register-definition-prefixes "../modules/extras/me-flycheck-eglot" '("+flycheck-eglot--"))
+
+
 ;;; Generated autoloads from ../modules/me-math.el
 
 (register-definition-prefixes "../modules/me-math" '("MAXIMA-P"))
