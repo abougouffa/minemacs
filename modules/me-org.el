@@ -232,7 +232,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   (org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶"))
   (org-modern-table-vertical 5)
   (org-modern-table-horizontal 2)
-  (org-modern-list '((43 . "➤") (45 . "–") (42 . "•")))
+  (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil))
 
 
