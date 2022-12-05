@@ -78,4 +78,11 @@
      :default-config-keywords '(:position :bottom :height 12))))
 
 
+;; Can be useful for interfacing Emacs with other apps
+;; See: https://emacsconf.org/2022/talks/dbus/
+(use-package debase
+  :straight (:host codeberg :repo "emacs-weirdware/debase" :files ("*.el"))
+  :defer t)
+
+
 (provide 'me-tools)
