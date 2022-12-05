@@ -92,11 +92,6 @@
           'server-after-make-frame-hook
           #'+eaf-all-the-icons--setup-once-h))))))
 
-  (unless feat/xwidgets
-    ;; Make EAF Browser my default browser
-    (setq browse-url-browser-function #'eaf-open-browser)
-    (defalias 'browse-web #'eaf-open-browser))
-
   (defun +eaf-open-mail-as-html ()
     "Open the html mail in EAF Browser."
     (interactive)
