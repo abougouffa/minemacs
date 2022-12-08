@@ -65,6 +65,12 @@
        :default-config-keywords '(:position :bottom :height 12)))))
 
 
+(use-package docker
+  :straight t
+  :general
+  (+map "ok" #'docker))
+
+
 (use-package eshell
   :defer t
   :general
