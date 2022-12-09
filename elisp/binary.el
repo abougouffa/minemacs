@@ -5,6 +5,9 @@
 (defcustom +binary-objdump-enable t
   "Enable or disable disassembling suitable files with objdump.")
 
+(defcustom +binary-hexl-enable t
+  "Enable or disable openning suitable files in `hexl-mode'.")
+
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
@@ -38,9 +41,10 @@ Returns either nil, or the position of the first null byte."
 
 ;;;###autoload
 (defun +binary-hexl-buffer-p ()
-  (and (+binary-buffer-p)
-       ;; Executables are viewed with objdump mode
-       (not (+binary-objdump-buffer-p))))
+  (when +binary-hexl-enable
+    (and (+binary-buffer-p)
+         ;; Executables are viewed with objdump mode
+         (not (+binary-objdump-buffer-p)))))
 
 ;;;###autoload
 (define-derived-mode objdump-disassemble-mode
