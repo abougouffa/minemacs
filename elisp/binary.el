@@ -2,22 +2,26 @@
 
 (defvar +binary-objdump-executable (executable-find "objdump"))
 
+(defcustom +binary-objdump-enable t
+  "Enable or disable disassembling suitable files with objdump.")
+
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
-  (when-let ((file (buffer-file-name (or buffer (current-buffer)))))
-    (and +binary-objdump-executable
-         (file-exists-p file)
-         (not (file-directory-p file))
-         (not (zerop (file-attribute-size (file-attributes file))))
-         (not (string-match-p
-               "file format not recognized"
-               (with-temp-buffer
-                 (shell-command (format "%s --file-headers %s"
-                                        +binary-objdump-executable
-                                        (shell-quote-argument file))
-                                (current-buffer))
-                 (buffer-string)))))))
+  (when +binary-objdump-enable
+    (when-let ((file (buffer-file-name (or buffer (current-buffer)))))
+      (and +binary-objdump-executable
+           (file-exists-p file)
+           (not (file-directory-p file))
+           (not (zerop (file-attribute-size (file-attributes file))))
+           (not (string-match-p
+                 "file format not recognized"
+                 (with-temp-buffer
+                   (shell-command (format "%s --file-headers %s"
+                                          +binary-objdump-executable
+                                          (shell-quote-argument file))
+                                  (current-buffer))
+                   (buffer-string))))))))
 
 ;; Predicate for detecting binary files, inspired by:
 ;; https://emacs.stackexchange.com/questions/10277/make-emacs-automatically-open-binary-files-in-hexl-mode
