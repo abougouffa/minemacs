@@ -18,6 +18,11 @@
   `(let ((inhibit-message t))
     (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars))))
 
+;;;###autoload
+(defun +emacs-features-p (&rest feats)
+  "Is features FEATS are enabled in this Emacs build."
+  (cl-every (lambda (feat) (memq feat +emacs-features)) feats))
+
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
 (defun +reset-sym (sym)

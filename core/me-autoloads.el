@@ -199,7 +199,7 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-save-vars" "minemacs-" "os/"))
+(register-definition-prefixes "me-vars" '("+emacs-features" "+env-save-vars" "minemacs-" "os/"))
 
 
 ;;; Generated autoloads from ../elisp/messages.el
@@ -226,6 +226,10 @@ Log info MSG and VARS using `message'.
 Log error MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
+(autoload '+emacs-features-p "../elisp/minemacs-core" "\
+Is features FEATS are enabled in this Emacs build.
+
+(fn &rest FEATS)")
 (autoload '+reset-sym "../elisp/minemacs-core" "\
 Reset SYM to its standard value.
 

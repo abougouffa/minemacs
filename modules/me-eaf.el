@@ -3,7 +3,7 @@
 
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
-  :unless feat/lucid
+  :unless (+emacs-features-p 'lucid)
   :commands (eaf-install-and-update
              eaf-open
              eaf-open-jupyter

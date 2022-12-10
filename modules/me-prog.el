@@ -4,13 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-(setq +treesitter-use-builtin (and feat/treesitter nil))
+(setq +treesitter-use-builtin (and (+emacs-features-p 'tree-sitter) nil))
 
 ;;; Tree sitter
 (when +treesitter-use-builtin
   (use-package treesit-langs
     :straight (:host github :repo "kiennq/tree-sitter-langs" :files ("tree-sitter-langs-build.el" "treesit-*.el" "queries"))
-    :when feat/treesitter
+    :when (+emacs-features-p 'tree-sitter)
     :after treesit
     :config
     (tree-sitter-langs-install-grammars t "0.12.63"))

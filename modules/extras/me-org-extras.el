@@ -153,7 +153,7 @@ Return an AST with newlines counts in each level."
                 org-export-process
                 (lambda (process event)
                   (unless (process-live-p process)
-                    (message "Org async export finised, see *Org Export Buffer* for more details.")))))) 
+                    (message "Org async export finised, see *Org Export Buffer* for more details."))))))
          (message "PDF exported to: %s."
                   (abbreviate-file-name
                    (file-name-nondirectory out-file))))))))
@@ -236,7 +236,7 @@ Return an AST with newlines counts in each level."
   (setq org-format-latex-options
         (plist-put org-format-latex-options :background "Transparent"))
 
-  (unless feat/pgtk ;; PGTK not need extra up-scaling
+  (unless (+emacs-features-p 'pgtk) ;; PGTK not need extra up-scaling
     (setq org-format-latex-options
           (plist-put org-format-latex-options :scale 1.5))))
 

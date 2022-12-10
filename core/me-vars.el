@@ -33,16 +33,10 @@
 (defconst os/win (not (null (memq system-type '(cygwin windwos-nt ms-dos)))))
 (defconst os/mac (eq system-type 'darwin))
 
-(let ((feats (split-string system-configuration-features)))
-  (defconst feat/gpm (not (null (member "GPM" feats))))
-  (defconst feat/pgtk (not (null (member "PGTK" feats))))
-  (defconst feat/cairo (not (null (member "CAIRO" feats))))
-  (defconst feat/lucid (not (null (member "LUCID" feats))))
-  (defconst feat/modules (not (null (member "MODULES" feats))))
-  (defconst feat/harfbuzz (not (null (member "HARFBUZZ" feats))))
-  (defconst feat/xwidgets (not (null (member "XWIDGETS" feats))))
-  (defconst feat/treesitter (not (null (member "TREE_SITTER" feats))))
-  (defconst feat/nativecomp (not (null (member "NATIVE_COMP" feats)))))
+(defconst +emacs-features
+  (mapcar #'intern
+          (mapcar (apply-partially #'string-replace "_" "-")
+                  (mapcar #'downcase (split-string system-configuration-features)))))
 
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs."

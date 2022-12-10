@@ -81,7 +81,7 @@
                             (plist-get org-format-latex-options :scale))
                 (setq org-format-latex-options
                       (plist-put org-format-latex-options
-                                 :scale (if feat/pgtk 1.4 2.1)))))
+                                 :scale (if (+emacs-features-p 'pgtk) 1.4 2.1)))))
 
     (add-hook 'writeroom-mode-disable-hook
               (defun +writeroom--scale-down-latex-h ()
