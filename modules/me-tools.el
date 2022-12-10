@@ -71,6 +71,11 @@
   (+map "ok" #'docker))
 
 
+(use-package dockerfile-mode
+  :straight t
+  :defer t)
+
+
 (use-package eshell
   :defer t
   :general
