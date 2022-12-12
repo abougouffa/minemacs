@@ -79,16 +79,4 @@
   (add-hook 'nov-mode-hook #'+nov-mode-setup))
 
 
-(use-package graphviz-dot-mode
-  :straight t
-  :defer t
-  :custom
-  (graphviz-dot-view-command "xdot %s")
-  :config
-  (with-eval-after-load 'eglot
-    (add-to-list
-     'eglot-server-programs
-     '(graphviz-dot-mode . ("dot-language-server" "--stdio")))))
-
-
 (provide 'me-docs)
