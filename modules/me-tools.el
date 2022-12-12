@@ -73,7 +73,13 @@
 
 (use-package dockerfile-mode
   :straight t
-  :defer t)
+  :defer t
+  :config
+  (with-eval-after-load 'eglot
+    (when (executable-find "docker-langserver")
+      (add-to-list
+       'eglot-server-programs
+       '(dockerfile-mode . ("docker-langserver" "--stdio"))))))
 
 
 (use-package eshell
