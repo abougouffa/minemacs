@@ -183,6 +183,14 @@
  scroll-up-aggressively 0.01
  scroll-down-aggressively 0.01)
 
+;; Ensure creating "session.ID" in a sub-directory
+(with-eval-after-load 'term
+  (advice-add
+   #'emacs-session-filename :filter-return
+   (defun +emacs-session-filename--customize-a (filename)
+     (concat minemacs-local-dir "emacs-session/"
+             (file-name-nondirectory filename)))))
+
 ;;; Enable `display-line-numbers-mode' in `prog-mode' and `text-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
