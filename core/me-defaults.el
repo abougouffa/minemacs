@@ -188,6 +188,8 @@
   (advice-add
    #'emacs-session-filename :filter-return
    (defun +emacs-session-filename--customize-a (filename)
+     ;; Create the directory
+     (mkdir (concat minemacs-local-dir "emacs-session/") t)
      (concat minemacs-local-dir "emacs-session/"
              (file-name-nondirectory filename)))))
 
