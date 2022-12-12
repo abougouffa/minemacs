@@ -21,9 +21,17 @@
         (message "Calling rosbag info")
         (pcase f
           ((rx (seq ".bag" eol))
-           (call-process "rosbag" nil (current-buffer) nil "info" f))
-          ((rx (seq "." (or "db3" "mcap") eol))
-           (call-process "ros2" nil (current-buffer) nil "bag" "info" f)))
+           (call-process
+            "rosbag"
+            nil (current-buffer) nil "info" f))
+          ((rx (seq ".db3" eol))
+           (call-process
+            "ros2"
+            nil (current-buffer) nil "bag" "info" f))
+          ((rx (seq ".mcap" eol))
+           (call-process
+            (or (executable-find "mcap-cli") (executable-find "mcap"))
+            nil (current-buffer) nil "info" f)))
         (set-buffer-modified-p nil))
       (view-mode
        (set-visited-file-name nil t))))
@@ -34,7 +42,7 @@
   (when (executable-find "ros2")
     (add-to-list 'auto-mode-alist '("\\.db3$" . rosbag-view-mode)))
 
-  (when (executable-find "mcap")
+  (when (or (executable-find "mcap") (executable-find "mcap-cli"))
     (add-to-list 'auto-mode-alist '("\\.mcap$" . rosbag-view-mode))))
 
 ;; Needed by ros.el
