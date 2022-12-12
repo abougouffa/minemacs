@@ -50,7 +50,12 @@
 
  ;; ====== Performances ======
  ;; Increase single chunk bytes to read from subprocess (default 4096)
- read-process-output-max (* 1024 1024)
+ read-process-output-max (if os/linux
+                             (with-temp-buffer
+                               (insert-file-contents
+                                "/proc/sys/fs/pipe-max-size")
+                               (string-to-number (buffer-string)))
+                           (* 1024 1024))
 
  ;; ====== Default directories ======
  ;; Default directory to save backups
