@@ -82,6 +82,8 @@
 (use-package graphviz-dot-mode
   :straight t
   :defer t
+  :custom
+  (graphviz-dot-view-command "xdot %s")
   :config
   (with-eval-after-load 'eglot
     (add-to-list
