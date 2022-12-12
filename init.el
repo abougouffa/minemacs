@@ -123,7 +123,7 @@
       data
       org
       notes
-      ;; email
+      ;; mu4e
       docs
       ;; latex
       natural-langs
