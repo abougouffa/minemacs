@@ -15,12 +15,13 @@
  inhibit-startup-echo-area-message t)
 
 ;; Remove some unneeded UI elements
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
-(push '(mouse-color . "blue") default-frame-alist)
-(push '(left-fringe . 8)  default-frame-alist)
-(push '(right-fringe . 8) default-frame-alist)
+(setq default-frame-alist
+      '((tool-bar-lines . 0)
+        (menu-bar-lines . 0)
+        (vertical-scroll-bars)
+        (mouse-color . "blue")
+        (left-fringe . 8)
+        (right-fringe . 8)))
 
 (when (and (>= emacs-major-version 29) nil)
   (push '(alpha-background . 90) default-frame-alist))
