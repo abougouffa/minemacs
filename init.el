@@ -15,11 +15,6 @@
   (setq debug-on-error t
         eval-expression-debug-on-error t))
 
-;; Load environment variables when available
-(let ((env-file (concat minemacs-local-dir "env")))
-  (when (file-exists-p env-file)
-    (load env-file (not minemacs-verbose) (not minemacs-verbose))))
-
 ;;; Byte compilation
 (setq byte-compile-warnings minemacs-verbose
       byte-compile-verbose minemacs-verbose)
@@ -55,6 +50,35 @@
 ;; Load Emacs 29 backports for earlier Emacs versions
 (when (< emacs-major-version 29)
   (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
+(defun minemacs-generate-autoloads ()
+  "Generate MinEmacs' autoloads file."
+  (interactive)
+  (when (file-exists-p minemacs-autoloads-file)
+    (delete-file minemacs-autoloads-file))
+
+  (let ((autoload-dirs nil))
+    (dolist (dir (list minemacs-core-dir
+                       minemacs-modules-dir
+                       (concat minemacs-root-dir "elisp/")))
+      (when (file-directory-p dir)
+        (setq autoload-dirs
+              (append autoload-dirs
+                      (list dir)
+                      (seq-filter
+                       #'file-directory-p
+                       (directory-files-recursively dir ".*" t))))))
+    (loaddefs-generate autoload-dirs minemacs-autoloads-file)))
+
+;; Auto-loads
+(unless (file-exists-p minemacs-autoloads-file)
+  (minemacs-generate-autoloads))
+
+;; Load autoloads file
+(load minemacs-autoloads-file nil (not minemacs-verbose))
+
+;; Load environment variables when available
+(+env-load)
+
 
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
@@ -143,33 +167,6 @@
       media
       binary)
     "MinEmacs enabled modules."))
-
-(defun minemacs-generate-autoloads ()
-  (interactive)
-  (when (file-exists-p minemacs-autoloads-file)
-    (delete-file minemacs-autoloads-file))
-
-  (let ((autoload-dirs nil))
-    (dolist (dir (list minemacs-core-dir
-                       minemacs-modules-dir
-                       (concat minemacs-root-dir "elisp/")))
-      (when (file-directory-p dir)
-        (setq autoload-dirs
-              (append
-               autoload-dirs
-               (list dir)
-               (seq-filter
-                #'file-directory-p
-                (directory-files-recursively dir ".*" t))))))
-    (loaddefs-generate autoload-dirs
-                       minemacs-autoloads-file)))
-
-;; Auto-loads
-(unless (file-exists-p minemacs-autoloads-file)
-  (minemacs-generate-autoloads))
-
-;; Load autoloads file
-(load minemacs-autoloads-file nil (not minemacs-verbose))
 
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
 (let ((mods (concat minemacs-config-dir "modules.el")))
