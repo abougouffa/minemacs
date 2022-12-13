@@ -207,11 +207,13 @@
     ;; Delete outdated natively compiled files
     (when (featurep 'native-compile)
       (+eval-when-idle!
+       (+info! "Trying to clean outdated native compile cache")
        (+shutup!
         (native-compile-prune-cache))))
 
     ;; Load GC module lastly
     (+eval-when-idle!
+     (+info! "Activating the garbage collector hacks")
      (load (concat minemacs-core-dir "me-gc.el")
            nil (not minemacs-verbose)))))
 
