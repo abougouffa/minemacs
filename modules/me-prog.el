@@ -235,9 +235,7 @@
 
 (use-package eldoc-box
   :straight t
-  :after eldoc
-  :config
-  (eldoc-box-hover-at-point-mode 1))
+  :hook (prog-mode . eldoc-box-hover-at-point-mode))
 
 
 ;;; Debug
