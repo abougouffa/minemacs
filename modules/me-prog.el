@@ -333,7 +333,7 @@
   :defer t
   :mode "\\.plantuml\\'"
   :custom
-  (plantuml-jar-path (concat minemacs-local-dir "plantuml.jar"))
+  (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
   :config
   (setq plantuml-default-exec-mode
         (cond ((executable-find "plantuml") 'executable)

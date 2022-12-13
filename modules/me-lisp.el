@@ -8,7 +8,7 @@
   :straight t
   :when (+emacs-features-p 'modules)
   :custom
-  (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
+  (parinfer-rust-library-directory (+expand 'local "parinfer-rust" t))
   (parinfer-rust-auto-download t)
   :hook ((emacs-lisp-mode
           clojure-mode

@@ -36,7 +36,7 @@
   :after undo-fu
   :custom
   (undo-fu-session-compression 'zst)
-  (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session"))
+  (undo-fu-session-directory (+expand 'local "undo-fu-session" t))
   :config
   (global-undo-fu-session-mode 1))
 
@@ -71,6 +71,13 @@
   (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
   :config
   (global-tempel-abbrev-mode))
+
+
+;; Required by unicode-fonts
+(use-package pcache
+  :straight t
+  :custom
+  (pcache-directory (+expand 'local "pcache" t)))
 
 
 (use-package unicode-fonts
