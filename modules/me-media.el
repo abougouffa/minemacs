@@ -64,4 +64,9 @@
     (empv--playlist-apply #'+empv--dl-playlist path)))
 
 
+(use-package emms
+  :straight t
+  :defer t)
+
+
 (provide 'me-media)
