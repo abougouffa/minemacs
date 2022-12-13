@@ -9,7 +9,7 @@
     (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
     :custom
     (emojify-emoji-set "emojione-v2.2.6")
-    (emojify-emojis-dir (+expand 'cache "emojify" t))
+    (emojify-emojis-dir (+expand 'cache "emojify/emojis" t))
     (emojify-display-style 'image)
     :config
     (global-emojify-mode 1)))
