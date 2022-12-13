@@ -42,12 +42,10 @@
 
   ;; Set the right directory to store the native compilation cache
   ;; NOTE the method for setting the eln-cache directory depends on the emacs version
-  (when (fboundp 'startup-redirect-eln-cache)
-    (if (< emacs-major-version 29)
-        (add-to-list
-         'native-comp-eln-load-path
-         (convert-standard-filename (concat minemacs-cache-dir "eln/")))
-      (startup-redirect-eln-cache (convert-standard-filename (concat minemacs-cache-dir "eln/"))))))
+  (let ((cache-dir (convert-standard-filename (concat minemacs-cache-dir "eln/"))))
+    (if (fboundp 'startup-redirect-eln-cache)
+        (startup-redirect-eln-cache cache-dir)
+      (add-to-list 'native-comp-eln-load-path cache-dir))))
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
