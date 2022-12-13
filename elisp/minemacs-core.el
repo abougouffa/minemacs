@@ -269,13 +269,11 @@ DEPTH and LOCAL are passed as is to `add-hook'."
           (insert "\n"))
         (insert
          (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
-    (write-file (concat minemacs-local-dir "env"))))
+    (write-file (concat minemacs-local-dir "system-env.el"))))
 
 ;;;###autoload
 (defun +env-load ()
   (interactive)
-  (let ((env-file (concat minemacs-local-dir "env")))
-    (when (file-exists-p env-file))
-    (with-temp-buffer
-      (insert-file env-file)
-      (eval-buffer))))
+  (let ((env-file (concat minemacs-local-dir "system-env.el")))
+    (when (file-exists-p env-file)
+      (load env-file (not minemacs-verbose) (not minemacs-verbose)))))
