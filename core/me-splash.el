@@ -78,11 +78,10 @@
           (goto-char 0)
           (read-only-mode t)
 
-          (let ((k))
-            (local-set-key (kbd "<escape>") (+cmdfy! (minemacs-splash-screen-kill)))
-            (local-set-key (kbd "q") (+cmdfy! (minemacs-splash-screen-kill)))
-            (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
-            (local-set-key (kbd "<mouse-2>") 'operate-this-button))
+          (local-set-key (kbd "<escape>") (+cmdfy! (minemacs-splash-screen-kill)))
+          (local-set-key (kbd "q") (+cmdfy! (minemacs-splash-screen-kill)))
+          (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
+          (local-set-key (kbd "<mouse-2>") 'operate-this-button)
 
           (display-buffer-same-window splash-buffer nil)))))
 
