@@ -27,6 +27,14 @@
   :defer t)
 
 
+;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
+(with-eval-after-load 'eglot
+  (when (executable-find "vhdl_ls")
+    (add-to-list
+     'eglot-server-programs
+     `(vhdl-mode . ("vhdl_ls")))))
+
+
 (provide 'me-embedded)
 
 ;;; me-embedded.el ends here
