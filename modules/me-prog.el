@@ -233,6 +233,13 @@
                                                              '("ccls" "clangd")))))
 
 
+(use-package eldoc-box
+  :straight t
+  :after eldoc
+  :config
+  (eldoc-box-hover-at-point-mode 1))
+
+
 ;;; Debug
 (use-package realgud
   :straight t
