@@ -30,6 +30,11 @@
   (setq native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
         native-comp-verbose (if minemacs-verbose 3 0))
 
+  ;; Delete outdated natively compiled files
+  (+eval-when-idle!
+   (+shutup!
+    (native-compile-prune-cache)))
+
   ;; Make native compilation happens asynchronously
   (if (< emacs-major-version 29)
       (setq native-comp-deferred-compilation t)
