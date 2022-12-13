@@ -5,7 +5,6 @@
 (defvar +org-export-to-pdf-main-file nil
   "The main (entry point) Org file for a multi-files document.")
 
-
 (defun +org-extras--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
     (setq-local
@@ -14,7 +13,6 @@
                 (min (cdr +org-responsive-image-width-limits)
                      (truncate (* (window-pixel-width)
                                   +org-responsive-image-percentage))))))))
-
 
 (defun +org-extras--parse-latex-env (str)
   "Parse the LaTeX environment STR.
@@ -43,7 +41,6 @@ Return an AST with newlines counts in each level."
                        (parent (pop ast)))
                    (push (plist-put parent :childs (cons child (plist-get parent :childs))) ast)))))))
     (plist-get (car ast) :childs)))
-
 
 ;; Adapted from Scimax
 (defun +org-extras-renumber-env (orig-func &rest args)
@@ -79,7 +76,6 @@ Return an AST with newlines counts in each level."
              (car args)))))
   (apply orig-func args))
 
-
 (defun +org-extras-toggle-latex-equation-numbering (&optional enable)
   "Toggle whether LaTeX fragments are numbered."
   (interactive)
@@ -91,7 +87,6 @@ Return an AST with newlines counts in each level."
     (advice-remove 'org-create-formula-image #'+org-extras-renumber-env)
     (put '+org-extras-renumber-env 'enabled nil)
     (message "LaTeX numbering disabled.")))
-
 
 (defun +org-extras-inject-latex-fragment (orig-func &rest args)
   "Advice function to inject latex code before and/or after the equation in a latex fragment.
@@ -108,7 +103,6 @@ Return an AST with newlines counts in each level."
          (or (plist-get org-format-latex-options :latex-fragment-post-body) "")))
   (apply orig-func args))
 
-
 (defun +org-extras-inject-latex-fragments ()
   "Toggle whether you can insert latex in fragments."
   (interactive)
@@ -121,17 +115,38 @@ Return an AST with newlines counts in each level."
     (put '+org-extras-inject-latex-fragment 'enabled nil)
     (message "Inject latex disabled")))
 
+;; Adapted from: https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
+(defun +org-lower-case-keywords-and-properties ()
+  "Lower case Org keywords and properties and block identifiers.
+Example: \"#+TITLE\" -> \"#+title\"
+         \"#+BEGIN_EXAMPLE\" -> \"#+begin_example\"
+         \":PROPERTIES:\" -> \":properties:\"."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (let ((case-fold-search nil)
+          (count 0))
+      (while (re-search-forward
+              (rx (group-n 1
+                    bol
+                    (zero-or-more " ")
+                    (or "#+" ":")
+                    (one-or-more (any "A-Z"))
+                    (zero-or-more (seq "_" (one-or-more alpha)))
+                    (or (any " " ":" "=") eol)))
+              nil :noerror)
+        (setq count (1+ count))
+        (replace-match (downcase (match-string-no-properties 1)) :fixedcase nil nil 1))
+      (message "Lower-cased %d matches" count))))
 
 (defun +org-extras-responsive-images-setup ()
   (add-hook 'window-configuration-change-hook
             #'+org-extras--responsive-image-h))
 
-
 (defun +org-extras-equation-numbering-setup ()
   ;; Enable LaTeX equations renumbering
   (+shutup!
    (+org-extras-toggle-latex-equation-numbering :enable)))
-
 
 (defun +org-extras-multifiles-document-setup ()
   (advice-add
@@ -157,7 +172,6 @@ Return an AST with newlines counts in each level."
          (message "PDF exported to: %s."
                   (abbreviate-file-name
                    (file-name-nondirectory out-file))))))))
-
 
 (defun +org-extras-latex-classes-setup ()
   (with-eval-after-load 'ox-latex
@@ -214,7 +228,6 @@ Return an AST with newlines counts in each level."
             ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
       (add-to-list 'org-latex-classes class))))
 
-
 (defun +org-extras-outline-path-setup ()
   (advice-add
    #'org-format-outline-path :around
@@ -224,7 +237,6 @@ Return an AST with newlines counts in each level."
                      collect `(:foreground ,(face-foreground face nil t)
                                :weight bold))))
        (apply fn args)))))
-
 
 (defun +org-extras-pretty-latex-fragments-setup ()
   (require 'org-src)
@@ -240,6 +252,12 @@ Return an AST with newlines counts in each level."
     (setq org-format-latex-options
           (plist-put org-format-latex-options :scale 1.5))))
 
+(defun +org-extras-lower-case-keywords-and-properties-setup ()
+  (add-hook
+   'before-save-hook
+   (defun +org--lower-case-keywords-and-properties-h ()
+     (when (derived-mode-p 'org-mode)
+       (+org-lower-case-keywords-and-properties)))))
 
 (defun +org-extras-setup ()
   (+org-extras-outline-path-setup)
@@ -247,7 +265,8 @@ Return an AST with newlines counts in each level."
   (+org-extras-pretty-latex-fragments-setup)
   (+org-extras-responsive-images-setup)
   (+org-extras-equation-numbering-setup)
-  (+org-extras-multifiles-document-setup))
+  (+org-extras-multifiles-document-setup)
+  (+org-extras-lower-case-keywords-and-properties-setup))
 
 
 (provide 'me-org-extras)
