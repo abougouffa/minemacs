@@ -10,6 +10,17 @@
 (set-charset-priority 'unicode)
 (set-default-coding-systems 'utf-8)
 
+(defun +expand (dir &optional path as-directory)
+  "Expand PATH in MinEmacs' directory DIR, and create it.
+DIR is a symbol of local, cache, etc, root, core, modules.
+If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
+  (let* ((sym-dir (intern (format "minemacs-%s-dir" dir)))
+         (path (concat (file-name-as-directory (eval sym-dir))
+                       (or path "")
+                       (if as-directory "/" ""))))
+    (mkdir (file-name-directory path) t)
+    path))
+
 (setq
  ;; ====== Default behavior ======
  ;; Do not ring
@@ -56,16 +67,6 @@
                                 "/proc/sys/fs/pipe-max-size")
                                (string-to-number (buffer-string)))
                            (* 1024 1024))
-
- ;; ====== Default directories ======
- ;; Default directory to save backups
- backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
- ;; Locally save backups for files edited via Trump
- tramp-backup-directory-alist backup-directory-alist
- ;; Prefix for auto saved files
- auto-save-list-file-prefix (concat minemacs-local-dir "auto-save-list/")
- ;; Abbrev definitions file
- abbrev-file-name (concat minemacs-local-dir "abbrev-defs")
 
  ;; ====== Aesthetics ======
  ;; Set to non-nil to flash!
@@ -188,15 +189,59 @@
  scroll-up-aggressively 0.01
  scroll-down-aggressively 0.01)
 
+;; ====== Default directories for builtin packages ======
+(setq
+ backup-directory-alist (list (cons "." (+expand 'local "backup" t)))
+ auto-save-list-file-prefix (+expand 'local "auto-save-list" t)
+ abbrev-file-name (+expand 'local "abbrev.el")
+ project-list-file (+expand 'local "project-list.el")
+ tramp-backup-directory-alist backup-directory-alist
+ tramp-auto-save-directory (+expand 'local "tramp/auto-save" t)
+ tramp-persistency-file-name (+expand 'local "tramp/persistency.el")
+ tramp-persistency-file-name (+expand 'local "tramp/persistency.el")
+ url-configuration-directory (+expand 'local "url" t)
+ url-cookie-file (+expand 'local "url/cookie.el")
+ url-history-file (+expand 'local "url/history.el")
+ url-cache-directory (+expand 'cache "url.el")
+ save-place-file (+expand 'local "save-place.el")
+ savehist-file (+expand 'local "savehist.el")
+ org-id-locations-file (+expand 'cache "org/id-locations.el")
+ org-persist-directory (+expand 'cache "org/persist" t)
+ org-publish-timestamp-directory (+expand 'cache "org/publish-timestamps" t)
+ org-preview-latex-image-directory (+expand 'cache "org/preview-latex-image" t)
+ recentf-save-file (+expand 'local "recentf-save.el")
+ shared-game-score-directory (+expand 'local "shared-game-score" t)
+ type-break-file-name (+expand 'local "type-break.el")
+ bookmark-default-file (+expand 'local "bookmark.el")
+ ede-project-placeholder-cache-file (+expand 'local "ede-projects.el")
+ kkc-init-file-name (+expand 'local "kkc-init-file.el")
+ erc-dcc-get-default-directory (+expand 'local "erc/dcc" t)
+ erc-log-channels-directory (+expand 'local "erc/log-channels" t)
+ eshell-directory-name (+expand 'local "eshell" t)
+ eshell-history-file-name (+expand 'local "eshell/history.el")
+ eshell-last-dir-ring-file-name (+expand 'local "eshell/last-dir-ring.el")
+ eshell-aliases-file (+expand 'local "eshell/aliases")
+ eshell-rc-script (+expand 'local "eshell/rc")
+ eshell-login-script (+expand 'local "eshell/login")
+ calc-settings-file (+expand 'local "calc-settings.el")
+ auto-insert-directory (+expand 'local "auto-insert" t)
+ image-dired-dir (+expand 'local "image-dired" t)
+ image-dired-tags-db-file (+expand 'local "image-dired/tags-db.el")
+ image-dired-temp-rotate-image-file (+expand 'cache "image-dired/temp-rotate-image")
+ eudc-options-file (+expand 'local "eudc-options.el")
+ eww-bookmarks-directory (+expand 'local "eww/bookmarks" t)
+ shadow-info-file (+expand 'local "shadow/info.el")
+ shadow-todo-file (+expand 'local "shadow/todo.el")
+ semanticdb-default-system-save-directory (+expand 'local "semantic" t))
+
 ;; Ensure creating "session.ID" in a sub-directory
 (with-eval-after-load 'term
   (advice-add
    #'emacs-session-filename :filter-return
    (defun +emacs-session-filename--customize-a (filename)
      ;; Create the directory
-     (mkdir (concat minemacs-local-dir "emacs-session/") t)
-     (concat minemacs-local-dir "emacs-session/"
-             (file-name-nondirectory filename)))))
+     (+expand 'local (concat "emacs-session/"
+                             (file-name-nondirectory filename))))))
 
 ;;; Enable `display-line-numbers-mode' in `prog-mode' and `text-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
