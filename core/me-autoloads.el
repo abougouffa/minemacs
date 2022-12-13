@@ -125,11 +125,6 @@ Clean file name.
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
 
 
-;;; Generated autoloads from ../modules/me-email.el
-
-(register-definition-prefixes "../modules/me-email" '("MU4E-"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-flycheck-cmake.el
 
 (register-definition-prefixes "../modules/extras/me-flycheck-cmake" '("+flycheck-cmake-"))
@@ -148,6 +143,11 @@ Clean file name.
 ;;; Generated autoloads from ../modules/me-media.el
 
 (register-definition-prefixes "../modules/me-media" '("MPV-P"))
+
+
+;;; Generated autoloads from ../modules/me-mu4e.el
+
+(register-definition-prefixes "../modules/me-mu4e" '("MU4E-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
