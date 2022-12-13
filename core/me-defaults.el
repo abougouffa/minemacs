@@ -192,7 +192,7 @@ If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
 ;; ====== Default directories for builtin packages ======
 (setq
  backup-directory-alist (list (cons "." (+expand 'local "backup" t)))
- auto-save-list-file-prefix (+expand 'local "auto-save-list" t)
+ auto-save-list-file-prefix (+expand 'local "auto-save" t)
  abbrev-file-name (+expand 'local "abbrev.el")
  project-list-file (+expand 'local "project-list.el")
  tramp-backup-directory-alist backup-directory-alist
