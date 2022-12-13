@@ -73,13 +73,6 @@
   (global-tempel-abbrev-mode))
 
 
-;; Required by unicode-fonts
-(use-package pcache
-  :straight t
-  :custom
-  (pcache-directory (+expand 'local "pcache" t)))
-
-
 (use-package unicode-fonts
   :straight t
   :after minemacs-loaded
