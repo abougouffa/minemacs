@@ -10,6 +10,10 @@
   ;; Load MinEmacs variables first
   (load (concat user-emacs-directory "core/me-vars.el") nil t))
 
+;; Load Emacs 29 backports for earlier Emacs versions
+(when (< emacs-major-version 29)
+  (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
+
 ;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
 (when minemacs-debug
   (setq debug-on-error t
@@ -47,9 +51,6 @@
 (add-to-list 'load-path (concat minemacs-root-dir "elisp/"))
 (add-to-list 'load-path (concat minemacs-modules-dir "extras/"))
 
-;; Load Emacs 29 backports for earlier Emacs versions
-(when (< emacs-major-version 29)
-  (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
 (defun minemacs-generate-autoloads ()
   "Generate MinEmacs' autoloads file."
   (interactive)
