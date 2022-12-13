@@ -183,8 +183,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 ;;;###autoload
 (defun +eval-when-idle (&rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
-  (let* ((task-num (atomic-change-group
-                     (setq +eval-when-idle--task-num (1+ +eval-when-idle--task-num))))
+  (let* ((task-num (cl-incf +eval-when-idle--task-num))
          (task-name (make-symbol (format "+eval-when-idle--task%d" task-num))))
     (with-memoization (get task-name 'timer)
       (run-with-idle-timer
