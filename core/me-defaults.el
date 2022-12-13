@@ -235,7 +235,7 @@ If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
  scroll-down-aggressively 0.01)
 
 ;; Ensure creating "session.ID" in a sub-directory
-(with-eval-after-load 'term
+(with-eval-after-load 'x-win
   (advice-add
    #'emacs-session-filename :filter-return
    (defun +emacs-session-filename--customize-a (filename)
