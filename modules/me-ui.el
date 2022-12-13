@@ -19,7 +19,7 @@
   :straight t
   :defer t
   :custom
-  (svg-lib-icons-dir (+expand 'cache "svg-lib" t)))
+  (svg-lib-icons-dir (+expand 'cache "svg-lib/icons" t)))
 
 
 (use-package writeroom-mode
