@@ -30,7 +30,7 @@
 
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
 (defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))
-(defconst os/win (not (null (memq system-type '(cygwin windwos-nt ms-dos)))))
+(defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
 (defconst os/mac (eq system-type 'darwin))
 
 (defconst +emacs-features
