@@ -423,7 +423,7 @@ and move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8-emacs-unix
+;; coding: utf-8
 ;; End:
 
 ;;; me-autoloads.el ends here

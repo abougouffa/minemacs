@@ -221,3 +221,7 @@
 (minemacs-load t)
 
 (+log! "Loaded init.el")
+
+;; Local Variables:
+;; coding: utf-8
+;; End:
