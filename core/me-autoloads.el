@@ -115,6 +115,11 @@ Clean file name.
 (register-definition-prefixes "../modules/me-daemon" '("+daemon--setup-background-apps"))
 
 
+;;; Generated autoloads from me-defaults.el
+
+(register-definition-prefixes "me-defaults" '("+expand"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
 
 (register-definition-prefixes "../modules/extras/me-eglot-ltex-extras" '("eglot-ltex-"))
