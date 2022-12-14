@@ -44,11 +44,17 @@
   :type 'hook
   :local 'permenant-local)
 
-(defconst minemacs-default-fonts
-  '(:font-family "monospace"
-    :font-size 15
-    :variable-pitch-font-family "monospace"
-    :variable-pitch-font-size 15))
+(let ((mono-font (cond (os/linux "monospace")
+                       (os/win "Lucida Console")
+                       (os/mac "monospace")))
+      (varp-font (cond (os/linux "monospace")
+                       (os/win "Tahoma")
+                       (os/mac "monospace"))))
+  (defconst minemacs-default-fonts
+    `(:font-family ,mono-font
+      :font-size 15
+      :variable-pitch-font-family ,varp-font
+      :variable-pitch-font-size 15)))
 
 (defvar minemacs-theme 'doom-one-light)
 
