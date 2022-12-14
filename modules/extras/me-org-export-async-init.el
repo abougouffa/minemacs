@@ -7,7 +7,7 @@
   '(defaults bootstrap keybindings))
 
 (defvar minemacs-modules
-  '(org prog lisp data biblio))
+  '(org notes prog lisp data biblio latex))
 
 ;; To force loading Org and other stuff
 (provide 'minemacs-loaded)
