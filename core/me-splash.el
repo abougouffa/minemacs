@@ -12,6 +12,8 @@
 (setq inhibit-splash-screen t)
 (defvar minemacs-splash-buffer-name "*minemacs-splash*")
 
+(defconst minemacs-splash-no-auto-exit (getenv "MINEMACS_SPLASH_NO_EXIT"))
+
 (defun minemacs-splash-screen ()
   "MinEmacs splash screen"
   (let* ((splash-buffer (get-buffer-create minemacs-splash-buffer-name))
@@ -86,7 +88,8 @@
           (display-buffer-same-window splash-buffer nil)))))
 
 (defun minemacs-splash-screen-kill ()
-  (when (get-buffer minemacs-splash-buffer-name)
+  (when (and (not minemacs-splash-no-auto-exit)
+             (get-buffer minemacs-splash-buffer-name))
     (kill-buffer minemacs-splash-buffer-name)))
 
 ;; Display splash screen
