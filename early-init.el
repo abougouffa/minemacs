@@ -37,7 +37,3 @@
 (let ((early-config-path (concat minemacs-config-dir "early-config.el")))
   (when (file-exists-p early-config-path)
     (load early-config-path nil (not minemacs-verbose))))
-
-;; Local Variables:
-;; coding: utf-8
-;; End:
