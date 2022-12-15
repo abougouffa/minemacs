@@ -15,7 +15,7 @@
          ("M-*" . tempel-insert))
   :init
   ;; Setup completion at point
-  (defun tempel-setup-capf ()
+  (defun +tempel-setup-capf-h ()
     ;; Add the Tempel Capf to `completion-at-point-functions'.
     ;; `tempel-expand' only triggers on exact matches. Alternatively use
     ;; `tempel-complete' if you want to see all matches, but then you
@@ -27,8 +27,8 @@
                 (cons #'tempel-complete
                       completion-at-point-functions)))
 
-  (add-hook 'prog-mode-hook 'tempel-setup-capf)
-  (add-hook 'text-mode-hook 'tempel-setup-capf)
+  (add-hook 'prog-mode-hook '+tempel-setup-capf-h)
+  (add-hook 'text-mode-hook '+tempel-setup-capf-h)
 
   ;; Optionally make the Tempel templates available to Abbrev,
   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
@@ -95,18 +95,14 @@
   :straight t
   :hook (prog-mode . smartparens-mode)
   :config
+  ;; Default `smartparens' configuration (example, do not complete single quote)
+  (require 'smartparens-config)
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
       (unless (memq (car sp--mc/cursor-specific-vars) vars)
         (setcdr (assq :default evil-mc-cursor-variables)
                 (append vars sp--mc/cursor-specific-vars))))))
-
-
-;; Default `smartparens' configuration (example, do not complete single quote)
-(use-package smartparens-config
-  :after smartparens)
-
 
 (when (< emacs-major-version 29)
   (use-package good-scroll
