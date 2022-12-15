@@ -10,17 +10,6 @@
 (set-charset-priority 'unicode)
 (set-default-coding-systems 'utf-8)
 
-(defun +expand (dir &optional path as-directory)
-  "Expand PATH in MinEmacs' directory DIR, and create it.
-DIR is a symbol of local, cache, etc, root, core, modules.
-If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
-  (let* ((sym-dir (intern (format "minemacs-%s-dir" dir)))
-         (path (concat (file-name-as-directory (eval sym-dir))
-                       (or path "")
-                       (if as-directory "/" ""))))
-    (mkdir (file-name-directory path) t)
-    path))
-
 ;; ====== Default directories for builtin packages ======
 (setq
  backup-directory-alist (list (cons "." (+expand 'local "backup" t)))

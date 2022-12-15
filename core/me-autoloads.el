@@ -100,6 +100,11 @@ Clean file name.
 (register-definition-prefixes "../elisp/io" '("+sudo-file-path"))
 
 
+;;; Generated autoloads from ../modules/me-backports-28.el
+
+(register-definition-prefixes "../modules/me-backports-28" '("string-"))
+
+
 ;;; Generated autoloads from ../modules/me-backports-29.el
 
 (register-definition-prefixes "../modules/me-backports-29" '("loaddefs-generate" "string-split" "with-memoization"))
@@ -113,11 +118,6 @@ Clean file name.
 ;;; Generated autoloads from ../modules/me-daemon.el
 
 (register-definition-prefixes "../modules/me-daemon" '("+daemon--setup-background-apps"))
-
-
-;;; Generated autoloads from me-defaults.el
-
-(register-definition-prefixes "me-defaults" '("+expand"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
@@ -204,7 +204,7 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+emacs-features" "+env-save-vars" "minemacs-" "os/"))
+(register-definition-prefixes "me-vars" '("+env-save-vars" "emacs/features" "minemacs-" "os/"))
 
 
 ;;; Generated autoloads from ../elisp/messages.el
@@ -235,6 +235,12 @@ Log error MSG and VARS using `message'.
 Is features FEATS are enabled in this Emacs build.
 
 (fn &rest FEATS)")
+(autoload '+expand "../elisp/minemacs-core" "\
+Expand PATH in MinEmacs' directory DIR, and create it.
+DIR is a symbol of local, cache, etc, root, core, modules.
+If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\".
+
+(fn DIR &optional PATH AS-DIRECTORY)")
 (autoload '+reset-sym "../elisp/minemacs-core" "\
 Reset SYM to its standard value.
 
