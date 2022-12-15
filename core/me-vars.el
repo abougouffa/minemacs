@@ -17,6 +17,9 @@
 (defconst minemacs-verbose
   (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug))))
 
+(defconst minemacs-splash-keep
+  (not (null (getenv "MINEMACS_SPLASH_KEEP"))))
+
 (defconst minemacs-root-dir (file-name-as-directory user-emacs-directory))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
