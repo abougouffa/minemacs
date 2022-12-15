@@ -100,14 +100,9 @@ Clean file name.
 (register-definition-prefixes "../elisp/io" '("+sudo-file-path"))
 
 
-;;; Generated autoloads from ../modules/me-backports-28.el
-
-(register-definition-prefixes "../modules/me-backports-28" '("string-"))
-
-
 ;;; Generated autoloads from ../modules/me-backports-29.el
 
-(register-definition-prefixes "../modules/me-backports-29" '("loaddefs-generate" "string-split" "with-memoization"))
+(register-definition-prefixes "../modules/me-backports-29" '("loaddefs-generate" "native-compile-prune-cache" "string-split" "with-memoization"))
 
 
 ;;; Generated autoloads from me-core-ui.el
@@ -186,6 +181,11 @@ Clean file name.
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
+;;; Generated autoloads from ../modules/me-prog.el
+
+(register-definition-prefixes "../modules/me-prog" '("+treesitter-use-builtin"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
@@ -245,14 +245,14 @@ If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\".
 Reset SYM to its standard value.
 
 (fn SYM)")
-(autoload '+shutup! "../elisp/minemacs-core" "\
-Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
-
-(fn &rest BODY)" nil t)
 (autoload '+reset-var! "../elisp/minemacs-core" "\
 Reset VAR to its standard value.
 
 (fn VAR)" nil t)
+(autoload '+shutup! "../elisp/minemacs-core" "\
+Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
+
+(fn &rest BODY)" nil t)
 (autoload '+cmdfy! "../elisp/minemacs-core" "\
 Convert BODY to an interactive command.
 
