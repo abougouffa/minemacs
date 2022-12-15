@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-natural-langs.el --- Natural languages stuff -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (defconst ASPELL-P (executable-find "aspell"))
 
@@ -67,7 +72,6 @@
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
        (setq-local spell-fu-faces-exclude excluded)))))
-
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
@@ -153,7 +157,6 @@
             (t (gts-google-engine)))
       :render (gts-buffer-render)))))
 
-
 (use-package lexic
   :straight t
   :general
@@ -181,7 +184,6 @@
     "C-p" #'lexic-search-history-backwards
     "C-n" #'lexic-search-history-forwards
     "/" `(,(+cmdfy! (call-interactively #'lexic-search)) :wk "Search")))
-
 
 ;; Add this to .dir-locals.el
 ;; ((nil (eglot-workspace-configuration

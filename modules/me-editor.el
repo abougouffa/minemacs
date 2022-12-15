@@ -1,6 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-editor.el --- Editing stuff -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
 
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 ;; Maybe replace with yasnippet + https://github.com/elken/cape-yasnippet
@@ -34,7 +36,6 @@
   :config
   (global-tempel-abbrev-mode))
 
-
 (use-package unicode-fonts
   :straight t
   :after minemacs-loaded
@@ -50,7 +51,6 @@
          (remove-hook
           'server-after-make-frame-hook
           #'+unicode-fonts--setup-once-h))))))
-
 
 (use-package ligature
   :straight t
@@ -79,21 +79,17 @@
                 "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                 "\\\\" "://")))
 
-
 (use-package page-break-lines
   :straight t
   :hook ((prog-mode text-mode) . page-break-lines-mode))
-
 
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-
 (use-package highlight-numbers
   :straight t
   :hook (prog-mode . highlight-numbers-mode))
-
 
 (use-package smartparens
   :straight t

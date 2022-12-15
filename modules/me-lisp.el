@@ -4,6 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+
 (use-package parinfer-rust-mode
   :straight t
   :when (+emacs-features-p 'modules)
@@ -17,13 +18,11 @@
           racket-mode
           hy-mode) . parinfer-rust-mode))
 
-
 (use-package slime
   :straight t
   :defer t
   :init
   (setq inferior-lisp-program "sbcl"))
-
 
 (use-package macrostep
   :straight t
@@ -31,7 +30,6 @@
   :general
   (+map-local :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :wk "Expand macro")))
-
 
 (use-package macrostep-geiser
   :straight t
@@ -42,37 +40,30 @@
   :config
   (macrostep-geiser-setup))
 
-
 ;; Scheme
 (use-package geiser
   :straight t
   :defer t)
 
-
 (use-package geiser-chez
   :straight t
   :defer t)
-
 
 (use-package geiser-guile
   :straight t
   :defer t)
 
-
 (use-package geiser-mit
   :straight t
   :defer t)
-
 
 (use-package geiser-racket
   :straight t
   :defer t)
 
-
 (use-package racket-mode
   :straight t
   :defer t)
-
 
 ;; TODO: Add elisp-def
 (use-package elisp-mode
@@ -111,13 +102,11 @@
     "eE"  'edebug-eval-expression
     "et"  'edebug-eval-top-level-form))
 
-
 (use-package me-elisp-extras
   :after elisp-mode minemacs-loaded
   :config
   (+elisp-indent-setup)
   (+elisp-highlighting-setup))
-
 
 (use-package elisp-demos
   :straight t
@@ -125,7 +114,6 @@
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
-
 
 (use-package helpful
   :straight t
@@ -138,7 +126,6 @@
     "hc" #'helpful-command
     "hF" #'helpful-function
     "hf" #'helpful-callable))
-
 
 (use-package eros
   :straight t

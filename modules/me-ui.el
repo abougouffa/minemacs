@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-ui.el --- UI stuff -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (when (< emacs-major-version 29)
@@ -14,13 +18,11 @@
     :config
     (global-emojify-mode 1)))
 
-
 (use-package svg-lib
   :straight t
   :defer t
   :custom
   (svg-lib-icons-dir (+expand 'cache "svg-lib/icons" t)))
-
 
 (use-package writeroom-mode
   :straight t
@@ -89,7 +91,6 @@
                       (plist-put org-format-latex-options
                                  :scale (or +writeroom-org-format-latex-scale 1.0)))))))
 
-
 (use-package mixed-pitch
   :straight t
   :general
@@ -123,7 +124,6 @@
                    org-todo
                    org-done
                    font-lock-comment-face)))))
-
 
 (use-package focus
   :straight t

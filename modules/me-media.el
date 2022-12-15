@@ -1,7 +1,11 @@
-;; -*- lexical-binding: t; -*-
+;;; me-media.el --- Multimedia stuff -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (defconst MPV-P (executable-find "mpv"))
-
 
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
@@ -62,7 +66,6 @@
   (defun +empv-download-playtlist-files (&optional path)
     (interactive "DSave download playlist files to: ")
     (empv--playlist-apply #'+empv--dl-playlist path)))
-
 
 (use-package emms
   :straight t

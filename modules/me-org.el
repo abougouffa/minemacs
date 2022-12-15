@@ -4,6 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+
 (use-package org
   :straight (:type built-in)
   :after minemacs-loaded ;; load Org after finishing Emacs startup
@@ -100,11 +101,9 @@
   (with-eval-after-load 'plantuml-mode
     (setq org-plantuml-jar-path plantuml-jar-path)))
 
-
 (use-package org-contrib
   :straight (:host sourcehut :repo "bzg/org-contrib")
   :after org)
-
 
 (use-package ox-latex
   :after org
@@ -139,21 +138,17 @@
     (unless (member pair org-latex-minted-langs)
       (add-to-list 'org-latex-minted-langs pair))))
 
-
 (use-package ob-tangle
   :after org)
-
 
 (use-package ox-hugo
   :straight t
   :after org)
 
-
 (use-package ox-extra
   :after org
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
-
 
 (use-package me-org-extras
   :after org
@@ -165,7 +160,6 @@
   (+org-extras-equation-numbering-setup)
   (+org-extras-multifiles-document-setup)
   (+org-extras-lower-case-keywords-and-properties-setup))
-
 
 (use-package org-appear
   :straight t
@@ -182,7 +176,6 @@
   ;; needs to be run after other hooks have acted.
   (run-at-time nil nil #'org-appear--set-elements))
 
-
 (use-package org-modern
   :straight t
   :hook (org-mode . org-modern-mode)
@@ -193,14 +186,12 @@
   (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil))
 
-
 ;; for latex fragments
 (use-package org-fragtog
   :straight t
   :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.1))
-
 
 (use-package org-present
   :straight t

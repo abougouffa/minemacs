@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-files.el --- File management -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package dirvish

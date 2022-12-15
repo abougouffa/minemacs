@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-biblio.el --- Bibliography -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (use-package oc
   :after org
@@ -9,18 +14,14 @@
   (+map-local :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
-
 (use-package oc-csl
   :after oc)
-
 
 (use-package oc-natbib
   :after oc)
 
-
 (use-package oc-biblatex
   :after oc)
-
 
 (use-package citar
   :straight t
@@ -48,7 +49,6 @@
          (remove-hook 'server-after-make-frame-hook
                       #'+citar--set-symbols-once-h))))))
 
-
 (use-package citar-org-roam
   :straight t
   :after citar org-roam
@@ -75,7 +75,6 @@
                          :props '(:finalize find-file))))
   :config
   (citar-org-roam-mode))
-
 
 (use-package citar-embark
   :straight t

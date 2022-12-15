@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-daemon.el --- Daemon -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (defun +daemon--setup-background-apps ()
@@ -28,7 +32,6 @@
          (+info! "Starting Emacs daemon in background.")
          (server-start nil t))))))
 
-
 ;; At daemon startup
 (add-hook 'emacs-startup-hook #'+daemon--setup-background-apps)
 
@@ -45,7 +48,6 @@
    'tty-setup-hook
    (defun +xclip--enable-in-tty-h ()
      (with-demoted-errors "%s" (xclip-mode 1)))))
-
 
 ;; Reload theme on Daemon
 (add-hook

@@ -1,7 +1,11 @@
-;; -*- lexical-binding: t; -*-
+;;; me-vc.el --- Git and version control -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
-
 
 (use-package magit
   :straight t
@@ -16,7 +20,6 @@
   ;; Show in new window
   (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1))
 
-
 (use-package forge
   :straight t
   :after magit
@@ -25,7 +28,6 @@
   (setq forge-add-default-bindings nil)
   :custom
   (forge-database-file (+expand 'local "forge/database.sqlite")))
-
 
 (use-package diff-hl
   :straight t
@@ -43,7 +45,6 @@
   (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
-
 (use-package git-timemachine
   :straight t
   :after minemacs-loaded
@@ -52,7 +53,6 @@
     "gt" '(git-timemachine-toggle :wk "Time machine"))
   :custom
   (git-timemachine-show-minibuffer-details t))
-
 
 ;; Enforce git commit conventions.
 ;; See https://chris.beams.io/posts/git-commit/
@@ -76,7 +76,6 @@
                 (eolp))
        (evil-insert-state))))
   (global-git-commit-mode 1))
-
 
 (use-package smerge-mode
   :straight t

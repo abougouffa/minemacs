@@ -1,8 +1,9 @@
-;;; latex.el --- LaTeX related stuff -*- lexical-binding: t; -*-
+;;; me-latex.el --- LaTeX related stuff -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 ;; Adapted from Doom Emacs
 (use-package tex
@@ -30,7 +31,6 @@
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools")))
   (setq-default TeX-master nil))
 
-
 ;; Adapted from Doom Emacs
 (use-package auctex-latexmk
   :straight t
@@ -46,14 +46,12 @@
   ;; Add LatexMk as a TeX target.
   (auctex-latexmk-setup))
 
-
 ;; Set up mode for bib files.
 (with-eval-after-load 'bibtex
   (setq bibtex-dialect 'biblatex
         bibtex-align-at-equal-sign t
         bibtex-text-indentation 20)
   (define-key bibtex-mode-map (kbd "C-c \\") #'bibtex-fill-entry))
-
 
 ;; Adapted from Doom Emacs
 (use-package reftex
@@ -91,3 +89,6 @@
        "k"   #'previous-line
        "q"   #'kill-buffer-and-window
        "ESC" #'kill-buffer-and-window))))
+
+
+(provide 'me-latex)

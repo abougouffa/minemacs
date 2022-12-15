@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-math.el --- Mathematics stuff -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (defconst MAXIMA-P (executable-find "maxima"))
 
@@ -14,7 +19,6 @@
   :custom
   (maxima-display-maxima-buffer nil))
 
-
 (use-package imaxima
   :straight (:host nil :repo "https://git.code.sf.net/p/maxima/code"
                    :files ("interfaces/emacs/imaxima/*"))
@@ -25,7 +29,6 @@
   :config
   ;; Hook the `maxima-inferior-mode' to get syntax highlighting
   (add-hook 'imaxima-startup-hook #'maxima-inferior-mode))
-
 
 (use-package ein
   :straight t

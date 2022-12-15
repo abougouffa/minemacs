@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-ros.el --- Robot Operating System -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (with-eval-after-load 'minemacs-loaded
   (add-to-list 'auto-mode-alist '("\\.rviz\\'"   . conf-unix-mode))

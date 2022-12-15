@@ -273,12 +273,10 @@
   (dolist (mode '(emacs-lisp-mode lisp-data-mode scheme-mode))
     (push (cons mode 'lisp-indent) apheleia-mode-alist)))
 
-
 (use-package editorconfig
   :straight t
   :general
   (+map "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")))
-
 
 (use-package clang-format
   :straight t
@@ -286,18 +284,15 @@
              clang-format-region
              clang-format-buffer))
 
-
 ;;; Modes
 (use-package vimrc-mode
   :straight t
   :mode "\\.vim\\(rc\\)?\\'")
 
-
 (use-package cmake-mode
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'"
   :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
-
 
 (use-package cmake-font-lock
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
@@ -338,7 +333,6 @@
               ((file-exists-p plantuml-jar-path) 'jar)
               (t (plantuml-download-jar) 'jar))))
 
-
 (use-package rust-mode
   :straight t
   :mode "\\.rs\\'"
@@ -355,7 +349,6 @@
     "F" #'rust-goto-format-problem
     "S" #'rust-enable-format-on-save))
 
-
 (use-package dumb-jump
   :straight t
   :defer t
@@ -363,11 +356,9 @@
   ;; use as xref backend
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
-
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode))
-
 
 (use-package lua-mode
   :straight t

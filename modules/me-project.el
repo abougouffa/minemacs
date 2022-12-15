@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-project.el --- Projects stuff -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package projectile
@@ -48,7 +52,6 @@
   (cl-letf (((symbol-function 'projectile--cleanup-known-projects) #'ignore))
     (projectile-mode +1)))
 
-
 (use-package consult-projectile
   :straight t
   :general
@@ -62,7 +65,6 @@
     "pr"  #'consult-projectile-recentf
     "pd"  '(consult-projectile-find-dir :wk "Find directory")
     "pf"  '(consult-projectile-find-file :wk "Find file")))
-
 
 ;; Use keybindings for built-in project.el
 (unless t

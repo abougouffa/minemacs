@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-gnus.el --- Email stuff using Gnus -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 ;; See

@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-mu4e.el --- Email stuff using mu4e -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
@@ -52,24 +57,20 @@
   (+map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments))
 
-
 (use-package me-mu4e-ui
   :after mu4e
   :config
   (+mu4e-ui-setup)) ;; Setup UI
-
 
 (use-package me-mu4e-gmail
   :after mu4e
   :config
   (+mu4e-gmail-setup)) ;; Gmail specifics
 
-
 (use-package me-mu4e-extras
   :after mu4e
   :config
   (+mu4e-extras-setup)) ;; Extra features
-
 
 (use-package org-msg
   :straight t
@@ -102,7 +103,6 @@
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)
   (org-msg-mode 1))
-
 
 (use-package mu4e-alert
   :straight t

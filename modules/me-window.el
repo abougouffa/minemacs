@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-window.el --- Windows and frames -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package popwin
@@ -11,7 +15,6 @@
 
   (+popwin-register '("*Warnings*" compilation-mode) :height 8 :noselect t)
   (popwin-mode 1))
-
 
 (when nil
   ;; Window configuration for special windows.
@@ -31,7 +34,6 @@
      (inhibit-same-window . t)
      (window-height . 10)))
 
-
   (add-to-list
    'display-buffer-alist
    '("\\*Warnings\\*"
@@ -46,7 +48,6 @@
      (display-buffer-in-side-window)
      (side . left)
      (window-width . 70))))
-
 
 (setq frame-title-format
       '(""

@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-rss.el --- News and RSS -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (use-package elfeed
   :straight t

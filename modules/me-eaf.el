@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-eaf.el --- EAF applications -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package eaf

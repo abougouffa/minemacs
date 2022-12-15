@@ -1,8 +1,9 @@
-;;; data-files.el --- Data files (csv, yaml, xml, ...) -*- lexical-binding: t; -*-
+;;; me-data.el --- Data files (csv, yaml, xml, ...) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (use-package csv-mode
   :straight t
@@ -33,16 +34,13 @@
                for r = (format "^\\([^%c\n]+%c\\)\\{%d\\}" separator separator i)
                do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
 
-
 (use-package yaml-mode
   :straight t
   :mode "Procfile\\'")
 
-
 (use-package toml-mode
   :straight t
   :mode "\\.toml\\'")
-
 
 (use-package json-mode
   :straight t
@@ -57,7 +55,6 @@
     "-" #'json-decrement-number-at-point
     "f" #'json-mode-beautify))
 
-
 (use-package graphviz-dot-mode
   :straight t
   :defer t
@@ -69,7 +66,6 @@
       (add-to-list
        'eglot-server-programs
        '(graphviz-dot-mode . ("dot-language-server" "--stdio"))))))
-
 
 (with-eval-after-load 'nxml-mode
   (with-eval-after-load 'eglot

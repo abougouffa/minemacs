@@ -4,6 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+
 (use-package embed
   :straight (:type git :host github :repo "xal-0/embed-el")
   :general
@@ -14,18 +15,15 @@
     "obg" #'embed-openocd-gdb
     "obf" #'embed-openocd-flash))
 
-
 (use-package arduino-mode
   :straight (:type git :host github :repo "bookest/arduino-mode")
   :defer t
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
-
 (use-package bitbake-modes
   :straight (:type git :host bitbucket :repo "olanilsson/bitbake-modes")
   :defer t)
-
 
 ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
 (with-eval-after-load 'eglot

@@ -21,13 +21,11 @@
              org-roam-node-insert
              org-roam-node-random))
 
-
 (use-package org-roam-ui
   :straight t
   :general
   (+map
     "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
-
 
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
 (use-package deft

@@ -31,7 +31,6 @@
        (defun +evil--cunsult-buffer-after-window-split-a (&rest _)
          (consult-buffer))))))
 
-
 (use-package evil-collection
   :after evil minemacs-loaded
   :straight t
