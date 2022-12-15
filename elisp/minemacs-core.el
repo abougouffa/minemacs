@@ -42,17 +42,17 @@ If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
   (set sym (eval (car (get sym 'standard-value)))))
 
 ;;;###autoload
+(defmacro +reset-var! (var)
+  "Reset VAR to its standard value."
+  `(setq ,var (eval (car (get ',var 'standard-value)))))
+
+;;;###autoload
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
   (if (not minemacs-verbose)
       `(let ((message-log-max nil))
         (with-temp-message (or (current-message) "") ,@body))
     `(progn ,@body)))
-
-;;;###autoload
-(defmacro +reset-var! (var)
-  "Reset VAR to its standard value."
-  `(setq ,var (eval (car (get ',var 'standard-value)))))
 
 ;;;###autoload
 (defmacro +cmdfy! (&rest body)
