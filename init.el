@@ -89,7 +89,7 @@
 
    (+log! "Setting scratch buffer content.")
    ;; Print load time, and a quote to *scratch*
-   (with-current-buffer "*scratch*"
+   (with-current-buffer (get-buffer-create "*scratch*")
      (erase-buffer)
      (insert (format ";; MinEmacs loaded in %.3f seconds.\n"
                      (string-to-number (car (string-split (emacs-init-time))))))
@@ -98,7 +98,8 @@
        (insert (string-join
                 (mapcar (lambda (l) (concat ";; " l))
                         (string-lines (shell-command-to-string "fortune")))
-                "\n")))
+                "\n"))
+       (insert "\n;; ==============================\n"))
      ;; Set initial scratch message.
      (setq initial-scratch-message (buffer-string)))
 
