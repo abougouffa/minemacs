@@ -9,16 +9,20 @@
 (defconst minemacs-config-dir
   (file-name-as-directory
    (or (getenv "MINEMACS_DIR")
-       "~/.minemacs.d/")))
+       "~/.minemacs.d/"))
+  "MinEmacs user customization directory.")
 
 (defconst minemacs-debug
-  (not (null (or (getenv "MINEMACS_DEBUG") init-file-debug))))
+  (not (null (or (getenv "MINEMACS_DEBUG") init-file-debug)))
+  "MinEmacs is started in debug mode.")
 
 (defconst minemacs-verbose
-  (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug))))
+  (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug)))
+  "MinEmacs is started in verbose mode.")
 
 (defconst minemacs-splash-keep
-  (not (null (getenv "MINEMACS_SPLASH_KEEP"))))
+  (not (null (getenv "MINEMACS_SPLASH_KEEP")))
+  "MinEmacs is started in keep splash screen mode.")
 
 (defconst minemacs-root-dir (file-name-as-directory user-emacs-directory))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
@@ -38,16 +42,18 @@
 (defconst emacs/features
   (mapcar #'intern
           (mapcar (apply-partially #'string-replace "_" "-")
-                  (mapcar #'downcase (split-string system-configuration-features)))))
+                  (mapcar #'downcase (split-string system-configuration-features))))
+  "List of symbols representing Emacs' enabled features.
+Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-fonts nil
-  "MinEmacs theme.")
+  "Fonts to use within MinEmacs.")
 
 (defcustom minemacs-leader-key "SPC"
-  "Leader key.")
+  "MinEmacs leader key.")
 
 (defcustom minemacs-localleader-key "SPC m"
-  "Localleader (mode specific) key.")
+  "MinEmacs local leader (a.k.a. mode specific) key sequence.")
 
 (defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs")
@@ -68,7 +74,8 @@
     `(:font-family ,mono-font
       :font-size 15
       :variable-pitch-font-family ,varp-font
-      :variable-pitch-font-size 15)))
+      :variable-pitch-font-size 15)
+    "Default fonts of MinEmacs."))
 
 (defvar minemacs-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget (xsel xclip)
