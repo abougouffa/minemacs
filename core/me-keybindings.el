@@ -37,7 +37,6 @@
   (which-key-mode)
   (which-key-setup-minibuffer))
 
-
 ;;; General.el
 (use-package general
   :straight t
@@ -172,7 +171,6 @@
 
     ;; ====== Project ======
     "p"   '(nil :wk "project")))
-
 
 (use-package hydra
   :straight t

@@ -33,7 +33,6 @@
  (defun +theme--disable-previous-themes-a (&rest _)
    (mapc #'disable-theme custom-enabled-themes)))
 
-
 ;; Icons
 (use-package all-the-icons
   :straight t
@@ -43,12 +42,10 @@
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
-
 (use-package doom-themes
   :straight t
   :config
   (load-theme 'doom-one-light t))
-
 
 (use-package modus-themes
   :straight t
@@ -132,7 +129,6 @@
 
   (modus-themes-load-operandi))
 
-
 (use-package ef-themes
   :straight t
   :defer t
@@ -155,7 +151,6 @@
   (mapc #'disable-theme custom-enabled-themes)
 
   (ef-themes-select 'ef-light))
-
 
 ;; Modeline
 (use-package doom-modeline

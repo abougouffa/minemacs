@@ -23,7 +23,6 @@
 (defconst minemacs-root-dir (file-name-as-directory user-emacs-directory))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
-
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-autoloads-file (concat minemacs-core-dir "me-autoloads.el"))
@@ -40,6 +39,18 @@
   (mapcar #'intern
           (mapcar (apply-partially #'string-replace "_" "-")
                   (mapcar #'downcase (split-string system-configuration-features)))))
+
+(defcustom minemacs-fonts nil
+  "MinEmacs theme.")
+
+(defcustom minemacs-leader-key "SPC"
+  "Leader key.")
+
+(defcustom minemacs-localleader-key "SPC m"
+  "Localleader (mode specific) key.")
+
+(defcustom minemacs-theme 'doom-one-light
+  "The theme of MinEmacs")
 
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs."
@@ -58,17 +69,6 @@
       :font-size 15
       :variable-pitch-font-family ,varp-font
       :variable-pitch-font-size 15)))
-
-(defvar minemacs-theme 'doom-one-light)
-
-(defcustom minemacs-fonts nil
-  "MinEmacs theme.")
-
-(defcustom minemacs-leader-key "SPC"
-  "Leader key.")
-
-(defcustom minemacs-localleader-key "SPC m"
-  "Localleader (mode specific) key.")
 
 (defvar minemacs-deps-executables
   '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget (xsel xclip)

@@ -4,6 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+
 (use-package cape
   :straight t
   :after minemacs-loaded
@@ -14,7 +15,6 @@
   (add-to-list 'completion-at-point-functions #'cape-ispell)
   (add-to-list 'completion-at-point-functions #'cape-symbol)
   (add-to-list 'completion-at-point-functions #'cape-keyword))
-
 
 (use-package corfu
   :straight t
@@ -44,7 +44,6 @@
   (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer)
   (global-corfu-mode 1))
 
-
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
@@ -55,7 +54,6 @@
   (define-key corfu-map (kbd "M-n") #'corfu-popupinfo-scroll-up)
   (define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle))
 
-
 (use-package corfu-history
   :after corfu
   :config
@@ -63,7 +61,6 @@
   (unless (bound-and-true-p savehist-mode)
     (savehist-mode +1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
-
 
 (use-package kind-icon
   :straight t
@@ -77,7 +74,6 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)) ; Enable `kind-icon'
 
-
 (use-package embark
   :straight t
   :after minemacs-loaded
@@ -86,11 +82,9 @@
   (global-set-key [remap describe-bindings] #'embark-bindings)
   (global-set-key (kbd "C-.") 'embark-act))
 
-
 (use-package embark-consult
   :straight t
   :after embark consult)
-
 
 (use-package all-the-icons-completion
   :straight t
@@ -98,13 +92,11 @@
   :config
   (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
-
 (use-package marginalia
   :straight t
   :after minemacs-loaded
   :config
   (marginalia-mode 1))
-
 
 (use-package orderless
   :straight t
@@ -112,7 +104,6 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-
 
 (use-package vertico
   :straight t
@@ -134,7 +125,6 @@
 
   (vertico-mode 1))
 
-
 (use-package vertico-directory
   :after vertico
   :custom
@@ -152,12 +142,10 @@
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "M-h") #'vertico-directory-up)))
 
-
 (use-package vertico-repeat
   :after vertico
   :config
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
-
 
 (use-package mini-popup
   :straight (:host github :repo "minad/mini-popup")
@@ -184,7 +172,6 @@
    (defun +consult--update-after-refresh-h (&rest _)
      (mini-popup--setup))
    99))
-
 
 (use-package consult
   :straight t
