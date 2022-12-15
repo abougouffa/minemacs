@@ -138,6 +138,7 @@
   (defcustom minemacs-modules
     '(ui
       editor
+      multi-cursors
       vc
       project
       prog
