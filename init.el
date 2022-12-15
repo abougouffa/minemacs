@@ -15,9 +15,7 @@
   (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
 
 ;; Enable debugging on error when env variable "MINEMACS_DEBUG" is defined
-(when minemacs-debug
-  (setq debug-on-error t
-        eval-expression-debug-on-error t))
+(setq debug-on-error minemacs-debug)
 
 ;;; Byte compilation
 (setq byte-compile-warnings minemacs-verbose
