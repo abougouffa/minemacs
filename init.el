@@ -138,10 +138,12 @@
   (defcustom minemacs-modules
     '(ui
       editor
+      undo
       multi-cursors
       vc
       project
       prog
+      debug
       lisp
       data
       org
