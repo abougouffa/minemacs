@@ -13,7 +13,12 @@
   (dirvish-cache-dir (+expand 'cache "dirvish" t))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
+  (dirvish-fd-default-dir "~/")
   :config
+  (require 'dirvish-fd)
+  (require 'dirvish-yank)
+  (require 'dirvish-icons)
+  (require 'dirvish-emerge)
   (+map
     ;; Open
     "o-"  '(dirvish :wk "Dirvish")
@@ -24,24 +29,6 @@
   (+map-key :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit)
   (dirvish-override-dired-mode))
-
-
-(use-package dirvish-fd
-  :after dirvish
-  :custom
-  (dirvish-fd-default-dir "~/"))
-
-
-(use-package dirvish-yank
-  :after dirvish)
-
-
-(use-package dirvish-icons
-  :after dirvish)
-
-
-(use-package dirvish-emerge
-  :after dirvish)
 
 
 (provide 'me-files)
