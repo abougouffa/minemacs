@@ -36,7 +36,7 @@
 (defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
 (defconst os/mac (eq system-type 'darwin))
 
-(defconst +emacs-features
+(defconst emacs/features
   (mapcar #'intern
           (mapcar (apply-partially #'string-replace "_" "-")
                   (mapcar #'downcase (split-string system-configuration-features)))))
