@@ -1,39 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
-;; Visual Undo
-(use-package vundo
-  :straight t
-  :defer t
-  :general
-  (+map "ou" #'vundo)
-  :custom
-  (vundo-compact-display t)
-  (vundo-window-max-height 6)
-  (vundo-glyph-alist
-   '((selected-node   . ?●)
-     (node            . ?○)
-     (vertical-stem   . ?│)
-     (branch          . ?├)
-     (last-branch     . ?╰)
-     (horizontal-stem . ?─))))
 
-
-(use-package undo-fu
-  :straight t
-  :after minemacs-loaded
-  :config
-  (with-eval-after-load 'evil
-    (evil-set-undo-system 'undo-fu)))
-
-
-(use-package undo-fu-session
-  :straight t
-  :after undo-fu
-  :custom
-  (undo-fu-session-compression 'zst)
-  (undo-fu-session-directory (+expand 'local "undo-fu-session" t))
-  :config
-  (global-undo-fu-session-mode 1))
 
 
 ;; Maybe replace with yasnippet + https://github.com/elken/cape-yasnippet
