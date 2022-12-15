@@ -104,14 +104,6 @@
         (setcdr (assq :default evil-mc-cursor-variables)
                 (append vars sp--mc/cursor-specific-vars))))))
 
-(when (< emacs-major-version 29)
-  (use-package good-scroll
-    :straight t
-    :after minemacs-loaded
-    :config
-    (good-scroll-mode 1)))
-
-
 (use-package goggles
   :straight t
   :hook ((prog-mode text-mode) . goggles-mode))
