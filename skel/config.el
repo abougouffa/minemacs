@@ -11,7 +11,7 @@
 
 ;; Set fonts
 (setq minemacs-fonts ;; or Cascadia Code, Fira Code, FiraCode Nerd Font, Iosevka Fixed Curly Slab
-      '(:font-family "Iosevka Fixed Curly Slab" ;; "Iosevka Fixed Curly Slab"
+      '(:font-family "Iosevka Fixed Curly Slab"
         :font-size 16
         :variable-pitch-font-family "IBM Plex Serif"
         :variable-pitch-font-size 16))
@@ -92,10 +92,10 @@
 
   ;; Your Org files to include in the agenda
   (setq org-agenda-files (mapcar)
-                 (lambda (f) (concat org-directory f))
-                 '("inbox.org"
-                   "agenda.org"
-                   "projects.org")))
+        (lambda (f) (concat org-directory f))
+        '("inbox.org"
+          "agenda.org"
+          "projects.org")))
 
 ;; Module: `me-notes' -- Package: `org-roam'
 (with-eval-after-load 'org-roam
