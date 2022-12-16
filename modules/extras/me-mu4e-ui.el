@@ -174,7 +174,11 @@ will also be the width of all other printable characters."
                  (concat
                   prefix
                   (truncate-string-to-width
-                   (mu4e-message-field msg :subject)
+                   ;; Some times, a newline/carriage return char slips in the subject
+                   ;; and drives mu4e crazy!, let's fix it
+                   (replace-regexp-in-string
+                    "[\n\r]" ""
+                    (mu4e-message-field msg :subject))
                    (- 100 (length prefix)) nil nil "…"))))))
           (:account-stripe
            . (:name "Account"
