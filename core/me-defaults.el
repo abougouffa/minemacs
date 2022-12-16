@@ -232,13 +232,15 @@
      (+expand 'local (concat "emacs-session/"
                              (file-name-nondirectory filename))))))
 
-;;; Enable `display-line-numbers-mode' in `prog-mode' and `text-mode'
+;;; Enable `display-line-numbers-mode' in `prog-mode', `text-mode' and `conf-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'conf-mode-hook #'display-line-numbers-mode)
 
-;; Highlight the current line in `prog-mode' and `text-mode'
+;; Highlight the current line in `prog-mode', `text-mode' and `conf-mode'
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'text-mode-hook #'hl-line-mode)
+(add-hook 'conf-mode-hook #'hl-line-mode)
 
 ;; Update time stamp when saving a file
 (add-hook 'before-save-hook 'time-stamp)
