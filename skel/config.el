@@ -80,14 +80,22 @@
 ;; Module: `me-org' -- Package: `org'
 (with-eval-after-load 'org
   ;; Set Org-mode directory
-  (setq org-directory "~/Org/") ; let's put files here
+  (setq org-directory "~/Org/" ; let's put files here
+        org-default-notes-file (concat org-directory "inbox.org"))
   ;; Customize Org stuff
   ;; (setq org-todo-keywords
   ;;       '((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "PROJ(p)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "DONE(d)" "KILL(k)")
   ;;         (sequence "[ ](T)" "[-](S)" "|" "[X](D)")
   ;;         (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")))
 
-  (setq org-export-headline-levels 5))
+  (setq org-export-headline-levels 5)
+
+  ;; Your Org files to include in the agenda
+  (setq org-agenda-files (mapcar)
+                 (lambda (f) (concat org-directory f))
+                 '("inbox.org"
+                   "agenda.org"
+                   "projects.org")))
 
 ;; Module: `me-notes' -- Package: `org-roam'
 (with-eval-after-load 'org-roam
