@@ -96,8 +96,9 @@ Yank the file name of this buffer." t)
 (autoload '+clean-file-name "../elisp/io" "\
 Clean file name.
 
-(fn FILENAME &optional CONV-DOWNCASE)")
-(register-definition-prefixes "../elisp/io" '("+sudo-file-path"))
+(fn FILENAME &optional DOWNCASE-P)")
+(fn INFILE &optional _)")
+(register-definition-prefixes "../elisp/io" '("+save-as-pdf-filename" "+sudo-file-path"))
 
 
 ;;; Generated autoloads from ../modules/me-backports-29.el
@@ -179,11 +180,6 @@ Clean file name.
 ;;; Generated autoloads from ../modules/extras/me-org-extras.el
 
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
-
-
-;;; Generated autoloads from ../modules/me-prog.el
-
-(register-definition-prefixes "../modules/me-prog" '("+treesitter-use-builtin"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el

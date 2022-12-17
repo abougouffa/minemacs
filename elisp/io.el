@@ -145,11 +145,11 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
         (kill-ring-save (point-min) (point-max))))))
 
 ;;;###autoload
-(defun +clean-file-name (filename &optional conv-downcase)
+(defun +clean-file-name (filename &optional downcase-p)
   "Clean file name."
   ;; Clean slashes, backslashes, ":", ";", spaces, and tabs
   (replace-regexp-in-string
    "[:;\t\n\r /\\_]+" "-"
    (replace-regexp-in-string
     "[‘’‚’“”„”\"'()]+" ""
-    (if conv-downcase (downcase filename) filename))))
+    (if downcase-p (downcase filename) filename))))
