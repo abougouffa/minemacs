@@ -182,12 +182,46 @@ preferred alias"
      (format "%s/%s" (or (when current-prefix-arg (read-directory-name "Copy message to: "))
                          mu4e-attachment-dir) target) 1)))
 
+(defvar +html-to-pdf-filename nil)
+
+;;;###autoload
+(defun +html-to-pdf (url &rest _)
+  "Save HTML as PDF."
+  (let* ((outfile (or (bound-and-true-p +html-to-pdf-filename)
+                      (expand-file-name
+                       (file-name-with-extension (file-name-base url) ".pdf")
+                       default-directory))))
+    (if (zerop
+         (shell-command
+          (format "wkhtmltopdf %s %s" url outfile)
+          (get-buffer-create " *html2pdf*")
+          (get-buffer-create " *html2pdf-stderr*")))
+        (message "Exported PDF to %s" (abbreviate-file-name outfile))
+      (user-error "An error occured, see \" *html2pdf-stderr*\""))))
+
+(defun +mu4e-view-save-mail-as-pdf (&optional msg)
+  "Save mail as PDF."
+  (interactive)
+  (if-let* ((msg (or msg (mu4e-message-at-point)))
+            (default-directory mu4e-attachment-dir)
+            (browse-url-browser-function #'+html-to-pdf)
+            (+html-to-pdf-filename
+             (expand-file-name
+              (format "%s_%s.pdf"
+                      (format-time-string "%F" (mu4e-message-field msg :date))
+                      (+clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))
+              mu4e-attachment-dir)))
+      (mu4e-action-view-in-browser msg)
+    (message "No message at point.")))
+
 ;;;###autoload
 (defun +mu4e-extras-setup ()
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)
   (add-hook 'mu4e-compose-pre-hook '+mu4e--set-from-address-h)
   (add-hook 'message-send-hook #'+mu4e--check-for-subject-h)
 
+  ;; Register actions
+  (add-to-list 'mu4e-view-actions '("pdf" . +mu4e-view-save-mail-as-pdf))
   (add-to-list 'mu4e-view-actions '("all attachements save" . +mu4e-view-save-all-attachments))
   (add-to-list 'mu4e-view-actions '("Save message" . +mu4e-save-message-at-point)))
 

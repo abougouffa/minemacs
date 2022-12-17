@@ -83,7 +83,7 @@ Compiled from the `system-configuration-features'.")
     (python3 python) rosbag cargo maxima octave fortune (xelatex pdflatex lualatex) (latexmk tectonic)
     (clangd ccls) (pyls pylsp pyright) dot-language-server rust-analyzer prettier
     cmake-language-server bash-language-server docker-langserver yaml-language-server
-    vscode-json-languageserver marksman digestif)
+    vscode-json-languageserver marksman digestif wkhtmltopdf)
   "A list of programs I use within Emacs.")
 
 (defvar +env-save-vars
