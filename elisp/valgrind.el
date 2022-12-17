@@ -45,6 +45,7 @@ and move to the source code that caused it."
     (setq valgrind-command command))
   (compilation-start command nil (lambda (mode) "*valgrind*")))
 
+
 (provide 'valgrind)
 
 ;;; me-valgrind.el ends here

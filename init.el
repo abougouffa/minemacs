@@ -73,7 +73,6 @@
 ;; Load environment variables when available
 (+env-load)
 
-
 ;; Syncronization point!
 ;; Profile emacs startup and trigger `minemacs-loaded' 5s after loading Emacs
 (add-hook

@@ -25,7 +25,6 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
              (expand-file-name netextender-passphrase-file)))
     (write-file (car netextender-command))))
 
-
 (defun netextender-check-system ()
   "Return non-nil if system setup is OK."
   (let* ((pppd-command "/usr/sbin/pppd")
@@ -35,7 +34,6 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
         (prog1 nil ;; return nil
           (message "pppd needs root permissions, please set the setuid bit of %s." pppd-command))
       t)))
-
 
 ;;;###autoload
 (defun netextender-start ()
@@ -50,7 +48,6 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
           (user-error "Cannot start NetExtender.")))
     (user-error "Cannot start a netExtender VPN session.")))
 
-
 (defun netextender-kill ()
   "Kill the created NetExtender VPN session."
   (interactive)
@@ -60,7 +57,6 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
             (message "Killed NetExtender VPN session.")
           (user-error "Cannot kill NetExtender."))
       (message "No running NetExtender session."))))
-
 
 ;;;###autoload
 (defun netextender-toggle ()
