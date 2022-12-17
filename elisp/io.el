@@ -185,8 +185,10 @@ so it can be used to save HTML pages or emails to PDF."
                       (file-name-with-extension (file-name-base infile) ".pdf")
                       (file-name-directory infile)))))
     (if (zerop
+         ;; For HTML files, just call `+html2pdf'
          (if (string= "html" (file-name-extension infile))
              (+html2pdf infile outfile)
+           ;; For non-HTML (plain-text) files, convert them to HTML then call `+html2pdf'
            (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
              (+txt2html infile tmp-html)
              (+html2pdf tmp-html outfile))))
