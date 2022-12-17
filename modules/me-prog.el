@@ -185,9 +185,9 @@
   :config
 
   ;; Prioritize ccls
-  (add-to-list 'eglot-server-programs
-               `((c++-mode c++-ts-mode c-mode c-ts-mode) . ,(eglot-alternatives
-                                                             '("ccls" "clangd")))))
+  (add-to-list
+   'eglot-server-programs
+   (cons '(c++-mode c++-ts-mode c-mode c-ts-mode) (eglot-alternatives '("ccls" "clangd")))))
 
 (use-package eldoc-box
   :straight t
