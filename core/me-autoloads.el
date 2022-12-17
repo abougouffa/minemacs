@@ -140,16 +140,6 @@ so it can be used to save HTML pages or emails to PDF.
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
 
 
-;;; Generated autoloads from ../modules/extras/me-flycheck-cmake.el
-
-(register-definition-prefixes "../modules/extras/me-flycheck-cmake" '("+flycheck-cmake-"))
-
-
-;;; Generated autoloads from ../modules/extras/me-flycheck-eglot.el
-
-(register-definition-prefixes "../modules/extras/me-flycheck-eglot" '("+flycheck-eglot--"))
-
-
 ;;; Generated autoloads from ../modules/me-math.el
 
 (register-definition-prefixes "../modules/me-math" '("MAXIMA-P"))
