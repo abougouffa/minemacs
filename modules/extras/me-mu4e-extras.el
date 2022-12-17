@@ -202,6 +202,8 @@ If SKIP-HEADERS is set, do not show include message headers."
                    (stringp (car (mm-handle-type parts))))
           (setq parts (list parts)))
         ;; Process the list
+        ;; First, `+save-as-pdf' is set as browse-url function,
+        ;; and the appropriate file output file name is bound to `+save-as-pdf-filename'
         (let ((browse-url-browser-function #'+save-as-pdf)
               (+save-as-pdf-filename
                (expand-file-name
@@ -211,7 +213,12 @@ If SKIP-HEADERS is set, do not show include message headers."
                         (+clean-file-name
                          (or (mu4e-message-field msg :subject) "No subject") t))
                 mu4e-attachment-dir)))
+          ;; `gnus-article-browse-html-parts' will try to display the text/html part
+          ;; of the message, but as `+save-as-pdf' is used as browse-url function,
+          ;; it will be called with the proper argumets.
           (unless (gnus-article-browse-html-parts parts header)
+            ;; If the mail doesn't contain a text/html part, we save the plain-text message
+            ;; and then we explicitly use `+save-as-pdf' to save it.
             (let ((outfile (make-temp-file "plaintext-mail-" nil ".txt")))
               (with-temp-file outfile
                 (insert (mu4e-view-message-text msg)))
