@@ -103,7 +103,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                                              (expand-file-name f dir)))))
       (mu4e-message "No attached files found"))))
 
-(defun +mu4e-register-account (label maildir letvars &optional default)
+(defun +mu4e-register-account (label maildir letvars &optional default-p)
   (let ((context
          (make-mu4e-context
           :name label
@@ -118,7 +118,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
             (when msg
               (string-match-p (concat "[/]?" maildir) (mu4e-message-field msg :maildir))))
           :vars letvars)))
-    (add-to-list 'mu4e-contexts context default)
+    (add-to-list 'mu4e-contexts context (not default-p))
     context))
 
 (defun +org-msg-make-signature (closing-phrase firstname lastname &rest lines)
