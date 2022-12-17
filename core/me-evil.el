@@ -50,6 +50,21 @@
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map
         "gr" 'xref-find-references))))
 
+(use-package evil-numbers
+  :straight t
+  :after evil minemacs-loaded
+  :general
+  (+map-key
+    :states '(normal)
+    "g+" #'evil-numbers/inc-at-pt
+    "g=" #'evil-numbers/inc-at-pt
+    "g-" #'evil-numbers/dec-at-pt)
+  (+map-key
+    :states '(visual)
+    "g+" #'evil-numbers/inc-at-pt-incremental
+    "g=" #'evil-numbers/inc-at-pt-incremental
+    "g-" #'evil-numbers/dec-at-pt-incremental))
+
 (use-package evil-nerd-commenter
   :straight t
   :after evil minemacs-loaded
