@@ -192,7 +192,10 @@ so it can be used to save HTML pages or emails to PDF."
            (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
              (+txt2html infile tmp-html mail-mode-p)
              (+html2pdf tmp-html outfile))))
-        (message "Exported PDF to %s" (abbreviate-file-name outfile))
+        (message "Exported PDF to %s"
+                 (truncate-string-to-width
+                  (abbreviate-file-name outfile)
+                  (/ (window-width (minibuffer-window)) 2) nil nil t))
       (user-error
        (if (file-exists-p outfile)
            "PDF created but with some errors!"
