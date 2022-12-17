@@ -179,7 +179,7 @@ will also be the width of all other printable characters."
                    (replace-regexp-in-string
                     "[\n\r]" ""
                     (mu4e-message-field msg :subject))
-                   (- 100 (length prefix)) nil nil "…"))))))
+                   (- 100 (length prefix)) nil nil t))))))
           (:account-stripe
            . (:name "Account"
               :shortname "▐"
