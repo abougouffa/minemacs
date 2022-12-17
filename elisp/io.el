@@ -149,5 +149,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   "Clean file name."
   ;; Clean slashes, backslashes, ":", ";", spaces, and tabs
   (replace-regexp-in-string
-   "[:;\t /\\_]+" "-"
-   (if conv-downcase (downcase filename) filename)))
+   "[:;\t\n\r /\\_]+" "-"
+   (replace-regexp-in-string
+    "[‘’‚’“”„”\"'()]+" ""
+    (if conv-downcase (downcase filename) filename))))
