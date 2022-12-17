@@ -189,7 +189,6 @@
                `((c++-mode c++-ts-mode c-mode c-ts-mode) . ,(eglot-alternatives
                                                              '("ccls" "clangd")))))
 
-
 (use-package eldoc-box
   :straight t
   :hook (prog-mode . eldoc-box-hover-at-point-mode))
@@ -228,24 +227,6 @@
 (use-package cmake-font-lock
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
-
-
-;; (use-package flycheck
-;;   :straight t
-;;   :init
-;;   (+map "tf" #'flycheck-mode)
-;;   :config
-;;   (setq flycheck-cppcheck-checks
-;;         '("warning"
-;;           "performance"
-;;           "information"
-;;           "style") ;; could be "all"
-;;         flycheck-disabled-checkers '(python-flake8)))
-
-;; (use-package me-flycheck-eglot
-;;   :after eglot)
-
-;; (use-package me-flycheck-cmake)
 
 (use-package flymake
   :straight t
