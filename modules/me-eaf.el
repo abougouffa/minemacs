@@ -96,6 +96,12 @@
           'server-after-make-frame-hook
           #'+eaf-all-the-icons--setup-once-h))))))
 
+  (defun +browse-url-eaf (url &rest args)
+    "Open URL in EAF Browser."
+    (interactive (browse-url-interactive-arg "URL: "))
+    (setq url (browse-url-encode-url url))
+    (eaf-open-browser url args))
+
   (defun +eaf-open-mail-as-html ()
     "Open the HTML mail in EAF Browser."
     (interactive)
