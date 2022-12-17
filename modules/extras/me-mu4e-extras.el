@@ -69,13 +69,13 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                 labeledparts))
         labeledparts)))
 
-(defun +mu4e-view-save-all-attachments (&optional arg)
+(defun +mu4e-view-save-all-attachments (&optional msg)
   "Save all MIME parts from current mu4e gnus view buffer."
   ;; Copied from mu4e-view-save-attachments
   (interactive "P")
   (cl-assert (and (eq major-mode 'mu4e-view-mode)
                   (derived-mode-p 'gnus-article-mode)))
-  (let* ((msg (mu4e-message-at-point))
+  (let* ((msg (or msg (mu4e-message-at-point)))
          (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
          (attachdir (expand-file-name id mu4e-attachment-dir))
          (parts (mu4e~view-gather-mime-parts))
@@ -94,7 +94,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
     (if files
         (progn
           (setq dir
-                (if arg (read-directory-name "Save to directory: ")
+                (if current-prefix-arg (read-directory-name "Save to directory: ")
                   attachdir))
           (cl-loop for (f . h) in handles
                    when (member f files)
@@ -170,16 +170,17 @@ preferred alias"
         (insert (read-string "Subject (optional): "))
         (message "Sending...")))))
 
-(defun +mu4e-save-message-at-point (&optional dir)
+(defun +mu4e-save-message-at-point (&optional msg)
   "Copy message at point to somewhere else as <date>_<subject>.eml."
   (interactive)
-  (let* ((msg (mu4e-message-at-point))
+  (let* ((msg (or msg (mu4e-message-at-point)))
          (target (format "%s_%s.eml"
                          (format-time-string "%F" (mu4e-message-field msg :date))
                          (+clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))))
     (copy-file
      (mu4e-message-field msg :path)
-     (format "%s/%s" (or dir mu4e-attachment-dir (read-directory-name "Copy message to: ")) target) 1)))
+     (format "%s/%s" (or (when current-prefix-arg (read-directory-name "Copy message to: "))
+                         mu4e-attachment-dir) target) 1)))
 
 ;;;###autoload
 (defun +mu4e-extras-setup ()
@@ -187,12 +188,8 @@ preferred alias"
   (add-hook 'mu4e-compose-pre-hook '+mu4e--set-from-address-h)
   (add-hook 'message-send-hook #'+mu4e--check-for-subject-h)
 
-  ;; Setup keybindings
-  (+map-local :keymaps 'mu4e-view-mode-map
-    "P" #'+mu4e-view-save-all-attachments
-    "A" #'+mu4e-view-select-mime-part-action
-    "o" #'+mu4e-view-open-attachment
-    "s" #'+mu4e-save-message-at-point))
+  (add-to-list 'mu4e-view-actions '("all attachements save" . +mu4e-view-save-all-attachments))
+  (add-to-list 'mu4e-view-actions '("Save message" . +mu4e-save-message-at-point)))
 
 
 (provide 'me-mu4e-extras)
