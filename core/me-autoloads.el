@@ -111,7 +111,7 @@ Save URL as PDF.
 This function's signature is compatible with `browse-url-browser-function'
 so it can be used to save HTML pages or emails to PDF.
 
-(fn INFILE &optional _)")
+(fn INFILE &optional MAIL-MODE-P)")
 (register-definition-prefixes "../elisp/io" '("+save-as-pdf-filename" "+sudo-file-path"))
 
 

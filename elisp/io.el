@@ -176,7 +176,7 @@ When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\"."
   "File name to use, if non-nil, for the output file.")
 
 ;;;###autoload
-(defun +save-as-pdf (infile &optional _)
+(defun +save-as-pdf (infile &optional mail-mode-p)
   "Save URL as PDF.
 This function's signature is compatible with `browse-url-browser-function'
 so it can be used to save HTML pages or emails to PDF."
@@ -190,7 +190,7 @@ so it can be used to save HTML pages or emails to PDF."
              (+html2pdf infile outfile)
            ;; For non-HTML (plain-text) files, convert them to HTML then call `+html2pdf'
            (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
-             (+txt2html infile tmp-html)
+             (+txt2html infile tmp-html mail-mode-p)
              (+html2pdf tmp-html outfile))))
         (message "Exported PDF to %s" (abbreviate-file-name outfile))
       (user-error

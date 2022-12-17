@@ -222,7 +222,7 @@ If SKIP-HEADERS is set, do not show include message headers."
             (let ((outfile (make-temp-file "plaintext-mail-" nil ".txt")))
               (with-temp-file outfile
                 (insert (mu4e-view-message-text msg)))
-              (+save-as-pdf outfile))))
+              (+save-as-pdf outfile t))))
         (mm-destroy-parts parts)))))
 
 ;;;###autoload
