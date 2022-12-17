@@ -97,6 +97,20 @@ Yank the file name of this buffer." t)
 Clean file name.
 
 (fn FILENAME &optional DOWNCASE-P)")
+(autoload '+html2pdf "../elisp/io" "\
+Convert HTML file INFILE to PDF and save it to OUTFILE.
+
+(fn INFILE OUTFILE)")
+(autoload '+txt2html "../elisp/io" "\
+Convert plain-text file INFILE to HTML and save it to OUTFILE.
+When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\".
+
+(fn INFILE OUTFILE &optional MAIL-MODE-P)")
+(autoload '+save-as-pdf "../elisp/io" "\
+Save URL as PDF.
+This function's signature is compatible with `browse-url-browser-function'
+so it can be used to save HTML pages or emails to PDF.
+
 (fn INFILE &optional _)")
 (register-definition-prefixes "../elisp/io" '("+save-as-pdf-filename" "+sudo-file-path"))
 

@@ -153,3 +153,45 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
    (replace-regexp-in-string
     "[‘’‚’“”„”\"'()]+" ""
     (if downcase-p (downcase filename) filename))))
+
+;;;###autoload
+(defun +html2pdf (infile outfile)
+  "Convert HTML file INFILE to PDF and save it to OUTFILE."
+  (call-process "wkhtmltopdf" nil nil nil
+                "--images" "--disable-javascript" "--enable-local-file-access"
+                "--encoding" "utf-8"
+                infile outfile))
+
+;;;###autoload
+(defun +txt2html (infile outfile &optional mail-mode-p)
+  "Convert plain-text file INFILE to HTML and save it to OUTFILE.
+When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\"."
+  (apply
+   #'call-process
+   (append '("txt2html" nil nil nil "-8")
+           (when mail-mode-p '("--mailmode"))
+           (list "--outfile" outfile infile))))
+
+(defvar +save-as-pdf-filename nil
+  "File name to use, if non-nil, for the output file.")
+
+;;;###autoload
+(defun +save-as-pdf (infile &optional _)
+  "Save URL as PDF.
+This function's signature is compatible with `browse-url-browser-function'
+so it can be used to save HTML pages or emails to PDF."
+  (let ((outfile (or +save-as-pdf-filename
+                     (expand-file-name
+                      (file-name-with-extension (file-name-base infile) ".pdf")
+                      (file-name-directory infile)))))
+    (if (zerop
+         (if (string= "html" (file-name-extension infile))
+             (+html2pdf infile outfile)
+           (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
+             (+txt2html infile tmp-html)
+             (+html2pdf tmp-html outfile))))
+        (message "Exported PDF to %s" (abbreviate-file-name outfile))
+      (user-error
+       (if (file-exists-p outfile)
+           "PDF created but with some errors!"
+         "An error occured, cannot create the PDF!")))))
