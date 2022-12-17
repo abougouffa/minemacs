@@ -12,9 +12,9 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
   (let ((root-maildir
          (replace-regexp-in-string
           "/.*" "" (substring (mu4e-message-field msg :maildir) 1))))
-    (or (string-match-p "gmail" root-maildir)
-        (string-match-p "google" root-maildir)
-        (member (concat "/" root-maildir) (mapcar #'cdr +mu4e-gmail-accounts)))))
+    (or (member (concat "/" root-maildir) (mapcar #'cdr +mu4e-gmail-accounts))
+        (string-match-p "gmail" root-maildir)
+        (string-match-p "google" root-maildir))))
 
 ;; In my workflow, emails won't be moved at all. Only their flags/labels are
 ;; changed. Se we redefine the trash and refile marks not to do any moving.
