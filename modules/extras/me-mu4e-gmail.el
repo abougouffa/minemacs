@@ -18,7 +18,7 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 
 ;; In my workflow, emails won't be moved at all. Only their flags/labels are
 ;; changed. Se we redefine the trash and refile marks not to do any moving.
-;; However, the real magic happens in `+mu4e-gmail-fix-flags-h'.
+;; However, the real magic happens in `+mu4e-gmail--fix-flags-h'.
 ;; Gmail will handle the rest.
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
