@@ -73,35 +73,36 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
   "Save all MIME parts from current mu4e gnus view buffer."
   ;; Copied from mu4e-view-save-attachments
   (interactive "P")
-  (cl-assert (and (eq major-mode 'mu4e-view-mode)
-                  (derived-mode-p 'gnus-article-mode)))
-  (let* ((msg (or msg (mu4e-message-at-point)))
-         (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
-         (attachdir (expand-file-name id mu4e-attachment-dir))
-         (parts (mu4e~view-gather-mime-parts))
-         (handles '())
-         (files '())
-         dir)
-    (mkdir attachdir t)
-    (dolist (part parts)
-      (let ((fname (or (cdr (assoc 'filename (assoc "attachment" (cdr part))))
-                       (seq-find #'stringp
-                                 (mapcar (lambda (item) (cdr (assoc 'name item)))
-                                         (seq-filter 'listp (cdr part)))))))
-        (when fname
-          (push `(,fname . ,(cdr part)) handles)
-          (push fname files))))
-    (if files
-        (progn
-          (setq dir
-                (if current-prefix-arg (read-directory-name "Save to directory: ")
-                  attachdir))
-          (cl-loop for (f . h) in handles
-                   when (member f files)
-                   do (mm-save-part-to-file h
-                                            (+file-name-incremental
-                                             (expand-file-name f dir)))))
-      (mu4e-message "No attached files found"))))
+  (if (and (eq major-mode 'mu4e-view-mode)
+           (derived-mode-p 'gnus-article-mode))
+      (let* ((msg (or msg (mu4e-message-at-point)))
+             (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
+             (attachdir (expand-file-name id mu4e-attachment-dir))
+             (parts (mu4e~view-gather-mime-parts))
+             (handles '())
+             (files '())
+             dir)
+        (mkdir attachdir t)
+        (dolist (part parts)
+          (let ((fname (or (cdr (assoc 'filename (assoc "attachment" (cdr part))))
+                           (seq-find #'stringp
+                                     (mapcar (lambda (item) (cdr (assoc 'name item)))
+                                             (seq-filter 'listp (cdr part)))))))
+            (when fname
+              (push `(,fname . ,(cdr part)) handles)
+              (push fname files))))
+        (if files
+            (progn
+              (setq dir
+                    (if current-prefix-arg (read-directory-name "Save to directory: ")
+                      attachdir))
+              (cl-loop for (f . h) in handles
+                       when (member f files)
+                       do (mm-save-part-to-file h
+                                                (+file-name-incremental
+                                                 (expand-file-name f dir)))))
+          (mu4e-message "No attached files found")))
+    (mu4e-error "Not in `mu4e-view-mode' nor in `gnus-article-mode'.")))
 
 (defun +mu4e-register-account (label maildir letvars &optional default-p)
   (let ((context
