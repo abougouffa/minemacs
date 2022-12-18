@@ -129,29 +129,6 @@
 
   (modus-themes-load-operandi))
 
-(use-package ef-themes
-  :straight t
-  :defer t
-  :custom
-  (ef-themes-to-toggle '(ef-light ef-spring))
-  (ef-themes-mixed-fonts nil)
-  (ef-themes-variable-pitch-ui nil)
-  (ef-themes-headings ; read the manual's entry or the doc string
-   '((0 . (default semilight 1.5))
-     (1 . (default semilight 1.4))
-     (2 . (default regular 1.3))
-     (3 . (default regular 1.2))
-     (4 . (default 1.1))
-     (5 . (default 1)) ; absence of weight means `bold'
-     (6 . (default 1))
-     (7 . (default 1))
-     (t . (default 1))))
-  :config
-  ;; Disable all other themes to avoid awkward blending:
-  (mapc #'disable-theme custom-enabled-themes)
-
-  (ef-themes-select 'ef-light))
-
 ;; Modeline
 (use-package doom-modeline
   :straight t
