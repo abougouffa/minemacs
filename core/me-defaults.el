@@ -95,6 +95,8 @@
  xref-show-definitions-function #'xref-show-definitions-completing-read
  ;; Enable recursive calls to minibuffer
  enable-recursive-minibuffers t
+ ;; Kill the shell buffer after exit
+ shell-kill-buffer-on-exit t
 
  ;; ====== Performances ======
  ;; Increase single chunk bytes to read from subprocess (default 4096)
