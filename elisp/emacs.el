@@ -45,3 +45,15 @@ current buffer's, reload dir-locals."
   (if (member #'+save--delete-trailing-whitespace-h before-save-hook)
       (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)
     (add-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)))
+
+;; From rougier/nano-emacs
+;;;###autoload
+(defun +what-faces (pos)
+  "Get the font faces at POS."
+  (interactive "d")
+  (let ((faces (remq nil
+                     (list
+                      (get-char-property pos 'read-face-name)
+                      (get-char-property pos 'face)
+                      (plist-get (text-properties-at pos) 'face)))))
+    (message "Faces: %s" faces)))

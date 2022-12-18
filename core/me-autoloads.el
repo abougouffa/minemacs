@@ -55,6 +55,10 @@ current buffer's, reload dir-locals." t)
 Open or create the dir-locals.el for the current project." t)
 (autoload '+toggle-auto-delete-trailing-whitespaces "../elisp/emacs" "\
 Toggle auto-deleting trailing whitespaces." t)
+(autoload '+what-faces "../elisp/emacs" "\
+Get the font faces at POS.
+
+(fn POS)" t)
 
 
 ;;; Generated autoloads from ../elisp/io.el
