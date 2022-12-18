@@ -248,6 +248,9 @@
     ad-do-it))
 (ad-activate 'term-sentinel)
 
+;; Navigate windows using Shift+Direction
+(windmove-default-keybindings)
+
 ;;; Enable `display-line-numbers-mode' in `prog-mode', `text-mode' and `conf-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
