@@ -106,7 +106,12 @@
 
 (use-package goggles
   :straight t
-  :hook ((prog-mode text-mode) . goggles-mode))
-
+  :hook ((prog-mode text-mode) . goggles-mode)
+  :config
+  ;; Pulse for evil commands
+  (goggles-define undo primitive-undo evil-undo)
+  (goggles-define yank yank yank-pop evil-yank evil-yank-line)
+  (goggles-define kill kill-region)
+  (goggles-define delete delete-region evil-delete evil-delete-line))
 
 (provide 'me-editor)
