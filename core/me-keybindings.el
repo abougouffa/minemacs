@@ -95,11 +95,13 @@
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
     "bS"  #'save-some-buffers
-    "bK"  #'kill-some-buffers
+    "bA"  #'kill-some-buffers
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete
     "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
             :wk "Kill this buffer")
+    "bK"  `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
+            :wk "Kill this buffer and its windows")
     "bN"  '(evil-buffer-new :wk "New buffer")
     "br"  '(revert-buffer :wk "Revert")
     "bR"  '(rename-buffer :wk "Rename")

@@ -25,6 +25,15 @@ is binary, activate `hexl-mode'." t)
 (register-definition-prefixes "../elisp/binary" '("+binary-"))
 
 
+;;; Generated autoloads from ../elisp/buffer.el
+
+(autoload '+kill-buffer-and-its-windows "../elisp/buffer" "\
+Kill BUFFER and delete its windows.  Default is `current-buffer'.
+BUFFER may be either a buffer or its name (a string).
+
+(fn BUFFER &optional MSGP)" t)
+
+
 ;;; Generated autoloads from ../elisp/ecryptfs.el
 
 (autoload 'ecryptfs-mount-private "../elisp/ecryptfs" "\
