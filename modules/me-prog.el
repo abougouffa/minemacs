@@ -206,7 +206,8 @@
 (use-package editorconfig
   :straight t
   :general
-  (+map "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")))
+  (+map "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig"))
+  :hook (prog-mode . editorconfig-mode))
 
 (use-package clang-format
   :straight t
