@@ -239,6 +239,15 @@
      (+expand 'local (concat "emacs-session/"
                              (file-name-nondirectory filename))))))
 
+;; Kill term buffer when exiting
+(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        ad-do-it
+        (kill-buffer buffer))
+    ad-do-it))
+(ad-activate 'term-sentinel)
+
 ;;; Enable `display-line-numbers-mode' in `prog-mode', `text-mode' and `conf-mode'
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
