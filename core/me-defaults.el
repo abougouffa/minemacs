@@ -122,6 +122,8 @@
  display-time-string-forms '((propertize (concat 24-hours ":" minutes)))
  ;; Relative line numbering
  display-line-numbers-type 'relative
+ ;; No ugly button for widgets
+ widget-image-enable nil
 
  ;; ====== Authentication and encryption ======
  ;; Default auth-sources to GPG
