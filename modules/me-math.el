@@ -23,7 +23,7 @@
   :straight (:host nil :repo "https://git.code.sf.net/p/maxima/code"
                    :files ("interfaces/emacs/imaxima/*"))
   :when MAXIMA-P
-  :commands (imaxima imath-mode)
+  :commands imaxima imath-mode
   :custom
   (setq imaxima-use-maxima-mode-flag nil)
   :config
@@ -32,7 +32,7 @@
 
 (use-package ein
   :straight t
-  :commands (ein:run ein:login ein:ipynb-mode)
+  :commands ein:run ein:login ein:ipynb-mode
   :mode ("\\.ipynb\\'" . ein:ipynb-mode)
   :config
   (+map-local :keymaps 'ein:ipynb-mode-map
@@ -40,6 +40,21 @@
     "O" #'ein:process-open-notebook
     "r" #'ein:gat-run-remote
     "l" #'ein:gat-run-local))
+
+(use-package ess
+  :straight t
+  :commands run-ess-r run-ess-r-newest run-ess-julia ess-mode ess-r-mode ess-julia-mode inferior-ess-mode
+  :init
+  (unless (featurep 'julia-mode)
+    (add-to-list 'auto-mode-alist '("\\.jl\\'" . ess-julia-mode))))
+
+(use-package ess-R-data-view
+  :straight t
+  :commands ess-R-dv-pprint ess-R-dv-ctable)
+
+(use-package poly-R
+  :straight t
+  :commands poly-c++r-mode poly-r+c++-mode poly-noweb-mode poly-html+r-mode poly-gfm+r-mode)
 
 
 (provide 'me-math)
