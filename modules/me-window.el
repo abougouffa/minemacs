@@ -5,16 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(use-package popwin
-  :straight (:host github :repo "emacsorphanage/popwin" :files (:defaults "*"))
-  :after minemacs-loaded
-  :config
-  (defun +popwin-register (pred &rest args)
-    (dolist (p (ensure-list pred))
-      (push (cons p args) popwin:special-display-config)))
 
-  (+popwin-register '("*Warnings*" compilation-mode) :height 8 :noselect t)
-  (popwin-mode 1))
 
 (when nil
   ;; Window configuration for special windows.
