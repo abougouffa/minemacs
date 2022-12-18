@@ -211,9 +211,7 @@
 
 (use-package clang-format
   :straight t
-  :commands (clang-format
-             clang-format-region
-             clang-format-buffer))
+  :commands clang-format clang-format-region clang-format-buffer)
 
 ;;; Modes
 (use-package vimrc-mode

@@ -8,14 +8,10 @@
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
   :unless (+emacs-features-p 'lucid)
-  :commands (eaf-install-and-update
-             eaf-open
-             eaf-open-jupyter
-             eaf-open-mindmap
-             eaf-file-sender-qrcode
-             eaf-file-sender-qrcode-in-dired
-             eaf-open-browser
-             +eaf-open-mail-as-html)
+  :commands
+  eaf-install-and-update eaf-open eaf-open-jupyter eaf-open-mindmap
+  eaf-file-sender-qrcode eaf-file-sender-qrcode-in-dired eaf-open-browser
+  +eaf-open-mail-as-html +browse-url-eaf
   :general
   (+map
     "oo" '(eaf-open :wk "Open with EAF"))

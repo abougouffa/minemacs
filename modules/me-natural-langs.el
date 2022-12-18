@@ -75,9 +75,7 @@
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
-  :commands (gts-do-translate
-             +gts-yank-translated-region
-             +gts-translate-with)
+  :commands gts-do-translate +gts-yank-translated-region +gts-translate-with
   :custom
   ;; Your languages pairs
   (gts-translate-list '(("en" "fr")

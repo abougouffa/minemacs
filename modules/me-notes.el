@@ -8,18 +8,12 @@
 (use-package org-roam
   :straight t
   :after org minemacs-loaded
-  :init
+  :general
   (+map
     "nf" '(org-roam-node-find :wk "Org-Roam find node")
     "nr" '(org-roam-ref-find :wk "Org-Roam find ref")
     "ni" '(org-roam-ref-find :wk "Org-Roam insert node")
-    "nR" '(org-roam-node-random :wk "Org-Roam random node"))
-  :commands (org-roam
-             org-roam-ref-find
-             org-roam-node-find
-             org-roam-node-open
-             org-roam-node-insert
-             org-roam-node-random))
+    "nR" '(org-roam-node-random :wk "Org-Roam random node")))
 
 (use-package org-roam-ui
   :straight t

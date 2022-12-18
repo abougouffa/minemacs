@@ -15,24 +15,20 @@
              ('python-mode (realgud:pdb))
              ((or 'c-mode 'c++-mode) (realgud:gdb))))
           :wk "realgud"))
-  :commands (realgud:gdb
-             realgud:gud
-             realgud:zshdb
-             realgud:bashdb
-             realgud:kshdb
-             realgud:pdb
-             realgud:pdb-remote))
+  :commands
+  realgud:gdb realgud:gud realgud:zshdb realgud:bashdb
+  realgud:kshdb realgud:pdb realgud:pdb-remote)
 
 (use-package realgud-lldb
   :straight t
   :general
   (+map-local :keymaps '(rust-mode-map)
     "d" `(#'realgud--lldb :wk "realgud"))
-  :commands (realgud--lldb))
+  :commands realgud--lldb)
 
 (use-package realgud-ipdb
   :straight t
-  :commands (realgud:ipdb realgud:ipdb-remote))
+  :commands realgud:ipdb realgud:ipdb-remote)
 
 (use-package disaster
   :straight t

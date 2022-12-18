@@ -118,7 +118,7 @@
 (use-package helpful
   :straight t
   :after elisp-mode minemacs-loaded
-  :commands (helpful-symbol helpful-command helpfull-callable helpful-at-point)
+  :commands helpful-symbol helpful-command helpfull-callable helpful-at-point
   :general
   (+map
     "hp" #'helpful-at-point
