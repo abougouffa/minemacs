@@ -6,6 +6,7 @@
 
 
 (defun +theme--tweaks-h (&rest _args)
+  "Use smaller font (75% of the default) for line numbers in graphic mode."
   (when (display-graphic-p)
     (set-face-attribute
      'line-number nil
@@ -25,12 +26,15 @@
 (add-hook
  'enable-theme-functions
  (defun +theme--save-enabled-theme-h (theme)
+   "Save the enabled theme to `minemacs-theme'.
+Useful for keeping track of the enabled theme."
    (setq minemacs-theme theme)))
 
 ;; Disable previously enabled custom themes before enabling a new one.
 (advice-add
  'load-theme :before
  (defun +theme--disable-previous-themes-a (&rest _)
+   "Disable previously enabled themes before enabling the new one."
    (mapc #'disable-theme custom-enabled-themes)))
 
 ;; Icons
