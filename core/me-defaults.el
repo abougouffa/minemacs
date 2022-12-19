@@ -321,11 +321,6 @@ or file path may exist now."
         (with-selected-window (get-buffer-window b)
           (kill-buffer-and-window))) buf))))
 
-(when (and (+emacs-features-p 'xwidgets) nil)
-  ;; Make xwidget-webkit the default browser
-  (setq browse-url-browser-function #'xwidget-webkit-browse-url)
-  (defalias 'browse-web #'xwidget-webkit-browse-url))
-
 (with-eval-after-load 'minemacs-loaded
   ;; Enable battery (if available) in mode-line
   (+shutup!
