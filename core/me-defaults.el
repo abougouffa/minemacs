@@ -89,8 +89,7 @@
  completions-detailed t
  ;; Do not ask obvious questions, follow symlinks
  vc-follow-symlinks t
- ;; Needs xref-1.1.0, for Emacs < 28.1, xref needs to be updated
- ;; Use completing-read interface instead of definitions buffer
+ ;; Use completing-read interface instead of definitions buffer (needs xref 1.1.0)
  xref-show-definitions-function #'xref-show-definitions-completing-read
  ;; Enable recursive calls to minibuffer
  enable-recursive-minibuffers t
