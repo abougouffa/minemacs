@@ -147,7 +147,7 @@
           cmake-mode) . eglot-ensure)
   :init
   (+map
-    "cF"  '(eglot-format-buffer :wk "Format buffer (eglot)")
+    "cfF" #'eglot-format-buffer
     "cd"  '(eglot-find-declaration :wk "Find declaration")
     "ci"  '(eglot-find-implementation :wk "Find implementation")
     "ct"  '(eglot-find-typeDefinition :wk "Find type definition")
@@ -183,9 +183,8 @@
 ;;; Formatting
 (use-package apheleia
   :straight t
-  :defer t
   :general
-  (+map "cf" '(apheleia-format-buffer :wk "Format buffer"))
+  (+map "cff" #'apheleia-format-buffer)
   :config
   (dolist (mode '(emacs-lisp-mode lisp-data-mode scheme-mode))
     (push (cons mode 'lisp-indent) apheleia-mode-alist)))
@@ -193,12 +192,16 @@
 (use-package editorconfig
   :straight t
   :general
-  (+map "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig"))
+  (+map
+    "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
+    "cfe" #'editorconfig-format-buffer)
   :hook (prog-mode . editorconfig-mode))
 
 (use-package clang-format
   :straight t
-  :commands clang-format clang-format-region clang-format-buffer)
+  :commands clang-format clang-format-region clang-format-buffer
+  :general
+  (+map "cfc" #'clang-format-buffer))
 
 ;;; Modes
 (use-package vimrc-mode

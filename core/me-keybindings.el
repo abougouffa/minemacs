@@ -162,6 +162,7 @@
 
     ;; ====== Code ======
     "c"   '(nil :wk "code")
+    "cf"  '(nil :wk "format buffer")
 
     ;; ====== Workspaces ======
     "r"   '(nil :wk "workspace") ;; TODO (use tab-bar-mode and tab-line-mode)
