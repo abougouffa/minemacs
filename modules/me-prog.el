@@ -18,10 +18,7 @@
           xml-mode
           sh-mode
           typescript-ts-mode
-          js-mode) . tree-sitter-mode))
-
-(use-package tree-sitter-hl
-  :defer t
+          js-mode) . tree-sitter-mode)
   :hook (tree-sitter-mode . tree-sitter-hl-mode))
 
 (use-package tree-sitter-langs
