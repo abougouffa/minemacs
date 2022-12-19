@@ -22,7 +22,6 @@
  tramp-backup-directory-alist backup-directory-alist
  tramp-auto-save-directory (+expand 'local "tramp/auto-save" t)
  tramp-persistency-file-name (+expand 'local "tramp/persistency.el")
- tramp-persistency-file-name (+expand 'local "tramp/persistency.el")
  url-configuration-directory (+expand 'local "url" t)
  url-cookie-file (+expand 'local "url/cookie.el")
  url-history-file (+expand 'local "url/history.el")
