@@ -276,22 +276,11 @@
 ;; Update time stamp when saving a file
 (add-hook 'before-save-hook 'time-stamp)
 
-;; Remove trailing whitespaces on save, for modes derived
-;; from `prog-mode', `org-mode' or `markdown-mode'
-(add-hook
- 'before-save-hook
- (defun +save--delete-trailing-whitespace-h ()
-   (when (or (derived-mode-p 'prog-mode)
-             (derived-mode-p 'org-mode)
-             (derived-mode-p 'markdown-mode))
-     (delete-trailing-whitespace))))
-
 ;; Guess major mode when saving a file (adapted from Doom Emacs)
 (add-hook
  'after-save-hook
  (defun +save--guess-file-mode-h ()
    "Guess major mode when saving a file in `fundamental-mode'.
-
 Likely, something has changed since the buffer was opened. e.g. A shebang line
 or file path may exist now."
    (when (eq major-mode 'fundamental-mode)
@@ -299,6 +288,16 @@ or file path may exist now."
        (and (buffer-file-name buffer)
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
+
+;; Remove trailing whitespaces on save for some modes
+(add-hook
+ 'before-save-hook
+ (defun +save--delete-trailing-whitespace-h ()
+   (when (or (derived-mode-p 'prog-mode)
+             (derived-mode-p 'conf-mode)
+             (derived-mode-p 'org-mode)
+             (derived-mode-p 'markdown-mode))
+     (delete-trailing-whitespace))))
 
 ;; Kill minibuffer when switching by mouse to another window
 ;; Taken from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
@@ -328,6 +327,7 @@ or file path may exist now."
         (with-selected-window (get-buffer-window b)
           (kill-buffer-and-window))) buf))))
 
+;;; Enable some modes globally
 (with-eval-after-load 'minemacs-loaded
   ;; Enable battery (if available) in mode-line
   (+shutup!
@@ -365,8 +365,10 @@ or file path may exist now."
   ;; Auto load files changed on disk
   (global-auto-revert-mode 1)
 
-  ;; Show line and column numbers (cursor position) in mode-line
+  ;; Show line number in mode-line
   (line-number-mode 1)
+
+  ;; Show column numbers (cursor position) in mode-line
   (column-number-mode 1)
 
   ;; Better handling for files with so long lines
