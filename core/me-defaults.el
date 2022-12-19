@@ -251,21 +251,28 @@
 ;; Navigate windows using Shift+Direction
 (windmove-default-keybindings)
 
-;;; Enable `display-line-numbers-mode' in `prog-mode', `text-mode' and `conf-mode'
+;;; Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode'
+;; Show line numbers
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'conf-mode-hook #'display-line-numbers-mode)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
 
-;; Highlight the current line in `prog-mode', `text-mode' and `conf-mode'
+;; Highlight the current line
 (add-hook 'prog-mode-hook #'hl-line-mode)
-(add-hook 'text-mode-hook #'hl-line-mode)
 (add-hook 'conf-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
 
-;; Fold code in `prog-mode', `text-mode' and `conf-mode'
+;; Hide/show code blocks, a.k.a. code folding
 (add-hook 'prog-mode-hook #'hs-minor-mode)
-(add-hook 'text-mode-hook #'hs-minor-mode)
 (add-hook 'conf-mode-hook #'hs-minor-mode)
+(add-hook 'text-mode-hook #'hs-minor-mode)
 
+;; Wrap long lines
+(add-hook 'prog-mode-hook #'visual-line-mode)
+(add-hook 'conf-mode-hook #'visual-line-mode)
+(add-hook 'text-mode-hook #'visual-line-mode)
+
+;;; Other hooks
 ;; Update time stamp when saving a file
 (add-hook 'before-save-hook 'time-stamp)
 
@@ -361,9 +368,6 @@ or file path may exist now."
   ;; Show line and column numbers (cursor position) in mode-line
   (line-number-mode 1)
   (column-number-mode 1)
-
-  ;; Wrap long lines
-  (global-visual-line-mode 1)
 
   ;; Better handling for files with so long lines
   (global-so-long-mode 1)
