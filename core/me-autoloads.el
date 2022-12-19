@@ -32,6 +32,27 @@ Kill BUFFER and delete its windows.  Default is `current-buffer'.
 BUFFER may be either a buffer or its name (a string).
 
 (fn BUFFER &optional MSGP)" t)
+(autoload '+region-to-buffer "../elisp/buffer" "\
+Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
+START and END are the region boundaries.
+BUFFER is a buffer or its name (a string).
+With prefix ARG >= 0: `append-to-buffer':
+  Append contents of region to end of BUFFER.
+  (Point is moved to end of BUFFER first.)
+With prefix ARG < 0:  `prepend-to-buffer':
+  Prepend contents of region to beginning of BUFFER.
+  (Point is moved to beginning of BUFFER first.)
+With no prefix ARG (nil): `copy-to-buffer'.
+  Write region to BUFFER, replacing any previous contents.
+
+(fn START END BUFFER ARG)" t)
+(autoload '+region-to-file "../elisp/buffer" "\
+With prefix arg, this is `append-to-file'.  Without, it is `write-region'.
+START and END are the region boundaries.
+Prefix ARG non-nil means append region to end of file FILENAME.
+Prefix ARG nil means write region to FILENAME, replacing contents.
+
+(fn START END FILENAME ARG)" t)
 
 
 ;;; Generated autoloads from ../elisp/ecryptfs.el
@@ -424,6 +445,26 @@ Start systemd SERVICE.
 Stops the systemd SERVICE.
 
 (fn SERVICE &optional PRE-FN POST-FN)" t)
+
+
+;;; Generated autoloads from ../elisp/unix.el
+
+(autoload '+chmod-this-file "../elisp/unix" "\
+Execute Unix command `chmod'.  Current buffer's file is default arg.
+CMD is the command to execute (interactively, `chmod').
+
+(fn CMD)" t)
+(autoload '+chgrp-this-file "../elisp/unix" "\
+Execute Unix command `chgrp'.  Current buffer's file is default arg.
+CMD is the command to execute (interactively, `chgrp').
+
+(fn CMD)" t)
+(autoload '+chown-this-file "../elisp/unix" "\
+Execute Unix command `chown'.  Current buffer's file is default arg.
+CMD is the command to execute (interactively, `chown').
+
+(fn CMD)" t)
+(register-definition-prefixes "../elisp/unix" '("+read-shell-file-command"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
