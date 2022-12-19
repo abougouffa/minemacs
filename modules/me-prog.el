@@ -170,11 +170,23 @@
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :config
-
   ;; Prioritize ccls
   (add-to-list
    'eglot-server-programs
-   (cons '(c++-mode c++-ts-mode c-mode c-ts-mode) (eglot-alternatives '("ccls" "clangd")))))
+   (cons
+    '(c++-mode c++-ts-mode c-mode c-ts-mode)
+    (eglot-alternatives '("ccls" ("clangd"
+                                  "--background-index"
+                                  "-j=12"
+                                  "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
+                                  "--clang-tidy"
+                                  ;; "--clang-tidy-checks=*"
+                                  "--all-scopes-completion"
+                                  "--cross-file-rename"
+                                  "--completion-style=detailed"
+                                  "--header-insertion-decorators"
+                                  "--header-insertion=iwyu"
+                                  "--pch-storage=memory"))))))
 
 (use-package eldoc-box
   :straight t
