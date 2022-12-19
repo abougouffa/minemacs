@@ -67,7 +67,6 @@
 
 ;; TODO: Add elisp-def
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . hs-minor-mode)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to better view built-in packages
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
   :config

@@ -28,16 +28,6 @@
   :straight t
   :after tree-sitter)
 
-(use-package ts-fold
-  :straight (:type git :host github :repo "emacs-tree-sitter/ts-fold")
-  :defer t
-  :hook (tree-sitter-mode . ts-fold-mode))
-
-;; Needed by `ts-fold'
-(use-package fringe-helper
-  :straight t
-  :defer t)
-
 (use-package evil-textobj-tree-sitter
   :straight t
   :after evil tree-sitter

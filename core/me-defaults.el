@@ -261,6 +261,11 @@
 (add-hook 'text-mode-hook #'hl-line-mode)
 (add-hook 'conf-mode-hook #'hl-line-mode)
 
+;; Fold code in `prog-mode', `text-mode' and `conf-mode'
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'text-mode-hook #'hs-minor-mode)
+(add-hook 'conf-mode-hook #'hs-minor-mode)
+
 ;; Update time stamp when saving a file
 (add-hook 'before-save-hook 'time-stamp)
 
