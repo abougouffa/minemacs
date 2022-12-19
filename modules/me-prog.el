@@ -219,6 +219,7 @@
 
 (use-package flymake
   :straight t
+  :defer t
   :init
   (+map "tf" #'flymake-mode))
 
