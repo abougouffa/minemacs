@@ -18,7 +18,7 @@
   (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
   ;; Show in new window
-  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1))
+  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
 
 (use-package forge
   :straight t
@@ -42,8 +42,8 @@
   :custom
   (diff-hl-draw-borders nil)
   :config
-  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
 (use-package git-timemachine
   :straight t
