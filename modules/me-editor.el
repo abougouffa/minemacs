@@ -10,7 +10,7 @@
   :straight t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
-  (tempel-path (concat minemacs-root-dir "templates/*.eld"))
+  (tempel-path (concat minemacs-root-dir "templates/tempel/*.eld"))
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert))
   :init
