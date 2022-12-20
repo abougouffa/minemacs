@@ -8,18 +8,10 @@
 ;;; Tree sitter
 (use-package tree-sitter
   :straight t
-  :defer t
-  :hook ((python-mode
-          c-mode
-          c++-mode
-          csharp-mode
-          rust-mode
-          json-mode
-          xml-mode
-          sh-mode
-          typescript-ts-mode
-          js-mode) . tree-sitter-mode)
-  :hook (tree-sitter-mode . tree-sitter-hl-mode))
+  :after minemacs-loaded
+  :hook (tree-sitter-mode . tree-sitter-hl-mode)
+  :config
+  (global-tree-sitter-mode 1))
 
 (use-package tree-sitter-langs
   :straight t
