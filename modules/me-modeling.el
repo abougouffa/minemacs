@@ -9,7 +9,9 @@
   :straight t
   :defer t
   :config
-  (+eglot-register 'scad-mode '("openscad-lsp" "--stdio")))
+  (+eglot-register 'scad-mode '("openscad-lsp" "--stdio"))
+  (+map-local :keymaps 'scad-mode-map
+    "p" #'scad-preview))
 
 
 (provide 'me-modeling)
