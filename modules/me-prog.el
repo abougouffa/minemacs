@@ -331,6 +331,11 @@
     '(("BUG" . "#ee5555")
       ("PROJ" . "#447f44")))))
 
+(use-package rainbow-mode
+  :straight t
+  :defer t
+  :hook (prog-mode . rainbow-mode))
+
 (use-package lua-mode
   :straight t
   :custom
