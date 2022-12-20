@@ -20,26 +20,29 @@
   (define-derived-mode rosbag-view-mode
     fundamental-mode "ROS bag view mode"
     "Major mode for viewing ROS/ROS2 bag files."
-    (let ((f (buffer-file-name)))
-      (let ((buffer-read-only nil))
-        (erase-buffer)
-        (message "Calling rosbag info")
-        (pcase f
-          ((rx (seq ".bag" eol))
-           (call-process
-            "rosbag"
-            nil (current-buffer) nil "info" f))
-          ((rx (seq ".db3" eol))
-           (call-process
-            "ros2"
-            nil (current-buffer) nil "bag" "info" f))
-          ((rx (seq ".mcap" eol))
-           (call-process
-            (or (executable-find "mcap-cli") (executable-find "mcap"))
-            nil (current-buffer) nil "info" f)))
-        (set-buffer-modified-p nil))
-      (view-mode
-       (set-visited-file-name nil t))))
+    (let* ((filename (buffer-file-name))
+           (bag-format (file-name-extension filename)))
+      (if (not (member bag-format '("bag" "db3" "mcap")))
+          (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
+                      (abbreviate-file-name filename))
+        (let ((buffer-read-only nil))
+          (erase-buffer)
+          (message "Calling rosbag info")
+          (pcase bag-format
+            ("bag"
+             (call-process
+              "rosbag"
+              nil (current-buffer) nil "info" filename))
+            ("db3"
+             (call-process
+              "ros2"
+              nil (current-buffer) nil "bag" "info" filename))
+            ("mcap"
+             (call-process
+              (or (executable-find "mcap-cli") (executable-find "mcap"))
+              nil (current-buffer) nil "info" filename)))
+          (set-buffer-modified-p nil)
+          (view-mode (set-visited-file-name nil t))))))
 
   (when (executable-find "rosbag")
     (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode)))
