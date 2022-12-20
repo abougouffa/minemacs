@@ -137,7 +137,7 @@ Useful for keeping track of the enabled theme."
 (use-package doom-modeline
   :straight t
   :custom
-  (doom-modeline-height 30)
+  (doom-modeline-height 45)
   (doom-modeline-bar-width 8)
   (doom-modeline-time-icon nil)
   :config
