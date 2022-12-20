@@ -322,7 +322,14 @@
 
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
-  :hook (prog-mode . hl-todo-mode))
+  :hook (prog-mode . hl-todo-mode)
+  :config
+  (setq
+   hl-todo-keyword-faces
+   (append
+    hl-todo-keyword-faces
+    '(("BUG" . "#ee5555")
+      ("PROJ" . "#447f44")))))
 
 (use-package lua-mode
   :straight t
