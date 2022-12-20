@@ -11,7 +11,12 @@
   :config
   (+eglot-register 'scad-mode '("openscad-lsp" "--stdio"))
   (+map-local :keymaps 'scad-mode-map
-    "p" #'scad-preview))
+    "p" #'scad-preview)
+
+  (with-eval-after-load 'all-the-icons
+    (add-to-list
+     'all-the-icons-extension-icon-alist
+     '("scad" all-the-icons-fileicon "openscad" :height 0.9 :face all-the-icons-yellow))))
 
 
 (provide 'me-modeling)
