@@ -241,6 +241,7 @@
   :mode "\\.plantuml\\'"
   :custom
   (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
+  (plantuml-indent-level 2)
   :config
   (setq
    plantuml-default-exec-mode
