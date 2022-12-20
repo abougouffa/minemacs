@@ -239,10 +239,10 @@
   :straight t
   :defer t
   :mode "\\.plantuml\\'"
+  :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
   (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
   (plantuml-indent-level 2)
-  :hook (plantuml-mode . +plantuml-mode-setup)
   :config
   (setq
    plantuml-default-exec-mode
