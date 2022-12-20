@@ -215,6 +215,12 @@
   :general
   (+map "cfc" #'clang-format-buffer))
 
+(use-package flymake
+  :straight t
+  :defer t
+  :init
+  (+map "tf" #'flymake-mode))
+
 ;;; Modes
 (use-package vimrc-mode
   :straight t
@@ -228,12 +234,6 @@
 (use-package cmake-font-lock
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
-
-(use-package flymake
-  :straight t
-  :defer t
-  :init
-  (+map "tf" #'flymake-mode))
 
 (use-package plantuml-mode
   :straight t
