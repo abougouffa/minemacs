@@ -266,9 +266,25 @@
 (use-package dumb-jump
   :straight t
   :defer t
+  :custom
+  (dumb-jump-selector 'completing-read)
   :init
-  ;; use as xref backend
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  ;; Use as xref backend
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+  ;; Define Hydra keybinding (from the repo's examples)
+  (defhydra +dumb-jump-hydra (:color blue :columns 3)
+    "Dumb Jump."
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
+
+  (+map
+    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra")))
 
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
