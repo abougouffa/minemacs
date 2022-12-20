@@ -160,6 +160,7 @@
       ;; embedded
       eaf
       ;; math
+      ;; modeling
       window
       media
       binary)
