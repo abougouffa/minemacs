@@ -242,10 +242,17 @@
   :custom
   (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
   :config
-  (setq plantuml-default-exec-mode
-        (cond ((executable-find "plantuml") 'executable)
-              ((file-exists-p plantuml-jar-path) 'jar)
-              (t (plantuml-download-jar) 'jar))))
+  (setq
+   plantuml-default-exec-mode
+   ;; Prefer the system executable
+   (if (executable-find "plantuml")
+       'executable
+     ;; Then, if a JAR exists, use it
+     (or (and (file-exists-p plantuml-jar-path) 'jar)
+         ;; otherwise, try to download a JAR in interactive mode
+         (and (not noninteractive) (plantuml-download-jar) 'jar)
+         ;; Fall back to server
+         'server))))
 
 (use-package rust-mode
   :straight t
