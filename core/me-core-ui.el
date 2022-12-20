@@ -140,6 +140,7 @@ Useful for keeping track of the enabled theme."
   (doom-modeline-height 45)
   (doom-modeline-bar-width 8)
   (doom-modeline-time-icon nil)
+  (doom-modeline-buffer-encoding 'nondefault)
   :config
   ;; Add padding
   (doom-modeline-def-modeline 'main
