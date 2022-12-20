@@ -339,6 +339,10 @@
        'eglot-server-programs
        `(lua-mode . ,(eglot-alternatives '(("lua-language-server") ("lua-lsp"))))))))
 
+(use-package powershell
+  :straight t
+  :defer t)
+
 
 (provide 'me-prog)
 
