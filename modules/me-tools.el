@@ -58,11 +58,7 @@
   :straight t
   :defer t
   :config
-  (with-eval-after-load 'eglot
-    (when (executable-find "docker-langserver")
-      (add-to-list
-       'eglot-server-programs
-       '(dockerfile-mode . ("docker-langserver" "--stdio"))))))
+  (+eglot-register 'dockerfile-mode '("docker-langserver" "--stdio")))
 
 
 (provide 'me-tools)

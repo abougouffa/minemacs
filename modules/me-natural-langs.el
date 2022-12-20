@@ -188,11 +188,7 @@
 ;;        . ((ltex . ((language . "fr")
 ;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
 ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
-(with-eval-after-load 'eglot
-  (when (executable-find "ltex-ls")
-    (add-to-list
-     'eglot-server-programs
-     '((org-mode latex-mode LaTeX-mode markdown-mode) . ("ltex-ls")))))
+(+eglot-register '(org-mode latex-mode LaTeX-mode markdown-mode) "ltex-ls")
 
 
 (provide 'me-natural-langs)

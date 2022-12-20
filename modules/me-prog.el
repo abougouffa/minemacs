@@ -333,11 +333,7 @@
   :custom
   (lua-indent-level 2)
   :config
-  (with-eval-after-load 'eglot
-    (when (executable-find "lua-language-server")
-      (add-to-list
-       'eglot-server-programs
-       `(lua-mode . ,(eglot-alternatives '(("lua-language-server") ("lua-lsp"))))))))
+  (+eglot-register 'lua-mode "lua-language-server" "lua-lsp"))
 
 (use-package powershell
   :straight t

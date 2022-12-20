@@ -61,18 +61,10 @@
   :custom
   (graphviz-dot-view-command "xdot %s")
   :config
-  (with-eval-after-load 'eglot
-    (when (executable-find "dot-language-server")
-      (add-to-list
-       'eglot-server-programs
-       '(graphviz-dot-mode . ("dot-language-server" "--stdio"))))))
+  (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
 (with-eval-after-load 'nxml-mode
-  (with-eval-after-load 'eglot
-    (when (executable-find "lemminx")
-      (add-to-list
-       'eglot-server-programs
-       '((nxml-mode xml-mode) . ("lemminx"))))))
+  (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
 
 (provide 'me-data)
