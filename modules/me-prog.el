@@ -242,6 +242,7 @@
   :custom
   (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
   (plantuml-indent-level 2)
+  :hook (plantuml-mode . +plantuml-mode-setup)
   :config
   (setq
    plantuml-default-exec-mode
@@ -254,6 +255,23 @@
          (and (not noninteractive) (plantuml-download-jar) 'jar)
          ;; Fall back to server
          'server)))
+
+  ;; Add support fot capf, rather than the builtin `plantuml-complete-symbol'
+  (defun +plantuml-mode-setup ()
+    (add-to-list
+     'completion-at-point-functions
+     (defun +plantuml-complete-at-point ()
+       "Perform symbol-at-pt completion on word before cursor."
+       (let* ((end-pos (point))
+              (sym-at-pt (or (thing-at-point 'symbol) ""))
+              (max-match (try-completion sym-at-pt plantuml-kwdList)))
+         (unless (null max-match)
+           (list (- end-pos (length sym-at-pt))
+                 end-pos
+                 (if (eq max-match t)
+                     (list keyword)
+                   (all-completions sym-at-pt plantuml-kwdList))))))))
+
   (+map-local :keymaps 'plantuml-mode-map
     "p" #'plantuml-preview-buffer
     "P" #'plantuml-preview
