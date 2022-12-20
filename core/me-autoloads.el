@@ -64,6 +64,18 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
+;;; Generated autoloads from ../elisp/eglot.el
+
+(autoload '+eglot-register "../elisp/eglot" "\
+Register MODES with LSP SERVERS.
+Examples:
+  (+eglot-register 'vhdl-mode \"vhdl_ls\")
+  (+eglot-register 'lua-mode \"lua-language-server\" \"lua-lsp\")
+  (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")
+
+(fn MODES &rest SERVERS)")
+
+
 ;;; Generated autoloads from ../elisp/emacs.el
 
 (autoload '+dir-locals-reload-for-this-buffer "../elisp/emacs" "\
