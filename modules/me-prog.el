@@ -180,6 +180,11 @@
                                   "--header-insertion=iwyu"
                                   "--pch-storage=memory"))))))
 
+(use-package consult-eglot
+  :straight t
+  :after consult eglot
+  :defer t)
+
 (use-package eldoc-box
   :straight t
   :hook (prog-mode . eldoc-box-hover-at-point-mode))
