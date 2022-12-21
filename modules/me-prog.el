@@ -242,8 +242,7 @@ the children of class at point."
 
 (use-package flymake
   :straight t
-  :defer t
-  :init
+  :general
   (+map "tf" #'flymake-mode))
 
 ;;; Modes
@@ -262,7 +261,6 @@ the children of class at point."
 
 (use-package plantuml-mode
   :straight t
-  :defer t
   :mode "\\.plantuml\\'"
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
@@ -358,11 +356,13 @@ the children of class at point."
 
 (use-package rainbow-mode
   :straight t
-  :defer t
-  :hook (prog-mode . rainbow-mode))
+  :general
+  (+map
+    "tR" #'rainbow-mode))
 
 (use-package lua-mode
   :straight t
+  :defer t
   :custom
   (lua-indent-level 2)
   :config
