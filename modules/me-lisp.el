@@ -126,6 +126,11 @@
     "hF" #'helpful-function
     "hf" #'helpful-callable))
 
+(use-package info-colors
+  :straight t
+  :commands info-colors-fnontify-node
+  :hook (Info-selection . info-colors-fontify-node))
+
 (use-package eros
   :straight t
   :after elisp-mode minemacs-loaded
