@@ -123,12 +123,12 @@
  widget-image-enable nil
 
  ;; ====== Undo ======
- ;; 1MB (default is 160kB)
+ ;; 10MB (default is 160kB)
  undo-limit 10000000
- ;; 100MB (default is 240kB)
- undo-strong-limit 100000000
- ;; 1GB (default is 24MB)
- undo-outer-limit 1000000000
+ ;; 50MB (default is 240kB)
+ undo-strong-limit 50000000
+ ;; 150MB (default is 24MB)
+ undo-outer-limit 150000000
 
  ;; ====== Editing ======
  ;; Hitting TAB behavior
