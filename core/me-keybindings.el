@@ -99,6 +99,7 @@
     "bi"  #'ibuffer
     "bu"  #'+sudo-save-buffer
     "bS"  #'save-some-buffers
+    "bs"  #'scratch-buffer
     "bA"  #'kill-some-buffers
     "bm"  #'bookmark-set
     "bM"  #'bookmark-delete
