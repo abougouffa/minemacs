@@ -161,19 +161,9 @@ so it can be used to save HTML pages or emails to PDF.
 (register-definition-prefixes "../elisp/io" '("+save-as-pdf-filename" "+sudo-file-path"))
 
 
-;;; Generated autoloads from ../modules/me-backports-29.el
-
-(register-definition-prefixes "../modules/me-backports-29" '("loaddefs-generate" "native-compile-prune-cache" "string-split" "with-memoization"))
-
-
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
-
-
-;;; Generated autoloads from ../modules/me-daemon.el
-
-(register-definition-prefixes "../modules/me-daemon" '("+daemon--setup-background-apps"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
@@ -184,21 +174,6 @@ so it can be used to save HTML pages or emails to PDF.
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
 
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
-
-
-;;; Generated autoloads from ../modules/me-math.el
-
-(register-definition-prefixes "../modules/me-math" '("MAXIMA-P"))
-
-
-;;; Generated autoloads from ../modules/me-media.el
-
-(register-definition-prefixes "../modules/me-media" '("MPV-P"))
-
-
-;;; Generated autoloads from ../modules/me-mu4e.el
-
-(register-definition-prefixes "../modules/me-mu4e" '("MU4E-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
@@ -215,11 +190,6 @@ so it can be used to save HTML pages or emails to PDF.
 ;;; Generated autoloads from ../modules/extras/me-mu4e-ui.el
 
 (register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
-
-
-;;; Generated autoloads from ../modules/me-natural-langs.el
-
-(register-definition-prefixes "../modules/me-natural-langs" '("ASPELL-P"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-org-export-async-init.el

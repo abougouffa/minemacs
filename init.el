@@ -52,7 +52,7 @@
 
   (let ((autoload-dirs nil))
     (dolist (dir (list minemacs-core-dir
-                       minemacs-modules-dir
+                       (concat minemacs-modules-dir "extras/")
                        (concat minemacs-root-dir "elisp/")))
       (when (file-directory-p dir)
         (setq autoload-dirs
