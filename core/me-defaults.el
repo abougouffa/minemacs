@@ -139,10 +139,10 @@
  require-final-newline t
 
  ;; ====== Backups ======
- ;; Disable backup and lockfiles
+ ;; Disable lockfiles
  create-lockfiles nil
- ;; Disable making backup files
- make-backup-files nil
+ ;; Enable making backup files
+ make-backup-files t
  ;; Number each backup file
  version-control t
  ;; Copy instead of renaming current file
@@ -153,6 +153,8 @@
  kept-old-versions 5
  ;; Keep up to 5 new versions of each file
  kept-new-versions 5
+ ;; Keep up to 5 versions when cleaning a directory
+ dired-kept-versions 5
 
  ;; ====== Scrolling ======
  ;; Do not adjust window-vscroll to view tall lines
