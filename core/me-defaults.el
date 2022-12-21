@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;;; Better defaults
+;;; Why use anything but UTF-8?
 (set-charset-priority 'unicode)
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -13,8 +13,8 @@
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment 'utf-8)
 
-;; ====== Default directories for builtin packages ======
-(setq
+(setopt
+ ;; ====== Default directories for builtin packages ======
  backup-directory-alist (list (cons "." (+expand 'local "backup" t)))
  auto-save-list-file-prefix (+expand 'local "auto-save" t)
  abbrev-file-name (+expand 'local "abbrev.el")
@@ -55,9 +55,8 @@
  eww-bookmarks-directory (+expand 'local "eww/bookmarks" t)
  shadow-info-file (+expand 'local "shadow/info.el")
  shadow-todo-file (+expand 'local "shadow/todo.el")
- semanticdb-default-system-save-directory (+expand 'local "semantic" t))
+ semanticdb-default-system-save-directory (+expand 'local "semantic" t)
 
-(setq
  ;; ====== Default behavior ======
  ;; Do not ring
  ring-bell-function 'ignore
@@ -148,6 +147,8 @@
  tab-always-indent nil
  ;; Default behavior for `whitespace-cleanup'
  whitespace-action '(cleanup auto-cleanup)
+ ;; End files with newline
+ require-final-newline t
 
  ;; ====== Backups ======
  ;; Disable backup and lockfiles
@@ -228,10 +229,9 @@
                                   "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
                                   (concat auto-save-list-file-prefix "tramp-\\2") t)
                                  ;; Local autosaves
-                                 (list ".*" auto-save-list-file-prefix t)))
+                                 (list ".*" auto-save-list-file-prefix t))
 
-(setq-default
- ;; ====== Editing ======
+ ;; ====== Buffer-local variables ======
  ;; Display long lines
  truncate-lines nil
  ;; Default fill column width
@@ -241,9 +241,7 @@
  ;; Width for line numbers
  display-line-numbers-width 4
  ;; Small tab is enough!
- tab-width 2
- ;; End files with newline
- require-final-newline t)
+ tab-width 2)
 
 ;; Ensure creating "session.ID" in a sub-directory
 (with-eval-after-load 'x-win
