@@ -16,42 +16,33 @@
   (add-to-list 'auto-mode-alist '("\\.srv\\'"    . gdb-script-mode))
   (add-to-list 'auto-mode-alist '("\\.action\\'" . gdb-script-mode))
 
-  ;; A mode to display infos for ROS bag files
-  (define-derived-mode rosbag-view-mode
-    fundamental-mode "ROS bag view mode"
+  ;; A mode to display info from ROS bag files (via MCAP)
+  (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
     "Major mode for viewing ROS/ROS2 bag files."
-    (let* ((filename (buffer-file-name))
-           (bag-format (file-name-extension filename)))
-      (if (not (member bag-format '("bag" "db3" "mcap")))
-          (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
-                      (abbreviate-file-name filename))
-        (let ((buffer-read-only nil))
-          (erase-buffer)
-          (message "Calling rosbag info")
-          (pcase bag-format
-            ("bag"
-             (call-process
-              "rosbag"
-              nil (current-buffer) nil "info" filename))
-            ("db3"
-             (call-process
-              "ros2"
-              nil (current-buffer) nil "bag" "info" filename))
-            ("mcap"
-             (call-process
-              (or (executable-find "mcap-cli") (executable-find "mcap"))
-              nil (current-buffer) nil "info" filename)))
-          (set-buffer-modified-p nil)
-          (view-mode (set-visited-file-name nil t))))))
+    :interactive nil
+    (buffer-disable-undo)
+    (set-buffer-modified-p nil)
+    (setq-local buffer-read-only t
+                truncate-lines t))
 
-  (when (executable-find "rosbag")
-    (add-to-list 'auto-mode-alist '("\\.bag$" . rosbag-view-mode)))
+  (defvar rosbag-mcap-command
+    (or (executable-find "mcap") (executable-find "mcap-cli")))
 
-  (when (executable-find "ros2")
-    (add-to-list 'auto-mode-alist '("\\.db3$" . rosbag-view-mode)))
-
-  (when (or (executable-find "mcap") (executable-find "mcap-cli"))
-    (add-to-list 'auto-mode-alist '("\\.mcap$" . rosbag-view-mode))))
+  (defun rosbag-info-mode-open-file (file)
+    "Browse the contents of an ROS bag (v1, SQLite, or MCAP) file."
+    (interactive "fROS/ROS2/MCAP bag file name: ")
+    (if (not (and rosbag-mcap-command (executable-find rosbag-mcap-command)))
+        (user-error "Cannot find the `mcap-cli' command.")
+      (let ((bag-format (file-name-extension file)))
+        (if (not (member bag-format '("bag" "db3" "mcap")))
+            (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
+                        (file-name-nondirectory file))
+          (let ((buffer-read-only nil)
+                (buff (get-buffer-create
+                       (format "*ROS (%s) %s*" (upcase bag-format) (file-name-nondirectory file)))))
+            (pop-to-buffer buff)
+            (call-process rosbag-mcap-command nil buff nil "info" (expand-file-name file))
+            (rosbag-info-mode)))))))
 
 ;; Needed by ros.el
 (use-package kv
