@@ -122,18 +122,6 @@
  ;; No ugly button for widgets
  widget-image-enable nil
 
- ;; ====== Authentication and encryption ======
- ;; Default auth-sources to GPG
- auth-sources '("~/.authinfo.gpg")
- ;; Enable caching, do not keep asking about GPG key
- auth-source-do-cache t
- ;; All day, default is 2h (7200)
- auth-source-cache-expiry 86400
- ;; Enable password caching
- password-cache t
- ;; One minute, default is 16
- password-cache-expiry 60
-
  ;; ====== Undo ======
  ;; 1MB (default is 160kB)
  undo-limit 10000000
@@ -201,14 +189,6 @@
      (or "rsync" "ssh" "tmp" "yadm" "sudoedit" "sudo")
      (* any)))
 
- ;; ====== Compilation ======
- ;; Scroll compilation buffer until first error
- compilation-scroll-output 'first-error
- ;; Don't need enter
- compilation-read-command nil
- ;; Keep it readable
- compilation-window-height 12
-
  ;; ====== Timestamps ======
  ;; Do enable time-stamps
  time-stamp-active t
@@ -252,14 +232,63 @@
      (+expand 'local (concat "emacs-session/"
                              (file-name-nondirectory filename))))))
 
-;; Kill term buffer when exiting
-(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
-  (if (memq (process-status proc) '(signal exit))
-      (let ((buffer (process-buffer proc)))
-        ad-do-it
-        (kill-buffer buffer))
-    ad-do-it))
-(ad-activate 'term-sentinel)
+(with-eval-after-load 'password-cache
+  (setopt
+   ;; ====== Password cache ======
+   ;; Enable password caching
+   password-cache t
+   ;; One minute, default is 16
+   password-cache-expiry 60))
+
+(with-eval-after-load 'auth-source
+  (setopt
+   ;; Default auth-sources to GPG
+   auth-sources '("~/.authinfo.gpg")
+   ;; Enable caching, do not keep asking about GPG key
+   auth-source-do-cache t
+   ;; All day, default is 2h (7200)
+   auth-source-cache-expiry 86400))
+
+(with-eval-after-load 'compile
+  ;; ====== Compilation ======
+  (setopt
+   ;; Scroll compilation buffer until first error
+   compilation-scroll-output 'first-error
+   ;; Always kill current compilation process before starting a new one
+   compilation-always-kill t
+   ;; Skip visited messages on compilation motion commands
+   compilation-skip-visited t
+   ;; Keep it readable
+   compilation-window-height 12)
+
+  ;; Close compilation buffer if succeeded without warnings
+  ;; Adapted from: http://stackoverflow.com/questions/11043004/emacs-compile-buffer-auto-close
+  (add-hook
+   'compilation-finish-functions
+   (defun +compilation--bury-if-successful-h (buf str)
+     "Bury a compilation buffer if succeeded without warnings."
+     (when (and
+            (string-match "compilation" (buffer-name buf))
+            (string-match "finished" str)
+            (not (with-current-buffer buf
+                   (save-excursion
+                     (goto-char (point-min))
+                     (search-forward "warning" nil t)))))
+       (run-with-timer
+        2 nil
+        (lambda (b)
+          (with-selected-window (get-buffer-window b)
+            (kill-buffer-and-window))) buf)))))
+
+(with-eval-after-load 'term
+  (advice-add
+   'term-sentinel :around
+   (defun +term--kill-after-exit-a (orig-fn proc msg)
+     (if (memq (process-status proc) '(signal exit))
+         (let ((buffer (process-buffer proc)))
+           (apply orig-fn (list proc msg))
+           (kill-buffer buffer))
+       (apply orig-fn (list proc msg))))))
 
 ;; Navigate windows using Shift+Direction
 (windmove-default-keybindings)
@@ -319,25 +348,6 @@ or file path may exist now."
    "Kill the minibuffer when switching to window with mouse."
    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
      (abort-recursive-edit))))
-
-;; Close compilation buffer if succeeded without warnings
-;; Adapted from: http://stackoverflow.com/questions/11043004/emacs-compile-buffer-auto-close
-(add-hook
- 'compilation-finish-functions
- (defun +compilation--bury-if-successful-h (buf str)
-   "Bury a compilation buffer if succeeded without warnings."
-   (when (and
-          (string-match "compilation" (buffer-name buf))
-          (string-match "finished" str)
-          (not (with-current-buffer buf
-                 (save-excursion
-                   (goto-char (point-min))
-                   (search-forward "warning" nil t)))))
-     (run-with-timer
-      2 nil
-      (lambda (b)
-        (with-selected-window (get-buffer-window b)
-          (kill-buffer-and-window))) buf))))
 
 ;;; Enable some modes globally
 (with-eval-after-load 'minemacs-loaded
