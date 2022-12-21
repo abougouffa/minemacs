@@ -50,6 +50,13 @@
   ;; No need to display a long list of my own addresses!
   (setq mu4e-main-hide-personal-addresses t)
 
+  ;; Hide the mu4e-update window
+  (add-to-list
+   'display-buffer-alist
+   `(" \\*mu4e-update\\*"
+     (display-buffer-no-window)
+     (allow-no-window . t)))
+
   (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
