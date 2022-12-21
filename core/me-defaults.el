@@ -182,7 +182,23 @@
  ;; ====== Recent files ======
  ;; Increase the maximum number of saved items
  recentf-max-saved-items 100
+ ;; Ignore case when searching recentf files
  recentf-case-fold-search t
+ ;; Exclude some files from being remembered by recentf
+ recentf-exclude
+ `(,(rx (* any)
+     (or
+      "elfeed-db"
+      "eln-cache"
+      "/cache/"
+      ".maildir/"
+      "emacs.d/local/"
+      ".cache/")
+     (* any)
+     (? (or "html" "pdf" "tex" "epub")))
+   ,(rx "/"
+     (or "rsync" "ssh" "tmp" "yadm" "sudoedit" "sudo")
+     (* any)))
 
  ;; ====== Compilation ======
  ;; Scroll compilation buffer until first error
