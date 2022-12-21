@@ -172,6 +172,12 @@
  fast-but-imprecise-scrolling t
  ;; Keep the point in the same position while scrolling
  scroll-preserve-screen-position t
+ ;; Do not move cursor to the center when scrolling
+ scroll-conservatively 101
+ ;; Scroll at a margin of one line
+ scroll-margin 1
+ ;; Better scrolling on Emacs29+, specially on a touchpad
+ pixel-scroll-precision-use-momentum t
 
  ;; ====== Recent files ======
  ;; Increase the maximum number of saved items
@@ -221,12 +227,7 @@
  ;; Small tab is enough!
  tab-width 2
  ;; End files with newline
- require-final-newline t
-
- ;; ======= Scrolling =======
- ;; Do not scroll to the center when point exceeds the beginning/end of buffer.
- scroll-up-aggressively 0.01
- scroll-down-aggressively 0.01)
+ require-final-newline t)
 
 ;; Ensure creating "session.ID" in a sub-directory
 (with-eval-after-load 'x-win
@@ -334,15 +335,13 @@ or file path may exist now."
                  (string-match-p "N/A" battery-str))
        (display-battery-mode 1))))
 
-  ;; Scroll pixel by pixel
-  (pixel-scroll-mode 1)
-
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
   (winner-mode 1)
 
-  ;; Precision scroll
-  (when (>= emacs-major-version 29)
-    (pixel-scroll-precision-mode 1))
+  ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
+  (if (>= emacs-major-version 29)
+      (pixel-scroll-precision-mode 1)
+    (pixel-scroll-mode 1))
 
   ;; Display time in mode-line
   (display-time-mode 1)
