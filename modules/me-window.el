@@ -67,5 +67,24 @@
            (when (and proj (not (string= proj "-")))
             (format " %s" proj)))))))
 
+;; Adapted from: https://github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
+(with-eval-after-load 'hydra
+  (defhydra +windows-adjust-size (:hint nil :foreign-keys warn)
+    "
+^Zoom^                                ^Other
+^^^^^^^-----------------------------------------
+[_t_/_s_] shrink/enlarge vertically   [_q_] quit
+[_c_/_r_] shrink/enlarge horizontally
+"
+    ("q" nil :exit t)
+    ("c" shrink-window-horizontally)
+    ("t" enlarge-window)
+    ("s" shrink-window)
+    ("r" enlarge-window-horizontally))
+
+  (+map
+    :infix "w"
+    "a" #'+windows-adjust-size/body))
+
 
 (provide 'me-window)
