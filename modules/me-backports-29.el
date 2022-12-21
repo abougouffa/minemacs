@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'wid-edit) ;; Needed by `setopt--set'
 
 (defalias 'string-split #'split-string)
 
