@@ -263,7 +263,6 @@
 ;; Hide/show code blocks, a.k.a. code folding
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'conf-mode-hook #'hs-minor-mode)
-(add-hook 'text-mode-hook #'hs-minor-mode)
 
 ;; Wrap long lines
 (add-hook 'prog-mode-hook #'visual-line-mode)
