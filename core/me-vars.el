@@ -55,6 +55,12 @@ Compiled from the `system-configuration-features'.")
 (defcustom minemacs-localleader-key "SPC m"
   "MinEmacs local leader (a.k.a. mode specific) key sequence.")
 
+(defcustom minemacs-global-leader-prefix "C-SPC"
+  "MinEmacs general leader key.")
+
+(defcustom minemacs-global-mode-prefix "M-m"
+  "MinEmacs general local leader (a.k.a. mode specific) key sequence.")
+
 (defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs")
 

@@ -40,23 +40,27 @@
 ;;; General.el
 (use-package general
   :straight t
+  :after which-key
   :config
   (general-auto-unbind-keys)
 
   ;; Global leader
   (general-create-definer +map
-    :states '(normal motion visual)
+    :states '(normal visual insert emacs)
     :keymaps 'override
-    :prefix minemacs-leader-key)
+    :prefix minemacs-leader-key
+    :global-prefix minemacs-global-leader-prefix)
 
   ;; Local leader
   (general-create-definer +map-local
-    :states '(normal motion visual)
-    :prefix minemacs-localleader-key)
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix minemacs-localleader-key
+    :global-prefix minemacs-global-mode-prefix)
 
-  ;; Local leader
+  ;; Map a key in normal, motion and visual states
   (general-create-definer +map-key
-    :states '(normal motion visual))
+    :states '(normal visual))
 
   (+map
     ;; ====== Top level functions ======
