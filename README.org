@@ -31,6 +31,13 @@ git clone https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
 This will clone the repository, and launches Emacs, which, in the first run,
 will install the required packages.
 
+*** ⚠ Important note
+Please note that I'm using a fresh Emacs build (Emacs 30.0.50) built from source.
+
+I'm trying to support at least Emacs 28.2, so [[file:modules/me-backports-29.el][I back port some of the new functions/macros I use to Emacs 28]].
+
+I've never tested this configuration with Emacs versions earlier than 28.2, and I don't plan to do so!
+
 ** Customize
 You can customize MinEmacs by adding these files under the =~/.minemacs.d=
 directory:
