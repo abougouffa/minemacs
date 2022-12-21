@@ -121,6 +121,8 @@
  display-line-numbers-type 'relative
  ;; No ugly button for widgets
  widget-image-enable nil
+ ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
+ prettify-symbols-unprettify-at-point t
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
@@ -316,8 +318,18 @@
 (add-hook 'text-mode-hook #'visual-line-mode)
 
 ;;; Other hooks
-;; Update time stamp when saving a file
+;; Update time stamp (if available) before saving a file
 (add-hook 'before-save-hook 'time-stamp)
+
+;; Remove trailing whitespaces on save for some modes
+(add-hook
+ 'before-save-hook
+ (defun +save--whitespace-cleanup-h ()
+   (when (or (derived-mode-p 'prog-mode)
+             (derived-mode-p 'conf-mode)
+             (derived-mode-p 'org-mode)
+             (derived-mode-p 'markdown-mode))
+     (whitespace-cleanup))))
 
 ;; Guess major mode when saving a file (adapted from Doom Emacs)
 (add-hook
@@ -331,16 +343,6 @@ or file path may exist now."
        (and (buffer-file-name buffer)
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
-
-;; Remove trailing whitespaces on save for some modes
-(add-hook
- 'before-save-hook
- (defun +save--delete-trailing-whitespace-h ()
-   (when (or (derived-mode-p 'prog-mode)
-             (derived-mode-p 'conf-mode)
-             (derived-mode-p 'org-mode)
-             (derived-mode-p 'markdown-mode))
-     (delete-trailing-whitespace))))
 
 ;; Kill minibuffer when switching by mouse to another window
 ;; Taken from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
