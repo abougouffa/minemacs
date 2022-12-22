@@ -2,6 +2,12 @@
 
 (require 'wid-edit) ;; Needed by `setopt--set'
 
+(defun scratch-buffer ()
+  "Switch to the *scratch* buffer.
+If the buffer doesn't exist, create it first."
+  (interactive)
+  (pop-to-buffer-same-window (get-scratch-buffer-create)))
+
 (defalias 'string-split #'split-string)
 
 (defalias 'loaddefs-generate #'make-directory-autoloads)
