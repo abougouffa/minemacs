@@ -314,11 +314,12 @@ Check for MinEmacs dependencies." t)
 (autoload '+eval-when-idle "../elisp/minemacs-core" "\
 Queue FNS to be processed when Emacs becomes idle.
 
-(fn &rest FNS)")
+(fn DELAY &rest FNS)")
 (autoload '+eval-when-idle! "../elisp/minemacs-core" "\
 Evaluate BODY when Emacs becomes idle.
 
 (fn &rest BODY)" nil t)
+(function-put '+eval-when-idle! 'lisp-indent-function 0)
 (autoload '+unquote "../elisp/minemacs-core" "\
 Return EXP unquoted.
 

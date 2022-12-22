@@ -191,15 +191,16 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 
 ;; An internal variable to keep track of the tasks
 (defvar +eval-when-idle--task-num 0)
+(defvar +eval-when-idle-delay 10.0) ;; 10 seconds
 
 ;;;###autoload
-(defun +eval-when-idle (&rest fns)
+(defun +eval-when-idle (delay &rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
   (let* ((task-num (cl-incf +eval-when-idle--task-num))
          (task-name (make-symbol (format "+eval-when-idle--task%d" task-num))))
     (with-memoization (get task-name 'timer)
       (run-with-idle-timer
-       1.5 t
+       delay t
        (lambda ()
          (when-let (fn (pop fns))
            (+log! "Running task %d, calling function `%s'"
@@ -214,7 +215,8 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 ;;;###autoload
 (defmacro +eval-when-idle! (&rest body)
   "Evaluate BODY when Emacs becomes idle."
-  `(+eval-when-idle
+  (declare (indent 0))
+  `(+eval-when-idle ,+eval-when-idle-delay
     (lambda ()
       ,@body)))
 
