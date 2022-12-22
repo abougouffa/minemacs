@@ -48,12 +48,11 @@
 
   ;; (setq mail-personal-alias-file (concat minemacs-config-dir "private/mail-aliases.mailrc"))
 
-  ;; Register email accounts with mu4e
-
   (setq +mu4e-auto-bcc-address "always.bcc@this.email" ;; Add an email address always included as BCC
         +mu4e-gmail-accounts '(("account1@gmail.com" . "/gmail")
                                ("account@somesite.org" . "/gmail")))
 
+  ;; Register email accounts with mu4e
   ;; Use MinEmacs' `+mu4e-register-account' helper function to register multiple accounts
   (+mu4e-register-account
    "Google mail" ;; Account name
@@ -91,15 +90,16 @@
   (setq org-export-headline-levels 5)
 
   ;; Your Org files to include in the agenda
-  (setq org-agenda-files (mapcar)
-        (lambda (f) (concat org-directory f))
-        '("inbox.org"
-          "agenda.org"
-          "projects.org")))
+  (setq org-agenda-files
+        (mapcar
+         (lambda (f) (concat org-directory f))
+         '("inbox.org"
+           "agenda.org"
+           "projects.org"))))
 
 ;; Module: `me-notes' -- Package: `org-roam'
 (with-eval-after-load 'org-roam
-  (setq org-roam-directory "~/Org/slip-box/"
+  (setq org-roam-directory (concat org-directory "slip-box/")
         org-roam-db-location (concat org-roam-directory "org-roam.db"))
 
   ;; Register capture template (via Org-Protocol)
