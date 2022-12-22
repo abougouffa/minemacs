@@ -15,7 +15,7 @@
   (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
   :hook (text-mode . spell-fu-mode)
   :custom
-  (spell-fu-directory (+expand 'local "spell-fu" t))
+  (spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
   :init
   (defvar +spell-excluded-faces-alist
     '((markdown-mode

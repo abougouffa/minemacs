@@ -11,8 +11,8 @@
   :general
   (+map "of" #'elfeed)
   :custom
-  (elfeed-db-directory (+expand 'local "elfeed/db" t))
-  (elfeed-enclosure-default-dir (+expand 'local "elfeed/enclosure" t)))
+  (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
+  (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/")))
 
 
 (provide 'me-rss)
