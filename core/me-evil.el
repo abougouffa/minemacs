@@ -7,6 +7,7 @@
 
 (use-package evil
   :straight t
+  :after minemacs-loaded
   :preface
   (setq evil-want-keybinding nil)
   :custom
