@@ -60,5 +60,8 @@
   :config
   (+eglot-register 'dockerfile-mode '("docker-langserver" "--stdio")))
 
+(use-package esup
+  :straight t
+  :commands esup)
 
 (provide 'me-tools)
