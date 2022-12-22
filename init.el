@@ -117,50 +117,8 @@
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
-;; Define default modules if they aren't already defined
-(unless (bound-and-true-p minemacs-core-modules)
-  (defcustom minemacs-core-modules
-    '(defaults
-      splash
-      bootstrap
-      core-ui
-      keybindings
-      evil
-      completion)
-    "MinEmacs enabled core modules."))
-
-(unless (bound-and-true-p minemacs-modules)
-  (defcustom minemacs-modules
-    '(ui
-      editor
-      undo
-      multi-cursors
-      vc
-      project
-      prog
-      debug
-      lisp
-      data
-      org
-      notes
-      ;; mu4e
-      docs
-      ;; latex
-      natural-langs
-      files
-      tools
-      biblio
-      ;; daemon
-      rss
-      ;; ros
-      ;; embedded
-      eaf
-      ;; math
-      ;; modeling
-      window
-      media
-      binary)
-    "MinEmacs enabled modules."))
+;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
+(load (concat minemacs-core-dir "me-modules.el") nil (not minemacs-verbose))
 
 ;; The modules.el file can override minemacs-modules and minemacs-core-modules
 (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
@@ -175,21 +133,20 @@
   (+set-fonts)
 
   ;; Core modules
-  (when load-core-modules
-    (dolist (module minemacs-core-modules)
-      (+log! "Loading core module \"%s\"" module)
-      (let ((filename (concat minemacs-core-dir (format "me-%s.el" module))))
-        (if (file-exists-p filename)
-            (load filename nil (not minemacs-verbose))
-          (+info! "Core module \"%s\" not found!" module)))))
+  (dolist (module minemacs-core-modules)
+    (+log! "Loading core module \"%s\"" module)
+    (let ((filename (concat minemacs-core-dir (format "%s.el" module))))
+      (if (file-exists-p filename)
+          (load filename nil (not minemacs-verbose))
+        (+error! "Core module \"%s\" not found!" module))))
 
   ;; Modules
   (dolist (module minemacs-modules)
     (+log! "Loading module \"%s\"" module)
-    (let ((filename (concat minemacs-modules-dir (format "me-%s.el" module))))
+    (let ((filename (concat minemacs-modules-dir (format "%s.el" module))))
       (if (file-exists-p filename)
           (load filename nil (not minemacs-verbose))
-        (+info! "Module \"%s\" not found!" module))))
+        (+error! "Module \"%s\" not found!" module))))
 
   (when (and custom-file (file-exists-p custom-file))
     (+log! "Loafing user custom file from \"%s\"" custom-file)
