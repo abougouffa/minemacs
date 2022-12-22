@@ -56,39 +56,15 @@
   :straight t
   :general
   (+map
-    ":"   '(consult-projectile-find-file :wk "Find file in project")
+    ":"  '(consult-projectile-find-file :wk "Find file in project")
     ;; Buffer
-    "bp"  #'consult-projectile-switch-to-buffer
+    "bp" #'consult-projectile-switch-to-buffer
     ;; Project
-    "pp"  #'consult-projectile
-    "pP"  '(consult-projectile-switch-project :wk "Switch")
-    "pr"  #'consult-projectile-recentf
-    "pd"  '(consult-projectile-find-dir :wk "Find directory")
-    "pf"  '(consult-projectile-find-file :wk "Find file")))
-
-;; Use keybindings for built-in project.el
-(unless t
-  (+map
-    ":"   #'project-find-file
-    ;; Buffer
-    "bp"  #'project-switch-to-buffer
-    ;; Project
-    "pp"  '(project-switch-project :wk "Switch")
-    "pc"  '(project-compile :wk "Compile")
-    "pd"  '(project-find-dir :wk "Find directory")
-    "pf"  '(project-find-file :wk "Find file")
-    "pD"  '(+dir-locals-open-or-create :wk "Open/create dir-locals file")
-    ;; Forget
-    "pF"  '(nil :wk "forget")
-    "pFz" '(project-forget-zombie-projects :wk "Zombie projects")
-    "pFp" '(project-forget-project :wk "Project")
-    "pFu" '(project-forget-projects-under :wk "Projects under...")
-    ;; Search/replace
-    "ps"  '(nil :wk "search/replace")
-    "pss" '(project-search :wk "Search")
-    "psn" '(fileloop-continue :wk "Next match")
-    "psr" #'project-query-replace-regexp
-    "psf" #'project-find-regexp))
+    "pp" #'consult-projectile
+    "pP" '(consult-projectile-switch-project :wk "Switch")
+    "pr" #'consult-projectile-recentf
+    "pd" '(consult-projectile-find-dir :wk "Find directory")
+    "pf" '(consult-projectile-find-file :wk "Find file")))
 
 
 (provide 'me-project)
