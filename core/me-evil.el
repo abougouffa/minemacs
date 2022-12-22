@@ -7,7 +7,6 @@
 
 (use-package evil
   :straight t
-  :after minemacs-loaded
   :preface
   (setq evil-want-keybinding nil)
   :custom
@@ -67,7 +66,6 @@
 
 (use-package evil-nerd-commenter
   :straight t
-  :after evil
   :general
   (+map-key "gc" #'evilnc-comment-operator))
 
