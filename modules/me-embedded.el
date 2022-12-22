@@ -17,7 +17,6 @@
 
 (use-package arduino-mode
   :straight (:type git :host github :repo "bookest/arduino-mode")
-  :defer t
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
@@ -25,8 +24,11 @@
   :straight (:type git :host bitbucket :repo "olanilsson/bitbake-modes")
   :defer t)
 
-;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-(with-eval-after-load 'vhdl-mode
+(use-package vhdl-mode
+  :straight (:type built-in)
+  :defer t
+  :config
+  ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
   (+eglot-register 'vhdl-mode "vhdl_ls"))
 
 (provide 'me-embedded)

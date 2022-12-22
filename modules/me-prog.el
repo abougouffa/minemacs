@@ -326,13 +326,19 @@ the children of class at point."
 
 (use-package dumb-jump
   :straight t
-  :defer t
+  :commands
+  dumb-jump-go dumb-jump-go-other-window dumb-jump-go-prefer-external
+  dumb-jump-quick-look dumb-jump-go-prompt +dumb-jump-hydra/body
   :custom
   (dumb-jump-selector 'completing-read)
   :init
   ;; Use as xref backend
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (with-eval-after-load 'xref
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+  (+map
+    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
+  :config
   ;; Define Hydra keybinding (from the repo's examples)
   (defhydra +dumb-jump-hydra (:color blue :columns 3)
     "Dumb Jump."
@@ -342,10 +348,7 @@ the children of class at point."
     ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
     ("i" dumb-jump-go-prompt "Prompt")
     ("l" dumb-jump-quick-look "Quick look")
-    ("b" dumb-jump-back "Back"))
-
-  (+map
-    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra")))
+    ("b" dumb-jump-back "Back")))
 
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")

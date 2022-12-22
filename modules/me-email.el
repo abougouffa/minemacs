@@ -157,4 +157,4 @@
         #'+mu4e-alert-grouped-mail-notif-formatter))
 
 
-(provide 'me-mu4e)
+(provide 'me-email)

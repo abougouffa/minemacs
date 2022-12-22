@@ -258,13 +258,13 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   "Queue FNS to be byte/natively-compiled after a brief delay."
   (dolist (fn fns)
     (+eval-when-idle!
-     (or (and (featurep 'native-compile)
-              (or (subr-native-elisp-p (indirect-function fn))
-                  (+shutup!
-                   (ignore-errors (native-compile fn)))))
-         (byte-code-function-p fn)
-         (let (byte-compile-warnings)
-           (byte-compile fn))))))
+      (or (and (featurep 'native-compile)
+               (or (subr-native-elisp-p (indirect-function fn))
+                   (+shutup!
+                    (ignore-errors (native-compile fn)))))
+          (byte-code-function-p fn)
+          (let (byte-compile-warnings)
+            (byte-compile fn))))))
 
 ;;;###autoload
 (defun +env-save ()

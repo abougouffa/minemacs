@@ -8,12 +8,16 @@
 ;; Maybe replace with yasnippet + https://github.com/elken/cape-yasnippet
 (use-package tempel
   :straight t
+  :defer t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path (concat minemacs-root-dir "templates/tempel/*.eld"))
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert))
-  :init
+  :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
+  :hook (prog-mode . tempel-abbrev-mode)
+  :defines +tempel-setup-capf-h
+  :config
   ;; Setup completion at point
   (defun +tempel-setup-capf-h ()
     ;; Add the Tempel Capf to `completion-at-point-functions'.
@@ -26,14 +30,6 @@
     (setq-local completion-at-point-functions
                 (cons #'tempel-complete
                       completion-at-point-functions)))
-
-  (add-hook 'prog-mode-hook '+tempel-setup-capf-h)
-  (add-hook 'text-mode-hook '+tempel-setup-capf-h)
-
-  ;; Optionally make the Tempel templates available to Abbrev,
-  ;; either locally or globally. `expand-abbrev' is bound to C-x '.
-  (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
-  :config
   (global-tempel-abbrev-mode))
 
 (use-package unicode-fonts
