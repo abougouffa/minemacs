@@ -13,49 +13,49 @@
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment 'utf-8)
 
-(setopt
+(setq
  ;; ====== Default directories for builtin packages ======
- backup-directory-alist (list (cons "." (+expand 'local "backup" t)))
- auto-save-list-file-prefix (+expand 'local "auto-save" t)
- abbrev-file-name (+expand 'local "abbrev.el")
- project-list-file (+expand 'local "project-list.el")
+ backup-directory-alist (list (cons "." (concat minemacs-local-dir "backup/")))
+ auto-save-list-file-prefix (concat minemacs-local-dir "auto-save/")
+ abbrev-file-name (concat minemacs-local-dir "abbrev.el")
+ project-list-file (concat minemacs-local-dir "project-list.el")
  tramp-backup-directory-alist backup-directory-alist
- tramp-auto-save-directory (+expand 'local "tramp/auto-save" t)
- tramp-persistency-file-name (+expand 'local "tramp/persistency.el")
- url-configuration-directory (+expand 'local "url" t)
- url-cookie-file (+expand 'local "url/cookie.el")
- url-history-file (+expand 'local "url/history.el")
- url-cache-directory (+expand 'cache "url.el")
- save-place-file (+expand 'local "save-place.el")
- savehist-file (+expand 'local "savehist.el")
- org-id-locations-file (+expand 'cache "org/id-locations.el")
- org-persist-directory (+expand 'cache "org/persist" t)
- org-publish-timestamp-directory (+expand 'cache "org/publish/timestamps" t)
- org-preview-latex-image-directory (+expand 'cache "org/preview/latex-image" t)
- recentf-save-file (+expand 'local "recentf-save.el")
- shared-game-score-directory (+expand 'local "shared-game-score" t)
- type-break-file-name (+expand 'local "type-break.el")
- bookmark-default-file (+expand 'local "bookmark.el")
- ede-project-placeholder-cache-file (+expand 'local "ede-projects.el")
- kkc-init-file-name (+expand 'local "kkc-init-file.el")
- erc-dcc-get-default-directory (+expand 'local "erc/dcc" t)
- erc-log-channels-directory (+expand 'local "erc/log-channels" t)
- eshell-directory-name (+expand 'local "eshell" t)
- eshell-history-file-name (+expand 'local "eshell/history.el")
- eshell-last-dir-ring-file-name (+expand 'local "eshell/last-dir-ring.el")
- eshell-aliases-file (+expand 'local "eshell/aliases")
- eshell-rc-script (+expand 'local "eshell/rc")
- eshell-login-script (+expand 'local "eshell/login")
- calc-settings-file (+expand 'local "calc-settings.el")
- auto-insert-directory (+expand 'local "auto-insert" t)
- image-dired-dir (+expand 'local "image-dired" t)
- image-dired-tags-db-file (+expand 'local "image-dired/tags-db.el")
- image-dired-temp-rotate-image-file (+expand 'cache "image-dired/temp-rotate-image")
- eudc-options-file (+expand 'local "eudc-options.el")
- eww-bookmarks-directory (+expand 'local "eww/bookmarks" t)
- shadow-info-file (+expand 'local "shadow/info.el")
- shadow-todo-file (+expand 'local "shadow/todo.el")
- semanticdb-default-system-save-directory (+expand 'local "semantic" t)
+ tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/")
+ tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el")
+ url-configuration-directory (concat minemacs-local-dir "url/")
+ url-cookie-file (concat minemacs-local-dir "url/cookie.el")
+ url-history-file (concat minemacs-local-dir "url/history.el")
+ url-cache-directory (concat minemacs-cache-dir "url.el")
+ save-place-file (concat minemacs-local-dir "save-place.el")
+ savehist-file (concat minemacs-local-dir "savehist.el")
+ org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el")
+ org-persist-directory (concat minemacs-cache-dir "org/persist/")
+ org-publish-timestamp-directory (concat minemacs-cache-dir "org/publish/timestamps/")
+ org-preview-latex-image-directory (concat minemacs-cache-dir "org/preview/latex-image/")
+ recentf-save-file (concat minemacs-local-dir "recentf-save.el")
+ shared-game-score-directory (concat minemacs-local-dir "shared-game-score/")
+ type-break-file-name (concat minemacs-local-dir "type-break.el")
+ bookmark-default-file (concat minemacs-local-dir "bookmark.el")
+ ede-project-placeholder-cache-file (concat minemacs-local-dir "ede-projects.el")
+ kkc-init-file-name (concat minemacs-local-dir "kkc-init-file.el")
+ erc-dcc-get-default-directory (concat minemacs-local-dir "erc/dcc/")
+ erc-log-channels-directory (concat minemacs-local-dir "erc/log-channels/")
+ eshell-directory-name (concat minemacs-local-dir "eshell/")
+ eshell-history-file-name (concat minemacs-local-dir "eshell/history.el")
+ eshell-last-dir-ring-file-name (concat minemacs-local-dir "eshell/last-dir-ring.el")
+ eshell-aliases-file (concat minemacs-local-dir "eshell/aliases")
+ eshell-rc-script (concat minemacs-local-dir "eshell/rc")
+ eshell-login-script (concat minemacs-local-dir "eshell/login")
+ calc-settings-file (concat minemacs-local-dir "calc-settings.el")
+ auto-insert-directory (concat minemacs-local-dir "auto-insert/")
+ image-dired-dir (concat minemacs-local-dir "image-dired/")
+ image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el")
+ image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")
+ eudc-options-file (concat minemacs-local-dir "eudc-options.el")
+ eww-bookmarks-directory (concat minemacs-local-dir "eww/bookmarks/")
+ shadow-info-file (concat minemacs-local-dir "shadow/info.el")
+ shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
+ semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
 
  ;; ====== Default behavior ======
  ;; Do not ring
@@ -95,20 +95,34 @@
  ;; Kill the shell buffer after exit
  shell-kill-buffer-on-exit t
 
+ ;; ====== Passwords and encryption ======
+ ;; Enable password caching
+ password-cache t
+ ;; One minute, default is 16
+ password-cache-expiry 60
+ ;; Default auth-sources to GPG
+ auth-sources '("~/.authinfo.gpg")
+ ;; Enable caching, do not keep asking about GPG key
+ auth-source-do-cache t
+ ;; All day, default is 2h (7200)
+ auth-source-cache-expiry 86400
+
  ;; ====== Performances ======
  ;; Increase single chunk bytes to read from subprocess (default 4096)
  read-process-output-max (if os/linux
-                             (with-temp-buffer
-                               (insert-file-contents
-                                "/proc/sys/fs/pipe-max-size")
-                               (string-to-number (buffer-string)))
+                             (condition-case nil
+                                 ;; Android may raise permission-denied error
+                                 (with-temp-buffer
+                                   (insert-file-contents
+                                    "/proc/sys/fs/pipe-max-size")
+                                   (string-to-number (buffer-string)))
+                               ;; If an error occured, fallback to the default value
+                               (error read-process-output-max))
                            (* 1024 1024))
 
  ;; ====== Aesthetics ======
  ;; Set to non-nil to flash!
  visible-bell nil
- ;; Better unicode glyph for string truncate
- truncate-string-ellipsis "…"
  ;; Do force frame size to be a multiple of char size
  frame-resize-pixelwise t
  ;; Stretch cursor to the glyph width
@@ -215,6 +229,17 @@
                                  ;; Local autosaves
                                  (list ".*" auto-save-list-file-prefix t))
 
+ ;; ====== Compilation ======
+ ;; Scroll compilation buffer until first error
+ compilation-scroll-output 'first-error
+ ;; Always kill current compilation process before starting a new one
+ compilation-always-kill t
+ ;; Skip visited messages on compilation motion commands
+ compilation-skip-visited t
+ ;; Keep it readable
+ compilation-window-height 12)
+
+(setq-default
  ;; ====== Buffer-local variables ======
  ;; Display long lines
  truncate-lines nil
@@ -227,43 +252,14 @@
  ;; Small tab is enough!
  tab-width 2)
 
-;; Ensure creating "session.ID" in a sub-directory
-(with-eval-after-load 'x-win
-  (advice-add
-   #'emacs-session-filename :filter-return
-   (defun +emacs-session-filename--customize-a (filename)
-     ;; Create the directory
-     (+expand 'local (concat "emacs-session/"
-                             (file-name-nondirectory filename))))))
-
-(with-eval-after-load 'password-cache
-  (setopt
-   ;; ====== Password cache ======
-   ;; Enable password caching
-   password-cache t
-   ;; One minute, default is 16
-   password-cache-expiry 60))
-
-(with-eval-after-load 'auth-source
-  (setopt
-   ;; Default auth-sources to GPG
-   auth-sources '("~/.authinfo.gpg")
-   ;; Enable caching, do not keep asking about GPG key
-   auth-source-do-cache t
-   ;; All day, default is 2h (7200)
-   auth-source-cache-expiry 86400))
-
-(with-eval-after-load 'compile
-  ;; ====== Compilation ======
-  (setopt
-   ;; Scroll compilation buffer until first error
-   compilation-scroll-output 'first-error
-   ;; Always kill current compilation process before starting a new one
-   compilation-always-kill t
-   ;; Skip visited messages on compilation motion commands
-   compilation-skip-visited t
-   ;; Keep it readable
-   compilation-window-height 12)
+(with-eval-after-load 'minemacs-loaded
+  ;; Ensure creating "session.ID" in a sub-directory
+  (with-eval-after-load 'x-win
+    (advice-add
+     #'emacs-session-filename :filter-return
+     (defun +emacs-session-filename--customize-a (filename)
+       ;; Create the directory
+       (concat minemacs-local-dir "emacs-session/" (file-name-nondirectory filename)))))
 
   ;; Close compilation buffer if succeeded without warnings
   ;; Adapted from: http://stackoverflow.com/questions/11043004/emacs-compile-buffer-auto-close
@@ -282,9 +278,8 @@
         2 nil
         (lambda (b)
           (with-selected-window (get-buffer-window b)
-            (kill-buffer-and-window))) buf)))))
+            (kill-buffer-and-window))) buf))))
 
-(with-eval-after-load 'term
   (advice-add
    'term-sentinel :around
    (defun +term--kill-after-exit-a (orig-fn proc msg)
@@ -292,69 +287,70 @@
          (let ((buffer (process-buffer proc)))
            (apply orig-fn (list proc msg))
            (kill-buffer buffer))
-       (apply orig-fn (list proc msg))))))
+       (apply orig-fn (list proc msg)))))
 
-;; Navigate windows using Shift+Direction
-(windmove-default-keybindings)
+  ;;; Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode'
+  ;; Show line numbers
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+  (add-hook 'conf-mode-hook #'display-line-numbers-mode)
+  (add-hook 'text-mode-hook #'display-line-numbers-mode)
 
-;;; Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode'
-;; Show line numbers
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'conf-mode-hook #'display-line-numbers-mode)
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
+  ;; Highlight the current line
+  (add-hook 'prog-mode-hook #'hl-line-mode)
+  (add-hook 'conf-mode-hook #'hl-line-mode)
+  (add-hook 'text-mode-hook #'hl-line-mode)
 
-;; Highlight the current line
-(add-hook 'prog-mode-hook #'hl-line-mode)
-(add-hook 'conf-mode-hook #'hl-line-mode)
-(add-hook 'text-mode-hook #'hl-line-mode)
+  ;; Hide/show code blocks, a.k.a. code folding
+  (add-hook 'prog-mode-hook #'hs-minor-mode)
+  (add-hook 'conf-mode-hook #'hs-minor-mode)
 
-;; Hide/show code blocks, a.k.a. code folding
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-(add-hook 'conf-mode-hook #'hs-minor-mode)
+  ;; Wrap long lines
+  (add-hook 'prog-mode-hook #'visual-line-mode)
+  (add-hook 'conf-mode-hook #'visual-line-mode)
+  (add-hook 'text-mode-hook #'visual-line-mode)
 
-;; Wrap long lines
-(add-hook 'prog-mode-hook #'visual-line-mode)
-(add-hook 'conf-mode-hook #'visual-line-mode)
-(add-hook 'text-mode-hook #'visual-line-mode)
+  ;;; Other hooks
+  ;; Update time stamp (if available) before saving a file
+  (add-hook 'before-save-hook 'time-stamp)
 
-;;; Other hooks
-;; Update time stamp (if available) before saving a file
-(add-hook 'before-save-hook 'time-stamp)
+  (defvar +whitespace-auto-cleanup-modes
+    '(prog-mode conf-mode org-mode markdown-mode
+      latex-mode tex-mode bibtex-mode)
+    "Enable auto whitespace cleanup before saving for these derived modes.")
 
-;; Remove trailing whitespaces on save for some modes
-(add-hook
- 'before-save-hook
- (defun +save--whitespace-cleanup-h ()
-   (when (or (derived-mode-p 'prog-mode)
-             (derived-mode-p 'conf-mode)
-             (derived-mode-p 'org-mode)
-             (derived-mode-p 'markdown-mode))
-     (whitespace-cleanup))))
+  ;; Remove trailing whitespaces on save for some modes
+  (add-hook
+   'before-save-hook
+   (defun +save--whitespace-cleanup-h ()
+     (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes)
+       (whitespace-cleanup))))
 
-;; Guess major mode when saving a file (adapted from Doom Emacs)
-(add-hook
- 'after-save-hook
- (defun +save--guess-file-mode-h ()
-   "Guess major mode when saving a file in `fundamental-mode'.
+  ;; Guess major mode when saving a file (adapted from Doom Emacs)
+  (add-hook
+   'after-save-hook
+   (defun +save--guess-file-mode-h ()
+     "Guess major mode when saving a file in `fundamental-mode'.
 Likely, something has changed since the buffer was opened. e.g. A shebang line
 or file path may exist now."
-   (when (eq major-mode 'fundamental-mode)
-     (let ((buffer (or (buffer-base-buffer) (current-buffer))))
-       (and (buffer-file-name buffer)
-            (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
-            (set-auto-mode))))))
+     (when (eq major-mode 'fundamental-mode)
+       (let ((buffer (or (buffer-base-buffer) (current-buffer))))
+         (and (buffer-file-name buffer)
+              (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
+              (set-auto-mode))))))
 
-;; Kill minibuffer when switching by mouse to another window
-;; Taken from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
-(add-hook
- 'mouse-leave-buffer-hook
- (defun +minibuffer--kill-on-mouse-h ()
-   "Kill the minibuffer when switching to window with mouse."
-   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-     (abort-recursive-edit))))
+  ;; Kill minibuffer when switching by mouse to another window
+  ;; Taken from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+  (add-hook
+   'mouse-leave-buffer-hook
+   (defun +minibuffer--kill-on-mouse-h ()
+     "Kill the minibuffer when switching to window with mouse."
+     (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+       (abort-recursive-edit))))
 
-;;; Enable some modes globally
-(with-eval-after-load 'minemacs-loaded
+  ;; Navigate windows using Shift+Direction
+  (windmove-default-keybindings)
+
+  ;;; Enable some modes globally
   ;; Enable battery (if available) in mode-line
   (+shutup!
    (let ((battery-str (battery)))
