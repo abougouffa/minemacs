@@ -43,7 +43,6 @@
 ;;; General.el
 (use-package general
   :straight t
-  :after which-key
   :config
   (general-auto-unbind-keys)
 
@@ -186,7 +185,7 @@
 
 (use-package hydra
   :straight t
-  :after minemacs-loaded)
+  :defer t)
 
 
 (provide 'me-keybindings)
