@@ -26,7 +26,9 @@
 
 (defconst minemacs-root-dir (file-name-as-directory user-emacs-directory))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
+(defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
+(defconst minemacs-extras-dir (concat minemacs-modules-dir "extras/"))
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-autoloads-file (concat minemacs-core-dir "me-autoloads.el"))

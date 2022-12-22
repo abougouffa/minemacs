@@ -41,8 +41,8 @@
 
 ;; Add direcotries to `load-path'
 (add-to-list 'load-path minemacs-core-dir)
-(add-to-list 'load-path (concat minemacs-root-dir "elisp/"))
-(add-to-list 'load-path (concat minemacs-modules-dir "extras/"))
+(add-to-list 'load-path minemacs-elisp-dir)
+(add-to-list 'load-path minemacs-extras-dir)
 
 (defun minemacs-generate-autoloads ()
   "Generate MinEmacs' autoloads file."
@@ -51,9 +51,7 @@
     (delete-file minemacs-autoloads-file))
 
   (let ((autoload-dirs nil))
-    (dolist (dir (list minemacs-core-dir
-                       (concat minemacs-modules-dir "extras/")
-                       (concat minemacs-root-dir "elisp/")))
+    (dolist (dir (list minemacs-core-dir minemacs-extras-dir minemacs-elisp-dir))
       (when (file-directory-p dir)
         (setq autoload-dirs
               (append autoload-dirs
