@@ -25,6 +25,9 @@
   ;; g, [, ]
   (push '(("\\`[][g]" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
         which-key-replacement-alist)
+  ;; g
+  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ⓘ·\\1"))
+        which-key-replacement-alist)
   ;; g r
   (push '(("\\`g r" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
         which-key-replacement-alist)
