@@ -4,7 +4,7 @@
  ;; Garbage collection
  ;; Increase the GC threshold for faster startup
  ;; This will be overriten when `gcmh' is loaded
- gc-cons-threshold (* 1 1024 1024 1024) ;; 1GB
+ gc-cons-threshold most-positive-fixnum
 
  ;; Prefer loading newest compiled .el file
  load-prefer-newer t
