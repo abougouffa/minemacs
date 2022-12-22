@@ -220,7 +220,15 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     (lambda ()
       ,@body)))
 
-;; Adapted from `evil-unquote'
+;;;###autoload
+(defmacro +eval-when-idle-for! (delay &rest body)
+  "Evaluate BODY after DELAY seconds from Emacs becoming idle."
+  (declare (indent 1))
+  `(+eval-when-idle ,delay
+    (lambda ()
+      ,@body)))
+
+;; Adapted from `evil-unquote', takes functions into account
 ;;;###autoload
 (defun +unquote (exp)
   "Return EXP unquoted."

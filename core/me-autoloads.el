@@ -320,6 +320,11 @@ Evaluate BODY when Emacs becomes idle.
 
 (fn &rest BODY)" nil t)
 (function-put '+eval-when-idle! 'lisp-indent-function 0)
+(autoload '+eval-when-idle-for! "../elisp/minemacs-core" "\
+Evaluate BODY after DELAY seconds from Emacs becoming idle.
+
+(fn DELAY &rest BODY)" nil t)
+(function-put '+eval-when-idle-for! 'lisp-indent-function 1)
 (autoload '+unquote "../elisp/minemacs-core" "\
 Return EXP unquoted.
 
