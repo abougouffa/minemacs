@@ -19,7 +19,7 @@
   :commands mu4e mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :init
-  (+map "om" '(mu4e :wk "Mu4e"))
+  (+map "om" #'mu4e)
   :custom
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
@@ -48,21 +48,16 @@
   (read-mail-command 'mu4e)
   :config
   ;; No need to display a long list of my own addresses!
-  (setq mu4e-main-hide-personal-addresses t)
+  (setq mu4e-main-hide-personal-addresses t
+        mu4e--update-buffer-height 2) ;; Smaller height for update window
 
-  ;; Hide the mu4e-update window
-  (add-to-list
-   'display-buffer-alist
-   `(" \\*mu4e-update\\*"
-     (display-buffer-no-window)
-     (allow-no-window . t)))
+  (+map-key :keymaps 'mu4e-view-mode-map
+    "p" #'mu4e-view-save-attachments)
 
-  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+  (+map-local :keymaps 'mu4e-compose-mode-map
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
-    "S" #'message-dont-send)
-  (+map-key :keymaps 'mu4e-view-mode-map
-    "p" #'mu4e-view-save-attachments))
+    "S" #'message-dont-send))
 
 (use-package me-mu4e-ui
   :after mu4e
@@ -103,9 +98,12 @@
     "gg"  #'org-msg-goto-body)
   (+map-local :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :wk "attach")
-    "aa" '(org-msg-attach-attach :wk "Attach")
-    "ad" '(org-msg-attach-delete :wk "Delete")
-    "p"  '(org-msg-preview :wk "Preview"))
+    "aa" #'org-msg-attach-attach
+    "ad" #'org-msg-attach-delete
+    "p"  #'org-msg-preview
+    "s"  #'message-send-and-exit
+    "d"  #'message-kill-buffer
+    "S"  #'message-dont-send)
 
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)
@@ -115,13 +113,13 @@
   :straight t
   :after mu4e
   :custom
-  (doom-modeline-mu4e t)
   (mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
   (mu4e-alert-set-window-urgency nil)
   (mu4e-alert-group-by :to)
   (mu4e-alert-email-notification-types '(subjects))
   (mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
   :config
+  (setq doom-modeline-mu4e t)
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications)
   (mu4e-alert-set-default-style 'libnotify)
