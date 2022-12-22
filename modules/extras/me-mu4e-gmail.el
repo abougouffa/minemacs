@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
-;; Taken form Doom Emacs
+;; Adapted form Doom Emacs
 
 (defcustom +mu4e-gmail-accounts nil
   "Gmail accounts that do not contain \"gmail\" in address and maildir.

@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
-
+;; Adapted from Doom Emacs
 (defun +spell-fu--correct (replace poss word orig-pt start end)
-  "Correct word with spell-fu (adapted from Doom Emacs)."
+  "Correct word with spell-fu."
   (cond ((eq replace 'ignore)
          (goto-char orig-pt)
          nil)
@@ -35,9 +35,10 @@
         ((goto-char orig-pt)
          nil)))
 
+;; Adapted from Doom Emacs
 ;;;###autoload
 (defun +spell-fu-correct ()
-  "Correct spelling of word at point (adapted from Doom Emacs)."
+  "Correct spelling of word at point."
   (interactive)
   ;; spell-fu fails to initialize correctly if it can't find aspell or a similar
   ;; program. We want to signal the error, not tell the user that every word is
