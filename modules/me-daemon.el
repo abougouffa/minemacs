@@ -7,13 +7,14 @@
 
 (defun +daemon--setup-background-apps ()
   (with-eval-after-load 'minemacs-loaded
-    (+eval-when-idle!
-      ;; mu4e
-      (when (require 'mu4e nil t)
-        (unless (mu4e-running-p)
-          (let ((inhibit-message t))
-            (mu4e t)
-            (+info! "Started `mu4e' in background.")))))
+    (when (featurep 'me-email)
+      (+eval-when-idle!
+        ;; mu4e
+        (when (require 'mu4e nil t)
+          (unless (mu4e-running-p)
+            (let ((inhibit-message t))
+              (mu4e t)
+              (+info! "Started `mu4e' in background."))))))
 
     (when (featurep 'me-rss)
       ;; RSS
@@ -26,13 +27,12 @@
              (+info! "Updating RSS feed.")
              (elfeed-update))))))
 
-    (when (featurep 'me-email)
-      (+eval-when-idle!
-        (require 'server)
-        (unless (or (daemonp) (server-running-p))
-          (let ((inhibit-message t))
-            (+info! "Starting Emacs daemon in background.")
-            (server-start nil t)))))))
+    (+eval-when-idle!
+      (require 'server)
+      (unless (or (daemonp) (server-running-p))
+        (let ((inhibit-message t))
+          (+info! "Starting Emacs daemon in background.")
+          (server-start nil t))))))
 
 ;; At daemon startup
 (add-hook 'emacs-startup-hook #'+daemon--setup-background-apps)
