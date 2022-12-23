@@ -6,22 +6,23 @@
 
 
 (use-package embed
-  :straight (:type git :host github :repo "xal-0/embed-el")
+  :straight (:host github :repo "xal-0/embed-el")
   :general
   (+map
-    "ob" '(nil :wk "embed")
-    "obo" #'embed-openocd-start
-    "obO" #'embed-openocd-stop
-    "obg" #'embed-openocd-gdb
-    "obf" #'embed-openocd-flash))
+    :infix "o"
+    "b" '(nil :wk "embed")
+    "bo" #'embed-openocd-start
+    "bO" #'embed-openocd-stop
+    "bg" #'embed-openocd-gdb
+    "bf" #'embed-openocd-flash))
 
 (use-package arduino-mode
-  :straight (:type git :host github :repo "bookest/arduino-mode")
+  :straight (:host github :repo "bookest/arduino-mode")
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
 (use-package bitbake-modes
-  :straight (:type git :host bitbucket :repo "olanilsson/bitbake-modes")
+  :straight (:host bitbucket :repo "olanilsson/bitbake-modes")
   :defer t)
 
 (use-package vhdl-mode
