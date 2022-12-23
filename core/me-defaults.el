@@ -58,6 +58,10 @@
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
 
  ;; ====== Default behavior ======
+ ;; Inhibit startup message
+ inhibit-startup-message t
+ ;; Inhibit startup message in echo area
+ inhibit-startup-echo-area-message (user-login-name) ;; BUG not working!
  ;; Do not ring
  ring-bell-function 'ignore
  ;; Increase the large file threshold to 50 MiB

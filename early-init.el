@@ -5,14 +5,8 @@
  ;; Increase the GC threshold for faster startup
  ;; This will be overriten when `gcmh' is loaded
  gc-cons-threshold most-positive-fixnum
-
  ;; Prefer loading newest compiled .el file
- load-prefer-newer t
-
- ;; Inhibit startup messages
- inhibit-startup-message t
- ;; Inhibit startup message in echo area
- inhibit-startup-echo-area-message t)
+ load-prefer-newer t)
 
 ;; Remove some unneeded UI elements
 (setq default-frame-alist
