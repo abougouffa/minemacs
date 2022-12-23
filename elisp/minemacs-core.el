@@ -24,16 +24,6 @@
   (+all (mapcar (lambda (feat) (memq feat emacs/features)) feats)))
 
 ;;;###autoload
-(defun +expand (dir &optional path as-directory)
-  "Expand PATH in MinEmacs' directory DIR, and create it.
-DIR is a symbol of local, cache, etc, root, core, modules.
-If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\"."
-  (let* ((sym-dir (intern (format "minemacs-%s-dir" dir)))
-         (path (concat (file-name-as-directory (eval sym-dir))
-                       (or path "")
-                       (if as-directory "/" ""))))
-    (mkdir (file-name-directory path) t)
-    path))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
@@ -290,11 +280,11 @@ DEPTH and LOCAL are passed as is to `add-hook'."
           (insert "\n"))
         (insert
          (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
-    (write-file (+expand 'local "system-env.el"))))
+    (write-file (concat minemacs-local-dir "system-env.el"))))
 
 ;;;###autoload
 (defun +env-load ()
   (interactive)
-  (let ((env-file (+expand 'local "system-env.el")))
+  (let ((env-file (concat minemacs-local-dir "system-env.el")))
     (when (file-exists-p env-file)
       (load env-file (not minemacs-verbose) (not minemacs-verbose)))))

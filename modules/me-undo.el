@@ -33,7 +33,7 @@
   :after undo-fu
   :custom
   (undo-fu-session-compression 'zst)
-  (undo-fu-session-directory (+expand 'local "undo-fu-session" t))
+  (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/"))
   :config
   (global-undo-fu-session-mode 1))
 

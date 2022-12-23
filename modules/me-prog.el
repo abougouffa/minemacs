@@ -306,7 +306,7 @@ the children of class at point."
   :mode "\\.plantuml\\'"
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
-  (plantuml-jar-path (+expand 'local "plantuml/plantuml.jar"))
+  (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
   (plantuml-indent-level 2)
   :config
   (setq

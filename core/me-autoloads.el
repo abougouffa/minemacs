@@ -256,12 +256,7 @@ Log error MSG and VARS using `message'.
 Is features FEATS are enabled in this Emacs build.
 
 (fn &rest FEATS)")
-(autoload '+expand "../elisp/minemacs-core" "\
-Expand PATH in MinEmacs' directory DIR, and create it.
-DIR is a symbol of local, cache, etc, root, core, modules.
-If AS-DIRECTORY is non-nil, the returned path is terminated with \"/\".
 
-(fn DIR &optional PATH AS-DIRECTORY)")
 (autoload '+reset-sym "../elisp/minemacs-core" "\
 Reset SYM to its standard value.
 

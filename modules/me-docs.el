@@ -19,7 +19,7 @@
   :straight t
   :mode ("\\.epub\\'" . nov-mode)
   :custom
-  (nov-save-place-file (+expand 'local "nov/save-place.el"))
+  (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config
   (+map-key :keymaps 'nov-mode-map :states 'normal
     "RET" #'nov-scroll-up)

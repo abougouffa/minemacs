@@ -30,8 +30,8 @@
     "psn" '(fileloop-continue :wk "Next match")
     "psr" #'projectile-replace-regexp)
   :custom
-  (projectile-cache-file (+expand 'cache "projectile/cache.el"))
-  (projectile-known-projects-file (+expand 'local "projectile/known-projects.el"))
+  (projectile-cache-file (concat minemacs-cache-dir "projectile/cache.el"))
+  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
   (projectile-ignored-projects '("~/"))
   (projectile-ignored-project-function nil) ;; TODO: customize it
   (projectile-auto-discover nil)
