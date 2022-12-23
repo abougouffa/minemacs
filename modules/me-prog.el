@@ -162,7 +162,7 @@
 
 ;;; Eglot + LSP
 (use-package eglot
-  :straight (:type built-in)
+  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
   :hook ((c++-mode
           c++-ts-mode
           c-mode c-ts-mode
@@ -231,7 +231,7 @@ the children of class at point."
                 (cl-destructuring-bind (&key uri range) (plist-get node :location)
                   (insert (make-string depth ?\ ) (plist-get node :name) "\n")
                   (make-text-button
-                   (+ (point-at-bol 0) depth) (point-at-eol 0)
+                   (+ (pos-bol 0) depth) (pos-eol 0)
                    'action (lambda (_arg)
                              (interactive)
                              (find-file (eglot--uri-to-path uri))
