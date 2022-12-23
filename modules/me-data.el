@@ -7,7 +7,7 @@
 
 (use-package csv-mode
   :straight t
-  :mode ("\\.csv\\'" . csv-mode)
+  :mode "\\.csv\\'"
   :general
   (+map-local :keymaps 'csv-mode-map
     "r" #'+csv-rainbow
@@ -18,11 +18,12 @@
     "k" #'csv-kill-fields
     "t" #'csv-transpose)
   :config
-  (require 'cl-lib)
-  (require 'color)
   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
   (defun +csv-rainbow (&optional separator)
+    "Colorize CSV columns."
     (interactive (list (when current-prefix-arg (read-char "Separator: "))))
+    (require 'cl-lib)
+    (require 'color)
     (font-lock-mode 1)
     (let* ((separator (or separator ?\,))
            (n (count-matches (string separator) (point-at-bol) (point-at-eol)))
@@ -63,7 +64,10 @@
   :config
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
-(with-eval-after-load 'nxml-mode
+(use-package nxml-mode
+  :straight (:type built-in)
+  :defer t
+  :config
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
 
