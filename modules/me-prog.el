@@ -4,7 +4,30 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+(use-package treesit-langs
+  :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "*"))
+  :hook ((c-ts-mode
+          c++-ts-mode
+          rust-ts-mode
+          go-ts-mode
+          go-mod-ts-mode
+          csharp-ts-mode
+          bash-ts-mode
+          cmake-ts-mode
+          dockerfile-ts-mode
+          python-ts-mode
+          js-ts-mode
+          tsx-ts-mode
+          typescript-ts-mode
+          java-ts-mode
+          css-ts-mode
+          json-ts-mode
+          toml-ts-mode
+          yaml-ts-mode)
+         . treesit-hl-enable)
   :config
+  (setq-default treesit-font-lock-level 4)
+  (treesit-langs-install-grammars :skip-if-installed "0.12.12"))
 
 (with-eval-after-load 'minemacs-loaded
   (use-package tree-sitter
@@ -29,12 +52,12 @@
      evil-outer-text-objects-map
      "m" (cons "evil-import"
                (evil-textobj-tree-sitter-get-textobj
-                "import"
-                '((python-mode . [(import_statement) @import])
-                  (go-mode . [(import_spec) @import])
-                  (rust-mode . [(use_declaration) @import])
-                  (c-mode . [(preproc_include) @import])
-                  (c++-mode . [(preproc_include) @import])))))
+                 "import"
+                 '((python-mode . [(import_statement) @import])
+                   (go-mode . [(import_spec) @import])
+                   (rust-mode . [(use_declaration) @import])
+                   (c-mode . [(preproc_include) @import])
+                   (c++-mode . [(preproc_include) @import])))))
     (define-key
      evil-outer-text-objects-map
      "f" (cons "evil-outer-function" (evil-textobj-tree-sitter-get-textobj "function.outer")))
