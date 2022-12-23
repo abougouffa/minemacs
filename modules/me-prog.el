@@ -34,6 +34,9 @@
   (setq-default treesit-font-lock-level 4))
 
 (with-eval-after-load 'minemacs-loaded
+  (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
+  (+fn-inhibit-messages! tsc-dyn-get-ensure)
+
   (use-package tree-sitter
     :straight t
     :defer 5

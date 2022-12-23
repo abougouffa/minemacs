@@ -6,7 +6,9 @@
 
 (use-package iedit
   :straight t
-  :after minemacs-loaded)
+  :after minemacs-loaded
+  :init
+  (+fn-inhibit-messages! iedit-update-key-bindings))
 
 (use-package evil-mc
   :straight t

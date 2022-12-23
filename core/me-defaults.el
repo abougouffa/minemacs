@@ -378,7 +378,7 @@ or file path may exist now."
   (delete-selection-mode 1)
 
   ;; Enable recentf-mode globally
-  (recentf-mode 1)
+  (+shutup! (recentf-mode 1))
 
   ;; Save place in files
   (save-place-mode 1)

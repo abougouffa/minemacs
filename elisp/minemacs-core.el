@@ -33,6 +33,17 @@
   (+all (mapcar (lambda (feat) (memq feat emacs/features)) feats)))
 
 ;;;###autoload
+(defmacro +fn-inhibit-messages! (fn &optional no-message-log)
+  "Add an advice arount the function FN to suppress messages in echo area.
+If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
+  (let ((advice-fn (make-symbol (format "+%s--inhibit-messages-a" fn))))
+    `(advice-add
+      ',fn :around
+      (defun ,advice-fn (origfn &rest args)
+       (let ((message-log-max (unless ,no-message-log message-log-max)))
+        (with-temp-message (or (current-message) "")
+         (+log! "Inhibiting messages of %s" ,(symbol-name fn))
+         (apply origfn args)))))))
 
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
