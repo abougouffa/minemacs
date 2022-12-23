@@ -158,7 +158,7 @@
 
 ;;; Eglot + LSP
 (use-package eglot
-  :straight t
+  :straight (:type built-in)
   :hook ((c++-mode
           c++-ts-mode
           c-mode c-ts-mode
@@ -180,11 +180,11 @@
     "cri" '(eglot-code-action-inline :wk "Inline")
     "cre" '(eglot-code-action-extract :wk "Extract")
     "cro" '(eglot-code-action-organize-imports :wk "Organize imports")
-    "cs"  '(nil :wk "eglot session")
-    "css" '(eglot :wk "Start")
-    "csq" '(eglot-shutdown :wk "Shutdown")
-    "csr" '(eglot-reconnect :wk "Reconnect")
-    "csQ" '(eglot-shutdown-all :wk "Shutdown all")
+    "cS"  '(nil :wk "eglot session")
+    "cSs" '(eglot :wk "Start")
+    "cSq" '(eglot-shutdown :wk "Shutdown")
+    "cSr" '(eglot-reconnect :wk "Reconnect")
+    "cSQ" '(eglot-shutdown-all :wk "Shutdown all")
     "cw"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
@@ -239,7 +239,9 @@ the children of class at point."
 (use-package consult-eglot
   :straight t
   :after consult eglot
-  :defer t)
+  :general
+  (+map
+    "cs" '(consult-eglot-symbols :wk "Symbols")))
 
 (use-package eldoc-box
   :straight t
