@@ -5,7 +5,8 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (use-package treesit-langs
-  :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "*"))
+  :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "queries"))
+  :when (>= emacs-major-version 29)
   :hook ((c-ts-mode
           c++-ts-mode
           rust-ts-mode
@@ -24,10 +25,13 @@
           json-ts-mode
           toml-ts-mode
           yaml-ts-mode)
-         . treesit-hl-enable)
+         . treesit-hl-enable))
+
+(use-package treesit
+  :straight (:type built-in)
+  :defer t
   :config
-  (setq-default treesit-font-lock-level 4)
-  (treesit-langs-install-grammars :skip-if-installed "0.12.12"))
+  (setq-default treesit-font-lock-level 4))
 
 (with-eval-after-load 'minemacs-loaded
   (use-package tree-sitter
