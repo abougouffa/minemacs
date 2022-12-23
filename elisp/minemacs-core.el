@@ -1,22 +1,31 @@
 ;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defmacro +log! (msg &rest vars)
-  "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
-  (when minemacs-verbose
-    `(apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars))))
+(defmacro +error! (msg &rest vars)
+  "Log error MSG and VARS using `message'."
+  (when (>= minemacs-msg-level 1)
+    `(let ((inhibit-message t))
+      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defmacro +info! (msg &rest vars)
   "Log info MSG and VARS using `message'."
-  `(let ((inhibit-message t))
-    (apply #'message (list (concat "[MinEmacs:Info] " ,msg) ,@vars))))
+  (when (>= minemacs-msg-level 2)
+    `(let ((inhibit-message t))
+      (apply #'message (list (concat "[MinEmacs:Info] " ,msg) ,@vars)))))
 
 ;;;###autoload
-(defmacro +error! (msg &rest vars)
+(defmacro +log! (msg &rest vars)
+  "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
+  (when (>= minemacs-msg-level 3)
+    `(apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars))))
+
+;;;###autoload
+(defmacro +debug! (msg &rest vars)
   "Log error MSG and VARS using `message'."
-  `(let ((inhibit-message t))
-    (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars))))
+  (when (>= minemacs-msg-level 4)
+    `(let ((inhibit-message t))
+      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defun +emacs-features-p (&rest feats)

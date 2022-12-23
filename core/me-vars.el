@@ -20,6 +20,17 @@
   (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug)))
   "MinEmacs is started in verbose mode.")
 
+(defcustom minemacs-msg-level
+  (let ((level (string-to-number (or (getenv "MINEMACS_MSG_LEVEL") ""))))
+    (cond (minemacs-verbose 3)
+          ((> level 0) level)
+          (t 1)))
+  "Level of printed messages.
+1 - `+error!'
+2 - `+info!'
+3 - `+log!'
+4 - `+debug!' (reserved)")
+
 (defconst minemacs-splash-keep
   (not (null (getenv "MINEMACS_SPLASH_KEEP")))
   "MinEmacs is started in keep splash screen mode.")
