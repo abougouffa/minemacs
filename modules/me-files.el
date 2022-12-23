@@ -31,5 +31,9 @@
   (require 'dirvish-emerge)
   (dirvish-override-dired-mode))
 
+(use-package vlf-setup
+  :straight (vlf)
+  :after minemacs-loaded)
+
 
 (provide 'me-files)
