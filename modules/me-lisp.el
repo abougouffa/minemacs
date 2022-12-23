@@ -67,7 +67,8 @@
 
 ;; TODO: Add elisp-def
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to better view built-in packages
+  :straight (:type built-in)
+  :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
   :config
   (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
@@ -116,19 +117,18 @@
 
 (use-package helpful
   :straight t
-  :after elisp-mode minemacs-loaded
-  :commands helpful-symbol helpful-command helpfull-callable helpful-at-point
+  :defer t
   :general
-  (+map
-    "hp" #'helpful-at-point
-    "ho" #'helpful-symbol
-    "hc" #'helpful-command
-    "hF" #'helpful-function
-    "hf" #'helpful-callable))
+  (+map :keymaps 'emacs-lisp-mode-map
+    :infix "h"
+    "p" #'helpful-at-point
+    "o" #'helpful-symbol
+    "c" #'helpful-command
+    "F" #'helpful-function
+    "f" #'helpful-callable))
 
 (use-package info-colors
   :straight t
-  :commands info-colors-fnontify-node
   :hook (Info-selection . info-colors-fontify-node))
 
 (use-package eros
