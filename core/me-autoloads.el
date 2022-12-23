@@ -7,6 +7,18 @@
 
 
 
+;;; Generated autoloads from ../elisp/+eglot.el
+
+(autoload '+eglot-register "../elisp/+eglot" "\
+Register MODES with LSP SERVERS.
+Examples:
+  (+eglot-register 'vhdl-mode \"vhdl_ls\")
+  (+eglot-register 'lua-mode \"lua-language-server\" \"lua-lsp\")
+  (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")
+
+(fn MODES &rest SERVERS)")
+
+
 ;;; Generated autoloads from ../elisp/binary.el
 
 (autoload '+binary-objdump-buffer-p "../elisp/binary" "\
@@ -62,18 +74,6 @@ Mount eCryptfs' private directory." t)
 (autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\
 Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
-
-
-;;; Generated autoloads from ../elisp/eglot.el
-
-(autoload '+eglot-register "../elisp/eglot" "\
-Register MODES with LSP SERVERS.
-Examples:
-  (+eglot-register 'vhdl-mode \"vhdl_ls\")
-  (+eglot-register 'lua-mode \"lua-language-server\" \"lua-lsp\")
-  (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")
-
-(fn MODES &rest SERVERS)")
 
 
 ;;; Generated autoloads from ../elisp/emacs.el
@@ -176,6 +176,11 @@ so it can be used to save HTML pages or emails to PDF.
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
 
 
+;;; Generated autoloads from me-modules.el
+
+(register-definition-prefixes "me-modules" '("minemacs-"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
 (autoload '+mu4e-extras-setup "../modules/extras/me-mu4e-extras")
@@ -205,7 +210,7 @@ so it can be used to save HTML pages or emails to PDF.
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
-Correct spelling of word at point (adapted from Doom Emacs)." t)
+Correct spelling of word at point." t)
 (autoload '+spell-fu-register-dictionaries "../modules/extras/me-spell-fu" "\
 Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
@@ -344,7 +349,7 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (fn &rest FNS)")
 (autoload '+env-save "../elisp/minemacs-core" nil t)
 (autoload '+env-load "../elisp/minemacs-core" nil t)
-(register-definition-prefixes "../elisp/minemacs-core" '("+eval-when-idle--task-num"))
+(register-definition-prefixes "../elisp/minemacs-core" '("+eval-when-idle-"))
 
 
 ;;; Generated autoloads from ../elisp/netextender.el
