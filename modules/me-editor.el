@@ -5,32 +5,26 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; Maybe replace with yasnippet + https://github.com/elken/cape-yasnippet
-(use-package tempel
+(use-package yasnippet
   :straight t
   :defer t
-  :custom
-  (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
-  (tempel-path (concat minemacs-root-dir "templates/tempel/*.eld"))
-  :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
-         ("M-*" . tempel-insert))
-  :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
-  :hook (prog-mode . tempel-abbrev-mode)
-  :defines +tempel-setup-capf-h
+  :init
+  (defvar yas-verbosity 2))
+
+(use-package cape-yasnippet
+  :straight (:host github :repo "elken/cape-yasnippet")
+  :hook ((prog-mode org-mode markdown-mode latex-mode tex-mode) . +cape-yasnippet--setup-h)
+  :defines +cape-yasnippet--setup-h
   :config
-  ;; Setup completion at point
-  (defun +tempel-setup-capf-h ()
-    ;; Add the Tempel Capf to `completion-at-point-functions'.
-    ;; `tempel-expand' only triggers on exact matches. Alternatively use
-    ;; `tempel-complete' if you want to see all matches, but then you
-    ;; should also configure `tempel-trigger-prefix', such that Tempel
-    ;; does not trigger too often when you don't expect it. NOTE: We add
-    ;; `tempel-expand' *before* the main programming mode Capf, such
-    ;; that it will be tried first.
+  (defun +cape-yasnippet--setup-h ()
+    (yas-minor-mode 1)
     (setq-local completion-at-point-functions
-                (cons #'tempel-complete
-                      completion-at-point-functions)))
-  (global-tempel-abbrev-mode))
+                (cons #'cape-yasnippet
+                      completion-at-point-functions))))
+
+(use-package yasnippet-snippets
+  :straight t
+  :after yasnippet)
 
 (use-package unicode-fonts
   :straight t
