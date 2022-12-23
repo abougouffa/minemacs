@@ -173,13 +173,15 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
     res))
 
 ;;;###autoload
-(defun +add-dependencies (&rest deps)
+(defun +push-system-dependencies (&rest deps)
+  "Push system dependencies DEPS, these are executables needed by MinEmacs."
+  (declare (indent 0))
   (setq minemacs-deps-executables
         (delete-dups
          (append minemacs-deps-executables deps))))
 
 ;;;###autoload
-(defun +check-dependencies ()
+(defun +check-system-dependencies ()
   "Check for MinEmacs dependencies."
   (interactive)
   (let ((buf (get-buffer-create "*minemacs-dependencies*")))
