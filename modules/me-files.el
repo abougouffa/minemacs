@@ -7,18 +7,14 @@
 
 (use-package dirvish
   :straight t
-  :after minemacs-loaded
+  :defer t
   :custom
   (dirvish-attributes '(file-size vc-state git-msg all-the-icons))
   (dirvish-cache-dir (concat minemacs-cache-dir "dirvish/"))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
   (dirvish-fd-default-dir "~/")
-  :config
-  (require 'dirvish-fd)
-  (require 'dirvish-yank)
-  (require 'dirvish-icons)
-  (require 'dirvish-emerge)
+  :general
   (+map
     ;; Open
     "o-"  '(dirvish :wk "Dirvish")
@@ -28,6 +24,11 @@
     "sd"  '(dirvish-fd :wk "Dirvish fd"))
   (+map-key :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit)
+  :config
+  (require 'dirvish-fd)
+  (require 'dirvish-yank)
+  (require 'dirvish-icons)
+  (require 'dirvish-emerge)
   (dirvish-override-dired-mode))
 
 
