@@ -37,20 +37,6 @@
 ;; At daemon startup
 (add-hook 'emacs-startup-hook #'+daemon--setup-background-apps)
 
-;; TTY specific stuff
-(add-hook 'tty-setup-hook #'xterm-mouse-mode)
-
-(use-package xclip ;; or clipetty for OSX
-  :straight t
-  :when os/linux
-  :defer t
-  :defines +xclip--enable-in-tty-h
-  :init
-  (add-hook
-   'tty-setup-hook
-   (defun +xclip--enable-in-tty-h ()
-     (with-demoted-errors "%s" (xclip-mode 1)))))
-
 ;; Reload theme on Daemon
 (add-hook
  'server-after-make-frame-hook
