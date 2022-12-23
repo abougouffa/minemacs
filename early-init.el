@@ -17,8 +17,12 @@
         (left-fringe . 8)
         (right-fringe . 8)))
 
-(when (and (>= emacs-major-version 29) (getenv "MINEMACS_ALPHA"))
-  (push '(alpha-background . 93) default-frame-alist))
+;; You can set the MINEMACS_ALPHA environment variable to an alpha percentage
+(when (>= emacs-major-version 29)
+  (when-let* ((alpha (getenv "MINEMACS_ALPHA"))
+              (alpha (string-to-number alpha)))
+    (push (cons 'alpha-background (if (zerop alpha) 93 alpha))
+          default-frame-alist)))
 
 (setq tool-bar-mode nil
       menu-bar-mode nil
