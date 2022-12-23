@@ -16,25 +16,33 @@
   :mode ("\\.ma[cx]\\'" . maxima-mode)
   :interpreter ("maxima" . maxima-mode)
   :hook ((maxima-mode maxima-inferior-mode) . maxima-font-lock-setup)
+  :commands maxima-inferior-mode
   :custom
   (maxima-display-maxima-buffer nil))
 
 (use-package imaxima
-  :straight (:host nil :repo "https://git.code.sf.net/p/maxima/code"
-                   :files ("interfaces/emacs/imaxima/*"))
+  :straight (imaxima
+             :host nil
+             :repo "https://git.code.sf.net/p/maxima/code"
+             :files ("interfaces/emacs/imaxima/*"))
   :when MAXIMA-P
   :commands imaxima imath-mode
+  :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
   :custom
-  (setq imaxima-use-maxima-mode-flag nil)
-  :config
-  ;; Hook the `maxima-inferior-mode' to get syntax highlighting
-  (add-hook 'imaxima-startup-hook #'maxima-inferior-mode))
+  (imaxima-use-maxima-mode-flag nil))
 
 (use-package ein
   :straight t
-  :commands ein:run ein:login ein:ipynb-mode
+  :defer t
   :mode ("\\.ipynb\\'" . ein:ipynb-mode)
-  :config
+  :general
+  (+map
+    :infix "o"
+    "j" '(nil :wk "ein")
+    "jr" #'ein:run
+    "jl" #'ein:login
+    "jf" #'ein:file-open
+    "jn" #'ein:notebook-open)
   (+map-local :keymaps 'ein:ipynb-mode-map
     "o" #'ein:process-find-file-callback
     "O" #'ein:process-open-notebook
@@ -43,18 +51,18 @@
 
 (use-package ess
   :straight t
-  :commands run-ess-r run-ess-r-newest run-ess-julia ess-mode ess-r-mode ess-julia-mode inferior-ess-mode
+  :defer t
   :init
   (unless (featurep 'julia-mode)
     (add-to-list 'auto-mode-alist '("\\.jl\\'" . ess-julia-mode))))
 
 (use-package ess-R-data-view
   :straight t
-  :commands ess-R-dv-pprint ess-R-dv-ctable)
+  :defer t)
 
 (use-package poly-R
   :straight t
-  :commands poly-c++r-mode poly-r+c++-mode poly-noweb-mode poly-html+r-mode poly-gfm+r-mode)
+  :defer t)
 
 
 (provide 'me-math)
