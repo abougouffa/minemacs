@@ -32,6 +32,14 @@
   ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
   (+eglot-register 'vhdl-mode "vhdl_ls"))
 
+(use-package verilog-mode
+  :straight (:type built-in)
+  :defer t
+  :config
+  ;; Setup Verilog/SystemVerilog LSP servers
+  (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
+
+
 (provide 'me-embedded)
 
 ;;; me-embedded.el ends here
