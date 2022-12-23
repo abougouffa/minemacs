@@ -18,8 +18,15 @@
   :load-path MU4E-LOAD-PATH
   :commands mu4e mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
-  :init
+  :general
   (+map "om" #'mu4e)
+  (+map-key :keymaps 'mu4e-view-mode-map
+    "p" #'mu4e-view-save-attachments)
+
+  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+    "s" #'message-send-and-exit
+    "d" #'message-kill-buffer
+    "S" #'message-dont-send)
   :custom
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
@@ -49,15 +56,7 @@
   :config
   ;; No need to display a long list of my own addresses!
   (setq mu4e-main-hide-personal-addresses t
-        mu4e--update-buffer-height 2) ;; Smaller height for update window
-
-  (+map-key :keymaps 'mu4e-view-mode-map
-    "p" #'mu4e-view-save-attachments)
-
-  (+map-local :keymaps 'mu4e-compose-mode-map
-    "s" #'message-send-and-exit
-    "d" #'message-kill-buffer
-    "S" #'message-dont-send))
+        mu4e--update-buffer-height 2)) ;; Smaller height for update window
 
 (use-package me-mu4e-ui
   :after mu4e
@@ -100,10 +99,7 @@
     "a"  '(nil :wk "attach")
     "aa" #'org-msg-attach-attach
     "ad" #'org-msg-attach-delete
-    "p"  #'org-msg-preview
-    "s"  #'message-send-and-exit
-    "d"  #'message-kill-buffer
-    "S"  #'message-dont-send)
+    "p"  #'org-msg-preview)
 
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)
