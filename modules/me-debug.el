@@ -8,16 +8,16 @@
 ;;; Debug
 (use-package realgud
   :straight t
+  :defer t
   :general
-  (+map-local :keymaps '(c-mode-map c++-mode-map rust-mode-map python-mode-map)
+  (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
+                         sh-mode-map bash-ts-mode-map)
     "d" `(,(+cmdfy!
             (pcase major-mode
-             ('python-mode (realgud:pdb))
-             ((or 'c-mode 'c++-mode) (realgud:gdb))))
-          :wk "realgud"))
-  :commands
-  realgud:gdb realgud:gud realgud:zshdb realgud:bashdb
-  realgud:kshdb realgud:pdb realgud:pdb-remote)
+             ((or 'python-mode 'python-ts-mode) (realgud:pdb))
+             ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode) (realgud:gdb))
+             ((or 'bash-ts-mode 'sh-mode) (realgud:bashdb))))
+          :wk "realgud")))
 
 (use-package realgud-lldb
   :straight t
@@ -28,7 +28,7 @@
 
 (use-package realgud-ipdb
   :straight t
-  :commands realgud:ipdb realgud:ipdb-remote)
+  :defer t)
 
 (use-package disaster
   :straight t
