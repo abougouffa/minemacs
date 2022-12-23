@@ -68,7 +68,7 @@
   :custom
   (kind-icon-default-style ;; Fix the scaling/height
    '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
-  (kind-icon-use-icons t)
+  (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Only on Emacs built with SVG support
   (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
   (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
   :config
