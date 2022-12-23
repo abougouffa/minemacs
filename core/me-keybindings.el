@@ -48,19 +48,20 @@
 
   ;; Global leader
   (general-create-definer +map
-    :states '(normal visual insert emacs)
+    ;; The order of states matters, the last is prioritized
+    :states '(insert emacs visual normal)
     :keymaps 'override
     :prefix minemacs-leader-key
     :global-prefix minemacs-global-leader-prefix)
 
   ;; Local leader
   (general-create-definer +map-local
-    :states '(normal insert visual emacs)
+    :states '(insert emacs visual normal)
     :keymaps 'override
     :prefix minemacs-localleader-key
     :global-prefix minemacs-global-mode-prefix)
 
-  ;; Map a key in normal, motion and visual states
+  ;; Map a key in normal and visual states
   (general-create-definer +map-key
     :states '(normal visual))
 
