@@ -279,6 +279,10 @@ the children of class at point."
   :general
   (+map "tf" #'flymake-mode))
 
+(use-package flymake-easy
+  :straight t
+  :defer t)
+
 ;;; Modes
 (use-package vimrc-mode
   :straight t
