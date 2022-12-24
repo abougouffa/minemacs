@@ -8,7 +8,20 @@
 (use-package projectile
   :straight t
   :after minemacs-loaded
-  :general
+  :custom
+  (projectile-cache-file (concat minemacs-cache-dir "projectile/cache.el"))
+  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
+  (projectile-ignored-projects '("~/"))
+  (projectile-ignored-project-function nil) ;; TODO: customize it
+  (projectile-auto-discover nil)
+  (projectile-enable-caching (not noninteractive))
+  (projectile-globally-ignored-files '("TAGS" ".Trash" ".DS_Store"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
+  (projectile-kill-buffers-filter 'kill-only-files)
+  :init
+  (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
+  (global-set-key [remap find-tag] #'projectile-find-tag)
+  :config
   (+map
     ;; Project
     :infix "p"
@@ -30,20 +43,7 @@
     "ss" 'projectile-grep
     "sn" '(fileloop-continue :wk "Next match")
     "sr" #'projectile-replace-regexp)
-  :custom
-  (projectile-cache-file (concat minemacs-cache-dir "projectile/cache.el"))
-  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
-  (projectile-ignored-projects '("~/"))
-  (projectile-ignored-project-function nil) ;; TODO: customize it
-  (projectile-auto-discover nil)
-  (projectile-enable-caching (not noninteractive))
-  (projectile-globally-ignored-files '("TAGS" ".Trash" ".DS_Store"))
-  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
-  (projectile-kill-buffers-filter 'kill-only-files)
-  :init
-  (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
-  (global-set-key [remap find-tag] #'projectile-find-tag)
-  :config
+
   ;; HACK: from Doom Emacs
   ;; Projectile cleans up the known projects list at startup. If this list
   ;; contains tramp paths, the `file-remote-p' calls will pull in tramp via
