@@ -71,12 +71,12 @@
   :straight (:host github :repo "DerBeutlin/ros.el")
   :general
   (+map
-    "or"  '(nil :wk "ROS")
-    "orr" '(+hydra-ros-main/body :wk "Hydra")
-    "ors" '(ros-set-workspace :wk "Set workspace")
-    "orp" '(ros-go-to-package :wk "Go to package")
-    "orC" '(ros-cache-clean :wk "Clean cache"))
-
+    :infix "o"
+    "r"  '(nil :wk "ros")
+    "rr" '(+hydra-ros-main/body :wk "Hydra")
+    "rs" '(ros-set-workspace :wk "Set workspace")
+    "rp" '(ros-go-to-package :wk "Go to package")
+    "rC" '(ros-cache-clean :wk "Clean cache"))
   :config
   (defhydra +hydra-ros-main (:color blue :hint nil :foreign-keys warn)
     "
