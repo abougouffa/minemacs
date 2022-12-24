@@ -42,11 +42,8 @@
   :straight t
   :general
   (+map "ot" #'vterm)
-  :preface
-  (when noninteractive
-    (advice-add #'vterm-module-compile :override #'ignore)
-    (provide 'vterm-module))
   :custom
+  (vterm-always-compile-module t)
   (vterm-max-scrollback 5000))
 
 (use-package docker
