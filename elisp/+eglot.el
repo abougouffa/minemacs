@@ -7,6 +7,7 @@ Examples:
   (+eglot-register 'vhdl-mode \"vhdl_ls\")
   (+eglot-register 'lua-mode \"lua-language-server\" \"lua-lsp\")
   (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")"
+  (declare (indent 0))
   (let* ((multi-p (> (length servers) 1))
          (first-server (car servers))
          (first-server (if (listp first-server) (car first-server) first-server)))

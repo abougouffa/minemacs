@@ -65,6 +65,13 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     `(progn ,@body)))
 
 ;;;###autoload
+(defmacro +suppress! (&rest body)
+  "Suppress new messages temporarily in the echo area while BODY is evaluated."
+  (if (not minemacs-verbose)
+      `(with-temp-message (or (current-message) "") ,@body)
+    `(progn ,@body)))
+
+;;;###autoload
 (defmacro +cmdfy! (&rest body)
   "Convert BODY to an interactive command."
   `(lambda ()
