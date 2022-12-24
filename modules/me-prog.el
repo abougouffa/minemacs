@@ -173,46 +173,49 @@
           rust-mode
           cmake-mode) . eglot-ensure)
   :commands eglot eglot-ensure
-  :init
+  :general
   (+map
-    "cfF" #'eglot-format-buffer
-    "cd"  '(eglot-find-declaration :wk "Find declaration")
-    "ci"  '(eglot-find-implementation :wk "Find implementation")
-    "ct"  '(eglot-find-typeDefinition :wk "Find type definition")
-    "ca"  '(eglot-code-actions :wk "Code actions")
-    "cr"  '(nil :wk "refactor")
-    "crr" '(eglot-rename :wk "Rename")
-    "crR" '(eglot-code-action-rewrite :wk "Rewrite")
-    "crf" '(eglot-code-action-quickfix :wk "Quick fix")
-    "cri" '(eglot-code-action-inline :wk "Inline")
-    "cre" '(eglot-code-action-extract :wk "Extract")
-    "cro" '(eglot-code-action-organize-imports :wk "Organize imports")
-    "cS"  '(nil :wk "eglot session")
-    "cSs" '(eglot :wk "Start")
-    "cSq" '(eglot-shutdown :wk "Shutdown")
-    "cSr" '(eglot-reconnect :wk "Reconnect")
-    "cSQ" '(eglot-shutdown-all :wk "Shutdown all")
-    "cw"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
+    :infix "c"
+    "S"  '(nil :wk "eglot session")
+    "Ss" '(eglot :wk "Start"))
+  (+map :keymaps 'eglot-mode-map
+    :infix "c"
+    "fF" #'eglot-format-buffer
+    "d"  '(eglot-find-declaration :wk "Find declaration")
+    "i"  '(eglot-find-implementation :wk "Find implementation")
+    "t"  '(eglot-find-typeDefinition :wk "Find type definition")
+    "a"  '(eglot-code-actions :wk "Code actions")
+    "r"  '(nil :wk "refactor")
+    "rr" '(eglot-rename :wk "Rename")
+    "rR" '(eglot-code-action-rewrite :wk "Rewrite")
+    "rf" '(eglot-code-action-quickfix :wk "Quick fix")
+    "ri" '(eglot-code-action-inline :wk "Inline")
+    "re" '(eglot-code-action-extract :wk "Extract")
+    "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
+    "Sq" '(eglot-shutdown :wk "Shutdown")
+    "Sr" '(eglot-reconnect :wk "Reconnect")
+    "SQ" '(eglot-shutdown-all :wk "Shutdown all")
+    "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :config
   (+eglot-register
-   '(c++-mode c++-ts-mode c-mode c-ts-mode)
-   '("clangd"
-     "--background-index"
-     "-j=12"
-     "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-     "--clang-tidy"
-     ;; "--clang-tidy-checks=*"
-     "--all-scopes-completion"
-     "--cross-file-rename"
-     "--completion-style=detailed"
-     "--header-insertion-decorators"
-     "--header-insertion=iwyu"
-     "--pch-storage=memory")
-   "ccls")
+    '(c++-mode c++-ts-mode c-mode c-ts-mode)
+    '("clangd"
+      "--background-index"
+      "-j=12"
+      "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
+      "--clang-tidy"
+      ;; "--clang-tidy-checks=*"
+      "--all-scopes-completion"
+      "--cross-file-rename"
+      "--completion-style=detailed"
+      "--header-insertion-decorators"
+      "--header-insertion=iwyu"
+      "--pch-storage=memory")
+    "ccls")
 
   ;; From: https://github.com/MaskRay/ccls/wiki/eglot#misc
   (defun +eglot-ccls-inheritance-hierarchy (&optional derived)
@@ -247,7 +250,7 @@ the children of class at point."
   :straight t
   :after consult eglot
   :general
-  (+map
+  (+map :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols")))
 
 (use-package eldoc-box
@@ -275,12 +278,19 @@ the children of class at point."
   :straight t
   :commands clang-format clang-format-region clang-format-buffer
   :general
-  (+map "cfc" #'clang-format-buffer))
+  (+map :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
+    "cfc" #'clang-format-buffer))
 
 (use-package flymake
-  :straight t
+  :straight (:type built-in)
   :general
-  (+map "tf" #'flymake-mode))
+  (+map
+    "tf"  #'flymake-mode)
+  (+map-local :keymaps 'flymake-mode-map
+    "f"  '(nil :wk "flymake")
+    "fn" #'flymake-goto-next-error
+    "fN" #'flymake-goto-prev-error
+    "fs" #'flymake-start))
 
 (use-package flymake-easy
   :straight t
@@ -376,7 +386,7 @@ the children of class at point."
   ;; Use as xref backend
   (with-eval-after-load 'xref
     (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
+  :general
   (+map
     "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
   :config
@@ -405,16 +415,14 @@ the children of class at point."
 (use-package rainbow-mode
   :straight t
   :general
-  (+map
+  (+map :keymaps '(prog-mode-map conf-mode-map text-mode-map)
     "tR" #'rainbow-mode))
 
 (use-package lua-mode
   :straight t
   :defer t
   :custom
-  (lua-indent-level 2)
-  :config
-  (+eglot-register 'lua-mode "lua-language-server" "lua-lsp"))
+  (lua-indent-level 2))
 
 (use-package powershell
   :straight t
