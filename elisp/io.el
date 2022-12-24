@@ -41,6 +41,15 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
                         (directory-files dir t "[^.][^.]?$")))))
 
 ;;;###autoload
+(defun +directory-ensure (dir)
+  "Ensure DIR exists, if not create it, return DIR."
+  (unless (file-directory-p dir)
+    (ignore-errors (mkdir dir t))
+    (unless (file-directory-p dir)
+      (+error! "Cannot create directory %s" dir)))
+  dir)
+
+;;;###autoload
 (defun +delete-this-file (&optional path force-p)
   "Delete PATH.
 

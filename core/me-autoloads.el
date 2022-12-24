@@ -116,6 +116,10 @@ Return a string with the contents of FILENAME.
 Return a list of sub-directories in DIR.
 
 (fn DIR)")
+(autoload '+directory-ensure "../elisp/io" "\
+Ensure DIR exists, if not create it, return DIR.
+
+(fn DIR)")
 (autoload '+delete-this-file "../elisp/io" "\
 Delete PATH.
 
