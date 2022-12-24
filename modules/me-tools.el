@@ -53,9 +53,7 @@
 
 (use-package dockerfile-mode
   :straight t
-  :defer t
-  :config
-  (+eglot-register 'dockerfile-mode '("docker-langserver" "--stdio")))
+  :defer t)
 
 (use-package esup
   :straight t
