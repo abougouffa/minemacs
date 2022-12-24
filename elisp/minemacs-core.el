@@ -279,11 +279,10 @@ DEPTH and LOCAL are passed as is to `add-hook'."
     (+eval-when-idle!
       (or (and (featurep 'native-compile)
                (or (subr-native-elisp-p (indirect-function fn))
-                   (+shutup!
-                    (ignore-errors (native-compile fn)))))
+                   (+shutup! (ignore-errors (native-compile fn)))))
           (byte-code-function-p fn)
           (let (byte-compile-warnings)
-            (byte-compile fn))))))
+            (+shutup! (byte-compile fn)))))))
 
 ;;;###autoload
 (defun +env-save ()
