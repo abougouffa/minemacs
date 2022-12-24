@@ -216,16 +216,14 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 (defun +eval-when-idle (delay &rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
   (let* ((task-num (cl-incf +eval-when-idle--task-num))
-         (task-name (make-symbol (format "+eval-when-idle--task%d" task-num))))
+         (task-name (make-symbol (format "+eval-when-idle--task-%d" task-num))))
     (with-memoization (get task-name 'timer)
       (run-with-idle-timer
        delay t
        (lambda ()
          (when-let (fn (pop fns))
-           (+log! "Running task %d, calling function `%s'"
-                  task-num
-                  (truncate-string-to-width
-                   (format "%s" fn) 40 nil nil "…"))
+           (+log! "Running task %d, calling function `%s'" task-num
+                  (truncate-string-to-width (format "%s" fn) 40 nil nil "…"))
            (funcall fn))
          (unless fns
            (cancel-timer (get task-name 'timer))
