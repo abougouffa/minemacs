@@ -13,7 +13,7 @@
 
 (use-package cape-yasnippet
   :straight (:host github :repo "elken/cape-yasnippet")
-  :hook ((prog-mode org-mode markdown-mode latex-mode tex-mode) . +cape-yasnippet--setup-h)
+  :hook ((prog-mode org-mode markdown-mode latex-mode tex-mode TeX-mode LaTeX-mode) . +cape-yasnippet--setup-h)
   :defines +cape-yasnippet--setup-h
   :config
   (defun +cape-yasnippet--setup-h ()
