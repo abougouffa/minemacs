@@ -83,7 +83,8 @@
                         ("fr" "ar")
                         ("fr" "en")))
   :init
-  (+map-local :keymaps '(org-mode-map markdown-mode-map latex-mode-map tex-mode-map text-mode-map)
+  (+map-local :keymaps '(org-mode-map text-mode-map markdown-mode-map
+                         tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "R" '(+gts-yank-translated-region :wk "Yank translated region")
     "G" '(nil "go-translate")
     "Gb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Bing")
