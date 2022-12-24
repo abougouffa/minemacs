@@ -5,7 +5,19 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;;; Debug
+(use-package gdb-mi
+  :straight (:type built-in)
+  :defer t
+  :custom
+  (gdb-show-main t) ; display source file containing main routine at startup
+  (gdb-many-windows t) ; start in gdb-many-windows mode
+  (gdb-debug-log-max 1024) ; default 128
+  (gdb-restore-window-configuration-after-quit t)
+  (gdb-thread-buffer-verbose-names nil)
+  (gdb-window-configuration-directory (+directory-ensure (concat minemacs-local-dir "gdb/")))
+  (gdb-max-source-window-count 1) ; IDEA maybe increase it!
+  (gdb-display-io-nopopup nil)) ; IDEA maybe change it!
+
 (use-package realgud
   :straight t
   :defer t
