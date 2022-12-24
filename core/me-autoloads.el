@@ -17,6 +17,7 @@ Examples:
   (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")
 
 (fn MODES &rest SERVERS)")
+(function-put '+eglot-register 'lisp-indent-function 0)
 
 
 ;;; Generated autoloads from ../elisp/binary.el
@@ -240,15 +241,19 @@ Auto tail the '*Messages*' buffer." t)
 
 ;;; Generated autoloads from ../elisp/minemacs-core.el
 
-(autoload '+log! "../elisp/minemacs-core" "\
-Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
+(autoload '+error! "../elisp/minemacs-core" "\
+Log error MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
 (autoload '+info! "../elisp/minemacs-core" "\
 Log info MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
-(autoload '+error! "../elisp/minemacs-core" "\
+(autoload '+log! "../elisp/minemacs-core" "\
+Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
+
+(fn MSG &rest VARS)" nil t)
+(autoload '+debug! "../elisp/minemacs-core" "\
 Log error MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
@@ -256,7 +261,11 @@ Log error MSG and VARS using `message'.
 Is features FEATS are enabled in this Emacs build.
 
 (fn &rest FEATS)")
+(autoload '+fn-inhibit-messages! "../elisp/minemacs-core" "\
+Add an advice arount the function FN to suppress messages in echo area.
+If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer.
 
+(fn FN &optional NO-MESSAGE-LOG)" nil t)
 (autoload '+reset-sym "../elisp/minemacs-core" "\
 Reset SYM to its standard value.
 
@@ -267,6 +276,10 @@ Reset VAR to its standard value.
 (fn VAR)" nil t)
 (autoload '+shutup! "../elisp/minemacs-core" "\
 Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
+
+(fn &rest BODY)" nil t)
+(autoload '+suppress! "../elisp/minemacs-core" "\
+Suppress new messages temporarily in the echo area while BODY is evaluated.
 
 (fn &rest BODY)" nil t)
 (autoload '+cmdfy! "../elisp/minemacs-core" "\
@@ -305,11 +318,12 @@ If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
 (fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
-(autoload '+add-dependencies "../elisp/minemacs-core" "\
-
+(autoload '+push-system-dependencies "../elisp/minemacs-core" "\
+Push system dependencies DEPS, these are executables needed by MinEmacs.
 
 (fn &rest DEPS)")
-(autoload '+check-dependencies "../elisp/minemacs-core" "\
+(function-put '+push-system-dependencies 'lisp-indent-function 0)
+(autoload '+check-system-dependencies "../elisp/minemacs-core" "\
 Check for MinEmacs dependencies." t)
 (autoload '+eval-when-idle "../elisp/minemacs-core" "\
 Queue FNS to be processed when Emacs becomes idle.
