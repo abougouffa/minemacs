@@ -5,31 +5,22 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(require 'cl-lib)
-
 ;; Adapted from: https://github.com/rougier/emacs-splash
 
-(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
 (defvar minemacs-splash-buffer-name "*minemacs-splash*")
 
 (defun minemacs-splash-screen ()
   "MinEmacs splash screen"
-  (let* ((splash-buffer (get-buffer-create minemacs-splash-buffer-name))
-         (height (- (window-body-height nil) 1))
-         (padding-center (min 5 (- (/ height 3) 1)))
-         (padding-bottom (min 2 (- height (/ height 3) 3))))
-
-    ;; If there are buffer associated with filenames,
-    ;; we don't show splash screen.
-    (if (eq 0 (length (cl-loop for buf in (buffer-list)
-                               if (buffer-file-name buf)
-                               collect (buffer-file-name buf))))
+  ;; If there are buffer associated with filenames, we don't show splash screen.
+  (if (zerop (length (seq-filter #'identity (mapcar #'buffer-file-name (buffer-list)))))
+      (let* ((splash-buffer (get-buffer-create minemacs-splash-buffer-name))
+             (height (- (window-body-height nil) 1))
+             (padding-center (min 5 (- (/ height 3) 1)))
+             (padding-bottom (min 2 (- height (/ height 3) 3))))
         (with-current-buffer splash-buffer
           (erase-buffer)
-
           ;; Buffer local settings
-          (if (one-window-p)
-              (setq-local mode-line-format nil))
           (setq-local cursor-type nil
                       vertical-scroll-bar nil
                       horizontal-scroll-bar nil)
@@ -46,9 +37,10 @@
                    (format "Running GNU Emacs %s%s"
                            emacs-version
                            (if emacs-repository-version
-                               (format " (%s)" (substring emacs-repository-version 0 8))
+                               (format " (%s)" (substring emacs-repository-version 0 10))
                              ""))
                    'face 'shadow))
+
           ;; Bootstraping
           (unless (file-exists-p (concat minemacs-local-dir "straight/repos/straight.el/bootstrap.el"))
             (insert "\n")
@@ -78,8 +70,8 @@
           (goto-char 0)
           (read-only-mode t)
 
-          (local-set-key (kbd "<escape>") (+cmdfy! (minemacs-splash-screen-kill)))
-          (local-set-key (kbd "q") (+cmdfy! (minemacs-splash-screen-kill)))
+          (local-set-key (kbd "<escape>") (lambda () (interactive) (minemacs-splash-screen-kill)))
+          (local-set-key (kbd "q") (lambda () (interactive) (minemacs-splash-screen-kill)))
           (local-set-key (kbd "<mouse-1>") 'mouse-set-point)
           (local-set-key (kbd "<mouse-2>") 'operate-this-button)
 
@@ -97,7 +89,7 @@
 (add-hook
  'emacs-startup-hook
  (defun +splash--kill-h ()
-   (run-at-time 1 nil #'minemacs-splash-screen-kill)))
+   (run-at-time 0.5 nil #'minemacs-splash-screen-kill)))
 
 
 (provide 'me-splash)
