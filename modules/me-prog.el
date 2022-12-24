@@ -410,7 +410,8 @@ the children of class at point."
    (append
     hl-todo-keyword-faces
     '(("BUG" . "#ee5555")
-      ("PROJ" . "#447f44")))))
+      ("PROJ" . "#447f44")
+      ("IDEA" . "#0fa050")))))
 
 (use-package rainbow-mode
   :straight t
