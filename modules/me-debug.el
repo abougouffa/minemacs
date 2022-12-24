@@ -24,18 +24,13 @@
   :general
   (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
                          sh-mode-map bash-ts-mode-map)
-    "d" `(,(+cmdfy!
-            (pcase major-mode
-             ((or 'python-mode 'python-ts-mode) (realgud:pdb))
-             ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode) (realgud:gdb))
-             ((or 'bash-ts-mode 'sh-mode) (realgud:bashdb))))
-          :wk "realgud")))
+    "d" #'+realgud:start))
 
 (use-package realgud-lldb
   :straight t
   :general
-  (+map-local :keymaps '(rust-mode-map)
-    "d" `(#'realgud--lldb :wk "realgud"))
+  (+map-local :keymaps 'rust-mode-map
+    "d" #'+realgud:start)
   :commands realgud--lldb)
 
 (use-package realgud-ipdb

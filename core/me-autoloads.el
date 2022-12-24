@@ -212,6 +212,12 @@ so it can be used to save HTML pages or emails to PDF.
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
+;;; Generated autoloads from ../modules/extras/me-realgud.el
+
+ (autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
+ (autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
+
+
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
