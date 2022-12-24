@@ -12,7 +12,7 @@
   (+map "ou" #'vundo)
   :custom
   (vundo-compact-display t)
-  (vundo-window-max-height 6)
+  (vundo-window-max-height 8)
   (vundo-glyph-alist
    '((selected-node   . ?●)
      (node            . ?○)
@@ -32,7 +32,7 @@
   :straight t
   :after undo-fu
   :custom
-  (undo-fu-session-compression 'zst)
+  (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz))
   (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/"))
   :config
   (global-undo-fu-session-mode 1))
