@@ -5,13 +5,13 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(defconst MAXIMA-P (executable-find "maxima"))
-
 (use-package maxima
   :straight (:host github :repo "emacsmirror/maxima"
                    :files (:defaults
                            "keywords"
                            "poly-maxima.el"))
+  :preface
+  (defconst MAXIMA-P (executable-find "maxima"))
   :when MAXIMA-P
   :mode ("\\.ma[cx]\\'" . maxima-mode)
   :interpreter ("maxima" . maxima-mode)
@@ -25,6 +25,8 @@
              :host nil
              :repo "https://git.code.sf.net/p/maxima/code"
              :files ("interfaces/emacs/imaxima/*"))
+  :preface
+  (defconst MAXIMA-P (executable-find "maxima"))
   :when MAXIMA-P
   :commands imaxima imath-mode
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting

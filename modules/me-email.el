@@ -8,21 +8,22 @@
 (add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
-(defconst MU4E-P (and (executable-find "mu")
-                      (executable-find "msmtp")
-                      (executable-find "mbsync")
-                      (file-directory-p MU4E-LOAD-PATH)))
 
 (use-package mu4e
+  :preface
+  (defconst MU4E-P
+    (and (executable-find "mu")
+         (executable-find "msmtp")
+         (executable-find "mbsync")
+         (file-directory-p MU4E-LOAD-PATH)))
   :when MU4E-P
   :load-path MU4E-LOAD-PATH
-  :commands mu4e mu4e-compose-new mu4e--start
+  :commands mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :general
   (+map "om" #'mu4e)
   (+map-key :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
-
   (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer

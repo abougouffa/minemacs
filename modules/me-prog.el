@@ -276,7 +276,6 @@ the children of class at point."
 
 (use-package clang-format
   :straight t
-  :commands clang-format clang-format-region clang-format-buffer
   :general
   (+map :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
@@ -378,8 +377,7 @@ the children of class at point."
 (use-package dumb-jump
   :straight t
   :commands
-  dumb-jump-go dumb-jump-go-other-window dumb-jump-go-prefer-external
-  dumb-jump-quick-look dumb-jump-go-prompt +dumb-jump-hydra/body
+  +dumb-jump-hydra/body
   :custom
   (dumb-jump-selector 'completing-read)
   :init

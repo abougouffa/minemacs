@@ -6,7 +6,7 @@
 
 (use-package iedit
   :straight t
-  :after minemacs-loaded
+  :defer t
   :init
   (+fn-inhibit-messages! iedit-update-key-bindings))
 

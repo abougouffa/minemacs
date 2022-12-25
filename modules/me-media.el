@@ -5,10 +5,10 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(defconst MPV-P (executable-find "mpv"))
-
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
+  :preface
+  (defconst MPV-P (executable-find "mpv"))
   :when MPV-P
   :general
   (+map

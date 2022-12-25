@@ -32,7 +32,7 @@
   (dirvish-override-dired-mode))
 
 (use-package vlf-setup
-  :straight (vlf)
+  :straight vlf
   :after minemacs-loaded)
 
 

@@ -47,7 +47,6 @@
 
 (use-package git-timemachine
   :straight t
-  :after minemacs-loaded
   :general
   (+map
     "gt" '(git-timemachine-toggle :wk "Time machine"))

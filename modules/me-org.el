@@ -37,7 +37,6 @@
     "l"  '(nil :wk "link")
     "ll" '(org-insert-link :wk "Insert link")
     "e"  '(org-export-dispatch :wk "Export dispatch"))
-
   (+map-key
     :keymaps 'org-mode-map
     :states 'normal

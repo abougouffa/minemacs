@@ -26,7 +26,6 @@
 
 (use-package macrostep
   :straight t
-  :defer t
   :general
   (+map-local :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :wk "Expand macro")))
@@ -117,7 +116,6 @@
 
 (use-package helpful
   :straight t
-  :defer t
   :general
   (+map :keymaps 'emacs-lisp-mode-map
     :infix "h"
