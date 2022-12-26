@@ -18,7 +18,7 @@
 
 (use-package corfu
   :straight t
-  :after minemacs-loaded
+  :hook (minemacs-after-startup . global-corfu-mode)
   :init
   (add-to-list
    'load-path
@@ -41,8 +41,7 @@
       (setq-local corfu-auto nil) ;; Enable/disable auto completion
       (corfu-mode 1)))
 
-  (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer)
-  (global-corfu-mode 1))
+  (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer))
 
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
@@ -66,13 +65,13 @@
   :straight t
   :after corfu
   :custom
-  (kind-icon-default-style ;; Fix the scaling/height
-   '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
+  ;; Fix the scaling/height
+  (kind-icon-default-style '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
   (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Only on Emacs built with SVG support
   (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
   (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
   :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)) ; Enable `kind-icon'
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package embark
   :straight t
@@ -94,9 +93,7 @@
 
 (use-package marginalia
   :straight t
-  :after minemacs-loaded
-  :config
-  (marginalia-mode 1))
+  :hook (minemacs-after-startup . marginalia-mode))
 
 (use-package orderless
   :straight t
@@ -107,23 +104,20 @@
 
 (use-package vertico
   :straight t
-  :after minemacs-loaded
+  :hook (minemacs-after-startup . vertico-mode)
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
   (vertico-count 12)
   :init
   (add-to-list
-   'load-path
-   (concat
-    straight-base-dir
-    (format "straight/%s/vertico/extensions" straight-build-dir)))
+   'load-path (concat
+               straight-base-dir
+               (format "straight/%s/vertico/extensions" straight-build-dir)))
   :config
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "C-j") #'vertico-next)
-    (define-key vertico-map (kbd "C-k") #'vertico-previous))
-
-  (vertico-mode 1))
+    (define-key vertico-map (kbd "C-k") #'vertico-previous)))
 
 (use-package vertico-directory
   :after vertico
@@ -147,38 +141,11 @@
   :config
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
-(use-package mini-popup
-  :straight (:host github :repo "minad/mini-popup")
-  :after vertico
-  :config
-  (defun mini-popup-height-resize ()
-    (* (1+ (min vertico--total vertico-count)) (default-line-height)))
-
-  (defun mini-popup-height-fixed ()
-    (* (1+ (if vertico--input vertico-count 0)) (default-line-height)))
-
-  (setq mini-popup--height-function #'mini-popup-height-fixed)
-
-  ;; Disable the minibuffer resizing of Vertico (HACK)
-  (advice-add
-   #'vertico--resize-window :around
-   (defun +mini-popup--disable-resizing-minibuffer-a (&rest args)
-     (unless mini-popup-mode
-       (apply args))))
-
-  ;; Ensure that the popup is updated after refresh (Consult-specific)
-  (add-hook
-   'consult--completion-refresh-hook
-   (defun +consult--update-after-refresh-h (&rest _)
-     (mini-popup--setup))
-   99))
-
 (use-package consult
   :straight t
-  :after minemacs-loaded
   :general
   (+map
-    "bl" '(consult-line :wk "Consult line")
+    "bl" #'consult-line
     "ss" #'consult-ripgrep
     "sc" #'consult-find
     "iy" '(consult-yank-pop :wk "From clipboard")
