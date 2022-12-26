@@ -16,7 +16,7 @@
   :straight t
   :hook (minemacs-after-startup . which-key-mode)
   :custom
-  (which-key-idle-delay 1.5)
+  (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay 0.05)
   (which-key-prefix-prefix "↪ ")
   (which-key-sort-order 'which-key-key-order-alpha)

@@ -90,5 +90,12 @@
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))
 
+(use-package tramp
+  :straight (:type built-in)
+  :defer t
+  :init
+  ;; This is faster than the default "scp"
+  (unless os/win
+    (setq tramp-default-method "ssh")))
 
 (provide 'me-tools)
