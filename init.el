@@ -115,11 +115,7 @@
        (emacs-lisp-mode)))
 
    ;; Require the virtual package to triggre loading packages depending on it
-   (require 'minemacs-loaded)
-
-   ;; Run hooks
-   (when (bound-and-true-p minemacs-after-startup-hook)
-     (run-hooks 'minemacs-after-startup-hook))))
+   (require 'minemacs-loaded)))
 
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
@@ -127,7 +123,10 @@
 ;; When running in an async Org export context, the used modules are set in
 ;; modules/extras/me-org-export-async-init.el
 (if (featurep 'me-org-export-async-init)
-    (message "Loading \"init.el\" in an org-export-async context.")
+    (progn (message "Loading \"init.el\" in an org-export-async context.")
+           (require 'minemacs-loaded)
+           (setq minemacs-not-lazy t)
+           (require 'minemacs-lazy))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (load (concat minemacs-core-dir "me-modules.el") nil (not minemacs-verbose))
 
@@ -142,6 +141,9 @@
 
   ;; Load fonts early (they are read from the default `minemacs-default-fonts').
   (+set-fonts)
+
+  ;; Ensure me-gc is in the list
+  (add-to-list 'minemacs-core-modules 'me-gc t)
 
   ;; Core modules
   (dolist (module minemacs-core-modules)
@@ -158,6 +160,9 @@
       (if (file-exists-p filename)
           (load filename nil (not minemacs-verbose))
         (+error! "Module \"%s\" not found!" module))))
+
+  ;; Run hooks before loading user config
+  (require 'minemacs-before-user-config)
 
   (when (and custom-file (file-exists-p custom-file))
     (+log! "Loafing user custom file from \"%s\"" custom-file)
@@ -176,11 +181,6 @@
         (+info! "Trying to clean outdated native compile cache")
         (+shutup! (native-compile-prune-cache))))))
 
-    ;; Load GC module lastly
-    (+eval-when-idle-for! 5.0
-      (+info! "Activating the garbage collector hacks")
-      (load (concat minemacs-core-dir "me-gc.el")
-            nil (not minemacs-verbose)))))
 
 ;; Load for the first time
 (minemacs-load)
