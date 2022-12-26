@@ -1,4 +1,4 @@
-;; me-bootstrap.el --- MinEmacs -*- lexical-binding: t; -*-
+;; me-bootstrap.el --- Bootstrap packages (straight & use-package) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
@@ -25,7 +25,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'use-package)
+(let ((use-package-recipe ; prefer built-in `use-package' in Emacs 29+
+       (if (>= emacs-major-version 29) '(use-package :type built-in) 'use-package)))
+  (straight-use-package use-package-recipe))
 
 (setq use-package-verbose minemacs-verbose)
 
