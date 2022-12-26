@@ -14,30 +14,29 @@
 ;; Which key
 (use-package which-key
   :straight t
+  :hook (minemacs-after-startup . which-key-mode)
   :custom
-  (which-key-idle-delay 0.3)
+  (which-key-idle-delay 1.5)
+  (which-key-idle-secondary-delay 0.05)
   (which-key-prefix-prefix "↪ ")
   (which-key-sort-order 'which-key-key-order-alpha)
-  (which-key-min-display-lines 5)
+  (which-key-min-display-lines 3)
   (which-key-max-display-columns nil)
   (which-key-allow-multiple-replacements t)
   :config
-  ;; g, [, ]
-  (push '(("\\`[][g]" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
+  ;; g, [, ] (\\`[][g])
+  (push '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅴·\\1"))
         which-key-replacement-alist)
   ;; g
-  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ⓘ·\\1"))
+  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅘·\\1"))
         which-key-replacement-alist)
-  ;; g r
-  (push '(("\\`g r" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
+  ;; g z
+  (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
         which-key-replacement-alist)
   ;; g c
   (push '(("\\`g c" . "\\`evilnc-\\(.*\\)") . (nil . "#·\\1"))
         which-key-replacement-alist)
-  ;; g s
-  (push '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "m·\\1"))
-        which-key-replacement-alist)
-  (which-key-mode)
+
   (which-key-setup-minibuffer))
 
 ;;; General.el
