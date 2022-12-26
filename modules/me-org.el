@@ -25,7 +25,7 @@
   (org-log-done 'time) ; having the time an item is done sounds convenient
   (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
   (org-export-in-background t) ; run export processes in external emacs process
-  (org-export-async-init-file (concat minemacs-modules-dir "extras/me-org-export-async-init.el"))
+  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
   (org-export-with-smart-quotes t) ; convert "this" to « this »
   (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
   (org-highlight-latex-and-related '(native script entities))
@@ -35,8 +35,13 @@
   :config
   (+map-local :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
-    "ll" '(org-insert-link :wk "Insert link")
-    "e"  '(org-export-dispatch :wk "Export dispatch"))
+    "ll" #'org-insert-link
+    "e"  #'org-export-dispatch
+    "s"  #'org-edit-src-code)
+  (+map-local :keymaps 'org-src-mode-map
+    "s" #'org-edit-src-save
+    "q" #'org-edit-src-abort
+    "e" #'org-edit-src-exit)
   (+map-key
     :keymaps 'org-mode-map
     :states 'normal
@@ -89,7 +94,7 @@
           ("cpp" . c++)
           ("ditaa" . artist)
           ("desktop" . conf-desktop)
-          ("dot" . graphviz-dot) ;; changed
+          ("dot" . graphviz-dot) ; changed
           ("elisp" . emacs-lisp)
           ("ocaml" . tuareg)
           ("screen" . shell-script)
@@ -98,12 +103,26 @@
           ("toml" . conf-toml)))
 
   (with-eval-after-load 'plantuml-mode
-    (setq org-plantuml-jar-path plantuml-jar-path)))
+    (setq org-plantuml-jar-path plantuml-jar-path
+          org-plantuml-exec-mode plantuml-default-exec-mode
+          org-plantuml-executable-path plantuml-executable-path)))
 
 (use-package org-contrib
   :straight (:host sourcehut :repo "bzg/org-contrib")
   :after org)
 
+(use-package me-org-extras
+  :after org
+  :config
+  (+org-extras-outline-path-setup)
+  (+org-extras-pretty-latex-fragments-setup)
+  (+org-extras-latex-classes-setup)
+  (+org-extras-responsive-images-setup)
+  (+org-extras-equation-numbering-setup)
+  (+org-extras-multifiles-document-setup)
+  (+org-extras-lower-case-keywords-and-properties-setup))
+
+;; Org export
 (use-package ox-latex
   :after org
   :custom
@@ -137,9 +156,6 @@
     (unless (member pair org-latex-minted-langs)
       (add-to-list 'org-latex-minted-langs pair))))
 
-(use-package ob-tangle
-  :after org)
-
 (use-package ox-hugo
   :straight t
   :after org)
@@ -149,17 +165,11 @@
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
-(use-package me-org-extras
-  :after org
-  :config
-  (+org-extras-outline-path-setup)
-  (+org-extras-pretty-latex-fragments-setup)
-  (+org-extras-latex-classes-setup)
-  (+org-extras-responsive-images-setup)
-  (+org-extras-equation-numbering-setup)
-  (+org-extras-multifiles-document-setup)
-  (+org-extras-lower-case-keywords-and-properties-setup))
+;; Org babel
+(use-package ob-tangle
+  :after org)
 
+;; Other Org features
 (use-package org-appear
   :straight t
   :hook (org-mode . org-appear-mode)
@@ -185,12 +195,12 @@
   (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil))
 
-;; for latex fragments
+;; For latex fragments
 (use-package org-fragtog
   :straight t
   :hook (org-mode . org-fragtog-mode)
   :custom
-  (org-fragtog-preview-delay 0.1))
+  (org-fragtog-preview-delay 0.2))
 
 (use-package org-present
   :straight t
