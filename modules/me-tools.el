@@ -53,9 +53,11 @@
   :general
   (+map "ok" #'docker))
 
-(use-package dockerfile-mode
-  :straight t
-  :defer t)
+(unless (< emacs-major-version 29)
+  ;; Emacs 29 comes with `dockerfile-ts-mode'
+  (use-package dockerfile-mode
+    :straight t
+    :defer t))
 
 (use-package esup
   :straight t
