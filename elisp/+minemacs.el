@@ -5,7 +5,7 @@
   "Log error MSG and VARS using `message'."
   (when (>= minemacs-msg-level 1)
     `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
+      (apply #'user-error (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defmacro +info! (msg &rest vars)
@@ -25,7 +25,7 @@
   "Log error MSG and VARS using `message'."
   (when (>= minemacs-msg-level 4)
     `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
+      (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defun +emacs-features-p (&rest feats)
@@ -101,85 +101,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
                    (plist-get minemacs-default-fonts :variable-pitch-font-size)))))))))
 
 ;;;###autoload
-(defun +plist-keys (plist)
-  "Return the keys of PLIST."
-  (let (keys)
-    (while plist
-      (push (car plist) keys)
-      (setq plist (cddr plist)))
-    keys))
-
-;;;###autoload
-(defmacro +plist-push! (plist &rest key-vals)
-  "Push KEY-VALS to PLIST."
-  (let ((out (list 'progn)))
-    (while (> (length key-vals) 0)
-      (let ((key (pop key-vals))
-            (val (pop key-vals)))
-        (add-to-list
-         'out
-         `(setq ,plist (plist-put ,plist ,key ,val)) t)))
-    out))
-
-;;;###autoload
-(defun +plist-combine (&rest plists)
-  "Create a single property list from all plists in PLISTS.
-Modified from `org-combine-plists'. This supposes the values to be vectors,
-and concatenate them."
-  (let ((res (copy-sequence (pop plists)))
-        prop val plist)
-    (while plists
-      (setq plist (pop plists))
-      (while plist
-        (setq prop (pop plist) val (pop plist))
-        (setq res (plist-put res prop (vconcat val (plist-get res prop))))))
-    res))
-
-;;;###autoload
-(defun +plist-delete (plist prop)
-  "Delete property PROP from PLIST.
-Adapted from `org-plist-delete'."
-  (let (p)
-    (while plist
-      (if (not (eq prop (car plist)))
-          (setq p (plist-put p (car plist) (nth 1 plist))))
-      (setq plist (cddr plist)))
-    p))
-
-;;;###autoload
-(defun +serialize-sym (sym dir &optional filename-format)
-  "Serialize SYM to DIR.
-If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
-Return the written file name, or nil if SYM is not bound."
-  (when (boundp sym)
-    (let ((out-file (expand-file-name
-                     (format (or filename-format "%s.el") (symbol-name sym))
-                     dir)))
-      (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
-      (with-temp-buffer
-        (prin1 (eval sym) (current-buffer))
-        (+shutup! (write-file out-file)))
-      out-file)))
-
-;;;###autoload
-(defun +deserialize-sym (sym dir &optional mutate filename-format)
-  "Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
-If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
-Return the deserialized object, or nil if the SYM.el file dont exist."
-  (let ((in-file (expand-file-name
-                  (format (or filename-format "%s.el") (symbol-name sym))
-                  dir))
-        res)
-    (when (file-exists-p in-file)
-      (+log! "Loading `%s' from file \"%s\"" sym (abbreviate-file-name in-file))
-      (with-temp-buffer
-        (insert-file-contents in-file)
-        (goto-char (point-min))
-        (ignore-errors (setq res (read (current-buffer)))))
-      (when mutate (set sym res)))
-    res))
-
-;;;###autoload
 (defun +push-system-dependencies (&rest deps)
   "Push system dependencies DEPS, these are executables needed by MinEmacs."
   (declare (indent 0))
@@ -244,15 +165,6 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   `(+eval-when-idle ,delay
     (lambda ()
       ,@body)))
-
-;; Adapted from `evil-unquote', takes functions into account
-;;;###autoload
-(defun +unquote (exp)
-  "Return EXP unquoted."
-  (declare (pure t) (side-effect-free t))
-  (while (memq (car-safe exp) '(quote function))
-    (setq exp (cadr exp)))
-  exp)
 
 ;; Adapted from github.com/d12frosted/environment
 ;;;###autoload

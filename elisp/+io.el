@@ -93,7 +93,9 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     ;; (doom-files--update-refs old-path new-path)
     (message "File moved to %S" (abbreviate-file-name new-path))))
 
-(defun +sudo-file-path (file)
+;;;###autoload
+(defun +tramp-sudo-file-path (file)
+  "Construct a Tramp sudo path to FILE. Works for both local and remote files."
   (let ((host (or (file-remote-p file 'host) "localhost")))
     (concat "/" (when (file-remote-p file)
                   (concat (file-remote-p file 'method) ":"
@@ -109,7 +111,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 (defun +sudo-find-file (file)
   "Open FILE as root."
   (interactive "FOpen file as root: ")
-  (find-file (+sudo-file-path file)))
+  (find-file (+tramp-sudo-file-path file)))
 
 ;;;###autoload
 (defun +sudo-this-file ()
@@ -119,7 +121,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
                           (when (or (derived-mode-p 'dired-mode)
                                     (derived-mode-p 'wdired-mode))
                             default-directory))))
-      (find-file (+sudo-file-path this-file))
+      (find-file (+tramp-sudo-file-path this-file))
     (user-error "Current buffer not bound to a file")))
 
 ;;;###autoload
@@ -127,7 +129,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   "Save this file as root."
   (interactive)
   (if buffer-file-name
-      (if-let ((file (+sudo-file-path buffer-file-name))
+      (if-let ((file (+tramp-sudo-file-path buffer-file-name))
                (buffer (find-file-noselect file))
                (origin (current-buffer)))
           (progn
@@ -188,7 +190,8 @@ When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\"."
 (defun +save-as-pdf (infile &optional mail-mode-p)
   "Save URL as PDF.
 This function's signature is compatible with `browse-url-browser-function'
-so it can be used to save HTML pages or emails to PDF."
+so it can be used to save HTML pages or emails to PDF.
+When MAIL-MODE-P is non-nil, treat INFILE as a mail."
   (let ((outfile (or +save-as-pdf-filename
                      (expand-file-name
                       (file-name-with-extension (file-name-base infile) ".pdf")

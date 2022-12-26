@@ -38,7 +38,6 @@
       "ecryptfs-insert-wrapped-passphrase-into-keyring %s '%s'"
     "ecryptfs-unwrap-passphrase %s '%s' | ecryptfs-add-passphrase -"))
 
-
 ;;;###autoload
 (defun ecryptfs-mount-private ()
   "Mount eCryptfs' private directory."
@@ -60,7 +59,6 @@
                  ecryptfs-wrapped-passphrase-file
                  (funcall ecryptfs--passphrase))
          ecryptfs-buffer-name)))))
-
 
 ;;;###autoload
 (defun ecryptfs-umount-private ()
