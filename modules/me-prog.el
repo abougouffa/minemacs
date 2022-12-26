@@ -427,6 +427,10 @@ the children of class at point."
   :straight t
   :defer t)
 
+(use-package franca-idl
+  :straight (:host github :repo "zeph1e/franca-idl.el")
+  :defer t)
+
 
 (provide 'me-prog)
 
