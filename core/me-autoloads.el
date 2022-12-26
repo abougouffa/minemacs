@@ -430,6 +430,16 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
 
 
+;;; Generated autoloads from ../modules/extras/me-gdb.el
+
+(autoload '+gdb-set-layout "../modules/extras/me-gdb" "\
+Enable custom window layout for gdb." t)
+(autoload '+emacs-gdb-enable "../modules/extras/me-gdb" "\
+Load a faster \"gdb\" command from \"emacs-gdb\".
+This will overrite the built-in \"gdb-mi\" for this session." t)
+(register-definition-prefixes "../modules/extras/me-gdb" '("+gdb-"))
+
+
 ;;; Generated autoloads from me-modules.el
 
 (register-definition-prefixes "me-modules" '("minemacs-"))
