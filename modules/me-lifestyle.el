@@ -7,6 +7,7 @@
   :commands awqat-times-for-day
   :custom
   (awqat-mode-line-format " 🕌 ${prayer} (${hours}h${minutes}m) ")
+  (awqat-update-interval 30.0)
   :config
   ;; Make sure `calendar-latitude' and `calendar-longitude' are set,
   ;; otherwise, set them here.
