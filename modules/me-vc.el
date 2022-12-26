@@ -123,5 +123,12 @@
     ("n" (progn (smerge-vc-next-conflict) (recenter-top-bottom (/ (window-height) 8))))
     ("q" nil :color blue)))
 
+(use-package repo
+  :straight t
+  :preface
+  (defconst REPO-P (executable-find "repo"))
+  :when REPO-P
+  :general
+  (+map "gr" #'repo-status))
 
 (provide 'me-vc)
