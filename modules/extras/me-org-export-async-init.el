@@ -19,11 +19,8 @@
   '(me-defaults me-bootstrap me-keybindings))
 
 (defvar minemacs-modules
-  '(me-org me-biblio me-latex))
+  '(me-org me-biblio me-latex me-prog me-lisp))
 
-;; To force loading Org and other deferred stuff
-(provide 'minemacs-loaded)
-
-(load (concat user-emacs-directory "init.el"))
+(load (concat user-emacs-directory "init.el") nil t)
 
 (message "Loaded %d modules!" (+ (length minemacs-core-modules) (length minemacs-modules)))
