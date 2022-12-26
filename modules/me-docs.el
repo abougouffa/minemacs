@@ -78,5 +78,18 @@
 
   (add-hook 'nov-mode-hook #'+nov-mode-setup))
 
+(use-package crdt
+  :straight t
+  :defer t
+  :preface
+  (defconst TUNTOX-P (executable-find "tuntox"))
+  (defconst STUNNEL-P (executable-find "stunnel"))
+  :init
+  (cond
+   (TUNTOX-P
+    (setq crdt-use-tuntox t
+          crdt-tuntox-password-in-url t))
+   (STUNNEL-P
+    (setq crdt-use-stunnel t))))
 
 (provide 'me-docs)
