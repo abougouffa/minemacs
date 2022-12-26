@@ -57,7 +57,7 @@
     "f" #'json-mode-beautify))
 
 (use-package graphviz-dot-mode
-  :straight t
+  :straight (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
   :defer t
   :custom
   (graphviz-dot-view-command "xdot %s")
