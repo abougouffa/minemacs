@@ -124,14 +124,18 @@
 ;;; Write user custom variables to separate file instead of init.el
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
-;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
-(load (concat minemacs-core-dir "me-modules.el") nil (not minemacs-verbose))
+;; When running in an async Org export context, the used modules are set in
+;; modules/extras/me-org-export-async-init.el
+(if (featurep 'me-org-export-async-init)
+    (message "Loading \"init.el\" in an org-export-async context.")
+  ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
+  (load (concat minemacs-core-dir "me-modules.el") nil (not minemacs-verbose))
 
-;; The modules.el file can override minemacs-modules and minemacs-core-modules
-(let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
-  (when (file-exists-p user-conf-modules)
-    (+log! "Loading modules file from \"%s\"" user-conf-modules)
-    (load user-conf-modules nil (not minemacs-verbose))))
+  ;; The modules.el file can override minemacs-modules and minemacs-core-modules
+  (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
+    (when (file-exists-p user-conf-modules)
+      (+log! "Loading modules file from \"%s\"" user-conf-modules)
+      (load user-conf-modules nil (not minemacs-verbose)))))
 
 (defun minemacs-load ()
   "Reload all configuration, including user's config.el."

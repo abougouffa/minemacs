@@ -168,7 +168,7 @@ Example: \"#+TITLE\" -> \"#+title\"
                 org-export-process
                 (lambda (process event)
                   (unless (process-live-p process)
-                    (message "Org async export finised, see *Org Export Buffer* for more details."))))))
+                    (message "Org async export finised, see *Org Export Process* for more details."))))))
          (message "PDF exported to: %s."
                   (abbreviate-file-name
                    (file-name-nondirectory out-file))))))))
