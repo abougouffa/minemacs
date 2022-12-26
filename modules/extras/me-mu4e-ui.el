@@ -110,7 +110,7 @@ will also be the width of all other printable characters."
                  (apply icon-set `(,name  :height ,height :v-adjust ,v-adjust))))
          (icon-width (+mu4e--get-string-width icon))
          (space-width (+mu4e--get-string-width " "))
-         (space-factor (- 2 (/ (float icon-width) space-width))))
+         (space-factor (- 2.0 (/ (float icon-width) space-width))))
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
 
 (defun +mu4e--ui-setup ()

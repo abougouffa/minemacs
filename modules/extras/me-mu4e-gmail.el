@@ -16,10 +16,19 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
         (string-match-p "gmail" root-maildir)
         (string-match-p "google" root-maildir))))
 
-;; In my workflow, emails won't be moved at all. Only their flags/labels are
-;; changed. Se we redefine the trash and refile marks not to do any moving.
-;; However, the real magic happens in `+mu4e-gmail--fix-flags-h'.
-;; Gmail will handle the rest.
+(defun +mu4e-sent-from-gmail-p (&optional msg)
+  "Return the \"from\" address if it is in the registred Gmail accounts.
+If MSG is provided, use it, else, extract the \"from\" field
+from the envelope of the current message."
+  (let ((from (or (plist-get (car (plist-get msg :from)) :email)
+                  (message-sendmail-envelope-from))))
+    (when (member from (mapcar #'car +mu4e-gmail-accounts))
+      from)))
+
+;; In this workflow, Gmail emails won't be moved at all. Only their flags/labels
+;; are changed. Se we redefine the trash and refile marks not to do any moving.
+;; However, the real magic happens in `+mu4e-gmail--fix-flags-h'. Gmail will
+;; handle the rest.
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
@@ -28,46 +37,49 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'.")
 (defun +mu4e-gmail-setup ()
   ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior
-        (lambda () ;; TODO make use +mu4e-msg-gmail-p
-          (if (or (string-match-p "@gmail.com\\'" (message-sendmail-envelope-from))
-                  (member (message-sendmail-envelope-from)
-                          (mapcar #'car +mu4e-gmail-accounts)))
-              'delete 'sent)))
-
-  (setq mu4e-marks (delq (assq 'delete mu4e-marks) mu4e-marks))
+        (lambda ()
+          (if (or (+mu4e-sent-from-gmail-p)
+                  (string-match-p
+                   "@gmail.com\\'" (message-sendmail-envelope-from)))
+              'delete 'sent))
+        mu4e-marks (delq (assq 'delete mu4e-marks) mu4e-marks))
 
   (setf (alist-get 'delete mu4e-marks)
         (list
          :char '("D" . "✘")
          :prompt "Delete"
          :show-target (lambda (_target) "delete")
-         :action (lambda (docid msg target)
-                   (if (+mu4e-msg-gmail-p msg)
-                       (progn (message "Unsupported delete operation for Gmail. Trashing instead.")
-                              (+mu4e--mark-seen docid msg target)
-                              (when (< 2.0 (- (float-time) +mu4e--last-invalid-gmail-action))
-                                (sit-for 1))
-                              (setq +mu4e--last-invalid-gmail-action (float-time)))
-                     (mu4e--server-remove docid))))
+         :action
+         (lambda (docid msg target)
+           (if (+mu4e-msg-gmail-p msg)
+               (progn
+                 (message "Unsupported delete operation for Gmail. Trashing instead.")
+                 (+mu4e--mark-seen docid msg target)
+                 (when (< 2.0 (- (float-time) +mu4e--last-invalid-gmail-action))
+                   (sit-for 1))
+                 (setq +mu4e--last-invalid-gmail-action (float-time)))
+             (mu4e--server-remove docid))))
         (alist-get 'trash mu4e-marks)
         (list
          :char '("d" . "▼")
          :prompt "dtrash"
          :dyn-target (lambda (_target msg) (mu4e-get-trash-folder msg))
-         :action (lambda (docid msg target)
-                   (if (+mu4e-msg-gmail-p msg)
-                       (+mu4e--mark-seen docid msg target)
-                     (mu4e--server-move docid (mu4e--mark-check-target target) "+T-N"))))
+         :action
+         (lambda (docid msg target)
+           (if (+mu4e-msg-gmail-p msg)
+               (+mu4e--mark-seen docid msg target)
+             (mu4e--server-move docid (mu4e--mark-check-target target) "+T-N"))))
         ;; Refile will be my "archive" function.
         (alist-get 'refile mu4e-marks)
         (list
          :char '("r" . "▼")
          :prompt "rrefile"
          :dyn-target (lambda (_target msg) (mu4e-get-refile-folder msg))
-         :action (lambda (docid msg target)
-                   (if (+mu4e-msg-gmail-p msg)
-                       (+mu4e--mark-seen docid msg target)
-                     (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
+         :action
+         (lambda (docid msg target)
+           (if (+mu4e-msg-gmail-p msg)
+               (+mu4e--mark-seen docid msg target)
+             (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
 
   ;; This hook correctly modifies gmail flags on emails when they are marked.
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
