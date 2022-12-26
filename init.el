@@ -88,13 +88,14 @@
 
    (+log! "Setting scratch buffer content.")
    ;; Print load time, and a quote to *scratch*
-   (with-current-buffer (get-buffer-create "*scratch*")
+   (with-current-buffer (get-scratch-buffer-create)
      (erase-buffer)
      (insert (format
               ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
               (string-to-number (car (string-split (emacs-init-time))))
               gcs-done (if (> gcs-done 1) "s" "")))
      (insert ";; ==============================\n")
+     ;; Insert some quote from fortune
      (when (executable-find "fortune")
        (insert (string-join
                 (mapcar (lambda (l) (concat ";; " l))
@@ -110,7 +111,7 @@
    ;; when Emacs is idle for 20 seconds.
    (+eval-when-idle-for! 20.0
      (setq initial-major-mode 'emacs-lisp-mode)
-     (with-current-buffer "*scratch*"
+     (with-current-buffer (get-scratch-buffer-create)
        (emacs-lisp-mode)))
 
    ;; Require the virtual package to triggre loading packages depending on it
