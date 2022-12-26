@@ -39,6 +39,22 @@
   ;; Setup Verilog/SystemVerilog LSP servers
   (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
 
+(use-package mips-mode
+  :straight t
+  :mode "\\.mips\\'")
+
+(use-package riscv-mode
+  :straight t
+  :mode "\\.riscv\\'")
+
+(use-package x86-lookup
+  :straight t
+  :defer t
+  :custom
+  (x86-lookup-browse-pdf-function 'x86-lookup-browse-pdf-pdf-tools)
+  ;; Get manual from https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+  (x86-lookup-pdf (concat minemacs-local-dir "x86-lookup/325383-sdm-vol-2abcd.pdf")))
+
 
 (provide 'me-embedded)
 
