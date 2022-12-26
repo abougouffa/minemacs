@@ -82,4 +82,13 @@
     "s" #'pkgbuild-update-srcinfo
     "e" #'pkgbuild-etags))
 
+(use-package journalctl-mode
+  :straight t
+  :defer t
+  :config
+  (+map-local :keymaps 'journalctl-mode-map
+    "J" #'journalctl-next-chunk
+    "K" #'journalctl-previous-chunk))
+
+
 (provide 'me-tools)
