@@ -7,7 +7,7 @@
 
 (use-package yasnippet
   :straight t
-  :hook (minemacs-after-startup . yas-global-mode)
+  :hook (minemacs-lazy . yas-global-mode)
   :init
   (defvar yas-verbosity 2)
   :custom
@@ -15,19 +15,24 @@
 
 (use-package cape-yasnippet
   :straight (:host github :repo "elken/cape-yasnippet")
-  :hook (yas-minor-mode . +cape-yasnippet--setup-h)
+  :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
+  :after cape yasnippet
   :defines +cape-yasnippet--setup-h
   :config
   ;; To avoid auto-expanding snippets
   (plist-put cape-yasnippet--properties :exit-function #'always)
   (defvar-local +capf--list nil)
   (defun +cape-yasnippet--setup-h ()
-    (unless (compiled-function-p completion-at-point-functions)
-      (setq-local
-       +capf--list (seq-filter #'functionp ;; to filter the potential `t' member
-                               (append
-                                '(cape-yasnippet) completion-at-point-functions))
-       completion-at-point-functions (apply #'cape-super-capf +capf--list)))))
+    (run-with-timer
+     5 nil ;; give some time to other hooks, useful when adding backends to `completion-at-point-functions'
+     (lambda ()
+       (when (and (bound-and-true-p yas-minor-mode)
+                  (not (compiled-function-p completion-at-point-functions)))
+         (setq-local
+          +capf--list (seq-filter #'functionp ;; to filter the potential `t' member
+                                  (append
+                                   '(cape-yasnippet) completion-at-point-functions))
+          completion-at-point-functions (apply #'cape-super-capf +capf--list)))))))
 
 (use-package yasnippet-snippets
   :straight t
