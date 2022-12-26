@@ -17,6 +17,11 @@
   (evil-vsplit-window-right t)
   (evil-kill-on-visual-paste nil)
   (evil-respect-visual-line-mode t)
+  (evil-normal-state-cursor 'box)
+  (evil-visual-state-cursor 'hollow)
+  (evil-insert-state-cursor '(bar . 2))
+  (evil-emacs-state-cursor '(hbar . 2))
+  (evil-ex-interactive-search-highlight 'selected-window)
   :config
   ;; 'evil-search may cause problems with org-fold
   ;; https://github.com/emacs-evil/evil/issues/1630
@@ -31,8 +36,8 @@
          (consult-buffer))))))
 
 (use-package evil-collection
-  :after evil minemacs-loaded
   :straight t
+  :after evil minemacs-loaded
   :config
   (defvar +evil-collection-modes
     (seq-filter
@@ -51,7 +56,6 @@
 
 (use-package evil-numbers
   :straight t
-  :after evil minemacs-loaded
   :general
   (+map-key
     :states '(normal)
