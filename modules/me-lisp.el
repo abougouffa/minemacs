@@ -42,7 +42,9 @@
 ;; Scheme
 (use-package geiser
   :straight t
-  :defer t)
+  :defer t
+  :custom
+  (geiser-default-implementation 'guile))
 
 (use-package geiser-chez
   :straight t
