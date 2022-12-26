@@ -113,9 +113,9 @@ Return a list of sub-directories in DIR.
 
 (fn DIR)")
 (autoload '+directory-ensure "../elisp/+io" "\
-Ensure DIR exists, if not create it, return DIR.
+Ensure PATH exists, if not create it, return PATH.
 
-(fn DIR)")
+(fn PATH)")
 (autoload '+delete-this-file "../elisp/+io" "\
 Delete PATH.
 
@@ -463,8 +463,8 @@ Unmount eCryptfs' private directory." t)
 
 ;;; Generated autoloads from ../modules/extras/me-realgud.el
 
- (autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
- (autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
+(autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
+(autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
 
 
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
