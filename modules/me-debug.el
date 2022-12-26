@@ -21,12 +21,13 @@
 (use-package realgud
   :straight t
   :defer t
+  :commands +realgud-hydra/body
   :general
   (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
                          sh-mode-map bash-ts-mode-map)
     "d" '(nil :wk "realgud")
     "dd" #'+realgud:start
-    "dh" #'+realgud-hydra)
+    "dh" #'+realgud-hydra/body)
   :config
   ;; Add some missing gdb/rr commands
   (defun +realgud:cmd-start (arg)

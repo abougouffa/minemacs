@@ -1,9 +1,12 @@
-;; -*- lexical-binding: t; -*-
+;;; me-lifestyle.el --- *Highly* opinionated lifestyle apps -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package awqat
   :straight (:host github :repo "zkry/awqat")
-  :hook (minemacs-after-startup . awqat-display-prayer-time-mode)
   :commands awqat-times-for-day
   :custom
   (awqat-mode-line-format " 🕌 ${prayer} (${hours}h${minutes}m) ")

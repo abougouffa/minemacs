@@ -108,8 +108,8 @@
    ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
    ;; to enhance startup time. However, I like to use the scratch buffer to
    ;; evaluate Elisp code, so we switch to Elisp mode in the scratch buffer
-   ;; when Emacs is idle for 20 seconds.
-   (+eval-when-idle-for! 20.0
+   ;; when Emacs is idle for 10 seconds.
+   (+eval-when-idle-for! 10.0
      (setq initial-major-mode 'emacs-lisp-mode)
      (with-current-buffer (get-scratch-buffer-create)
        (emacs-lisp-mode)))
@@ -172,9 +172,9 @@
   (with-eval-after-load 'minemacs-loaded
     ;; Delete outdated natively compiled files
     (when (featurep 'native-compile)
-      (+eval-when-idle-for! 2.0
+      (+eval-when-idle!
         (+info! "Trying to clean outdated native compile cache")
-        (+shutup! (native-compile-prune-cache))))
+        (+shutup! (native-compile-prune-cache))))))
 
     ;; Load GC module lastly
     (+eval-when-idle-for! 5.0

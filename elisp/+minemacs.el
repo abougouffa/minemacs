@@ -131,7 +131,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 
 ;; An internal variable to keep track of the tasks
 (defvar +eval-when-idle--task-num 0)
-(defvar +eval-when-idle-delay 10.0) ;; 10 seconds
+(defvar +eval-when-idle-delay 5.0) ;; 5 seconds
 
 ;;;###autoload
 (defun +eval-when-idle (delay &rest fns)

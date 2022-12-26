@@ -53,7 +53,7 @@
   :general
   (+map "ok" #'docker))
 
-(unless (< emacs-major-version 29)
+(unless (+emacs-features-p 'tree-sitter)
   ;; Emacs 29 comes with `dockerfile-ts-mode'
   (use-package dockerfile-mode
     :straight t
@@ -65,9 +65,7 @@
 
 (use-package systemd
   :straight t
-  :defer t
-  :preface
-  (fmakunbound 'systemd-company-backend))
+  :defer t)
 
 (use-package pkgbuild-mode
   :straight t

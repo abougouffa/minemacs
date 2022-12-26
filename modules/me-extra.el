@@ -1,4 +1,9 @@
-;; -*- lexical-binding: t; -*-
+;;; me-extra.el --- Some extra functionalities -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (use-package better-jumper
   :straight t

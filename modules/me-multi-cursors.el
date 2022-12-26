@@ -6,8 +6,8 @@
 
 (use-package iedit
   :straight t
-  :defer t
-  :init
+  :after minemacs-lazy
+  :preface
   (+fn-inhibit-messages! iedit-update-key-bindings))
 
 (use-package evil-mc

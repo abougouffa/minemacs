@@ -1,14 +1,8 @@
-;;; keybindings.el --- Description -*- lexical-binding: t; -*-
-;;
-;; Copyright (C) 2022 Abdelhak Bougouffa
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; Commentary:
-;;
-;;  Description
-;;
-;;; Code:
+;;; me-keybindings.el --- Default keybindings -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 ;; Which key

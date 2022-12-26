@@ -3,13 +3,13 @@
 ;; Copyright (C) 2022 Abdelhak Bougouffa
 
 (defcustom minemacs-core-modules
-  '(me-defaults    ;; Tweak Emacs defaults
-    me-splash      ;; Simple splash screen (inspired by emacs-splash)
-    me-bootstrap   ;; Bootstrap straight.el
-    me-core-ui     ;; Theme and modeline
-    me-keybindings ;; general.el, which-key, hydra, ...
-    me-evil        ;; evil, evil-collection, evil-mc, ...
-    me-completion) ;; vertico, marginalia, corfu, cape, consult, ...
+  '(me-defaults      ;; Tweak Emacs defaults
+    me-splash        ;; Simple splash screen (inspired by emacs-splash)
+    me-bootstrap     ;; Bootstrap straight.el
+    me-keybindings   ;; general.el, which-key, hydra, ...
+    me-evil          ;; evil, evil-collection, evil-mc, ...
+    me-core-ui       ;; Theme and modeline
+    me-completion)  ;; vertico, marginalia, corfu, cape, consult, ...
   "MinEmacs enabled core modules. The order matters!")
 
 (defcustom minemacs-modules

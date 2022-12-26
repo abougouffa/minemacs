@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-backports-29.el --- Some Emacs 29 functionalities ported back to Emacs 28 -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (require 'wid-edit) ;; Needed by `setopt--set'
 
@@ -101,5 +105,6 @@ plain variables.  This means that `setopt' will execute any
       (warn "Value `%S' does not match type %s" value type)))
   (put variable 'custom-check-value (list value))
   (funcall (or (get variable 'custom-set) #'set-default) variable value))
+
 
 (provide 'me-backports-29)

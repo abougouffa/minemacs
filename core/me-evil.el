@@ -1,4 +1,4 @@
-;; me-evil.el --- MinEmacs -*- lexical-binding: t; -*-
+;; me-evil.el --- Emacs as Vim! -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
