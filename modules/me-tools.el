@@ -63,4 +63,23 @@
   :straight t
   :commands esup)
 
+(use-package systemd
+  :straight t
+  :defer t
+  :preface
+  (fmakunbound 'systemd-company-backend))
+
+(use-package pkgbuild-mode
+  :straight t
+  :defer t
+  :config
+  (+map-local :keymaps 'pkgbuild-mode-map
+    "b" #'pkgbuild-makepkg
+    "a" #'pkgbuild-tar
+    "r" #'pkgbuild-increase-release-tag
+    "u" #'pkgbuild-browse-url
+    "m" #'pkgbuild-update-sums-line
+    "s" #'pkgbuild-update-srcinfo
+    "e" #'pkgbuild-etags))
+
 (provide 'me-tools)
