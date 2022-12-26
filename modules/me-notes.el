@@ -35,12 +35,12 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-strip-summary-regexp
-   (concat "\\("
-           "[\n\t]" ;; blank
-           "\\|^#\\+[[:alpha:]_]+:.*$" ;; org-mode metadata
-           "\\|^:PROPERTIES:\n\\(.+\n\\)+:END:\n" ;; org-roam ID
-           "\\|\\[\\[\\(.*\\]\\)" ;; any link
-           "\\)"))
+   (rx (group
+        (or (any ?\n ?\t) ;; blanks
+            (seq bol "#+" (one-or-more (any alpha ?_)) ":" (zero-or-more not-newline) eol) ;; org-mode metadata
+            (seq bol ":PROPERTIES:" ?\n (one-or-more (group (one-or-more not-newline) ?\n)) ":END:" ?\n) ;; org-roam ID
+            (seq bol ":properties:" ?\n (one-or-more (group (one-or-more not-newline) ?\n)) ":end:" ?\n) ;; org-roam ID
+            (seq "[[" (group (zero-or-more not-newline) "]")))))) ;; any link
   :config
   (defun +deft-parse-title (file contents)
     "Parse the given FILE and CONTENTS and determine the title.
