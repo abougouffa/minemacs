@@ -58,6 +58,10 @@
   (unless (featurep 'julia-mode)
     (add-to-list 'auto-mode-alist '("\\.jl\\'" . ess-julia-mode))))
 
+(use-package ess-view
+  :straight t
+  :defer t)
+
 (use-package ess-R-data-view
   :straight t
   :defer t)
