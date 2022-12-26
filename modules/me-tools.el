@@ -4,7 +4,9 @@
 (use-package rg
   :straight t
   :general
-  (+map "/" '(rg :wk "ripgrep")))
+  (+map :infix "s"
+    "R" '(rg :wk "ripgrep")
+    "r" #'rg-dwim))
 
 (use-package affe
   :straight t
