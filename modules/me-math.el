@@ -70,5 +70,33 @@
   :straight t
   :defer t)
 
+(use-package octave
+  :straight (:type built-in)
+  :mode ("\\.m\\'" . octave-mode)
+  :config
+  (defun +octave-eval-last-sexp ()
+    "Evaluate Octave sexp before point and print value into current buffer."
+    (interactive)
+    (inferior-octave t)
+    (let ((print-escape-newlines nil)
+          (opoint (point)))
+      (prin1
+       (save-excursion
+         (forward-sexp -1)
+         (inferior-octave-send-list-and-digest
+          (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
+         (mapconcat 'identity inferior-octave-output-list "\n")))))
+
+  (with-eval-after-load 'eros
+    (defun +eros-octave-eval-last-sexp ()
+      "Wrapper for `+octave-eval-last-sexp' that overlays results."
+      (interactive)
+      (eros--eval-overlay
+       (+octave-eval-last-sexp)
+       (point)))
+
+    (+map-local :keymaps 'octave-mode-map
+      "e"  '(nil :wk "eval")
+      "ee" #'+eros-octave-eval-last-sexp)))
 
 (provide 'me-math)
