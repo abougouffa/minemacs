@@ -22,7 +22,7 @@
 
 (defcustom minemacs-msg-level
   (let ((level (string-to-number (or (getenv "MINEMACS_MSG_LEVEL") ""))))
-    (cond (minemacs-verbose 3)
+    (cond (minemacs-verbose 4)
           ((> level 0) level)
           (t 1)))
   "Level of printed messages.
@@ -80,8 +80,7 @@ Compiled from the `system-configuration-features'.")
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs."
   :group 'minemacs
-  :type 'hook
-  :local 'permenant-local)
+  :type 'hook)
 
 (let ((mono-font (cond (os/linux "monospace")
                        (os/win "Lucida Console")
