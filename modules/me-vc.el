@@ -11,8 +11,13 @@
   :straight t
   :general
   (+map
-    "gg" '(magit-status :wk "Status")
-    "gC" '(magit-clone :wk "Clone repo"))
+    :infix "g"
+    "g" #'magit-status
+    "C" #'magit-clone
+    "b" #'magit-blame
+    "l" #'magit-log
+    "d" #'magit-diff-dwim
+    "d" #'magit-stage)
   :custom
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
@@ -37,8 +42,7 @@
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
-  (+map
-    "gs" '(diff-hl-stage-current-hunk :wk "Stage hunk at point"))
+  (+map "gs" #'diff-hl-stage-current-hunk)
   :custom
   (diff-hl-draw-borders nil)
   :config
