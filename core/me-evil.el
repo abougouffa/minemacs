@@ -39,14 +39,12 @@
   :straight t
   :after evil minemacs-loaded
   :config
-  (defvar +evil-collection-modes
-    (seq-filter
-     (lambda (mode)
-       (not (memq mode '(evil-mc ;; Default bindings for evil-mc are messy
-                         elisp-mode)))) ;; I don't like gz for ielm, I like gr though
-     evil-collection-mode-list))
-
-  (evil-collection-init +evil-collection-modes)
+  (evil-collection-init
+   (seq-filter
+    (lambda (mode)
+      (not (memq mode '(evil-mc ;; Default bindings for evil-mc are messy
+                        elisp-mode)))) ;; I don't like gz for ielm, I like gr though
+    evil-collection-mode-list))
 
   ;; Define find references for elisp mode
   (with-eval-after-load 'elisp-mode
