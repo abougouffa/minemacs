@@ -380,6 +380,9 @@ or file path may exist now."
   ;; Enable recentf-mode globally
   (+shutup! (recentf-mode 1))
 
+  ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
+  (minibuffer-depth-indicate-mode 1)
+
   ;; Save place in files
   (save-place-mode 1)
 
