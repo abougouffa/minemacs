@@ -173,6 +173,20 @@
 
     ;; ====== Help ======
     "h"   '(nil :wk "help")
+    "hi"  #'info
+    "he"  '(nil :wk "elisp/emacs")
+    "hes" #'elisp-index-search
+    "hem" #'info-emacs-manual
+    "hei" #'Info-search
+    "hd"  '(nil :wk "describe")
+    "hdk" #'describe-key
+    "hdm" #'describe-keymap
+    "hdb" #'describe-bindings
+    "hds" #'describe-symbol
+    "hdv" #'describe-variable
+    "hdc" #'describe-command
+    "hdf" #'describe-function
+    "hdp" #'describe-package
 
     ;; ====== Project ======
     "p"   '(nil :wk "project")))
