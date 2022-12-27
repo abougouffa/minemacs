@@ -40,10 +40,8 @@
 
 (use-package unicode-fonts
   :straight t
-  :after minemacs-loaded
+  :hook (minemacs-after-startup . unicode-fonts-setup)
   :config
-  (unicode-fonts-setup)
-
   (when (daemonp)
     (add-hook
      'server-after-make-frame-hook

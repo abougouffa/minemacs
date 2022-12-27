@@ -75,14 +75,14 @@
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
-  :commands gts-do-translate +gts-yank-translated-region +gts-translate-with
+  :commands +gts-yank-translated-region +gts-translate-with
   :custom
   ;; Your languages pairs
   (gts-translate-list '(("en" "fr")
                         ("en" "ar")
                         ("fr" "ar")
                         ("fr" "en")))
-  :init
+  :general
   (+map-local :keymaps '(org-mode-map text-mode-map markdown-mode-map
                          tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "R" '(+gts-yank-translated-region :wk "Yank translated region")
@@ -162,6 +162,7 @@
   (+map
     "sl" #'lexic-search-word-at-point
     "sL" #'lexic-search)
+  :config
   (+map-local :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic
     "RET" #'lexic-search-word-at-point

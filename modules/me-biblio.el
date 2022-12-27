@@ -52,7 +52,8 @@
 (use-package citar-org-roam
   :straight t
   :after citar org-roam
-  :init
+  :commands +org-roam-node-from-cite
+  :config
   ;; Modified form: https://jethrokuan.github.io/org-roam-guide/
   (defun +org-roam-node-from-cite (entry-key)
     (interactive (list (citar-select-ref)))
@@ -73,7 +74,6 @@
                          :info (list :citekey entry-key)
                          :node (org-roam-node-create :title title)
                          :props '(:finalize find-file))))
-  :config
   (citar-org-roam-mode))
 
 (use-package citar-embark

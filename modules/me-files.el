@@ -7,7 +7,7 @@
 
 (use-package dirvish
   :straight t
-  :defer t
+  :hook (minemacs-after-startup . dirvish-override-dired-mode)
   :custom
   (dirvish-attributes '(file-size vc-state git-msg all-the-icons))
   (dirvish-cache-dir (concat minemacs-cache-dir "dirvish/"))
@@ -29,7 +29,6 @@
   (require 'dirvish-yank)
   (require 'dirvish-icons)
   (require 'dirvish-emerge)
-  (dirvish-override-dired-mode))
 
 (use-package vlf-setup
   :straight vlf

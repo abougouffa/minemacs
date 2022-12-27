@@ -204,9 +204,9 @@
 
 (use-package org-present
   :straight t
-  :general
-  (+map "oP" #'org-present)
+  :after org
   :config
+  (+map "oP" #'org-present)
   (setq org-present-text-scale 2.5)
 
   (defvar-local +org-present--vcm-params

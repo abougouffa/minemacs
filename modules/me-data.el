@@ -8,7 +8,7 @@
 (use-package csv-mode
   :straight t
   :mode "\\.csv\\'"
-  :general
+  :config
   (+map-local :keymaps 'csv-mode-map
     "r" #'+csv-rainbow
     "a" #'csv-align-fields
@@ -17,7 +17,7 @@
     "S" #'csv-sort-numeric-fields
     "k" #'csv-kill-fields
     "t" #'csv-transpose)
-  :config
+
   ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
   (defun +csv-rainbow (&optional separator)
     "Colorize CSV columns."
@@ -46,7 +46,7 @@
 (use-package json-mode
   :straight t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
-  :general
+  :config
   (+map-local :keymaps 'json-mode-map
     "p" #'json-mode-show-path
     "t" #'json-toggle-boolean

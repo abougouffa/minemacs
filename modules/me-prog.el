@@ -46,6 +46,11 @@
     :infix "c"
     "S"  '(nil :wk "eglot session")
     "Ss" '(eglot :wk "Start"))
+  :custom
+  (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
+  (eglot-sync-connect 0) ;; async, do not block
+  (eglot-extend-to-xref t) ;; can be interesting!
+  :config
   (+map :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer
@@ -64,11 +69,7 @@
     "Sr" '(eglot-reconnect :wk "Reconnect")
     "SQ" '(eglot-shutdown-all :wk "Shutdown all")
     "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
-  :custom
-  (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
-  (eglot-sync-connect 0) ;; async, do not block
-  (eglot-extend-to-xref t) ;; can be interesting!
-  :config
+
   (+eglot-register
     '(c++-mode c++-ts-mode c-mode c-ts-mode)
     '("clangd"
@@ -117,7 +118,7 @@ the children of class at point."
 (use-package consult-eglot
   :straight t
   :after consult eglot
-  :general
+  :config
   (+map :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols")))
 
@@ -153,6 +154,7 @@ the children of class at point."
   :general
   (+map
     "tf"  #'flymake-mode)
+  :config
   (+map-local :keymaps 'flymake-mode-map
     "f"  '(nil :wk "flymake")
     "fn" #'flymake-goto-next-error
