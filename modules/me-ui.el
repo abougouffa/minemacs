@@ -6,17 +6,7 @@
 
 
 (when (< emacs-major-version 29)
-  (use-package emojify
-    :straight t
-    :after minemacs-loaded
-    :general
-    (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
-    :custom
-    (emojify-emoji-set "emojione-v2.2.6")
-    (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
-    (emojify-display-style 'image)
-    :config
-    (global-emojify-mode 1)))
+  (load (concat minemacs-modules-dir "obsolete/me-emojify.el") nil (not minemacs-verbose)))
 
 (use-package svg-lib
   :straight t
