@@ -475,6 +475,8 @@ This will overrite the built-in \"gdb-mi\" for this session." t)
 
 (autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
 (autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
+(autoload '+realgud-hydra/body "../modules/extras/me-realgud" "Hydra keys for RealGUD." t)
+(register-definition-prefixes "../modules/extras/me-realgud" '("+realgud:cmd-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-spell-fu.el
