@@ -16,6 +16,9 @@
 
 ;; Adapted from Doom Emacs
 
+(require 'eglot)
+(require 'flycheck)
+
 (defvar-local +flycheck-eglot--current-errors nil)
 
 (defun +flycheck-eglot--init (_checker callback)
@@ -61,20 +64,23 @@ on all the errors."
 
 (push 'eglot flycheck-checkers)
 
-(add-hook
- 'eglot-managed-mode-hook
- (defun +eglot-prefer-flycheck-h ()
-   "Prefer Flycheck over Flymake to use with Eglot."
-   (when eglot--managed-mode
-     (flymake-mode -1)
-     (when-let ((current-checker (flycheck-get-checker-for-buffer)))
-       (unless (equal current-checker 'eglot)
-         (flycheck-add-next-checker 'eglot current-checker)))
-     (flycheck-add-mode 'eglot major-mode)
-     (flycheck-mode 1)
-     ;; Call flycheck on initilization to make sure to display initial
-     ;; errors
-     (flycheck-buffer-deferred))))
+;;;###autoload
+(defun +eglot-setup-flycheck ()
+  "Prefer Flycheck over Flymake to use with Eglot."
+  (interactive)
+  (when eglot--managed-mode
+    (flymake-mode -1)
+    (when-let ((current-checker (flycheck-get-checker-for-buffer)))
+      (unless (equal current-checker 'eglot)
+        (flycheck-add-next-checker 'eglot current-checker)
+        (flycheck-add-mode 'eglot major-mode)))
+    (unless (bound-and-true-p +flycheck-disabled-explicitly)
+      (flycheck-mode 1)
+      ;; Call flycheck on initilization to make sure to display initial
+      ;; errors
+      (flycheck-buffer-deferred))))
+
+(add-hook 'eglot-managed-mode-hook #'+eglot-setup-flycheck)
 
 (with-eval-after-load 'flymake
   (when (and (not (fboundp 'flymake--diag-buffer))
