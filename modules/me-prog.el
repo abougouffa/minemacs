@@ -128,7 +128,8 @@ the children of class at point."
 
 (use-package eldoc-box
   :straight t
-  :hook (prog-mode . eldoc-box-hover-at-point-mode))
+  :hook (prog-mode . eldoc-box-hover-at-point-mode)
+  :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
 ;;; Formatting
 (use-package apheleia
