@@ -29,5 +29,9 @@
   :straight t
   :defer t)
 
+(use-package asm-blox
+  :straight t
+  :defer t)
+
 
 (provide 'me-fun)
