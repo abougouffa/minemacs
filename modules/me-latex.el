@@ -49,8 +49,8 @@
   (bibtex-align-at-equal-sign t)
   (bibtex-text-indentation 20)
   :config
-  (+map-local
-    "f" #'bibtex-fill-entry
+  (+map-local :keymaps 'bibtex-mode-map
+    "l" #'bibtex-fill-entry
     "r" #'bibtex-reformat))
 
 ;; Adapted from Doom Emacs
