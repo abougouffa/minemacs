@@ -10,8 +10,8 @@
     (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
            emacs-version min-version)))
 
-;; Load vars if they have not been loaded (if Emacs has been loaded
-;; directly from "init.el" without passing by "early-init.el")
+;; Load vars if they have not been loaded (if Emacs has been loaded directly
+;; from "init.el" without passing by "early-init.el")
 (unless (featurep 'me-vars)
   ;; Load MinEmacs variables first
   (load (concat user-emacs-directory "core/me-vars.el") nil t))
@@ -121,7 +121,8 @@
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
 ;; When running in an async Org export context, the used modules are set in
-;; modules/extras/me-org-export-async-init.el
+;; modules/extras/me-org-export-async-init.el, so we must not overrite them with
+;; the user's enabled modules.
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
            (require 'minemacs-loaded)
@@ -180,7 +181,6 @@
       (+eval-when-idle!
         (+info! "Trying to clean outdated native compile cache")
         (+shutup! (native-compile-prune-cache))))))
-
 
 ;; Load for the first time
 (minemacs-load)
