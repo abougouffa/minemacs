@@ -21,18 +21,9 @@
   :config
   ;; To avoid auto-expanding snippets
   (plist-put cape-yasnippet--properties :exit-function #'always)
-  (defvar-local +capf--list nil)
   (defun +cape-yasnippet--setup-h ()
-    (run-with-timer
-     5 nil ;; give some time to other hooks, useful when adding backends to `completion-at-point-functions'
-     (lambda ()
-       (when (and (bound-and-true-p yas-minor-mode)
-                  (not (compiled-function-p completion-at-point-functions)))
-         (setq-local
-          +capf--list (seq-filter #'functionp ;; to filter the potential `t' member
-                                  (append
-                                   '(cape-yasnippet) completion-at-point-functions))
-          completion-at-point-functions (apply #'cape-super-capf +capf--list)))))))
+    (when (and (bound-and-true-p yas-minor-mode))
+      (add-to-list 'completion-at-point-functions #'cape-yasnippet t))))
 
 (use-package yasnippet-snippets
   :straight t
