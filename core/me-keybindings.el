@@ -65,7 +65,6 @@
     "SPC" '(execute-extended-command :wk "M-x")
     ";"   '(pp-eval-expression :wk "Eval expression")
     "X"   #'org-capture
-    "."   #'find-file
     "u"   '(universal-argument :wk "C-u")
 
     ;; ====== Quit/Session ======
@@ -96,9 +95,8 @@
     "bu"  #'+sudo-save-buffer
     "bS"  #'save-some-buffers
     "bs"  #'scratch-buffer
+    "bM"  #'view-echo-area-messages
     "bA"  #'kill-some-buffers
-    "bm"  #'bookmark-set
-    "bM"  #'bookmark-delete
     "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
             :wk "Kill this buffer")
     "bK"  `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
@@ -106,6 +104,10 @@
     "bN"  '(evil-buffer-new :wk "New buffer")
     "br"  '(revert-buffer :wk "Revert")
     "bR"  '(rename-buffer :wk "Rename")
+    ;; Bookmarks
+    "bm"  '(nil :wk "bookmark")
+    "bmm"  #'bookmark-set
+    "bmd"  #'bookmark-delete
     ;; Files / Local variables
     "bv"  '(nil :wk "locals")
     "bvv" '(add-file-local-variable :wk "Add")
