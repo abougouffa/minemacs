@@ -5,7 +5,7 @@
 
 
 (when minemacs-lazy-hook
-  (let minemacs-lazy-hook (reverse minemacs-lazy-hook))
+  (setq minemacs-lazy-hook (reverse minemacs-lazy-hook))
   (if minemacs-not-lazy
       (progn ;; If minemacs-no-lazy is bound and true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately (minemacs-not-lazy have non-nil value)."
