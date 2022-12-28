@@ -120,7 +120,11 @@ the children of class at point."
   :after consult eglot
   :config
   (+map :keymaps 'eglot-mode-map
-    "cs" '(consult-eglot-symbols :wk "Symbols")))
+    "cs" '(consult-eglot-symbols :wk "Symbols"))
+
+  ;; Provide `consult-lsp' functionality from `consult-eglot', useful
+  ;; for packages which relay on `consult-lsp' (like `dirvish-subtree').
+  (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols))
 
 (use-package eldoc-box
   :straight t
