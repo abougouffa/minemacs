@@ -301,6 +301,15 @@ the children of class at point."
   :straight (:host github :repo "zeph1e/franca-idl.el")
   :defer t)
 
+(use-package bnf-mode
+  :straight t
+  :defer t)
+
+(use-package ebnf-mode
+  :straight (:host github :repo "jeramey/ebnf-mode")
+  :hook (bnf-mode . display-line-numbers-mode)
+  :mode "\\.ebnf\\'")
+
 
 (provide 'me-prog)
 
