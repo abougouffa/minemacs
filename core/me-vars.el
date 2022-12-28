@@ -20,6 +20,10 @@
   (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug)))
   "MinEmacs is started in verbose mode.")
 
+(defconst minemacs-not-lazy
+  (not (null (getenv "MINEMACS_NOT_LAZY")))
+  "Load lazy packages (minemacs-lazy-hook) immediately.")
+
 (defcustom minemacs-msg-level
   (let ((level (string-to-number (or (getenv "MINEMACS_MSG_LEVEL") ""))))
     (cond (minemacs-verbose 4)
