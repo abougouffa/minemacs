@@ -40,7 +40,6 @@
   :hook (dired-mode   . diff-hl-dired-mode)
   :hook (vc-dir-mode  . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
-  :hook (diff-hl-mode . diff-hl-show-hunk-mouse-mode)
   :general
   (+map "gs" #'diff-hl-stage-current-hunk)
   :custom
