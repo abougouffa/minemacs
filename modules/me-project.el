@@ -59,15 +59,13 @@
   (+map
     ":"  '(consult-projectile-find-file :wk "Find file in project")
     ;; Buffer
-    "bp" #'consult-projectile-switch-to-buffer)
-  (+map
-    :infix "p"
+    "bp" #'consult-projectile-switch-to-buffer
     ;; Project
-    "p" #'consult-projectile
-    "P" '(consult-projectile-switch-project :wk "Switch")
-    "r" #'consult-projectile-recentf
-    "d" '(consult-projectile-find-dir :wk "Find directory")
-    "f" '(consult-projectile-find-file :wk "Find file")))
+    "pp" #'consult-projectile
+    "pP" '(consult-projectile-switch-project :wk "Switch")
+    "pr" #'consult-projectile-recentf
+    "pd" '(consult-projectile-find-dir :wk "Find directory")
+    "pf" '(consult-projectile-find-file :wk "Find file")))
 
 
 (provide 'me-project)
