@@ -6,7 +6,9 @@
 
 
 (use-package oc
+  :straight (:type built-in)
   :after org
+  :defer 5
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
@@ -15,17 +17,24 @@
     "C" #'org-cite-insert))
 
 (use-package oc-csl
-  :after oc)
+  :straight (:type built-in)
+  :after oc
+  :defer 5)
 
 (use-package oc-natbib
-  :after oc)
+  :straight (:type built-in)
+  :after oc
+  :defer 5)
 
 (use-package oc-biblatex
-  :after oc)
+  :straight (:type built-in)
+  :after oc
+  :defer 5)
 
 (use-package citar
   :straight t
   :after oc
+  :defer 5
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)

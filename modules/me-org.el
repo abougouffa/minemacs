@@ -7,7 +7,7 @@
 
 (use-package org
   :straight (:type built-in)
-  :after minemacs-loaded ;; load Org after finishing Emacs startup
+  :defer t
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
@@ -107,10 +107,6 @@
           org-plantuml-exec-mode plantuml-default-exec-mode
           org-plantuml-executable-path plantuml-executable-path)))
 
-(use-package org-contrib
-  :straight (:host sourcehut :repo "bzg/org-contrib")
-  :after org)
-
 (use-package me-org-extras
   :after org
   :config
@@ -122,9 +118,15 @@
   (+org-extras-multifiles-document-setup)
   (+org-extras-lower-case-keywords-and-properties-setup))
 
+(use-package org-contrib
+  :straight (:host sourcehut :repo "bzg/org-contrib")
+  :after org
+  :defer 5)
+
 ;; Org export
 (use-package ox-latex
   :after org
+  :defer 5
   :custom
   (org-latex-prefer-user-labels t)
   ;; Default `minted` options, can be overwritten in file/dir locals
@@ -158,10 +160,12 @@
 
 (use-package ox-hugo
   :straight t
+  :defer 5
   :after org)
 
 (use-package ox-extra
   :after org
+  :defer 5
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
@@ -205,6 +209,7 @@
 (use-package org-present
   :straight t
   :after org
+  :defer 5
   :config
   (+map "oP" #'org-present)
   (setq org-present-text-scale 2.5)
