@@ -44,6 +44,13 @@
   :straight t
   :general
   (+map "ot" #'vterm)
+  :init
+  ;; Hide vterm install window
+  (add-to-list
+   'display-buffer-alist
+   `(" *Install vterm*"
+     (display-buffer-no-window)
+     (allow-no-window . t)))
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000))
