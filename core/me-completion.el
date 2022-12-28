@@ -54,9 +54,8 @@
   (define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle))
 
 (use-package corfu-history
-  :after corfu
+  :hook (corfu-mode . corfu-history-mode)
   :config
-  (corfu-history-mode +1)
   (unless (bound-and-true-p savehist-mode)
     (savehist-mode +1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
@@ -75,11 +74,11 @@
 
 (use-package embark
   :straight t
-  :after minemacs-loaded
-  :config
-  (setq prefix-help-command #'embark-prefix-help-command)
+  :init
   (global-set-key [remap describe-bindings] #'embark-bindings)
-  (global-set-key (kbd "C-.") 'embark-act))
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :general
+  (+map "." #'embark-act))
 
 (use-package embark-consult
   :straight t
@@ -87,9 +86,7 @@
 
 (use-package all-the-icons-completion
   :straight t
-  :after marginalia
-  :config
-  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
 
 (use-package marginalia
   :straight t
@@ -126,8 +123,6 @@
    `(display-buffer-at-bottom
      (window-height . ,(+ 3 vertico-count))))
   :config
-  (require 'vertico-directory)
-
   (define-key vertico-map "\r" #'vertico-directory-enter)
   (define-key vertico-map "\d" #'vertico-directory-delete-char)
   (define-key vertico-map "\M-\d" #'vertico-directory-delete-word)
@@ -137,24 +132,34 @@
     (define-key vertico-map (kbd "M-h") #'vertico-directory-up)))
 
 (use-package vertico-repeat
-  :after vertico
-  :config
-  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
+  :hook (minibuffer-setup . vertico-repeat-save))
 
 (use-package consult
   :straight t
+  :init
+  (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
+  (global-set-key (kbd "C-s") 'consult-line)
+  :hook (embark-collect-mode . consult-preview-at-point-mode)
   :general
   (+map
-    "bl" #'consult-line
-    "ss" #'consult-ripgrep
-    "sc" #'consult-find
-    "iy" '(consult-yank-pop :wk "From clipboard")
-    "bb" '(consult-buffer :wk "Switch to buffer")
-    "fr" '(consult-recent-file :wk "Recent files"))
+    ;; Buffers
+    "bl"  #'consult-line
+    "bb"  #'consult-buffer
+    "bmM" #'consult-bookmark
+    ;; Files
+    "fr"  #'consult-recent-file
+    ;; Search
+    "ss"  #'consult-ripgrep
+    "sM"  #'consult-man
+    "st"  #'consult-locate
+    ;; Code
+    "cx"  #'consult-xref
+    "cm"  #'consult-flymake
+    ;; Insert
+    "iy"  #'consult-yank-pop
+    ;; Help
+    "hu"  #'consult-theme)
   :config
-  (global-set-key (kbd "C-s") 'consult-line)
-  (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
-  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
   (setq-default completion-in-region-function #'consult-completion-in-region))
 
 
