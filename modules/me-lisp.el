@@ -89,13 +89,19 @@
     "ed"  'eval-defun
     "ee"  'eval-last-sexp
     "er"  'eval-region
+    "eR"  'elisp-eval-region-or-buffer
     "el"  'load-library
     "g"   '(nil :wk "goto/find")
     "gf"  'find-function-at-point
     "gR"  'find-function
     "gv"  'find-variable-at-point
     "gV"  'find-variable
-    "gL"  'find-library)
+    "gL"  'find-library
+    "c"   '(nil :wk "compile")
+    "cc"  #'elisp-byte-compile-buffer
+    "cf"  #'elisp-byte-compile-file
+    "cn"  #'emacs-lisp-native-compile-and-load
+    "cb"  #'emacs-lisp-byte-compile-and-load)
 
   (+map-local :keymaps '(edebug-mode-map)
     "e"   '(nil :wk "eval")
@@ -114,7 +120,12 @@
   :after elisp-mode minemacs-loaded
   :init
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
-  (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
+  (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update)
+  :general
+  (+map
+    :infix "he"
+    "d" #'elisp-demos-find-demo
+    "D" #'elisp-demos-add-demo))
 
 (use-package helpful
   :straight t
