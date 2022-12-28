@@ -1,4 +1,4 @@
-;;; me-prog.el --- Programming stuff -*- lexical-binding: t; -*-
+;;; me-checkers.el --- Syntax checking -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
