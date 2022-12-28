@@ -103,4 +103,24 @@
   (unless os/win
     (setq tramp-default-method "ssh")))
 
+(use-package bitwarden
+  :straight (:host github :repo "seanfarley/emacs-bitwarden")
+  :defer t
+  :preface
+  (defconst BITWARDEN-P (executable-find "bw"))
+  :when BITWARDEN-P
+  :custom
+  (bitwarden-automatic-unlock
+   (lambda ()
+     (require 'auth-source)
+     (if-let* ((matches (auth-source-search :host "bitwarden.com" :max 1))
+               (entry (nth 0 matches))
+               (email (plist-get entry :user))
+               (pass (plist-get entry :secret)))
+         (progn
+           (setq bitwarden-user email)
+           (if (functionp pass) (funcall pass) pass))
+       ""))))
+
+
 (provide 'me-tools)
