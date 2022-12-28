@@ -57,8 +57,14 @@
     "S" #'message-dont-send)
 
   ;; No need to display a long list of my own addresses!
-  (setq mu4e-main-hide-personal-addresses t
-        mu4e--update-buffer-height 2)) ;; Smaller height for update window
+  (setq mu4e-main-hide-personal-addresses t)
+
+  ;; Force running update and index in background
+  (advice-add
+   'mu4e-update-mail-and-index :around
+   (defun +mu4e--do-in-background-a (origfn run-in-background)
+     (+info! "Getting new emails")
+     (apply origfn '(t)))))
 
 (use-package me-mu4e-ui
   :after mu4e
