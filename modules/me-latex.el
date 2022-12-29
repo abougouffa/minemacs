@@ -58,8 +58,7 @@
 (use-package reftex
   :straight (:type built-in)
   :hook (LaTeX-mode . turn-on-reftex)
-  :hook (reftex-toc-mode . +reftex--toc-tweaks-h)
-  :defines +reftex--toc-tweaks-h
+  :hook (reftex-toc-mode . reftex-toc-rescan)
   :general
   (+map-local :keymaps 'reftex-mode-map
     ";" 'reftex-toc)
@@ -88,9 +87,7 @@
         ;; https://superuser.com/a/1386206
         LaTeX-reftex-cite-format-auto-activate nil)
   (with-eval-after-load 'evil
-    (add-hook 'reftex-mode-hook #'evil-normalize-keymaps))
-  (defun +reftex--toc-tweaks-h ()
-    (reftex-toc-rescan)
+    (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
 
 
 (provide 'me-latex)
