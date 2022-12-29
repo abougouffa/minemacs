@@ -115,6 +115,26 @@ Adapted from `org-plist-delete'."
       (setq plist (cddr plist)))
     p))
 
+;;;###autoload
+(defun +plist-to-alist (plist &optional trim-col)
+  (let ((res '()))
+    (while plist
+      (let* ((key (pop plist))
+             (val (pop plist))
+             (key (if (and trim-col (string-prefix-p ":" (symbol-name key)))
+                      (intern (substring (symbol-name key) 1))
+                    key)))
+        (push (cons key val) res)))
+    (nreverse res)))
+
+;;;###autoload
+(defun +alist-to-plist (alist &optional add-col)
+  (let ((res '()))
+    (dolist (x alist)
+      (push (if add-col (intern (format ":%s" (car x))) (car x)) res)
+      (push (cdr x) res))
+    (nreverse res)))
+
 ;;; === Symbols ===
 
 ;;;###autoload

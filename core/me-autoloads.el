@@ -331,6 +331,14 @@ Delete property PROP from PLIST.
 Adapted from `org-plist-delete'.
 
 (fn PLIST PROP)")
+(autoload '+plist-to-alist "../elisp/+primitives" "\
+
+
+(fn PLIST &optional TRIM-COL)")
+(autoload '+alist-to-plist "../elisp/+primitives" "\
+
+
+(fn ALIST &optional ADD-COL)")
 (autoload '+serialize-sym "../elisp/+primitives" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
