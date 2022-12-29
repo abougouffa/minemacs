@@ -138,6 +138,7 @@
   :straight t
   :init
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
+  (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
   (global-set-key (kbd "C-s") 'consult-line)
   :hook (embark-collect-mode . consult-preview-at-point-mode)
   :general
