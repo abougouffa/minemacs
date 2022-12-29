@@ -92,4 +92,16 @@
    (STUNNEL-P
     (setq crdt-use-stunnel t))))
 
+(use-package edraw
+  :straight (:host github :repo "misohena/el-easydraw")
+  :defer t
+  :preface
+  (defconst EASYDRAW-P (+emacs-features-p 'rsvg 'zlib 'libxml2))
+  :when EASYDRAW-P)
+
+(use-package edraw-org
+  :hook (org-mode . edraw-org-setup-default)
+  :when EASYDRAW-P)
+
+
 (provide 'me-docs)
