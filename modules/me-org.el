@@ -46,6 +46,9 @@
   (org-pretty-entities t)
   (org-pretty-entities-include-sub-superscripts t)
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
+  (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
+  (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
+  (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   :config
   ;; Tectonic can be interesting, however, it don't work right now
   ;; with some of my documents (natbib + sagej...)
