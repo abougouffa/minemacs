@@ -22,6 +22,12 @@
   :hook (mu4e-headers-mode . (lambda () (visual-line-mode -1)))
   :general
   (+map "om" #'mu4e)
+  (+map-key :keymaps 'mu4e-view-mode-map
+    "p" #'mu4e-view-save-attachments)
+  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+    "s" #'message-send-and-exit
+    "d" #'message-kill-buffer
+    "S" #'message-dont-send)
   :custom
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
@@ -49,13 +55,6 @@
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
   :config
-  (+map-key :keymaps 'mu4e-view-mode-map
-    "p" #'mu4e-view-save-attachments)
-  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
-    "s" #'message-send-and-exit
-    "d" #'message-kill-buffer
-    "S" #'message-dont-send)
-
   ;; No need to display a long list of my own addresses!
   (setq mu4e-main-hide-personal-addresses t)
 
@@ -84,6 +83,15 @@
 (use-package org-msg
   :straight t
   :after mu4e
+  :general
+  (+map-key :keymaps 'org-msg-edit-mode-map
+    "TAB" #'org-msg-tab
+    "gg"  #'org-msg-goto-body)
+  (+map-local :keymaps 'org-msg-edit-mode-map
+    "a"  '(nil :wk "attach")
+    "aa" #'org-msg-attach-attach
+    "ad" #'org-msg-attach-delete
+    "p"  #'org-msg-preview)
   :custom
   (org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng")
   (org-msg-startup "hidestars indent inlineimages")
@@ -100,15 +108,6 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
-  (+map-key :keymaps 'org-msg-edit-mode-map
-    "TAB" #'org-msg-tab
-    "gg"  #'org-msg-goto-body)
-  (+map-local :keymaps 'org-msg-edit-mode-map
-    "a"  '(nil :wk "attach")
-    "aa" #'org-msg-attach-attach
-    "ad" #'org-msg-attach-delete
-    "p"  #'org-msg-preview)
-
   ;; Setup Org-msg for mu4e
   (org-msg-mode-mu4e)
   (org-msg-mode 1))

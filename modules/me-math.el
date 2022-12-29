@@ -45,7 +45,6 @@
     "jl" #'ein:login
     "jf" #'ein:file-open
     "jn" #'ein:notebook-open)
-  :config
   (+map-local :keymaps 'ein:ipynb-mode-map
     "o" #'ein:process-find-file-callback
     "O" #'ein:process-open-notebook

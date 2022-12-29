@@ -18,12 +18,12 @@
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . nov-mode)
+  :general
+  (+map-key :keymaps 'nov-mode-map :states 'normal
+    "RET" #'nov-scroll-up)
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config
-  (+map-key :keymaps 'nov-mode-map :states 'normal
-    "RET" #'nov-scroll-up)
-
   (defun doom-modeline-segment--nov-info ()
     (concat " " (propertize (cdr (assoc 'creator nov-metadata))
                             'face 'doom-modeline-project-parent-dir)

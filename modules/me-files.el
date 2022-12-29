@@ -24,7 +24,6 @@
     "oq" '(dirvish-quick-access :wk "Dirvish quick access")
     ;; Search
     "sd" '(dirvish-fd :wk "Dirvish fd"))
-  :config
   (+map-key :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle

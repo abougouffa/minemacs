@@ -162,7 +162,6 @@
   (+map
     "sl" #'lexic-search-word-at-point
     "sL" #'lexic-search)
-  :config
   (+map-local :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic
     "RET" #'lexic-search-word-at-point

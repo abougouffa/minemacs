@@ -8,10 +8,11 @@
 (use-package scad-mode
   :straight t
   :defer t
-  :config
-  (+eglot-register 'scad-mode '("openscad-lsp" "--stdio"))
+  :general
   (+map-local :keymaps 'scad-mode-map
     "p" #'scad-preview)
+  :config
+  (+eglot-register 'scad-mode '("openscad-lsp" "--stdio"))
 
   (with-eval-after-load 'all-the-icons
     (add-to-list

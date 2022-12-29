@@ -77,7 +77,7 @@
 (use-package pkgbuild-mode
   :straight t
   :defer t
-  :config
+  :general
   (+map-local :keymaps 'pkgbuild-mode-map
     "b" #'pkgbuild-makepkg
     "a" #'pkgbuild-tar
@@ -90,7 +90,7 @@
 (use-package journalctl-mode
   :straight t
   :defer t
-  :config
+  :general
   (+map-local :keymaps 'journalctl-mode-map
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))

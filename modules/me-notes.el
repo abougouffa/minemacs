@@ -9,11 +9,11 @@
   :straight t
   :after org minemacs-loaded
   :general
-  (+map
-    "nf" '(org-roam-node-find :wk "Org-Roam find node")
-    "nr" '(org-roam-ref-find :wk "Org-Roam find ref")
-    "ni" '(org-roam-ref-find :wk "Org-Roam insert node")
-    "nR" '(org-roam-node-random :wk "Org-Roam random node")))
+  (+map :infix "n"
+    "f" #'org-roam-node-find
+    "r" #'org-roam-ref-find
+    "i" #'org-roam-node-insert
+    "R" #'org-roam-node-random))
 
 (use-package org-roam-ui
   :straight t

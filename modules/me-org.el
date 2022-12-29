@@ -11,6 +11,20 @@
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
+  :general
+  (+map-local :keymaps 'org-mode-map
+    "l"  '(nil :wk "link")
+    "ll" #'org-insert-link
+    "e"  #'org-export-dispatch
+    "s"  #'org-edit-src-code)
+  (+map-local :keymaps 'org-src-mode-map
+    "s" #'org-edit-src-save
+    "q" #'org-edit-src-abort
+    "e" #'org-edit-src-exit)
+  (+map-key
+    :keymaps 'org-mode-map
+    :states 'normal
+    "RET" #'org-open-at-point)
   :custom
   (org-tags-column 0)
   (org-auto-align-tags nil)
@@ -33,20 +47,6 @@
   (org-pretty-entities-include-sub-superscripts t)
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
-  (+map-local :keymaps 'org-mode-map
-    "l"  '(nil :wk "link")
-    "ll" #'org-insert-link
-    "e"  #'org-export-dispatch
-    "s"  #'org-edit-src-code)
-  (+map-local :keymaps 'org-src-mode-map
-    "s" #'org-edit-src-save
-    "q" #'org-edit-src-abort
-    "e" #'org-edit-src-exit)
-  (+map-key
-    :keymaps 'org-mode-map
-    :states 'normal
-    "RET" #'org-open-at-point)
-
   ;; Tectonic can be interesting, however, it don't work right now
   ;; with some of my documents (natbib + sagej...)
   (when (and (executable-find "tectonic") nil)
@@ -204,8 +204,9 @@
 
 (use-package org-present
   :straight t
+  :general
+  (+map "oP" :keymaps 'org-mode-map #'org-present)
   :config
-  (+map "oP" #'org-present)
   (setq org-present-text-scale 2.5)
 
   (defvar-local +org-present--vcm-params

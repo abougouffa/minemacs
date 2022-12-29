@@ -71,7 +71,7 @@
   :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
-  :config
+  :general
   (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")
     "df"  'edebug-defun
@@ -102,7 +102,6 @@
     "cf"  #'elisp-byte-compile-file
     "cn"  #'emacs-lisp-native-compile-and-load
     "cb"  #'emacs-lisp-byte-compile-and-load)
-
   (+map-local :keymaps '(edebug-mode-map)
     "e"   '(nil :wk "eval")
     "ee"  'edebug-eval-last-sexp
