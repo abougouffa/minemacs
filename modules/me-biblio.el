@@ -8,33 +8,28 @@
 (use-package oc
   :straight (:type built-in)
   :after org
-  :defer 5
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
-  :config
+  :general
   (+map-local :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
 (use-package oc-csl
   :straight (:type built-in)
-  :after oc
-  :defer 5)
+  :after oc)
 
 (use-package oc-natbib
   :straight (:type built-in)
-  :after oc
-  :defer 5)
+  :after oc)
 
 (use-package oc-biblatex
   :straight (:type built-in)
-  :after oc
-  :defer 5)
+  :after oc)
 
 (use-package citar
   :straight t
   :after oc
-  :defer 5
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)

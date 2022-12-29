@@ -120,13 +120,11 @@
 
 (use-package org-contrib
   :straight (:host sourcehut :repo "bzg/org-contrib")
-  :after org
-  :defer 5)
+  :after org)
 
 ;; Org export
 (use-package ox-latex
   :after org
-  :defer 5
   :custom
   (org-latex-prefer-user-labels t)
   ;; Default `minted` options, can be overwritten in file/dir locals
@@ -160,12 +158,10 @@
 
 (use-package ox-hugo
   :straight t
-  :defer 5
   :after org)
 
 (use-package ox-extra
   :after org
-  :defer 5
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
@@ -208,8 +204,6 @@
 
 (use-package org-present
   :straight t
-  :after org
-  :defer 5
   :config
   (+map "oP" #'org-present)
   (setq org-present-text-scale 2.5)
