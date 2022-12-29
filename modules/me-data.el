@@ -65,8 +65,15 @@
 (use-package graphviz-dot-mode
   :straight (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
   :defer t
+  :general
+  (+map-local :keymaps 'graphviz-dot-mode-map
+    "p" #'graphviz-dot-preview
+    "P" #'graphviz-dot-view
+    "l" #'graphviz-turn-on-live-preview
+    "L" #'graphviz-turn-off-live-preview)
   :custom
   (graphviz-dot-view-command "xdot %s")
+  (graphviz-dot-preview-extension "svg")
   :config
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
