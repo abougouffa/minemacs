@@ -203,7 +203,6 @@
       "eln-cache"
       "/cache/"
       ".maildir/"
-      "emacs.d/local/"
       ".cache/")
      (* any)
      (? (or "html" "pdf" "tex" "epub")))
