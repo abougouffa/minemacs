@@ -12,7 +12,21 @@
   (+fn-inhibit-messages! treesit-langs-install-grammars)
   :init
   (defun +treesit-hl-enable-maybe ()
-    (ignore-errors (treesit-hl-enable))))
+    (unless (cl-some #'derived-mode-p '(emacs-lisp-mode))
+      ;; For elisp, Emacs do a better job.
+      (ignore-errors (treesit-hl-enable))))
+  :config
+  ;; Add missing languages to the list
+  (add-to-list 'treesit-major-mode-language-alist '(graphviz-dot-mode . dot))
+  (advice-add
+   'treesit-langs--hl-query-path :around
+   (defun +treesit-langs--fallback-to-repos-a (old-fn lang-symbol &optional mode)
+     (let ((path (apply old-fn (list lang-symbol mode))))
+       (if (not (file-exists-p path))
+           (concat (treesit-langs--repos-dir)
+                   (format "%s/queries/" lang-symbol)
+                   (file-name-nondirectory path))
+         path)))))
 
 (unless (+emacs-features-p 'tree-sitter)
   (load (concat minemacs-modules-dir "obsolete/me-tree-sitter.el")
