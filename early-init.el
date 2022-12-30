@@ -15,7 +15,7 @@
         (vertical-scroll-bars)
         (mouse-color . "blue")
         (left-fringe . 8)
-        (right-fringe . 8)))
+        (right-fringe . 13)))
 
 ;; You can set the MINEMACS_ALPHA environment variable to an alpha percentage
 (when (>= emacs-major-version 29)
