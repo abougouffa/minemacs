@@ -64,5 +64,9 @@
        #b00000011110]
       nil 13)))
 
+(use-package flymake-easy
+  :straight t
+  :defer t)
+
 
 (provide 'me-checkers)
