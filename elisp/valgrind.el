@@ -27,6 +27,7 @@ You might also use mode hooks to specify it in certain modes, like this:
 
 ;; History of compile commands.
 (defvar valgrind-history nil)
+(add-to-list 'savehist-additional-variables 'valgrind-history)
 
 ;;;###autoload
 (defun valgrind (command)
@@ -41,9 +42,10 @@ and move to the source code that caused it."
                                    (eval valgrind-command) nil nil
                                    '(valgrind-history . 1)))
      (list (eval valgrind-command))))
-  (unless (equal command (eval valgrind-command))
-    (setq valgrind-command command))
-  (compilation-start command nil (lambda (mode) "*valgrind*")))
+  (let ((default-directory (or (project-root (project-current)) default-directory)))
+    (unless (equal command (eval valgrind-command))
+      (setq valgrind-command command))
+    (compilation-start command nil (lambda (mode) "*valgrind*"))))
 
 
 (provide 'valgrind)
