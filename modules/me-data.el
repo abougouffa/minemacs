@@ -18,11 +18,10 @@
     "k" #'csv-kill-fields
     "t" #'csv-transpose)
 
-  ;; TODO: Need to fix the case of two commas, example "a,b,,c,d"
+  ;; Adapted from: https://reddit.com/r/emacs/comments/26c71k/comment/chq2r8m
   (defun +csv-rainbow (&optional separator)
     "Colorize CSV columns."
     (interactive (list (when current-prefix-arg (read-char "Separator: "))))
-    (require 'cl-lib)
     (require 'color)
     (font-lock-mode 1)
     (let* ((separator (or separator ?\,))
@@ -30,9 +29,9 @@
            (colors (cl-loop for i from 0 to 1.0 by (/ 2.0 n)
                             collect (apply #'color-rgb-to-hex
                                            (color-hsl-to-rgb i 0.3 0.5)))))
-      (cl-loop for i from 2 to n by 2
+      (cl-loop for i from 2 to (1+ n) by 2
                for c in colors
-               for r = (format "^\\([^%c\n]+%c\\)\\{%d\\}" separator separator i)
+               for r = (format "^\\([^%c\n]*[%c\n]\\)\\{%d\\}" separator separator i)
                do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
 
 (use-package yaml-ts-mode
