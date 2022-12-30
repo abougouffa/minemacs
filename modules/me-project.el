@@ -14,12 +14,23 @@
     :infix "p"
     "a"  '(projectile-add-known-project :wk "Add")
     "D"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
+    "<" #'projectile-switch-open-project
     ;; Compile/test
     "c"  '(nil :wk "compile/test")
-    "cc"  #'projectile-compile-project
-    "cg"  #'projectile-configure-project
-    "ct"  #'projectile-test-project
-    "ci"  #'projectile-install-project
+    "cc" #'projectile-compile-project
+    "cg" #'projectile-configure-project
+    "ct" #'projectile-test-project
+    "ci" #'projectile-install-project
+    "cp" #'projectile-package-project
+    "r"  '(nil :wk "run")
+    "rr" #'projectile-run-project
+    "rg" #'projectile-run-gdb
+    "rt" #'projectile-run-vterm
+    "re" #'projectile-run-eshell
+    "rs" #'projectile-run-shell
+    "rR" #'projectile-run-command-in-root
+    "rS" #'projectile-run-shell-command-in-root
+    "rA" #'projectile-run-async-shell-command-in-root
     ;; Forget
     "F"  '(nil :wk "forget")
     "Fz" '(projectile-cleanup-known-projects :wk "Zombie projects")
@@ -63,7 +74,7 @@
     ;; Project
     "pp" #'consult-projectile
     "pP" '(consult-projectile-switch-project :wk "Switch")
-    "pr" #'consult-projectile-recentf
+    "pR" #'consult-projectile-recentf
     "pd" '(consult-projectile-find-dir :wk "Find directory")
     "pf" '(consult-projectile-find-file :wk "Find file")))
 
