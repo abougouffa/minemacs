@@ -12,6 +12,19 @@ If the buffer doesn't exist, create it first."
   (interactive)
   (pop-to-buffer-same-window (get-scratch-buffer-create)))
 
+(defun get-scratch-buffer-create ()
+  "Return the *scratch* buffer, creating a new one if needed."
+  (or (get-buffer "*scratch*")
+      (let ((scratch (get-buffer-create "*scratch*")))
+        ;; Don't touch the buffer contents or mode unless we know that
+        ;; we just created it.
+        (with-current-buffer scratch
+          (when initial-scratch-message
+            (insert (substitute-command-keys initial-scratch-message))
+            (set-buffer-modified-p nil))
+          (funcall initial-major-mode))
+        scratch)))
+
 (defun startup-redirect-eln-cache (cache-directory)
   "Redirect the user's eln-cache directory to CACHE-DIRECTORY.
 CACHE-DIRECTORY must be a single directory, a string.
