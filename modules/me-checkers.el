@@ -22,6 +22,8 @@
   (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
   (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
   :config
+  ;; Use the session's load-path with flymake
+  (setq elisp-flymake-byte-compile-load-path load-path)
   ;; Larger right frings
   (set-fringe-style '(8 . 13))
 
