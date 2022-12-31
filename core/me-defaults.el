@@ -233,8 +233,8 @@
                                  (list ".*" auto-save-list-file-prefix t))
 
  ;; ====== Compilation ======
- ;; Scroll compilation buffer until first error
- compilation-scroll-output 'first-error
+ ;; Scroll compilation buffer
+ compilation-scroll-output t ; 'first-error ;; good option
  ;; Always kill current compilation process before starting a new one
  compilation-always-kill t
  ;; Skip visited messages on compilation motion commands
