@@ -153,6 +153,22 @@ the children of class at point."
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
   :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
+(use-package cov
+  :straight (:type git :host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
+  :defer t
+  :custom
+  (cov-highlight-lines t)
+  :config
+  (defun +cov-coverage-mode ()
+    (interactive)
+    (if cov-coverage-mode
+        (progn
+          (setq cov-coverage-mode nil)
+          (message "Disabled coverage mode, showing how often lines are executed."))
+      (setq cov-coverage-mode t)
+      (message "Enabled coverage mode."))
+    (cov-update)))
+
 ;;; Formatting
 (use-package apheleia
   :straight t
