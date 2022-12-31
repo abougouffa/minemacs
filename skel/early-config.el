@@ -6,3 +6,9 @@
 
 ;; Set log level to `info' rather than `error'
 (setq minemacs-msg-level 2)
+
+;; Force loading lazy packages immediately, not in idle time
+;; (setq minemacs-not-lazy t)
+
+;; Setup a `debug-on-message' to catch a wired message!
+;; (setq debug-on-message "Package cl is deprecated")
