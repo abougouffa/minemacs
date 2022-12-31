@@ -29,6 +29,16 @@
   :straight t
   :after yasnippet)
 
+(use-package doom-snippets
+  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
+  :after yasnippet)
+
+(use-package license-snippets
+  :straight t
+  :after yasnippet
+  :config
+  (license-snippets-init))
+
 (use-package unicode-fonts
   :straight t
   :hook (minemacs-after-startup . unicode-fonts-setup)
