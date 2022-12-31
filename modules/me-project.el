@@ -78,5 +78,9 @@
     "pd" '(consult-projectile-find-dir :wk "Find directory")
     "pf" '(consult-projectile-find-file :wk "Find file")))
 
+(use-package treemacs-projectile
+  :straight t
+  :after projectile)
+
 
 (provide 'me-project)
