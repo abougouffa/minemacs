@@ -140,6 +140,11 @@ the children of class at point."
   ;; for packages which relay on `consult-lsp' (like `dirvish-subtree').
   (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols))
 
+(use-package eldoc
+  :straight (:type built-in)
+  :custom
+  (eldoc-documentation-strategy #'eldoc-documentation-compose))
+
 (use-package eldoc-box
   :straight t
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
