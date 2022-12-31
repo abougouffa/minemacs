@@ -28,6 +28,10 @@
       menu-bar-mode nil
       scroll-bar-mode nil)
 
+;; For `lsp-mode' performance, set it here so we don't need to add it to the
+;; system's environment variables.
+(setenv "LSP_USE_PLISTS" "true")
+
 ;; Load MinEmacs variables first
 (load (concat user-emacs-directory "core/me-vars.el") nil t)
 

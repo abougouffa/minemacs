@@ -42,12 +42,13 @@
 (use-package realgud
   :straight t
   :defer t
-  :general
-  (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
-                         rust-mode-map sh-mode-map bash-ts-mode-map)
-    "d" '(nil :wk "realgud")
-    "dd" #'+realgud:start
-    "dh" #'+realgud-hydra/body))
+  :init
+  (unless (memq 'me-lsp minemacs-modules)
+    (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
+                           rust-mode-map sh-mode-map bash-ts-mode-map)
+      "d" '(nil :wk "realgud")
+      "dd" #'+realgud:start
+      "dh" #'+realgud-hydra/body)))
 
 (use-package realgud-lldb
   :straight t

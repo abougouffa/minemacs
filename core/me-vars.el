@@ -123,7 +123,7 @@ Hooks running order:
   "A list of programs I use within Emacs.")
 
 (defvar +env-save-vars
-  '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH")
+  '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH" "LSP_USE_PLISTS")
   "List of environment variables saved by `+env-save'.
 You need to run Emacs from terminal to get the environment variables.
 MinEmacs then save them to be used in GUI sessions as well.")
