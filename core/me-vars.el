@@ -108,9 +108,9 @@ Hooks running order:
                        (os/mac "monospace"))))
   (defconst minemacs-default-fonts
     `(:font-family ,mono-font
-      :font-size 15
+      :font-size 14
       :variable-pitch-font-family ,varp-font
-      :variable-pitch-font-size 15)
+      :variable-pitch-font-size 14)
     "Default fonts of MinEmacs."))
 
 (defvar minemacs-deps-executables
