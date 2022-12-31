@@ -73,5 +73,3 @@ This will overrite the built-in \"gdb-mi\" for this session."
       :custom
       (gdb-window-setup-function #'gdb--setup-windows)
       (gdb-ignore-gdbinit nil))))
-
-(gdb)
