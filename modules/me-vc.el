@@ -23,7 +23,12 @@
   (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
   ;; Show in new window
-  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
+  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+  :config
+  ;; Map ESC and q to quit transient
+  (define-key transient-map [escape]  #'transient-quit-one)
+  (define-key transient-map (kbd "q") #'transient-quit-one))
+
 
 (use-package forge
   :straight t
