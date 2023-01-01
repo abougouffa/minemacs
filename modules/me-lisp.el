@@ -21,8 +21,14 @@
 (use-package slime
   :straight t
   :defer t
-  :init
-  (setq inferior-lisp-program "sbcl"))
+  :config
+  (dolist (impl '("lisp" "clisp" "ccl" "cmucl" "sbcl"))
+    (when (executable-find impl)
+      (add-to-list
+       'slime-lisp-implementations
+       `(,(intern impl) (,impl) :coding-system utf-8-unix))))
+  (setq inferior-lisp-program (caar (cdar slime-lisp-implementations))
+        slime-default-lisp (caar slime-lisp-implementations)))
 
 (use-package macrostep
   :straight t
