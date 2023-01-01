@@ -125,6 +125,12 @@
   :straight (:host sourcehut :repo "bzg/org-contrib")
   :after org)
 
+(use-package engrave-faces
+  :straight t
+  :after org
+  :custom
+  (org-latex-src-block-backend 'engraved))
+
 ;; Org export
 (use-package ox-latex
   :after org
