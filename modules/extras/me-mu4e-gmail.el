@@ -32,8 +32,6 @@ from the envelope of the current message."
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
-(defvar +mu4e--last-invalid-gmail-action 0.0)
-
 (defun +mu4e-gmail-setup ()
   ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior
@@ -54,10 +52,7 @@ from the envelope of the current message."
            (if (+mu4e-msg-gmail-p msg)
                (progn
                  (message "Unsupported delete operation for Gmail. Trashing instead.")
-                 (+mu4e--mark-seen docid msg target)
-                 (when (< 2.0 (- (float-time) +mu4e--last-invalid-gmail-action))
-                   (sit-for 1))
-                 (setq +mu4e--last-invalid-gmail-action (float-time)))
+                 (+mu4e--mark-seen docid msg target))
              (mu4e--server-remove docid))))
         (alist-get 'trash mu4e-marks)
         (list
