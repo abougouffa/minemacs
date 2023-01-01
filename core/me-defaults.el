@@ -56,6 +56,8 @@
  shadow-info-file (concat minemacs-local-dir "shadow/info.el")
  shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
+ desktop-dirname (+directory-ensure (concat minemacs-local-dir "desktop/"))
+ desktop-path (list (concat minemacs-local-dir "desktop/"))
 
  ;; ====== Default behavior ======
  ;; Inhibit startup message
@@ -231,6 +233,14 @@
                                   (concat auto-save-list-file-prefix "tramp-\\2") t)
                                  ;; Local autosaves
                                  (list ".*" auto-save-list-file-prefix t))
+ ;; File name to use when saving desktop
+ desktop-base-file-name "emacs-session.el"
+ ;; File name to use as a lock
+ desktop-base-lock-name "emacs-session.el.lock"
+ ;; Save buffer status
+ desktop-save-buffer t
+ ;; Avoid writing contents unchanged between auto-saves
+ desktop-file-checksum t
 
  ;; ====== Compilation ======
  ;; Scroll compilation buffer
@@ -384,6 +394,9 @@ or file path may exist now."
 
   ;; Save place in files
   (save-place-mode 1)
+
+  ;; Save Emacs session
+  (desktop-save-mode 1)
 
   ;; Enable saving minibuffer history
   (savehist-mode 1)
