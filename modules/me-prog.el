@@ -209,10 +209,6 @@ the children of class at point."
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
 
-(use-package eldoc-cmake
-  :straight t
-  :after cmake-mode)
-
 (use-package plantuml-mode
   :straight t
   :mode "\\.plantuml\\'"
