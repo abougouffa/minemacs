@@ -71,8 +71,10 @@
     "q"   '(nil :wk "quit/session")
     "qq"  #'save-buffers-kill-terminal
     "qQ"  #'kill-emacs
-    "qs"  #'server-start
+    "qS"  #'server-start
     "qR"  #'recover-session
+    "qd"  #'desktop-read
+    "qs"  #'desktop-save
 
     ;; ====== Files ======
     "f"   '(nil :wk "file")
