@@ -7,7 +7,7 @@
 (use-package treesit-langs
   :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "queries"))
   :when (+emacs-features-p 'tree-sitter)
-  :hook (prog-mode . +treesit-hl-enable-maybe)
+  :hook ((prog-mode text-mode conf-mode) . +treesit-hl-enable-maybe)
   :preface
   (+fn-inhibit-messages! treesit-langs-install-grammars)
   :init
