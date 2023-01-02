@@ -74,6 +74,7 @@
     "qS"  #'server-start
     "qR"  #'recover-session
     "qd"  #'desktop-read
+    "qD"  #'desktop-lazy-complete
     "qs"  #'desktop-save
 
     ;; ====== Files ======
