@@ -81,8 +81,9 @@
 ;;;###autoload
 (defmacro +plist-push! (plist &rest key-vals)
   "Push KEY-VALS to PLIST."
+  (declare (indent 1))
   (let ((out (list 'progn)))
-    (while (> (length key-vals) 0)
+    (while (length> key-vals 0)
       (let ((key (pop key-vals))
             (val (pop key-vals)))
         (add-to-list
