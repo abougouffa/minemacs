@@ -236,15 +236,15 @@
  ;; File name to use when saving desktop
  desktop-base-file-name "emacs-session.el"
  ;; File name to use as a lock
- desktop-base-lock-name "emacs-session.el.lock"
- ;; Save buffer status
- desktop-save-buffer t
+ desktop-base-lock-name (concat desktop-base-file-name ".lock")
+ ;; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
+ desktop-restore-eager 5
  ;; Avoid writing contents unchanged between auto-saves
  desktop-file-checksum t
 
  ;; ====== Compilation ======
  ;; Scroll compilation buffer
- compilation-scroll-output t ; 'first-error ;; good option
+ compilation-scroll-output t ; 'first-error can be a good option
  ;; Always kill current compilation process before starting a new one
  compilation-always-kill t
  ;; Skip visited messages on compilation motion commands
@@ -263,7 +263,9 @@
  ;; Width for line numbers
  display-line-numbers-width 4
  ;; Small tab is enough!
- tab-width 2)
+ tab-width 2
+ ;; Save buffer status
+ desktop-save-buffer t)
 
 (unless (featurep 'me-org-export-async-init)
   (with-eval-after-load 'minemacs-loaded
