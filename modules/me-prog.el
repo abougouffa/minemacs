@@ -64,8 +64,8 @@
   :general
   (+map
     :infix "c"
-    "S"  '(nil :wk "lsp session")
-    "Se" #'eglot)
+    "e"  '(nil :wk "eglot session")
+    "ee" #'eglot)
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
@@ -85,9 +85,9 @@
     "ri" '(eglot-code-action-inline :wk "Inline")
     "re" '(eglot-code-action-extract :wk "Extract")
     "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
-    "Sq" '(eglot-shutdown :wk "Shutdown")
-    "Sr" '(eglot-reconnect :wk "Reconnect")
-    "SQ" '(eglot-shutdown-all :wk "Shutdown all")
+    "eq" '(eglot-shutdown :wk "Shutdown")
+    "er" '(eglot-reconnect :wk "Reconnect")
+    "eQ" '(eglot-shutdown-all :wk "Shutdown all")
     "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
 
   (+eglot-register

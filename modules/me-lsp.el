@@ -17,8 +17,8 @@
   :general
   (+map
     :infix "c"
-    "S"  '(nil :wk "lsp session")
-    "Sl" #'lsp)
+    "l"  '(nil :wk "lsp session")
+    "ll" #'lsp)
   :custom
   (lsp-session-file (concat minemacs-local-dir "lsp/session.el"))
   (lsp-server-install-dir (concat minemacs-local-dir "lsp/servers/"))
@@ -50,8 +50,8 @@
     "a"  '(lsp-execute-code-action :wk "Code actions")
     "r"  '(nil :wk "refactor")
     "rr" '(lsp-rename :wk "Rename")
-    "Sq" '(lsp-workspace-shutdown :wk "Shutdown")
-    "Sr" '(lsp-workspace-restart :wk "Restart")))
+    "lq" '(lsp-workspace-shutdown :wk "Shutdown")
+    "lr" '(lsp-workspace-restart :wk "Restart")))
 
 (use-package ccls
   :straight t
