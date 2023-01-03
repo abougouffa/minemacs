@@ -50,7 +50,7 @@
   ;; Hide vterm install window
   (add-to-list
    'display-buffer-alist
-   `(" *Install vterm*"
+   `(" \\*Install vterm\\*"
      (display-buffer-no-window)
      (allow-no-window . t)))
   :custom
@@ -70,6 +70,16 @@
     "otp" #'multi-vterm-project)
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
+  :init
+  ;; Show at buttom
+  (add-to-list
+   'display-buffer-alist
+   `("\\*vterminal - .*\\*" ;; multi-vterm-project
+     (display-buffer-reuse-window display-buffer-in-direction)
+     (direction . bottom)
+     (dedicated . t)
+     (reusable-frames . visible)
+     (window-height . 0.3)))
   :config
   (+map-key
     :keymaps 'vterm-mode-map
