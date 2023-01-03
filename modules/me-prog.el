@@ -45,6 +45,7 @@
   (unless (memq 'me-lsp minemacs-modules)
     (dolist (h '(c++-mode-hook c++-ts-mode-hook c-mode-hook c-ts-mode-hook cuda-mode-hook))
       (add-hook h #'hide-ifdef-mode)))
+  :defer t
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))

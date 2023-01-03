@@ -115,4 +115,5 @@
   (goggles-define kill kill-region)
   (goggles-define delete delete-region evil-delete evil-delete-line))
 
+
 (provide 'me-editor)

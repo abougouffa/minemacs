@@ -7,6 +7,7 @@
 
 (use-package flymake
   :straight (:type built-in)
+  :after minemacs-lazy
   :general
   (+map "tf" #'flymake-mode)
   (+map-local :keymaps 'flymake-mode-map
