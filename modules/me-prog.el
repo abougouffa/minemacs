@@ -7,13 +7,16 @@
 (use-package treesit-langs
   :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "queries"))
   :when (+emacs-features-p 'tree-sitter)
-  :hook ((prog-mode text-mode conf-mode) . +treesit-hl-enable-maybe)
+  :hook (prog-mode . +treesit-hl-enable-maybe)
+  :defines +treesit-hl-enable-maybe
   :preface
   (+fn-inhibit-messages! treesit-langs-install-grammars)
   :init
   (defun +treesit-hl-enable-maybe ()
-    (unless (cl-some #'derived-mode-p '(emacs-lisp-mode))
-      ;; For elisp, Emacs do a better job.
+    (unless (cl-some
+             #'derived-mode-p
+             '(emacs-lisp-mode
+               org-mode))
       (ignore-errors (treesit-hl-enable))))
   :config
   ;; Add missing languages to the list
