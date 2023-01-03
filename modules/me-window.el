@@ -32,7 +32,7 @@
 
   (add-to-list
    'display-buffer-alist
-   `(,(rx (seq "*" (or "eshell" "vterm") "*"))
+   `(,(rx (seq "*" (or "eshell" "vterm" "terminal") "*"))
      ;; (display-buffer-reuse-window display-buffer-at-bottom)
      (display-buffer-reuse-window display-buffer-in-direction)
      (direction . bottom) ;; bottom (above below...)
