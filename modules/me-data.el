@@ -34,9 +34,8 @@
                for r = (format "^\\([^%c\n]*[%c\n]\\)\\{%d\\}" separator separator i)
                do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
 
-(use-package yaml-ts-mode
-  :straight (:type built-in)
-  :when (>= emacs-major-version 29)
+(use-package yaml-mode
+  :straight t
   :mode "Procfile\\'")
 
 (use-package yaml-pro
