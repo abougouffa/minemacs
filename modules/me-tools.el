@@ -43,7 +43,9 @@
 (use-package vterm
   :straight t
   :general
-  (+map "ot" #'vterm)
+  (+map
+    "ot" '(nil :wk "vterm")
+    "otT" #'vterm)
   :init
   ;; Hide vterm install window
   (add-to-list
@@ -53,7 +55,28 @@
      (allow-no-window . t)))
   :custom
   (vterm-always-compile-module t)
-  (vterm-max-scrollback 5000))
+  (vterm-max-scrollback 5000)
+  :config
+  (define-key vterm-mode-map [return] #'vterm-send-return))
+
+(use-package multi-vterm
+  :straight t
+  :general
+  (+map
+    "ott" #'multi-vterm
+    "otn" #'multi-vterm-next
+    "otp" #'multi-vterm-prev
+    "otd" #'multi-vterm-dedicated-toggle
+    "otp" #'multi-vterm-project)
+  :custom
+  (multi-vterm-dedicated-window-height-percent 30)
+  :config
+  (+map-key
+    :keymaps 'vterm-mode-map
+    ",c" #'multi-vterm
+    ",n" #'multi-vterm-next
+    ",p" #'multi-vterm-prev
+    "<return>" #'evil-insert-resume))
 
 (use-package docker
   :straight t
