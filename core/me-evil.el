@@ -52,6 +52,15 @@
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map
         "gr" 'xref-find-references))))
 
+(use-package evil-snipe
+  :straight t
+  :hook (minemacs-after-startup . evil-snipe-mode)
+  :hook (minemacs-after-startup . evil-snipe-override-mode)
+  :custom
+  (evil-snipe-scope 'buffer)
+  (evil-snipe-smart-case t)
+  (evil-snipe-auto-scroll t))
+
 (use-package evil-numbers
   :straight t
   :general
