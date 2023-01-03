@@ -22,7 +22,14 @@
   :straight t
   :defer t
   :config
-  (dolist (impl '("lisp" "clisp" "ccl" "cmucl" "sbcl"))
+  (dolist (impl '("lisp"   ; Default Lisp implementation on the system
+                  "clisp"  ; GNU CLISP
+                  "abcl"   ; Armed Bear Common Lisp
+                  "ecl"    ; Embeddable Common-Lisp
+                  "ccl"    ; Clozure Common Lisp
+                  "cmucl"  ; CMU Common Lisp
+                  "clasp"  ; Common Lisp on LLVM
+                  "sbcl")) ; Steel Bank Common Lisp
     (when (executable-find impl)
       (add-to-list
        'slime-lisp-implementations
