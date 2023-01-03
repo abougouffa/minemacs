@@ -363,6 +363,22 @@ or file path may exist now."
        (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
          (abort-recursive-edit))))
 
+    ;; Avoid asking about overwriting desktop file when we didn't load a session
+    ;; from desktop file. We check if there is a previous saved desktop, if
+    ;; found, we move it to a timestamped backup before saving the current one.
+    (advice-add
+     'desktop-save :before
+     (defun +desktop-save--backup-previous-a (dirname &rest _)
+       (let* ((filename (desktop-full-file-name (or dirname desktop-dirname)))
+              (old-modtime (file-attribute-modification-time (file-attributes filename))))
+         (unless (or (not old-modtime) ; nothing to backup
+                     (time-equal-p desktop-file-modtime old-modtime)) ; saved explicitly
+           (rename-file
+            filename
+            (concat (file-name-sans-extension filename)
+                    (format-time-string "-%Y-%m-%d-%H-%M-%S.el" old-modtime))
+            t)))))
+
     ;; Navigate windows using Shift+Direction
     (windmove-default-keybindings)
 
