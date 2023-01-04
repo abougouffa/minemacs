@@ -57,7 +57,7 @@
  shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
  desktop-dirname (+directory-ensure (concat minemacs-local-dir "desktop/"))
- desktop-path (list (concat minemacs-local-dir "desktop/"))
+ desktop-path (list desktop-dirname)
 
  ;; ====== Default behavior ======
  ;; Inhibit startup message
