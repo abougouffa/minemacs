@@ -10,7 +10,7 @@
   :when (+emacs-features-p 'modules)
   :custom
   (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
-  (parinfer-rust-auto-download t)
+  (parinfer-rust-auto-download (eq sys/arch 'x86_64))
   :hook ((emacs-lisp-mode
           clojure-mode
           scheme-mode

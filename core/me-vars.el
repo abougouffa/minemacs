@@ -56,6 +56,9 @@
 (defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
 (defconst os/mac (eq system-type 'darwin))
 
+;; Should return x86_64, aarch64, ...
+(defconst sys/arch (intern (substring system-configuration 0 (string-search "-" system-configuration))))
+
 (defconst emacs/features
   (mapcar #'intern
           (mapcar (apply-partially #'string-replace "_" "-")
