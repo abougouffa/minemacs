@@ -83,7 +83,8 @@ Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-before-user-config-hook nil
   "This hook will be run after loading modules and before loading user config.
-Hooks running order:
+
+MinEmacs hooks will be run in this order:
 1. minemacs-before-user-config-hook
 2. minemacs-after-startup-hook
 3. minemacs-lazy-hook"
@@ -91,12 +92,22 @@ Hooks running order:
   :type 'hook)
 
 (defcustom minemacs-after-startup-hook nil
-  "This hook will be run after loading Emacs."
+  "This hook will be run after loading Emacs.
+
+MinEmacs hooks will be run in this order:
+1. minemacs-before-user-config-hook
+2. minemacs-after-startup-hook
+3. minemacs-lazy-hook"
   :group 'minemacs
   :type 'hook)
 
 (defcustom minemacs-lazy-hook nil
-  "This hook will be run after loading Emacs, with laziness."
+  "This hook will be run after loading Emacs, with laziness.
+
+MinEmacs hooks will be run in this order:
+1. minemacs-before-user-config-hook
+2. minemacs-after-startup-hook
+3. minemacs-lazy-hook"
   :group 'minemacs
   :type 'hook)
 
