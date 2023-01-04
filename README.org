@@ -3,7 +3,7 @@
 *MinEmacs* is a lightweight Emacs configuration framework, the keybinding is
 highly inspired by Doom Emacs.
 
-[[https://github.com/abougouffa/minemacs][.github/minemacs.png]]
+[[file:.github/minemacs.png]]
 
 ** Why
 I was using Doom Emacs, it is an excellent piece of software, which introduced
