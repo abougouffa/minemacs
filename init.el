@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Check if Emacs version is supported
-(let ((min-version "28.0"))
+(let ((min-version "28.1"))
   (when (version< emacs-version min-version)
     (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
            emacs-version min-version)))
@@ -63,7 +63,7 @@
                        (directory-files-recursively dir ".*" t))))))
     (loaddefs-generate autoload-dirs minemacs-autoloads-file)))
 
-;; Auto-loads
+;; Generate auto-loads if they don't exist
 (unless (file-exists-p minemacs-autoloads-file)
   (minemacs-generate-autoloads))
 
@@ -117,9 +117,7 @@
    ;; Require the virtual package to triggre loading packages depending on it
    (require 'minemacs-loaded)))
 
-;;; Write user custom variables to separate file instead of init.el
-(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
-
+;;; ========= Load MinEmacs packages and user customization =========
 ;; When running in an async Org export context, the used modules are set in
 ;; modules/extras/me-org-export-async-init.el, so we must not overrite them with
 ;; the user's enabled modules.
@@ -137,52 +135,49 @@
       (+log! "Loading modules file from \"%s\"" user-conf-modules)
       (load user-conf-modules nil (not minemacs-verbose)))))
 
-(defun minemacs-load ()
-  "Reload all configuration, including user's config.el."
+;; Load fonts early (they are read from the default `minemacs-default-fonts').
+(+set-fonts)
 
-  ;; Load fonts early (they are read from the default `minemacs-default-fonts').
-  (+set-fonts)
+;; Ensure me-gc is in the list
+(add-to-list 'minemacs-core-modules 'me-gc t)
 
-  ;; Ensure me-gc is in the list
-  (add-to-list 'minemacs-core-modules 'me-gc t)
+;; Core modules
+(dolist (module minemacs-core-modules)
+  (+log! "Loading core module \"%s\"" module)
+  (let ((filename (concat minemacs-core-dir (format "%s.el" module))))
+    (if (file-exists-p filename)
+        (load filename nil (not minemacs-verbose))
+      (+error! "Core module \"%s\" not found!" module))))
 
-  ;; Core modules
-  (dolist (module minemacs-core-modules)
-    (+log! "Loading core module \"%s\"" module)
-    (let ((filename (concat minemacs-core-dir (format "%s.el" module))))
-      (if (file-exists-p filename)
-          (load filename nil (not minemacs-verbose))
-        (+error! "Core module \"%s\" not found!" module))))
+;; Modules
+(dolist (module minemacs-modules)
+  (+log! "Loading module \"%s\"" module)
+  (let ((filename (concat minemacs-modules-dir (format "%s.el" module))))
+    (if (file-exists-p filename)
+        (load filename nil (not minemacs-verbose))
+      (+error! "Module \"%s\" not found!" module))))
 
-  ;; Modules
-  (dolist (module minemacs-modules)
-    (+log! "Loading module \"%s\"" module)
-    (let ((filename (concat minemacs-modules-dir (format "%s.el" module))))
-      (if (file-exists-p filename)
-          (load filename nil (not minemacs-verbose))
-        (+error! "Module \"%s\" not found!" module))))
+;; Run hooks before loading user config
+(require 'minemacs-before-user-config)
 
-  ;; Run hooks before loading user config
-  (require 'minemacs-before-user-config)
+;;; Write user custom variables to separate file instead of init.el
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
-  (when (and custom-file (file-exists-p custom-file))
-    (+log! "Loafing user custom file from \"%s\"" custom-file)
-    (load custom-file nil (not minemacs-verbose)))
+(when (and custom-file (file-exists-p custom-file))
+  (+log! "Loafing user custom file from \"%s\"" custom-file)
+  (load custom-file nil (not minemacs-verbose)))
 
-  ;; Load user config when available
-  (let ((user-config (concat minemacs-config-dir "config.el")))
-    (when (file-exists-p user-config)
-      (+log! "Loading user config file from \"%s\"" user-config)
-      (load user-config nil (not minemacs-verbose))))
+;; Load user config when available
+(let ((user-config (concat minemacs-config-dir "config.el")))
+  (when (file-exists-p user-config)
+    (+log! "Loading user config file from \"%s\"" user-config)
+    (load user-config nil (not minemacs-verbose))))
 
-  (with-eval-after-load 'minemacs-loaded
-    ;; Delete outdated natively compiled files
-    (when (featurep 'native-compile)
-      (+eval-when-idle!
-        (+info! "Trying to clean outdated native compile cache")
-        (+shutup! (native-compile-prune-cache))))))
-
-;; Load for the first time
-(minemacs-load)
+(with-eval-after-load 'minemacs-loaded
+  ;; Delete outdated natively compiled files
+  (when (featurep 'native-compile)
+    (+eval-when-idle!
+      (+info! "Trying to clean outdated native compile cache")
+      (+shutup! (native-compile-prune-cache)))))
 
 (+log! "Loaded init.el")
