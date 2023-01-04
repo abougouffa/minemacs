@@ -2,8 +2,10 @@
 
 (defvar +org-responsive-image-percentage 0.4)
 (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
-(defvar +org-export-to-pdf-main-file nil
+(defvar-local +org-export-to-pdf-main-file nil
   "The main (entry point) Org file for a multi-files document.")
+
+(put '+org-export-to-pdf-main-file 'safe-local-variable 'stringp)
 
 (defun +org-extras--responsive-image-h ()
   (when (derived-mode-p 'org-mode)
