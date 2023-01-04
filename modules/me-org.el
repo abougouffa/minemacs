@@ -11,6 +11,7 @@
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
+  :hook (org-mode . org-indent-mode)
   :general
   (+map-local :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
