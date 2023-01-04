@@ -165,6 +165,7 @@
     "tl"  #'follow-mode
     "tM"  '(+messages-auto-tail-toggle :wk "Auto-tail *Messages*")
     "tV"  '(netextender-toggle :wk "NetExtender")
+    "tv"  #'visible-mode
 
     ;; ====== Code ======
     "c"   '(nil :wk "code")
