@@ -96,24 +96,34 @@
                    org-drawer
                    org-special-keyword
                    org-property-value
+                   org-column-title
+                   org-column
+                   org-cite
                    org-cite-key
                    org-ref-cite-face
                    org-tag
+                   org-table
                    org-tag-group
+                   org-formula
+                   org-meta-line
+                   org-document-info-keyword
                    org-block
+                   org-block-begin-line
+                   org-block-end-line
                    org-inline-src-block
-                   org-todo-keyword-todo
+                   org-src
+                   org-verbatim
+                   org-code
+                   org-quote
+                   org-verse
                    org-latex-and-related
                    org-macro
                    org-link
-                   org-todo-keyword-habt
-                   org-todo-keyword-done
-                   org-todo-keyword-wait
-                   org-todo-keyword-kill
-                   org-todo-keyword-outd
+                   org-sexp-date
                    org-todo
                    org-done
-                   font-lock-comment-face)))))
+                   font-lock-comment-face
+                   font-lock-comment-delimiter-face)))))
 
 (use-package focus
   :straight t
