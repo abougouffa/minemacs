@@ -55,7 +55,7 @@ Useful for keeping track of the enabled theme."
     (load-theme (if (eq minemacs-theme 'doom-one) 'doom-one-light 'doom-one) t)))
 
 (use-package modus-themes
-  :straight (:type built-in)
+  :straight t
   :defer t
   :config
   ;; In all of the following, WEIGHT is a symbol such as `semibold',
