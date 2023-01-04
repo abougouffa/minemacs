@@ -49,7 +49,10 @@ Useful for keeping track of the enabled theme."
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-one-light t)
+  (defun +doom-one-toggle ()
+    (interactive)
+    (load-theme (if (eq minemacs-theme 'doom-one) 'doom-one-light 'doom-one) t)))
 
 (use-package modus-themes
   :straight (:type built-in)
