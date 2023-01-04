@@ -57,12 +57,21 @@
     (setq org-latex-pdf-process
           '("tectonic -Z shell-escape -Z continue-on-errors --outdir=%o %f"))) ;; --synctex
 
-  (setq org-export-async-debug t) ;; Can be useful!
+  (setq org-export-async-debug minemacs-debug) ;; Can be useful!
 
-  (let ((size 1.3))
-    (dolist (face '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5))
-      (set-face-attribute face nil :weight 'semi-bold :height size)
-      (setq size (max (* size 0.9) 1.0))))
+  ;; Dynamically change font size for Org heading levels, starting from
+  ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.
+  (defvar +org-level-base-size 1.5)
+
+  (dotimes (level 8)
+    (let ((size (* +org-level-base-size (expt 0.9 level))))
+      (set-face-attribute
+       (intern (format "org-level-%d" (1+ level))) nil
+       :weight (cond
+                ((< level 3) 'light)
+                ((< level 6) 'semi-bold)
+                (t 'ultra-bold))
+       :height (max 1.0 size))))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
