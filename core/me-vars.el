@@ -21,7 +21,7 @@
   "MinEmacs is started in verbose mode.")
 
 (defconst minemacs-not-lazy
-  (not (null (getenv "MINEMACS_NOT_LAZY")))
+  (or (daemonp) (not (null (getenv "MINEMACS_NOT_LAZY"))))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
 (defcustom minemacs-msg-level
