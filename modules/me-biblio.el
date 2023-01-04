@@ -27,6 +27,18 @@
   :straight (:type built-in)
   :after oc)
 
+(use-package zotxt
+  :straight t
+  :defer t
+  :preface
+  (defconst ZOTERO-P (executable-find "zotero"))
+  :when ZOTERO-P
+  :general
+  (+map-local :keymaps 'org-mode-map
+    "z" #'org-zotxt-mode)
+  (+map-local :keymaps 'markdown-mode-map
+    "z" #'zotxt-citekey-mode))
+
 (use-package citar
   :straight t
   :after oc
