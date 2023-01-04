@@ -51,6 +51,10 @@
     "r" #'ein:gat-run-remote
     "l" #'ein:gat-run-local))
 
+(use-package julia-mode
+  :straight t
+  :defer t)
+
 (use-package ess
   :straight t
   :defer t
