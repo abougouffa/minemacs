@@ -7,7 +7,7 @@
 
 (use-package org
   :straight (:type built-in)
-  :defer t
+  :defer (not (daemonp))
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
