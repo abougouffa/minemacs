@@ -212,7 +212,26 @@
   (org-modern-table-vertical 5)
   (org-modern-table-horizontal 2)
   (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
-  (org-modern-block-fringe nil))
+  (org-modern-block-fringe nil)
+  (org-modern-todo-faces
+   ;; Tweak colors, and force it to be monospaced, useful when using
+   ;; mixed-pitch-mode.
+   '(("IDEA" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "goldenrod"))
+     ("NEXT" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "IndianRed1"))
+     ("STRT" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "OrangeRed"))
+     ("WAIT" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "coral"))
+     ("KILL" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "DarkGreen"))
+     ("PROJ" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "LimeGreen"))
+     ("HOLD" . (:inherit org-verbatim :weight semi-bold
+                :foreground "white" :background "orange"))
+     ("DONE" . (:inherit org-verbatim :weight semi-bold
+                :foreground "black" :background "LightGray")))))
 
 ;; For latex fragments
 (use-package org-fragtog
@@ -252,9 +271,9 @@
      (org-present-read-only)
      (when (bound-and-true-p visual-fill-column-mode)
        (+plist-push! +org-present--vcm-params
-                     :enabled visual-fill-column-mode
-                     :width visual-fill-column-width
-                     :center-text visual-fill-column-center-text))
+         :enabled visual-fill-column-mode
+         :width visual-fill-column-width
+         :center-text visual-fill-column-center-text))
      (setq-local visual-fill-column-width 120
                  visual-fill-column-center-text t)
      (visual-fill-column-mode 1)))
