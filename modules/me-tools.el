@@ -64,8 +64,6 @@
   :general
   (+map
     "ott" #'multi-vterm
-    "otn" #'multi-vterm-next
-    "otp" #'multi-vterm-prev
     "otd" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
   :custom
