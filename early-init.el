@@ -12,7 +12,8 @@
                        (vertical-scroll-bars)
                        (mouse-color . "blue")
                        (left-fringe . 8)
-                       (right-fringe . 13))
+                       (right-fringe . 13)
+                       (fullscreen . maximized))
  ;; Set explicitly disabled modes
  tool-bar-mode nil
  menu-bar-mode nil
