@@ -60,6 +60,10 @@
     (savehist-mode +1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
+(use-package corfu-terminal
+  :straight t
+  :hook (corfu-mode . corfu-terminal-mode))
+
 (use-package kind-icon
   :straight t
   :after corfu
