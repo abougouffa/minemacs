@@ -70,7 +70,7 @@
 
   ;; Adapted from: https://github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
   (with-eval-after-load 'hydra
-    (defhydra +windows-adjust-size (:hint nil :foreign-keys warn)
+    (defhydra +window-adjust-size (:hint nil :foreign-keys warn)
       "
 ^Zoom^                                ^Other
 ^^^^^^^-----------------------------------------
@@ -85,7 +85,7 @@
 
     (+map
       :infix "w"
-      "a" #'+windows-adjust-size/body)))
+      "a" '(+window-adjust-size/body :wk "Adjust window size"))))
 
 
 (provide 'me-window)

@@ -85,12 +85,11 @@
   (defconst TUNTOX-P (executable-find "tuntox"))
   (defconst STUNNEL-P (executable-find "stunnel"))
   :init
-  (cond
-   (TUNTOX-P
-    (setq crdt-use-tuntox t
-          crdt-tuntox-password-in-url t))
-   (STUNNEL-P
-    (setq crdt-use-stunnel t))))
+  (cond (TUNTOX-P
+         (setq crdt-use-tuntox t
+               crdt-tuntox-password-in-url t))
+        (STUNNEL-P
+         (setq crdt-use-stunnel t))))
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")
