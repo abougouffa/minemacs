@@ -13,5 +13,9 @@
   (global-set-key [mouse-8] #'better-jumper-jump-backward)
   (global-set-key [mouse-9] #'better-jumper-jump-forward))
 
+(use-package crux
+  :straight t
+  :defer t)
+
 
 (provide 'me-extra)
