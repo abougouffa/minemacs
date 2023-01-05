@@ -11,7 +11,6 @@
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (defvar org-directory nil)
-  :hook (org-mode . org-indent-mode)
   :general
   (+map-local :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
@@ -28,6 +27,8 @@
     "RET" #'org-open-at-point)
   :custom
   (org-tags-column 0)
+  (org-startup-indented t)
+  (org-cycle-hide-block-startup t)
   (org-auto-align-tags nil)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
   (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
