@@ -60,9 +60,9 @@
 
   (+map
     ;; ====== Top level functions ======
-    "TAB" '(switch-to-next-buffer :wk "Next buffer")
-    "<backtab>" '(switch-to-prev-buffer :wk "Previous buffer")
     "SPC" '(execute-extended-command :wk "M-x")
+    ">"   '(switch-to-next-buffer :wk "Next buffer")
+    "<"   '(switch-to-prev-buffer :wk "Previous buffer")
     ";"   '(pp-eval-expression :wk "Eval expression")
     "X"   #'org-capture
     "u"   '(universal-argument :wk "C-u")
@@ -157,6 +157,9 @@
 
     ;; ====== VC ======
     "g"   '(nil :wk "git/vc")
+
+    ;; ====== Workspaces ======
+    "TAB" '(nil :wk "workspace")
 
     ;; ====== Toggle ======
     "t"   '(nil :wk "toggle")
