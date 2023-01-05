@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Check if Emacs version is supported
-(let ((min-version "28.1"))
+(let ((min-version "28.2"))
   (when (version< emacs-version min-version)
     (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
            emacs-version min-version)))
