@@ -62,7 +62,6 @@
 
 (use-package graphviz-dot-mode
   :straight (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
-  :defer t
   :general
   (+map-local :keymaps 'graphviz-dot-mode-map
     "p" #'graphviz-dot-preview

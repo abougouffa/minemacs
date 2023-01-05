@@ -11,6 +11,7 @@
 (use-package affe
   :straight t
   :after consult orderless
+  :demand t
   :general
   (+map
     "sg" #'affe-grep

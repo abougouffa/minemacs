@@ -43,7 +43,6 @@
 
 (use-package bibtex
   :straight (:type built-in)
-  :defer t
   :hook (bibtex-mode . display-line-numbers-mode)
   :custom
   (bibtex-dialect 'biblatex)

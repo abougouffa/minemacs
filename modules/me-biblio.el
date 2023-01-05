@@ -29,7 +29,6 @@
 
 (use-package zotxt
   :straight t
-  :defer t
   :preface
   (defconst ZOTERO-P (executable-find "zotero"))
   :when ZOTERO-P

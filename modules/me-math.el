@@ -35,7 +35,6 @@
 
 (use-package ein
   :straight t
-  :defer t
   :mode ("\\.ipynb\\'" . ein:ipynb-mode)
   :general
   (+map

@@ -83,6 +83,7 @@
 (use-package org-msg
   :straight t
   :after mu4e
+  :demand t
   :general
   (+map-key :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab

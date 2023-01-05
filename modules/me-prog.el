@@ -55,7 +55,6 @@
 
 (use-package eglot
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
-  :defer t
   :init
   (unless (memq 'me-lsp minemacs-modules) ;; If me-lsp is used, prefer it!
     (dolist (h '(c++-mode-hook c++-ts-mode-hook c-mode-hook c-ts-mode-hook python-mode-hook
@@ -149,6 +148,7 @@ the children of class at point."
 
 (use-package eldoc
   :straight (:type built-in)
+  :defer t
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 

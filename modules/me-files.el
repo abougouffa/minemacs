@@ -34,7 +34,6 @@
 
 (use-package treemacs
   :straight t
-  :defer t
   :general
   (+map
     "op" '(treemacs :wk "Side panel"))
