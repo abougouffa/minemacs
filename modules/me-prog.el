@@ -274,6 +274,10 @@ the children of class at point."
     "F" #'rust-goto-format-problem
     "S" #'rust-enable-format-on-save))
 
+(use-package cuda-mode
+  :straight t
+  :defer t)
+
 (use-package dumb-jump
   :straight t
   :commands
