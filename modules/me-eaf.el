@@ -74,6 +74,7 @@
 
 (use-package eaf-jupyter
   :after eaf
+  :demand t
   :commands eaf-open-jupyter
   :custom
   (eaf-jupyter-font-family (plist-get minemacs-fonts :font-family))
@@ -81,12 +82,14 @@
 
 (use-package eaf-pdf-viewer
   :after eaf
+  :demand t
   :commands eaf-open-office
   :custom
   (eaf-pdf-outline-buffer-indent 2))
 
 (use-package eaf-video-player
   :after eaf
+  :demand t
   :custom
   (eaf-video-player-keybinding
    '(("p" . "toggle_play")
@@ -100,20 +103,25 @@
 
 (use-package eaf-file-sender
   :after eaf
+  :demand t
   :commands eaf-file-sender-qrcode eaf-file-sender-qrcode-in-dired)
 
 (use-package eaf-mindmap
   :after eaf
+  :demand t
   :commands eaf-create-mindmap eaf-open-mindmap)
 
 (use-package eaf-all-the-icons
-  :after eaf all-the-icons)
+  :after eaf all-the-icons
+  :demand t)
 
 (use-package eaf-markdown-previewer
-  :after eaf markdown-mode)
+  :after eaf markdown-mode
+  :demand t)
 
 (use-package eaf-org-previewer
-  :after eaf org)
+  :after eaf org
+  :demand t)
 
 
 (provide 'me-eaf)
