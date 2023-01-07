@@ -198,7 +198,7 @@ DEPTH and LOCAL are passed as is to `add-hook'."
 (defun +env-save ()
   (interactive)
   (with-temp-buffer
-    (insert ";; -*- mode: emacs-lisp; -*-\n\n")
+    (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
     (dolist (env-var +env-save-vars)
       (when-let ((var-val (getenv env-var)))
         (when (equal "PATH" env-var)
