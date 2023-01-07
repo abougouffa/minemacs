@@ -60,18 +60,18 @@
   ;;    known project list, when it automatically cleans it up on
   ;;    `projectile-mode's activation. This causes tramp.el to be loaded, which
   ;;    is expensive.
-  ;; 2. `file-remote-p' relies on an entry in `file-name-handler-alist' (autoloaded
-  ;;    by tramp.el) to detect remote paths, which causes tramp to be loaded.
-  ;;    However, we set `file-name-handler-alist' to nil at startup for a noteable
-  ;;    boost in startup performance. Normally, this is not an issue, as I defer
-  ;;    projectile-mode until well after file-name-handler-alist is restored,
-  ;;    but it is trivial for a user to inadvertantly load it too early (often
-  ;;    as part of another package that depends on it, or by blindly following
-  ;;    projectile's install instructions and calling projectile-mode
-  ;;    themselves).
+  ;; 2. `file-remote-p' relies on an entry in `file-name-handler-alist'
+  ;;    (autoloaded by tramp.el) to detect remote paths, which causes tramp to
+  ;;    be loaded. However, we set `file-name-handler-alist' to nil at startup
+  ;;    for a noteable boost in startup performance. Normally, this is not an
+  ;;    issue, as I defer `projectile-mode' until well after
+  ;;    `file-name-handler-alist' is restored, but it is trivial for a user to
+  ;;    inadvertantly load it too early (often as part of another package that
+  ;;    depends on it, or by blindly following projectile's install instructions
+  ;;    and calling `projectile-mode' themselves).
 
   ;; In order to address both of these, I defer projectile's cleanup process
-  ;; altogether. Another approach I considered was to ensure projectile-mode
+  ;; altogether. Another approach I considered was to ensure `projectile-mode'
   ;; wasn't activated until the right time, regardless of when projectile is
   ;; loaded, but this may trouble savvier Emacs users who need projectile's API
   ;; early during startup, so it needs more consideration.
@@ -79,7 +79,6 @@
     (projectile-mode +1))
 
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
-
 
 (use-package consult-projectile
   :straight t
