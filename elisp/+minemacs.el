@@ -226,3 +226,12 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   (let ((env-file (concat minemacs-local-dir "system-env.el")))
     (when (file-exists-p env-file)
       (load env-file (not minemacs-verbose) (not minemacs-verbose)))))
+
+;;;###autoload
+(defun +ignore-root (&rest roots)
+  "Add ROOTS to ignored projects, recentf, etc."
+  (dolist (root roots)
+    (with-eval-after-load 'recentf
+      (add-to-list 'recentf-exclude root))
+    (with-eval-after-load 'projectile
+      (add-to-list '+projectile-ignored-roots root))))
