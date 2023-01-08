@@ -9,7 +9,7 @@
   (with-eval-after-load 'minemacs-loaded
     ;; mu4e
     (when (featurep 'me-email)
-      (+eval-when-idle!
+      (+eval-when-idle-for! (if (daemonp) 0 5)
         (when (require 'mu4e nil t)
           (unless (mu4e-running-p)
             (let ((inhibit-message t))
