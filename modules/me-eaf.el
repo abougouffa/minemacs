@@ -11,6 +11,11 @@
   :general
   (+map
     "oo" '(eaf-open :wk "Open with EAF"))
+  (+map-local
+    :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
+    "h" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
+    "o" '(eaf-open-browser :wy "Open URL (EAF)"))
+  :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf
   :custom
   ;; Generic
   (eaf-apps-to-install '(browser mindmap jupyter org-previewer pdf-viewer
@@ -34,18 +39,8 @@
   (eaf-webengine-download-path "~/Downloads")
   (eaf-webengine-enable-plugin t)
   (eaf-webengine-enable-javascript t)
-  (eaf-webengine-enable-javascript-access-clipboard t))
-
-(use-package eaf-browser
-  :after eaf
-  :demand t
-  :commands +eaf-open-mail-as-html +browse-url-eaf eaf-open-browser
-  :general
-  (+map-local
-    :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
-    "h" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
-    "o" '(eaf-open-browser :wy "Open URL (EAF)"))
-  :custom
+  (eaf-webengine-enable-javascript-access-clipboard t)
+  ;; Web browser
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-enable-adblocker t)
   (eaf-browser-ignore-history-list '("google.com/search" "file://"))
@@ -55,7 +50,25 @@
   (eaf-browser-default-search-engine "duckduckgo")
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-aria2-auto-file-renaming t)
+  ;; Video player
+  (eaf-video-player-keybinding
+   '(("p" . "toggle_play")
+     ("q" . "close_buffer")
+     ("h" . "play_backward")
+     ("l" . "play_forward")
+     ("j" . "decrease_volume")
+     ("k" . "increase_volume")
+     ("f" . "toggle_fullscreen")
+     ("R" . "restart")))
+  ;; Jupyter
+  (eaf-jupyter-font-family (plist-get minemacs-fonts :font-family))
+  (eaf-jupyter-font-size 14)
+  ;; PDF viewer
+  (eaf-pdf-outline-buffer-indent 2)
   :config
+  (dolist (app eaf-apps-to-install)
+    (require (intern (format "eaf-%s" app))))
+
   (defun +browse-url-eaf (url &rest args)
     "Open URL in EAF Browser."
     (interactive (browse-url-interactive-arg "URL: "))
@@ -71,57 +84,6 @@
              (browse-url-browser-function #'eaf-open-browser))
         (mu4e-action-view-in-browser msg)
       (message "No message at point."))))
-
-(use-package eaf-jupyter
-  :after eaf
-  :demand t
-  :commands eaf-open-jupyter
-  :custom
-  (eaf-jupyter-font-family (plist-get minemacs-fonts :font-family))
-  (eaf-jupyter-font-size 14))
-
-(use-package eaf-pdf-viewer
-  :after eaf
-  :demand t
-  :commands eaf-open-office
-  :custom
-  (eaf-pdf-outline-buffer-indent 2))
-
-(use-package eaf-video-player
-  :after eaf
-  :demand t
-  :custom
-  (eaf-video-player-keybinding
-   '(("p" . "toggle_play")
-     ("q" . "close_buffer")
-     ("h" . "play_backward")
-     ("l" . "play_forward")
-     ("j" . "decrease_volume")
-     ("k" . "increase_volume")
-     ("f" . "toggle_fullscreen")
-     ("R" . "restart"))))
-
-(use-package eaf-file-sender
-  :after eaf
-  :demand t
-  :commands eaf-file-sender-qrcode eaf-file-sender-qrcode-in-dired)
-
-(use-package eaf-mindmap
-  :after eaf
-  :demand t
-  :commands eaf-create-mindmap eaf-open-mindmap)
-
-(use-package eaf-all-the-icons
-  :after eaf all-the-icons
-  :demand t)
-
-(use-package eaf-markdown-previewer
-  :after eaf markdown-mode
-  :demand t)
-
-(use-package eaf-org-previewer
-  :after eaf org
-  :demand t)
 
 
 (provide 'me-eaf)
