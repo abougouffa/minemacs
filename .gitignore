@@ -1,7 +1,7 @@
 # Project specific
-private/
-local/
-eln-cache/
+/private/
+/local/
+/eln-cache/
 .directory
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs
