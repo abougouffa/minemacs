@@ -259,6 +259,10 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 (fn &rest FNS)")
 (autoload '+env-save "../elisp/+minemacs" nil t)
 (autoload '+env-load "../elisp/+minemacs" nil t)
+(autoload '+ignore-root "../elisp/+minemacs" "\
+Add ROOTS to ignored projects, recentf, etc.
+
+(fn &rest ROOTS)")
 (register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-"))
 
 
@@ -506,7 +510,7 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-save-vars" "emacs/features" "minemacs-" "os/"))
+(register-definition-prefixes "me-vars" '("+env-save-vars" "emacs/features" "minemacs-" "os/" "sys/arch"))
 
 
 ;;; Generated autoloads from ../elisp/netextender.el
