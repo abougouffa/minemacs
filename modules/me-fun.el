@@ -24,8 +24,7 @@
   (xkcd-cache-dir (+directory-ensure (concat minemacs-local-dir "xkcd/")))
   (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
   :config
-  (with-eval-after-load 'recentf
-    (add-to-list 'recentf-exclude xkcd-cache-dir)))
+  (+ignore-root xkcd-cache-dir))
 
 (use-package speed-type
   :straight t
