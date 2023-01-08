@@ -4,6 +4,7 @@
 (use-package tree-sitter
   :straight t
   :defer 5
+  :when (eq sys/arch 'x86_64)
   :preface
   (+fn-inhibit-messages! tsc-dyn-get-ensure)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
