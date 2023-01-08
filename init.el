@@ -30,7 +30,7 @@
    byte-compile-warnings minemacs-verbose
    byte-compile-verbose minemacs-verbose)
 
-;;; Native compilation settings
+  ;; Native compilation settings
   (when (featurep 'native-compile)
     (setq
      ;; Silence compiler warnings as they can be pretty disruptive
@@ -118,12 +118,9 @@
          (emacs-lisp-mode)))
 
      ;; Require the virtual package to triggre loading packages depending on it
-     (require 'minemacs-loaded)
+     (require 'minemacs-loaded)))
 
-     ;; Restore `file-name-handler-alist'
-     (setq file-name-handler-alist (append file-name-handler-alist file-name-handler-alist--orig))))
-
-;;; ========= Load MinEmacs packages and user customization =========
+  ;; ========= Load MinEmacs packages and user customization =========
   ;; When running in an async Org export context, the used modules are set in
   ;; modules/extras/me-org-export-async-init.el, so we must not overrite them with
   ;; the user's enabled modules.
@@ -165,7 +162,7 @@
   ;; Run hooks before loading user config
   (require 'minemacs-before-user-config)
 
-;;; Write user custom variables to separate file instead of init.el
+  ;; Write user custom variables to separate file instead of init.el
   (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
   (when (and custom-file (file-exists-p custom-file))
