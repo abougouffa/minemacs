@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+;; MinEmacs is distributed under the MIT license. However, this file is mostly a
+;; copy-and-paste from Emacs 29 with some adaptations, hence, it is licensed
+;; with original Emacs GNU GPL-3.0 license.
+
 (require 'wid-edit) ;; Needed by `setopt--set'
 
 (defun scratch-buffer ()
