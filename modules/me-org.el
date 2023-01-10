@@ -209,6 +209,9 @@
 (use-package org-modern
   :straight t
   :hook (org-mode . org-modern-mode)
+  :custom-face
+  ;; Force monospaced font for tags
+  (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "gray" :box "black"))))
   :custom
   (org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶"))
   (org-modern-table-vertical 5)
