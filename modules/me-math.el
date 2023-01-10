@@ -33,9 +33,15 @@
   :custom
   (imaxima-use-maxima-mode-flag nil))
 
+(use-package math-preview ; Needed by ein to render equations
+  :straight t
+  :defer t)
+
 (use-package ein
   :straight t
   :mode ("\\.ipynb\\'" . ein:ipynb-mode)
+  :custom
+  (ein:output-area-inlined-images t)
   :general
   (+map
     :infix "o"
@@ -48,7 +54,13 @@
     "o" #'ein:process-find-file-callback
     "O" #'ein:process-open-notebook
     "r" #'ein:gat-run-remote
-    "l" #'ein:gat-run-local))
+    "l" #'ein:gat-run-local)
+  :config
+  (setq-default ein:markdown-enable-math t)
+
+  (with-eval-after-load 'org
+    (add-to-list 'org-babel-load-languages '(ein . t))
+    (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
 
 (use-package julia-mode
   :straight t
@@ -56,10 +68,7 @@
 
 (use-package ess
   :straight t
-  :defer t
-  :init
-  (unless (featurep 'julia-mode)
-    (add-to-list 'auto-mode-alist '("\\.jl\\'" . ess-julia-mode))))
+  :defer t)
 
 (use-package ess-view
   :straight t
