@@ -62,7 +62,7 @@
 
   ;; Dynamically change font size for Org heading levels, starting from
   ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.
-  (defvar +org-level-base-size 1.5)
+  (defvar +org-level-base-size 1.3)
 
   (dotimes (level 8)
     (let ((size (* +org-level-base-size (expt 0.9 level))))
