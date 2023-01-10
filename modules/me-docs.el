@@ -102,5 +102,12 @@
   :hook (org-mode . edraw-org-setup-default)
   :when EASYDRAW-P)
 
+(use-package markdown-mode
+  :straight t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :custom
+  (markdown-hide-markup t)
+  (markdown-enable-math t))
+
 
 (provide 'me-docs)
