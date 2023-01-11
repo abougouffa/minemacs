@@ -18,8 +18,9 @@
   :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf
   :custom
   ;; Generic
-  (eaf-apps-to-install '(browser mindmap jupyter org-previewer pdf-viewer
-                         markdown-previewer file-sender video-player))
+  (eaf-apps-to-install
+   '(browser mindmap jupyter org-previewer pdf-viewer system-monitor
+     markdown-previewer file-sender video-player))
   (eaf-start-python-process-when-require t)
   (eaf-kill-process-after-last-buffer-closed t)
   (eaf-fullscreen-p nil)
