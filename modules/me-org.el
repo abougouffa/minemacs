@@ -10,7 +10,7 @@
   :defer (not (daemonp))
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
-  (defvar org-directory nil)
+  (setq org-directory nil)
   :general
   (+map-local :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
@@ -27,9 +27,9 @@
     "RET" #'org-open-at-point)
   :custom
   (org-tags-column 0)
-  (org-startup-indented t)
-  (org-cycle-hide-block-startup t)
   (org-auto-align-tags nil)
+  (org-startup-indented nil)
+  (org-cycle-hide-block-startup t)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
   (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
   (org-fontify-quote-and-verse-blocks t)
@@ -69,8 +69,8 @@
       (set-face-attribute
        (intern (format "org-level-%d" (1+ level))) nil
        :weight (cond
-                ((< level 3) 'light)
-                ((< level 6) 'semi-bold)
+                ((< level 3) 'semi-bold)
+                ((< level 5) 'bold)
                 (t 'ultra-bold))
        :height (max 1.0 size))))
 
