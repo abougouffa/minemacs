@@ -209,6 +209,7 @@
 (use-package org-modern
   :straight t
   :hook (org-mode . org-modern-mode)
+  :hook (org-agenda-finalize . org-modern-agenda)
   :custom-face
   ;; Force monospaced font for tags
   (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "gray" :box "black"))))
