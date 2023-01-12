@@ -11,7 +11,7 @@
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
-  :general
+  :config
   (+map-local :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
@@ -29,10 +29,11 @@
 
 (use-package zotxt
   :straight t
+  :defer t
   :preface
   (defconst ZOTERO-P (executable-find "zotero"))
   :when ZOTERO-P
-  :general
+  :init
   (+map-local :keymaps 'org-mode-map
     "z" #'org-zotxt-mode)
   (+map-local :keymaps 'markdown-mode-map
