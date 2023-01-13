@@ -67,8 +67,15 @@
   ;; PDF viewer
   (eaf-pdf-outline-buffer-indent 2)
   :config
-  (dolist (app eaf-apps-to-install)
-    (require (intern (format "eaf-%s" app))))
+  ;; Try to load enabled apps, and install them if they aren't installed
+  (let (not-installed-apps)
+    (dolist (app eaf-apps-to-install)
+      (unless (require (intern (format "eaf-%s" app)) nil t)
+        (push app not-installed-apps)))
+    (when not-installed-apps
+      (apply #'eaf-install-and-update not-installed-apps)
+      (dolist (app not-installed-apps)
+        (require (intern (format "eaf-%s" app))))))
 
   (defun +browse-url-eaf (url &rest args)
     "Open URL in EAF Browser."
