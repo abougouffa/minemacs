@@ -237,7 +237,7 @@ Example: \"#+TITLE\" -> \"#+title\"
      (let ((org-level-faces
             (cl-loop for face in org-level-faces
                      collect `(:foreground ,(face-foreground face nil t)
-                               :weight bold))))
+                               :weight regular))))
        (apply fn args)))))
 
 (defun +org-extras-pretty-latex-fragments-setup ()
