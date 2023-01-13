@@ -55,7 +55,7 @@ Useful for keeping track of the enabled theme."
     (load-theme (if (eq minemacs-theme 'doom-one) 'doom-one-light 'doom-one) t)))
 
 (use-package modus-themes
-  :straight t
+  :straight (:host github :repo "protesilaos/modus-themes")
   :defer t
   :config
   ;; In all of the following, WEIGHT is a symbol such as `semibold',
@@ -69,7 +69,7 @@ Useful for keeping track of the enabled theme."
         ;; Options for `modus-themes-prompts' are either nil (the
         ;; default), or a list of properties that may include any of those
         ;; symbols: `italic', `WEIGHT'
-        modus-themes-prompts '(bold)
+        modus-themes-prompts '(semi-bold)
 
         ;; The `modus-themes-completions' is an alist that reads two
         ;; keys: `matches', `selection'.  Each accepts a nil value (or
@@ -123,7 +123,7 @@ Useful for keeping track of the enabled theme."
           ,@modus-themes-preset-overrides-faint))
 
   ;; Load the theme of your choice.
-  (load-theme 'modus-operandi :no-confim))
+  (load-theme 'modus-operandi-tinted t))
 
 ;; Modeline
 (use-package doom-modeline
