@@ -21,6 +21,8 @@
   :init
   (defvar +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'.")
+  (defvar +writeroom-enable-mixed-pitch t
+    "Enable `mixed-pitch-mode' with `writeroom-mode' for some modes (Org, Markdown, etc.).")
   :custom
   (writeroom-width 80)
   (writeroom-mode-line t)
@@ -28,12 +30,13 @@
   (writeroom-maximize-window nil)
   (writeroom-fullscreen-effect 'maximized)
   :config
-  (require 'mixed-pitch)
   (add-hook
    'writeroom-mode-hook
-   (defun +writeroom--enable-mixed-pitch-mode-h ()
+   (defun +writeroom--enable-mixed-pitch-mode-maybe-h ()
      "Enable `mixed-pitch-mode' when in supported modes."
-     (when (apply #'derived-mode-p '(adoc-mode rst-mode markdown-mode org-mode))
+     (when (and +writeroom-enable-mixed-pitch
+                (apply #'derived-mode-p '(adoc-mode rst-mode markdown-mode org-mode)))
+       (require 'mixed-pitch)
        (mixed-pitch-mode (if writeroom-mode 1 -1)))))
 
   (add-hook
@@ -67,19 +70,21 @@
 
   (with-eval-after-load 'org
     ;; Increase latex previews scale in Zen mode
-    (add-hook 'writeroom-mode-enable-hook
-              (defun +writeroom--scale-up-latex-h ()
-                (setq-local +writeroom-org-format-latex-scale
-                            (plist-get org-format-latex-options :scale))
-                (set (make-local-variable 'org-format-latex-options)
-                     (plist-put org-format-latex-options
-                                :scale (if (+emacs-features-p 'pgtk) 1.4 2.1)))))
+    (add-hook
+     'writeroom-mode-enable-hook
+     (defun +writeroom--scale-up-latex-h ()
+       (setq-local +writeroom-org-format-latex-scale
+                   (plist-get org-format-latex-options :scale))
+       (set (make-local-variable 'org-format-latex-options)
+            (plist-put org-format-latex-options
+                       :scale (if (+emacs-features-p 'pgtk) 1.4 2.1)))))
 
-    (add-hook 'writeroom-mode-disable-hook
-              (defun +writeroom--scale-down-latex-h ()
-                (set (make-local-variable 'org-format-latex-options)
-                     (plist-put org-format-latex-options
-                                :scale (or +writeroom-org-format-latex-scale 1.0)))))))
+    (add-hook
+     'writeroom-mode-disable-hook
+     (defun +writeroom--scale-down-latex-h ()
+       (set (make-local-variable 'org-format-latex-options)
+            (plist-put org-format-latex-options
+                       :scale (or +writeroom-org-format-latex-scale 1.0)))))))
 
 (use-package mixed-pitch
   :straight t
