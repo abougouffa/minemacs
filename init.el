@@ -12,7 +12,7 @@
 
 ;; Don't attempt to find/apply special file handlers to files loaded during
 ;; startup, this should seedup the startup process.
-(let ((file-name-handler-alist nil))
+(let (file-name-handler-alist)
   ;; Load vars if they have not been loaded (if Emacs has been loaded directly
   ;; from "init.el" without passing by "early-init.el")
   (unless (featurep 'me-vars)
