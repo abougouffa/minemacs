@@ -11,20 +11,6 @@
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
-  :general
-  (+map-local :keymaps 'org-mode-map
-    "l"  '(nil :wk "link")
-    "ll" #'org-insert-link
-    "e"  #'org-export-dispatch
-    "s"  #'org-edit-src-code)
-  (+map-local :keymaps 'org-src-mode-map
-    "s" #'org-edit-src-save
-    "q" #'org-edit-src-abort
-    "e" #'org-edit-src-exit)
-  (+map-key
-    :keymaps 'org-mode-map
-    :states 'normal
-    "RET" #'org-open-at-point)
   :custom
   (org-tags-column 0)
   (org-auto-align-tags nil)
@@ -52,6 +38,20 @@
   (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
   (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   :config
+  (+map-local :keymaps 'org-mode-map
+    "l"  '(nil :wk "link")
+    "ll" #'org-insert-link
+    "e"  #'org-export-dispatch
+    "s"  #'org-edit-src-code)
+  (+map-local :keymaps 'org-src-mode-map
+    "s" #'org-edit-src-save
+    "q" #'org-edit-src-abort
+    "e" #'org-edit-src-exit)
+  (+map-key
+    :keymaps 'org-mode-map
+    :states 'normal
+    "RET" #'org-open-at-point)
+
   ;; Tectonic can be interesting, however, it don't work right now
   ;; with some of my documents (natbib + sagej...)
   (when (and (executable-find "tectonic") nil)
@@ -65,14 +65,13 @@
   (defvar +org-level-base-size 1.3)
 
   (dotimes (level 8)
-    (let ((size (* +org-level-base-size (expt 0.9 level))))
+    (let ((size (max 1.0 (* +org-level-base-size (expt 0.9 level)))))
       (set-face-attribute
        (intern (format "org-level-%d" (1+ level))) nil
-       :weight (cond
-                ((< level 3) 'semi-bold)
-                ((< level 5) 'bold)
-                (t 'ultra-bold))
-       :height (max 1.0 size))))
+       :weight (cond ((< level 3) 'semi-bold)
+                     ((< level 5) 'bold)
+                     (t 'heavy))
+       :height size)))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -134,7 +133,7 @@
   (+org-extras-lower-case-keywords-and-properties-setup))
 
 (use-package org-contrib
-  :straight (:host sourcehut :repo "bzg/org-contrib")
+  :straight t
   :after org)
 
 (use-package engrave-faces
@@ -241,6 +240,7 @@
 
 (use-package org-agenda
   :straight (:type built-in)
+  :defer t
   :custom
   (org-agenda-tags-column 0)
   (org-agenda-block-separator ?─)
