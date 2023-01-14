@@ -5,7 +5,7 @@
   "Log error MSG and VARS using `message'."
   (when (>= minemacs-msg-level 1)
     `(let ((inhibit-message t))
-      (apply #'user-error (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
+      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defmacro +info! (msg &rest vars)
