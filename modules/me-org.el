@@ -211,7 +211,7 @@
   :hook (org-agenda-finalize . org-modern-agenda)
   :custom-face
   ;; Force monospaced font for tags
-  (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "gray" :box "black"))))
+  (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "LightGray" :box "black"))))
   :custom
   (org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶"))
   (org-modern-table-vertical 5)
