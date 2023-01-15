@@ -163,7 +163,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   (replace-regexp-in-string
    "[:;\t\n\r /\\_]+" "-"
    (replace-regexp-in-string
-    "[‘’‚’“”„”\"'()]+" ""
+    "[‘’‚’“”„”\"`'()]+" ""
     (if downcase-p (downcase filename) filename))))
 
 ;;;###autoload
