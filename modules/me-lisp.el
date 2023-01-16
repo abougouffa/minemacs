@@ -26,6 +26,7 @@
                   "clisp"  ; GNU CLISP
                   "abcl"   ; Armed Bear Common Lisp
                   "ecl"    ; Embeddable Common-Lisp
+                  "gcl"    ; GNU Common Lisp
                   "ccl"    ; Clozure Common Lisp
                   "cmucl"  ; CMU Common Lisp
                   "clasp"  ; Common Lisp on LLVM
