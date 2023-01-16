@@ -37,6 +37,7 @@
 
 (use-package treesit
   :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
   :defer t
   :config
   (setq-default treesit-font-lock-level 4))
