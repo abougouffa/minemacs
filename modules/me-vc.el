@@ -29,6 +29,12 @@
   (define-key transient-map [escape]  #'transient-quit-one)
   (define-key transient-map (kbd "q") #'transient-quit-one))
 
+(when (+emacs-features-p 'sqlite3)
+  ;; Needed to set `forge-database-connector' to `sqlite-builtin'
+  (use-package emacsql-sqlite-builtin
+    :straight t
+    :after magit))
+
 (use-package forge
   :straight t
   :after magit
@@ -36,6 +42,7 @@
   ;; Keybindings will be overriten by evil-collection
   (setq forge-add-default-bindings nil)
   :custom
+  (forge-database-connector (if (+emacs-features-p 'sqlite3) 'sqlite-builtin 'sqlite))
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
 (use-package code-review
