@@ -32,7 +32,7 @@ This will clone the repository, and launches Emacs, which, in the first run,
 will install the required packages.
 
 *** ⚠ Important note
-Please note that I'm using a fresh Emacs build (Emacs 30.0.50) built from source.
+Please note that I'm using a fresh Emacs (Emacs 30.0.50) built from source.
 
 I'm trying to support at least Emacs 28.2, so [[file:modules/me-backports-29.el][I back port some of the new functions/macros I use to Emacs 28]].
 
