@@ -15,7 +15,7 @@
   (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
   :hook (text-mode . spell-fu-mode)
   :custom
-  (spell-fu-directory (concat minemacs-local-dir "spell-fu/"))
+  (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
   :init
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
@@ -62,9 +62,6 @@
           font-lock-keyword-face
           font-lock-variable-name-face)))
     "Faces in certain major modes that spell-fu will not spellcheck.")
-  :config
-  (unless (file-exists-p spell-fu-directory)
-    (mkdir spell-fu-directory t))
 
   (add-hook
    'spell-fu-mode-hook
