@@ -193,7 +193,7 @@
   :after eglot
   :config
   (eglot-ltex-enable-handling-client-commands)
-  (+eglot-register '(org-mode latex-mode LaTeX-mode markdown-mode) "ltex-ls"))
+  (+eglot-register '(org-mode latex-mode LaTeX-mode markdown-mode text-mode) "ltex-ls"))
 
 
 (provide 'me-natural-langs)
