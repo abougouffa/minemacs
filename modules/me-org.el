@@ -98,23 +98,11 @@
      (plantuml . t)
      (makefile . t)))
 
-  (setq org-src-lang-modes
-        '(("C" . c)
-          ("C++" . c++)
-          ("asymptote" . asy)
-          ("bash" . sh)
-          ("beamer" . latex)
-          ("calc" . fundamental)
-          ("cpp" . c++)
-          ("ditaa" . artist)
-          ("desktop" . conf-desktop)
-          ("dot" . graphviz-dot) ; changed
-          ("elisp" . emacs-lisp)
-          ("ocaml" . tuareg)
-          ("screen" . shell-script)
-          ("shell" . sh)
-          ("sqlite" . sql)
-          ("toml" . conf-toml)))
+  (with-eval-after-load 'org-src
+    (setq org-src-lang-modes
+          (append
+           '(("dot" . graphviz-dot))
+           (delete (assoc "dot" org-src-lang-modes #'equal) org-src-lang-modes))))
 
   (with-eval-after-load 'plantuml-mode
     (setq org-plantuml-jar-path plantuml-jar-path
