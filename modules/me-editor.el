@@ -11,7 +11,7 @@
   :init
   (defvar yas-verbosity 2)
   :custom
-  (yas-snippet-dirs (list (concat minemacs-config-dir "snippets/")))
+  (yas-snippet-dirs (list (+directory-ensure (concat minemacs-config-dir "snippets/"))))
   (yas-triggers-in-field t))
 
 (use-package cape-yasnippet
