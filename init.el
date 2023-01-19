@@ -16,8 +16,11 @@
   ;; Load vars if they have not been loaded (if Emacs has been loaded directly
   ;; from "init.el" without passing by "early-init.el")
   (unless (featurep 'me-vars)
+    ;; HACK To avoid problems when loading this "init.el" from a toplevel "init.el"
+    ;; See https://github.com/abougouffa/minemacs/issues/4
+    (setq user-init-file (file-truename load-file-name))
     ;; Load MinEmacs variables first
-    (load (concat user-emacs-directory "core/me-vars.el") nil t))
+    (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
   ;; Load Emacs 29 backports for earlier Emacs versions
   (when (< emacs-major-version 29)
