@@ -48,9 +48,6 @@
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-autoloads-file (concat minemacs-core-dir "me-autoloads.el"))
 
-;; Replace the default Emacs directory with the "local" directory
-(setq user-emacs-directory minemacs-local-dir)
-
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
 (defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))
 (defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
