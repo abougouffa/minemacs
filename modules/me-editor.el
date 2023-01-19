@@ -39,6 +39,11 @@
   :config
   (license-snippets-init))
 
+(use-package pcache
+  :straight t
+  :init
+  (setq pcache-directory (concat minemacs-local-dir "pcache/")))
+
 (use-package unicode-fonts
   :straight t
   :hook (minemacs-after-startup . unicode-fonts-setup)

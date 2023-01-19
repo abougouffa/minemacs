@@ -7,6 +7,13 @@
 
 (add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
 
+(use-package transient
+  :straight t
+  :custom
+  (transient-values-file (concat minemacs-local-dir "transient/values.el"))
+  (transient-levels-file (concat minemacs-local-dir "transient/levels.el"))
+  (transient-history-file (concat minemacs-local-dir "transient/history.el")))
+
 (use-package magit
   :straight t
   :general
