@@ -45,6 +45,15 @@
   (forge-database-connector (if (+emacs-features-p 'sqlite3) 'sqlite-builtin 'sqlite))
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
+(use-package emojify
+  :straight t
+  :defer t
+  :custom
+  (emojify-emoji-set "emojione-v2.2.6")
+  (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
+  (emojify-display-style 'image)
+  (emojify-download-emojis-p t))
+
 (use-package code-review
   :straight t
   :after magit
