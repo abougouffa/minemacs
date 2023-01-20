@@ -16,15 +16,16 @@
 
 (use-package cape-yasnippet
   :straight (:host github :repo "elken/cape-yasnippet")
-  :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
   :after cape yasnippet
-  :defines +cape-yasnippet--setup-h
   :config
   ;; To avoid auto-expanding snippets
   (plist-put cape-yasnippet--properties :exit-function #'always)
   (defun +cape-yasnippet--setup-h ()
     (when (and (bound-and-true-p yas-minor-mode))
-      (add-to-list 'completion-at-point-functions #'cape-yasnippet t))))
+      (add-to-list 'completion-at-point-functions #'cape-yasnippet t)))
+
+  (dolist (mode-hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+    (add-hook mode-hook #'+cape-yasnippet--setup-h)))
 
 (use-package yasnippet-snippets
   :straight t
