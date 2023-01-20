@@ -5,8 +5,6 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . conf-mode))
-
 (use-package magit
   :straight t
   :general
@@ -114,6 +112,12 @@
                 (eolp))
        (evil-insert-state))))
   (global-git-commit-mode 1))
+
+(use-package git-modes
+  :straight t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("/.dockerignore\\'" . gitignore-mode)))
 
 (use-package smerge-mode
   :straight t
