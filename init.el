@@ -19,6 +19,15 @@
     ;; Load MinEmacs variables first
     (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
+  ;; Make `locate-user-emacs-file' returns paths under `minemacs-local-dir'
+  ;; instead of `user-emacs-directory'
+  (advice-add
+   'locate-user-emacs-file
+   :around
+   (defun locate-user-emacs-file--in-local-directory-a (origfn &rest args)
+     (let ((user-emacs-directory minemacs-local-dir))
+       (apply origfn args))))
+
   ;; Load Emacs 29 backports for earlier Emacs versions
   (when (< emacs-major-version 29)
     (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
