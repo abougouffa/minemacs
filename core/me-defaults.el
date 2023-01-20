@@ -134,6 +134,8 @@
  frame-resize-pixelwise t
  ;; Stretch cursor to the glyph width
  x-stretch-cursor t
+ ;; Show trailing whitespaces
+ show-trailing-whitespace t
  ;; Resize window combinations proportionally
  window-combination-resize t
  ;; Enable time in the mode-line
