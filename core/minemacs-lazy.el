@@ -11,10 +11,11 @@
         (+log! "Loading %d lazy packages immediately (minemacs-not-lazy have non-nil value)."
                (length minemacs-lazy-hook))
         (run-hooks 'minemacs-lazy-hook))
-    (+log! "Loading %d lazy packages incrementally."
-           (length minemacs-lazy-hook))
+    (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
     ;; Run hooks one by one, as a FIFO.
     (apply #'+eval-when-idle (append '(1) minemacs-lazy-hook))))
 
 (+log! "Providing `minemacs-lazy'.")
+
+
 (provide 'minemacs-lazy)
