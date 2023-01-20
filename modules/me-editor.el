@@ -7,11 +7,12 @@
 
 (use-package yasnippet
   :straight t
-  :hook (minemacs-lazy . yas-global-mode)
+  :defer t
   :init
   (defvar yas-verbosity 2)
+  (add-hook 'minemacs-lazy-hook #'yas-global-mode)
   :custom
-  (yas-snippet-dirs (list (+directory-ensure (concat minemacs-config-dir "snippets/"))))
+  (yas-snippet-dirs nil)
   (yas-triggers-in-field t))
 
 (use-package cape-yasnippet
