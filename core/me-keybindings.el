@@ -12,17 +12,18 @@
   :custom
   (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay 0.05)
-  (which-key-prefix-prefix "↪ ")
+  (which-key-ellipsis "..")
+  (which-key-prefix-prefix "+")
   (which-key-sort-order 'which-key-key-order-alpha)
   (which-key-min-display-lines 3)
   (which-key-max-display-columns nil)
   (which-key-allow-multiple-replacements t)
   :config
   ;; g, [, ] (\\`[][g])
-  (push '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅴·\\1"))
+  (push '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
         which-key-replacement-alist)
   ;; g
-  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "🅘·\\1"))
+  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɩ·\\1"))
         which-key-replacement-alist)
   ;; g z
   (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
