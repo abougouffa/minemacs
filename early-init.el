@@ -30,11 +30,8 @@
 ;; system's environment variables.
 (setenv "LSP_USE_PLISTS" "true")
 
-;; HACK To fix Chemacs2 issues!
-(setq user-init-file (expand-file-name "init.el" (file-name-directory (file-truename load-file-name))))
-
 ;; Load MinEmacs variables first
-(load (concat user-emacs-directory "core/me-vars.el") nil t)
+(load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
 
 ;;; Load the early config file if it exists
 (let ((early-config-path (concat minemacs-config-dir "early-config.el")))

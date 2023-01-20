@@ -40,7 +40,11 @@
   (not (null (getenv "MINEMACS_SPLASH_KEEP")))
   "MinEmacs is started in keep splash screen mode.")
 
-(defconst minemacs-root-dir (file-name-directory (abbreviate-file-name (file-truename user-init-file))))
+;; Derive the root directory from this file path
+(defconst minemacs-root-dir
+  (abbreviate-file-name
+   (file-name-parent-directory
+    (file-name-directory (file-truename load-file-name)))))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
 (defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
