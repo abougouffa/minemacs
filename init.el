@@ -92,6 +92,10 @@
      ;; otherwise, they are read from the default `minemacs-default-fonts'.
      (+set-fonts)
 
+     ;; Initially MinEmacs loads the `doom-one-light' theme, and when
+     ;; `minemacs-theme' is set in user configuration, it is loaded here.
+     (+load-theme)
+
      (+log! "Setting scratch buffer content.")
      ;; Print load time, and a quote to *scratch*
      (with-current-buffer (get-scratch-buffer-create)

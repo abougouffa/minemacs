@@ -101,6 +101,13 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
                    (plist-get minemacs-default-fonts :variable-pitch-font-size)))))))))
 
 ;;;###autoload
+(defun +load-theme ()
+  (interactive)
+  (when minemacs-theme
+    (+log! "Loading user theme: %s" minemacs-theme)
+    (load-theme minemacs-theme t)))
+
+;;;###autoload
 (defun +push-system-dependencies (&rest deps)
   "Push system dependencies DEPS, these are executables needed by MinEmacs."
   (declare (indent 0))

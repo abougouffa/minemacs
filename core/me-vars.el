@@ -84,7 +84,7 @@ Compiled from the `system-configuration-features'.")
 (defcustom minemacs-global-mode-prefix "C-SPC m"
   "MinEmacs general local leader (a.k.a. mode specific) key sequence.")
 
-(defcustom minemacs-theme 'doom-one-light
+(defcustom minemacs-theme nil
   "The theme of MinEmacs")
 
 (defcustom minemacs-before-user-config-hook nil

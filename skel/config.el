@@ -9,12 +9,17 @@
 ;; Set the default GPG key ID, see "gpg --list-secret-keys"
 ;; (setq-default epa-file-encrypt-to '("XXXX"))
 
-;; Set fonts
-(setq minemacs-fonts ;; or Cascadia Code, Fira Code, FiraCode Nerd Font, Iosevka Fixed Curly Slab
-      '(:font-family "Iosevka Fixed Curly Slab"
-        :font-size 16
-        :variable-pitch-font-family "IBM Plex Serif"
-        :variable-pitch-font-size 16))
+(setq
+ ;; Set fonts
+ minemacs-fonts ;; or Cascadia Code, Fira Code, FiraCode Nerd Font, Iosevka Fixed Curly Slab
+ '(:font-family "Iosevka Fixed Curly Slab"
+   :font-size 16
+   :variable-pitch-font-family "IBM Plex Serif"
+   :variable-pitch-font-size 16)
+
+ ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
+ ;; and `modus-themes'.
+ minemacs-theme 'doom-one)
 
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.

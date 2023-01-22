@@ -225,6 +225,7 @@ Convert BODY to an interactive command.
 
 (fn &rest BODY)" nil t)
 (autoload '+set-fonts "../elisp/+minemacs" nil t)
+(autoload '+load-theme "../elisp/+minemacs" nil t)
 (autoload '+push-system-dependencies "../elisp/+minemacs" "\
 Push system dependencies DEPS, these are executables needed by MinEmacs.
 
