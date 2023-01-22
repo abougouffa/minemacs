@@ -138,15 +138,17 @@ Adapted from `org-plist-delete'."
 
 ;;; === Symbols ===
 
+(defvar +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/"))
+
 ;;;###autoload
-(defun +serialize-sym (sym dir &optional filename-format)
+(defun +serialize-sym (sym &optional dir filename-format)
   "Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the written file name, or nil if SYM is not bound."
   (when (boundp sym)
     (let ((out-file (expand-file-name
                      (format (or filename-format "%s.el") (symbol-name sym))
-                     dir)))
+                     (or dir +serialized-symbols-directory))))
       (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
       (with-temp-buffer
         (prin1 (eval sym) (current-buffer))
@@ -154,13 +156,13 @@ Return the written file name, or nil if SYM is not bound."
       out-file)))
 
 ;;;###autoload
-(defun +deserialize-sym (sym dir &optional mutate filename-format)
+(defun +deserialize-sym (sym &optional dir mutate filename-format)
   "Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the deserialized object, or nil if the SYM.el file dont exist."
   (let ((in-file (expand-file-name
                   (format (or filename-format "%s.el") (symbol-name sym))
-                  dir))
+                  (or dir +serialized-symbols-directory)))
         res)
     (when (file-exists-p in-file)
       (+log! "Loading `%s' from file \"%s\"" sym (abbreviate-file-name in-file))

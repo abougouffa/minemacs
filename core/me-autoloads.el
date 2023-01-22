@@ -350,19 +350,20 @@ Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the written file name, or nil if SYM is not bound.
 
-(fn SYM DIR &optional FILENAME-FORMAT)")
+(fn SYM &optional DIR FILENAME-FORMAT)")
 (autoload '+deserialize-sym "../elisp/+primitives" "\
 Deserialize SYM from DIR, if MUTATE is non-nil, assign the object to SYM.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
-(fn SYM DIR &optional MUTATE FILENAME-FORMAT)")
+(fn SYM &optional DIR MUTATE FILENAME-FORMAT)")
 (autoload '+unquote "../elisp/+primitives" "\
 Return EXP unquoted.
 
 (fn EXP)")
 (function-put '+unquote 'pure 't)
 (function-put '+unquote 'side-effect-free 't)
+(register-definition-prefixes "../elisp/+primitives" '("+serialized-symbols-directory"))
 
 
 ;;; Generated autoloads from ../elisp/+project.el
