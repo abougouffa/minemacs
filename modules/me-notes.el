@@ -7,7 +7,6 @@
 
 (use-package org-roam
   :straight t
-  :after org minemacs-loaded
   :general
   (+map :infix "n"
     "f" #'org-roam-node-find
@@ -24,7 +23,6 @@
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
 (use-package deft
   :straight t
-  :after org-roam
   :general
   (+map
     "nd" '(deft :wk "Deft"))
