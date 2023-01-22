@@ -19,8 +19,6 @@
                org-mode))
       (ignore-errors (treesit-hl-enable))))
   :config
-  ;; Add missing languages to the list
-  (add-to-list 'treesit-major-mode-language-alist '(graphviz-dot-mode . dot))
   (advice-add
    'treesit-langs--hl-query-path :around
    (defun +treesit-langs--fallback-to-repos-a (old-fn lang-symbol &optional mode)
