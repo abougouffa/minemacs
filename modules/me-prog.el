@@ -212,51 +212,6 @@ the children of class at point."
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
 
-(use-package plantuml-mode
-  :straight t
-  :mode "\\.plantuml\\'"
-  :hook (plantuml-mode . +plantuml-mode-setup)
-  :custom
-  (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
-  (plantuml-indent-level 2)
-  :config
-  (setq
-   plantuml-default-exec-mode
-   ;; Prefer the system executable
-   (if (executable-find "plantuml")
-       'executable
-     ;; Then, if a JAR exists, use it
-     (or (and (file-exists-p plantuml-jar-path) 'jar)
-         ;; otherwise, try to download a JAR in interactive mode
-         (and (not noninteractive) (plantuml-download-jar) 'jar)
-         ;; Fall back to server
-         'server)))
-
-  ;; Add support fot capf, rather than the builtin `plantuml-complete-symbol'
-  (defun +plantuml-mode-setup ()
-    (add-to-list
-     'completion-at-point-functions
-     (defun +plantuml-complete-at-point ()
-       "Perform symbol-at-pt completion on word before cursor."
-       (let* ((end-pos (point))
-              (sym-at-pt (or (thing-at-point 'symbol) ""))
-              (max-match (try-completion sym-at-pt plantuml-kwdList)))
-         (unless (null max-match)
-           (list (- end-pos (length sym-at-pt))
-                 end-pos
-                 (if (eq max-match t)
-                     (list keyword)
-                   (all-completions sym-at-pt plantuml-kwdList))))))))
-
-  (+map-local :keymaps 'plantuml-mode-map
-    "p" #'plantuml-preview-buffer
-    "P" #'plantuml-preview
-    "d" `(,(+cmdfy!
-            (if plantuml-mode-debug-enabled
-                (plantuml-disable-debug)
-              (plantuml-enable-debug)))
-          :wk "Toggle debug")))
-
 (use-package rust-mode
   :straight t
   :mode "\\.rs\\'"
