@@ -125,4 +125,21 @@
               (plantuml-enable-debug)))
           :wk "Toggle debug")))
 
+(use-package d2-mode
+  :straight t
+  :mode "\\.d2\\'"
+  :general
+  (+map-local :keymaps 'd2-mode-map
+     "cc" #'d2-compile
+     "cf" #'d2-compile-file
+     "cb" #'d2-compile-buffer
+     "cr" #'d2-compile-region
+     "cF" #'d2-compile-file-and-browse
+     "cB" #'d2-compile-buffer-and-browse
+     "cR" #'d2-compile-region-and-browse
+     "o"  #'d2-open-browser
+     "v"  #'d2-view-current-svg
+     "h"  #'d2-open-doc))
+
+
 (provide 'me-data)
