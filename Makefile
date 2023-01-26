@@ -1,5 +1,8 @@
 EMACS_DIR=.
 
+all:
+	echo "Possible options: clean, clean_all, prune, autoloads"
+
 clean:
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
 
