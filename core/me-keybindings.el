@@ -11,7 +11,7 @@
   :hook (minemacs-after-startup . which-key-mode)
   :custom
   (which-key-idle-delay 1.0)
-  (which-key-idle-secondary-delay 0.05)
+  (which-key-idle-secondary-delay nil)
   (which-key-ellipsis "..")
   (which-key-prefix-prefix "+")
   (which-key-sort-order 'which-key-key-order-alpha)

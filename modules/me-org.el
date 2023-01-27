@@ -18,6 +18,7 @@
   (org-cycle-hide-block-startup t)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
   (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
+  (org-fold-core-style 'overlays) ; Fix `evil' search problem (to be used with `evil-search')
   (org-fontify-quote-and-verse-blocks t)
   (org-special-ctrl-a/e t)
   (org-insert-heading-respect-content t)

@@ -23,9 +23,6 @@
   (evil-emacs-state-cursor '(hbar . 2))
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
-  ;; 'evil-search may cause problems with org-fold
-  ;; https://github.com/emacs-evil/evil/issues/1630
-  (evil-select-search-module 'evil-search-module 'isearch)
   (evil-mode 1)
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
