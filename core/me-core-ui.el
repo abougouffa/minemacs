@@ -108,14 +108,6 @@ Useful for keeping track of the enabled theme."
   ;; Load the theme of your choice.
   (load-theme 'modus-operandi-tinted t))
 
-(use-package doom-themes
-  :straight t
-  :config
-  ;; Users can set `minemacs-theme' in "config.el", in this case, it will be
-  ;; loaded after loading Emacs (in "init.el"). If set in "early-config.el", we
-  ;; set it early here `minemacs-theme'
-  (load-theme (or minemacs-theme 'doom-one-light) t))
-
 (use-package all-the-icons
   :straight t
   :defer t
@@ -123,6 +115,14 @@ Useful for keeping track of the enabled theme."
   ;; Show .m files as matlab/octave files
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
+
+(use-package doom-themes
+  :straight t
+  :config
+  ;; Users can set `minemacs-theme' in "config.el", in this case, it will be
+  ;; loaded after loading Emacs (in "init.el"). If set in "early-config.el", we
+  ;; set it early here `minemacs-theme'
+  (load-theme (or minemacs-theme 'doom-one-light) t))
 
 (use-package doom-modeline
   :straight t
