@@ -230,7 +230,8 @@ the children of class at point."
 
 (use-package cuda-mode
   :straight t
-  :defer t)
+  :defer t
+  :hook (cuda-mode . display-line-numbers-mode))
 
 (use-package dumb-jump
   :straight t
