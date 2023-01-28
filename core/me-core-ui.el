@@ -118,11 +118,7 @@ Useful for keeping track of the enabled theme."
 
 (use-package doom-themes
   :straight t
-  :config
-  ;; Users can set `minemacs-theme' in "config.el", in this case, it will be
-  ;; loaded after loading Emacs (in "init.el"). If set in "early-config.el", we
-  ;; set it early here `minemacs-theme'
-  (load-theme (or minemacs-theme 'doom-one-light) t))
+  :defer t)
 
 (use-package doom-modeline
   :straight t
