@@ -50,6 +50,19 @@ directory:
 This repository contains skeleton files for [[file:skel/modules.el][modules.el]] and [[file:skel/config.el][config.el]] (under
 [[file:skel][skel/]]).
 
+*** Environment variables
+You can customize MinEmacs' behavior via some environment variables.
+
+- =MINEMACS_DIR= or =MINEMACSDIR=: Path for MinEmacs user configuration directory,
+  if not set, =~/.minemacs.d/= is used.
+- =MINEMACS_MSG_LEVEL=: Change message log level, from 1 (only errors) to 4 (all
+  messages).
+- =MINEMACS_VERBOSE=: Be more verbose (useful for debugging).
+- =MINEMACS_DEBUG=: Enable debugging at startup.
+- =MINEMACS_ALPHA=: Set frame =background-alpha= to percentage (value from 0 to
+  100).
+- =MINEMACS_NOT_LAZY=: Load lazy packages immediately after loading Emacs.
+
 ** Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [[file:FAQ.org][FAQ]], check [[https://github.com/abougouffa/minemacs/issues][open
 issues or open a new one]].
