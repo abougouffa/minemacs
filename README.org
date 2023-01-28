@@ -13,10 +13,10 @@ programs in different programming languages, manage my emails, etc.
 
 Therefore, I want a robust yet simple framework. Doom Emacs is a good choice,
 And it is moving in a good direction, but recently, I'm experiencing a lot of
-problems with it, sometimes I do a ~doom upgrade~, and just after, nothing
-works properly, it happens only in my most busy days, causing additional stress
-to manage. And to be honest, it is a bit too much for a configuration framework!
-It implements a command line interface, a library with extra features,
+problems with it, sometimes I do a ~doom upgrade~, and just after, nothing works
+properly, it happens only in my most busy days, causing additional stress to
+manage. And to be honest, it is a bit too much for a configuration framework! It
+implements a command line interface, a library with extra features,
 configuration modules gluing a bunch of packages in an opinionated way, CI
 commands, and recently a profile manager! Which adds extra complexity at each
 layer.
@@ -34,9 +34,11 @@ will install the required packages.
 *** ⚠ Important note
 Please note that I'm using a fresh Emacs (Emacs 30.0.50) built from source.
 
-I'm trying to support at least Emacs 28.2, so [[file:modules/me-backports-29.el][I back port some of the new functions/macros I use to Emacs 28]].
+I'm trying to support at least Emacs 28.2, so [[file:modules/me-backports-29.el][I back port some of the new
+functions/macros I use to Emacs 28]].
 
-I've never tested this configuration with Emacs versions earlier than 28.2, and I don't plan to do so!
+I've never tested this configuration with Emacs versions earlier than 28.2, and
+I don't plan to do so!
 
 ** Customize
 You can customize MinEmacs by adding these files under the =~/.minemacs.d=
@@ -47,3 +49,7 @@ directory:
 
 This repository contains skeleton files for [[file:skel/modules.el][modules.el]] and [[file:skel/config.el][config.el]] (under
 [[file:skel][skel/]]).
+
+** Troubleshooting
+If you experienced an issue with MinEmacs, you can check the [[file:FAQ.org][FAQ]], check [[https://github.com/abougouffa/minemacs/issues][open
+issues or open a new one]].

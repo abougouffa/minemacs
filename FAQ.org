@@ -1,0 +1,13 @@
+* MinEmacs FAQ
+This file assembles some of the frequently asked questions about MinEmacs.
+
+** Using =parinfer-rust-mode= in a non x86_64 platform
+The =parinfer-rust-mode= package provide precompiled libraries for Linux, Windows
+and MacOS, but only for x86_64 machines. If you have a CPU (like M1 or other ARM
+based CPUs) of another architecture (=aarch64=, =arm32=, =arm64=, ...), you can
+compile the library from source [[https://github.com/justinbarclay/parinfer-rust-mode#option-2-building-library-from-sources][as described in the project's documentation]], and
+then add this to your =config.el=:
+
+#+begin_src emacs-lisp
+(setq parinfer-rust-library "/path/to/your/parinfer-rust-library.so")
+#+end_src
