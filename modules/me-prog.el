@@ -179,10 +179,13 @@ the children of class at point."
   (+map "cff" #'apheleia-format-buffer)
   :config
   (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
-  (add-to-list 'apheleia-mode-alist '(cmake-mode . cmake-format))
-  (add-to-list 'apheleia-mode-alist '(cmake-ts-mode . cmake-format))
-  (dolist (mode '(emacs-lisp-mode lisp-data-mode scheme-mode))
-    (push (cons mode 'lisp-indent) apheleia-mode-alist)))
+  (dolist (alist '((cmake-mode . cmake-format)
+                   (cmake-ts-mode . cmake-format)
+                   (cuda-mode . clang-format)
+                   (common-lisp-mode . lisp-indent)
+                   (emacs-lisp-mode . lisp-indent)
+                   (lisp-data-mode . lisp-indent)))
+    (add-to-list 'apheleia-mode-alist alist)))
 
 (use-package editorconfig
   :straight t
