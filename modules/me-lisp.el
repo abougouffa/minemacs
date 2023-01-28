@@ -7,7 +7,7 @@
 
 (use-package parinfer-rust-mode
   :straight t
-  :when (+emacs-features-p 'modules)
+  :when (and (+emacs-features-p 'modules) (eq sys/arch 'x86_64))
   :custom
   (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
