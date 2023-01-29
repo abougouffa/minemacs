@@ -100,7 +100,7 @@
     "bS"  #'save-some-buffers
     "bs"  #'scratch-buffer
     "bM"  #'view-echo-area-messages
-    "bA"  #'kill-some-buffers
+    "bA"  #'+kill-some-buffers
     "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
             :wk "Kill this buffer")
     "bK"  `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))

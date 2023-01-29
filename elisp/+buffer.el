@@ -80,3 +80,32 @@ Prefix ARG nil means write region to FILENAME, replacing contents."
            (write-region start end filename arg)
            (when same-file-p (revert-buffer t t)))
           (t (message "OK.  Not written.")))))
+
+;;;###autoload
+(defun +kill-some-buffers (&optional list)
+  "Kill some buffers.  Asks the user whether to kill the modified ones.
+Non-interactively, if optional argument LIST is non-nil, it
+specifies the list of buffers to kill, asking for approval for each one.
+See `kill-some-buffers'."
+  (interactive)
+  ;; Replace the `kill-buffer-ask' locally (used by `kill-some-buffers')
+  ;; with our function which don't ask about unmodified buffers.
+  (cl-letf (((symbol-function 'kill-buffer-ask) #'+kill-buffer-ask-if-modified))
+    (kill-some-buffers list)))
+
+(defvar +kill-buffer-no-ask-list
+  (append
+   (list messages-buffer-name "*Warnings*")
+   (when (featurep 'native-compile)
+     (list comp-async-buffer-name comp-log-buffer-name)))
+  "A list of buffer names to be killed without confirmation.")
+
+;;;###autoload
+(defun +kill-buffer-ask-if-modified (buffer)
+  "Like `kill-buffer-ask', but kills BUFFER without confirmation if buffer is unmodified.
+Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
+  (when (or (not (buffer-modified-p buffer))
+            (member (buffer-name buffer) +kill-buffer-no-ask-list)
+            (yes-or-no-p (format "Buffer %s HAS BEEN MODIFIED.  Kill? "
+                                 (buffer-name buffer))))
+    (kill-buffer buffer)))

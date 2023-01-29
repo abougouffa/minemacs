@@ -53,6 +53,19 @@ Prefix ARG non-nil means append region to end of file FILENAME.
 Prefix ARG nil means write region to FILENAME, replacing contents.
 
 (fn START END FILENAME ARG)" t)
+(autoload '+kill-some-buffers "../elisp/+buffer" "\
+Kill some buffers.  Asks the user whether to kill the modified ones.
+Non-interactively, if optional argument LIST is non-nil, it
+specifies the list of buffers to kill, asking for approval for each one.
+See `kill-some-buffers'.
+
+(fn &optional LIST)" t)
+(autoload '+kill-buffer-ask-if-modified "../elisp/+buffer" "\
+Like `kill-buffer-ask', but kills BUFFER without confirmation if buffer is unmodified.
+Kill without asking for buffer names in `+kill-buffer-no-ask-list'.
+
+(fn BUFFER)")
+(register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list"))
 
 
 ;;; Generated autoloads from ../elisp/+eglot.el
