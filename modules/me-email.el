@@ -109,8 +109,6 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
-  ;; Setup Org-msg for mu4e
-  (org-msg-mode-mu4e)
   (org-msg-mode 1))
 
 (use-package mu4e-alert
