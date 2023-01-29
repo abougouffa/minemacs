@@ -136,6 +136,28 @@ Adapted from `org-plist-delete'."
       (push (cdr x) res))
     (nreverse res)))
 
+;;;###autoload
+(defun +alist-set (key val alist &optional symbol)
+  "Set property KEY to VAL in ALIST. Return new alist.
+This creates the association if it is missing, and otherwise sets
+the cdr of the first matching association in the list. It does
+not create duplicate associations. By default, key comparison is
+done with `equal'. However, if SYMBOL is non-nil, then `eq' is
+used instead.
+
+This method may mutate the original alist, but you still need to
+use the return value of this method instead of the original
+alist, to ensure correct results."
+  ;; Implementation taken from `straight--alist-set'
+  ;; See [1] for the genesis of this method, which should really be
+  ;; built in.
+  ;;
+  ;; [1]: https://emacs.stackexchange.com/q/33892/12534
+  (if-let ((pair (if symbol (assq key alist) (assoc key alist))))
+      (setcdr pair val)
+    (push (cons key val) alist))
+  alist)
+
 ;;; === Symbols ===
 
 (defvar +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/"))

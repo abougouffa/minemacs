@@ -358,6 +358,19 @@ Adapted from `org-plist-delete'.
 
 
 (fn ALIST &optional ADD-COL)")
+(autoload '+alist-set "../elisp/+primitives" "\
+Set property KEY to VAL in ALIST. Return new alist.
+This creates the association if it is missing, and otherwise sets
+the cdr of the first matching association in the list. It does
+not create duplicate associations. By default, key comparison is
+done with `equal'. However, if SYMBOL is non-nil, then `eq' is
+used instead.
+
+This method may mutate the original alist, but you still need to
+use the return value of this method instead of the original
+alist, to ensure correct results.
+
+(fn KEY VAL ALIST &optional SYMBOL)")
 (autoload '+serialize-sym "../elisp/+primitives" "\
 Serialize SYM to DIR.
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\").
