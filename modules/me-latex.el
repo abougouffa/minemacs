@@ -24,7 +24,7 @@
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
   :config
-  (with-eval-after-load 'pdf-tools
+  (when (functionp 'pdf-tools-install)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools"))))
 
 ;; Adapted from Doom Emacs
