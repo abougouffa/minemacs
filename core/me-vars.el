@@ -126,6 +126,7 @@ MinEmacs hooks will be run in this order:
   (defconst minemacs-default-fonts
     `(:font-family ,mono-font
       :font-size 14
+      :unicode-font-family nil
       :variable-pitch-font-family ,varp-font
       :variable-pitch-font-size 14)
     "Default fonts of MinEmacs."))
