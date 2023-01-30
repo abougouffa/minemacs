@@ -82,9 +82,9 @@
                             :if-new (file+head "references/${citekey}.org"
                                      ,(concat
                                        ":properties:\n"
-                                       "  :roam_refs: [cite:@${citekey}]\n"
-                                       "  :end:\n"
-                                       "  #+title: ${title}\n"))
+                                       ":roam_refs: [cite:@${citekey}]\n"
+                                       ":end:\n"
+                                       "#+title: ${title}\n"))
                             :immediate-finish t
                             :unnarrowed t))
                          :info (list :citekey entry-key)
