@@ -11,3 +11,85 @@ then add this to your =config.el=:
 #+begin_src emacs-lisp
 (setq parinfer-rust-library "/path/to/your/parinfer-rust-library.so")
 #+end_src
+
+** Exporting Org documents in background ends with errors
+In some circumstances, you can get an error when trying to export an Org file to
+PDF. For example, after hitting =SPC m e l p=, you get short after, the message
+="Org async export finised, see *Org Export Process* for more details."=.
+
+With something like this in the =*Org Export Process*= buffer:
+
+#+begin_src emacs-lisp
+Using MinEmacs’ "me-org-export-async-init.el" as init file.
+Loading "init.el" in an org-export-async context.
+Symbol s function definition is void: evil-snipe-mode
+
+Error: void-function (evil-snipe-mode)
+  mapbacktrace(#f(compiled-function (evald func args flags) #<bytecode 0x187e658465ae87e8>))
+  debug-early-backtrace()
+  debug-early(error (void-function evil-snipe-mode))
+  (evil-snipe-mode 1)
+  eval-buffer(#<buffer  *load*-90736> nil "/home/abougouffa/.minemacs.d/config.el" nil t)
+  load-with-code-conversion("/home/abougouffa/.minemacs.d/config.el" "/home/abougouffa/.minemacs.d/config.el" nil t)
+  load("~/.minemacs.d/config.el" nil t)
+  (progn nil (load user-config nil (not minemacs-verbose)))
+  (if (file-exists-p user-config) (progn nil (load user-config nil (not minemacs-verbose))))
+  (let ((user-config (concat minemacs-config-dir "config.el"))) (if (file-exists-p user-config) (progn nil (load user-config nil (not minemacs-verbose)))))
+  eval-buffer(#<buffer  *load*-220865> nil "/home/abougouffa/.emacs.d/init.el" nil t)
+  load-with-code-conversion("/home/abougouffa/.emacs.d/init.el" "/home/abougouffa/.emacs.d/init.el" nil t)
+  load("~/.emacs.d/init.el" nil t)
+  eval-buffer(#<buffer  *load*> nil "/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" nil t)
+  load-with-code-conversion("/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" "/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" nil t)
+  load("/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" nil t)
+  command-line-1(("-l" "/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" "-l" "/tmp/org-export-processktJyzH"))
+  command-line()
+  normal-top-level()
+#+end_src
+
+To resolve this, we need to understand how MinEmacs configures Org-mode's
+asynchronous export. By default, MinEmacs enables =org-export-in-background= to
+export documents asynchronously (in a child Emacs process). As this process do
+not need all of MinEmacs installed package, so there is a minimalist init file
+in =modules/extras/me-org-export-async-init.el= which will be used by default for
+the =org-export-async-init-file= variable.
+
+Therefore, if you invoke -in your =config.el=- a feature that is not enabled in
+the minimalist init file, you will get random errors related to that. In the
+example above, Emacs is complaining about =evil-snipe-mode= because we have call
+to =(evil-snipe-mode 1)= in the =config.el=, however, evil and it's related packages
+are not enabled in the minimalist init file.
+
+The minimalist init file provides a feature named =me-org-export-async-init=, so
+you can add conditional blocks in your =config.el= to be executed (or not) when
+this feature is present (/i.e./, when running in an Org async export context).
+
+So, to resolve this issue, you can either:
+
+- Fix your =config.el= by using =with-eval-after-load= blocks and by conditioning
+  the problematic code.
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'projectile
+  (do-some-extra-stuff))
+
+;; Avoid running this block in org-export context
+(unless (featurep 'me-org-export-async-init)
+  (do-something))
+#+end_src
+
+- Disable =org-export-in-background= using:
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+  (setq org-export-in-background nil))
+#+end_src
+
+- Or, you can revert to Org-mode's default behavior for the child export
+  process (will use MinEmacs' =init.el= file):
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+  ;; You can also set it to your own custom init.el, just do not forget to
+  ;; provide `me-org-export-async-init' in it.
+  (setq org-export-async-init-file nil))
+#+end_src
