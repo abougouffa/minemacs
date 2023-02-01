@@ -5,10 +5,16 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Check if Emacs version is supported
-(let ((min-version "28.2"))
-  (when (version< emacs-version min-version)
-    (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
-           emacs-version min-version)))
+(let ((supported-version "28.2")
+      (minimum-version "28.0.50"))
+  (when (version< emacs-version supported-version)
+    (if (version<= minimum-version emacs-version)
+        (message
+         "Warning: MinEmacs requires v%s or higher. \
+You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
+         supported-version emacs-version)
+      (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
+             emacs-version supported-version))))
 
 ;; Load vars if they have not been loaded (if Emacs has been loaded directly
 ;; from "init.el" without passing by "early-init.el")
