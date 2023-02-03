@@ -20,6 +20,25 @@
   (+map
     "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
 
+(use-package consult-org-roam
+  :straight t
+  :hook (minemacs-lazy . consult-org-roam-mode)
+  :general
+  (+map
+    "ns" #'consult-org-roam-search
+    "nl" #'consult-org-roam-forward-links
+    "nb" #'consult-org-roam-backlinks
+    "nF" #'consult-org-roam-file-find)
+  :custom
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "M-.")))
+
 ;; From https://org-roam.discourse.group/t/configure-deft-title-stripping-to-hide-org-roam-template-headers/478/10
 (use-package deft
   :straight t
