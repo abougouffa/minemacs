@@ -236,6 +236,10 @@ the children of class at point."
   :defer t
   :hook (cuda-mode . display-line-numbers-mode))
 
+(use-package opencl-mode
+  :straight t
+  :mode "\\.cl\\'")
+
 (use-package dumb-jump
   :straight t
   :commands
