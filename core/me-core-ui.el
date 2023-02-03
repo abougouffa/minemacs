@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(defun +theme--tweaks-h (&rest _args)
+(defun +theme--tweaks-h (&optional _)
   "Use smaller font (75% of the default) for line numbers in graphic mode."
   (when (display-graphic-p)
     (set-face-attribute
