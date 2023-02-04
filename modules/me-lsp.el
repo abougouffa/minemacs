@@ -7,18 +7,15 @@
 
 (use-package lsp-mode
   :straight t
-  :hook ((c++-mode
-          c++-ts-mode
-          c-mode c-ts-mode
-          python-mode python-ts-mode
-          rust-mode cmake-mode) . lsp-deferred)
   :preface
   (setq lsp-use-plists t)
+  :commands +lsp-auto-enable
   :general
   (+map
     :infix "c"
     "l"  '(nil :wk "lsp session")
-    "ll" #'lsp)
+    "ll" #'lsp
+    "lA" #'+lsp-auto-enable)
   :custom
   (lsp-session-file (concat minemacs-local-dir "lsp/session.el"))
   (lsp-server-install-dir (concat minemacs-local-dir "lsp/servers/"))
@@ -40,6 +37,15 @@
   (lsp-insert-final-newline nil)
   (lsp-trim-final-newlines nil)
   :config
+  (defun +lsp-auto-enable ()
+    (interactive)
+    (dolist (h '(c++-mode-hook c++-ts-mode-hook
+                 c-mode-hook c-ts-mode-hook
+                 python-mode-hook python-ts-mode-hook
+                 rust-mode-hook cmake-mode-hook))
+      (add-hook h #'lsp-deferred)
+      (remove-hook h #'eglot-ensure)))
+
   (+map :keymaps 'lsp-mode-map
     :infix "c"
     "fF" #'lsp-format-buffer
