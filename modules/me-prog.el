@@ -54,21 +54,27 @@
 
 (use-package eglot
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
-  :init
-  (unless (memq 'me-lsp minemacs-modules) ;; If me-lsp is used, prefer it!
-    (dolist (h '(c++-mode-hook c++-ts-mode-hook c-mode-hook c-ts-mode-hook python-mode-hook
-                 python-ts-mode-hook rust-mode-hook cmake-mode-hook))
-      (add-hook h #'eglot-ensure)))
+  :commands +eglot-auto-enable
   :general
   (+map
     :infix "c"
     "e"  '(nil :wk "eglot session")
-    "ee" #'eglot)
+    "ee" #'eglot
+    "eA" #'+eglot-auto-enable)
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :config
+  (defun +eglot-auto-enable ()
+    (interactive)
+    (dolist (h '(c++-mode-hook c++-ts-mode-hook
+                 c-mode-hook c-ts-mode-hook
+                 python-mode-hook python-ts-mode-hook
+                 rust-mode-hook cmake-mode-hook))
+      (add-hook h #'eglot-ensure)
+      (remove-hook h #'lsp-deferred)))
+
   (+map :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer
