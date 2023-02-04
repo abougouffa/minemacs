@@ -15,7 +15,8 @@
     "b" #'magit-blame
     "l" #'magit-log
     "d" #'magit-diff-dwim
-    "d" #'magit-stage)
+    "d" #'magit-stage
+    "i" #'magit-init)
   :custom
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
@@ -85,8 +86,7 @@
 (use-package git-timemachine
   :straight t
   :general
-  (+map
-    "gt" '(git-timemachine-toggle :wk "Time machine"))
+  (+map "gt" #'git-timemachine-toggle)
   :custom
   (git-timemachine-show-minibuffer-details t))
 
