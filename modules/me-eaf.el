@@ -73,9 +73,7 @@
         (unless (require (intern (format "eaf-%s" app)) nil t)
           (push app not-installed-apps)))
       (when not-installed-apps
-        (apply #'eaf-install-and-update not-installed-apps)
-        (dolist (app not-installed-apps)
-          (require (intern (format "eaf-%s" app))))))
+        (warn "Some apps are not installed: %s" not-installed-apps)))
 
     (defun +browse-url-eaf (url &rest args)
       "Open URL in EAF Browser."
