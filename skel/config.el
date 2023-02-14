@@ -21,6 +21,11 @@
  ;; and `modus-themes'.
  minemacs-theme 'doom-one)
 
+(with-eval-after-load 'minemacs-loaded
+  ;; Auto enable Eglot in supported modes
+  ;; (use `+lsp-auto-enable' to auto enable LSP mode instead)
+  (+eglot-auto-enable))
+
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
 ;; (setq source-directory "~/Sources/emacs-git/")
