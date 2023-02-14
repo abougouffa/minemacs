@@ -36,15 +36,20 @@
   (lsp-trim-trailing-whitespace nil)
   (lsp-insert-final-newline nil)
   (lsp-trim-final-newlines nil)
+  :init
+  (defvar +lsp-auto-enable-modes
+    '(c++-mode c++-ts-mode c-mode c-ts-mode
+      python-mode python-ts-mode
+      rust-mode cmake-mode
+      js-mode js-ts-mode typescript-mode typescript-ts-mode
+      json-mode json-ts-mode js-json-mode))
   :config
   (defun +lsp-auto-enable ()
     (interactive)
-    (dolist (h '(c++-mode-hook c++-ts-mode-hook
-                 c-mode-hook c-ts-mode-hook
-                 python-mode-hook python-ts-mode-hook
-                 rust-mode-hook cmake-mode-hook))
-      (add-hook h #'lsp-deferred)
-      (remove-hook h #'eglot-ensure)))
+    (dolist (mode +lsp-auto-enable-modes)
+      (let ((hook (intern (format "%s-hook" mode))))
+        (add-hook hook #'lsp-deferred)
+        (remove-hook hook #'eglot-ensure))))
 
   (+map :keymaps 'lsp-mode-map
     :infix "c"
