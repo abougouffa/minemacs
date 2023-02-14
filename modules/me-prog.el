@@ -65,15 +65,20 @@
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
+  :init
+  (defvar +eglot-auto-enable-modes
+    '(c++-mode c++-ts-mode c-mode c-ts-mode
+      python-mode python-ts-mode
+      rust-mode cmake-mode
+      js-mode js-ts-mode typescript-mode typescript-ts-mode
+      json-mode json-ts-mode js-json-mode))
   :config
   (defun +eglot-auto-enable ()
     (interactive)
-    (dolist (h '(c++-mode-hook c++-ts-mode-hook
-                 c-mode-hook c-ts-mode-hook
-                 python-mode-hook python-ts-mode-hook
-                 rust-mode-hook cmake-mode-hook))
-      (add-hook h #'eglot-ensure)
-      (remove-hook h #'lsp-deferred)))
+    (dolist (mode +eglot-auto-enable-modes)
+      (let ((hook (intern (format "%s-hook" mode))))
+        (add-hook hook #'eglot-ensure)
+        (remove-hook hook #'lsp-deferred))))
 
   (+map :keymaps 'eglot-mode-map
     :infix "c"
