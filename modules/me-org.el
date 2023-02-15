@@ -69,9 +69,7 @@
     (let ((size (max 1.0 (* +org-level-base-size (expt 0.9 level)))))
       (set-face-attribute
        (intern (format "org-level-%d" (1+ level))) nil
-       :weight (cond ((< level 3) 'semi-bold)
-                     ((< level 5) 'bold)
-                     (t 'heavy))
+       :weight 'bold
        :height size)))
 
   (org-babel-do-load-languages
