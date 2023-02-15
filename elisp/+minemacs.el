@@ -4,8 +4,7 @@
 (defmacro +error! (msg &rest vars)
   "Log error MSG and VARS using `message'."
   (when (>= minemacs-msg-level 1)
-    `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars)))))
+    `(apply #'message (list (concat "[MinEmacs:Error] " ,msg) ,@vars))))
 
 ;;;###autoload
 (defmacro +info! (msg &rest vars)
@@ -18,7 +17,8 @@
 (defmacro +log! (msg &rest vars)
   "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
   (when (>= minemacs-msg-level 3)
-    `(apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars))))
+    `(let ((inhibit-message t))
+      (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
 
 ;;;###autoload
 (defmacro +debug! (msg &rest vars)
