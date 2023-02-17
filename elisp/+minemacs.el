@@ -98,14 +98,18 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
                   (or (plist-get minemacs-fonts :variable-pitch-font-family)
                    (plist-get minemacs-default-fonts :variable-pitch-font-family))
                   (or (plist-get minemacs-fonts :variable-pitch-font-size)
-                   (plist-get minemacs-default-fonts :variable-pitch-font-size)))))))))
+                   (plist-get minemacs-default-fonts :variable-pitch-font-size))))))))
+  ;; Run hooks
+  (run-hooks 'minemacs-after-set-fonts-hook))
 
 ;;;###autoload
 (defun +load-theme ()
   (interactive)
   (when minemacs-theme
     (+log! "Loading user theme: %s" minemacs-theme)
-    (load-theme minemacs-theme t)))
+    (load-theme minemacs-theme t))
+  ;; Run hooks
+  (run-hooks 'minemacs-after-load-theme-hook))
 
 ;;;###autoload
 (defun +push-system-dependencies (&rest deps)

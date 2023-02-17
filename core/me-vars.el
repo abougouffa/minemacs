@@ -87,6 +87,16 @@ Compiled from the `system-configuration-features'.")
 (defcustom minemacs-theme nil
   "The theme of MinEmacs")
 
+(defcustom minemacs-after-set-fonts-hook nil
+  "Runs after setting MinEmacs fonts."
+  :group 'minemacs
+  :type 'hook)
+
+(defcustom minemacs-after-load-theme-hook nil
+  "Runs after loading MinEmacs theme."
+  :group 'minemacs
+  :type 'hook)
+
 (defcustom minemacs-before-user-config-hook nil
   "This hook will be run after loading modules and before loading user config.
 
