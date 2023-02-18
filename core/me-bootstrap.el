@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+;; BUG Temporary fix for https://github.com/radian-software/straight.el/issues/1053
+(when (version<= "29.1" emacs-version)
+  (defalias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list)
+  (setq native-comp-deferred-compilation-deny-list nil))
 
 (setq package-enable-at-startup nil)
 
