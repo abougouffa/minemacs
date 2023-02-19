@@ -12,9 +12,9 @@
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))
-  :init
+  :config
   ;; Hide the annoying index file form recent files
-  (add-to-list 'recentf-exclude  (concat minemacs-local-dir "elfeed/db/")))
+  (+ignore-root elfeed-db-directory elfeed-enclosure-default-dir))
 
 
 (provide 'me-rss)
