@@ -243,6 +243,4 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   "Add ROOTS to ignored projects, recentf, etc."
   (dolist (root roots)
     (with-eval-after-load 'recentf
-      (add-to-list 'recentf-exclude root))
-    (with-eval-after-load 'projectile
-      (add-to-list '+projectile-ignored-roots root))))
+      (add-to-list 'recentf-exclude root))))
