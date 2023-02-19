@@ -34,7 +34,7 @@
 
 ;;;###autoload
 (defmacro +fn-inhibit-messages! (fn &optional no-message-log)
-  "Add an advice arount the function FN to suppress messages in echo area.
+  "Add an advice around the function FN to suppress messages in echo area.
 If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   (let ((advice-fn (make-symbol (format "+%s--inhibit-messages-a" fn))))
     `(advice-add
