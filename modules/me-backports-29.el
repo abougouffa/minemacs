@@ -46,7 +46,7 @@ the updated value."
                           user-emacs-directory)
         native-comp-eln-load-path))
 
-(defalias 'inhibit-automatic-native-compilation 'native-comp-deferred-compilation)
+(defalias 'native-comp-jit-compilation 'inhibit-automatic-native-compilation)
 
 (defalias 'string-split #'split-string)
 

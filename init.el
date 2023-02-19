@@ -43,7 +43,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
    native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
    native-comp-verbose (if minemacs-verbose 3 0)
    ;; Make native compilation happens asynchronously
-   inhibit-automatic-native-compilation nil)
+   native-comp-jit-compilation t)
 
   ;; Set the right directory to store the native compilation cache
   ;; NOTE: The `startup-redirect-eln-cache' function is available in Emacs 29,
