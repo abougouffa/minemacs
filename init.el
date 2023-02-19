@@ -41,13 +41,16 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (setq
    ;; Silence compiler warnings as they can be pretty disruptive
    native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
-   native-comp-verbose (if minemacs-verbose 3 0)
-   ;; Make native compilation happens asynchronously
-   native-comp-jit-compilation t)
+   native-comp-verbose (if minemacs-verbose 3 0))
+
+  ;; Make native compilation happens asynchronously
+  ;; HACK Temporary support deprecated variable `native-comp-deferred-compilation'
+  (set (if (boundp 'native-comp-deferred-compilation)
+           'native-comp-deferred-compilation ; DEPECATED
+         'native-comp-jit-compilation)
+       t)
 
   ;; Set the right directory to store the native compilation cache
-  ;; NOTE: The `startup-redirect-eln-cache' function is available in Emacs 29,
-  ;; it is back ported in MinEmacs for Emacs 28.
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 ;; Add direcotries to `load-path'
