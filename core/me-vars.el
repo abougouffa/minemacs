@@ -73,27 +73,32 @@ Compiled from the `system-configuration-features'.")
   "Fonts to use within MinEmacs.")
 
 (defcustom minemacs-leader-key "SPC"
-  "MinEmacs leader key.")
+  "MinEmacs leader key."
+  :type 'string)
 
 (defcustom minemacs-localleader-key "SPC m"
-  "MinEmacs local leader (a.k.a. mode specific) key sequence.")
+  "MinEmacs local leader (a.k.a. mode specific) key sequence."
+  :type 'string)
 
 (defcustom minemacs-global-leader-prefix "C-SPC"
-  "MinEmacs general leader key.")
+  "MinEmacs general leader key."
+  :type 'string)
 
 (defcustom minemacs-global-mode-prefix "C-SPC m"
-  "MinEmacs general local leader (a.k.a. mode specific) key sequence.")
+  "MinEmacs general local leader (a.k.a. mode specific) key sequence."
+  :type 'string)
 
 (defcustom minemacs-theme nil
-  "The theme of MinEmacs")
+  "The theme of MinEmacs."
+  :type 'symbol)
 
 (defcustom minemacs-after-set-fonts-hook nil
-  "Runs after setting MinEmacs fonts."
+  "Runs after setting MinEmacs fonts, runs at the end of `+set-fonts'."
   :group 'minemacs
   :type 'hook)
 
 (defcustom minemacs-after-load-theme-hook nil
-  "Runs after loading MinEmacs theme."
+  "Runs after loading MinEmacs theme, runs at the end of `+load-theme'."
   :group 'minemacs
   :type 'hook)
 
