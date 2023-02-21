@@ -7,8 +7,8 @@
 
 ;;; Why use anything but UTF-8?
 (prefer-coding-system 'utf-8)
-(set-locale-environment "English")
-(set-language-environment 'English)
+(set-locale-environment "en_US.UTF-8")
+(set-language-environment "Latin-1")
 (set-charset-priority 'unicode)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
