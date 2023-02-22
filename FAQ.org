@@ -15,7 +15,7 @@ then add this to your =config.el=:
 ** Exporting Org documents in background ends with errors
 In some circumstances, you can get an error when trying to export an Org file to
 PDF. For example, after hitting =SPC m e l p=, you get short after, the message
-="Org async export finised, see *Org Export Process* for more details."=.
+="Org async export finised, see Org Export Process for more details."=.
 
 With something like this in the =*Org Export Process*= buffer:
 
