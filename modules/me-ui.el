@@ -130,6 +130,10 @@
                    font-lock-comment-face
                    font-lock-comment-delimiter-face)))))
 
+(use-package page-break-lines
+  :straight t
+  :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
+
 (use-package focus
   :straight t
   :general

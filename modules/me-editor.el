@@ -93,10 +93,6 @@ If doom-unicode-font is set, add it as preferred font for all unicode blocks."
                 "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                 "\\\\" "://")))
 
-(use-package page-break-lines
-  :straight t
-  :hook ((prog-mode text-mode) . page-break-lines-mode))
-
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
