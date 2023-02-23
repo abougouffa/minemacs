@@ -213,7 +213,7 @@ Is features FEATS are enabled in this Emacs build.
 
 (fn &rest FEATS)")
 (autoload '+fn-inhibit-messages! "../elisp/+minemacs" "\
-Add an advice arount the function FN to suppress messages in echo area.
+Add an advice around the function FN to suppress messages in echo area.
 If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer.
 
 (fn FN &optional NO-MESSAGE-LOG)" nil t)
@@ -459,6 +459,11 @@ Unmount eCryptfs' private directory." t)
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
+
+
+;;; Generated autoloads from me-defaults.el
+
+(register-definition-prefixes "me-defaults" '("+whitespace-auto-cleanup-modes"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
