@@ -67,6 +67,7 @@
     ";"   '(pp-eval-expression :wk "Eval expression")
     "X"   #'org-capture
     "u"   '(universal-argument :wk "C-u")
+    "C"   #'universal-coding-system-argument
 
     ;; ====== Quit/Session ======
     "q"   '(nil :wk "quit/session")
