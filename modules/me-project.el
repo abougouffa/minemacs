@@ -32,10 +32,11 @@
     "rS" #'projectile-run-shell-command-in-root
     "rA" #'projectile-run-async-shell-command-in-root
     ;; Forget
-    "F"  '(nil :wk "forget")
+    "F"  '(nil :wk "forget/cleanup")
     "Fz" '(projectile-cleanup-known-projects :wk "Zombie projects")
     "Fp" '(projectile-remove-known-project :wk "Project")
     "FP" '(projectile-remove-current-project-from-known-projects :wk "Current project")
+    "Fc" #'projectile-invalidate-cache
     ;; Search/replace
     "s"  '(nil :wk "search/replace")
     "ss" 'projectile-grep
