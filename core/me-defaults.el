@@ -118,6 +118,8 @@
  auth-source-cache-expiry 86400
 
  ;; ====== Performances ======
+ ;; Don’t compact font caches during GC
+ inhibit-compacting-font-caches t
  ;; Increase single chunk bytes to read from subprocess (default 4096)
  read-process-output-max (if os/linux
                              (condition-case nil
