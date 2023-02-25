@@ -1,8 +1,9 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
 
 (setq
- ;; Garbage collection tweaks: Increase the GC threshold for faster startup This
- ;; will be overriten when `gcmh' (Garbage Collector Magic Hack) is loaded.
+ ;; Garbage collection tweaks: Increase the GC threshold for faster startup.
+ ;; This will be overriten when `gcmh' (Garbage Collector Magic Hack) gets
+ ;; loaded in `me-gc'.
  gc-cons-threshold most-positive-fixnum
  ;; Prefer loading newest compiled .el file
  load-prefer-newer t
