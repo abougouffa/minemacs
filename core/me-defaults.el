@@ -96,6 +96,8 @@
  completions-detailed t
  ;; Do not ask obvious questions, follow symlinks
  vc-follow-symlinks t
+ ;; Display the true file name for symlinks
+ find-file-visit-truename t
  ;; Use completing-read interface instead of definitions buffer (needs xref 1.1.0)
  xref-show-definitions-function #'xref-show-definitions-completing-read
  ;; Enable recursive calls to minibuffer
