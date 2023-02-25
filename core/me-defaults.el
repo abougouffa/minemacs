@@ -275,6 +275,12 @@
  ;; Save buffer status
  desktop-save-buffer t)
 
+(defcustom +whitespace-auto-cleanup-modes
+  '(prog-mode conf-mode org-mode markdown-mode
+    latex-mode tex-mode bibtex-mode)
+  "Enable auto whitespace cleanup before saving for these derived modes."
+  :group 'minemacs)
+
 (unless (featurep 'me-org-export-async-init)
   (with-eval-after-load 'minemacs-loaded
     ;; Ensure creating "session.ID" in a sub-directory
@@ -336,11 +342,6 @@
     ;;; Other hooks
     ;; Update time stamp (if available) before saving a file
     (add-hook 'before-save-hook 'time-stamp)
-
-    (defvar +whitespace-auto-cleanup-modes
-      '(prog-mode conf-mode org-mode markdown-mode
-        latex-mode tex-mode bibtex-mode)
-      "Enable auto whitespace cleanup before saving for these derived modes.")
 
     ;; Remove trailing whitespaces on save for some modes
     (add-hook
