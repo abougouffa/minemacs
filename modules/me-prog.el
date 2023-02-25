@@ -4,6 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+(use-package treesit
+  :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
+  :defer t
+  :config
+  (setq-default treesit-font-lock-level 4))
+
 (use-package treesit-langs
   :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "queries"))
   :when (+emacs-features-p 'tree-sitter)
@@ -13,11 +20,10 @@
   (+fn-inhibit-messages! treesit-langs-install-grammars)
   :init
   (defun +treesit-hl-enable-maybe ()
-    (unless (cl-some
-             #'derived-mode-p
-             '(emacs-lisp-mode
-               org-mode))
-      (ignore-errors (treesit-hl-enable))))
+    (unless (cl-some #'derived-mode-p
+                     '(emacs-lisp-mode
+                       org-mode))
+      (ignore-errors (treesit-hl-toggle t))))
   :config
   (advice-add
    'treesit-langs--hl-query-path :around
@@ -32,13 +38,6 @@
 (unless (+emacs-features-p 'tree-sitter)
   (load (concat minemacs-modules-dir "obsolete/me-tree-sitter.el")
         nil (not minemacs-verbose)))
-
-(use-package treesit
-  :straight (:type built-in)
-  :when (+emacs-features-p 'tree-sitter)
-  :defer t
-  :config
-  (setq-default treesit-font-lock-level 4))
 
 (use-package hideif
   :straight (:type built-in)
