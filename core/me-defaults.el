@@ -281,15 +281,20 @@
   "Enable auto whitespace cleanup before saving for these derived modes."
   :group 'minemacs)
 
+;; When running Emacs in an asynchronous Org export context, there is no need to
+;; enable these modes. So load them only if we haven't been lanched through the
+;; `me-org-export-async-init' file.
 (unless (featurep 'me-org-export-async-init)
+  ;; All modes and tweaks are enabled after MinEmacs is gets started
   (with-eval-after-load 'minemacs-loaded
     ;; Ensure creating "session.ID" in a sub-directory
     (with-eval-after-load 'x-win
       (advice-add
        #'emacs-session-filename :filter-return
-       (defun +emacs-session-filename--customize-a (filename)
+       (defun +emacs-session-filename--in-subdir-a (session-filename)
+         "Put the SESSION-FILENAME in the \"emacs-session/\" subdirectory."
          ;; Create the directory
-         (concat minemacs-local-dir "emacs-session/" (file-name-nondirectory filename)))))
+         (concat minemacs-local-dir "emacs-session/" (file-name-nondirectory session-filename)))))
 
     ;; Close compilation buffer if succeeded without warnings
     ;; Adapted from: http://stackoverflow.com/questions/11043004/emacs-compile-buffer-auto-close
@@ -310,6 +315,7 @@
             (with-selected-window (get-buffer-window b)
               (kill-buffer-and-window))) buf))))
 
+    ;; Kill `term' buffer on exit (similar behavior to `shell's `shell-kill-buffer-on-exit')
     (advice-add
      'term-sentinel :around
      (defun +term--kill-after-exit-a (orig-fn proc msg)
