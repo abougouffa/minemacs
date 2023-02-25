@@ -99,9 +99,7 @@ and return the value found in PLACE instead."
   "Set VARIABLE/VALUE pairs, and return the final VALUE.
 This is like `setq', but is meant for user options instead of
 plain variables.  This means that `setopt' will execute any
-`custom-set' form associated with VARIABLE.
-
-\(fn [VARIABLE VALUE]...)"
+`custom-set' form associated with VARIABLE."
   (declare (debug setq))
   (unless (zerop (mod (length pairs) 2))
     (error "PAIRS must have an even number of variable/value members"))
