@@ -31,7 +31,7 @@
 (when (>= emacs-major-version 29)
   (when-let* ((alpha (getenv "MINEMACS_ALPHA"))
               (alpha (string-to-number alpha)))
-    (push (cons 'alpha-background (if (zerop alpha) 93 alpha))
+    (push (cons 'alpha-background (if (or (zerop alpha) (> alpha 100)) 93 alpha))
           default-frame-alist)))
 
 ;; HACK: In `lsp-mode' (see the `me-lsp' module), the user can define the
