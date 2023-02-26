@@ -37,7 +37,7 @@
   (defun +corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
-      (setq-local corfu-auto nil) ;; Enable/disable auto completion
+      (setq-local corfu-auto nil) ; Enable/disable auto completion
       (corfu-mode 1)))
 
   (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer))
@@ -69,7 +69,7 @@
   :custom
   ;; Fix the scaling/height
   (kind-icon-default-style '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
-  (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Only on Emacs built with SVG support
+  (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Use icons only in Emacs built with SVG support
   (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
   (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
   :config
