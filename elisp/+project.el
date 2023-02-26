@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 
-(defvar +project-scan-dir-paths nil
+(defcustom +project-scan-dir-paths nil
   "A list of paths to scan and add to known projects list.
 It can be a list of strings (paths) or a list of (cons \"~/path/to/projects\" recursive?)
 to scan directories recursively.")
