@@ -271,8 +271,12 @@ DEPTH and LOCAL are passed as is to `add-hook'.
 Queue FNS to be byte/natively-compiled after a brief delay.
 
 (fn &rest FNS)")
-(autoload '+env-save "../elisp/+minemacs" nil t)
-(autoload '+env-load "../elisp/+minemacs" nil t)
+(autoload '+env-save "../elisp/+minemacs" "\
+Load environment variables of the current session to the file
+  \".emacs.d/local/system-env.el\"." t)
+(autoload '+env-load "../elisp/+minemacs" "\
+Load environment variables from the file saved in
+  \".emacs.d/local/system-env.el\" if available." t)
 (autoload '+ignore-root "../elisp/+minemacs" "\
 Add ROOTS to ignored projects, recentf, etc.
 

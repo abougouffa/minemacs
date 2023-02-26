@@ -207,6 +207,8 @@ DEPTH and LOCAL are passed as is to `add-hook'."
 
 ;;;###autoload
 (defun +env-save ()
+  "Load environment variables of the current session to the file
+  \".emacs.d/local/system-env.el\"."
   (interactive)
   (with-temp-buffer
     (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
@@ -233,6 +235,8 @@ DEPTH and LOCAL are passed as is to `add-hook'."
 
 ;;;###autoload
 (defun +env-load ()
+  "Load environment variables from the file saved in
+  \".emacs.d/local/system-env.el\" if available."
   (interactive)
   (let ((env-file (concat minemacs-local-dir "system-env.el")))
     (when (file-exists-p env-file)
