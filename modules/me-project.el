@@ -56,13 +56,13 @@
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
   (global-set-key [remap find-tag] #'projectile-find-tag)
   :config
-  ;; HACK: from Doom Emacs
+  ;; HACK: Taken from Doom Emacs
   ;; 1. Projectile uses `file-remote-p' to check for remote (tramp) paths in its
   ;;    known project list, when it automatically cleans it up on
-  ;;    `projectile-mode's activation. This causes tramp.el to be loaded, which
-  ;;    is expensive.
+  ;;    `projectile-mode's activation. This causes `tramp' to be loaded, which
+  ;;    is quite expensive.
   ;; 2. `file-remote-p' relies on an entry in `file-name-handler-alist'
-  ;;    (autoloaded by tramp.el) to detect remote paths, which causes tramp to
+  ;;    (autoloaded by `tramp') to detect remote paths, which causes `tramp' to
   ;;    be loaded. However, we set `file-name-handler-alist' to nil at startup
   ;;    for a noteable boost in startup performance. Normally, this is not an
   ;;    issue, as I defer `projectile-mode' until well after
@@ -77,7 +77,7 @@
   ;; loaded, but this may trouble savvier Emacs users who need projectile's API
   ;; early during startup, so it needs more consideration.
   (cl-letf (((symbol-function 'projectile--cleanup-known-projects) #'ignore))
-    (projectile-mode +1))
+    (projectile-mode 1))
 
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
 
