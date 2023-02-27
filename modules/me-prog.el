@@ -80,6 +80,13 @@
         (add-hook hook #'eglot-ensure)
         (remove-hook hook #'lsp-deferred))))
 
+  ;; NOTE: This is a new feature added late in Emacs 29+, we temporary check for
+  ;; it's presence, it can be enabled directly when the upstream Eglot is synced
+  ;; with Emacs' one, and when Emacs 29 is officially released.
+  ;; See: https://lists.gnu.org/archive/html/emacs-devel/2023-02/msg00841.html
+  (when (fboundp #'eglot-inlay-hints-mode)
+    (add-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode))
+
   (+map :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer
