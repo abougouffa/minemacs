@@ -225,11 +225,11 @@ library/userland functions"
    'emacs-lisp-mode
    `((+emacs-lisp--highlight-vars-and-faces . +emacs-lisp--face))))
 
-;; HACK: From Doom: Quite a few functions here are called often,
-;; and so are especially performance sensitive, so we compile
-;; this file on-demand.
-(+compile-functs #'+emacs-lisp--highlight-vars-and-faces
-                 #'+emacs-lisp--calculate-lisp-indent-a)
+;; HACK: Adapted from Doom. Quite a few functions here are called often, and so
+;; are especially performance sensitive, so we compile these functions
+;; on-demand.
+(+compile-functions #'+emacs-lisp--highlight-vars-and-faces
+                    #'+emacs-lisp--calculate-lisp-indent-a)
 
 
 (provide 'me-elisp-extras)
