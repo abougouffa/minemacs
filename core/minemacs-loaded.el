@@ -16,9 +16,9 @@
 
 (if minemacs-not-lazy
     (require 'minemacs-lazy)
-  (run-with-idle-timer
-   2 nil ;; 2s
-   (lambda () (require 'minemacs-lazy))))
+  (+eval-when-idle-for! 2
+    (require 'minemacs-lazy)))
 
 (+log! "Providing `minemacs-loaded'.")
+
 (provide 'minemacs-loaded)
