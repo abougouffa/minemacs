@@ -4,17 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-;; BUG Temporary fix for https://github.com/radian-software/straight.el/issues/1053
-(when (version<= "29.1" emacs-version)
-  (defalias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list)
-  (setq native-comp-deferred-compilation-deny-list nil))
+(setq
+ straight-base-dir minemacs-local-dir
+ straight-repository-branch "develop"
+ straight-vc-git-default-clone-depth '(1 single-branch)
+ straight-build-dir (format "build-%s" emacs-version)
+ straight-check-for-modifications nil)
 
-(setq straight-base-dir minemacs-local-dir
-      straight-repository-branch "develop"
-      straight-vc-git-default-clone-depth '(1 single-branch)
-      straight-build-dir (format "build-%s" emacs-version)
-      straight-check-for-modifications nil)
-
+;; Bootstraping straight.el
+;; See: github.com/radian-software/straight.el#bootstrapping-straightel
 (defvar bootstrap-version)
 (let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
       (bootstrap-version 6))
