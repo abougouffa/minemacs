@@ -9,11 +9,12 @@
   :straight t
   :after minemacs-loaded
   :config
-  (add-to-list 'completion-at-point-functions #'cape-file) ;; complete file names
-  (add-to-list 'completion-at-point-functions #'cape-tex) ;; complete TeX commands
-  (add-to-list 'completion-at-point-functions #'cape-ispell)
-  (add-to-list 'completion-at-point-functions #'cape-symbol)
-  (add-to-list 'completion-at-point-functions #'cape-keyword))
+  (dolist (fn '(cape-tex ; TeX commands
+                cape-file ; File names
+                cape-ispell ; Words from Ispell
+                cape-symbol ; Elisp symbols
+                cape-keyword)) ; Keywords
+    (add-to-list 'completion-at-point-functions fn)))
 
 (use-package corfu
   :straight t
@@ -56,7 +57,7 @@
   :hook (corfu-mode . corfu-history-mode)
   :config
   (unless (bound-and-true-p savehist-mode)
-    (savehist-mode +1))
+    (savehist-mode 1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (use-package corfu-terminal
@@ -67,8 +68,12 @@
   :straight t
   :after corfu
   :custom
-  ;; Fix the scaling/height
-  (kind-icon-default-style '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.8 :scale 1.05))
+  (kind-icon-default-style '(:padding 0
+                             :stroke 0
+                             :margin 0
+                             :radius 0
+                             :height 0.8
+                             :scale 1.05)) ; Fix the scaling/height
   (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Use icons only in Emacs built with SVG support
   (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
   (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
@@ -121,10 +126,6 @@
 
 (use-package vertico-directory
   :after vertico
-  :custom
-  (vertico-buffer-display-action
-   `(display-buffer-at-bottom
-     (window-height . ,(+ 3 vertico-count))))
   :config
   (define-key vertico-map "\r" #'vertico-directory-enter)
   (define-key vertico-map "\d" #'vertico-directory-delete-char)
