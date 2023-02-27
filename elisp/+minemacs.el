@@ -186,11 +186,10 @@ triggered.
 DEPTH and LOCAL are passed as is to `add-hook'."
   (let* ((f-name (make-symbol (format "%s-on-%s-delayed-%ds-h" (+unquote function) (+unquote hook) secs)))
          (f-doc (format "Call `%s' in %d seconds" (symbol-name (+unquote function)) secs)))
-    `(progn
-       (eval-when-compile
-         (defun ,f-name () ,f-doc
-          (run-with-idle-timer ,secs nil ,function))
-         (add-hook ,hook #',f-name ,depth ,local)))))
+    `(eval-when-compile
+       (defun ,f-name () ,f-doc
+        (run-with-idle-timer ,secs nil ,function))
+       (add-hook ,hook #',f-name ,depth ,local))))
 
 ;; Adapted from: Doom Emacs
 ;;;###autoload
