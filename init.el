@@ -34,7 +34,8 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (set-default-toplevel-value 'file-name-handler-alist file-name-handler-alist)
   ;; Remember it so it can be reset where needed.
   (put 'file-name-handler-alist 'original-value orig-value)
-  ;; After Emacs startup, we restore `file-name-handler-alist' while conserving the potential edits during startup.
+  ;; After Emacs startup, we restore `file-name-handler-alist' while conserving
+  ;; the potential edits during startup.
   (add-hook
    'emacs-startup-hook
    (defun +mineamcs--restore-file-handler-alist-h ()
@@ -122,13 +123,17 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
                        (directory-files-recursively dir ".*" t))))))
     (loaddefs-generate autoload-dirs minemacs-loaddefs-file)))
 
+;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
+;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
+;; `minemacs-extras-dir' directories. The generated loaddefs file will be stored
+;; in `minemacs-loaddefs-file'. We first regenerate the loaddefs file if it
+;; doesn't exist.
 (unless (file-exists-p minemacs-loaddefs-file)
   (minemacs-generate-loaddefs))
 
 ;; Then we load the loaddefs file
 (load minemacs-loaddefs-file nil (not minemacs-verbose))
 
-;; Load environment variables when available.
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
 ;; the terminal's environment variables, which can be useful specially for
 ;; running commands under a custom "$PATH" directory. But when Emacs is launched
@@ -140,20 +145,21 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; "~/.emacs.d/local/system-env.el". This file is then loaded in the future
 ;; Emacs sessions (launched either from terminal or from GUI) by calling the
 ;; `+env-load' command.
-(+env-load)
+(+env-load) ; Load environment variables when available.
 
 ;; NOTE: This is MinEmacs' synchronization point. To get a fast Emacs startup,
-;; MinEmacs tries to defer loading packages until this hook is executed. This is
-;; managed by the `minemacs-loaded' and `minemacs-lazy' pseudo-packages. After
-;; loading Emacs, the `emacs-startup-hook' gets executed, we use this hook to
-;; profile the startup time, load the fonts and the theme, and setup the
-;; *scratch* buffer content. Lastly we trigger the `minemacs-loaded'
-;; synchronization module, which runs the `minemacs-after-startup-hook' hooks
-;; and provide `minemacs-loaded' so the packages loaded with `:after
-;; minemacs-loaded' can be loaded. The `minemacs-loaded' will trigger
-;; `minemacs-lazy', which provides `minemacs-lazy' so the packages loaded with
-;; `:after minemacs-lazy' can be loaded and incrementally run the hooks in
-;; `minemacs-lazy-hook' when Emacs gets idle.
+;; MinEmacs tries to defer loading most of its packages until this hook is
+;; executed. This is managed by the `minemacs-loaded' and `minemacs-lazy'
+;; pseudo-modules. After loading Emacs, the `emacs-startup-hook' gets executed,
+;; we use this hook to profile the startup time, load the fonts and the theme,
+;; and setup the *scratch* buffer content. Lastly we require the
+;; `minemacs-loaded' synchronization module, which runs internally the
+;; `minemacs-after-startup-hook' hooks and provide `minemacs-loaded' so the
+;; packages loaded with `:after minemacs-loaded' can be loaded. The
+;; `minemacs-loaded' will require `minemacs-lazy' when Emacs goes idle, this
+;; pseudo-module provides `minemacs-lazy' so the packages loaded with `:after
+;; minemacs-lazy' can be loaded then it incrementally run the hooks in
+;; `minemacs-lazy-hook' when Emacs goes idle.
 (add-hook
  'emacs-startup-hook
  (defun +minemacs--loaded-h ()
