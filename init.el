@@ -78,11 +78,11 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 (add-to-list 'load-path minemacs-elisp-dir)
 (add-to-list 'load-path minemacs-extras-dir)
 
-(defun minemacs-generate-autoloads ()
-  "Generate MinEmacs' autoloads file."
+(defun minemacs-generate-loaddefs ()
+  "Generate MinEmacs' loaddefs file."
   (interactive)
-  (when (file-exists-p minemacs-autoloads-file)
-    (delete-file minemacs-autoloads-file))
+  (when (file-exists-p minemacs-loaddefs-file)
+    (delete-file minemacs-loaddefs-file))
 
   (let ((autoload-dirs nil))
     (dolist (dir (list minemacs-core-dir minemacs-extras-dir minemacs-elisp-dir))
@@ -93,14 +93,13 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
                       (seq-filter
                        #'file-directory-p
                        (directory-files-recursively dir ".*" t))))))
-    (loaddefs-generate autoload-dirs minemacs-autoloads-file)))
+    (loaddefs-generate autoload-dirs minemacs-loaddefs-file)))
 
-;; Generate auto-loads if they don't exist
-(unless (file-exists-p minemacs-autoloads-file)
-  (minemacs-generate-autoloads))
+(unless (file-exists-p minemacs-loaddefs-file)
+  (minemacs-generate-loaddefs))
 
-;; Load autoloads file
-(load minemacs-autoloads-file nil (not minemacs-verbose))
+;; Then we load the loaddefs file
+(load minemacs-loaddefs-file nil (not minemacs-verbose))
 
 ;; Load environment variables when available.
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits

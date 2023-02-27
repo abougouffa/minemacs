@@ -52,7 +52,7 @@
 (defconst minemacs-extras-dir (concat minemacs-modules-dir "extras/"))
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
-(defconst minemacs-autoloads-file (concat minemacs-core-dir "me-autoloads.el"))
+(defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
 (defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))
