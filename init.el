@@ -1,4 +1,4 @@
-;; init.el --- MinEmacs -*- lexical-binding: t; -*-
+;; init.el --- MinEmacs core initialization file -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 

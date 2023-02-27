@@ -1,4 +1,4 @@
-;;; early-init.el -*- lexical-binding: t; -*-
+;;; early-init.el --- MinEmacs early initialization tweaks -*- lexical-binding: t; -*-
 
 (setq
  ;; HACK: Increase the garbage collection (GC) threshold for faster startup.

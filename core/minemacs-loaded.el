@@ -1,7 +1,11 @@
-;; -*- lexical-binding: t; -*-
+;; minemacs-loaded.el -*- lexical-binding: t; -*-
 
-;;; Virtual module loaded at end of init.el (after custom.el)
-;;; Used to synchronize loading some other stuff after loading Emacs
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+;; Virtual module loaded at end of init.el (after custom-vars.el)
+;; Used to synchronize loading some other stuff after loading Emacs
 
 ;; Run hooks
 (when minemacs-after-startup-hook
