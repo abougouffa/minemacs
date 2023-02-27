@@ -1,6 +1,8 @@
 ;;; early-init.el --- MinEmacs early initialization tweaks -*- lexical-binding: t; -*-
 
 (setq
+ ;; Do not make installed packages available when Emacs starts
+ package-enable-at-startup nil
  ;; HACK: Increase the garbage collection (GC) threshold for faster startup.
  ;; This will be overwritten when `gcmh-mode' (a.k.a. the Garbage Collector
  ;; Magic Hack) gets loaded in the `me-gc' module (see "init.el").

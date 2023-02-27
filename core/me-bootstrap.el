@@ -9,8 +9,6 @@
   (defalias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list)
   (setq native-comp-deferred-compilation-deny-list nil))
 
-(setq package-enable-at-startup nil)
-
 (setq straight-base-dir minemacs-local-dir
       straight-repository-branch "develop"
       straight-vc-git-default-clone-depth '(1 single-branch)
