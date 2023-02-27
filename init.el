@@ -16,6 +16,33 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
       (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
              emacs-version supported-version))))
 
+;; HACK: Setting `file-name-handler-alist' to nil (or a useful yet simpler
+;; value) should boost startup time. For more info, take a look at:
+;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
+(let ((orig-value (default-toplevel-value 'file-name-handler-alist)))
+  (setq file-name-handler-alist
+        ;; HACK: Adapted from Doom Emacs. If the bundled Elisp for this Emacs
+        ;; installation isn't byte-compiled but is compressed, then leave the
+        ;; gzip file handler there so Emacs won't forget how to read read them.
+        ;; "calc-loaddefs.el" is our heuristic for this purpose because it is
+        ;; built-in to all supported versions of Emacs, and `calc' explicitly
+        ;; loads it not compiled. This ensures that the only other, possible
+        ;; fallback would be "calc-loaddefs.el.gz".
+        (unless (eval-when-compile (locate-file-internal "calc-loaddefs.el" load-path))
+          (list (rassq 'jka-compr-handler orig-value))))
+  ;; Make sure the new value survives any current let-binding.
+  (set-default-toplevel-value 'file-name-handler-alist file-name-handler-alist)
+  ;; Remember it so it can be reset where needed.
+  (put 'file-name-handler-alist 'original-value orig-value)
+  ;; After Emacs startup, we restore `file-name-handler-alist' while conserving the potential edits during startup.
+  (add-hook
+   'emacs-startup-hook
+   (defun +mineamcs--restore-file-handler-alist-h ()
+     (setq file-name-handler-alist
+           (delete-dups (append file-name-handler-alist
+                                (get 'file-name-handler-alist 'original-value))))
+     101)))
+
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
 ;; already loaded (in "early-init.el"). However, we double-check here and load
 ;; them if necessary in case Emacs has been loaded directly from "init.el"
