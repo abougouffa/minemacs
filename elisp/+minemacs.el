@@ -177,7 +177,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     (lambda ()
       ,@body)))
 
-;; Adapted from github.com/d12frosted/environment
+;; Adapted from: github.com/d12frosted/environment
 ;;;###autoload
 (defmacro +hook-with-delay! (hook secs function &optional depth local)
   "Add the FUNCTION to the value of HOOK.
@@ -192,9 +192,9 @@ DEPTH and LOCAL are passed as is to `add-hook'."
           (run-with-idle-timer ,secs nil ,function))
          (add-hook ,hook #',f-name ,depth ,local)))))
 
-;; Adapted from `doom-lib'
+;; Adapted from: Doom Emacs
 ;;;###autoload
-(defun +compile-functs (&rest fns)
+(defun +compile-functions (&rest fns)
   "Queue FNS to be byte/natively-compiled after a brief delay."
   (dolist (fn fns)
     (+eval-when-idle!
