@@ -34,7 +34,9 @@
 1 - `+error!'
 2 - `+info!'
 3 - `+log!'
-4 - `+debug!' (reserved)")
+4 - `+debug!' (reserved)"
+  :group 'minemacs
+  :type 'natnum)
 
 (defconst minemacs-splash-keep
   (not (null (getenv "MINEMACS_SPLASH_KEEP")))
@@ -70,26 +72,32 @@
 Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-fonts nil
-  "Fonts to use within MinEmacs.")
+  "Fonts to use within MinEmacs."
+  :group 'minemacs)
 
 (defcustom minemacs-leader-key "SPC"
   "MinEmacs leader key."
+  :group 'minemacs
   :type 'string)
 
 (defcustom minemacs-localleader-key "SPC m"
   "MinEmacs local leader (a.k.a. mode specific) key sequence."
+  :group 'minemacs
   :type 'string)
 
 (defcustom minemacs-global-leader-prefix "C-SPC"
   "MinEmacs general leader key."
+  :group 'minemacs
   :type 'string)
 
 (defcustom minemacs-global-mode-prefix "C-SPC m"
   "MinEmacs general local leader (a.k.a. mode specific) key sequence."
+  :group 'minemacs
   :type 'string)
 
-(defcustom minemacs-theme nil
+(defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs."
+  :group 'minemacs
   :type 'symbol)
 
 (defcustom minemacs-after-set-fonts-hook nil
@@ -155,11 +163,13 @@ MinEmacs hooks will be run in this order:
     vscode-json-languageserver marksman digestif wkhtmltopdf txt2html)
   "A list of programs I use within Emacs.")
 
-(defvar +env-save-vars
+(defcustom +env-save-vars
   '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH" "LSP_USE_PLISTS")
   "List of environment variables saved by `+env-save'.
 You need to run Emacs from terminal to get the environment variables.
-MinEmacs then save them to be used in GUI sessions as well.")
+MinEmacs then save them to be used in GUI sessions as well."
+  :group 'minemacs
+  :type '(repeat string))
 
 
 (provide 'me-vars)
