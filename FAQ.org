@@ -1,7 +1,8 @@
 * MinEmacs FAQ
-This file assembles some of the frequently asked questions about MinEmacs.
+This file assembles solutions to some of the known issues and answers some of
+the frequently asked questions about MinEmacs.
 
-** Using =parinfer-rust-mode= in a non x86_64 platform
+** Using =parinfer-rust-mode= in a non =x86_64= platform
 The =parinfer-rust-mode= package provide precompiled libraries for Linux, Windows
 and MacOS, but only for x86_64 machines. If you have a CPU (like M1 or other ARM
 based CPUs) of another architecture (=aarch64=, =arm32=, =arm64=, ...), you can
@@ -13,6 +14,7 @@ then add this to your =config.el=:
 #+end_src
 
 ** Exporting Org documents in background ends with errors
+*** User configuration related errors
 In some circumstances, you can get an error when trying to export an Org file to
 PDF. For example, after hitting =SPC m e l p=, you get short after, the message
 ="Org async export finised, see Org Export Process for more details."=.
@@ -92,4 +94,30 @@ So, to resolve this issue, you can either:
   ;; You can also set it to your own custom init.el, just do not forget to
   ;; provide `me-org-export-async-init' in it.
   (setq org-export-async-init-file nil))
+#+end_src
+
+*** The ="Odd length text property list"= error
+For some reason, exporting Org documents in background can fail with this error:
+
+#+begin_src emacs-lisp
+(error "Odd length text property list")
+#+end_src
+
+In such a case, you can remove the Org cache directory then try to export again.
+
+#+begin_src shell
+# Remove the Org cache directory
+rm -rf ~/.emacs.d/local/cache/org/
+#+end_src
+
+See [[https://github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814][this comment]] for more information.
+
+** Debugging MinEmacs
+Sometimes Emacs might freezes and stop responding, the reflex in this case is to
+use =C-g= to call =keyboard-quit= which signals a "quit" condition. If Emacs stay
+frozen, you can send =SIGUSR2= via a terminal, this should stop the running code
+and show a backtrace.
+
+#+begin_src shell
+kill -s SIGUSR2 $(pidof emacs)
 #+end_src
