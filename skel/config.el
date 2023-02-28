@@ -10,28 +10,32 @@
 ;; (setq-default epa-file-encrypt-to '("XXXX"))
 
 (setq
- ;; Set fonts
- minemacs-fonts ;; or Cascadia Code, Fira Code, FiraCode Nerd Font, Iosevka Fixed Curly Slab
+ ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
+ ;; and `modus-themes'.
+ minemacs-theme 'doom-one ; `doom-one' is a dark theme, `doom-one-light' is the light one
+ ;; Set Emacs fonts, some good choices include:
+ ;; - Cascadia Code
+ ;; - Fira Code, FiraCode Nerd Font
+ ;; - Iosevka, Iosevka Fixed Curly Slab
+ ;; - IBM Plex Mono
+ minemacs-fonts
  '(:font-family "Iosevka Fixed Curly Slab"
    :font-size 16
    :variable-pitch-font-family "IBM Plex Serif"
-   :variable-pitch-font-size 16)
+   :variable-pitch-font-size 16))
 
- ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
- ;; and `modus-themes'.
- minemacs-theme 'doom-one)
-
-(with-eval-after-load 'minemacs-loaded
-  ;; Auto enable Eglot in supported modes
-  ;; (use `+lsp-auto-enable' to auto enable LSP mode instead)
-  (+eglot-auto-enable))
+(+deferred!
+ ;; Auto enable Eglot in supported modes using `+eglot-auto-enable' (from the
+ ;; `me-prog' module). You can use `+lsp-auto-enable' instead to automatically
+ ;; enable LSP mode in supported modes (from the `me-lsp' module).
+ (+eglot-auto-enable))
 
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
 ;; (setq source-directory "~/Sources/emacs-git/")
 
 ;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
-;; (setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
+(setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
 
 ;; Module: `me-natural-langs' -- Package: `spell-fu'
 (with-eval-after-load 'spell-fu
