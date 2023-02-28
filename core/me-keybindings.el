@@ -5,7 +5,6 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; Which key
 (use-package which-key
   :straight t
   :hook (minemacs-after-startup . which-key-mode)
@@ -34,7 +33,6 @@
 
   (which-key-setup-minibuffer))
 
-;;; General.el
 (use-package general
   :straight t
   :config
