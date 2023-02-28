@@ -57,7 +57,7 @@
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 
 (defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
-(defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix)))))
+(defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix gnu/kfreebsd)))))
 (defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
 (defconst os/mac (eq system-type 'darwin))
 
