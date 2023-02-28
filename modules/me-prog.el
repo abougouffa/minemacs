@@ -18,11 +18,12 @@
   :defines +treesit-hl-enable-maybe
   :preface
   (+fn-inhibit-messages! treesit-langs-install-grammars)
+  (defcustom +treesit-langs-hl-exclude-modes
+    '(emacs-lisp-mode org-mode)
+    "Modes to exclude from enabling `treesit-hl'.")
   :init
   (defun +treesit-hl-enable-maybe ()
-    (unless (cl-some #'derived-mode-p
-                     '(emacs-lisp-mode
-                       org-mode))
+    (unless (cl-some #'derived-mode-p +treesit-langs-hl-exclude-modes)
       (ignore-errors (treesit-hl-toggle t))))
   :config
   (advice-add
