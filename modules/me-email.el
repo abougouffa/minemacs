@@ -9,13 +9,13 @@
 
 (defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
 
+(defconst MU4E-P
+  (and (executable-find "mu")
+       (executable-find "msmtp")
+       (executable-find "mbsync")
+       (file-directory-p MU4E-LOAD-PATH)))
+
 (use-package mu4e
-  :preface
-  (defconst MU4E-P
-    (and (executable-find "mu")
-         (executable-find "msmtp")
-         (executable-find "mbsync")
-         (file-directory-p MU4E-LOAD-PATH)))
   :when MU4E-P
   :load-path MU4E-LOAD-PATH
   :commands mu4e-compose-new mu4e--start
@@ -66,6 +66,14 @@
    (defun +mu4e--do-in-background-a (origfn run-in-background)
      (+info! "Getting new emails")
      (apply origfn '(t)))))
+
+;; Reply to iCalendar meeting requests
+(use-package mu4e-icalendar
+  :when MU4E-P
+  :load-path MU4E-LOAD-PATH
+  :after mu4e
+  :config
+  (mu4e-icalendar-setup))
 
 (use-package me-mu4e-ui
   :after mu4e
