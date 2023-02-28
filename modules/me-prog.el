@@ -290,13 +290,14 @@ the children of class at point."
   :straight (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
   :config
-  (setq
-   hl-todo-keyword-faces
-   (append
-    hl-todo-keyword-faces
-    '(("BUG" . "#ee5555")
-      ("PROJ" . "#447f44")
-      ("IDEA" . "#0fa050")))))
+  (setq hl-todo-keyword-faces
+        (append
+         hl-todo-keyword-faces
+         '(("BUG" . "#ee5555")
+           ("PROJ" . "#447f44")
+           ("IDEA" . "#0fa050")
+           ("INFO" . "#0e9030")
+           ("PERF" . "#e09030")))))
 
 (use-package rainbow-mode
   :straight t
