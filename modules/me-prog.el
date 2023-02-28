@@ -26,6 +26,8 @@
     (unless (cl-some #'derived-mode-p +treesit-langs-hl-exclude-modes)
       (ignore-errors (treesit-hl-toggle t))))
   :config
+  ;; Fallback to the queries found in the original grammar repository if not
+  ;; available in "treesit-langs/queries"
   (advice-add
    'treesit-langs--hl-query-path :around
    (defun +treesit-langs--fallback-to-repos-a (old-fn lang-symbol &optional mode)
