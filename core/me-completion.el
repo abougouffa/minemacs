@@ -80,6 +80,35 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
+(use-package consult
+  :straight t
+  :init
+  (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
+  (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
+  (global-set-key (kbd "C-s") 'consult-line)
+  :hook (embark-collect-mode . consult-preview-at-point-mode)
+  :general
+  (+map
+    ;; Buffers
+    "bl"  #'consult-line
+    "bb"  #'consult-buffer
+    "bmM" #'consult-bookmark
+    ;; Files
+    "fr"  #'consult-recent-file
+    ;; Search
+    "ss"  #'consult-ripgrep
+    "sM"  #'consult-man
+    "st"  #'consult-locate
+    ;; Code
+    "cx"  #'consult-xref
+    "cm"  #'consult-flymake
+    ;; Insert
+    "iy"  #'consult-yank-pop
+    ;; Help
+    "hu"  #'consult-theme)
+  :config
+  (setq-default completion-in-region-function #'consult-completion-in-region))
+
 (use-package embark
   :straight t
   :init
@@ -92,13 +121,13 @@
   :straight t
   :after embark consult)
 
-(use-package all-the-icons-completion
-  :straight t
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
-
 (use-package marginalia
   :straight t
   :hook (minemacs-after-startup . marginalia-mode))
+
+(use-package all-the-icons-completion
+  :straight t
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
 
 (use-package orderless
   :straight t
@@ -137,35 +166,6 @@
 
 (use-package vertico-repeat
   :hook (minibuffer-setup . vertico-repeat-save))
-
-(use-package consult
-  :straight t
-  :init
-  (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
-  (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
-  (global-set-key (kbd "C-s") 'consult-line)
-  :hook (embark-collect-mode . consult-preview-at-point-mode)
-  :general
-  (+map
-    ;; Buffers
-    "bl"  #'consult-line
-    "bb"  #'consult-buffer
-    "bmM" #'consult-bookmark
-    ;; Files
-    "fr"  #'consult-recent-file
-    ;; Search
-    "ss"  #'consult-ripgrep
-    "sM"  #'consult-man
-    "st"  #'consult-locate
-    ;; Code
-    "cx"  #'consult-xref
-    "cm"  #'consult-flymake
-    ;; Insert
-    "iy"  #'consult-yank-pop
-    ;; Help
-    "hu"  #'consult-theme)
-  :config
-  (setq-default completion-in-region-function #'consult-completion-in-region))
 
 
 (provide 'me-completion)
