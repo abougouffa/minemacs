@@ -10,9 +10,5 @@
 ;; Force loading lazy packages immediately, not in idle time
 ;; (setq minemacs-not-lazy t)
 
-;; Set a theme for MinEmacs early (when loading the `me-core-ui' module),
-;; supported themes include these from `doom-themes' and `modus-themes'.
-(setq minemacs-theme 'doom-one)
-
 ;; Setup a `debug-on-message' to catch a wired message!
 ;; (setq debug-on-message "Package cl is deprecated")
