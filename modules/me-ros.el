@@ -5,11 +5,11 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(with-eval-after-load 'minemacs-loaded
   (add-to-list 'auto-mode-alist '("\\.rviz\\'"   . conf-unix-mode))
   (add-to-list 'auto-mode-alist '("\\.urdf\\'"   . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.xacro\\'"  . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+(+deferred!
 
   ;; Use gdb-script-mode for msg and srv files
   (add-to-list 'auto-mode-alist '("\\.msg\\'"    . gdb-script-mode))

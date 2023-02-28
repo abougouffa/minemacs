@@ -177,6 +177,18 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     (lambda ()
       ,@body)))
 
+;;;###autoload
+(defmacro +deferred! (&rest body)
+  "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'."
+  `(eval-after-load 'minemacs-loaded (lambda () ,@body)))
+
+;;;###autoload
+(defmacro +deferred-lazy! (&rest body)
+  "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded' within a `+eval-when-idle!' block."
+  `(eval-after-load 'minemacs-loaded
+    (lambda ()
+      (+eval-when-idle! ,@body))))
+
 ;; Adapted from: github.com/d12frosted/environment
 ;;;###autoload
 (defmacro +hook-with-delay! (hook secs function &optional depth local)

@@ -260,6 +260,14 @@ Evaluate BODY after DELAY seconds from Emacs becoming idle.
 
 (fn DELAY &rest BODY)" nil t)
 (function-put '+eval-when-idle-for! 'lisp-indent-function 1)
+(autoload '+deferred! "../elisp/+minemacs" "\
+Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'.
+
+(fn &rest BODY)" nil t)
+(autoload '+deferred-lazy! "../elisp/+minemacs" "\
+Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded' within a `+eval-when-idle!' block.
+
+(fn &rest BODY)" nil t)
 (autoload '+hook-with-delay! "../elisp/+minemacs" "\
 Add the FUNCTION to the value of HOOK.
 The FUNCTION is delayed to be evaluated in SECS once HOOK is

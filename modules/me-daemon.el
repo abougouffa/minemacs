@@ -6,33 +6,33 @@
 
 
 (defun +daemon--setup-background-apps ()
-  (with-eval-after-load 'minemacs-loaded
-    ;; mu4e
-    (when (featurep 'me-email)
-      (+eval-when-idle-for! (if (daemonp) 0 5)
-        (when (require 'mu4e nil t)
-          (unless (mu4e-running-p)
-            (let ((inhibit-message t))
-              (mu4e t)
-              (+info! "Started `mu4e' in background."))))))
-
-    ;; RSS
-    (when (featurep 'me-rss)
-      (+eval-when-idle!
-        (run-at-time
-         (* 60 5) ;; 5min
-         (* 60 60) ;; 1h
-         (lambda ()
-           (+info! "Updating RSS feed.")
+  (+deferred!
+   ;; mu4e
+   (when (featurep 'me-email)
+     (+eval-when-idle-for! (if (daemonp) 0 5)
+       (when (require 'mu4e nil t)
+         (unless (mu4e-running-p)
            (let ((inhibit-message t))
-             (elfeed-update))))))
+             (mu4e t)
+             (+info! "Started `mu4e' in background."))))))
 
-    (+eval-when-idle!
-      (require 'server)
-      (unless (or (daemonp) (server-running-p))
-        (let ((inhibit-message t))
-          (+info! "Starting Emacs daemon in background.")
-          (server-start nil t))))))
+   ;; RSS
+   (when (featurep 'me-rss)
+     (+eval-when-idle!
+       (run-at-time
+        (* 60 5) ;; 5min
+        (* 60 60) ;; 1h
+        (lambda ()
+          (+info! "Updating RSS feed.")
+          (let ((inhibit-message t))
+            (elfeed-update))))))
+
+   (+eval-when-idle!
+     (require 'server)
+     (unless (or (daemonp) (server-running-p))
+       (let ((inhibit-message t))
+         (+info! "Starting Emacs daemon in background.")
+         (server-start nil t))))))
 
 ;; At daemon startup
 (add-hook 'emacs-startup-hook #'+daemon--setup-background-apps)
