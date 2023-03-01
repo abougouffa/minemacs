@@ -8,8 +8,8 @@
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
   :preface
-  (defconst MPV-P (executable-find "mpv"))
-  :when MPV-P
+  (defconst +mpv-available-p (executable-find "mpv"))
+  :when +mpv-available-p
   :general
   (+map
     "ov"  '(nil :wk "empv")

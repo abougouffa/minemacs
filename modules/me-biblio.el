@@ -31,8 +31,8 @@
   :straight t
   :defer t
   :preface
-  (defconst ZOTERO-P (executable-find "zotero"))
-  :when ZOTERO-P
+  (defconst +zotero-available-p (executable-find "zotero"))
+  :when +zotero-available-p
   :init
   (+map-local :keymaps 'org-mode-map
     "z" #'org-zotxt-mode)

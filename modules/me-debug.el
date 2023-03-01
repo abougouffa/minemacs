@@ -61,6 +61,9 @@
 
 (use-package disaster
   :straight t
+  :preface
+  (defconst +objdump-available-p (executable-find "objdump"))
+  :when +objdump-available-p
   :general
   (+map-local :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
     "D" #'disaster))

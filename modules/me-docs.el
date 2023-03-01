@@ -82,25 +82,25 @@
   :straight t
   :defer t
   :preface
-  (defconst TUNTOX-P (executable-find "tuntox"))
-  (defconst STUNNEL-P (executable-find "stunnel"))
+  (defconst +tuntox-available-p (executable-find "tuntox"))
+  (defconst +stunnel-available-p (executable-find "stunnel"))
   :init
-  (cond (TUNTOX-P
+  (cond (+tuntox-available-p
          (setq crdt-use-tuntox t
                crdt-tuntox-password-in-url t))
-        (STUNNEL-P
+        (+stunnel-available-p
          (setq crdt-use-stunnel t))))
+
+(defconst +easydraw-available-p (+emacs-features-p 'rsvg 'zlib 'libxml2))
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")
   :defer t
-  :preface
-  (defconst EASYDRAW-P (+emacs-features-p 'rsvg 'zlib 'libxml2))
-  :when EASYDRAW-P)
+  :when +easydraw-available-p)
 
 (use-package edraw-org
   :hook (org-mode . edraw-org-setup-default)
-  :when EASYDRAW-P)
+  :when +easydraw-available-p)
 
 (use-package markdown-mode
   :straight t

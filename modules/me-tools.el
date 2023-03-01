@@ -139,8 +139,8 @@
   :straight (:host github :repo "seanfarley/emacs-bitwarden")
   :defer t
   :preface
-  (defconst BITWARDEN-P (executable-find "bw"))
-  :when BITWARDEN-P
+  (defconst +bitwarden-available-p (executable-find "bw"))
+  :when +bitwarden-available-p
   :custom
   (bitwarden-automatic-unlock
    (lambda ()

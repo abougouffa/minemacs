@@ -169,8 +169,8 @@
 (use-package repo
   :straight t
   :preface
-  (defconst REPO-P (executable-find "repo"))
-  :when REPO-P
+  (defconst +repo-available-p (executable-find "repo"))
+  :when +repo-available-p
   :general
   (+map "gr" #'repo-status))
 

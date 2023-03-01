@@ -7,17 +7,17 @@
 
 (add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
-(defconst MU4E-LOAD-PATH "/usr/share/emacs/site-lisp/mu4e/")
+(defconst +mu4e-load-path "/usr/share/emacs/site-lisp/mu4e/")
 
-(defconst MU4E-P
+(defconst +mu4e-available-p
   (and (executable-find "mu")
        (executable-find "msmtp")
        (executable-find "mbsync")
-       (file-directory-p MU4E-LOAD-PATH)))
+       (file-directory-p +mu4e-load-path)))
 
 (use-package mu4e
-  :when MU4E-P
-  :load-path MU4E-LOAD-PATH
+  :when +mu4e-available-p
+  :load-path +mu4e-load-path
   :commands mu4e-compose-new mu4e--start
   :hook (mu4e-headers-mode . (lambda ()
                                (visual-line-mode -1)
@@ -69,8 +69,8 @@
 
 ;; Reply to iCalendar meeting requests
 (use-package mu4e-icalendar
-  :when MU4E-P
-  :load-path MU4E-LOAD-PATH
+  :when +mu4e-available-p
+  :load-path +mu4e-load-path
   :after mu4e
   :config
   (mu4e-icalendar-setup))

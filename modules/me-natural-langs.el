@@ -5,11 +5,11 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-(defconst ASPELL-P (executable-find "aspell"))
+(defconst +aspell-available-p (executable-find "aspell"))
 
 (use-package spell-fu
   :straight t
-  :when ASPELL-P
+  :when +aspell-available-p
   :general
   (+map "ts" #'spell-fu-mode)
   (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
@@ -155,6 +155,9 @@
 
 (use-package lexic
   :straight t
+  :preface
+  (defconst +sdcv-available-p (executable-find "sdcv"))
+  :when +sdcv-available-p
   :general
   (+map
     "sl" #'lexic-search-word-at-point
