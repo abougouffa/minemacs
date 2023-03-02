@@ -119,6 +119,7 @@ Useful for keeping track of the enabled theme."
 
 (use-package doom-modeline
   :straight t
+  :hook (minemacs-after-startup . doom-modeline-mode)
   :custom
   (doom-modeline-height 35)
   (doom-modeline-bar-width 8)
@@ -126,14 +127,13 @@ Useful for keeping track of the enabled theme."
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
   :config
-  ;; Add padding
+  ;; FIX Add some padding to the right
   (doom-modeline-def-modeline 'main
     '(bar workspace-name window-number modals matches follow buffer-info
       remote-host buffer-position word-count parrot selection-info)
     '(objed-state misc-info persp-name battery grip irc mu4e gnus github debug
       repl lsp minor-modes input-method indent-info buffer-encoding major-mode
-      process vcs checker time "   "))
-  (doom-modeline-mode 1))
+      process vcs checker time "   ")))
 
 
 (provide 'me-core-ui)
