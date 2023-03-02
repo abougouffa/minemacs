@@ -97,6 +97,8 @@
     "fr"  #'consult-recent-file
     ;; Search
     "ss"  #'consult-ripgrep
+    "sg"  #'consult-grep
+    "sf"  #'consult-find
     "sM"  #'consult-man
     "st"  #'consult-locate
     ;; Code
