@@ -17,10 +17,6 @@
   (evil-vsplit-window-right t)
   (evil-kill-on-visual-paste nil)
   (evil-respect-visual-line-mode t)
-  (evil-normal-state-cursor 'box)
-  (evil-visual-state-cursor 'hollow)
-  (evil-insert-state-cursor '(bar . 2))
-  (evil-emacs-state-cursor '(hbar . 2))
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
   (evil-mode 1)
