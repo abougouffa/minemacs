@@ -5,10 +5,15 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (setq
+ ;; Base directory
  straight-base-dir minemacs-local-dir
- straight-repository-branch "develop"
- straight-vc-git-default-clone-depth '(1 single-branch)
+ ;; Add Emacs version to the build directory to avoid problems
  straight-build-dir (format "build-%s" emacs-version)
+ ;; Use the "develop" branch on straight.el's repo
+ straight-repository-branch "develop"
+ ;; Do not clone all project history, just the last worktree (--depth 1)
+ straight-vc-git-default-clone-depth '(1 single-branch)
+ ;; I don't modify packages installed from straight, so don't wast me time
  straight-check-for-modifications nil)
 
 ;; Bootstraping straight.el
