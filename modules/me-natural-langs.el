@@ -79,16 +79,14 @@
                         ("en" "ar")
                         ("fr" "ar")
                         ("fr" "en")))
-  :general
   (+map-local :keymaps '(org-mode-map text-mode-map markdown-mode-map
                          tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
-    "R" '(+gts-yank-translated-region :wk "Yank translated region")
-    "G" '(nil "go-translate")
-    "Gb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Bing")
-    "Gd" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "DeepL")
-    "Gg" `(,(+cmdfy! (+gts-translate-with))) :wk "Google"
-    "GR" '(+gts-yank-translated-region :wk "Yank translated region")
-    "Gt" '(gts-do-translate :wk "gts-do-translate"))
+    :infix "t"
+    "b" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
+    "d" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "Translate with DeepL")
+    "g" `(,(+cmdfy! (+gts-translate-with))) :wk "Translate with Google"
+    "r" #'+gts-yank-translated-region
+    "t" #'gts-do-translate)
   :config
   ;; Config the default translator, which will be used by the command `gts-do-translate'
   (setq gts-default-translator
