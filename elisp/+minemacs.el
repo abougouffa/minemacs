@@ -180,14 +180,48 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;;;###autoload
 (defmacro +deferred! (&rest body)
   "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'."
-  `(eval-after-load 'minemacs-loaded (lambda () ,@body)))
+  `(add-hook 'minemacs-after-startup-hook (lambda () ,@body)))
 
 ;;;###autoload
-(defmacro +deferred-lazy! (&rest body)
-  "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded' within a `+eval-when-idle!' block."
-  `(eval-after-load 'minemacs-loaded
-    (lambda ()
-      (+eval-when-idle! ,@body))))
+(defmacro +deferred-when! (condition &rest body)
+  "Like `+deferred!', with BODY executed only if CONDITION is non-nil."
+  (declare (indent 1))
+  `(if ,condition (+deferred! ,@body) nil))
+
+;;;###autoload
+(defmacro +deferred-unless! (condition &rest body)
+  "Like `+deferred!', with BODY executed only if CONDITION is nil."
+  (declare (indent 1))
+  `(if ,condition nil (+deferred! ,@body)))
+
+;;;###autoload
+(defmacro +deferred-or-immediate! (condition &rest body)
+  "Like `+deferred!', with BODY deferred if CONDITION is non-nil, otherwise it acts like `progn'."
+  (declare (indent 1))
+  `(if ,condition (+deferred! ,@body) (progn ,@body)))
+
+;;;###autoload
+(defmacro +lazy! (&rest body)
+  "Run BODY as a lazy block (see `minemacs-lazy')."
+  `(add-hook 'minemacs-lazy-hook (lambda () ,@body)))
+
+;;;###autoload
+(defmacro +lazy-when! (condition &rest body)
+  "Like `+lazy!', with BODY executed only if CONDITION is non-nil."
+  (declare (indent 1))
+  `(if ,condition (+lazy! ,@body) nil))
+
+;;;###autoload
+(defmacro +lazy-unless! (condition &rest body)
+  "Like `+lazy!', with BODY executed only if CONDITION is nil."
+  (declare (indent 1))
+  `(if ,condition nil (+lazy! ,@body)))
+
+;;;###autoload
+(defmacro +lazy-or-immediate! (condition &rest body)
+  "Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts like `progn'."
+  (declare (indent 1))
+  `(if ,condition (+lazy! ,@body) (progn ,@body)))
 
 ;; At some point, MinEmacs gets too slow when initializing `general' and `evil'.
 ;; After playing with the settings, I figured out that deferring `general'

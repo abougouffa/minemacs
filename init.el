@@ -275,7 +275,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
     (load user-config nil (not minemacs-verbose))))
 
 (when (featurep 'native-compile)
-  (+deferred-lazy!
+  (+lazy!
    (+info! "Trying to clean outdated native compile cache")
    ;; Delete outdated natively compiled files when Emacs become idle
    (+shutup! (native-compile-prune-cache))))

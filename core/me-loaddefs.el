@@ -264,10 +264,52 @@ Evaluate BODY after DELAY seconds from Emacs becoming idle.
 Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'.
 
 (fn &rest BODY)" nil t)
-(autoload '+deferred-lazy! "../elisp/+minemacs" "\
-Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded' within a `+eval-when-idle!' block.
+(autoload '+deferred-when! "../elisp/+minemacs" "\
+Like `+deferred!', with BODY executed only if CONDITION is non-nil.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+deferred-when! 'lisp-indent-function 1)
+(autoload '+deferred-unless! "../elisp/+minemacs" "\
+Like `+deferred!', with BODY executed only if CONDITION is nil.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+deferred-unless! 'lisp-indent-function 1)
+(autoload '+deferred-or-immediate! "../elisp/+minemacs" "\
+Like `+deferred!', with BODY deferred if CONDITION is non-nil, otherwise it acts like `progn'.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+deferred-or-immediate! 'lisp-indent-function 1)
+(autoload '+lazy! "../elisp/+minemacs" "\
+Run BODY as a lazy block (see `minemacs-lazy').
 
 (fn &rest BODY)" nil t)
+(autoload '+lazy-when! "../elisp/+minemacs" "\
+Like `+lazy!', with BODY executed only if CONDITION is non-nil.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+lazy-when! 'lisp-indent-function 1)
+(autoload '+lazy-unless! "../elisp/+minemacs" "\
+Like `+lazy!', with BODY executed only if CONDITION is nil.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+lazy-unless! 'lisp-indent-function 1)
+(autoload '+lazy-or-immediate! "../elisp/+minemacs" "\
+Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts like `progn'.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put '+lazy-or-immediate! 'lisp-indent-function 1)
+(autoload '+map "../elisp/+minemacs" "\
+
+
+(fn &rest ARGS)" nil t)
+(autoload '+map-local "../elisp/+minemacs" "\
+
+
+(fn &rest ARGS)" nil t)
+(autoload '+map-key "../elisp/+minemacs" "\
+
+
+(fn &rest ARGS)" nil t)
 (autoload '+hook-with-delay! "../elisp/+minemacs" "\
 Add the FUNCTION to the value of HOOK.
 The FUNCTION is delayed to be evaluated in SECS once HOOK is
