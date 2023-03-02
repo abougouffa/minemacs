@@ -12,5 +12,5 @@ clean_all: clean
 prune: clean
 	rm -rf $(EMACS_DIR)/local
 
-autoloads:
-	rm $(EMACS_DIR)/core/me-autoloads.el
+loaddefs:
+	rm $(EMACS_DIR)/core/me-loaddefs.el
