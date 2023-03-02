@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+;; https://www.reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5/?utm_source=share&utm_medium=web2x&context=3
+;; Inhibit startup message in echo area
+(fset 'display-startup-echo-area-message 'ignore)
 
 ;;; Why use anything but UTF-8?
 (prefer-coding-system 'utf-8)
@@ -64,8 +67,6 @@
  ;; ====== Default behavior ======
  ;; Inhibit startup message
  inhibit-startup-message t
- ;; Inhibit startup message in echo area
- inhibit-startup-echo-area-message (user-login-name) ;; BUG not working!
  ;; Do not ring
  ring-bell-function 'ignore
  ;; Increase the large file threshold to 50 MiB
