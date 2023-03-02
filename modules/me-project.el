@@ -8,7 +8,21 @@
 (use-package projectile
   :straight t
   :after minemacs-loaded
-  :general
+  :demand t
+  :custom
+  (projectile-cache-file (+directory-ensure (concat minemacs-cache-dir "projectile/cache.el")))
+  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
+  (projectile-ignored-projects '("~/"))
+  (projectile-ignored-project-function nil) ;; TODO: customize it
+  (projectile-auto-discover nil)
+  (projectile-enable-caching (not noninteractive))
+  (projectile-globally-ignored-files '("TAGS" ".Trash" ".DS_Store"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
+  (projectile-kill-buffers-filter 'kill-only-files)
+  :init
+  (global-set-key [remap find-tag] #'projectile-find-tag)
+  (with-eval-after-load 'evil
+    (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag))
   (+map
     ;; Project
     :infix "p"
@@ -42,19 +56,6 @@
     "ss" 'projectile-grep
     "sn" '(fileloop-continue :wk "Next match")
     "sr" #'projectile-replace-regexp)
-  :custom
-  (projectile-cache-file (+directory-ensure (concat minemacs-cache-dir "projectile/cache.el")))
-  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
-  (projectile-ignored-projects '("~/"))
-  (projectile-ignored-project-function nil) ;; TODO: customize it
-  (projectile-auto-discover nil)
-  (projectile-enable-caching (not noninteractive))
-  (projectile-globally-ignored-files '("TAGS" ".Trash" ".DS_Store"))
-  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
-  (projectile-kill-buffers-filter 'kill-only-files)
-  :init
-  (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
-  (global-set-key [remap find-tag] #'projectile-find-tag)
   :config
   ;; HACK: Taken from Doom Emacs
   ;; 1. Projectile uses `file-remote-p' to check for remote (tramp) paths in its
@@ -83,7 +84,7 @@
 
 (use-package consult-projectile
   :straight t
-  :general
+  :init
   (+map
     ":"  '(consult-projectile-find-file :wk "Find file in project")
     ;; Buffer

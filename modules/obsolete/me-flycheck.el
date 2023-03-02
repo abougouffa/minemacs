@@ -14,8 +14,6 @@
   (flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (flycheck-buffer-switch-check-intermediate-buffers nil) ; maybe set it to t
   (flycheck-display-errors-delay 0.5)
-  :general
-  (+map "tc" #'+flycheck-mode-toggle)
   :init
   (defvar +flycheck-disabled-explicitly nil)
   :config
@@ -28,6 +26,7 @@
       (flycheck-mode 1)
       (setq +flycheck-disabled-explicitly nil)))
 
+  (+map "tc" #'+flycheck-mode-toggle)
   (+map
     :keymaps 'flycheck-error-list-mode-map
     "j"   #'flycheck-error-list-next-error

@@ -37,21 +37,6 @@
   (setq inferior-lisp-program (caar (cdar slime-lisp-implementations))
         slime-default-lisp (caar slime-lisp-implementations)))
 
-(use-package macrostep
-  :straight t
-  :general
-  (+map-local :keymaps 'emacs-lisp-mode-map
-    "m" '(macrostep-expand :wk "Expand macro")))
-
-(use-package macrostep-geiser
-  :straight t
-  :after geiser
-  :general
-  (+map-local :keymaps '(scheme-mode-map racket-mode-map)
-    "m" '(macrostep-geiser-expand-all :wk "Expand macro"))
-  :config
-  (macrostep-geiser-setup))
-
 ;; Scheme
 (use-package geiser
   :straight t
@@ -68,8 +53,22 @@
   :straight t)
 
 (use-package geiser-racket
+  :straight t)
+
+(use-package macrostep
   :straight t
-  :defer t)
+  :init
+  (+map-local :keymaps 'emacs-lisp-mode-map
+    "m" '(macrostep-expand :wk "Expand macro")))
+
+(use-package macrostep-geiser
+  :straight t
+  :after geiser
+  :init
+  (+map-local :keymaps '(scheme-mode-map racket-mode-map)
+    "m" '(macrostep-geiser-expand-all :wk "Expand macro"))
+  :config
+  (macrostep-geiser-setup))
 
 (use-package racket-mode
   :straight t)
@@ -79,7 +78,7 @@
   :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
-  :general
+  :config
   (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")
     "df"  'edebug-defun
@@ -128,17 +127,16 @@
   :after elisp-mode minemacs-loaded
   :demand t
   :init
-  (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
-  (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update)
-  :general
   (+map
     :infix "he"
     "d" #'elisp-demos-find-demo
-    "D" #'elisp-demos-add-demo))
+    "D" #'elisp-demos-add-demo)
+  (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (advice-add #'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (use-package helpful
   :straight t
-  :general
+  :init
   (+map :keymaps 'emacs-lisp-mode-map
     :infix "h"
     "p" #'helpful-at-point

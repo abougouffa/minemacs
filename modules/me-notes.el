@@ -7,7 +7,7 @@
 
 (use-package org-roam
   :straight t
-  :general
+  :init
   (+map :infix "n"
     "f" #'org-roam-node-find
     "r" #'org-roam-ref-find
@@ -16,7 +16,7 @@
 
 (use-package org-roam-ui
   :straight t
-  :general
+  :init
   (+map
     "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
 

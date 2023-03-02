@@ -22,7 +22,7 @@
   (tabspaces-session t)
   (tabspaces-session-auto-restore t)
   (tabspaces-session-file (+directory-ensure (concat minemacs-local-dir "tabspaces/session.el")))
-  :config
+  :init
   (+map :infix "q"
     "t" #'tabspaces-save-session
     "T" #'tabspaces-restore-session)
@@ -37,7 +37,7 @@
     "r" #'tabspaces-remove-current-buffer
     "R" #'tabspaces-remove-selected-buffer
     "k" #'tabspaces-kill-buffers-close-workspace)
-
+  :config
   (defun +consult-tabspaces ()
     "Deactivate isolated buffers when not using tabspaces."
     (require 'consult)

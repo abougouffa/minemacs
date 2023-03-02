@@ -7,6 +7,7 @@
 
 (use-package evil
   :straight t
+  :hook (minemacs-after-startup . evil-mode)
   :preface
   (setq evil-want-keybinding nil)
   :custom
@@ -19,7 +20,6 @@
   (evil-respect-visual-line-mode t)
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
-  (evil-mode 1)
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
     (dolist (fn '(evil-window-split evil-window-vsplit))
@@ -57,7 +57,7 @@
 
 (use-package evil-numbers
   :straight t
-  :general
+  :init
   (+map-key
     :states '(normal)
     "g+" #'evil-numbers/inc-at-pt
@@ -71,7 +71,7 @@
 
 (use-package evil-nerd-commenter
   :straight t
-  :general
+  :init
   (+map-key "gc" #'evilnc-comment-operator))
 
 

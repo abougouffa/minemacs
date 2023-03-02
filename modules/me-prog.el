@@ -57,17 +57,16 @@
 (use-package eglot
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
   :commands +eglot-auto-enable
-  :general
-  (+map
-    :infix "c"
-    "e"  '(nil :wk "eglot session")
-    "ee" #'eglot
-    "eA" #'+eglot-auto-enable)
   :custom
   (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :init
+  (+map
+    :infix "c"
+    "e"  '(nil :wk "eglot session")
+    "ee" #'eglot
+    "eA" #'+eglot-auto-enable)
   (defvar +eglot-auto-enable-modes
     '(c++-mode c++-ts-mode c-mode c-ts-mode
       python-mode python-ts-mode
@@ -195,7 +194,7 @@ the children of class at point."
 ;;; Formatting
 (use-package apheleia
   :straight t
-  :general
+  :init
   (+map "cff" #'apheleia-format-buffer)
   :config
   (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
@@ -209,7 +208,7 @@ the children of class at point."
 
 (use-package editorconfig
   :straight t
-  :general
+  :init
   (+map
     "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
     "cfe" #'editorconfig-format-buffer)
@@ -217,7 +216,7 @@ the children of class at point."
 
 (use-package clang-format
   :straight t
-  :general
+  :init
   (+map :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
@@ -267,12 +266,11 @@ the children of class at point."
   :custom
   (dumb-jump-selector 'completing-read)
   :init
+  (+map
+    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
   ;; Use as xref backend
   (with-eval-after-load 'xref
     (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-  :general
-  (+map
-    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
   :config
   ;; Define Hydra keybinding (from the repo's examples)
   (defhydra +dumb-jump-hydra (:color blue :columns 3)
@@ -300,7 +298,7 @@ the children of class at point."
 
 (use-package rainbow-mode
   :straight t
-  :general
+  :init
   (+map :keymaps '(prog-mode-map conf-mode-map text-mode-map)
     "tR" #'rainbow-mode))
 

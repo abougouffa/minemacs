@@ -10,13 +10,12 @@
 (use-package spell-fu
   :straight t
   :when +aspell-available-p
-  :general
-  (+map "ts" #'spell-fu-mode)
-  (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
   :hook (text-mode . spell-fu-mode)
   :custom
   (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
   :init
+  (+map "ts" #'spell-fu-mode)
+
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face
@@ -68,17 +67,14 @@
    (defun +spell-fu--init-excluded-faces-h ()
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
-       (setq-local spell-fu-faces-exclude excluded)))))
+       (setq-local spell-fu-faces-exclude excluded))))
+  :config
+  (+map-key "z=" #'+spell-fu-correct)) ;; autoloaded from "me-spell-fu.el"
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
-  :custom
-  ;; Your languages pairs
-  (gts-translate-list '(("en" "fr")
-                        ("en" "ar")
-                        ("fr" "ar")
-                        ("fr" "en")))
+  :init
   (+map-local :keymaps '(org-mode-map text-mode-map markdown-mode-map
                          tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     :infix "t"
@@ -87,6 +83,12 @@
     "g" `(,(+cmdfy! (+gts-translate-with))) :wk "Translate with Google"
     "r" #'+gts-yank-translated-region
     "t" #'gts-do-translate)
+  :custom
+  ;; Your languages pairs
+  (gts-translate-list '(("en" "fr")
+                        ("en" "ar")
+                        ("fr" "ar")
+                        ("fr" "en")))
   :config
   ;; Config the default translator, which will be used by the command `gts-do-translate'
   (setq gts-default-translator
@@ -156,10 +158,11 @@
   :preface
   (defconst +sdcv-available-p (executable-find "sdcv"))
   :when +sdcv-available-p
-  :general
+  :init
   (+map
     "sl" #'lexic-search-word-at-point
     "sL" #'lexic-search)
+  :config
   (+map-local :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic
     "RET" #'lexic-search-word-at-point

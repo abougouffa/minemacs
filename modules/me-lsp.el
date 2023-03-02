@@ -10,7 +10,7 @@
   :preface
   (setq lsp-use-plists t)
   :commands +lsp-auto-enable
-  :general
+  :init
   (+map
     :infix "c"
     "l"  '(nil :wk "lsp session")
@@ -108,7 +108,7 @@
 
 (use-package dap-mode
   :straight t
-  :general
+  :config
   (+map-local
     :keymaps '(c-mode-map c++-mode-map python-mode-map
                rust-mode-map sh-mode-map bash-ts-mode-map

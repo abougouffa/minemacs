@@ -10,7 +10,7 @@
   :preface
   (defconst +mpv-available-p (executable-find "mpv"))
   :when +mpv-available-p
-  :general
+  :init
   (+map
     "ov"  '(nil :wk "empv")
     "ovp" '(empv-play :wk "Play")

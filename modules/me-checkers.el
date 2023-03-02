@@ -7,9 +7,14 @@
 
 (use-package flymake
   :straight (:type built-in)
-  :after minemacs-lazy
-  :general
+  :init
   (+map "tf" #'flymake-mode)
+  :custom
+  (flymake-fringe-indicator-position 'right-fringe)
+  (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
+  (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
+  (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
+  :config
   (+map-local :keymaps 'flymake-mode-map
     "f"  '(nil :wk "flymake")
     "fn" #'flymake-goto-next-error
@@ -17,12 +22,7 @@
     "fs" #'flymake-start
     "fb" #'flymake-show-buffer-diagnostics
     "fp" #'flymake-show-project-diagnostics)
-  :custom
-  (flymake-fringe-indicator-position 'right-fringe)
-  (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
-  (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
-  (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
-  :config
+
   ;; Use the session's load-path with flymake
   (setq elisp-flymake-byte-compile-load-path load-path)
   ;; Larger right frings

@@ -84,12 +84,11 @@
 
 (use-package consult
   :straight t
+  :hook (embark-collect-mode . consult-preview-at-point-mode)
   :init
   (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
   (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
   (global-set-key (kbd "C-s") 'consult-line)
-  :hook (embark-collect-mode . consult-preview-at-point-mode)
-  :general
   (+map
     ;; Buffers
     "bl"  #'consult-line
@@ -118,7 +117,6 @@
   :init
   (global-set-key [remap describe-bindings] #'embark-bindings)
   (setq prefix-help-command #'embark-prefix-help-command)
-  :general
   (+map "." #'embark-act))
 
 (use-package embark-consult

@@ -7,7 +7,7 @@
 
 (use-package elfeed
   :straight t
-  :general
+  :init
   (+map "of" #'elfeed)
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))

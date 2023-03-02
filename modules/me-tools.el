@@ -8,18 +8,17 @@
 
 (use-package tldr
   :straight t
-  :general
+  :init
   (+map "ht" #'tldr)
   :custom
   (tldr-enabled-categories '("common" "linux" "osx")))
 
 (use-package vterm
   :straight t
-  :general
+  :init
   (+map
     "ot" '(nil :wk "vterm")
     "otT" #'vterm)
-  :init
   ;; Hide vterm install window
   (add-to-list
    'display-buffer-alist
@@ -34,14 +33,11 @@
 
 (use-package multi-vterm
   :straight t
-  :general
+  :init
   (+map
     "ott" #'multi-vterm
     "otd" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
-  :custom
-  (multi-vterm-dedicated-window-height-percent 30)
-  :init
   ;; Show at buttom
   (add-to-list
    'display-buffer-alist
@@ -51,6 +47,8 @@
      (dedicated . t)
      (reusable-frames . visible)
      (window-height . 0.3)))
+  :custom
+  (multi-vterm-dedicated-window-height-percent 30)
   :config
   (+map-key
     :keymaps 'vterm-mode-map
@@ -61,7 +59,7 @@
 
 (use-package docker
   :straight t
-  :general
+  :init
   (+map "ok" #'docker))
 
 (unless (+emacs-features-p 'tree-sitter)
@@ -74,7 +72,7 @@
 
 (use-package pkgbuild-mode
   :straight t
-  :general
+  :config
   (+map-local :keymaps 'pkgbuild-mode-map
     "b" #'pkgbuild-makepkg
     "a" #'pkgbuild-tar
@@ -86,7 +84,7 @@
 
 (use-package journalctl-mode
   :straight t
-  :general
+  :config
   (+map-local :keymaps 'journalctl-mode-map
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))

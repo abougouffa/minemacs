@@ -4,7 +4,7 @@
 (use-package emojify
   :straight t
   :hook (minemacs-lazy . global-emojify-mode)
-  :general
+  :init
   (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
   :custom
   (emojify-emoji-set "emojione-v2.2.6")

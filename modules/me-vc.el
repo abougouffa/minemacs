@@ -7,7 +7,7 @@
 
 (use-package magit
   :straight t
-  :general
+  :init
   (+map
     :infix "g"
     "g" #'magit-status
@@ -76,7 +76,7 @@
   :hook (dired-mode   . diff-hl-dired-mode)
   :hook (vc-dir-mode  . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
-  :general
+  :init
   (+map "gs" #'diff-hl-stage-current-hunk)
   :custom
   (diff-hl-draw-borders nil)
@@ -86,7 +86,7 @@
 
 (use-package git-timemachine
   :straight t
-  :general
+  :init
   (+map "gt" #'git-timemachine-toggle)
   :custom
   (git-timemachine-show-minibuffer-details t))
@@ -122,7 +122,7 @@
 
 (use-package smerge-mode
   :straight t
-  :general
+  :init
   (+map "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil
@@ -172,7 +172,7 @@
   :preface
   (defconst +repo-available-p (executable-find "repo"))
   :when +repo-available-p
-  :general
+  :init
   (+map "gr" #'repo-status))
 
 

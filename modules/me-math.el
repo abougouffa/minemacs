@@ -38,7 +38,7 @@
   :mode ("\\.ipynb\\'" . ein:ipynb-mode)
   :custom
   (ein:output-area-inlined-images t)
-  :general
+  :init
   (+map
     :infix "o"
     "j" '(nil :wk "ein")
@@ -46,12 +46,12 @@
     "jl" #'ein:login
     "jf" #'ein:file-open
     "jn" #'ein:notebook-open)
+  :config
   (+map-local :keymaps 'ein:ipynb-mode-map
     "o" #'ein:process-find-file-callback
     "O" #'ein:process-open-notebook
     "r" #'ein:gat-run-remote
     "l" #'ein:gat-run-local)
-  :config
   (setq-default ein:markdown-enable-math t)
 
   (with-eval-after-load 'org

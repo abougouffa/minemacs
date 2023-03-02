@@ -35,12 +35,14 @@
 
 (use-package general
   :straight t
+  ;; Loading `general' early make Emacs very slow on startup
+  :after minemacs-loaded
   :demand t
   :config
   (general-auto-unbind-keys)
 
   ;; Global leader
-  (general-create-definer +map
+  (general-create-definer +general--map
     ;; The order of states matters, the last is prioritized
     :states '(insert emacs visual normal)
     :keymaps 'override
@@ -48,17 +50,17 @@
     :global-prefix minemacs-global-leader-prefix)
 
   ;; Local leader
-  (general-create-definer +map-local
+  (general-create-definer +general--map-local
     :states '(insert emacs visual normal)
     :keymaps 'override
     :prefix minemacs-localleader-key
     :global-prefix minemacs-global-mode-prefix)
 
   ;; Map a key in normal and visual states
-  (general-create-definer +map-key
+  (general-create-definer +general--map-key
     :states '(normal visual))
 
-  (+map
+  (+general--map
     ;; ====== Top level functions ======
     "SPC" '(execute-extended-command :wk "M-x")
     ">"   '(switch-to-next-buffer :wk "Next buffer")
@@ -200,11 +202,15 @@
     "hdp" #'describe-package
 
     ;; ====== Project ======
-    "p"   '(nil :wk "project")))
+    "p"   '(nil :wk "project"))
+
+  ;; This will tell `+map', `+map-local' and `+map-key' that general is ready
+  ;; and the definers `+general--map', `+general--map-key' and
+  ;; `+general--map-local' are available.
+  (provide 'me-general-ready))
 
 (use-package hydra
-  :straight t
-  :defer t)
+  :straight t)
 
 
 (provide 'me-keybindings)

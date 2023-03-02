@@ -62,21 +62,19 @@
 
 (use-package graphviz-dot-mode
   :straight (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
-  :general
+  :custom
+  (graphviz-dot-view-command "xdot %s")
+  (graphviz-dot-preview-extension "svg")
+  :config
   (+map-local :keymaps 'graphviz-dot-mode-map
     "p" #'graphviz-dot-preview
     "P" #'graphviz-dot-view
     "l" #'graphviz-turn-on-live-preview
     "L" #'graphviz-turn-off-live-preview)
-  :custom
-  (graphviz-dot-view-command "xdot %s")
-  (graphviz-dot-preview-extension "svg")
-  :config
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
 (use-package nxml-mode
   :straight (:type built-in)
-  :defer t
   :config
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
@@ -128,7 +126,7 @@
 (use-package d2-mode
   :straight t
   :mode "\\.d2\\'"
-  :general
+  :config
   (+map-local :keymaps 'd2-mode-map
      "cc" #'d2-compile
      "cf" #'d2-compile-file

@@ -246,7 +246,7 @@
 
 (use-package org-present
   :straight t
-  :general
+  :init
   (+map "oP" :keymaps 'org-mode-map #'org-present)
   :config
   (setq org-present-text-scale 2.5)

@@ -10,7 +10,6 @@
   :magic ("%PDF" . pdf-view-mode)
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
-  (pdf-tools-install t t t)
   (setq-default pdf-view-display-size 'fit-page
                 pdf-view-image-relief 2
                 pdf-view-use-scaling t))
@@ -18,12 +17,11 @@
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . nov-mode)
-  :general
-  (+map-key :keymaps 'nov-mode-map :states 'normal
-    "RET" #'nov-scroll-up)
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config
+  (+map-key :keymaps 'nov-mode-map :states 'normal
+    "RET" #'nov-scroll-up)
   (defun doom-modeline-segment--nov-info ()
     (concat " " (propertize (cdr (assoc 'creator nov-metadata))
                             'face 'doom-modeline-project-parent-dir)
@@ -83,6 +81,7 @@
   :preface
   (defconst +tuntox-available-p (executable-find "tuntox"))
   (defconst +stunnel-available-p (executable-find "stunnel"))
+  :when (or +tuntox-available-p +stunnel-available-p)
   :init
   (cond (+tuntox-available-p
          (setq crdt-use-tuntox t

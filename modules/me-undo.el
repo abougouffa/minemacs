@@ -7,7 +7,7 @@
 ;; Visual Undo
 (use-package vundo
   :straight t
-  :general
+  :init
   (+map "ou" #'vundo)
   :custom
   (vundo-compact-display t)

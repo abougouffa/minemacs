@@ -189,6 +189,24 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     (lambda ()
       (+eval-when-idle! ,@body))))
 
+;; At some point, MinEmacs gets too slow when initializing `general' and `evil'.
+;; After playing with the settings, I figured out that deferring `general'
+;; solves the issue, however, it
+;;;###autoload
+(defmacro +map (&rest args)
+  `(with-eval-after-load 'me-general-ready
+    (+general--map ,@args)))
+
+;;;###autoload
+(defmacro +map-local (&rest args)
+  `(with-eval-after-load 'me-general-ready
+    (+general--map-local ,@args)))
+
+;;;###autoload
+(defmacro +map-key (&rest args)
+  `(with-eval-after-load 'me-general-ready
+    (+general--map-key ,@args)))
+
 ;; Adapted from: github.com/d12frosted/environment
 ;;;###autoload
 (defmacro +hook-with-delay! (hook secs function &optional depth local)

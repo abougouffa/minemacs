@@ -7,8 +7,12 @@
 
 (use-package xkcd
   :straight t
-  :general
+  :init
   (+map "ox" #'xkcd)
+  :custom
+  (xkcd-cache-dir (+directory-ensure (concat minemacs-local-dir "xkcd/")))
+  (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
+  :config
   (+map-key :keymaps 'xkcd-mode-map
     "j" #'xkcd-next
     "k" #'xkcd-prev
@@ -20,10 +24,6 @@
     "O" #'xkcd-open-explanation-browser
     "r" #'xkcd-rand
     "y" #'xkcd-copy-link)
-  :custom
-  (xkcd-cache-dir (+directory-ensure (concat minemacs-local-dir "xkcd/")))
-  (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
-  :config
   (+ignore-root xkcd-cache-dir))
 
 (use-package speed-type

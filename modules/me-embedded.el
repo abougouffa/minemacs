@@ -7,7 +7,7 @@
 
 (use-package embed
   :straight (:host github :repo "xal-0/embed-el")
-  :general
+  :init
   (+map
     :infix "o"
     "b" '(nil :wk "embed")

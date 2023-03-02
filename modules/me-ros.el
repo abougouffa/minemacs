@@ -64,7 +64,7 @@
 ;; ROS package
 (use-package ros
   :straight (:host github :repo "DerBeutlin/ros.el")
-  :general
+  :init
   (+map
     :infix "o"
     "r"  '(nil :wk "ros")
