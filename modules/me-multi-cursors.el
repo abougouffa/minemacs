@@ -7,12 +7,14 @@
 (use-package iedit
   :straight t
   :after minemacs-lazy
+  :demand t
   :preface
   (+fn-inhibit-messages! iedit-update-key-bindings))
 
 (use-package evil-mc
   :straight t
   :after evil-collection
+  :demand t
   :config
   ;; Use gz instead of gr
   (setcdr

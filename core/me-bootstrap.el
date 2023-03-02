@@ -30,10 +30,15 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Configure `use-package'
 (let ((use-package-recipe ; prefer built-in `use-package' in Emacs 29+
        (if (>= emacs-major-version 29) '(use-package :type built-in) 'use-package)))
   (straight-use-package use-package-recipe))
 
-(setq use-package-verbose minemacs-verbose)
+(setq
+ ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
+ use-package-verbose minemacs-verbose
+ ;; Defer loading packages by default, use `:demand' to force loading a package
+ use-package-always-defer t)
 
 (provide 'me-bootstrap)

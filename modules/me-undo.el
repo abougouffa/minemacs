@@ -23,6 +23,7 @@
 (use-package undo-fu
   :straight t
   :after minemacs-loaded
+  :demand t
   :config
   (with-eval-after-load 'evil
     (setq evil-undo-system 'undo-fu)
@@ -31,6 +32,7 @@
 (use-package undo-fu-session
   :straight t
   :after undo-fu
+  :demand t
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz))
   (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/"))

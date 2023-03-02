@@ -189,6 +189,7 @@
 ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
 (use-package me-eglot-ltex-extras
   :after eglot
+  :demand t
   :config
   (eglot-ltex-enable-handling-client-commands)
   (+eglot-register '(org-mode latex-mode LaTeX-mode markdown-mode text-mode) "ltex-ls"))

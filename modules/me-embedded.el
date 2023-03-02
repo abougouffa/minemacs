@@ -22,19 +22,16 @@
   :hook (arduino-mode . hs-minor-mode))
 
 (use-package bitbake-modes
-  :straight (:host bitbucket :repo "olanilsson/bitbake-modes")
-  :defer t)
+  :straight (:host bitbucket :repo "olanilsson/bitbake-modes"))
 
 (use-package vhdl-mode
   :straight (:type built-in)
-  :defer t
   :config
   ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
   (+eglot-register 'vhdl-mode "vhdl_ls"))
 
 (use-package verilog-mode
   :straight (:type built-in)
-  :defer t
   :config
   ;; Setup Verilog/SystemVerilog LSP servers
   (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
@@ -49,7 +46,6 @@
 
 (use-package x86-lookup
   :straight t
-  :defer t
   :custom
   (x86-lookup-browse-pdf-function 'x86-lookup-browse-pdf-pdf-tools)
   ;; Get manual from https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html

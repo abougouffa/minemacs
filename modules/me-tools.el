@@ -4,8 +4,7 @@
 ;; Should be configured in per-project basis, good documentation at:
 ;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package tldr
   :straight t
@@ -68,16 +67,13 @@
 (unless (+emacs-features-p 'tree-sitter)
   ;; Emacs 29 comes with `dockerfile-ts-mode'
   (use-package dockerfile-mode
-    :straight t
-    :defer t))
+    :straight t))
 
 (use-package systemd
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package pkgbuild-mode
   :straight t
-  :defer t
   :general
   (+map-local :keymaps 'pkgbuild-mode-map
     "b" #'pkgbuild-makepkg
@@ -90,7 +86,6 @@
 
 (use-package journalctl-mode
   :straight t
-  :defer t
   :general
   (+map-local :keymaps 'journalctl-mode-map
     "J" #'journalctl-next-chunk
@@ -98,7 +93,6 @@
 
 (use-package tramp
   :straight (:type built-in)
-  :defer t
   :init
   ;; This is faster than the default "scp"
   (unless os/win
@@ -106,7 +100,6 @@
 
 (use-package bitwarden
   :straight (:host github :repo "seanfarley/emacs-bitwarden")
-  :defer t
   :preface
   (defconst +bitwarden-available-p (executable-find "bw"))
   :when +bitwarden-available-p

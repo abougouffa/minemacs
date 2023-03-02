@@ -72,21 +72,25 @@
   :when +mu4e-available-p
   :load-path +mu4e-load-path
   :after mu4e
+  :demand t
   :config
   (mu4e-icalendar-setup))
 
 (use-package me-mu4e-ui
   :after mu4e
+  :demand t
   :config
   (+mu4e-ui-setup)) ;; Setup UI
 
 (use-package me-mu4e-gmail
   :after mu4e
+  :demand t
   :config
   (+mu4e-gmail-setup)) ;; Gmail specifics
 
 (use-package me-mu4e-extras
   :after mu4e
+  :demand t
   :config
   (+mu4e-extras-setup)) ;; Extra features
 
@@ -124,6 +128,7 @@
 (use-package mu4e-alert
   :straight t
   :after mu4e
+  :demand t
   :custom
   (mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
   (mu4e-alert-set-window-urgency nil)

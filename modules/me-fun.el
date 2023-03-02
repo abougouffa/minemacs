@@ -27,12 +27,10 @@
   (+ignore-root xkcd-cache-dir))
 
 (use-package speed-type
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package asm-blox
-  :straight t
-  :defer t)
+  :straight t)
 
 
 (provide 'me-fun)

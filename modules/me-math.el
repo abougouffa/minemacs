@@ -31,8 +31,7 @@
   (imaxima-use-maxima-mode-flag nil))
 
 (use-package math-preview ; Needed by ein to render equations
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package ein
   :straight t

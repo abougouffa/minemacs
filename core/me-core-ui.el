@@ -39,7 +39,6 @@ Useful for keeping track of the enabled theme."
 
 (use-package modus-themes
   :straight (:host github :repo "protesilaos/modus-themes")
-  :defer t
   :config
   ;; In all of the following, WEIGHT is a symbol such as `semibold',
   ;; `light', `bold', or anything mentioned in `modus-themes-weights'.
@@ -110,15 +109,13 @@ Useful for keeping track of the enabled theme."
 
 (use-package all-the-icons
   :straight t
-  :defer t
   :config
   ;; Show .m files as matlab/octave files
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
 (use-package doom-themes
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package doom-modeline
   :straight t

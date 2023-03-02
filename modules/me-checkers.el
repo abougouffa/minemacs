@@ -68,8 +68,7 @@
       nil 13)))
 
 (use-package flymake-easy
-  :straight t
-  :defer t)
+  :straight t)
 
 
 (provide 'me-checkers)

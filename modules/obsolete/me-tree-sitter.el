@@ -15,11 +15,13 @@
   :straight t
   :preface
   (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
-  :after tree-sitter)
+  :after tree-sitter
+  :demand t)
 
 (use-package evil-textobj-tree-sitter
   :straight t
   :after evil tree-sitter
+  :demand t
   :config
   ;; evil-textobj-tree-sitter comes with no default keybindings,
   ;; Here is a keybindings (vaX) stolen from here:

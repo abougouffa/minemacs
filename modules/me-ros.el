@@ -49,21 +49,17 @@
 
 ;; Needed by ros.el
 (use-package kv
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package string-inflection
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package with-shell-interpreter
-  :straight t
-  :defer t)
+  :straight t)
 
 (when (< emacs-major-version 29)
   (use-package docker-tramp
-    :straight t
-    :defer t))
+    :straight t))
 
 ;; ROS package
 (use-package ros

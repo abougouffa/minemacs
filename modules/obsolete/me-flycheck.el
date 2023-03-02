@@ -55,7 +55,9 @@
          'help-echo-inhibit-substitution t)))))
 
 (use-package me-flycheck-eglot
-  :after eglot flycheck)
+  :after eglot flycheck
+  :demand t)
 
 (use-package me-flycheck-cmake
-  :after flycheck)
+  :after flycheck
+  :demand t)

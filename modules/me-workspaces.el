@@ -73,7 +73,6 @@
 
 (use-package tab-bar
   :straight (:type built-in)
-  :defer t
   :custom
   (tab-bar-format '(tab-bar-format-history
                     tab-bar-format-tabs

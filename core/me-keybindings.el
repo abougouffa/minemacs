@@ -35,6 +35,7 @@
 
 (use-package general
   :straight t
+  :demand t
   :config
   (general-auto-unbind-keys)
 

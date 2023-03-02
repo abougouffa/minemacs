@@ -7,7 +7,6 @@
 
 (use-package gdb-mi
   :straight (:type built-in)
-  :defer t
   :custom
   (gdb-show-main t) ; display source file containing main routine at startup
   (gdb-many-windows t) ; start in gdb-many-windows mode
@@ -41,7 +40,6 @@
 
 (use-package realgud
   :straight t
-  :defer t
   :init
   (unless (memq 'me-lsp minemacs-modules)
     (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
@@ -52,12 +50,10 @@
 
 (use-package realgud-lldb
   :straight t
-  :commands realgud--lldb
-  :defer t)
+  :commands realgud--lldb)
 
 (use-package realgud-ipdb
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package disaster
   :straight t

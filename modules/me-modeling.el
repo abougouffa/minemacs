@@ -7,7 +7,6 @@
 
 (use-package scad-mode
   :straight t
-  :defer t
   :config
   (+map-local :keymaps 'scad-mode-map
     "p" #'scad-preview)

@@ -32,11 +32,13 @@
   ;; Needed to set `forge-database-connector' to `sqlite-builtin'
   (use-package emacsql-sqlite-builtin
     :straight t
-    :after magit))
+    :after magit
+    :demand t))
 
 (use-package forge
   :straight t
   :after magit
+  :demand t
   :init
   ;; Keybindings will be overriten by evil-collection
   (setq forge-add-default-bindings nil)
@@ -44,9 +46,8 @@
   (forge-database-connector (if (+emacs-features-p 'sqlite3) 'sqlite-builtin 'sqlite))
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
-(use-package emojify
+(use-package emojify ;; Needed by `code-review'
   :straight t
-  :defer t
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
@@ -94,6 +95,7 @@
 ;; See https://chris.beams.io/posts/git-commit/
 (use-package git-commit
   :after magit
+  :demand t
   :custom
   (git-commit-summary-max-length 50)
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
@@ -115,7 +117,6 @@
 
 (use-package git-modes
   :straight t
-  :defer t
   :init
   (add-to-list 'auto-mode-alist '("/.dockerignore\\'" . gitignore-mode)))
 

@@ -7,7 +7,7 @@
 
 (use-package org
   :straight (:type built-in)
-  :defer (not (daemonp))
+  :after minemacs-loaded
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
@@ -227,7 +227,6 @@
 
 (use-package org-agenda
   :straight (:type built-in)
-  :defer t
   :custom
   (org-agenda-tags-column 0)
   (org-agenda-block-separator ?─)

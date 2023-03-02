@@ -106,14 +106,18 @@ If doom-unicode-font is set, add it as preferred font for all unicode blocks."
   :straight t
   :hook (prog-mode . smartparens-mode)
   :config
-  ;; Default `smartparens' configuration (example, do not complete single quote)
-  (require 'smartparens-config)
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
       (unless (memq (car sp--mc/cursor-specific-vars) vars)
         (setcdr (assq :default evil-mc-cursor-variables)
                 (append vars sp--mc/cursor-specific-vars))))))
+
+;; Default `smartparens' configuration (for example, do not complete a single
+;; quote)
+(use-package smartparens-config
+  :after smartparens
+  :demand t)
 
 (use-package goggles
   :straight t

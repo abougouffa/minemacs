@@ -31,6 +31,7 @@
 (use-package evil-collection
   :straight t
   :after evil minemacs-loaded
+  :demand t
   :config
   (evil-collection-init
    (seq-filter

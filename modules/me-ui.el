@@ -10,7 +10,6 @@
 
 (use-package svg-lib
   :straight t
-  :defer t
   :custom
   (svg-lib-icons-dir (concat minemacs-cache-dir "svg-lib/icons/")))
 

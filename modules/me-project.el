@@ -97,7 +97,8 @@
 
 (use-package treemacs-projectile
   :straight t
-  :after projectile)
+  :after projectile treemacs
+  :demand t)
 
 
 (provide 'me-project)

@@ -80,7 +80,6 @@
 
 (use-package crdt
   :straight t
-  :defer t
   :preface
   (defconst +tuntox-available-p (executable-find "tuntox"))
   (defconst +stunnel-available-p (executable-find "stunnel"))
@@ -95,7 +94,6 @@
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")
-  :defer t
   :when +easydraw-available-p)
 
 (use-package edraw-org

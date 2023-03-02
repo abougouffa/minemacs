@@ -22,8 +22,9 @@
 
 (use-package consult-org-roam
   :straight t
-  :hook (minemacs-lazy . consult-org-roam-mode)
-  :general
+  :after org-roam
+  :demand t
+  :init
   (+map
     "ns" #'consult-org-roam-search
     "nl" #'consult-org-roam-forward-links
@@ -34,6 +35,7 @@
   (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'
   (consult-org-roam-buffer-after-buffers t)
   :config
+  (consult-org-roam-mode 1)
   ;; Eventually suppress previewing for certain functions
   (consult-customize
    consult-org-roam-forward-links

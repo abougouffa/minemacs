@@ -30,7 +30,8 @@
 
 (use-package vlf-setup
   :straight vlf
-  :after minemacs-loaded)
+  :after minemacs-loaded
+  :demand t)
 
 (use-package treemacs
   :straight t
@@ -45,6 +46,7 @@
 (use-package treemacs-all-the-icons
   :straight t
   :after treemacs all-the-icons
+  :demand t
   :config
   (treemacs-load-theme "all-the-icons"))
 

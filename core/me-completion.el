@@ -8,6 +8,7 @@
 (use-package cape
   :straight t
   :after minemacs-loaded
+  :demand t
   :config
   (dolist (fn '(cape-tex ; TeX commands
                 cape-file ; File names
@@ -67,6 +68,7 @@
 (use-package kind-icon
   :straight t
   :after corfu
+  :demand t
   :custom
   (kind-icon-default-style '(:padding 0
                              :stroke 0
@@ -121,7 +123,8 @@
 
 (use-package embark-consult
   :straight t
-  :after embark consult)
+  :after embark consult
+  :demand t)
 
 (use-package marginalia
   :straight t
@@ -134,6 +137,7 @@
 (use-package orderless
   :straight t
   :after minemacs-loaded
+  :demand t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -157,6 +161,7 @@
 
 (use-package vertico-directory
   :after vertico
+  :demand t
   :config
   (define-key vertico-map "\r" #'vertico-directory-enter)
   (define-key vertico-map "\d" #'vertico-directory-delete-char)
