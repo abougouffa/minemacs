@@ -86,7 +86,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
    ;; Silence compiler warnings as they can be pretty disruptive, unless we are
    ;; running in `minemacs-verbose' mode.
    native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
-   native-comp-verbose (if minemacs-verbose 3 0)
+   native-comp-verbose (if minemacs-verbose 1 0) ; do not be too verbose
    native-comp-debug (if minemacs-debug 1 0))
 
   ;; Make native compilation happens asynchronously.

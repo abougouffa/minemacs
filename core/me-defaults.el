@@ -1,11 +1,13 @@
-;; me-defaults.el --- MinEmacs -*- lexical-binding: t; -*-
+;; me-defaults.el --- MinEmacs defaults for Emacs -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-;; https://www.reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
-;; Inhibit startup message in echo area
+;; Inhibit startup message in echo area the brutal way!
+;; The `inhibit-startup-echo-area-message' variable is very restrictive, there
+;; is only one unique way of setting it right!
+;; See: https://www.reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
 (fset 'display-startup-echo-area-message #'ignore)
 
 ;;; Why use anything but UTF-8?
@@ -16,7 +18,9 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system (if (eq system-type 'windows-nt) 'utf-16-le 'utf-8))
+;; Use UTF-16-LE in Windows
+;; See: https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+(set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
 
 (setq
  ;; ====== Default directories for builtin packages ======
