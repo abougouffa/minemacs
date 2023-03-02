@@ -161,8 +161,8 @@ the children of class at point."
   (+map :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols"))
 
-  ;; Provide `consult-lsp' functionality from `consult-eglot', useful
-  ;; for packages which relay on `consult-lsp' (like `dirvish-subtree').
+  ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
+  ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
   (unless (memq 'me-lsp minemacs-modules)
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
