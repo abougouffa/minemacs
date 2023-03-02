@@ -43,6 +43,7 @@
 
 (use-package pcache
   :straight t
+  :defer t
   :init
   (setq pcache-directory (concat minemacs-local-dir "pcache/")))
 
