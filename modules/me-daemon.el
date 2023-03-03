@@ -5,32 +5,29 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Email (mu4e)
-(when (featurep 'me-email)
-  (+lazy!
-   (when (require 'mu4e nil t)
-     (unless (mu4e-running-p)
-       (let ((inhibit-message t))
-         (mu4e t)
-         (+info! "Started `mu4e' in background."))))))
+(+lazy-when! (featurep 'me-email)
+  (when (require 'mu4e nil t)
+    (unless (mu4e-running-p)
+      (let ((inhibit-message t))
+        (mu4e t)
+        (+info! "Started `mu4e' in background.")))))
 
 ;; RSS (elfeed)
-(when (featurep 'me-rss)
-  (+lazy!
-   (run-at-time
-    (* 60 5) ;; 5min
-    (* 60 60) ;; 1h
-    (lambda ()
-      (+info! "Updating RSS feed.")
-      (let ((inhibit-message t))
-        (elfeed-update))))))
-
-(unless (daemonp)
-  (+lazy!
-   (require 'server) ; For using `server-running-p'
-   (unless (server-running-p)
+(+lazy-when! (featurep 'me-rss)
+  (run-at-time
+   (* 60 5) ;; 5min
+   (* 60 60) ;; 1h
+   (lambda ()
+     (+info! "Updating RSS feed.")
      (let ((inhibit-message t))
-       (+info! "Starting Emacs daemon in background.")
-       (server-start nil t)))))
+       (elfeed-update)))))
+
+(+lazy-unless! (daemonp)
+  (require 'server) ; For using `server-running-p'
+  (unless (server-running-p)
+    (let ((inhibit-message t))
+      (+info! "Starting Emacs daemon in background.")
+      (server-start nil t))))
 
 ;; Reload theme when creating a frame on the daemon
 (add-hook

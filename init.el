@@ -274,10 +274,9 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
     (+log! "Loading user config file from \"%s\"" user-config)
     (load user-config nil (not minemacs-verbose))))
 
-(when (featurep 'native-compile)
-  (+lazy!
-   (+info! "Trying to clean outdated native compile cache")
-   ;; Delete outdated natively compiled files when Emacs become idle
-   (+shutup! (native-compile-prune-cache))))
+(+lazy-when! (featurep 'native-compile)
+  (+info! "Trying to clean outdated native compile cache")
+  ;; Delete outdated natively compiled files when Emacs become idle
+  (+shutup! (native-compile-prune-cache)))
 
 (+log! "Loaded init.el")
