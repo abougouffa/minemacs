@@ -11,6 +11,11 @@
   :preface
   (+fn-inhibit-messages! iedit-update-key-bindings))
 
+(use-package evil-iedit-state
+  :straight t
+  :after iedit evil
+  :demand t)
+
 (use-package evil-mc
   :straight t
   :after minemacs-loaded evil-collection
