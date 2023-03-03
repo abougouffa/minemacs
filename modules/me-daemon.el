@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Email (mu4e)
-(+lazy-when! (featurep 'me-email)
+(+lazy-when! (memq 'me-email minemacs-modules)
   (when (require 'mu4e nil t)
     (unless (mu4e-running-p)
       (let ((inhibit-message t))
@@ -13,7 +13,7 @@
         (+info! "Started `mu4e' in background.")))))
 
 ;; RSS (elfeed)
-(+lazy-when! (featurep 'me-rss)
+(+lazy-when! (memq 'me-rss minemacs-modules)
   (run-at-time
    (* 60 5) ;; 5min
    (* 60 60) ;; 1h
@@ -22,6 +22,7 @@
      (let ((inhibit-message t))
        (elfeed-update)))))
 
+;; When we start in a non-daemon Emacs, we start a server whe Emacs is idle.
 (+lazy-unless! (daemonp)
   (require 'server) ; For using `server-running-p'
   (unless (server-running-p)
