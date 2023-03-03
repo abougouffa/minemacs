@@ -223,23 +223,37 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   (declare (indent 1))
   `(if ,condition (+lazy! ,@body) (progn ,@body)))
 
-;; At some point, MinEmacs gets too slow when initializing `general' and `evil'.
-;; After playing with the settings, I figured out that deferring `general'
-;; solves the issue, however, it
+;; PERF+HACK At some point, MinEmacs startup become too slow, specially when
+;; initializing `general' and `evil'. After trying several configurations, I
+;; figured out that deferring `general' solves the issue. However, deferring
+;; `general' means that we cannot define the keybindings when loading other
+;; packages, i.e. before `general' gets loaded and the MinEmacs definers (i.e.
+;; `+minemacs--internal-map', `+minemacs--internal-map-local' and
+;; `+minemacs--internal-map-key') are made available. We overcome this by
+;; defining these macros to define the keybindings by wrapping the actual
+;; definition in a `with-eval-after-load' block to be evaluated only after
+;; `general' gets loaded and configured and the definers are ready (See
+;; `me-keybindings').
 ;;;###autoload
 (defmacro +map (&rest args)
+  "A wrapper around `+minemacs--internal-map'.
+It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+minemacs--internal-map ,@args)))
 
 ;;;###autoload
 (defmacro +map-local (&rest args)
+  "A wrapper around `+minemacs--internal-map-local'.
+It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+minemacs--internal-map-local ,@args)))
 
 ;;;###autoload
 (defmacro +map-key (&rest args)
+  "A wrapper around `+minemacs--internal-map-key'.
+It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+minemacs--internal-map-key ,@args)))

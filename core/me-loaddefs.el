@@ -299,17 +299,20 @@ Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts lik
 (fn CONDITION &rest BODY)" nil t)
 (function-put '+lazy-or-immediate! 'lisp-indent-function 1)
 (autoload '+map "../elisp/+minemacs" "\
-
+A wrapper around `+minemacs--internal-map'.
+It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
 (function-put '+map 'lisp-indent-function 'defun)
 (autoload '+map-local "../elisp/+minemacs" "\
-
+A wrapper around `+minemacs--internal-map-local'.
+It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
 (function-put '+map-local 'lisp-indent-function 'defun)
 (autoload '+map-key "../elisp/+minemacs" "\
-
+A wrapper around `+minemacs--internal-map-key'.
+It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
 (function-put '+map-key 'lisp-indent-function 'defun)
