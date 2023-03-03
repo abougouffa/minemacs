@@ -75,5 +75,8 @@
   :init
   (+map-key "gc" #'evilnc-comment-operator))
 
+(use-package evil-escape
+  :straight t
+  :hook (evil-mode . evil-escape-mode))
 
 (provide 'me-evil)
