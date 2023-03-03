@@ -302,14 +302,17 @@ Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts lik
 
 
 (fn &rest ARGS)" nil t)
+(function-put '+map 'lisp-indent-function 'defun)
 (autoload '+map-local "../elisp/+minemacs" "\
 
 
 (fn &rest ARGS)" nil t)
+(function-put '+map-local 'lisp-indent-function 'defun)
 (autoload '+map-key "../elisp/+minemacs" "\
 
 
 (fn &rest ARGS)" nil t)
+(function-put '+map-key 'lisp-indent-function 'defun)
 (autoload '+hook-with-delay! "../elisp/+minemacs" "\
 Add the FUNCTION to the value of HOOK.
 The FUNCTION is delayed to be evaluated in SECS once HOOK is

@@ -230,19 +230,19 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defmacro +map (&rest args)
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
-    (+general--map ,@args)))
+    (+minemacs--internal-map ,@args)))
 
 ;;;###autoload
 (defmacro +map-local (&rest args)
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
-    (+general--map-local ,@args)))
+    (+minemacs--internal-map-local ,@args)))
 
 ;;;###autoload
 (defmacro +map-key (&rest args)
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
-    (+general--map-key ,@args)))
+    (+minemacs--internal-map-key ,@args)))
 
 ;; Adapted from: github.com/d12frosted/environment
 ;;;###autoload
