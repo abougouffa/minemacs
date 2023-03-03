@@ -74,5 +74,14 @@
   :init
   (+map-key "gc" #'evilnc-comment-operator))
 
+;; https://github.com/redguardtoo/emacs.d/blob/8ea127c69cd6e5d6dbbe2c1dce91131c4a4c0cd2/lisp/init-evil.el#L236
+;; Press kj to escape from evil-insert-state and everything else in Emacs. It’s much more efficient than ESC in Vim or C-g in Emacs
+(use-package evil-escape
+  :straight t
+  :after evil
+  :init (evil-escape-mode +1)
+  :config
+  (setq evil-escape-key-sequence "kj"
+        evil-escape-delay 0.3))
 
 (provide 'me-evil)
