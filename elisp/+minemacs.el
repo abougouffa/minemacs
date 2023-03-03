@@ -228,16 +228,19 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;; solves the issue, however, it
 ;;;###autoload
 (defmacro +map (&rest args)
+  (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+general--map ,@args)))
 
 ;;;###autoload
 (defmacro +map-local (&rest args)
+  (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+general--map-local ,@args)))
 
 ;;;###autoload
 (defmacro +map-key (&rest args)
+  (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (+general--map-key ,@args)))
 
