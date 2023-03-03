@@ -11,7 +11,7 @@
   :demand t
   :custom
   (projectile-cache-file (+directory-ensure (concat minemacs-cache-dir "projectile/cache.el")))
-  (projectile-known-projects-file (concat minemacs-local-dir "projectile/known-projects.el"))
+  (projectile-known-projects-file (+directory-ensure (concat minemacs-local-dir "projectile/known-projects.el")))
   (projectile-ignored-projects '("~/"))
   (projectile-ignored-project-function nil) ;; TODO: customize it
   (projectile-auto-discover nil)
