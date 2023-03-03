@@ -71,6 +71,7 @@
 
 (use-package evil-nerd-commenter
   :straight t
+  :commands evilnc-comment-operator
   :init
   (+map-key "gc" #'evilnc-comment-operator))
 
