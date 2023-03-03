@@ -5,8 +5,9 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; TTY specific stuff
-(add-hook 'tty-setup-hook #'xterm-mouse-mode)
+(use-package xt-mouse
+  :straight (:type built-in)
+  :hook (tty-setup . xterm-mouse-mode))
 
 (use-package xclip
   :straight t
