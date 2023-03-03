@@ -188,7 +188,6 @@ the children of class at point."
       (message "Enabled coverage mode."))
     (cov-update)))
 
-;;; Formatting
 (use-package apheleia
   :straight t
   :init

@@ -73,7 +73,6 @@
 (use-package racket-mode
   :straight t)
 
-;; TODO: Add elisp-def
 (use-package elisp-mode
   :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
