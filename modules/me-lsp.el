@@ -10,12 +10,6 @@
   :preface
   (setq lsp-use-plists t)
   :commands +lsp-auto-enable
-  :init
-  (+map
-    :infix "c"
-    "l"  '(nil :wk "lsp session")
-    "ll" #'lsp
-    "lA" #'+lsp-auto-enable)
   :custom
   (lsp-session-file (concat minemacs-local-dir "lsp/session.el"))
   (lsp-server-install-dir (concat minemacs-local-dir "lsp/servers/"))
@@ -37,6 +31,11 @@
   (lsp-insert-final-newline nil)
   (lsp-trim-final-newlines nil)
   :init
+  (+map
+    :infix "c"
+    "l"  '(nil :wk "lsp session")
+    "ll" #'lsp
+    "lA" #'+lsp-auto-enable)
   (defvar +lsp-auto-enable-modes
     '(c++-mode c++-ts-mode c-mode c-ts-mode
       python-mode python-ts-mode
@@ -66,7 +65,6 @@
 
 (use-package ccls
   :straight t
-  :defer t
   :custom
   ;; https://github.com/MaskRay/ccls/wiki/Customization#initialization-options
   ;; https://github.com/MaskRay/ccls/blob/master/src/config.hh
@@ -97,18 +95,20 @@
 
 (use-package lsp-pyright
   :straight t
-  :after lsp-mode)
+  :after lsp-mode
+  :demand t)
 
 (use-package consult-lsp
   :straight t
   :after consult lsp-mode
+  :demand t
   :config
   (+map :keymaps 'lsp-mode-map
     "cs" '(consult-lsp-file-symbols :wk "Symbols")))
 
 (use-package dap-mode
   :straight t
-  :config
+  :init
   (+map-local
     :keymaps '(c-mode-map c++-mode-map python-mode-map
                rust-mode-map sh-mode-map bash-ts-mode-map
@@ -126,23 +126,28 @@
   (dap-auto-show-output nil))
 
 (use-package dap-gdb-lldb
-  :after dap-mode)
+  :after dap-mode
+  :demand t)
 
 (use-package dap-cpptools
   :after dap-mode
+  :demand t
   :custom
   (dap-cpptools-extension-version "1.13.8"))
 
 (use-package dap-codelldb
   :after dap-mode
+  :demand t
   :custom
   (dap-codelldb-extension-version "1.8.1"))
 
 (use-package dap-python
-  :after dap-mode)
+  :after dap-mode
+  :demand t)
 
 (use-package dap-mouse
-  :after dap-mode)
+  :after dap-mode
+  :demand t)
 
 
 (provide 'me-lsp)

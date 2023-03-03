@@ -15,6 +15,7 @@
   (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
   :init
   (+map "ts" #'spell-fu-mode)
+  (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
 
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
@@ -67,9 +68,7 @@
    (defun +spell-fu--init-excluded-faces-h ()
      "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
      (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
-       (setq-local spell-fu-faces-exclude excluded))))
-  :config
-  (+map-key "z=" #'+spell-fu-correct)) ;; autoloaded from "me-spell-fu.el"
+       (setq-local spell-fu-faces-exclude excluded)))))
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
@@ -159,9 +158,9 @@
   (defconst +sdcv-available-p (executable-find "sdcv"))
   :when +sdcv-available-p
   :init
-  (+map
-    "sl" #'lexic-search-word-at-point
-    "sL" #'lexic-search)
+  (+map :infix "s"
+    "l" #'lexic-search-word-at-point
+    "L" #'lexic-search)
   :config
   (+map-local :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic

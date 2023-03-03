@@ -110,6 +110,7 @@
 
 (use-package me-org-extras
   :after org
+  :demand t
   :config
   (+org-extras-outline-path-setup)
   (+org-extras-pretty-latex-fragments-setup)
@@ -121,11 +122,13 @@
 
 (use-package org-contrib
   :straight t
-  :after org)
+  :after org
+  :demand t)
 
 (use-package engrave-faces
   :straight t
   :after org
+  :demand t
   :custom
   (org-latex-src-block-backend 'engraved))
 
@@ -165,16 +168,14 @@
 
 (use-package ox-hugo
   :straight t
-  :after org)
+  :after org
+  :demand t)
 
 (use-package ox-extra
   :after org
+  :demand t
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
-
-;; Org babel
-(use-package ob-tangle
-  :after org)
 
 ;; Other Org features
 (use-package org-appear

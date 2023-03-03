@@ -17,19 +17,18 @@
 (use-package org-roam-ui
   :straight t
   :init
-  (+map
-    "nR" '(org-roam-ui-open :wk "Org-Roam UI")))
+  (+map "nR" #'org-roam-ui-open))
 
 (use-package consult-org-roam
   :straight t
   :after org-roam
   :demand t
   :init
-  (+map
-    "ns" #'consult-org-roam-search
-    "nl" #'consult-org-roam-forward-links
-    "nb" #'consult-org-roam-backlinks
-    "nF" #'consult-org-roam-file-find)
+  (+map :infix "n"
+    "s" #'consult-org-roam-search
+    "l" #'consult-org-roam-forward-links
+    "b" #'consult-org-roam-backlinks
+    "F" #'consult-org-roam-file-find)
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'
@@ -37,9 +36,7 @@
   :config
   (consult-org-roam-mode 1)
   ;; Eventually suppress previewing for certain functions
-  (consult-customize
-   consult-org-roam-forward-links
-   :preview-key (kbd "M-.")))
+  (consult-customize consult-org-roam-forward-links :preview-key (kbd "M-.")))
 
 
 (provide 'me-notes)

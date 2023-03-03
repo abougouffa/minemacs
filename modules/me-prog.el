@@ -49,7 +49,6 @@
   (unless (memq 'me-lsp minemacs-modules)
     (dolist (h '(c++-mode-hook c++-ts-mode-hook c-mode-hook c-ts-mode-hook cuda-mode-hook))
       (add-hook h #'hide-ifdef-mode)))
-  :defer t
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
@@ -62,8 +61,7 @@
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :init
-  (+map
-    :infix "c"
+  (+map :infix "c"
     "e"  '(nil :wk "eglot session")
     "ee" #'eglot
     "eA" #'+eglot-auto-enable)
@@ -155,6 +153,7 @@ the children of class at point."
 (use-package consult-eglot
   :straight t
   :after consult eglot
+  :demand t
   :config
   (+map :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols"))
@@ -166,7 +165,6 @@ the children of class at point."
 
 (use-package eldoc
   :straight (:type built-in)
-  :defer t
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
@@ -177,7 +175,6 @@ the children of class at point."
 
 (use-package cov
   :straight (:type git :host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
-  :defer t
   :custom
   (cov-highlight-lines t)
   :config
@@ -208,11 +205,11 @@ the children of class at point."
 
 (use-package editorconfig
   :straight t
+  :hook (prog-mode . editorconfig-mode)
   :init
   (+map
     "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
-    "cfe" #'editorconfig-format-buffer)
-  :hook (prog-mode . editorconfig-mode))
+    "cfe" #'editorconfig-format-buffer))
 
 (use-package clang-format
   :straight t
@@ -226,9 +223,9 @@ the children of class at point."
   :mode "\\.vim\\(rc\\)?\\'")
 
 (use-package cmake-mode
+  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*"))
   :mode "CMakeLists\\.txt\\'"
-  :mode "\\.cmake\\'"
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+  :mode "\\.cmake\\'")
 
 (use-package cmake-font-lock
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
@@ -252,7 +249,6 @@ the children of class at point."
 
 (use-package cuda-mode
   :straight t
-  :defer t
   :hook (cuda-mode . display-line-numbers-mode))
 
 (use-package opencl-mode
@@ -304,21 +300,17 @@ the children of class at point."
 
 (use-package lua-mode
   :straight t
-  :defer t
   :custom
   (lua-indent-level 2))
 
 (use-package powershell
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package franca-idl
-  :straight (:host github :repo "zeph1e/franca-idl.el")
-  :defer t)
+  :straight (:host github :repo "zeph1e/franca-idl.el"))
 
 (use-package bnf-mode
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package ebnf-mode
   :straight (:host github :repo "jeramey/ebnf-mode")

@@ -127,8 +127,7 @@
   :after elisp-mode minemacs-loaded
   :demand t
   :init
-  (+map
-    :infix "he"
+  (+map :infix "he"
     "d" #'elisp-demos-find-demo
     "D" #'elisp-demos-add-demo)
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)

@@ -8,8 +8,7 @@
 (use-package magit
   :straight t
   :init
-  (+map
-    :infix "g"
+  (+map :infix "g"
     "g" #'magit-status
     "C" #'magit-clone
     "b" #'magit-blame
@@ -57,6 +56,7 @@
 (use-package code-review
   :straight t
   :after magit
+  :demand t
   :custom
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))
   (code-review-db-database-file (concat minemacs-local-dir "code-review/database.sqlite"))

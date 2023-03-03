@@ -17,6 +17,7 @@
 (use-package cape-yasnippet
   :straight (:host github :repo "elken/cape-yasnippet")
   :after cape yasnippet
+  :demand t
   :config
   ;; To avoid auto-expanding snippets
   (plist-put cape-yasnippet--properties :exit-function #'always)
@@ -29,21 +30,23 @@
 
 (use-package yasnippet-snippets
   :straight t
-  :after yasnippet)
+  :after yasnippet
+  :demand t)
 
 (use-package doom-snippets
   :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
-  :after yasnippet)
+  :after yasnippet
+  :demand t)
 
 (use-package license-snippets
   :straight t
   :after yasnippet
+  :demand t
   :config
   (license-snippets-init))
 
 (use-package pcache
   :straight t
-  :defer t
   :init
   (setq pcache-directory (concat minemacs-local-dir "pcache/")))
 

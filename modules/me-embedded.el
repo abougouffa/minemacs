@@ -8,8 +8,7 @@
 (use-package embed
   :straight (:host github :repo "xal-0/embed-el")
   :init
-  (+map
-    :infix "o"
+  (+map :infix "o"
     "b" '(nil :wk "embed")
     "bo" #'embed-openocd-start
     "bO" #'embed-openocd-stop

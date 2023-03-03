@@ -11,13 +11,13 @@
   (defconst +mpv-available-p (executable-find "mpv"))
   :when +mpv-available-p
   :init
-  (+map
-    "ov"  '(nil :wk "empv")
-    "ovp" '(empv-play :wk "Play")
-    "ovy" '(consult-empv-youtube :wk "Seach Youtube")
-    "ovr" '(empv-play-radio :wk "Play radio")
-    "ovs" '(empv-playtlist-save-to-file :wk "Save current playlist")
-    "ovD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
+  (+map :infix "o"
+    "v"  '(nil :wk "empv")
+    "vp" '(empv-play :wk "Play")
+    "vy" '(consult-empv-youtube :wk "Seach Youtube")
+    "vr" '(empv-play-radio :wk "Play radio")
+    "vs" '(empv-playtlist-save-to-file :wk "Save current playlist")
+    "vD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
   :custom
   ;; See https://docs.invidious.io/instances/
   (empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")

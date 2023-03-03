@@ -13,7 +13,7 @@
 
 (use-package evil-mc
   :straight t
-  :after evil-collection
+  :after minemacs-loaded evil-collection
   :demand t
   :config
   ;; Use gz instead of gr

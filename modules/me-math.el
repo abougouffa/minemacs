@@ -39,8 +39,7 @@
   :custom
   (ein:output-area-inlined-images t)
   :init
-  (+map
-    :infix "o"
+  (+map :infix "o"
     "j" '(nil :wk "ein")
     "jr" #'ein:run
     "jl" #'ein:login
@@ -59,24 +58,19 @@
     (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
 
 (use-package julia-mode
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package ess
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package ess-view
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package ess-R-data-view
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package poly-R
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package octave
   :straight (:type built-in)

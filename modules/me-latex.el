@@ -30,6 +30,7 @@
 (use-package auctex-latexmk
   :straight t
   :after latex
+  :demand t
   :hook (LaTeX-mode . +tex--set-latexmk-as-default-cmd-h)
   :defines +tex--set-latexmk-as-default-cmd-h
   :custom
