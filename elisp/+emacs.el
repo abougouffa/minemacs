@@ -61,12 +61,15 @@ If ENABLE is non-nil, force enabling autoreloading."
 
 ;; The hook is defined and enabled by default in `me-defaults'
 ;;;###autoload
-(defun +toggle-auto-delete-trailing-whitespaces ()
+(defun +toggle-auto-whitespace-cleanup ()
   "Toggle auto-deleting trailing whitespaces."
   (interactive)
-  (if (member #'+save--delete-trailing-whitespace-h before-save-hook)
-      (remove-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)
-    (add-hook 'before-save-hook #'+save--delete-trailing-whitespace-h)))
+  (if (member #'+save--whitespace-cleanup-h before-save-hook)
+      (progn
+        (message "+toggle-auto-whitespace-cleanup: Disabled.")
+        (remove-hook 'before-save-hook #'+save--whitespace-cleanup-h))
+    (message "+toggle-auto-whitespace-cleanup: Enabled.")
+    (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
 
 ;; From rougier/nano-emacs
 ;;;###autoload
