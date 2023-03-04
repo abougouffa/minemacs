@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;;;###autoload
 (defun +systemd-running-p (service)
   "Check if the systemd SERVICE is running."

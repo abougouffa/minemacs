@@ -1,4 +1,9 @@
-;;; -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (defvar +binary-objdump-executable (executable-find "objdump"))
 

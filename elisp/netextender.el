@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (defvar netextender-process-name "netextender")
 (defvar netextender-buffer-name " *NetExtender*")

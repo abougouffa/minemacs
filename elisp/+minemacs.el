@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;;;###autoload
 (defmacro +error! (msg &rest vars)
   "Log error MSG and VARS using `message'."

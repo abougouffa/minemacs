@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;;;###autoload
 (defun +file-mime-type (file)
   "Get MIME type for FILE based on magic codes provided by the 'file' command.

@@ -1,5 +1,14 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+;; This allows me to mount my private directory encrypted using ecryptfs-utils.
+;; It is a port of "ecryptfs-mount-private" shell command. It uses extracts the
+;; encryption key from a GPG encrypted file containting the ecryptfs password.
+;; The decryption of the password is performed using Emacs' `epg'.
+
 (require 'epg)
 
 (defvar ecryptfs-private-dir-name "Private")

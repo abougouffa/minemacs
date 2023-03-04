@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;;;###autoload
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer"

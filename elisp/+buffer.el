@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;; From: https://www.emacswiki.org/emacs/download/misc-cmds.el
 ;; Candidate as a replacement for `kill-buffer', at least when used interactively.
 ;; For example: (define-key global-map [remap kill-buffer] 'kill-buffer-and-its-windows)

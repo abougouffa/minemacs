@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+
 ;; From: https://www.emacswiki.org/emacs/download/misc-cmds.el
 (defun +read-shell-file-command (command)
   "Prompt for shell COMMAND, using current buffer's file as default arg.

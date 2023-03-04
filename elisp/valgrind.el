@@ -1,8 +1,9 @@
-;;; me-valgrind.el --- Valgrind -*- lexical-binding: t; -*-
-;;
-;; Copyright (C) 2022 Abdelhak Bougouffa
-;;
-;;; Code:
+;; -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 
 (require 'compile)
 
