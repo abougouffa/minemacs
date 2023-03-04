@@ -31,6 +31,7 @@
   (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
   (org-export-with-smart-quotes t) ; convert "this" to « this »
   (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
+  (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
   (org-highlight-latex-and-related '(native script entities))
   (org-pretty-entities t)
   (org-pretty-entities-include-sub-superscripts t)
