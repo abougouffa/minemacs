@@ -54,6 +54,13 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   ;; Load MinEmacs variables from `me-vars'
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
+(defun +load (&rest filename-parts)
+  "Load a file, the FILENAME-PARTS are concatenated to form the file name."
+  (let ((filename (apply #'concat (append filename-parts '("")))))
+    (if (file-exists-p filename)
+        (load filename nil (not minemacs-verbose))
+      (user-error "[MinEmacs:Load] Cannot load \"%s\", the file doesn't exists."))))
+
 ;; HACK: Most core and third-party packages depends on the
 ;; `user-emacs-directory' variable to store some cache information and generated
 ;; configuration files. However, this will mess with MinEmacs' directory (which
@@ -69,7 +76,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; Emacs29+ to be compatible with Emacs 28.2. If you need a complete forward
 ;; compatibility, you can install and use the `compat' library.
 (when (< emacs-major-version 29)
-  (load (concat minemacs-modules-dir "me-backports-29.el") nil (not minemacs-verbose)))
+  (+load minemacs-modules-dir "me-backports-29.el"))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
@@ -132,7 +139,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (minemacs-generate-loaddefs))
 
 ;; Then we load the loaddefs file
-(load minemacs-loaddefs-file nil (not minemacs-verbose))
+(+load minemacs-loaddefs-file)
 
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
 ;; the terminal's environment variables, which can be useful specially for
@@ -219,13 +226,13 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
            (setq minemacs-not-lazy t)
            (require 'minemacs-loaded))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
-  (load (concat minemacs-core-dir "me-modules.el") nil (not minemacs-verbose))
+  (+load minemacs-core-dir "me-modules.el")
 
   ;; The modules.el file can override minemacs-modules and minemacs-core-modules
   (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
     (when (file-exists-p user-conf-modules)
       (+log! "Loading modules file from \"%s\"" user-conf-modules)
-      (load user-conf-modules nil (not minemacs-verbose)))))
+      (+load user-conf-modules))))
 
 ;; Load fonts early (they are read from the default `minemacs-default-fonts').
 (+set-fonts)
@@ -254,7 +261,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (+log! "Loading core module \"%s\"" module)
   (let ((filename (concat minemacs-core-dir (format "%s.el" module))))
     (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose))
+        (+load filename)
       (+error! "Core module \"%s\" not found!" module))))
 
 ;; Load MinEmacs modules
@@ -262,7 +269,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (+log! "Loading module \"%s\"" module)
   (let ((filename (concat minemacs-modules-dir (format "%s.el" module))))
     (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose))
+        (+load filename)
       (+error! "Module \"%s\" not found!" module))))
 
 ;; Write user custom variables to separate file instead of "init.el"
@@ -271,13 +278,13 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; Load the custom variables file if it exists
 (when (and custom-file (file-exists-p custom-file))
   (+log! "Loafing user custom file from \"%s\"" custom-file)
-  (load custom-file nil (not minemacs-verbose)))
+  (+load custom-file))
 
 ;; Load user configuration from "$MINEMACSDIR/config.el" when available
 (let ((user-config (concat minemacs-config-dir "config.el")))
   (when (file-exists-p user-config)
     (+log! "Loading user config file from \"%s\"" user-config)
-    (load user-config nil (not minemacs-verbose))))
+    (+load user-config)))
 
 (+lazy-when! (featurep 'native-compile)
   (+info! "Trying to clean outdated native compile cache")

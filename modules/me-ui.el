@@ -6,7 +6,7 @@
 
 
 (when (< emacs-major-version 29)
-  (load (concat minemacs-modules-dir "obsolete/me-emojify.el") nil (not minemacs-verbose)))
+  (+load minemacs-modules-dir "obsolete/me-emojify.el"))
 
 (use-package svg-lib
   :straight t

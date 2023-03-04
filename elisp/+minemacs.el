@@ -255,7 +255,7 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   (interactive)
   (let ((env-file (concat minemacs-local-dir "system-env.el")))
     (when (file-exists-p env-file)
-      (load env-file (not minemacs-verbose) (not minemacs-verbose)))))
+      (+load env-file))))
 
 ;;;###autoload
 (defun +ignore-root (&rest roots)

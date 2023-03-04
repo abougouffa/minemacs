@@ -38,8 +38,7 @@
          path)))))
 
 (unless (+emacs-features-p 'tree-sitter)
-  (load (concat minemacs-modules-dir "obsolete/me-tree-sitter.el")
-        nil (not minemacs-verbose)))
+  (+load minemacs-modules-dir "obsolete/me-tree-sitter.el"))
 
 (use-package hideif
   :straight (:type built-in)
