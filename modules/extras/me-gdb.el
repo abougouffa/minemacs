@@ -67,6 +67,7 @@ This will overrite the built-in \"gdb-mi\" for this session."
     (use-package gdb-mi
       :straight (:host github :repo "weirdNox/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
       :when (+emacs-features-p 'modules)
+      :demand t
       :init
       (fmakunbound 'gdb)
       (fmakunbound 'gdb-enable-debug)
