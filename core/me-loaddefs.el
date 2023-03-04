@@ -95,7 +95,7 @@ If ENABLE is non-nil, force enabling autoreloading.
 (fn &optional ENABLE)" t)
 (autoload '+dir-locals-open-or-create "../elisp/+emacs" "\
 Open or create the dir-locals.el for the current project." t)
-(autoload '+toggle-auto-delete-trailing-whitespaces "../elisp/+emacs" "\
+(autoload '+toggle-auto-whitespace-cleanup "../elisp/+emacs" "\
 Toggle auto-deleting trailing whitespaces." t)
 (autoload '+what-faces "../elisp/+emacs" "\
 Get the font faces at POS.
@@ -283,14 +283,6 @@ Add an advice around the function FN to suppress messages in echo area.
 If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer.
 
 (fn FN &optional NO-MESSAGE-LOG)" nil t)
-(autoload '+reset-sym "../elisp/+minemacs" "\
-Reset SYM to its standard value.
-
-(fn SYM)")
-(autoload '+reset-var! "../elisp/+minemacs" "\
-Reset VAR to its standard value.
-
-(fn VAR)" nil t)
 (autoload '+shutup! "../elisp/+minemacs" "\
 Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
 
@@ -305,13 +297,6 @@ Convert BODY to an interactive command.
 (fn &rest BODY)" nil t)
 (autoload '+set-fonts "../elisp/+minemacs" nil t)
 (autoload '+load-theme "../elisp/+minemacs" nil t)
-(autoload '+push-system-dependencies "../elisp/+minemacs" "\
-Push system dependencies DEPS, these are executables needed by MinEmacs.
-
-(fn &rest DEPS)")
-(function-put '+push-system-dependencies 'lisp-indent-function 0)
-(autoload '+check-system-dependencies "../elisp/+minemacs" "\
-Check for MinEmacs dependencies." t)
 (autoload '+eval-when-idle "../elisp/+minemacs" "\
 Queue FNS to be processed when Emacs becomes idle.
 
@@ -390,54 +375,6 @@ Add ROOTS to ignored projects, recentf, etc.
 
 ;;; Generated autoloads from ../elisp/+primitives.el
 
-(autoload '+bool "../elisp/+primitives" "\
-
-
-(fn VAL)")
-(autoload '+foldr "../elisp/+primitives" "\
-
-
-(fn FUN ACC SEQ)")
-(autoload '+foldl "../elisp/+primitives" "\
-
-
-(fn FUN ACC SEQ)")
-(autoload '+all "../elisp/+primitives" "\
-
-
-(fn SEQ)")
-(autoload '+some "../elisp/+primitives" "\
-
-
-(fn SEQ)")
-(autoload '+zip "../elisp/+primitives" "\
-
-
-(fn &rest SEQS)")
-(autoload '+str-replace "../elisp/+primitives" "\
-Replaces OLD with NEW in S.
-
-(fn OLD NEW S)")
-(autoload '+str-replace-all "../elisp/+primitives" "\
-REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S.
-
-(fn REPLACEMENTS S)")
-(autoload '+symbol-or-car "../elisp/+primitives" "\
-
-
-(fn SYM-OR-CONS)")
-(autoload '+symbol-or-cdr "../elisp/+primitives" "\
-
-
-(fn SYM-OR-CONS)")
-(autoload '+symbol-or-cadr "../elisp/+primitives" "\
-
-
-(fn SYM-OR-CONS)")
-(autoload '+symbol-or-cddr "../elisp/+primitives" "\
-
-
-(fn SYM-OR-CONS)")
 (autoload '+plist-keys "../elisp/+primitives" "\
 Return the keys of PLIST.
 
@@ -491,6 +428,14 @@ If FILENAME-FORMAT is non-nil, use it to format the file name (ex. \"file-%s.el\
 Return the deserialized object, or nil if the SYM.el file dont exist.
 
 (fn SYM &optional DIR MUTATE FILENAME-FORMAT)")
+(autoload '+reset-sym "../elisp/+primitives" "\
+Reset SYM to its standard value.
+
+(fn SYM)")
+(autoload '+reset-var! "../elisp/+primitives" "\
+Reset VAR to its standard value.
+
+(fn VAR)" nil t)
 (autoload '+unquote "../elisp/+primitives" "\
 Return EXP unquoted.
 
@@ -516,15 +461,15 @@ Check if the systemd SERVICE is running.
 (autoload '+systemd-command "../elisp/+systemd" "\
 Call systemd with COMMAND and SERVICE.
 
-(fn SERVICE COMMAND &optional PRE-FN POST-FN)" t)
+(fn SERVICE COMMAND &optional PRE-FN POST-FN)")
 (autoload '+systemd-start "../elisp/+systemd" "\
 Start systemd SERVICE.
 
-(fn SERVICE &optional PRE-FN POST-FN)" t)
+(fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+systemd-stop "../elisp/+systemd" "\
 Stops the systemd SERVICE.
 
-(fn SERVICE &optional PRE-FN POST-FN)" t)
+(fn SERVICE &optional PRE-FN POST-FN)")
 
 
 ;;; Generated autoloads from ../elisp/+unix.el
@@ -545,14 +490,6 @@ CMD is the command to execute (interactively, `chown').
 
 (fn CMD)" t)
 (register-definition-prefixes "../elisp/+unix" '("+read-shell-file-command"))
-
-
-;;; Generated autoloads from ../elisp/+vc.el
-
-(autoload '+git-toplevel "../elisp/+vc" "\
-Return the path to the current repo's root.
-
-(fn &rest SEGMENTS)")
 
 
 ;;; Generated autoloads from ../elisp/ecryptfs.el
@@ -684,7 +621,7 @@ and move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8
+;; coding: utf-8-emacs-unix
 ;; End:
 
 ;;; me-loaddefs.el ends here
