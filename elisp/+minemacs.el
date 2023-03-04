@@ -180,19 +180,20 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;;;###autoload
 (defmacro +deferred! (&rest body)
   "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'."
-  `(add-hook 'minemacs-after-startup-hook (lambda () ,@body)))
+  `(with-eval-after-load 'minemacs-loaded
+    ,@body))
 
 ;;;###autoload
 (defmacro +deferred-when! (condition &rest body)
   "Like `+deferred!', with BODY executed only if CONDITION is non-nil."
   (declare (indent 1))
-  `(if ,condition (+deferred! ,@body) nil))
+  `(when ,condition (+deferred! ,@body)))
 
 ;;;###autoload
 (defmacro +deferred-unless! (condition &rest body)
   "Like `+deferred!', with BODY executed only if CONDITION is nil."
   (declare (indent 1))
-  `(if ,condition nil (+deferred! ,@body)))
+  `(unless ,condition (+deferred! ,@body)))
 
 ;;;###autoload
 (defmacro +deferred-or-immediate! (condition &rest body)
@@ -203,19 +204,21 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;;;###autoload
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
-  `(add-hook 'minemacs-lazy-hook (lambda () ,@body)))
+  `(with-eval-after-load 'minemacs-lazy
+    (+eval-when-idle-for! 1.0
+     ,@body)))
 
 ;;;###autoload
 (defmacro +lazy-when! (condition &rest body)
   "Like `+lazy!', with BODY executed only if CONDITION is non-nil."
   (declare (indent 1))
-  `(if ,condition (+lazy! ,@body) nil))
+  `(when ,condition (+lazy! ,@body)))
 
 ;;;###autoload
 (defmacro +lazy-unless! (condition &rest body)
   "Like `+lazy!', with BODY executed only if CONDITION is nil."
   (declare (indent 1))
-  `(if ,condition nil (+lazy! ,@body)))
+  `(unless ,condition (+lazy! ,@body)))
 
 ;;;###autoload
 (defmacro +lazy-or-immediate! (condition &rest body)
