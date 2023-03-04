@@ -58,13 +58,11 @@
 (use-package evil-numbers
   :straight t
   :init
-  (+map-key
-    :states '(normal)
+  (+nmap
     "g+" #'evil-numbers/inc-at-pt
     "g=" #'evil-numbers/inc-at-pt
     "g-" #'evil-numbers/dec-at-pt)
-  (+map-key
-    :states '(visual)
+  (+vmap
     "g+" #'evil-numbers/inc-at-pt-incremental
     "g=" #'evil-numbers/inc-at-pt-incremental
     "g-" #'evil-numbers/dec-at-pt-incremental))
@@ -73,7 +71,7 @@
   :straight t
   :commands evilnc-comment-operator
   :init
-  (+map-key "gc" #'evilnc-comment-operator))
+  (+nvmap "gc" #'evilnc-comment-operator))
 
 (use-package evil-escape
   :straight t

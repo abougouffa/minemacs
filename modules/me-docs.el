@@ -20,7 +20,7 @@
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config
-  (+map-key :keymaps 'nov-mode-map :states 'normal
+  (+nmap :keymaps 'nov-mode-map
     "RET" #'nov-scroll-up)
   (defun doom-modeline-segment--nov-info ()
     (concat " " (propertize (cdr (assoc 'creator nov-metadata))

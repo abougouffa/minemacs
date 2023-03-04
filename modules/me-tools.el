@@ -50,7 +50,7 @@
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
-  (+map-key
+  (+nvmap
     :keymaps 'vterm-mode-map
     ",c" #'multi-vterm
     ",n" #'multi-vterm-next

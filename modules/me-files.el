@@ -24,7 +24,7 @@
     ;; Search
     "sd" '(dirvish-fd :wk "Dirvish fd"))
   :config
-  (+map-key :keymaps 'dirvish-mode-map
+  (+nvmap :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle
     "y" #'dirvish-yank-menu))

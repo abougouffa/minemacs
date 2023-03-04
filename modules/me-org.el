@@ -48,9 +48,7 @@
     "s" #'org-edit-src-save
     "q" #'org-edit-src-abort
     "e" #'org-edit-src-exit)
-  (+map-key
-    :keymaps 'org-mode-map
-    :states 'normal
+  (+nmap :keymaps 'org-mode-map
     "RET" #'org-open-at-point)
 
   ;; Tectonic can be interesting, however, it don't work right now

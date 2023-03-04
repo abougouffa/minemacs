@@ -15,7 +15,7 @@
   (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
   :init
   (+map "ts" #'spell-fu-mode)
-  (+map-key "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
+  (+nvmap "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
 
   (defvar +spell-excluded-faces-alist
     '((markdown-mode

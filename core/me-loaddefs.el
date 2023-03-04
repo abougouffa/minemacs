@@ -180,14 +180,80 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 (register-definition-prefixes "../elisp/+io" '("+save-as-pdf-filename"))
 
 
-;;; Generated autoloads from ../elisp/+message.el
+;;; Generated autoloads from ../elisp/+keybinding.el
 
-(autoload '+messages--auto-tail-a "../elisp/+message" "\
-Make *Messages* buffer auto-scroll to the end after each message.
+(autoload '+map "../elisp/+keybinding" "\
+A wrapper around `+minemacs--internal-map'.
+It is deferred until `general' gets loaded and configured.
 
-(fn &rest ARG)")
-(autoload '+messages-auto-tail-toggle "../elisp/+message" "\
-Auto tail the '*Messages*' buffer." t)
+(fn &rest ARGS)" nil t)
+(function-put '+map 'lisp-indent-function 'defun)
+(autoload '+map-local "../elisp/+keybinding" "\
+A wrapper around `+minemacs--internal-map-local'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+map-local 'lisp-indent-function 'defun)
+(autoload '+nvmap "../elisp/+keybinding" "\
+A wrapper around `+minemacs--internal-map-key'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+nvmap 'lisp-indent-function 'defun)
+(autoload '+nmap "../elisp/+keybinding" "\
+A wrapper around `general-nmap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+nmap 'lisp-indent-function 'defun)
+(autoload '+vmap "../elisp/+keybinding" "\
+A wrapper around `general-vmap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+vmap 'lisp-indent-function 'defun)
+(autoload '+mmap "../elisp/+keybinding" "\
+A wrapper around `general-mmap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+mmap 'lisp-indent-function 'defun)
+(autoload '+imap "../elisp/+keybinding" "\
+A wrapper around `general-imap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+imap 'lisp-indent-function 'defun)
+(autoload '+emap "../elisp/+keybinding" "\
+A wrapper around `general-emap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+emap 'lisp-indent-function 'defun)
+(autoload '+omap "../elisp/+keybinding" "\
+A wrapper around `general-omap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+omap 'lisp-indent-function 'defun)
+(autoload '+rmap "../elisp/+keybinding" "\
+A wrapper around `general-rmap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+rmap 'lisp-indent-function 'defun)
+(autoload '+iemap "../elisp/+keybinding" "\
+A wrapper around `general-iemap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+iemap 'lisp-indent-function 'defun)
+(autoload '+nvmap "../elisp/+keybinding" "\
+A wrapper around `general-nvmap'.
+It is deferred until `general' gets loaded and configured.
+
+(fn &rest ARGS)" nil t)
+(function-put '+nvmap 'lisp-indent-function 'defun)
 
 
 ;;; Generated autoloads from ../elisp/+minemacs.el
@@ -298,24 +364,6 @@ Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts lik
 
 (fn CONDITION &rest BODY)" nil t)
 (function-put '+lazy-or-immediate! 'lisp-indent-function 1)
-(autoload '+map "../elisp/+minemacs" "\
-A wrapper around `+minemacs--internal-map'.
-It is deferred until `general' gets loaded and configured.
-
-(fn &rest ARGS)" nil t)
-(function-put '+map 'lisp-indent-function 'defun)
-(autoload '+map-local "../elisp/+minemacs" "\
-A wrapper around `+minemacs--internal-map-local'.
-It is deferred until `general' gets loaded and configured.
-
-(fn &rest ARGS)" nil t)
-(function-put '+map-local 'lisp-indent-function 'defun)
-(autoload '+map-key "../elisp/+minemacs" "\
-A wrapper around `+minemacs--internal-map-key'.
-It is deferred until `general' gets loaded and configured.
-
-(fn &rest ARGS)" nil t)
-(function-put '+map-key 'lisp-indent-function 'defun)
 (autoload '+hook-with-delay! "../elisp/+minemacs" "\
 Add the FUNCTION to the value of HOOK.
 The FUNCTION is delayed to be evaluated in SECS once HOOK is

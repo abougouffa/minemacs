@@ -61,7 +61,7 @@
   :config
   (+map-local :keymaps 'reftex-mode-map
     ";" 'reftex-toc)
-  (+map-key :keymaps 'reflex-toc-mode-map
+  (+nvmap :keymaps 'reflex-toc-mode-map
     "j"   #'next-line
     "k"   #'previous-line
     "q"   #'kill-buffer-and-window

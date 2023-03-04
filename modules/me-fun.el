@@ -13,7 +13,7 @@
   (xkcd-cache-dir (+directory-ensure (concat minemacs-local-dir "xkcd/")))
   (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
   :config
-  (+map-key :keymaps 'xkcd-mode-map
+  (+nvmap :keymaps 'xkcd-mode-map
     "j" #'xkcd-next
     "k" #'xkcd-prev
     "l" #'xkcd-get-latest

@@ -51,7 +51,7 @@
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
   :config
-  (+map-key :keymaps 'mu4e-view-mode-map
+  (+nvmap :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
   (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
@@ -115,7 +115,7 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
-  (+map-key :keymaps 'org-msg-edit-mode-map
+  (+nvmap :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab
     "gg"  #'org-msg-goto-body)
   (+map-local :keymaps 'org-msg-edit-mode-map
