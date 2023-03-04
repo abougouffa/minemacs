@@ -109,9 +109,8 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 ;; Add some of MinEmacs' directories to `load-path'.
-(add-to-list 'load-path minemacs-core-dir)
-(add-to-list 'load-path minemacs-elisp-dir)
-(add-to-list 'load-path minemacs-extras-dir)
+(dolist (path (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir))
+  (add-to-list 'load-path path))
 
 (defun minemacs-generate-loaddefs ()
   "Generate MinEmacs' loaddefs file."
