@@ -238,7 +238,15 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; startup time, but needs to be set down to a more reasonable value after Emacs
 ;; gets loaded. The use of `gcmh-mode' ensures reverting this value so we don't
 ;; need to do it manually.
-(add-to-list 'minemacs-core-modules 'me-gc t)
+;; NOTE: Ensure the `me-defaults', `me-splash' and `me-bootstrap' modules are in
+;; the right order.
+(setq minemacs-core-modules
+      (delete-dups
+       (append
+        '(me-defaults)
+        (when (memq 'me-splash minemacs-core-modules) '(me-splash))
+        '(me-bootstrap me-gc)
+        minemacs-core-modules)))
 
 ;; Load MinEmacs core modules
 (dolist (module minemacs-core-modules)
