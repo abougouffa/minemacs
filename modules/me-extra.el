@@ -14,7 +14,14 @@
   (global-set-key [mouse-9] #'better-jumper-jump-forward))
 
 (use-package crux
-  :straight t)
-
+  :straight t
+  :init
+  (+map
+    "fo" #'crux-open-with
+    "fU" #'crux-sudo-edit
+    "fD" #'crux-delete-file-and-buffer
+    "fC" #'crux-copy-file-preserve-attributes
+    "id" #'crux-insert-date
+    "bo" #'crux-kill-other-buffers))
 
 (provide 'me-extra)
