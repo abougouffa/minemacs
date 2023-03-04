@@ -41,9 +41,18 @@
   :straight t
   :after magit
   :demand t
-  :init
-  ;; Keybindings will be overriten by evil-collection
+  :preface
+  ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
+  :init
+  (+map :infix "g"
+    "f" '(nil :wk "forge")
+    "ff" #'forge-dispatch
+    "fc" #'forge-create-post
+    "fe" #'forge-edit-post
+    "ft" #'forge-edit-topic-title
+    "fs" #'forge-edit-topic-state
+    "fd" #'forge-edit-topic-draft)
   :custom
   (forge-database-connector (if (+emacs-features-p 'sqlite3) 'sqlite-builtin 'sqlite))
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
