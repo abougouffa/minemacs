@@ -213,7 +213,9 @@ DEPTH and LOCAL are passed as is to `add-hook'."
     (+eval-when-idle!
       (or (and (featurep 'native-compile)
                (or (subr-native-elisp-p (indirect-function fn))
-                   (+shutup! (ignore-errors (native-compile fn)))))
+                   ;; Do not log to `comp-log-buffer-name'
+                   (cl-letf (((symbol-function 'comp-log-to-buffer) #'ignore))
+                     (+shutup! (ignore-errors (native-compile fn))))))
           (byte-code-function-p fn)
           (let (byte-compile-warnings)
             (+shutup! (byte-compile fn)))))))
