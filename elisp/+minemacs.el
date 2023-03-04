@@ -30,7 +30,7 @@
 ;;;###autoload
 (defun +emacs-features-p (&rest feats)
   "Is features FEATS are enabled in this Emacs build."
-  (+all (mapcar (lambda (feat) (memq feat emacs/features)) feats)))
+  (cl-every (lambda (feat) (memq feat emacs/features)) feats))
 
 ;;;###autoload
 (defmacro +fn-inhibit-messages! (fn &optional no-message-log)
@@ -44,17 +44,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
         (with-temp-message (or (current-message) "")
          (+log! "Inhibiting messages of %s" ,(symbol-name fn))
          (apply origfn args)))))))
-
-;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
-;;;###autoload
-(defun +reset-sym (sym)
-  "Reset SYM to its standard value."
-  (set sym (eval (car (get sym 'standard-value)))))
-
-;;;###autoload
-(defmacro +reset-var! (var)
-  "Reset VAR to its standard value."
-  `(setq ,var (eval (car (get ',var 'standard-value)))))
 
 ;;;###autoload
 (defmacro +shutup! (&rest body)
@@ -110,35 +99,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     (load-theme minemacs-theme t))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
-
-;;;###autoload
-(defun +push-system-dependencies (&rest deps)
-  "Push system dependencies DEPS, these are executables needed by MinEmacs."
-  (declare (indent 0))
-  (setq minemacs-deps-executables
-        (delete-dups
-         (append minemacs-deps-executables deps))))
-
-;;;###autoload
-(defun +check-system-dependencies ()
-  "Check for MinEmacs dependencies."
-  (interactive)
-  (let ((buf (get-buffer-create "*minemacs-dependencies*")))
-    (with-current-buffer buf
-      (erase-buffer)
-      (insert "-----------------------\n")
-      (insert " MinEmacs dependencies \n")
-      (insert "-----------------------\n")
-      (dolist (dep minemacs-deps-executables)
-        (let ((dep (ensure-list dep)))
-          (insert (concat " ● " (if (length> dep 1) (concat (string-join (mapcar #'symbol-name dep) ", ") "\n") "")))
-          (dolist (d (ensure-list dep))
-            (let ((path (executable-find (symbol-name d))))
-              (insert (concat (if (length> dep 1) "   ⦿ " "") (propertize (symbol-name d) 'face (list 'bold (if path 'success 'error)))))
-              (insert (if path (concat " found at " (propertize path 'face 'shadow)) " not found!"))
-              (insert (propertize (if path " [✓]" " [⨯]") 'face (list 'bold (if path 'success 'error))))
-              (insert "\n")))))))
-  (switch-to-buffer "*minemacs-dependencies*"))
 
 ;; An internal variable to keep track of the tasks
 (defvar +eval-when-idle--task-num 0)

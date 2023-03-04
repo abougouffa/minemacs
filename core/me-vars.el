@@ -38,10 +38,6 @@
   :group 'minemacs
   :type 'natnum)
 
-(defconst minemacs-splash-keep
-  (not (null (getenv "MINEMACS_SPLASH_KEEP")))
-  "MinEmacs is started in keep splash screen mode.")
-
 ;; Derive the root directory from this file path
 (defconst minemacs-root-dir
   (abbreviate-file-name
@@ -110,23 +106,12 @@ Compiled from the `system-configuration-features'.")
   :group 'minemacs
   :type 'hook)
 
-(defcustom minemacs-before-user-config-hook nil
-  "This hook will be run after loading modules and before loading user config.
-
-MinEmacs hooks will be run in this order:
-1. minemacs-before-user-config-hook
-2. minemacs-after-startup-hook
-3. minemacs-lazy-hook"
-  :group 'minemacs
-  :type 'hook)
-
 (defcustom minemacs-after-startup-hook nil
   "This hook will be run after loading Emacs.
 
 MinEmacs hooks will be run in this order:
-1. minemacs-before-user-config-hook
-2. minemacs-after-startup-hook
-3. minemacs-lazy-hook"
+1. `minemacs-after-startup-hook'
+2. `minemacs-lazy-hook'"
   :group 'minemacs
   :type 'hook)
 
@@ -134,12 +119,12 @@ MinEmacs hooks will be run in this order:
   "This hook will be run after loading Emacs, with laziness.
 
 MinEmacs hooks will be run in this order:
-1. minemacs-before-user-config-hook
-2. minemacs-after-startup-hook
-3. minemacs-lazy-hook"
+1. `minemacs-after-startup-hook'
+2. `minemacs-lazy-hook'"
   :group 'minemacs
   :type 'hook)
 
+;; Setup default fonts (depending on the OS)
 (let ((mono-font (cond (os/linux "monospace")
                        (os/win "Lucida Console")
                        (os/mac "monospace")))
@@ -154,20 +139,11 @@ MinEmacs hooks will be run in this order:
       :variable-pitch-font-size 14)
     "Default fonts of MinEmacs."))
 
-(defvar minemacs-deps-executables
-  '(grep find tar zip unzip zstd bzip2 gzip file ssh fd rg curl wget (xsel xclip)
-    mu msmtp mbsync git mpv valgrind (gcc clang) (gdb lldb) cmake make clang-format aspell
-    (python3 python) rosbag cargo maxima octave fortune (xelatex pdflatex lualatex) (latexmk tectonic)
-    (clangd ccls) (pyls pylsp pyright) dot-language-server rust-analyzer prettier
-    cmake-language-server bash-language-server docker-langserver yaml-language-server
-    vscode-json-languageserver marksman digestif wkhtmltopdf txt2html)
-  "A list of programs I use within Emacs.")
-
 (defcustom +env-save-vars
   '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH" "LSP_USE_PLISTS")
-  "List of environment variables saved by `+env-save'.
+  "List of the environment variables to saved by `+env-save'.
 You need to run Emacs from terminal to get the environment variables.
-MinEmacs then save them to be used in GUI sessions as well."
+MinEmacs then save them when calling `+env-save' to be used in GUI sessions as well."
   :group 'minemacs
   :type '(repeat string))
 

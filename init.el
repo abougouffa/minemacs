@@ -160,54 +160,55 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; pseudo-module provides `minemacs-lazy' so the packages loaded with `:after
 ;; minemacs-lazy' can be loaded then it incrementally run the hooks in
 ;; `minemacs-lazy-hook' when Emacs goes idle.
-(add-hook
- 'emacs-startup-hook
- (defun +minemacs--loaded-h ()
-   (+log! "=============== Loaded Emacs ===============")
-   (+info! "Loaded Emacs in %s." (emacs-init-time))
+(defun +minemacs--loaded-h ()
+  (+log! "=============== Loaded Emacs ===============")
+  (+info! "Loaded Emacs in %s." (emacs-init-time))
 
-   ;; When running in an async Org export context, there is no need to set
-   ;; the fonts, load the theme or play with the scratch buffer.
-   (unless (featurep 'me-org-export-async-init)
-     (+log! "Applying `minemacs-fonts'.")
-     ;; Load fonts, values are read from `minemacs-fonts' if set in config.el,
-     ;; otherwise, they are read from the default `minemacs-default-fonts'.
-     (+set-fonts)
+  ;; When running in an async Org export context, there is no need to set
+  ;; the fonts, load the theme or play with the scratch buffer.
+  (unless (featurep 'me-org-export-async-init)
+    (+log! "Applying `minemacs-fonts'.")
+    ;; Load fonts, values are read from `minemacs-fonts' if set in config.el,
+    ;; otherwise, they are read from the default `minemacs-default-fonts'.
+    (+set-fonts)
 
-     ;; Initially MinEmacs loads the `doom-one-light' theme, and when
-     ;; `minemacs-theme' is set in user configuration, it is loaded here.
-     (+load-theme)
+    ;; Initially MinEmacs loads the `doom-one-light' theme, and when
+    ;; `minemacs-theme' is set in user configuration, it is loaded here.
+    (+load-theme)
 
-     (+log! "Setting scratch buffer content.")
-     ;; Print load time, and a quote to *scratch*
-     (with-current-buffer (get-scratch-buffer-create)
-       (erase-buffer)
-       (insert (format
-                ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
-                (string-to-number (car (string-split (emacs-init-time))))
-                gcs-done (if (> gcs-done 1) "s" "")))
-       (insert ";; ==============================\n")
-       ;; Insert some quote from fortune
-       (when (executable-find "fortune")
-         (insert (string-join
-                  (mapcar (lambda (l) (concat ";; " l))
-                          (string-lines (shell-command-to-string "fortune")))
-                  "\n"))
-         (insert "\n;; ==============================\n"))
-       ;; Set initial scratch message.
-       (setq initial-scratch-message (buffer-string)))
+    (+log! "Setting scratch buffer content.")
+    ;; Print load time, and a quote to *scratch*
+    (with-current-buffer (get-scratch-buffer-create)
+      (erase-buffer)
+      (insert (format
+               ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
+               (string-to-number (car (string-split (emacs-init-time))))
+               gcs-done (if (> gcs-done 1) "s" "")))
+      (insert ";; ==============================\n")
+      ;; Insert some quote from fortune
+      (when (executable-find "fortune")
+        (insert (string-join
+                 (mapcar (lambda (l) (concat ";; " l))
+                         (string-lines (shell-command-to-string "fortune")))
+                 "\n"))
+        (insert "\n;; ==============================\n"))
+      ;; Set initial scratch message.
+      (setq initial-scratch-message (buffer-string)))
 
-     ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
-     ;; to enhance startup time. However, I like to use the scratch buffer to
-     ;; evaluate Elisp code, so we switch to Elisp mode in the scratch buffer
-     ;; when Emacs is idle for 10 seconds.
-     (+eval-when-idle-for! 10.0
-       (setq initial-major-mode 'emacs-lisp-mode)
-       (with-current-buffer (get-scratch-buffer-create)
-         (emacs-lisp-mode))))
+    ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
+    ;; to enhance startup time. However, I like to use the scratch buffer to
+    ;; evaluate Elisp code, so we switch to Elisp mode in the scratch buffer
+    ;; when Emacs is idle for 10 seconds.
+    (+eval-when-idle-for! 10.0
+      (setq initial-major-mode 'emacs-lisp-mode)
+      (with-current-buffer (get-scratch-buffer-create)
+        (emacs-lisp-mode))))
 
-   ;; Require the virtual package to triggre loading packages depending on it
-   (require 'minemacs-loaded)))
+  ;; Require the virtual package to triggre loading packages depending on it
+  (require 'minemacs-loaded))
+
+;; Add it to the very begining of `emacs-startup-hook'
+(add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
 
 ;; ========= Load MinEmacs packages and user customization =========
 ;; When running in an async Org export context, the used modules are set in
@@ -263,10 +264,6 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
     (if (file-exists-p filename)
         (load filename nil (not minemacs-verbose))
       (+error! "Module \"%s\" not found!" module))))
-
-;; Run the hooks in `minemacs-before-user-config-hook' before loading the user
-;; configuration and custom variables
-(require 'minemacs-before-user-config)
 
 ;; Write user custom variables to separate file instead of "init.el"
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))

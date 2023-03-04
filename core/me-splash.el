@@ -78,8 +78,7 @@
         (display-buffer-same-window buffer nil)))))
 
 (defun minemacs-splash-kill ()
-  (when (and (not minemacs-splash-keep)
-             (get-buffer minemacs-splash-buffer-name))
+  (when (get-buffer minemacs-splash-buffer-name)
     (kill-buffer minemacs-splash-buffer-name)))
 
 ;; Display splash screen
