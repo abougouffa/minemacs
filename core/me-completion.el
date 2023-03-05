@@ -112,7 +112,47 @@
     "hu"  #'consult-theme
     "hI"  #'consult-info)
   :config
-  (setq-default completion-in-region-function #'consult-completion-in-region))
+  (setq-default completion-in-region-function #'consult-completion-in-region)
+
+  (defun +region-or-thing-at-point ()
+    "Return the region or the thing at point."
+    (when-let ((thing (or (thing-at-point 'region)
+                          (thing-at-point 'symbol)
+                          (thing-at-point 'string)
+                          (thing-at-point 'email)
+                          (thing-at-point 'number)
+                          (thing-at-point 'word))))
+      (substring-no-properties thing)))
+
+  ;; TWEAK Fill the `initial' query of `consult' commands from `thing-at-point'.
+  ;; NOTE Some `consult' commands have slightly different signature, the
+  ;; `initial' argument can come first in some cases (like `consult-line') or
+  ;; second in some other cases (like `condult-grep'). These two advices are
+  ;; added to such family of commands so it is filled in the right place.
+  (dolist (cmd '(consult-line ; `initial' comes first in these commands
+                 consult-man))
+    (advice-add
+     cmd :around
+     (defun +consult--dwim-first-arg-a (orig-fn &optional initial opt)
+       (apply orig-fn
+              (append
+               (if (called-interactively-p)
+                   (list (or initial (+region-or-thing-at-point)))
+                 (list initial))
+               (when opt (list opt)))))))
+
+  (dolist (cmd '(consult-ripgrep ; `initial' comes second in these commands
+                 consult-grep
+                 consult-find))
+    (advice-add
+     cmd :around
+     (defun +consult--dwim-second-arg-a (orig-fn &optional dir initial)
+       (apply orig-fn
+              (append
+               (list dir)
+               (if (called-interactively-p)
+                   (list (or initial (+region-or-thing-at-point)))
+                 (list initial))))))))
 
 (use-package embark
   :straight t
