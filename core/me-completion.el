@@ -92,8 +92,10 @@
   (+map
     ;; Buffers
     "bl"  #'consult-line
+    "bL"  #'consult-line-multi
     "bb"  #'consult-buffer
     "bmM" #'consult-bookmark
+    "bI"  #'consult-imenu
     ;; Files
     "fr"  #'consult-recent-file
     ;; Search
@@ -103,12 +105,12 @@
     "sM"  #'consult-man
     "st"  #'consult-locate
     ;; Code
-    "cx"  #'consult-xref
     "cm"  #'consult-flymake
     ;; Insert
     "iy"  #'consult-yank-pop
     ;; Help
-    "hu"  #'consult-theme)
+    "hu"  #'consult-theme
+    "hI"  #'consult-info)
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region))
 
