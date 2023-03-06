@@ -154,6 +154,7 @@
                (when opt (list opt)))))))
 
   (dolist (cmd '(consult-ripgrep ; `initial' comes second in these commands
+                 consult-line-multi
                  consult-grep
                  consult-find))
     (advice-add
