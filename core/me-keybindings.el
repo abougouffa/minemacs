@@ -39,7 +39,10 @@
   :after minemacs-loaded
   :demand t
   :config
+  ;; Advise `define-key' to automatically unbind keys when necessary.
   (general-auto-unbind-keys)
+  ;; Set up some basic equivalents (like `general-nmap') with short named
+  ;; aliases (like `nmap') for VIM mapping functions.
   (general-evil-setup t)
 
   ;; Global leader
@@ -57,6 +60,7 @@
     :prefix minemacs-localleader-key
     :global-prefix minemacs-global-mode-prefix)
 
+  ;; Define the built-in global keybindings
   (+minemacs--internal-map
     ;; ====== Top level functions ======
     "SPC" '(execute-extended-command :wk "M-x")
