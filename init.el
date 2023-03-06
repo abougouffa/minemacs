@@ -59,7 +59,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (let ((filename (apply #'concat (append filename-parts '("")))))
     (if (file-exists-p filename)
         (load filename nil (not minemacs-verbose))
-      (user-error "[MinEmacs:Load] Cannot load \"%s\", the file doesn't exists."))))
+      (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 ;; HACK: Most core and third-party packages depends on the
 ;; `user-emacs-directory' variable to store some cache information and generated
