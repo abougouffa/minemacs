@@ -211,6 +211,10 @@
    'load-path (concat
                straight-base-dir
                (format "straight/%s/vertico/extensions" straight-build-dir)))
+  ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
+  ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
+  ;; to serve the original "C-k".
+  (define-key minibuffer-local-map (kbd "C-S-k") #'kill-line)
   :config
   (with-eval-after-load 'evil
     (define-key vertico-map (kbd "C-j") #'vertico-next)
