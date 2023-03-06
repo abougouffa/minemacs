@@ -48,11 +48,11 @@
   (evil-collection-init
    (seq-filter
     (lambda (mode)
-      (not (memq mode '(evil-mc ;; Default bindings for evil-mc are messy
-                        elisp-mode)))) ;; I don't like gz for ielm, I like gr though
+      (not (memq mode '(evil-mc ; Default bindings for `evil-mc' are messy
+                        elisp-mode)))) ; I don't like "gz" for `ielm', I like "gr" though
     evil-collection-mode-list))
 
-  ;; Define find references for elisp mode
+  ;; Use "gr" to find references for elisp mode
   (with-eval-after-load 'elisp-mode
     (when evil-collection-want-find-usages-bindings
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map

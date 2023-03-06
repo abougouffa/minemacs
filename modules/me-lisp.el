@@ -76,7 +76,7 @@
 (use-package elisp-mode
   :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
-  :after minemacs-loaded ;; prevent elisp-mode from being loaded too early
+  :after minemacs-loaded ; prevent elisp-mode from being loaded too early
   :config
   (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")

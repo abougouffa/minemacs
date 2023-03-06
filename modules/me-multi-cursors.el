@@ -21,7 +21,8 @@
   :after minemacs-loaded evil-collection
   :demand t
   :config
-  ;; Use gz instead of gr
+  ;; Use "gz" instead of "gr", this last is mapped to `xref-find-references' in
+  ;; some programming modes.
   (setcdr
    evil-mc-key-map ;; Redefine the default binting
    (let ((map (make-sparse-keymap)))
@@ -59,7 +60,7 @@
        (dotimes (i (if (integerp current-prefix-arg) current-prefix-arg 1))
          (funcall fn)))))
 
-  ;; Custom commands to execute with evil-mc
+  ;; Custom commands to execute with `evil-mc'
   (dolist (fn '((backward-kill-word)
                 (corfu-complete . evil-mc-execute-default-complete)
                 (undo-fu-only-undo . evil-mc-execute-default-undo)
