@@ -128,12 +128,16 @@
 
   (defun +region-or-thing-at-point ()
     "Return the region or the thing at point."
-    (when-let ((thing (or (thing-at-point 'region)
-                          (thing-at-point 'symbol)
-                          (thing-at-point 'email)
-                          (thing-at-point 'number)
-                          (thing-at-point 'string)
-                          (thing-at-point 'word))))
+    (when-let* ((thing (or (thing-at-point 'region)
+                           (thing-at-point 'symbol)
+                           (thing-at-point 'email)
+                           (thing-at-point 'number)
+                           (thing-at-point 'string)
+                           (thing-at-point 'word)))
+                (thing (if (length> (string-lines thing) 1)
+                           ;; If the matching thing has multi-lines, use the first one
+                           (car (string-lines thing))
+                         thing)))
       (substring-no-properties thing)))
 
   ;; TWEAK Fill the `initial' query of `consult' commands from `thing-at-point'.
