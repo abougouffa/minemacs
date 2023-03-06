@@ -194,12 +194,6 @@ It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
 (function-put '+map-local 'lisp-indent-function 'defun)
-(autoload '+nvmap "../elisp/+keybinding" "\
-A wrapper around `+minemacs--internal-map-key'.
-It is deferred until `general' gets loaded and configured.
-
-(fn &rest ARGS)" nil t)
-(function-put '+nvmap 'lisp-indent-function 'defun)
 (autoload '+nmap "../elisp/+keybinding" "\
 A wrapper around `general-nmap'.
 It is deferred until `general' gets loaded and configured.
@@ -621,7 +615,7 @@ and move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8-emacs-unix
+;; coding: utf-8
 ;; End:
 
 ;;; me-loaddefs.el ends here
