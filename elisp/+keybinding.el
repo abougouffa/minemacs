@@ -34,14 +34,6 @@ It is deferred until `general' gets loaded and configured."
 ;; Wrappers around `general's VIM like definers, needs `general-evil-setup' to
 ;; be executed (See `me-keybindings')
 ;;;###autoload
-(defmacro +nvmap (&rest args)
-  "A wrapper around `+minemacs--internal-map-key'.
-It is deferred until `general' gets loaded and configured."
-  (declare (indent defun))
-  `(with-eval-after-load 'me-general-ready
-    (nmap ,@args)))
-
-;;;###autoload
 (defmacro +nmap (&rest args)
   "A wrapper around `general-nmap'.
 It is deferred until `general' gets loaded and configured."
