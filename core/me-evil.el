@@ -20,6 +20,18 @@
   (evil-respect-visual-line-mode t)
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
+  (+map
+    ;; buffer
+    "bN" '(evil-buffer-new :wk "New buffer")
+    ;; window
+    "ww" '(evil-window-next :wk "Next")
+    "wW" '(evil-window-prev :wk "Previous")
+    "ws" '(evil-window-split :wk "Split")
+    "wv" '(evil-window-vsplit :wk "Vertical split")
+    "wr" '(evil-window-rotate-downwards :wk "Rotate downwards")
+    "wR" '(evil-window-rotate-upwards :wk "Rotate upwards")
+    "w+" '(evil-window-increase-width :wk "Increase width")
+    "w-" '(evil-window-decrease-width :wk "Decrease width"))
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
     (dolist (fn '(evil-window-split evil-window-vsplit))

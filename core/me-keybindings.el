@@ -108,7 +108,6 @@
             :wk "Kill this buffer")
     "bK"  `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
             :wk "Kill this buffer and its windows")
-    "bN"  '(evil-buffer-new :wk "New buffer")
     "br"  '(revert-buffer :wk "Revert")
     "bR"  '(rename-buffer :wk "Rename")
     ;; Bookmarks
@@ -134,14 +133,6 @@
 
     ;; ====== Window ======
     "w"   '(nil :wk "window")
-    "ww"  '(evil-window-next :wk "Next")
-    "wW"  '(evil-window-prev :wk "Previous")
-    "ws"  '(evil-window-split :wk "Split")
-    "wv"  '(evil-window-vsplit :wk "Vertical split")
-    "wr"  '(evil-window-rotate-upwards :wk "Rotate upwards")
-    "wR"  '(evil-window-rotate-downwards :wk "Rotate downwards")
-    "w+"  '(evil-window-increase-width :wk "Increase width")
-    "w-"  '(evil-window-decrease-width :wk "Decrease width")
     "wd"  #'delete-window
     "wD"  #'delete-window-on
     "wm"  #'maximize-window
