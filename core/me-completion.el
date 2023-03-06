@@ -90,27 +90,39 @@
   (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
   (global-set-key (kbd "C-s") 'consult-line)
   (+map
-    ;; Buffers
+    ;; buffer
     "bl"  #'consult-line
-    "bL"  #'consult-line-multi
     "bb"  #'consult-buffer
+    "bB"  #'consult-buffer-other-window
+    "bF"  #'consult-buffer-other-frame
     "bmM" #'consult-bookmark
     "bI"  #'consult-imenu
-    ;; Files
+    "bO"  #'consult-outline
+    ;; file
     "fr"  #'consult-recent-file
-    ;; Search
+    ;; git/vc
+    "gG"  #'consult-git-grep
+    ;; search
     "ss"  #'consult-ripgrep
     "sg"  #'consult-grep
     "sf"  #'consult-find
     "sM"  #'consult-man
     "st"  #'consult-locate
-    ;; Code
+    "sh"  #'consult-history
+    ;; project
+    "pl"  #'consult-line-multi
+    "pi"  #'consult-imenu-multi
+    ;; code
     "cm"  #'consult-flymake
-    ;; Insert
-    "iy"  #'consult-yank-pop
-    ;; Help
+    "cE"  #'consult-compile-error
+    "xc"  #'consult-complex-command
+    ;; insert
+    "iy"  #'consult-yank-from-kill-ring
+    ;; help
     "hu"  #'consult-theme
     "hI"  #'consult-info)
+  (+map-local :keymaps 'org-mode-map
+    "h"   #'consult-org-heading)
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
