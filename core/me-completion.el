@@ -130,9 +130,9 @@
     "Return the region or the thing at point."
     (when-let ((thing (or (thing-at-point 'region)
                           (thing-at-point 'symbol)
-                          (thing-at-point 'string)
                           (thing-at-point 'email)
                           (thing-at-point 'number)
+                          (thing-at-point 'string)
                           (thing-at-point 'word))))
       (substring-no-properties thing)))
 
