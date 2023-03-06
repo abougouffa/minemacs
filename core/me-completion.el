@@ -33,8 +33,8 @@
   (corfu-auto-delay 0.2)
   :config
   (with-eval-after-load 'evil
-    (define-key corfu-map (kbd "C-j") 'corfu-next)
-    (define-key corfu-map (kbd "C-k") 'corfu-previous))
+    (define-key corfu-map (kbd "C-j") #'corfu-next)
+    (define-key corfu-map (kbd "C-k") #'corfu-previous))
 
   (defun +corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
@@ -86,9 +86,9 @@
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
   :init
-  (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
-  (define-key minibuffer-local-map (kbd "S-C-v") 'consult-yank-pop)
-  (global-set-key (kbd "C-s") 'consult-line)
+  (define-key minibuffer-local-map (kbd "C-r") #'consult-history)
+  (define-key minibuffer-local-map (kbd "S-C-v") #'consult-yank-pop)
+  (global-set-key (kbd "C-s") #'consult-line)
   (+map
     ;; buffer
     "bl"  #'consult-line
