@@ -15,17 +15,20 @@
     (display-buffer-reuse-window display-buffer-pop-up-window)
     (inhibit-same-window . t)))
 
+ ;; Show *Warnings* at bottom
  (add-to-list
   'display-buffer-alist
-  `(,(rx (seq "*" (or "Completions" "Warnings") "*"))
-    (display-buffer-reuse-window display-buffer-pop-up-window)
-    (inhibit-same-window . t)
+  `("*Warnings*"
+    (display-buffer-reuse-window display-buffer-in-direction)
+    (direction . bottom) ;; bottom (above below...)
+    (dedicated . t) ;; Close when finished
+    (reusable-frames . visible) ;;
     (window-height . 10)))
 
- ;; Show dictionary definition on the left
+ ;; Show dictionary definition and completion buffer on the right side
  (add-to-list
   'display-buffer-alist
-  `(,(rx (seq "*" (or "Dictionary" "lexic") "*"))
+  `(,(rx (seq "*" (or "Dictionary" "lexic" "Completions") "*"))
     (display-buffer-in-side-window)
     (side . right)
     (window-width . 70)))
