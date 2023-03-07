@@ -289,6 +289,7 @@ the children of class at point."
            ("PROJ" . "#447f44")
            ("IDEA" . "#0fa050")
            ("INFO" . "#0e9030")
+           ("TWEAK" . "#fe9030")
            ("PERF" . "#e09030")))))
 
 (use-package rainbow-mode
