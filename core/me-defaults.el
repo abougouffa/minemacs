@@ -342,8 +342,8 @@
        (abort-recursive-edit))))
 
   ;; Suppress asking about overwriting desktop file when we didn't load a
-  ;; session from desktop file. We advice `save-desktop' to first check if
-  ;; there is a previously saved desktop file, if its found, we move it to a
+  ;; session from desktop file. We advice `save-desktop' to first check if there
+  ;; is a previously saved desktop file, if its found, we move it to a
   ;; timestamped backup before saving the current one.
   (advice-add
    'desktop-save :before

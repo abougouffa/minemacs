@@ -1,4 +1,4 @@
-;;; me-data.el --- Data files (csv, yaml, xml, ...) -*- lexical-binding: t; -*-
+;;; me-data.el --- Data and visualizaion formats (csv, yaml, xml, graphviz, ...) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Abdelhak Bougouffa
 
