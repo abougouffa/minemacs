@@ -178,6 +178,7 @@
     ;; ====== Help ======
     "h"   '(nil :wk "help")
     "hi"  #'info
+    "hg"  #'general-describe-keybindings
     "he"  '(nil :wk "elisp/emacs")
     "hes" #'elisp-index-search
     "hem" #'info-emacs-manual
