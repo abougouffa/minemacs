@@ -108,6 +108,7 @@ It is deferred until `general' gets loaded and configured."
 ;; Make old definitions obsolete, and make aliases for them to avoid breaking
 ;; users configurations.
 (dolist (fn '(map map-local nmap vmap mmap imap emap omap rmap iemap nvmap))
-  (let ((new-fn (intern (format "+%s!" fn)))
-        (old-fn (intern (format "+%s" fn))))
-    (define-obsolete-function-alias old-fn new-fn "2023-03-07")))
+  (define-obsolete-function-alias
+    (intern (format "+%s" fn))
+    (intern (format "+%s!" fn))
+    "2023-03-07"))
