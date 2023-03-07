@@ -18,8 +18,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-;; Use UTF-16-LE in Windows
-;; See: https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
 (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
 
 (setq

@@ -191,14 +191,14 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
                (string-to-number (car (string-split (emacs-init-time))))
                gcs-done (if (> gcs-done 1) "s" "")))
       (insert ";; ==============================\n")
-      ;; Insert some quote from fortune
+      ;; Insert some quote from fortune when the command is available
       (when (executable-find "fortune")
         (insert (string-join
                  (mapcar (lambda (l) (concat ";; " l))
                          (string-lines (shell-command-to-string "fortune")))
                  "\n"))
         (insert "\n;; ==============================\n"))
-      ;; Set initial scratch message.
+      ;; Set initial scratch message
       (setq initial-scratch-message (buffer-string)))
 
     ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'

@@ -56,10 +56,11 @@
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
   :commands +eglot-auto-enable
   :custom
-  (eglot-autoshutdown t) ;; shutdown after closing the last managed buffer
-  (eglot-sync-connect 0) ;; async, do not block
-  (eglot-extend-to-xref t) ;; can be interesting!
+  (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
+  (eglot-sync-connect 0) ; async, do not block
+  (eglot-extend-to-xref t) ; can be interesting!
   :init
+  ;; Register global keybinding
   (+map! :infix "c"
     "e"  '(nil :wk "eglot session")
     "ee" #'eglot
@@ -78,9 +79,9 @@
         (add-hook hook #'eglot-ensure)
         (remove-hook hook #'lsp-deferred))))
 
-  ;; NOTE: This is a new feature added late in Emacs 29+, we temporary check for
-  ;; it's presence, it can be enabled directly when the upstream Eglot is synced
-  ;; with Emacs' one, and when Emacs 29 is officially released.
+  ;; NOTE: This is a new feature introduced late in Emacs 29+, we temporary
+  ;; check for it's presence, it can be enabled directly when the upstream Eglot
+  ;; is synced with Emacs' one, and when Emacs 29 is officially released.
   ;; See: https://lists.gnu.org/archive/html/emacs-devel/2023-02/msg00841.html
   (when (fboundp #'eglot-inlay-hints-mode)
     (add-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode))
