@@ -94,15 +94,9 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
    ;; running in `minemacs-verbose' mode.
    native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
    native-comp-verbose (if minemacs-verbose 1 0) ; do not be too verbose
-   native-comp-debug (if minemacs-debug 1 0))
-
-  ;; Make native compilation happens asynchronously.
-  ;; HACK: Temporary support the `native-comp-deferred-compilation' variable
-  ;; deprecated late in Emacs29.
-  (set (if (boundp 'native-comp-deferred-compilation)
-           'native-comp-deferred-compilation ; Deprecated in Emacs29
-         'native-comp-jit-compilation)
-       t)
+   native-comp-debug (if minemacs-debug 1 0)
+   ;; Make native compilation happens asynchronously.
+   native-comp-jit-compilation t)
 
   ;; Set the right directory to store the native compilation cache to avoid
   ;; messing with "~/.emacs.d/".
