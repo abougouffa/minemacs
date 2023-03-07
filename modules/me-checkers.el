@@ -8,14 +8,14 @@
 (use-package flymake
   :straight (:type built-in)
   :init
-  (+map "tf" #'flymake-mode)
+  (+map! "tf" #'flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
   (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
   (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
   (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
   :config
-  (+map-local :keymaps 'flymake-mode-map
+  (+map-local! :keymaps 'flymake-mode-map
     "f"  '(nil :wk "flymake")
     "fn" #'flymake-goto-next-error
     "fN" #'flymake-goto-prev-error

@@ -26,8 +26,8 @@
       (flycheck-mode 1)
       (setq +flycheck-disabled-explicitly nil)))
 
-  (+map "tc" #'+flycheck-mode-toggle)
-  (+map
+  (+map! "tc" #'+flycheck-mode-toggle)
+  (+map!
     :keymaps 'flycheck-error-list-mode-map
     "j"   #'flycheck-error-list-next-error
     "k"   #'flycheck-error-list-previous-error

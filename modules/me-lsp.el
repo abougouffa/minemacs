@@ -31,7 +31,7 @@
   (lsp-insert-final-newline nil)
   (lsp-trim-final-newlines nil)
   :init
-  (+map
+  (+map!
     :infix "c"
     "l"  '(nil :wk "lsp session")
     "ll" #'lsp
@@ -50,7 +50,7 @@
         (add-hook hook #'lsp-deferred)
         (remove-hook hook #'eglot-ensure))))
 
-  (+map :keymaps 'lsp-mode-map
+  (+map! :keymaps 'lsp-mode-map
     :infix "c"
     "fF" #'lsp-format-buffer
     "d"  '(lsp-find-declaration :wk "Find declaration")
@@ -103,13 +103,13 @@
   :after consult lsp-mode
   :demand t
   :config
-  (+map :keymaps 'lsp-mode-map
+  (+map! :keymaps 'lsp-mode-map
     "cs" '(consult-lsp-file-symbols :wk "Symbols")))
 
 (use-package dap-mode
   :straight t
   :init
-  (+map-local
+  (+map-local!
     :keymaps '(c-mode-map c++-mode-map python-mode-map
                rust-mode-map sh-mode-map bash-ts-mode-map
                js-mode-map js-ts-mode-map ruby-mode-map

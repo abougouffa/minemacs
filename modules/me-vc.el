@@ -8,7 +8,7 @@
 (use-package magit
   :straight t
   :init
-  (+map :infix "g"
+  (+map! :infix "g"
     "g" #'magit-status
     "C" #'magit-clone
     "b" #'magit-blame
@@ -45,7 +45,7 @@
   ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
   :init
-  (+map :infix "g"
+  (+map! :infix "g"
     "f" '(nil :wk "forge")
     "ff" #'forge-dispatch
     "fc" #'forge-create-post
@@ -89,7 +89,7 @@
   :hook (vc-dir-mode  . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :init
-  (+map "gs" #'diff-hl-stage-current-hunk)
+  (+map! "gs" #'diff-hl-stage-current-hunk)
   :custom
   (diff-hl-draw-borders nil)
   :config
@@ -99,7 +99,7 @@
 (use-package git-timemachine
   :straight t
   :init
-  (+map "gt" #'git-timemachine-toggle)
+  (+map! "gt" #'git-timemachine-toggle)
   :custom
   (git-timemachine-show-minibuffer-details t))
 
@@ -135,7 +135,7 @@
 (use-package smerge-mode
   :straight t
   :init
-  (+map "gm" '(+smerge-hydra/body :wk "sMerge"))
+  (+map! "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
   (defhydra +smerge-hydra (:hint nil
                                  :pre (if (not smerge-mode) (smerge-mode 1))
@@ -185,7 +185,7 @@
   (defconst +repo-available-p (executable-find "repo"))
   :when +repo-available-p
   :init
-  (+map "gr" #'repo-status))
+  (+map! "gr" #'repo-status))
 
 
 (provide 'me-vc)

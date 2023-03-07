@@ -39,14 +39,14 @@
   :custom
   (ein:output-area-inlined-images t)
   :init
-  (+map :infix "o"
+  (+map! :infix "o"
     "j" '(nil :wk "ein")
     "jr" #'ein:run
     "jl" #'ein:login
     "jf" #'ein:file-open
     "jn" #'ein:notebook-open)
   :config
-  (+map-local :keymaps 'ein:ipynb-mode-map
+  (+map-local! :keymaps 'ein:ipynb-mode-map
     "o" #'ein:process-find-file-callback
     "O" #'ein:process-open-notebook
     "r" #'ein:gat-run-remote
@@ -97,7 +97,7 @@
        (+octave-eval-last-sexp)
        (point)))
 
-    (+map-local :keymaps 'octave-mode-map
+    (+map-local! :keymaps 'octave-mode-map
       "e"  '(nil :wk "eval")
       "ee" #'+eros-octave-eval-last-sexp)))
 

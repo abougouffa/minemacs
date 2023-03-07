@@ -17,14 +17,14 @@
   (dirvish-use-header-line t) ; 'global make header line span all panes
   (dirvish-use-mode-line t)
   :init
-  (+map
+  (+map!
     ;; Open
     "o-" '(dirvish :wk "Dirvish")
     "oq" '(dirvish-quick-access :wk "Dirvish quick access")
     ;; Search
     "sd" '(dirvish-fd :wk "Dirvish fd"))
   :config
-  (+nvmap :keymaps 'dirvish-mode-map
+  (+nvmap! :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle
     "y" #'dirvish-yank-menu))
@@ -37,7 +37,7 @@
 (use-package treemacs
   :straight t
   :init
-  (+map
+  (+map!
     "op" '(treemacs :wk "Side panel"))
   :custom
   (treemacs-persist-file (concat minemacs-local-dir "treemacs/persist.el"))

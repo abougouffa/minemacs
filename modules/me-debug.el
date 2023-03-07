@@ -42,7 +42,7 @@
   :straight t
   :init
   (unless (memq 'me-lsp minemacs-modules)
-    (+map-local :keymaps '(c-mode-map c++-mode-map python-mode-map
+    (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
                            rust-mode-map sh-mode-map bash-ts-mode-map)
       "d" '(nil :wk "realgud")
       "dd" #'+realgud:start
@@ -61,7 +61,7 @@
   (defconst +objdump-available-p (executable-find "objdump"))
   :when +objdump-available-p
   :init
-  (+map-local :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
+  (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
     "D" #'disaster))
 
 

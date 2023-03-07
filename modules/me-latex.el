@@ -19,7 +19,7 @@
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
   :config
-  (+map-local :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+  (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "c" #'TeX-command-run-all
     "m" #'TeX-command-master
     "v" #'TeX-view)
@@ -49,7 +49,7 @@
   (bibtex-align-at-equal-sign t)
   (bibtex-text-indentation 20)
   :config
-  (+map-local :keymaps 'bibtex-mode-map
+  (+map-local! :keymaps 'bibtex-mode-map
     "l" #'bibtex-fill-entry
     "r" #'bibtex-reformat))
 
@@ -59,9 +59,9 @@
   :hook (LaTeX-mode . turn-on-reftex)
   :hook (reftex-toc-mode . reftex-toc-rescan)
   :config
-  (+map-local :keymaps 'reftex-mode-map
+  (+map-local! :keymaps 'reftex-mode-map
     ";" 'reftex-toc)
-  (+nvmap :keymaps 'reflex-toc-mode-map
+  (+nvmap! :keymaps 'reflex-toc-mode-map
     "j"   #'next-line
     "k"   #'previous-line
     "q"   #'kill-buffer-and-window

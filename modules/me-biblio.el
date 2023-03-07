@@ -13,7 +13,7 @@
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
   :config
-  (+map-local :keymaps 'org-mode-map
+  (+map-local! :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
 (use-package oc-csl
@@ -37,9 +37,9 @@
   (defconst +zotero-available-p (executable-find "zotero"))
   :when +zotero-available-p
   :init
-  (+map-local :keymaps 'org-mode-map
+  (+map-local! :keymaps 'org-mode-map
     "z" #'org-zotxt-mode)
-  (+map-local :keymaps 'markdown-mode-map
+  (+map-local! :keymaps 'markdown-mode-map
     "z" #'zotxt-citekey-mode))
 
 (use-package citar

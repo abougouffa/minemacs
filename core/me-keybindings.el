@@ -46,7 +46,7 @@
   (general-evil-setup t)
 
   ;; Global leader
-  (general-create-definer +minemacs--internal-map
+  (general-create-definer +minemacs--internal-map!
     ;; The order of states matters, the last is prioritized
     :states '(insert emacs visual normal)
     :keymaps 'override
@@ -54,14 +54,14 @@
     :global-prefix minemacs-global-leader-prefix)
 
   ;; Local leader
-  (general-create-definer +minemacs--internal-map-local
+  (general-create-definer +minemacs--internal-map-local!
     :states '(insert emacs visual normal)
     :keymaps 'override
     :prefix minemacs-localleader-key
     :global-prefix minemacs-global-mode-prefix)
 
   ;; Define the built-in global keybindings
-  (+minemacs--internal-map
+  (+minemacs--internal-map!
     ;; ====== Top level functions ======
     "SPC" '(execute-extended-command :wk "M-x")
     ">"   '(switch-to-next-buffer :wk "Next buffer")
@@ -196,10 +196,9 @@
     "p"   '(nil :wk "project"))
 
   ;; HACK This is a synchronization feature, providing `me-general-ready' tells
-  ;; the `+map', `+map-local', ... macros that `general' is ready and the
-  ;; definers `+minemacs--internal-map', `+minemacs--internal-map-key' and
-  ;; `+minemacs--internal-map-local' are available (See the `+map' macro
-  ;; definition in "elisp/+minemacs.el").
+  ;; the `+map!', `+map-local!', ... macros that `general' is ready and the
+  ;; definers `+minemacs--internal-map!', `+minemacs--internal-map-local!', ...
+  ;; are available (See the `+map!' macro definition in "elisp/+minemacs.el").
   (provide 'me-general-ready))
 
 (use-package hydra

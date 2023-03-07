@@ -60,7 +60,7 @@
   (eglot-sync-connect 0) ;; async, do not block
   (eglot-extend-to-xref t) ;; can be interesting!
   :init
-  (+map :infix "c"
+  (+map! :infix "c"
     "e"  '(nil :wk "eglot session")
     "ee" #'eglot
     "eA" #'+eglot-auto-enable)
@@ -85,7 +85,7 @@
   (when (fboundp #'eglot-inlay-hints-mode)
     (add-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode))
 
-  (+map :keymaps 'eglot-mode-map
+  (+map! :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer
     "d"  '(eglot-find-declaration :wk "Find declaration")
@@ -154,7 +154,7 @@ the children of class at point."
   :after consult eglot
   :demand t
   :config
-  (+map :keymaps 'eglot-mode-map
+  (+map! :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols"))
 
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
@@ -190,7 +190,7 @@ the children of class at point."
 (use-package apheleia
   :straight t
   :init
-  (+map "cff" #'apheleia-format-buffer)
+  (+map! "cff" #'apheleia-format-buffer)
   :config
   (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
   (dolist (alist '((cmake-mode . cmake-format)
@@ -205,14 +205,14 @@ the children of class at point."
   :straight t
   :hook (prog-mode . editorconfig-mode)
   :init
-  (+map
+  (+map!
     "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
     "cfe" #'editorconfig-format-buffer))
 
 (use-package clang-format
   :straight t
   :init
-  (+map :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
+  (+map! :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
 ;;; Modes
@@ -233,7 +233,7 @@ the children of class at point."
   :straight t
   :mode "\\.rs\\'"
   :config
-  (+map-local :keymaps 'rust-mode-map
+  (+map-local! :keymaps 'rust-mode-map
     "c" #'rust-compile
     "C" #'rust-compile-release
     "k" #'rust-check
@@ -260,7 +260,7 @@ the children of class at point."
   :custom
   (dumb-jump-selector 'completing-read)
   :init
-  (+map
+  (+map!
     "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
   ;; Use as xref backend
   (with-eval-after-load 'xref
@@ -293,7 +293,7 @@ the children of class at point."
 (use-package rainbow-mode
   :straight t
   :init
-  (+map :keymaps '(prog-mode-map conf-mode-map text-mode-map)
+  (+map! :keymaps '(prog-mode-map conf-mode-map text-mode-map)
     "tR" #'rainbow-mode))
 
 (use-package lua-mode

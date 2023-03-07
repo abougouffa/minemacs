@@ -14,8 +14,8 @@
   :custom
   (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
   :init
-  (+map "ts" #'spell-fu-mode)
-  (+nvmap "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
+  (+map! "ts" #'spell-fu-mode)
+  (+nvmap! "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
 
   (defvar +spell-excluded-faces-alist
     '((markdown-mode
@@ -74,7 +74,7 @@
   :straight (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
   :init
-  (+map-local :keymaps '(org-mode-map text-mode-map markdown-mode-map
+  (+map-local! :keymaps '(org-mode-map text-mode-map markdown-mode-map
                          tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     :infix "t"
     "b" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
@@ -158,11 +158,11 @@
   (defconst +sdcv-available-p (executable-find "sdcv"))
   :when +sdcv-available-p
   :init
-  (+map :infix "s"
+  (+map! :infix "s"
     "l" #'lexic-search-word-at-point
     "L" #'lexic-search)
   :config
-  (+map-local :keymaps 'lexic-mode-map
+  (+map-local! :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic
     "RET" #'lexic-search-word-at-point
     "a" #'outline-show-all

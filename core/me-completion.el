@@ -89,7 +89,7 @@
   (define-key minibuffer-local-map (kbd "C-r") #'consult-history)
   (define-key minibuffer-local-map (kbd "S-C-v") #'consult-yank-pop)
   (global-set-key (kbd "C-s") #'consult-line)
-  (+map
+  (+map!
     ;; buffer
     "bl"  #'consult-line
     "bb"  #'consult-buffer
@@ -121,7 +121,7 @@
     ;; help
     "hu"  #'consult-theme
     "hI"  #'consult-info)
-  (+map-local :keymaps 'org-mode-map
+  (+map-local! :keymaps 'org-mode-map
     "h"   #'consult-org-heading)
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
@@ -178,7 +178,7 @@
   :init
   (global-set-key [remap describe-bindings] #'embark-bindings)
   (setq prefix-help-command #'embark-prefix-help-command)
-  (+map "." #'embark-act))
+  (+map! "." #'embark-act))
 
 (use-package embark-consult
   :straight t

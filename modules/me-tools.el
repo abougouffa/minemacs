@@ -9,14 +9,14 @@
 (use-package tldr
   :straight t
   :init
-  (+map "ht" #'tldr)
+  (+map! "ht" #'tldr)
   :custom
   (tldr-enabled-categories '("common" "linux" "osx")))
 
 (use-package vterm
   :straight t
   :init
-  (+map
+  (+map!
     "ot" '(nil :wk "vterm")
     "otT" #'vterm)
   ;; Hide vterm install window
@@ -34,7 +34,7 @@
 (use-package multi-vterm
   :straight t
   :init
-  (+map
+  (+map!
     "ott" #'multi-vterm
     "otd" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
@@ -50,7 +50,7 @@
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
-  (+nvmap
+  (+nvmap!
     :keymaps 'vterm-mode-map
     ",c" #'multi-vterm
     ",n" #'multi-vterm-next
@@ -60,7 +60,7 @@
 (use-package docker
   :straight t
   :init
-  (+map "ok" #'docker))
+  (+map! "ok" #'docker))
 
 (unless (+emacs-features-p 'tree-sitter)
   ;; Emacs 29 comes with `dockerfile-ts-mode'
@@ -73,7 +73,7 @@
 (use-package pkgbuild-mode
   :straight t
   :config
-  (+map-local :keymaps 'pkgbuild-mode-map
+  (+map-local! :keymaps 'pkgbuild-mode-map
     "b" #'pkgbuild-makepkg
     "a" #'pkgbuild-tar
     "r" #'pkgbuild-increase-release-tag
@@ -85,7 +85,7 @@
 (use-package journalctl-mode
   :straight t
   :config
-  (+map-local :keymaps 'journalctl-mode-map
+  (+map-local! :keymaps 'journalctl-mode-map
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))
 

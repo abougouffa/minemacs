@@ -20,7 +20,7 @@
   (evil-respect-visual-line-mode t)
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
-  (+map
+  (+map!
     ;; buffer
     "bN" '(evil-buffer-new :wk "New buffer")
     ;; window
@@ -70,11 +70,11 @@
 (use-package evil-numbers
   :straight t
   :init
-  (+nmap
+  (+nmap!
     "g+" #'evil-numbers/inc-at-pt
     "g=" #'evil-numbers/inc-at-pt
     "g-" #'evil-numbers/dec-at-pt)
-  (+vmap
+  (+vmap!
     "g+" #'evil-numbers/inc-at-pt-incremental
     "g=" #'evil-numbers/inc-at-pt-incremental
     "g-" #'evil-numbers/dec-at-pt-incremental))
@@ -83,7 +83,7 @@
   :straight t
   :commands evilnc-comment-operator
   :init
-  (+nvmap "gc" #'evilnc-comment-operator))
+  (+nvmap! "gc" #'evilnc-comment-operator))
 
 (use-package evil-escape
   :straight t

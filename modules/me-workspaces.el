@@ -23,10 +23,10 @@
   (tabspaces-session-auto-restore t)
   (tabspaces-session-file (+directory-ensure (concat minemacs-local-dir "tabspaces/session.el")))
   :init
-  (+map :infix "q"
+  (+map! :infix "q"
     "t" #'tabspaces-save-session
     "T" #'tabspaces-restore-session)
-  (+map :infix "TAB"
+  (+map! :infix "TAB"
     "o" #'tabspaces-open-or-create-project-and-workspace
     "f" #'tabspaces-project-switch-project-open-file
     "d" #'tabspaces-close-workspace

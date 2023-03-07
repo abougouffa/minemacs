@@ -125,7 +125,7 @@ If doom-unicode-font is set, add it as preferred font for all unicode blocks."
 (use-package expand-region
   :straight t
   :init
-  (+vmap "v" #'er/expand-region))
+  (+vmap! "v" #'er/expand-region))
 
 (use-package goggles
   :straight t

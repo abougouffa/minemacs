@@ -8,7 +8,7 @@
 (use-package scad-mode
   :straight t
   :config
-  (+map-local :keymaps 'scad-mode-map
+  (+map-local! :keymaps 'scad-mode-map
     "p" #'scad-preview)
 
   (with-eval-after-load 'all-the-icons

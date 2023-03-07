@@ -8,7 +8,7 @@
 (use-package vundo
   :straight t
   :init
-  (+map "ou" #'vundo)
+  (+map! "ou" #'vundo)
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)

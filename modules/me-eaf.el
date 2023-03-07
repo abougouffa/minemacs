@@ -9,10 +9,10 @@
   (use-package eaf
     :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
     :init
-    (+map
+    (+map!
       "oo" '(eaf-open :wk "Open with EAF"))
     (with-eval-after-load 'mu4e
-      (+map-local
+      (+map-local!
         :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
         "h" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
         "o" '(eaf-open-browser :wy "Open URL (EAF)")))

@@ -5,7 +5,7 @@
   :straight t
   :hook (minemacs-lazy . global-emojify-mode)
   :init
-  (+map "ie" '(emojify-insert-emoji :wk "Emoji"))
+  (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))

@@ -9,7 +9,7 @@
   :straight t
   :mode "\\.csv\\'"
   :config
-  (+map-local :keymaps 'csv-mode-map
+  (+map-local! :keymaps 'csv-mode-map
     "r" #'+csv-rainbow
     "a" #'csv-align-fields
     "u" #'csv-unalign-fields
@@ -51,7 +51,7 @@
   :straight t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
   :config
-  (+map-local :keymaps 'json-mode-map
+  (+map-local! :keymaps 'json-mode-map
     "p" #'json-mode-show-path
     "t" #'json-toggle-boolean
     "d" #'json-mode-kill-path
@@ -66,7 +66,7 @@
   (graphviz-dot-view-command "xdot %s")
   (graphviz-dot-preview-extension "svg")
   :config
-  (+map-local :keymaps 'graphviz-dot-mode-map
+  (+map-local! :keymaps 'graphviz-dot-mode-map
     "p" #'graphviz-dot-preview
     "P" #'graphviz-dot-view
     "l" #'graphviz-turn-on-live-preview
@@ -114,7 +114,7 @@
                      (list keyword)
                    (all-completions sym-at-pt plantuml-kwdList))))))))
 
-  (+map-local :keymaps 'plantuml-mode-map
+  (+map-local! :keymaps 'plantuml-mode-map
     "p" #'plantuml-preview-buffer
     "P" #'plantuml-preview
     "d" `(,(+cmdfy!
@@ -127,7 +127,7 @@
   :straight t
   :mode "\\.d2\\'"
   :config
-  (+map-local :keymaps 'd2-mode-map
+  (+map-local! :keymaps 'd2-mode-map
      "cc" #'d2-compile
      "cf" #'d2-compile-file
      "cb" #'d2-compile-buffer

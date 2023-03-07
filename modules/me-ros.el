@@ -69,7 +69,7 @@
 (use-package ros
   :straight (:host github :repo "DerBeutlin/ros.el")
   :init
-  (+map :infix "o"
+  (+map! :infix "o"
     "r"  '(nil :wk "ros")
     "rr" '(+hydra-ros-main/body :wk "Hydra")
     "rs" '(ros-set-workspace :wk "Set workspace")

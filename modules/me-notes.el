@@ -8,7 +8,7 @@
 (use-package org-roam
   :straight t
   :init
-  (+map :infix "n"
+  (+map! :infix "n"
     "f" #'org-roam-node-find
     "r" #'org-roam-ref-find
     "i" #'org-roam-node-insert
@@ -17,14 +17,14 @@
 (use-package org-roam-ui
   :straight t
   :init
-  (+map "nR" #'org-roam-ui-open))
+  (+map! "nR" #'org-roam-ui-open))
 
 (use-package consult-org-roam
   :straight t
   :after org-roam
   :demand t
   :init
-  (+map :infix "n"
+  (+map! :infix "n"
     "s" #'consult-org-roam-search
     "l" #'consult-org-roam-forward-links
     "b" #'consult-org-roam-backlinks

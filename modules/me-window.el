@@ -82,7 +82,7 @@
      ("s" shrink-window)
      ("r" enlarge-window-horizontally))
 
-   (+map
+   (+map!
      :infix "w"
      "a" '(+window-adjust-size/body :wk "Adjust window size"))))
 

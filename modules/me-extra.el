@@ -16,7 +16,7 @@
 (use-package crux
   :straight t
   :init
-  (+map
+  (+map!
     "fo" #'crux-open-with
     "fU" #'crux-sudo-edit
     "fD" #'crux-delete-file-and-buffer

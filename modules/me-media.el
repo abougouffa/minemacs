@@ -11,7 +11,7 @@
   (defconst +mpv-available-p (executable-find "mpv"))
   :when +mpv-available-p
   :init
-  (+map :infix "o"
+  (+map! :infix "o"
     "v"  '(nil :wk "empv")
     "vp" '(empv-play :wk "Play")
     "vy" '(consult-empv-youtube :wk "Seach Youtube")

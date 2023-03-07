@@ -23,7 +23,7 @@
                                (visual-line-mode -1)
                                (display-line-numbers-mode -1)))
   :init
-  (+map "om" #'mu4e)
+  (+map! "om" #'mu4e)
   :custom
   (mu4e-confirm-quit nil)
   (mu4e-search-results-limit 1000)
@@ -51,9 +51,9 @@
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
   :config
-  (+nvmap :keymaps 'mu4e-view-mode-map
+  (+nvmap! :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
-  (+map-local :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+  (+map-local! :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
@@ -115,10 +115,10 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
   :config
-  (+nvmap :keymaps 'org-msg-edit-mode-map
+  (+nvmap! :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab
     "gg"  #'org-msg-goto-body)
-  (+map-local :keymaps 'org-msg-edit-mode-map
+  (+map-local! :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :wk "attach")
     "aa" #'org-msg-attach-attach
     "ad" #'org-msg-attach-delete

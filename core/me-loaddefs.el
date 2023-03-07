@@ -182,72 +182,72 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 ;;; Generated autoloads from ../elisp/+keybinding.el
 
-(autoload '+map "../elisp/+keybinding" "\
-A wrapper around `+minemacs--internal-map'.
+(autoload '+map! "../elisp/+keybinding" "\
+A wrapper around `+minemacs--internal-map!'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+map 'lisp-indent-function 'defun)
-(autoload '+map-local "../elisp/+keybinding" "\
-A wrapper around `+minemacs--internal-map-local'.
+(function-put '+map! 'lisp-indent-function 'defun)
+(autoload '+map-local! "../elisp/+keybinding" "\
+A wrapper around `+minemacs--internal-map-local!'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+map-local 'lisp-indent-function 'defun)
-(autoload '+nmap "../elisp/+keybinding" "\
+(function-put '+map-local! 'lisp-indent-function 'defun)
+(autoload '+nmap! "../elisp/+keybinding" "\
 A wrapper around `general-nmap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+nmap 'lisp-indent-function 'defun)
-(autoload '+vmap "../elisp/+keybinding" "\
+(function-put '+nmap! 'lisp-indent-function 'defun)
+(autoload '+vmap! "../elisp/+keybinding" "\
 A wrapper around `general-vmap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+vmap 'lisp-indent-function 'defun)
-(autoload '+mmap "../elisp/+keybinding" "\
+(function-put '+vmap! 'lisp-indent-function 'defun)
+(autoload '+mmap! "../elisp/+keybinding" "\
 A wrapper around `general-mmap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+mmap 'lisp-indent-function 'defun)
-(autoload '+imap "../elisp/+keybinding" "\
+(function-put '+mmap! 'lisp-indent-function 'defun)
+(autoload '+imap! "../elisp/+keybinding" "\
 A wrapper around `general-imap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+imap 'lisp-indent-function 'defun)
-(autoload '+emap "../elisp/+keybinding" "\
+(function-put '+imap! 'lisp-indent-function 'defun)
+(autoload '+emap! "../elisp/+keybinding" "\
 A wrapper around `general-emap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+emap 'lisp-indent-function 'defun)
-(autoload '+omap "../elisp/+keybinding" "\
+(function-put '+emap! 'lisp-indent-function 'defun)
+(autoload '+omap! "../elisp/+keybinding" "\
 A wrapper around `general-omap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+omap 'lisp-indent-function 'defun)
-(autoload '+rmap "../elisp/+keybinding" "\
+(function-put '+omap! 'lisp-indent-function 'defun)
+(autoload '+rmap! "../elisp/+keybinding" "\
 A wrapper around `general-rmap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+rmap 'lisp-indent-function 'defun)
-(autoload '+iemap "../elisp/+keybinding" "\
+(function-put '+rmap! 'lisp-indent-function 'defun)
+(autoload '+iemap! "../elisp/+keybinding" "\
 A wrapper around `general-iemap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+iemap 'lisp-indent-function 'defun)
-(autoload '+nvmap "../elisp/+keybinding" "\
+(function-put '+iemap! 'lisp-indent-function 'defun)
+(autoload '+nvmap! "../elisp/+keybinding" "\
 A wrapper around `general-nvmap'.
 It is deferred until `general' gets loaded and configured.
 
 (fn &rest ARGS)" nil t)
-(function-put '+nvmap 'lisp-indent-function 'defun)
+(function-put '+nvmap! 'lisp-indent-function 'defun)
 
 
 ;;; Generated autoloads from ../elisp/+minemacs.el

@@ -58,14 +58,14 @@
 (use-package macrostep
   :straight t
   :init
-  (+map-local :keymaps 'emacs-lisp-mode-map
+  (+map-local! :keymaps 'emacs-lisp-mode-map
     "m" '(macrostep-expand :wk "Expand macro")))
 
 (use-package macrostep-geiser
   :straight t
   :after geiser
   :init
-  (+map-local :keymaps '(scheme-mode-map racket-mode-map)
+  (+map-local! :keymaps '(scheme-mode-map racket-mode-map)
     "m" '(macrostep-geiser-expand-all :wk "Expand macro"))
   :config
   (macrostep-geiser-setup))
@@ -78,10 +78,10 @@
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-loaded ; prevent elisp-mode from being loaded too early
   :init
-  (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
     "p" #'check-parens)
   :config
-  (+map-local :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")
     "df"  'edebug-defun
     "dF"  'edebug-all-forms
@@ -111,7 +111,7 @@
     "cf"  #'elisp-byte-compile-file
     "cn"  #'emacs-lisp-native-compile-and-load
     "cb"  #'emacs-lisp-byte-compile-and-load)
-  (+map-local :keymaps '(edebug-mode-map)
+  (+map-local! :keymaps '(edebug-mode-map)
     "e"   '(nil :wk "eval")
     "ee"  'edebug-eval-last-sexp
     "eE"  'edebug-eval-expression
@@ -129,7 +129,7 @@
   :after elisp-mode minemacs-loaded
   :demand t
   :init
-  (+map :infix "he"
+  (+map! :infix "he"
     "d" #'elisp-demos-find-demo
     "D" #'elisp-demos-add-demo)
   (advice-add #'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
@@ -138,7 +138,7 @@
 (use-package helpful
   :straight t
   :init
-  (+map :keymaps 'emacs-lisp-mode-map
+  (+map! :keymaps 'emacs-lisp-mode-map
     :infix "h"
     "p" #'helpful-at-point
     "o" #'helpful-symbol

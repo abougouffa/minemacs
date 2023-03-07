@@ -23,7 +23,7 @@
   (global-set-key [remap find-tag] #'projectile-find-tag)
   (with-eval-after-load 'evil
     (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag))
-  (+map
+  (+map!
     ;; Project
     :infix "p"
     "a"  '(projectile-add-known-project :wk "Add")
@@ -85,7 +85,7 @@
 (use-package consult-projectile
   :straight t
   :init
-  (+map
+  (+map!
     ":"  '(consult-projectile-find-file :wk "Find file in project")
     ;; Buffer
     "bp" #'consult-projectile-switch-to-buffer

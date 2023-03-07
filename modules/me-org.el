@@ -40,16 +40,16 @@
   (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
   (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   :config
-  (+map-local :keymaps 'org-mode-map
+  (+map-local! :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
     "ll" #'org-insert-link
     "e"  #'org-export-dispatch
     "s"  #'org-edit-src-code)
-  (+map-local :keymaps 'org-src-mode-map
+  (+map-local! :keymaps 'org-src-mode-map
     "s" #'org-edit-src-save
     "q" #'org-edit-src-abort
     "e" #'org-edit-src-exit)
-  (+nmap :keymaps 'org-mode-map
+  (+nmap! :keymaps 'org-mode-map
     "RET" #'org-open-at-point)
 
   ;; Tectonic can be interesting, however, it don't work right now
@@ -247,7 +247,7 @@
 (use-package org-present
   :straight t
   :init
-  (+map "oP" :keymaps 'org-mode-map #'org-present)
+  (+map! "oP" :keymaps 'org-mode-map #'org-present)
   :config
   (setq org-present-text-scale 2.5)
 

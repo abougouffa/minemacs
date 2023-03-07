@@ -16,7 +16,7 @@
 (use-package writeroom-mode
   :straight t
   :init
-  (+map "tw" #'writeroom-mode)
+  (+map! "tw" #'writeroom-mode)
   (defvar +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'.")
   (defvar +writeroom-enable-mixed-pitch t
@@ -87,7 +87,7 @@
 (use-package mixed-pitch
   :straight t
   :init
-  (+map "tm" #'mixed-pitch-mode)
+  (+map! "tm" #'mixed-pitch-mode)
   :custom
   (mixed-pitch-variable-pitch-cursor t)
   :config
@@ -135,7 +135,7 @@
 (use-package focus
   :straight t
   :init
-  (+map "tF" #'focus-mode))
+  (+map! "tF" #'focus-mode))
 
 
 (provide 'me-ui)
