@@ -182,7 +182,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
     ;; `minemacs-theme' is set in user configuration, it is loaded here.
     (+load-theme)
 
-    (+log! "Setting scratch buffer content.")
+    (+log! "Filling scratch buffer content.")
     ;; Print load time, and a quote to *scratch*
     (with-current-buffer (get-scratch-buffer-create)
       (erase-buffer)
@@ -194,7 +194,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
       ;; Insert some quote from fortune when the command is available
       (when (executable-find "fortune")
         (insert (string-join
-                 (mapcar (lambda (l) (concat ";; " l))
+                 (mapcar (apply-partially #'concat ";; ")
                          (string-lines (shell-command-to-string "fortune")))
                  "\n"))
         (insert "\n;; ==============================\n"))
