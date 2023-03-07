@@ -13,7 +13,10 @@
 Can the BUFFER be viewed as a disassembled code with objdump.
 
 (fn &optional BUFFER)")
-(autoload '+binary-hexl-buffer-p "../elisp/+binary")
+(autoload '+binary-hexl-buffer-p "../elisp/+binary" "\
+Is the current buffer should be viewed using `hexl-mode'.
+
+(fn &optional BUFFER)")
 (autoload 'objdump-disassemble-mode "../elisp/+binary" "\
 Major mode for viewing executable files disassembled using objdump.
 
