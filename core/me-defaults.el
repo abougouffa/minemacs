@@ -315,10 +315,12 @@
                      (goto-char (point-min))
                      (search-forward "warning" nil t)))))
        (run-with-timer
-        2 nil
+        3 nil
         (lambda (b)
           (with-selected-window (get-buffer-window b)
-            (kill-buffer-and-window)))
+            (kill-buffer-and-window))
+          (unless (current-message)
+            (message "Compilation finished without warnings.")))
         buf))))
 
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
