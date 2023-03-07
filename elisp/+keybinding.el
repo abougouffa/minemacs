@@ -104,3 +104,11 @@ It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (general-nvmap ,@args)))
+
+;; Make old definitions obsolete, and make aliases for them to avoid breaking
+;; users configurations.
+(dolist (fn '(map map-local nmap vmap mmap imap emap omap rmap iemap nvmap))
+  (let ((new-fn (intern (format "+%s!" fn)))
+        (old-fn (intern (format "+%s" fn))))
+    (make-obsolete old-fn new-fn "2023-03-07")
+    (defalias old-fn new-fn)))
