@@ -23,6 +23,13 @@
   ;; Show in new window
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
 
+(use-package magit-todos
+  :straight t
+  :after magit
+  :demand t
+  :config
+  (magit-todos-mode 1))
+
 (use-package transient
   :straight t
   :config
