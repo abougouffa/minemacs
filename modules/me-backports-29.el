@@ -46,12 +46,6 @@ the updated value."
                           user-emacs-directory)
         native-comp-eln-load-path))
 
-(defalias 'native-comp-jit-compilation 'inhibit-automatic-native-compilation)
-
-(defalias 'string-split #'split-string)
-
-(defalias 'loaddefs-generate #'make-directory-autoloads)
-
 (defmacro with-memoization (place &rest code)
   "Return the value of CODE and stash it in PLACE.
 If PLACE's value is non-nil, then don't bother evaluating CODE
@@ -120,6 +114,12 @@ plain variables.  This means that `setopt' will execute any
       (warn "Value `%S' does not match type %s" value type)))
   (put variable 'custom-check-value (list value))
   (funcall (or (get variable 'custom-set) #'set-default) variable value))
+
+;; Aliases
+(defvaralias 'native-comp-jit-compilation 'native-comp-deferred-compilation)
+(defvaralias 'native-comp-jit-compilation-deny-list 'native-comp-deferred-compilation)
+(defalias 'string-split #'split-string)
+(defalias 'loaddefs-generate #'make-directory-autoloads)
 
 
 (provide 'me-backports-29)
