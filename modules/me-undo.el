@@ -12,13 +12,7 @@
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)
-  (vundo-glyph-alist
-   '((selected-node   . ?●)
-     (node            . ?○)
-     (vertical-stem   . ?│)
-     (branch          . ?├)
-     (last-branch     . ?╰)
-     (horizontal-stem . ?─))))
+  (vundo-glyph-alist vundo-unicode-symbols))
 
 (use-package undo-fu
   :straight t
