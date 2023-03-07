@@ -104,7 +104,12 @@ Toggle auto-deleting trailing whitespaces." t)
 Get the font faces at POS.
 
 (fn POS)" t)
-(register-definition-prefixes "../elisp/+emacs" '("+dir-locals--autoreload-"))
+(autoload '+screenshot-svg "../elisp/+emacs" "\
+Save a screenshot of the current frame as an SVG image.
+Saves to a temp file and puts the filename in the kill ring. If launched with a
+prefix or universal argument, it waits for a moment (defined by
+`+screenshot-delay') before taking the screenshot." t)
+(register-definition-prefixes "../elisp/+emacs" '("+dir-locals--autoreload-" "+screenshot-"))
 
 
 ;;; Generated autoloads from ../elisp/+io.el

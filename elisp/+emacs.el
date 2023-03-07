@@ -71,7 +71,7 @@ If ENABLE is non-nil, force enabling autoreloading."
     (message "+toggle-auto-whitespace-cleanup: Enabled.")
     (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
 
-;; From rougier/nano-emacs
+;; Adapted from: rougier/nano-emacs
 ;;;###autoload
 (defun +what-faces (pos)
   "Get the font faces at POS."
@@ -82,3 +82,26 @@ If ENABLE is non-nil, force enabling autoreloading."
                       (get-char-property pos 'face)
                       (plist-get (text-properties-at pos) 'face)))))
     (message "Faces: %s" faces)))
+
+(defcustom +screenshot-delay 5
+  "A delay to wait before taking the screenshot.
+Applicable only when calling `+screenshot-svg' with a prefix.")
+
+;; Inspired by: reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y
+;;;###autoload
+(defun +screenshot-svg ()
+  "Save a screenshot of the current frame as an SVG image.
+Saves to a temp file and puts the filename in the kill ring. If launched with a
+prefix or universal argument, it waits for a moment (defined by
+`+screenshot-delay') before taking the screenshot."
+  (interactive)
+  (if current-prefix-arg
+      (run-with-timer +screenshot-delay nil #'+screenshot-svg--take-screenshot)
+    (+screenshot-svg--take-screenshot)))
+
+(defun +screenshot-svg--take-screenshot ()
+  (let* ((filename (make-temp-file "emacs-" nil ".svg"))
+         (data (x-export-frames nil 'svg)))
+    (with-temp-file filename (insert data))
+    (kill-new filename)
+    (message "Screenshot saved to %s" filename)))
