@@ -231,7 +231,9 @@
     (define-key vertico-map (kbd "M-h") #'vertico-directory-up)))
 
 (use-package vertico-repeat
-  :hook (minibuffer-setup . vertico-repeat-save))
+  :hook (minibuffer-setup . vertico-repeat-save)
+  :init
+  (keymap-global-set "M-R" #'vertico-repeat))
 
 
 (provide 'me-completion)
