@@ -8,6 +8,9 @@
 ;; copy-and-paste from Emacs 29 with some adaptations, hence, it is licensed
 ;; with original Emacs GNU GPL-3.0 license.
 
+(when (>= emacs-major-version 29)
+  (user-error "This file should only be called from an Emacs 28.x"))
+
 (require 'wid-edit) ;; Needed by `setopt--set'
 
 (defun scratch-buffer ()
