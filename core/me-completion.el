@@ -233,7 +233,9 @@
 (use-package vertico-repeat
   :hook (minibuffer-setup . vertico-repeat-save)
   :init
-  (keymap-global-set "M-R" #'vertico-repeat))
+  ;; TODO: Use `compat' to provide `keymap-global-set'
+  (when (>= emacs-major-version 29)
+    (keymap-global-set "M-R" #'vertico-repeat)))
 
 
 (provide 'me-completion)
