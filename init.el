@@ -56,7 +56,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 
 (defun +load (&rest filename-parts)
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
-  (let ((filename (string-join filename-parts)))
+  (let ((filename (mapconcat #'identity filename-parts nil)))
     (if (file-exists-p filename)
         (load filename nil (not minemacs-verbose))
       (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
