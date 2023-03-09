@@ -246,24 +246,16 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
        (append
         '(me-defaults)
         (when (memq 'me-splash minemacs-core-modules) '(me-splash))
-        '(me-bootstrap me-gc)
+        '(me-bootstrap)
+        '(me-gc)
         minemacs-core-modules)))
 
-;; Load MinEmacs core modules
-(dolist (module minemacs-core-modules)
-  (+log! "Loading core module \"%s\"" module)
-  (let ((filename (concat minemacs-core-dir (format "%s.el" module))))
-    (if (file-exists-p filename)
-        (+load filename)
-      (+error! "Core module \"%s\" not found!" module))))
-
 ;; Load MinEmacs modules
-(dolist (module minemacs-modules)
-  (+log! "Loading module \"%s\"" module)
-  (let ((filename (concat minemacs-modules-dir (format "%s.el" module))))
-    (if (file-exists-p filename)
-        (+load filename)
-      (+error! "Module \"%s\" not found!" module))))
+(dolist (module-file (append
+                      (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) minemacs-core-modules)
+                      (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
+  (+log! "Loading module \"%s\"" module-file)
+  (+load module-file))
 
 ;; Write user custom variables to separate file instead of "init.el"
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
