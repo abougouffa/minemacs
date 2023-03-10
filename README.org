@@ -50,6 +50,14 @@ directory:
 This repository contains skeleton files for [[file:skel/modules.el][modules.el]] and [[file:skel/config.el][config.el]] (under
 [[file:skel][skel/]]).
 
+MinEmacs provides also some advanced customization files.
+
+1. The =~/.minemacs.d/early-config.el= file is loaded at the end of =early-init.el=,
+   you can use it to set up some early stuff.
+2. The =~/.minemacs.d/init-tweaks.el= file is loaded at an early stage of the
+   =init.el= file. You can use it to do some useful stuff before MinEmacs
+   starts to customize packages and load modules.
+
 *** Environment variables
 You can customize MinEmacs' behavior via some environment variables.
 
