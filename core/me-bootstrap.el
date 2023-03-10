@@ -19,7 +19,8 @@
 
 ;; TEMP: The "master" branch of straight.el uses the old variable names, so we
 ;; make sure to provide them otherwise it will fail to load.
-(when (boundp 'native-comp-jit-compilation)
+(when (and (not (boundp 'native-comp-deferred-compilation))
+           (boundp 'native-comp-jit-compilation))
   (defvaralias 'native-comp-deferred-compilation 'native-comp-jit-compilation)
   (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
 
