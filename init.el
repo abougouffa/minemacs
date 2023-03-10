@@ -78,6 +78,12 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 (when (< emacs-major-version 29)
   (+load minemacs-modules-dir "me-backports-29.el"))
 
+;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
+(let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
+  (when (file-exists-p user-init-tweaks)
+    (+log! "Loading user's init tweaks from \"%s\"" user-init-tweaks)
+    (+load user-init-tweaks)))
+
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
  ;; option or when the environment variable "$MINEMACS_DEBUG" is defined (see
@@ -103,8 +109,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 ;; Add some of MinEmacs' directories to `load-path'.
-(dolist (path (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir))
-  (add-to-list 'load-path path))
+(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) load-path))
 
 (defun minemacs-generate-loaddefs ()
   "Generate MinEmacs' loaddefs file."
