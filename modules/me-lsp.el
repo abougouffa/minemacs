@@ -36,14 +36,17 @@
     "l"  '(nil :wk "lsp session")
     "ll" #'lsp
     "lA" #'+lsp-auto-enable)
-  (defvar +lsp-auto-enable-modes
+  (defcustom +lsp-auto-enable-modes
     '(c++-mode c++-ts-mode c-mode c-ts-mode
       python-mode python-ts-mode
       rust-mode cmake-mode
       js-mode js-ts-mode typescript-mode typescript-ts-mode
-      json-mode json-ts-mode js-json-mode))
+      json-mode json-ts-mode js-json-mode)
+    "Modes for which LSP-mode can be automatically enabled by `+lsp-auto-enable'."
+    :type '(repeat symbol))
   :config
   (defun +lsp-auto-enable ()
+    "Auto-enable LSP-mode in configured modes in `+lsp-auto-enable-modes'."
     (interactive)
     (dolist (mode +lsp-auto-enable-modes)
       (let ((hook (intern (format "%s-hook" mode))))
