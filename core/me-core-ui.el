@@ -127,7 +127,7 @@ Useful for keeping track of the enabled theme."
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
   :config
-  ;; FIX Add some padding to the right
+  ;; HACK: Add some padding to the right
   (doom-modeline-def-modeline 'main
     '(bar workspace-name window-number modals matches follow buffer-info
       remote-host buffer-position word-count parrot selection-info)
