@@ -179,6 +179,7 @@
     "h"   '(nil :wk "help")
     "hi"  #'info
     "hg"  #'general-describe-keybindings
+    "hs"  #'+screenshot-svg
     "he"  '(nil :wk "elisp/emacs")
     "hes" #'elisp-index-search
     "hem" #'info-emacs-manual
