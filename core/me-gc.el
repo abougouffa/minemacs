@@ -18,7 +18,7 @@
   ;; The default `gcmh's 1GB is probably too high. We set it to 256MB on 64bit
   ;; systems, or 16MB on 32bit ones.
   (gcmh-high-cons-threshold
-   (* 1024 1024 (if (memq sys/arch '(x86_64 amd64 aarch64)) 256 16))))
+   (* 1024 1024 (if (string-suffix-p "64" (symbol-name sys/arch)) 256 16))))
 
 
 (provide 'me-gc)
