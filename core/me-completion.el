@@ -138,8 +138,9 @@
            (car (string-lines thing))
          thing))))
 
-  ;; TWEAK Fill the `initial' query of `consult' commands from `thing-at-point'.
-  ;; NOTE Some `consult' commands have slightly different signature, the
+  ;; TWEAK: Fill the `initial' query of `consult' commands from
+  ;; `thing-at-point'.
+  ;; NOTE: Some `consult' commands have slightly different signature, the
   ;; `initial' argument can come first in some cases (like `consult-line') or
   ;; second in some other cases (like `condult-grep'). These two advices are
   ;; added to such family of commands so it is filled in the right place.

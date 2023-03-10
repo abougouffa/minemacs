@@ -14,8 +14,8 @@
   (gdb-restore-window-configuration-after-quit t)
   (gdb-thread-buffer-verbose-names nil)
   (gdb-window-configuration-directory (+directory-ensure (concat minemacs-local-dir "gdb/")))
-  (gdb-max-source-window-count 1) ; IDEA maybe increase it!
-  (gdb-display-io-nopopup nil) ; IDEA maybe change it!
+  (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
+  (gdb-display-io-nopopup nil) ; IDEA: maybe change it!
   :config
   ;; Add an overlay for the current line (mimics dap-mode)
   (defvar +gud-overlay
@@ -43,7 +43,7 @@
   :init
   (unless (memq 'me-lsp minemacs-modules)
     (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
-                           rust-mode-map sh-mode-map bash-ts-mode-map)
+                            rust-mode-map sh-mode-map bash-ts-mode-map)
       "d" '(nil :wk "realgud")
       "dd" #'+realgud:start
       "dh" #'+realgud-hydra/body)))

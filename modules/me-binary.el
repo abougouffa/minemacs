@@ -7,8 +7,8 @@
 
 ;; +binary-* are autoloaded
 (+deferred!
- ;; BUG Loading continuously on `dirvish'.
- ;; BUG Showing up randomly on `tramp' files.
+ ;; BUG: Loading continuously on `dirvish'.
+ ;; BUG: Showing up randomly on `tramp' files.
  (setq +binary-objdump-enable nil)
  (+binary-setup-modes))
 

@@ -35,7 +35,7 @@
 
 (use-package general
   :straight t
-  ;; PERF Loading `general' early make Emacs very slow on startup
+  ;; PERF: Loading `general' early make Emacs very slow on startup
   :after minemacs-loaded
   :demand t
   :config
@@ -170,7 +170,7 @@
     "cf"  '(nil :wk "format buffer")
 
     ;; ====== Workspaces ======
-    "r"   '(nil :wk "workspace") ;; TODO (use tab-bar-mode and tab-line-mode)
+    "r"   '(nil :wk "workspace") ;; TODO: use tab-bar-mode and tab-line-mode
 
     ;; ====== Notes ======
     "n"   '(nil :wk "notes")
@@ -196,7 +196,7 @@
     ;; ====== Project ======
     "p"   '(nil :wk "project"))
 
-  ;; HACK This is a synchronization feature, providing `me-general-ready' tells
+  ;; HACK: This is a synchronization feature, providing `me-general-ready' tells
   ;; the `+map!', `+map-local!', ... macros that `general' is ready and the
   ;; definers `+minemacs--internal-map!', `+minemacs--internal-map-local!', ...
   ;; are available (See the `+map!' macro definition in "elisp/+minemacs.el").

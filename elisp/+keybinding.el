@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; PERF+HACK At some point, MinEmacs startup become too slow, specially when
+;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
 ;; initializing `general' and `evil'. After trying several configurations, I
 ;; figured out that deferring `general' solves the issue. However, deferring
 ;; `general' means that we cannot define the keybindings when loading other

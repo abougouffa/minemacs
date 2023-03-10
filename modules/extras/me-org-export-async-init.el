@@ -4,10 +4,10 @@
 ;; asynchronously. This will set the modules list to the minimal required to
 ;; export Org documents.
 
-;; BUG For some reason, exporting in background can fail with this error: (error
-;; "Odd length text property list"), in such case, you can remove the Org cache
-;; directory and retry again (rm -rf ~/.emacs.d/local/cache/org/)
-;; (https://github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814)
+;; BUG: For some reason, exporting in background can fail with this error:
+;; (error "Odd length text property list"), in such case, you can remove the Org
+;; cache directory and retry again: rm -rf ~/.emacs.d/local/cache/org/ (see
+;; github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814)
 
 (message "Using MinEmacs' \"me-org-export-async-init.el\" as init file.")
 
