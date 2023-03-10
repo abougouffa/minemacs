@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-org-extras.el --- Extra tweaks Org mode -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defvar +org-responsive-image-percentage 0.4)
 (defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)

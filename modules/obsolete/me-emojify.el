@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-emojify.el --- Emojify integration for Emacs28 and earlier -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (use-package emojify

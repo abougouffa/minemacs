@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-mu4e-gmail.el --- Better integration of mu4e with Gmail accounts -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Adapted form Doom Emacs
 

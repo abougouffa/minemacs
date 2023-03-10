@@ -1,4 +1,10 @@
-;; -*- lexical-binding: t; -*-
+;;; me-mu4e-ui.el --- Better UI for mu4e -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+;; Most of this has been inspired by Doom Emacs
 
 (defvar +mu4e-main-bullet "⦿"
   "Prefix to use instead of \"  *\" in the mu4e main view.

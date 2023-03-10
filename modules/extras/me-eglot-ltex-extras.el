@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-eglot-ltex-extras.el --- Extra functionality for Eglot+LTeX-LS -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; This file provides a hackish implementation of some of `ltex-ls' commands
 ;; which needs to be handled by the client.

@@ -1,6 +1,6 @@
 ;; me-vars.el --- MinEmacs -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022  Abdelhak Bougouffa
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 

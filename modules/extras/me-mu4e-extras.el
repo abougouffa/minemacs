@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-mu4e-extras.el --- Extra tweaks and utilities for mu4e -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defvar +mu4e-account-aliases nil
   "Per-account alias list.")

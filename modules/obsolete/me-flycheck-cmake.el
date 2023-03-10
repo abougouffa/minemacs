@@ -1,4 +1,8 @@
-;;; me-flycheck-cmake.el --- flycheck integration for CMake-based projects
+;;; me-flycheck-cmake.el --- flycheck integration for CMake-based projects -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (require 'json)

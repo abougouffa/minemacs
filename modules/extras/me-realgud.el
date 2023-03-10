@@ -1,6 +1,10 @@
-;; -*- lexical-binding: t; -*-
+;;; me-realgud.el --- Extra commands for RealGUD with better evil integration -*- lexical-binding: t; -*-
 
-;; Adapted from Doom Emacs
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
+;; Evil integraion has been adopted from Doom Emacs
 ;; https://github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
 
 ;;;###autoload(autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)

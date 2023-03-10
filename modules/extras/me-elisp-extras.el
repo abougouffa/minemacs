@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-elisp-extras.el --- Extra font locks and enhancements for Elisp -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
 (defvar +emacs-lisp--face nil)

@@ -1,5 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; me-gdb.el --- Extra tweaks for GDB, and opt-in emacs-gdb integration -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defun +gdb--set-layout (&optional c-buffer)
   ;; from http://stackoverflow.com/q/39762833/846686

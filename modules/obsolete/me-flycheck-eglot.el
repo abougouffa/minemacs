@@ -1,5 +1,9 @@
 ;;; me-flycheck-eglot.el --- Hacky eglot support in flycheck (from Doom Emacs) -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 ;;; Commentary:
 ;; This file sets up flycheck so that, when eglot receives a publishDiagnostics
 ;; method from the server, flycheck updates the reports.

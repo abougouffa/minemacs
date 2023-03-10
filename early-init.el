@@ -1,5 +1,9 @@
 ;;; early-init.el --- MinEmacs early initialization tweaks -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+
 (setq
  ;; Do not make installed packages available when Emacs starts
  package-enable-at-startup nil
