@@ -247,6 +247,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
         '(me-defaults)
         (when (memq 'me-splash minemacs-core-modules) '(me-splash))
         '(me-bootstrap)
+        (when (< emacs-major-version 29) '(me-compat))
         '(me-gc)
         minemacs-core-modules)))
 
