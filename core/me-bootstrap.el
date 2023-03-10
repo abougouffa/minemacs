@@ -14,8 +14,8 @@
  straight-repository-branch "master"
  ;; Do not clone all project history, just the last worktree (--depth 1)
  straight-vc-git-default-clone-depth '(1 single-branch)
- ;; I don't modify packages installed from straight, so don't wast me time
- straight-check-for-modifications nil)
+ ;; Do not slow startup by checking for package modifs, check only on demand
+ straight-check-for-modifications '(check-on-save find-when-checking))
 
 ;; TEMP: The "master" branch of straight.el uses the old variable names, so we
 ;; make sure to provide them otherwise it will fail to load.
