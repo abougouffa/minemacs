@@ -4,17 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-;; Check if Emacs version is supported
-(let ((supported-version "28.2")
-      (minimum-version "28.0.50"))
-  (when (version< emacs-version supported-version)
-    (if (version<= minimum-version emacs-version)
-        (message
-         "Warning: MinEmacs requires v%s or higher. \
-You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
-         supported-version emacs-version)
-      (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
-             emacs-version supported-version))))
+;; Check if Emacs version is supported. You can define the
+;; $MINEMACS_IGNORE_VERSION_CHECK environment variable to ignore this check.
+;; This can be useful if you are stuck with an old Emacs version and you've
+;; incrementally implemented the new Emacs routines MinEmacs needs in your
+;; "init-tweaks.el".
+(let ((min-ver "28.0"))
+  (when (and (version< emacs-version min-ver) (not (getenv "MINEMACS_IGNORE_VERSION_CHECK")))
+    (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
+           emacs-version min-ver)))
 
 ;; HACK: Setting `file-name-handler-alist' to nil (or a useful yet simpler
 ;; value) should boost startup time. For more info, take a look at:
