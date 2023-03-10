@@ -65,14 +65,17 @@
     "e"  '(nil :wk "eglot session")
     "ee" #'eglot
     "eA" #'+eglot-auto-enable)
-  (defvar +eglot-auto-enable-modes
+  (defcustom +eglot-auto-enable-modes
     '(c++-mode c++-ts-mode c-mode c-ts-mode
       python-mode python-ts-mode
       rust-mode cmake-mode
       js-mode js-ts-mode typescript-mode typescript-ts-mode
-      json-mode json-ts-mode js-json-mode))
+      json-mode json-ts-mode js-json-mode)
+    "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
+    :type '(repeat symbol))
   :config
   (defun +eglot-auto-enable ()
+    "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
     (interactive)
     (dolist (mode +eglot-auto-enable-modes)
       (let ((hook (intern (format "%s-hook" mode))))
