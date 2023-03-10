@@ -9,8 +9,9 @@
  straight-base-dir minemacs-local-dir
  ;; Add Emacs version to the build directory to avoid problems
  straight-build-dir (format "build-%s" emacs-version)
- ;; Use the "develop" branch on straight.el's repo
- straight-repository-branch "develop"
+ ;; TEMP: Use the "master" branch on straight.el's repo (switch back to
+ ;; "develop" when issue #28 gets fixed in upstream)
+ straight-repository-branch "master"
  ;; Do not clone all project history, just the last worktree (--depth 1)
  straight-vc-git-default-clone-depth '(1 single-branch)
  ;; I don't modify packages installed from straight, so don't wast me time
