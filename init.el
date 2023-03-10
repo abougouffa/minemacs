@@ -230,7 +230,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; Load fonts early (they are read from the default `minemacs-default-fonts').
 (+set-fonts)
 
-;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
+;; NOTE Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
 ;; This GCMH minimizes GC interference with the activity by using a high GC
 ;; threshold during normal use, then when Emacs is idling, GC is triggered and a
@@ -239,8 +239,12 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; startup time, but needs to be set down to a more reasonable value after Emacs
 ;; gets loaded. The use of `gcmh-mode' ensures reverting this value so we don't
 ;; need to do it manually.
-;; NOTE: Ensure the `me-defaults', `me-splash' and `me-bootstrap' modules are in
-;; the right order.
+;; NOTE Ensure the `me-defaults', `me-splash', `me-bootstrap' and `me-compat'
+;; modules are in the right order. The `me-compat' should be loaded just after
+;; `me-bootstrap' once `straight' and `use-package' are set up. This enables us
+;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
+;; this can be useful when configuring the module's packages and adding new
+;; functionality.
 (setq minemacs-core-modules
       (delete-dups
        (append
