@@ -17,6 +17,12 @@
  ;; I don't modify packages installed from straight, so don't wast me time
  straight-check-for-modifications nil)
 
+;; TEMP: The "master" branch of straight.el uses the old variable names, so we
+;; make sure to provide them otherwise it will fail to load.
+(when (boundp 'native-comp-jit-compilation)
+  (defvaralias 'native-comp-deferred-compilation 'native-comp-jit-compilation)
+  (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
+
 ;; Bootstraping straight.el
 ;; See: github.com/radian-software/straight.el#bootstrapping-straightel
 (defvar bootstrap-version)
