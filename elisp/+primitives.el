@@ -134,6 +134,8 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
       (when mutate (set sym res)))
     res))
 
+;;; === Misc ===
+
 ;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
 ;;;###autoload
 (defun +reset-sym (sym)
@@ -153,3 +155,9 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   (while (memq (car-safe exp) '(quote function))
     (setq exp (cadr exp)))
   exp)
+
+;;;###autoload
+(defun +apply-partially-right (fun &rest args)
+  "Like `apply-partially', but applies the ARGS to the right of FUN."
+  (lambda (&rest args2)
+    (apply fun (append args2 args))))

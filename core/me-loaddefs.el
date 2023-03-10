@@ -444,6 +444,10 @@ Return EXP unquoted.
 (fn EXP)")
 (function-put '+unquote 'pure 't)
 (function-put '+unquote 'side-effect-free 't)
+(autoload '+apply-partially-right "../elisp/+primitives" "\
+Like `apply-partially', but applies the ARGS to the right of FUN.
+
+(fn FUN &rest ARGS)")
 (register-definition-prefixes "../elisp/+primitives" '("+serialized-symbols-directory"))
 
 
