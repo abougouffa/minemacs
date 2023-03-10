@@ -72,17 +72,15 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 (setq user-emacs-directory minemacs-local-dir)
 
 ;; HACK: Load Emacs 29 back ports for earlier Emacs versions. Note that I do
-;; only back port a very small number of the functions/variables that I use from
-;; Emacs29+ to be compatible with Emacs 28.2. If you need a complete forward
-;; compatibility, you can install and use the `compat' library.
+;; only back port a very small number of the functions/variables that I use at
+;; early stage from Emacs29+ to be compatible with Emacs 28.2. For any Emacs
+;; version less than 29, MinEmacs will enable the `me-compat' module and load it
+;; just after `me-bootstrap'. This module loads the `compat' package which
+;; provide several forward compatibility functions, it is loaded at an early
+;; stage to provide its functionality to the rest of the modules so we can use
+;; some new features when configuring them.
 (when (< emacs-major-version 29)
   (+load minemacs-modules-dir "me-backports-29.el"))
-
-;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
-(let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
-  (when (file-exists-p user-init-tweaks)
-    (+log! "Loading user's init tweaks from \"%s\"" user-init-tweaks)
-    (+load user-init-tweaks)))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
@@ -138,6 +136,12 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 
 ;; Then we load the loaddefs file
 (+load minemacs-loaddefs-file)
+
+;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
+(let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
+  (when (file-exists-p user-init-tweaks)
+    (+log! "Loading user's init tweaks from \"%s\"" user-init-tweaks)
+    (+load user-init-tweaks)))
 
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
 ;; the terminal's environment variables, which can be useful specially for
@@ -235,7 +239,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; Load fonts early (they are read from the default `minemacs-default-fonts').
 (+set-fonts)
 
-;; NOTE Ensure the `me-gc' module is in the core modules list. This module
+;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
 ;; This GCMH minimizes GC interference with the activity by using a high GC
 ;; threshold during normal use, then when Emacs is idling, GC is triggered and a
@@ -244,7 +248,7 @@ You are running Emacs v%s, this version should work BUT IT IS NOT TESTED."
 ;; startup time, but needs to be set down to a more reasonable value after Emacs
 ;; gets loaded. The use of `gcmh-mode' ensures reverting this value so we don't
 ;; need to do it manually.
-;; NOTE Ensure the `me-defaults', `me-splash', `me-bootstrap' and `me-compat'
+;; NOTE: Ensure the `me-defaults', `me-splash', `me-bootstrap' and `me-compat'
 ;; modules are in the right order. The `me-compat' should be loaded just after
 ;; `me-bootstrap' once `straight' and `use-package' are set up. This enables us
 ;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
