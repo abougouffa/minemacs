@@ -516,6 +516,16 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
 
 
+;;; Generated autoloads from ../modules/extras/me-dap-utils.el
+
+(autoload '+github-latest-release "../modules/extras/me-dap-utils" "\
+Get the latest release of OWNER/REPO. Strips the \"v\" at left.
+
+Fallback to FALLBACK-RELEASE when it can't get the last one.
+
+(fn OWNER REPO &optional FALLBACK-RELEASE)")
+
+
 ;;; Generated autoloads from me-defaults.el
 
 (register-definition-prefixes "me-defaults" '("+whitespace-auto-cleanup-modes"))

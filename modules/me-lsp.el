@@ -131,19 +131,24 @@
 
 (use-package dap-gdb-lldb
   :after dap-mode
-  :demand t)
+  :demand t
+  :custom
+  (dap-gdb-lldb-extension-version
+   (+github-latest-release "WebFreak001" "code-debug" "0.26.1")))
 
 (use-package dap-cpptools
   :after dap-mode
   :demand t
   :custom
-  (dap-cpptools-extension-version "1.13.8"))
+  (dap-cpptools-extension-version
+   (+github-latest-release "microsoft" "vscode-cpptools" "1.14.4")))
 
 (use-package dap-codelldb
   :after dap-mode
   :demand t
   :custom
-  (dap-codelldb-extension-version "1.8.1"))
+  (dap-codelldb-extension-version
+   (+github-latest-release "vadimcn" "codelldb" "1.9.0")))
 
 (use-package dap-python
   :after dap-mode
