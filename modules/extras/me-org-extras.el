@@ -121,7 +121,7 @@ Return an AST with newlines counts in each level."
     (put '+org-extras-inject-latex-fragment 'enabled nil)
     (message "Inject latex disabled")))
 
-;; Adapted from: https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
+;; Adapted from: github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
 (defun +org-lower-case-keywords-and-properties ()
   "Lower case Org keywords and properties and block identifiers.
 Example: \"#+TITLE\" -> \"#+title\"

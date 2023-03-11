@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; From: https://www.emacswiki.org/emacs/download/misc-cmds.el
+;; From: emacswiki.org/emacs/download/misc-cmds.el
 (defun +read-shell-file-command (command)
   "Prompt for shell COMMAND, using current buffer's file as default arg.
 If buffer is not associated with a file, you are prompted for a file.

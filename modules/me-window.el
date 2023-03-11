@@ -7,7 +7,7 @@
 
 ;; Window configuration for special windows.
 ;; This section inspired by the article "Demystifying Emacs’s Window Manager" found here:
-;; https://www.masteringemacs.org/article/demystifying-emacs-window-manager
+;; www.masteringemacs.org/article/demystifying-emacs-window-manager
 (+deferred!
  (add-to-list
   'display-buffer-alist
@@ -70,7 +70,7 @@
             (when (and proj (not (string= proj "-")))
              (format " %s" proj)))))))
 
- ;; Adapted from: https://github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
+ ;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
  (with-eval-after-load 'hydra
    (defhydra +window-adjust-size (:hint nil :foreign-keys warn)
      "

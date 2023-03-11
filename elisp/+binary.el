@@ -34,7 +34,7 @@
                       (buffer-string))))))))
 
 ;; A predicate for detecting binary files. Inspired by:
-;; https://emacs.stackexchange.com/questions/10277/make-emacs-automatically-open-binary-files-in-hexl-mode
+;; emacs.stackexchange.com/q/10277/37002)
 (defun +binary-buffer-p (&optional buffer)
   "Return whether BUFFER or the current buffer is binary.
 

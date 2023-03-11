@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 (defun +gdb--set-layout (&optional c-buffer)
-  ;; from http://stackoverflow.com/q/39762833/846686
+  ;; from stackoverflow.com/q/39762833/846686
   (set-window-dedicated-p (selected-window) nil) ;; unset dedicate state if needed
   (switch-to-buffer gud-comint-buffer)
   (delete-other-windows) ;; clean all

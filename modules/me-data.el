@@ -18,7 +18,7 @@
     "k" #'csv-kill-fields
     "t" #'csv-transpose)
 
-  ;; Adapted from: https://reddit.com/r/emacs/comments/26c71k/comment/chq2r8m
+  ;; Adapted from: reddit.com/r/emacs/comments/26c71k/comment/chq2r8m
   (defun +csv-rainbow (&optional separator)
     "Colorize CSV columns."
     (interactive (list (when current-prefix-arg (read-char "Separator: "))))

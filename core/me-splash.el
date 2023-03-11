@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 
-;; Adapted from: https://github.com/rougier/emacs-splash
+;; Adapted from: github.com/rougier/emacs-splash
 
 (setq inhibit-startup-screen t)
 (defvar minemacs-splash-buffer-name "*minemacs-splash*")

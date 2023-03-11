@@ -90,7 +90,7 @@ alist, to ensure correct results."
   ;; See [1] for the genesis of this method, which should really be
   ;; built in.
   ;;
-  ;; [1]: https://emacs.stackexchange.com/q/33892/12534
+  ;; [1]: emacs.stackexchange.com/q/33892/12534
   (if-let ((pair (if symbol (assq key alist) (assoc key alist))))
       (setcdr pair val)
     (push (cons key val) alist))
@@ -136,7 +136,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 
 ;;; === Misc ===
 
-;; See https://emacs.stackexchange.com/questions/3022/reset-custom-variable-to-default-value-programmatically0
+;; See: emacs.stackexchange.com/q/3022/37002
 ;;;###autoload
 (defun +reset-sym (sym)
   "Reset SYM to its standard value."

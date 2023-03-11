@@ -111,7 +111,7 @@
   (git-timemachine-show-minibuffer-details t))
 
 ;; Enforce git commit conventions.
-;; See https://chris.beams.io/posts/git-commit/
+;; See: chris.beams.io/posts/git-commit/
 (use-package git-commit
   :after magit
   :demand t

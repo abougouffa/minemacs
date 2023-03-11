@@ -35,7 +35,7 @@
        (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
      map))
 
-  ;; https://github.com/gabesoft/evil-mc/issues/70
+  ;; github.com/gabesoft/evil-mc/issues/70
   (add-hook
    'evil-mc-after-cursors-deleted
    (defun +evil-mc--fix-yank-h ()

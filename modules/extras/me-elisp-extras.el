@@ -7,7 +7,7 @@
 
 (defvar +emacs-lisp--face nil)
 
-;; Extracted from https://github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
+;; Extracted from github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
 (defun +emacs-lisp--highlight-vars-and-faces (end)
   "Match defined variables and functions.
 Functions are differentiated into special forms, built-in functions and
@@ -43,7 +43,7 @@ library/userland functions"
                       (throw 'matcher t)))))))
     nil))
 
-;; Taken from https://www.reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
+;; Taken from reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
 (defun +emacs-lisp--calculate-lisp-indent-a (&optional parse-start)
   "Add better indentation for quoted and backquoted lists."
   ;; This line because `calculate-lisp-indent-last-sexp` was defined with `defvar`

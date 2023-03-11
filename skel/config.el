@@ -126,7 +126,7 @@
 
 ;; Module: `me-media' -- Package: `empv'
 (with-eval-after-load 'empv
-  ;; Set the radio channels, you can get streams from https://www.radio-browser.info
+  ;; Set the radio channels, you can get streams from radio-browser.info
   (setq empv-radio-channels
         '(("El-Bahdja FM" . "http://webradio.tda.dz:8001/ElBahdja_64K.mp3")
           ("El-Chaabia" . "https://radio-dzair.net/proxy/chaabia?mp=/stream")
@@ -141,7 +141,7 @@
           ("FIP" . "http://icecast.radiofrance.fr/fip-hifi.aac")
           ("Beur FM" . "http://broadcast.infomaniak.ch/beurfm-high.aac")
           ("Skyrock" . "http://icecast.skyrock.net/s/natio_mp3_128k"))
-        ;; See https://docs.invidious.io/instances/
+        ;; See: docs.invidious.io/instances/
         empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1"))
 
 ;; Module: `me-ros' -- Package: `ros'

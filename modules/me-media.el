@@ -19,7 +19,7 @@
     "vs" '(empv-playtlist-save-to-file :wk "Save current playlist")
     "vD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
   :custom
-  ;; See https://docs.invidious.io/instances/
+  ;; See: docs.invidious.io/instances/
   (empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")
   (empv-audio-dir "~/Music")
   (empv-video-dir "~/Videos")

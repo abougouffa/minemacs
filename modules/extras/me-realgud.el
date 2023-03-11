@@ -5,7 +5,7 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; Evil integraion has been adopted from Doom Emacs
-;; https://github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
+;; github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
 
 ;;;###autoload(autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
 (evil-define-command +realgud:start (&optional path)

@@ -75,7 +75,7 @@
   :demand t
   :commands +org-roam-node-from-cite
   :config
-  ;; Modified form: https://jethrokuan.github.io/org-roam-guide/
+  ;; Modified form: jethrokuan.github.io/org-roam-guide/
   (defun +org-roam-node-from-cite (entry-key)
     (interactive (list (citar-select-ref)))
     (let ((title (citar-format--entry

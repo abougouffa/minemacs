@@ -69,8 +69,9 @@
 (use-package ccls
   :straight t
   :custom
-  ;; https://github.com/MaskRay/ccls/wiki/Customization#initialization-options
-  ;; https://github.com/MaskRay/ccls/blob/master/src/config.hh
+  ;; Customization of CCLS, see:
+  ;; github.com/MaskRay/ccls/wiki/Customization#initialization-options
+  ;; github.com/MaskRay/ccls/blob/master/src/config.hh
   (ccls-initialization-options
    '(:index (:comments 2
              :trackDependency 1

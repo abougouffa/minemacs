@@ -5,10 +5,10 @@
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
 ;; IDEA:
-;; - https://github.com/fritzgrabo/tab-bar-groups
-;; - https://github.com/fritzgrabo/project-tab-groups
-;; - https://github.com/florommel/bufferlo
-;; - https://www.rousette.org.uk/archives/using-the-tab-bar-in-emacs
+;; - github.com/fritzgrabo/tab-bar-groups
+;; - github.com/fritzgrabo/project-tab-groups
+;; - github.com/florommel/bufferlo
+;; - www.rousette.org.uk/archives/using-the-tab-bar-in-emacs
 
 
 (use-package tabspaces

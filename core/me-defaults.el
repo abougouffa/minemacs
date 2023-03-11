@@ -7,7 +7,7 @@
 ;; Inhibit startup message in echo area the brutal way!
 ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there
 ;; is only one unique way of setting it right!
-;; See: https://www.reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
+;; See: reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
 (fset 'display-startup-echo-area-message #'ignore)
 
 ;;; Why use anything but UTF-8?

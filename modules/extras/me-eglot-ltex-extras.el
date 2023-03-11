@@ -6,7 +6,7 @@
 
 ;; This file provides a hackish implementation of some of `ltex-ls' commands
 ;; which needs to be handled by the client.
-;; See: https://valentjn.github.io/ltex/ltex-ls/server-usage.html#commands
+;; See: valentjn.github.io/ltex/ltex-ls/server-usage.html#commands
 
 ;; This file implements these code actions:
 ;; * _ltex.addToDictionary

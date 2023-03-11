@@ -2,7 +2,7 @@
 
 
 ;; Should be configured in per-project basis, good documentation at:
-;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
   :straight t)
 

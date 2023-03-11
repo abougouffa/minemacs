@@ -29,7 +29,7 @@
   :config
   ;; evil-textobj-tree-sitter comes with no default keybindings,
   ;; Here is a keybindings (vaX) stolen from here:
-  ;; https://github.com/meain/dotfiles/blob/master/emacs/.config/emacs/init.el
+  ;; github.com/meain/dotfiles/blob/master/emacs/.config/emacs/init.el
   (define-key
    evil-outer-text-objects-map
    "m" (cons "evil-import"
