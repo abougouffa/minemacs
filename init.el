@@ -56,12 +56,7 @@
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (mapconcat #'identity filename-parts nil)))
     (if (file-exists-p filename)
-        (progn
-          ;; Equivalent to `+log!', which is not defined at this point.
-          (when (>= minemacs-msg-level 3)
-            (let ((inhibit-message t))
-              (message "[MinEmacs:Log] Loading file %s" filename)))
-          (load filename nil (not minemacs-verbose)))
+        (load filename nil (not minemacs-verbose))
       (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 ;; HACK: Most core and third-party packages depends on the
@@ -146,7 +141,6 @@
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
 (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
   (when (file-exists-p user-init-tweaks)
-    (+log! "Loading user's init tweaks from \"%s\"" user-init-tweaks)
     (+load user-init-tweaks)))
 
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
