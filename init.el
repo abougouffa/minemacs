@@ -56,7 +56,12 @@
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (mapconcat #'identity filename-parts nil)))
     (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose))
+        (progn
+          ;; Equivalent to `+log!', which is not defined at this point.
+          (when (>= minemacs-msg-level 3)
+            (let ((inhibit-message t))
+              (message "[MinEmacs:Log] Loading file %s" filename)))
+          (load filename nil (not minemacs-verbose)))
       (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 ;; HACK: Most core and third-party packages depends on the
@@ -231,7 +236,6 @@
   ;; The modules.el file can override minemacs-modules and minemacs-core-modules
   (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
     (when (file-exists-p user-conf-modules)
-      (+log! "Loading modules file from \"%s\"" user-conf-modules)
       (+load user-conf-modules))))
 
 ;; Load fonts early (they are read from the default `minemacs-default-fonts').
@@ -266,21 +270,18 @@
 (dolist (module-file (append
                       (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) minemacs-core-modules)
                       (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
-  (+log! "Loading module \"%s\"" module-file)
   (+load module-file))
 
 ;; Write user custom variables to separate file instead of "init.el"
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
 ;; Load the custom variables file if it exists
-(when (and custom-file (file-exists-p custom-file))
-  (+log! "Loafing user custom file from \"%s\"" custom-file)
+(when (file-exists-p custom-file)
   (+load custom-file))
 
 ;; Load user configuration from "$MINEMACSDIR/config.el" when available
 (let ((user-config (concat minemacs-config-dir "config.el")))
   (when (file-exists-p user-config)
-    (+log! "Loading user config file from \"%s\"" user-config)
     (+load user-config)))
 
 (+lazy-when! (featurep 'native-compile)
