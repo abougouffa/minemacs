@@ -301,6 +301,10 @@
        (concat (+directory-ensure minemacs-local-dir "x-win/")
                (file-name-nondirectory session-filename)))))
 
+  ;; Integration of `compile' with `savehist'
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'compile-history))
+
   (with-eval-after-load 'compile
     ;; Auto-close the compilation buffer if succeeded without warnings.
     ;; Adapted from: stackoverflow.com/q/11043004/3058915
