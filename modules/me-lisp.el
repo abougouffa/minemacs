@@ -16,10 +16,14 @@
           scheme-mode
           lisp-mode
           racket-mode
-          hy-mode) . parinfer-rust-mode))
+          hy-mode)
+         . parinfer-rust-mode))
 
-(use-package slime
+(use-package sly
   :straight t
+  :custom
+  (sly-mrepl-history-file-name (+directory-ensure minemacs-local-dir "sly/mrepl-history.el"))
+  (sly-net-coding-system 'utf-8-unix)
   :config
   (dolist (impl '("lisp"   ; Default Lisp implementation on the system
                   "clisp"  ; GNU CLISP
@@ -32,10 +36,44 @@
                   "sbcl")) ; Steel Bank Common Lisp
     (when (executable-find impl)
       (add-to-list
-       'slime-lisp-implementations
+       'sly-lisp-implementations
        `(,(intern impl) (,impl) :coding-system utf-8-unix))))
-  (setq inferior-lisp-program (caar (cdar slime-lisp-implementations))
-        slime-default-lisp (caar slime-lisp-implementations)))
+  (setq inferior-lisp-program (caar (cdar sly-lisp-implementations))
+        sly-default-lisp (caar sly-lisp-implementations))
+
+  (+map-local! :keymaps '(lisp-mode-map)
+    "s"  #'sly
+    "c"  '(nil :wk "compile")
+    "cc" #'sly-compile-file
+    "cC" #'sly-compile-and-load-file
+    "cd" #'sly-compile-defun
+    "cr" #'sly-compile-region
+    "g"  '(nil :wk "goto/find")
+    "gn" #'sly-goto-first-note
+    "gL" #'sly-load-file
+    "gn" #'sly-next-note
+    "gN" #'sly-previous-note
+    "gs" #'sly-stickers-next-sticker
+    "gS" #'sly-stickers-prev-sticker
+    "gN" #'sly-previous-note
+    "gd" #'sly-edit-definition
+    "gD" #'sly-edit-definition-other-window
+    "gb" #'sly-pop-find-definition-stack
+    "h"  '(nil :wk "help/info")
+    "hs" #'sly-describe-symbol
+    "hf" #'sly-describe-function
+    "hc" #'sly-who-calls
+    "hC" #'sly-calls-who
+    "hs" #'sly-who-calls
+    "hC" #'sly-calls-who
+    "hd" #'sly-disassemble-symbol
+    "hD" #'sly-disassemble-definition
+    "r"  '(nil :wk "repl")
+    "rr" #'sly-restart-inferior-lisp
+    "rc" #'sly-mrepl-clear-repl
+    "rs" #'sly-mrepl-sync
+    "rn" #'sly-mrepl-new
+    "rq" #'sly-quit-lisp))
 
 ;; Scheme
 (use-package geiser
@@ -58,7 +96,7 @@
 (use-package macrostep
   :straight t
   :init
-  (+map-local! :keymaps 'emacs-lisp-mode-map
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
 (use-package macrostep-geiser
