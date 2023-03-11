@@ -53,11 +53,27 @@
     "l" #'bibtex-fill-entry
     "r" #'bibtex-reformat))
 
-;; Adapted from Doom Emacs
+;; Inspired by Doom Emacs
 (use-package reftex
   :straight (:type built-in)
   :hook (LaTeX-mode . turn-on-reftex)
   :hook (reftex-toc-mode . reftex-toc-rescan)
+  :custom
+  ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
+  (reftex-cite-format
+   '((?a . "\\autocite[]{%l}")
+     (?b . "\\blockcquote[]{%l}{}")
+     (?c . "\\cite[]{%l}")
+     (?f . "\\footcite[]{%l}")
+     (?n . "\\nocite{%l}")
+     (?p . "\\parencite[]{%l}")
+     (?s . "\\smartcite[]{%l}")
+     (?t . "\\textcite[]{%l}"))
+   ;; This is needed when `reftex-cite-format' is set. See:
+   ;; superuser.com/a/1386206
+   (LaTeX-reftex-cite-format-auto-activate nil)
+   (reftex-plug-into-AUCTeX t)
+   (reftex-toc-split-windows-fraction 0.3))
   :config
   (+map-local! :keymaps 'reftex-mode-map
     ";" 'reftex-toc)
@@ -66,24 +82,6 @@
     "k"   #'previous-line
     "q"   #'kill-buffer-and-window
     "ESC" #'kill-buffer-and-window)
-  ;; Set up completion for citations and references.
-  ;; (set-company-backend! 'reftex-mode 'company-reftex-labels 'company-reftex-citations)
-  ;; Get RefTeX working with BibLaTeX, see
-  ;; http://tex.stackexchange.com/questions/31966/setting-up-reftex-with-biblatex-citation-commands/31992#31992.
-  (setq reftex-cite-format
-        '((?a . "\\autocite[]{%l}")
-          (?b . "\\blockcquote[]{%l}{}")
-          (?c . "\\cite[]{%l}")
-          (?f . "\\footcite[]{%l}")
-          (?n . "\\nocite{%l}")
-          (?p . "\\parencite[]{%l}")
-          (?s . "\\smartcite[]{%l}")
-          (?t . "\\textcite[]{%l}"))
-        reftex-plug-into-AUCTeX t
-        reftex-toc-split-windows-fraction 0.3
-        ;; This is needed when `reftex-cite-format' is set. See
-        ;; https://superuser.com/a/1386206
-        LaTeX-reftex-cite-format-auto-activate nil)
   (with-eval-after-load 'evil
     (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
 
