@@ -90,6 +90,9 @@
  ;; option or when the environment variable "$MINEMACS_DEBUG" is defined (see
  ;; `me-vars').
  debug-on-error minemacs-debug
+ ;; Decrese the warning type to `:error', unless we are running in verbose mode
+ warning-minimum-level (if minemacs-verbose :warning :error)
+ warning-minimum-log-level warning-minimum-level
  ;; Make byte compilation less noisy
  byte-compile-warnings minemacs-verbose
  byte-compile-verbose minemacs-verbose)
