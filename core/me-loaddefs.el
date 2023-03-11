@@ -134,9 +134,13 @@ Return a list of sub-directories in DIR.
 
 (fn DIR)")
 (autoload '+directory-ensure "../elisp/+io" "\
-Ensure PATH exists, if not create it, return PATH.
+Concatenate PATH-PARTS to construct a path and return it.
 
-(fn PATH)")
+Ensure the path exists, if not create it. The exact behavior is to create the
+parent directory if the path is a file, and if the path is a directory, create
+that directory.
+
+(fn &rest PATH-PARTS)")
 (autoload '+delete-this-file "../elisp/+io" "\
 Delete PATH.
 
