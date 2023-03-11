@@ -23,48 +23,48 @@
 
 (setq
  ;; ====== Default directories for builtin packages ======
- backup-directory-alist (list (cons "." (+directory-ensure (concat minemacs-local-dir "backup/"))))
- auto-save-list-file-prefix (+directory-ensure (concat minemacs-local-dir "auto-save/"))
+ backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/")))
+ auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/")
  abbrev-file-name (concat minemacs-local-dir "abbrev.el")
  project-list-file (concat minemacs-local-dir "project-list.el")
  tramp-backup-directory-alist backup-directory-alist
  tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/")
  tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el")
- url-configuration-directory (+directory-ensure (concat minemacs-local-dir "url/"))
+ url-configuration-directory (+directory-ensure minemacs-local-dir "url/")
  url-cookie-file (concat minemacs-local-dir "url/cookie.el")
  url-history-file (concat minemacs-local-dir "url/history.el")
  url-cache-directory (concat minemacs-cache-dir "url.el")
  save-place-file (concat minemacs-local-dir "save-place.el")
  savehist-file (concat minemacs-local-dir "savehist.el")
  org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el")
- org-persist-directory (+directory-ensure (concat minemacs-cache-dir "org/persist/"))
- org-publish-timestamp-directory (+directory-ensure (concat minemacs-cache-dir "org/publish/timestamps/"))
- org-preview-latex-image-directory (+directory-ensure (concat minemacs-cache-dir "org/preview/latex-image/"))
+ org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/")
+ org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/")
+ org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/")
  recentf-save-file (concat minemacs-local-dir "recentf-save.el")
- shared-game-score-directory (+directory-ensure (concat minemacs-local-dir "shared-game-score/"))
+ shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/")
  type-break-file-name (concat minemacs-local-dir "type-break.el")
  bookmark-default-file (concat minemacs-local-dir "bookmark.el")
  ede-project-placeholder-cache-file (concat minemacs-local-dir "ede-projects.el")
  kkc-init-file-name (concat minemacs-local-dir "kkc-init-file.el")
- erc-dcc-get-default-directory (+directory-ensure (concat minemacs-local-dir "erc/dcc/"))
- erc-log-channels-directory (+directory-ensure (concat minemacs-local-dir "erc/log-channels/"))
- eshell-directory-name (+directory-ensure (concat minemacs-local-dir "eshell/"))
+ erc-dcc-get-default-directory (+directory-ensure minemacs-local-dir "erc/dcc/")
+ erc-log-channels-directory (+directory-ensure minemacs-local-dir "erc/log-channels/")
+ eshell-directory-name (+directory-ensure minemacs-local-dir "eshell/")
  eshell-history-file-name (concat minemacs-local-dir "eshell/history.el")
  eshell-last-dir-ring-file-name (concat minemacs-local-dir "eshell/last-dir-ring.el")
  eshell-aliases-file (concat minemacs-local-dir "eshell/aliases")
  eshell-rc-script (concat minemacs-local-dir "eshell/rc")
  eshell-login-script (concat minemacs-local-dir "eshell/login")
  calc-settings-file (concat minemacs-local-dir "calc-settings.el")
- auto-insert-directory (+directory-ensure (concat minemacs-local-dir "auto-insert/"))
- image-dired-dir (+directory-ensure (concat minemacs-local-dir "image-dired/"))
+ auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")
+ image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/")
  image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el")
  image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")
  eudc-options-file (concat minemacs-local-dir "eudc-options.el")
- eww-bookmarks-directory (+directory-ensure (concat minemacs-local-dir "eww/bookmarks/"))
+ eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/")
  shadow-info-file (concat minemacs-local-dir "shadow/info.el")
  shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
- desktop-dirname (+directory-ensure (concat minemacs-local-dir "desktop/"))
+ desktop-dirname (+directory-ensure minemacs-local-dir "desktop/")
  desktop-path (list desktop-dirname)
 
  ;; ====== Default behavior ======
@@ -282,7 +282,7 @@
 (defcustom +whitespace-auto-cleanup-modes
   '(prog-mode conf-mode org-mode markdown-mode
     latex-mode tex-mode bibtex-mode)
-  "Enable auto whitespace cleanup before saving for these derived modes."
+  "Enable auto white space cleanup before saving for these derived modes."
   :group 'minemacs)
 
 ;; When MinEmacs is running in an asynchronous Org export context, there is no
