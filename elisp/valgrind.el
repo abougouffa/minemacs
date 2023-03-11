@@ -28,7 +28,10 @@ You might also use mode hooks to specify it in certain modes, like this:
 
 ;; History of compile commands.
 (defvar valgrind-history nil)
-(add-to-list 'savehist-additional-variables 'valgrind-history)
+
+;; Integration with `savehist'
+(with-eval-after-load 'savehist
+  (add-to-list 'savehist-additional-variables 'valgrind-history))
 
 ;;;###autoload
 (defun valgrind (command)
