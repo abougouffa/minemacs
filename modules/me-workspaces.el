@@ -21,7 +21,7 @@
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
   (tabspaces-session-auto-restore t)
-  (tabspaces-session-file (+directory-ensure (concat minemacs-local-dir "tabspaces/session.el")))
+  (tabspaces-session-file (+directory-ensure minemacs-local-dir "tabspaces/session.el"))
   :init
   (+map! :infix "q"
     "t" #'tabspaces-save-session

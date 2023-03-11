@@ -10,7 +10,7 @@
   :init
   (+map! "ox" #'xkcd)
   :custom
-  (xkcd-cache-dir (+directory-ensure (concat minemacs-local-dir "xkcd/")))
+  (xkcd-cache-dir (+directory-ensure minemacs-local-dir "xkcd/"))
   (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
   :config
   (+nvmap! :keymaps 'xkcd-mode-map

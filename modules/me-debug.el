@@ -13,7 +13,7 @@
   (gdb-debug-log-max 1024) ; default 128
   (gdb-restore-window-configuration-after-quit t)
   (gdb-thread-buffer-verbose-names nil)
-  (gdb-window-configuration-directory (+directory-ensure (concat minemacs-local-dir "gdb/")))
+  (gdb-window-configuration-directory (+directory-ensure minemacs-local-dir "gdb/"))
   (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
   (gdb-display-io-nopopup nil) ; IDEA: maybe change it!
   :config

@@ -297,8 +297,8 @@
     (advice-add
      #'emacs-session-filename :filter-return
      (defun +emacs-session-filename--in-subdir-a (session-filename)
-       "Put the SESSION-FILENAME in the \"x-win/\" subdirectory."
-       (concat (+directory-ensure (concat minemacs-local-dir "x-win/"))
+       "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+       (concat (+directory-ensure minemacs-local-dir "x-win/")
                (file-name-nondirectory session-filename)))))
 
   ;; Auto-close the compilation buffer if succeeded without warnings.

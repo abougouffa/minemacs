@@ -12,7 +12,7 @@
   :when +aspell-available-p
   :hook (text-mode . spell-fu-mode)
   :custom
-  (spell-fu-directory (+directory-ensure (concat minemacs-local-dir "spell-fu/")))
+  (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))
   :init
   (+map! "ts" #'spell-fu-mode)
   (+nvmap! "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"

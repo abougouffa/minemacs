@@ -10,8 +10,8 @@
   :after minemacs-loaded
   :demand t
   :custom
-  (projectile-cache-file (+directory-ensure (concat minemacs-cache-dir "projectile/cache.el")))
-  (projectile-known-projects-file (+directory-ensure (concat minemacs-local-dir "projectile/known-projects.el")))
+  (projectile-cache-file (+directory-ensure minemacs-cache-dir "projectile/cache.el"))
+  (projectile-known-projects-file (+directory-ensure minemacs-local-dir "projectile/known-projects.el"))
   (projectile-ignored-projects '("~/"))
   (projectile-auto-discover nil)
   (projectile-enable-caching (not noninteractive))

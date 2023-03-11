@@ -10,7 +10,7 @@
   :hook (minemacs-after-startup . dirvish-override-dired-mode)
   :custom
   (dirvish-attributes '(subtree-state all-the-icons file-size vc-state git-msg))
-  (dirvish-cache-dir (+directory-ensure (concat minemacs-cache-dir "dirvish/")))
+  (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
   (dirvish-fd-default-dir "~/")
