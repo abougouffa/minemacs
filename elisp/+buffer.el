@@ -26,6 +26,7 @@ BUFFER may be either a buffer or its name (a string)."
               (condition-case nil (delete-window win) (error nil))))))
     (when msgp (user-error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
+;; From: emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +region-to-buffer (start end buffer arg)
   "Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
@@ -62,6 +63,7 @@ With no prefix ARG (nil): `copy-to-buffer'.
          (prepend-to-buffer buffer start end))
         (t (copy-to-buffer buffer start end))))
 
+;; From: emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +region-to-file (start end filename arg)
   "With prefix arg, this is `append-to-file'.  Without, it is `write-region'.

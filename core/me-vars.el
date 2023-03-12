@@ -34,7 +34,7 @@
 1 - `+error!'
 2 - `+info!'
 3 - `+log!'
-4 - `+debug!' (reserved)"
+4 - `+debug!'"
   :group 'minemacs
   :type 'natnum)
 

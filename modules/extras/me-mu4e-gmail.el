@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
-;; Adapted form Doom Emacs
+;; Adapted form Doom Emacs with several improvements
 
 (defcustom +mu4e-gmail-accounts nil
   "Gmail accounts that do not contain \"gmail\" in address and maildir.
@@ -84,6 +84,14 @@ from the envelope of the current message."
   ;; Without it, refiling (archiving), trashing, and flagging (starring) email
   ;; won't properly result in the corresponding gmail action, since the marks
   ;; are ineffectual otherwise.
+  ;; NOTE: For these tricks to work properly, you need to:
+  ;; 1. Go to your Gmail settings;
+  ;; 2. In the "Forwarding and POP/IMAP" tab, go to "IMAP access" and make sure
+  ;;    you've selected:
+  ;;    - Under: "When I mark a message in IMAP as deleted:"
+  ;;       -> Choose: "Auto-Expunge off - Wait for the client to update the server."
+  ;;    - Under: "When a message is marked as deleted and expunged from the last visible IMAP folder:"
+  ;;       -> Choose: "Move the message to the Trash"
   (add-hook
    'mu4e-mark-execute-pre-hook
    (defun +mu4e-gmail--fix-flags-h (mark msg)
