@@ -88,31 +88,34 @@
   :config
   (setq
    plantuml-default-exec-mode
-   ;; Prefer the system executable
-   (if (executable-find "plantuml")
-       'executable
-     ;; Then, if a JAR exists, use it
-     (or (and (file-exists-p plantuml-jar-path) 'jar)
-         ;; otherwise, try to download a JAR in interactive mode
-         (and (not noninteractive) (plantuml-download-jar) 'jar)
-         ;; Fall back to server
-         'server)))
+   (cond
+    ;; Prefer the system's executable when available
+    ((executable-find plantuml-executable-path) 'executable)
+    ;; Then, use the JAR if it exists or try to download it
+    ((let ((ret (or (file-exists-p plantuml-jar-path)
+                    (and (not noninteractive) (ignore-errors (plantuml-download-jar))))))
+       (or (eq ret t) (and (stringp ret) (not (string-equal ret "Aborted.")))))
+     'jar)
+    ;; Fall back to the server configured at `plantuml-server-url'
+    'server))
 
-  ;; Add support fot capf, rather than the builtin `plantuml-complete-symbol'
+  ;; Define `capf' function, based on `plantuml-complete-symbol'
+  (defun +plantuml-completion-at-point ()
+    "Perform symbol-at-pt completion on word before cursor."
+    (when (derived-mode-p 'plantuml-mode) ; do not fire up on other modes
+      (let* ((end-pos (point))
+             (sym-at-pt (or (thing-at-point 'symbol) ""))
+             (max-match (try-completion sym-at-pt plantuml-kwdList)))
+        (unless (null max-match)
+          (list (- end-pos (length sym-at-pt))
+                end-pos
+                (if (eq max-match t)
+                    (list keyword)
+                  (all-completions sym-at-pt plantuml-kwdList)))))))
+
+  ;; Add support for `capf'
   (defun +plantuml-mode-setup ()
-    (add-to-list
-     'completion-at-point-functions
-     (defun +plantuml-complete-at-point ()
-       "Perform symbol-at-pt completion on word before cursor."
-       (let* ((end-pos (point))
-              (sym-at-pt (or (thing-at-point 'symbol) ""))
-              (max-match (try-completion sym-at-pt plantuml-kwdList)))
-         (unless (null max-match)
-           (list (- end-pos (length sym-at-pt))
-                 end-pos
-                 (if (eq max-match t)
-                     (list keyword)
-                   (all-completions sym-at-pt plantuml-kwdList))))))))
+    (add-to-list 'completion-at-point-functions #'+plantuml-completion-at-point))
 
   (+map-local! :keymaps 'plantuml-mode-map
     "p" #'plantuml-preview-buffer
@@ -128,16 +131,16 @@
   :mode "\\.d2\\'"
   :config
   (+map-local! :keymaps 'd2-mode-map
-     "cc" #'d2-compile
-     "cf" #'d2-compile-file
-     "cb" #'d2-compile-buffer
-     "cr" #'d2-compile-region
-     "cF" #'d2-compile-file-and-browse
-     "cB" #'d2-compile-buffer-and-browse
-     "cR" #'d2-compile-region-and-browse
-     "o"  #'d2-open-browser
-     "v"  #'d2-view-current-svg
-     "h"  #'d2-open-doc))
+    "cc" #'d2-compile
+    "cf" #'d2-compile-file
+    "cb" #'d2-compile-buffer
+    "cr" #'d2-compile-region
+    "cF" #'d2-compile-file-and-browse
+    "cB" #'d2-compile-buffer-and-browse
+    "cR" #'d2-compile-region-and-browse
+    "o"  #'d2-open-browser
+    "v"  #'d2-view-current-svg
+    "h"  #'d2-open-doc))
 
 
 (provide 'me-data)
