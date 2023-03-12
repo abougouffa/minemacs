@@ -90,7 +90,7 @@
     "bB"  #'consult-buffer-other-window
     "bF"  #'consult-buffer-other-frame
     "bmM" #'consult-bookmark
-    "bI"  #'consult-imenu
+    "bi"  #'consult-imenu
     "bO"  #'consult-outline
     ;; file
     "fr"  #'consult-recent-file
