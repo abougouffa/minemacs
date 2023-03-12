@@ -71,7 +71,9 @@
  ;; Inhibit startup message
  inhibit-startup-message t
  ;; Do not ring
- ring-bell-function 'ignore
+ ring-bell-function #'ignore
+ ;; Set to non-nil to flash!
+ visible-bell nil
  ;; Increase the large file threshold to 50 MiB
  large-file-warning-threshold (* 50 1024 1024)
  ;; Initial scratch message (will be overridden if "fortune" is installed)
@@ -83,13 +85,13 @@
  ;; Use y or n instead of yes or no
  use-short-answers t
  ;; Confirm before quitting
- confirm-kill-emacs 'y-or-n-p
+ confirm-kill-emacs #'y-or-n-p
  ;; Filter duplicate entries in kill ring
  kill-do-not-save-duplicates t
  ;; Save existing clipboard text into the kill ring before replacing it.
  save-interprogram-paste-before-kill t
  ;; Save files only in sub-directories of current project
- save-some-buffers-default-predicate 'save-some-buffers-root
+ save-some-buffers-default-predicate #'save-some-buffers-root
  ;; Use single space between sentences
  sentence-end-double-space nil
  ;; Move stuff to trash
@@ -136,9 +138,7 @@
                                (error read-process-output-max))
                            (* 1024 1024))
 
- ;; ====== Aesthetics ======
- ;; Set to non-nil to flash!
- visible-bell nil
+ ;; ====== Aesthetics and UI ======
  ;; Do force frame size to be a multiple of char size
  frame-resize-pixelwise t
  ;; Stretch cursor to the glyph width
@@ -191,7 +191,8 @@
  dired-kept-versions 5
 
  ;; ====== Scrolling ======
- ;; Do not adjust window-vscroll to view tall lines
+ ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
+ ;; emacs.stackexchange.com/a/28746
  auto-window-vscroll nil
  ;; Fast scrolling
  fast-but-imprecise-scrolling t
