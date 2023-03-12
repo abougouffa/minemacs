@@ -19,9 +19,7 @@
   :init
   (add-to-list
    'load-path
-   (concat
-    straight-base-dir
-    (format "straight/%s/corfu/extensions" straight-build-dir)))
+   (format "%sstraight/%s/corfu/extensions" straight-base-dir straight-build-dir))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
