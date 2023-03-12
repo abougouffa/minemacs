@@ -33,7 +33,7 @@
  url-configuration-directory (+directory-ensure minemacs-local-dir "url/")
  url-cookie-file (concat minemacs-local-dir "url/cookie.el")
  url-history-file (concat minemacs-local-dir "url/history.el")
- url-cache-directory (concat minemacs-cache-dir "url.el")
+ url-cache-directory (+directory-ensure minemacs-cache-dir "url/")
  save-place-file (concat minemacs-local-dir "save-place.el")
  savehist-file (concat minemacs-local-dir "savehist.el")
  org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el")
