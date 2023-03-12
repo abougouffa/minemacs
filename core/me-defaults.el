@@ -155,6 +155,8 @@
  widget-image-enable nil
  ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
  prettify-symbols-unprettify-at-point t
+ ;; Make tooltips last a bit longer (default 10s)
+ tooltip-hide-delay 20
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
