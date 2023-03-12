@@ -12,12 +12,12 @@
 
 ;;; Why use anything but UTF-8?
 (prefer-coding-system 'utf-8)
-(set-locale-environment "en_US.UTF-8")
-(set-language-environment "Latin-1")
 (set-charset-priority 'unicode)
 (set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
+;; I use mainly English and French. Hence the "Latin-1" which is suitable for
+;; major Western Europe languages.
+(set-language-environment "Latin-1")
+(set-locale-environment "en_US.UTF-8")
 ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
 (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
 
