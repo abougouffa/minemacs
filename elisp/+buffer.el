@@ -116,3 +116,28 @@ Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
             (yes-or-no-p (format "Buffer %s HAS BEEN MODIFIED.  Kill? "
                                  (buffer-name buffer))))
     (kill-buffer buffer)))
+
+;; From: emacswiki.org/emacs/download/misc-cmds.el
+;;;###autoload
+(defun +delete-extra-windows-for-buffer ()
+  "Delete all other windows showing the selected window's buffer."
+  (interactive)
+  (let* ((selwin (selected-window))
+         (buf (window-buffer selwin)))
+    (walk-windows
+     (lambda (ww)
+       (unless (eq ww selwin)
+         (when (eq (window-buffer ww) buf)
+           (delete-window ww))))
+     'NO-MINI 'THIS-FRAME)))
+
+;; From: emacswiki.org/emacs/download/misc-cmds.el
+;;;###autoload
+(defun +delete-window-maybe-kill-buffer ()
+  "Delete selected window.
+If no other window shows its buffer, kill the buffer too."
+  (interactive)
+  (let* ((selwin (selected-window))
+         (buf (window-buffer selwin)))
+    (delete-window selwin)
+    (unless (get-buffer-window buf 'visible) (kill-buffer buf))))
