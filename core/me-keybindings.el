@@ -16,21 +16,23 @@
   (which-key-sort-order 'which-key-key-order-alpha)
   (which-key-min-display-lines 3)
   (which-key-max-display-columns nil)
+  ;; Allow a key binding to be modified by multiple rules in
+  ;; `which-key-replacement-alist'
   (which-key-allow-multiple-replacements t)
   :config
-  ;; g, [, ] (\\`[][g])
-  (push '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
-        which-key-replacement-alist)
-  ;; g
-  (push '(("\\`g" . "\\`Info[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɩ·\\1"))
-        which-key-replacement-alist)
-  ;; g z
-  (push '(("\\`g z" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
-        which-key-replacement-alist)
-  ;; g c
-  (push '(("\\`g c" . "\\`evilnc-\\(.*\\)") . (nil . "#·\\1"))
-        which-key-replacement-alist)
-
+  (setq which-key-replacement-alist
+        (append
+         which-key-replacement-alist
+         (list
+          ;; evil commands under all bindings ("g", "z", "Z", "]", "[", ...)
+          '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1"))
+          ;; Info commands under "g"
+          '(("\\`g" . "\\`[Ii]nfo[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɩ·\\1"))
+          ;; evil-mc commands under "g z"
+          '(("\\`g z" . "\\`evil-mc-\\(.*\\)") . (nil . "⌶·\\1"))
+          ;; evil-nerd-commenter commands under "g c"
+          '(("\\`g c" . "\\`evilnc-\\(.*\\)") . (nil . "#·\\1")))))
+  ;; Setup `which-key' integration with the minibuffer
   (which-key-setup-minibuffer))
 
 (use-package general
