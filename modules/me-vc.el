@@ -137,7 +137,7 @@
 (use-package git-modes
   :straight t
   :init
-  (add-to-list 'auto-mode-alist '("/.dockerignore\\'" . gitignore-mode)))
+  :mode ("/.dockerignore\\'" . gitignore-mode))
 
 (use-package smerge-mode
   :straight t
