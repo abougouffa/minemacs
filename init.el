@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 ;; Check if Emacs version is supported. You can define the
 ;; $MINEMACS_IGNORE_VERSION_CHECK environment variable to ignore this check.

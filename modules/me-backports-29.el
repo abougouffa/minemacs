@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 ;; MinEmacs is distributed under the MIT license. However, this file is mostly a
 ;; copy-and-paste from Emacs 29 with some adaptations, hence, it is licensed

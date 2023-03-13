@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 ;; This allows me to mount my private directory encrypted using ecryptfs-utils.
 ;; It is a port of "ecryptfs-mount-private" shell command. It uses extracts the

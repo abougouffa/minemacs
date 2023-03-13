@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 (defun +gdb--set-layout (&optional c-buffer)
   ;; from stackoverflow.com/q/39762833/846686

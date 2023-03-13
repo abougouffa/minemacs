@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 ;; Evil integraion has been adopted from Doom Emacs
 ;; github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el

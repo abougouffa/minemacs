@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 (autoload '+flycheck-cmake-setup "me-flycheck-cmake")
 (autoload '+eglot-setup-flycheck "me-flycheck-eglot")
