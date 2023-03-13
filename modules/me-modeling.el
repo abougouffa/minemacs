@@ -16,7 +16,7 @@
      'all-the-icons-extension-icon-alist
      '("scad" all-the-icons-fileicon "openscad" :height 0.9 :face all-the-icons-yellow)))
 
-  (with-eval-after-load 'apheleia
+  (with-eval-after-load 'apheleia-formatters
     (push '(scad-mode . clang-format) apheleia-mode-alist))
 
   (+eglot-register 'scad-mode '("openscad-lsp" "--stdio")))

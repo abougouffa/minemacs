@@ -188,15 +188,15 @@ the children of class at point."
 (use-package apheleia
   :straight t
   :init
-  (+map! "cff" #'apheleia-format-buffer)
+  (+map! "cff" #'apheleia-format-buffer))
+
+(use-package apheleia-formatters
   :config
   (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
   (dolist (alist '((cmake-mode . cmake-format)
                    (cmake-ts-mode . cmake-format)
-                   (cuda-mode . clang-format)
-                   (common-lisp-mode . lisp-indent)
-                   (emacs-lisp-mode . lisp-indent)
-                   (lisp-data-mode . lisp-indent)))
+                   (lisp-data-mode . lisp-indent)
+                   (emacs-lisp-mode . lisp-indent)))
     (add-to-list 'apheleia-mode-alist alist)))
 
 (use-package editorconfig
