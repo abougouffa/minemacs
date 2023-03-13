@@ -139,6 +139,31 @@
   :init
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
+(use-package ediff
+  :straight (:type built-in)
+  :custom
+  ;; Split horizontally
+  (ediff-split-window-function #'split-window-horizontally)
+  ;; Setup all windows in one frame
+  (ediff-window-setup-function #'ediff-setup-windows-plain)
+  :config
+  (defvar +ediff--saved-window-config nil)
+
+  ;; Save the current window configuration
+  (add-hook
+   'ediff-before-setup-hook
+   (defun +ediff--save-window-config-h ()
+     (setq +ediff--saved-window-config (current-window-configuration))))
+
+  ;; Restore the saved window configuration on quit or suspend
+  (dolist (hook '(ediff-quit-hook ediff-suspend-hook))
+    (add-hook
+     hook
+     (defun +ediff--restore-window-config-h ()
+       (when (window-configuration-p +ediff--saved-window-config)
+         (set-window-configuration +ediff--saved-window-config)))
+     101)))
+
 (use-package smerge-mode
   :straight t
   :init
