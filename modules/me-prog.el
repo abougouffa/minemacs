@@ -18,7 +18,7 @@
   :preface
   (+fn-inhibit-messages! treesit-langs-install-grammars)
   (defcustom +treesit-langs-hl-exclude-modes
-    '(emacs-lisp-mode org-mode)
+    '(emacs-lisp-mode org-mode makefile-mode)
     "Modes to exclude from enabling `treesit-hl'.")
   :init
   (defun +treesit-hl-enable-maybe ()
