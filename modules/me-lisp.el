@@ -102,11 +102,10 @@
 (use-package macrostep-geiser
   :straight t
   :after geiser
+  :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup)
   :init
-  (+map-local! :keymaps '(scheme-mode-map racket-mode-map)
-    "m" '(macrostep-geiser-expand-all :wk "Expand macro"))
-  :config
-  (macrostep-geiser-setup))
+  (+map-local! :keymaps '(geiser-mode-map geiser-repl-mode-map)
+    "m" '(macrostep-geiser-expand-all :wk "Expand macro")))
 
 (use-package racket-mode
   :straight t)
