@@ -34,6 +34,7 @@
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
+  (vterm-tramp-shells '(("docker" "/bin/bash")))
   :config
   (define-key vterm-mode-map [return] #'vterm-send-return))
 
@@ -47,7 +48,7 @@
   ;; Show at buttom
   (add-to-list
    'display-buffer-alist
-   `("\\*vterminal - .*\\*" ;; multi-vterm-project
+   `("\\*vterminal - .*\\*" ;; multi-vterm-project / dedicated
      (display-buffer-reuse-window display-buffer-in-direction)
      (direction . bottom)
      (dedicated . t)
@@ -95,12 +96,17 @@
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))
 
+(use-package logview
+  :straight t)
+
 (use-package tramp
   :straight (:type built-in)
   :init
   ;; This is faster than the default "scp"
   (unless os/win
-    (setq tramp-default-method "ssh")))
+    (setq tramp-default-method "ssh"))
+  :custom
+  (tramp-default-remote-shell "/bin/bash"))
 
 (use-package bitwarden
   :straight (:host github :repo "seanfarley/emacs-bitwarden")
