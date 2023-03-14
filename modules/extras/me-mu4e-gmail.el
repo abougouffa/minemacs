@@ -37,7 +37,7 @@ from the envelope of the current message."
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
 (defun +mu4e-gmail-setup ()
-  ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+  ;; Don't save message to Sent Messages, Gmail/IMAP takes care of this
   (setq mu4e-sent-messages-behavior
         (lambda ()
           (if (or (+mu4e-sent-from-gmail-p)
@@ -81,9 +81,9 @@ from the envelope of the current message."
              (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
 
   ;; This hook correctly modifies gmail flags on emails when they are marked.
-  ;; Without it, refiling (archiving), trashing, and flagging (starring) email
-  ;; won't properly result in the corresponding gmail action, since the marks
-  ;; are ineffectual otherwise.
+  ;; Without it, refiling (archiving), trashing/deleting, and flagging
+  ;; (starring) email won't properly result in the corresponding gmail action,
+  ;; since the marks are ineffectual otherwise.
   ;; NOTE: For these tricks to work properly, you need to:
   ;; 1. Go to your Gmail settings;
   ;; 2. In the "Forwarding and POP/IMAP" tab, go to "IMAP access" and make sure

@@ -180,8 +180,9 @@ will also be the width of all other printable characters."
                  (concat
                   prefix
                   (truncate-string-to-width
-                   ;; Some times, a newline/carriage return char slips in the subject
-                   ;; and drives mu4e crazy!, let's fix it
+                   ;; Some times, a newline/carriage return char slips in the
+                   ;; subject and drives mu4e crazy! Let's fix it and truncate
+                   ;; the string at 100 characters.
                    (replace-regexp-in-string
                     "[\n\r]" ""
                     (mu4e-message-field msg :subject))

@@ -81,13 +81,16 @@
   :after mu4e
   :demand t
   :config
-  (+mu4e-ui-setup)) ;; Setup UI
+  ;; Setup the UI (mostly inspired by Doom Emacs, with a lot of improvements)
+  (+mu4e-ui-setup))
 
 (use-package me-mu4e-gmail
   :after mu4e
   :demand t
   :config
-  (+mu4e-gmail-setup)) ;; Gmail specifics
+  ;; Setup Gmail specific hacks (adapted from Doom Emacs, with a lot of
+  ;; improvements)
+  (+mu4e-gmail-setup))
 
 (use-package me-mu4e-extras
   :after mu4e
