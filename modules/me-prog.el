@@ -213,9 +213,8 @@ the children of class at point."
 
 (use-package rust-mode
   :straight t
-  :mode "\\.rs\\'"
   :config
-  (+map-local! :keymaps 'rust-mode-map
+  (+map-local! :keymaps '(rust-mode-map rust-ts-mode-map)
     "c" #'rust-compile
     "C" #'rust-compile-release
     "k" #'rust-check
