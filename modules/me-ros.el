@@ -9,16 +9,16 @@
                                   (executable-find "rosbag")
                                   (executable-find "ros2")))
 
-(+deferred-when! +rosbag-available-p
-  (dolist (ext-mode '(("\\.rviz\\'"   . conf-unix-mode)
-                      ("\\.urdf\\'"   . xml-mode)
-                      ("\\.xacro\\'"  . xml-mode)
-                      ("\\.launch\\'" . xml-mode)
-                      ("\\.msg\\'"    . gdb-script-mode)
-                      ("\\.srv\\'"    . gdb-script-mode)
-                      ("\\.action\\'" . gdb-script-mode)))
-    (add-to-list 'auto-mode-alist ext-mode))
+(dolist (ext-mode '(("\\.rviz\\'"   . conf-unix-mode)
+                    ("\\.urdf\\'"   . xml-mode)
+                    ("\\.xacro\\'"  . xml-mode)
+                    ("\\.launch\\'" . xml-mode)
+                    ("\\.msg\\'"    . gdb-script-mode)
+                    ("\\.srv\\'"    . gdb-script-mode)
+                    ("\\.action\\'" . gdb-script-mode)))
+  (add-to-list 'auto-mode-alist ext-mode))
 
+(+deferred-when! +rosbag-available-p
   ;; A mode to display info from ROS bag files (via MCAP)
   (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
     "Major mode for viewing ROS/ROS2 bag files."
