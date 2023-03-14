@@ -126,10 +126,7 @@
 
 (use-package engrave-faces
   :straight t
-  :after org
-  :demand t
-  :custom
-  (org-latex-src-block-backend 'engraved))
+  :after org)
 
 ;; Org export
 (use-package ox-latex
@@ -147,6 +144,13 @@
      ("bgcolor"       "GhostWhite")
      ("linenos"       "true")))
   :config
+  ;; Add this to your config to be able to export with minted:
+  ;; (with-eval-after-load 'ox-latex
+  ;;   (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;;   (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
+  ;;   (setq org-latex-src-block-backend 'minted
+  ;;         org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+
   ;; Map some org-mode blocks' languages to lexers supported by minted
   ;; you can see supported lexers by running this command in a terminal:
   ;; 'pygmentize -L lexers'
