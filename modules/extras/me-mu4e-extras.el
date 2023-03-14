@@ -136,6 +136,21 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
    "\n"
    "#+end_signature"))
 
+;; I always synchronize Spams with `mbsync' and index them with `mu'. However, I
+;; don't like to see them all the time, I would rather jump to the spam folder
+;; from time to time to check if a mail has been falsely classified as spam.
+;; This function sets the `mu4e-bookmarks' to ignore the mails located in the
+;; Spam or Junk folders.
+(defun +mu4e-extras-ignore-spams-query (query)
+  (let ((spam-filter "NOT maildir:/.*\\(spam\\|junk\\).*/"))
+    (if (string-match-p spam-filter query)
+        query
+      (format "(%s) AND (%s)" query spam-filter))))
+
+(defun +mu4e-extras-ignore-spams-in-bookmarks-setup ()
+  (dolist (bookmark mu4e-bookmarks)
+    (plist-put bookmark :query (+mu4e-extras-ignore-spams-query (plist-get bookmark :query)))))
+
 ;; I like to always BCC myself
 (defun +mu4e--auto-bcc-h ()
   "Add BCC address from `+mu4e-auto-bcc-address'."

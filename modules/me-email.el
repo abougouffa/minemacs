@@ -96,7 +96,16 @@
   :after mu4e
   :demand t
   :config
-  (+mu4e-extras-setup)) ;; Extra features
+  ;; Enable MinEmacs's mu4e extra features, including:
+  ;; - Auto BCC the `+mu4e-auto-bcc-address';
+  ;; - Prompt for the "From" address from the account aliases `+mu4e-account-aliases';
+  ;; - Check for the subject before sending;
+  ;; - Add an action to save the mail as PDF;
+  ;; - Add an action to save all the attachements;
+  ;; - Add an action to save the message at point.
+  (+mu4e-extras-setup)
+  ;; Redefine bookmarks queries to ignore spams
+  (+mu4e-extras-ignore-spams-in-bookmarks-setup))
 
 (use-package org-msg
   :straight t
