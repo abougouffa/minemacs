@@ -179,6 +179,7 @@ the children of class at point."
   (dolist (alist '((cmake-mode . cmake-format)
                    (cmake-ts-mode . cmake-format)
                    (lisp-data-mode . lisp-indent)
+                   (sh-mode . shfmt)
                    (emacs-lisp-mode . lisp-indent)))
     (add-to-list 'apheleia-mode-alist alist)))
 
