@@ -4,7 +4,13 @@
 ;; Should be configured in per-project basis, good documentation at:
 ;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
-  :straight t)
+  :straight t
+  :hook ((after-save . ssh-deploy-after-save)
+         (find-file . ssh-deploy-find-file))
+  :init
+  (+map! "od" '(ssh-deploy-hydra/body :wk "ssh-deploy"))
+  :config
+  (ssh-deploy-hydra "C-c C-z"))
 
 (use-package tldr
   :straight t
