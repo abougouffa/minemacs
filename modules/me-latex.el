@@ -18,11 +18,12 @@
   (TeX-source-correlate-start-server nil) ; don't start the Emacs server when correlating sources.
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
-  :config
+  :init
   (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "c" #'TeX-command-run-all
     "m" #'TeX-command-master
     "v" #'TeX-view)
+  :config
   (when (functionp 'pdf-tools-install)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools"))))
 
