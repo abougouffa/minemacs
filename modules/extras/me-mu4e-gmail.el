@@ -97,8 +97,8 @@ from the envelope of the current message."
    (defun +mu4e-gmail--fix-flags-h (mark msg)
      (when (+mu4e-msg-gmail-p msg)
        (pcase mark
-         ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft"))
-         ('refile (mu4e-action-retag-message msg "-\\Inbox"))
+         ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft,-\\Spam"))
+         ('refile (mu4e-action-retag-message msg "-\\Inbox,-\\Spam"))
          ('flag (mu4e-action-retag-message msg "+\\Starred"))
          ('unflag (mu4e-action-retag-message msg "-\\Starred")))))))
 
