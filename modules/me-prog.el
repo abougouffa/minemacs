@@ -134,11 +134,10 @@ the children of class at point."
 (use-package consult-eglot
   :straight t
   :after consult eglot
-  :demand t
-  :config
+  :init
   (+map! :keymaps 'eglot-mode-map
     "cs" '(consult-eglot-symbols :wk "Symbols"))
-
+  :config
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
   (unless (memq 'me-lsp minemacs-modules)

@@ -105,8 +105,7 @@
 (use-package consult-lsp
   :straight t
   :after consult lsp-mode
-  :demand t
-  :config
+  :init
   (+map! :keymaps 'lsp-mode-map
     "cs" '(consult-lsp-file-symbols :wk "Symbols")))
 
