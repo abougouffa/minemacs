@@ -4,38 +4,22 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+
 (use-package treesit
   :straight (:type built-in)
   :when (+emacs-features-p 'tree-sitter)
-  :config
-  (setq-default treesit-font-lock-level 4))
+  :custom
+  (treesit-font-lock-level 4))
 
-(use-package treesit-langs
-  :straight (:host github :repo "kiennq/treesit-langs" :files (:defaults "queries"))
+(use-package treesit-auto
+  :straight (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
-  :hook (prog-mode . +treesit-hl-enable-maybe)
-  :defines +treesit-hl-enable-maybe
-  :preface
-  (+fn-inhibit-messages! treesit-langs-install-grammars)
-  (defcustom +treesit-langs-hl-exclude-modes
-    '(emacs-lisp-mode org-mode makefile-mode)
-    "Modes to exclude from enabling `treesit-hl'.")
-  :init
-  (defun +treesit-hl-enable-maybe ()
-    (unless (cl-some #'derived-mode-p +treesit-langs-hl-exclude-modes)
-      (ignore-errors (treesit-hl-toggle t))))
+  :after treesit
+  :demand t
+  :custom
+  (treesit-auto-install 'prompt)
   :config
-  ;; Fallback to the queries found in the original grammar repository if not
-  ;; available in "treesit-langs/queries"
-  (advice-add
-   'treesit-langs--hl-query-path :around
-   (defun +treesit-langs--fallback-to-repos-a (old-fn lang-symbol &optional mode)
-     (let ((path (apply old-fn (list lang-symbol mode))))
-       (if (not (file-exists-p path))
-           (concat (treesit-langs--repos-dir)
-                   (format "%s/queries/" lang-symbol)
-                   (file-name-nondirectory path))
-         path)))))
+  (global-treesit-auto-mode 1))
 
 (unless (+emacs-features-p 'tree-sitter)
   (+load minemacs-modules-dir "obsolete/me-tree-sitter.el"))
