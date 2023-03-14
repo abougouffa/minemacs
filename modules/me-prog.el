@@ -228,7 +228,8 @@ the children of class at point."
 
 (use-package cuda-mode
   :straight t
-  :hook (cuda-mode . display-line-numbers-mode))
+  :hook (cuda-mode . display-line-numbers-mode)
+  :hook (cuda-mode . hs-minor-mode))
 
 (use-package opencl-mode
   :straight t
