@@ -69,6 +69,9 @@
   :init
   (+map! "ok" #'docker))
 
+(use-package docker-compose-mode
+  :straight t)
+
 (unless (+emacs-features-p 'tree-sitter)
   ;; Emacs 29 comes with `dockerfile-ts-mode'
   (use-package dockerfile-mode
