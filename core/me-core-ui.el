@@ -117,6 +117,9 @@ Useful for keeping track of the enabled theme."
 (use-package doom-themes
   :straight t)
 
+(use-package apropospriate-theme
+  :straight t)
+
 (use-package doom-modeline
   :straight t
   :hook (minemacs-after-startup . doom-modeline-mode)
