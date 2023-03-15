@@ -157,6 +157,11 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   exp)
 
 ;;;###autoload
+(defun +quoted (exp)
+  "Retrun t when EXP is quoted."
+  (memq (car-safe exp) '(quote function)))
+
+;;;###autoload
 (defun +apply-partially-right (fun &rest args)
   "Like `apply-partially', but applies the ARGS to the right of FUN."
   (lambda (&rest args2)

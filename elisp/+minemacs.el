@@ -191,6 +191,25 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   (declare (indent 1))
   `(if ,condition (+lazy! ,@body) (progn ,@body)))
 
+;;;###autoload
+(defmacro +after-load! (features &rest body)
+  "Execute BODY after FEATURES have been loaded."
+  (declare (indent 1))
+  (let ((features (if (+quoted features) (+unquote features) (eval features))))
+    (if (symbolp features)
+        `(with-eval-after-load ',features ,@body)
+      (let ((feature (car features)))
+        (cond
+         ((memq feature '(:or :any))
+          (macroexp-progn
+           (cl-loop
+            for next in (cdr features)
+            collect `(with-eval-after-load ',(+unquote next) ,@body))))
+         ((memq feature '(:and :all))
+          (dolist (next (reverse (cdr features)) (car body))
+            (setq body `((with-eval-after-load ',(+unquote next) ,@body)))))
+         (t `(+after-load! '(:all ,@features) ,@body)))))))
+
 ;; Adapted from: github.com/d12frosted/environment
 ;;;###autoload
 (defmacro +hook-with-delay! (hook secs function &optional depth local)

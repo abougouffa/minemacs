@@ -355,6 +355,11 @@ Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts lik
 
 (fn CONDITION &rest BODY)" nil t)
 (function-put '+lazy-or-immediate! 'lisp-indent-function 1)
+(autoload '+after-load! "../elisp/+minemacs" "\
+Execute BODY after FEATURES have been loaded.
+
+(fn FEATURES &rest BODY)" nil t)
+(function-put '+after-load! 'lisp-indent-function 1)
 (autoload '+hook-with-delay! "../elisp/+minemacs" "\
 Add the FUNCTION to the value of HOOK.
 The FUNCTION is delayed to be evaluated in SECS once HOOK is
@@ -448,6 +453,10 @@ Return EXP unquoted.
 (fn EXP)")
 (function-put '+unquote 'pure 't)
 (function-put '+unquote 'side-effect-free 't)
+(autoload '+quoted "../elisp/+primitives" "\
+Retrun t when EXP is quoted.
+
+(fn EXP)")
 (autoload '+apply-partially-right "../elisp/+primitives" "\
 Like `apply-partially', but applies the ARGS to the right of FUN.
 
