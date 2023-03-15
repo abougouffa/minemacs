@@ -39,9 +39,8 @@
   (load bootstrap-file nil 'nomessage))
 
 ;; Configure `use-package'
-(let ((use-package-recipe ; prefer built-in `use-package' in Emacs 29+
-       (if (>= emacs-major-version 29) '(use-package :type built-in) 'use-package)))
-  (straight-use-package use-package-recipe))
+(unless (require 'use-package nil t)
+  (straight-use-package 'use-package))
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
