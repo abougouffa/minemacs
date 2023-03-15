@@ -14,15 +14,15 @@
   "MinEmacs user customization directory.")
 
 (defconst minemacs-debug
-  (not (null (or (getenv "MINEMACS_DEBUG") init-file-debug)))
+  (and (or (getenv "MINEMACS_DEBUG") init-file-debug) t)
   "MinEmacs is started in debug mode.")
 
 (defconst minemacs-verbose
-  (not (null (or (getenv "MINEMACS_VERBOSE") minemacs-debug)))
+  (and (or (getenv "MINEMACS_VERBOSE") minemacs-debug) t)
   "MinEmacs is started in verbose mode.")
 
 (defconst minemacs-not-lazy
-  (or (daemonp) (not (null (getenv "MINEMACS_NOT_LAZY"))))
+  (or (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
 (defcustom minemacs-msg-level
@@ -52,13 +52,13 @@
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 
-(defconst os/linux (not (null (memq system-type '(gnu gnu/linux)))))
-(defconst os/bsd (not (null (memq system-type '(darwin berkeley-unix gnu/kfreebsd)))))
-(defconst os/win (not (null (memq system-type '(cygwin windows-nt ms-dos)))))
+(defconst os/linux (and (memq system-type '(gnu gnu/linux)) t))
+(defconst os/bsd (and (memq system-type '(darwin berkeley-unix gnu/kfreebsd)) t))
+(defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t))
 (defconst os/mac (eq system-type 'darwin))
 
-;; Should return x86_64, aarch64, arm64, ...
-(defconst sys/arch (intern (substring system-configuration 0 (string-search "-" system-configuration))))
+;; Should return x86_64, aarch64, armhf, ...
+(defconst sys/arch (intern (car (split-string system-configuration "-"))))
 
 (defconst emacs/features
   (mapcar #'intern
