@@ -4,7 +4,7 @@
 
 ;; Personal info
 (setq user-full-name "Abdelhak Bougouffa"
-      user-mail-address "abougouffa@fedoraproject.org")
+      user-mail-address (concat "abougouffa" "@" "fedora" "project" "." "org"))
 
 ;; Set the default GPG key ID, see "gpg --list-secret-keys"
 ;; (setq-default epa-file-encrypt-to '("XXXX"))
