@@ -68,6 +68,11 @@ Like `kill-buffer-ask', but kills BUFFER without confirmation if buffer is unmod
 Kill without asking for buffer names in `+kill-buffer-no-ask-list'.
 
 (fn BUFFER)")
+(autoload '+delete-extra-windows-for-buffer "../elisp/+buffer" "\
+Delete all other windows showing the selected window's buffer." t)
+(autoload '+delete-window-maybe-kill-buffer "../elisp/+buffer" "\
+Delete selected window.
+If no other window shows its buffer, kill the buffer too." t)
 (register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list"))
 
 
