@@ -11,8 +11,7 @@
 ;; "init-tweaks.el".
 (let ((min-ver "28.0"))
   (when (and (version< emacs-version min-ver) (not (getenv "MINEMACS_IGNORE_VERSION_CHECK")))
-    (error "Emacs v%s is not supported, MinEmacs requires v%s or higher"
-           emacs-version min-ver)))
+    (error "Emacs v%s is not supported, MinEmacs requires v%s or higher" emacs-version min-ver)))
 
 ;; HACK: Setting `file-name-handler-alist' to nil (or a useful yet simpler
 ;; value) should boost startup time. For more info, take a look at:
@@ -49,7 +48,6 @@
 ;; `me-org-export-async-init' context, or if we use some bootstrapping mechanism
 ;; like Chemacs2.
 (unless (featurep 'me-vars)
-  ;; Load MinEmacs variables from `me-vars'
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
 (defun +load (&rest filename-parts)
