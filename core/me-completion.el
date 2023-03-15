@@ -10,7 +10,7 @@
   :after minemacs-loaded
   :demand t
   :config
-  (dolist (fn '(cape-tex cape-file cape-ispell cape-symbol cape-keyword))
+  (dolist (fn '(cape-file cape-ispell cape-symbol cape-keyword))
     (add-to-list 'completion-at-point-functions fn)))
 
 (use-package corfu
