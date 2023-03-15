@@ -46,9 +46,9 @@
     "rA" #'projectile-run-async-shell-command-in-root
     ;; Forget
     "F"  '(nil :wk "forget/cleanup")
-    "Fz" '(projectile-cleanup-known-projects :wk "Zombie projects")
-    "Fp" '(projectile-remove-known-project :wk "Project")
-    "FP" '(projectile-remove-current-project-from-known-projects :wk "Current project")
+    "Fz" '(projectile-cleanup-known-projects :wk "Cleanup zombie projects")
+    "Fp" '(projectile-remove-known-project :wk "Forget project")
+    "FP" '(projectile-remove-current-project-from-known-projects :wk "Forget current project")
     "Fc" #'projectile-invalidate-cache
     ;; Search/replace
     "s"  '(nil :wk "search/replace")
