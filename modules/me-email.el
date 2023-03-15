@@ -25,7 +25,7 @@
   :init
   (+map! "om" #'mu4e)
   :custom
-  (mu4e-confirm-quit nil)
+  (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
   (mu4e-index-cleanup t)
   (mu4e-attachment-dir "~/Downloads/mu4e-attachements/")
@@ -53,6 +53,9 @@
   :config
   (+nvmap! :keymaps 'mu4e-view-mode-map
     "p" #'mu4e-view-save-attachments)
+  (+nvmap! :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
+    "gw" #'+mu4e-open-mail-as-html
+    "g RET" #'browse-url-at-point)
   (+map-local! :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
@@ -60,6 +63,19 @@
 
   ;; No need to display a long list of my own addresses!
   (setq mu4e-main-hide-personal-addresses t)
+
+  (defun +mu4e-open-mail-as-html ()
+    "Open the HTML mail in EAF Browser."
+    (interactive)
+    (if-let ((msg (mu4e-message-at-point t))
+             ;; Bind browse-url-browser-function locally, so it works
+             ;; even if EAF Browser is not set as a default browser.
+             (browse-url-browser-function
+              (cond
+               ((featurep 'me-eaf) #'eaf-open-browser)
+               (t #'browse-url-xdg-open))))
+        (mu4e-action-view-in-browser msg)
+      (message "No message at point.")))
 
   ;; Force running update and index in background
   (advice-add

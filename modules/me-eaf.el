@@ -9,14 +9,8 @@
   (use-package eaf
     :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
     :init
-    (+map!
-      "oo" '(eaf-open :wk "Open with EAF"))
-    (with-eval-after-load 'mu4e
-      (+map-local!
-        :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
-        "h" '(+eaf-open-mail-as-html :wk "Open mail as HTML")
-        "o" '(eaf-open-browser :wy "Open URL (EAF)")))
-    :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf
+    (+map! "oo" '(eaf-open :wk "Open with EAF"))
+    :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf eaf-open-browser
     :custom
     ;; Generic
     (eaf-apps-to-install
@@ -80,17 +74,7 @@
       "Open URL in EAF Browser."
       (interactive (browse-url-interactive-arg "URL: "))
       (setq url (browse-url-encode-url url))
-      (eaf-open-browser url args))
-
-    (defun +eaf-open-mail-as-html ()
-      "Open the HTML mail in EAF Browser."
-      (interactive)
-      (if-let ((msg (mu4e-message-at-point t))
-               ;; Bind browse-url-browser-function locally, so it works
-               ;; even if EAF Browser is not set as a default browser.
-               (browse-url-browser-function #'eaf-open-browser))
-          (mu4e-action-view-in-browser msg)
-        (message "No message at point.")))))
+      (eaf-open-browser url args))))
 
 
 (provide 'me-eaf)
