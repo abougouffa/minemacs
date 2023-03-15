@@ -11,9 +11,15 @@
 
 (require 'epg)
 
-(defvar ecryptfs-private-dir-name "Private")
+(defcustom ecryptfs-private-dir-name "Private"
+  "eCryptfs private directory name."
+  :group 'minemacs
+  :type 'string)
 
-(defvar ecryptfs-root-dir "~/.ecryptfs/")
+(defcustom ecryptfs-root-dir "~/.ecryptfs/"
+  "eCryptfs root configuration directory."
+  :group 'minemacs
+  :type 'directory)
 
 (defvar ecryptfs-wrapping-independent-p (file-exists-p (concat ecryptfs-root-dir "wrapping-independent")))
 

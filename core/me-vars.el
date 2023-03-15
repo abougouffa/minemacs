@@ -69,7 +69,13 @@ Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-fonts nil
   "Fonts to use within MinEmacs."
-  :group 'minemacs)
+  :group 'minemacs
+  :type '(plist
+          (:font-family string)
+          (:font-size natnum)
+          (:unicode-font-family string)
+          (:variable-pitch-font-family string)
+          (:variable-pitch-font-size natnum)))
 
 (defcustom minemacs-leader-key "SPC"
   "MinEmacs leader key."

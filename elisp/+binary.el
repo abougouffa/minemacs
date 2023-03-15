@@ -6,13 +6,19 @@
 
 
 (defcustom +binary-objdump-executable (executable-find "objdump")
-  "Path to the executable \"objdump\" utility.")
+  "Path to the executable \"objdump\" utility."
+  :group 'minemacs
+  :type 'string)
 
 (defcustom +binary-objdump-enable t
-  "Enable or disable disassembling suitable files with objdump.")
+  "Enable or disable disassembling suitable files with objdump."
+  :group 'minemacs
+  :type 'boolean)
 
 (defcustom +binary-hexl-enable t
-  "Enable or disable openning suitable files in `hexl-mode'.")
+  "Enable or disable openning suitable files in `hexl-mode'."
+  :group 'minemacs
+  :type 'boolean)
 
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)

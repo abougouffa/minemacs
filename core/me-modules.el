@@ -8,7 +8,9 @@
     me-evil          ; Emacs as Vim (evil, evil-collection, evil-mc, ...)
     me-core-ui       ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
     me-completion)   ; Completion (vertico, marginalia, corfu, cape, consult, ...)
-  "MinEmacs enabled core modules.")
+  "MinEmacs enabled core modules."
+  :group 'minemacs
+  :type '(repeat symbol))
 
 (defcustom minemacs-modules
   '(me-ui            ; User interface (focus, writeroom-mode, emojify, ...)
@@ -47,4 +49,6 @@
     ;; me-workspaces ; Workspace separation (tabspaces, tab-bar, ...)
     me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
     me-window)       ; Frame & window tweaks
-  "MinEmacs enabled modules.")
+  "MinEmacs enabled modules."
+  :group 'minemacs
+  :type '(repeat symbol))

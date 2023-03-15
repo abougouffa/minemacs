@@ -17,10 +17,14 @@
   :straight t
   :init
   (+map! "tw" #'writeroom-mode)
-  (defvar +writeroom-text-scale 1.7
-    "The text-scaling level for `writeroom-mode'.")
-  (defvar +writeroom-enable-mixed-pitch t
-    "Enable `mixed-pitch-mode' with `writeroom-mode' for some modes (Org, Markdown, etc.).")
+  (defcustom +writeroom-text-scale 1.7
+    "The text-scaling level for `writeroom-mode'."
+    :group 'minemacs
+    :type 'float)
+  (defcustom +writeroom-enable-mixed-pitch t
+    "Enable `mixed-pitch-mode' with `writeroom-mode' for some modes (Org, Markdown, etc.)."
+    :group 'minemacs
+    :type 'boolean)
   :custom
   (writeroom-width 80)
   (writeroom-mode-line t)

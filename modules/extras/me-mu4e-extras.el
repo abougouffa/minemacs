@@ -4,11 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
-(defvar +mu4e-account-aliases nil
-  "Per-account alias list.")
+(defcustom +mu4e-account-aliases nil
+  "Per-account alias list."
+  :group 'minemacs
+  :type '(repeat string))
 
-(defvar +mu4e-auto-bcc-address nil
-  "BCC address.")
+(defcustom +mu4e-auto-bcc-address nil
+  "BCC address."
+  :group 'minemacs
+  :type 'string)
 
 ;; Some of these functions are adapted from Doom Emacs
 

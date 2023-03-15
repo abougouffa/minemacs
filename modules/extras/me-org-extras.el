@@ -4,8 +4,16 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
-(defvar +org-responsive-image-percentage 0.4)
-(defvar +org-responsive-image-width-limits '(400 . 700)) ;; '(min . max)
+(defcustom +org-responsive-image-percentage 0.4
+  "Maximum image width as a percentage of the window width."
+  :group 'minemacs
+  :type 'float)
+
+(defcustom +org-responsive-image-width-limits '(400 . 700) ; '(min . max)
+  "The minimum and maximum width of a displayed image."
+  :group 'minemacs
+  :type '(cons natnum natnum))
+
 (defvar-local +org-export-to-pdf-main-file nil
   "The main (entry point) Org file for a multi-files document.")
 

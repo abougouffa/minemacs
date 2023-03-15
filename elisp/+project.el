@@ -8,7 +8,9 @@
 (defcustom +project-scan-dir-paths nil
   "A list of paths to scan and add to known projects list.
 It can be a list of strings (paths) or a list of (cons \"~/path/to/projects\" recursive?)
-to scan directories recursively.")
+to scan directories recursively."
+  :group 'minemacs
+  :type '(repeat (choice directory (cons directory boolean))))
 
 ;;;###autoload
 (defun +project-scan-for-projects ()

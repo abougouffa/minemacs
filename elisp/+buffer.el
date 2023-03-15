@@ -100,12 +100,14 @@ See `kill-some-buffers'."
   (cl-letf (((symbol-function 'kill-buffer-ask) #'+kill-buffer-ask-if-modified))
     (kill-some-buffers list)))
 
-(defvar +kill-buffer-no-ask-list
+(defcustom +kill-buffer-no-ask-list
   (append
    (list messages-buffer-name "*Warnings*")
    (when (featurep 'native-compile)
      (list comp-async-buffer-name comp-log-buffer-name)))
-  "A list of buffer names to be killed without confirmation.")
+  "A list of buffer names to be killed without confirmation."
+  :group 'minemacs
+  :type '(repeat string))
 
 ;;;###autoload
 (defun +kill-buffer-ask-if-modified (buffer)

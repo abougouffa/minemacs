@@ -99,7 +99,9 @@ alist, to ensure correct results."
 ;;; === Serialization ===
 
 (defcustom +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/")
-  "Default directory to store serialized symbols.")
+  "Default directory to store serialized symbols."
+  :group 'minemacs
+  :type 'directory)
 
 ;;;###autoload
 (defun +serialize-sym (sym &optional dir filename-format)

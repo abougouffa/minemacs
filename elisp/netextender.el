@@ -7,8 +7,16 @@
 
 (defvar netextender-process-name "netextender")
 (defvar netextender-buffer-name " *NetExtender*")
-(defvar netextender-command '("~/.local/bin/netextender"))
-(defvar netextender-passphrase-file "~/.ssh/sslvpn.gpg")
+
+(defcustom netextender-passphrase-file "~/.ssh/sslvpn.gpg"
+  "GPG encrypted NetExtender connection parameters."
+  :group 'minemacs
+  :type 'file)
+
+(defcustom netextender-command '("~/.local/bin/netextender")
+  "Custom NetExtender launcher."
+  :group 'minemacs
+  :type '(choice string file))
 
 ;; If the command doesn't exist, generate it.
 (unless (file-exists-p (car netextender-command))

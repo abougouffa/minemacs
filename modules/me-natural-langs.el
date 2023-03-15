@@ -17,7 +17,7 @@
   (+map! "ts" #'spell-fu-mode)
   (+nvmap! "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
 
-  (defvar +spell-excluded-faces-alist
+  (defcustom +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face
           markdown-html-attr-name-face
@@ -61,7 +61,9 @@
           font-lock-function-name-face
           font-lock-keyword-face
           font-lock-variable-name-face)))
-    "Faces in certain major modes that spell-fu will not spellcheck.")
+    "Faces in certain major modes that spell-fu will not spellcheck."
+    :group 'minemacs
+    :type '(repeat (cons symbol (repeat face))))
 
   (add-hook
    'spell-fu-mode-hook
