@@ -36,7 +36,11 @@
 3 - `+log!'
 4 - `+debug!'"
   :group 'minemacs
-  :type 'natnum)
+  :type '(choice
+          (const :tag "Error" 1)
+          (const :tag "Info" 2)
+          (const :tag "Log" 3)
+          (const :tag "Debug" 4)))
 
 ;; Derive the root directory from this file path
 (defconst minemacs-root-dir
