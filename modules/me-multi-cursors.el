@@ -21,42 +21,19 @@
 
 (use-package evil-mc
   :straight t
-  :after minemacs-loaded evil-collection
-  :demand t
+  :hook (minemacs-after-startup . global-evil-mc-mode)
   :config
   ;; Use "gz" instead of "gr", this last is mapped to `xref-find-references' in
   ;; some programming modes.
-  (setcdr
-   evil-mc-key-map ;; Redefine the default binting
-   (let ((map (make-sparse-keymap)))
-     (evil-define-key* '(normal visual) map
-       (kbd "gz") evil-mc-cursors-map
-       (kbd "M-n") 'evil-mc-make-and-goto-next-cursor
-       (kbd "M-p") 'evil-mc-make-and-goto-prev-cursor
-       (kbd "C-n") 'evil-mc-make-and-goto-next-match
-       (kbd "C-t") 'evil-mc-skip-and-goto-next-match
-       (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
-     map))
-
-  ;; github.com/gabesoft/evil-mc/issues/70
-  (add-hook
-   'evil-mc-after-cursors-deleted
-   (defun +evil-mc--fix-yank-h ()
-     (setq evil-was-yanked-without-register t)))
-
-  (global-evil-mc-mode 1)
+  (evil-define-key* '(normal visual) evil-mc-key-map (kbd "gr") nil)
+  (evil-define-key* '(normal visual) evil-mc-key-map (kbd "gz") evil-mc-cursors-map)
 
   ;; Add support to repeat these commands when prefixed with a number
-  (dolist (cmd '(evil-mc-make-and-goto-first-cursor
-                 evil-mc-make-and-goto-last-cursor
-                 evil-mc-make-and-goto-prev-cursor
-                 evil-mc-make-and-goto-next-cursor
-                 evil-mc-skip-and-goto-prev-cursor
-                 evil-mc-skip-and-goto-next-cursor
-                 evil-mc-make-and-goto-prev-match
-                 evil-mc-make-and-goto-next-match
-                 evil-mc-skip-and-goto-prev-match
-                 evil-mc-skip-and-goto-next-match))
+  (dolist (cmd '(evil-mc-make-and-goto-first-cursor evil-mc-make-and-goto-last-cursor
+                 evil-mc-make-and-goto-prev-cursor evil-mc-make-and-goto-next-cursor
+                 evil-mc-skip-and-goto-prev-cursor evil-mc-skip-and-goto-next-cursor
+                 evil-mc-make-and-goto-prev-match evil-mc-make-and-goto-next-match
+                 evil-mc-skip-and-goto-prev-match evil-mc-skip-and-goto-next-match))
     (advice-add
      cmd :around
      (lambda (fn)
@@ -64,25 +41,20 @@
          (funcall fn)))))
 
   ;; Custom commands to execute with `evil-mc'
-  (dolist (fn '((backward-kill-word)
-                (corfu-complete . evil-mc-execute-default-complete)
-                (undo-fu-only-undo . evil-mc-execute-default-undo)
-                (undo-fu-only-redo . evil-mc-execute-default-redo)
-                (evil-delete-back-to-indentation . evil-mc-execute-default-call)
-                (evil-escape . evil-mc-execute-default-evil-normal-state) ;; C-g
-                (evil-numbers/inc-at-pt-incremental)
-                (evil-numbers/dec-at-pt-incremental)
-                (evil-digit-argument-or-evil-beginning-of-visual-line
-                 (:default . evil-mc-execute-default-call)
-                 (visual . evil-mc-execute-visual-call))
-                (ess-smart-comma . evil-mc-execute-call)
-                (evil-org-delete . evil-mc-execute-default-evil-delete)))
-    (setf (alist-get (car fn) evil-mc-custom-known-commands)
-          (if (and (cdr fn) (listp (cdr fn)))
-              (cdr fn)
-            (list (cons :default
-                        (or (cdr fn)
-                            #'evil-mc-execute-default-call-with-count)))))))
-
+  (setq
+   evil-mc-custom-known-commands
+   '((backward-kill-word (:default . evil-mc-execute-default-call-with-count))
+     (evil-escape (:default . evil-mc-execute-default-evil-normal-state))
+     (evil-delete-back-to-indentation (:default . evil-mc-execute-default-call))
+     (undo-fu-only-redo (:default . evil-mc-execute-default-redo))
+     (undo-fu-only-undo (:default . evil-mc-execute-default-undo))
+     (corfu-complete (:default . evil-mc-execute-default-complete))
+     (evil-numbers/dec-at-pt-incremental (:default . evil-mc-execute-default-call-with-count))
+     (evil-numbers/inc-at-pt-incremental (:default . evil-mc-execute-default-call-with-count))
+     (evil-org-delete (:default . evil-mc-execute-default-evil-delete))
+     (ess-smart-comma (:default . evil-mc-execute-call))
+     (evil-digit-argument-or-evil-beginning-of-visual-line
+      (:default . evil-mc-execute-default-call)
+      (visual . evil-mc-execute-visual-call)))))
 
 (provide 'me-multi-cursors)
