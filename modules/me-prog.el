@@ -214,7 +214,13 @@ the children of class at point."
 
 (use-package rust-mode
   :straight t
-  :config
+  :commands
+  rust-compile rust-compile-release
+  rust-check rust-test
+  rust-run rust-run-release rust-run-clippy
+  rust-format-buffer rust-goto-format-problem
+  rust-enable-format-on-save
+  :init
   (+map-local! :keymaps '(rust-mode-map rust-ts-mode-map)
     "c" #'rust-compile
     "C" #'rust-compile-release
