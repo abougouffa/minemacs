@@ -19,6 +19,7 @@
   (evil-kill-on-visual-paste nil)
   (evil-respect-visual-line-mode t)
   (evil-ex-interactive-search-highlight 'selected-window)
+  (evil-search-module 'evil-search)
   :config
   (+map!
     ;; buffer
