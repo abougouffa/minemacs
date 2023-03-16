@@ -70,7 +70,7 @@ This will overrite the built-in \"gdb-mi\" for this session."
     (use-package gdb-mi
       ;; I use my own fork in which I've merged some open PRs on the upstream
       ;; repo (weirdNox/emacs-gdb).
-      :straight (:host github :repo "abouguoffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
+      :straight (:host github :repo "abougouffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
       :when (+emacs-features-p 'modules)
       :demand t
       :init
