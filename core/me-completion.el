@@ -79,6 +79,11 @@
 (use-package consult
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
+  :custom
+  ;; Use `consult-xref' for `xref-find-references'
+  (xref-show-xrefs-function #'consult-xref)
+  ;; Better formatting for `view-register'
+  (register-preview-function #'consult-register-format)
   :init
   (define-key minibuffer-local-map (kbd "C-r") #'consult-history)
   (define-key minibuffer-local-map (kbd "S-C-v") #'consult-yank-pop)
@@ -103,15 +108,21 @@
     "sM"  #'consult-man
     "st"  #'consult-locate
     "sh"  #'consult-history
+    "sa"  #'consult-org-agenda
     ;; project
     "pl"  #'consult-line-multi
     "pi"  #'consult-imenu-multi
     ;; code
     "cm"  #'consult-flymake
     "cE"  #'consult-compile-error
+    ;; unclassified
     "xc"  #'consult-complex-command
     ;; insert
     "iy"  #'consult-yank-from-kill-ring
+    "ir"  '(nil :wk "register")
+    "irr" #'consult-register
+    "irl" #'consult-register-load
+    "irs" #'consult-register-store
     ;; help
     "hu"  #'consult-theme
     "hI"  #'consult-info)
