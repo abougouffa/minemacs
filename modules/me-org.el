@@ -302,6 +302,16 @@
                    visual-fill-column-center-text (plist-get +org-present--vcm-params :center-text))
        (visual-fill-column-mode 1)))))
 
+(use-package evil-org
+  :straight t
+  :hook (org-mode . evil-org-mode))
+
+(use-package evil-org-agenda
+  :after evil-org
+  :demand t
+  :config
+  (evil-org-agenda-set-keys))
+
 
 (provide 'me-org)
 
