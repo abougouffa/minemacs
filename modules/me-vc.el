@@ -14,7 +14,7 @@
     "b" #'magit-blame
     "l" #'magit-log
     "d" #'magit-diff-dwim
-    "d" #'magit-stage
+    "s" #'magit-stage
     "i" #'magit-init)
   :custom
   (magit-diff-refine-hunk t)
