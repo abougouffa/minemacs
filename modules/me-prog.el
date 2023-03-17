@@ -12,7 +12,9 @@
   (treesit-font-lock-level 4))
 
 (use-package treesit-auto
-  :straight (:host github :repo "renzmann/treesit-auto")
+  ;; TEMP: disable autoloads to fix the `treesit-auto-recipe-list' issue.
+  ;; github.com/renzmann/treesit-auto/issues/36
+  :straight (:host github :repo "renzmann/treesit-auto" :build (:not autoloads))
   :when (+emacs-features-p 'tree-sitter)
   :after treesit
   :demand t
