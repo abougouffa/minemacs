@@ -142,5 +142,14 @@
     "v"  #'d2-view-current-svg
     "h"  #'d2-open-doc))
 
+(use-package ob-d2
+  :straight t
+  :after ob
+  :demand t
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (append org-babel-load-languages '((d2 . t)))))
+
 
 (provide 'me-data)
