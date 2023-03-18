@@ -101,13 +101,17 @@ See `kill-some-buffers'."
     (kill-some-buffers list)))
 
 (defcustom +kill-buffer-no-ask-list
-  (append
-   (list messages-buffer-name "*Warnings*")
-   (when (featurep 'native-compile)
-     (list comp-async-buffer-name comp-log-buffer-name)))
+  (list messages-buffer-name "*Warnings*")
   "A list of buffer names to be killed without confirmation."
   :group 'minemacs
   :type '(repeat string))
+
+(with-eval-after-load 'comp
+  (when (featurep 'native-compile)
+    (setq
+     +kill-buffer-no-ask-list
+     (append +kill-buffer-no-ask-list
+             (list comp-async-buffer-name comp-log-buffer-name)))))
 
 ;;;###autoload
 (defun +kill-buffer-ask-if-modified (buffer)
@@ -143,3 +147,25 @@ If no other window shows its buffer, kill the buffer too."
          (buf (window-buffer selwin)))
     (delete-window selwin)
     (unless (get-buffer-window buf 'visible) (kill-buffer buf))))
+
+;;;###autoload
+(defun +fill-scratch-buffer ()
+  "Fill the `initial-scratch-message'.
+When available, use \"fortune\" to add a random quote."
+  ;; Print load time, and a quote to *scratch*
+  (with-current-buffer (get-scratch-buffer-create)
+    (erase-buffer)
+    (insert (format
+             ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
+             (string-to-number (car (string-split (emacs-init-time))))
+             gcs-done (if (> gcs-done 1) "s" "")))
+    (insert ";; ==============================\n")
+    ;; Insert a random quote from "fortune" when the command is available
+    (when (executable-find "fortune")
+      (insert (string-join
+               (mapcar (apply-partially #'concat ";; ")
+                       (string-lines (shell-command-to-string "fortune")))
+               "\n"))
+      (insert "\n;; ==============================\n"))
+    ;; Set initial scratch message
+    (setq initial-scratch-message (buffer-string))))

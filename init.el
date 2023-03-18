@@ -114,16 +114,9 @@
   (when (file-exists-p minemacs-loaddefs-file)
     (delete-file minemacs-loaddefs-file))
 
-  (let ((autoload-dirs nil))
-    (dolist (dir (list minemacs-core-dir minemacs-extras-dir minemacs-elisp-dir))
-      (when (file-directory-p dir)
-        (setq autoload-dirs
-              (append autoload-dirs
-                      (list dir)
-                      (seq-filter
-                       #'file-directory-p
-                       (directory-files-recursively dir ".*" t))))))
-    (loaddefs-generate autoload-dirs minemacs-loaddefs-file)))
+  (loaddefs-generate
+   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir)
+   minemacs-loaddefs-file))
 
 ;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
 ;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
@@ -184,23 +177,7 @@
     (+load-theme)
 
     (+log! "Filling scratch buffer content.")
-    ;; Print load time, and a quote to *scratch*
-    (with-current-buffer (get-scratch-buffer-create)
-      (erase-buffer)
-      (insert (format
-               ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
-               (string-to-number (car (string-split (emacs-init-time))))
-               gcs-done (if (> gcs-done 1) "s" "")))
-      (insert ";; ==============================\n")
-      ;; Insert some quote from fortune when the command is available
-      (when (executable-find "fortune")
-        (insert (string-join
-                 (mapcar (apply-partially #'concat ";; ")
-                         (string-lines (shell-command-to-string "fortune")))
-                 "\n"))
-        (insert "\n;; ==============================\n"))
-      ;; Set initial scratch message
-      (setq initial-scratch-message (buffer-string)))
+    (+fill-scratch-buffer)
 
     ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
     ;; to enhance startup time. However, I like to use the scratch buffer to

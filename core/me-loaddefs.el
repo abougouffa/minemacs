@@ -73,6 +73,9 @@ Delete all other windows showing the selected window's buffer." t)
 (autoload '+delete-window-maybe-kill-buffer "../elisp/+buffer" "\
 Delete selected window.
 If no other window shows its buffer, kill the buffer too." t)
+(autoload '+fill-scratch-buffer "../elisp/+buffer" "\
+Fill the `initial-scratch-message'.
+When available, use \"fortune\" to add a random quote.")
 (register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list"))
 
 
