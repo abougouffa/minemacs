@@ -23,3 +23,24 @@ to scan directories recursively."
            (sub-dirs (+directory-subdirs root-dir)))
       (dolist (dir sub-dirs)
         (project-remember-projects-under dir recursive)))))
+
+;;;###autoload
+(defun +project-add-project (dir &optional dont-ask)
+  "Switch to another project at DIR.
+When DIR is not detected as a project, ask to force it to be by adding a
+\".project.el\" file."
+  (interactive (list (project-prompt-project-dir)))
+  (project-switch-project dir)
+  (when (and (not (project-current))
+             (or dont-ask
+                 (yes-or-no-p "Directory not detected as a project, add \".project.el\"? ")))
+    (with-temp-buffer
+      (write-file (expand-file-name ".project.el" dir)))))
+
+;;;###autoload
+(defun +project-gdb ()
+  "Invoke `gdb' in the project's root."
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (call-interactively #'gdb)))
+
