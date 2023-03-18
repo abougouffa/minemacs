@@ -92,4 +92,4 @@ on all the errors."
     (defalias 'flymake--diag-buffer 'flymake--diag-locus)))
 
 
-(provide 'me-flycheck-eglot)
+(provide 'obsolete/me-flycheck-eglot)

@@ -60,3 +60,6 @@
 (use-package me-flycheck-cmake
   :after flycheck
   :demand t)
+
+
+(provide 'obsolete/me-flycheck)

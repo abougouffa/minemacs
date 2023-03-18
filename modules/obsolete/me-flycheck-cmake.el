@@ -78,4 +78,4 @@ When FILENAME is nil, use the file name of the current buffer."
 (advice-add 'flycheck-mode :before #'+flycheck-cmake-setup)
 
 
-(provide 'me-flycheck-cmake)
+(provide 'obsolete/me-flycheck-cmake)

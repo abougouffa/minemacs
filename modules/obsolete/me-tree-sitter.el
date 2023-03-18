@@ -137,3 +137,6 @@
   (define-key
    evil-normal-state-map
    (kbd "[F") (cons "goto-function-end" (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t) (reposition-window)))))
+
+
+(provide 'obsolete/me-tree-sitter)
