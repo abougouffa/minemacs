@@ -20,18 +20,17 @@
   ;; `which-key-replacement-alist'
   (which-key-allow-multiple-replacements t)
   :config
-  (setq which-key-replacement-alist
-        (append
-         which-key-replacement-alist
-         (list
-          ;; evil-multiedit/evil-mc commands under "g z"
-          '(("\\`g z" . "\\`evil-\\(?:mc\\|multiedit\\)-\\(.*\\)") . (nil . "⌶·\\1"))
-          ;; evil-nerd-commenter commands under "g c"
-          '(("\\`g c" . "\\`evilnc-\\(.*\\)") . (nil . "#·\\1"))
-          ;; Info commands under "g"
-          '(("\\`g" . "\\`[Ii]nfo[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɩ·\\1"))
-          ;; evil commands under all bindings ("g", "z", "Z", "]", "[", ...)
-          '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "ɛ·\\1")))))
+  (setq
+   which-key-replacement-alist
+   (append
+    which-key-replacement-alist
+    (list
+     '(("\\`g z" . "\\`evil-\\(?:mc\\|multiedit\\)-\\(.*\\)")    . (nil . "⌶·\\1"))
+     '(("\\`g c" . "\\`evilnc-\\(.*\\)")                         . (nil . "#·\\1"))
+     '(("\\`g" . "\\`[Ii]nfo[-:]?\\(?:a-\\)?\\(.*\\)")           . (nil . "ɩ·\\1"))
+     '(("\\`SPC TAB" . "\\`tabspaces-\\(.*\\)")                  . (nil . "⭾·\\1"))
+     '(("\\`SPC p" . "\\`\\+?\\(?:consult-\\)?project-\\(.*\\)") . (nil . "🅟·\\1"))
+     '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)")                  . (nil . "ɛ·\\1")))))
   ;; Setup `which-key' integration with the minibuffer
   (which-key-setup-minibuffer))
 
