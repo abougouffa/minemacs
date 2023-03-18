@@ -169,6 +169,36 @@ the children of class at point."
       (message "Enabled coverage mode."))
     (cov-update)))
 
+(use-package compile
+  :commands +toggle-burry-compilation-buffer-if-successful
+  :config
+  ;; Auto-close the compilation buffer if succeeded without warnings.
+  ;; Adapted from: stackoverflow.com/q/11043004/3058915
+  (defun +compilation--bury-if-successful-h (buf str)
+    "Bury the compilation buffer if it succeeds without warnings."
+    (when (and
+           (string-match "compilation" (buffer-name buf))
+           (string-match "finished" str)
+           (not (with-current-buffer buf
+                  (save-excursion
+                    (goto-char (point-min))
+                    (search-forward "warning" nil t)))))
+      (run-with-timer
+       3 nil
+       (lambda (b)
+         (with-selected-window (get-buffer-window b)
+           (kill-buffer-and-window))
+         (unless (current-message)
+           (message "Compilation finished without warnings.")))
+       buf)))
+
+  (defun +toggle-burry-compilation-buffer-if-successful ()
+    "Toggle auto-burying the successful compilation buffer."
+    (interactive)
+    (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
+        (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h)
+      (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
+
 (use-package apheleia
   :straight t
   :init

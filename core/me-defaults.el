@@ -309,29 +309,6 @@
   (with-eval-after-load 'savehist
     (add-to-list 'savehist-additional-variables 'compile-history))
 
-  (with-eval-after-load 'compile
-    ;; Auto-close the compilation buffer if succeeded without warnings.
-    ;; Adapted from: stackoverflow.com/q/11043004/3058915
-    (add-hook
-     'compilation-finish-functions
-     (defun +compilation--bury-if-successful-h (buf str)
-       "Bury a compilation buffer if succeeded without warnings."
-       (when (and
-              (string-match "compilation" (buffer-name buf))
-              (string-match "finished" str)
-              (not (with-current-buffer buf
-                     (save-excursion
-                       (goto-char (point-min))
-                       (search-forward "warning" nil t)))))
-         (run-with-timer
-          3 nil
-          (lambda (b)
-            (with-selected-window (get-buffer-window b)
-              (kill-buffer-and-window))
-            (unless (current-message)
-              (message "Compilation finished without warnings.")))
-          buf)))))
-
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
   ;; `shell-kill-buffer-on-exit').
   (advice-add
