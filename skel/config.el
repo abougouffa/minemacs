@@ -18,6 +18,7 @@
  ;; - Fira Code, FiraCode Nerd Font
  ;; - Iosevka, Iosevka Fixed Curly Slab
  ;; - IBM Plex Mono
+ ;; - JetBrains Mono
  minemacs-fonts
  '(:font-family "Iosevka Fixed Curly Slab"
    :font-size 16
