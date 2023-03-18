@@ -256,7 +256,7 @@ the children of class at point."
     "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
   ;; Use as xref backend
   (with-eval-after-load 'xref
-    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate 101))
   :config
   ;; Define Hydra keybinding (from the repo's examples)
   (defhydra +dumb-jump-hydra (:color blue :columns 3)
