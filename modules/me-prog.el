@@ -169,6 +169,22 @@ the children of class at point."
       (message "Enabled coverage mode."))
     (cov-update)))
 
+(use-package compile-multi
+  :straight t
+  :commands +project-compile-multi
+  :init
+  (+map! "pcC" #'+project-compile-multi)
+  :config
+  (defun +project-compile-multi ()
+    "Like `project-compile', but uses `compile-multi'."
+    (declare (interactive-only compile))
+    (interactive)
+    (let ((default-directory (project-root (project-current t)))
+          (compilation-buffer-name-function
+           (or project-compilation-buffer-name-function
+               compilation-buffer-name-function)))
+      (call-interactively #'compile-multi))))
+
 (use-package compile
   :commands +toggle-burry-compilation-buffer-if-successful
   :config
