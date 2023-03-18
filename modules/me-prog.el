@@ -177,6 +177,9 @@ the children of class at point."
 (use-package apheleia-formatters
   :config
   (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
+  ;; TEMP: Use the `tab-width' value for `shfmt' formatting. Delete this hack if
+  ;; this PR github.com/radian-software/apheleia/pull/179 gets merged.
+  (+alist-set 'shfmt '("shfmt" "-i" (number-to-string tab-width)) apheleia-formatters)
   (dolist (alist '((cmake-mode . cmake-format)
                    (cmake-ts-mode . cmake-format)
                    (lisp-data-mode . lisp-indent)
