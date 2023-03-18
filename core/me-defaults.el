@@ -329,23 +329,6 @@
      (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
        (abort-recursive-edit))))
 
-  ;; Suppress asking about overwriting desktop file when we didn't load a
-  ;; session from desktop file. We advice `save-desktop' to first check if there
-  ;; is a previously saved desktop file, if its found, we move it to a
-  ;; timestamped backup before saving the current one.
-  (advice-add
-   'desktop-save :before
-   (defun +desktop-save--backup-previous-a (dirname &rest _)
-     (let* ((filename (desktop-full-file-name (or dirname desktop-dirname)))
-            (old-modtime (file-attribute-modification-time (file-attributes filename))))
-       (unless (or (not old-modtime) ; nothing to backup
-                   (time-equal-p desktop-file-modtime old-modtime)) ; saved explicitly
-         (rename-file
-          filename
-          (concat (file-name-sans-extension filename)
-                  (format-time-string "-%Y-%m-%d-%H-%M-%S.el" old-modtime))
-          t)))))
-
   ;; ====== Tweaks on file save ======
   ;; Update time stamp (if available) before saving a file.
   (add-hook 'before-save-hook 'time-stamp)
@@ -432,9 +415,6 @@ or file path may exist now."
 
   ;; Save place in files
   (save-place-mode 1)
-
-  ;; Save Emacs session
-  (desktop-save-mode 1)
 
   ;; Enable saving minibuffer history
   (savehist-mode 1)
