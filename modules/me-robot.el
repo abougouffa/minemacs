@@ -94,5 +94,8 @@
     ("x" ros-cache-clean)
     ("q" nil :color blue)))
 
+(use-package robot-mode
+  :straight t)
 
-(provide 'me-ros)
+
+(provide 'me-robot)

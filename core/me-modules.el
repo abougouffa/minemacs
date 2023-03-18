@@ -26,7 +26,7 @@
     ;; me-lsp        ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
     me-lisp          ; Lisps development (parinfer-rust, macrostep, geiser, elisp, helpful, eros, ...)
     ;; me-embedded   ; Embedded systems (arduino, openocd, bitbake, vhdl-mode, ...)
-    ;; me-ros        ; Robot Operating System (ros, ...)
+    ;; me-robot      ; Robotics stuff (ros, robot-mode, ...)
     me-data          ; Data file formats (csv, yaml, toml, json, ...)
     ;; me-math       ; Mathematics (maxima, ess, ein, octave, ...)
     ;; me-modeling   ; Modeling tools (scad-mode, ...)

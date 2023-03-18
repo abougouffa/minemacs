@@ -43,7 +43,7 @@
         me-daemon        ;; Emacs daemon tweaks
         me-tty           ;; Emacs from terminal
         me-rss           ;; elfeed, ...
-        me-ros           ;; Robot Operating System
+        me-robot         ;; Robotics stuff (ros, robot-mode, ...)
         me-embedded      ;; Embedded systems (arduino, openocd, bitbake, ...)
         me-eaf           ;; EAF apps (browser, jupyter, file-sender, ...)
         me-math          ;; maxima, ess, ...
