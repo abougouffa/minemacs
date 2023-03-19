@@ -107,6 +107,8 @@ plain variables.  This means that `setopt' will execute any
   (defvaralias 'native-comp-jit-compilation 'native-comp-deferred-compilation)
   (defvaralias 'native-comp-jit-compilation-deny-list 'native-comp-deferred-compilation))
 
+(defvar messages-buffer-name "*Messages*")
+
 ;; Function aliases
 (defalias 'string-split #'split-string)
 (defalias 'loaddefs-generate #'make-directory-autoloads)
