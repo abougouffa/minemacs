@@ -5,9 +5,6 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
-(when (< emacs-major-version 29)
-  (+load minemacs-modules-dir "obsolete/me-emojify.el"))
-
 (use-package svg-lib
   :straight t
   :custom
