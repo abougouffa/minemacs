@@ -9,17 +9,19 @@
   :straight (:type built-in)
   :when (+emacs-features-p 'tree-sitter)
   :custom
-  (treesit-font-lock-level 4))
-
-(use-package treesit-auto
-  :straight (:host github :repo "renzmann/treesit-auto")
-  :when (+emacs-features-p 'tree-sitter)
-  :after treesit
-  :demand t
-  :custom
-  (treesit-auto-install 'prompt)
+  (treesit-font-lock-level 4)
   :config
-  (global-treesit-auto-mode 1))
+  (use-package treesit-auto
+    :straight (:host github :repo "renzmann/treesit-auto")
+    :when (+emacs-features-p 'tree-sitter)
+    :after treesit
+    :demand t
+    :custom
+    (treesit-auto-install 'prompt)
+    :config
+    ;; Install all languages when calling `treesit-auto-install-all'
+    ;; (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))
+    (global-treesit-auto-mode 1)))
 
 (unless (+emacs-features-p 'tree-sitter)
   (+load minemacs-modules-dir "obsolete/me-tree-sitter.el"))
