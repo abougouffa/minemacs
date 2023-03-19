@@ -157,7 +157,7 @@ the children of class at point."
   :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
 (use-package cov
-  :straight (:type git :host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
+  :straight (:host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
   :custom
   (cov-highlight-lines t)
   :config
@@ -188,6 +188,7 @@ the children of class at point."
       (call-interactively #'compile-multi))))
 
 (use-package compile
+  :straight (:type built-in)
   :commands +toggle-burry-compilation-buffer-if-successful
   :config
   ;; Auto-close the compilation buffer if succeeded without warnings.
