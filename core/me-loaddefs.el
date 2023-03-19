@@ -476,6 +476,14 @@ Like `apply-partially', but applies the ARGS to the right of FUN.
 
 (autoload '+project-scan-for-projects "../elisp/+project" "\
 Scan and remember projects under `+project-scan-dir-paths'." t)
+(autoload '+project-add-project "../elisp/+project" "\
+Switch to another project at DIR.
+When DIR is not detected as a project, ask to force it to be by adding a
+\".project.el\" file.
+
+(fn DIR &optional DONT-ASK)" t)
+(autoload '+project-gdb "../elisp/+project" "\
+Invoke `gdb' in the project's root." t)
 (register-definition-prefixes "../elisp/+project" '("+project-scan-dir-paths"))
 
 
