@@ -11,7 +11,6 @@
 
 (use-package xclip
   :straight t
-  :when os/linux
   :defines +xclip--enable-in-tty-h
   :hook (tty-setup . +xclip--enable-in-tty-h)
   :config

@@ -4,20 +4,20 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
-
-(use-package parinfer-rust-mode
-  :straight t
-  :when (and (+emacs-features-p 'modules) (eq sys/arch 'x86_64))
-  :custom
-  (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
-  (parinfer-rust-auto-download (eq sys/arch 'x86_64))
-  :hook ((emacs-lisp-mode
-          clojure-mode
-          scheme-mode
-          lisp-mode
-          racket-mode
-          hy-mode)
-         . parinfer-rust-mode))
+(when (+emacs-features-p 'modules)
+  (use-package parinfer-rust-mode
+    :straight t
+    :when (eq sys/arch 'x86_64)
+    :custom
+    (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
+    (parinfer-rust-auto-download (eq sys/arch 'x86_64))
+    :hook ((emacs-lisp-mode
+            clojure-mode
+            scheme-mode
+            lisp-mode
+            racket-mode
+            hy-mode)
+           . parinfer-rust-mode)))
 
 (use-package sly
   :straight t

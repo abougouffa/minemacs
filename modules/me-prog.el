@@ -5,26 +5,23 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
-(use-package treesit
-  :straight (:type built-in)
-  :when (+emacs-features-p 'tree-sitter)
-  :custom
-  (treesit-font-lock-level 4)
-  :config
+(if (not (+emacs-features-p 'tree-sitter))
+    (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
+
+  ;; Use built-in `treesit' when available
+  (use-package treesit
+    :straight (:type built-in)
+    :custom
+    (treesit-font-lock-level 4))
+
   (use-package treesit-auto
     :straight (:host github :repo "renzmann/treesit-auto")
-    :when (+emacs-features-p 'tree-sitter)
-    :after treesit
-    :demand t
+    :hook (minemacs-after-startup . global-treesit-auto-mode)
     :custom
     (treesit-auto-install 'prompt)
     :config
     ;; Install all languages when calling `treesit-auto-install-all'
-    ;; (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))
-    (global-treesit-auto-mode 1)))
-
-(unless (+emacs-features-p 'tree-sitter)
-  (+load minemacs-modules-dir "obsolete/me-tree-sitter.el"))
+    (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))))
 
 (use-package hideif
   :straight (:type built-in)

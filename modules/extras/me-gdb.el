@@ -64,18 +64,20 @@
 ;;;###autoload
 (defun +emacs-gdb-enable ()
   "Load a faster \"gdb\" command from \"emacs-gdb\".
-This will overrite the built-in \"gdb-mi\" for this session."
+This will overwrite the built-in \"gdb-mi\" for this session."
   (interactive)
-  (when (yes-or-no-p "Loading \"emacs-gdb\" will overrite \"gdb-mi\" for this session, continue?")
-    (use-package gdb-mi
-      ;; I use my own fork in which I've merged some open PRs on the upstream
-      ;; repo (weirdNox/emacs-gdb).
-      :straight (:host github :repo "abougouffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
-      :when (+emacs-features-p 'modules)
-      :demand t
-      :init
-      (fmakunbound 'gdb)
-      (fmakunbound 'gdb-enable-debug)
-      :custom
-      (gdb-window-setup-function #'gdb--setup-windows)
-      (gdb-ignore-gdbinit nil))))
+  (if (+emacs-features-p 'modules)
+      (when (yes-or-no-p "Loading \"emacs-gdb\" will overwrite \"gdb-mi\" for this session, continue?")
+        (use-package gdb-mi
+          ;; I use my own fork in which I've merged some open PRs on the upstream.
+          :straight '(:host github :repo "weirdNox/emacs-gdb"
+                      :files (:defaults "*.c" "*.h" "Makefile")
+                      :fork (:host github :repo "abougouffa/emacs-gdb"))
+          :demand t
+          :init
+          (fmakunbound 'gdb)
+          (fmakunbound 'gdb-enable-debug)
+          :custom
+          (gdb-window-setup-function #'gdb--setup-windows)
+          (gdb-ignore-gdbinit nil)))
+    (message "Cannot enable \"emacs-gdb\", Emacs was built without modules support!")))
