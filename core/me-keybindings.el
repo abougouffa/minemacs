@@ -36,8 +36,8 @@
 
 (use-package general
   :straight t
-  ;; PERF: Loading `general' early make Emacs very slow on startup
-  :after minemacs-loaded
+  ;; PERF: Loading `general' early make Emacs very slow on startup.
+  :after evil
   :demand t
   :config
   ;; Advise `define-key' to automatically unbind keys when necessary.
