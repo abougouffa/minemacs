@@ -148,6 +148,7 @@
 
     ;; ====== Search ======
     "s"   '(nil :wk "search")
+    "sw"  '+webjump
 
     ;; ======  Mode specific a.k.a. "local leader" ======
     "m"   '(nil :wk "mode-specific")

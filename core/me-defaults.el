@@ -265,7 +265,29 @@
  ;; Skip visited messages on compilation motion commands
  compilation-skip-visited t
  ;; Keep it readable
- compilation-window-height 12)
+ compilation-window-height 12
+
+ ;; ====== Misc ======
+ ;; Set `webjump' sites to manily search engins
+ webjump-sites
+ '(("Emacs Wiki"    . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
+   ("DuckDuckGo"    . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
+   ("Qwant"         . [simple-query "www.qwant.com" "www.qwant.com/?q=" ""])
+   ("Ecosia"        . [simple-query "www.ecosia.org" "www.ecosia.org/search?q=" ""])
+   ("Brave"         . [simple-query "search.brave.com" "search.brave.com/search?q=" ""])
+   ("Bing"          . [simple-query "www.bing.com" "www.bing.com/search?q=" ""])
+   ("Yahoo"         . [simple-query "www.yahoo.com" "search.yahoo.com/search?p=" ""])
+   ("Google"        . [simple-query "www.google.com" "www.google.com/search?q=" ""])
+   ("Google Maps"   . [simple-query "www.google.com" "www.google.com/maps?q=" ""])
+   ("Google Images" . [simple-query "www.google.com" "www.google.com/images?q=" ""])
+   ("Google Groups" . [simple-query "groups.google.com" "groups.google.com/groups?q=" ""])
+   ("StackOverflow" . [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
+   ("GitHub Repo"   . [simple-query "github.com" "github.com/search?type=repositories&q=" ""])
+   ("GitHub Code"   . [simple-query "github.com" "github.com/search?type=code&q=" ""])
+   ("WolframAlpha"  . [simple-query "wolframalpha.com" "wolframalpha.com/input/?i=" ""])
+   ("MDN"           . [simple-query "developer.mozilla.org" "developer.mozilla.org/search?q=" ""])
+   ("Youtube"       . [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+   ("Wikipedia"     . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])))
 
 (setq-default
  ;; ====== Buffer-local variables ======

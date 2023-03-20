@@ -107,3 +107,34 @@ prefix or universal argument, it waits for a moment (defined by
     (with-temp-file filename (insert data))
     (kill-new filename)
     (message "Screenshot saved to %s" filename)))
+
+;;;###autoload
+(defun +region-or-thing-at-point ()
+  "Return the region or the thing at point."
+  (when-let* ((thing (or
+                      (prog1 (thing-at-point 'region t)
+                        (deactivate-mark))
+                      (thing-at-point 'symbol t)
+                      (thing-at-point 'email t)
+                      (thing-at-point 'number t)
+                      (thing-at-point 'string t)
+                      (thing-at-point 'word t))))
+    (if (length> (string-lines thing) 1)
+        ;; If the matching thing has multi-lines, use the first one
+        (car (string-lines thing))
+      thing)))
+
+(defvar +webjump-read-string-initial-query nil)
+
+(defun +webjump-read-string-with-initial-query (prompt)
+  (let ((input (read-string (concat prompt ": ") +webjump-read-string-initial-query)))
+    (if (webjump-null-or-blank-string-p input) nil input)))
+
+;;;###autoload
+(defun +webjump ()
+  "Like `webjump', with initial query filled from `+region-org-thing-at-point'."
+  (interactive)
+  (require 'webjump)
+  (let ((+webjump-read-string-initial-query (+region-or-thing-at-point)))
+    (cl-letf (((symbol-function 'webjump-read-string) #'+webjump-read-string-with-initial-query))
+      (webjump))))

@@ -117,7 +117,11 @@ Save a screenshot of the current frame as an SVG image.
 Saves to a temp file and puts the filename in the kill ring. If launched with a
 prefix or universal argument, it waits for a moment (defined by
 `+screenshot-delay') before taking the screenshot." t)
-(register-definition-prefixes "../elisp/+emacs" '("+dir-locals--autoreload-" "+screenshot-"))
+(autoload '+region-or-thing-at-point "../elisp/+emacs" "\
+Return the region or the thing at point.")
+(autoload '+webjump "../elisp/+emacs" "\
+Like `webjump', with initial query filled from `thing-at-point'." t)
+(register-definition-prefixes "../elisp/+emacs" '("+dir-locals--autoreload-" "+screenshot-" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../elisp/+io.el
