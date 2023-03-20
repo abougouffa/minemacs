@@ -105,7 +105,16 @@
   :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup)
   :init
   (+map-local! :keymaps '(geiser-mode-map geiser-repl-mode-map)
-    "m" '(macrostep-geiser-expand-all :wk "Expand macro")))
+    "m" '(macrostep-expand :wk "Expand macro")
+    "M" #'macrostep-geiser-expand-all))
+
+(use-package sly-macrostep
+  :straight t
+  :after sly
+  :demand t
+  :init
+  (+map-local! :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
+    "m" '(macrostep-expand :wk "Expand macro")))
 
 (use-package racket-mode
   :straight t)
