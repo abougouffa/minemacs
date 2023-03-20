@@ -43,4 +43,3 @@ When DIR is not detected as a project, ask to force it to be by adding a
   (interactive)
   (let ((default-directory (project-root (project-current t))))
     (call-interactively #'gdb)))
-

@@ -601,11 +601,6 @@ This will overrite the built-in \"gdb-mi\" for this session." t)
 (register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
 
 
-;;; Generated autoloads from ../modules/extras/me-org-export-async-init.el
-
-(register-definition-prefixes "../modules/extras/me-org-export-async-init" '("minemacs-"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-org-extras.el
 
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
