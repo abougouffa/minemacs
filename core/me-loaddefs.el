@@ -548,11 +548,11 @@ Unmount eCryptfs' private directory." t)
 ;;; Generated autoloads from ../modules/extras/me-dap-utils.el
 
 (autoload '+github-latest-release "../modules/extras/me-dap-utils" "\
-Get the latest release of OWNER/REPO. Strips the \"v\" at left.
+Get the latest release of USER/REPO. Strips the \"v\" at left.
 
 Fallback to FALLBACK-RELEASE when it can't get the last one.
 
-(fn OWNER REPO &optional FALLBACK-RELEASE)")
+(fn USER REPO &optional FALLBACK-RELEASE)")
 
 
 ;;; Generated autoloads from me-defaults.el
@@ -576,7 +576,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 Enable custom window layout for gdb." t)
 (autoload '+emacs-gdb-enable "../modules/extras/me-gdb" "\
 Load a faster \"gdb\" command from \"emacs-gdb\".
-This will overrite the built-in \"gdb-mi\" for this session." t)
+This will overwrite the built-in \"gdb-mi\" for this session." t)
 (register-definition-prefixes "../modules/extras/me-gdb" '("+gdb-"))
 
 
