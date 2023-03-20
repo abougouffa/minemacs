@@ -328,7 +328,7 @@
                (file-name-nondirectory session-filename)))))
 
   ;; Integration of `compile' with `savehist'
-  (with-eval-after-load 'savehist
+  (+after-load! '(:and savehist compile)
     (add-to-list 'savehist-additional-variables 'compile-history))
 
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
