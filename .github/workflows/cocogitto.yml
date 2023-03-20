@@ -1,0 +1,2 @@
+- name: Conventional commit cocogitto action
+  uses: cocogitto/cocogitto-action@v3.4
