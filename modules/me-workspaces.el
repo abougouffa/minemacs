@@ -5,7 +5,6 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 ;; IDEA:
-;; - github.com/fritzgrabo/tab-bar-groups
 ;; - github.com/fritzgrabo/project-tab-groups
 ;; - github.com/florommel/bufferlo
 ;; - www.rousette.org.uk/archives/using-the-tab-bar-in-emacs
@@ -14,29 +13,31 @@
 (use-package tabspaces
   :straight t
   :hook (minemacs-after-startup . tabspaces-mode)
+  ;; :hook (minemacs-after-startup . tabspaces-restore-session)
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
-  (tabspaces-remove-to-default t)
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
+  ;; BUG: not working as expected, it hooks the restore function to
+  ;; `emacs-startup-hook' which runs before `tabspaces-mode' gets hooked.
   (tabspaces-session-auto-restore t)
   (tabspaces-session-file (+directory-ensure minemacs-local-dir "tabspaces/session.el"))
   :init
   (+map! :infix "q"
     "t" #'tabspaces-save-session
-    "T" #'tabspaces-restore-session)
+    "T" #'tabspaces-restore-session
+    "p" #'tabspaces-save-current-project-session)
   (+map! :infix "TAB"
-    "o" #'tabspaces-open-or-create-project-and-workspace
-    "f" #'tabspaces-project-switch-project-open-file
+    "TAB" '(tabspaces-switch-or-create-workspace :w "Switch or create")
+    "o" '(tabspaces-open-or-create-project-and-workspace :wk "Open or create project")
+    "f" '(tabspaces-project-switch-project-open-file :wk "Switch project & open file")
     "d" #'tabspaces-close-workspace
-    "s" #'tabspaces-switch-or-create-workspace
     "b" #'tabspaces-switch-to-buffer
     "t" #'tabspaces-switch-buffer-and-tab
     "C" #'tabspaces-clear-buffers
     "r" #'tabspaces-remove-current-buffer
     "R" #'tabspaces-remove-selected-buffer
-    "k" #'tabspaces-kill-buffers-close-workspace)
+    "k" #'(tabspaces-kill-buffers-close-workspace :wk "Kill buffers & close WS"))
   :config
   (defun +consult-tabspaces ()
     "Deactivate isolated buffers when not using tabspaces."
@@ -53,34 +54,35 @@
   (add-hook 'tabspaces-mode-hook #'+consult-tabspaces)
 
   (with-eval-after-load 'consult
-    ;; hide full buffer list (still available with "b" prefix)
+    ;; Hide full buffer list (still available with "b" prefix)
     (consult-customize consult--source-buffer :hidden t :default nil)
-    ;; set consult-workspace buffer list
+    ;; Set consult-workspace buffer list
     (defvar +consult--source-workspace
-      (list :name     "Workspace Buffers"
-            :narrow   ?w
-            :history  'buffer-name-history
+      (list :name "Workspace Buffers"
+            :narrow ?w
+            :history 'buffer-name-history
             :category 'buffer
-            :state    #'consult--buffer-state
-            :default  t
-            :items    (lambda () (consult--buffer-query
-                                  :predicate #'tabspaces--local-buffer-p
-                                  :sort 'visibility
-                                  :as #'buffer-name)))
-      "Set workspace buffer list for consult-buffer.")
+            :state #'consult--buffer-state
+            :default t
+            :items (lambda ()
+                     (consult--buffer-query
+                      :predicate #'tabspaces--local-buffer-p
+                      :sort 'visibility
+                      :as #'buffer-name))))
 
     (add-to-list 'consult-buffer-sources '+consult--source-workspace)))
 
 (use-package tab-bar
   :straight (:type built-in)
+  :hook (minemacs-after-startup . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history
                     tab-bar-format-tabs
                     tab-bar-separator))
   (tab-bar-tab-hints t)
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
-  (tab-bar-close-button-show t)
-  (tab-bar-show nil) ; until eldoc-box gets fixed
+  (tab-bar-close-button-show nil)
+  (tab-bar-show nil)
   :config
   (defun +tab-bar-tab-spaced-name-format (tab i)
     (let ((current-p (eq (car tab) 'current-tab)))
