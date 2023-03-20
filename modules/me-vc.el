@@ -70,7 +70,10 @@
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
   (emojify-display-style 'image)
-  (emojify-download-emojis-p t))
+  (emojify-download-emojis-p t)
+  :init
+  (when (< emacs-major-version 29)
+    (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))))
 
 (use-package code-review
   :straight t
