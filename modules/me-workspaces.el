@@ -13,14 +13,10 @@
 (use-package tabspaces
   :straight t
   :hook (minemacs-after-startup . tabspaces-mode)
-  ;; :hook (minemacs-after-startup . tabspaces-restore-session)
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
-  ;; BUG: not working as expected, it hooks the restore function to
-  ;; `emacs-startup-hook' which runs before `tabspaces-mode' gets hooked.
-  (tabspaces-session-auto-restore t)
   (tabspaces-session-file (+directory-ensure minemacs-local-dir "tabspaces/session.el"))
   :init
   (+map! :infix "q"
