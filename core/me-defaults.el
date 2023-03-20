@@ -453,6 +453,9 @@ or file path may exist now."
   ;; Better handling for files with so long lines
   (global-so-long-mode 1)
 
+  ;; Save Emacs state from one session to another
+  (desktop-save-mode 1)
+
   ;; Global SubWord mode
   (global-subword-mode 1))
 
