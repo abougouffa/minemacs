@@ -172,7 +172,7 @@ the children of class at point."
   :straight t
   :commands +project-compile-multi
   :init
-  (+map! "pcC" #'+project-compile-multi)
+  (+map! "pC" #'+project-compile-multi)
   :config
   (defun +project-compile-multi ()
     "Like `project-compile', but uses `compile-multi'."

@@ -15,7 +15,7 @@
   :init
   (+map! ":"  #'project-find-file)
   (+map!
-    ;; Project
+    ;; project
     :infix "p"
     "w"  #'project-switch-project
     "c"  #'project-compile
@@ -26,21 +26,21 @@
     "a"  #'+project-add-project
     "D"  #'+dir-locals-open-or-create
     "-"  #'project-dired
-    ;; Compile/test
-    "c"  '(nil :wk "compile/test")
-    "cc" #'project-compile
+    ;; compile/test
+    "c" #'project-compile
+    ;; run
     "r"  '(nil :wk "run")
     "re" #'project-eshell
     "rg" #'+project-gdb
     "rs" #'project-shell
     "rc" #'project-shell-command
     "rC" #'project-async-shell-command
-    ;; Forget
+    ;; forget
     "F"  '(nil :wk "forget/cleanup")
     "Fz" '(project-forget-zombie-projects :wk "Zombie projects")
     "Fp" '(project-forget-project :wk "Project")
     "Fu" '(project-forget-projects-under :wk "Projects under...")
-    ;; Search/replace
+    ;; search/replace
     "s"  '(nil :wk "search/replace")
     "ss" #'project-search
     "sn" '(fileloop-continue :wk "Next match")
