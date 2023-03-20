@@ -4,8 +4,6 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
-(autoload '+flycheck-cmake-setup "me-flycheck-cmake")
-(autoload '+eglot-setup-flycheck "me-flycheck-eglot")
 
 (use-package flycheck
   :straight t
@@ -16,6 +14,8 @@
   (flycheck-display-errors-delay 0.5)
   :init
   (defvar +flycheck-disabled-explicitly nil)
+  (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-cmake.el")
+  (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-eglot.el")
   :config
   (defun +flycheck-mode-toggle ()
     (interactive)
@@ -52,14 +52,6 @@
         (propertize
          (funcall flycheck-help-echo-function diags)
          'help-echo-inhibit-substitution t)))))
-
-(use-package me-flycheck-eglot
-  :after eglot flycheck
-  :demand t)
-
-(use-package me-flycheck-cmake
-  :after flycheck
-  :demand t)
 
 
 (provide 'obsolete/me-flycheck)
