@@ -19,7 +19,6 @@
   (evil-kill-on-visual-paste nil)
   (evil-respect-visual-line-mode t)
   (evil-ex-interactive-search-highlight 'selected-window)
-  (evil-search-module 'evil-search)
   :config
   (+map!
     ;; buffer
@@ -33,6 +32,10 @@
     "wR" '(evil-window-rotate-upwards :wk "Rotate upwards")
     "w+" '(evil-window-increase-width :wk "Increase width")
     "w-" '(evil-window-decrease-width :wk "Decrease width"))
+
+  ;; Use `evil-search' instead of `isearch'
+  (evil-select-search-module 'evil-search-module 'evil-search)
+
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
     (dolist (fn '(evil-window-split evil-window-vsplit))
