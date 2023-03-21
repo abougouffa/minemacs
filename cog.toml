@@ -5,7 +5,6 @@ pre_bump_hooks = []
 post_bump_hooks = []
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
-tag_prefix = "v"
 
 [commit_types]
 tweak = { changelog_title = "Tweaks" }
@@ -17,3 +16,4 @@ authors = []
 
 [bump_profiles]
 
+[packages]

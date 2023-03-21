@@ -6,6 +6,7 @@
 
 
 (if (not (+emacs-features-p 'tree-sitter))
+    ;; Use the external `tree-sitter' module
     (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
 
   ;; Use built-in `treesit' when available
@@ -212,7 +213,10 @@ the children of class at point."
     "Toggle auto-burying the successful compilation buffer."
     (interactive)
     (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
-        (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h)
+        (progn
+          (message "Disabled burying compilation buffer.")
+          (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))
+      (message "Enabled burying compilation buffer.")
       (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
 
 (use-package apheleia
