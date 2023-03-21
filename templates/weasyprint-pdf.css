@@ -1,0 +1,10 @@
+/* Stylesheet for WeasyPrint */
+body {
+  width: 210mm; /* A4 */
+  transform: scale(0.7); /* Scale down to 70% */
+  transform-origin: 0 0;
+}
+@page {
+  margin: 2mm;
+  padding: 0;
+}
