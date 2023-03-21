@@ -21,10 +21,11 @@
   (lsp-eldoc-render-all nil) ; clangd docs looks ugly on eldoc-box!
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-lens-enable nil)
-  ;; maybe use nil and enable modes manually (lsp-completion-mode, lsp-modeline-diagnostics-mode, ...)
+  ;; Maybe set to nil and enable modes manually (`lsp-completion-mode',
+  ;; `lsp-modeline-diagnostics-mode', ...)
   (lsp-auto-configure t)
   ;; Those stuff should be managed by Emacs's builtins (whitespace-cleanup, treesit, ...)
-  (lsp-semantic-tokens-enable nil) ; when t, hides unreachable ifdefs!
+  (lsp-semantic-tokens-enable t) ; when t, hides unreachable ifdefs!
   (lsp-enable-on-type-formatting nil)
   (lsp-enable-text-document-color nil)
   (lsp-trim-trailing-whitespace nil)

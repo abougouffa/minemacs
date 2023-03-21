@@ -120,7 +120,7 @@ prefix or universal argument, it waits for a moment (defined by
 (autoload '+region-or-thing-at-point "../elisp/+emacs" "\
 Return the region or the thing at point.")
 (autoload '+webjump "../elisp/+emacs" "\
-Like `webjump', with initial query filled from `thing-at-point'." t)
+Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (register-definition-prefixes "../elisp/+emacs" '("+dir-locals--autoreload-" "+screenshot-" "+webjump-read-string-"))
 
 
@@ -315,8 +315,10 @@ Suppress new messages temporarily in the echo area while BODY is evaluated.
 Convert BODY to an interactive command.
 
 (fn &rest BODY)" nil t)
-(autoload '+set-fonts "../elisp/+minemacs" nil t)
-(autoload '+load-theme "../elisp/+minemacs" nil t)
+(autoload '+set-fonts "../elisp/+minemacs" "\
+Set Emacs' fonts from `minemacs-fonts'." t)
+(autoload '+load-theme "../elisp/+minemacs" "\
+Load Emacs' theme from `minemacs-theme'." t)
 (autoload '+eval-when-idle "../elisp/+minemacs" "\
 Queue FNS to be processed when Emacs becomes idle.
 

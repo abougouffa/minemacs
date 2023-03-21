@@ -90,7 +90,7 @@
   :init
   (+map! "tm" #'mixed-pitch-mode)
   :custom
-  (mixed-pitch-variable-pitch-cursor t)
+  (mixed-pitch-variable-pitch-cursor 'box)
   :config
   (setq mixed-pitch-fixed-pitch-faces
         (delete-dups

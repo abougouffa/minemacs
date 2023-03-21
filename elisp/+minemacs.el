@@ -74,6 +74,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 
 ;;;###autoload
 (defun +set-fonts ()
+  "Set Emacs' fonts from `minemacs-fonts'."
   (interactive)
   ;; TODO: use (font-family-list) to check if the font is available
   (custom-set-faces
@@ -98,6 +99,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 
 ;;;###autoload
 (defun +load-theme ()
+  "Load Emacs' theme from `minemacs-theme'."
   (interactive)
   (when minemacs-theme
     (+log! "Loading user theme: %s" minemacs-theme)
