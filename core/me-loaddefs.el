@@ -187,8 +187,10 @@ Clean file name.
 (fn FILENAME &optional DOWNCASE-P)")
 (autoload '+html2pdf "../elisp/+io" "\
 Convert HTML file INFILE to PDF and save it to OUTFILE.
+When BACKEND is provided, the corresponding program is used, otherwise, the
+value of `+html2pdf-default-backend' is used.
 
-(fn INFILE OUTFILE)")
+(fn INFILE OUTFILE &optional BACKEND)")
 (autoload '+txt2html "../elisp/+io" "\
 Convert plain-text file INFILE to HTML and save it to OUTFILE.
 When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\".
@@ -201,7 +203,7 @@ so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 (fn INFILE &optional MAIL-MODE-P)")
-(register-definition-prefixes "../elisp/+io" '("+save-as-pdf-filename"))
+(register-definition-prefixes "../elisp/+io" '("+html2pdf-default-backend" "+save-as-pdf-filename"))
 
 
 ;;; Generated autoloads from ../elisp/+keybinding.el

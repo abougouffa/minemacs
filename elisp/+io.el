@@ -13,7 +13,7 @@ Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
   (if (executable-find "file")
       (let ((mime-type (shell-command-to-string (format "file --brief --mime-type %s" file))))
         (intern (string-trim-right mime-type)))
-    (error "The \"file\" tool isn't installed.")))
+    (error "The \"file\" command isn't installed.")))
 
 ;;;###autoload
 (defun +file-name-incremental (filename)
@@ -176,13 +176,52 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     "[‘’‚’“”„”\"`'()]+" ""
     (if downcase-p (downcase filename) filename))))
 
+(defcustom +html2pdf-default-backend 'wkhtmltopdf
+  "The default backend to convert HTML files to PDFs in `+html2pdf'."
+  :group 'minemacs
+  :type '(choice
+          (const wkhtmltopdf)
+          (const htmldoc)
+          (const weasyprint)
+          (const pandoc+context)))
+
 ;;;###autoload
-(defun +html2pdf (infile outfile)
-  "Convert HTML file INFILE to PDF and save it to OUTFILE."
-  (call-process "wkhtmltopdf" nil nil nil
-                "--images" "--disable-javascript" "--enable-local-file-access"
-                "--encoding" "utf-8"
-                infile outfile))
+(defun +html2pdf (infile outfile &optional backend)
+  "Convert HTML file INFILE to PDF and save it to OUTFILE.
+When BACKEND is provided, the corresponding program is used, otherwise, the
+value of `+html2pdf-default-backend' is used."
+  (let ((default-directory (file-name-directory infile))
+        (backend (or backend +html2pdf-default-backend)))
+    (pcase backend
+      ('weasyprint
+       (call-process
+        "weasyprint" nil nil nil
+        "--encoding" "utf-8"
+        "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-root-dir)
+        infile outfile))
+      ('htmldoc
+       (call-process
+        "htmldoc" nil nil nil
+        "--charset" "utf-8"
+        "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
+        "--top" "10#mm" "--bottom" "10#mm" "--right" "10#mm" "--left" "10#mm"
+        "--fontsize" "11"
+        "--size" "a4"
+        "--continuous"
+        "--outfile" outfile infile))
+      ('wkhtmltopdf
+       (call-process
+        "wkhtmltopdf" nil nil nil
+        "--images" "--disable-javascript" "--enable-local-file-access"
+        "--encoding" "utf-8"
+        infile outfile))
+      ('pandoc+context
+       (call-process
+        "pandoc" nil nil nil
+        "--pdf-engine=context"
+        "--variable" "fontsize=10pt"
+        "--variable" "linkstyle=slanted"
+        "-o" outfile infile)))))
 
 ;;;###autoload
 (defun +txt2html (infile outfile &optional mail-mode-p)
