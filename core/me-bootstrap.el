@@ -7,8 +7,11 @@
 (setq
  ;; Base directory
  straight-base-dir minemacs-local-dir
- ;; Add Emacs version to the build directory to avoid problems
- straight-build-dir (format "build-%s" emacs-version)
+ ;; Add Emacs version and the Git hash to the build directory to avoid problems
+ straight-build-dir (format "build-%s%s" emacs-version
+                            (if emacs-repository-version
+                                (format "-%s" (substring emacs-repository-version 0 8))
+                              ""))
  ;; TEMP: Use the "master" branch on straight.el's repo (switch back to
  ;; "develop" when issue #28 gets fixed in upstream)
  straight-repository-branch "master"
