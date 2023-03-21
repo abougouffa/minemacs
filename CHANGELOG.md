@@ -1,0 +1,1390 @@
+# Changelog
+All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
+
+- - -
+## v0.1.0 - 2023-03-21
+#### Bug Fixes
+- **(apheleia)** adapt to the new formatters structure - (5138719) - Abdelhak Bougouffa
+- **(autex)** correct setting of pdf-tools as PDF viewer - (3f30099) - Abdelhak Bougouffa
+- **(backports)** define `messages-buffer-name` in Emacs28 (#34) - (1d356d6) - Abdelhak Bougouffa
+- **(backports)** add missing func for Emacs 28 #2 - (485e46a) - Abdelhak Bougouffa
+- **(biblio)** ensure auto loading oc - (80c31eb) - Abdelhak Bougouffa
+- **(bibtex)** keybinding conflict - (a1be31e) - Abdelhak Bougouffa
+- **(bootstrap)** better check before trying to define an alias - (4a827e9) - Abdelhak Bougouffa
+- **(cape)** disable `cape-tex` which caused issues - (5636c28) - Abdelhak Bougouffa
+- **(consult)** deactivation selection when starting consult - (55edc22) - Abdelhak Bougouffa
+- **(consult)** if the dwim match multi-lines, use only the first - (58a9ad9) - Abdelhak Bougouffa
+- **(core)** the hook approach do not work with Emacs daemon - (97d7f13) - Abdelhak Bougouffa
+- **(core)** undefined variable in +ignore-root - (509bf91) - Abdelhak Bougouffa
+- **(core)** better handling of MinEmacs directories - (9fd5b0f) - Abdelhak Bougouffa
+- **(core)** lazy hooks typo - (6e31e2d) - Abdelhak Bougouffa
+- **(core)** environment variables - (35dffee) - Abdelhak Bougouffa
+- **(core)** prefer MinEmacs primitives - (c115a65) - Abdelhak Bougouffa
+- **(core-ui)** defer loading themes - (5e0464e) - Abdelhak Bougouffa
+- **(corfu)** `corfu-doc` -> `corfu-popupinfo` - (410e358) - Abdelhak Bougouffa
+- **(csv)** correct handling of edge cases for +csv-rainbow - (e6756dd) - Abdelhak Bougouffa
+- **(daemon)** do not assume `me-daemon` to be loaded at the end - (b8cc8bd) - Abdelhak Bougouffa
+- **(daemon)** a test in the wrong place - (24e89b5) - Abdelhak Bougouffa
+- **(defaults)** use the right environment language settings - (1ebf93c) - Abdelhak Bougouffa
+- **(defaults)** use right options for coding/locale - (a69ff77) - Abdelhak Bougouffa
+- **(defaults)** ensure using UTF-8 to communicate with other progs - (b5391f3) - Abdelhak Bougouffa
+- **(defaults)** ensure creating default directories - (deafd83) - Abdelhak Bougouffa
+- **(defaults)** ensure creating org dirs - (884aa73) - Abdelhak Bougouffa
+- **(defaults)** `hs-minor-mode` is not suitable for `text-mode` - (02d5349) - Abdelhak Bougouffa
+- **(defaults)** emacs-session after x-win - (3f5d503) - Abdelhak Bougouffa
+- **(defaults)** set default directories first - (dcd685b) - Abdelhak Bougouffa
+- **(defaults)** misplaced parenthesis - (d4df3df) - Abdelhak Bougouffa
+- **(eaf)** do not try to auto install apps - (13db99f) - Abdelhak Bougouffa
+- **(eaf)** require errors when EAF is not installed - (b180a96) - Abdelhak Bougouffa
+- **(eglot)** the case of single server with no args! - (de76442) - Abdelhak Bougouffa
+- **(eglot)** correct handling of the case of single server - (c2f64d0) - Abdelhak Bougouffa
+- **(eglot)** conditional recipe, prefer built-in in Emacs29+ - (7b8d968) - Abdelhak Bougouffa
+- **(eglot)** tree-sitter-modes - (b172d3c) - Abdelhak Bougouffa
+- **(eldoc)** hook eldoc-box to prog-mode - (713906f) - Abdelhak Bougouffa
+- **(elisp)** use the `+compile-functions` function - (3bc59e6) - Abdelhak Bougouffa
+- **(emacs)** `+toggle-auto-whitespace-cleanup` - (774e006) - Abdelhak Bougouffa
+- **(email)** better binding for open as html - (870b39f) - Abdelhak Bougouffa
+- **(embedded)** wrong feature provided - (f128a21) - Abdelhak Bougouffa
+- **(evil)** autoload `evilnc-comment-operator` - (1ebc13e) - Abdelhak Bougouffa
+- **(evil)** do not deffer, can cause problems - (e2af285) - Abdelhak Bougouffa
+- **(flycheck)** buggy CMake integration - (403e357) - Abdelhak Bougouffa
+- **(flycheck)** buggy advice - (f5d46e6) - Abdelhak Bougouffa
+- **(forge)** use builtin SQLite3 if available - (11cb5ae) - Abdelhak Bougouffa
+- **(gdb)** fix the typo in the repo name - (2ef2fed) - Abdelhak Bougouffa
+- **(general)** load after evil to avoid startup issues - (9b3084a) - Abdelhak Bougouffa
+- **(general)** defer general to speedup Emacs startup - (719b57d) - Abdelhak Bougouffa
+- **(general)** fix the order of modes in MinEmacs' definers - (0536f33) - Abdelhak Bougouffa
+- **(gmail)** fix deleting/refiling spams - (fa83cc9) - Abdelhak Bougouffa
+- **(gts)** fix the keybinding - (4d914a7) - Abdelhak Bougouffa
+- **(gts)** fix the keybinding - (37e8679) - Abdelhak Bougouffa
+- **(hl-line)** use when needed, fixes vterm flash - (cdf82c8) - Abdelhak Bougouffa
+- **(init)** use primitives in `+load` (#27) - (e347ff7) - Abdelhak Bougouffa
+- **(init)** fix filename in `+load` error message - (177568d) - Abdelhak Bougouffa
+- **(init)** better handling of JIT native compilation - (c4110e9) - Abdelhak Bougouffa
+- **(init)** remove accidentally added assignment - (3b980d7) - Abdelhak Bougouffa
+- **(init)** use only modules/extras for autoloads - (41c13b3) - Abdelhak Bougouffa
+- **(init)** delete eln cache after loading Emacs - (ce56a5d) - Abdelhak Bougouffa
+- **(kind-icon)** use icons only if Emacs is built with SVG - (eef531c) - Abdelhak Bougouffa
+- **(macrostep)** restore the keymap - (2122585) - Abdelhak Bougouffa
+- **(macrostep-geiser)** configure it the right way - (52a74e2) - Abdelhak Bougouffa
+- **(magit)** wrong key for `magit-stage` - (4250333) - donney_luck
+- **(media)** broken binding to save empv playlist - (62f6b1f) - Abdelhak Bougouffa
+- **(mu4e)** remove erroneous check - (e9a18b8) - Abdelhak Bougouffa
+- **(mu4e)** better PDF export of plain text mails - (0dc6293) - Abdelhak Bougouffa
+- **(mu4e)** fix taking setting the default account - (2f88ece) - Abdelhak Bougouffa
+- **(mu4e)** cleanup subjects from newline chars - (92a28fd) - Abdelhak Bougouffa
+- **(org)** avoid using uncommon font weights (#13) - (e745017) - Abdelhak Bougouffa
+- **(org)** better handling for Org async export - (cb2f483) - Abdelhak Bougouffa
+- **(org)** ensure loading babel languages - (13caeeb) - Abdelhak Bougouffa
+- **(org)** asynchronous export - (37532a2) - Abdelhak Bougouffa
+- **(org)** do not mess up with tags - (8016f19) - Abdelhak Bougouffa
+- **(org)** fix the crash on scrolling with mouse - (8e20926) - Abdelhak Bougouffa
+- **(parinfer)** auto-enable only on x86_64 - (30b76fc) - Abdelhak Bougouffa
+- **(pcache)** avoid loading pcache too early - (b5f8254) - Abdelhak Bougouffa
+- **(pdf)** first install - (0341c65) - Abdelhak Bougouffa
+- **(pdf-tools)** try to install it if not available - (cd9870d) - Abdelhak Bougouffa
+- **(prog)** force tree-sitter to be loaded late, strange behavior even - (ac10284) - Abdelhak Bougouffa
+- **(project)** fix keybindings for project[ile] - (51cbaa9) - Abdelhak Bougouffa
+- **(ros)** use `ros2 bag`, `rosbag` or `mcap` - (1d68783) - Abdelhak Bougouffa
+- **(ros)** support for MCAP files - (cf284e1) - Abdelhak Bougouffa
+- **(ros)** buggy rosbag mode - (c0065b9) - Abdelhak Bougouffa
+- **(rust)** correctly provide rust commands for rust-ts-mode - (8687250) - Abdelhak Bougouffa
+- **(skel)** fix parens user config example - (10c8c9e) - Abdelhak Bougouffa
+- **(straight)** define old variable for Emacs29+ - (9485ca6) - Abdelhak Bougouffa
+- **(straight)** use the repo's master branch (#28) - (7338efc) - Abdelhak Bougouffa
+- **(straight)** temporary fix for Emacs 29.1+ - (efcebe2) - Abdelhak Bougouffa
+- **(treesit-auto)** enable only in Emacs29+ - (95916ab) - Abdelhak Bougouffa
+- **(treesit-auto)** temporary fix for upstream issue - (4de612c) - Abdelhak Bougouffa
+- **(treesit-langs)** use the new `treesit-hl-toggle` - (20871fe) - Abdelhak Bougouffa
+- **(treesit-langs)** install only on Emacs29+ - (109b0a5) - Abdelhak Bougouffa
+- **(undo)** use zstd only if available - (36bbcc9) - Abdelhak Bougouffa
+- **(url)** correct wrong path - (6f5c306) - Abdelhak Bougouffa
+- **(valgrind)** better integration with `savehist` - (6246258) - Abdelhak Bougouffa
+- **(vars)** use old way of getting parent directory - (d6a77cc) - Abdelhak Bougouffa
+- **(vars)** do not overwrite the user-emacs-directory - (f92f979) - Abdelhak Bougouffa
+- **(vars)** minor fixes - (bf76094) - Abdelhak Bougouffa
+- **(vars)** windows OS check - (ab9d061) - Abdelhak Bougouffa
+- **(vertico)** revert to using the new `keymap-global-set` - (0ac91db) - Abdelhak Bougouffa
+- **(vertico)** temporary fix for Emacs28 - (ba9c001) - Abdelhak Bougouffa
+- **(which-key)** the right replacements order - (2547560) - Abdelhak Bougouffa
+- **(which-key)** problematic secondary delay - (5fe0a6a) - Abdelhak Bougouffa
+- **(window)** simpler and better handling of vterm/eshell - (a812128) - Abdelhak Bougouffa
+- **(writeroom)** org-latex scaling - (e058a76) - Abdelhak Bougouffa
+- **(yasnippet)** create the snippets dir - (9f84701) - Abdelhak Bougouffa
+- **(yasnippet)** defer combining capfs, fix package dependencies - (c2bf6e0) - Abdelhak Bougouffa
+- **(yasnippet)** more complete and less intrusive completion - (f176db5) - Abdelhak Bougouffa
+- better conditional packages - (bce6e21) - Abdelhak Bougouffa
+- several fixes related to the new `use-package` behavior - (0a0c086) - Abdelhak Bougouffa
+- `package-enable-at-startup` should be set in early-init - (12969c8) - Abdelhak Bougouffa
+- better loading of packages - (2322a83) - Abdelhak Bougouffa
+- several fixes and improvements - (43cf87b) - Abdelhak Bougouffa
+- require `wid-edit` needed by `setopt--set` - (f6e7cd1) - Abdelhak Bougouffa
+- back port `native-compile-prune-cache` - (652eea7) - Abdelhak Bougouffa
+- encoding for windows - (a9a46e3) - Abdelhak Bougouffa
+- tree-sitter - (3452e79) - Abdelhak Bougouffa
+- backport some Emacs 29 functions - (f5f01be) - Abdelhak Bougouffa
+- remove `+log!` call from early-init - (9c01ca9) - Abdelhak Bougouffa
+- use the right Org config for async export - (8e57704) - Abdelhak Bougouffa
+- load "early-config.el" from "early-init.el" - (720b775) - Abdelhak Bougouffa
+- correct feature name for natural-langs - (e287b99) - Abdelhak Bougouffa
+- Org multi-files async export - (0587d25) - Abdelhak Bougouffa
+- do not try to start daemon if already started - (b8be784) - Abdelhak Bougouffa
+- daemon showing error when already launched - (0a811f4) - Abdelhak Bougouffa
+- function name for compilation - (0ef3c03) - Abdelhak Bougouffa
+- lexic keybindings - (274f9c9) - Abdelhak Bougouffa
+- correctly display battery icon on daemon - (3b8dbf4) - Abdelhak Bougouffa
+- unicode-fonts with daemon - (c6dfbc4) - Abdelhak Bougouffa
+- page-break-lines - (8793f3b) - Abdelhak Bougouffa
+- `+cmdfy!` macro - (868d67c) - Abdelhak Bougouffa
+- Emacs in TTY - (5b778e2) - Abdelhak Bougouffa
+- better generation of org-msg signatures - (02398ea) - Abdelhak Bougouffa
+- check for module before trying to load - (3bff6b5) - Abdelhak Bougouffa
+- frame title - (a05f21b) - Abdelhak Bougouffa
+- frame title - (527206c) - Abdelhak Bougouffa
+- org-mode - (6b76592) - Abdelhak Bougouffa
+- yank file name - (2c0de76) - Abdelhak Bougouffa
+- additional fixed faces in mixes-pitch-mode - (c86fd6a) - Abdelhak Bougouffa
+- org huge outline path in echo area - (caf90e1) - Abdelhak Bougouffa
+- evil-mc - (a5c373c) - Abdelhak Bougouffa
+- make concurrent increment atomic - (49c885c) - Abdelhak Bougouffa
+- `me-compile-functions` - (c3a397b) - Abdelhak Bougouffa
+- keybinding - (fb4682b) - Abdelhak Bougouffa
+- splash - (6e9e77b) - Abdelhak Bougouffa
+- defer ox-extra - (16bd977) - Abdelhak Bougouffa
+- evil-collection - (3781886) - Abdelhak Bougouffa
+- remove erefactor - (d8df805) - Abdelhak Bougouffa
+- disable potential buggy code - (046d08b) - Abdelhak Bougouffa
+- parinfer - (603d73f) - Abdelhak Bougouffa
+- mu4e contexts - (b265a6e) - Abdelhak Bougouffa
+- evil-mc - (126c947) - Abdelhak Bougouffa
+- vertico auto hiding (in Org mode) - (f347b96) - Abdelhak Bougouffa
+- `:general` was blocking Org from being loaded - (ffadec1) - Abdelhak Bougouffa
+- org-mode recipe, sometimes savannah goes down - (3e73f8c) - Abdelhak Bougouffa
+- fatal error - (7b5f2a9) - Abdelhak Bougouffa
+- annoying "Error during redisplay" bug in Org - (c1f9261) - Abdelhak Bougouffa
+- smartparens - (96c16f0) - Abdelhak Bougouffa
+- splash - (8f41ac4) - Abdelhak Bougouffa
+- parinfer-rust directory - (1872d36) - Abdelhak Bougouffa
+- keybindings - (9b26cf0) - Abdelhak Bougouffa
+- EAF keybindings - (a8cb78b) - Abdelhak Bougouffa
+- remove useless evil related hack for EAF - (633b0a0) - Abdelhak Bougouffa
+- replace slashes in `me-clean-file-name` - (e544c5b) - Abdelhak Bougouffa
+- bug in me-io.el - (3d7d444) - Abdelhak Bougouffa
+- tab-width=8 is suitable for built-in packages - (708a2a0) - Abdelhak Bougouffa
+- consult keybindings - (b05a4a8) - Abdelhak Bougouffa
+- hook - (27195d7) - Abdelhak Bougouffa
+- management of email aliases - (e87f8c5) - Abdelhak Bougouffa
+- hide personal addresses in mu4e - (68ab821) - Abdelhak Bougouffa
+- check for the auto BCC address first - (a8ce50c) - Abdelhak Bougouffa
+- inhibit-message on me-info! - (f069beb) - Abdelhak Bougouffa
+- start mu4e early to avoid stealing the minibuffer - (a089590) - Abdelhak Bougouffa
+- inhibit messages of background apps - (79e9bb4) - Abdelhak Bougouffa
+- vertico-resize - (051acd3) - Abdelhak Bougouffa
+- better completion - (d36ef3e) - Abdelhak Bougouffa
+- keybindngs, loading - (4994ce0) - Abdelhak Bougouffa
+- EAF - (0e88c60) - Abdelhak Bougouffa
+- decouple user config from minemacs - (120ee2d) - Abdelhak Bougouffa
+- ROS on Emacs < 29 - (0e814f2) - Abdelhak Bougouffa
+- ROS - (236ba35) - Abdelhak Bougouffa
+- ROS - (211c236) - Abdelhak Bougouffa
+- elfeed keybindings - (dd9270c) - Abdelhak Bougouffa
+- minemacs-after-startup-hook - (d80562c) - Abdelhak Bougouffa
+- edge cases for sudo* commands - (cb60fcd) - Abdelhak Bougouffa
+- check for MODULES support for parinfer - (af01740) - Abdelhak Bougouffa
+- spell - (1042918) - Abdelhak Bougouffa
+- load customs.el before confing.el - (ee5a1c3) - Abdelhak Bougouffa
+- early-init - (5d7f30b) - Abdelhak Bougouffa
+- me-str-split - (34dc118) - Abdelhak Bougouffa
+- EAF keybindings for Evil - (141468f) - Abdelhak Bougouffa
+- safe variables - (b8ef90a) - Abdelhak Bougouffa
+- EAF - (2612276) - Abdelhak Bougouffa
+- user config for writeroom-mode - (fa00179) - Abdelhak Bougouffa
+- org-roam - (c8d97cc) - Abdelhak Bougouffa
+- daemon - (5da76db) - Abdelhak Bougouffa
+- auto BCC in mails - (b67bb2a) - Abdelhak Bougouffa
+- user config - (31f94a5) - Abdelhak Bougouffa
+- completion - (e150cea) - Abdelhak Bougouffa
+- user config - (3cff801) - Abdelhak Bougouffa
+- me-str-join - (89495d8) - Abdelhak Bougouffa
+- startup hooks - (1691887) - Abdelhak Bougouffa
+- evil-mc keybindings - (eaa78d0) - Abdelhak Bougouffa
+- email - (eaef50e) - Abdelhak Bougouffa
+- biblio - (ed0eace) - Abdelhak Bougouffa
+- spell - (663b6ec) - Abdelhak Bougouffa
+- email - (ba56d5c) - Abdelhak Bougouffa
+- straight directories - (c53b085) - Abdelhak Bougouffa
+- load keybindings before evil - (7fb2c4b) - Abdelhak Bougouffa
+#### Documentation
+- fix readme - (42ddcd2) - Abdelhak Bougouffa
+- add comment - (46c5817) - Abdelhak Bougouffa
+- add install instructions - (3964dc8) - Abdelhak Bougouffa
+- update screenshot - (dfea4fe) - Abdelhak Bougouffa
+- update README - (3cb7bdc) - Abdelhak Bougouffa
+- update README - (f798f96) - Abdelhak Bougouffa
+- update README - (d536297) - Abdelhak Bougouffa
+- eglot-ltex - (bd42e7e) - Abdelhak Bougouffa
+- update README - (49c39b3) - Abdelhak Bougouffa
+- update README - (aa209d4) - Abdelhak Bougouffa
+#### Features
+- **(buffer)** add +region-to-file, +region-to-buffer - (f9210be) - Abdelhak Bougouffa
+- **(buffer)** add a cmd to kill a buffer with all its windows - (b816f91) - Abdelhak Bougouffa
+- **(cmake)** add eldoc support - (a908008) - Abdelhak Bougouffa
+- **(core)** add the `+after-load!` macro - (0fc7cdc) - Abdelhak Bougouffa
+- **(core)** add new helpers - (1a9937f) - Abdelhak Bougouffa
+- **(core)** add `+apply-partially-right` - (3283279) - Abdelhak Bougouffa
+- **(core)** add `+ignore-root` - (1208ab4) - Abdelhak Bougouffa
+- **(core)** add helpers to convert between plists and alists - (4b3e24c) - Abdelhak Bougouffa
+- **(core)** add a generic `+eval-when-idle-for!` - (645d6f2) - Abdelhak Bougouffa
+- **(core)** add `+hook-with-delay!` helper - (9926aeb) - Abdelhak Bougouffa
+- **(core-ui)** add initial config for modus-themes 4.0+ - (23a85d0) - Abdelhak Bougouffa
+- **(corfu)** enable `corfu-history` - (8755f8f) - Abdelhak Bougouffa
+- **(d2-mode)** initial support - (d14e9ff) - Abdelhak Bougouffa
+- **(data)** add support for `ob-d2` - (9e725e9) - Abdelhak Bougouffa
+- **(data)** better support for yaml - (aa803f3) - Abdelhak Bougouffa
+- **(data)** add LSP server for XML - (d2e4677) - Abdelhak Bougouffa
+- **(defaults)** auto delete trailing whitespaces - (bbb1587) - Abdelhak Bougouffa
+- **(disaster)** add support for code disassembly - (d00f0a8) - Abdelhak Bougouffa
+- **(docker)** initial support - (456b647) - Abdelhak Bougouffa
+- **(docs)** add support for crdt - (a50b6ab) - Abdelhak Bougouffa
+- **(eaf)** add `+browse-url-eaf` - (8e20c0c) - Abdelhak Bougouffa
+- **(easydraw)** add support for edraw - (d3d21b7) - Abdelhak Bougouffa
+- **(editor)** WIP add cmake-format - (8f7458c) - Abdelhak Bougouffa
+- **(editor)** replace `tempel` with `yasnippet` - (11e93e7) - Abdelhak Bougouffa
+- **(eglot)** add `+eglot-ccls-inheritance-hierarchy` - (e4c49f6) - Abdelhak Bougouffa
+- **(eglot)** add consult support via `consult-eglot` - (b5c9014) - Abdelhak Bougouffa
+- **(eglot)** add convenience function `+eglot-register` - (a6d6c46) - Abdelhak Bougouffa
+- **(eglot)** WIP implement custom LTeX actions - (8180e3f) - Abdelhak Bougouffa
+- **(emacs)** add a command to take an SVG screenshot - (5d7ca46) - Abdelhak Bougouffa
+- **(emacs)** add `+what-faces` - (84253f2) - Abdelhak Bougouffa
+- **(embedded)** mimps-mode, riscv-mode and x86-lookup - (749e045) - Abdelhak Bougouffa
+- **(embedded)** register Verilog/SystemVerilog LSP - (cb58d11) - Abdelhak Bougouffa
+- **(embedded)** add support for Yocto's modes - (4d8ee62) - Abdelhak Bougouffa
+- **(embedded)** add arduino support - (63c4463) - Abdelhak Bougouffa
+- **(embedded)** add embedded systems module - (0306b62) - Abdelhak Bougouffa
+- **(esup)** add the Emacs Start Up Profiler - (b74376b) - Abdelhak Bougouffa
+- **(evil)** add evil-escape support - (fc43911) - donney_luck
+- **(evil)** add evil-snipe - (e835174) - Abdelhak Bougouffa
+- **(evil)** add support for evil-numbers - (c4bcf58) - Abdelhak Bougouffa
+- **(expand-region)** add support for `er/expand-region` - (c5b1070) - Abdelhak Bougouffa
+- **(extra)** add crux - (e26ac55) - Abdelhak Bougouffa
+- **(files)** add support for very large files - (a39189f) - Abdelhak Bougouffa
+- **(flycheck)** integrate CMake based projects - (ff2ed4f) - Abdelhak Bougouffa
+- **(flycheck)** integrate with Eglot - (1f807ad) - Abdelhak Bougouffa
+- **(flycheck)** use Flycheck - (d2f8da2) - Abdelhak Bougouffa
+- **(fun)** add asm-blox - (742f422) - Abdelhak Bougouffa
+- **(fun)** add some funny modules - (623c315) - Abdelhak Bougouffa
+- **(gdb)** alternative windows layout - (28ae0cb) - Abdelhak Bougouffa
+- **(gnus)** WIP initial module - (3e855b9) - Abdelhak Bougouffa
+- **(init)** add support for user's `init-tweaks.el` - (027d011) - Abdelhak Bougouffa
+- **(init)** check for supported Emacs version - (f0323cf) - Abdelhak Bougouffa
+- **(io)** add functions to export HTML/TXT to PDF - (21785b5) - Abdelhak Bougouffa
+- **(io)** add `+file-directories` helper function - (55424ae) - Abdelhak Bougouffa
+- **(latex)** add latex module - (ad0c205) - Abdelhak Bougouffa
+- **(lisp)** add `macrostep` for `sly` - (1ebef75) - Abdelhak Bougouffa
+- **(lsp+dap)** add dap-mode and lsp-mode - (7137e9c) - Abdelhak Bougouffa
+- **(ltex)** implement LTeX's custom client commands - (130ed9e) - Abdelhak Bougouffa
+- **(math)** initial support for ESS - (d23f9f1) - Abdelhak Bougouffa
+- **(modeling)** add new module for modeling related stuff - (d460e36) - Abdelhak Bougouffa
+- **(mu4e)** better support of mail export to PDF - (31a3486) - Abdelhak Bougouffa
+- **(multi-cursors)** add `evil-iedit-state` - (f8acb90) - Abdelhak Bougouffa
+- **(org)** better Org+Evil integration via `evil-org` - (c88c8e9) - Abdelhak Bougouffa
+- **(org)** better syntax highlighting on export - (3917c82) - Abdelhak Bougouffa
+- **(org)** add ox-hugo - (920a3df) - Abdelhak Bougouffa
+- **(plantuml)** add proper capf support - (064409e) - Abdelhak Bougouffa
+- **(powershell)** initial support - (dc38d2d) - Abdelhak Bougouffa
+- **(prog)** add support for `compile-multi` - (83d4333) - Abdelhak Bougouffa
+- **(prog)** add support for code coverage (via cov) - (11b59ac) - Abdelhak Bougouffa
+- **(prog)** prefer flycheck - (9cc0af7) - Abdelhak Bougouffa
+- **(prog)** add support for BNF and EBNF - (315c93b) - Abdelhak Bougouffa
+- **(prog)** add support for Franca IDL - (d52616c) - Abdelhak Bougouffa
+- **(prog)** add `flymake-easy` - (64cf740) - Abdelhak Bougouffa
+- **(prog)** add rainbow-mode support in prog-mode - (105e09a) - Abdelhak Bougouffa
+- **(prog)** add support for eldoc-box - (6367780) - Abdelhak Bougouffa
+- **(prog)** prefer builtin tree-sitter - (7cde831) - Abdelhak Bougouffa
+- **(project)** helper to scan a dir for projects - (80c24a9) - Abdelhak Bougouffa
+- **(projectile)** integrate with treemacs - (646642a) - Abdelhak Bougouffa
+- **(projectile)** add consult integration - (b2324ba) - Abdelhak Bougouffa
+- **(projectile)** use projectile - (ed6de01) - Abdelhak Bougouffa
+- **(realgud)** additional keybindings - (04d4773) - Abdelhak Bougouffa
+- **(silme)** initial support for Lisp via SLIME - (fcb0ce6) - Abdelhak Bougouffa
+- **(ssh-deploy)** initial support - (05dbdc0) - Abdelhak Bougouffa
+- **(templates)** add editorconfig template - (10fb58d) - Abdelhak Bougouffa
+- **(tools)** add docker-compose-mode - (9e6d6c2) - Abdelhak Bougouffa
+- **(tools)** add multi-vterm - (bb4e08e) - Abdelhak Bougouffa
+- **(tools)** add bitwarden - (75aa343) - Abdelhak Bougouffa
+- **(tools)** add support for journalctl-mode - (9bf95df) - Abdelhak Bougouffa
+- **(tools)** add support for systemd - (9813e84) - Abdelhak Bougouffa
+- **(tools)** add `dockerfile-mode` - (6d7e984) - Abdelhak Bougouffa
+- **(tools)** add discomfort - (cd5b42d) - Abdelhak Bougouffa
+- **(tools)** add debase - (937e7b6) - Abdelhak Bougouffa
+- **(tree-sitter)** add evil-textobj-tree-sitter - (a58fc5d) - Abdelhak Bougouffa
+- **(treemacs)** initial support - (2691ac7) - Abdelhak Bougouffa
+- **(treesit)** replace `treesit-langs` with `treesit-auto` - (4058576) - Abdelhak Bougouffa
+- **(treesit)** add support for builtin tree-sitter langs - (e322183) - Abdelhak Bougouffa
+- **(ts-fold)** use ts-fold when suitable - (d05147c) - Abdelhak Bougouffa
+- **(ui)** add `apropospirate-theme` - (f7674e2) - Abdelhak Bougouffa
+- **(unix)** add some unix related commands - (8e46258) - Abdelhak Bougouffa
+- **(vars)** add `MINEMACSDIR` as environment variable - (a3895ec) - Abdelhak Bougouffa
+- **(vc)** add `magit-todos` - (4cd71ef) - Abdelhak Bougouffa
+- **(vc)** add git-modes - (f1e58d8) - Abdelhak Bougouffa
+- **(vc)** add code review support - (5bf2c13) - Abdelhak Bougouffa
+- **(vc)** add repo support - (06d7743) - Abdelhak Bougouffa
+- **(workspaces)** WIP integration for tabspaces and tab-bar - (8405e58) - Abdelhak Bougouffa
+- **(yasnippet)** additional snippets - (a623ced) - Abdelhak Bougouffa
+- use `+webjump` with `thingatpt` to search on web - (b508f90) - Abdelhak Bougouffa
+- replace projectile with builtin project.el - (d738f28) - Abdelhak Bougouffa
+- rename module `me-ros` to `me-robot`, add `robot-mode` - (0f76910) - Abdelhak Bougouffa
+- use `compat` to better support earlier Emacs versions - (64861cc) - Abdelhak Bougouffa
+- better hooks for lazy package loading - (408d48c) - Abdelhak Bougouffa
+- new modules - (2c80315) - Abdelhak Bougouffa
+- additional Emacs 29 back ports - (8c5a9eb) - Abdelhak Bougouffa
+- back port `scratch-buffer` - (10c62f5) - Abdelhak Bougouffa
+- back port `setopt` from Emacs29 - (6df8b2a) - Abdelhak Bougouffa
+- add info-colors - (b8d30d9) - Abdelhak Bougouffa
+- popwin replacement with builtin buffer settings - (0602622) - Abdelhak Bougouffa
+- add lua-mode - (d92ef37) - Abdelhak Bougouffa
+- add check for builtin tree-sitter support - (9aee505) - Abdelhak Bougouffa
+- add `+plist-delete` helper function - (d8899db) - Abdelhak Bougouffa
+- add user skeleton files (for `.minemacs.d`) - (4e01470) - Abdelhak Bougouffa
+- add `+plist-combine` - (3f5a514) - Abdelhak Bougouffa
+- add feat/pgtk constant - (e74e395) - Abdelhak Bougouffa
+- binary stuff - (5aa8edc) - Abdelhak Bougouffa
+- valgrind support - (c9ecdaf) - Abdelhak Bougouffa
+- add deps helper - (491409a) - Abdelhak Bougouffa
+- stardict support via lexic - (84d88d4) - Abdelhak Bougouffa
+- enable mouse and clipboard in TTY mode - (6b4cd06) - Abdelhak Bougouffa
+- xenops for LaTeX - (0f50865) - Abdelhak Bougouffa
+- add jupyter support (via `ein`) - (1b922fc) - Abdelhak Bougouffa
+- add `org-present` - (a5d202e) - Abdelhak Bougouffa
+- add a macro to push elements to a plist - (b1aedca) - Abdelhak Bougouffa
+- add template for Elisp packages for tempel - (681afb5) - Abdelhak Bougouffa
+- custom frame title format - (339947c) - Abdelhak Bougouffa
+- add media module - (9278961) - Abdelhak Bougouffa
+- go-translate - (264c657) - Abdelhak Bougouffa
+- highlight TODOs in code - (02d7b4e) - Abdelhak Bougouffa
+- replace `format-all` with `apheleia` - (23bd975) - Abdelhak Bougouffa
+- debugging environment variable - (5a767c2) - Abdelhak Bougouffa
+- async fuzzy finder (affe) - (de5d41b) - Abdelhak Bougouffa
+- goggles - (173e3ce) - Abdelhak Bougouffa
+- better completion for spell-fu - (f5dc3d1) - Abdelhak Bougouffa
+- dumb-jump - (7baafcb) - Abdelhak Bougouffa
+- Rust support - (f4db479) - Abdelhak Bougouffa
+- `me-eval-when-idle` - (410ae09) - Abdelhak Bougouffa
+- keybinding for `org-cite-insert` - (6ffe654) - Abdelhak Bougouffa
+- load environment variables - (09ee78b) - Abdelhak Bougouffa
+- graphviz - (ed1e79d) - Abdelhak Bougouffa
+- transparent background (disabled ATM) - (cfb766c) - Abdelhak Bougouffa
+- lambda-line - (b0a8f36) - Abdelhak Bougouffa
+- me-update - (879563d) - Abdelhak Bougouffa
+- add iedit - (faec39e) - Abdelhak Bougouffa
+- use spacemacs-light theme - (6e532fd) - Abdelhak Bougouffa
+- interesting themes - (2979a3c) - Abdelhak Bougouffa
+- org-msg signature helper - (e034406) - Abdelhak Bougouffa
+- visual hide/show - (16eebeb) - Abdelhak Bougouffa
+- wrap long lines - (e8ccafd) - Abdelhak Bougouffa
+- load from `$EMACS_DIR/lisp` - (87f87ac) - Abdelhak Bougouffa
+- enable `savehist-mode` - (6317757) - Abdelhak Bougouffa
+- more Org customization - (e24891c) - Abdelhak Bougouffa
+- eros - (864782d) - Abdelhak Bougouffa
+- add Makefile - (825cd3d) - Abdelhak Bougouffa
+- WIP moduls-themes - (bfcdf68) - Abdelhak Bougouffa
+- enhance GC settings - (a7432f0) - Abdelhak Bougouffa
+- elisp keybindings for helpful - (ea8827e) - Abdelhak Bougouffa
+- display a quote from `fortune` in scratch - (2483537) - Abdelhak Bougouffa
+- add `MINEMACS_VERBOSE` env variable - (83118c3) - Abdelhak Bougouffa
+- better config for Elisp (adapted from doom) - (49cb242) - Abdelhak Bougouffa
+- add me-compile-functions from doom-lib - (36c3e0d) - Abdelhak Bougouffa
+- tempel templates - (7f95a87) - Abdelhak Bougouffa
+- add support for modules overriding - (bbb4c10) - Abdelhak Bougouffa
+- multi-stages loading - (0bf5bee) - Abdelhak Bougouffa
+- enable ROS - (4ff6ef1) - Abdelhak Bougouffa
+- add dependencies checking command - (d0e0596) - Abdelhak Bougouffa
+- netextender wrapper - (65eb04d) - Abdelhak Bougouffa
+- add tldr - (03649f1) - Abdelhak Bougouffa
+- ecryptfs - (9a61e36) - Abdelhak Bougouffa
+- modules autoloads - (a7bbcc1) - Abdelhak Bougouffa
+- add maxima - (dd5e563) - Abdelhak Bougouffa
+- additional core functions - (a509b59) - Abdelhak Bougouffa
+- good-scroll-mode in emacs <= 28 - (b075d81) - Abdelhak Bougouffa
+- autoload utilities - (b15c95f) - Abdelhak Bougouffa
+- add EAF - (47a7937) - Abdelhak Bougouffa
+- simple splash - (3d4ae0d) - Abdelhak Bougouffa
+- page-break-lines - (fe95643) - Abdelhak Bougouffa
+- add me-with-shutup! - (ba1e6f2) - Abdelhak Bougouffa
+- add ligatures support - (871b997) - Abdelhak Bougouffa
+- add command to open the dir-locals file - (dda4d7f) - Abdelhak Bougouffa
+- add toml-mode to data - (3af8aba) - Abdelhak Bougouffa
+- add writeroom-mode and mixed-pitch-mode - (e1c99e4) - Abdelhak Bougouffa
+- add plantuml-mode - (40fe2ad) - Abdelhak Bougouffa
+- mu4e config for Gmail accounts (thanks Doom) - (87d79fb) - Abdelhak Bougouffa
+- add yaml-mode and keybindings to data - (478ea5b) - Abdelhak Bougouffa
+- add unicode-fonts - (8ef6efa) - Abdelhak Bougouffa
+- add elfeed - (67fb769) - Abdelhak Bougouffa
+- enable completion in eval-expression - (8dbdfae) - Abdelhak Bougouffa
+- ROS stuff - (4d61610) - Abdelhak Bougouffa
+- launch mu4e in background in daemon mode - (a1a2f1a) - Abdelhak Bougouffa
+- edit files as root (from Doom) - (3ae323c) - Abdelhak Bougouffa
+- add initial support for popwin - (0f1f9f5) - Abdelhak Bougouffa
+- change org-level fonts - (c03e43a) - Abdelhak Bougouffa
+- add daemon - (b6a566e) - Abdelhak Bougouffa
+- add dirvish support - (e4acd53) - Abdelhak Bougouffa
+- unused GC management - (f5115e4) - Abdelhak Bougouffa
+- load org extension for doom-themes - (ffb6c1e) - Abdelhak Bougouffa
+- update init.el - (ac59f1f) - Abdelhak Bougouffa
+- clean vars - (bc3fdc3) - Abdelhak Bougouffa
+- add logging functions - (d7ba174) - Abdelhak Bougouffa
+- emojis - (93f0904) - Abdelhak Bougouffa
+- add biblio - (7d85f47) - Abdelhak Bougouffa
+#### Miscellaneous Chores
+- **(git)** ignore test directory - (6422441) - Abdelhak Bougouffa
+- minor cocogitto edit - (98b3b7f) - Abdelhak Bougouffa
+- add cocogitto configuration file - (f7bc179) - Abdelhak Bougouffa
+- add a cocogitto rule on pull request - (f7447c6) - Abdelhak Bougouffa
+- update cocogitto integration - (c948373) - Abdelhak Bougouffa
+- initial `cocogitto` integration - (efff6fd) - Abdelhak Bougouffa
+- add some straight commands to the Makefile - (bd1a4b9) - Abdelhak Bougouffa
+- update Makefile - (b371b1a) - Abdelhak Bougouffa
+- update Makefile - (b89e28b) - Abdelhak Bougouffa
+- update Makefile - (59f6c6f) - Abdelhak Bougouffa
+- edit .gitignore - (a7aa773) - Abdelhak Bougouffa
+- make emojify obsolete, use only with Emacs28 - (ea1fac3) - Abdelhak Bougouffa
+- add a rule to clean autoloads - (c9cb8ed) - Abdelhak Bougouffa
+- move tty related stuff to new module - (1fc13b3) - Abdelhak Bougouffa
+- rename elisp/eglot.el to elisp/+eglot.el to avoid feature conflict - (b9f0daa) - Abdelhak Bougouffa
+- add a generic config template for clang-tidy - (9ad3a99) - Abdelhak Bougouffa
+- move tempel templates to separate directory - (7aa8e9a) - Abdelhak Bougouffa
+#### Nitpicks, changes with no side effect
+- **(completion)** refer to functions as founction-symbols - (a3fe82d) - Abdelhak Bougouffa
+- **(core)** reorganize modules order in `me-modules` - (71f0737) - Abdelhak Bougouffa
+- **(core)** some salt - (f94aca3) - Abdelhak Bougouffa
+- **(core)** some code formatting - (542fcb2) - Abdelhak Bougouffa
+- **(core)** minor edits - (535f2e7) - Abdelhak Bougouffa
+- **(defaults)** correct some typos - (d321251) - Abdelhak Bougouffa
+- **(init)** refactor - (b23da25) - Abdelhak Bougouffa
+- **(init)** code formatting - (e6682c4) - Abdelhak Bougouffa
+- **(init)** rewrite version check - (a5ddcca) - Abdelhak Bougouffa
+- **(keybinding)** simplify - (3234b5d) - Abdelhak Bougouffa
+- **(keybinding)** simplify calls - (3f7ceb7) - Abdelhak Bougouffa
+- **(keybindings)** clean docs - (7194825) - Abdelhak Bougouffa
+- **(plantuml)** move the :hook section - (56c25ea) - Abdelhak Bougouffa
+- **(primitives)** minor edit - (a1c0fd5) - Abdelhak Bougouffa
+- **(prog)** straight recipes - (9140532) - Abdelhak Bougouffa
+- **(prog)** code formatting - (94c1b3c) - Abdelhak Bougouffa
+- **(skel)** add a font name - (7432b3d) - Abdelhak Bougouffa
+- **(skel)** code formatting - (76b6af0) - Abdelhak Bougouffa
+- **(skel)** update comments - (e75707d) - Abdelhak Bougouffa
+- fix typos - (56c7ced) - Abdelhak Bougouffa
+- obfuscate email address - (ee3b699) - Abdelhak Bougouffa
+- obfuscate the email address in headers - (6531522) - Abdelhak Bougouffa
+- minor tweaks - (8fad064) - Abdelhak Bougouffa
+- reorganize code segments - (f8bca32) - Abdelhak Bougouffa
+- use function symbols in hooks - (e50408c) - Abdelhak Bougouffa
+- minor comment fix - (d15b0c1) - Abdelhak Bougouffa
+- reorder functions - (3d19f81) - Abdelhak Bougouffa
+- change docstring - (1164939) - Abdelhak Bougouffa
+- code formatting - (87f6cfc) - Abdelhak Bougouffa
+- minor changes - (dc93e20) - Abdelhak Bougouffa
+- comments - (86a310b) - Abdelhak Bougouffa
+- code formatting - (38794d8) - Abdelhak Bougouffa
+- change comment - (8919f11) - Abdelhak Bougouffa
+- code formatting - (1a1ae20) - Abdelhak Bougouffa
+- use named hook - (8e6a555) - Abdelhak Bougouffa
+- code formatting - (dee7747) - Abdelhak Bougouffa
+- cleaning - (ac6c2ec) - Abdelhak Bougouffa
+- TOOD - (eaa7b03) - Abdelhak Bougouffa
+- add more cleanup options in Makefile - (39f621f) - Abdelhak Bougouffa
+- rename `var/` to `local/` - (3436d9e) - Abdelhak Bougouffa
+- update headers - (7ff1d4b) - Abdelhak Bougouffa
+- code formatting - (89c63b1) - Abdelhak Bougouffa
+- reorganize - (4e3eaa9) - Abdelhak Bougouffa
+- add modules.el to gitignore - (2582c09) - Abdelhak Bougouffa
+- code format - (204f479) - Abdelhak Bougouffa
+- code format - (ffd804a) - Abdelhak Bougouffa
+- formatting - (5f4a13d) - Abdelhak Bougouffa
+- update gitignore - (27ab601) - Abdelhak Bougouffa
+- add gitignore - (08859d5) - Abdelhak Bougouffa
+#### Refactoring
+- **(biblio)** minor template edit - (012107f) - Abdelhak Bougouffa
+- **(binary)** rewrite and minor fixes - (abe87ef) - Abdelhak Bougouffa
+- **(bootstrap)** simplify loading built-in `use-package` - (9845ada) - Abdelhak Bougouffa
+- **(completion)** minor edits - (9a5dfc9) - Abdelhak Bougouffa
+- **(completion)** better keybindings and loading - (7a40db2) - Abdelhak Bougouffa
+- **(completion)** several edits - (1f4dee3) - Abdelhak Bougouffa
+- **(core)** make use of `+eval-when-idle-for!` - (74ffc08) - Abdelhak Bougouffa
+- **(corfu)** minor edit - (4d6a3a8) - Abdelhak Bougouffa
+- **(data)** minor changes - (71f6677) - Abdelhak Bougouffa
+- **(data)** minor change on +csv-rainbow - (9e47882) - Abdelhak Bougouffa
+- **(debug)** move custom realgud commands to extras - (861f7b5) - Abdelhak Bougouffa
+- **(defaults)** minor edits, code style - (c0234af) - Abdelhak Bougouffa
+- **(defaults)** make use of the new `+directory-ensure` - (b2a82a9) - Abdelhak Bougouffa
+- **(defaults)** minor edit - (53462e8) - Abdelhak Bougouffa
+- **(defaults)** move some params from early-init - (8b7507b) - Abdelhak Bougouffa
+- **(defaults)** reorganize code - (8c7fe61) - Abdelhak Bougouffa
+- **(defaults)** format code - (6915408) - Abdelhak Bougouffa
+- **(dirvish)** minor changes - (a3b94ef) - Abdelhak Bougouffa
+- **(early-init)** minor changes, additional comments - (bc7e9b0) - Abdelhak Bougouffa
+- **(early-init)** default frame options - (4d620ee) - Abdelhak Bougouffa
+- **(ecryptfs)** use builtin string-trim-right - (e8750ab) - Abdelhak Bougouffa
+- **(ecryptfs)** simplify code - (1963562) - Abdelhak Bougouffa
+- **(eglot)** better Flycheck integration - (287674b) - Abdelhak Bougouffa
+- **(email)** minor changes - (c3bf735) - Abdelhak Bougouffa
+- **(embedded)** minor changes - (e697459) - Abdelhak Bougouffa
+- **(eshell)** rewrite using `use-package` - (caa6243) - Abdelhak Bougouffa
+- **(evil)** move evil keybindings to `me-evil` - (e0b0a97) - Abdelhak Bougouffa
+- **(evil-mc)** rewrite config, remove unneeded stuff - (df5e6d0) - Abdelhak Bougouffa
+- **(evil-mc)** minor edit, no side effect - (84b0725) - Abdelhak Bougouffa
+- **(flycheck)** better integration for CMake - (df0df31) - Abdelhak Bougouffa
+- **(gcmh)** better check for system type - (72eaef6) - Abdelhak Bougouffa
+- **(general)** rename definers `+minemacs--internal-*` - (ea63705) - Abdelhak Bougouffa
+- **(git-modes)** use `use-package`'s `:mode` - (4d907c2) - Abdelhak Bougouffa
+- **(init)** remove overhead, move scratch filling to fn - (7d486d8) - Abdelhak Bougouffa
+- **(init)** don't log in `+load`, `load` do it for us - (108e7a7) - Abdelhak Bougouffa
+- **(init)** simplify the version check, add a way to disable it - (602ec5b) - Abdelhak Bougouffa
+- **(init)** simplify module loading - (8180977) - Abdelhak Bougouffa
+- **(init)** simplify a call - (3d21ad9) - Abdelhak Bougouffa
+- **(init)** minor edits - (5c6bb58) - Abdelhak Bougouffa
+- **(init)** minor edit - (cf8ae20) - Abdelhak Bougouffa
+- **(init)** make use of `+deferred-lazy!` - (7b2f4d9) - Abdelhak Bougouffa
+- **(init)** minor simplifications - (202a888) - Abdelhak Bougouffa
+- **(init)** move modules list to separate file, use full module names - (91e9f1d) - Abdelhak Bougouffa
+- **(init)** simplify code - (9bf6ef1) - Abdelhak Bougouffa
+- **(init)** better cache redirection - (5ad76c8) - Abdelhak Bougouffa
+- **(io)** minor edits - (fd569e6) - Abdelhak Bougouffa
+- **(latex)** better style - (a91dd34) - Abdelhak Bougouffa
+- **(lisp)** minor Elisp related tweaks - (2780974) - Abdelhak Bougouffa
+- **(magit)** move transient stuff - (ec1a530) - Abdelhak Bougouffa
+- **(math)** better deferring - (c51a832) - Abdelhak Bougouffa
+- **(mu4e)** simplify check - (142966a) - Abdelhak Bougouffa
+- **(natural-langs)** prefer :custom blocks - (bab497d) - Abdelhak Bougouffa
+- **(natural-langs)** use use-package for eglot - (e4c4462) - Abdelhak Bougouffa
+- **(netextender)** small tweaks - (5fe71a5) - Abdelhak Bougouffa
+- **(netextender)** `message` -> `user-error` - (779ab54) - Abdelhak Bougouffa
+- **(notes)** minor edits - (4ff1a2c) - Abdelhak Bougouffa
+- **(org)** remove redundant org-src-lang-modes - (7c47d23) - Abdelhak Bougouffa
+- **(org)** rewrite org headings faces customization - (0467b69) - Abdelhak Bougouffa
+- **(org)** minor edits - (a046b0a) - Abdelhak Bougouffa
+- **(org)** move lowercase hack to extras - (c1bcf92) - Abdelhak Bougouffa
+- **(prog)** simplify tree-sitter-hl config - (9ab1112) - Abdelhak Bougouffa
+- **(project)** use one +map call - (b00fd05) - Abdelhak Bougouffa
+- **(projectile)** minor changes - (36ba600) - Abdelhak Bougouffa
+- **(reftex)** minor edits, remove dead code - (67afe77) - Abdelhak Bougouffa
+- **(ros)** minor edits - (8119d09) - Abdelhak Bougouffa
+- **(ros)** minor changes - (c72b1ac) - Abdelhak Bougouffa
+- **(ros)** rename command - (bc0f1a6) - Abdelhak Bougouffa
+- **(spell-fu)** use named function for dictionaries init - (434f1a5) - Abdelhak Bougouffa
+- **(spell-fu)** make use of +directory-ensure - (c3363ff) - Abdelhak Bougouffa
+- **(splash)** minor edits - (a8e94ce) - Abdelhak Bougouffa
+- **(splash)** move variable to vars - (67eda27) - Abdelhak Bougouffa
+- **(tree-sitter)** prefer built-in when available - (5e0b046) - Abdelhak Bougouffa
+- **(tty)** use `use-package` - (49a40e5) - Abdelhak Bougouffa
+- **(vars)** minor edits - (40e95b7) - Abdelhak Bougouffa
+- **(vars)** better handling of root directory - (613971f) - Abdelhak Bougouffa
+- **(vpn)** better checks - (38ea573) - Abdelhak Bougouffa
+- make use of the new `+directory-ensure` - (3a6dde7) - Abdelhak Bougouffa
+- rename keybinding macros to be consistent with macro names - (6c66986) - Abdelhak Bougouffa
+- wrap keybinding helpers, move to separate file - (0e067b1) - Abdelhak Bougouffa
+- make use of the new deferring macros - (4924714) - Abdelhak Bougouffa
+- add some macros for deferred evaluation - (c53e628) - Abdelhak Bougouffa
+- make `use-package` always defer - (5e967c9) - Abdelhak Bougouffa
+- rename the test constants - (f895f8c) - Abdelhak Bougouffa
+- move plantuml-mode to me-data - (019c9fa) - Abdelhak Bougouffa
+- several tweaks and fixes - (560629a) - Abdelhak Bougouffa
+- several fixes and tweaks - (5229473) - Abdelhak Bougouffa
+- rename system dependencies functions - (9390169) - Abdelhak Bougouffa
+- make use of `+eglot-register` - (83c9c71) - Abdelhak Bougouffa
+- remove parenthesises from :commands - (86beb91) - Abdelhak Bougouffa
+- some code formatting - (44479c4) - Abdelhak Bougouffa
+- move debug stuff to new module - (7c6512a) - Abdelhak Bougouffa
+- move undo stuff to new module - (bad0920) - Abdelhak Bougouffa
+- move multi-cursors stuff to new module - (9cf1716) - Abdelhak Bougouffa
+- remove useless tree-sitter stuff - (6ce7c55) - Abdelhak Bougouffa
+- move `+expand` to core - (db3e477) - Abdelhak Bougouffa
+- rename me-email to me-mu4e - (067bf0b) - Abdelhak Bougouffa
+- move graphviz to me-data - (2810fad) - Abdelhak Bougouffa
+- change Emacs system features check - (fef47fb) - Abdelhak Bougouffa
+- rename fun to `+directory-subdirs` - (40ea1e5) - Abdelhak Bougouffa
+- cleanup whitespaces - (cf0366d) - Abdelhak Bougouffa
+- semantic hook naming - (dd51923) - Abdelhak Bougouffa
+- move command to `elisp/emacs.el` - (6ea1ccd) - Abdelhak Bougouffa
+- semantic naming of one-time hooks - (c5747e9) - Abdelhak Bougouffa
+- move non-modules stuff to `elisp/` - (3fdc46c) - Abdelhak Bougouffa
+- add `/` to dirs - (c08d696) - Abdelhak Bougouffa
+- move non-module files to `elisp/` - (e2b5507) - Abdelhak Bougouffa
+- semantic hook naming - (5721941) - Abdelhak Bougouffa
+- `+yank-this-file-name` - (d25ca75) - Abdelhak Bougouffa
+- prefer `concat` over `expand-file-name` - (d8ed26a) - Abdelhak Bougouffa
+- better init (fixes Org async export) - (8617bbb) - Abdelhak Bougouffa
+- rename `+with-shutup!` to `+shutup!` - (f422c7e) - Abdelhak Bougouffa
+- media module - (05f7d87) - Abdelhak Bougouffa
+- remove unneeded `apply-partially` calls - (9527b54) - Abdelhak Bougouffa
+- prefer built-in filter - (9c48c17) - Abdelhak Bougouffa
+- better autoloads - (aa4cbd8) - Abdelhak Bougouffa
+- use named hooks/advices - (7b0415d) - Abdelhak Bougouffa
+- remove `+str-[join|split]` - (e939c19) - Abdelhak Bougouffa
+- core - (f4fd3cf) - Abdelhak Bougouffa
+- `+popwin-register` - (681b26f) - Abdelhak Bougouffa
+- rename module - (f05ddf4) - Abdelhak Bougouffa
+- rename functions - (adc5f5b) - Abdelhak Bougouffa
+- `:which-key` -> `:wk` - (81be750) - Abdelhak Bougouffa
+- harmonize variable names - (08fd947) - Abdelhak Bougouffa
+- variable names - (c17cd30) - Abdelhak Bougouffa
+- semantic naming `+` an `!` - (df402a0) - Abdelhak Bougouffa
+- window - (e6b0b6b) - Abdelhak Bougouffa
+- move chunk - (6717b31) - Abdelhak Bougouffa
+- daemon - (78329b8) - Abdelhak Bougouffa
+- elisp-extras - (0087206) - Abdelhak Bougouffa
+- `me-env-save` - (0a0dfe5) - Abdelhak Bougouffa
+- me-compile-functions - (5f34dcf) - Abdelhak Bougouffa
+- rename `lisp/` to `elisp/` - (908db34) - Abdelhak Bougouffa
+- writeroom - (a52b51a) - Abdelhak Bougouffa
+- me-org-extras - (b8eef6f) - Abdelhak Bougouffa
+- init - (56161f3) - Abdelhak Bougouffa
+- early-init - (d4da1bc) - Abdelhak Bougouffa
+- suppress some messages - (81960a7) - Abdelhak Bougouffa
+- better directories - (3896a22) - Abdelhak Bougouffa
+- EAF - (e94e38f) - Abdelhak Bougouffa
+- spell-fu - (8dd3a49) - Abdelhak Bougouffa
+- big cleanup, refactor use-package blocks - (4c487be) - Abdelhak Bougouffa
+- better vars - (d0c5b4c) - Abdelhak Bougouffa
+- magit - (c676b28) - Abdelhak Bougouffa
+- email - (370090a) - Abdelhak Bougouffa
+- logging macros - (afec7cc) - Abdelhak Bougouffa
+- autoloads - (5f659ed) - Abdelhak Bougouffa
+- make use of feat/* constants - (26d486f) - Abdelhak Bougouffa
+- global constants - (652a4b4) - Abdelhak Bougouffa
+- rename function - (5235859) - Abdelhak Bougouffa
+- rename general.el definers - (0a6ac3b) - Abdelhak Bougouffa
+- me-clean-file-name - (3ef1390) - Abdelhak Bougouffa
+- fonts - (bd4191e) - Abdelhak Bougouffa
+#### Revert
+- **(cape-yasnippet)** do not use cape-super-capf - (6dbf8b4) - Abdelhak Bougouffa
+- **(checkers)** restore flymake-easy - (232dfe3) - Abdelhak Bougouffa
+- **(defaults)** disable desktop-save-mode - (3536787) - Abdelhak Bougouffa
+- **(defaults)** use `setq`. `setopt` is too slow and not needed for those - (d5b2562) - Abdelhak Bougouffa
+- **(dockerfile)** no need to register LSP server - (c331892) - Abdelhak Bougouffa
+- **(eaf)** group apps in one use-package block, better - (48c3c61) - Abdelhak Bougouffa
+- **(eaf)** do not make EAF the default browser - (73c1dcb) - Abdelhak Bougouffa
+- **(editor)** no need to setup pcache - (1f7b718) - Abdelhak Bougouffa
+- **(org)** defer org, load other deps after it - (15ffa88) - Abdelhak Bougouffa
+- **(org)** line break safe - (9cc6715) - Abdelhak Bougouffa
+- **(tools)** remove debase and discomfort - (b8bfb97) - Abdelhak Bougouffa
+- **(treesit)** do not enable treesit for graphviz - (875a9bc) - Abdelhak Bougouffa
+- **(treesit-auto)** remove temporary fix - (81679e4) - Abdelhak Bougouffa
+- **(yaml)** restore external yaml-mode - (73d224b) - Abdelhak Bougouffa
+- **(yasnippet)** use-package hook syntax - (9c734bc) - Abdelhak Bougouffa
+- make flycheck config obsolete, still usable - (dc726eb) - Abdelhak Bougouffa
+- replace `+expand` with classical `concat` - (bb843cd) - Abdelhak Bougouffa
+- prefer concat over +expand - (2fc58cc) - Abdelhak Bougouffa
+- rename `me-mu4e` to `me-email` with minor edits - (7ca1e72) - Abdelhak Bougouffa
+- replace problematic fs-fold with hs-minor-mode - (34d6352) - Abdelhak Bougouffa
+- remove popwin - (310544e) - Abdelhak Bougouffa
+- disable flycheck - (40eb496) - Abdelhak Bougouffa
+- remove `xenops` - (8a76047) - Abdelhak Bougouffa
+- minibuffer + mouse - (93e170d) - Abdelhak Bougouffa
+- hideshowvis - (6098d4a) - Abdelhak Bougouffa
+- remove `code-review` - (6735059) - Abdelhak Bougouffa
+- pcache-directory - (ea9b345) - Abdelhak Bougouffa
+- remove eaf-pdf-viewer (not working) - (44694c8) - Abdelhak Bougouffa
+- restore tab-width, use 8 in Elisp - (38abc77) - Abdelhak Bougouffa
+#### Tweaks
+- **(+io)** make +directory-ensure create parent dir for files - (efd6f88) - Abdelhak Bougouffa
+- **(apheleia)** take `tab-width` into account in `shfmt` - (0d944a2) - Abdelhak Bougouffa
+- **(apheleia)** add the missing `sh-mode` - (c663cad) - Abdelhak Bougouffa
+- **(awqat)** update interval - (66f134f) - Abdelhak Bougouffa
+- **(backports)** avoid alias issues - (40fa137) - Abdelhak Bougouffa
+- **(backports)** signal an error if called from Emacs29+ - (cc790ae) - Abdelhak Bougouffa
+- **(backports)** more aliases - (3c93b68) - Abdelhak Bougouffa
+- **(biblio)** add support for Zotero via zotxt - (4af165b) - Abdelhak Bougouffa
+- **(binary)** use the new `+binary-setup-modes` - (bcb3de7) - Abdelhak Bougouffa
+- **(binary)** disable magic fallback to objdump - (b3f0639) - Abdelhak Bougouffa
+- **(binary)** add option to disable hexl - (c25d323) - Abdelhak Bougouffa
+- **(binary)** add an option to disable objdump - (9c7eb37) - Abdelhak Bougouffa
+- **(binary)** setup after `minemacs-loaded` - (1ecf768) - Abdelhak Bougouffa
+- **(bootstrap)** prefer built-in use-package - (c6a7c0a) - Abdelhak Bougouffa
+- **(cape)** do not enable dabbrev by default - (7ab2639) - Abdelhak Bougouffa
+- **(cape-yasnippet)** minor edits - (b7b1edc) - Abdelhak Bougouffa
+- **(compile)** move compilation buffer burring - (6e353b1) - Abdelhak Bougouffa
+- **(completion)** bind `C-S-k` to `kill-line` in the minibuffer - (7f7c508) - Abdelhak Bougouffa
+- **(completion)** minor edits - (372512a) - Abdelhak Bougouffa
+- **(consult)** better integration, more keybindings - (3948917) - Abdelhak Bougouffa
+- **(consult)** better binding for `consult-eglot/lsp` - (d34709a) - Abdelhak Bougouffa
+- **(consult)** make string less prioritized in thing-at-point - (24748bf) - Abdelhak Bougouffa
+- **(consult)** dwim with `consult-line-multi` - (b47d8fc) - Abdelhak Bougouffa
+- **(consult)** better keybindings - (33d1888) - Abdelhak Bougouffa
+- **(consult)** make some of consult commands dwim (#25) - (97d4806) - Abdelhak Bougouffa
+- **(consult)** add new keybindings, remove wrong one - (a612aa5) - Abdelhak Bougouffa
+- **(consult)** use `S-C-v` to yank in minibuffer - (1e723eb) - Abdelhak Bougouffa
+- **(core)** better type for `minemacs-msg-level` - (5580cb0) - Abdelhak Bougouffa
+- **(core)** suppress log on `+compile-functions` - (9917de2) - Abdelhak Bougouffa
+- **(core)** disable workspaces by default - (01adfa1) - Abdelhak Bougouffa
+- **(core)** add `+deferred!` and `+deferred-lazy!` - (7559dbf) - Abdelhak Bougouffa
+- **(core)** rename autoloads to loaddefs - (bfa9d05) - Abdelhak Bougouffa
+- **(core)** remove unneeded `progn` block - (212a1a4) - Abdelhak Bougouffa
+- **(core)** rename `+compile-functs` to `+compile-functions` - (81a8b1c) - Abdelhak Bougouffa
+- **(core)** make `+project-scan-dir-paths` a custom - (b70a8ec) - Abdelhak Bougouffa
+- **(core)** set the right JIT native compilation variable - (e27a858) - Abdelhak Bougouffa
+- **(core)** add hooks for +set-fonts and +load-theme - (78d67a0) - Abdelhak Bougouffa
+- **(core)** tweak log/error behavior - (0419762) - Abdelhak Bougouffa
+- **(core)** do not ask before killing unmodified buffers - (7fafc06) - Abdelhak Bougouffa
+- **(core)** change `+error!` behavior - (84e7b8e) - Abdelhak Bougouffa
+- **(core)** add file locals for generated env file - (92acfbe) - Abdelhak Bougouffa
+- **(core)** small tweaks for lazy package loading - (b238203) - Abdelhak Bougouffa
+- **(core)** add custom log level - (831c796) - Abdelhak Bougouffa
+- **(core)** change default delay for `+eval-when-idle!` - (ba4d520) - Abdelhak Bougouffa
+- **(core)** make use of `+expand` - (f91fd05) - Abdelhak Bougouffa
+- **(core)** atomic increment - (d802e81) - Abdelhak Bougouffa
+- **(core)** don't shut up when `minemacs-verbose` - (f6f20e1) - Abdelhak Bougouffa
+- **(core-ui)** edit `+theme--tweaks-h` arg - (b8b6faf) - Abdelhak Bougouffa
+- **(core-ui)** swap package order - (e88ae17) - Abdelhak Bougouffa
+- **(core-ui)** tweak modus themes - (0327c15) - Abdelhak Bougouffa
+- **(core-ui)** install latest modus themes - (a18cb72) - Abdelhak Bougouffa
+- **(core-ui)** add a helper command to toggle theme - (276ab0b) - Abdelhak Bougouffa
+- **(corfu)** add corfu terminal - (5cc99f6) - Abdelhak Bougouffa
+- **(crux)** add keybindings - (458fdd5) - Abdelhak Bougouffa
+- **(cuda)** enable hide/show - (5834d9e) - Abdelhak Bougouffa
+- **(daemon)** do not wait before launching mu4e in daemon mode - (4a6bd95) - Abdelhak Bougouffa
+- **(daemon)** better startup when launched as daemon - (6bcb0cd) - Abdelhak Bougouffa
+- **(daemon)** check if modules enabled before launching background apps - (58da345) - Abdelhak Bougouffa
+- **(dap)** auto-check for the latest version of DAP servers - (1056380) - Abdelhak Bougouffa
+- **(debug)** better defaults for built-in `gdb` - (12c0151) - Abdelhak Bougouffa
+- **(debug)** better deferring - (d7e5bc0) - Abdelhak Bougouffa
+- **(default)** minor change - (6f9ccb8) - Abdelhak Bougouffa
+- **(defaults)** minor edit - (9de52df) - Abdelhak Bougouffa
+- **(defaults)** enable `desktop-save-mode` - (8ce0ae7) - Abdelhak Bougouffa
+- **(defaults)** make tooltips last longer - (c3eebd1) - Abdelhak Bougouffa
+- **(defaults)** simplify encoding settings - (3b40bd0) - Abdelhak Bougouffa
+- **(defaults)** integrate `compile` with `savehist` - (347e779) - Abdelhak Bougouffa
+- **(defaults)** apply compilation tweaks after loading compile - (cac3598) - Abdelhak Bougouffa
+- **(defaults)** message after closing compilation buffer - (c6cedaa) - Abdelhak Bougouffa
+- **(defaults)** minor edits and documentation - (fb8c77d) - Abdelhak Bougouffa
+- **(defaults)** move `+whitespace-auto-cleanup-modes` to toplevel - (3c056d5) - Abdelhak Bougouffa
+- **(defaults)** don't compact font caches during GC - (25cd42f) - Abdelhak Bougouffa
+- **(defaults)** display the true file name for symlinks - (6b24e06) - Abdelhak Bougouffa
+- **(defaults)** show trailing white spaces - (1ffbcbe) - Abdelhak Bougouffa
+- **(defaults)** suppress desktop save confirmation - (474bc62) - Abdelhak Bougouffa
+- **(defaults)** better config for desktop-save-mode - (aac0dbd) - Abdelhak Bougouffa
+- **(defaults)** do not load modes when running in org-async-export context - (56b1b8c) - Abdelhak Bougouffa
+- **(defaults)** tweak and enable desktop-save-mode - (4472f22) - Abdelhak Bougouffa
+- **(defaults)** scroll compilation output - (1ff051e) - Abdelhak Bougouffa
+- **(defaults)** edit recentf-exclude list - (d47be1e) - Abdelhak Bougouffa
+- **(defaults)** enable minibuffer depth indicator - (0c50b4c) - Abdelhak Bougouffa
+- **(defaults)** minor changes - (6803059) - Abdelhak Bougouffa
+- **(defaults)** enable backups - (40de34d) - Abdelhak Bougouffa
+- **(defaults)** reasonable undo limits - (e2790d0) - Abdelhak Bougouffa
+- **(defaults)** separate deferred sections for some packages - (78dad71) - Abdelhak Bougouffa
+- **(defaults)** make use of `setopt` - (11c27dc) - Abdelhak Bougouffa
+- **(defaults)** make recentf ignore some paths - (7e51ba2) - Abdelhak Bougouffa
+- **(defaults)** scrolling settings - (41961c4) - Abdelhak Bougouffa
+- **(defaults)** don't enable visual-line-mode globally - (07e3847) - Abdelhak Bougouffa
+- **(defaults)** enable Shift+<Dir> to move between windows - (15e03f9) - Abdelhak Bougouffa
+- **(defaults)** kill term buffer on exit - (fca0c80) - Abdelhak Bougouffa
+- **(defaults)** disable image widgets - (bdbecd1) - Abdelhak Bougouffa
+- **(defaults)** kill shell buffer on exit - (0fc9040) - Abdelhak Bougouffa
+- **(defaults)** set coding to utf-8 - (6d51d93) - Abdelhak Bougouffa
+- **(defaults)** enable line numbers & hl in conf - (835f541) - Abdelhak Bougouffa
+- **(defaults)** better dirs for org - (e2a3c45) - Abdelhak Bougouffa
+- **(defaults)** change path for auto-save - (8a6f6e9) - Abdelhak Bougouffa
+- **(defaults)** default directories for builtins - (3f0e824) - Abdelhak Bougouffa
+- **(defaults)** dynamic choice of piping size - (45665fa) - Abdelhak Bougouffa
+- **(defaults)** create emacs session directory - (c1fb2aa) - Abdelhak Bougouffa
+- **(defaults)** make session files in a subdir - (407f37b) - Abdelhak Bougouffa
+- **(defaults)** recursive calls to minibuffer - (49d6db8) - Abdelhak Bougouffa
+- **(defaults)** auto load modified files - (cf755ff) - Abdelhak Bougouffa
+- **(defaults)** do not ask about symlinks - (1376437) - Abdelhak Bougouffa
+- **(defaults)** close compilation after 2s - (2656c77) - Abdelhak Bougouffa
+- **(defaults)** increase num of bytes in read - (c66aae8) - Abdelhak Bougouffa
+- **(defaults)** end files with newline - (aaa57c1) - Abdelhak Bougouffa
+- **(defaults)** default time-stamp settings - (023b2c8) - Abdelhak Bougouffa
+- **(defaults)** set more coding systems to UTF-8 - (91e5098) - Abdelhak Bougouffa
+- **(defaults)** recentf case insensitive search - (45e2281) - Abdelhak Bougouffa
+- **(defaults)** set abbrev defs file name - (cd1d0fe) - Abdelhak Bougouffa
+- **(defaults)** bury compilation buffer if succeeded - (5ae74a6) - Abdelhak Bougouffa
+- **(defaults)** compilation settings - (098a142) - Abdelhak Bougouffa
+- **(defaults)** enable `delete-selection-mode` - (cfe9fbd) - Abdelhak Bougouffa
+- **(defaults)** prioritize unicode - (c1bb2f6) - Abdelhak Bougouffa
+- **(defaults)** better values and documentation - (e21d1ec) - Abdelhak Bougouffa
+- **(diff-hl)** disable mouse mode - (93072ed) - Abdelhak Bougouffa
+- **(dirvish)** better config - (3a6ef1e) - Abdelhak Bougouffa
+- **(docker)** register Eglot docker LSP - (3bb8782) - Abdelhak Bougouffa
+- **(docs)** better defaults for markdown-mode - (850288e) - Abdelhak Bougouffa
+- **(doom-modeline)** defer enabling it to after startup - (e98959d) - Abdelhak Bougouffa
+- **(dumb-jump)** add to the last of `xref` backends - (f956ce8) - Abdelhak Bougouffa
+- **(dumb-jump)** add keybindings - (326ef22) - Abdelhak Bougouffa
+- **(eaf)** do not load when running in Emacs LUCID - (ad9dced) - Abdelhak Bougouffa
+- **(eaf)** auto install non-installed apps - (49d8999) - Abdelhak Bougouffa
+- **(eaf)** enable eaf-system-monitor - (a830c25) - Abdelhak Bougouffa
+- **(eaf)** fix loading EAF apps - (d2c405c) - Abdelhak Bougouffa
+- **(eaf)** split the config - (1246ff5) - Abdelhak Bougouffa
+- **(eaf)** try to install on first run - (5337a8a) - Abdelhak Bougouffa
+- **(eaf)** refactor and disable unused stuff - (bc3ce3c) - Abdelhak Bougouffa
+- **(early-init)** small performance gain - (7791ebb) - Abdelhak Bougouffa
+- **(early-init)** update alpha to reflect the documentation - (6b06591) - Abdelhak Bougouffa
+- **(early-init)** maximize window at startup - (f3db32e) - Abdelhak Bougouffa
+- **(early-init)** set right fringe early - (08c2eed) - Abdelhak Bougouffa
+- **(early-init)** better config alpha via env vars - (26c43e2) - Abdelhak Bougouffa
+- **(early-init)** enable alpha via env variable - (e344f19) - Abdelhak Bougouffa
+- **(early-init)** inhibit startup echo area msg - (f9d5993) - Abdelhak Bougouffa
+- **(ediff)** better config - (84fb7bd) - Abdelhak Bougouffa
+- **(editor)** enable cape-yasnippet in *TeX modes - (aea3ceb) - Abdelhak Bougouffa
+- **(editor)** add evil support for goggles-mode - (07690bb) - Abdelhak Bougouffa
+- **(editor)** remove good-scroll - (e9d3bf2) - Abdelhak Bougouffa
+- **(editor)** unify names - (b1df13a) - Abdelhak Bougouffa
+- **(eglot)** assume inlay hints to be available - (e392594) - Abdelhak Bougouffa
+- **(eglot)** custom variable + better documentation - (d612f1d) - Abdelhak Bougouffa
+- **(eglot)** enable inlay hints when available - (749f89c) - Abdelhak Bougouffa
+- **(eglot)** better management of Eglot enabled modes - (233e725) - Abdelhak Bougouffa
+- **(eglot)** do not auto enable Eglot mode - (b80717c) - Abdelhak Bougouffa
+- **(eglot)** provide `consult-lsp-file-symbols` - (009be71) - Abdelhak Bougouffa
+- **(eglot)** prefer built-in - (52921ff) - Abdelhak Bougouffa
+- **(eglot)** set clangd options - (d5ba395) - Abdelhak Bougouffa
+- **(eglot)** disable WIP eglot-ltex-extras - (93c60f6) - Abdelhak Bougouffa
+- **(eglot)** check for lang servers - (b9853ef) - Abdelhak Bougouffa
+- **(eglot)** add ltex-ls only if it exists - (94b799b) - Abdelhak Bougouffa
+- **(eglot)** prioritize `ccls` over `clangd` - (12fae69) - Abdelhak Bougouffa
+- **(eglot)** auto enable in C/C++, Python & Rust - (48c9888) - Abdelhak Bougouffa
+- **(eldoc)** group multiple doc sources - (73c804e) - Abdelhak Bougouffa
+- **(eldoc-box)** auto activate on eglot - (941d184) - Abdelhak Bougouffa
+- **(elfeed)** ignore path - (5be4a73) - Abdelhak Bougouffa
+- **(elfeed)** hide the annoying index file from recent files - (d9cf174) - Abdelhak Bougouffa
+- **(elfeed)** set enclosure directory - (d46cd3a) - Abdelhak Bougouffa
+- **(elisp)** better keybindings - (5d6b858) - Abdelhak Bougouffa
+- **(emacs-gdb)** add `:demand t` - (980d3a0) - Abdelhak Bougouffa
+- **(email)** auto mode for `.mailrc` files - (67f9229) - Abdelhak Bougouffa
+- **(email)** minor edits - (5608110) - Abdelhak Bougouffa
+- **(embedded)** add Eglot support for VHDL - (21bd1f0) - Abdelhak Bougouffa
+- **(emms)** initial support - (7e8891b) - Abdelhak Bougouffa
+- **(emojify)** provide `SPC i u` on Emacs28 - (1cd003a) - Abdelhak Bougouffa
+- **(emojify)** do not ask before downloading - (6d92eb0) - Abdelhak Bougouffa
+- **(emojify)** conventional dir - (52605ce) - Abdelhak Bougouffa
+- **(evil)** use evil-search instead of isearch - (434541c) - Abdelhak Bougouffa
+- **(evil)** better defaults - (7596ae4) - Abdelhak Bougouffa
+- **(evil)** load evil after loading MinEmacs - (70bd140) - Abdelhak Bougouffa
+- **(evil)** better config for evil - (0c8a883) - Abdelhak Bougouffa
+- **(evil)** fix bindings for evil-mc - (484cf03) - Abdelhak Bougouffa
+- **(evil)** fix bindings for elisp-mode - (470f7a5) - Abdelhak Bougouffa
+- **(evil-escape)** use `"jk"` or `"kj"` sequence - (fed7f3c) - Abdelhak Bougouffa
+- **(files)** simplify dirvish config - (472a412) - Abdelhak Bougouffa
+- **(flymake)** use the session's load-path - (0fafcbc) - Abdelhak Bougouffa
+- **(flymake)** nicer fringe bitmaps, remove flycheck (obsoleted) - (5f955f1) - Abdelhak Bougouffa
+- **(forge)** add keybindings - (3a3d19f) - Abdelhak Bougouffa
+- **(frame)** better frame title - (67b13c4) - Abdelhak Bougouffa
+- **(frame)** project name in frame title - (03c67ca) - Abdelhak Bougouffa
+- **(frame)** ensure abbreviated path in title - (e4868a9) - Abdelhak Bougouffa
+- **(frame)** add current mode in frame title - (30c512e) - Abdelhak Bougouffa
+- **(gc)** lazy load - (f26e39b) - Abdelhak Bougouffa
+- **(gc)** unlimited GC threshold at startup - (3b8374d) - Abdelhak Bougouffa
+- **(gc)** start GC earlier - (3457a2e) - Abdelhak Bougouffa
+- **(gcmh)** better defaults - (6102d9b) - Abdelhak Bougouffa
+- **(gdb)** use my own fork of `emacs-gdb` - (f604503) - Abdelhak Bougouffa
+- **(gdb)** add an overlay on the current line - (1ac99d9) - Abdelhak Bougouffa
+- **(general)** map the `general-describe-keybindings` - (2191b84) - Abdelhak Bougouffa
+- **(general)** add global prefixes - (656d9bb) - Abdelhak Bougouffa
+- **(gitignore)** add TAGS file - (6737b73) - Abdelhak Bougouffa
+- **(graphviz)** tweak settings, add keybindings - (65ca7cc) - Abdelhak Bougouffa
+- **(graphviz)** edit the recipe to exclude company backend - (0c78e94) - Abdelhak Bougouffa
+- **(graphviz)** change view command - (2696dbc) - Abdelhak Bougouffa
+- **(gts)** enable translation in *TeX modes - (86e3117) - Abdelhak Bougouffa
+- **(hl-todo)** add `TWEAK` as a keyword - (3906239) - Abdelhak Bougouffa
+- **(hl-todo)** add `INFO` and `PERF` as keywords - (bf9b736) - Abdelhak Bougouffa
+- **(hl-todo)** add `IDEA` keyword - (6ee175c) - Abdelhak Bougouffa
+- **(hl-todo)** add some custom keywords - (43f5f0a) - Abdelhak Bougouffa
+- **(iedit)** use `C-;` to trigger `evil-iedit-state/iedit-mode` - (d95e91d) - Abdelhak Bougouffa
+- **(init)** suppress annoying warnings - (5ae49fe) - Abdelhak Bougouffa
+- **(init)** load "init-tweaks.el" after loading loaddefs - (0f3de8a) - Abdelhak Bougouffa
+- **(init)** drop native-comp-deferred-compilation in Emacs29+ - (ae97406) - Abdelhak Bougouffa
+- **(init)** add and use the `+load` helper - (62149ff) - Abdelhak Bougouffa
+- **(init)** apply the `file-name-handler-alist` tweak - (da314ec) - Abdelhak Bougouffa
+- **(init)** customize native-comp-debug - (4acacd9) - Abdelhak Bougouffa
+- **(init)** minimum version 28.0.50, supported 28.2 - (0eb56a5) - Abdelhak Bougouffa
+- **(init)** no meaningful effect of file-name-handler-alist - (2d307c3) - Abdelhak Bougouffa
+- **(init)** set `user-emacs-directory` to `minemacs-local-dir` - (24be42f) - Abdelhak Bougouffa
+- **(init)** ensure creating user files in "/local" - (2964555) - Abdelhak Bougouffa
+- **(init)** disable file-name-handler-alist during startup - (231b8fc) - Abdelhak Bougouffa
+- **(init)** edit minimal Emacs supported version - (eb7d581) - Abdelhak Bougouffa
+- **(init)** scratch buffer - (c98beb5) - Abdelhak Bougouffa
+- **(init)** initial scratch comment - (0c157a3) - Abdelhak Bougouffa
+- **(init)** always debug errors on eval - (2068b10) - Abdelhak Bougouffa
+- **(init)** add some info messages - (841f830) - Abdelhak Bougouffa
+- **(init)** load Emacs backports early - (b5703c7) - Abdelhak Bougouffa
+- **(init)** load env early - (3cded2c) - Abdelhak Bougouffa
+- **(init)** auto delete outdated eln cache - (7b15132) - Abdelhak Bougouffa
+- **(init)** switch back to elisp-mode on scratch - (48bebc1) - Abdelhak Bougouffa
+- **(init)** add project module - (e0fc42c) - Abdelhak Bougouffa
+- **(init)** set the initial scratch message - (4695bf5) - Abdelhak Bougouffa
+- **(io)** make `+directory-ensure` more intelligent - (29c08ed) - Abdelhak Bougouffa
+- **(io)** add a symbol to +clean-file-name - (ded599e) - Abdelhak Bougouffa
+- **(io)** truncate displayed file names in `+save-as-pdf` - (33b1d3b) - Abdelhak Bougouffa
+- **(io)** more cleaning in `+clean-file-name` - (98e83bf) - Abdelhak Bougouffa
+- **(io)** no . and .. in returned directories - (819dc8a) - Abdelhak Bougouffa
+- **(keybinding)** bind `+screenshot-svg` to `SPC h s` - (f7103d1) - Abdelhak Bougouffa
+- **(keybinding)** make old definers obsolete + provide aliases - (bcb7f54) - Abdelhak Bougouffa
+- **(keybinding)** add org-agenda - (c4c9cbc) - Abdelhak Bougouffa
+- **(keybinding)** better semantics - (cd2addb) - Abdelhak Bougouffa
+- **(keybindings)** swap `bI` and `bi` bindings - (657a192) - Abdelhak Bougouffa
+- **(keybindings)** add universal-coding-system-argument - (4c05224) - Abdelhak Bougouffa
+- **(keybindings)** add workspaces - (fa019d2) - Abdelhak Bougouffa
+- **(keybindings)** add visible-mode - (56ad9ff) - Abdelhak Bougouffa
+- **(keybindings)** add desktop-lazy-complete - (7478fb6) - Abdelhak Bougouffa
+- **(keybindings)** add desktop-(save/read) - (2d082ff) - Abdelhak Bougouffa
+- **(keybindings)** map more help commands - (34dc865) - Abdelhak Bougouffa
+- **(keybindings)** better loading logic - (fd1cb8b) - Abdelhak Bougouffa
+- **(keybindings)** add `SPC b s` - (951c413) - Abdelhak Bougouffa
+- **(keybindings)** group several formatting commands under cf - (a7497fb) - Abdelhak Bougouffa
+- **(keybindings)** add `save-some-buffers` - (cfe882e) - Abdelhak Bougouffa
+- **(latex)** fix keybindigs - (d8080d4) - Abdelhak Bougouffa
+- **(latex)** turn-on-reftex - (c320d14) - Abdelhak Bougouffa
+- **(latex)** add auctex-latexmk support - (7bf0b0a) - Abdelhak Bougouffa
+- **(lazy)** ensure loading `gcmh-mode` at the end - (4db1732) - Abdelhak Bougouffa
+- **(lifestyle)** move user specific settings to config.el - (bfe9eb7) - Abdelhak Bougouffa
+- **(lisp)** replace SLIME with SLY + define keybindings - (57e085f) - Abdelhak Bougouffa
+- **(lisp)** bind `check-parens` to `SPC m p` - (d76321f) - Abdelhak Bougouffa
+- **(lisp)** set default scheme implementation - (41d5c9e) - Abdelhak Bougouffa
+- **(lsp)** add `rust-ts-mode` to auto modes - (dac51d7) - Abdelhak Bougouffa
+- **(lsp)** custom variable + better documentation - (c7803a6) - Abdelhak Bougouffa
+- **(lsp)** enable but defer ccls - (f98cd09) - Abdelhak Bougouffa
+- **(lsp)** better management of LSP enabled modes - (c1fbf00) - Abdelhak Bougouffa
+- **(lsp)** do not auto enable LSP mode - (bc0c02c) - Abdelhak Bougouffa
+- **(ltex)** enable in text-mode (for commit messages) - (e31beda) - Abdelhak Bougouffa
+- **(magit)** add keybinding for git init - (9939a89) - Abdelhak Bougouffa
+- **(magit)** quit transient with ESC or q - (d75a7ac) - Abdelhak Bougouffa
+- **(magit)** additional global keybindings - (fcb95fd) - Abdelhak Bougouffa
+- **(math)** better Jupyter config - (bdeffb7) - Abdelhak Bougouffa
+- **(math)** initial support for Julia - (2bfeb0e) - Abdelhak Bougouffa
+- **(math)** octave related tweaks - (c819dfd) - Abdelhak Bougouffa
+- **(math)** add ess-view - (ec7bb34) - Abdelhak Bougouffa
+- **(media)** add binding to download a playlist - (656a537) - Abdelhak Bougouffa
+- **(mixed-pitch)** additional exceptions for Org mode - (f99061e) - Abdelhak Bougouffa
+- **(modeline)** fallback to unicode icons instead of ASCII - (6e1ef3c) - Abdelhak Bougouffa
+- **(modeline)** hide encoding when not default - (fd9b125) - Abdelhak Bougouffa
+- **(modeline)** increase height - (2da8b24) - Abdelhak Bougouffa
+- **(modules)** better handling of core modules - (0ca36f1) - Abdelhak Bougouffa
+- **(modules)** remove redondent deferring keywords, better prefaces - (b8f9953) - Abdelhak Bougouffa
+- **(modules)** better directories - (f6edeb3) - Abdelhak Bougouffa
+- **(mu4e)** filter spams in `mu4e-bookmarks` - (d8fb5fe) - Abdelhak Bougouffa
+- **(mu4e)** rename a function - (126dd3d) - Abdelhak Bougouffa
+- **(mu4e)** setup `mu4e-icalendar` - (79385fb) - Abdelhak Bougouffa
+- **(mu4e)** ensure hiding line numbers in headers - (422a48a) - Abdelhak Bougouffa
+- **(mu4e)** check for mail more frequently - (cbec5b8) - Abdelhak Bougouffa
+- **(mu4e)** hide update window - (6aee8cc) - Abdelhak Bougouffa
+- **(mu4e)** minor tweaks - (da5f4da) - Abdelhak Bougouffa
+- **(mu4e)** hide mu4e-update window - (92a8955) - Abdelhak Bougouffa
+- **(mu4e)** use default ellipsis settings - (d9a0fb2) - Abdelhak Bougouffa
+- **(mu4e)** better gmail account predicate - (40b2f78) - Abdelhak Bougouffa
+- **(mu4e)** better error checking when saving attachements - (57d2eea) - Abdelhak Bougouffa
+- **(mu4e)** add an option to save message as pdf - (7cc93d5) - Abdelhak Bougouffa
+- **(mu4e)** better custom actions - (494a4a0) - Abdelhak Bougouffa
+- **(mu4e)** hide annoying messages in minibuffer - (5020a02) - Abdelhak Bougouffa
+- **(mu4e)** better set a variable - (c684f72) - Abdelhak Bougouffa
+- **(notes)** add support for `consult-org-roam` - (15216cf) - Abdelhak Bougouffa
+- **(obsolete)** make obsolete modules loadable - (f717045) - Abdelhak Bougouffa
+- **(obsolete)** enable tree-sitter only on x86_64 - (e2c9d1c) - Abdelhak Bougouffa
+- **(org)** minor edit on `me-org-export-async-init.el` - (00eca97) - Abdelhak Bougouffa
+- **(org)** disable `engraved` - (9d7f260) - Abdelhak Bougouffa
+- **(org)** do not fail on broken links - (2b5523c) - Abdelhak Bougouffa
+- **(org)** minor tweaks - (cda95c7) - Abdelhak Bougouffa
+- **(org)** regular face weight in org outline path - (5beeac7) - Abdelhak Bougouffa
+- **(org)** minor edits - (f84f85b) - Abdelhak Bougouffa
+- **(org)** better tags face in org-modern - (5deb0d7) - Abdelhak Bougouffa
+- **(org)** decrease org headers size - (6c9cbe1) - Abdelhak Bougouffa
+- **(org)** enable indent and hideblocks by default - (a7bf9df) - Abdelhak Bougouffa
+- **(org)** babel languages - (4ec51b7) - Abdelhak Bougouffa
+- **(org)** do not defer when running in daemon mode - (5a259b8) - Abdelhak Bougouffa
+- **(org)** make +org-export-to-pdf-main-file a local variable - (d04e0a4) - Abdelhak Bougouffa
+- **(org)** enable org-indent-mode - (5503c42) - Abdelhak Bougouffa
+- **(org)** better src-edit - (7b6ca30) - Abdelhak Bougouffa
+- **(org)** defer org related packages until first usage - (792b1d8) - Abdelhak Bougouffa
+- **(org)** better async export init file - (0373e76) - Abdelhak Bougouffa
+- **(org)** some useful stuff for org async export - (ac8edbf) - Abdelhak Bougouffa
+- **(org)** lowercase keywords/properties on save - (630294a) - Abdelhak Bougouffa
+- **(org)** fix some custom vars - (8540554) - Abdelhak Bougouffa
+- **(org)** additional languages for org-babel - (4653743) - Abdelhak Bougouffa
+- **(org-agenda)** better integration with org-modern - (a8493d3) - Abdelhak Bougouffa
+- **(org-modern)** brighter tags color - (96c2d3d) - Abdelhak Bougouffa
+- **(org-modern)** enable in org-agenda - (b1cb84a) - Abdelhak Bougouffa
+- **(org-modern)** better todo faces - (7c4793b) - Abdelhak Bougouffa
+- **(org-modern)** use chars instead of ASCIIs - (b7a77a4) - Abdelhak Bougouffa
+- **(org-msg)** remove useless function call - (0fc05d1) - Abdelhak Bougouffa
+- **(org-roam)** defer only by general keybindings - (b7b4098) - Abdelhak Bougouffa
+- **(parinfer)** auto download only for the supported CPU architecture - (f8117d2) - Abdelhak Bougouffa
+- **(plantuml)** better doc and completion - (6d96af5) - Abdelhak Bougouffa
+- **(plantuml)** set indent level to 2 - (60da7ac) - Abdelhak Bougouffa
+- **(plantuml)** add keybindings - (baa5c23) - Abdelhak Bougouffa
+- **(plantuml)** better default exec selection - (0484da1) - Abdelhak Bougouffa
+- **(primitives)** add +alist-set - (c3d5929) - Abdelhak Bougouffa
+- **(primitives)** use a default directory for de/serialize-sym - (550b336) - Abdelhak Bougouffa
+- **(primitives)** some useful functions - (6e6d75e) - Abdelhak Bougouffa
+- **(prog)** add support for OpenCL - (9ced318) - Abdelhak Bougouffa
+- **(prog)** enable line numbers in cuda-mode - (0144e03) - Abdelhak Bougouffa
+- **(prog)** add cuda-mode - (4ae3136) - Abdelhak Bougouffa
+- **(prog)** enable treesit-hl on conf/text-modes - (52de714) - Abdelhak Bougouffa
+- **(prog)** several improvements - (1d5729b) - Abdelhak Bougouffa
+- **(prog)** defer some modes - (57feb08) - Abdelhak Bougouffa
+- **(prog)** defer flymake - (edd354f) - Abdelhak Bougouffa
+- **(prog)** enable editorconfig-mode in prog-mode - (711a6d7) - Abdelhak Bougouffa
+- **(prog)** simplify tree-sitter stuff - (dc56962) - Abdelhak Bougouffa
+- **(prog)** defer tree-sitter stuff - (736ff0b) - Abdelhak Bougouffa
+- **(prog)** better handling of tree-sitter modes - (ae55f25) - Abdelhak Bougouffa
+- **(prog)** prefer treesitter modes - (1d1fa15) - Abdelhak Bougouffa
+- **(project)** minor keybindings tweaks - (3792a9c) - Abdelhak Bougouffa
+- **(projectile)** better names for commands - (6bc4616) - Abdelhak Bougouffa
+- **(projectile)** add keybinding for projectile-invalidate-cache - (32be8b5) - Abdelhak Bougouffa
+- **(projectile)** cleanup known project at exit - (a8c7b5e) - Abdelhak Bougouffa
+- **(projectile)** more keybindings - (084b919) - Abdelhak Bougouffa
+- **(projectile)** ensure auto loading after startup - (284d659) - Abdelhak Bougouffa
+- **(projectile)** additional consult commands - (db4bf02) - Abdelhak Bougouffa
+- **(projectile)** minor changes - (2cc150f) - Abdelhak Bougouffa
+- **(projectile)** more keybindings - (0d6363f) - Abdelhak Bougouffa
+- **(realgud)** define the keybinding even when dap is present - (3bd3fd8) - Abdelhak Bougouffa
+- **(realgud)** better starting with Evil (thanks Doom Emacs!) - (5615a02) - Abdelhak Bougouffa
+- **(reflex)** simplify config - (fdde9fa) - Abdelhak Bougouffa
+- **(ros)** enable ROS files modes even on non-ROS machines - (0a6333b) - Abdelhak Bougouffa
+- **(ros)** better ROS bag info mode - (409c37f) - Abdelhak Bougouffa
+- **(ros)** better handling of files in rosbag-view-mode - (e9477a0) - Abdelhak Bougouffa
+- **(ros)** add support for ROS2 bag files - (9da01d2) - Abdelhak Bougouffa
+- **(ros)** use upstream recipe - (9972520) - Abdelhak Bougouffa
+- **(rust)** enable commands on `rust-ts-mode` - (98510fb) - Abdelhak Bougouffa
+- **(scad)** register clang-format as apheleia formatter - (0d5cccb) - Abdelhak Bougouffa
+- **(scad)** add proper file type icon - (17af905) - Abdelhak Bougouffa
+- **(scad)** add keybindings - (ace2ede) - Abdelhak Bougouffa
+- **(skel)** add obsolete module example - (11e7af9) - Abdelhak Bougouffa
+- **(skel)** add Eglot auto enable example - (2f18fd1) - Abdelhak Bougouffa
+- **(skel)** add me-workspaces to modules list - (bb43777) - Abdelhak Bougouffa
+- **(skel)** update module names - (1e65711) - Abdelhak Bougouffa
+- **(skel)** update config example - (326c8f4) - Abdelhak Bougouffa
+- **(skel)** update modules - (dc5ce98) - Abdelhak Bougouffa
+- **(skel)** add more config examples - (c4ebdc2) - Abdelhak Bougouffa
+- **(slime)** add GNU Common Lisp to implementations - (74ef773) - Abdelhak Bougouffa
+- **(slime)** check for installed Lisp implementations - (4ceb7df) - Abdelhak Bougouffa
+- **(slime)** check installed lisp implementations - (7b3040a) - Abdelhak Bougouffa
+- **(spell-fu)** better helper functions - (a0b31e7) - Abdelhak Bougouffa
+- **(splash)** minor edits - (180892a) - Abdelhak Bougouffa
+- **(splash)** option to disable auto closing - (f1514b7) - Abdelhak Bougouffa
+- **(ssh-deploy)** configure it the right way - (a054cd5) - Abdelhak Bougouffa
+- **(straight)** check for modifs only on demand - (d9b228d) - Abdelhak Bougouffa
+- **(tab-bar)** defer, will be loaded by tabspaces - (471f676) - Abdelhak Bougouffa
+- **(tools)** default to bash on remote sessions - (c7af08f) - Abdelhak Bougouffa
+- **(tools)** prefer builtin `dockerfile-ts-mode` when available - (4c7123a) - Abdelhak Bougouffa
+- **(tools)** edit keybindings for ripgrep - (22ac3af) - Abdelhak Bougouffa
+- **(tree-sitter)** enable globally - (b9ec556) - Abdelhak Bougouffa
+- **(tree-sitter)** better ts-fold integration - (80434f0) - Abdelhak Bougouffa
+- **(tree-sitter)** enable for some languages - (34c20ed) - Abdelhak Bougouffa
+- **(treesit)** disable `treesit-hl` for Makefiles - (e9e566d) - Abdelhak Bougouffa
+- **(treesit)** make `+treesit-hl-enable-maybe` customizable - (74ca0f9) - Abdelhak Bougouffa
+- **(treesit)** use package only if Emacs supports it - (402c035) - Abdelhak Bougouffa
+- **(treesit)** enable only on prog-mode - (37f59e8) - Abdelhak Bougouffa
+- **(treesit)** better queries management, disable for elisp - (60316b9) - Abdelhak Bougouffa
+- **(ui)** load user theme - (7c2073d) - Abdelhak Bougouffa
+- **(ui)** customizable mixed pitch for writeroom - (9e43894) - Abdelhak Bougouffa
+- **(ui)** reduce default font size - (283c679) - Abdelhak Bougouffa
+- **(ui)** conventional dir for svg-lib - (d9a3723) - Abdelhak Bougouffa
+- **(ui)** disable old theme when enabling new one - (caa1923) - Abdelhak Bougouffa
+- **(undo-fu)** set `evil-undo-system` - (d70b529) - Abdelhak Bougouffa
+- **(unicode-fonts)** enable custom Unicode font - (b806521) - Abdelhak Bougouffa
+- **(valgrind)** start from project root, save history - (6287446) - Abdelhak Bougouffa
+- **(vars)** detect `gnu/kfreebsd` as `os/bsd` - (8b2ef18) - Abdelhak Bougouffa
+- **(vars)** add group and type for custom variables - (3d429d9) - Abdelhak Bougouffa
+- **(vars)** better typing and documentation - (57a88cc) - Abdelhak Bougouffa
+- **(vars)** add some convenience variables - (9c90891) - Abdelhak Bougouffa
+- **(vars)** better default fonts - (78327f3) - Abdelhak Bougouffa
+- **(vc)** configure emojify (dependency of core-review) - (d6ac4e2) - Abdelhak Bougouffa
+- **(vertico)** add a binding for `vertico-repeat` - (11e96fb) - Abdelhak Bougouffa
+- **(vpn)** generate command if it doesn't exist - (1901d05) - Abdelhak Bougouffa
+- **(vpn)** check system before starting session - (18e3999) - Abdelhak Bougouffa
+- **(vterm)** add buffer-display rule for project scope vterm - (d87ce22) - Abdelhak Bougouffa
+- **(vterm)** hide compilation buffer - (353ec3e) - Abdelhak Bougouffa
+- **(vterm)** better handling noninteractive sessions - (8fec446) - Abdelhak Bougouffa
+- **(vundo)** use the default unicode glyphs - (7c770c6) - Abdelhak Bougouffa
+- **(webjump)** add Reddit - (5d45ad1) - Abdelhak Bougouffa
+- **(which-key)** additional replacements - (2b69085) - Abdelhak Bougouffa
+- **(which-key)** better glyphs on fonts with ligature support - (8f255d8) - Abdelhak Bougouffa
+- **(which-key)** better defaults, fix replacements - (cf5c1e8) - Abdelhak Bougouffa
+- **(which-key)** add replacement rule for `Info` - (c766d2f) - Abdelhak Bougouffa
+- **(window)** display warnings at the bottom - (950a489) - Abdelhak Bougouffa
+- **(window)** show term at bottom - (fda1bce) - Abdelhak Bougouffa
+- **(window)** defer display-buffer tweaks - (5ba0c3d) - Abdelhak Bougouffa
+- **(window)** add hydra keybindings to adjust windows sizes - (2dd8d52) - Abdelhak Bougouffa
+- **(workspaces)** set tabspaces-session-file - (40912fd) - Abdelhak Bougouffa
+- **(workspaces)** better config, still WIP - (8f75559) - Abdelhak Bougouffa
+- **(writeroom)** make a variable local (not working) - (c3e1138) - Abdelhak Bougouffa
+- **(writeroom)** set Org latex scale - (84dff41) - Abdelhak Bougouffa
+- **(xclip)** defer - (758812f) - Abdelhak Bougouffa
+- **(xkcd)** make use of `+ignore-root` - (87b24b6) - Abdelhak Bougouffa
+- **(xkcd)** do not list xkcd json files in recentf - (ce63ac5) - Abdelhak Bougouffa
+- **(yasnippet)** force snippets directory - (ad9e12e) - Abdelhak Bougouffa
+- **(yasnippet)** fix snippets directory - (29740ac) - Abdelhak Bougouffa
+- WIP workspaces (`tabspaces` and `tab-bar`) - (5a82096) - Abdelhak Bougouffa
+- minor changes on the obsolete flycheck - (0f57805) - Abdelhak Bougouffa
+- update `editorconfig` template - (a9de41c) - Abdelhak Bougouffa
+- refine custom variables definitions and types - (9e34203) - Abdelhak Bougouffa
+- minor edits - (b3cbedc) - Abdelhak Bougouffa
+- minor cleanups - (df2e9d0) - Abdelhak Bougouffa
+- default directories for pcache and transient - (d677f10) - Abdelhak Bougouffa
+- minor edits - (1f00ac2) - Abdelhak Bougouffa
+- co-exist lsp-mode and eglot keybindings - (814481e) - Abdelhak Bougouffa
+- ensure deferring packages - (8bbdfd0) - Abdelhak Bougouffa
+- move all keybindings to `:general` sections - (0c6231d) - Abdelhak Bougouffa
+- add me-checkers to modules list - (425edc3) - Abdelhak Bougouffa
+- use less :general blocks, prefer :config for mode specifics - (351bb7e) - Abdelhak Bougouffa
+- minor edits - (4e12034) - Abdelhak Bougouffa
+- suppress byte compile messages in `+compile-functs - (c7c9a96) - Abdelhak Bougouffa
+- minor changes - (a229725) - Abdelhak Bougouffa
+- inhibit chatty commands from echo area - (1948294) - Abdelhak Bougouffa
+- backports - (03f8aee) - Abdelhak Bougouffa
+- update modules list - (b7d8bdc) - Abdelhak Bougouffa
+- rename constant - (27ce696) - Abdelhak Bougouffa
+- granular checks on CppCheck - (a6e2b68) - Abdelhak Bougouffa
+- prefer external tree-sitter - (e3497fc) - Abdelhak Bougouffa
+- do not use xwidget as default browser - (bbd42cc) - Abdelhak Bougouffa
+- early-config - (a8a5207) - Abdelhak Bougouffa
+- update autoloads - (27ebb9d) - Abdelhak Bougouffa
+- backport `loaddefs-generate` if needed - (ef60ca0) - Abdelhak Bougouffa
+- default scrolling settings - (cf2a6d9) - Abdelhak Bougouffa
+- change the default enabled modules - (eb9161a) - Abdelhak Bougouffa
+- update autoloads - (43abea3) - Abdelhak Bougouffa
+- three dots - (96063b3) - Abdelhak Bougouffa
+- load GC lately - (2ea1fd8) - Abdelhak Bougouffa
+- a way to check if me-org-export-async-init is loaded - (d434621) - Abdelhak Bougouffa
+- minimal init for Org async Org expo - (b121527) - Abdelhak Bougouffa
+- ecryptfs routines - (624ee7f) - Abdelhak Bougouffa
+- init - (c0ce5fd) - Abdelhak Bougouffa
+- startup time message - (fa92ed4) - Abdelhak Bougouffa
+- spell-fu correct - (0c61269) - Abdelhak Bougouffa
+- better messages for org async export - (af5477b) - Abdelhak Bougouffa
+- enable async export on Org - (e16ff45) - Abdelhak Bougouffa
+- abbreviate Org exported PDF file name - (f581df5) - Abdelhak Bougouffa
+- binary files - (57725b0) - Abdelhak Bougouffa
+- check for the `file` tool - (7e078fa) - Abdelhak Bougouffa
+- valgrind - (082bac6) - Abdelhak Bougouffa
+- splash - (1ca9c34) - Abdelhak Bougouffa
+- minor stuff - (f0a5660) - Abdelhak Bougouffa
+- dependencies - (3851385) - Abdelhak Bougouffa
+- change messages - (3c8ef65) - Abdelhak Bougouffa
+- update autoloads - (b12e10c) - Abdelhak Bougouffa
+- keybindings - (dde77fb) - Abdelhak Bougouffa
+- mu4e UI - (0d7f8f1) - Abdelhak Bougouffa
+- UI - (f80e439) - Abdelhak Bougouffa
+- ef-themes - (eda8fe9) - Abdelhak Bougouffa
+- UI - (41d3c5d) - Abdelhak Bougouffa
+- maybe better debug! - (4a1e8b0) - Abdelhak Bougouffa
+- core UI - (2213cd7) - Abdelhak Bougouffa
+- notes - (344568f) - Abdelhak Bougouffa
+- change repo for `project-cmake` - (c2b8a1f) - Abdelhak Bougouffa
+- rename custom-file - (43eb0da) - Abdelhak Bougouffa
+- font loading - (510de09) - Abdelhak Bougouffa
+- core ui - (d2da17f) - Abdelhak Bougouffa
+- mu4e keybindings - (06df97a) - Abdelhak Bougouffa
+- which-key - (33a2a4c) - Abdelhak Bougouffa
+- enable auto-unbind keys for general.el - (fea54b1) - Abdelhak Bougouffa
+- change org latex preview scale - (b92f8ca) - Abdelhak Bougouffa
+- thread prefix in truncated subjects (mu4e) - (b3e748c) - Abdelhak Bougouffa
+- keybindings - (f674236) - Abdelhak Bougouffa
+- truncate mail subjects in mu4e headers view - (6264862) - Abdelhak Bougouffa
+- use `smartparens-mode` only in `prog-mode` - (80dbc1c) - Abdelhak Bougouffa
+- mu4e keybindings - (21b96ff) - Abdelhak Bougouffa
+- apheleia formatter for Elisp - (e3ce86e) - Abdelhak Bougouffa
+- environment variables - (0592017) - Abdelhak Bougouffa
+- add dependency - (9eab9ba) - Abdelhak Bougouffa
+- update templates - (a405221) - Abdelhak Bougouffa
+- updates for Emacs < 29 - (f918f29) - Abdelhak Bougouffa
+- Makefile - (30c3cce) - Abdelhak Bougouffa
+- programming keybindings - (c2b384a) - Abdelhak Bougouffa
+- auto install pdf-tools - (895f59f) - Abdelhak Bougouffa
+- not need for third package to support LTeX! - (af21146) - Abdelhak Bougouffa
+- keybindings - (56ab1c1) - Abdelhak Bougouffa
+- keybindings for tldr - (eaafa8e) - Abdelhak Bougouffa
+- enable `save-place-mode` - (8b4d5cd) - Abdelhak Bougouffa
+- mode cape completions - (0124dec) - Abdelhak Bougouffa
+- multi-cursors - (a66024a) - Abdelhak Bougouffa
+- math - (f0d9c06) - Abdelhak Bougouffa
+- window - (3dcf5f8) - Abdelhak Bougouffa
+- Org latex - (20c035c) - Abdelhak Bougouffa
+- eglot - (44cae05) - Abdelhak Bougouffa
+- project-cmake - (02be60a) - Abdelhak Bougouffa
+- use xref with completing-read - (7a72d5a) - Abdelhak Bougouffa
+- enable winner-mode - (7b2ffa1) - Abdelhak Bougouffa
+- deps - (628d3e2) - Abdelhak Bougouffa
+- defaults - (6e7b5ed) - Abdelhak Bougouffa
+- do lazy things when idle - (1cd8735) - Abdelhak Bougouffa
+- UI - (0cefba8) - Abdelhak Bougouffa
+- increase recentf-max-saved-items to 100 - (fb493f9) - Abdelhak Bougouffa
+- shutup function compilation - (a0ce762) - Abdelhak Bougouffa
+- less verbose functions - (668fcd4) - Abdelhak Bougouffa
+- change unicode symbol in `me-check-dependencies` - (db8359d) - Abdelhak Bougouffa
+- env - (7877c0d) - Abdelhak Bougouffa
+- dependencies - (54bb281) - Abdelhak Bougouffa
+- default font - (0fdd08f) - Abdelhak Bougouffa
+- lower modeline height - (e76cd3b) - Abdelhak Bougouffa
+- enable `hs-minor-mode` for `prog-mode` - (3620837) - Abdelhak Bougouffa
+- obsolete variable - (3135f3a) - Abdelhak Bougouffa
+- verbosity - (6379b33) - Abdelhak Bougouffa
+- apply performance hack for Elisp extras - (7e891aa) - Abdelhak Bougouffa
+- eglot-ltex in Org mode - (efb11c1) - Abdelhak Bougouffa
+- defaults - (51db588) - Abdelhak Bougouffa
+- editor - (3cede4c) - Abdelhak Bougouffa
+- modeline - (d820d21) - Abdelhak Bougouffa
+- better defaults for Org - (3931617) - Abdelhak Bougouffa
+- enhance Org latex export - (b4ad814) - Abdelhak Bougouffa
+- fit-page in PDFs - (7035ed3) - Abdelhak Bougouffa
+- parinfer - (3d6e4af) - Abdelhak Bougouffa
+- mu4e gmail stuff - (b7b8007) - Abdelhak Bougouffa
+- UI - (bf40a22) - Abdelhak Bougouffa
+- email - (9d52131) - Abdelhak Bougouffa
+- bind RET -> org-open in normal mode - (0c158ce) - Abdelhak Bougouffa
+- UI - (5b06381) - Abdelhak Bougouffa
+- UI - (45d0670) - Abdelhak Bougouffa
+- Org mode - (875d0fa) - Abdelhak Bougouffa
+- fonts - (e9ba46b) - Abdelhak Bougouffa
+- splash screen - (c64b866) - Abdelhak Bougouffa
+- switch theme - (c701014) - Abdelhak Bougouffa
+- completion->vertico - (a697e5d) - Abdelhak Bougouffa
+- GC - (7596507) - Abdelhak Bougouffa
+- use built-in `emoji` in Emacs 29+ - (d23b00a) - Abdelhak Bougouffa
+- better defaults - (34f8496) - Abdelhak Bougouffa
+- UI - (71e9b33) - Abdelhak Bougouffa
+- init - (a06eb1f) - Abdelhak Bougouffa
+- UI - (9d04053) - Abdelhak Bougouffa
+- convert `me-set-fonts` to a command - (53424a0) - Abdelhak Bougouffa
+- elisp - (0e82f85) - Abdelhak Bougouffa
+- default directory for pcache - (b8116c6) - Abdelhak Bougouffa
+- evil - (e8aebe9) - Abdelhak Bougouffa
+- ROS - (67707d6) - Abdelhak Bougouffa
+- side panel width - (a4c25e0) - Abdelhak Bougouffa
+- diff-hl - (1cec2f4) - Abdelhak Bougouffa
+- background stuff - (fb4dd38) - Abdelhak Bougouffa
+- GC - (3990068) - Abdelhak Bougouffa
+- splash screen - (42ddf71) - Abdelhak Bougouffa
+- define `[local]leader` keys as global vars - (0380ef6) - Abdelhak Bougouffa
+- use xwidgets as default browser - (bc9b0dd) - Abdelhak Bougouffa
+- additional default directories - (1dc412e) - Abdelhak Bougouffa
+- verbose settings - (e270667) - Abdelhak Bougouffa
+- splash screen - (c20f123) - Abdelhak Bougouffa
+- initial scratch message - (8c14307) - Abdelhak Bougouffa
+- eglot - (ce6c4b9) - Abdelhak Bougouffa
+- splash screen - (2cedda8) - Abdelhak Bougouffa
+- defaults - (69b101a) - Abdelhak Bougouffa
+- simpler and earlier splash screen - (905bfcd) - Abdelhak Bougouffa
+- enhanced email settings - (5c025b3) - Abdelhak Bougouffa
+- optimize load time - (84457e0) - Abdelhak Bougouffa
+- avoid "attempted to use minibuffer" error - (ad9a403) - Abdelhak Bougouffa
+- close splash screen after 5s - (84e3ea0) - Abdelhak Bougouffa
+- daemon - (b0dc5a0) - Abdelhak Bougouffa
+- don't use xwidget-webkit... by default - (cd60fe9) - Abdelhak Bougouffa
+- kill minibuffer when switching with mouse - (d42b60b) - Abdelhak Bougouffa
+- smartparens-config - (1c687c2) - Abdelhak Bougouffa
+- keybindings - (11f78cc) - Abdelhak Bougouffa
+- evil - (97b42de) - Abdelhak Bougouffa
+- UI - (addf45e) - Abdelhak Bougouffa
+- regenerate autoloads - (f5917c4) - Abdelhak Bougouffa
+- magit - (099b43f) - Abdelhak Bougouffa
+- UI - (683bee5) - Abdelhak Bougouffa
+- daemon - (777641b) - Abdelhak Bougouffa
+- vc - (38df9ce) - Abdelhak Bougouffa
+- add ros.el deps - (36a7cd6) - Abdelhak Bougouffa
+- daemon - (7d3a4b5) - Abdelhak Bougouffa
+- email - (a146fb3) - Abdelhak Bougouffa
+- keybindings - (f5dde27) - Abdelhak Bougouffa
+- netextender - (72d5a3c) - Abdelhak Bougouffa
+- correct path for nov - (38c8ff6) - Abdelhak Bougouffa
+- nov - (d0345a6) - Abdelhak Bougouffa
+- dirvish stuff - (f490388) - Abdelhak Bougouffa
+- change tldr path - (6c1cc20) - Abdelhak Bougouffa
+- nov - (20eff1d) - Abdelhak Bougouffa
+- temporary disable keywords customization - (a44073b) - Abdelhak Bougouffa
+- lisp - (6db803c) - Abdelhak Bougouffa
+- completion - (23722dc) - Abdelhak Bougouffa
+- ui - (2383e95) - Abdelhak Bougouffa
+- keybindings - (a5d0ff5) - Abdelhak Bougouffa
+- ui - (2d15963) - Abdelhak Bougouffa
+- splash screen - (bc71930) - Abdelhak Bougouffa
+- prefer xwidgets over EAF browser - (1a48e50) - Abdelhak Bougouffa
+- email - (7b63be7) - Abdelhak Bougouffa
+- set font to Cascadia Code - (d71bdfd) - Abdelhak Bougouffa
+- enable built-in pixel-scroll-precision-mode - (5115452) - Abdelhak Bougouffa
+- prompt after evil-window-split - (ef12c22) - Abdelhak Bougouffa
+- Defaults - (66847b1) - Abdelhak Bougouffa
+- keybindings - (1f90ded) - Abdelhak Bougouffa
+- UI - (fceb6db) - Abdelhak Bougouffa
+- org-modern - (dfccb3c) - Abdelhak Bougouffa
+- which-key - (1b2049c) - Abdelhak Bougouffa
+- init.el - (78c828d) - Abdelhak Bougouffa
+- defaults - (3d5ba2a) - Abdelhak Bougouffa
+- splash screen - (1ccd2bd) - Abdelhak Bougouffa
+- increase latex scale in org writeroome-mode - (a939b93) - Abdelhak Bougouffa
+- splash screen - (3a46d2e) - Abdelhak Bougouffa
+- email stuff - (e130ecc) - Abdelhak Bougouffa
+- keybindings - (2b604c8) - Abdelhak Bougouffa
+- user config - (0f06ec3) - Abdelhak Bougouffa
+- change font - (0fe58ce) - Abdelhak Bougouffa
+- daemon - (9fa0892) - Abdelhak Bougouffa
+- UI - (609f909) - Abdelhak Bougouffa
+- prog - (7fda73a) - Abdelhak Bougouffa
+- daemon - (0b9899c) - Abdelhak Bougouffa
+- early-init - (86857ba) - Abdelhak Bougouffa
+- vars - (cfc24a5) - Abdelhak Bougouffa
+- autoload utils - (6e29a1a) - Abdelhak Bougouffa
+- keybindings - (6794764) - Abdelhak Bougouffa
+- evil - (0170c74) - Abdelhak Bougouffa
+- garbage collection - (e65f796) - Abdelhak Bougouffa
+- abbreviate evil commands in which-key - (a178cf7) - Abdelhak Bougouffa
+- change font - (dba4f4d) - Abdelhak Bougouffa
+- defaults - (6e916c6) - Abdelhak Bougouffa
+- straight - (5fd6104) - Abdelhak Bougouffa
+- reorganize modules - (74f885c) - Abdelhak Bougouffa
+- daemon - (99bc2b7) - Abdelhak Bougouffa
+- additional keybindings - (ca6b16c) - Abdelhak Bougouffa
+- no effect - (ef3131a) - Abdelhak Bougouffa
+- customizable fonts - (9bacf6f) - Abdelhak Bougouffa
+- init - (10e248e) - Abdelhak Bougouffa
+- forge/code review default paths - (fd11a0c) - Abdelhak Bougouffa
+- UI - (f3aa0c9) - Abdelhak Bougouffa
+- org-mode - (3ce7e21) - Abdelhak Bougouffa
+- better defaults for mode-line - (4bb1a59) - Abdelhak Bougouffa
+- canonical paths for built-in eshell - (403b2e2) - Abdelhak Bougouffa
+- reflect module changes, enhance init.el - (c3fbc84) - Abdelhak Bougouffa
+- defaults - (2369315) - Abdelhak Bougouffa
+- add rss to init - (b778d50) - Abdelhak Bougouffa
+- additional keybindings for eglot - (c79441c) - Abdelhak Bougouffa
+- add binding to toggle spell-fu - (a0f2058) - Abdelhak Bougouffa
+- eglot, project-cmake, format-all - (7732b5c) - Abdelhak Bougouffa
+- org-mode related stuff - (4b0e9b0) - Abdelhak Bougouffa
+- add binding to kill buffers - (6fe7d9e) - Abdelhak Bougouffa
+- additional keybindings - (da0af9e) - Abdelhak Bougouffa
+- add keybindigs for eglot - (7f3ba24) - Abdelhak Bougouffa
+- add eglot-ltex - (1da87f4) - Abdelhak Bougouffa
+- additional keybindings - (61caf6b) - Abdelhak Bougouffa
+- user config - (d431be5) - Abdelhak Bougouffa
+- UI - (a9e7cb6) - Abdelhak Bougouffa
+- tools (popup vterm/eshell) - (ad87815) - Abdelhak Bougouffa
+- programming stuff - (c981c48) - Abdelhak Bougouffa
+- add keybindings for Org mode - (e2cd34d) - Abdelhak Bougouffa
+- lisp - (b5ba495) - Abdelhak Bougouffa
+- keybindings - (8626190) - Abdelhak Bougouffa
+- evil - (d1197a2) - Abdelhak Bougouffa
+- email - (9975b40) - Abdelhak Bougouffa
+- completion - (35cc71f) - Abdelhak Bougouffa
+- move tramp persistency file to var - (dc929fe) - Abdelhak Bougouffa
+- defaults - (b9e2b12) - Abdelhak Bougouffa
+- font size - (dad64ca) - Abdelhak Bougouffa
+- vc - (6f9b0a7) - Abdelhak Bougouffa
+- load new modules - (524c481) - Abdelhak Bougouffa
+- ui - (456ae71) - Abdelhak Bougouffa
+- keybindings - (534c58f) - Abdelhak Bougouffa
+- lazier completion, yank-pop binding - (37a0b08) - Abdelhak Bougouffa
+- early-init - (50db398) - Abdelhak Bougouffa
+- tweak vars - (db3a3c3) - Abdelhak Bougouffa
+- inhibit message on me-info! - (b0ea5d5) - Abdelhak Bougouffa
+- enhance prog-mode config - (5d320fe) - Abdelhak Bougouffa
+- org mode config - (596864e) - Abdelhak Bougouffa
+- mu4e - (15fd410) - Abdelhak Bougouffa
+- early-init - (b9de0e1) - Abdelhak Bougouffa
+- better defaults - (7dd30ff) - Abdelhak Bougouffa
+- init - (22edc18) - Abdelhak Bougouffa
+- prog - (c6d5a12) - Abdelhak Bougouffa
+- add keybindings for lisps - (cba3111) - Abdelhak Bougouffa
+- convenient keybinding for evil-mc - (b40ca83) - Abdelhak Bougouffa
+- use Zstd for undo-fu-session - (1fe29cf) - Abdelhak Bougouffa
+- consistent directories for built-in packages - (2885568) - Abdelhak Bougouffa
+
+- - -
+
+Changelog generated by [cocogitto](https://github.com/cocogitto/cocogitto).
