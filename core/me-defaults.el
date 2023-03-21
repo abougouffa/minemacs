@@ -287,6 +287,7 @@
    ("WolframAlpha"  . [simple-query "wolframalpha.com" "wolframalpha.com/input/?i=" ""])
    ("MDN"           . [simple-query "developer.mozilla.org" "developer.mozilla.org/search?q=" ""])
    ("Youtube"       . [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+   ("Reddit"        . [simple-query "www.reddit.com" "www.reddit.com/search/?q=" ""])
    ("Wikipedia"     . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])))
 
 (setq-default
