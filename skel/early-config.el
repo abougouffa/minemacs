@@ -5,7 +5,13 @@
 ;; these used in macros.
 
 ;; Set log level to `info' rather than `error'
-(setq minemacs-msg-level 2)
+(unless minemacs-verbose
+  (setq minemacs-msg-level 2))
+
+;; Enable full screen at startup
+;; (if-let ((fullscreen (assq 'fullscreen default-frame-alist)))
+;;     (setcdr fullscreen 'fullboth)
+;;   (push '(fullscreen . fullboth) default-frame-alist))
 
 ;; Force loading lazy packages immediately, not in idle time
 ;; (setq minemacs-not-lazy t)
