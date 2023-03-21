@@ -363,7 +363,7 @@ the children of class at point."
 
 (use-package ebnf-mode
   :straight (:host github :repo "jeramey/ebnf-mode")
-  :hook (bnf-mode . display-line-numbers-mode)
+  :hook (ebnf-mode . display-line-numbers-mode)
   :mode "\\.ebnf\\'")
 
 

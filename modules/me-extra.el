@@ -24,4 +24,5 @@
     "id" #'crux-insert-date
     "bo" #'crux-kill-other-buffers))
 
+
 (provide 'me-extra)
