@@ -152,7 +152,15 @@ the children of class at point."
 (use-package eldoc-box
   :straight t
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
-  :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
+  :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode)
+  :hook ((tab-bar-mode tool-bar-mode) . +eldoc-box-hover-at-point-fix-h)
+  :config
+  ;; HACK: Temporary fix for `eldoc-box-hover-at-point-mode' with `tab-bar-mode'
+  ;; and `tool-bar-mode'.
+  (defun +eldoc-box-hover-at-point-fix-h ()
+    (when (bound-and-true-p eldoc-box-hover-at-point-mode)
+      (eldoc-box-hover-at-point-mode -1)
+      (eldoc-box-hover-at-point-mode 1))))
 
 (use-package cov
   :straight (:host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
