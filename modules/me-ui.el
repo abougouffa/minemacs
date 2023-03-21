@@ -22,6 +22,10 @@
     "Enable `mixed-pitch-mode' with `writeroom-mode' for some modes (Org, Markdown, etc.)."
     :group 'minemacs
     :type 'boolean)
+  :hook (writeroom-mode . +writeroom--enable-text-scaling-mode-h)
+  :hook (writeroom-mode . +writeroom--enable-mixed-pitch-mode-maybe-h)
+  :hook (writeroom-mode-enable . +writeroom--disable-line-numbers-mode-h)
+  :hook (writeroom-mode-disable . +writeroom--restore-line-numbers-mode-h)
   :custom
   (writeroom-width 80)
   (writeroom-mode-line t)
@@ -29,43 +33,35 @@
   (writeroom-maximize-window nil)
   (writeroom-fullscreen-effect 'maximized)
   :config
-  (add-hook
-   'writeroom-mode-hook
-   (defun +writeroom--enable-mixed-pitch-mode-maybe-h ()
-     "Enable `mixed-pitch-mode' when in supported modes."
-     (when (and +writeroom-enable-mixed-pitch
-                (apply #'derived-mode-p '(adoc-mode rst-mode markdown-mode org-mode)))
-       (require 'mixed-pitch)
-       (mixed-pitch-mode (if writeroom-mode 1 -1)))))
-
-  (add-hook
-   'writeroom-mode-hook
-   (defun +writeroom--enable-text-scaling-mode-h ()
-     "Enable text scaling."
-     (when (/= +writeroom-text-scale 0.0)
-       (text-scale-set (if writeroom-mode +writeroom-text-scale 0.0))
-       (visual-fill-column-adjust))))
-
   (defvar-local +writeroom-line-num-was-activate-p nil)
   (defvar-local +writeroom-org-format-latex-scale nil)
 
   ;; Disable line numbers when in Org mode
-  (add-hook
-   'writeroom-mode-enable-hook
-   (defun +writeroom--disable-line-numbers-mode-h ()
-     (when (and (or (derived-mode-p 'org-mode)
-                    (derived-mode-p 'markdown-mode))
-                (bound-and-true-p display-line-numbers-mode))
-       (setq-local +writeroom-line-num-was-activate-p display-line-numbers-type)
-       (display-line-numbers-mode -1))))
+  (defun +writeroom--disable-line-numbers-mode-h ()
+    (when (and (or (derived-mode-p 'org-mode)
+                   (derived-mode-p 'markdown-mode))
+               (bound-and-true-p display-line-numbers-mode))
+      (setq-local +writeroom-line-num-was-activate-p display-line-numbers-type)
+      (display-line-numbers-mode -1)))
 
-  (add-hook
-   'writeroom-mode-disable-hook
-   (defun +writeroom--restore-line-numbers-mode-h ()
-     (when (and (or (derived-mode-p 'org-mode)
-                    (derived-mode-p 'markdown-mode))
-                +writeroom-line-num-was-activate-p)
-       (display-line-numbers-mode +writeroom-line-num-was-activate-p))))
+  (defun +writeroom--restore-line-numbers-mode-h ()
+    (when (and (or (derived-mode-p 'org-mode)
+                   (derived-mode-p 'markdown-mode))
+               +writeroom-line-num-was-activate-p)
+      (display-line-numbers-mode +writeroom-line-num-was-activate-p)))
+
+  (defun +writeroom--enable-mixed-pitch-mode-maybe-h ()
+    "Enable `mixed-pitch-mode' when in supported modes."
+    (when (and +writeroom-enable-mixed-pitch
+               (apply #'derived-mode-p '(rst-mode markdown-mode org-mode)))
+      (require 'mixed-pitch)
+      (mixed-pitch-mode (if writeroom-mode 1 -1))))
+
+  (defun +writeroom--enable-text-scaling-mode-h ()
+    "Enable text scaling."
+    (when (/= +writeroom-text-scale 0.0)
+      (text-scale-set (if writeroom-mode +writeroom-text-scale 0.0))
+      (visual-fill-column-adjust)))
 
   (with-eval-after-load 'org
     ;; Increase latex previews scale in Zen mode
