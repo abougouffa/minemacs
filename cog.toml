@@ -1,0 +1,19 @@
+from_latest_tag = true
+ignore_merge_commits = false
+branch_whitelist = []
+pre_bump_hooks = []
+post_bump_hooks = []
+pre_package_bump_hooks = []
+post_package_bump_hooks = []
+
+[commit_types]
+tweak = { changelog_title = "Tweaks" }
+nit = { changelog_title = "Nitpicks, changes with no side effect" }
+
+[changelog]
+path = "CHANGELOG.md"
+authors = []
+
+[bump_profiles]
+
+[packages]
