@@ -143,10 +143,10 @@ MinEmacs hooks will be run in this order:
                        (os/mac "monospace"))))
   (defconst minemacs-default-fonts
     `(:font-family ,mono-font
-      :font-size 14
+      :font-size 13
       :unicode-font-family nil
       :variable-pitch-font-family ,varp-font
-      :variable-pitch-font-size 14)
+      :variable-pitch-font-size 13)
     "Default fonts of MinEmacs."))
 
 (defcustom +env-save-vars
