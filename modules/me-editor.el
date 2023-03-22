@@ -5,44 +5,35 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
-(use-package yasnippet
+(use-package tempel
   :straight t
-  :hook (minemacs-lazy . yas-global-mode)
-  :init
-  (defvar yas-verbosity 2)
   :custom
-  (yas-snippet-dirs nil)
-  (yas-triggers-in-field t))
-
-(use-package cape-yasnippet
-  :straight (:host github :repo "elken/cape-yasnippet")
-  :after cape yasnippet
-  :demand t
-  :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
+  (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
+  (tempel-path (concat minemacs-root-dir "templates/tempel/*.eld"))
+  :bind (("M-\"" . tempel-complete) ;; Alternative tempel-expand
+         ("M-*" . tempel-insert))
+  :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
+  :hook (prog-mode . tempel-abbrev-mode)
+  :defines +tempel-setup-capf-h
   :config
-  ;; To avoid auto-expanding snippets
-  ;; TODO: Make "RET" expand the snippet
-  (plist-put cape-yasnippet--properties :exit-function #'always)
-  (defun +cape-yasnippet--setup-h ()
-    (when (bound-and-true-p yas-minor-mode)
-      (add-to-list 'completion-at-point-functions #'cape-yasnippet))))
+  ;; Setup completion at point
+  (defun +tempel-setup-capf-h ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.
+    ;; `tempel-expand' only triggers on exact matches. Alternatively use
+    ;; `tempel-complete' if you want to see all matches, but then you
+    ;; should also configure `tempel-trigger-prefix', such that Tempel
+    ;; does not trigger too often when you don't expect it. NOTE: We add
+    ;; `tempel-expand' *before* the main programming mode Capf, such
+    ;; that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-complete
+                      completion-at-point-functions)))
+  (global-tempel-abbrev-mode))
 
-(use-package yasnippet-snippets
+(use-package tempel-collection
   :straight t
-  :after yasnippet
+  :after tempel
   :demand t)
-
-(use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
-  :after yasnippet
-  :demand t)
-
-(use-package license-snippets
-  :straight t
-  :after yasnippet
-  :demand t
-  :config
-  (license-snippets-init))
 
 (use-package pcache
   :straight t
