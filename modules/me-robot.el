@@ -4,10 +4,22 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
-(defconst +rosbag-available-p (or (executable-find "mcap")
-                                  (executable-find "mcap-cli")
-                                  (executable-find "rosbag")
-                                  (executable-find "ros2")))
+
+(defgroup minemacs-robot nil
+  "MinEmacs robotics stuff."
+  :group 'minemacs)
+
+(defcustom +ros-mcap-command (or (executable-find "mcap") (executable-find "mcap-cli"))
+  "ROS 2 MCAP command."
+  :group 'minemacs-robot)
+
+(defcustom +ros-rosbag-command (executable-find "rosbag")
+  "ROS 1 \"rosbag\" command."
+  :group 'minemacs-robot)
+
+(defcustom +ros-ros2-command (executable-find "ros2")
+  "ROS 2 \"ros2\" command."
+  :group 'minemacs-robot)
 
 (dolist (ext-mode '(("\\.rviz\\'"   . conf-unix-mode)
                     ("\\.urdf\\'"   . xml-mode)
@@ -18,7 +30,7 @@
                     ("\\.action\\'" . gdb-script-mode)))
   (add-to-list 'auto-mode-alist ext-mode))
 
-(+deferred-when! +rosbag-available-p
+(+deferred-when! (or +ros-mcap-command +ros-rosbag-command +ros-ros2-command)
   ;; A mode to display info from ROS bag files (via MCAP)
   (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
     "Major mode for viewing ROS/ROS2 bag files."
@@ -41,13 +53,13 @@
           (pop-to-buffer buff)
           (pcase bag-format
             ("bag"
-             (call-process (executable-find "rosbag")
+             (call-process +ros-rosbag-command
                            nil buff nil "info" (expand-file-name file)))
             ("db3"
-             (call-process (executable-find "ros2")
+             (call-process +ros-ros2-command
                            nil buff nil "bag" "info" (expand-file-name file)))
             ("mcap"
-             (call-process (or (executable-find "mcap") (executable-find "mcap-cli"))
+             (call-process +ros-mcap-command
                            nil buff nil "info" (expand-file-name file)))
             (rosbag-info-mode)))))))
 
