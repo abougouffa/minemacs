@@ -100,7 +100,7 @@ alist, to ensure correct results."
 
 (defcustom +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/")
   "Default directory to store serialized symbols."
-  :group 'minemacs
+  :group 'minemacs-core
   :type 'directory)
 
 ;;;###autoload

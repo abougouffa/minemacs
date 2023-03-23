@@ -11,14 +11,18 @@
 
 (require 'epg)
 
+(defgroup minemacs-ecryptfs nil
+  "MinEmacs eCryptfs."
+  :group 'minemacs)
+
 (defcustom ecryptfs-private-dir-name "Private"
   "eCryptfs private directory name."
-  :group 'minemacs
+  :group 'minemacs-ecryptfs
   :type 'string)
 
 (defcustom ecryptfs-root-dir "~/.ecryptfs/"
   "eCryptfs root configuration directory."
-  :group 'minemacs
+  :group 'minemacs-ecryptfs
   :type 'directory)
 
 (defvar ecryptfs-wrapping-independent-p (file-exists-p (concat ecryptfs-root-dir "wrapping-independent")))

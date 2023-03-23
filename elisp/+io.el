@@ -178,7 +178,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 
 (defcustom +html2pdf-default-backend 'wkhtmltopdf
   "The default backend to convert HTML files to PDFs in `+html2pdf'."
-  :group 'minemacs
+  :group 'minemacs-utils
   :type '(choice
           (const wkhtmltopdf)
           (const htmldoc)

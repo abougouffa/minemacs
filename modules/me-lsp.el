@@ -44,7 +44,7 @@
       js-mode js-ts-mode typescript-mode typescript-ts-mode
       json-mode json-ts-mode js-json-mode)
     "Modes for which LSP-mode can be automatically enabled by `+lsp-auto-enable'."
-    :group 'minemacs
+    :group 'minemacs-prog
     :type '(repeat symbol))
   :config
   (defun +lsp-auto-enable ()

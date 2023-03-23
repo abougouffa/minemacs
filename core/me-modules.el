@@ -9,7 +9,7 @@
     me-core-ui       ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
     me-completion)   ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
   "MinEmacs enabled core modules."
-  :group 'minemacs
+  :group 'minemacs-core
   :type '(repeat symbol))
 
 (defcustom minemacs-modules
@@ -50,5 +50,5 @@
     me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
     me-window)       ; Frame & window tweaks
   "MinEmacs enabled modules."
-  :group 'minemacs
+  :group 'minemacs-core
   :type '(repeat symbol))

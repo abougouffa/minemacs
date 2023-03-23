@@ -111,7 +111,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defvar +eval-when-idle--task-num 0)
 (defcustom +eval-when-idle-delay 5.0
   "The default delay (in seconds) to consider in `+eval-when-idle!' macro."
-  :group 'minemacs
+  :group 'minemacs-core
   :type 'float)
 
 ;;;###autoload

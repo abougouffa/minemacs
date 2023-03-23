@@ -11,7 +11,7 @@
 An alist of Gmail addresses of the format \((\"username@domain.com\" . \"account-maildir\"))
 to which Gmail integrations (behind the `+gmail' flag of the `mu4e' module) should be applied.
 See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'."
-  :group 'minemacs
+  :group 'minemacs-mu4e
   :type '(repeat (cons string string)))
 
 (defun +mu4e-msg-gmail-p (msg)

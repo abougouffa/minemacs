@@ -9,6 +9,10 @@
 
 (defconst +mu4e-load-path "/usr/share/emacs/site-lisp/mu4e/")
 
+(defgroup minemacs-mu4e nil
+  "MinEmacs mu4e tweaks."
+  :group 'minemacs)
+
 (defconst +mu4e-available-p
   (and (executable-find "mu")
        (executable-find "msmtp")
@@ -167,7 +171,7 @@
     (when (or os/linux os/bsd)
       '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
     "A cons list of the command and arguments to play the notification bell."
-    :group 'minemacs
+    :group 'minemacs-mu4e
     :type '(cons string string))
   :config
   ;; Enable on mu4e notifications in doom-modeline

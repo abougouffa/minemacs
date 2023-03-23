@@ -62,7 +62,7 @@
           font-lock-keyword-face
           font-lock-variable-name-face)))
     "Faces in certain major modes that spell-fu will not spellcheck."
-    :group 'minemacs
+    :group 'minemacs-ui
     :type '(repeat (cons symbol (repeat face))))
 
   (add-hook

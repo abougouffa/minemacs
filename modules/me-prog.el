@@ -57,7 +57,7 @@
       js-mode js-ts-mode typescript-mode typescript-ts-mode
       json-mode json-ts-mode js-json-mode)
     "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
-    :group 'minemacs
+    :group 'minemacs-prog
     :type '(repeat symbol))
   :config
   (defun +eglot-auto-enable ()

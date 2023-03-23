@@ -5,19 +5,23 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
+(defgroup minemacs-binary nil
+  "MinEmacs binary files."
+  :group 'minemacs)
+
 (defcustom +binary-objdump-executable (executable-find "objdump")
   "Path to the executable \"objdump\" utility."
-  :group 'minemacs
+  :group 'minemacs-binary
   :type 'string)
 
 (defcustom +binary-objdump-enable t
   "Enable or disable disassembling suitable files with objdump."
-  :group 'minemacs
+  :group 'minemacs-binary
   :type 'boolean)
 
 (defcustom +binary-hexl-enable t
   "Enable or disable openning suitable files in `hexl-mode'."
-  :group 'minemacs
+  :group 'minemacs-binary
   :type 'boolean)
 
 ;;;###autoload

@@ -9,6 +9,30 @@
 (defgroup minemacs nil
   "MinEmacs specific functionalities.")
 
+(defgroup minemacs-core nil
+  "MinEmacs core tweaks."
+  :group 'minemacs)
+
+(defgroup minemacs-ui nil
+  "MinEmacs UI tweaks."
+  :group 'minemacs)
+
+(defgroup minemacs-edit nil
+  "MinEmacs editor tweaks."
+  :group 'minemacs)
+
+(defgroup minemacs-prog nil
+  "MinEmacs programming stuff."
+  :group 'minemacs)
+
+(defgroup minemacs-keybinding nil
+  "MinEmacs keybinding."
+  :group 'minemacs)
+
+(defgroup minemacs-utils nil
+  "MinEmacs utility functions."
+  :group 'minemacs)
+
 (defconst minemacs-config-dir
   (file-name-as-directory
    (or (getenv "MINEMACS_DIR")
@@ -38,7 +62,7 @@
 2 - `+info!'
 3 - `+log!'
 4 - `+debug!'"
-  :group 'minemacs
+  :group 'minemacs-core
   :type '(choice
           (const :tag "Error" 1)
           (const :tag "Info" 2)
@@ -76,7 +100,7 @@ Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-fonts nil
   "Fonts to use within MinEmacs."
-  :group 'minemacs
+  :group 'minemacs-ui
   :type '(plist
           (:font-family string)
           (:font-size natnum)
@@ -86,37 +110,37 @@ Compiled from the `system-configuration-features'.")
 
 (defcustom minemacs-leader-key "SPC"
   "MinEmacs leader key."
-  :group 'minemacs
+  :group 'minemacs-keybinding
   :type 'string)
 
 (defcustom minemacs-localleader-key "SPC m"
   "MinEmacs local leader (a.k.a. mode specific) key sequence."
-  :group 'minemacs
+  :group 'minemacs-keybinding
   :type 'string)
 
 (defcustom minemacs-global-leader-prefix "C-SPC"
   "MinEmacs general leader key."
-  :group 'minemacs
+  :group 'minemacs-keybinding
   :type 'string)
 
 (defcustom minemacs-global-mode-prefix "C-SPC m"
   "MinEmacs general local leader (a.k.a. mode specific) key sequence."
-  :group 'minemacs
+  :group 'minemacs-keybinding
   :type 'string)
 
 (defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs."
-  :group 'minemacs
+  :group 'minemacs-ui
   :type 'symbol)
 
 (defcustom minemacs-after-set-fonts-hook nil
   "Runs after setting MinEmacs fonts, runs at the end of `+set-fonts'."
-  :group 'minemacs
+  :group 'minemacs-ui
   :type 'hook)
 
 (defcustom minemacs-after-load-theme-hook nil
   "Runs after loading MinEmacs theme, runs at the end of `+load-theme'."
-  :group 'minemacs
+  :group 'minemacs-ui
   :type 'hook)
 
 (defcustom minemacs-after-startup-hook nil
@@ -125,7 +149,7 @@ Compiled from the `system-configuration-features'.")
 MinEmacs hooks will be run in this order:
 1. `minemacs-after-startup-hook'
 2. `minemacs-lazy-hook'"
-  :group 'minemacs
+  :group 'minemacs-core
   :type 'hook)
 
 (defcustom minemacs-lazy-hook nil
@@ -134,7 +158,7 @@ MinEmacs hooks will be run in this order:
 MinEmacs hooks will be run in this order:
 1. `minemacs-after-startup-hook'
 2. `minemacs-lazy-hook'"
-  :group 'minemacs
+  :group 'minemacs-core
   :type 'hook)
 
 ;; Setup default fonts (depending on the OS)
@@ -157,7 +181,7 @@ MinEmacs hooks will be run in this order:
   "List of the environment variables to saved by `+env-save'.
 You need to run Emacs from terminal to get the environment variables.
 MinEmacs then save them when calling `+env-save' to be used in GUI sessions as well."
-  :group 'minemacs
+  :group 'minemacs-core
   :type '(repeat string))
 
 

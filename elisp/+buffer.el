@@ -5,6 +5,10 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
+(defgroup minemacs-buffer nil
+  "MinEmacs buffer stuff."
+  :group 'minemacs)
+
 ;; From: emacswiki.org/emacs/download/misc-cmds.el
 ;; Candidate as a replacement for `kill-buffer', at least when used interactively.
 ;; For example: (define-key global-map [remap kill-buffer] 'kill-buffer-and-its-windows)
@@ -103,7 +107,7 @@ See `kill-some-buffers'."
 (defcustom +kill-buffer-no-ask-list
   (list messages-buffer-name "*Warnings*")
   "A list of buffer names to be killed without confirmation."
-  :group 'minemacs
+  :group 'minemacs-buffer
   :type '(repeat string))
 
 (with-eval-after-load 'comp

@@ -86,7 +86,7 @@ If ENABLE is non-nil, force enabling autoreloading."
 (defcustom +screenshot-delay 5
   "A delay to wait before taking the screenshot.
 Applicable only when calling `+screenshot-svg' with a prefix."
-  :group 'minemacs
+  :group 'minemacs-utils
   :type 'number)
 
 ;; Inspired by: reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y

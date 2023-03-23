@@ -5,6 +5,10 @@
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
 
+(defgroup minemacs-org nil
+  "MinEmacs org-mode tweaks."
+  :group 'minemacs)
+
 (use-package org
   :straight (:type built-in)
   :after minemacs-loaded

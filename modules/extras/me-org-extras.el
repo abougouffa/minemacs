@@ -6,12 +6,12 @@
 
 (defcustom +org-responsive-image-percentage 0.4
   "Maximum image width as a percentage of the window width."
-  :group 'minemacs
+  :group 'minemacs-org
   :type 'float)
 
 (defcustom +org-responsive-image-width-limits '(400 . 700) ; '(min . max)
   "The minimum and maximum width of a displayed image."
-  :group 'minemacs
+  :group 'minemacs-org
   :type '(cons natnum natnum))
 
 (defvar-local +org-export-to-pdf-main-file nil

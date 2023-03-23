@@ -6,12 +6,12 @@
 
 (defcustom +mu4e-account-aliases nil
   "Per-account alias list."
-  :group 'minemacs
+  :group 'minemacs-mu4e
   :type '(repeat string))
 
 (defcustom +mu4e-auto-bcc-address nil
   "BCC address."
-  :group 'minemacs
+  :group 'minemacs-mu4e
   :type 'string)
 
 ;; Some of these functions are adapted from Doom Emacs

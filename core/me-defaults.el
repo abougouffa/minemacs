@@ -309,7 +309,7 @@
   '(prog-mode conf-mode org-mode markdown-mode
     latex-mode tex-mode bibtex-mode)
   "Enable auto white space cleanup before saving for these derived modes."
-  :group 'minemacs
+  :group 'minemacs-edit
   :type '(repeat symbol))
 
 ;; When MinEmacs is running in an asynchronous Org export context, there is no
