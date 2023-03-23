@@ -144,7 +144,7 @@
      (defun +consult--dwim-first-arg-a (orig-fn &optional initial opt)
        (apply orig-fn
               (append
-               (if (called-interactively-p)
+               (if (and (called-interactively-p) (not (minibufferp)))
                    (list (or initial (+region-or-thing-at-point)))
                  (list initial))
                (when opt (list opt)))))))
@@ -159,7 +159,7 @@
        (apply orig-fn
               (append
                (list dir)
-               (if (called-interactively-p)
+               (if (and (called-interactively-p) (not (minibufferp)))
                    (list (or initial (+region-or-thing-at-point)))
                  (list initial))))))))
 
