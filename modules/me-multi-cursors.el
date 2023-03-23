@@ -61,5 +61,25 @@
   :after evil-mc evil-escape
   :demand t)
 
+(use-package evil-multiedit
+  :straight t
+  :after iedit evil
+  :demand t
+  :init
+  (+nvmap! :infix "g"
+    "ze" '(nil :wk "evil-multiedit")
+    "zem" #'evil-multiedit-match-all
+    "zed" #'evil-multiedit-match-and-next
+    "zeD" #'evil-multiedit-match-and-prev
+    "zes" #'evil-multiedit-match-symbol-and-next
+    "zeS" #'evil-multiedit-match-symbol-and-prev
+    "zen" #'evil-multiedit-next
+    "zeN" #'evil-multiedit-prev
+    "zet" #'evil-multiedit-toggle-or-restrict-region
+    "zeT" #'evil-multiedit-toggle-marker-here
+    "zeq" #'evil-multiedit-abort)
+  :config
+  (evil-multiedit-default-keybinds))
+
 
 (provide 'me-multi-cursors)
