@@ -94,7 +94,7 @@
   :straight t)
 
 (use-package macrostep
-  :straight (:host github :repo "abougouffa/macrostep" :branch "fix_keymap")
+  :straight (macrostep :fork (:host github :repo "abougouffa/macrostep" :branch "fix_keymap"))
   :init
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
