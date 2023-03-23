@@ -7,12 +7,10 @@
 
 (use-package pdf-tools
   :straight t
-  :magic ("%PDF" . pdf-view-mode)
-  :mode ("\\.pdf\\'" . pdf-view-mode)
-  :config
-  (setq-default pdf-view-display-size 'fit-page
-                pdf-view-image-relief 2
-                pdf-view-use-scaling t))
+  :custom
+  (pdf-view-display-size 'fit-page)
+  (pdf-view-image-relief 2)
+  (pdf-view-use-scaling t))
 
 (use-package nov
   :straight t
