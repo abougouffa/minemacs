@@ -9,13 +9,15 @@
   (use-package eaf
     :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
     :init
-    (+map! "oo" '(eaf-open :wk "Open with EAF"))
+    (+map! "oo" #'eaf-open)
+    ;; Evil integration doesn't work, start `eaf-mode' in `emacs-state'.
+    (with-eval-after-load 'evil
+      (evil-set-initial-state 'eaf-mode 'emacs))
     :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf eaf-open-browser
     :custom
     ;; Generic
     (eaf-apps-to-install
-     '(browser mindmap jupyter org-previewer pdf-viewer system-monitor
-       markdown-previewer file-sender video-player))
+     '(browser mindmap jupyter pdf-viewer file-sender video-player markdown-previewer))
     (eaf-start-python-process-when-require t)
     (eaf-kill-process-after-last-buffer-closed t)
     (eaf-fullscreen-p nil)
@@ -73,8 +75,7 @@
     (defun +browse-url-eaf (url &rest args)
       "Open URL in EAF Browser."
       (interactive (browse-url-interactive-arg "URL: "))
-      (setq url (browse-url-encode-url url))
-      (eaf-open-browser url args))))
+      (eaf-open-browser (browse-url-encode-url url) args))))
 
 
 (provide 'me-eaf)
