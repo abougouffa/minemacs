@@ -126,6 +126,26 @@
               (plantuml-enable-debug)))
           :wk "Toggle debug")))
 
+(use-package mermaid-mode
+  :straight t
+  :config
+  (+map-local! :keymaps 'mermaid-mode-map
+    "c" 'mermaid-compile
+    "f" 'mermaid-compile-file
+    "b" 'mermaid-compile-buffer
+    "r" 'mermaid-compile-region
+    "b" 'mermaid-open-browser
+    "d" 'mermaid-open-doc))
+
+(use-package ob-mermaid
+  :straight (:host github :repo "arnm/ob-mermaid")
+  :after ob
+  :demand t
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (append org-babel-load-languages '((mermaid . t)))))
+
 (use-package d2-mode
   :straight t
   :mode "\\.d2\\'"
