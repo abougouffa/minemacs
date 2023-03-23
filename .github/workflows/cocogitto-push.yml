@@ -1,3 +1,4 @@
+name: Conventional Commits Compliance (push)
 on: [push]
 
 jobs:
