@@ -31,7 +31,7 @@
   `(,(rx (seq "*" (or "Dictionary" "lexic" "Completions") "*"))
     (display-buffer-in-side-window)
     (side . right)
-    (window-width . 70)))
+    (window-width . 82)))
 
  (add-to-list
   'display-buffer-alist
