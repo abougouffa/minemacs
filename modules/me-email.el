@@ -162,7 +162,6 @@
   (mu4e-alert-set-window-urgency nil)
   (mu4e-alert-group-by :to)
   (mu4e-alert-email-notification-types '(subjects))
-  (mu4e-alert-interesting-mail-query "flag:unread AND NOT flag:trashed AND NOT maildir:/*junk AND NOT maildir:/*spam")
   :init
   (defcustom +mu4e-alert-bell-command
     (when (or os/linux os/bsd)
@@ -173,6 +172,11 @@
   :config
   ;; Enable on mu4e notifications in doom-modeline
   (setq doom-modeline-mu4e t)
+
+  ;; Ignore spams!
+  (setq mu4e-alert-interesting-mail-query
+        (+mu4e-extras-ignore-spams-query mu4e-alert-interesting-mail-query))
+
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications)
   (mu4e-alert-set-default-style 'libnotify)
@@ -187,7 +191,7 @@
   (defun +mu4e-alert-grouped-mail-notif-formatter (mail-group _all-mails)
     (when +mu4e-alert-bell-command
       (start-process "mu4e-alert-bell" nil (car +mu4e-alert-bell-command) (cdr +mu4e-alert-bell-command)))
-    (let* ((mail-count (length mail-group)))
+    (let ((mail-count (length mail-group)))
       (list
        :title (format "You have %d unread email%s"
                       mail-count (if (> mail-count 1) "s" ""))
