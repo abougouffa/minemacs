@@ -6,6 +6,9 @@
 
 ;;; MinEmacs directories
 
+(defgroup minemacs nil
+  "MinEmacs specific functionalities.")
+
 (defconst minemacs-config-dir
   (file-name-as-directory
    (or (getenv "MINEMACS_DIR")
