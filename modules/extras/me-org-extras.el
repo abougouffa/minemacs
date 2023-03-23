@@ -263,8 +263,14 @@ Example: \"#+TITLE\" -> \"#+title\"
         (plist-put org-format-latex-options :background "Transparent"))
 
   (unless (+emacs-features-p 'pgtk) ;; PGTK not need extra up-scaling
-    (setq org-format-latex-options
-          (plist-put org-format-latex-options :scale 1.5))))
+    (add-hook
+     'org-mode-hook
+     (defun +org--set-format-latex-scale ()
+       (setq-local
+        org-format-latex-options
+        (plist-put
+         org-format-latex-options
+         :scale (/ (float (or (face-attribute 'default :height) 100)) 100.0)))))))
 
 (defun +org-extras-lower-case-keywords-and-properties-setup ()
   (add-hook
