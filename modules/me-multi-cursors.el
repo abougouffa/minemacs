@@ -57,4 +57,9 @@
       (:default . evil-mc-execute-default-call)
       (visual . evil-mc-execute-visual-call)))))
 
+(use-package me-evil-mc-evil-escape
+  :after evil-mc evil-escape
+  :demand t)
+
+
 (provide 'me-multi-cursors)
