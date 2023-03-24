@@ -92,6 +92,10 @@
 (use-package evil-escape
   :straight t
   :hook (evil-mode . evil-escape-mode)
+  ;; TEMP: Disable `evil-escape', it is not working in Emacs 29. Pressing "k" or
+  ;; "j" in insert state adds "kk" or "jj" and signals (invalid-function "kj").
+  ;; Spotted on Emacs built after 786de66ec3c4cff90cafd0f8a68f9bce027e9947
+  :disabled
   :custom
   ;; The default "fd" interfere with the "f" (bound to `evil-snipe-f') binding.
   (evil-escape-key-sequence "kj")
