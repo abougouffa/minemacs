@@ -19,6 +19,7 @@
             hy-mode)
            . parinfer-rust-mode)))
 
+;; Common Lisp
 (use-package sly
   :straight t
   :custom
@@ -76,6 +77,9 @@
     "rq" #'sly-quit-lisp))
 
 ;; Scheme
+(use-package racket-mode
+  :straight t)
+
 (use-package geiser
   :straight t
   :custom
@@ -84,7 +88,22 @@
 (use-package geiser-chez
   :straight t)
 
+(use-package geiser-chibi
+  :straight t)
+
+(use-package geiser-chicken
+  :straight t)
+
+(use-package geiser-gambit
+  :straight t)
+
+(use-package geiser-gauche
+  :straight t)
+
 (use-package geiser-guile
+  :straight t)
+
+(use-package geiser-kawa
   :straight t)
 
 (use-package geiser-mit
@@ -93,6 +112,10 @@
 (use-package geiser-racket
   :straight t)
 
+(use-package geiser-stklos
+  :straight t)
+
+;; Macro expansion
 (use-package macrostep
   :straight (macrostep :fork (:host github :repo "abougouffa/macrostep" :branch "fix_keymap"))
   :init
@@ -116,9 +139,7 @@
   (+map-local! :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
-(use-package racket-mode
-  :straight t)
-
+;; Emacs Lisp
 (use-package elisp-mode
   :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
