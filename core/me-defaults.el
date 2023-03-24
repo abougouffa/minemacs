@@ -175,6 +175,10 @@
  whitespace-action '(cleanup auto-cleanup)
  ;; End files with newline
  require-final-newline t
+ ;; Enable Drag-and-Drop of regions
+ mouse-drag-and-drop-region t
+ ;; Enable Drag-and-Drop of regions from Emacs to external programs
+ mouse-drag-and-drop-region-cross-program t
 
  ;; ====== Backups ======
  ;; Disable lockfiles
