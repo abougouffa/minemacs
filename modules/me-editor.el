@@ -112,6 +112,9 @@
 
 (use-package expand-region
   :straight t
+  ;; TEMP: Disable it. `er/expand-region' expands to the whole buffer in Emacs
+  ;; 29 (at least after 786de66ec3c4cff90cafd0f8a68f9bce027e9947)
+  :disabled
   :init
   (+vmap! "v" #'er/expand-region))
 

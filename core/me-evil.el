@@ -66,6 +66,9 @@
   :straight t
   :hook (minemacs-after-startup . evil-snipe-mode)
   :hook (minemacs-after-startup . evil-snipe-override-mode)
+  ;; TEMP: Disable. It triggers (invalid-function 2) on Emacs 29 (at least after
+  ;; 786de66ec3c4cff90cafd0f8a68f9bce027e9947)
+  :disabled
   :custom
   (evil-snipe-scope 'buffer)
   (evil-snipe-smart-case t)
