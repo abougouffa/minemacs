@@ -115,6 +115,13 @@
 (use-package geiser-stklos
   :straight t)
 
+;; Clojure
+(use-package clojure-mode
+  :straight t)
+
+(use-package cider
+  :straight t)
+
 ;; Macro expansion
 (use-package macrostep
   :straight (macrostep :fork (:host github :repo "abougouffa/macrostep" :branch "fix_keymap"))
