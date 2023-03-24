@@ -3,6 +3,8 @@
 *MinEmacs* is a lightweight Emacs configuration framework. The keybinding is
 inspired by Doom Emacs.
 
+[[file:.github/minemacs-cover.svg]]
+
 [[file:.github/minemacs.svg]]
 
 ** Why
