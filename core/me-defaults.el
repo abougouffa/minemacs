@@ -157,6 +157,8 @@
  prettify-symbols-unprettify-at-point t
  ;; Make tooltips last a bit longer (default 10s)
  tooltip-hide-delay 20
+ ;; Use small frames to display tooltips instead of the default OS tooltips
+ use-system-tooltips nil
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
