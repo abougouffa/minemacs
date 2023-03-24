@@ -42,23 +42,20 @@
 
 (use-package unicode-fonts
   :straight t
-  :hook (minemacs-after-startup . +unicode-fonts-initialize)
+  :hook (minemacs-after-startup . +unicode-fonts-setup)
+  ;; TEMP: Disable `unicode-fonts', it is not working in Emacs 29 (at least
+  ;; after 786de66ec3c4cff90cafd0f8a68f9bce027e9947)
+  :disabled
   :config
-  (defun +unicode-fonts-initialize ()
-    "Set up `unicode-fonts' to eventually run; accommodating the daemon, if necessary."
-    (if (display-graphic-p)
-        (+unicode-fonts-setup-font (selected-frame))
-      (add-hook 'after-make-frame-functions #'+unicode-fonts-setup-font)))
-
-  (defun +unicode-fonts-setup-font (&optional frame)
-    "Initialize `unicode-fonts', if in a GUI session.
-If doom-unicode-font is set, add it as preferred font for all unicode blocks."
-    (when (and frame (display-graphic-p frame))
-      (with-selected-frame frame
-        (when-let ((unicode-font-family (plist-get minemacs-fonts :unicode-font-family)))
-          (dolist (unicode-block unicode-fonts-block-font-mapping)
-            (push unicode-font-family (cadr unicode-block))))
-        (unicode-fonts-setup)))))
+  (defun +unicode-fonts-setup ()
+    "Prefer the `:unicode-font-family' from `minemacs-fonts'."
+    (when-let ((frame (selected-frame)))
+      (when (display-multi-font-p frame)
+        (with-selected-frame frame
+          (when-let ((unicode-font-family (plist-get minemacs-fonts :unicode-font-family)))
+            (dolist (unicode-block unicode-fonts-block-font-mapping)
+              (push unicode-font-family (cadr unicode-block))))
+          (unicode-fonts-setup))))))
 
 (when (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
   (use-package ligature
