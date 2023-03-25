@@ -17,7 +17,7 @@
   :group 'minemacs-ui
   :type 'hook)
 
-(defcustom +writing-text-scale 1.7
+(defcustom +writing-text-scale 2.0
   "The text-scaling level for `+writing-mode'."
   :group 'minemacs-ui
   :type 'float)
