@@ -70,12 +70,13 @@ STR and any integer OFFSET."
          (title ;; remove first letter afrer [] if it equal last of binding
           (mu4e-string-replace
            (concat "[@]" (substring bindstr -1)) "[@]" title))
-         (title ;; Special case: replace "jump" with "Jump"
-          (if (string= "j" bindstr)
-              (progn
-                (setq bindstr "J")
-                (replace-regexp-in-string "jump" "Jump" title))
-            title))
+         (title ;; Special cases: replace "jump" with "Jump", "enter" -> "Enter"
+          (cond ((string= "j" bindstr)
+                 (setq bindstr "J")
+                 (replace-regexp-in-string "jump" "Jump" title))
+                ((string= "s" bindstr)
+                 (replace-regexp-in-string "enter" "Enter" title))
+                (t title)))
          (title ;; insert binding in [@]
           (mu4e-string-replace
            "[@]" (format "[%s]" (propertize bindstr 'face 'mu4e-highlight-face))
@@ -219,6 +220,8 @@ will also be the width of all other printable characters."
                  'face 'mu4e-footer-face))))))
 
   ;; Evil collection overwrite the jump, search, compose and quit commands
+  ;; TODO: Useless now, to be updated/deleted when `evil-collection-mu4e' gets
+  ;; fixed.
   (with-eval-after-load 'evil-collection
     (setq evil-collection-mu4e-new-region-basic
           (concat (+mu4e--main-action-prettier-a
