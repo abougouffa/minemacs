@@ -30,13 +30,6 @@
   :config
   (magit-todos-mode 1))
 
-(when (+emacs-features-p 'sqlite3)
-  ;; Needed to set `forge-database-connector' to `sqlite-builtin'
-  (use-package emacsql-sqlite-builtin
-    :straight t
-    :after magit
-    :demand t))
-
 (use-package forge
   :straight t
   :after magit
