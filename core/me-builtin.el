@@ -12,5 +12,11 @@
   (define-key transient-map [escape]  #'transient-quit-one)
   (define-key transient-map (kbd "q") #'transient-quit-one))
 
+(use-package map
+  :straight (:type built-in))
+
+(use-package let-alist
+  :straight (:type built-in))
+
 
 (provide 'me-builtin)
