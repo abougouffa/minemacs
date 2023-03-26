@@ -30,13 +30,6 @@
   :config
   (magit-todos-mode 1))
 
-(use-package transient
-  :straight t
-  :config
-  ;; Map ESC and q to quit transient
-  (define-key transient-map [escape]  #'transient-quit-one)
-  (define-key transient-map (kbd "q") #'transient-quit-one))
-
 (when (+emacs-features-p 'sqlite3)
   ;; Needed to set `forge-database-connector' to `sqlite-builtin'
   (use-package emacsql-sqlite-builtin

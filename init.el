@@ -224,7 +224,7 @@
         (when (memq 'me-splash minemacs-core-modules) '(me-splash))
         '(me-bootstrap)
         (when (< emacs-major-version 29) '(me-compat))
-        '(me-gc)
+        '(me-builtin me-gc)
         minemacs-core-modules)))
 
 ;; Load MinEmacs modules
