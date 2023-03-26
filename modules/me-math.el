@@ -7,10 +7,8 @@
 (defconst +maxima-available-p (executable-find "maxima"))
 
 (use-package maxima
-  :straight (:host github :repo "emacsmirror/maxima"
-                   :files (:defaults
-                           "keywords"
-                           "poly-maxima.el"))
+  :straight '(:host github :repo "emacsmirror/maxima"
+              :files (:defaults "keywords"))
   :when +maxima-available-p
   :mode ("\\.ma[cx]\\'" . maxima-mode)
   :interpreter ("maxima" . maxima-mode)
@@ -20,10 +18,8 @@
   (maxima-display-maxima-buffer nil))
 
 (use-package imaxima
-  :straight (imaxima
-             :host nil
-             :repo "https://git.code.sf.net/p/maxima/code"
-             :files ("interfaces/emacs/imaxima/*"))
+  :straight '(:host nil :repo "https://git.code.sf.net/p/maxima/code"
+              :files ("interfaces/emacs/imaxima/*"))
   :when +maxima-available-p
   :commands imaxima imath-mode
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
@@ -100,5 +96,6 @@
     (+map-local! :keymaps 'octave-mode-map
       "e"  '(nil :wk "eval")
       "ee" #'+eros-octave-eval-last-sexp)))
+
 
 (provide 'me-math)
