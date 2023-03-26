@@ -62,32 +62,39 @@ STR and any integer OFFSET."
                      +mu4e-header-colorized-faces)))
     color))
 
-(defun +mu4e--main-action-str-prettier-a (str &optional func-or-shortcut)
-  "Highlight the first occurrence of [.] in STR.
-If FUNC-OR-SHORTCUT is non-nil and if it is a function, call it
-when STR is clicked (using RET or mouse-2); if FUNC-OR-SHORTCUT is
-a string, execute the corresponding keyboard action when it is
-clicked."
-  (let ((newstr
-         (replace-regexp-in-string
-          "\\[\\(..?\\)\\]"
-          (lambda(m)
-            (format "%s"
-                    (propertize (match-string 1 m) 'face '(mode-line-emphasis bold))))
-          (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str)))
-        (map (make-sparse-keymap))
-        (func (if (functionp func-or-shortcut)
-                  func-or-shortcut
-                (if (stringp func-or-shortcut)
-                    (lambda()
-                      (interactive)
-                      (execute-kbd-macro func-or-shortcut))))))
-    (define-key map [mouse-2] func)
-    (define-key map (kbd "RET") func)
-    (put-text-property 0 (length newstr) 'keymap map newstr)
-    (put-text-property (string-match "[A-Za-z].+$" newstr)
-                       (- (length newstr) 1) 'mouse-face 'highlight newstr)
-    newstr))
+(defun +mu4e--main-action-prettier-a (title cmd &optional bindstr alt)
+  (let* ((bindstr (or bindstr (mu4e-key-description cmd) (and alt (string alt))
+                      (mu4e-error "No binding for %s" cmd)))
+         (bindstr
+          (if (and alt (> (length bindstr) 1)) alt bindstr))
+         (title ;; remove first letter afrer [] if it equal last of binding
+          (mu4e-string-replace
+           (concat "[@]" (substring bindstr -1)) "[@]" title))
+         (title ;; Special case: replace "jump" with "Jump"
+          (if (string= "j" bindstr)
+              (progn
+                (setq bindstr "J")
+                (replace-regexp-in-string "jump" "Jump" title))
+            title))
+         (title ;; insert binding in [@]
+          (mu4e-string-replace
+           "[@]" (format "[%s]" (propertize bindstr 'face 'mu4e-highlight-face))
+           title))
+         (title ;; Prettify the title
+          (replace-regexp-in-string
+           "\\[\\(..?\\)\\]"
+           (lambda(m)
+             (format "%s"
+                     (propertize (match-string 1 m) 'face '(mode-line-emphasis bold))))
+           (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) title)))
+         (map (make-sparse-keymap)))
+    (define-key map [mouse-2] cmd)
+    (define-key map (kbd "RET") cmd)
+    ;; Add highlighting on mouse hover
+    (put-text-property 0 (length title) 'keymap map title)
+    (put-text-property (string-match "[A-Za-z].+$" title)
+                       (- (length title) 1) 'mouse-face 'highlight title)
+    (propertize title 'keymap map)))
 
 (defun +mu4e--main-keyval-str-prettier-a (str)
   "Replace '*' with `+mu4e-main-bullet' in STR."
@@ -214,16 +221,16 @@ will also be the width of all other printable characters."
   ;; Evil collection overwrite the jump, search, compose and quit commands
   (with-eval-after-load 'evil-collection
     (setq evil-collection-mu4e-new-region-basic
-          (concat (+mu4e--main-action-str-prettier-a
-                   "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
-                  (+mu4e--main-action-str-prettier-a
+          (concat (+mu4e--main-action-prettier-a
+                   "\t* [J]ump to some maildir\n" 'mu4e-search-maildir)
+                  (+mu4e--main-action-prettier-a
                    "\t* Enter a [s]earch query\n" 'mu4e-search)
-                  (+mu4e--main-action-str-prettier-a
+                  (+mu4e--main-action-prettier-a
                    "\t* [C]ompose a new message\n" 'mu4e-compose-new))
           evil-collection-mu4e-end-region-misc "quit"))
 
   (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
-  (advice-add #'mu4e--main-action-str :override #'+mu4e--main-action-str-prettier-a))
+  (advice-add #'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
 
 (defun +mu4e-ui-setup ()
   (if (display-graphic-p)

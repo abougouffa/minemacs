@@ -53,6 +53,7 @@
    (seq-filter
     (lambda (mode)
       (not (memq mode '(evil-mc ; Default bindings for `evil-mc' are messy
+                        mu4e ; TEMP: until `evil-collection-mu4e' gets fixed, see github.com/emacs-evil/evil-collection/issues/695
                         elisp-mode)))) ; I don't like "gz" for `ielm', I like "gr" though
     evil-collection-mode-list))
 
@@ -60,7 +61,21 @@
   (with-eval-after-load 'elisp-mode
     (when evil-collection-want-find-usages-bindings
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map
-        "gr" 'xref-find-references))))
+        "gr" 'xref-find-references)))
+
+  ;; TEMP: Fix `mu4e' evil integraion
+  (with-eval-after-load 'mu4e
+    (require 'evil-collection-mu4e
+             (concat (file-name-directory (feature-file 'evil-collection))
+                     "modes/mu4e/evil-collection-mu4e.el"))
+    (evil-collection-mu4e-set-state)
+    (evil-collection-mu4e-set-bindings)
+
+    ;; Fix some missed up bindings
+    (defalias 'mu4e~view-quit-buffer #'mu4e-view-quit)
+
+    (add-hook 'org-mode-hook #'evil-collection-mu4e-org-set-header-to-normal-mode)
+    (add-hook 'mu4e-compose-pre-hook #'evil-collection-mu4e-org-set-header-to-insert-mode)))
 
 (use-package evil-snipe
   :straight t
