@@ -111,10 +111,7 @@
   :init
   (+map! "gt" #'git-timemachine-toggle)
   :custom
-  (git-timemachine-show-minibuffer-details t)
-  :config
-  ;; TEMP: Fix a strange error triggred by `git-timemachine--erm-workaround'
-  (fset 'git-timemachine--erm-workaround #'ignore))
+  (git-timemachine-show-minibuffer-details t))
 
 ;; Enforce git commit conventions.
 ;; See: chris.beams.io/posts/git-commit/
