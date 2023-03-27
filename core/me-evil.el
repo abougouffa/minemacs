@@ -65,9 +65,15 @@
 
   ;; TEMP: Fix `mu4e' evil integraion
   (with-eval-after-load 'mu4e
+    (require 'loadhist) ; to use `feature-file'
+
+    ;; To avoid calling `evil-collection-mu4e--main-action-str'
+    (defvar evil-collection-mu4e-new-region-basic nil)
+
     (require 'evil-collection-mu4e
              (concat (file-name-directory (feature-file 'evil-collection))
                      "modes/mu4e/evil-collection-mu4e.el"))
+
     (evil-collection-mu4e-set-state)
     (evil-collection-mu4e-set-bindings)
 

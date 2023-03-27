@@ -222,15 +222,15 @@ will also be the width of all other printable characters."
   ;; Evil collection overwrite the jump, search, compose and quit commands
   ;; TODO: Useless now, to be updated/deleted when `evil-collection-mu4e' gets
   ;; fixed.
-  (with-eval-after-load 'evil-collection
-    (setq evil-collection-mu4e-new-region-basic
-          (concat (+mu4e--main-action-prettier-a
-                   "\t* [J]ump to some maildir\n" 'mu4e-search-maildir)
-                  (+mu4e--main-action-prettier-a
-                   "\t* Enter a [s]earch query\n" 'mu4e-search)
-                  (+mu4e--main-action-prettier-a
-                   "\t* [C]ompose a new message\n" 'mu4e-compose-new))
-          evil-collection-mu4e-end-region-misc "quit"))
+  ;; (with-eval-after-load 'evil-collection
+  ;;   (setq evil-collection-mu4e-new-region-basic
+  ;;         (concat (+mu4e--main-action-prettier-a
+  ;;                  "\t* [J]ump to some maildir\n" 'mu4e-search-maildir)
+  ;;                 (+mu4e--main-action-prettier-a
+  ;;                  "\t* Enter a [s]earch query\n" 'mu4e-search)
+  ;;                 (+mu4e--main-action-prettier-a
+  ;;                  "\t* [C]ompose a new message\n" 'mu4e-compose-new))
+  ;;         evil-collection-mu4e-end-region-misc "quit"))
 
   (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
   (advice-add #'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
