@@ -65,6 +65,12 @@
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
 
+  ;; Disable the new `mu4e-modeline-mode', `mu4e-alert' is much nicer.
+  (advice-add
+   'mu4e :after
+   (defun +mu4e--disable-modeline-mode-a (&rest _)
+     (mu4e-modeline-mode -1)))
+
   ;; No need to display a long list of my own addresses!
   (setq mu4e-main-hide-personal-addresses t)
 
