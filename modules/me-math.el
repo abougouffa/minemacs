@@ -47,10 +47,11 @@
     "O" #'ein:process-open-notebook
     "r" #'ein:gat-run-remote
     "l" #'ein:gat-run-local)
+
   (setq-default ein:markdown-enable-math t)
 
   (with-eval-after-load 'org
-    (add-to-list 'org-babel-load-languages '(ein . t))
+    (org-babel-do-load-languages 'org-babel-load-languages (append org-babel-load-languages '((ein . t))))
     (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
 
 (use-package julia-mode
