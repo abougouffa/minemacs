@@ -197,7 +197,13 @@ the children of class at point."
 (use-package compile
   :straight (:type built-in)
   :commands +toggle-burry-compilation-buffer-if-successful
+  ;; Enable ANSI colors in compilation buffer
+  :hook (compilation-filter . 'ansi-color-compilation-filter)
   :config
+  ;; Integration of `compile' with `savehist'
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'compile-history))
+
   ;; Auto-close the compilation buffer if succeeded without warnings.
   ;; Adapted from: stackoverflow.com/q/11043004/3058915
   (defun +compilation--bury-if-successful-h (buf str)
