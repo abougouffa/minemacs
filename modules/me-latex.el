@@ -6,8 +6,8 @@
 
 
 ;; Adapted from Doom Emacs
-(use-package auctex
-  :straight t
+(use-package tex
+  :straight auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
   :custom
   (TeX-parse-self t) ; parse on load
