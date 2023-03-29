@@ -48,7 +48,15 @@
     "l"  '(nil :wk "link")
     "ll" #'org-insert-link
     "e"  #'org-export-dispatch
-    "s"  #'org-edit-src-code)
+    "c"  #'org-edit-src-code
+    "s"  '(nil :wk "babel-session")
+    "sc" #'org-babel-switch-to-session-with-code
+    "ss" #'org-babel-switch-to-session
+    "sp" #'org-babel-pop-to-session
+    "sP" #'org-babel-pop-to-session-maybe
+    "sl" #'org-babel-load-in-session
+    "sL" #'org-babel-load-in-session-maybe
+    "si" #'org-babel-initiate-session)
   (+map-local! :keymaps 'org-src-mode-map
     "s" #'org-edit-src-save
     "q" #'org-edit-src-abort
@@ -77,28 +85,10 @@
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((C . t)
-     (R . t)
-     (js . t)
-     (dot . t)
-     (awk . t)
-     (sed . t)
-     (sql . t)
-     (org . t)
-     (shell . t)
-     (ditaa . t)
-     (latex . t)
-     (julia . t)
-     (sqlite . t)
-     (octave . t)
-     (maxima . t)
-     (eshell . t)
-     (scheme . t)
-     (python . t)
-     (fortran . t)
-     (gnuplot . t)
-     (plantuml . t)
-     (makefile . t)))
+   (cl-loop
+    for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
+                  maxima eshell scheme python fortran gnuplot plantuml makefile)
+    collect (cons lang t)))
 
   (with-eval-after-load 'org-src
     (setq org-src-lang-modes
