@@ -197,7 +197,7 @@ value of `+html2pdf-default-backend' is used."
        (call-process
         "weasyprint" nil nil nil
         "--encoding" "utf-8"
-        "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-root-dir)
+        "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
         infile outfile))
       ('htmldoc
        (call-process

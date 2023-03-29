@@ -76,6 +76,7 @@
     (directory-file-name
      (file-name-directory (file-truename load-file-name))))))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
+(defconst minemacs-assets-dir (concat minemacs-root-dir "assets/"))
 (defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
 (defconst minemacs-extras-dir (concat minemacs-modules-dir "extras/"))
