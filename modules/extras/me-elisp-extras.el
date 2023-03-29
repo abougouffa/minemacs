@@ -7,7 +7,7 @@
 
 (defvar +emacs-lisp--face nil)
 
-;; Extracted from github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
+;; Extracted from: github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
 (defun +emacs-lisp--highlight-vars-and-faces (end)
   "Match defined variables and functions.
 Functions are differentiated into special forms, built-in functions and
@@ -43,7 +43,7 @@ library/userland functions"
                       (throw 'matcher t)))))))
     nil))
 
-;; Taken from reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
+;; Taken from: reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists
 (defun +emacs-lisp--calculate-lisp-indent-a (&optional parse-start)
   "Add better indentation for quoted and backquoted lists."
   ;; This line because `calculate-lisp-indent-last-sexp` was defined with `defvar`
@@ -219,15 +219,14 @@ library/userland functions"
                normal-indent))))))
 
 (defun +elisp-indent-setup ()
-  ;; Fixed indenter that intends plists sensibly.
-  (advice-add #'calculate-lisp-indent :override
-              #'+emacs-lisp--calculate-lisp-indent-a))
+  ;; Override the indenter to indent plists correctly.
+  ;; See: reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
+  (advice-add 'calculate-lisp-indent :override #'+emacs-lisp--calculate-lisp-indent-a))
 
 (defun +elisp-highlighting-setup ()
-  ;; Fixed indenter that intends plists sensibly.
   (font-lock-add-keywords
    'emacs-lisp-mode
-   `((+emacs-lisp--highlight-vars-and-faces . +emacs-lisp--face))))
+   '((+emacs-lisp--highlight-vars-and-faces . +emacs-lisp--face))))
 
 ;; HACK: Adapted from Doom. Quite a few functions here are called often, and so
 ;; are especially performance sensitive, so we compile these functions
