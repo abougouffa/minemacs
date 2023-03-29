@@ -198,7 +198,7 @@ the children of class at point."
   :straight (:type built-in)
   :commands +toggle-burry-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
-  :hook (compilation-filter . 'ansi-color-compilation-filter)
+  :hook (compilation-filter . ansi-color-compilation-filter)
   :config
   ;; Integration of `compile' with `savehist'
   (with-eval-after-load 'savehist
