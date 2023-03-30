@@ -120,6 +120,22 @@ Useful for keeping track of the enabled theme."
 (use-package apropospriate-theme
   :straight t)
 
+(use-package dashboard
+  :straight t
+  :init
+  (setq initial-buffer-choice #'dashboard-open)
+  (+map! "oD" #'dashboard-open)
+  :custom
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+  (dashboard-center-content t)
+  (dashboard-banner-ascii "MinEmacs")
+  (dashboard-banner-logo-title "Welcome to MinEmacs!")
+  (dashboard-items '((recents . 5) (projects . 5) (bookmarks . 5)))
+  (dashboard-image-banner-max-width 600)
+  (dashboard-projects-backend 'project-el)
+  (dashboard-startup-banner (concat minemacs-assets-dir "images/minemacs.png")))
+
 (use-package doom-modeline
   :straight t
   :hook (minemacs-after-startup . doom-modeline-mode)
