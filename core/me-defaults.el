@@ -66,6 +66,7 @@
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
  desktop-dirname (+directory-ensure minemacs-local-dir "desktop/")
  desktop-path (list desktop-dirname)
+ custom-theme-directory (concat minemacs-config-dir "themes/")
 
  ;; ====== Default behavior ======
  ;; Inhibit startup message
