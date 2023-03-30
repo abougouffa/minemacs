@@ -12,6 +12,8 @@
 
 (use-package pdf-tools
   :straight t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :magic ("%PDF" . pdf-view-mode)
   :custom
   (pdf-view-display-size 'fit-page)
   (pdf-view-image-relief 2)
