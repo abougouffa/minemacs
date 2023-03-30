@@ -22,6 +22,7 @@
   (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "c" #'TeX-command-run-all
     "m" #'TeX-command-master
+    "e" #'TeX-engine-set
     "v" #'TeX-view)
   :config
   (when (functionp 'pdf-tools-install)
