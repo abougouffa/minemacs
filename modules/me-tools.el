@@ -72,8 +72,11 @@
 (use-package docker-compose-mode
   :straight t)
 
-(unless (+emacs-features-p 'tree-sitter)
-  ;; Emacs 29 comes with `dockerfile-ts-mode'
+(if (+emacs-features-p 'tree-sitter)
+    ;; Emacs 29 comes with `dockerfile-ts-mode'
+    (use-package dockerfile-ts-mode
+      :straight (:type built-in)
+      :mode "/Dockerfile\\'")
   (use-package dockerfile-mode
     :straight t))
 
