@@ -46,6 +46,12 @@ the updated value."
                           user-emacs-directory)
         native-comp-eln-load-path))
 
+(defun scratch-buffer ()
+  "Switch to the *scratch* buffer.
+If the buffer doesn't exist, create it first."
+  (interactive)
+  (pop-to-buffer-same-window (get-scratch-buffer-create)))
+
 (defun native-compile-prune-cache ()
   "Remove .eln files that aren't applicable to the current Emacs invocation."
   (interactive)
