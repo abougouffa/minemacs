@@ -359,6 +359,9 @@ the children of class at point."
   :custom
   (lua-indent-level 2))
 
+(use-package hy-mode
+  :straight t)
+
 (use-package powershell
   :straight t)
 
