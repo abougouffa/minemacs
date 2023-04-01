@@ -103,7 +103,10 @@
     "K" #'journalctl-previous-chunk))
 
 (use-package logview
-  :straight t)
+  :straight t
+  :custom
+  (logview-views-file (concat minemacs-local-dir "logview-views.el"))
+  (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
 
 (use-package tramp
   :straight (:type built-in)
