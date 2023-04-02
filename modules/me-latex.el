@@ -102,5 +102,9 @@
   (with-eval-after-load 'evil
     (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
 
+(use-package me-latex-fonts
+  :after latex
+  :demand t)
+
 
 (provide 'me-latex)
