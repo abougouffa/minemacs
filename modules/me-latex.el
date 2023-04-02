@@ -18,6 +18,8 @@
   (TeX-source-correlate-start-server nil) ; don't start the Emacs server when correlating sources.
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
+  (TeX-engine 'xetex) ; use XeLaTeX by default
+  (TeX-PDF-mode t) ; export to PDF by default
   :init
   (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "c" #'TeX-command-run-all
@@ -27,6 +29,13 @@
   :config
   (when (functionp 'pdf-tools-install)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools"))))
+
+(use-package latex
+  :straight auctex
+  :config
+  ;; Add the TOC entry to the sectioning hooks.
+  (setq LaTeX-fill-break-at-separators nil
+        LaTeX-item-indent 0))
 
 ;; Adapted from Doom Emacs
 (use-package auctex-latexmk
@@ -38,8 +47,14 @@
   :custom
   (auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
+  (setq-default TeX-command-list
+       (cons
+        '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
+          (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
+        TeX-command-list))
+
   (defun +tex--set-latexmk-as-default-cmd-h ()
-    (setq TeX-command-default "LatexMk"))
+    (setq TeX-command-default "LatexMk-2"))
   ;; Add LatexMk as a TeX target.
   (auctex-latexmk-setup))
 
