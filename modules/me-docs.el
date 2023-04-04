@@ -111,5 +111,8 @@
   (markdown-hide-markup t)
   (markdown-enable-math t))
 
+(use-package poly-markdown
+  :straight t)
+
 
 (provide 'me-docs)
