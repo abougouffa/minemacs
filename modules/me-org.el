@@ -64,11 +64,19 @@
   (+nmap! :keymaps 'org-mode-map
     "RET" #'org-open-at-point)
 
-  ;; Tectonic can be interesting, however, it don't work right now
-  ;; with some of my documents (natbib + sagej...)
-  (when (and (executable-find "tectonic") nil)
-    (setq org-latex-pdf-process
-          '("tectonic -Z shell-escape -Z continue-on-errors --outdir=%o %f"))) ;; --synctex
+  (cond
+   ((executable-find "latexmk")
+    (setq
+     org-latex-pdf-process
+     '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
+       "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+
+   ;; Tectonic can be interesting. However, it don't work right now
+   ;; with some of my documents (natbib + sagej...)
+   ((executable-find "tectonic")
+    (setq
+     org-latex-pdf-process
+     '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f"))))
 
   (setq org-export-async-debug minemacs-debug) ;; Can be useful!
 
