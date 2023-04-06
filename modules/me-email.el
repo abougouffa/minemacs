@@ -42,6 +42,9 @@
   (mu4e-hide-index-messages t) ;; Hide minibuffer messages after indexing
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read) ;; Use `vertico' instead of `ido'
+  (mu4e-main-hide-personal-addresses t) ;; Don't display a list of my own addresses!
+  (mu4e-modeline-support nil) ;; `mu4e-alert' is much nicer.
+  (mu4e-eldoc-support t)
   (sendmail-program (executable-find "msmtp")) ;; Use msmtp to send mails
   (send-mail-function #'smtpmail-send-it)
   (message-sendmail-f-is-evil t)
@@ -64,15 +67,6 @@
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
     "S" #'message-dont-send)
-
-  ;; Disable the new `mu4e-modeline-mode', `mu4e-alert' is much nicer.
-  (advice-add
-   'mu4e :after
-   (defun +mu4e--disable-modeline-mode-a (&rest _)
-     (mu4e-modeline-mode -1)))
-
-  ;; No need to display a long list of my own addresses!
-  (setq mu4e-main-hide-personal-addresses t)
 
   (defun +mu4e-open-mail-as-html ()
     "Open the HTML mail in EAF Browser."
