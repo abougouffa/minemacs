@@ -7,10 +7,13 @@
 ;; Email (mu4e)
 (+lazy-when! (memq 'me-email minemacs-modules)
   (when (require 'mu4e nil t)
-    (unless (mu4e-running-p)
-      (let ((inhibit-message t))
-        (mu4e t)
-        (+info! "Started `mu4e' in background.")))))
+    (run-with-idle-timer
+     0 (* 3 60)
+     (lambda ()
+       (unless (mu4e-running-p)
+         (+info! "Starting `mu4e' in background.")
+         (let ((inhibit-message t))
+           (mu4e t)))))))
 
 ;; RSS (elfeed)
 (+lazy-when! (memq 'me-rss minemacs-modules)
