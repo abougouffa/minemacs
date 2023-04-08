@@ -44,6 +44,11 @@
   (treemacs-last-error-persist-file (concat minemacs-local-dir "treemacs/last-error-persist.el"))
   (treemacs-width 30))
 
+(use-package treemacs-evil
+  :straight t
+  :after treemacs evil
+  :demand t)
+
 (use-package treemacs-all-the-icons
   :straight t
   :after treemacs all-the-icons
