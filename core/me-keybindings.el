@@ -165,6 +165,7 @@
     "tr"  #'read-only-mode
     "tl"  #'follow-mode
     "tV"  '(netextender-toggle :wk "NetExtender")
+    "te"  '(ecryptfs-toggle-mount-private :wk "eCryptfs")
     "tv"  #'visible-mode
 
     ;; ====== Code ======

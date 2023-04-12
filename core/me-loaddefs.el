@@ -537,6 +537,8 @@ CMD is the command to execute (interactively, `chown').
 
 ;;; Generated autoloads from ../elisp/ecryptfs.el
 
+(autoload 'ecryptfs-toggle-mount-private "../elisp/ecryptfs" "\
+Mount/Unmount eCryptfs' private directory." t)
 (autoload 'ecryptfs-mount-private "../elisp/ecryptfs" "\
 Mount eCryptfs' private directory." t)
 (autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\

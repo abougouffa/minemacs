@@ -57,6 +57,19 @@
       "ecryptfs-insert-wrapped-passphrase-into-keyring %s '%s'"
     "ecryptfs-unwrap-passphrase %s '%s' | ecryptfs-add-passphrase -"))
 
+(defun ecryptfs-private-mounted-p ()
+  (let ((mount (shell-command-to-string "mount")))
+    (and (string-match-p (concat ".*" (expand-file-name ecryptfs-private-dir-name "~") ".*ecryptfs.*") mount)
+         t)))
+
+;;;###autoload
+(defun ecryptfs-toggle-mount-private ()
+  "Mount/Unmount eCryptfs' private directory."
+  (interactive)
+  (if (ecryptfs-private-mounted-p)
+      (ecryptfs-umount-private)
+    (ecryptfs-mount-private)))
+
 ;;;###autoload
 (defun ecryptfs-mount-private ()
   "Mount eCryptfs' private directory."
@@ -69,15 +82,20 @@
       (message "Encrypted filenames mode [%s]" (if ecryptfs-encrypt-filenames-p "✓" "⨯"))
       (while (and ;; In the first iteration, we try to silently mount the ecryptfs private directory,
               ;; this would succeed if the key is available in the keyring.
-              (shell-command ecryptfs--mount-private-cmd
-                             ecryptfs-buffer-name)
+              (and (shell-command ecryptfs--mount-private-cmd
+                                  ecryptfs-buffer-name)
+                   (message "Successfully mounted private directory."))
               try-again)
         (setq try-again nil)
-        (shell-command
-         (format ecryptfs--command-format
-                 ecryptfs-wrapped-passphrase-file
-                 (funcall ecryptfs--passphrase))
-         ecryptfs-buffer-name)))))
+        (if (zerop
+             (shell-command
+              (format ecryptfs--command-format
+                      ecryptfs-wrapped-passphrase-file
+                      (funcall ecryptfs--passphrase))
+              ecryptfs-buffer-name))
+            (message "Successfully mounted private directory.")
+          (user-error "A problem occured while mounting the private directory, see %s"
+                      ecryptfs-buffer-name))))))
 
 ;;;###autoload
 (defun ecryptfs-umount-private ()
