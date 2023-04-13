@@ -12,20 +12,12 @@
                             (if emacs-repository-version
                                 (format "-%s" (substring emacs-repository-version 0 8))
                               ""))
- ;; TEMP: Use the "master" branch on straight.el's repo (switch back to
- ;; "develop" when issue #28 gets fixed in upstream)
- straight-repository-branch "master"
+ ;; Use the "develop" branch on straight.el's repo.
+ straight-repository-branch "develop"
  ;; Do not clone all project history, just the last worktree (--depth 1)
  straight-vc-git-default-clone-depth '(1 single-branch)
  ;; Do not slow startup by checking for package modifs, check only on demand
  straight-check-for-modifications '(check-on-save find-when-checking))
-
-;; TEMP: The "master" branch of straight.el uses the old variable names, so we
-;; make sure to provide them otherwise it will fail to load.
-(when (and (not (boundp 'native-comp-deferred-compilation))
-           (boundp 'native-comp-jit-compilation))
-  (defvaralias 'native-comp-deferred-compilation 'native-comp-jit-compilation)
-  (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
 
 ;; Bootstraping straight.el
 ;; See: github.com/radian-software/straight.el#bootstrapping-straightel
