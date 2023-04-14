@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defgroup minemacs-binary nil
   "MinEmacs binary files."
@@ -96,3 +99,5 @@ is binary, activate `hexl-mode'."
 (defun +binary-setup-modes ()
   (add-to-list 'magic-fallback-mode-alist '(+binary-objdump-buffer-p . objdump-disassemble-mode) t)
   (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
+
+;;; +binary.el ends here

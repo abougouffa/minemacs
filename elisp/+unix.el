@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;; From: emacswiki.org/emacs/download/misc-cmds.el
 (defun +read-shell-file-command (command)
@@ -36,3 +39,5 @@ CMD is the command to execute (interactively, `chgrp')."
 CMD is the command to execute (interactively, `chown')."
   (interactive (list (+read-shell-file-command 'chown)))
   (shell-command cmd))
+
+;;; +unix.el ends here

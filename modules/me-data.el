@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package csv-mode
   :straight t
@@ -173,3 +176,5 @@
 
 
 (provide 'me-data)
+
+;;; me-data.el ends here

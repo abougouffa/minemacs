@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package writeroom-mode
   :straight t
@@ -90,3 +93,5 @@
 
 
 (provide 'obsolete/me-writeroom)
+
+;;; me-writeroom.el ends here

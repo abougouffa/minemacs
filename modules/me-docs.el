@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package doc-view
   :straight (:type built-in)
@@ -116,3 +119,5 @@
 
 
 (provide 'me-docs)
+
+;;; me-docs.el ends here

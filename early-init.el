@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (setq
  ;; Do not make installed packages available when Emacs starts
  package-enable-at-startup nil
@@ -54,3 +58,5 @@
 (let ((early-config-path (concat minemacs-config-dir "early-config.el")))
   (when (file-exists-p early-config-path)
     (load early-config-path nil (not minemacs-verbose))))
+
+;;; early-init.el ends here

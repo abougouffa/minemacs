@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package transient
   :straight (:type built-in)
@@ -20,3 +23,5 @@
 
 
 (provide 'me-builtin)
+
+;;; me-builtin.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defvar +emacs-lisp--face nil)
 
@@ -236,3 +239,5 @@ library/userland functions"
 
 
 (provide 'me-elisp-extras)
+
+;;; me-elisp-extras.el ends here

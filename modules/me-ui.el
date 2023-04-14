@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package svg-lib
   :straight t
@@ -75,3 +78,5 @@
 
 
 (provide 'me-ui)
+
+;;; me-ui.el ends here

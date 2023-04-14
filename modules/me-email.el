@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
@@ -215,3 +218,5 @@
 
 
 (provide 'me-email)
+
+;;; me-email.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defconst +aspell-available-p (executable-find "aspell"))
 
@@ -200,3 +203,5 @@
 
 
 (provide 'me-natural-langs)
+
+;;; me-natural-langs.el ends here

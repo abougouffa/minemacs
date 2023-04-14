@@ -4,8 +4,12 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Evil integraion has been adopted from Doom Emacs
 ;; github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
+
+;;; Code:
 
 ;;;###autoload(autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
 (evil-define-command +realgud:start (&optional path)
@@ -106,3 +110,5 @@
   ("Sr" +realgud:cmd-run)
   ("q"  nil "quit" :color blue) ;; :exit
   ("Qq" realgud:cmd-quit :color blue)) ;; :exit
+
+;;; me-realgud.el ends here

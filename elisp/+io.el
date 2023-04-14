@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defun +file-mime-type (file)
@@ -262,3 +265,5 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
        (if (file-exists-p outfile)
            "PDF created but with some errors!"
          "An error occured, cannot create the PDF!")))))
+
+;;; +io.el ends here

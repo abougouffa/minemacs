@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package cape
   :straight t
@@ -231,3 +234,5 @@
 
 
 (provide 'me-completion)
+
+;;; me-completion.el ends here

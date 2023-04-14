@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defgroup minemacs-project nil
   "MinEmacs project stuff."
@@ -47,3 +50,5 @@ When DIR is not detected as a project, ask to force it to be by adding a
   (interactive)
   (let ((default-directory (project-root (project-current t))))
     (call-interactively #'gdb)))
+
+;;; +project.el ends here

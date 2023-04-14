@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defun +dir-locals-reload-for-this-buffer ()
@@ -138,3 +141,5 @@ prefix or universal argument, it waits for a moment (defined by
   (let ((+webjump-read-string-initial-query (+region-or-thing-at-point)))
     (cl-letf (((symbol-function 'webjump-read-string) #'+webjump-read-string-with-initial-query))
       (webjump))))
+
+;;; +emacs.el ends here

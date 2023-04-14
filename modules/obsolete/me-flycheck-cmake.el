@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (require 'json)
 
@@ -79,3 +82,5 @@ When FILENAME is nil, use the file name of the current buffer."
 
 
 (provide 'obsolete/me-flycheck-cmake)
+
+;;; me-flycheck-cmake.el ends here

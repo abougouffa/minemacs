@@ -2,6 +2,10 @@
 
 ;; From Doom Emacs
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Fontification taken from https://tex.stackexchange.com/a/86119/81279.
 (setq font-latex-match-reference-keywords
       '(;; BibLaTeX.
@@ -89,3 +93,5 @@
 
 
 (provide 'me-latex-fonts)
+
+;;; me-latex-fonts.el ends here

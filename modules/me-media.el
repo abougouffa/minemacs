@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
@@ -72,3 +75,5 @@
 
 
 (provide 'me-media)
+
+;;; me-media.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;; === Some plist and alist missing functions ===
 
@@ -168,3 +171,5 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   "Like `apply-partially', but applies the ARGS to the right of FUN."
   (lambda (&rest args2)
     (apply fun (append args2 args))))
+
+;;; +primitives.el ends here

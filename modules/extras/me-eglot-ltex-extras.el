@@ -4,6 +4,8 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; This file provides a hackish implementation of some of `ltex-ls' commands
 ;; which needs to be handled by the client.
 ;; See: valentjn.github.io/ltex/ltex-ls/server-usage.html#commands
@@ -26,6 +28,8 @@
 ;; .dir-locals.el file:
 ;; ((org-mode . ((eglot-workspace-configuration . eglot-ltex-workspace-config-fn)
 ;;               (eglot-ltex-language . "fr"))))
+
+;;; Code:
 
 (defvar-local eglot-ltex-language "auto")
 (defvar eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/"))
@@ -90,3 +94,5 @@ When STORE is non-nil, this will also store the new plist in the directory
 
 
 (provide 'me-eglot-ltex-extras)
+
+;;; me-eglot-ltex-extras.el ends here

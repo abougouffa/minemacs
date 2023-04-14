@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;;; MinEmacs directories
 
 (defgroup minemacs nil
@@ -187,3 +191,5 @@ MinEmacs then save them when calling `+env-save' to be used in GUI sessions as w
 
 
 (provide 'me-vars)
+
+;;; me-vars.el ends here

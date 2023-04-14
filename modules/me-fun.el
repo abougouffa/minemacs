@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package xkcd
   :straight t
@@ -34,3 +37,5 @@
 
 
 (provide 'me-fun)
+
+;;; me-fun.el ends here

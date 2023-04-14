@@ -2,6 +2,10 @@
 
 ;; Copyright (C) 2022 Abdelhak Bougouffa
 
+;;; Commentary:
+
+;;; Code:
+
 (defcustom minemacs-core-modules
   '(me-splash        ; Simple splash screen
     me-keybindings   ; Keybinding (general, which-key, hydra, ...)
@@ -52,3 +56,5 @@
   "MinEmacs enabled modules."
   :group 'minemacs-core
   :type '(repeat symbol))
+
+;;; me-modules.el ends here

@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (use-package iedit
   :straight t
   :after minemacs-lazy
@@ -83,3 +87,5 @@
 
 
 (provide 'me-multi-cursors)
+
+;;; me-multi-cursors.el ends here

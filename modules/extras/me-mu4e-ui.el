@@ -4,7 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Most of this has been inspired by Doom Emacs
+
+;;; Code:
 
 (defvar +mu4e-main-bullet "⦿"
   "Prefix to use instead of \"  *\" in the mu4e main view.
@@ -248,3 +252,5 @@ will also be the width of all other printable characters."
 
 
 (provide 'me-mu4e-ui)
+
+;;; me-mu4e-ui.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package awqat
   :straight (:host github :repo "zkry/awqat")
@@ -19,3 +22,5 @@
 
 
 (provide 'me-lifestyle)
+
+;;; me-lifestyle.el ends here

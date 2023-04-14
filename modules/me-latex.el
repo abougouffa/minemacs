@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;; Adapted from Doom Emacs
 (use-package tex
@@ -108,3 +111,5 @@
 
 
 (provide 'me-latex)
+
+;;; me-latex.el ends here

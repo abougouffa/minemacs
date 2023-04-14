@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (unless (+emacs-features-p 'lucid)
   (use-package eaf
@@ -79,3 +82,5 @@
 
 
 (provide 'me-eaf)
+
+;;; me-eaf.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;; +binary-* are autoloaded
 (+deferred!
@@ -12,4 +15,7 @@
  (setq +binary-objdump-enable nil)
  (+binary-setup-modes))
 
+
 (provide 'me-binary)
+
+;;; me-binary.el ends here

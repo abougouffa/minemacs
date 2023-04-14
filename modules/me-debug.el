@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package gdb-mi
   :straight (:type built-in)
@@ -66,3 +69,5 @@
 
 
 (provide 'me-debug)
+
+;;; me-debug.el ends here

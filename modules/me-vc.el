@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package magit
   :straight t
@@ -216,3 +219,5 @@
 
 
 (provide 'me-vc)
+
+;;; me-vc.el ends here

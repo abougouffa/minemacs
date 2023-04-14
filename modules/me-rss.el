@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package elfeed
   :straight t
@@ -18,3 +21,5 @@
 
 
 (provide 'me-rss)
+
+;;; me-rss.el ends here

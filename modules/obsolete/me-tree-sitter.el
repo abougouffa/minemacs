@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package tree-sitter
   :straight t
@@ -140,3 +143,5 @@
 
 
 (provide 'obsolete/me-tree-sitter)
+
+;;; me-tree-sitter.el ends here

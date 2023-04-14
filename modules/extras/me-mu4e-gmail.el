@@ -4,7 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Adapted form Doom Emacs with several improvements
+
+;;; Code:
 
 (defcustom +mu4e-gmail-accounts nil
   "Gmail accounts that do not contain \"gmail\" in address and maildir.
@@ -106,3 +110,5 @@ from the envelope of the current message."
 
 
 (provide 'me-mu4e-gmail)
+
+;;; me-mu4e-gmail.el ends here

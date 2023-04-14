@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defvar netextender-process-name "netextender")
 (defvar netextender-buffer-name " *NetExtender*")
@@ -81,3 +84,5 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
   (if (get-process netextender-process-name)
       (netextender-kill)
     (netextender-start)))
+
+;;; netextender.el ends here

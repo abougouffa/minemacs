@@ -4,8 +4,12 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Virtual module loaded at end of init.el (after custom-vars.el)
 ;; Used to synchronize loading some other stuff after loading Emacs
+
+;;; Code:
 
 ;; Run hooks
 (when minemacs-after-startup-hook
@@ -22,3 +26,5 @@
 (+log! "Providing `minemacs-loaded'.")
 
 (provide 'minemacs-loaded)
+
+;;; minemacs-loaded.el ends here

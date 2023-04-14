@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package oc
   :straight (:type built-in)
@@ -106,3 +109,5 @@
 
 
 (provide 'me-biblio)
+
+;;; me-biblio.el ends here

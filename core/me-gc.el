@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package gcmh
   :straight t
@@ -22,3 +25,5 @@
 
 
 (provide 'me-gc)
+
+;;; me-gc.el ends here

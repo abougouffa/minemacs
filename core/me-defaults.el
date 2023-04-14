@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Inhibit startup message in echo area the brutal way!
 ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there
 ;; is only one unique way of setting it right!
@@ -465,3 +469,5 @@ or file path may exist now."
 
 
 (provide 'me-defaults)
+
+;;; me-defaults.el ends here

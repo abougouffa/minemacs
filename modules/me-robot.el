@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defgroup minemacs-robot nil
   "MinEmacs robotics stuff."
@@ -111,3 +114,5 @@
 
 
 (provide 'me-robot)
+
+;;; me-robot.el ends here

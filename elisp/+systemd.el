@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defun +systemd-running-p (service)
@@ -29,3 +32,5 @@
 (defun +systemd-stop (service &optional pre-fn post-fn)
   "Stops the systemd SERVICE."
   (+systemd-command service "stop" pre-fn post-fn))
+
+;;; +systemd.el ends here

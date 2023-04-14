@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defgroup minemacs-buffer nil
   "MinEmacs buffer stuff."
@@ -173,3 +176,5 @@ When available, use \"fortune\" to add a random quote."
       (insert "\n;; ==============================\n"))
     ;; Set initial scratch message
     (setq initial-scratch-message (buffer-string))))
+
+;;; +buffer.el ends here

@@ -4,11 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
 
 ;; HACK: Fix the integration with `evil-escape' when in insert state. By
 ;; default, when pressing "fd" in evil-mc insert state, the first letter "f"
 ;; gets inserted at all fake cursors. This hack fixes this behavior.
 ;; Taken from: github.com/gabesoft/evil-mc/issues/41#issuecomment-890887060
+
+;;; Code:
+
 (+after-load! '(:all evil-escape evil-mc)
   (defun +evil-mc--evil-escape-move-back-fake-cursors ()
     (unless (bolp) (backward-char)))
@@ -32,3 +36,5 @@
 
 
 (provide 'me-evil-mc-evil-escape)
+
+;;; me-evil-mc-evil-escape.el ends here

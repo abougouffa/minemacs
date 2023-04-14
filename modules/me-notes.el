@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package org-roam
   :straight t
@@ -40,3 +43,5 @@
 
 
 (provide 'me-notes)
+
+;;; me-notes.el ends here

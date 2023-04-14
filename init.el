@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Check if Emacs version is supported. You can define the
 ;; $MINEMACS_IGNORE_VERSION_CHECK environment variable to ignore this check.
 ;; This can be useful if you are stuck with an old Emacs version and you've
@@ -251,3 +255,5 @@
   (+shutup! (native-compile-prune-cache)))
 
 (+log! "Loaded init.el")
+
+;;; init.el ends here

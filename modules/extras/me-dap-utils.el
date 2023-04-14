@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defun +github-latest-release (user repo &optional fallback-release)
@@ -25,3 +28,5 @@ Fallback to FALLBACK-RELEASE when it can't get the last one."
 
 
 (provide 'me-dap-utils)
+
+;;; me-dap-utils.el ends here

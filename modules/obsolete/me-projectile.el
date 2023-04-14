@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package projectile
   :straight t
@@ -102,3 +105,5 @@
 
 
 (provide 'obsolete/me-projectile)
+
+;;; me-projectile.el ends here

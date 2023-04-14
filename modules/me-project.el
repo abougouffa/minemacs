@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package project
   :straight (:type built-in)
@@ -55,3 +58,5 @@
     "pP" #'consult-project-extra-find-other-window))
 
 (provide 'me-project)
+
+;;; me-project.el ends here

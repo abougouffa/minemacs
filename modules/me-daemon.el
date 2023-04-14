@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Email (mu4e)
 (+lazy-when! (memq 'me-email minemacs-modules)
   (when (require 'mu4e nil t)
@@ -51,3 +55,5 @@
 
 
 (provide 'me-daemon)
+
+;;; me-daemon.el ends here

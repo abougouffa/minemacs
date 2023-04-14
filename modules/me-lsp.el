@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package lsp-mode
   :straight t
@@ -161,3 +164,5 @@
 
 
 (provide 'me-lsp)
+
+;;; me-lsp.el ends here

@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (defconst +maxima-available-p (executable-find "maxima"))
 
 (use-package maxima
@@ -100,3 +104,5 @@
 
 
 (provide 'me-math)
+
+;;; me-math.el ends here

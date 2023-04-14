@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (defcustom +mu4e-account-aliases nil
   "Per-account alias list."
   :group 'minemacs-mu4e
@@ -262,3 +266,5 @@ If SKIP-HEADERS is set, do not show include message headers."
 
 
 (provide 'me-mu4e-extras)
+
+;;; me-mu4e-extras.el ends here

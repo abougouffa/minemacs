@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package tempel
   :straight t
@@ -124,3 +127,5 @@
 
 
 (provide 'me-editor)
+
+;;; me-editor.el ends here

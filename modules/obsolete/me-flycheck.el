@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package flycheck
   :straight t
@@ -55,3 +58,5 @@
 
 
 (provide 'obsolete/me-flycheck)
+
+;;; me-flycheck.el ends here

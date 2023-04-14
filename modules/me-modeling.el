@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package scad-mode
   :straight t
@@ -23,3 +26,5 @@
 
 
 (provide 'me-modeling)
+
+;;; me-modeling.el ends here

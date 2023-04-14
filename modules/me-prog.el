@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (if (not (+emacs-features-p 'tree-sitter))
     ;; Use the external `tree-sitter' module

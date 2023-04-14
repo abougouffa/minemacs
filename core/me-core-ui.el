@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (defun +theme--tweaks-h (&optional _)
   "Use smaller font (75% of the default) for line numbers in graphic mode."
@@ -161,3 +164,5 @@ Useful for keeping track of the enabled theme."
 
 
 (provide 'me-core-ui)
+
+;;; me-core-ui.el ends here

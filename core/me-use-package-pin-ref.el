@@ -4,8 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Add support for pinning versions of individual packages. See:
 ;; github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
+
+;;; Code:
+
 (with-eval-after-load 'straight
   ;; Add a profile (and lockfile) for stable package revisions.
   (add-to-list 'straight-profiles '(pinned . "pinned.el"))
@@ -33,3 +38,5 @@
             ,(macroexp-progn body))))))))
 
 (provide 'me-use-package-pin-ref)
+
+;;; me-use-package-pin-ref.el ends here

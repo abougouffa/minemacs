@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package dirvish
   :straight t
@@ -58,3 +61,5 @@
 
 
 (provide 'me-files)
+
+;;; me-files.el ends here

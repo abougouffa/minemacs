@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (defcustom +org-responsive-image-percentage 0.4
   "Maximum image width as a percentage of the window width."
   :group 'minemacs-org
@@ -290,3 +294,5 @@ Example: \"#+TITLE\" -> \"#+title\"
 
 
 (provide 'me-org-extras)
+
+;;; me-org-extras.el ends here

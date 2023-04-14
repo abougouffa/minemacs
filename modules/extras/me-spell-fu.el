@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Adapted from Doom Emacs
 (defun +spell-fu--correct (replace poss word orig-pt start end)
   "Correct word with spell-fu."
@@ -120,3 +124,5 @@
 
 
 (provide 'me-spell-fu)
+
+;;; me-spell-fu.el ends here

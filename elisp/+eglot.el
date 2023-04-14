@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defun +eglot-register (modes &rest servers)
@@ -23,3 +26,5 @@ Examples:
          (cons modes (if alternatives-p
                          (eglot-alternatives (ensure-list servers))
                        (ensure-list (car servers)))))))))
+
+;;; +eglot.el ends here

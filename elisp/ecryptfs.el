@@ -4,10 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; This allows me to mount my private directory encrypted using ecryptfs-utils.
 ;; It is a port of "ecryptfs-mount-private" shell command. It uses extracts the
 ;; encryption key from a GPG encrypted file containting the ecryptfs password.
 ;; The decryption of the password is performed using Emacs' `epg'.
+
+;;; Code:
 
 (require 'epg)
 
@@ -105,3 +109,5 @@
                             ecryptfs-buffer-name))
       (message "Unmounted private directory successfully.")
     (user-error "Cannot unmount the private directory, seems to be already unmounted.")))
+
+;;; ecryptfs.el ends here

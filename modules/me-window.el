@@ -4,10 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
 
 ;; Window configuration for special windows.
 ;; This section inspired by the article "Demystifying Emacs’s Window Manager" found here:
 ;; www.masteringemacs.org/article/demystifying-emacs-window-manager
+
+;;; Code:
+
 (+deferred!
  (add-to-list
   'display-buffer-alist
@@ -91,3 +95,5 @@
 
 
 (provide 'me-window)
+
+;;; me-window.el ends here

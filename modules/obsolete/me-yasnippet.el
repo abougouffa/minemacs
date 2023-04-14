@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package yasnippet
   :straight t
@@ -46,3 +49,5 @@
 
 
 (provide 'obsolete/me-yasnippet)
+
+;;; me-yasnippet.el ends here

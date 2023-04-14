@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
 ;; initializing `general' and `evil'. After trying several configurations, I
@@ -104,3 +107,5 @@ It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
   `(with-eval-after-load 'me-general-ready
     (general-nvmap ,@args)))
+
+;;; +keybinding.el ends here

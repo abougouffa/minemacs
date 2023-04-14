@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package compat
   :straight t
@@ -11,3 +14,5 @@
 
 
 (provide 'me-compat)
+
+;;; me-compat.el ends here

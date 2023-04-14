@@ -4,12 +4,16 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; Virtual module loaded when idle after `minemacs-loaded'.
 ;; Used to synchronize loading some other stuff after loading Emacs.
 
 ;; The hooks in `minemacs-lazy-hook' are loaded incrementally when Emacs goes
 ;; idle, but when `minemacs-not-lazy' is set to t, they will be all loaded at
 ;; once.
+
+;;; Code:
 
 ;; Run hooks
 (when minemacs-lazy-hook
@@ -31,3 +35,5 @@
 (+log! "Providing `minemacs-lazy'.")
 
 (provide 'minemacs-lazy)
+
+;;; minemacs-lazy.el ends here

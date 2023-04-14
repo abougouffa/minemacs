@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package better-jumper
   :straight t
@@ -26,3 +29,5 @@
 
 
 (provide 'me-extra)
+
+;;; me-extra.el ends here

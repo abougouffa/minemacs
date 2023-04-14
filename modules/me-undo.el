@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 ;; Visual Undo
 (use-package vundo
   :straight t
@@ -35,3 +39,5 @@
 
 
 (provide 'me-undo)
+
+;;; me-undo.el ends here

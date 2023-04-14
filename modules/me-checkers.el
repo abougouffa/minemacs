@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package flymake
   :straight (:type built-in)
@@ -72,3 +75,5 @@
 
 
 (provide 'me-checkers)
+
+;;; me-checkers.el ends here

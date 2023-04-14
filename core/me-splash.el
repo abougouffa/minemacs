@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;; Adapted from: github.com/rougier/emacs-splash
 
@@ -92,3 +95,5 @@
 
 
 (provide 'me-splash)
+
+;;; me-splash.el ends here

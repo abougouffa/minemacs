@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 ;;;###autoload
 (defmacro +error! (msg &rest vars)
@@ -287,3 +290,5 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   (dolist (root roots)
     (with-eval-after-load 'recentf
       (add-to-list 'recentf-exclude root))))
+
+;;; +minemacs.el ends here

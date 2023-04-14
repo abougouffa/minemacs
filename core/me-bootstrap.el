@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (setq
  ;; Base directory
  straight-base-dir minemacs-local-dir
@@ -45,3 +49,5 @@
  use-package-always-defer t)
 
 (provide 'me-bootstrap)
+
+;;; me-bootstrap.el ends here

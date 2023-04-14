@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (require 'visual-fill-column)
 (require 'mixed-pitch nil t)
 
@@ -95,3 +99,5 @@
 
 
 (provide 'me-writing-mode)
+
+;;; me-writing-mode.el ends here

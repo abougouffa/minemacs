@@ -4,6 +4,10 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
+
 (when (+emacs-features-p 'modules)
   (use-package parinfer-rust-mode
     :straight t
@@ -235,3 +239,5 @@
 
 
 (provide 'me-lisp)
+
+;;; me-lisp.el ends here

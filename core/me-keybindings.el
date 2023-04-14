@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package which-key
   :straight t
@@ -212,4 +215,4 @@
 
 (provide 'me-keybindings)
 
-;;; keybindings.el ends here
+;;; me-keybindings.el ends here

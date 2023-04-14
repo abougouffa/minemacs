@@ -1,8 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
+;;; Commentary:
 
 ;; Should be configured in per-project basis, good documentation at:
 ;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+
+;;; Code:
+
 (use-package ssh-deploy
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
@@ -137,3 +141,5 @@
 
 
 (provide 'me-tools)
+
+;;; me-tools.el ends here

@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package xt-mouse
   :straight (:type built-in)
@@ -19,3 +22,5 @@
 
 
 (provide 'me-tty)
+
+;;; me-tty.el ends here

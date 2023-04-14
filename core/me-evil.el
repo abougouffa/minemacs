@@ -4,6 +4,9 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
+;;; Code:
 
 (use-package evil
   :straight t
@@ -120,3 +123,5 @@
 
 
 (provide 'me-evil)
+
+;;; me-evil.el ends here

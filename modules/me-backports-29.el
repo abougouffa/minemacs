@@ -4,9 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
+;;; Commentary:
+
 ;; MinEmacs is distributed under the MIT license. However, this file is mostly a
 ;; copy-and-paste from Emacs 29 with some adaptations, hence, it is licensed
 ;; with original Emacs GNU GPL-3.0 license.
+
+;;; Code:
 
 (when (>= emacs-major-version 29)
   (user-error "This file should only be called from an Emacs 28.x"))
@@ -121,3 +125,5 @@ plain variables.  This means that `setopt' will execute any
 
 
 (provide 'me-backports-29)
+
+;;; me-backports-29.el ends here

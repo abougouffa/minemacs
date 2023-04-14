@@ -93,3 +93,5 @@ on all the errors."
 
 
 (provide 'obsolete/me-flycheck-eglot)
+
+;;; me-flycheck-eglot.el ends here
