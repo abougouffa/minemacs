@@ -13,7 +13,7 @@
                                 (format "-%s" (substring emacs-repository-version 0 8))
                               ""))
  ;; Use the "develop" branch on straight.el's repo.
- straight-repository-branch "develop"
+ straight-repository-branch (if (>= emacs-major-version 29) "develop" "master")
  ;; Do not clone all project history, just the last worktree (--depth 1)
  straight-vc-git-default-clone-depth '(1 single-branch)
  ;; Do not slow startup by checking for package modifs, check only on demand
