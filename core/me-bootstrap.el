@@ -37,6 +37,9 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
+;; Add the `:pin-ref' extension to `use-package'
+(require 'me-use-package-pin-ref)
+
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
  use-package-verbose minemacs-verbose
