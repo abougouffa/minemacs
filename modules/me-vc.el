@@ -89,9 +89,9 @@
 
 (use-package diff-hl
   :straight t
-  :hook (find-file    . diff-hl-mode)
-  :hook (dired-mode   . diff-hl-dired-mode)
-  :hook (vc-dir-mode  . diff-hl-dir-mode)
+  :hook (find-file . diff-hl-mode)
+  :hook (dired-mode . diff-hl-dired-mode)
+  :hook (vc-dir-mode . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :init
   (+map! "gs" #'diff-hl-stage-current-hunk)
