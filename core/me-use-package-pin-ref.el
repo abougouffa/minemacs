@@ -12,7 +12,7 @@
   (require 'straight-x))
 
 ;; Allow pinning versions from `use-package' using the `:pin-ref' keyword
-(with-eval-after-load 'use-package
+(with-eval-after-load 'use-package-core
   (add-to-list 'use-package-keywords :pin-ref)
 
   (defun use-package-normalize/:pin-ref (name-symbol keyword args)
