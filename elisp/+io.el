@@ -28,9 +28,8 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
          (filename-regex (concat "^" file "\\(?:-\\(?1:[[:digit:]]+\\)\\)?" (if ext (concat "\\." ext) "")))
          (last-file (car (last (directory-files dir nil filename-regex))))
          (last-file-num (when (and last-file (string-match filename-regex last-file) (match-string 1 last-file))))
-         (num (1+ (string-to-number (or last-file-num "-1"))))
-         (filename (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
-    filename))
+         (num (1+ (string-to-number (or last-file-num "-1")))))
+    (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
 
 ;;;###autoload
 (defun +file-read-to-string (filename)
@@ -245,10 +244,12 @@ When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\"."
 This function's signature is compatible with `browse-url-browser-function'
 so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail."
-  (let ((outfile (or +save-as-pdf-filename
-                     (expand-file-name
-                      (file-name-with-extension (file-name-base infile) ".pdf")
-                      (file-name-directory infile)))))
+  (let* ((infile (string-trim-left infile "file://"))
+         (outfile (+file-name-incremental
+                   (or +save-as-pdf-filename
+                       (expand-file-name
+                        (file-name-with-extension (file-name-base infile) ".pdf")
+                        (file-name-directory infile))))))
     (if (zerop
          ;; For HTML files, just call `+html2pdf'
          (if (string= "html" (file-name-extension infile))
