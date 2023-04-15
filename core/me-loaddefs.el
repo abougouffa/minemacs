@@ -203,6 +203,13 @@ so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 (fn INFILE &optional MAIL-MODE-P)")
+(defvar +single-file-executable (executable-find "single-file") "\
+The executable for \"single-file\" which is used archive HTML pages.")
+(custom-autoload '+single-file-executable "../elisp/+io" t)
+(autoload '+single-file "../elisp/+io" "\
+Save URL into OUT-FILE as a standalone HTML file.
+
+(fn URL OUT-FILE)")
 (register-definition-prefixes "../elisp/+io" '("+html2pdf-default-backend" "+save-as-pdf-filename"))
 
 
