@@ -106,7 +106,10 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   (interactive)
   (when minemacs-theme
     (+log! "Loading user theme: %s" minemacs-theme)
-    (load-theme minemacs-theme t))
+    ;; Fallback to built-in `tsdh-light' when `minemacs-theme' is not available.
+    (unless (ignore-errors (load-theme minemacs-theme t))
+      (+error! "Cannot load theme \"%s\", falling back to \"tsdh-light\"." minemacs-theme)
+      (load-theme 'tsdh-light t)))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
 
