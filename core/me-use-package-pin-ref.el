@@ -20,22 +20,22 @@
 (with-eval-after-load 'use-package-core
   (add-to-list 'use-package-keywords :pin-ref)
 
-  (defun use-package-normalize/:pin-ref (name-symbol keyword args)
+  (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
     (use-package-only-one (symbol-name keyword) args
-      (lambda (label arg)
+      (lambda (_label arg)
         (cond
          ((stringp arg) arg)
          ((symbolp arg) (symbol-name arg))
          (t (use-package-error ":pin-ref wants a commit hash or a ref."))))))
 
-  (defun use-package-handler/:pin-ref (name-symbol keyword ref rest state)
+  (defun use-package-handler/:pin-ref (name-symbol _keyword ref rest state)
     (let ((body (use-package-process-keywords name-symbol rest state)))
       (if (null ref)
           body
-        (use-package-concat
-         `((let ((straight-current-profile 'pinned))
-            (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
-            ,(macroexp-progn body))))))))
+        `((let ((straight-current-profile 'pinned))
+           (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
+           ,(macroexp-progn body)))))))
+
 
 (provide 'me-use-package-pin-ref)
 
