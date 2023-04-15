@@ -142,7 +142,10 @@ Useful for keeping track of the enabled theme."
   :config
   ;; Ensure setting the keybindings before openning the dashboard
   (evil-collection-dashboard-setup)
-  (dashboard-open))
+
+  ;; Avoid openning the dashboard when Emacs starts with an open file.
+  (when (zerop (length (seq-filter #'identity (mapcar #'buffer-file-name (buffer-list)))))
+    (dashboard-open)))
 
 (use-package doom-modeline
   :straight t
