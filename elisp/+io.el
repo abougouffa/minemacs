@@ -175,7 +175,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   (replace-regexp-in-string
    "[:;\t\n\r /\\_]+" "-"
    (replace-regexp-in-string
-    "[‘’‚’“”„”\"`'()]+" ""
+    "[‘’‚’“”„”\"`'()&]+" ""
     (if downcase-p (downcase filename) filename))))
 
 (defcustom +html2pdf-default-backend 'wkhtmltopdf
@@ -266,5 +266,21 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
        (if (file-exists-p outfile)
            "PDF created but with some errors!"
          "An error occured, cannot create the PDF!")))))
+
+;;;###autoload
+(defcustom +single-file-executable (executable-find "single-file")
+  "The executable for \"single-file\" which is used archive HTML pages.")
+
+;;;###autoload
+(defun +single-file (url out-file)
+  "Save URL into OUT-FILE as a standalone HTML file."
+  (when +single-file-executable
+    (make-process
+     :name "single-file-cli"
+     :buffer "*single-file*"
+     :command (list
+               +single-file-executable
+               "--browser-executable-path" browse-url-chromium-program
+               url out-file))))
 
 ;;; +io.el ends here
