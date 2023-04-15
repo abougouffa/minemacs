@@ -12,6 +12,7 @@
 (use-package tex
   :straight auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
+  :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
   :custom
   (TeX-parse-self t) ; parse on load
   (TeX-auto-save t)  ; parse on save
@@ -50,14 +51,16 @@
   :custom
   (auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
-  (setq-default TeX-command-list
-       (cons
-        '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
-          (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
-        TeX-command-list))
+  (setq-default
+   TeX-command-list
+   (cons
+    '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
+      (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
+    TeX-command-list))
 
   (defun +tex--set-latexmk-as-default-cmd-h ()
     (setq TeX-command-default "LatexMk-2"))
+
   ;; Add LatexMk as a TeX target.
   (auctex-latexmk-setup))
 
