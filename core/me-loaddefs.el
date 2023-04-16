@@ -390,6 +390,11 @@ triggered.
 DEPTH and LOCAL are passed as is to `add-hook'.
 
 (fn HOOK SECS FUNCTION &optional DEPTH LOCAL)" nil t)
+(autoload '+hook-once! "../elisp/+minemacs" "\
+Hook BODY in HOOK, it runs only once.
+
+(fn HOOK &rest BODY)" nil t)
+(function-put '+hook-once! 'lisp-indent-function 1)
 (autoload '+compile-functions "../elisp/+minemacs" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
 
@@ -404,7 +409,7 @@ Load environment variables from the file saved in
 Add ROOTS to ignored projects, recentf, etc.
 
 (fn &rest ROOTS)")
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-"))
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el

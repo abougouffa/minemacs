@@ -235,6 +235,19 @@ DEPTH and LOCAL are passed as is to `add-hook'."
         (run-with-idle-timer ,secs nil ,function))
        (add-hook ,hook #',f-name ,depth ,local))))
 
+(defvar +hook-once-num 0)
+
+;;;###autoload
+(defmacro +hook-once! (hook &rest body)
+  "Hook BODY in HOOK, it runs only once."
+  (declare (indent 1))
+  (let ((fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
+    `(add-hook
+      ',hook
+      (defun ,fn-name ()
+       ,(macroexp-progn body)
+       (remove-hook ',hook ',fn-name)))))
+
 ;; Adapted from: Doom Emacs
 ;;;###autoload
 (defun +compile-functions (&rest fns)
