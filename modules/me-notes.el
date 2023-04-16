@@ -15,7 +15,31 @@
     "f" #'org-roam-node-find
     "r" #'org-roam-ref-find
     "i" #'org-roam-node-insert
-    "R" #'org-roam-node-random))
+    "R" #'org-roam-node-random
+    "B" #'org-roam-buffer-display-dedicated))
+
+(use-package org-roam-protocol
+  :after org-roam
+  :demand t
+  :custom
+  (org-roam-protocol-store-links t)
+  ;; Add this as bookmarklet in your browser
+  ;; javascript:location.href='org-protocol://roam-ref?template=r&ref=%27+encodeURIComponent(location.href)+%27&title=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(window.getSelection())
+  (org-roam-capture-ref-templates
+   '(("r" "ref" plain "%?"
+      :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
+      :unnarrowed t)))
+  :config
+  ;; Save a local snapshot of the captured web page using "single-file-cli"
+  (advice-add
+   'org-roam-protocol-open-ref :after
+   (defun +org-roam-protocol--single-file-snapshot-a (info)
+     (+single-file
+      (plist-get info :ref)
+      (+file-name-incremental
+       (expand-file-name
+        (concat "web/snapshots/" (+clean-file-name (plist-get info :title)) ".html")
+        org-roam-directory))))))
 
 (use-package org-roam-ui
   :straight t
@@ -24,8 +48,6 @@
 
 (use-package consult-org-roam
   :straight t
-  :after org-roam
-  :demand t
   :init
   (+map! :infix "n"
     "s" #'consult-org-roam-search
