@@ -8,22 +8,21 @@
 
 ;;; Code:
 
-(defconst +maxima-available-p (executable-find "maxima"))
+(defconst +maxima-path-p "/usr/share/emacs/site-lisp/maxima/")
+(defconst +maxima-available-p (and (executable-find "maxima")
+                                   (file-directory-p +maxima-path-p)))
 
 (use-package maxima
-  :straight '(:host github :repo "emacsmirror/maxima"
-              :files (:defaults "keywords"))
+  :load-path +maxima-path-p
   :when +maxima-available-p
   :mode ("\\.ma[cx]\\'" . maxima-mode)
   :interpreter ("maxima" . maxima-mode)
-  :hook ((maxima-mode maxima-inferior-mode) . maxima-font-lock-setup)
-  :commands maxima-inferior-mode
+  :commands inferior-maxima-mode
   :custom
   (maxima-display-maxima-buffer nil))
 
 (use-package imaxima
-  :straight '(:host nil :repo "https://git.code.sf.net/p/maxima/code"
-              :files ("interfaces/emacs/imaxima/*"))
+  :load-path +maxima-path-p
   :when +maxima-available-p
   :commands imaxima imath-mode
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
