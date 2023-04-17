@@ -115,7 +115,7 @@ plain variables.  This means that `setopt' will execute any
 ;; Variable aliases
 (when (featurep 'native-compile)
   (defvaralias 'native-comp-jit-compilation 'native-comp-deferred-compilation)
-  (defvaralias 'native-comp-jit-compilation-deny-list 'native-comp-deferred-compilation))
+  (defvaralias 'native-comp-jit-compilation-deny-list 'native-comp-deferred-compilation-deny-list))
 
 (defvar messages-buffer-name "*Messages*")
 

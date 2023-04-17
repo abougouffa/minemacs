@@ -69,7 +69,7 @@
 ;; stage to provide its functionality to the rest of the modules so we can use
 ;; some new features when configuring them.
 (when (< emacs-major-version 29)
-  (+load minemacs-modules-dir "me-backports-29.el"))
+  (+load minemacs-core-dir "me-backports-29.el"))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
