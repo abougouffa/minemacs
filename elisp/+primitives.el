@@ -154,17 +154,17 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
 
 ;; Adapted from `evil-unquote', takes functions into account
 ;;;###autoload
-(defun +unquote (exp)
+(defun +unquote (expr)
   "Return EXP unquoted."
   (declare (pure t) (side-effect-free t))
-  (while (memq (car-safe exp) '(quote function))
-    (setq exp (cadr exp)))
-  exp)
+  (while (memq (car-safe expr) '(quote function))
+    (setq expr (cadr expr)))
+  expr)
 
 ;;;###autoload
-(defun +quoted (exp)
+(defun +quoted (expr)
   "Retrun t when EXP is quoted."
-  (memq (car-safe exp) '(quote function)))
+  (memq (car-safe expr) '(quote function)))
 
 ;;;###autoload
 (defun +apply-partially-right (fun &rest args)

@@ -478,13 +478,13 @@ Reset VAR to its standard value.
 (autoload '+unquote "../elisp/+primitives" "\
 Return EXP unquoted.
 
-(fn EXP)")
+(fn EXPR)")
 (function-put '+unquote 'pure 't)
 (function-put '+unquote 'side-effect-free 't)
 (autoload '+quoted "../elisp/+primitives" "\
 Retrun t when EXP is quoted.
 
-(fn EXP)")
+(fn EXPR)")
 (autoload '+apply-partially-right "../elisp/+primitives" "\
 Like `apply-partially', but applies the ARGS to the right of FUN.
 
