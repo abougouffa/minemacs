@@ -242,13 +242,9 @@ will also be the width of all other printable characters."
 (defun +mu4e-ui-setup ()
   (if (display-graphic-p)
       (+mu4e--ui-setup)
-    (add-hook
-     'server-after-make-frame-hook
-     (defun +mu4e-ui--setup-once-h ()
-       (when (display-graphic-p)
-         (+mu4e--ui-setup)
-         (remove-hook 'server-after-make-frame-hook
-                      #'+mu4e--ui-setup-once-h))))))
+    (+hook-once! server-after-make-frame-hook
+      (when (display-graphic-p)
+        (+mu4e--ui-setup)))))
 
 
 (provide 'me-mu4e-ui)
