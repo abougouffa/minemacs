@@ -241,7 +241,8 @@ DEPTH and LOCAL are passed as is to `add-hook'."
 (defmacro +hook-once! (hook &rest body)
   "Hook BODY in HOOK, it runs only once."
   (declare (indent 1))
-  (let ((fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
+  (let ((hook (+unquote hook))
+        (fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
     `(add-hook
       ',hook
       (defun ,fn-name ()
