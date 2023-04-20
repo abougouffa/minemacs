@@ -98,7 +98,7 @@
                          :info (list :citekey entry-key)
                          :node (org-roam-node-create :title title)
                          :props '(:finalize find-file))))
-  (citar-org-roam-mode))
+  (citar-org-roam-mode 1))
 
 (use-package citar-embark
   :straight t
