@@ -148,7 +148,7 @@
            (seq "attach" (any ?é ?e) (? "e") (? "s"))
            (seq "ci" (or " " "-") "joint" (? "e")) ;; ci-joint
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
-           (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" space)))))) ;; p.j
+           (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" (any space ?: ?\; ?, ?.))))))) ;; p.j
   :config
   (+nvmap! :keymaps 'org-msg-edit-mode-map
     "TAB" #'org-msg-tab
