@@ -1,9 +1,17 @@
 # Project specific
-/private/
-/local/
-/eln-cache/
+private/
+eln-cache/
 .directory
-/test/
+test/
+
+local/*
+!local/straight/
+
+local/straight/*
+!local/straight/versions/
+
+local/straight/versions/*
+!local/straight/versions/default.el
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs
