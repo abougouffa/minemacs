@@ -183,7 +183,9 @@ preferred alias"
                 (or (car (seq-intersection to addresses))
                     (car (seq-intersection from addresses))
                     (completing-read "From: " addresses)))
-            (completing-read "From: " addresses)))))
+            (if (length= addresses 1)
+                (car addresses)
+              (completing-read "From: " addresses))))))
 
 ;; Detect empty subjects, and give users an opotunity to fill something in
 (defun +mu4e--check-for-subject-h ()
