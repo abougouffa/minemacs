@@ -40,8 +40,8 @@
 
 (use-package pcache
   :straight t
-  :init
-  (setq pcache-directory (concat minemacs-local-dir "pcache/")))
+  :custom
+  (pcache-directory (concat minemacs-cache-dir "pcache/")))
 
 (use-package unicode-fonts
   :straight t
