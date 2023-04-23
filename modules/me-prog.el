@@ -240,19 +240,11 @@ the children of class at point."
 (use-package apheleia
   :straight t
   :init
-  (+map! "cff" #'apheleia-format-buffer))
-
-(use-package apheleia-formatters
+  (+map! "cff" #'apheleia-format-buffer)
   :config
-  (add-to-list 'apheleia-formatters '(cmake-format . ("cmake-format")))
-  ;; TEMP: Use the `tab-width' value for `shfmt' formatting. Delete this hack if
-  ;; this PR github.com/radian-software/apheleia/pull/179 gets merged.
-  (+alist-set 'shfmt '("shfmt" "-i" (number-to-string tab-width)) apheleia-formatters)
-  (dolist (alist '((cmake-mode . cmake-format)
-                   (cmake-ts-mode . cmake-format)
-                   (lisp-data-mode . lisp-indent)
-                   (sh-mode . shfmt)
-                   (emacs-lisp-mode . lisp-indent)))
+  (dolist (alist '((lisp-data-mode . lisp-indent)
+                   (emacs-lisp-mode . lisp-indent)
+                   (sh-mode . shfmt)))
     (add-to-list 'apheleia-mode-alist alist)))
 
 (use-package editorconfig
