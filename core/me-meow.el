@@ -8,6 +8,9 @@
 
 ;;; Code:
 
+(when (memq 'me-evil minemacs-core-modules)
+  (user-error "The `me-meow' module is incompatible with `me-evil'."))
+
 (use-package meow
   :straight t
   :preface
@@ -96,5 +99,8 @@
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore))))
+
+
+(provide 'me-meow)
 
 ;;; me-meow.el ends here
