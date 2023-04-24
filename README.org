@@ -50,7 +50,7 @@ install the required packages.
 Please note that I'm using a fresh Emacs (Emacs 30.0.50) built from source on a
 Manjaro Linux system.
 
-I'm trying to support at least Emacs 28.2, so [[file:modules/me-backports-29.el][I back port some of the new
+I'm trying to support at least Emacs 28.2, so [[file:core/me-backports-29.el][I back port some of the new
 functions/macros I use to Emacs 28]]. In addition, for Emacs 28 and earlier,
 MinEmacs includes the =me-compat= module which loads the =compat= package at early
 stage (just after bootstrapping =straight= and =use-package=), this can facilitate
