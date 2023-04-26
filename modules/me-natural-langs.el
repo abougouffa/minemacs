@@ -84,9 +84,10 @@
     "t" '(nil :wk "translate")
     "tb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
     "td" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "Translate with DeepL")
-    "tg" `(,(+cmdfy! (+gts-translate-with)) :wk "Translate with Google")
+    "tg" `(,(+cmdfy! (+gts-translate-with 'google)) :wk "Translate with Google")
     "tr" #'+gts-yank-translated-region
-    "tt" #'gts-do-translate)
+    "tt" #'+gts-translate-with
+    "tT" #'gts-do-translate)
   :custom
   ;; Your languages pairs
   (gts-translate-list '(("en" "fr")
@@ -142,20 +143,25 @@
 
   (defun +gts-translate-with (&optional engine)
     (interactive)
-    (gts-translate
-     (gts-translator
-      :picker (+gts-paragraph-picker)
-      :engines
-      (cond ((eq engine 'deepl)
-             (gts-deepl-engine
-              :auth-key ;; Get API key from ~/.authinfo.gpg (machine api-free.deepl.com)
-              (funcall
-               (plist-get (car (auth-source-search :host "api-free.deepl.com" :max 1))
-                          :secret))
-              :pro nil))
-            ((eq engine 'bing) (gts-bing-engine))
-            (t (gts-google-engine)))
-      :render (gts-buffer-render)))))
+    (let* ((caption-pair (mapcar (lambda (pair) (cons (format "From %s to %s" (upcase (car pair)) (upcase (cadr pair))) pair)) gts-translate-list))
+           (gts-translate-list (if (length= gts-translate-list 1)
+                                   gts-translate-list
+                                 (list (cdr (assoc (completing-read "Translate: " (mapcar #'car caption-pair)) caption-pair)))))
+           (engine (or engine (intern (completing-read "Engine: " '(deepl google bing))))))
+      (gts-translate
+       (gts-translator
+        :picker (+gts-paragraph-picker)
+        :engines
+        (cond ((eq engine 'deepl)
+               (gts-deepl-engine
+                :auth-key ;; Get API key from ~/.authinfo.gpg (machine api-free.deepl.com)
+                (funcall
+                 (plist-get (car (auth-source-search :host "api-free.deepl.com" :max 1))
+                            :secret))
+                :pro nil))
+              ((eq engine 'bing) (gts-bing-engine))
+              (t (gts-google-engine)))
+        :render (gts-buffer-render))))))
 
 (use-package lexic
   :straight t
