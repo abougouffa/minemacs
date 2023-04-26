@@ -17,7 +17,7 @@
                                 (format "-%s" (substring emacs-repository-version 0 8))
                               ""))
  ;; Use the "develop" branch on straight.el's repo.
- straight-repository-branch (if (>= emacs-major-version 29) "develop" "master")
+ straight-repository-branch "develop"
  ;; Do not slow startup by checking for package modifs, check only on demand
  straight-check-for-modifications '(check-on-save find-when-checking))
 
