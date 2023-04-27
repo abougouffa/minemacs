@@ -38,7 +38,7 @@
 ;;;###autoload
 (defun +emacs-features-p (&rest feats)
   "Is features FEATS are enabled in this Emacs build."
-  (cl-every (lambda (feat) (memq feat emacs/features)) feats))
+  (cl-every (lambda (feat) (and (memq feat emacs/features) t)) feats))
 
 ;;;###autoload
 (defmacro +fn-inhibit-messages! (fn &optional no-message-log)
