@@ -28,7 +28,6 @@
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
-  (corfu-exclude-modes '(org-mode markdown-mode))
   :config
   (with-eval-after-load 'evil
     (define-key corfu-map (kbd "C-j") #'corfu-next)
