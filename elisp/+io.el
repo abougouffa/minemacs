@@ -131,8 +131,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   "Open the current file as root."
   (interactive)
   (if-let ((this-file (or buffer-file-name
-                          (when (or (derived-mode-p 'dired-mode)
-                                    (derived-mode-p 'wdired-mode))
+                          (when (derived-mode-p 'dired-mode 'wdired-mode)
                             default-directory))))
       (find-file (+tramp-sudo-file-path this-file))
     (user-error "Current buffer not bound to a file")))
