@@ -28,10 +28,12 @@
     ;; does not trigger too often when you don't expect it. NOTE: We add
     ;; `tempel-expand' *before* the main programming mode Capf, such
     ;; that it will be tried first.
-    (setq-local completion-at-point-functions
-                (cons #'tempel-complete
-                      completion-at-point-functions)))
-  (global-tempel-abbrev-mode))
+    (setq-local
+     completion-at-point-functions
+     (if (derived-mode-p 'org-mode 'markdown-mode)
+         '(tempel-complete
+           (cons #'tempel-complete completion-at-point-functions)))))
+  (global-tempel-abbrev-mode 1))
 
 (use-package tempel-collection
   :straight t
