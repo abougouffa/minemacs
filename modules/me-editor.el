@@ -31,8 +31,8 @@
     (setq-local
      completion-at-point-functions
      (if (derived-mode-p 'org-mode 'markdown-mode)
-         '(tempel-complete
-           (cons #'tempel-complete completion-at-point-functions)))))
+         '(tempel-complete)
+       (cons #'tempel-complete completion-at-point-functions))))
   (global-tempel-abbrev-mode 1))
 
 (use-package tempel-collection
