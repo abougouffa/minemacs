@@ -24,6 +24,10 @@
 
   (+eglot-register 'scad-mode '("openscad-lsp" "--stdio")))
 
+(use-package modelica-mode
+  :straight t
+  :mode "\\.mo\\'")
+
 
 (provide 'me-modeling)
 
