@@ -48,6 +48,24 @@
  ;; Defer loading packages by default, use `:demand' to force loading a package
  use-package-always-defer t)
 
+(defun minemacs-update ()
+  "Update MinEmacs packages."
+  (interactive)
+  (message "[MinEmacs]: Creating backups for the current versions of packages")
+  (let* ((backup-dir (concat minemacs-local-dir (format "minemacs/versions/")))
+         (dest-file (concat backup-dir "default-" (format-time-string "%Y%m%d%H%M%S") ".el"))
+         (src-file (concat straight-base-dir "straight/versions/default.el")))
+    (unless (file-directory-p backup-dir) (mkdir backup-dir :parents))
+    (when (file-exists-p src-file)
+      (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
+      (copy-file src-file dest-file)))
+  (message "[MinEmacs]: Pulling packages")
+  (straight-x-pull-all)
+  (message "[MinEmacs]: Freezing packages")
+  (straight-x-freeze-versions)
+  (message "[MinEmacs]: Rebuilding packages")
+  (straight-rebuild-all))
+
 (provide 'me-bootstrap)
 
 ;;; me-bootstrap.el ends here
