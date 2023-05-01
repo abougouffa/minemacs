@@ -1,5 +1,6 @@
 EMACS_DIR=.
 EMACS=emacs
+EMACS_BATCH=emacs --batch --script init.el
 
 all:
 	@echo "Cleaning options are: clean, clean_all, prune, loaddefs."
@@ -27,10 +28,13 @@ loaddefs:
 	rm $(EMACS_DIR)/core/me-loaddefs.el
 
 pull:
-	$(EMACS) --eval='(straight-pull-all)'
+	$(EMACS_BATCH) --eval='(straight-pull-all)'
 
 rebuild:
-	$(EMACS) --eval='(straight-rebuild-all)'
+	$(EMACS_BATCH) --eval='(straight-rebuild-all)'
 
 check:
-	$(EMACS) --eval='(straight-check-all)'
+	$(EMACS_BATCH) --eval='(straight-check-all)'
+
+update:
+	$(EMACS_BATCH) --eval='(minemacs-update)'
