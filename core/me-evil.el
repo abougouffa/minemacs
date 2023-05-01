@@ -56,7 +56,6 @@
    (seq-filter
     (lambda (mode)
       (not (memq mode '(evil-mc ; Default bindings for `evil-mc' are messy
-                        mu4e ; TEMP: until `evil-collection-mu4e' gets fixed, see github.com/emacs-evil/evil-collection/issues/695
                         elisp-mode)))) ; I don't like "gz" for `ielm', I like "gr" though
     evil-collection-mode-list))
 
