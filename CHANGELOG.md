@@ -2,6 +2,81 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.3.0 - 2023-05-03
+#### Bug Fixes
+- **(aphelia)** adapt to the new upstream changes - (06f7776) - Abdelhak Bougouffa
+- **(backports)** fix a bug causing straight to fail (#51) - (ded8596) - Abdelhak Bougouffa
+- **(daemon)** avoid running `mu4e` repeatedly - (c784d05) - Abdelhak Bougouffa
+- **(dashboard)** do not show when Emacs started with a file - (ebe1a9a) - Abdelhak Bougouffa
+- **(io)** fix +html2pdf output file name - (a8d4435) - Abdelhak Bougouffa
+- **(meow)** add safety guards to avoid conflict with evil - (db20803) - Abdelhak Bougouffa
+- **(straight)** clone the full packages repos - (4f51035) - Abdelhak Bougouffa
+- **(straight)** use master on Emacs 28, develop on newer versions - (7f7f33d) - Abdelhak Bougouffa
+- **(tempel)** wrong parenthesis disabling corfu in other modes - (1ad3b33) - Abdelhak Bougouffa
+- **(use-package)** `:pin-ref` problem on Emacs28 (#49) - (e37b984) - Abdelhak Bougouffa
+- **(vc)** pin problematic packages to working versions - (424fd54) - Abdelhak Bougouffa
+#### Documentation
+- **(readme)** fix broken link - (87247a5) - Abdelhak Bougouffa
+#### Features
+- **(core)** add `minemacs-update` command - (5692b8d) - Abdelhak Bougouffa
+- **(core)** add the `+hook-once!` macro - (1eaa535) - Abdelhak Bougouffa
+- **(docs)** initial support for `poly-markdown` - (2460e18) - Abdelhak Bougouffa
+- **(io)** add a helper to save URLs to HTML snapshots - (24e03db) - Abdelhak Bougouffa
+- **(meow)** WIP optional evil replacement - (954a549) - Abdelhak Bougouffa
+- **(modeling)** add `medelica-mode` - (86e8c09) - Abdelhak Bougouffa
+- **(prog)** add `hy-mode` - (031b5ba) - Abdelhak Bougouffa
+- **(ui)** add all-the-icons for ibuffer - (40d8bb8) - Abdelhak Bougouffa
+- **(use-package)** add the `:pin-ref` keyword to use `straight-x` - (cc4f11b) - Abdelhak Bougouffa
+#### Miscellaneous Chores
+- **(git)** track straight's default pins - (52390b7) - Abdelhak Bougouffa
+- provide `make update` - (4d6af7d) - Abdelhak Bougouffa
+- save straight's versions when cleaning - (8795bbf) - Abdelhak Bougouffa
+#### Nitpicks, changes with no side effect
+- **(biblio)** minor edit - (cc742e7) - Abdelhak Bougouffa
+- **(core)** simplify a condition - (4a82a91) - Abdelhak Bougouffa
+- **(core)** rename a parameter - (4dd3285) - Abdelhak Bougouffa
+- **(vc)** remove extra spaces - (b8d9d91) - Abdelhak Bougouffa
+- add files headers and footers - (298543e) - Abdelhak Bougouffa
+#### Refactoring
+- **(mu4e)** remove commented code - (a766768) - Abdelhak Bougouffa
+- **(use-package)** small cleanup - (0c3dc30) - Abdelhak Bougouffa
+- make use of `+hook-once!` - (43b12bb) - Abdelhak Bougouffa
+#### Revert
+- **(corfu)** restore in `(org/markdown)-mode` - (be458ac) - Abdelhak Bougouffa
+#### Tweaks
+- **(bootstrap)** revert to straight's develop branch - (797e115) - Abdelhak Bougouffa
+- **(core)** make sure `+emacs-features-p` returns a boolean - (2c194de) - Abdelhak Bougouffa
+- **(core)** accept hook symbol in `+hook-once!` - (4a08072) - Abdelhak Bougouffa
+- **(core)** fallback to a builtin theme if `minemacs-theme` fails - (48b0b62) - Abdelhak Bougouffa
+- **(corfu)** disable in `org-mode` and `markdown-mode` - (9360b69) - Abdelhak Bougouffa
+- **(daemon)** ensure keeping `mu4e` alive in background - (2358e3d) - Abdelhak Bougouffa
+- **(early-init)** set straight branch to develop - (d9688e1) - Abdelhak Bougouffa
+- **(ecryptfs)** better support - (7034976) - Abdelhak Bougouffa
+- **(eldoc-box)** remove special case, fixed upstream - (f38adf1) - Abdelhak Bougouffa
+- **(email)** refine attachement detection regexp - (7b72d76) - Abdelhak Bougouffa
+- **(evil-collection)** restore `mu4e` - (3c60a72) - Abdelhak Bougouffa
+- **(gts-translate)** add an option to choose translation langs - (8e4d74f) - Abdelhak Bougouffa
+- **(latex)** enable `hs-minor-mode` - (29d22a4) - Abdelhak Bougouffa
+- **(latex)** better fontification - (9d31c01) - Abdelhak Bougouffa
+- **(latex)** additional tweaks - (ad5adae) - Abdelhak Bougouffa
+- **(logview)** set custom files paths - (f817a8f) - Abdelhak Bougouffa
+- **(maxima)** use locally installed packages - (024a05e) - Abdelhak Bougouffa
+- **(mu4e)** don't ask for the alias when there is only one - (6bda132) - Abdelhak Bougouffa
+- **(mu4e)** minor edits - (94a8c1f) - Abdelhak Bougouffa
+- **(notes)** better org-roam protocol handling - (9a9748c) - Abdelhak Bougouffa
+- **(org)** prefer using `latexmk` or `tectonic` when found - (4e1267d) - Abdelhak Bougouffa
+- **(pcache)** create the cache in the cache directory - (28f2c04) - Abdelhak Bougouffa
+- **(straight)** update packages - (1dd3044) - Abdelhak Bougouffa
+- **(straight)** add pin file - (03e13d2) - Abdelhak Bougouffa
+- **(tempel)** restrict `org/markdown` to tempel capf - (439b6aa) - Abdelhak Bougouffa
+- **(treemacs)** enable `evil` support - (2176941) - Abdelhak Bougouffa
+- bump packages versions - (6a94af1) - Abdelhak Bougouffa
+- bump package versions - (8372b89) - Abdelhak Bougouffa
+- bump package versions - (0f6a2fd) - Abdelhak Bougouffa
+- update loaddefs - (09a9cea) - Abdelhak Bougouffa
+
+- - -
+
 ## v0.2.0 - 2023-04-01
 #### Bug Fixes
 - **(auctex)** require `tex` - (104a41e) - Abdelhak Bougouffa
