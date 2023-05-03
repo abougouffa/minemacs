@@ -48,9 +48,18 @@
  ;; Defer loading packages by default, use `:demand' to force loading a package
  use-package-always-defer t)
 
+(defvar minemacs--build-functions nil
+  "These functions are run after completing package updates.")
+
+(defun +register-build-function (fn)
+  "Register build function FN to be called at the end of `minemacs-update'."
+  (add-to-list 'minemacs--build-functions fn))
+
 (defun minemacs-update ()
   "Update MinEmacs packages."
   (interactive)
+  ;; Backup the current installed versions, this file can be restored if version
+  ;; upgrade does break some packages.
   (message "[MinEmacs]: Creating backups for the current versions of packages")
   (let* ((backup-dir (concat minemacs-local-dir (format "minemacs/versions/")))
          (dest-file (concat backup-dir "default-" (format-time-string "%Y%m%d%H%M%S") ".el"))
@@ -59,12 +68,21 @@
     (when (file-exists-p src-file)
       (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
       (copy-file src-file dest-file)))
+
+  ;; Run `straight's update cycle, taking into account the explicitly pinned
+  ;; packages versions.
   (message "[MinEmacs]: Pulling packages")
   (straight-x-pull-all)
   (message "[MinEmacs]: Freezing packages")
   (straight-x-freeze-versions)
   (message "[MinEmacs]: Rebuilding packages")
-  (straight-rebuild-all))
+  (straight-rebuild-all)
+
+  ;; Runn package-specific build functions (ex: `pdf-tools-install-noverify')
+  (message "[MinEmacs]: Running additional package-specific build functions")
+  (dolist (fn minemacs--build-functions)
+    (message "MinEmacs: Running `%s'" fn)
+    (funcall fn)))
 
 (provide 'me-bootstrap)
 
