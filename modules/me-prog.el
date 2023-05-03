@@ -21,8 +21,11 @@
   (use-package treesit-auto
     :straight (:host github :repo "renzmann/treesit-auto")
     :hook (minemacs-after-startup . global-treesit-auto-mode)
+    :commands treesit-auto-install-all
     :custom
     (treesit-auto-install 'prompt)
+    :init
+    (+register-build-function #'treesit-auto-install-all)
     :config
     ;; Install all languages when calling `treesit-auto-install-all'
     (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))))

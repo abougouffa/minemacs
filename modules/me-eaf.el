@@ -16,6 +16,7 @@
     ;; Evil integration doesn't work, start `eaf-mode' in `emacs-state'.
     (with-eval-after-load 'evil
       (evil-set-initial-state 'eaf-mode 'emacs))
+    (+register-build-function #'eaf-install-and-update)
     :commands eaf-file-sender-qrcode-in-dired +eaf-open-mail-as-html +browse-url-eaf eaf-open-browser
     :custom
     ;; Generic
