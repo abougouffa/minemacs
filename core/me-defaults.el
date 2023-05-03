@@ -72,6 +72,9 @@
  desktop-path (list desktop-dirname)
  custom-theme-directory (concat minemacs-config-dir "themes/")
 
+ ;; ====== Additional directories for non-builtin but common packages ======
+ pcache-directory (concat minemacs-cache-dir "pcache/")
+
  ;; ====== Default behavior ======
  ;; Inhibit startup message
  inhibit-startup-message t

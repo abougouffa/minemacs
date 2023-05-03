@@ -40,11 +40,6 @@
   :after tempel
   :demand t)
 
-(use-package pcache
-  :straight t
-  :custom
-  (pcache-directory (concat minemacs-cache-dir "pcache/")))
-
 (use-package unicode-fonts
   :straight t
   :hook (minemacs-after-startup . +unicode-fonts-setup)
