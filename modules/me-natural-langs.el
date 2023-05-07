@@ -205,7 +205,9 @@
   :demand t
   :config
   (eglot-ltex-enable-handling-client-commands)
-  (+eglot-register '(org-mode latex-mode LaTeX-mode markdown-mode text-mode) "ltex-ls"))
+  (+eglot-register
+    '(text-mode org-mode markdown-mode rst-mode latex-mode bibtex-mode context-mode)
+    "ltex-ls"))
 
 
 (provide 'me-natural-langs)
