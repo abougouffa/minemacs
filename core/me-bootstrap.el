@@ -82,7 +82,11 @@
   (message "[MinEmacs]: Running additional package-specific build functions")
   (dolist (fn minemacs--build-functions)
     (message "MinEmacs: Running `%s'" fn)
-    (funcall fn)))
+    ;; Do not ask before installing
+    (cl-letf (((symbol-function 'yes-or-no-p) #'always)
+              ((symbol-function 'y-or-n-p) #'always))
+      (funcall fn))))
+
 
 (provide 'me-bootstrap)
 
