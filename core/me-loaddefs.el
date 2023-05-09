@@ -558,6 +558,16 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
+;;; Generated autoloads from me-backports-29.el
+
+(register-definition-prefixes "me-backports-29" '("loaddefs-generate" "messages-buffer-name" "native-compile-prune-cache" "scratch-buffer" "setopt" "with-memoization"))
+
+
+;;; Generated autoloads from me-bootstrap.el
+
+(register-definition-prefixes "me-bootstrap" '("+register-build-function" "minemacs-"))
+
+
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
