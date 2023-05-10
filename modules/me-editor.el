@@ -40,6 +40,51 @@
   :after tempel
   :demand t)
 
+(use-package header2
+  :straight t
+  :hook (prog-mode . auto-make-header)
+  :custom
+  (header-date-format t)
+  (make-header-hook
+   '(
+     ;; header-mode-line
+     header-title
+     header-blank
+     header-file-name
+     header-description
+     ;; header-status
+     header-author
+     header-maintainer
+     header-copyright
+     header-creation-date
+     ;; header-rcs-id
+     header-version
+     ;; header-pkg-requires
+     ;; header-sccs
+     header-modification-date
+     header-modification-author
+     header-update-count
+     ;; header-url
+     ;; header-doc-url
+     ;; header-keywords
+     ;; header-compatibility
+     header-blank
+     ;; header-lib-requires
+     header-end-line
+     header-commentary
+     header-blank
+     header-blank
+     header-blank
+     header-end-line
+     ;; header-history
+     ;; header-blank
+     ;; header-blank
+     ;; header-rcs-log
+     ;; header-end-line
+     header-free-software
+     header-code
+     header-eof)))
+
 (use-package unicode-fonts
   :straight t
   :hook (minemacs-after-startup . +unicode-fonts-setup)
