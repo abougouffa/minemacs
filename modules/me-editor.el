@@ -14,7 +14,10 @@
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path (concat minemacs-root-dir "templates/tempel/*.eld"))
   :bind (("M-\"" . tempel-complete) ;; Alternative tempel-expand
-         ("M-*" . tempel-insert))
+         ("M-*" . tempel-insert)
+         :map tempel-map
+         ("TAB" . tempel-next)
+         ("<backtab>" . tempel-previous))
   :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
   :hook (prog-mode . tempel-abbrev-mode)
   :defines +tempel-setup-capf-h
