@@ -117,6 +117,9 @@ Useful for keeping track of the enabled theme."
   (setcdr (assoc "m" all-the-icons-extension-icon-alist)
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
+(use-package nerd-icons
+  :straight t)
+
 (use-package doom-themes
   :straight t)
 
