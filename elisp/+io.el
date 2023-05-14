@@ -160,12 +160,11 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 (defun +yank-this-file-name ()
   "Yank the file name of this buffer."
   (interactive)
-  (let ((file (buffer-file-name)))
-    (if (null file)
-        (user-error "This buffer isn't bound to a file.")
+  (if-let ((file (buffer-file-name)))
       (with-temp-buffer
         (insert file)
-        (kill-ring-save (point-min) (point-max))))))
+        (kill-ring-save (point-min) (point-max)))
+    (user-error "This buffer isn't bound to a file.")))
 
 ;;;###autoload
 (defun +clean-file-name (filename &optional downcase-p)
