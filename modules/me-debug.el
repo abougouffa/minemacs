@@ -52,8 +52,7 @@
     "rh" #'+realgud-hydra/body))
 
 (use-package realgud-lldb
-  :straight t
-  :commands realgud--lldb)
+  :straight t)
 
 (use-package realgud-ipdb
   :straight t)
