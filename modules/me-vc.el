@@ -33,13 +33,14 @@
   :config
   (magit-todos-mode 1))
 
+(use-package magit-imerge
+  :straight t)
+
 (use-package closql
-  :straight t
-  :pin-ref "0a7226331ff1f96142199915c0ac7940bac4afdd")
+  :straight t)
 
 (use-package forge
   :straight t
-  :pin-ref "ba35ffc9bafc6457cc95633904e53e34e544543f"
   :after magit
   :demand t
   :preface
@@ -70,8 +71,7 @@
     (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))))
 
 (use-package code-review
-  :straight t
-  :pin-ref "26f426e99221a1f9356aabf874513e9105b68140"
+  :straight (:host github :repo "phelrine/code-review" :branch "fix/closql-update")
   :after magit
   :demand t
   :custom
