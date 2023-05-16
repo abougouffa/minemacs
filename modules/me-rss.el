@@ -8,19 +8,27 @@
 
 ;;; Code:
 
+(defgroup minemacs-elfeed nil
+  "MinEmacs elfeed tweaks."
+  :group 'minemacs)
+
 (use-package elfeed
   :straight t
   :init
   (+map! "of" #'elfeed)
   (+nmap! :keymaps 'elfeed-search-mode-map
-    "<tab>" #'+elfeed-completing-filter
     "d" #'+elfeed-youtube-dl)
   (+nmap! :keymaps 'elfeed-show-mode-map
-    "d" '+download-image)
-  (defcustom +elfeed-videos-dir "~/Videos/"
-    "Videos directory.")
-  (defcustom +elfeed-images-dir "~/Images/elfeed/"
-    "Images directory.")
+    "d" #'+elfeed-download-image)
+  (defcustom +elfeed-videos-dir "~/Videos/elfeed/"
+    "Directory of downloaded videos."
+    :group 'minemacs-elfeed)
+  (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
+    "Directory of downloaded pictures."
+    :group 'minemacs-elfeed)
+  (defcustom +yt-dlp-command (executable-find "yt-dlp")
+    "The \"yt-dlp\" command."
+    :group 'minemacs-tools)
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))
@@ -28,21 +36,23 @@
   ;; Hide the annoying index file form recent files
   (+ignore-root elfeed-db-directory elfeed-enclosure-default-dir)
 
-  (defun +download-image ()
-    "Downloads the image at point."
+  (defun +elfeed-download-image ()
+    "Download the image at point."
     (interactive)
     (let ((url (get-text-property (point) 'image-url)))
       (if (not url)
           (message "No image at point!")
-        (url-copy-file url (expand-file-name (url-file-nondirectory url) +elfeed-images-dir)))))
+        (url-copy-file
+         url (expand-file-name (url-file-nondirectory url)
+                               (+directory-ensure +elfeed-images-dir))))))
 
   (defun +yt-dl-it (url)
-    "Downloads the URL in an async shell."
-    (let ((default-directory +elfeed-videos-dir))
-      (async-shell-command (format "yt-dlp '%s'" url))))
+    "Downloads the URL with \"yt-dlp\" in an async shell."
+    (let ((default-directory (+directory-ensure +elfeed-videos-dir)))
+      (async-shell-command (format "%s '%s'" +yt-dlp-command url))))
 
   (defun +elfeed-youtube-dl (&optional use-generic-p)
-    "Youtube-DL link."
+    "Download Youtube videos."
     (interactive "P")
     (let ((entries (elfeed-search-selected)))
       (cl-loop for entry in entries
