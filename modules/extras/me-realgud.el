@@ -23,7 +23,7 @@
       ((or 'c-mode 'c++-mode 'c-ts-mode c++-ts-mode)
        (realgud:gdb (if path (concat "gdb " path))))
       ((or 'rust-mode 'rust-ts-mode)
-       (realgud--lldb (if path (concat "gdb " path))))
+       (lldb (if path (concat "lldb " path))))
       ((or 'js-mode 'js2-mode 'js3-mode 'typescript-mode 'js-ts-mode 'typescript-ts-mode)
        (realgud:trepanjs))
       ((or 'sh-mode 'bash-ts-mode)

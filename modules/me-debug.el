@@ -52,10 +52,14 @@
     "rh" #'+realgud-hydra/body))
 
 (use-package realgud-lldb
-  :straight t)
+  :straight t
+  :init
+  (defalias 'realgud:lldb #'realgud--lldb)
+  :commands (realgud--lldb realgud:lldb lldb))
 
 (use-package realgud-ipdb
-  :straight t)
+  :straight t
+  :commands (ipdb realgud:ipdb))
 
 (use-package disaster
   :straight t
