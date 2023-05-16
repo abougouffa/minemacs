@@ -12,7 +12,7 @@
 
 ;;; Code:
 
-(when (>= emacs-major-version 29)
+(unless (= emacs-major-version 28)
   (user-error "This file should only be called from an Emacs 28.x"))
 
 (require 'wid-edit) ;; Needed by `setopt--set'
