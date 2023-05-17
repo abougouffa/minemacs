@@ -27,50 +27,67 @@
 
 (setq
  ;; ====== Default directories for builtin packages ======
- backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/")))
- auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/")
  abbrev-file-name (concat minemacs-local-dir "abbrev.el")
- project-list-file (concat minemacs-local-dir "project-list.el")
- tramp-backup-directory-alist backup-directory-alist
- tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/")
- tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el")
- url-configuration-directory (+directory-ensure minemacs-local-dir "url/")
- url-cookie-file (concat minemacs-local-dir "url/cookie.el")
- url-history-file (concat minemacs-local-dir "url/history.el")
- url-cache-directory (+directory-ensure minemacs-cache-dir "url/")
- save-place-file (concat minemacs-local-dir "save-place.el")
- savehist-file (concat minemacs-local-dir "savehist.el")
- org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el")
- org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/")
- org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/")
- org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/")
- recentf-save-file (concat minemacs-local-dir "recentf-save.el")
- shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/")
- type-break-file-name (concat minemacs-local-dir "type-break.el")
+ auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")
+ auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/")
+ backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/")))
  bookmark-default-file (concat minemacs-local-dir "bookmark.el")
+ calc-settings-file (concat minemacs-local-dir "calc-settings.el")
+ custom-theme-directory (concat minemacs-config-dir "themes/")
+ desktop-dirname (+directory-ensure minemacs-local-dir "desktop/")
+ desktop-path (list desktop-dirname)
+ diary-file (concat minemacs-local-dir "diary")
+ ecomplete-database-file (concat minemacs-local-dir "ecomplete-database.el")
  ede-project-placeholder-cache-file (concat minemacs-local-dir "ede-projects.el")
- kkc-init-file-name (concat minemacs-local-dir "kkc-init-file.el")
  erc-dcc-get-default-directory (+directory-ensure minemacs-local-dir "erc/dcc/")
  erc-log-channels-directory (+directory-ensure minemacs-local-dir "erc/log-channels/")
+ eshell-aliases-file (concat minemacs-local-dir "eshell/aliases")
  eshell-directory-name (+directory-ensure minemacs-local-dir "eshell/")
  eshell-history-file-name (concat minemacs-local-dir "eshell/history.el")
  eshell-last-dir-ring-file-name (concat minemacs-local-dir "eshell/last-dir-ring.el")
- eshell-aliases-file (concat minemacs-local-dir "eshell/aliases")
- eshell-rc-script (concat minemacs-local-dir "eshell/rc")
  eshell-login-script (concat minemacs-local-dir "eshell/login")
- calc-settings-file (concat minemacs-local-dir "calc-settings.el")
- auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")
+ eshell-rc-script (concat minemacs-local-dir "eshell/rc")
+ eudc-options-file (concat minemacs-local-dir "eudc-options.el")
+ eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/")
+ gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/")
+ gnus-init-file (concat minemacs-config-dir "gnus/init.el")
+ gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")
+ ido-save-directory-list-file (concat minemacs-local-dir "ido-save-directory-list.el")
  image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/")
  image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el")
  image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")
- eudc-options-file (concat minemacs-local-dir "eudc-options.el")
- eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/")
+ kkc-init-file-name (concat minemacs-local-dir "kkc-init.el")
+ multisession-dir (concat minemacs-local-dir "multisession/")
+ newsticker-cache-filename (concat minemacs-local-dir "newsticker/cache.el")
+ newsticker-dir (+directory-ensure minemacs-local-dir "newsticker/data/")
+ nsm-settings-file (concat minemacs-local-dir "nsm-settings.el")
+ org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el")
+ org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el")
+ org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/")
+ org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/")
+ org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/")
+ project-list-file (concat minemacs-local-dir "project-list.el")
+ quickurl-url-file (concat minemacs-local-dir "quickurl-url.el")
+ rcirc-log-directory (+directory-ensure minemacs-local-dir "rcirc/log/")
+ recentf-save-file (concat minemacs-local-dir "recentf-save.el")
+ remember-data-directory (+directory-ensure minemacs-local-dir "remember/data/")
+ remember-data-file (concat minemacs-local-dir "remember/data.el")
+ save-place-file (concat minemacs-local-dir "save-place.el")
+ savehist-file (concat minemacs-local-dir "savehist.el")
+ semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
  shadow-info-file (concat minemacs-local-dir "shadow/info.el")
  shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
- semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
- desktop-dirname (+directory-ensure minemacs-local-dir "desktop/")
- desktop-path (list desktop-dirname)
- custom-theme-directory (concat minemacs-config-dir "themes/")
+ shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/")
+ srecode-map-save-file (concat minemacs-local-dir "srecode-map.el")
+ timeclock-file (concat minemacs-local-dir "timeclock")
+ tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/")
+ tramp-backup-directory-alist backup-directory-alist
+ tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el")
+ type-break-file-name (concat minemacs-local-dir "type-break.el")
+ url-cache-directory (+directory-ensure minemacs-cache-dir "url/")
+ url-configuration-directory (+directory-ensure minemacs-local-dir "url/")
+ url-cookie-file (concat minemacs-local-dir "url/cookie.el")
+ url-history-file (concat minemacs-local-dir "url/history.el")
 
  ;; ====== Additional directories for non-builtin but common packages ======
  pcache-directory (concat minemacs-cache-dir "pcache/")
@@ -255,13 +272,11 @@
  ;; Include big deletions
  auto-save-include-big-deletions t
  ;; Set file naming transform
- auto-save-file-name-transforms (list
-                                 ;; Prefix tramp autosaves with "tramp-"
-                                 (list
-                                  "\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
-                                  (concat auto-save-list-file-prefix "tramp-\\2") t)
-                                 ;; Local autosaves
-                                 (list ".*" auto-save-list-file-prefix t))
+ auto-save-file-name-transforms
+ `(;; Prefix tramp autosaves with "tramp-"
+   ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") t)
+   ;; Local autosaves
+   (".*" ,auto-save-list-file-prefix t))
  ;; File name to use when saving desktop
  desktop-base-file-name "emacs-session.el"
  ;; File name to use as a lock
