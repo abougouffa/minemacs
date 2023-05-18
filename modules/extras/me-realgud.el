@@ -16,26 +16,24 @@
   "Start the RealGUD debugger suitable for the current mode."
   (interactive "<f>")
   (let ((default-directory
-         (or (projectile-project-root)
-             (and (project-current) (project-root (project-current)))
+         (or (and (project-current) (project-root (project-current)))
+             (and (fboundp 'projectile-project-root) (projectile-project-root))
+             (vc-root-dir)
              default-directory)))
     (pcase major-mode
-      ((or 'c-mode 'c++-mode 'c-ts-mode c++-ts-mode)
+      ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode)
        (realgud:gdb (if path (concat "gdb " path))))
       ((or 'rust-mode 'rust-ts-mode)
        (lldb (if path (concat "lldb " path))))
       ((or 'js-mode 'js2-mode 'js3-mode 'typescript-mode 'js-ts-mode 'typescript-ts-mode)
        (realgud:trepanjs))
       ((or 'sh-mode 'bash-ts-mode)
-       (let ((shell sh-shell))
-         (when (string= shell "sh")
-           (setq shell "bash"))
-         (pcase shell
-           ("bash"
-            (realgud:bashdb (if path (concat "bashdb " path))))
-           ("zsh"
-            (realgud:zshdb (if path (concat "zshdb " path))))
-           (_ (user-error "No shell debugger for %s" shell)))))
+       (pcase sh-shell
+         ((or "bash" "sh")
+          (realgud:bashdb (if path (concat "bashdb " path))))
+         ("zsh"
+          (realgud:zshdb (if path (concat "zshdb " path))))
+         (_ (user-error "No shell debugger for %s" sh-shell))))
       (_ (user-error "No debugger for %s" major-mode)))))
 
 ;;;###autoload(autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
@@ -46,32 +44,32 @@
 
 ;; Add some missing gdb/rr commands
 (defun +realgud:cmd-run (arg)
-  "Run"
+  "Run."
   (interactive "p")
   (realgud-command "run"))
 
 (defun +realgud:cmd-start (arg)
-  "start = break main + run"
+  "start => break main; run."
   (interactive "p")
   (realgud-command "start"))
 
 (defun +realgud:cmd-reverse-next (arg)
-  "Reverse next"
+  "Reverse next."
   (interactive "p")
   (realgud-command "reverse-next"))
 
 (defun +realgud:cmd-reverse-step (arg)
-  "Reverse step"
+  "Reverse step."
   (interactive "p")
   (realgud-command "reverse-step"))
 
 (defun +realgud:cmd-reverse-continue (arg)
-  "Reverse continue"
+  "Reverse continue."
   (interactive "p")
   (realgud-command "reverse-continue"))
 
 (defun +realgud:cmd-reverse-finish (arg)
-  "Reverse finish"
+  "Reverse finish."
   (interactive "p")
   (realgud-command "reverse-finish"))
 
