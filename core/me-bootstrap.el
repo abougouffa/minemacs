@@ -61,10 +61,10 @@
   ;; Backup the current installed versions, this file can be restored if version
   ;; upgrade does break some packages.
   (message "[MinEmacs]: Creating backups for the current versions of packages")
-  (let* ((backup-dir (concat minemacs-local-dir (format "minemacs/versions/")))
-         (dest-file (concat backup-dir "default-" (format-time-string "%Y%m%d%H%M%S") ".el"))
+  (let* ((backup-dir (concat minemacs-local-dir "minemacs/versions/"))
+         (dest-file (concat backup-dir (format-time-string "default-%Y%m%d%H%M%S.el")))
          (src-file (concat straight-base-dir "straight/versions/default.el")))
-    (unless (file-directory-p backup-dir) (mkdir backup-dir :parents))
+    (unless (file-directory-p backup-dir) (mkdir backup-dir 'parents))
     (when (file-exists-p src-file)
       (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
       (copy-file src-file dest-file)))
