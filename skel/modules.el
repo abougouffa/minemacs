@@ -16,16 +16,14 @@
 ;; List of enabled modules
 (setq minemacs-modules
       '(me-ui            ; User interface (focus, writeroom-mode, mixed-pitch, ...)
-        me-editor        ; Editing (yasnippet, smartparens, unicode-fonts, ligature, ...)
+        me-editor        ; Editing (tempel, smartparens, unicode-fonts, ligature, ...)
         me-daemon        ; Emacs daemon tweaks
         me-undo          ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
         me-multi-cursors ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
         me-vc            ; Version control (magit, forge, core-review, diff-hl, ...)
         me-project       ; Project management (project, consult-project-extra, ...)
-        ;; obsolete/me-projectile ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
         me-prog          ; Programming stuff (tree-sitter, eglot, eldoc, eldoc-box, apheleia, editorconfig, ...)
         me-checkers      ; Static checkers (flymake, flymake-easy, ...)
-        ;; obsolete/me-flycheck   ; Static checkers (flycheck, ...)
         me-debug         ; Debugging tools (gdb-mi, realgud, disaster, ...)
         ;; me-lsp        ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
         me-lisp          ; Lisps development (parinfer-rust, sly, macrostep, geiser, elisp, helpful, eros, ...)
@@ -53,3 +51,12 @@
         ;; me-workspaces ; Workspace separation (tabspaces, tab-bar, ...). NOTE: This is a WIP
         me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
         me-window))      ; Frame & window tweaks
+
+;; You can use the obsolete configurations by adding the `obsolete/me-*' modules to `minemacs-modules'
+;; (setq minemacs-modules
+;;       (append
+;;        minemacs-modules
+;;        '(obsolete/me-yasnippet   ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
+;;          obsolete/me-writeroom   ; Replacement for `+writing-mode' (writeroom-mode, ...)
+;;          obsolete/me-projectile  ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
+;;          obsolete/me-flycheck))) ; Static checkers (flycheck, ...)
