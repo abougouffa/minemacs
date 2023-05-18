@@ -19,7 +19,7 @@
   (+nmap! :keymaps 'elfeed-search-mode-map
     "d" #'+elfeed-youtube-dl)
   (+nmap! :keymaps 'elfeed-show-mode-map
-    "d" #'+elfeed-download-image)
+    "D" #'+elfeed-download-image)
   (defcustom +elfeed-videos-dir "~/Videos/elfeed/"
     "Directory of downloaded videos."
     :group 'minemacs-elfeed)
