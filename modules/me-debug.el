@@ -45,6 +45,7 @@
   :straight t
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
+                          c-ts-mode-map c++-ts-mode-map python-ts-mode-map
                           rust-mode-map rust-ts-mode-map
                           sh-mode-map bash-ts-mode-map)
     "r" '(nil :wk "realgud")
