@@ -85,7 +85,7 @@
     ;; Do not ask before installing
     (cl-letf (((symbol-function 'yes-or-no-p) #'always)
               ((symbol-function 'y-or-n-p) #'always))
-      (funcall fn))))
+      (funcall-interactively fn))))
 
 
 (provide 'me-bootstrap)
