@@ -253,7 +253,8 @@ the children of class at point."
 (use-package clang-format
   :straight t
   :init
-  (+map! :keymaps '(c-mode-map c++-mode-map cuda-mode-map scad-mode-map)
+  (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map
+                    cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
 ;;; Modes
