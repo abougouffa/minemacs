@@ -118,7 +118,11 @@ Useful for keeping track of the enabled theme."
           (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
 
 (use-package nerd-icons
-  :straight t)
+  :straight t
+  :config
+  ;; Show .m files as matlab/octave files (integral icon)
+  (setcdr (assoc "m" nerd-icons-extension-icon-alist)
+          '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
 
 (use-package doom-themes
   :straight t)
