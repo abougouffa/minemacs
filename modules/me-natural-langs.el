@@ -200,14 +200,14 @@
 ;;        . ((ltex . ((language . "fr")
 ;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
 ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
-(use-package me-eglot-ltex-extras
+(use-package me-eglot-ltex
   :after eglot
   :demand t
   :config
   (eglot-ltex-enable-handling-client-commands)
   (+eglot-register
     '(text-mode org-mode markdown-mode rst-mode latex-mode bibtex-mode context-mode)
-    "ltex-ls"))
+    `("localhost" ,ltex-ls-server-port)))
 
 
 (provide 'me-natural-langs)

@@ -1,4 +1,4 @@
-;;; me-eglot-ltex-extras.el --- Extra functionality for Eglot+LTeX-LS -*- lexical-binding: t; -*-
+;;; me-eglot-ltex.el --- Extra functionality for Eglot+LTeX-LS -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
@@ -33,6 +33,36 @@
 
 (defvar-local eglot-ltex-language "auto")
 (defvar eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/"))
+
+(defvar ltex-ls-command "ltex-ls")
+(defvar ltex-ls-server-port 40001)
+(defvar ltex-ls-server-process-name "ltex-ls-server")
+(defvar ltex-ls--process nil)
+
+;;;###autoload
+(defun ltex-ls-start ()
+  "Start LTeX-LS as a TCP server at port `ltex-ls-server-port' on \"localhost\"."
+  (interactive)
+  (if (eq (process-status ltex-ls-server-process-name) 'run)
+      (message "LTeX-LS server already running!")
+    (if (executable-find ltex-ls-command)
+        (setq ltex-ls--process
+              (make-process
+               :name ltex-ls-server-process-name
+               :buffer (format " *%s*" ltex-ls-server-process-name)
+               :command (list ltex-ls-command "--server-type=TcpSocket" (format "--port=%d" ltex-ls-server-port))))
+      (user-error "LTeX-LS command \"%s\" not found." ltex-ls-command))
+    (if (process-live-p ltex-ls--process)
+        (message "Started LTeX-LS TCP server successfuly.")
+      (user-error "Cannot start LTeX-LS TCP server."))))
+
+(defun ltex-ls-stop ()
+  "Stop LTeX-LS server if running."
+  (interactive)
+  (if (not (process-live-p ltex-ls--process))
+      (message "No running instance of LTeX-LS server!")
+    (delete-process ltex-ls--process)
+    (message "LTeX-LS server stopped.")))
 
 (defvar eglot-ltex-dictionary
   (+deserialize-sym 'eglot-ltex-dictionary eglot-ltex-user-rules-path))
@@ -85,14 +115,16 @@ When STORE is non-nil, this will also store the new plist in the directory
             (plist-get args-plist lang)))))
 
 (defun eglot-ltex-enable-handling-client-commands ()
+  "Enable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
   (advice-add 'eglot-execute-command :before #'eglot-ltex--can-process-client-commands-a))
 
 (defun eglot-ltex-disable-handling-client-commands ()
+  "Disable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
   (advice-remove 'eglot-execute-command #'eglot-ltex--can-process-client-commands-a))
 
 
-(provide 'me-eglot-ltex-extras)
+(provide 'me-eglot-ltex)
 
-;;; me-eglot-ltex-extras.el ends here
+;;; me-eglot-ltex.el ends here

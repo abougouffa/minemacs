@@ -588,9 +588,11 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 (register-definition-prefixes "me-defaults" '("+whitespace-auto-cleanup-modes"))
 
 
-;;; Generated autoloads from ../modules/extras/me-eglot-ltex-extras.el
+;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
-(register-definition-prefixes "../modules/extras/me-eglot-ltex-extras" '("eglot-ltex-"))
+(autoload 'ltex-ls-start "../modules/extras/me-eglot-ltex" "\
+Start LTeX-LS as a TCP server at localhost:40001." t)
+(register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-" "ltex-ls-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
