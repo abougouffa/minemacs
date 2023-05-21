@@ -129,8 +129,6 @@
 (use-package macrostep
   :straight t
   :init
-  ;; HACK: Until this gets fixed github.com/emacsorphanage/macrostep/issues/4
-  (defvaralias 'macrostep-mode-map 'macrostep-mode-keymap)
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
