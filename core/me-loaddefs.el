@@ -590,9 +590,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
-(autoload 'ltex-ls-start "../modules/extras/me-eglot-ltex" "\
-Start LTeX-LS as a TCP server at localhost:40001." t)
-(register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-" "ltex-ls-"))
+(register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
