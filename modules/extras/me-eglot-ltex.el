@@ -31,39 +31,18 @@
 
 ;;; Code:
 
+(defgroup minemacs-eglot-ltex nil
+  "LTeX-LS related settings."
+  :group 'minemacs)
+
 (defvar-local eglot-ltex-language "auto")
-(defvar eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/"))
 
-(defvar ltex-ls-command "ltex-ls")
-(defvar ltex-ls-server-port 40001)
-(defvar ltex-ls-server-process-name "ltex-ls-server")
-(defvar ltex-ls--process nil)
+(defcustom eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/")
+  "Path to save user rules."
+  :group 'minemacs-eglot-ltex
+  :type 'directory)
 
-;;;###autoload
-(defun ltex-ls-start ()
-  "Start LTeX-LS as a TCP server at port `ltex-ls-server-port' on \"localhost\"."
-  (interactive)
-  (if (eq (process-status ltex-ls-server-process-name) 'run)
-      (message "LTeX-LS server already running!")
-    (if (executable-find ltex-ls-command)
-        (setq ltex-ls--process
-              (make-process
-               :name ltex-ls-server-process-name
-               :buffer (format " *%s*" ltex-ls-server-process-name)
-               :command (list ltex-ls-command "--server-type=TcpSocket" (format "--port=%d" ltex-ls-server-port))))
-      (user-error "LTeX-LS command \"%s\" not found." ltex-ls-command))
-    (if (process-live-p ltex-ls--process)
-        (message "Started LTeX-LS TCP server successfuly.")
-      (user-error "Cannot start LTeX-LS TCP server."))))
-
-(defun ltex-ls-stop ()
-  "Stop LTeX-LS server if running."
-  (interactive)
-  (if (not (process-live-p ltex-ls--process))
-      (message "No running instance of LTeX-LS server!")
-    (delete-process ltex-ls--process)
-    (message "LTeX-LS server stopped.")))
-
+;; Load serialized rules
 (defvar eglot-ltex-dictionary
   (+deserialize-sym 'eglot-ltex-dictionary eglot-ltex-user-rules-path))
 
