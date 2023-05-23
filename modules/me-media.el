@@ -8,10 +8,26 @@
 
 ;;; Code:
 
+(defcustom +mpv-command (executable-find "mpv")
+  "The MPV command."
+  :group 'minemacs-utils)
+
+(defvar +mpv-buffer-name " *MPV*")
+(defvar +mpv-process-name "mpv")
+
+(when (executable-find +mpv-command)
+  (defun +browse-url-mpv (url &optional args)
+    "Open URL with MPV."
+    (start-process +mpv-process-name +mpv-buffer-name +mpv-command url))
+
+  (setq browse-url-browser-function
+        `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
+          ("." . browse-url-default-browser))))
+
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
   :preface
-  (defconst +mpv-available-p (executable-find "mpv"))
+  (defconst +mpv-available-p (executable-find +mpv-command))
   :when +mpv-available-p
   :init
   (+map! :infix "o"
