@@ -8,10 +8,10 @@
 
 ;;; Code:
 
-(defconst +aspell-available-p (executable-find "aspell"))
-
 (use-package spell-fu
   :straight t
+  :preface
+  (defconst +aspell-available-p (executable-find "aspell"))
   :when +aspell-available-p
   :hook (text-mode . spell-fu-mode)
   :custom
@@ -206,8 +206,8 @@
   :config
   (eglot-ltex-enable-handling-client-commands)
   (+eglot-register
-    '(text-mode org-mode markdown-mode rst-mode latex-mode bibtex-mode context-mode)
-    `("localhost" ,ltex-ls-server-port)))
+    '(text-mode org-mode markdown-mode rst-mode latex-mode bibtex-mode context-mode git-commit-mode)
+    '("ltex-ls" "--server-type=TcpSocket" "--port" :autoport)))
 
 
 (provide 'me-natural-langs)
