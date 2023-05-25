@@ -11,7 +11,7 @@
 
 (setq
  ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
- ;; and `modus-themes'.
+ ;; or built-in themes
  minemacs-theme 'doom-one ; `doom-one' is a dark theme, `doom-one-light' is the light one
  ;; Set Emacs fonts, some good choices include:
  ;; - Cascadia Code
