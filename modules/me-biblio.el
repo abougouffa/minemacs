@@ -55,22 +55,23 @@
   (org-cite-activate-processor 'citar)
   (citar-symbol-separator "  ")
   :config
-  (defun +citar--set-symbols ()
-    (setq citar-symbols
-          `((file ,(all-the-icons-octicon "file-pdf"      :face 'error) . " ")
-            (note ,(all-the-icons-octicon "file-text"     :face 'warning) . " ")
-            (link ,(all-the-icons-octicon "link-external" :face 'org-link) . " "))))
+  (with-eval-after-load 'all-the-icons
+    (defun +citar--set-symbols ()
+      (setq citar-symbols
+            `((file ,(all-the-icons-octicon "file-pdf" :face 'error) . " ")
+              (note ,(all-the-icons-octicon "file-text" :face 'warning) . " ")
+              (link ,(all-the-icons-octicon "link-external" :face 'org-link) . " "))))
 
-  ;; Properly setup citar-symbols
-  (if (display-graphic-p)
-      (+citar--set-symbols)
-    (add-hook
-     'server-after-make-frame-hook
-     (defun +citar--set-symbols-once-h ()
-       (when (display-graphic-p)
-         (+citar--set-symbols)
-         (remove-hook 'server-after-make-frame-hook
-                      #'+citar--set-symbols-once-h))))))
+    ;; Properly setup citar-symbols
+    (if (display-graphic-p)
+        (+citar--set-symbols)
+      (add-hook
+       'server-after-make-frame-hook
+       (defun +citar--set-symbols-once-h ()
+         (when (display-graphic-p)
+           (+citar--set-symbols)
+           (remove-hook 'server-after-make-frame-hook
+                        #'+citar--set-symbols-once-h)))))))
 
 (use-package citar-org-roam
   :straight t
