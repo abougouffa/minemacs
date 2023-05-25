@@ -13,9 +13,9 @@
   "Get MIME type for FILE based on magic codes provided by the 'file' command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
 `application/x-object', `application/octet-stream', etc."
-  (if (executable-find "file")
-      (let ((mime-type (shell-command-to-string (format "file --brief --mime-type %s" file))))
-        (intern (string-trim-right mime-type)))
+  (if-let ((file-cmd (executable-find "file"))
+           (mime-type (shell-command-to-string (format "%s --brief --mime-type %s" file-cmd file))))
+      (intern (string-trim-right mime-type))
     (error "The \"file\" command isn't installed.")))
 
 ;;;###autoload
@@ -27,7 +27,7 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
          (file (file-name-base filename))
          (filename-regex (concat "^" file "\\(?:-\\(?1:[[:digit:]]+\\)\\)?" (if ext (concat "\\." ext) "")))
          (last-file (car (last (directory-files dir nil filename-regex))))
-         (last-file-num (when (and last-file (string-match filename-regex last-file) (match-string 1 last-file))))
+         (last-file-num (and last-file (string-match filename-regex last-file) (match-string 1 last-file)))
          (num (1+ (string-to-number (or last-file-num "-1")))))
     (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
 
@@ -190,48 +190,45 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
   "Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
 value of `+html2pdf-default-backend' is used."
-  (let ((default-directory (file-name-directory infile))
-        (backend (or backend +html2pdf-default-backend)))
-    (pcase backend
-      ('weasyprint
-       (call-process
-        "weasyprint" nil nil nil
-        "--encoding" "utf-8"
-        "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
-        infile outfile))
-      ('htmldoc
-       (call-process
-        "htmldoc" nil nil nil
-        "--charset" "utf-8"
-        "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
-        "--top" "10#mm" "--bottom" "10#mm" "--right" "10#mm" "--left" "10#mm"
-        "--fontsize" "11"
-        "--size" "a4"
-        "--continuous"
-        "--outfile" outfile infile))
-      ('wkhtmltopdf
-       (call-process
-        "wkhtmltopdf" nil nil nil
-        "--images" "--disable-javascript" "--enable-local-file-access"
-        "--encoding" "utf-8"
-        infile outfile))
-      ('pandoc+context
-       (call-process
-        "pandoc" nil nil nil
-        "--pdf-engine=context"
-        "--variable" "fontsize=10pt"
-        "--variable" "linkstyle=slanted"
-        "-o" outfile infile)))))
+  (if-let ((default-directory (file-name-directory infile))
+           (backend (or backend +html2pdf-default-backend))
+           (backend-command
+            (pcase backend
+              ('weasyprint
+               (list "weasyprint"
+                     "--encoding" "utf-8"
+                     "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
+                     infile outfile))
+              ('htmldoc
+               (list "htmldoc"
+                     "--charset" "utf-8"
+                     "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
+                     "--top" "10#mm" "--bottom" "10#mm" "--right" "10#mm" "--left" "10#mm"
+                     "--fontsize" "11"
+                     "--size" "a4"
+                     "--continuous"
+                     "--outfile" outfile infile))
+              ('wkhtmltopdf
+               (list "wkhtmltopdf"
+                     "--images" "--disable-javascript" "--enable-local-file-access"
+                     "--encoding" "utf-8"
+                     infile outfile))
+              ('pandoc+context
+               (list "pandoc"
+                     "--pdf-engine=context"
+                     "--variable" "fontsize=10pt"
+                     "--variable" "linkstyle=slanted"
+                     "-o" outfile infile)))))
+      (apply #'call-process (append (list (car backend-command) nil nil nil) (cdr backend-command)))
+    (user-error "Backend \"%s\" not available." backend)))
 
 ;;;###autoload
 (defun +txt2html (infile outfile &optional mail-mode-p)
   "Convert plain-text file INFILE to HTML and save it to OUTFILE.
 When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\"."
-  (apply
-   #'call-process
-   (append '("txt2html" nil nil nil "-8")
-           (when mail-mode-p '("--mailmode"))
-           (list "--outfile" outfile infile))))
+  (apply #'call-process (append '("txt2html" nil nil nil "-8")
+                                (when mail-mode-p '("--mailmode"))
+                                (list "--outfile" outfile infile))))
 
 (defvar +save-as-pdf-filename nil
   "File name to use, if non-nil, for the output file.")
@@ -263,7 +260,7 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
       (user-error
        (if (file-exists-p outfile)
            "PDF created but with some errors!"
-         "An error occured, cannot create the PDF!")))))
+         "An error occurred, cannot create the PDF!")))))
 
 ;;;###autoload
 (defcustom +single-file-executable (executable-find "single-file")
@@ -272,13 +269,15 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 ;;;###autoload
 (defun +single-file (url out-file)
   "Save URL into OUT-FILE as a standalone HTML file."
-  (when +single-file-executable
-    (make-process
-     :name "single-file-cli"
-     :buffer "*single-file*"
-     :command (list
-               +single-file-executable
-               "--browser-executable-path" browse-url-chromium-program
-               url out-file))))
+  (if (and +single-file-executable (executable-find +single-file-executable))
+      (make-process
+       :name "single-file-cli"
+       :buffer "*single-file*"
+       :command (list
+                 +single-file-executable
+                 "--browser-executable-path" browse-url-chromium-program
+                 url out-file))
+    (user-error "Please set `+single-file-executable' accordingly.")))
+
 
 ;;; +io.el ends here
