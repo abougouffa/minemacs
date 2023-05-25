@@ -177,7 +177,7 @@
     ;; evaluate Elisp code, so we switch to Elisp mode in the scratch buffer
     ;; when Emacs is idle for 10 seconds.
     (+eval-when-idle-for! 10.0
-      (setq initial-major-mode 'emacs-lisp-mode)
+      (setq initial-major-mode 'lisp-interaction-mode)
       (with-current-buffer (get-scratch-buffer-create)
         (emacs-lisp-mode))))
 
