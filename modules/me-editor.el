@@ -136,7 +136,10 @@
 
 (use-package highlight-numbers
   :straight t
-  :hook (prog-mode . highlight-numbers-mode))
+  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
+  :config
+  ;; Original "\\_<[[:digit:]].*?\\_>"
+  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 (use-package smartparens
   :straight t
