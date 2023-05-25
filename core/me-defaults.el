@@ -156,8 +156,7 @@
                              (condition-case nil
                                  ;; Android may raise permission-denied error
                                  (with-temp-buffer
-                                   (insert-file-contents
-                                    "/proc/sys/fs/pipe-max-size")
+                                   (insert-file-contents "/proc/sys/fs/pipe-max-size")
                                    (string-to-number (buffer-string)))
                                ;; If an error occured, fallback to the default value
                                (error read-process-output-max))
