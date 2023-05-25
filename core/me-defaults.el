@@ -416,7 +416,7 @@ or file path may exist now."
 ;; All modes and tweaks are enabled after MinEmacs is gets loaded
 (+deferred-unless! (featurep 'me-org-export-async-init)
   ;; Navigate windows using Shift+Direction
-  (windmove-default-keybindings)
+  (windmove-default-keybindings 'shift)
 
   ;; ====== Modes enabled globally ======
   ;; Show the battery status (if available) in the mode-line
