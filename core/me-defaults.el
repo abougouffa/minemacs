@@ -285,16 +285,6 @@
  ;; Avoid writing contents unchanged between auto-saves
  desktop-file-checksum t
 
- ;; ====== Compilation ======
- ;; Scroll compilation buffer
- compilation-scroll-output t ; 'first-error can be a good option
- ;; Always kill current compilation process before starting a new one
- compilation-always-kill t
- ;; Skip visited messages on compilation motion commands
- compilation-skip-visited t
- ;; Keep it readable
- compilation-window-height 12
-
  ;; ====== Misc ======
  ;; Set `webjump' sites to manily search engins
  webjump-sites

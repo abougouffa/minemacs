@@ -197,6 +197,11 @@ the children of class at point."
   :commands +toggle-burry-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
   :hook (compilation-filter . ansi-color-compilation-filter)
+  :custom
+  (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
+  (compilation-always-kill t) ; Always kill current compilation process before starting a new one
+  (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
+  (compilation-window-height 12) ; Keep it readable
   :config
   ;; Integration of `compile' with `savehist'
   (with-eval-after-load 'savehist
