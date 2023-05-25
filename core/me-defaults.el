@@ -167,8 +167,6 @@
  frame-resize-pixelwise t
  ;; Stretch cursor to the glyph width
  x-stretch-cursor t
- ;; Show trailing whitespaces
- show-trailing-whitespace t
  ;; Resize window combinations proportionally
  window-combination-resize t
  ;; Enable time in the mode-line
@@ -406,6 +404,11 @@ or file path may exist now."
 (add-hook 'prog-mode-hook #'visual-line-mode)
 (add-hook 'conf-mode-hook #'visual-line-mode)
 (add-hook 'text-mode-hook #'visual-line-mode)
+
+;; Show trailing whitespace in `prog-mode' and `conf-mode'
+(defun +show-trailing-whitespace-h () (setq show-trailing-whitespace t))
+(add-hook 'prog-mode-hook #'+show-trailing-whitespace-h)
+(add-hook 'conf-mode-hook #'+show-trailing-whitespace-h)
 
 ;; When MinEmacs is running in an asynchronous Org export context, there is no
 ;; need to enable these modes. So we load them only if we haven't been launched
