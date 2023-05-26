@@ -76,9 +76,9 @@
   :init
   (+map! "tF" #'focus-mode))
 
-(use-package all-the-icons-ibuffer
+(use-package nerd-icons-ibuffer
   :straight t
-  :hook (ibuffer-mode . all-the-icons-ibuffer-mode))
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 
 (provide 'me-ui)

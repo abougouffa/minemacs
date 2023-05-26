@@ -16,12 +16,12 @@ This is enacted by `+mu4e--main-action-str-prettier-a' and
 `+mu4e--main-keyval-str-prettier-a'.")
 
 (defvar +mu4e-header-colorized-faces
-  '(all-the-icons-green
-    all-the-icons-lblue
-    all-the-icons-purple-alt
-    all-the-icons-blue-alt
-    all-the-icons-purple
-    all-the-icons-yellow)
+  '(nerd-icons-green
+    nerd-icons-lblue
+    nerd-icons-purple-alt
+    nerd-icons-blue-alt
+    nerd-icons-purple
+    nerd-icons-yellow)
   "Faces to use when coloring folders and account stripes.")
 
 (defun +mu4e-colorize-str (str &optional unique herring)
@@ -119,13 +119,15 @@ will also be the width of all other printable characters."
       (car (window-text-pixel-size)))))
 
 (cl-defun +normalized-icon (name &key set color height v-adjust)
-  "Convert :icon declaration to icon"
-  (let* ((icon-set (intern (concat "all-the-icons-" (or set "material"))))
+  "Convert icon declaration to nerd icon with width normalized to space-width."
+  (let* ((set (or set "fa"))
+         (icon-set (intern (format "nerd-icons-%sicon" set)))
          (v-adjust (or v-adjust 0.02))
          (height (or height 0.8))
+         (name (format "nf-%s-%s" set name))
          (icon (if color
-                   (apply icon-set `(,name :face ,(intern (concat "all-the-icons-" color)) :height ,height :v-adjust ,v-adjust))
-                 (apply icon-set `(,name  :height ,height :v-adjust ,v-adjust))))
+                   (apply icon-set `(,name :face ,(intern (format "nerd-icons-%s" color)) :height ,height :v-adjust ,v-adjust))
+                 (apply icon-set `(,name :height ,height :v-adjust ,v-adjust))))
          (icon-width (+mu4e--get-string-width icon))
          (space-width (+mu4e--get-string-width " "))
          (space-factor (- 2.0 (/ (float icon-width) space-width))))
@@ -133,21 +135,6 @@ will also be the width of all other printable characters."
 
 (defun +mu4e--ui-setup ()
   (setq
-   mu4e-use-fancy-chars t
-   mu4e-headers-draft-mark      (cons "D" (+normalized-icon "edit"))
-   mu4e-headers-flagged-mark    (cons "F" (+normalized-icon "flag"))
-   mu4e-headers-new-mark        (cons "N" (+normalized-icon "file_download" :color "dred"))
-   mu4e-headers-passed-mark     (cons "P" (+normalized-icon "forward"))
-   mu4e-headers-replied-mark    (cons "R" (+normalized-icon "reply"))
-   mu4e-headers-seen-mark       (cons "S" "")
-   mu4e-headers-trashed-mark    (cons "T" (+normalized-icon "delete"))
-   mu4e-headers-attach-mark     (cons "a" (+normalized-icon "attach_file"))
-   mu4e-headers-encrypted-mark  (cons "x" (+normalized-icon "lock"))
-   mu4e-headers-signed-mark     (cons "s" (+normalized-icon "verified_user" :color "dpurple"))
-   mu4e-headers-unread-mark     (cons "u" (+normalized-icon "remove_red_eye" :color "dred"))
-   mu4e-headers-list-mark       (cons "l" (+normalized-icon "list"))
-   mu4e-headers-personal-mark   (cons "p" (+normalized-icon "person"))
-   mu4e-headers-calendar-mark   (cons "c" (+normalized-icon "date_range"))
    mu4e-headers-date-format "%d/%m/%y"
    mu4e-headers-time-format "%H:%M"
    mu4e-headers-thread-single-orphan-prefix '("─>" . "─▶")
@@ -162,71 +149,89 @@ will also be the width of all other printable characters."
                          (:from-or-to . 25)
                          (:subject-truncated)))
 
-  ;; Add a column to display what email account the email belongs to,
-  ;; and an account color stripe column
-  (defvar +mu4e-header--maildir-colors nil)
-  (setq
-   mu4e-header-info-custom
-   '((:account
-      . (:name "Account"
-         :shortname "Account"
-         :help "which account/maildir this email belongs to"
-         :function
-         (lambda (msg)
-           (let ((maildir (replace-regexp-in-string
-                           "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                           (mu4e-message-field msg :maildir))))
-            (+mu4e-colorize-str
-             (replace-regexp-in-string
-              "^gmail"
-              (propertize "g" 'face 'bold-italic)
-              maildir)
-             '+mu4e-header--maildir-colors
-             maildir)))))
-     (:subject-truncated
-      . (:name "Subject"
-         :shortname "Subject"
-         :help "Subject of the message"
-         :sortable t
-         :function
-         (lambda (msg)
-           (let ((prefix (mu4e~headers-thread-prefix (mu4e-message-field msg :meta))))
-            (concat
-             prefix
-             (truncate-string-to-width
-              ;; Some times, a newline/carriage return char slips in the
-              ;; subject and drives mu4e crazy! Let's fix it and truncate
-              ;; the string at 100 characters.
-              (replace-regexp-in-string
-               "[\n\r]" ""
-               (mu4e-message-field msg :subject))
-              (- 100 (length prefix)) nil nil t))))))
-     (:account-stripe
-      . (:name "Account"
-         :shortname "▐"
-         :help "Which account/maildir this email belongs to"
-         :function
-         (lambda (msg)
-           (let ((account
-                  (replace-regexp-in-string
-                   "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                   (mu4e-message-field msg :maildir))))
-            (propertize
-             (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
-             'help-echo account)))))
-     (:recipnum
-      . (:name "Number of recipients"
-         :shortname " ⭷"
-         :help "Number of recipients for this message"
-         :function
-         (lambda (msg)
-           (propertize (format "%2d"
-                        (+ (length (mu4e-message-field msg :to))
-                         (length (mu4e-message-field msg :cc))))
-            'face 'mu4e-footer-face))))))
-
   (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
-  (advice-add #'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
+  (advice-add #'mu4e--main-action :override #'+mu4e--main-action-prettier-a)
+
+  (with-eval-after-load 'nerd-icons
+    (setq
+     mu4e-use-fancy-chars t
+     mu4e-headers-draft-mark      (cons "D" (+normalized-icon 'edit))
+     mu4e-headers-flagged-mark    (cons "F" (+normalized-icon 'flag :set 'md))
+     mu4e-headers-new-mark        (cons "N" (+normalized-icon 'download :set 'oct :color 'dred))
+     mu4e-headers-passed-mark     (cons "P" (+normalized-icon 'mail_forward))
+     mu4e-headers-replied-mark    (cons "R" (+normalized-icon 'mail_reply))
+     mu4e-headers-seen-mark       (cons "S" "")
+     mu4e-headers-trashed-mark    (cons "T" (+normalized-icon 'trash_can_outline :set 'md))
+     mu4e-headers-attach-mark     (cons "a" (+normalized-icon 'attachment :set 'md))
+     mu4e-headers-encrypted-mark  (cons "x" (+normalized-icon 'lock))
+     mu4e-headers-signed-mark     (cons "s" (+normalized-icon 'verified :set 'oct :color 'dpurple))
+     mu4e-headers-unread-mark     (cons "u" (+normalized-icon 'unread :set 'oct :color 'dred))
+     mu4e-headers-list-mark       (cons "l" (+normalized-icon 'list_ul))
+     mu4e-headers-personal-mark   (cons "p" (+normalized-icon 'person :set 'oct))
+     mu4e-headers-calendar-mark   (cons "c" (+normalized-icon 'calendar :set 'md)))
+
+    ;; Add a column to display what email account the email belongs to,
+    ;; and an account color stripe column
+    (defvar +mu4e-header--maildir-colors nil)
+    (setq
+     mu4e-header-info-custom
+     '((:account
+        . (:name "Account"
+           :shortname "Account"
+           :help "which account/maildir this email belongs to"
+           :function
+           (lambda (msg)
+             (let ((maildir (replace-regexp-in-string
+                             "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                             (mu4e-message-field msg :maildir))))
+              (+mu4e-colorize-str
+               (replace-regexp-in-string
+                "^gmail"
+                (propertize "g" 'face 'bold-italic)
+                maildir)
+               '+mu4e-header--maildir-colors
+               maildir)))))
+       (:subject-truncated
+        . (:name "Subject"
+           :shortname "Subject"
+           :help "Subject of the message"
+           :sortable t
+           :function
+           (lambda (msg)
+             (let ((prefix (mu4e~headers-thread-prefix (mu4e-message-field msg :meta))))
+              (concat
+               prefix
+               (truncate-string-to-width
+                ;; Some times, a newline/carriage return char slips in the
+                ;; subject and drives mu4e crazy! Let's fix it and truncate
+                ;; the string at 100 characters.
+                (replace-regexp-in-string
+                 "[\n\r]" ""
+                 (mu4e-message-field msg :subject))
+                (- 100 (length prefix)) nil nil t))))))
+       (:account-stripe
+        . (:name "Account"
+           :shortname "▐"
+           :help "Which account/maildir this email belongs to"
+           :function
+           (lambda (msg)
+             (let ((account
+                    (replace-regexp-in-string
+                     "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                     (mu4e-message-field msg :maildir))))
+              (propertize
+               (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
+               'help-echo account)))))
+       (:recipnum
+        . (:name "Number of recipients"
+           :shortname " ⭷"
+           :help "Number of recipients for this message"
+           :function
+           (lambda (msg)
+             (propertize (format "%2d"
+                          (+ (length (mu4e-message-field msg :to))
+                           (length (mu4e-message-field msg :cc))))
+              'face 'mu4e-footer-face))))))))
 
 (defun +mu4e-ui-setup ()
   (if (display-graphic-p)

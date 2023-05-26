@@ -12,7 +12,7 @@
   :straight t
   :hook (minemacs-after-startup . dirvish-override-dired-mode)
   :custom
-  (dirvish-attributes '(subtree-state all-the-icons file-size vc-state git-msg))
+  (dirvish-attributes '(subtree-state nerd-icons file-size vc-state git-msg))
   (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
@@ -52,12 +52,12 @@
   :after treemacs evil
   :demand t)
 
-(use-package treemacs-all-the-icons
+(use-package treemacs-nerd-icons
   :straight t
-  :after treemacs all-the-icons
+  :after treemacs nerd-icons
   :demand t
   :config
-  (treemacs-load-theme "all-the-icons"))
+  (treemacs-load-theme "nerd-icons"))
 
 
 (provide 'me-files)

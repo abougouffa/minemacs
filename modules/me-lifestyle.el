@@ -17,7 +17,7 @@
   ;; calculation method, either by setting the right angles for Fajr and Isha,
   ;; or by using one of the predefined presets (see `awqat' for more
   ;; information).
-  (awqat-mode-line-format " 🕌 ${prayer} (${hours}h${minutes}m) ")
+  (awqat-mode-line-format (concat " " (nerd-icons-mdicon "nf-md-mosque") " ${prayer} (${hours}h${minutes}m) "))
   (awqat-update-interval 30.0))
 
 

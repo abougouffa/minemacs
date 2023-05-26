@@ -182,9 +182,9 @@
   :straight t
   :hook (minemacs-after-startup . marginalia-mode))
 
-(use-package all-the-icons-completion
+(use-package nerd-icons-completion
   :straight t
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
+  :hook (marginalia-mode . nerd-icons-completion-mode))
 
 (use-package orderless
   :straight t

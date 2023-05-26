@@ -40,13 +40,6 @@ Useful for keeping track of the enabled theme."
    "Disable previously enabled themes before enabling the new one."
    (mapc #'disable-theme custom-enabled-themes)))
 
-(use-package all-the-icons
-  :straight t
-  :config
-  ;; Show .m files as matlab/octave files
-  (setcdr (assoc "m" all-the-icons-extension-icon-alist)
-          (cdr (assoc "matlab" all-the-icons-extension-icon-alist))))
-
 (use-package nerd-icons
   :straight t
   :config

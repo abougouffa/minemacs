@@ -55,12 +55,12 @@
   (org-cite-activate-processor 'citar)
   (citar-symbol-separator "  ")
   :config
-  (with-eval-after-load 'all-the-icons
+  (with-eval-after-load 'nerd-icons
     (defun +citar--set-symbols ()
       (setq citar-symbols
-            `((file ,(all-the-icons-octicon "file-pdf" :face 'error) . " ")
-              (note ,(all-the-icons-octicon "file-text" :face 'warning) . " ")
-              (link ,(all-the-icons-octicon "link-external" :face 'org-link) . " "))))
+            `((file ,(nerd-icons-codicon "nf-cod-file_pdf" :face 'error) . " ")
+              (note ,(nerd-icons-faicon "nf-fa-file_text" :face 'warning) . " ")
+              (link ,(nerd-icons-mdicon "nf-md-link" :face 'org-link) . " "))))
 
     ;; Properly setup citar-symbols
     (if (display-graphic-p)
