@@ -17,9 +17,7 @@
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
   :init
   (+map! ":"  #'project-find-file)
-  (+map!
-    ;; project
-    :infix "p"
+  (+map! :infix "p" ;; project
     "w"  #'project-switch-project
     "c"  #'project-compile
     "d"  #'project-find-dir
@@ -53,9 +51,9 @@
 (use-package consult-project-extra
   :straight t
   :init
-  (+map!
-    "pp" #'consult-project-extra-find
-    "pP" #'consult-project-extra-find-other-window))
+  (+map! :infix "p" ;; project
+    "p" #'consult-project-extra-find
+    "P" #'consult-project-extra-find-other-window))
 
 (provide 'me-project)
 
