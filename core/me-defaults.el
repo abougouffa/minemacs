@@ -169,6 +169,11 @@
  tooltip-hide-delay 20
  ;; Use small frames to display tooltips instead of the default OS tooltips
  use-system-tooltips nil
+ ;; Animated images loop forever instead of playing the animation only once
+ image-animate-loop t
+ ;; Set line width for the divider in `window-divider-mode' to 2px
+ window-divider-default-bottom-width 2
+ window-divider-default-right-width 2
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
@@ -304,6 +309,8 @@
  indent-tabs-mode nil
  ;; Width for line numbers
  display-line-numbers-width 4
+ ;; Display absolute line numbers in narrowed regions
+ display-line-numbers-widen t
  ;; Small tab is enough!
  tab-width 2
  ;; Save buffer status
@@ -423,6 +430,9 @@ or file path may exist now."
 
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
   (winner-mode 1)
+
+  ;; Display divider between windows
+  (window-divider-mode 1)
 
   ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
   (if (>= emacs-major-version 29)
