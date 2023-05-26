@@ -21,6 +21,19 @@
 (use-package let-alist
   :straight (:type built-in))
 
+(use-package password-cache
+  :straight (:type built-in)
+  :custom
+  (password-cache t) ; Enable password caching
+  (password-cache-expiry 60)) ; One minute, default is 16
+
+(use-package auth-source
+  :straight (:type built-in)
+  :custom
+  (auth-sources '("~/.authinfo.gpg")) ; Default auth-sources to GPG
+  (auth-source-do-cache t) ; Enable caching, do not keep asking about GPG key
+  (auth-source-cache-expiry 86400)) ; All day, default is 2h (7200)
+
 
 (provide 'me-builtin)
 

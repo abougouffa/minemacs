@@ -136,18 +136,6 @@
  ;; Kill the shell buffer after exit
  shell-kill-buffer-on-exit t
 
- ;; ====== Passwords and encryption ======
- ;; Enable password caching
- password-cache t
- ;; One minute, default is 16
- password-cache-expiry 60
- ;; Default auth-sources to GPG
- auth-sources '("~/.authinfo.gpg")
- ;; Enable caching, do not keep asking about GPG key
- auth-source-do-cache t
- ;; All day, default is 2h (7200)
- auth-source-cache-expiry 86400
-
  ;; ====== Performances ======
  ;; Don’t compact font caches during GC
  inhibit-compacting-font-caches t
