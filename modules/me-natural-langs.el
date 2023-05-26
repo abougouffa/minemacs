@@ -173,7 +173,7 @@
     "l" #'lexic-search-word-at-point
     "L" #'lexic-search)
   :config
-  (+map-local! :keymaps 'lexic-mode-map
+  (+nvmap! :keymaps 'lexic-mode-map
     "q" #'lexic-return-from-lexic
     "RET" #'lexic-search-word-at-point
     "a" #'outline-show-all
