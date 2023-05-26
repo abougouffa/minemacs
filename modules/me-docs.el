@@ -22,7 +22,7 @@
   (pdf-view-image-relief 2)
   (pdf-view-use-scaling t)
   :init
-  (+register-build-function #'pdf-tools-install))
+  (+register-build-function! pdf-tools-install))
 
 (use-package nov
   :straight t

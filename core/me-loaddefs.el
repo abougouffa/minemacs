@@ -409,7 +409,13 @@ Load environment variables from the file saved in
 Add ROOTS to ignored projects, recentf, etc.
 
 (fn &rest ROOTS)")
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num"))
+(autoload '+register-build-function! "../elisp/+minemacs" "\
+Register build function FN to be called at the end of `minemacs-update'.
+
+(fn FN)" nil t)
+(autoload 'minemacs-update "../elisp/+minemacs" "\
+Update MinEmacs packages." t)
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "minemacs--build-functions"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el
@@ -563,11 +569,6 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "me-backports-29" '("loaddefs-generate" "messages-buffer-name" "native-compile-prune-cache" "scratch-buffer" "setopt" "with-memoization"))
 
 
-;;; Generated autoloads from me-bootstrap.el
-
-(register-definition-prefixes "me-bootstrap" '("+register-build-function" "minemacs-"))
-
-
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
@@ -585,7 +586,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 ;;; Generated autoloads from me-defaults.el
 
-(register-definition-prefixes "me-defaults" '("+whitespace-auto-cleanup-modes"))
+(register-definition-prefixes "me-defaults" '("+show-trailing-whitespace-h" "+whitespace-auto-cleanup-modes"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el

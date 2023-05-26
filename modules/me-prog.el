@@ -25,7 +25,7 @@
     :custom
     (treesit-auto-install 'prompt)
     :init
-    (+register-build-function #'treesit-auto-install-all)
+    (+register-build-function! treesit-auto-install-all)
     :config
     ;; Install all languages when calling `treesit-auto-install-all'
     (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))))

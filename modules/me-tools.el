@@ -35,7 +35,7 @@
    `(" \\*Install vterm\\*"
      (display-buffer-no-window)
      (allow-no-window . t)))
-  (+register-build-function #'vterm-module-compile)
+  (+register-build-function! vterm-module-compile)
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
