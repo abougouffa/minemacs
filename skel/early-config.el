@@ -8,6 +8,9 @@
 (unless minemacs-verbose
   (setq minemacs-msg-level 2))
 
+;; Disable `dashboard'
+;; (setq +dashboard-disable t)
+
 ;; Enable full screen at startup
 ;; (if-let ((fullscreen (assq 'fullscreen default-frame-alist)))
 ;;     (setcdr fullscreen 'fullboth)
