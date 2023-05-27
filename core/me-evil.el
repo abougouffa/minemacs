@@ -12,7 +12,9 @@
   :straight t
   :hook (minemacs-after-startup . evil-mode)
   :preface
-  (setq evil-want-keybinding nil)
+  ;; Needed by `evil-collection'
+  (setq evil-want-keybinding nil
+        evil-want-integration t)
   :custom
   (evil-want-C-i-jump nil)
   (evil-want-fine-undo t)
@@ -90,7 +92,9 @@
   :straight t
   :commands evilnc-comment-operator
   :init
-  (+nvmap! "gc" #'evilnc-comment-operator))
+  (+nvmap!
+    "gc" #'evilnc-comment-operator
+    "gC" #'evilnc-copy-and-comment-operator))
 
 (use-package evil-escape
   :straight t
