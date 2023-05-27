@@ -15,8 +15,8 @@
  ;; This will be overwritten when `gcmh-mode' (a.k.a. the Garbage Collector
  ;; Magic Hack) gets loaded in the `me-gc' module (see "init.el").
  gc-cons-threshold most-positive-fixnum
- ;; Do not wast time checking the modification time of each file
- load-prefer-newer noninteractive
+ ;; Prefer loading newer files
+ load-prefer-newer t
  ;; Remove some unneeded UI elements
  default-frame-alist '((tool-bar-lines . 0)
                        (menu-bar-lines . 0)
