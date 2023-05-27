@@ -144,7 +144,7 @@
     "wU"  #'winner-redo
 
     ;; ====== Applications (Open) ======
-    "o"   '(nil   :wk "app/open")
+    "o"   '(nil :wk "app/open")
     "o-"  '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
     "oa"  #'org-agenda
     "oe"  #'eshell
