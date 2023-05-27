@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(defcustom +mpv-command (executable-find "mpv")
+(defcustom +mpv-command "mpv"
   "The MPV command."
   :group 'minemacs-utils)
 
