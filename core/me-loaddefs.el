@@ -647,10 +647,11 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 (autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
 Correct spelling of word at point." t)
-(autoload '+spell-fu-register-dictionaries "../modules/extras/me-spell-fu" "\
+(autoload '+spell-fu-register-dictionaries! "../modules/extras/me-spell-fu" "\
 Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 (fn &rest LANGS)" nil t)
+(define-obsolete-function-alias '+spell-fu-register-dictionaries '+spell-fu-register-dictionaries! "2023-05-27")
 (register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--"))
 
 

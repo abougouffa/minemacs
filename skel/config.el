@@ -40,9 +40,9 @@
 
 ;; Module: `me-natural-langs' -- Package: `spell-fu'
 (with-eval-after-load 'spell-fu
-  ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries'
+  ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
   ;; to enable multi-language spell checking.
-  (+spell-fu-register-dictionaries "en" "fr"))
+  (+spell-fu-register-dictionaries! "en" "fr"))
 
 ;; Module: `me-rss' -- Package: `elfeed'
 (with-eval-after-load 'elfeed

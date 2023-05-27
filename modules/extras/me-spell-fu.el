@@ -114,13 +114,16 @@
     (spell-fu-dictionary-add (spell-fu-get-personal-dictionary (format "%s-personal" lang) personal-dict-file))))
 
 ;;;###autoload
-(defmacro +spell-fu-register-dictionaries (&rest langs)
+(defmacro +spell-fu-register-dictionaries! (&rest langs)
   "Register dictionaries for `LANGS` to spell-fu's multi-dict."
   (let* ((fn-name (intern (format "+spell-fu--multi-langs-%s-h" (string-join langs "-"))))
          (closure `(defun ,fn-name ())))
     (dolist (lang langs)
       (add-to-list 'closure `(+spell-fu--add-dictionary ,lang) t))
     (append '(add-hook (quote spell-fu-mode-hook)) (list closure))))
+
+;;;###autoload
+(define-obsolete-function-alias '+spell-fu-register-dictionaries '+spell-fu-register-dictionaries! "2023-05-27")
 
 
 (provide 'me-spell-fu)
