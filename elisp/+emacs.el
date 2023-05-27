@@ -94,44 +94,39 @@ Applicable only when calling `+screenshot-svg' with a prefix."
 
 ;; Inspired by: reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y
 ;;;###autoload
-(defun +screenshot-svg ()
+(defun +screenshot-svg (outfile)
   "Save a screenshot of the current frame as an SVG image.
 Saves to a temp file and puts the filename in the kill ring. If launched with a
 prefix or universal argument, it waits for a moment (defined by
 `+screenshot-delay') before taking the screenshot."
-  (interactive)
-  (if current-prefix-arg
-      (run-with-timer +screenshot-delay nil #'+screenshot-svg--take-screenshot)
-    (+screenshot-svg--take-screenshot)))
+  (interactive "FSave to file: ")
+  (let ((outfile (file-name-with-extension outfile "svg")))
+    (if current-prefix-arg
+        (run-with-timer +screenshot-delay nil (apply-partially #'+screenshot-svg--take-screenshot outfile))
+      (+screenshot-svg--take-screenshot outfile))))
 
-(defun +screenshot-svg--take-screenshot ()
-  (let* ((filename (make-temp-file "emacs-" nil ".svg"))
+(defun +screenshot-svg--take-screenshot (&optional outfile)
+  (let* ((tmp-file (make-temp-file "emacs-" nil ".svg"))
          (data (x-export-frames nil 'svg)))
-    (with-temp-file filename (insert data))
-    (kill-new filename)
-    (message "Screenshot saved to %s" filename)))
+    (with-temp-file tmp-file (insert data))
+    (when (stringp outfile) (copy-file tmp-file outfile))
+    (message "Screenshot saved to %s" (or outfile tmp-file))))
 
 ;;;###autoload
 (defun +region-or-thing-at-point ()
   "Return the region or the thing at point."
-  (when-let* ((thing (or
-                      (prog1 (thing-at-point 'region t)
-                        (deactivate-mark))
-                      (thing-at-point 'symbol t)
-                      (thing-at-point 'email t)
-                      (thing-at-point 'number t)
-                      (thing-at-point 'string t)
-                      (thing-at-point 'word t))))
-    (if (length> (string-lines thing) 1)
-        ;; If the matching thing has multi-lines, use the first one
-        (car (string-lines thing))
-      thing)))
+  (when-let ((thing (or (prog1 (thing-at-point 'region t)
+                          (deactivate-mark))
+                        (cl-some (+apply-partially-right #'thing-at-point t)
+                                 '(symbol email number string word)))))
+    ;; If the matching thing has multi-lines, join them
+    (string-join (string-lines thing))))
 
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)
   (let ((input (read-string (concat prompt ": ") +webjump-read-string-initial-query)))
-    (if (webjump-null-or-blank-string-p input) nil input)))
+    (unless (webjump-null-or-blank-string-p input) input)))
 
 ;;;###autoload
 (defun +webjump ()
