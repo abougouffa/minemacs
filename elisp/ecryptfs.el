@@ -29,37 +29,42 @@
   :group 'minemacs-ecryptfs
   :type 'directory)
 
-(defvar ecryptfs-wrapping-independent-p (file-exists-p (concat ecryptfs-root-dir "wrapping-independent")))
-
-(defvar ecryptfs-wrapped-passphrase-file (concat ecryptfs-root-dir "wrapped-passphrase"))
-
-(defvar ecryptfs-mount-passphrase-sig-file (concat ecryptfs-root-dir ecryptfs-private-dir-name ".sig"))
-
-(defvar ecryptfs-buffer-name "*emacs-ecryptfs*")
-
+(defvar ecryptfs-buffer-name " *emacs-ecryptfs*")
 (defvar ecryptfs-process-name "emacs-ecryptfs")
-
 (defvar ecryptfs--mount-private-cmd "/sbin/mount.ecryptfs_private")
-
 (defvar ecryptfs--umount-private-cmd "/sbin/umount.ecryptfs_private")
 
-(defvar ecryptfs--passphrase
-  (lambda ()
-    (string-trim-right
-     (epg-decrypt-file
-      (epg-make-context)
-      (expand-file-name (concat ecryptfs-root-dir "my-pass.gpg"))
-      nil))))
+(defun ecryptfs--wrapped-passphrase-file ()
+  (concat ecryptfs-root-dir "wrapped-passphrase"))
 
-(defvar ecryptfs-encrypt-filenames-p
-  (not (eq 1 (with-temp-buffer
-               (insert-file-contents ecryptfs-mount-passphrase-sig-file)
-               (count-lines (point-min) (point-max))))))
+(defun ecryptfs--mount-passphrase-sig-file ()
+  (concat ecryptfs-root-dir ecryptfs-private-dir-name ".sig"))
 
-(defvar ecryptfs--command-format
-  (if ecryptfs-encrypt-filenames-p
-      "ecryptfs-insert-wrapped-passphrase-into-keyring %s '%s'"
-    "ecryptfs-unwrap-passphrase %s '%s' | ecryptfs-add-passphrase -"))
+(defun ecryptfs--passphrase ()
+  (string-trim-right
+   (epg-decrypt-file
+    (epg-make-context)
+    (expand-file-name (concat ecryptfs-root-dir "my-pass.gpg"))
+    nil)))
+
+(defun ecryptfs--encrypt-filenames-p ()
+  (/= 1 (with-temp-buffer
+          (insert-file-contents (ecryptfs--mount-passphrase-sig-file))
+          (count-lines (point-min) (point-max)))))
+
+(defun ecryptfs-available-p ()
+  (and (file-directory-p (expand-file-name ecryptfs-private-dir-name "~"))
+       (cl-every #'file-exists-p (list ecryptfs--mount-private-cmd
+                                       ecryptfs--umount-private-cmd
+                                       (ecryptfs--wrapped-passphrase-file)
+                                       (ecryptfs--mount-passphrase-sig-file)))))
+
+(defun ecryptfs--unwrap-passphrase-command ()
+  (format
+   (if (ecryptfs--encrypt-filenames-p)
+       "ecryptfs-insert-wrapped-passphrase-into-keyring %s '%s'"
+     "ecryptfs-unwrap-passphrase %s '%s' | ecryptfs-add-passphrase -")
+   (ecryptfs--wrapped-passphrase-file) (ecryptfs--passphrase)))
 
 (defun ecryptfs-private-mounted-p ()
   (let ((mount (shell-command-to-string "mount")))
@@ -78,25 +83,18 @@
 (defun ecryptfs-mount-private ()
   "Mount eCryptfs' private directory."
   (interactive)
-  (if (not (and (file-exists-p ecryptfs-wrapped-passphrase-file)
-                (file-exists-p ecryptfs-mount-passphrase-sig-file)))
+  (if (not (and (file-exists-p (ecryptfs--wrapped-passphrase-file))
+                (file-exists-p (ecryptfs--mount-passphrase-sig-file))))
       (user-error "Encrypted private directory \"%s\" is not setup properly."
                   ecryptfs-private-dir-name)
     (let ((try-again t))
-      (message "Encrypted filenames mode [%s]" (if ecryptfs-encrypt-filenames-p "✓" "⨯"))
+      (message "Encrypted filenames mode [%s]" (if (ecryptfs--encrypt-filenames-p) "ON" "OFF"))
       (while (and ;; In the first iteration, we try to silently mount the ecryptfs private directory,
               ;; this would succeed if the key is available in the keyring.
-              (and (shell-command ecryptfs--mount-private-cmd
-                                  ecryptfs-buffer-name)
-                   (message "Successfully mounted private directory."))
-              try-again)
-        (setq try-again nil)
-        (if (zerop
-             (shell-command
-              (format ecryptfs--command-format
-                      ecryptfs-wrapped-passphrase-file
-                      (funcall ecryptfs--passphrase))
-              ecryptfs-buffer-name))
+              (prog1 (not (zerop (shell-command ecryptfs--mount-private-cmd ecryptfs-buffer-name)))
+                (message "Successfully mounted private directory."))
+              (prog1 try-again (setq try-again nil)))
+        (if (zerop (shell-command (ecryptfs--unwrap-passphrase-command) ecryptfs-buffer-name))
             (message "Successfully mounted private directory.")
           (user-error "A problem occured while mounting the private directory, see %s"
                       ecryptfs-buffer-name))))))
@@ -105,8 +103,7 @@
 (defun ecryptfs-umount-private ()
   "Unmount eCryptfs' private directory."
   (interactive)
-  (if (zerop (shell-command ecryptfs--umount-private-cmd
-                            ecryptfs-buffer-name))
+  (if (zerop (shell-command ecryptfs--umount-private-cmd ecryptfs-buffer-name))
       (message "Unmounted private directory successfully.")
     (user-error "Cannot unmount the private directory, seems to be already unmounted.")))
 
