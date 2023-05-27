@@ -2,6 +2,86 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.4.0 - 2023-05-27
+#### Bug Fixes
+- **(citar)** avoid using `all-the-icons` until it is loaded - (960d978) - Abdelhak Bougouffa
+- **(code-review)** use fixed fork, unpin closql & forge - (79423c5) - Abdelhak Bougouffa
+- **(elfeed)** correct key for +elfeed-download-image - (4b69a74) - DarkBuffalo
+- **(flymake)** use custom icons only when suitable - (1e84c48) - Abdelhak Bougouffa
+- **(ltex)** use ltex-ls as TCP server, add helpers - (fe290c2) - Abdelhak Bougouffa
+#### Documentation
+- **(backports)** update function documentation - (c5ab9fe) - Abdelhak Bougouffa
+- **(skel)** update comment - (125d82a) - Abdelhak Bougouffa
+#### Features
+- **(editor)** add header2 support - (0017976) - Abdelhak Bougouffa
+- **(elfeed)** add yt-dlp support - (8b8e611) - DarkBuffalo
+#### Nitpicks, changes with no side effect
+- **(defaults)** add an optional argument - (a02e5cc) - Abdelhak Bougouffa
+- **(defaults)** minor edit - (6fc983d) - Abdelhak Bougouffa
+- **(evil-collection)** cleanup previous fix - (21ddd4d) - Abdelhak Bougouffa
+- **(project)** code formatting - (3827863) - Abdelhak Bougouffa
+#### Refactoring
+- **(backports)** precise condition - (22a09fa) - Abdelhak Bougouffa
+- **(core)** minor edit - (a0861ff) - Abdelhak Bougouffa
+- **(ecryptfs)** partial rewrite - (e1e4034) - Abdelhak Bougouffa
+- move pcache directory customization to me-defaults - (f10b3cc) - Abdelhak Bougouffa
+#### Revert
+- **(ltex)** remove server commands - (f02b0a7) - Abdelhak Bougouffa
+#### Tweaks
+- **(bootstrap)** call build functions interactively - (63b92d4) - Abdelhak Bougouffa
+- **(bootstrap)** minor refactor - (cefcdac) - Abdelhak Bougouffa
+- **(bootstrap)** do not ask when running build functions - (3d390ea) - Abdelhak Bougouffa
+- **(bootstrap)** run build functions on update - (940fdaa) - Abdelhak Bougouffa
+- **(clang-format)** add ts modes - (e317bbf) - Abdelhak Bougouffa
+- **(compile)** move compilation options to `me-prog` - (f949b46) - Abdelhak Bougouffa
+- **(core)** move package updating routines - (5bbfe68) - Abdelhak Bougouffa
+- **(core)** update loaddefs - (71eb596) - Abdelhak Bougouffa
+- **(dashboard)** add an option to disable it - (ee30640) - Abdelhak Bougouffa
+- **(defaults)** set variables with `setopt` - (75fbb43) - Abdelhak Bougouffa
+- **(defaults)** better scrolling settings - (f1b4639) - Abdelhak Bougouffa
+- **(defaults)** more UI customization - (d7e7f98) - Abdelhak Bougouffa
+- **(defaults)** move `password` and `auth-source` to `me-builtin` - (dc3a0da) - Abdelhak Bougouffa
+- **(defaults)** correctly set `show-trailing-whitespace` - (997f6b2) - Abdelhak Bougouffa
+- **(defaults)** set additional paths - (9e8c7b9) - Abdelhak Bougouffa
+- **(eaf)** disable pdf-viewer - (c35356b) - Abdelhak Bougouffa
+- **(early-init)** prefer loading newer Elisp files - (9bdf851) - Abdelhak Bougouffa
+- **(eglot)** do not assume servers to be executable - (51dd7b8) - Abdelhak Bougouffa
+- **(elfeed)** Enhance customizability - (d2f124a) - Abdelhak Bougouffa
+- **(highlight-numbers)** enable for `conf-mode`, tweak regexp - (849dba3) - Abdelhak Bougouffa
+- **(init)** use `lisp-interaction-mode` for scratch - (5f755e4) - Abdelhak Bougouffa
+- **(io)** code refactoring - (c5ef698) - Abdelhak Bougouffa
+- **(lexic)** fix local keybindigs - (ab56fb4) - Abdelhak Bougouffa
+- **(ltex)** add `tex-mode` - (0e344a8) - Abdelhak Bougouffa
+- **(ltex)** minor edits, add documentation - (8e0421c) - Abdelhak Bougouffa
+- **(ltex)** use Eglot's server/port syntax - (faec1c5) - Abdelhak Bougouffa
+- **(ltex-ls)** additional languages - (ea19fa6) - Abdelhak Bougouffa
+- **(macrostep)** remove unneeded hack (fixed upstream) - (0f0b5ef) - Abdelhak Bougouffa
+- **(macrostep)** use upstream repo, apply a hack - (c048d3c) - Abdelhak Bougouffa
+- **(media)** automatically open Youtube links in MPV - (1fcc323) - Abdelhak Bougouffa
+- **(mu4e)** use `nerd-icons` - (5407ab5) - Abdelhak Bougouffa
+- **(nerd-icons)** set an icon for matlab/octave files - (972d3a4) - Abdelhak Bougouffa
+- **(realgud)** add local binding for treesit modes - (51d8078) - Abdelhak Bougouffa
+- **(realgud)** minor tweaks and fixes - (8365877) - Abdelhak Bougouffa
+- **(realgud)** define commands - (920ab8d) - Abdelhak Bougouffa
+- **(realgud-lldb)** remove unneeded autoload - (689a1da) - Abdelhak Bougouffa
+- **(skel)** update the skeleton's modules list - (1e86106) - Abdelhak Bougouffa
+- **(tempel)** bind TAB and S-TAB to next/previous - (dff6996) - Abdelhak Bougouffa
+- **(ui)** remove unused themes - (d8f4e3b) - Abdelhak Bougouffa
+- **(ui)** add `nerd-icons` explicitly - (33e3ffe) - Abdelhak Bougouffa
+- **(xclip)** remove useless `+xclip--enable-in-tty-h` - (0481b8e) - Abdelhak Bougouffa
+- bump packages versions - (69e9235) - Abdelhak Bougouffa
+- use `nerd-icons` instead of `all-the-icons` - (403a3a1) - Abdelhak Bougouffa
+- bump packages versions - (6525e40) - Abdelhak Bougouffa
+- bump packages versions - (8b90843) - Abdelhak Bougouffa
+- bump packages versions - (272bb17) - Abdelhak Bougouffa
+- bump packages versions - (bffed94) - Abdelhak Bougouffa
+- bump packages versions - (53caf4d) - Abdelhak Bougouffa
+- bump packages versions - (c89d5cc) - Abdelhak Bougouffa
+- bump packages versions - (693efa0) - Abdelhak Bougouffa
+- register package-specific build functions - (ef635c4) - Abdelhak Bougouffa
+
+- - -
+
 ## v0.3.0 - 2023-05-03
 #### Bug Fixes
 - **(aphelia)** adapt to the new upstream changes - (06f7776) - Abdelhak Bougouffa
