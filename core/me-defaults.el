@@ -225,8 +225,18 @@
  scroll-conservatively 101
  ;; Scroll at a margin of one line
  scroll-margin 1
+ ;; The number of lines to scroll
+ scroll-step 1
+ ;; Columns from the window edge point allowed before horizontal scroll
+ hscroll-margin 2
+ ;; The number of columns to scroll
+ hscroll-step 1
  ;; Better scrolling on Emacs29+, specially on a touchpad
  pixel-scroll-precision-use-momentum t
+ ;; Make mouse scroll a little faster
+ mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale))
+ ;; Make mouse scroll a little faster horizontally
+ mouse-wheel-scroll-amount-horizontal 2
 
  ;; ====== Recent files ======
  ;; Increase the maximum number of saved items
