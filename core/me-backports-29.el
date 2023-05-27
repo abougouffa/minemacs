@@ -90,7 +90,9 @@ If the buffer doesn't exist, create it first."
   "Set VARIABLE/VALUE pairs, and return the final VALUE.
 This is like `setq', but is meant for user options instead of
 plain variables.  This means that `setopt' will execute any
-`custom-set' form associated with VARIABLE."
+`custom-set' form associated with VARIABLE.
+
+\(fn [VARIABLE VALUE]...)"
   (declare (debug setq))
   (unless (zerop (mod (length pairs) 2))
     (error "PAIRS must have an even number of variable/value members"))
