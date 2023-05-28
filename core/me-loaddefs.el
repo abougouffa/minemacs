@@ -116,7 +116,9 @@ Get the font faces at POS.
 Save a screenshot of the current frame as an SVG image.
 Saves to a temp file and puts the filename in the kill ring. If launched with a
 prefix or universal argument, it waits for a moment (defined by
-`+screenshot-delay') before taking the screenshot." t)
+`+screenshot-delay') before taking the screenshot.
+
+(fn OUTFILE)" t)
 (autoload '+region-or-thing-at-point "../elisp/+emacs" "\
 Return the region or the thing at point.")
 (autoload '+webjump "../elisp/+emacs" "\
@@ -591,6 +593,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
+(put 'eglot-ltex-language 'safe-local-variable 'stringp)
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 

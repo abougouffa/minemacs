@@ -36,6 +36,7 @@
   :group 'minemacs)
 
 (defvar-local eglot-ltex-language "auto")
+;;;###autoload(put 'eglot-ltex-language 'safe-local-variable 'stringp)
 
 (defcustom eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/")
   "Path to save user rules."
