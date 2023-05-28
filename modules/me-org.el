@@ -317,6 +317,9 @@
   :config
   (evil-org-agenda-set-keys))
 
+(use-package org-sticky-header
+  :straight t
+  :hook (org-mode . org-sticky-header-mode))
 
 (provide 'me-org)
 

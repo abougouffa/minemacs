@@ -372,6 +372,10 @@ the children of class at point."
   :hook (ebnf-mode . display-line-numbers-mode)
   :mode "\\.ebnf\\'")
 
+(use-package topsy
+  :straight (:host github :repo "alphapapa/topsy.el")
+  :hook (prog-mode . topsy-mode)
+  (magit-section-mode . topsy-mode))
 
 (provide 'me-prog)
 
