@@ -218,6 +218,10 @@ value of `+html2pdf-default-backend' is used."
                      "--pdf-engine=context"
                      "--variable" "fontsize=10pt"
                      "--variable" "linkstyle=slanted"
+                     "-o" outfile infile))
+              ('pandoc
+               (list "pandoc"
+                     "--defaults" (expand-file-name "templates/pandoc.yaml" minemacs-assets-dir)
                      "-o" outfile infile)))))
       (apply #'call-process (append (list (car backend-command) nil nil nil) (cdr backend-command)))
     (user-error "Backend \"%s\" not available." backend)))
