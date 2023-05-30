@@ -44,7 +44,7 @@
 (use-package org-roam-ui
   :straight t
   :init
-  (+map! "nR" #'org-roam-ui-open))
+  (+map! "nu" #'org-roam-ui-open))
 
 (use-package consult-org-roam
   :straight t
