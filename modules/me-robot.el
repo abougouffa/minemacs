@@ -12,17 +12,20 @@
   "MinEmacs robotics stuff."
   :group 'minemacs)
 
-(defcustom +ros-mcap-command (or (executable-find "mcap") (executable-find "mcap-cli"))
+(defcustom +ros-mcap-command "mcap-cli"
   "ROS 2 MCAP command."
-  :group 'minemacs-robot)
+  :group 'minemacs-robot
+  :type '(choice file string))
 
-(defcustom +ros-rosbag-command (executable-find "rosbag")
+(defcustom +ros-rosbag-command "rosbag"
   "ROS 1 \"rosbag\" command."
-  :group 'minemacs-robot)
+  :group 'minemacs-robot
+  :type '(choice file string))
 
-(defcustom +ros-ros2-command (executable-find "ros2")
+(defcustom +ros-ros2-command "ros2"
   "ROS 2 \"ros2\" command."
-  :group 'minemacs-robot)
+  :group 'minemacs-robot
+  :type '(choice file string))
 
 (dolist (ext-mode '(("\\.rviz\\'"   . conf-unix-mode)
                     ("\\.urdf\\'"   . xml-mode)
@@ -33,7 +36,8 @@
                     ("\\.action\\'" . gdb-script-mode)))
   (add-to-list 'auto-mode-alist ext-mode))
 
-(+deferred-when! (or +ros-mcap-command +ros-rosbag-command +ros-ros2-command)
+(+deferred-when! (cl-some (lambda (cmd) (and cmd (executable-find cmd)))
+                          (list +ros-mcap-command +ros-rosbag-command +ros-ros2-command))
   ;; A mode to display info from ROS bag files (via MCAP)
   (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
     "Major mode for viewing ROS/ROS2 bag files."

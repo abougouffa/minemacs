@@ -26,7 +26,7 @@
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."
     :group 'minemacs-elfeed)
-  (defcustom +yt-dlp-command (executable-find "yt-dlp")
+  (defcustom +yt-dlp-command "yt-dlp"
     "The \"yt-dlp\" command."
     :group 'minemacs-tools)
   :custom

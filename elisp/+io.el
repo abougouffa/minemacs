@@ -267,13 +267,13 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
          "An error occurred, cannot create the PDF!")))))
 
 ;;;###autoload
-(defcustom +single-file-executable (executable-find "single-file")
+(defcustom +single-file-executable "single-file"
   "The executable for \"single-file\" which is used archive HTML pages.")
 
 ;;;###autoload
 (defun +single-file (url out-file)
   "Save URL into OUT-FILE as a standalone HTML file."
-  (if (and +single-file-executable (executable-find +single-file-executable))
+  (if (executable-find +single-file-executable)
       (make-process
        :name "single-file-cli"
        :buffer "*single-file*"

@@ -12,10 +12,10 @@
   "MinEmacs binary files."
   :group 'minemacs)
 
-(defcustom +binary-objdump-executable (executable-find "objdump")
-  "Path to the executable \"objdump\" utility."
+(defcustom +binary-objdump-executable "objdump"
+  "The \"objdump\" command."
   :group 'minemacs-binary
-  :type 'string)
+  :type '(choice file string))
 
 (defcustom +binary-objdump-enable t
   "Enable or disable disassembling suitable files with objdump."
@@ -34,6 +34,7 @@
        (when-let* ((file (buffer-file-name (or buffer (current-buffer))))
                    (file (file-truename file)))
          (and +binary-objdump-executable
+              (executable-find +binary-objdump-executable)
               (file-exists-p file)
               (not (file-directory-p file))
               (not (zerop (file-attribute-size (file-attributes file))))
