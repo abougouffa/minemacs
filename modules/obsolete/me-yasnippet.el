@@ -24,7 +24,6 @@
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
   :config
   ;; To avoid auto-expanding snippets
-  ;; TODO: Make "RET" expand the snippet
   (plist-put cape-yasnippet--properties :exit-function #'always)
   (defun +cape-yasnippet--setup-h ()
     (when (bound-and-true-p yas-minor-mode)

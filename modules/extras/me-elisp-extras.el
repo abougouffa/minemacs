@@ -13,8 +13,8 @@
 ;; Extracted from: github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
 (defun +emacs-lisp--highlight-vars-and-faces (end)
   "Match defined variables and functions.
-Functions are differentiated into special forms, built-in functions and
-library/userland functions"
+Functions are differentiated into \"special forms\", \"built-in functions\" and
+\"library/userland functions\"."
   (catch 'matcher
     (while (re-search-forward "\\(?:\\sw\\|\\s_\\)+" end t)
       (let ((ppss (save-excursion (syntax-ppss))))

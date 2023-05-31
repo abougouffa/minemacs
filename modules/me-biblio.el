@@ -81,6 +81,7 @@
   :config
   ;; Modified form: jethrokuan.github.io/org-roam-guide/
   (defun +org-roam-node-from-cite (entry-key)
+    "Create an Org-Roam node from a bibliography reference."
     (interactive (list (citar-select-ref)))
     (let ((title (citar-format--entry
                   "${author editor} (${date urldate}) :: ${title}"

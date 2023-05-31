@@ -48,7 +48,7 @@
         me-tty           ; Emacs from terminal (xt-mouse, xclip, ...)
         me-fun           ; Games and funny packages (xkcd, speed-type, ...)
         me-media         ; Multimedia (empv, emms, ...)
-        ;; me-workspaces ; Workspace separation (tabspaces, tab-bar, ...). NOTE: This is a WIP
+        ;; me-workspaces ; Workspace separation (tabspaces, tab-bar, ...)
         me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
         me-window))      ; Frame & window tweaks
 

@@ -96,7 +96,7 @@ So, to resolve this issue, you can either:
   (setq org-export-async-init-file nil))
 #+end_src
 
-*** The ="Odd length text property list"= error
+*** The =Odd length text property list= error
 For some reason, exporting Org documents in background can fail with this error:
 
 #+begin_src emacs-lisp
