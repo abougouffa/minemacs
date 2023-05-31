@@ -92,9 +92,8 @@ Returns either nil, or the position of the first null byte."
   "If `hexl-mode' is not already active, and the current buffer
 is binary, activate `hexl-mode'."
   (interactive)
-  (unless (eq major-mode 'hexl-mode)
-    (when (+binary-hexl-buffer-p)
-      (hexl-mode))))
+  (when (and (not (eq major-mode 'hexl-mode)) (+binary-hexl-buffer-p))
+    (hexl-mode 1)))
 
 ;;;###autoload
 (defun +binary-setup-modes ()
