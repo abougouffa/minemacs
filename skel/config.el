@@ -113,9 +113,12 @@
            "projects.org"))))
 
 ;; Module: `me-notes' -- Package: `org-roam'
+;; For better integration with other packages (like `citar-org-roam'), it is
+;; recommended to set the `org-roam-directory' before loading the package.
+(setq org-roam-directory "~/Org/slip-box/")
+
 (with-eval-after-load 'org-roam
-  (setq org-roam-directory (concat org-directory "slip-box/")
-        org-roam-db-location (concat org-roam-directory "org-roam.db"))
+  (setq org-roam-db-location (concat org-roam-directory "org-roam.db"))
 
   ;; Register capture template (via Org-Protocol)
   ;; Add this as bookmarklet in your browser
