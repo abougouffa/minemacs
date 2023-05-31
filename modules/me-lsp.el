@@ -145,14 +145,14 @@
   :demand t
   :custom
   (dap-cpptools-extension-version
-   (+github-latest-release "microsoft" "vscode-cpptools" "1.14.4")))
+   (+github-latest-release "microsoft" "vscode-cpptools" "1.15.4")))
 
 (use-package dap-codelldb
   :after dap-mode
   :demand t
   :custom
   (dap-codelldb-extension-version
-   (+github-latest-release "vadimcn" "codelldb" "1.9.0")))
+   (+github-latest-release "vadimcn" "codelldb" "1.9.2")))
 
 (use-package dap-python
   :after dap-mode
