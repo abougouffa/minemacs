@@ -12,7 +12,9 @@
 (+deferred!
  ;; BUG: Loading continuously on `dirvish'.
  ;; BUG: Showing up randomly on `tramp' files.
- (setq +binary-objdump-enable nil)
+ ;; BUG: GPG files are opened in `hexl-mode' in some contexts (#67).
+ (setq +binary-objdump-enable nil
+       +binary-hexl-enable nil)
  (+binary-setup-modes))
 
 
