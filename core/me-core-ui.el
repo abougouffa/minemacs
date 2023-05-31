@@ -72,7 +72,7 @@ Useful for keeping track of the enabled theme."
   (evil-collection-dashboard-setup)
 
   ;; Avoid openning the dashboard when Emacs starts with an open file.
-  (when (zerop (length (seq-filter #'identity (mapcar #'buffer-file-name (buffer-list)))))
+  (unless (cl-some #'buffer-file-name (buffer-list))
     (dashboard-open)))
 
 (use-package doom-modeline
