@@ -29,39 +29,39 @@
   (setq mixed-pitch-fixed-pitch-faces
         (delete-dups
          (append mixed-pitch-fixed-pitch-faces
-                 '(org-date
-                   org-footnote
-                   org-drawer
-                   org-special-keyword
-                   org-property-value
-                   org-column-title
-                   org-column
-                   org-cite
-                   org-cite-key
-                   org-ref-cite-face
-                   org-tag
-                   org-table
-                   org-tag-group
-                   org-formula
-                   org-meta-line
-                   org-document-info-keyword
+                 '(font-lock-comment-delimiter-face
+                   font-lock-comment-face
                    org-block
                    org-block-begin-line
                    org-block-end-line
-                   org-inline-src-block
-                   org-src
-                   org-verbatim
+                   org-cite
+                   org-cite-key
                    org-code
-                   org-quote
-                   org-verse
-                   org-latex-and-related
-                   org-macro
-                   org-link
-                   org-sexp-date
-                   org-todo
+                   org-column
+                   org-column-title
+                   org-date
+                   org-document-info-keyword
                    org-done
-                   font-lock-comment-face
-                   font-lock-comment-delimiter-face)))))
+                   org-drawer
+                   org-footnote
+                   org-formula
+                   org-inline-src-block
+                   org-latex-and-related
+                   org-link
+                   org-macro
+                   org-meta-line
+                   org-property-value
+                   org-quote
+                   org-ref-cite-face
+                   org-sexp-date
+                   org-special-keyword
+                   org-src
+                   org-table
+                   org-tag
+                   org-tag-group
+                   org-todo
+                   org-verbatim
+                   org-verse)))))
 
 (use-package me-writing-mode
   :init
