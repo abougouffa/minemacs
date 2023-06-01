@@ -16,6 +16,7 @@
 (use-package tabspaces
   :straight t
   :hook (minemacs-after-startup . tabspaces-mode)
+  :hook (tabspaces-mode . +consult-tabspaces-setup)
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
   (tabspaces-include-buffers '("*scratch*"))
@@ -38,7 +39,7 @@
     "R" #'tabspaces-remove-selected-buffer
     "k" #'(tabspaces-kill-buffers-close-workspace :wk "Kill buffers & close WS"))
   :config
-  (defun +consult-tabspaces ()
+  (defun +consult-tabspaces-setup ()
     "Deactivate isolated buffers when not using tabspaces."
     (require 'consult)
     (cond (tabspaces-mode
@@ -49,8 +50,6 @@
            ;; reset consult-buffer to show all buffers
            (consult-customize consult--source-buffer :hidden nil :default t)
            (setq consult-buffer-sources (remove #'+consult--source-workspace consult-buffer-sources)))))
-
-  (add-hook 'tabspaces-mode-hook #'+consult-tabspaces)
 
   (with-eval-after-load 'consult
     ;; Hide full buffer list (still available with "b" prefix)

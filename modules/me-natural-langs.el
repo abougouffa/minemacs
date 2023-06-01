@@ -14,6 +14,7 @@
   (defconst +aspell-available-p (executable-find "aspell"))
   :when +aspell-available-p
   :hook (text-mode . spell-fu-mode)
+  :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
   (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))
   :init
@@ -67,13 +68,11 @@
     "Faces in certain major modes that spell-fu will not spellcheck."
     :group 'minemacs-ui
     :type '(repeat (cons symbol (repeat face))))
-
-  (add-hook
-   'spell-fu-mode-hook
-   (defun +spell-fu--init-excluded-faces-h ()
-     "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
-     (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
-       (setq-local spell-fu-faces-exclude excluded)))))
+  :config
+  (defun +spell-fu--init-excluded-faces-h ()
+    "Set `spell-fu-faces-exclude' according to `+spell-excluded-faces-alist'."
+    (when-let (excluded (cdr (cl-find-if #'derived-mode-p +spell-excluded-faces-alist :key #'car)))
+      (setq-local spell-fu-faces-exclude excluded))))
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")

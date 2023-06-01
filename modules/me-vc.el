@@ -93,13 +93,12 @@
   :hook (dired-mode . diff-hl-dired-mode)
   :hook (vc-dir-mode . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
+  :hook (magit-pre-refresh . diff-hl-magit-pre-refresh)
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :init
   (+map! "gs" #'diff-hl-stage-current-hunk)
   :custom
-  (diff-hl-draw-borders nil)
-  :config
-  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
-  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
+  (diff-hl-draw-borders nil))
 
 (use-package git-timemachine
   :straight t
@@ -113,23 +112,23 @@
 (use-package git-commit
   :after magit
   :demand t
+  :hook (git-commit-mode . +git-gommit--set-fill-column-h)
+  :hook (git-commit-setup . +git-commit--enter-evil-insert-state-maybe-h)
   :custom
   (git-commit-summary-max-length 50)
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
-  (add-hook
-   'git-commit-mode-hook
-   (defun +git-gommit--set-fill-column-h ()
-     (setq-local fill-column 72)))
-  (add-hook
-   'git-commit-setup-hook
-   ;; Enter evil-insert-state for new commits
-   (defun +git-commit--enter-evil-insert-state-maybe-h ()
-     (when (and (bound-and-true-p evil-mode)
-                (not (evil-emacs-state-p))
-                (bobp)
-                (eolp))
-       (evil-insert-state))))
+  (defun +git-gommit--set-fill-column-h ()
+    (setq-local fill-column 72))
+
+  ;; Enter evil-insert-state for new commits (hooked to `git-commit-setup-hook')
+  (defun +git-commit--enter-evil-insert-state-maybe-h ()
+    (when (and (bound-and-true-p evil-mode)
+               (not (evil-emacs-state-p))
+               (bobp)
+               (eolp))
+      (evil-insert-state)))
+
   (global-git-commit-mode 1))
 
 (use-package git-modes
@@ -139,6 +138,7 @@
 
 (use-package ediff
   :straight (:type built-in)
+  :hook (ediff-before-setup . +ediff--save-window-config-h)
   :custom
   ;; Split horizontally
   (ediff-split-window-function #'split-window-horizontally)
@@ -147,11 +147,9 @@
   :config
   (defvar +ediff--saved-window-config nil)
 
-  ;; Save the current window configuration
-  (add-hook
-   'ediff-before-setup-hook
-   (defun +ediff--save-window-config-h ()
-     (setq +ediff--saved-window-config (current-window-configuration))))
+  ;; Save the current window configuration (hooked to `ediff-before-setup-hook')
+  (defun +ediff--save-window-config-h ()
+    (setq +ediff--saved-window-config (current-window-configuration)))
 
   ;; Restore the saved window configuration on quit or suspend
   (dolist (hook '(ediff-quit-hook ediff-suspend-hook))

@@ -27,6 +27,7 @@
 (use-package nov
   :straight t
   :mode ("\\.epub\\'" . nov-mode)
+  :hook (nov-mode . +nov-mode-setup)
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config
@@ -82,9 +83,7 @@
                          (format-mode-line
                           (cons ""
                            '(:eval (doom-modeline-segment--major-mode))))))))))
-       (:eval (doom-modeline-segment--major-mode)))))
-
-  (add-hook 'nov-mode-hook #'+nov-mode-setup))
+       (:eval (doom-modeline-segment--major-mode))))))
 
 (use-package crdt
   :straight t
