@@ -18,6 +18,13 @@
   :group 'minemacs-org
   :type '(cons natnum natnum))
 
+(defcustom +org-use-lower-case-keywords-and-properties t
+  "Automatically convert Org keywords and properties to lowercase on save."
+  :group 'minemacs-org
+  :type 'boolean)
+
+(put '+org-use-lower-case-keywords-and-properties 'safe-local-variable 'booleanp)
+
 (defvar-local +org-export-to-pdf-main-file nil
   "The main (entry point) Org file for a multi-files document.")
 
@@ -280,7 +287,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   (add-hook
    'before-save-hook
    (defun +org--lower-case-keywords-and-properties-h ()
-     (when (derived-mode-p 'org-mode)
+     (when (and +org-use-lower-case-keywords-and-properties (derived-mode-p 'org-mode))
        (+org-lower-case-keywords-and-properties)))))
 
 (defun +org-extras-setup ()
