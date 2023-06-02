@@ -202,15 +202,50 @@ Example: \"#+TITLE\" -> \"#+title\"
   (with-eval-after-load 'ox-latex
     (dolist
         (class
-         '(("lettre"
-            "\\documentclass{lettre}"
+         '(;; Default classes with babel enabled
+           ("article"
+            "\\documentclass[11pt]{article}
+\\usepackage[AUTO]{babel}"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+           ("report"
+            "\\documentclass[11pt]{report}
+\\usepackage[AUTO]{babel}"
+            ("\\part{%s}" . "\\part*{%s}")
+            ("\\chapter{%s}" . "\\chapter*{%s}")
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+           ("book"
+            "\\documentclass[11pt]{book}
+\\usepackage[AUTO]{babel}"
+            ("\\part{%s}" . "\\part*{%s}")
+            ("\\chapter{%s}" . "\\chapter*{%s}")
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+           ;; Additional classes
+           ("blank"
+            "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
             ("\\section{%s}"       . "\\section*{%s}")
             ("\\subsection{%s}"    . "\\subsection*{%s}")
             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
             ("\\paragraph{%s}"     . "\\paragraph*{%s}")
             ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("blank"
-            "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+           ("book-no-parts"
+            "\\documentclass[12pt,a4paper]{book}
+\\usepackage[AUTO]{babel}"
+            ("\\chapter{%s}"       . "\\chapter*{%s}")
+            ("\\section{%s}"       . "\\section*{%s}")
+            ("\\subsection{%s}"    . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+           ("lettre"
+            "\\documentclass{lettre}
+\\usepackage[AUTO]{babel}"
             ("\\section{%s}"       . "\\section*{%s}")
             ("\\subsection{%s}"    . "\\subsection*{%s}")
             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -236,22 +271,10 @@ Example: \"#+TITLE\" -> \"#+title\"
             ("\\subsection{%s}"    . "\\subsection*{%s}")
             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
             ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("thesis"
-            "\\documentclass[11pt]{book}"
-            ("\\chapter{%s}"       . "\\chapter*{%s}")
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
-           ("thesis-fr"
-            "\\documentclass[french,12pt,a4paper]{book}"
-            ("\\chapter{%s}"       . "\\chapter*{%s}")
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))))
-      (add-to-list 'org-latex-classes class))))
+            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))
+      (if (assoc (car class) org-latex-classes)
+          (setcdr (assoc (car class) org-latex-classes) (cdr class))
+        (add-to-list 'org-latex-classes class)))))
 
 (defun +org-extras-outline-path-setup ()
   (advice-add
