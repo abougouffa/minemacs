@@ -20,18 +20,21 @@
   :group 'minemacs-netextender
   :type 'file)
 
-(defcustom netextender-command '("~/.local/bin/netextender")
+(defcustom netextender-command "~/.local/bin/netextender"
   "Custom NetExtender launcher."
   :group 'minemacs-netextender
   :type '(choice string file))
 
-;; If the command doesn't exist, generate it.
-(unless (file-exists-p (car netextender-command))
-  (setq netextender-command (cons (make-temp-file "netextender") (cdr netextender-command)))
-  (set-file-modes (car netextender-command) #o755) ;; Make it executable
-  (with-temp-buffer
-    (insert
-     (format "#!/bin/bash
+(defun netextender-command ()
+  "Get the NetExtender command path.
+Returns `netextender-command' if it exists, otherwise, it creates a temporary
+command and returns it."
+  ;; If the command doesn't exist, generate it.
+  (unless (file-exists-p netextender-command)
+    (setq netextender-command (make-temp-file "netextender-" nil ".sh"))
+    (set-file-modes netextender-command #o755) ;; Make it executable
+    (with-temp-buffer
+      (insert (format "#!/bin/bash
 
 if ! command -v netExtender &> /dev/null; then
   echo \"netExtender not found, installing from AUR using 'yay'\"
@@ -41,8 +44,10 @@ fi
 MY_LOGIN_PARAMS_FILE=\"%s\"
 
 echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"${MY_LOGIN_PARAMS_FILE}\")"
-             (expand-file-name netextender-passphrase-file)))
-    (write-file (car netextender-command))))
+                      (expand-file-name netextender-passphrase-file)))
+      (write-file netextender-command)))
+  ;; Return the command
+  netextender-command)
 
 (defun netextender-check-system ()
   "Return non-nil if system setup is OK."
@@ -62,7 +67,7 @@ echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-
       (unless (get-process netextender-process-name)
         (if (make-process :name netextender-process-name
                           :buffer netextender-buffer-name
-                          :command netextender-command)
+                          :command (list netextender-command))
             (message "Started NetExtender VPN session.")
           (user-error "Cannot start NetExtender.")))
     (user-error "Cannot start a netExtender VPN session.")))
