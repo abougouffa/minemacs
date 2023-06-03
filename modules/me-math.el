@@ -57,6 +57,13 @@
     (org-babel-do-load-languages 'org-babel-load-languages (append org-babel-load-languages '((ein . t))))
     (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
 
+(use-package code-cells
+  :straight t
+  :init
+  ;; Both `ein' and `code-cells' registers auto-mode for ".ipynb" files,
+  ;; we remove `code-cells' so `ein' gets used by default.
+  (setq auto-mode-alist (delete (rassoc 'code-cells-convert-ipynb auto-mode-alist) auto-mode-alist)))
+
 (use-package julia-mode
   :straight t)
 
