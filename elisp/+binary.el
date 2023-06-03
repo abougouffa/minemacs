@@ -27,25 +27,26 @@
   :group 'minemacs-binary
   :type 'boolean)
 
+(defun +binary-objdump-p (&optional filename)
+  "Can FILENAME be recognized by \"objdump\"."
+  (when-let* ((file (or filename (buffer-file-name (current-buffer))))
+              (file (file-truename file)))
+    (and +binary-objdump-executable
+         (executable-find +binary-objdump-executable)
+         (file-exists-p file)
+         (not (file-directory-p file))
+         (not (zerop (file-attribute-size (file-attributes file))))
+         (not (string-match-p
+               "file format not recognized"
+               (shell-command-to-string
+                (format "%s --file-headers %s"
+                        +binary-objdump-executable
+                        (shell-quote-argument file))))))))
+
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
-  (and +binary-objdump-enable
-       (when-let* ((file (buffer-file-name (or buffer (current-buffer))))
-                   (file (file-truename file)))
-         (and +binary-objdump-executable
-              (executable-find +binary-objdump-executable)
-              (file-exists-p file)
-              (not (file-directory-p file))
-              (not (zerop (file-attribute-size (file-attributes file))))
-              (not (string-match-p
-                    "file format not recognized"
-                    (with-temp-buffer
-                      (shell-command (format "%s --file-headers %s"
-                                             +binary-objdump-executable
-                                             (shell-quote-argument file))
-                                     (current-buffer))
-                      (buffer-string))))))))
+  (and +binary-objdump-enable (+binary-objdump-p (buffer-file-name buffer))))
 
 ;; A predicate for detecting binary files. Inspired by:
 ;; emacs.stackexchange.com/q/10277/37002)
@@ -72,20 +73,20 @@ Returns either nil, or the position of the first null byte."
 (define-derived-mode objdump-disassemble-mode
   asm-mode "Objdump Mode"
   "Major mode for viewing executable files disassembled using objdump."
-  (if (+binary-objdump-buffer-p)
-      (when-let ((file (buffer-file-name))
-                 (buffer-read-only nil))
-        (message "Disassembling file \"%s\" using objdump." (file-name-nondirectory file))
-        (erase-buffer)
-        (call-process "objdump" nil (current-buffer) nil "-d" file)
-        (view-mode)
-        (goto-char (point-min))
-        (set-buffer-modified-p nil)
-        (set-visited-file-name nil t)
-        (buffer-disable-undo)
-        (set-buffer-modified-p nil)
-        (setq-local buffer-read-only t))
-    (message "Objdump can not be used with this buffer.")))
+  (when-let* ((file (buffer-file-name))
+              (objdump-file (+binary-objdump-p file))
+              (buffer-read-only nil))
+    (message "Disassembling file \"%s\" using objdump." (file-name-nondirectory file))
+    (erase-buffer)
+    (call-process "objdump" nil (current-buffer) nil "-d" file)
+    (view-mode)
+    (goto-char (point-min))
+    (set-buffer-modified-p nil)
+    (set-visited-file-name nil t)
+    (buffer-disable-undo)
+    (set-buffer-modified-p nil)
+    (setq-local buffer-read-only t))
+  (message "Objdump can not be used with this buffer."))
 
 ;;;###autoload
 (defun +binary-hexl-mode-maybe ()
