@@ -123,9 +123,10 @@
 (+load minemacs-loaddefs-file)
 
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
-(let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
-  (when (file-exists-p user-init-tweaks)
-    (+load user-init-tweaks)))
+(unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_INIT_TWEAKS_EL"))
+  (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
+    (when (file-exists-p user-init-tweaks)
+      (+load user-init-tweaks))))
 
 ;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
 ;; the terminal's environment variables, which can be useful specially for
@@ -198,10 +199,11 @@
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
 
-  ;; The modules.el file can override minemacs-modules and minemacs-core-modules
-  (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
-    (when (file-exists-p user-conf-modules)
-      (+load user-conf-modules))))
+  (unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_MODULES_EL"))
+    ;; The modules.el file can override minemacs-modules and minemacs-core-modules
+    (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
+      (when (file-exists-p user-conf-modules)
+        (+load user-conf-modules)))))
 
 ;; Load fonts early (they are read from the default `minemacs-default-fonts').
 (+set-fonts)
@@ -245,9 +247,10 @@
   (+load custom-file))
 
 ;; Load user configuration from "$MINEMACSDIR/config.el" when available
-(let ((user-config (concat minemacs-config-dir "config.el")))
-  (when (file-exists-p user-config)
-    (+load user-config)))
+(unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_CONFIG_EL"))
+  (let ((user-config (concat minemacs-config-dir "config.el")))
+    (when (file-exists-p user-config)
+      (+load user-config))))
 
 (+lazy-when! (featurep 'native-compile)
   (+info! "Trying to clean outdated native compile cache")
