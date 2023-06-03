@@ -106,6 +106,13 @@ You can customize MinEmacs' behavior via some environment variables.
 - =MINEMACS_IGNORE_VERSION_CHECK=: Do not perform version check in =init.el=, this
   can be useful if you use =~/.minemacs.d/init-tweaks.el= to implement the
   functionalities used by MinEmacs and missing from your Emacs version.
+- =MINEMACS_IGNORE_CONFIG_EL=, =MINEMACS_IGNORE_MODULES_EL=,
+  =MINEMACS_IGNORE_EARLY_CONFIG_EL= and =MINEMACS_IGNORE_INIT_TWEAKS_EL=: Ignore
+  loading, respectively, the user configuration files =$MINEMACSDIR/config.el=,
+  =$MINEMACSDIR/modules.el=, =$MINEMACSDIR/early-config.el= et
+  =$MINEMACSDIR/init-tweaks.el=.
+- =MINEMACS_IGNORE_USER_CONFIG=: Ignore loading all user configuration files
+  (present in =$MINEMACSDIR=).
 
 ** Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [[file:FAQ.org][FAQ]], check [[https://github.com/abougouffa/minemacs/issues][open
