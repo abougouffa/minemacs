@@ -123,7 +123,7 @@
 (+load minemacs-loaddefs-file)
 
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
-(unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_INIT_TWEAKS_EL"))
+(unless (memq 'init-tweaks minemacs-ignore-user-config)
   (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
     (when (file-exists-p user-init-tweaks)
       (+load user-init-tweaks))))
@@ -199,7 +199,7 @@
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
 
-  (unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_MODULES_EL"))
+  (unless (memq 'modules minemacs-ignore-user-config)
     ;; The modules.el file can override minemacs-modules and minemacs-core-modules
     (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
       (when (file-exists-p user-conf-modules)
@@ -247,7 +247,7 @@
   (+load custom-file))
 
 ;; Load user configuration from "$MINEMACSDIR/config.el" when available
-(unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_IGNORE_CONFIG_EL"))
+(unless (memq 'config minemacs-ignore-user-config)
   (let ((user-config (concat minemacs-config-dir "config.el")))
     (when (file-exists-p user-config)
       (+load user-config))))

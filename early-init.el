@@ -55,7 +55,7 @@
 
 ;; Load the user early configuration file from "$MINEMACSDIR/early-config.el"
 ;; if it exists.
-(unless (or (getenv "MINEMACS_IGNORE_USER_CONFIG") (getenv "MINEMACS_EARLY_CONFIG_EL"))
+(unless (memq 'early-config minemacs-ignore-user-config)
   (let ((early-config-path (concat minemacs-config-dir "early-config.el")))
     (when (file-exists-p early-config-path)
       (load early-config-path nil (not minemacs-verbose)))))

@@ -37,6 +37,19 @@
   "MinEmacs utility functions."
   :group 'minemacs)
 
+(defconst minemacs-ignore-user-config
+  (append
+   (if (getenv "MINEMACS_IGNORE_USER_CONFIG")
+       '(config modules early-config init-tweaks)
+     (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(config))
+     (when (getenv "MINEMACS_IGNORE_MODULES_EL") '(modules))
+     (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(early-config))
+     (when (getenv "MINEMACS_IGNORE_INIT_TWEAKS_EL") '(init-tweaks))))
+  "Ignore loading these user configuration files.
+Accepted values are: `config', `modules', `early-config' and `init-tweaks'.
+This list is automatically constructed from the environment variables
+\"$MINEMACS_IGNORE_*\".")
+
 (defconst minemacs-config-dir
   (file-name-as-directory
    (or (getenv "MINEMACS_DIR")
