@@ -200,81 +200,57 @@ Example: \"#+TITLE\" -> \"#+title\"
 
 (defun +org-extras-latex-classes-setup ()
   (with-eval-after-load 'ox-latex
-    (dolist
-        (class
-         '(;; Default classes with babel enabled
-           ("article"
-            "\\documentclass[11pt]{article}
-\\usepackage[AUTO]{babel}"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-           ("report"
-            "\\documentclass[11pt]{report}
-\\usepackage[AUTO]{babel}"
-            ("\\part{%s}" . "\\part*{%s}")
-            ("\\chapter{%s}" . "\\chapter*{%s}")
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-           ("book"
-            "\\documentclass[11pt]{book}
-\\usepackage[AUTO]{babel}"
-            ("\\part{%s}" . "\\part*{%s}")
-            ("\\chapter{%s}" . "\\chapter*{%s}")
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-           ;; Additional classes
-           ("blank"
-            "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("book-no-parts"
-            "\\documentclass[12pt,a4paper]{book}
-\\usepackage[AUTO]{babel}"
-            ("\\chapter{%s}"       . "\\chapter*{%s}")
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
-           ("lettre"
-            "\\documentclass{lettre}
-\\usepackage[AUTO]{babel}"
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("IEEEtran"
-            "\\documentclass{IEEEtran}"
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("ieeeconf"
-            "\\documentclass{ieeeconf}"
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-           ("sagej"
-            "\\documentclass{sagej}"
-            ("\\section{%s}"       . "\\section*{%s}")
-            ("\\subsection{%s}"    . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))
-      (if (assoc (car class) org-latex-classes)
-          (setcdr (assoc (car class) org-latex-classes) (cdr class))
-        (add-to-list 'org-latex-classes class)))))
+    ;; Use `babel' with automatic language detection (from `#+language:' or
+    ;; `org-export-default-language')
+    (add-to-list 'org-latex-default-packages-alist '("AUTO" "babel" t ("pdflatex" "xelatex")))
+
+    ;; Some additional LaTeX classes
+    (setq
+     org-latex-classes
+     (append
+      org-latex-classes
+      '(("blank"
+         "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+        ("book-no-parts"
+         "\\documentclass[12pt,a4paper]{book}"
+         ("\\chapter{%s}"       . "\\chapter*{%s}")
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+        ("lettre"
+         "\\documentclass{lettre}"
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+        ("IEEEtran"
+         "\\documentclass{IEEEtran}"
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+        ("ieeeconf"
+         "\\documentclass{ieeeconf}"
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+        ("sagej"
+         "\\documentclass{sagej}"
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))))))
 
 (defun +org-extras-outline-path-setup ()
   (advice-add
