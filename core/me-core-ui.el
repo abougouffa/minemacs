@@ -48,7 +48,9 @@ Useful for keeping track of the enabled theme."
           '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
 
 (use-package doom-themes
-  :straight t)
+  :straight t
+  :config
+  (doom-themes-org-config))
 
 (use-package dashboard
   :straight t
