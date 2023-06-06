@@ -151,12 +151,12 @@
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" (any space ?: ?\; ?, ?.))))))) ;; p.j
   :config
   (+nvmap! :keymaps 'org-msg-edit-mode-map
-    "TAB" #'org-msg-tab
-    "gg"  #'org-msg-goto-body)
+    "gg" #'org-msg-goto-body)
   (+map-local! :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :wk "attach")
     "aa" #'org-msg-attach-attach
     "ad" #'org-msg-attach-delete
+    "k"  #'org-msg-edit-kill-buffer
     "p"  #'org-msg-preview)
   (org-msg-mode 1))
 
