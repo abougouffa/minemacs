@@ -24,18 +24,12 @@
   :config
   ;; Setup completion at point
   (defun +tempel-setup-capf-h ()
-    ;; Add the Tempel Capf to `completion-at-point-functions'.
-    ;; `tempel-expand' only triggers on exact matches. Alternatively use
-    ;; `tempel-complete' if you want to see all matches, but then you
-    ;; should also configure `tempel-trigger-prefix', such that Tempel
-    ;; does not trigger too often when you don't expect it. NOTE: We add
-    ;; `tempel-expand' *before* the main programming mode Capf, such
-    ;; that it will be tried first.
-    (setq-local
-     completion-at-point-functions
-     (if (derived-mode-p 'org-mode 'markdown-mode)
-         '(tempel-complete)
-       (cons #'tempel-complete completion-at-point-functions))))
+    ;; Add the Tempel Capf to `completion-at-point-functions'. `tempel-expand'
+    ;; only triggers on exact matches. Alternatively use `tempel-complete' if
+    ;; you want to see all matches, but then you should also configure
+    ;; `tempel-trigger-prefix', such that Tempel does not trigger too often when
+    ;; you don't expect it.
+    (add-hook 'completion-at-point-functions #'tempel-complete nil t))
   (global-tempel-abbrev-mode 1))
 
 (use-package tempel-collection
