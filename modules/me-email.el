@@ -165,7 +165,9 @@
   :after mu4e
   :demand t
   :custom
-  (mu4e-alert-icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg")
+  (mu4e-alert-icon
+   (let ((icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"))
+     (when (file-exists-p icon) icon)))
   (mu4e-alert-set-window-urgency nil)
   (mu4e-alert-group-by :to)
   (mu4e-alert-email-notification-types '(subjects))
