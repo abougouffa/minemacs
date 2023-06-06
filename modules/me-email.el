@@ -179,7 +179,7 @@
     :group 'minemacs-mu4e
     :type '(cons string string))
   :config
-  ;; Enable on mu4e notifications in doom-modeline
+  ;; Enable `mu4e' segment in `doom-modeline'
   (setq doom-modeline-mu4e t)
 
   ;; Ignore spams!
@@ -198,6 +198,7 @@
         name)))
 
   (defun +mu4e-alert-grouped-mail-notif-formatter (mail-group _all-mails)
+    "This function can be used for `mu4e-alert-grouped-mail-notification-formatter'."
     (when +mu4e-alert-bell-command
       (start-process "mu4e-alert-bell" nil (car +mu4e-alert-bell-command) (cdr +mu4e-alert-bell-command)))
     (let ((mail-count (length mail-group)))
