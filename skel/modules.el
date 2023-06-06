@@ -52,6 +52,11 @@
         me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
         me-window))      ; Frame & window tweaks
 
+;; You can set `minemacs-disabled-packages' to disable some packages. For
+;; example, if you want to use the `me-ui' module, but you want to disable the
+;; `focus' package. You can use:
+(push 'focus minemacs-disabled-packages)
+
 ;; You can use the obsolete configurations by adding the `obsolete/me-*' modules to `minemacs-modules'
 ;; (setq minemacs-modules
 ;;       (append
