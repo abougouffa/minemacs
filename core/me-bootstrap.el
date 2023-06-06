@@ -48,6 +48,23 @@
  ;; Defer loading packages by default, use `:demand' to force loading a package
  use-package-always-defer t)
 
+;; HACK: This advice around `use-package' checks if a package is disabled
+;; `minemacs-disabled-packages' before calling `use-package'. This can come
+;; handy if the user wants to enable some module while excluding some packages
+;; from it.
+(advice-add
+ 'use-package :around
+ (defun +use-package--check-if-disabled-a (origfn package &rest args)
+   (unless (memq package minemacs-disabled-packages)
+     (apply origfn package args))))
+
+;; The previous advice will be removed after loading MinEmacs packages to avoid
+;; messing with the user configuration (for example, if the user manually
+;; install a disabled package).
+(add-hook
+ 'minemacs-after-loading-modules-hook
+ (defun +use-package--remove-check-if-disabled-advice-h ()
+   (advice-remove 'use-package '+use-package--check-if-disabled-a)))
 
 (provide 'me-bootstrap)
 
