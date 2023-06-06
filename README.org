@@ -65,8 +65,9 @@ another directory by setting the =MINEMACSDIR= environment variable.
 *** Main configuration files
 There are two main files that can be added in the =~/.minemacs.d= directory:
 
-1. The =~/.minemacs.d/modules.el= file contains a list of enabled modules (both
-   =minemacs-core-modules= and =minemacs-modules= can be set in this file).
+1. The =~/.minemacs.d/modules.el= file contains a list of enabled modules and a
+   list of disabled packages (=minemacs-core-modules=, =minemacs-modules= and
+   =minemacs-disabled-packages= can be set in this file).
 2. The =~/.minemacs.d/config.el= file contains the user configuration and
    customization, you can think of it as your =init.el=, which gets loaded at the
    end of MinEmacs' =init.el=!
