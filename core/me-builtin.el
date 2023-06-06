@@ -41,6 +41,12 @@
   :config
   (+shutup! (epa-file-enable)))
 
+(use-package dired
+  :straight (:type built-in)
+  ;; Enable adding mail attachements from dired "C-c RET C-a" for
+  ;; `gnus-dired-attach'
+  :hook (dired-mode . turn-on-gnus-dired-mode))
+
 
 (provide 'me-builtin)
 
