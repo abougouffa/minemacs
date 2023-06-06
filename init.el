@@ -239,6 +239,8 @@
                       (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
   (+load module-file))
 
+(run-hooks 'minemacs-after-loading-modules-hook)
+
 ;; Write user custom variables to separate file instead of "init.el"
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 

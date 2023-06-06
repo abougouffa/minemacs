@@ -151,6 +151,13 @@ Compiled from the `system-configuration-features'.")
   :group 'minemacs-ui
   :type 'symbol)
 
+(defcustom minemacs-after-loading-modules-hook nil
+  "This hook will be run after loading MinEmacs modules.
+It is used internally to remove the `+use-package--check-if-disabled-a' advice
+we set on `use-package' in `me-bootstrap'."
+  :group 'minemacs-core
+  :type 'hook)
+
 (defcustom minemacs-after-set-fonts-hook nil
   "Runs after setting MinEmacs fonts, runs at the end of `+set-fonts'."
   :group 'minemacs-ui
