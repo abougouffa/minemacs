@@ -20,6 +20,7 @@
   :config
   (+map-local! :keymaps 'flymake-mode-map
     "f"  '(nil :wk "flymake")
+    "ff" #'+flymake-main/body
     "fn" #'flymake-goto-next-error
     "fN" #'flymake-goto-prev-error
     "fs" #'flymake-start
@@ -69,7 +70,23 @@
      #b00001111000
      #b00000111100
      #b00000011110]
-    nil 13))
+    nil 13)
+
+  (defhydra +flymake-main (:color red :hint nil :foreign-keys warn)
+    "
+[Flymake]                                              [_q_] quit
+  ├──────────────────────────────────────────────────────────────────────╮
+  │  [_B_] Buffer diagnostics  [_P_] Project diagnostics  [_L_] Log buffer     │
+  │  [_n_] Next error          [_N_] Prev error           [_S_] Start          │
+  ╰──────────────────────────────────────────────────────────────────────╯
+"
+    ("B" flymake-show-buffer-diagnostics)
+    ("P" flymake-show-project-diagnostics)
+    ("L" flymake-switch-to-log-buffer)
+    ("n" flymake-goto-next-error)
+    ("N" flymake-goto-prev-error)
+    ("S" flymake-start)
+    ("q" nil :color blue)))
 
 (use-package flymake-easy
   :straight t)
