@@ -17,9 +17,10 @@
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
   (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))
+  (spell-fu-word-delimit-camel-case t)
   :init
   (+map! "ts" #'spell-fu-mode)
-  (+nvmap! "z=" #'+spell-fu-correct) ;; autoloaded from "me-spell-fu.el"
+  (+nvmap! "z=" #'+spell-fu-correct) ; autoloaded from `me-spell-fu'
 
   (defcustom +spell-excluded-faces-alist
     '((markdown-mode
