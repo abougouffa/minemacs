@@ -16,58 +16,75 @@
   :group 'minemacs)
 
 (defcustom netextender-passphrase-file "~/.ssh/sslvpn.gpg"
-  "GPG encrypted NetExtender connection parameters."
+  "GPG encrypted file containing NetExtender connection parameters.
+
+The file contains this line:
+\"-u <USERNAME> -d <DOMAIN> -p <PASSWORD> -s <SERVER>\"
+
+It includes the connections credentials (username and password), hence, it is
+mandatory stored as a GPG encrypted file."
   :group 'minemacs-netextender
   :type 'file)
 
-(defcustom netextender-command "~/.local/bin/netextender"
-  "Custom NetExtender launcher."
+(defcustom netextender-command "netExtender"
+  "The NetExtender CLI command."
   :group 'minemacs-netextender
   :type '(choice string file))
 
-(defun netextender-command ()
-  "Get the NetExtender command path.
-Returns `netextender-command' if it exists, otherwise, it creates a temporary
-command and returns it."
-  ;; If the command doesn't exist, generate it.
-  (unless (file-exists-p netextender-command)
-    (setq netextender-command (make-temp-file "netextender-" nil ".sh"))
-    (set-file-modes netextender-command #o755) ;; Make it executable
-    (with-temp-buffer
-      (insert (format "#!/bin/bash
+(defcustom netextender-launcher-command (concat minemacs-local-dir "netextender-launcher.sh")
+  "Custom NetExtender launcher command.
 
-if ! command -v netExtender &> /dev/null; then
-  echo \"netExtender not found, installing from AUR using 'yay'\"
-  yay -S netextender
-fi
+This is a wrapper around the \"NetExtender\" command. It starts the sessions
+without asking about connection credentials.
+
+If this command doesn't exist, it will be created automatically (you need to set
+`netextender-passphrase-file' accordingly)."
+  :group 'minemacs-netextender
+  :type '(choice string file))
+
+(defun netextender-launcher-command ()
+  "Get the NetExtender launcher command.
+
+Returns `netextender-launcher-command' if it exists, otherwise, it creates a
+temporary based on `netextender-command' and `netextender-passphrase-file' and
+returns it."
+  ;; If the command doesn't exist, generate it.
+  (if (not (executable-find netextender-command))
+      (user-error "The NetExtender command \"%s\" is not available." netextender-command)
+    (unless (executable-find netextender-launcher-command)
+      (setq netextender-launcher-command (make-temp-file "netextender-" nil ".sh"))
+      (set-file-modes netextender-launcher-command #o755) ;; Make it executable
+      (with-temp-buffer
+        (insert (format "#!/bin/bash
 
 MY_LOGIN_PARAMS_FILE=\"%s\"
 
-echo \"Y\\n\" | netExtender --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"${MY_LOGIN_PARAMS_FILE}\")"
-                      (expand-file-name netextender-passphrase-file)))
-      (write-file netextender-command)))
-  ;; Return the command
-  netextender-command)
+echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"${MY_LOGIN_PARAMS_FILE}\")"
+                        (expand-file-name netextender-passphrase-file)
+                        (executable-find netextender-command)))
+        (write-file netextender-launcher-command)))
+    ;; Return the command
+    netextender-launcher-command))
 
-(defun netextender-check-system ()
+(defun netextender-system-ok-p ()
   "Return non-nil if system setup is OK."
   (let* ((pppd-command "/usr/sbin/pppd")
          (pppd-modes (file-modes pppd-command)))
     ;; pppd must be run as root (via setuid)
     (if (and pppd-modes (zerop (logand (lsh 1 11) pppd-modes))) ;; Check if the setuid bit isn't set
         (prog1 nil ;; return nil
-          (message "pppd needs root permissions, please set the setuid bit of %s." pppd-command))
+          (user-error "pppd needs root permissions, please set the setuid bit of %s." pppd-command))
       t)))
 
 ;;;###autoload
 (defun netextender-start ()
   "Launch a NetExtender VPN session."
   (interactive)
-  (if (netextender-check-system)
+  (if (netextender-system-ok-p)
       (unless (get-process netextender-process-name)
         (if (make-process :name netextender-process-name
                           :buffer netextender-buffer-name
-                          :command (list netextender-command))
+                          :command (list netextender-launcher-command))
             (message "Started NetExtender VPN session.")
           (user-error "Cannot start NetExtender.")))
     (user-error "Cannot start a netExtender VPN session.")))
