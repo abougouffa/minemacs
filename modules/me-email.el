@@ -43,6 +43,7 @@
   (mu4e-get-mail-command "mbsync -a") ;; Use mbsync to get mails
   (mu4e-index-update-error-warning nil) ;; Do not show warning after update
   (mu4e-hide-index-messages t) ;; Hide minibuffer messages after indexing
+  (mu4e-compose-dont-reply-to-self t) ; When I reply to my own message, don't include me in the "To" field
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read) ;; Use `vertico' instead of `ido'
   (mu4e-main-hide-personal-addresses t) ;; Don't display a list of my own addresses!
