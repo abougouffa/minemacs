@@ -13,7 +13,7 @@
   :after minemacs-loaded
   :demand t
   :config
-  (dolist (fn '(cape-file cape-ispell cape-symbol cape-keyword))
+  (dolist (fn '(cape-file cape-elisp-block cape-keyword cape-symbol))
     (add-to-list 'completion-at-point-functions fn)))
 
 (use-package corfu
