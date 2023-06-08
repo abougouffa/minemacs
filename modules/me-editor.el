@@ -20,17 +20,9 @@
          ("<backtab>" . tempel-previous))
   :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
   :hook (prog-mode . tempel-abbrev-mode)
-  :defines +tempel-setup-capf-h
   :config
-  ;; Setup completion at point
   (defun +tempel-setup-capf-h ()
-    ;; Add the Tempel Capf to `completion-at-point-functions'. `tempel-expand'
-    ;; only triggers on exact matches. Alternatively use `tempel-complete' if
-    ;; you want to see all matches, but then you should also configure
-    ;; `tempel-trigger-prefix', such that Tempel does not trigger too often when
-    ;; you don't expect it.
-    (add-hook 'completion-at-point-functions #'tempel-complete nil t))
-  (global-tempel-abbrev-mode 1))
+    (add-hook 'completion-at-point-functions #'tempel-complete -100 t)))
 
 (use-package tempel-collection
   :straight t
