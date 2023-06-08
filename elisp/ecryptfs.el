@@ -7,7 +7,7 @@
 ;;; Commentary:
 
 ;; This allows me to mount my private directory encrypted using ecryptfs-utils.
-;; It is a port of "ecryptfs-mount-private" shell command. It uses extracts the
+;; It is a port of "ecryptfs-mount-private" shell command. It extracts the
 ;; encryption key from a GPG encrypted file containting the ecryptfs password.
 ;; The decryption of the password is performed using Emacs' `epg'.
 
@@ -29,6 +29,9 @@
   :group 'minemacs-ecryptfs
   :type 'directory)
 
+(defcustom ecryptfs-passphrase-file (concat ecryptfs-root-dir "my-pass.gpg")
+  "GPG encrypted file containing eCryptfs password.")
+
 (defvar ecryptfs-buffer-name " *emacs-ecryptfs*")
 (defvar ecryptfs-process-name "emacs-ecryptfs")
 (defvar ecryptfs--mount-private-cmd "/sbin/mount.ecryptfs_private")
@@ -44,8 +47,9 @@
   (string-trim-right
    (epg-decrypt-file
     (epg-make-context)
-    (expand-file-name (concat ecryptfs-root-dir "my-pass.gpg"))
-    nil)))
+    (expand-file-name ecryptfs-passphrase-file)
+    nil)
+   "[\n\r]+"))
 
 (defun ecryptfs--encrypt-filenames-p ()
   (/= 1 (with-temp-buffer
