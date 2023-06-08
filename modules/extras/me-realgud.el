@@ -76,11 +76,14 @@
 ;;;###autoload(autoload '+realgud-hydra/body "../modules/extras/me-realgud" "Hydra keys for RealGUD." t)
 (defhydra +realgud-hydra (:color pink :hint nil :foreign-keys run)
   "
- Stepping  |  _n_: next      |  _i_: step    |  _o_: finish  |  _c_: continue  |  _R_: restart  |  _u_: until-here
- Revese    | _rn_: next      | _ri_: step    | _ro_: finish  | _rc_: continue  |
- Breakpts  | _ba_: break     | _bD_: delete  | _bt_: tbreak  | _bd_: disable   | _be_: enable   | _tr_: backtrace
- Eval      | _ee_: at-point  | _er_: region  | _eE_: eval    |
-           |  _!_: shell     | _Qk_: kill    | _Qq_: quit    | _Sg_: gdb       | _Ss_: start    | _Sr_: run
+[Flymake]                                                                                        [_q_] quit
+ ├───────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ Stepping    [_n_] next        [_i_] step      [_o_] finish    [_c_] continue    [_R_] restart   [_u_] until-here  │
+ │ Revese     [_rn_] next       [_ri_] step     [_ro_] finish   [_rc_] continue                                  │
+ │ Breakpts   [_ba_] break      [_bD_] delete   [_bt_] tbreak   [_bd_] disable    [_be_] enable   [_tr_] backtrace   │
+ │ Eval       [_ee_] at-point   [_er_] region   [_eE_] eval                                                    │
+ │             [_!_] shell      [_Qk_] kill     [_Sg_] gdb      [_Ss_] start      [_Sr_] run                       │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
 "
   ("n"  realgud:cmd-next)
   ("i"  realgud:cmd-step)
@@ -106,7 +109,7 @@
   ("Sg" realgud:gdb)
   ("Ss" +realgud:cmd-start)
   ("Sr" +realgud:cmd-run)
-  ("q"  nil "quit" :color blue) ;; :exit
+  ("q"  nil :color blue) ;; :exit
   ("Qq" realgud:cmd-quit :color blue)) ;; :exit
 
 ;;; me-realgud.el ends here
