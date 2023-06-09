@@ -107,4 +107,7 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
       (netextender-kill)
     (netextender-start)))
 
+
+(provide 'netextender)
+
 ;;; netextender.el ends here

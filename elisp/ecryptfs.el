@@ -111,4 +111,7 @@
       (message "Unmounted private directory successfully.")
     (user-error "Cannot unmount the private directory, seems to be already unmounted.")))
 
+
+(provide 'ecryptfs)
+
 ;;; ecryptfs.el ends here
