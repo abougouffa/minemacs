@@ -55,8 +55,10 @@
     "fs" #'forge-edit-topic-state
     "fd" #'forge-edit-topic-draft)
   :custom
-  (forge-database-connector (if (+emacs-features-p 'sqlite3) 'sqlite-builtin 'sqlite))
-  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
+  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite"))
+  :config
+  (transient-append-suffix 'forge-dispatch "M"
+    '("m" "forge merge (via API)" forge-merge)))
 
 (use-package emojify ;; Needed by `code-review'
   :straight t
