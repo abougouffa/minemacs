@@ -57,16 +57,17 @@
     ;; Set consult-workspace buffer list
     (defvar +consult--source-workspace
       (list :name "Workspace Buffers"
-            :narrow ?w
-            :history 'buffer-name-history
+            :narrow   '(?w . "Workspace")
+            :history  'buffer-name-history
             :category 'buffer
-            :state #'consult--buffer-state
-            :default t
-            :items (lambda ()
-                     (consult--buffer-query
-                      :predicate #'tabspaces--local-buffer-p
-                      :sort 'visibility
-                      :as #'buffer-name))))
+            :state    #'consult--buffer-state
+            :default  t
+            :items
+            (lambda ()
+              (consult--buffer-query
+               :predicate #'tabspaces--local-buffer-p
+               :sort      'visibility
+               :as        #'buffer-name))))
 
     (add-to-list 'consult-buffer-sources '+consult--source-workspace)))
 
