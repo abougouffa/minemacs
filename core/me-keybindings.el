@@ -104,6 +104,7 @@
     "b"   '(nil :wk "buffer")
     "bI"  #'ibuffer
     "bu"  #'+sudo-save-buffer
+    "bx"  #'bury-buffer
     "bS"  #'save-some-buffers
     "bs"  #'scratch-buffer
     "bM"  #'view-echo-area-messages
