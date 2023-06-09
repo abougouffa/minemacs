@@ -7,33 +7,44 @@ inspired by Doom Emacs.
 
 [[file:assets/images/minemacs-screenshot.svg]]
 
-** Why
-I was using Doom Emacs, which I found an excellent piece of software that
-introduced me to the Emacs world. However, I have a *not very pleasant* experience
-with it.
+** Why?
+I was using Doom Emacs, which I initially considered to be a remarkable software
+that introduced me to the world of Emacs. Nonetheless, my experience with it
+turned out to be *less enjoyable* later.
 
-I'm using Emacs at the core of my workflow, I use it to write documents, write
-academic papers, write programs in different programming languages, manage my
-emails, read news, etc.
+Emacs forms the foundation of my workflow, serving as my go-to tool for various
+tasks such as document writing, academic paper writing, programming in multiple
+languages, email management, and staying updated with news, among other things.
 
-Therefore, I want a robust yet simple framework. Doom Emacs was a good choice
-for me. But at the time of starting this project (September 2022), I was
-experiencing a lot of problems with Doom Emacs, sometimes I run a ~doom upgrade~,
-and just after, nothing works properly! This kind of problems happen only in my
-most busy days, causing additional (unnecessary) stress to manage. And to be
-honest, Doom Emacs became a bit too much for a configuration framework! It
-implements a command line interface, a library with extra features, many
-unnecessary hacks that modifies Emacs behavior to gain 0.0001s of startup time!,
-configuration modules gluing a bunch of packages in an opinionated way, CI
-commands, and recently a profile manager! This adds extra complexity at each
-layer.
+Hence, I wanted a framework that is both robust and straightforward. Doom Emacs
+seemed like a suitable choice initially. However, before I started this project
+back in September 2022, I encountered numerous issues with Doom Emacs.
+Occasionally, after running the =doom upgrade= command, everything would cease to
+function properly. These problems always seemed to arise during my busiest days,
+causing unnecessary additional stress. To be frank, at that time, Doom Emacs
+started to feel overly complex as a configuration framework. It incorporated a
+command line interface, an extensive library with extra features, numerous
+unnecessary hacks to tweak Emacs behavior for a negligible improvement in
+startup time, configuration modules that tightly combined various packages in an
+opinionated manner, CI commands, and even a profile manager! Each of these
+features introduced extra complexity and more failure points at every layer.
 
-Because of that, MinEmacs started as (and still) a personal configuration
-framework for Emacs. I'm trying to make it fit my own needs, while keeping it
-modular and portable. However, I have neither the intention nor the time to
-create a Doom Emacs or Spacemacs alternative. Hacking Emacs brings a lot of fun,
-however, MinEmacs for me is just a tool that I use in my daily work, I'm not
-interested of becoming a full-time maintainer of a tool that I use just to
+As a result, MinEmacs originated (and continues to exist) as my personal
+configuration framework for Emacs. Its primary goal is to tailor to my specific
+requirements while maintaining modularity and portability. However, I have no
+intention or availability to create an alternative to Doom Emacs or Spacemacs.
+While I enjoy the process of tinkering with Emacs, MinEmacs serves as a tool
+that I rely on for my daily work. I am not interested in becoming a full-time
+maintainer of a tool that I use solely to maintain itself.
+
+As a result, MinEmacs emerged as my personal configuration framework for Emacs,
+/and it continues to serve that purpose/. I'm trying to tailor it to my specific
+needs while maintaining its modularity and portability. However, I have no
+intention or availability to create an alternative to Doom Emacs or Spacemacs.
+While I find joy (like every other Emacser out there) in tinkering with Emacs,
+MinEmacs remains just a tool that I use in my everyday work, and that I like to
+share with other Emacsers. However, please note that I am not really interested
+in becoming a full-time maintainer of this tool that I would only use to
 maintain itself!
 
 ** Install
@@ -43,24 +54,26 @@ Open a shell and run:
 git clone https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
 #+end_src
 
-This will clone the repository and launch Emacs, which, in the first run, will
-install the required packages.
+By executing this command, the repository will be cloned, and Emacs will be
+launched. During the initial run, Emacs will automatically install the necessary
+packages.
 
 *** ⚠ Important note
-Please note that I'm using a fresh Emacs (Emacs 30.0.50) built from source on a
+Please note that I'm using a fresh Emacs (29.0.91) built from source on a
 Manjaro Linux system.
 
 I'm trying to support at least Emacs 28.2, so [[file:core/me-backports-29.el][I back port some of the new
-functions/macros I use to Emacs 28]]. In addition, for Emacs 28 and earlier,
+functions/macros I use to Emacs 28]]. Furthermore, for Emacs 28 and earlier,
 MinEmacs includes the =me-compat= module which loads the =compat= package at early
 stage (just after bootstrapping =straight= and =use-package=), this can facilitate
 porting MinEmacs to earlier Emacs versions. However, I've never tested MinEmacs
 with versions earlier than 28.2, and I don't plan to do so!
 
 ** Customization
-You can customize MinEmacs by adding a set of special files under =~/.minemacs.d=.
-This is MinEmacs' default user configuration directory, however, you can use
-another directory by setting the =MINEMACSDIR= environment variable.
+To personalize MinEmacs, you can incorporate a specific set of files within the
+default user configuration directory, which is located at =~/.minemacs.d=.
+However, if you prefer to use a different directory, you have the flexibility to
+do so by setting the =MINEMACSDIR= environment variable.
 
 *** Main configuration files
 There are two main files that can be added in the =~/.minemacs.d= directory:
@@ -109,11 +122,11 @@ You can customize MinEmacs' behavior via some environment variables.
   functionalities used by MinEmacs and missing from your Emacs version.
 - =MINEMACS_IGNORE_CONFIG_EL=, =MINEMACS_IGNORE_MODULES_EL=,
   =MINEMACS_IGNORE_EARLY_CONFIG_EL= and =MINEMACS_IGNORE_INIT_TWEAKS_EL=: Ignore
-  loading, respectively, the user configuration files =$MINEMACSDIR/config.el=,
-  =$MINEMACSDIR/modules.el=, =$MINEMACSDIR/early-config.el= et
-  =$MINEMACSDIR/init-tweaks.el=.
+  loading, respectively, the user configuration files =~/.minemacs.d/config.el=,
+  =~/.minemacs.d/modules.el=, =~/.minemacs.d/early-config.el= et
+  =~/.minemacs.d/init-tweaks.el=.
 - =MINEMACS_IGNORE_USER_CONFIG=: Ignore loading all user configuration files
-  (present in =$MINEMACSDIR=).
+  (present in =~/.minemacs.d==, or directory pointed by =$MINEMACSDIR=).
 
 ** Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [[file:FAQ.org][FAQ]], check [[https://github.com/abougouffa/minemacs/issues][open
