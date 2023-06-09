@@ -34,7 +34,11 @@
   (magit-todos-mode 1))
 
 (use-package magit-imerge
-  :straight t)
+  :straight t
+  :init
+  (with-eval-after-load 'magit
+    (transient-append-suffix 'magit-merge "m"
+      '("M" "magit-imerge" magit-imerge))))
 
 (use-package closql
   :straight t)
