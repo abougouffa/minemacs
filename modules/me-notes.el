@@ -10,7 +10,7 @@
 
 (use-package org-roam
   :straight t
-  :hook (org-roam-mode . org-roam-db-autosync-enable)
+  :hook (org-roam-mode . org-roam-db-autosync-mode)
   :init
   (+map! :infix "n"
     "f" #'org-roam-node-find
