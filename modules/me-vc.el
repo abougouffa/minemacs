@@ -42,7 +42,6 @@
 (use-package forge
   :straight t
   :after magit
-  :demand t
   :preface
   ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
@@ -73,7 +72,6 @@
 (use-package code-review
   :straight (:host github :repo "phelrine/code-review" :branch "fix/closql-update")
   :after magit
-  :demand t
   :custom
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))
   (code-review-db-database-file (concat minemacs-local-dir "code-review/database.sqlite"))
