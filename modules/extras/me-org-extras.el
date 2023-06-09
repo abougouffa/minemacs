@@ -177,9 +177,10 @@ Example: \"#+TITLE\" -> \"#+title\"
   (advice-add
    'org-latex-export-to-pdf :around
    (defun +org--latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
-     (let* ((main-file (or (bound-and-true-p +org-export-to-pdf-main-file) "main.org"))
+     (let* ((main-file (or +org-export-to-pdf-main-file "main.org"))
+            (main-file-exists-p (file-exists-p (expand-file-name main-file)))
             (out-file
-             (if (file-exists-p (expand-file-name main-file))
+             (if main-file-exists-p
                  (with-current-buffer (find-file-noselect main-file)
                    (apply orig-fn orig-args))
                (apply orig-fn orig-args))))
@@ -187,7 +188,7 @@ Example: \"#+TITLE\" -> \"#+title\"
            (progn
              (message "Started exporting \"%s\" asynchronously."
                       (abbreviate-file-name
-                       (file-name-nondirectory main-file)))
+                       (file-name-nondirectory (if main-file-exists-p main-file (buffer-file-name)))))
              (when-let ((org-export-process (get-process "org-export-process")))
                (set-process-sentinel
                 org-export-process
