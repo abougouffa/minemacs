@@ -184,7 +184,7 @@
 
 (use-package nerd-icons-completion
   :straight t
-  :hook (marginalia-mode . nerd-icons-completion-mode))
+  :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
 
 (use-package orderless
   :straight t
