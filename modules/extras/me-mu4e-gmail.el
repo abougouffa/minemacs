@@ -22,7 +22,8 @@ See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'."
   (let ((root-maildir
          (replace-regexp-in-string
           "/.*" "" (substring (mu4e-message-field msg :maildir) 1))))
-    (or (member (concat "/" root-maildir) (mapcar #'cdr +mu4e-gmail-accounts))
+    (or (member (concat "/" root-maildir)
+                (seq-uniq (mapcar #'cdr +mu4e-gmail-accounts) #'string=))
         (string-match-p "gmail" root-maildir)
         (string-match-p "google" root-maildir))))
 

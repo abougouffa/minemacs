@@ -63,9 +63,7 @@
 
   ;; (setq mail-personal-alias-file (concat minemacs-config-dir "private/mail-aliases.mailrc"))
 
-  (setq +mu4e-auto-bcc-address "always.bcc@this.email" ;; Add an email address always included as BCC
-        +mu4e-gmail-accounts '(("account1@gmail.com" . "/gmail")
-                               ("account@somesite.org" . "/gmail")))
+  (setq +mu4e-auto-bcc-address "always.bcc@this.email") ;; Add an email address always included as BCC
 
   ;; Register email accounts with mu4e
   ;; Use MinEmacs' `+mu4e-register-account' helper function to register multiple accounts
@@ -89,7 +87,9 @@
                                 "Regards," ;; Closing phrase
                                 "Firstname" ;; First name
                                 "Lastname" ;; Last name
-                                "/R&D Engineer at Some company/")))))
+                                "/R&D Engineer at Some company/")))
+   'default ;; Use it as default in a multi-accounts setting
+   'gmail)) ;; This is a Gmail account, store it and treat it accordingly (see `me-mu4e-gmail')
 
 ;; Module: `me-org' -- Package: `org'
 (with-eval-after-load 'org
