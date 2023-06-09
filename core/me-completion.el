@@ -171,7 +171,7 @@
   :init
   (global-set-key [remap describe-bindings] #'embark-bindings)
   (setq prefix-help-command #'embark-prefix-help-command)
-  (+map! "." #'embark-act))
+  (+map! "a" #'embark-act))
 
 (use-package embark-consult
   :straight t
