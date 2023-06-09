@@ -85,6 +85,9 @@ Useful for keeping track of the enabled theme."
   (doom-modeline-bar-width 8)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-continuous-word-count-modes
+   '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode))
   :config
   ;; HACK: Add some padding to the right
   (doom-modeline-def-modeline 'main
