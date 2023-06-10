@@ -182,13 +182,14 @@
   :straight t
   :init
   (keymap-global-set "<remap> <describe-bindings>" #'embark-bindings)
+  ;; Use Embark to show bindings in a key prefix with `C-h`
   (setq prefix-help-command #'embark-prefix-help-command)
   (+map! "a" #'embark-act))
 
 (use-package embark-consult
   :straight t
   :after embark consult
-  :demand t)
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package marginalia
   :straight t
