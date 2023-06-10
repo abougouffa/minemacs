@@ -14,7 +14,13 @@
   :demand t
   :config
   (dolist (fn '(cape-file cape-elisp-block cape-keyword cape-symbol))
-    (add-to-list 'completion-at-point-functions fn)))
+    (add-hook 'completion-at-point-functions fn))
+
+  ;; Silence the pcomplete capf, no errors or messages! Important for corfu!
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+  (when (< emacs-major-version 29)
+    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)))
 
 (use-package corfu
   :straight t
