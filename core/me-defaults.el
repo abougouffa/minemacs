@@ -135,6 +135,8 @@
  enable-recursive-minibuffers t
  ;; Kill the shell buffer after exit
  shell-kill-buffer-on-exit t
+ ;; Revert non-file buffers like dired
+ global-auto-revert-non-file-buffers t
 
  ;; ====== Performances ======
  ;; Don’t compact font caches during GC
@@ -185,7 +187,7 @@
 
  ;; ====== Editing ======
  ;; Hitting TAB behavior
- tab-always-indent nil
+ tab-always-indent 'complete
  ;; Default behavior for `whitespace-cleanup'
  whitespace-action '(cleanup auto-cleanup)
  ;; End files with newline
@@ -390,6 +392,9 @@ or file path may exist now."
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
 
+;; Make scripts (files starting wiht shebang "#!") executable when saved
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
 ;; ====== Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode' ======
 ;; Show line numbers
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
@@ -435,7 +440,8 @@ or file path may exist now."
   ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
   ;; the `me-completion' (which contains `vertico-mode' configuration) core
   ;; module is not enabled.
-  (unless (memq 'me-completion minemacs-core-modules)
+  (unless (and (memq 'me-completion minemacs-core-modules)
+               (not (memq 'vertico minemacs-disabled-packages)))
     (fido-vertical-mode 1))
 
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
