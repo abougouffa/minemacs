@@ -65,23 +65,25 @@
   :straight t
   :after latex
   :demand t
-  :hook (LaTeX-mode . +tex--set-latexmk-as-default-cmd-h)
-  :defines +tex--set-latexmk-as-default-cmd-h
   :custom
   (auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
-  (setq-default
-   TeX-command-list
-   (cons
-    '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
-      (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
-    TeX-command-list))
+  ;; Enable only if Latexmk is available
+  (when (executable-find "latexmk")
+    (setq-default
+     TeX-command-list
+     (cons
+      '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
+        (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
+      TeX-command-list))
 
-  (defun +tex--set-latexmk-as-default-cmd-h ()
-    (setq TeX-command-default "LatexMk-2"))
+    (add-hook
+     'LaTeX-mode-hook
+     (defun +tex--set-latexmk-as-default-cmd-h ()
+       (setq TeX-command-default "LatexMk-2")))
 
-  ;; Add LatexMk as a TeX target.
-  (auctex-latexmk-setup))
+    ;; Add LatexMk as a TeX target.
+    (auctex-latexmk-setup)))
 
 (use-package bibtex
   :straight (:type built-in)
@@ -119,7 +121,7 @@
   :config
   (+map-local! :keymaps 'reftex-mode-map
     ";" 'reftex-toc)
-  (+nvmap! :keymaps 'reflex-toc-mode-map
+  (+nvmap! :keymaps 'reftex-toc-mode-map
     "j"   #'next-line
     "k"   #'previous-line
     "q"   #'kill-buffer-and-window
