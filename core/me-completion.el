@@ -25,6 +25,8 @@
 (use-package corfu
   :straight t
   :hook (minemacs-after-startup . global-corfu-mode)
+  :hook (eshell-mode . +corfu-less-intrusive-h)
+  :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :init
   (add-to-list
    'load-path
@@ -39,13 +41,17 @@
     (keymap-set corfu-map "C-j" 'corfu-next)
     (keymap-set corfu-map "C-k" 'corfu-previous))
 
-  (defun +corfu-enable-in-minibuffer ()
+  (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
       (setq-local corfu-auto nil) ; Enable/disable auto completion
       (corfu-mode 1)))
 
-  (add-hook 'minibuffer-setup-hook #'+corfu-enable-in-minibuffer))
+  (defun +corfu-less-intrusive ()
+    (setq-local corfu-quit-at-boundary t
+                corfu-quit-no-match t
+                corfu-auto nil)
+    (corfu-mode 1)))
 
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
