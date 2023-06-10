@@ -160,6 +160,18 @@
     "p"  #'org-msg-preview)
   (org-msg-mode 1))
 
+(use-package org-mime
+  :straight t
+  :after mu4e org
+  :demand t
+  :config
+  ;; Do not export table of contents nor author name
+  (setq org-mime-export-options
+        '(:with-latex dvipng
+          :section-numbers t
+          :with-author nil
+          :with-toc nil)))
+
 (use-package mu4e-alert
   :straight t
   :after mu4e
