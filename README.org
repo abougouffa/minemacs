@@ -126,7 +126,7 @@ You can customize MinEmacs' behavior via some environment variables.
   =~/.minemacs.d/modules.el=, =~/.minemacs.d/early-config.el= et
   =~/.minemacs.d/init-tweaks.el=.
 - =MINEMACS_IGNORE_USER_CONFIG=: Ignore loading all user configuration files
-  (present in =~/.minemacs.d==, or directory pointed by =$MINEMACSDIR=).
+  (present in =~/.minemacs.d=, or directory pointed by =$MINEMACSDIR=).
 
 ** Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [[file:FAQ.org][FAQ]], check [[https://github.com/abougouffa/minemacs/issues][open
