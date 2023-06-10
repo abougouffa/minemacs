@@ -92,8 +92,8 @@ integer OFFSET."
                      (propertize (match-string 1 m) 'face '(mode-line-emphasis bold))))
            (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) title)))
          (map (make-sparse-keymap)))
-    (define-key map [mouse-2] cmd)
-    (define-key map (kbd "RET") cmd)
+    (keymap-set map "<mouse-2>" cmd)
+    (keymap-set map "RET" cmd)
     ;; Add highlighting on mouse hover
     (put-text-property 0 (length title) 'keymap map title)
     (put-text-property (string-match "[A-Za-z].+$" title)

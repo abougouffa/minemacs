@@ -21,7 +21,7 @@
   :demand t
   :config
   ;; Use the `iedit' key to trigger `evil-iedit-state/iedit-mode'.
-  (define-key global-map iedit-toggle-key-default #'evil-iedit-state/iedit-mode))
+  (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode))
 
 (use-package evil-mc
   :straight t

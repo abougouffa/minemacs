@@ -30,8 +30,8 @@
   (corfu-auto-delay 0.2)
   :config
   (with-eval-after-load 'evil
-    (define-key corfu-map (kbd "C-j") #'corfu-next)
-    (define-key corfu-map (kbd "C-k") #'corfu-previous))
+    (keymap-set corfu-map "C-j" 'corfu-next)
+    (keymap-set corfu-map "C-k" 'corfu-previous))
 
   (defun +corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
@@ -47,9 +47,9 @@
   (corfu-popupinfo-delay 0.1)
   (corfu-popupinfo-max-height 15)
   :config
-  (define-key corfu-map (kbd "M-p") #'corfu-popupinfo-scroll-down)
-  (define-key corfu-map (kbd "M-n") #'corfu-popupinfo-scroll-up)
-  (define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle))
+  (keymap-set corfu-map "M-p" 'corfu-popupinfo-scroll-down)
+  (keymap-set corfu-map "M-n" 'corfu-popupinfo-scroll-up)
+  (keymap-set corfu-map "M-d" 'corfu-popupinfo-toggle))
 
 (use-package corfu-history
   :hook (corfu-mode . corfu-history-mode)
@@ -88,9 +88,9 @@
   ;; Better formatting for `view-register'
   (register-preview-function #'consult-register-format)
   :init
-  (define-key minibuffer-local-map (kbd "C-r") #'consult-history)
-  (define-key minibuffer-local-map (kbd "S-C-v") #'consult-yank-pop)
-  (global-set-key (kbd "C-s") #'consult-line)
+  (keymap-set minibuffer-local-map "C-r"   'consult-history)
+  (keymap-set minibuffer-local-map "C-S-v" 'consult-yank-pop)
+  (keymap-global-set "C-s" 'consult-line)
   (+map!
     ;; buffer
     "bl"  #'consult-line
@@ -169,7 +169,7 @@
 (use-package embark
   :straight t
   :init
-  (global-set-key [remap describe-bindings] #'embark-bindings)
+  (keymap-global-set "<remap> <describe-bindings>" #'embark-bindings)
   (setq prefix-help-command #'embark-prefix-help-command)
   (+map! "a" #'embark-act))
 
@@ -209,23 +209,23 @@
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
   ;; to serve the original "C-k".
-  (define-key minibuffer-local-map (kbd "C-S-k") #'kill-line)
+  (keymap-set minibuffer-local-map "C-S-k" 'kill-line)
   :config
   (with-eval-after-load 'evil
-    (define-key vertico-map (kbd "C-j") #'vertico-next)
-    (define-key vertico-map (kbd "C-k") #'vertico-previous)))
+    (keymap-set vertico-map "C-j" 'vertico-next)
+    (keymap-set vertico-map "C-k" 'vertico-previous)))
 
 (use-package vertico-directory
   :after vertico
   :demand t
   :config
-  (define-key vertico-map "\r" #'vertico-directory-enter)
-  (define-key vertico-map "\d" #'vertico-directory-delete-char)
-  (define-key vertico-map "\M-\d" #'vertico-directory-delete-word)
+  (keymap-set vertico-map "RET"   'vertico-directory-enter)
+  (keymap-set vertico-map "DEL"   'vertico-directory-delete-char)
+  (keymap-set vertico-map "M-DEL" 'vertico-directory-delete-word)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
 
   (with-eval-after-load 'evil
-    (define-key vertico-map (kbd "M-h") #'vertico-directory-up)))
+    (keymap-set vertico-map "M-h" 'vertico-directory-up)))
 
 (use-package vertico-repeat
   :hook (minibuffer-setup . vertico-repeat-save)

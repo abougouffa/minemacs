@@ -12,8 +12,8 @@
   :straight (:type built-in)
   :config
   ;; Map ESC and q to quit transient
-  (define-key transient-map [escape]  #'transient-quit-one)
-  (define-key transient-map (kbd "q") #'transient-quit-one))
+  (keymap-set transient-map "<escape>" 'transient-quit-one)
+  (keymap-set transient-map "q" 'transient-quit-one))
 
 (use-package map
   :straight (:type built-in))

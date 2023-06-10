@@ -22,9 +22,9 @@
   (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
   (projectile-kill-buffers-filter 'kill-only-files)
   :init
-  (global-set-key [remap find-tag] #'projectile-find-tag)
+  (keymap-global-set "<remap> <find-tag>" 'projectile-find-tag)
   (with-eval-after-load 'evil
-    (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag))
+    (keymap-global-set "<remap> <evil-jump-to-tag>" 'projectile-find-tag))
   (+map!
     ;; Project
     :infix "p"

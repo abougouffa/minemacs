@@ -41,7 +41,7 @@
   (vterm-max-scrollback 5000)
   (vterm-tramp-shells '(("docker" "/bin/bash")))
   :config
-  (define-key vterm-mode-map [return] #'vterm-send-return))
+  (keymap-set vterm-mode-map "<return>" 'vterm-send-return))
 
 (use-package multi-vterm
   :straight t
