@@ -10,14 +10,17 @@
 
 (use-package org-roam
   :straight t
-  :hook (org-roam-mode . org-roam-db-autosync-mode)
   :init
   (+map! :infix "n"
     "f" #'org-roam-node-find
     "r" #'org-roam-ref-find
     "i" #'org-roam-node-insert
     "R" #'org-roam-node-random
-    "B" #'org-roam-buffer-display-dedicated))
+    "B" #'org-roam-buffer-display-dedicated)
+  :custom
+  (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  :config
+  (org-roam-db-autosync-mode 1))
 
 (use-package org-roam-protocol
   :after org-roam
