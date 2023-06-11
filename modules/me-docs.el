@@ -119,6 +119,9 @@
 (use-package poly-markdown
   :straight t)
 
+(use-package pandoc-mode
+  :straight t)
+
 
 (provide 'me-docs)
 
