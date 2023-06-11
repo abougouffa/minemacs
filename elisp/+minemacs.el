@@ -205,7 +205,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defmacro +after-load! (features &rest body)
   "Execute BODY after FEATURES have been loaded."
   (declare (indent 1))
-  (let ((features (if (+quoted features) (+unquote features) (eval features))))
+  (let ((features (if (+quoted-p features) (+unquote features) (eval features))))
     (if (symbolp features)
         `(with-eval-after-load ',features ,@body)
       (let ((feature (car features)))

@@ -416,7 +416,9 @@ Register build function FN to be called at the end of `minemacs-update'.
 
 (fn FN)" nil t)
 (autoload 'minemacs-run-build-functions "../elisp/+minemacs" "\
-Run all build functions registered with `+register-build-function!'." t)
+Run all build functions registered with `+register-build-function!'.
+
+(fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
 (register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "minemacs--build-functions"))
@@ -491,7 +493,7 @@ Return EXP unquoted.
 (fn EXPR)")
 (function-put '+unquote 'pure 't)
 (function-put '+unquote 'side-effect-free 't)
-(autoload '+quoted "../elisp/+primitives" "\
+(autoload '+quoted-p "../elisp/+primitives" "\
 Retrun t when EXP is quoted.
 
 (fn EXPR)")

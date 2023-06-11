@@ -162,7 +162,7 @@ Return the deserialized object, or nil if the SYM.el file dont exist."
   expr)
 
 ;;;###autoload
-(defun +quoted (expr)
+(defun +quoted-p (expr)
   "Retrun t when EXP is quoted."
   (memq (car-safe expr) '(quote function)))
 
