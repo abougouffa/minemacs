@@ -18,7 +18,7 @@
     "R" #'org-roam-node-random
     "B" #'org-roam-buffer-display-dedicated)
   :custom
-  (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:20}" 'face 'org-tag)))
   :config
   (org-roam-db-autosync-mode 1))
 
