@@ -84,6 +84,11 @@
 (use-package racket-mode
   :straight t)
 
+(use-package scheme
+  :straight (:type built-in)
+  :custom
+  (scheme-program-name "guile"))
+
 (use-package geiser
   :straight t
   :custom
