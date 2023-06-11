@@ -31,6 +31,10 @@
                                (display-line-numbers-mode -1)))
   :init
   (+map! "om" #'mu4e)
+  (defcustom +mu4e-auto-start t
+    "Automatically start `mu4e' in background in `me-daemon'."
+    :group 'minemacs-mu4e
+    :type 'boolean)
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
