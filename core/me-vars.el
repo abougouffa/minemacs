@@ -151,10 +151,15 @@ Compiled from the `system-configuration-features'.")
   :group 'minemacs-ui
   :type 'symbol)
 
-(defcustom minemacs-disabled-packages '()
+(defcustom minemacs-disabled-packages nil
   "List of packages to be disabled when loading MinEmacs modules.
 This can be useful if you want to enable a module but you don't want a package
-of being enabled.")
+of being enabled."
+  :group 'minemacs-core
+  :type '(list symbol))
+
+(defvar minemacs-configured-packages nil
+  "List of packages installed and configured by MinEmacs during startup.")
 
 (defcustom minemacs-after-loading-modules-hook nil
   "This hook will be run after loading MinEmacs modules.
