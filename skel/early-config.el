@@ -21,3 +21,6 @@
 
 ;; Setup a `debug-on-message' to catch a wired message!
 ;; (setq debug-on-message "Package cl is deprecated")
+
+;; Compute statistics to use with `use-package-report'
+;; (setq use-package-compute-statistics t)
