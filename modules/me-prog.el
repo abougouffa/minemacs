@@ -78,6 +78,18 @@
         (add-hook hook #'eglot-ensure)
         (remove-hook hook #'lsp-deferred))))
   :config
+  ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
+  ;; to fill `+eglot-auto-enable-modes' with all supported modes.
+  (defun +eglot-use-on-all-supported-modes (mode-list)
+    (dolist (mode-def mode-list)
+      (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
+        (cond
+         ((listp mode) (+eglot-use-on-all-supported-modes mode))
+         (t
+          (when (and (not (eq 'clojure-mode mode)) ; prefer cider
+                     (not (eq 'lisp-mode mode))    ; prefer sly
+                     (not (eq 'scheme-mode mode))) ; prefer geiser
+            (add-to-list '+eglot-auto-enable-modes mode)))))))
   (+map! :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer

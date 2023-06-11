@@ -26,10 +26,20 @@
    :variable-pitch-font-size 16))
 
 (+deferred!
- ;; Auto enable Eglot in supported modes using `+eglot-auto-enable' (from the
- ;; `me-prog' module). You can use `+lsp-auto-enable' instead to automatically
- ;; enable LSP mode in supported modes (from the `me-lsp' module).
- (+eglot-auto-enable))
+ ;; Auto enable Eglot in modes `+eglot-auto-enable-modes' using
+ ;; `+eglot-auto-enable' (from the `me-prog' module). You can use
+ ;; `+lsp-auto-enable' instead to automatically enable LSP mode in supported
+ ;; modes (from the `me-lsp' module).
+ (+eglot-auto-enable)
+
+ ;; Add `ocaml-mode' to `eglot' auto-enable modes
+ (add-to-list '+eglot-auto-enable-modes 'ocaml-mode)
+
+ (with-eval-after-load 'eglot
+   ;; You can use this to fill `+eglot-auto-enable-modes' with all supported
+   ;; modes from `eglot-server-programs'
+   (+eglot-use-on-all-supported-modes eglot-server-programs)))
+
 
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
