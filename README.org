@@ -59,8 +59,8 @@ launched. During the initial run, Emacs will automatically install the necessary
 packages.
 
 *** ⚠ Important note
-Please note that I'm using a fresh Emacs (29.0.91) built from source on a
-Manjaro Linux system.
+Please note that I'm using a fresh Emacs (29.0.91 or 30.0.50) built from source
+on a Manjaro Linux system.
 
 I'm trying to support at least Emacs 28.2, so [[file:core/me-backports-29.el][I back port some of the new
 functions/macros I use to Emacs 28]]. Furthermore, for Emacs 28 and earlier,
