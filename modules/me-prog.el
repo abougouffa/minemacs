@@ -33,11 +33,16 @@
 (use-package hideif
   :straight (:type built-in)
   :init
-  ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
-  ;; so we don't enable `hide-ifdef-mode'.
-  (unless (memq 'me-lsp minemacs-modules)
-    (dolist (h '(c++-mode-hook c++-ts-mode-hook c-mode-hook c-ts-mode-hook cuda-mode-hook))
-      (add-hook h #'hide-ifdef-mode)))
+  (defun +hide-ifdef-mode-maybe-h ()
+    ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
+    ;; so we don't enable `hide-ifdef-mode'.
+    (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
+                (bound-and-true-p lsp-semantic-tokens-enable))
+      (hide-ifdef-mode 1)))
+
+  (dolist (mode '(c++-mode c++-ts-mode c-mode c-ts-mode cuda-mode opencl-mode))
+    ;; Hook to the end
+    (add-hook (intern (format "%s-hook" mode)) #'+hide-ifdef-mode-maybe-h 101))
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
