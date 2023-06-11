@@ -44,7 +44,6 @@
 
 (use-package eglot
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
-  :commands +eglot-auto-enable
   :hook (eglot-managed-mode . eglot-inlay-hints-mode)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
@@ -66,7 +65,6 @@
     "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
     :group 'minemacs-prog
     :type '(repeat symbol))
-  :config
   (defun +eglot-auto-enable ()
     "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
     (interactive)
@@ -74,7 +72,7 @@
       (let ((hook (intern (format "%s-hook" mode))))
         (add-hook hook #'eglot-ensure)
         (remove-hook hook #'lsp-deferred))))
-
+  :config
   (+map! :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer

@@ -12,7 +12,6 @@
   :straight t
   :preface
   (setq lsp-use-plists t)
-  :commands +lsp-auto-enable
   :custom
   (lsp-session-file (concat minemacs-local-dir "lsp/session.el"))
   (lsp-server-install-dir (concat minemacs-local-dir "lsp/servers/"))
@@ -49,7 +48,6 @@
     "Modes for which LSP-mode can be automatically enabled by `+lsp-auto-enable'."
     :group 'minemacs-prog
     :type '(repeat symbol))
-  :config
   (defun +lsp-auto-enable ()
     "Auto-enable LSP-mode in configured modes in `+lsp-auto-enable-modes'."
     (interactive)
@@ -57,7 +55,7 @@
       (let ((hook (intern (format "%s-hook" mode))))
         (add-hook hook #'lsp-deferred)
         (remove-hook hook #'eglot-ensure))))
-
+  :config
   (+map! :keymaps 'lsp-mode-map
     :infix "c"
     "fF" #'lsp-format-buffer
