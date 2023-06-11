@@ -415,6 +415,8 @@ Add ROOTS to ignored projects, recentf, etc.
 Register build function FN to be called at the end of `minemacs-update'.
 
 (fn FN)" nil t)
+(autoload 'minemacs-run-build-functions "../elisp/+minemacs" "\
+Run all build functions registered with `+register-build-function!'." t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
 (register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "minemacs--build-functions"))
@@ -597,6 +599,11 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
+;;; Generated autoloads from ../modules/extras/me-elfeed-extras.el
+
+(register-definition-prefixes "../modules/extras/me-elfeed-extras" '("+elfeed-" "+yt-dl"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
 
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
@@ -661,6 +668,11 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 ;;; Generated autoloads from me-splash.el
 
 (register-definition-prefixes "me-splash" '("minemacs-splash"))
+
+
+;;; Generated autoloads from ../modules/extras/me-super-cape.el
+
+(register-definition-prefixes "../modules/extras/me-super-cape" '("+cape-"))
 
 
 ;;; Generated autoloads from me-vars.el
