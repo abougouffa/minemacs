@@ -316,6 +316,19 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   `(add-to-list 'minemacs--build-functions #',fn))
 
 ;;;###autoload
+(defun minemacs-run-build-functions (&optional dont-ask-p)
+  "Run all build functions registered with `+register-build-function!'."
+  (interactive)
+  (dolist (fn minemacs--build-functions)
+    (message "MinEmacs: Running `%s'" fn)
+    (if dont-ask-p
+        ;; Do not ask before installing
+        (cl-letf (((symbol-function 'yes-or-no-p) #'always)
+                  ((symbol-function 'y-or-n-p) #'always))
+          (funcall-interactively fn))
+      (funcall-interactively fn))))
+
+;;;###autoload
 (defun minemacs-update ()
   "Update MinEmacs packages."
   (interactive)
@@ -339,14 +352,8 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   (message "[MinEmacs]: Rebuilding packages")
   (straight-rebuild-all)
 
-  ;; Runn package-specific build functions (ex: `pdf-tools-install-noverify')
+  ;; Runn package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
-  (dolist (fn minemacs--build-functions)
-    (message "MinEmacs: Running `%s'" fn)
-    ;; Do not ask before installing
-    (cl-letf (((symbol-function 'yes-or-no-p) #'always)
-              ((symbol-function 'y-or-n-p) #'always))
-      (funcall-interactively fn))))
-
+  (minemacs-run-build-functions 'dont-ask))
 
 ;;; +minemacs.el ends here
