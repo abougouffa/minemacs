@@ -151,7 +151,8 @@ the children of class at point."
   :config
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
-  (unless (memq 'me-lsp minemacs-modules)
+  (unless (or (memq 'me-lsp minemacs-modules)
+              (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
 (use-package eldoc
