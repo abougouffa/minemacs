@@ -42,6 +42,8 @@ Useful for keeping track of the enabled theme."
 
 (use-package nerd-icons
   :straight t
+  :init
+  (+register-build-function! nerd-icons-install-fonts)
   :config
   ;; Show .m files as matlab/octave files (integral icon)
   (setcdr (assoc "m" nerd-icons-extension-icon-alist)
