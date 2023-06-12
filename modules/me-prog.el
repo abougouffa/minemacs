@@ -28,7 +28,13 @@
     (+register-build-function! treesit-auto-install-all)
     :config
     ;; Install all languages when calling `treesit-auto-install-all'
-    (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist))))
+    (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+
+  (use-package combobulate
+    :straight t
+    :hook (python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode)
+    :custom
+    (combobulate-key-prefix "C-c o")))
 
 (use-package hideif
   :straight (:type built-in)
