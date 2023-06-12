@@ -72,6 +72,15 @@
 
     (add-to-list 'consult-buffer-sources '+consult--source-workspace))
 
+  ;; Switch to the scratch buffer after creating a new workspace
+  (advice-add
+   'tabspaces-switch-or-create-workspace :around
+   (defun +tabspaces--switch-to-scratch-after-create-a (origfn &rest workspace)
+     (let ((length-before (length (tabspaces--list-tabspaces))))
+       (apply origfn workspace)
+       (when (length> (tabspaces--list-tabspaces) length-before)
+         (switch-to-buffer (get-scratch-buffer-create))))))
+
   (tabspaces-mode 1)
 
   ;; Rename the first tab to `tabspaces-default-tab'
