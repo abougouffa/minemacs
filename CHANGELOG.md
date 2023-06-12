@@ -2,6 +2,139 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v1.0.0 - 2023-06-12
+#### Bug Fixes
+- **(binary)** fix `objdump-disassemble-mode` - (3f77e8d) - Abdelhak Bougouffa
+- **(binary)** better management of objdump - (41e20ec) - Abdelhak Bougouffa
+- **(binary)** temporary disable auto `hexl-mode` (#67) - (ad08679) - Abdelhak Bougouffa
+- **(cape)** hook capfs the right way - (31c733d) - Abdelhak Bougouffa
+- **(daemon)** check if `mu4e` is available - (0950451) - Abdelhak Bougouffa
+- **(eaf)** remove undefined function - (21548b7) - Abdelhak Bougouffa
+- **(epa-file)** ensure enabling `epa-file` (#67) - (568bb5d) - Abdelhak Bougouffa
+- **(keybinding)** remove duplicate binding for workspace - (d391634) - Abdelhak Bougouffa
+- **(media)** problematic executable check (#65) - (08cf1ef) - Abdelhak Bougouffa
+- **(org-roam)** autosync - (d62475b) - donneyluck
+- **(org-roam)** autosync database (#68) - (bd4cd61) - Abdelhak Bougouffa
+- **(org-roam-ui)** use another keybinding (#68) - (5ba3042) - Abdelhak Bougouffa
+- **(tempel)** do not overwrite Capf - (d7ba8b7) - Abdelhak Bougouffa
+#### Documentation
+- **(mu4e-alert)** function documentation en comments - (e9004e0) - Abdelhak Bougouffa
+- **(skel)** add an example - (f1bc80b) - Abdelhak Bougouffa
+- update README - (0dbf11c) - Abdelhak Bougouffa
+- tiny fix in README - (c292c96) - Abdelhak Bougouffa
+- update README - (392fdd8) - Abdelhak Bougouffa
+- update README to include the new variable - (444f2c5) - Abdelhak Bougouffa
+- include the new environment vars in README - (2077726) - Abdelhak Bougouffa
+- minor updates - (868bb15) - Abdelhak Bougouffa
+#### Features
+- **(code-cells)** initial support - (64b041f) - Abdelhak Bougouffa
+- **(combobulate)** initial support - (fea6426) - Abdelhak Bougouffa
+- **(core)** add `+setq-hook!` & `+unsetq-hook!` from Doom - (5cdab26) - Abdelhak Bougouffa
+- **(core)** add `+add-hook!` & `+remove-hook!` from Doom - (61bb207) - Abdelhak Bougouffa
+- **(core)** disable individual modules packages - (4b91dc0) - Abdelhak Bougouffa
+- **(docs)** add `pandoc-mode` - (569f328) - Abdelhak Bougouffa
+- **(email)** add `org-mime` - (bb7a610) - Abdelhak Bougouffa
+- **(ibuffer-project)** group buffers by projects in ibuffer - (67c8d2d) - Abdelhak Bougouffa
+- **(lisp)** additional Common Lisp packages - (128cd50) - Abdelhak Bougouffa
+- **(ox-pandoc)** initial support - (c7c882f) - Abdelhak Bougouffa
+#### Nitpicks, changes with no side effect
+- **(keybindings)** remove extra space - (f7d7969) - Abdelhak Bougouffa
+- **(mixed-pitch)** sort list elements - (9d210bb) - Abdelhak Bougouffa
+- **(mu4e)** the `mu4e` command is already autoloaded - (8fd5850) - Abdelhak Bougouffa
+- **(mu4e)** minor formatting - (6d7ed85) - Abdelhak Bougouffa
+#### Refactoring
+- **(flymake)** small simplification - (6fa0fe3) - Abdelhak Bougouffa
+- **(mu4e)** minor UI edits - (117a9f4) - Abdelhak Bougouffa
+- **(netextender)** better error management - (f1c2442) - Abdelhak Bougouffa
+- **(netextender)** better way to manage the custom command - (852a7d8) - Abdelhak Bougouffa
+- move `+eglot-auto-enable` and `+lsp-auto-enable` - (1017235) - Abdelhak Bougouffa
+- use `keymap[-global]-set` instead of `define-key` - (1e36c9a) - Abdelhak Bougouffa
+- use `use-package`'s `:hook` as much as possible - (e31ca12) - Abdelhak Bougouffa
+#### Revert
+- **(binary)** temporary disable auto `hexl-mode` (#67) - (71309a2) - Abdelhak Bougouffa
+#### Tweaks
+- **(auctex)** better defaults - (a4152ef) - Abdelhak Bougouffa
+- **(binary)** better deferring - (761337c) - Abdelhak Bougouffa
+- **(binary)** simplify condition - (0b85122) - Abdelhak Bougouffa
+- **(cape)** better integration with `pcomplete` - (0cad15f) - Abdelhak Bougouffa
+- **(cape)** tweak the cape backends - (7540b43) - Abdelhak Bougouffa
+- **(consult-eglot)** better check for `consult-lsp` - (811b74b) - Abdelhak Bougouffa
+- **(core)** rename `+quoted` to `+quoted-p` - (99834d5) - Abdelhak Bougouffa
+- **(core)** add `minemacs-run-build-functions` - (04041bb) - Abdelhak Bougouffa
+- **(core)** save a list of packages configured by MinEmacs - (bdd3898) - Abdelhak Bougouffa
+- **(core)** add `minemacs-after-loading-modules-hook` - (0e4c53d) - Abdelhak Bougouffa
+- **(core)** centralize `minemacs-ignore-user-config` - (fd4a585) - Abdelhak Bougouffa
+- **(core)** add new env vars to disable user config - (4e229dd) - Abdelhak Bougouffa
+- **(corfu)** better integration with `eshell` - (174e3d8) - Abdelhak Bougouffa
+- **(dap)** update cpptools & codelldb default versions - (b9f673c) - Abdelhak Bougouffa
+- **(dashboard)** simplify condition - (56fc4a2) - Abdelhak Bougouffa
+- **(defaults)** better TAB behavior, dired, scripts, ... - (0ea4bd7) - Abdelhak Bougouffa
+- **(dired)** enable adding mail attachements from `dired` - (6a3fd7d) - Abdelhak Bougouffa
+- **(doc-view)** enable continuous mode - (9af3adc) - Abdelhak Bougouffa
+- **(doom-modeline)** enable word count - (921ee7f) - Abdelhak Bougouffa
+- **(doom-modeline)** show time icon - (19c78b5) - Abdelhak Bougouffa
+- **(doom-themes)** apply org tweaks - (3b4847d) - Abdelhak Bougouffa
+- **(ecryptfs)** make passphrase file customizable - (f35fa77) - Abdelhak Bougouffa
+- **(eglot)** add a helper function - (56f430d) - Abdelhak Bougouffa
+- **(emacs)** ask for output file in `+screenshot-svg` - (77a89a7) - Abdelhak Bougouffa
+- **(embark)** bind to `SPC a` instead of `SPC .` - (3d7537c) - Abdelhak Bougouffa
+- **(embark-consult)** activate on `embark-collect` - (3020308) - Abdelhak Bougouffa
+- **(evil)** minor edits - (5aeb051) - Abdelhak Bougouffa
+- **(flymake)** add hydra menu - (4407230) - Abdelhak Bougouffa
+- **(forge)** remove obsolete var, add merge keybinding - (63a235d) - Abdelhak Bougouffa
+- **(hideif)** more intelligent integration - (34d6a31) - Abdelhak Bougouffa
+- **(init)** use `file-truename` in `+load` - (01353db) - Abdelhak Bougouffa
+- **(io)** add `pandoc` as backend for `+html2pdf` - (74bf4c4) - Abdelhak Bougouffa
+- **(keybinding)** bind `bury-buffer` - (e71564a) - Abdelhak Bougouffa
+- **(latex)** check for `latexmk` before activation - (179ed3d) - Abdelhak Bougouffa
+- **(lisp)** limit geiser scheme implementations - (b28be92) - Abdelhak Bougouffa
+- **(ltex)** make `eglot-ltex-language` local-safe - (a0e2ed2) - Abdelhak Bougouffa
+- **(magit-imerge)** add keybinding - (f18e907) - Abdelhak Bougouffa
+- **(mu4e)** open in a dedicated workspace/tab - (5a04ae8) - Abdelhak Bougouffa
+- **(mu4e)** add variable to control auto-start in daemon - (936dc80) - Abdelhak Bougouffa
+- **(mu4e)** auto save google accounts on registration - (f099f67) - Abdelhak Bougouffa
+- **(mu4e)** don't reply to self, copy the header instead - (d52f58e) - Abdelhak Bougouffa
+- **(mu4e-alert)** use icon only if it exists - (f531cda) - Abdelhak Bougouffa
+- **(nerd-icons)** register `nerd-icons-install-fonts` - (c83ef08) - Abdelhak Bougouffa
+- **(nerd-icons)** minor edit - (bd108a4) - Abdelhak Bougouffa
+- **(org)** set custom TODO keywords - (62865a5) - Abdelhak Bougouffa
+- **(org)** restore `pcomplete` - (20785e2) - Abdelhak Bougouffa
+- **(org)** print the right file name when exporting - (e55d3d6) - Abdelhak Bougouffa
+- **(org)** disable annoying completion - (c427db1) - Abdelhak Bougouffa
+- **(org)** better set latex classes and default packages (#69) - (2bcfb17) - Abdelhak Bougouffa
+- **(org)** consider language when exporting to PDF (#69) - (dc9517f) - Abdelhak Bougouffa
+- **(org)** add a way to disable lower case keywords - (314f1eb) - Abdelhak Bougouffa
+- **(org-msg)** additional keybinding - (a48150f) - Abdelhak Bougouffa
+- **(org-roam)** bigger space for tags in completion - (7a68af9) - Abdelhak Bougouffa
+- **(org-roam)** show tags in `vertico` + autosync - (4033d75) - Abdelhak Bougouffa
+- **(realgud)** use realgud:gdb for GDB supported languages - (3a4be4f) - Abdelhak Bougouffa
+- **(scheme)** use guile by default - (4f01f23) - Abdelhak Bougouffa
+- **(skel)** add an example in `early-config.el` - (16b197d) - Abdelhak Bougouffa
+- **(skel)** add package disabling example - (51375d8) - Abdelhak Bougouffa
+- **(skel)** update `org-roam` config example - (1e9d244) - Abdelhak Bougouffa
+- **(spell-fu)** correctly check CamelCase words - (4dc0a79) - Abdelhak Bougouffa
+- **(spell-fu)** update macro name to follow the convention - (867f362) - Abdelhak Bougouffa
+- **(tabspaces)** auto switch to scratch on create - (7d1447a) - Abdelhak Bougouffa
+- **(tabspaces)** auto rename the first tab to default - (f7b42c6) - Abdelhak Bougouffa
+- **(tabspaces)** minor edit - (ade261d) - Abdelhak Bougouffa
+- **(tempel)** minor tweak - (ed4b7cf) - Abdelhak Bougouffa
+- **(tldr)** register `tldr-update-docs` as build fn - (856e474) - Abdelhak Bougouffa
+- bump packages versions - (1e999eb) - Abdelhak Bougouffa
+- regenerate loadddefs - (926c9c9) - Abdelhak Bougouffa
+- bump packages versions - (7576d14) - Abdelhak Bougouffa
+- defer `forge` & `code-review` - (4afad72) - Abdelhak Bougouffa
+- provide file names - (4db86af) - Abdelhak Bougouffa
+- bump packages versions - (875cd46) - Abdelhak Bougouffa
+- bump packages versions - (e5fa45f) - Abdelhak Bougouffa
+- beautify hydra menus - (d77704a) - Abdelhak Bougouffa
+- bump packages versions - (b55c182) - Abdelhak Bougouffa
+- bump packages versions - (b29eda4) - Abdelhak Bougouffa
+- bump packages versions - (3cd0eac) - Abdelhak Bougouffa
+- better use of `executable-find` - (a976cab) - Abdelhak Bougouffa
+- bump packages versions - (01ddbfc) - Abdelhak Bougouffa
+
+- - -
+
 ## v0.4.0 - 2023-05-27
 #### Bug Fixes
 - **(citar)** avoid using `all-the-icons` until it is loaded - (960d978) - Abdelhak Bougouffa
