@@ -219,6 +219,11 @@
   :after org
   :demand t)
 
+(use-package ox-pandoc
+  :straight t
+  :after org
+  :demand t)
+
 (use-package ox-extra
   :after org
   :demand t
