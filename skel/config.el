@@ -25,6 +25,11 @@
    :variable-pitch-font-family "IBM Plex Serif"
    :variable-pitch-font-size 16))
 
+;; When `me-daemon' and `me-email' are enabled, MinEmacs will try to start
+;; `mu4e' in background at startup. To disable this behavior, you can set
+;; `+mu4e-auto-start' to nil here.
+;; (setq +mu4e-auto-start nil)
+
 (+deferred!
  ;; Auto enable Eglot in modes `+eglot-auto-enable-modes' using
  ;; `+eglot-auto-enable' (from the `me-prog' module). You can use
@@ -39,7 +44,6 @@
    ;; You can use this to fill `+eglot-auto-enable-modes' with all supported
    ;; modes from `eglot-server-programs'
    (+eglot-use-on-all-supported-modes eglot-server-programs)))
-
 
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
