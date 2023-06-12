@@ -15,10 +15,11 @@
 
 (use-package tabspaces
   :straight t
-  :hook (minemacs-after-startup . tabspaces-mode)
+  :after minemacs-loaded
   :hook (tabspaces-mode . +consult-tabspaces-setup)
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "*default*")
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
   (tabspaces-session-file (+directory-ensure minemacs-local-dir "tabspaces/session.el"))
@@ -69,7 +70,12 @@
                :sort      'visibility
                :as        #'buffer-name))))
 
-    (add-to-list 'consult-buffer-sources '+consult--source-workspace)))
+    (add-to-list 'consult-buffer-sources '+consult--source-workspace))
+
+  (tabspaces-mode 1)
+
+  ;; Rename the first tab to `tabspaces-default-tab'
+  (tab-bar-rename-tab tabspaces-default-tab))
 
 (use-package tab-bar
   :straight (:type built-in)
