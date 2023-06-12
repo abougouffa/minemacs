@@ -80,6 +80,21 @@
     "rn" #'sly-mrepl-new
     "rq" #'sly-quit-lisp))
 
+(use-package sly-quicklisp
+  :straight t
+  :after sly
+  :demand t)
+
+(use-package sly-asdf
+  :straight t
+  :after sly
+  :demand t)
+
+(use-package sly-repl-ansi-color
+  :straight t
+  :after sly
+  :demand t)
+
 ;; Scheme
 (use-package racket-mode
   :straight t)
