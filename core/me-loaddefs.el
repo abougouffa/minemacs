@@ -422,6 +422,16 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 
 (fn HOOKS [:append :local] FUNCTIONS)" nil t)
 (function-put '+remove-hook! 'lisp-indent-function 'defun)
+(autoload '+setq-hook! "../elisp/+minemacs" "\
+Sets buffer-local variables on HOOKS.
+
+(fn HOOKS &rest [SYM VAL]...)" nil t)
+(function-put '+setq-hook! 'lisp-indent-function 1)
+(autoload '+unsetq-hook! "../elisp/+minemacs" "\
+Unbind setq hooks on HOOKS for VARS.
+
+(fn HOOKS &rest [SYM VAL]...)" nil t)
+(function-put '+unsetq-hook! 'lisp-indent-function 1)
 (autoload '+compile-functions "../elisp/+minemacs" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
 
@@ -446,7 +456,7 @@ Run all build functions registered with `+register-build-function!'.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
-(register-definition-prefixes "../elisp/+minemacs" '("+add-hook!" "+eval-when-idle-" "+hook-once-num" "+resolve-hook-forms" "minemacs--build-functions"))
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+resolve-hook-forms" "+setq-hook-fns" "minemacs--build-functions"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el

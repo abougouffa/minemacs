@@ -263,6 +263,26 @@ list is returned as-is."
                collect (cadr hook)
                else collect (intern (format "%s-hook" (symbol-name hook)))))))
 
+(defun +setq-hook-fns (hooks rest &optional singles)
+  (unless (or singles (= 0 (% (length rest) 2)))
+    (signal 'wrong-number-of-arguments (list #'evenp (length rest))))
+  (cl-loop with vars = (let ((args rest)
+                             vars)
+                         (while args
+                           (push (if singles
+                                     (list (pop args))
+                                   (cons (pop args) (pop args)))
+                                 vars))
+                         (nreverse vars))
+           for hook in (+resolve-hook-forms hooks)
+           for mode = (string-remove-suffix "-hook" (symbol-name hook))
+           append
+           (cl-loop for (var . val) in vars
+                    collect
+                    (list var val hook
+                          (intern (format "minemacs--setq-%s-for-%s-h"
+                                          var mode))))))
+
 ;; From Doom Emacs
 ;;;###autoload
 (defmacro +add-hook! (hooks &rest rest)
@@ -333,6 +353,32 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 \(fn HOOKS [:append :local] FUNCTIONS)"
   (declare (indent defun) (debug t))
   `(+add-hook! ,hooks :remove ,@rest))
+
+;; From Doom Emacs
+;;;###autoload
+(defmacro +setq-hook! (hooks &rest var-vals)
+  "Sets buffer-local variables on HOOKS.
+
+\(fn HOOKS &rest [SYM VAL]...)"
+  (declare (indent 1))
+  (macroexp-progn
+   (cl-loop for (var val hook fn) in (+setq-hook-fns hooks var-vals)
+            collect `(defun ,fn (&rest _)
+                      ,(format "%s = %s" var (pp-to-string val))
+                      (setq-local ,var ,val))
+            collect `(add-hook ',hook #',fn -90))))
+
+;; From Doom Emacs
+;;;###autoload
+(defmacro +unsetq-hook! (hooks &rest vars)
+  "Unbind setq hooks on HOOKS for VARS.
+
+\(fn HOOKS &rest [SYM VAL]...)"
+  (declare (indent 1))
+  (macroexp-progn
+   (cl-loop for (_var _val hook fn)
+            in (+setq-hook-fns hooks vars 'singles)
+            collect `(remove-hook ',hook #',fn))))
 
 ;; Adapted from: Doom Emacs
 ;;;###autoload
