@@ -290,11 +290,6 @@ Example: \"#+TITLE\" -> \"#+title\"
      (when (and +org-use-lower-case-keywords-and-properties (derived-mode-p 'org-mode))
        (+org-lower-case-keywords-and-properties)))))
 
-(defun +org-extras-tweak-completion-setup ()
-  (add-hook
-   'org-mode-hook
-   (defun +org-extras--tweak-completion-h ()
-     (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))))
 
 (defun +org-extras-setup ()
   (+org-extras-outline-path-setup)

@@ -118,7 +118,6 @@
   :config
   (+org-extras-outline-path-setup)
   (+org-extras-latex-classes-setup)
-  (+org-extras-tweak-completion-setup)
   (+org-extras-responsive-images-setup)
   (+org-extras-equation-numbering-setup)
   (+org-extras-multifiles-document-setup)
