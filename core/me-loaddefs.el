@@ -628,6 +628,8 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
+(autoload '+mu4e "../modules/extras/me-mu4e-extras" "\
+Start `mu4e' in a dedicated workspace using `tabspaces' or `tab-bar'." t)
 (autoload '+mu4e-extras-setup "../modules/extras/me-mu4e-extras")
 (register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-" "+org-msg-make-signature"))
 

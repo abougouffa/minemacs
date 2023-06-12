@@ -30,7 +30,6 @@
                                (visual-line-mode -1)
                                (display-line-numbers-mode -1)))
   :init
-  (+map! "om" #'mu4e)
   (defcustom +mu4e-auto-start t
     "Automatically start `mu4e' in background in `me-daemon'."
     :group 'minemacs-mu4e
@@ -122,6 +121,8 @@
 (use-package me-mu4e-extras
   :after mu4e
   :demand t
+  :init
+  (+map! "om" #'+mu4e)
   :config
   ;; Enable MinEmacs's mu4e extra features, including:
   ;; - Auto BCC the `+mu4e-auto-bcc-address';
@@ -131,6 +132,8 @@
   ;; - Add an action to save all the attachements;
   ;; - Add an action to save the message at point.
   (+mu4e-extras-setup)
+  ;; Register an advice to remove the dedicated workspace after quitting `mu4e'
+  (+mu4e-close-workspace-when-stopped-setup)
   ;; Redefine bookmarks queries to ignore spams
   (+mu4e-extras-ignore-spams-in-bookmarks-setup))
 
