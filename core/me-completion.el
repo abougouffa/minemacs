@@ -13,8 +13,13 @@
   :after minemacs-loaded
   :demand t
   :config
-  (dolist (fn '(cape-file cape-elisp-block cape-keyword cape-symbol))
-    (add-hook 'completion-at-point-functions fn))
+  (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
+
+  (+add-hook! (emacs-lisp-mode git-commit-mode)
+    (add-hook 'completion-at-point-functions #'cape-symbol nil t))
+
+  (+add-hook! (TeX-mode LaTeX-mode)
+    (add-hook 'completion-at-point-functions #'cape-tex nil t))
 
   ;; Silence the pcomplete capf, no errors or messages! Important for corfu!
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
