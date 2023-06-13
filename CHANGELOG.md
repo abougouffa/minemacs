@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v1.0.1 - 2023-06-13
+#### Tweaks
+- **(default)** hide `tab-bar` tabs - (023c0f4) - Abdelhak Bougouffa
+- **(defaults)** make use of `+add-hook!` - (d731c77) - Abdelhak Bougouffa
+
+- - -
+
 ## v1.0.0 - 2023-06-12
 #### Bug Fixes
 - **(binary)** fix `objdump-disassemble-mode` - (3f77e8d) - Abdelhak Bougouffa
