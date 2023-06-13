@@ -397,28 +397,21 @@ or file path may exist now."
 
 ;; ====== Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode' ======
 ;; Show line numbers
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'conf-mode-hook #'display-line-numbers-mode)
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(+add-hook! (prog-mode conf-mode text-mode) #'display-line-numbers-mode)
 
 ;; Highlight the current line
-(add-hook 'prog-mode-hook #'hl-line-mode)
-(add-hook 'conf-mode-hook #'hl-line-mode)
-(add-hook 'text-mode-hook #'hl-line-mode)
+(+add-hook! (prog-mode conf-mode text-mode) #'hl-line-mode)
 
 ;; Hide/show code blocks, a.k.a. code folding
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-(add-hook 'conf-mode-hook #'hs-minor-mode)
+(+add-hook! (prog-mode conf-mode) #'hs-minor-mode)
 
 ;; Wrap long lines
-(add-hook 'prog-mode-hook #'visual-line-mode)
-(add-hook 'conf-mode-hook #'visual-line-mode)
-(add-hook 'text-mode-hook #'visual-line-mode)
+(+add-hook! (prog-mode conf-mode text-mode) #'visual-line-mode)
 
 ;; Show trailing whitespace in `prog-mode' and `conf-mode'
-(defun +show-trailing-whitespace-h () (setq show-trailing-whitespace t))
-(add-hook 'prog-mode-hook #'+show-trailing-whitespace-h)
-(add-hook 'conf-mode-hook #'+show-trailing-whitespace-h)
+(+add-hook! (prog-mode conf-mode)
+  (defun +show-trailing-whitespace-h ()
+    (setq-local show-trailing-whitespace t)))
 
 ;; When MinEmacs is running in an asynchronous Org export context, there is no
 ;; need to enable these modes. So we load them only if we haven't been launched
