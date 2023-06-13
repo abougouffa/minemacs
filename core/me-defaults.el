@@ -176,6 +176,8 @@
  ;; Set line width for the divider in `window-divider-mode' to 2px
  window-divider-default-bottom-width 2
  window-divider-default-right-width 2
+ ;; Do not show tabs (`tab-bar' is configured in `me-workspaces')
+ tab-bar-show nil
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
