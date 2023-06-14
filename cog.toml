@@ -1,10 +1,16 @@
 from_latest_tag = true
 ignore_merge_commits = false
-branch_whitelist = []
+branch_whitelist = ["main"]
+
 pre_bump_hooks = []
-post_bump_hooks = []
+post_bump_hooks = [
+    "git push",
+    "git push origin {{version}}"
+]
+
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
+
 tag_prefix = "v"
 
 [commit_types]
@@ -13,7 +19,13 @@ nit = { changelog_title = "Nitpicks, changes with no side effect" }
 
 [changelog]
 path = "CHANGELOG.md"
-authors = []
+template = "remote"
+remote = "github.com"
+repository = "minemacs"
+owner = "abougouffa"
+authors = [
+  { signature = "Abdelhak Bougouffa", username = "abougouffa" }
+]
 
 [bump_profiles]
 
