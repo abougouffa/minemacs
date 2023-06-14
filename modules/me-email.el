@@ -164,7 +164,15 @@
     "ad" #'org-msg-attach-delete
     "k"  #'org-msg-edit-kill-buffer
     "p"  #'org-msg-preview)
-  (org-msg-mode 1))
+  (org-msg-mode 1)
+
+  ;; HACK: When adding multiple attachements, we likely need it to remember the
+  ;; directory of the last added attachement.
+  (advice-add
+   'org-msg-attach-attach :after
+   (defun +org-msg-attach-attach--save-default-directory-a (file &rest _)
+     (when-let ((dir (file-name-directory file)))
+       (setq-local default-directory dir)))))
 
 (use-package org-mime
   :straight t
