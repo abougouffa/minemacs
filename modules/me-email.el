@@ -122,6 +122,7 @@
   :after mu4e
   :demand t
   :init
+  (+define-dedicated-workspace! mu4e :exit-func mu4e-quit)
   (+map! "om" #'+mu4e)
   :config
   ;; Enable MinEmacs's mu4e extra features, including:
@@ -132,8 +133,6 @@
   ;; - Add an action to save all the attachements;
   ;; - Add an action to save the message at point.
   (+mu4e-extras-setup)
-  ;; Register an advice to remove the dedicated workspace after quitting `mu4e'
-  (+mu4e-close-workspace-when-stopped-setup)
   ;; Redefine bookmarks queries to ignore spams
   (+mu4e-extras-ignore-spams-in-bookmarks-setup))
 

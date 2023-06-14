@@ -277,31 +277,6 @@ If SKIP-HEADERS is set, do not show include message headers."
               (+save-as-pdf outfile t))))
         (mm-destroy-parts parts)))))
 
-(defvar +mu4e-tab-name "*mu4e*"
-  "The name of the workspace dedicated to `mu4e'.
-Set to nil to disable creating the dedicated workspace.")
-
-;;;###autoload
-(defun +mu4e ()
-  "Start `mu4e' in a dedicated workspace using `tabspaces' or `tab-bar'."
-  (interactive)
-  (when +mu4e-tab-name
-    (if (fboundp 'tabspaces-mode)
-        (tabspaces-switch-or-create-workspace +mu4e-tab-name)
-      (tab-new)
-      (tab-rename +mu4e-tab-name)))
-  (mu4e))
-
-(defun +mu4e-close-workspace-when-stopped-setup ()
-  (advice-add
-   'mu4e-quit :after
-   (defun +mu4e--close-workspace-when-stopped-a ()
-     (if (fboundp 'tabspaces-mode)
-         (when-let ((tab-num (seq-position (tabspaces--list-tabspaces) +mu4e-tab-name #'string=)))
-           (tabspaces-close-workspace (1+ tab-num)))
-       (when-let ((tab-num (seq-position (tab-bar-tabs) +mu4e-tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
-         (tab-close (1+ tab-num)))))))
-
 ;;;###autoload
 (defun +mu4e-extras-setup ()
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)
