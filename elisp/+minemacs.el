@@ -244,7 +244,7 @@ DEPTH and LOCAL are passed as is to `add-hook'."
         (fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
     `(add-hook
       ',hook
-      (defun ,fn-name ()
+      (defun ,fn-name (&rest _)
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
 
