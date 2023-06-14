@@ -49,6 +49,8 @@
  eshell-rc-script (concat minemacs-local-dir "eshell/rc")
  eudc-options-file (concat minemacs-local-dir "eudc-options.el")
  eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/")
+ fortune-dir (+directory-ensure minemacs-local-dir "fortune/")
+ fortune-file (expand-file-name "local" fortune-dir)
  gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/")
  gnus-init-file (concat minemacs-config-dir "gnus/init.el")
  gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")
