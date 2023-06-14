@@ -29,14 +29,6 @@ startup time, configuration modules that tightly combined various packages in an
 opinionated manner, CI commands, and even a profile manager! Each of these
 features introduced extra complexity and more failure points at every layer.
 
-As a result, MinEmacs originated (and continues to exist) as my personal
-configuration framework for Emacs. Its primary goal is to tailor to my specific
-requirements while maintaining modularity and portability. However, I have no
-intention or availability to create an alternative to Doom Emacs or Spacemacs.
-While I enjoy the process of tinkering with Emacs, MinEmacs serves as a tool
-that I rely on for my daily work. I am not interested in becoming a full-time
-maintainer of a tool that I use solely to maintain itself.
-
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
 /and it continues to serve that purpose/. I'm trying to tailor it to my specific
 needs while maintaining its modularity and portability. However, I have no
