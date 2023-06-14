@@ -81,7 +81,7 @@ the first, fresh scratch buffer you create. This accepts:
 ;;; Persistent scratch buffer
 
 ;;;###autoload
-(defun +scratch-persist-buffer-h ()
+(defun +scratch-persist-buffer-h (&rest _)
   "Save the current buffer to `+scratch-dir'."
   (let ((content (buffer-substring-no-properties (point-min) (point-max)))
         (point (point))
@@ -97,7 +97,7 @@ the first, fresh scratch buffer you create. This accepts:
              (current-buffer)))))
 
 ;;;###autoload
-(defun +scratch-persist-buffers-h ()
+(defun +scratch-persist-buffers-h (&rest _)
   "Save all scratch buffers to `+scratch-dir'."
   (setq +scratch-buffers
         (cl-delete-if-not #'buffer-live-p +scratch-buffers))
@@ -106,7 +106,7 @@ the first, fresh scratch buffer you create. This accepts:
       (+scratch-persist-buffer-h))))
 
 ;;;###autoload
-(defun +scratch-persist-buffers-after-switch-h ()
+(defun +scratch-persist-buffers-after-switch-h (&rest _)
   "Kill scratch buffers when they are no longer visible, saving them to disk."
   (unless (cl-some #'get-buffer-window +scratch-buffers)
     (mapc #'kill-buffer +scratch-buffers)

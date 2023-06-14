@@ -573,11 +573,17 @@ Return a scratchpad buffer in major MODE.
 
 (fn &optional DONT-RESTORE-P MODE DIRECTORY PROJECT-NAME)")
 (autoload '+scratch-persist-buffer-h "../elisp/+scratch" "\
-Save the current buffer to `+scratch-dir'.")
+Save the current buffer to `+scratch-dir'.
+
+(fn &rest _)")
 (autoload '+scratch-persist-buffers-h "../elisp/+scratch" "\
-Save all scratch buffers to `+scratch-dir'.")
+Save all scratch buffers to `+scratch-dir'.
+
+(fn &rest _)")
 (autoload '+scratch-persist-buffers-after-switch-h "../elisp/+scratch" "\
-Kill scratch buffers when they are no longer visible, saving them to disk.")
+Kill scratch buffers when they are no longer visible, saving them to disk.
+
+(fn &rest _)")
 (unless noninteractive (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
 (autoload '+scratch-open-buffer "../elisp/+scratch" "\
 Pop up a persistent scratch buffer.
