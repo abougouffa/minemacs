@@ -122,8 +122,7 @@
   :after mu4e
   :demand t
   :init
-  (+define-dedicated-workspace! mu4e :exit-func mu4e-quit)
-  (+map! "om" #'+mu4e)
+  (+map! "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
   :config
   ;; Enable MinEmacs's mu4e extra features, including:
   ;; - Auto BCC the `+mu4e-auto-bcc-address';

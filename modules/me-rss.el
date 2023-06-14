@@ -15,8 +15,7 @@
 (use-package elfeed
   :straight t
   :init
-  (+define-dedicated-workspace! elfeed :exit-func elfeed-search-quit-window)
-  (+map! "of" #'+elfeed)
+  (+map! "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
   (+nmap! :keymaps 'elfeed-search-mode-map
     "d" #'+elfeed-youtube-dl)
   (+nmap! :keymaps 'elfeed-show-mode-map

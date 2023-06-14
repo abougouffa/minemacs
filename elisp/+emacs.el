@@ -138,8 +138,8 @@ prefix or universal argument, it waits for a moment (defined by
       (webjump))))
 
 ;;;###autoload
-(defmacro +define-dedicated-workspace! (name &rest body)
-  "Define +NAME command to run BODY in a dedicated workspace.
+(defmacro +def-dedicated-tab! (name &rest body)
+  "Define +NAME command to run BODY in a dedicated tab.
 If not specified, BODY defaults to `(NAME)'.
 
 You can pass an exit hook or exit function on which, the created workspace will
@@ -181,6 +181,7 @@ be deleted.
            (tab-new)
            (tab-rename +mu4e-tab-name)))
         ,@sexp)
-       ,(macroexp-progn fn-body))))
+       ,(macroexp-progn fn-body)
+       #',fn-name)))
 
 ;;; +emacs.el ends here
