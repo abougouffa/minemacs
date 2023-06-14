@@ -138,25 +138,25 @@ prefix or universal argument, it waits for a moment (defined by
       (webjump))))
 
 ;;;###autoload
-(defmacro +def-dedicated-tab! (name &rest body)
-  "Define +NAME command to run BODY in a dedicated tab.
-If not specified, BODY defaults to `(NAME)'.
+(defmacro +def-dedicated-tab! (cmd &rest body)
+  "Define +CMD command to run BODY in a dedicated tab.
+If not specified, BODY defaults to `(CMD)'.
 
 You can pass an exit hook or exit function on which, the created workspace will
 be deleted.
 
 \(fn NAME [[:exit-hook HOOK] [:exit-func FUNC]] FORMS...)"
-  (let* ((name (+unquote name))
-         (fn-name (intern (format "+%s" name)))
-         (fn-doc (format "Launch %s in a dedicated workspace." name))
-         (tab-name (intern (format "+%s-tab-name" name)))
-         (exit-fn-name (intern (format "+%s--close-workspace" name)))
+  (let* ((cmd (+unquote cmd))
+         (fn-name (intern (format "+%s" cmd)))
+         (fn-doc (format "Launch %s in a dedicated workspace." cmd))
+         (tab-name (intern (format "+%s-tab-name" cmd)))
+         (exit-fn-name (intern (format "+%s--close-workspace" cmd)))
          exit-func exit-hook sexp fn-body)
     (while (keywordp (car body))
       (pcase (pop body)
         (:exit-func (setq exit-func (+unquote (pop body))))
         (:exit-hook (setq exit-hook (+unquote (pop body))))))
-    (setq sexp (if (null body) `((,name)) body))
+    (setq sexp (if (null body) `((,cmd)) body))
     (when (or exit-func exit-hook)
       (setq
        fn-body
@@ -171,7 +171,7 @@ be deleted.
       (when exit-func (add-to-list 'fn-body `(advice-add ',exit-func :after #',exit-fn-name) t))
       (when exit-hook (add-to-list 'fn-body `(add-hook ',exit-hook #',exit-fn-name) t)))
     `(progn
-       (defvar ,tab-name ,(format "*%s*" name))
+       (defvar ,tab-name ,(format "*%s*" cmd))
        (defun ,fn-name ()
         ,fn-doc
         (interactive)

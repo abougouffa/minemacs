@@ -124,8 +124,8 @@ Return the region or the thing at point.")
 (autoload '+webjump "../elisp/+emacs" "\
 Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (autoload '+def-dedicated-tab! "../elisp/+emacs" "\
-Define +NAME command to run BODY in a dedicated tab.
-If not specified, BODY defaults to `(NAME)'.
+Define +CMD command to run BODY in a dedicated tab.
+If not specified, BODY defaults to `(CMD)'.
 
 You can pass an exit hook or exit function on which, the created workspace will
 be deleted.
