@@ -160,7 +160,7 @@ be deleted.
     (when (or exit-func exit-hook)
       (setq
        fn-body
-       `((defun ,exit-fn-name ()
+       `((defun ,exit-fn-name (&rest _)
           (if (fboundp 'tabspaces-mode)
               ;; When `tabspaces' is available, use it.
               (when-let ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
