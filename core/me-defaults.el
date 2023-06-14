@@ -139,6 +139,10 @@
  shell-kill-buffer-on-exit t
  ;; Revert non-file buffers like dired
  global-auto-revert-non-file-buffers t
+ ;; Don't prompt for confirmation when we create a new file or buffer
+ confirm-nonexistent-file-or-buffer nil
+ ;; More intuitive buffer naming style
+ uniquify-buffer-name-style 'forward
 
  ;; ====== Performances ======
  ;; Don’t compact font caches during GC
