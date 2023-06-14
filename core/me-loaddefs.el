@@ -635,7 +635,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 ;;; Generated autoloads from me-defaults.el
 
-(register-definition-prefixes "me-defaults" '("+show-trailing-whitespace-h" "+whitespace-auto-cleanup-modes"))
+(register-definition-prefixes "me-defaults" '("+whitespace-auto-cleanup-modes"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
@@ -671,8 +671,6 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
-(autoload '+mu4e "../modules/extras/me-mu4e-extras" "\
-Start `mu4e' in a dedicated workspace using `tabspaces' or `tab-bar'." t)
 (autoload '+mu4e-extras-setup "../modules/extras/me-mu4e-extras")
 (register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-" "+org-msg-make-signature"))
 
