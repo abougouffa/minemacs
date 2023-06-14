@@ -179,7 +179,7 @@ be deleted.
          (if (fboundp 'tabspaces-mode)
              (tabspaces-switch-or-create-workspace ,tab-name)
            (tab-new)
-           (tab-rename +mu4e-tab-name)))
+           (tab-rename ,tab-name)))
         ,@sexp)
        ,(macroexp-progn fn-body)
        #',fn-name)))
