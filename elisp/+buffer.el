@@ -170,7 +170,7 @@ When available, use \"fortune\" to add a random quote."
     ;; Insert a random quote from "fortune" when the command is available
     (when (executable-find "fortune")
       (insert (string-join
-               (mapcar (apply-partially #'concat ";; ")
+               (mapcar (lambda (line) (string-trim-right (concat ";; " line)))
                        (string-lines (shell-command-to-string "fortune")))
                "\n"))
       (insert "\n;; ==============================\n"))
