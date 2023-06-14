@@ -562,6 +562,61 @@ Invoke `gdb' in the project's root." t)
 (register-definition-prefixes "../elisp/+project" '("+project-scan-dir-paths"))
 
 
+;;; Generated autoloads from ../elisp/+scratch.el
+
+(autoload '+scratch-load-persistent-scratch-buffer "../elisp/+scratch" "\
+
+
+(fn &optional PROJECT-NAME)")
+(autoload '+scratch-buffer "../elisp/+scratch" "\
+Return a scratchpad buffer in major MODE.
+
+(fn &optional DONT-RESTORE-P MODE DIRECTORY PROJECT-NAME)")
+(autoload '+scratch-persist-buffer-h "../elisp/+scratch" "\
+Save the current buffer to `+scratch-dir'.")
+(autoload '+scratch-persist-buffers-h "../elisp/+scratch" "\
+Save all scratch buffers to `+scratch-dir'.")
+(autoload '+scratch-persist-buffers-after-switch-h "../elisp/+scratch" "\
+Kill scratch buffers when they are no longer visible, saving them to disk.")
+(unless noninteractive (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
+(autoload '+scratch-open-buffer "../elisp/+scratch" "\
+Pop up a persistent scratch buffer.
+
+If passed the prefix ARG, do not restore the last scratch buffer.
+If PROJECT-P is non-nil, open a persistent scratch buffer associated with the
+  current project.
+
+(fn &optional ARG PROJECT-P SAME-WINDOW-P)" t)
+(autoload '+switch-to-scratch-buffer "../elisp/+scratch" "\
+Like `+scratch-open-buffer', but switches to it in the current window.
+
+If passed the prefix ARG, do not restore the last scratch buffer.
+
+(fn &optional ARG PROJECT-P)" t)
+(autoload '+scratch-open-project-scratch-buffer "../elisp/+scratch" "\
+Opens the (persistent) project scratch buffer in a popup.
+
+If passed the prefix ARG, do not restore the last scratch buffer.
+
+(fn &optional ARG SAME-WINDOW-P)" t)
+(autoload '+scratch-switch-to-project-scratch-buffer "../elisp/+scratch" "\
+Like `+scratch-open-project-scratch-buffer', but switches to it in the current
+window.
+
+If passed the prefix ARG, do not restore the last scratch buffer.
+
+(fn &optional ARG)" t)
+(autoload '+scratch-revert-scratch-buffer "../elisp/+scratch" "\
+Revert scratch buffer to last persistent state." t)
+(autoload '+scratch-delete-persistent-scratch-file "../elisp/+scratch" "\
+Deletes a scratch buffer file in `+scratch-dir'.
+
+If prefix ARG, delete all persistent scratches.
+
+(fn &optional ARG)" t)
+(register-definition-prefixes "../elisp/+scratch" '("+scratch-"))
+
+
 ;;; Generated autoloads from ../elisp/+systemd.el
 
 (autoload '+systemd-running-p "../elisp/+systemd" "\
