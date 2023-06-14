@@ -29,7 +29,7 @@
   :init
   (+map!
     "ot" '(nil :wk "vterm")
-    "otT" #'vterm)
+    "otT" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
   ;; Hide vterm install window
   (add-to-list
    'display-buffer-alist
