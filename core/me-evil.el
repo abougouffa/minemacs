@@ -22,7 +22,8 @@
   (evil-split-window-below t)
   (evil-vsplit-window-right t)
   (evil-kill-on-visual-paste nil)
-  (evil-respect-visual-line-mode t)
+  ;; BUG: setting this to t triggers errors on pressing . to repeat command
+  (evil-respect-visual-line-mode nil)
   (evil-ex-interactive-search-highlight 'selected-window)
   :config
   (+map!
