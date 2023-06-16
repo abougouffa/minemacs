@@ -8,20 +8,36 @@
 
 ;;; Code:
 
-(when (+emacs-features-p 'modules)
-  (use-package parinfer-rust-mode
-    :straight t
-    :when (eq sys/arch 'x86_64)
-    :custom
-    (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
-    (parinfer-rust-auto-download (eq sys/arch 'x86_64))
-    :hook ((emacs-lisp-mode
-            clojure-mode
-            scheme-mode
-            lisp-mode
-            racket-mode
-            hy-mode)
-           . parinfer-rust-mode)))
+(unless (+emacs-features-p 'modules)
+  (add-to-list 'minemacs-disabled-packages 'parinfer-rust-mode))
+
+(use-package parinfer-rust-mode
+  :straight t
+  :when (eq sys/arch 'x86_64)
+  :custom
+  (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
+  (parinfer-rust-auto-download (eq sys/arch 'x86_64))
+  :hook (emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode)
+  :config
+  (defvar-local +parinter-rust--was-enabled-p nil)
+
+  ;; HACK: Disable `parinfer-rust-mode' on some commands.
+  (defun +parinter-rust--restore-a (&rest _)
+    (when +parinter-rust--was-enabled-p
+      (setq +parinter-rust--was-enabled-p nil)
+      (parinfer-rust-mode 1)))
+
+  (defun +parinter-rust--disable-a (&rest _)
+    (if (and (bound-and-true-p parinfer-rust-mode)
+             (bound-and-true-p parinfer-rust-enabled))
+        (progn
+          (setq +parinter-rust--was-enabled-p t)
+          (parinfer-rust-mode -1))
+      (setq +parinter-rust--was-enabled-p nil)))
+
+  (dolist (cmd '(evil-shift-right))
+    (advice-add cmd :before #'+parinter-rust--disable-a)
+    (advice-add cmd :after #'+parinter-rust--restore-a)))
 
 ;; Common Lisp
 (use-package sly
