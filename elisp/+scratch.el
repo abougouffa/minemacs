@@ -1,15 +1,22 @@
-;;; +scratch.el ---
+;;; +scratch.el --- Persistent and per-project scratch buffers -*- lexical-binding: t; -*-
+
+;; -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
+
+;;; Commentary:
+;; This code has been adapted and simplified from Doom Emacs.
 
 ;;; Code:
-
-;;; Modified from Doom Emacs
 
 (defvar +scratch-default-file "__default"
   "The default file name for a project-less scratch buffer.
 
 Will be saved in `+scratch-dir'.")
 
-(defvar +scratch-dir (concat minemacs-local-dir "scratch/")
+(defvar +scratch-dir (concat minemacs-local-dir "pscratch/")
   "Where to save persistent scratch buffers.")
 
 (defvar +scratch-initial-major-mode nil
@@ -39,7 +46,7 @@ the first, fresh scratch buffer you create. This accepts:
          (expand-file-name (concat +scratch-current-project ".el") +scratch-dir)))
     (make-directory +scratch-dir t)
     (when (file-readable-p smart-scratch-file)
-      (+info! "Reading %s" smart-scratch-file)
+      (+log! "Reading persistent scratch from %s" smart-scratch-file)
       (cl-destructuring-bind (content point mode)
           (with-temp-buffer
             (save-excursion (insert-file-contents smart-scratch-file))
@@ -53,9 +60,7 @@ the first, fresh scratch buffer you create. This accepts:
 ;;;###autoload
 (defun +scratch-buffer (&optional dont-restore-p mode directory project-name)
   "Return a scratchpad buffer in major MODE."
-  (let* ((buffer-name (if project-name
-                          (format "*+scratch (%s)*" project-name)
-                        "*+scratch*"))
+  (let* ((buffer-name (if project-name (format "*pscratch:%s*" project-name) "*pscratch*"))
          (buffer (get-buffer buffer-name)))
     (with-current-buffer
         (or buffer (get-buffer-create buffer-name))
@@ -77,7 +82,6 @@ the first, fresh scratch buffer you create. This accepts:
       (current-buffer))))
 
 
-;;
 ;;; Persistent scratch buffer
 
 ;;;###autoload
@@ -86,14 +90,11 @@ the first, fresh scratch buffer you create. This accepts:
   (let ((content (buffer-substring-no-properties (point-min) (point-max)))
         (point (point))
         (mode major-mode))
-    (with-temp-file
-        (expand-file-name (concat (or +scratch-current-project
-                                      +scratch-default-file)
-                                  ".el")
-                          +scratch-dir)
-      (prin1 (list content
-                   point
-                   mode)
+    (with-temp-file (expand-file-name (concat (or +scratch-current-project
+                                                  +scratch-default-file)
+                                              ".el")
+                                      +scratch-dir)
+      (prin1 (list content point mode)
              (current-buffer)))))
 
 ;;;###autoload
@@ -117,7 +118,6 @@ the first, fresh scratch buffer you create. This accepts:
   (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
 
 
-;;
 ;;; Commands
 
 ;;;###autoload
@@ -178,7 +178,7 @@ If passed the prefix ARG, do not restore the last scratch buffer."
 (defun +scratch-revert-scratch-buffer ()
   "Revert scratch buffer to last persistent state."
   (interactive)
-  (unless (string-match-p "^\\*\\+scratch" (buffer-name))
+  (unless (string-match-p "^\\*pscratch" (buffer-name))
     (user-error "Not in a scratch buffer"))
   (when (+scratch-load-persistent-scratch-buffer +scratch-current-project)
     (message "Reloaded scratch buffer")))
@@ -200,5 +200,5 @@ If prefix ARG, delete all persistent scratches."
         (delete-file file)
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;; +scratch.el ends here
