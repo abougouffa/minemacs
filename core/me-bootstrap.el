@@ -55,8 +55,8 @@
 (advice-add
  'use-package :around
  (defun +use-package--check-if-disabled-a (origfn package &rest args)
-   (add-to-list 'minemacs-configured-packages package t)
    (unless (memq package minemacs-disabled-packages)
+     (add-to-list 'minemacs-configured-packages package t)
      (apply origfn package args))))
 
 ;; The previous advice will be removed after loading MinEmacs packages to avoid
