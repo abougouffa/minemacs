@@ -210,7 +210,7 @@ Example: \"#+TITLE\" -> \"#+title\"
      org-latex-classes
      (append
       org-latex-classes
-      '(("blank"
+      `(("blank"
          "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
          ("\\section{%s}"       . "\\section*{%s}")
          ("\\subsection{%s}"    . "\\subsection*{%s}")
@@ -219,6 +219,17 @@ Example: \"#+TITLE\" -> \"#+title\"
          ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
         ("book-no-parts"
          "\\documentclass[12pt,a4paper]{book}"
+         ("\\chapter{%s}"       . "\\chapter*{%s}")
+         ("\\section{%s}"       . "\\section*{%s}")
+         ("\\subsection{%s}"    . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+        ("book-no-parts-facile" ;; Compliant with the FACILE test (https://facile.cines.fr), must be compiled with pdfLaTeX.
+         ,(string-join
+           '("\\pdfobjcompresslevel 0"
+             "\\documentclass[12pt,a4paper]{book}"
+             "\\usepackage[a-1b,mathxmp]{pdfx}")
+           "\n")
          ("\\chapter{%s}"       . "\\chapter*{%s}")
          ("\\section{%s}"       . "\\section*{%s}")
          ("\\subsection{%s}"    . "\\subsection*{%s}")
