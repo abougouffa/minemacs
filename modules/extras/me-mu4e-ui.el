@@ -224,8 +224,8 @@ will also be the width of all other printable characters."
                          (:from-or-to . 25)
                          (:subject-truncated)))
 
-  (advice-add #'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
-  (advice-add #'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
+  (advice-add 'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
+  (advice-add 'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
 
 (defun +mu4e-ui-setup ()
   (if (display-graphic-p)
