@@ -67,20 +67,6 @@
   (+nmap! :keymaps 'org-mode-map
     "RET" #'org-open-at-point)
 
-  (cond
-   ((executable-find "latexmk")
-    (setq
-     org-latex-pdf-process
-     '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
-       "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
-
-   ;; Tectonic can be interesting. However, it don't work right now
-   ;; with some of my documents (natbib + sagej...)
-   ((executable-find "tectonic")
-    (setq
-     org-latex-pdf-process
-     '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f"))))
-
   (setq org-export-async-debug minemacs-debug) ;; Can be useful!
 
   ;; Dynamically change font size for Org heading levels, starting from
@@ -177,6 +163,7 @@
 (use-package ox-latex
   :after org
   :custom
+  (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
   ;; Default `minted` options, can be overwritten in file/dir locals
   (org-latex-minted-options
@@ -212,7 +199,19 @@
                   (gitconfig  "ini")
                   (systemd    "ini")))
     (unless (member pair org-latex-minted-langs)
-      (add-to-list 'org-latex-minted-langs pair))))
+      (add-to-list 'org-latex-minted-langs pair)))
+
+  (cond
+   ((executable-find "latexmk")
+    (setq
+     org-latex-pdf-process
+     '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
+       "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+   ;; NOTE: Tectonic might have some issues with some documents (sagej + natbib)
+   ((executable-find "tectonic")
+    (setq
+     org-latex-pdf-process
+     '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
 (use-package ox-hugo
   :straight t
