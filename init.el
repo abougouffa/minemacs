@@ -170,8 +170,15 @@
     ;; `minemacs-theme' is set in user configuration, it is loaded here.
     (+load-theme)
 
-    (+log! "Filling scratch buffer content.")
-    (+fill-scratch-buffer)
+    (+deferred!
+     (+log! "Loading the default persistent scratch buffer.")
+     (let ((buf (current-buffer)))
+       ;; Load the default persistent scratch buffer
+       (+scratch-open-buffer nil nil 'same-window)
+       ;; Switch to the previous buffer
+       (switch-to-buffer buf)
+       ;; And kill the Emacs' default scratch buffer
+       (when-let ((s (get-buffer "*scratch*"))) (kill-buffer s))))
 
     ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
     ;; to enhance startup time. However, I like to use the scratch buffer to
@@ -179,8 +186,9 @@
     ;; when Emacs is idle for 10 seconds.
     (+eval-when-idle-for! 10.0
       (setq initial-major-mode 'lisp-interaction-mode)
-      (with-current-buffer (get-scratch-buffer-create)
-        (emacs-lisp-mode))))
+      (when-let ((scratch-buffer (get-buffer "*scratch*")))
+        (with-current-buffer scratch-buffer
+          (emacs-lisp-mode)))))
 
   ;; Require the virtual package to triggre loading packages depending on it
   (require 'minemacs-loaded))

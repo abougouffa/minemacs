@@ -106,7 +106,7 @@
     "bu"  #'+sudo-save-buffer
     "bx"  #'bury-buffer
     "bS"  #'save-some-buffers
-    "bs"  #'scratch-buffer
+    "bs"  #'+scratch-open-project-scratch-buffer
     "bM"  #'view-echo-area-messages
     "bA"  #'+kill-some-buffers
     "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
