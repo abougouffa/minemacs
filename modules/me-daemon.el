@@ -40,12 +40,6 @@
  (defun +daemon--reload-theme-h ()
    (load-theme minemacs-theme t)))
 
-(+hook-once! 'server-after-make-frame-hook
-  (when (and (display-graphic-p)
-             (bound-and-true-p display-battery-mode))
-    (display-battery-mode -1)
-    (display-battery-mode 1)))
-
 
 (provide 'me-daemon)
 
