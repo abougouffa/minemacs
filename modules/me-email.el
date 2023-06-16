@@ -100,6 +100,8 @@
   :load-path +mu4e-load-path
   :after mu4e
   :demand t
+  :custom
+  (mu4e-icalendar-trash-after-reply t)
   :config
   (mu4e-icalendar-setup))
 
