@@ -165,6 +165,7 @@
   :custom
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
+  (org-latex-tables-booktabs t)
   ;; Default `minted` options, can be overwritten in file/dir locals
   (org-latex-minted-options
    '(("frame"         "lines")
