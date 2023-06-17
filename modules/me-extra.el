@@ -10,7 +10,7 @@
 
 (use-package better-jumper
   :straight t
-  :hook (minemacs-after-startup . better-jumper-mode)
+  :hook minemacs-after-startup
   :config
   ;; Map extra mouse buttons to jump forward/backward
   (keymap-global-set "<mouse-8>" 'better-jumper-jump-backward)

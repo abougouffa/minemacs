@@ -32,7 +32,7 @@
 
   (use-package combobulate
     :straight t
-    :hook (python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode)
+    :hook python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode
     :custom
     (combobulate-key-prefix "C-c o")))
 
@@ -271,7 +271,7 @@ the children of class at point."
 
 (use-package editorconfig
   :straight t
-  :hook (prog-mode . editorconfig-mode)
+  :hook prog-mode
   :init
   (+map!
     "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
@@ -361,7 +361,7 @@ the children of class at point."
 
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
-  :hook (prog-mode . hl-todo-mode)
+  :hook prog-mode
   :config
   (setq hl-todo-keyword-faces
         (append
