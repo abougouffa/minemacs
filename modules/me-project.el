@@ -27,6 +27,7 @@
     "a"  #'+project-add-project
     "D"  #'+dir-locals-open-or-create
     "-"  #'project-dired
+    "x"  #'project-execute-extended-command
     ;; compile/test
     "c" #'project-compile
     ;; run
