@@ -42,6 +42,7 @@
     ;; me-rss        ; News feed (elfeed, ...)
     ;; me-lifestyle  ; *Very* opinionated lifestyle packages (awqat, ...)
     me-docs          ; Documents (pdf-tools, nov, ...)
+    ;; me-calendar   ; Calendar (calfw, calfw-org, calfw-ical, ...)
     me-latex         ; LaTeX (auctex, auctex-latexmk, reftex, bibtex, ...)
     ;; me-biblio     ; Bibliography & citations (org-cite, citar, zotxt, ...)
     me-natural-langs ; Natural language stuff (spell-fu, go-translate, eglot-ltex, ...)
