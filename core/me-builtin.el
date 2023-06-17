@@ -34,6 +34,12 @@
   (auth-source-do-cache t) ; Enable caching, do not keep asking about GPG key
   (auth-source-cache-expiry 86400)) ; All day, default is 2h (7200)
 
+(use-package epa
+  :straight (:type built-in)
+  :custom
+  ;; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
+  (epg-pinentry-mode 'loopback))
+
 (use-package epa-file
   :straight (:type built-in)
   :after minemacs-loaded
