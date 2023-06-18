@@ -201,6 +201,13 @@
     ;; ====== Project ======
     "p"   '(nil :wk "project"))
 
+  ;; To handle repeated "SPC u" like repeated "C-u"
+  (general-def
+    :keymaps 'universal-argument-map
+    :prefix minemacs-leader-key
+    :global-prefix minemacs-global-mode-prefix
+    "u" #'universal-argument-more)
+
   ;; HACK: This is a synchronization feature, providing `me-general-ready' tells
   ;; the `+map!', `+map-local!', ... macros that `general' is ready and the
   ;; definers `+minemacs--internal-map!', `+minemacs--internal-map-local!', ...
