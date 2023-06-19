@@ -139,7 +139,7 @@
     ;; ====== Window ======
     "w"   '(nil :wk "window")
     "wd"  #'delete-window
-    "wD"  #'delete-window-on
+    "wD"  #'delete-other-windows
     "wm"  #'maximize-window
     "wu"  #'winner-undo
     "wU"  #'winner-redo
