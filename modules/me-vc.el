@@ -46,6 +46,7 @@
 (use-package forge
   :straight t
   :after magit
+  :demand t
   :preface
   ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
