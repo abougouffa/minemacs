@@ -10,7 +10,7 @@
 
 ;; Email (mu4e)
 (+lazy-when! (memq 'me-email minemacs-modules)
-  (when (and +mu4e-available-p +mu4e-auto-start  (require 'mu4e nil t))
+  (when (and +mu4e-available-p +mu4e-auto-start (require 'mu4e nil t))
     (unless (mu4e-running-p)
       (+info! "Starting `mu4e' in background.")
       (let ((inhibit-message t))

@@ -20,6 +20,7 @@
     "Open URL with MPV."
     (start-process +mpv-process-name +mpv-buffer-name +mpv-command url))
 
+  ;; Automatically open Youtube links in MPV
   (setq browse-url-browser-function
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
           ("." . browse-url-default-browser))))
