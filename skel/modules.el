@@ -17,7 +17,6 @@
 (setq minemacs-modules
       '(me-ui            ; User interface (focus, writeroom-mode, mixed-pitch, ...)
         me-editor        ; Editing (tempel, smartparens, unicode-fonts, ligature, ...)
-        me-daemon        ; Emacs daemon tweaks
         me-undo          ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
         me-multi-cursors ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
         me-vc            ; Version control (magit, forge, core-review, diff-hl, ...)
@@ -37,6 +36,7 @@
         me-notes         ; Notes & Zettelkasten (org-roam, consult-org-roam, ...)
         me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
         ;; me-email      ; Email (mu4e, mu4e-alert, org-msg, ...)
+        me-daemon        ; Emacs daemon tweaks
         ;; me-rss        ; News feed (elfeed, ...)
         ;; me-lifestyle  ; *Very* opinionated lifestyle packages (awqat, ...)
         me-docs          ; Documents (pdf-tools, nov, ...)
