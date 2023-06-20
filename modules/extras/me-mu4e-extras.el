@@ -14,9 +14,9 @@
   :type '(repeat string))
 
 (defcustom +mu4e-auto-bcc-address nil
-  "BCC address."
+  "Auto add this/these addresses as BCC."
   :group 'minemacs-mu4e
-  :type 'string)
+  :type '(choice string (repeat string)))
 
 ;; Some of these functions are adapted from Doom Emacs
 
@@ -185,7 +185,7 @@ used later for Gmail specific actions."
 (defun +mu4e--auto-bcc-h ()
   "Add BCC address from `+mu4e-auto-bcc-address'."
   (when +mu4e-auto-bcc-address
-    (save-excursion (message-add-header (format "BCC: %s\n" +mu4e-auto-bcc-address)))))
+    (save-excursion (message-add-header (format "BCC: %s\n" (string-join (ensure-list +mu4e-auto-bcc-address) ", "))))))
 
 (defun +mu4e--set-from-address-h ()
   "If the user defines multiple `+mu4e-account-aliases' for email aliases
