@@ -27,7 +27,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                              (lambda (part)
                                (when (assoc "attachment" (cdr part))
                                  part))
-                             (mu4e~view-gather-mime-parts))))
+                             (mu4e--view-gather-mime-parts))))
            (files (+mu4e-part-selectors parts)))
       (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
     (user-error (mu4e-format "No attached files found"))))
@@ -35,13 +35,13 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
 (defun +mu4e-view-open-attachment ()
   "Select an attachment, and open it."
   (interactive)
-  (mu4e~view-open-file
-   (mu4e~view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
+  (mu4e--view-open-file
+   (mu4e--view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
 
 (defun +mu4e-view-select-mime-part-action ()
   "Select a MIME part, and perform an action on it."
   (interactive)
-  (let ((labeledparts (+mu4e-part-selectors (mu4e~view-gather-mime-parts))))
+  (let ((labeledparts (+mu4e-part-selectors (mu4e--view-gather-mime-parts))))
     (if labeledparts
         (mu4e-view-mime-part-action
          (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
@@ -94,7 +94,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
       (let* ((msg (or msg (mu4e-message-at-point)))
              (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
              (attachdir (expand-file-name id mu4e-attachment-dir))
-             (parts (mu4e~view-gather-mime-parts))
+             (parts (mu4e--view-gather-mime-parts))
              (handles '())
              (files '())
              dir)
