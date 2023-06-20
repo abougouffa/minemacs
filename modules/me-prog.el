@@ -30,6 +30,14 @@
     ;; Install all languages when calling `treesit-auto-install-all'
     (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
+  ;; To avoid installing `tree-sitter' as this fork uses the built-in `treesit'
+  (push 'tree-sitter straight-built-in-pseudo-packages)
+
+  (use-package ts-fold
+    :straight (:host github :repo "garyo/ts-fold" :branch "andrew-sw/treesit-el-support")
+    :after treesit treesit-auto
+    :hook (minemacs-after-startup . global-ts-fold-mode))
+
   (use-package combobulate
     :straight t
     :hook python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode
