@@ -76,10 +76,11 @@
   (advice-add
    'tabspaces-switch-or-create-workspace :around
    (defun +tabspaces--switch-to-scratch-after-create-a (origfn &rest workspace)
-     (let ((length-before (length (tabspaces--list-tabspaces))))
+     (let ((before-list (tabspaces--list-tabspaces)))
        (apply origfn workspace)
-       (when (length> (tabspaces--list-tabspaces) length-before)
-         (switch-to-buffer (get-scratch-buffer-create))))))
+       ;; Created a new empty workspace
+       (when-let ((new-ws (cl-set-difference (tabspaces--list-tabspaces) before-list :test #'string=)))
+         (+scratch-open-buffer nil nil 'same-window)))))
 
   (tabspaces-mode 1)
 
