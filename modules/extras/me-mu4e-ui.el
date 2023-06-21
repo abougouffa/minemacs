@@ -234,6 +234,12 @@ will also be the width of all other printable characters."
       (when (display-graphic-p)
         (+mu4e--ui-setup)))))
 
+(defun +mu4e-ui-modeline-tweaks ()
+  (setq mu4e-modeline-all-clear `("C:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-read")))
+        mu4e-modeline-all-read `("R:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-check")))
+        mu4e-modeline-unread-items `("U:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-unread")))
+        mu4e-modeline-new-items `("N:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-bell")))))
+
 
 (provide 'me-mu4e-ui)
 

@@ -110,7 +110,8 @@
   :demand t
   :config
   ;; Setup the UI (mostly inspired by Doom Emacs, with a lot of improvements)
-  (+mu4e-ui-setup))
+  (+mu4e-ui-setup)
+  (+mu4e-ui-modeline-tweaks))
 
 (use-package me-mu4e-gmail
   :after mu4e
