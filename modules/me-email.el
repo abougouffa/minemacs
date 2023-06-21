@@ -91,7 +91,7 @@
   (advice-add
    'mu4e-update-mail-and-index :around
    (defun +mu4e--update-mail-quitely-a (origfn run-in-background)
-     (mu4e-message "Getting new emails")
+     (+info! "Getting new emails")
      (apply origfn '(t)))))
 
 ;; Reply to iCalendar meeting requests
