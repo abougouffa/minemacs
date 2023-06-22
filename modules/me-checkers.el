@@ -89,7 +89,8 @@
     ("q" nil :color blue)))
 
 (use-package flymake-easy
-  :straight t)
+  :straight t
+  :autoload flymake-easy-load)
 
 
 (provide 'me-checkers)
