@@ -454,7 +454,10 @@ Load environment variables from the file saved in
 Add ROOTS to ignored projects, recentf, etc.
 
 (fn &rest ROOTS)")
+(autoload '+package-disabled-p "../elisp/+minemacs" "\
+Is package PACKAGE disabled in `minemacs-disabled-packages'.
 
+(fn PACKAGE)")
 (autoload 'minemacs-run-build-functions "../elisp/+minemacs" "\
 Run all build functions in `minemacs-build-functions'.
 

@@ -55,7 +55,7 @@
 (advice-add
  'use-package :around
  (defun +use-package--check-if-disabled-a (origfn package &rest args)
-   (unless (memq package minemacs-disabled-packages)
+   (unless (+package-disabled-p package)
      (add-to-list 'minemacs-configured-packages package t)
      (apply origfn package args))))
 

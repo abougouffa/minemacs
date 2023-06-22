@@ -440,6 +440,9 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
       (add-to-list 'recentf-exclude root))))
 
 ;;;###autoload
+(defun +package-disabled-p (package)
+  "Is package PACKAGE disabled in `minemacs-disabled-packages'."
+  (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t))
 
 ;;;###autoload
 (defun minemacs-run-build-functions (&optional dont-ask-p)
