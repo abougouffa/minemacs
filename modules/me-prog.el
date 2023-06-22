@@ -222,7 +222,7 @@ the children of class at point."
 
 (use-package compile
   :straight (:type built-in)
-  :commands +toggle-burry-compilation-buffer-if-successful
+  :commands +toggle-bury-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
   :hook (compilation-filter . ansi-color-compilation-filter)
   :custom
@@ -235,6 +235,11 @@ the children of class at point."
   (with-eval-after-load 'savehist
     (add-to-list 'savehist-additional-variables 'compile-history))
 
+  (defcustom +compilation-auto-bury-msg-level "warning"
+    "Level of messages to consider OK to auto-bury the compilation buffer."
+    :group 'minemacs-prog
+    :type '(choice (const "warning") (const "error") string))
+
   ;; Auto-close the compilation buffer if succeeded without warnings.
   ;; Adapted from: stackoverflow.com/q/11043004/3058915
   (defun +compilation--bury-if-successful-h (buf str)
@@ -245,7 +250,7 @@ the children of class at point."
            (not (with-current-buffer buf
                   (save-excursion
                     (goto-char (point-min))
-                    (search-forward "warning" nil t)))))
+                    (search-forward +compilation-auto-bury-msg-level nil t)))))
       (run-with-timer
        3 nil
        (lambda (b)
@@ -255,7 +260,7 @@ the children of class at point."
            (message "Compilation finished without warnings.")))
        buf)))
 
-  (defun +toggle-burry-compilation-buffer-if-successful ()
+  (defun +toggle-bury-compilation-buffer-if-successful ()
     "Toggle auto-burying the successful compilation buffer."
     (interactive)
     (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
