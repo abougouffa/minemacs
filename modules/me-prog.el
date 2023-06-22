@@ -32,7 +32,7 @@
   (push 'tree-sitter straight-built-in-pseudo-packages)
 
   (use-package ts-fold
-    :straight (:host github :repo "garyo/ts-fold" :branch "andrew-sw/treesit-el-support")
+    :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
     :after treesit treesit-auto
     :hook (minemacs-after-startup . global-ts-fold-mode))
 
