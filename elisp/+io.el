@@ -283,5 +283,45 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
                  url out-file))
     (user-error "Please set `+single-file-executable' accordingly.")))
 
+(defun +lock--file (name)
+  (expand-file-name (format "minemacs-%s.lock" name) temporary-file-directory))
+
+(defun +lock--locker-pid (name)
+  (let ((fname (+lock--file name)))
+    (and (file-exists-p fname) (string-to-number (+file-read-to-string fname)))))
+
+;;;###autoload
+(defun +lockedp (name)
+  "Return non-nil if the resource NAME is locked."
+  (when-let ((pid (+lock--locker-pid name)))
+    (and (process-attributes pid) t)))
+
+;;;###autoload
+(defun +locked-by-this-process-p (name)
+  "Return non-nil if the resource NAME locked by this Emacs instance."
+  (and (+lockedp name) (equal (emacs-pid) (+lock--locker-pid name))))
+
+;;;###autoload
+(defun +lock (name)
+  "Lock the resource named NAME."
+  (if (+lockedp name)
+      (progn (+info! "Resource `%s' already locked!" name) nil)
+    (+info! "Created lock file for resource `%s'!" name)
+    (+shutup!
+     (with-temp-buffer
+       (insert (format "%d" (emacs-pid)))
+       (write-file (+lock--file name))))
+    t))
+
+;;;###autoload
+(defun +unlock (name &optional force-p)
+  "Unlock the resource named NAME if locked by this process.
+If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
+current process."
+  (when (or force-p (+locked-by-this-process-p name))
+    (+info! "Resource `%s' unlocked" name)
+    (delete-file (+lock--file name))
+    t))
+
 
 ;;; +io.el ends here

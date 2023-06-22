@@ -220,7 +220,25 @@ The executable for \"single-file\" which is used archive HTML pages.")
 Save URL into OUT-FILE as a standalone HTML file.
 
 (fn URL OUT-FILE)")
-(register-definition-prefixes "../elisp/+io" '("+html2pdf-default-backend" "+save-as-pdf-filename"))
+(autoload '+lockedp "../elisp/+io" "\
+Return non-nil if the resource NAME is locked.
+
+(fn NAME)")
+(autoload '+locked-by-this-process-p "../elisp/+io" "\
+Return non-nil if the resource NAME locked by this Emacs instance.
+
+(fn NAME)")
+(autoload '+lock "../elisp/+io" "\
+Lock the resource named NAME.
+
+(fn NAME)")
+(autoload '+unlock "../elisp/+io" "\
+Unlock the resource named NAME if locked by this process.
+If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
+current process.
+
+(fn NAME &optional FORCE-P)")
+(register-definition-prefixes "../elisp/+io" '("+html2pdf-default-backend" "+lock--" "+save-as-pdf-filename"))
 
 
 ;;; Generated autoloads from ../elisp/+keybinding.el
