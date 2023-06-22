@@ -5,7 +5,7 @@
 ;; This file can be used to override `minemacs-modules'
 ;; and `minemacs-core-modules'
 
-;; Ordered list of enabled core modules
+;;; Ordered list of enabled core modules
 (setq minemacs-core-modules
       '(me-splash        ; Simple splash screen
         me-keybindings   ; Keybinding (general, which-key, hydra, ...)
@@ -13,7 +13,7 @@
         me-core-ui       ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
         me-completion))  ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
 
-;; List of enabled modules
+;;; List of enabled modules
 (setq minemacs-modules
       '(me-ui            ; User interface (focus, writeroom-mode, mixed-pitch, ...)
         me-editor        ; Editing (tempel, smartparens, unicode-fonts, ligature, ...)
@@ -24,6 +24,7 @@
         me-project       ; Project management (project, consult-project-extra, ...)
         me-prog          ; Programming stuff (tree-sitter, eglot, eldoc, eldoc-box, apheleia, editorconfig, ...)
         me-checkers      ; Static checkers (flymake, flymake-easy, ...)
+        ;; me-assistants ; AI based assistants (chatgpt, codepilot, ...)
         me-debug         ; Debugging tools (gdb-mi, realgud, disaster, ...)
         ;; me-lsp        ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
         me-lisp          ; Lisps development (parinfer-rust, sly, macrostep, geiser, elisp, helpful, eros, ...)
@@ -53,12 +54,26 @@
         me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
         me-window))      ; Frame & window tweaks
 
+;;; List of disabled packages
 ;; You can set `minemacs-disabled-packages' to disable some packages. For
 ;; example, if you want to use the `me-ui' module, but you want to disable the
 ;; `focus' package. You can use:
-(push 'focus minemacs-disabled-packages)
+;; (push 'focus minemacs-disabled-packages)
 
-;; You can use the obsolete configurations by adding the `obsolete/me-*' modules to `minemacs-modules'
+;; Adding a package to `minemacs-disabled-packages' guarantees disabling its
+;; corresponding `use-package' section in MinEmacs' modules. However, please
+;; note that, if you want to completely disable a package, you need to make sure
+;; you've also disabled its dependent packages (see `M-x straight-dependents'),
+;; otherwise it will get installed as a dependency.
+;;
+;; You can also `push' (or `add-to-list') multiple packages at once (as a list).
+;; For example, to completely disable `iedit', you can use:
+;; (push '(iedit evil-multiedit evil-iedit-state) minemacs-disabled-packages)
+
+;;; Using the obsolete modules
+;; You can use the obsolete configurations by adding the `obsolete/me-*' modules
+;; to `minemacs-modules'. However, these modules, as their names indicate, are
+;; OBSOLETE and not supported.
 ;; (setq minemacs-modules
 ;;       (append
 ;;        minemacs-modules
