@@ -277,7 +277,10 @@ If SKIP-HEADERS is set, do not show include message headers."
               (+save-as-pdf outfile t))))
         (mm-destroy-parts parts)))))
 
-;;;###autoload
+(defun +mu4e-extras-locks-setup ()
+  (advice-add 'mu4e--server-kill :after (defun +mu4e--unlock (&rest _) (+unlock 'mu)))
+  (advice-add 'mu4e--server-start :after (defun +mu4e--lock (&rest _) (+lock 'mu))))
+
 (defun +mu4e-extras-setup ()
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)
   (add-hook 'mu4e-compose-pre-hook '+mu4e--set-from-address-h)

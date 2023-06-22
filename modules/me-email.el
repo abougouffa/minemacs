@@ -136,7 +136,9 @@
   ;; - Add an action to save the message at point.
   (+mu4e-extras-setup)
   ;; Redefine bookmarks queries to ignore spams
-  (+mu4e-extras-ignore-spams-in-bookmarks-setup))
+  (+mu4e-extras-ignore-spams-in-bookmarks-setup)
+  ;; Create/destroy lock files on server start/kill
+  (+mu4e-extras-locks-setup))
 
 (use-package org-msg
   :straight t
