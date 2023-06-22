@@ -300,14 +300,11 @@ the children of class at point."
   :straight t
   :mode "\\.vim\\(rc\\)?\\'")
 
-(use-package cmake-mode
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*"))
-  :mode "CMakeLists\\.txt\\'"
-  :mode "\\.cmake\\'")
-
-(use-package cmake-font-lock
-  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
-  :hook (cmake-mode . cmake-font-lock-activate))
+(when (+emacs-features-p 'tree-sitter)
+  (use-package cmake-ts-mode
+    :straight (:type built-in)
+    :mode "CMakeLists\\.txt\\'"
+    :mode "\\.cmake\\'"))
 
 (use-package rust-mode
   :straight t
