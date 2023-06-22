@@ -439,19 +439,13 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
     (with-eval-after-load 'recentf
       (add-to-list 'recentf-exclude root))))
 
-(defvar minemacs--build-functions nil
-  "These functions are run after completing package updates.")
-
 ;;;###autoload
-(defmacro +register-build-function! (fn)
-  "Register build function FN to be called at the end of `minemacs-update'."
-  `(add-to-list 'minemacs--build-functions #',fn))
 
 ;;;###autoload
 (defun minemacs-run-build-functions (&optional dont-ask-p)
-  "Run all build functions registered with `+register-build-function!'."
+  "Run all build functions in `minemacs-build-functions'."
   (interactive)
-  (dolist (fn minemacs--build-functions)
+  (dolist (fn minemacs-build-functions)
     (message "MinEmacs: Running `%s'" fn)
     (if dont-ask-p
         ;; Do not ask before installing

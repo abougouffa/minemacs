@@ -18,14 +18,15 @@
 
 (use-package tldr
   :straight t
+  :hook (minemacs-build-functions . tldr-update-docs)
   :init
   (+map! "ht" #'tldr)
-  (+register-build-function! tldr-update-docs)
   :custom
   (tldr-enabled-categories '("common" "linux" "osx")))
 
 (use-package vterm
   :straight t
+  :hook (minemacs-build-functions . vterm-module-compile)
   :init
   (+map!
     "ot" '(nil :wk "vterm")
@@ -36,7 +37,6 @@
    `(" \\*Install vterm\\*"
      (display-buffer-no-window)
      (allow-no-window . t)))
-  (+register-build-function! vterm-module-compile)
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)

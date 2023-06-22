@@ -18,12 +18,11 @@
   :straight t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
+  :hook (minemacs-build-functions . pdf-tools-install)
   :custom
   (pdf-view-display-size 'fit-page)
   (pdf-view-image-relief 2)
-  (pdf-view-use-scaling t)
-  :init
-  (+register-build-function! pdf-tools-install))
+  (pdf-view-use-scaling t))
 
 (use-package nov
   :straight t

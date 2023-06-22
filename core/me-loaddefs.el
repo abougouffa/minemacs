@@ -454,17 +454,14 @@ Load environment variables from the file saved in
 Add ROOTS to ignored projects, recentf, etc.
 
 (fn &rest ROOTS)")
-(autoload '+register-build-function! "../elisp/+minemacs" "\
-Register build function FN to be called at the end of `minemacs-update'.
 
-(fn FN)" nil t)
 (autoload 'minemacs-run-build-functions "../elisp/+minemacs" "\
-Run all build functions registered with `+register-build-function!'.
+Run all build functions in `minemacs-build-functions'.
 
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+resolve-hook-forms" "+setq-hook-fns" "minemacs--build-functions"))
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+resolve-hook-forms" "+setq-hook-fns"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el

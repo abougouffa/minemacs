@@ -196,6 +196,10 @@ MinEmacs hooks will be run in this order:
   :group 'minemacs-core
   :type 'hook)
 
+(defvar minemacs-build-functions nil
+  "Special hook for build functions that are run after completing package updates.")
+(defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
+
 ;; Setup default fonts (depending on the OS)
 (let ((mono-font (cond (os/linux "monospace")
                        (os/win "Lucida Console")

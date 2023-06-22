@@ -14,12 +14,12 @@
 
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
+  :hook (minemacs-build-functions . eaf-install-and-update)
   :init
   (+map! "oo" #'eaf-open)
   ;; Evil integration doesn't work, start `eaf-mode' in `emacs-state'.
   (with-eval-after-load 'evil
     (evil-set-initial-state 'eaf-mode 'emacs))
-  (+register-build-function! eaf-install-and-update)
   :commands eaf-file-sender-qrcode-in-dired +browse-url-eaf eaf-open-browser
   :custom
   ;; Generic
