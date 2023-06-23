@@ -304,11 +304,14 @@ the children of class at point."
   :straight t
   :mode "\\.vim\\(rc\\)?\\'")
 
-(when (+emacs-features-p 'tree-sitter)
-  (use-package cmake-ts-mode
-    :straight (:type built-in)
-    :mode "CMakeLists\\.txt\\'"
-    :mode "\\.cmake\\'"))
+(unless (+emacs-features-p 'tree-sitter)
+  (+load minemacs-modules-dir "obsolete/me-cmake.el"))
+
+(use-package cmake-ts-mode
+  :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
+  :mode "CMakeLists\\.txt\\'"
+  :mode "\\.cmake\\'")
 
 (use-package rust-mode
   :straight t
