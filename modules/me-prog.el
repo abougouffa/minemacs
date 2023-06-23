@@ -8,39 +8,43 @@
 
 ;;; Code:
 
-(if (not (+emacs-features-p 'tree-sitter))
-    ;; Use the external `tree-sitter' module
-    (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
+(unless (+emacs-features-p 'tree-sitter)
+  ;; Use the external `tree-sitter' module
+  (+load minemacs-modules-dir "obsolete/me-tree-sitter.el"))
 
-  ;; Use built-in `treesit' when available
-  (use-package treesit
-    :straight (:type built-in)
-    :custom
-    (treesit-font-lock-level 4))
+;; Use built-in `treesit' when available
+(use-package treesit
+  :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
+  :custom
+  (treesit-font-lock-level 4))
 
-  (use-package treesit-auto
-    :straight (:host github :repo "renzmann/treesit-auto")
-    :hook (minemacs-after-startup . global-treesit-auto-mode)
-    :hook (minemacs-build-functions . treesit-auto-install-all)
-    :custom
-    (treesit-auto-install 'prompt)
-    :config
-    ;; Install all languages when calling `treesit-auto-install-all'
-    (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+(use-package treesit-auto
+  :straight (:host github :repo "renzmann/treesit-auto")
+  :when (+emacs-features-p 'tree-sitter)
+  :hook (minemacs-after-startup . global-treesit-auto-mode)
+  :hook (minemacs-build-functions . treesit-auto-install-all)
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  ;; Install all languages when calling `treesit-auto-install-all'
+  (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
-  ;; To avoid installing `tree-sitter' as this fork uses the built-in `treesit'
-  (push 'tree-sitter straight-built-in-pseudo-packages)
+;; To avoid installing `tree-sitter' as this fork uses the built-in `treesit'
+(push 'tree-sitter straight-built-in-pseudo-packages)
 
-  (use-package ts-fold
-    :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
-    :after treesit treesit-auto
-    :hook (minemacs-after-startup . global-ts-fold-mode))
+(use-package ts-fold
+  :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
+  :when (+emacs-features-p 'tree-sitter)
+  :after treesit treesit-auto
+  :hook (minemacs-after-startup . global-ts-fold-mode))
 
-  (use-package combobulate
-    :straight t
-    :hook python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode
-    :custom
-    (combobulate-key-prefix "C-c o")))
+(use-package combobulate
+  :straight t
+  :when (+emacs-features-p 'tree-sitter)
+  :hook python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode
+  :custom
+  (combobulate-key-prefix "C-c o"))
 
 (use-package hideif
   :straight (:type built-in)

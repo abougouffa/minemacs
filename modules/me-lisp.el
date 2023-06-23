@@ -8,16 +8,13 @@
 
 ;;; Code:
 
-(unless (+emacs-features-p 'modules)
-  (add-to-list 'minemacs-disabled-packages 'parinfer-rust-mode))
-
 (use-package parinfer-rust-mode
   :straight t
-  :when (eq sys/arch 'x86_64)
+  :when (and (+emacs-features-p 'modules) (eq sys/arch 'x86_64))
   :custom
   (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
-  :hook emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode
+  :hook emacs-lisp-mode clojure-mode scheme-mode common-lisp-mode lisp-mode racket-mode hy-mode
   :config
   (defvar-local +parinter-rust--was-enabled-p nil)
 
