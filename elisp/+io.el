@@ -183,7 +183,8 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
           (const wkhtmltopdf)
           (const htmldoc)
           (const weasyprint)
-          (const pandoc+context)))
+          (const pandoc+context)
+          (const pandoc)))
 
 ;;;###autoload
 (defun +html2pdf (infile outfile &optional backend)
@@ -194,24 +195,24 @@ value of `+html2pdf-default-backend' is used."
            (backend (or backend +html2pdf-default-backend))
            (backend-command
             (pcase backend
-              ('weasyprint
-               (list "weasyprint"
+              ('wkhtmltopdf
+               (list "wkhtmltopdf"
+                     "--images" "--disable-javascript" "--enable-local-file-access"
                      "--encoding" "utf-8"
-                     "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
                      infile outfile))
               ('htmldoc
                (list "htmldoc"
                      "--charset" "utf-8"
                      "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
-                     "--top" "10#mm" "--bottom" "10#mm" "--right" "10#mm" "--left" "10#mm"
-                     "--fontsize" "11"
+                     "--top" "50#mm" "--bottom" "50#mm" "--right" "50#mm" "--left" "50#mm"
+                     "--fontsize" "10"
                      "--size" "a4"
                      "--continuous"
                      "--outfile" outfile infile))
-              ('wkhtmltopdf
-               (list "wkhtmltopdf"
-                     "--images" "--disable-javascript" "--enable-local-file-access"
+              ('weasyprint
+               (list "weasyprint"
                      "--encoding" "utf-8"
+                     "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
                      infile outfile))
               ('pandoc+context
                (list "pandoc"
