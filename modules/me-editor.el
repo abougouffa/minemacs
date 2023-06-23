@@ -167,6 +167,14 @@
   (goggles-define kill kill-region)
   (goggles-define delete delete-region evil-delete evil-delete-line))
 
+(use-package drag-stuff
+  :straight t
+  :init
+  (keymap-global-set "M-<up>" 'drag-stuff-up)
+  (keymap-global-set "M-<down>" 'drag-stuff-down)
+  (keymap-global-set "M-<left>" 'drag-stuff-left)
+  (keymap-global-set "M-<right>" 'drag-stuff-right))
+
 
 (provide 'me-editor)
 
