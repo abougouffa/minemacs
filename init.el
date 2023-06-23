@@ -45,7 +45,7 @@
 
 (defun +load (&rest filename-parts)
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
-  (let ((filename (file-truename (mapconcat #'identity filename-parts))))
+  (let ((filename (file-truename (apply #'concat filename-parts))))
     (if (file-exists-p filename)
         (load filename nil (not minemacs-verbose))
       (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
