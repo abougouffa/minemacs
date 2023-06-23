@@ -130,6 +130,11 @@
 (use-package smartparens
   :straight t
   :hook (prog-mode . smartparens-mode)
+  :init
+  ;; From Doom Emacs, disable expensive navigation features.
+  (+setq-hook! smartparens-mode
+    sp-navigate-skip-match nil
+    sp-navigate-consider-sgml-tags nil)
   :config
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
