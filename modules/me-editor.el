@@ -88,57 +88,49 @@
               (push unicode-font-family (cadr unicode-block))))
           (unicode-fonts-setup))))))
 
-(unless (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
-  (push 'ligature minemacs-disabled-packages))
-
-(use-package ligature
-  :straight t
-  :after minemacs-loaded
-  :hook prog-mode
-  :config
-  ;; Enable the "www" ligature in every possible major mode
-  (ligature-set-ligatures 't '("www"))
-  ;; Enable traditional ligature support in eww-mode, if the
-  ;; `variable-pitch' face supports it
-  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; Enable all "Cascadia Code" ligatures in programming modes
-  (ligature-set-ligatures
-   'prog-mode
-   '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-     ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-     "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-     "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-     "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-     "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-     "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-     "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-     ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-     "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-     "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-     "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-     "\\\\" "://")))
+(when (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
+  (use-package ligature
+    :straight t
+    :after minemacs-loaded
+    :hook (prog-mode . ligature-mode)
+    :config
+    ;; Enable the "www" ligature in every possible major mode
+    (ligature-set-ligatures 't '("www"))
+    ;; Enable traditional ligature support in eww-mode, if the
+    ;; `variable-pitch' face supports it
+    (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+    ;; Enable all "Cascadia Code" ligatures in programming modes
+    (ligature-set-ligatures
+     'prog-mode
+     '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+       "\\\\" "://"))))
 
 (use-package rainbow-delimiters
   :straight t
-  :hook prog-mode)
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package highlight-numbers
   :straight t
-  :hook prog-mode conf-mode
+  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
   ;; Original "\\_<[[:digit:]].*?\\_>"
   (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 (use-package smartparens
   :straight t
-  :hook prog-mode
-  :hook (smartparens-mode . +smartparens--disable-navigate-skip-match-h)
+  :hook (prog-mode . smartparens-mode)
   :config
-  (defun +smartparens--disable-navigate-skip-match-h ()
-    ;; From Doom Emacs, disable expensive navigation features.
-    (setq sp-navigate-skip-match nil
-          sp-navigate-consider-sgml-tags nil))
-
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
@@ -159,7 +151,7 @@
 
 (use-package goggles
   :straight t
-  :hook prog-mode text-mode
+  :hook ((prog-mode text-mode) . goggles-mode)
   :config
   ;; Pulse for evil commands
   (goggles-define undo primitive-undo evil-undo)

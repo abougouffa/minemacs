@@ -13,7 +13,7 @@
   :preface
   (defconst +aspell-available-p (executable-find "aspell"))
   :when +aspell-available-p
-  :hook text-mode
+  :hook (text-mode . spell-fu-mode)
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
   (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))

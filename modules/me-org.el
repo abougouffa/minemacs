@@ -233,7 +233,7 @@
 ;; Other Org features
 (use-package org-appear
   :straight t
-  :hook org-mode
+  :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-inside-latex t)
   (org-appear-autokeywords t)
@@ -248,7 +248,7 @@
 
 (use-package org-modern
   :straight t
-  :hook org-mode
+  :hook (org-mode . org-modern-mode)
   :hook (org-agenda-finalize . org-modern-agenda)
   :custom-face
   ;; Force monospaced font for tags
@@ -294,7 +294,7 @@
 ;; For latex fragments
 (use-package org-fragtog
   :straight t
-  :hook org-mode
+  :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.2))
 
@@ -352,7 +352,7 @@
 
 (use-package evil-org
   :straight t
-  :hook org-mode)
+  :hook (org-mode . evil-org-mode))
 
 (use-package evil-org-agenda
   :after evil-org

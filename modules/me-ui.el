@@ -69,7 +69,7 @@
 
 (use-package page-break-lines
   :straight t
-  :hook prog-mode text-mode special-mode)
+  :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
 
 (use-package focus
   :straight t
@@ -78,7 +78,7 @@
 
 (use-package nerd-icons-ibuffer
   :straight t
-  :hook ibuffer-mode)
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 
 (provide 'me-ui)

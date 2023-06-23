@@ -89,7 +89,7 @@
 
 (use-package tab-bar
   :straight (:type built-in)
-  :hook minemacs-after-startup
+  :hook (minemacs-after-startup . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history
                     tab-bar-format-tabs

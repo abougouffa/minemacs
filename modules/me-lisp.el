@@ -17,7 +17,7 @@
   :custom
   (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
-  :hook emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode
+  :hook (emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode)
   :config
   (defvar-local +parinter-rust--was-enabled-p nil)
 
