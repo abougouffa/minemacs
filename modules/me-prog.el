@@ -34,11 +34,13 @@
   (use-package ts-fold
     :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
     :after treesit treesit-auto
-    :hook (minemacs-after-startup . global-ts-fold-mode))
+    :demand t
+    :init
+    (global-ts-fold-mode 1))
 
   (use-package combobulate
     :straight t
-    :hook (python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode)
+    :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
     :custom
     (combobulate-key-prefix "C-c o")))
 
@@ -51,10 +53,8 @@
     (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
                 (bound-and-true-p lsp-semantic-tokens-enable))
       (hide-ifdef-mode 1)))
-
-  (dolist (mode '(c++-mode c++-ts-mode c-mode c-ts-mode cuda-mode opencl-mode))
-    ;; Hook to the end
-    (add-hook (intern (format "%s-hook" mode)) #'+hide-ifdef-mode-maybe-h 101))
+  (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
+              :depth 101 #'+hide-ifdef-mode-maybe-h)
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
