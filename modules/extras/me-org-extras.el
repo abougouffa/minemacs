@@ -205,64 +205,89 @@ Example: \"#+TITLE\" -> \"#+title\"
     ;; `org-export-default-language')
     (add-to-list 'org-latex-default-packages-alist '("AUTO" "babel" t ("pdflatex" "xelatex")))
 
-    ;; Some additional LaTeX classes
-    (setq
-     org-latex-classes
-     (append
-      org-latex-classes
-      `(("blank"
-         "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-        ("book-no-parts"
-         "\\documentclass[12pt,a4paper]{book}"
-         ("\\chapter{%s}"       . "\\chapter*{%s}")
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
-        ("book-no-parts-facile" ;; Compliant with the FACILE test (https://facile.cines.fr), must be compiled with pdfLaTeX.
-         ,(string-join
-           '("\\pdfobjcompresslevel 0"
-             "\\documentclass[12pt,a4paper]{book}"
-             "\\usepackage[a-1b,mathxmp]{pdfx}")
-           "\n")
-         ("\\chapter{%s}"       . "\\chapter*{%s}")
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
-        ("lettre"
-         "\\documentclass{lettre}"
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-        ("IEEEtran"
-         "\\documentclass{IEEEtran}"
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-        ("ieeeconf"
-         "\\documentclass{ieeeconf}"
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
-        ("sagej"
-         "\\documentclass{sagej}"
-         ("\\section{%s}"       . "\\section*{%s}")
-         ("\\subsection{%s}"    . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-         ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))))))
+    (let ((plus-conf
+           '("\\usepackage[outer=2cm, inner=2cm, top=3cm, bottom=3cm]{geometry}"
+             "\\usepackage{svg}"
+             "\\usepackage[svgnames]{xcolor}"
+             "\\usepackage{fancyhdr}"
+             "\\pagestyle{fancyplain}"
+             "\\renewcommand{\\FrenchLabelItem}{\\textbullet}")))
+      ;; Some additional LaTeX classes
+      (setq
+       org-latex-classes
+       (append
+        org-latex-classes
+        `(("blank"
+           "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+          ("article+"
+           ,(string-join
+             (append '("\\documentclass[9pt,a4paper]{article}") plus-conf)
+             "\n")
+           ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}" . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+          ("report+"
+           ,(string-join
+             (append '("\\documentclass[9pt,a4paper]{report}") plus-conf)
+             "\n")
+           ("\\part{%s}" . "\\part*{%s}")
+           ("\\chapter{%s}" . "\\chapter*{%s}")
+           ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+          ("book-no-parts"
+           "\\documentclass[12pt,a4paper]{book}"
+           ("\\chapter{%s}"       . "\\chapter*{%s}")
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+          ("book-no-parts-facile" ;; Compliant with the FACILE test (https://facile.cines.fr), must be compiled with pdfLaTeX.
+           ,(string-join
+             '("\\pdfobjcompresslevel 0"
+               "\\documentclass[12pt,a4paper]{book}"
+               "\\usepackage[a-1b,mathxmp]{pdfx}")
+             "\n")
+           ("\\chapter{%s}"       . "\\chapter*{%s}")
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
+          ("lettre"
+           "\\documentclass{lettre}"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+          ("IEEEtran"
+           "\\documentclass{IEEEtran}"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+          ("ieeeconf"
+           "\\documentclass{ieeeconf}"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+          ("sagej"
+           "\\documentclass{sagej}"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))))))
 
 (defun +org-extras-outline-path-setup ()
   (advice-add
