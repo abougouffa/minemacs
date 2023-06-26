@@ -59,7 +59,11 @@
     "sP" #'org-babel-pop-to-session-maybe
     "sl" #'org-babel-load-in-session
     "sL" #'org-babel-load-in-session-maybe
-    "si" #'org-babel-initiate-session)
+    "si" #'org-babel-initiate-session
+    "b"  '(nil :wk "babel")
+    "bt" #'org-babel-tangle
+    "bd" #'org-babel-detangle
+    "bf" #'org-babel-tangle-file)
   (+map-local! :keymaps 'org-src-mode-map
     "s" #'org-edit-src-save
     "q" #'org-edit-src-abort
