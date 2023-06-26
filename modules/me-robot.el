@@ -70,19 +70,8 @@
                            nil buff nil "info" (expand-file-name file)))
             (rosbag-info-mode)))))))
 
-;; Needed by ros.el
-(use-package kv
-  :straight t)
-
-(use-package string-inflection
-  :straight t)
-
-(use-package with-shell-interpreter
-  :straight t)
-
-(when (< emacs-major-version 29)
-  (use-package docker-tramp
-    :straight t))
+(when (>= emacs-major-version 29)
+  (push 'docker-tramp straight-built-in-pseudo-packages))
 
 ;; ROS package
 (use-package ros
@@ -94,6 +83,7 @@
     "rs" '(ros-set-workspace :wk "Set workspace")
     "rp" '(ros-go-to-package :wk "Go to package")
     "rC" '(ros-cache-clean :wk "Clean cache"))
+  :commands +hydra-ros-main/body
   :config
   (defhydra +hydra-ros-main (:color blue :hint nil :foreign-keys warn)
     "
