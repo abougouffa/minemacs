@@ -119,7 +119,7 @@
   (let* ((fn-name (intern (format "+spell-fu--multi-langs-%s-h" (string-join langs "-"))))
          (closure `(defun ,fn-name ())))
     (dolist (lang langs)
-      (add-to-list 'closure `(+spell-fu--add-dictionary ,lang) t))
+      (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
     (append '(add-hook (quote spell-fu-mode-hook)) (list closure))))
 
 ;;;###autoload

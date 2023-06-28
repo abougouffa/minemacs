@@ -27,9 +27,7 @@
     (while (length> key-vals 0)
       (let ((key (pop key-vals))
             (val (pop key-vals)))
-        (add-to-list
-         'out
-         `(setq ,plist (plist-put ,plist ,key ,val)) t)))
+        (setq out (append out `((setq ,plist (plist-put ,plist ,key ,val)))))))
     out))
 
 ;;;###autoload

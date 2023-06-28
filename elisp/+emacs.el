@@ -168,8 +168,10 @@ be deleted.
             ;; Or default to the built-in `tab-bar'.
             (when-let ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
              (tab-close (1+ tab-num)))))))
-      (when exit-func (add-to-list 'fn-body `(advice-add ',exit-func :after #',exit-fn-name) t))
-      (when exit-hook (add-to-list 'fn-body `(add-hook ',exit-hook #',exit-fn-name) t)))
+      (when exit-func
+        (setq fn-body (append fn-body `((advice-add ',exit-func :after #',exit-fn-name)))))
+      (when exit-hook
+        (setq fn-body (append fn-body `((add-hook ',exit-hook #',exit-fn-name))))))
     `(progn
        (defvar ,tab-name ,(format "*%s*" cmd))
        (defun ,fn-name ()
