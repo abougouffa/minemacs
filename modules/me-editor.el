@@ -43,7 +43,7 @@
      header-description
      ;; header-status
      header-author
-     header-maintainer
+     ;; header-maintainer
      header-copyright
      header-creation-date
      ;; header-rcs-id
@@ -51,7 +51,7 @@
      ;; header-pkg-requires
      ;; header-sccs
      header-modification-date
-     header-modification-author
+     ;; header-modification-author
      header-update-count
      ;; header-url
      ;; header-doc-url
@@ -70,7 +70,7 @@
      ;; header-blank
      ;; header-rcs-log
      ;; header-end-line
-     header-free-software
+     ;; header-free-software
      header-code
      header-eof)))
 
