@@ -10,6 +10,8 @@
 
 (defvar +emacs-lisp--face nil)
 
+(autoload #'ad-get-orig-definition "advice")
+
 ;; Extracted from: github.com/doomemacs/doomemacs/blob/master/modules/lang/emacs-lisp/autoload.el
 (defun +emacs-lisp--highlight-vars-and-faces (end)
   "Match defined variables and functions.
