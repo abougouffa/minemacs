@@ -25,7 +25,7 @@
   (cfw:fchar-top-right-corner ?┓)
   :commands cfw:open-calendar-buffer
   :init
-  (+map! "oc" (+def-dedicated-tab! cfw:open-calendar-buffer))
+  (+map! "oC" (+def-dedicated-tab! cfw:open-calendar-buffer))
   :config
   (advice-add
    'cfw:render-button :override
