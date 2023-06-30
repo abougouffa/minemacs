@@ -154,6 +154,22 @@
            (if (functionp pass) (funcall pass) pass))
        ""))))
 
+(use-package chezmoi
+  :straight t
+  :commands
+  chezmoi-find chezmoi-write chezmoi-diff chezmoi-ediff
+  chezmoi-open-other chezmoi-sync-files chezmoi-magit-status
+  :init
+  (+map! :infix "o"
+    "c" '(nil :wk "chezmoi")
+    "cf" #'chezmoi-find
+    "cw" #'chezmoi-write
+    "cd" #'chezmoi-diff
+    "ce" #'chezmoi-ediff
+    "co" #'chezmoi-open-other
+    "cs" #'chezmoi-sync-files
+    "cg" #'chezmoi-magit-status))
+
 
 (provide 'me-tools)
 
