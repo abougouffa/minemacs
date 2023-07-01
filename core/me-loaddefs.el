@@ -697,6 +697,26 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "me-backports-29" '("loaddefs-generate" "messages-buffer-name" "native-compile-prune-cache" "scratch-buffer" "setopt" "with-memoization"))
 
 
+;;; Generated autoloads from ../modules/extras/me-cape-super-capf.el
+
+(defvar +cape-global-capes '(tempel-complete :completion cape-dict) "\
+A list of global capes to be available at all times.
+The key :completion is used to specify where completion candidates should be
+placed, otherwise they come first.")
+(custom-autoload '+cape-global-capes "../modules/extras/me-cape-super-capf" t)
+(defvar +cape-hosts '(eglot-completion-at-point lsp-completion-at-point elisp-completion-at-point tags-completion-at-point-function) "\
+A prioritised list of host capfs to create a super cape onto from
+`+cape-global-capes'.")
+(custom-autoload '+cape-hosts "../modules/extras/me-cape-super-capf" t)
+(autoload '+cape-load-capes "../modules/extras/me-cape-super-capf" "\
+Load all capes specified in `+cape-global-capes'." t)
+(autoload '+toggle-cape-auto-super-capf "../modules/extras/me-cape-super-capf" "\
+Enable auto generating Cape's super Capf.
+This depends on `+cape-hosts' and `+cape-global-capes'.
+
+(fn &optional DISABLE)" t)
+
+
 ;;; Generated autoloads from me-core-ui.el
 
 (register-definition-prefixes "me-core-ui" '("+theme--tweaks-h"))
@@ -791,11 +811,6 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 ;;; Generated autoloads from me-splash.el
 
 (register-definition-prefixes "me-splash" '("minemacs-splash"))
-
-
-;;; Generated autoloads from ../modules/extras/me-super-cape.el
-
-(register-definition-prefixes "../modules/extras/me-super-cape" '("+cape-"))
 
 
 ;;; Generated autoloads from me-vars.el
