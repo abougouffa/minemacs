@@ -230,15 +230,19 @@ the children of class at point."
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
   (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
   (compilation-window-height 12) ; Keep it readable
-  :config
-  ;; Integration of `compile' with `savehist'
-  (with-eval-after-load 'savehist
-    (add-to-list 'savehist-additional-variables 'compile-history))
-
+  :init
   (defcustom +compilation-auto-bury-msg-level "warning"
     "Level of messages to consider OK to auto-bury the compilation buffer."
     :group 'minemacs-prog
     :type '(choice (const "warning") (const "error") string))
+  (defcustom +compilation-auto-bury-delay 3.0
+    "The delay in seconds after which the compilation buffer is buried."
+    :group 'minemacs-prog
+    :type 'number)
+  :config
+  ;; Integration of `compile' with `savehist'
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'compile-history))
 
   ;; Auto-close the compilation buffer if succeeded without warnings.
   ;; Adapted from: stackoverflow.com/q/11043004/3058915
@@ -251,8 +255,8 @@ the children of class at point."
                   (save-excursion
                     (goto-char (point-min))
                     (search-forward +compilation-auto-bury-msg-level nil t)))))
-      (run-with-timer
-       3 nil
+      (run-at-time
+       +compilation-auto-bury-delay nil
        (lambda (b)
          (with-selected-window (get-buffer-window b)
            (kill-buffer-and-window))
