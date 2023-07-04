@@ -166,11 +166,11 @@
 
     ;; ====== Toggle ======
     "t"   '(nil :wk "toggle")
-    "td"  '(toggle-debug-on-error :wk "Debug on error")
+    "td"  #'toggle-debug-on-error
     "tr"  #'read-only-mode
     "tl"  #'follow-mode
-    "tV"  '(netextender-toggle :wk "NetExtender")
-    "te"  '(ecryptfs-toggle-mount-private :wk "eCryptfs")
+    "tV"  #'netextender-toggle
+    "te"  #'ecryptfs-toggle-mount-private
     "tv"  #'visible-mode
 
     ;; ====== Code ======
