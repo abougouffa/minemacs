@@ -58,11 +58,10 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (save-excursion
     (beginning-of-line)
     (let ((indent-point (point))
-          state
           ;; setting this to a number inhibits calling hook
           (desired-indent nil)
           (retry t)
-          calculate-lisp-indent-last-sexp containing-sexp)
+          state calculate-lisp-indent-last-sexp containing-sexp)
       (cond ((or (markerp parse-start) (integerp parse-start))
              (goto-char parse-start))
             ((null parse-start) (beginning-of-defun))
@@ -72,12 +71,10 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
         (while (< (point) indent-point)
           (setq state (parse-partial-sexp (point) indent-point 0))))
       ;; Find innermost containing sexp
-      (while (and retry
-                  state
-                  (> (elt state 0) 0))
-        (setq retry nil)
-        (setq calculate-lisp-indent-last-sexp (elt state 2))
-        (setq containing-sexp (elt state 1))
+      (while (and retry state (> (elt state 0) 0))
+        (setq retry nil
+              containing-sexp (elt state 1)
+              calculate-lisp-indent-last-sexp (elt state 2))
         ;; Position following last unclosed open.
         (goto-char (1+ containing-sexp))
         ;; Is there a complete sexp since then?
@@ -128,8 +125,8 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
                                (char-equal char ?`)))
                          (progn
                            (while (and rest (not any-quoted-p))
-                             (setq point (pop rest))
-                             (setq any-quoted-p
+                             (setq point (pop rest)
+                                   any-quoted-p
                                    (or
                                     (when-let (char (char-before point))
                                       (or (char-equal char ?')
