@@ -52,7 +52,7 @@ returns it."
   (if (not (executable-find netextender-command))
       (user-error "The NetExtender command \"%s\" is not available." netextender-command)
     (unless (executable-find netextender-launcher-command)
-      (setq netextender-launcher-command (make-temp-file "netextender-" nil ".sh"))
+      (setq netextender-launcher-command (make-temp-file "netextender-launcher-" nil ".sh"))
       (set-file-modes netextender-launcher-command #o755) ;; Make it executable
       (with-temp-buffer
         (insert (format "#!/bin/bash
@@ -84,7 +84,7 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
       (unless (get-process netextender-process-name)
         (if (make-process :name netextender-process-name
                           :buffer netextender-buffer-name
-                          :command (list netextender-launcher-command))
+                          :command (list (netextender-launcher-command)))
             (message "Started NetExtender VPN session.")
           (user-error "Cannot start NetExtender.")))
     (user-error "Cannot start a netExtender VPN session.")))
