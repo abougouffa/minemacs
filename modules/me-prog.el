@@ -53,8 +53,13 @@
     (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
                 (bound-and-true-p lsp-semantic-tokens-enable))
       (hide-ifdef-mode 1)))
-  (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
-              :depth 101 #'+hide-ifdef-mode-maybe-h)
+  (defun +hide-ifdef-auto-enable ()
+    (interactive)
+    (if prefix-arg
+        (+remove-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
+          #'+hide-ifdef-mode-maybe-h)
+      (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
+                  :depth 101 #'+hide-ifdef-mode-maybe-h)))
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
