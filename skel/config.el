@@ -52,6 +52,27 @@
 ;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
 (setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
 
+;; Install some third-party packages. MinEmacs uses `use-package' and `straight'
+;; for package management. It is recommended to use the same to install
+;; additional packages. For example, to install `devdocs' you can use something
+;; like:
+(use-package devdocs
+  ;; The installation recipe (from Github)
+  :straight (:host github :repo "astoff/devdocs.el" :files ("*.el"))
+  ;; Autoload the package when invoking these commands, note that if the
+  ;; commands are already autoloaded (defined with `autoload'), this is not
+  ;; needed.
+  :commands devdocs-install
+  ;; MinEmacs sets the `use-package-always-defer' to t, so by default, packages
+  ;; are deferred to save startup time. If you want to load a package
+  ;; immediately, you need to explicitly use `:demand t'.
+  ;; :demand t
+  ;; Set some custom variables, using the `:custom' block is recommended over
+  ;; using `setq'. This will ensure calling the right setter function if it is
+  ;; defined for the custom variable.
+  :custom
+  (devdocs-data-dir (concat minemacs-local-dir "devdocs/")))
+
 ;; Module: `me-natural-langs' -- Package: `spell-fu'
 (with-eval-after-load 'spell-fu
   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
