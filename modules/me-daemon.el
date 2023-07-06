@@ -23,13 +23,14 @@
 
 ;; RSS (elfeed)
 (+lazy-when! (memq 'me-rss minemacs-modules)
-  (run-at-time
-   (* 60 5) ;; 5min
-   (* 60 60) ;; 1h
-   (lambda ()
-     (+info! "Updating RSS feed.")
-     (let ((inhibit-message t))
-       (elfeed-update)))))
+  (when (require 'elfeed nil :noerror)
+    (run-at-time
+     (* 60 5) ;; 5min
+     (* 60 60) ;; 1h
+     (lambda ()
+       (+info! "Updating RSS feed.")
+       (let ((inhibit-message t))
+         (elfeed-update))))))
 
 ;; When we start in a non-daemon Emacs, we start a server whe Emacs is idle.
 (+lazy-unless! (daemonp)
