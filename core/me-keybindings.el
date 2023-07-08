@@ -16,7 +16,7 @@
   (which-key-idle-secondary-delay nil)
   (which-key-ellipsis "..")
   (which-key-prefix-prefix "+")
-  (which-key-sort-order 'which-key-key-order-alpha)
+  (which-key-sort-order #'which-key-key-order-alpha)
   (which-key-min-display-lines 3)
   (which-key-max-display-columns nil)
   ;; Allow a key binding to be modified by multiple rules in
