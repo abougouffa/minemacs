@@ -67,6 +67,14 @@
  (defun +use-package--remove-check-if-disabled-advice-h ()
    (advice-remove 'use-package '+use-package--check-if-disabled-a)))
 
+;; Read some environment variables from shell (like $PATH)
+(use-package exec-path-from-shell
+  :straight t
+  :custom
+  (exec-path-from-shell-variables '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH"))
+  :hook (minemacs-after-startup . exec-path-from-shell-initialize))
+
+
 (provide 'me-bootstrap)
 
 ;;; me-bootstrap.el ends here
