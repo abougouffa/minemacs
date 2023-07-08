@@ -24,8 +24,7 @@
   :demand t
   :config
   (with-eval-after-load 'evil
-    (setq evil-undo-system 'undo-fu)
-    (evil-set-undo-system 'undo-fu)))
+    (setopt evil-undo-system 'undo-fu)))
 
 (use-package undo-fu-session
   :straight t
