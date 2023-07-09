@@ -389,22 +389,8 @@ the children of class at point."
   :custom
   (lua-indent-level 2))
 
-(use-package hy-mode
-  :straight t)
-
-(use-package powershell
-  :straight t)
-
 (use-package franca-idl
   :straight (:host github :repo "zeph1e/franca-idl.el"))
-
-(use-package bnf-mode
-  :straight t)
-
-(use-package ebnf-mode
-  :straight (:host github :repo "jeramey/ebnf-mode")
-  :hook (ebnf-mode . display-line-numbers-mode)
-  :mode "\\.ebnf\\'")
 
 
 (provide 'me-prog)
