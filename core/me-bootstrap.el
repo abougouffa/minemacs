@@ -67,6 +67,10 @@
  (defun +use-package--remove-check-if-disabled-advice-h ()
    (advice-remove 'use-package '+use-package--check-if-disabled-a)))
 
+;; The current `exec-path-from-shell' don't support Windows. Generally there is
+;; no need for this hack on Windows.
+(when os/win (push 'exec-path-from-shell minemacs-disabled-packages))
+
 ;; Read some environment variables from shell (like $PATH)
 (use-package exec-path-from-shell
   :straight t
