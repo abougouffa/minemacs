@@ -54,7 +54,7 @@
   :straight t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
   :config
-  (+map-local! :keymaps 'json-mode-map
+  (+map-local! :keymaps '(json-mode-map json-ts-mode-map)
     "p" #'json-mode-show-path
     "t" #'json-toggle-boolean
     "d" #'json-mode-kill-path
