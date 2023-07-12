@@ -26,18 +26,6 @@
 (use-package bitbake-modes
   :straight (:host bitbucket :repo "olanilsson/bitbake-modes"))
 
-(use-package vhdl-mode
-  :straight (:type built-in)
-  :config
-  ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-  (+eglot-register 'vhdl-mode "vhdl_ls"))
-
-(use-package verilog-mode
-  :straight (:type built-in)
-  :config
-  ;; Setup Verilog/SystemVerilog LSP servers
-  (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
-
 (use-package mips-mode
   :straight t
   :mode "\\.mips\\'")

@@ -85,50 +85,6 @@
     ;; Add LatexMk as a TeX target.
     (auctex-latexmk-setup)))
 
-(use-package bibtex
-  :straight (:type built-in)
-  :hook (bibtex-mode . display-line-numbers-mode)
-  :custom
-  (bibtex-dialect 'biblatex)
-  (bibtex-align-at-equal-sign t)
-  (bibtex-text-indentation 20)
-  :config
-  (+map-local! :keymaps 'bibtex-mode-map
-    "l" #'bibtex-fill-entry
-    "r" #'bibtex-reformat))
-
-;; Inspired by Doom Emacs
-(use-package reftex
-  :straight (:type built-in)
-  :hook (LaTeX-mode . turn-on-reftex)
-  :hook (reftex-toc-mode . reftex-toc-rescan)
-  :custom
-  ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
-  (reftex-cite-format
-   '((?a . "\\autocite[]{%l}")
-     (?b . "\\blockcquote[]{%l}{}")
-     (?c . "\\cite[]{%l}")
-     (?f . "\\footcite[]{%l}")
-     (?n . "\\nocite{%l}")
-     (?p . "\\parencite[]{%l}")
-     (?s . "\\smartcite[]{%l}")
-     (?t . "\\textcite[]{%l}"))
-   ;; This is needed when `reftex-cite-format' is set. See:
-   ;; superuser.com/a/1386206
-   (LaTeX-reftex-cite-format-auto-activate nil)
-   (reftex-plug-into-AUCTeX t)
-   (reftex-toc-split-windows-fraction 0.3))
-  :config
-  (+map-local! :keymaps 'reftex-mode-map
-    ";" 'reftex-toc)
-  (+nvmap! :keymaps 'reftex-toc-mode-map
-    "j"   #'next-line
-    "k"   #'previous-line
-    "q"   #'kill-buffer-and-window
-    "ESC" #'kill-buffer-and-window)
-  (with-eval-after-load 'evil
-    (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
-
 (use-package me-latex-fonts
   :after latex
   :demand t)

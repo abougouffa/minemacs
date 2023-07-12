@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(use-package xt-mouse
-  :straight (:type built-in)
-  :hook (tty-setup . xterm-mouse-mode))
-
 (use-package xclip
   :straight t
   :hook (tty-setup . +xclip--enable-in-tty-h)

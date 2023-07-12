@@ -11,13 +11,6 @@
 (if (not (+emacs-features-p 'tree-sitter))
     ;; Use the external `tree-sitter' module
     (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
-
-  ;; Use built-in `treesit' when available
-  (use-package treesit
-    :straight (:type built-in)
-    :custom
-    (treesit-font-lock-level 4))
-
   (use-package treesit-auto
     :straight (:host github :repo "renzmann/treesit-auto")
     :hook (minemacs-after-startup . global-treesit-auto-mode)
@@ -42,105 +35,7 @@
     :straight t
     :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
     :custom
-    (combobulate-key-prefix "C-c o")))
-
-(use-package hideif
-  :straight (:type built-in)
-  :init
-  (defun +hide-ifdef-mode-maybe-h ()
-    ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
-    ;; so we don't enable `hide-ifdef-mode'.
-    (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
-                (bound-and-true-p lsp-semantic-tokens-enable))
-      (hide-ifdef-mode 1)))
-  (defun +hide-ifdef-auto-enable ()
-    (interactive)
-    (if prefix-arg
-        (+remove-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
-          #'+hide-ifdef-mode-maybe-h)
-      (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
-                  :depth 101 #'+hide-ifdef-mode-maybe-h)))
-  :custom
-  (hide-ifdef-shadow t)
-  (hide-ifdef-initially t))
-
-(use-package eglot
-  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
-  :hook (eglot-managed-mode . eglot-inlay-hints-mode)
-  :custom
-  (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
-  (eglot-sync-connect 0) ; async, do not block
-  (eglot-extend-to-xref t) ; can be interesting!
-  (eglot-report-progress nil) ; disable annoying messages in echo area!
-  :init
-  ;; Register global keybinding
-  (+map! :infix "c"
-    "e"  '(nil :wk "eglot session")
-    "ee" #'eglot
-    "eA" #'+eglot-auto-enable)
-  (defcustom +eglot-auto-enable-modes
-    '(c++-mode c++-ts-mode c-mode c-ts-mode
-      python-mode python-ts-mode
-      rust-mode rust-ts-mode cmake-mode
-      js-mode js-ts-mode typescript-mode typescript-ts-mode
-      json-mode json-ts-mode js-json-mode)
-    "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
-    :group 'minemacs-prog
-    :type '(repeat symbol))
-  (defun +eglot-auto-enable ()
-    "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
-    (interactive)
-    (dolist (mode +eglot-auto-enable-modes)
-      (let ((hook (intern (format "%s-hook" mode))))
-        (add-hook hook #'eglot-ensure)
-        (remove-hook hook #'lsp-deferred))))
-  :config
-  ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
-  ;; to fill `+eglot-auto-enable-modes' with all supported modes.
-  (defun +eglot-use-on-all-supported-modes (mode-list)
-    (dolist (mode-def mode-list)
-      (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
-        (cond
-         ((listp mode) (+eglot-use-on-all-supported-modes mode))
-         (t
-          (when (and (not (eq 'clojure-mode mode)) ; prefer cider
-                     (not (eq 'lisp-mode mode))    ; prefer sly
-                     (not (eq 'scheme-mode mode))) ; prefer geiser
-            (add-to-list '+eglot-auto-enable-modes mode)))))))
-  (+map! :keymaps 'eglot-mode-map
-    :infix "c"
-    "fF" #'eglot-format-buffer
-    "d"  '(eglot-find-declaration :wk "Find declaration")
-    "i"  '(eglot-find-implementation :wk "Find implementation")
-    "t"  '(eglot-find-typeDefinition :wk "Find type definition")
-    "a"  '(eglot-code-actions :wk "Code actions")
-    "r"  '(nil :wk "refactor")
-    "rr" '(eglot-rename :wk "Rename")
-    "rR" '(eglot-code-action-rewrite :wk "Rewrite")
-    "rf" '(eglot-code-action-quickfix :wk "Quick fix")
-    "ri" '(eglot-code-action-inline :wk "Inline")
-    "re" '(eglot-code-action-extract :wk "Extract")
-    "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
-    "eq" '(eglot-shutdown :wk "Shutdown")
-    "er" '(eglot-reconnect :wk "Reconnect")
-    "eQ" '(eglot-shutdown-all :wk "Shutdown all")
-    "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
-
-  (+eglot-register
-    '(c++-mode c++-ts-mode c-mode c-ts-mode)
-    '("clangd"
-      "--background-index"
-      "-j=12"
-      "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-      "--clang-tidy"
-      ;; "--clang-tidy-checks=*"
-      "--all-scopes-completion"
-      "--cross-file-rename"
-      "--completion-style=detailed"
-      "--header-insertion-decorators"
-      "--header-insertion=iwyu"
-      "--pch-storage=memory")
-    "ccls")
+    (combobulate-key-prefix "C-c o"))
 
   ;; From: github.com/MaskRay/ccls/wiki/eglot#misc
   (defun +eglot-ccls-inheritance-hierarchy (&optional derived)
@@ -184,11 +79,6 @@ the children of class at point."
               (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
-(use-package eldoc
-  :straight (:type built-in)
-  :custom
-  (eldoc-documentation-strategy #'eldoc-documentation-compose))
-
 (use-package eldoc-box
   :straight t
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
@@ -209,60 +99,6 @@ the children of class at point."
            (or project-compilation-buffer-name-function
                compilation-buffer-name-function)))
       (call-interactively #'compile-multi))))
-
-(use-package compile
-  :straight (:type built-in)
-  :commands +toggle-bury-compilation-buffer-if-successful
-  ;; Enable ANSI colors in compilation buffer
-  :hook (compilation-filter . ansi-color-compilation-filter)
-  :custom
-  (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
-  (compilation-always-kill t) ; Always kill current compilation process before starting a new one
-  (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
-  (compilation-window-height 12) ; Keep it readable
-  :init
-  (defcustom +compilation-auto-bury-msg-level "warning"
-    "Level of messages to consider OK to auto-bury the compilation buffer."
-    :group 'minemacs-prog
-    :type '(choice (const "warning") (const "error") string))
-  (defcustom +compilation-auto-bury-delay 3.0
-    "The delay in seconds after which the compilation buffer is buried."
-    :group 'minemacs-prog
-    :type 'number)
-  :config
-  ;; Integration of `compile' with `savehist'
-  (with-eval-after-load 'savehist
-    (add-to-list 'savehist-additional-variables 'compile-history))
-
-  ;; Auto-close the compilation buffer if succeeded without warnings.
-  ;; Adapted from: stackoverflow.com/q/11043004/3058915
-  (defun +compilation--bury-if-successful-h (buf str)
-    "Bury the compilation buffer if it succeeds without warnings."
-    (when (and
-           (string-match "compilation" (buffer-name buf))
-           (string-match "finished" str)
-           (not (with-current-buffer buf
-                  (save-excursion
-                    (goto-char (point-min))
-                    (search-forward +compilation-auto-bury-msg-level nil t)))))
-      (run-at-time
-       +compilation-auto-bury-delay nil
-       (lambda (b)
-         (with-selected-window (get-buffer-window b)
-           (kill-buffer-and-window))
-         (unless (current-message)
-           (message "Compilation finished without warnings.")))
-       buf)))
-
-  (defun +toggle-bury-compilation-buffer-if-successful ()
-    "Toggle auto-burying the successful compilation buffer."
-    (interactive)
-    (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
-        (progn
-          (message "Disabled burying compilation buffer.")
-          (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))
-      (message "Enabled burying compilation buffer.")
-      (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
 
 (use-package apheleia
   :straight t
@@ -296,12 +132,6 @@ the children of class at point."
 
 (unless (+emacs-features-p 'tree-sitter)
   (+load minemacs-modules-dir "obsolete/me-cmake.el"))
-
-(use-package cmake-ts-mode
-  :straight (:type built-in)
-  :when (+emacs-features-p 'tree-sitter)
-  :mode "CMakeLists\\.txt\\'"
-  :mode "\\.cmake\\'")
 
 (use-package rust-mode
   :straight t

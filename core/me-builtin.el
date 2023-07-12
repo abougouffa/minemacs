@@ -51,7 +51,758 @@
   :straight (:type built-in)
   ;; Enable adding mail attachements from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
-  :hook (dired-mode . turn-on-gnus-dired-mode))
+  :hook (dired-mode . turn-on-gnus-dired-mode)
+  :cutom
+  (dired-dwim-target t)
+  (dired-auto-revert-buffer t))
+
+(use-package doc-view
+  :straight (:type built-in)
+  :custom
+  (doc-view-continuous t)
+  (doc-view-mupdf-use-svg (+emacs-features-p 'rsvg)))
+
+(use-package project
+  :straight (:type built-in)
+  :after minemacs-loaded
+  :demand t
+  :custom
+  (project-list-file (concat minemacs-local-dir "project-list.el"))
+  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
+  :init
+  (+map! ":"  #'project-find-file)
+  (+map! :infix "p" ;; project
+    "w"  #'project-switch-project
+    "c"  #'project-compile
+    "d"  #'project-find-dir
+    "f"  #'project-find-file
+    "k"  #'project-kill-buffers
+    "b"  #'project-switch-to-buffer
+    "a"  #'+project-add-project
+    "D"  #'+dir-locals-open-or-create
+    "-"  #'project-dired
+    "x"  #'project-execute-extended-command
+    ;; compile/test
+    "c" #'project-compile
+    ;; run
+    "r"  '(nil :wk "run")
+    "re" #'project-eshell
+    "rg" #'+project-gdb
+    "rs" #'project-shell
+    "rc" #'project-shell-command
+    "rC" #'project-async-shell-command
+    ;; forget
+    "F"  '(nil :wk "forget/cleanup")
+    "Fz" '(project-forget-zombie-projects :wk "Zombie projects")
+    "Fp" '(project-forget-project :wk "Project")
+    "Fu" '(project-forget-projects-under :wk "Projects under...")
+    ;; search/replace
+    "s"  '(nil :wk "search/replace")
+    "ss" #'project-search
+    "sn" '(fileloop-continue :wk "Next match")
+    "sr" #'project-query-replace-regexp
+    "sf" #'project-find-regexp))
+
+(use-package tab-bar
+  :straight (:type built-in)
+  :hook (minemacs-after-startup . tab-bar-mode)
+  :custom
+  (tab-bar-format '(tab-bar-format-history
+                    tab-bar-format-tabs
+                    tab-bar-separator))
+  (tab-bar-tab-hints t)
+  (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
+  (tab-bar-close-button-show nil)
+  (tab-bar-show nil)
+  :config
+  (defun +tab-bar-tab-spaced-name-format (tab i)
+    (let ((current-p (eq (car tab) 'current-tab)))
+      (propertize
+       (concat (if tab-bar-tab-hints (format " %c " (+ ?① (1- i)) " "))
+               (alist-get 'name tab)
+               (or (and tab-bar-close-button-show
+                        (not (eq tab-bar-close-button-show
+                                 (if current-p 'non-selected 'selected)))
+                        tab-bar-close-button)
+                   ""))
+       'face (funcall tab-bar-tab-face-function tab)))))
+
+(use-package flymake
+  :straight (:type built-in)
+  :init
+  (+map! "tf" #'flymake-mode)
+  :custom
+  (flymake-fringe-indicator-position 'right-fringe)
+  (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
+  (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
+  (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
+  :config
+  (+map-local! :keymaps 'flymake-mode-map
+    "f"  '(nil :wk "flymake")
+    "ff" #'+flymake-main/body
+    "fn" #'flymake-goto-next-error
+    "fN" #'flymake-goto-prev-error
+    "fs" #'flymake-start
+    "fb" #'flymake-show-buffer-diagnostics
+    "fp" #'flymake-show-project-diagnostics)
+
+  ;; Use the session's load-path with flymake
+  (setq elisp-flymake-byte-compile-load-path
+        (append elisp-flymake-byte-compile-load-path load-path))
+
+  ;; Larger right frings
+  (set-fringe-style '(8 . 13))
+
+  ;; Better fringe bitmaps
+  (define-fringe-bitmap '+flymake-bitmap-arrow
+    [#b11111000
+     #b01111100
+     #b00111110
+     #b00011111
+     #b00111110
+     #b01111100
+     #b11111000])
+  (define-fringe-bitmap '+flymake-bitmap-arrow-hi-res
+    [#b01111000000
+     #b00111100000
+     #b00011110000
+     #b00001111000
+     #b00000111100
+     #b00000011110
+     #b00000011110
+     #b00000111100
+     #b00001111000
+     #b00011110000
+     #b00111100000
+     #b01111000000]
+    nil 13)
+  (define-fringe-bitmap '+flymake-bitmap-left-arrow-hi-res
+    [#b00000011110
+     #b00000111100
+     #b00001111000
+     #b00011110000
+     #b00111100000
+     #b01111000000
+     #b01111000000
+     #b00111100000
+     #b00011110000
+     #b00001111000
+     #b00000111100
+     #b00000011110]
+    nil 13)
+
+  (defhydra +flymake-main (:color red :hint nil :foreign-keys warn)
+    "
+[Flymake]                                              [_q_] quit
+  ├──────────────────────────────────────────────────────────────────────╮
+  │  [_B_] Buffer diagnostics  [_P_] Project diagnostics  [_L_] Log buffer     │
+  │  [_n_] Next error          [_N_] Prev error           [_S_] Start          │
+  ╰──────────────────────────────────────────────────────────────────────╯
+"
+    ("B" flymake-show-buffer-diagnostics)
+    ("P" flymake-show-project-diagnostics)
+    ("L" flymake-switch-to-log-buffer)
+    ("n" flymake-goto-next-error)
+    ("N" flymake-goto-prev-error)
+    ("S" flymake-start)
+    ("q" nil :color blue)))
+
+(use-package xt-mouse
+  :straight (:type built-in)
+  :hook (tty-setup . xterm-mouse-mode))
+
+(use-package tramp
+  :straight (:type built-in)
+  :init
+  ;; This is faster than the default "scp"
+  (unless os/win
+    (setq tramp-default-method "ssh"))
+  :custom
+  (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
+  (tramp-backup-directory-alist backup-directory-alist)
+  (tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
+  (tramp-default-remote-shell "/bin/bash"))
+
+(use-package reftex ;; Inspired by Doom Emacs
+  :straight (:type built-in)
+  :hook (LaTeX-mode . turn-on-reftex)
+  :hook (reftex-toc-mode . reftex-toc-rescan)
+  :custom
+  ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
+  (reftex-cite-format
+   '((?a . "\\autocite[]{%l}")
+     (?b . "\\blockcquote[]{%l}{}")
+     (?c . "\\cite[]{%l}")
+     (?f . "\\footcite[]{%l}")
+     (?n . "\\nocite{%l}")
+     (?p . "\\parencite[]{%l}")
+     (?s . "\\smartcite[]{%l}")
+     (?t . "\\textcite[]{%l}"))
+   ;; This is needed when `reftex-cite-format' is set. See:
+   ;; superuser.com/a/1386206
+   (LaTeX-reftex-cite-format-auto-activate nil)
+   (reftex-plug-into-AUCTeX t)
+   (reftex-toc-split-windows-fraction 0.3))
+  :config
+  (+map-local! :keymaps 'reftex-mode-map
+    ";" 'reftex-toc)
+  (+nvmap! :keymaps 'reftex-toc-mode-map
+    "j"   #'next-line
+    "k"   #'previous-line
+    "q"   #'kill-buffer-and-window
+    "ESC" #'kill-buffer-and-window)
+  (with-eval-after-load 'evil
+    (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
+
+(use-package bibtex
+  :straight (:type built-in)
+  :hook (bibtex-mode . display-line-numbers-mode)
+  :custom
+  (bibtex-dialect 'biblatex)
+  (bibtex-align-at-equal-sign t)
+  (bibtex-text-indentation 20)
+  :config
+  (+map-local! :keymaps 'bibtex-mode-map
+    "l" #'bibtex-fill-entry
+    "r" #'bibtex-reformat))
+
+(use-package oc
+  :straight (:type built-in)
+  :after org
+  :demand t
+  :custom
+  (org-cite-export-processors '((latex biblatex) (t csl)))
+  (org-support-shift-select t)
+  :config
+  (+map-local! :keymaps 'org-mode-map
+    "C" #'org-cite-insert))
+
+(use-package oc-csl
+  :straight (:type built-in)
+  :after oc
+  :demand t)
+
+(use-package oc-natbib
+  :straight (:type built-in)
+  :after oc
+  :demand t)
+
+(use-package oc-biblatex
+  :straight (:type built-in)
+  :after oc
+  :demand t)
+
+(when (+emacs-features-p 'tree-sitter)
+  (use-package treesit
+    :straight (:type built-in)
+    :custom
+    (treesit-font-lock-level 4))
+
+  (use-package dockerfile-ts-mode
+    :straight (:type built-in)
+    :mode "/Dockerfile\\'")
+
+  (use-package cmake-ts-mode
+    :straight (:type built-in)
+    :mode "CMakeLists\\.txt\\'"
+    :mode "\\.cmake\\'"))
+
+(use-package hideif
+  :straight (:type built-in)
+  :init
+  (defun +hide-ifdef-mode-maybe-h ()
+    ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
+    ;; so we don't enable `hide-ifdef-mode'.
+    (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
+                (bound-and-true-p lsp-semantic-tokens-enable))
+      (hide-ifdef-mode 1)))
+  (defun +hide-ifdef-auto-enable ()
+    (interactive)
+    (if prefix-arg
+        (+remove-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
+          #'+hide-ifdef-mode-maybe-h)
+      (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
+                  :depth 101 #'+hide-ifdef-mode-maybe-h)))
+  :custom
+  (hide-ifdef-shadow t)
+  (hide-ifdef-initially t))
+
+(use-package eglot
+  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
+  :hook (eglot-managed-mode . eglot-inlay-hints-mode)
+  :custom
+  (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
+  (eglot-sync-connect 0) ; async, do not block
+  (eglot-extend-to-xref t) ; can be interesting!
+  (eglot-report-progress nil) ; disable annoying messages in echo area!
+  :init
+  ;; Register global keybinding
+  (+map! :infix "c"
+    "e"  '(nil :wk "eglot session")
+    "ee" #'eglot
+    "eA" #'+eglot-auto-enable)
+  (defcustom +eglot-auto-enable-modes
+    '(c++-mode c++-ts-mode c-mode c-ts-mode
+      python-mode python-ts-mode
+      rust-mode rust-ts-mode cmake-mode
+      js-mode js-ts-mode typescript-mode typescript-ts-mode
+      json-mode json-ts-mode js-json-mode)
+    "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
+    :group 'minemacs-prog
+    :type '(repeat symbol))
+  (defun +eglot-auto-enable ()
+    "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
+    (interactive)
+    (dolist (mode +eglot-auto-enable-modes)
+      (let ((hook (intern (format "%s-hook" mode))))
+        (add-hook hook #'eglot-ensure)
+        (remove-hook hook #'lsp-deferred))))
+  :config
+  ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
+  ;; to fill `+eglot-auto-enable-modes' with all supported modes.
+  (defun +eglot-use-on-all-supported-modes (mode-list)
+    (dolist (mode-def mode-list)
+      (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
+        (cond
+         ((listp mode) (+eglot-use-on-all-supported-modes mode))
+         (t
+          (when (and (not (eq 'clojure-mode mode)) ; prefer cider
+                     (not (eq 'lisp-mode mode))    ; prefer sly
+                     (not (eq 'scheme-mode mode))) ; prefer geiser
+            (add-to-list '+eglot-auto-enable-modes mode)))))))
+  (+map! :keymaps 'eglot-mode-map
+    :infix "c"
+    "fF" #'eglot-format-buffer
+    "d"  '(eglot-find-declaration :wk "Find declaration")
+    "i"  '(eglot-find-implementation :wk "Find implementation")
+    "t"  '(eglot-find-typeDefinition :wk "Find type definition")
+    "a"  '(eglot-code-actions :wk "Code actions")
+    "r"  '(nil :wk "refactor")
+    "rr" '(eglot-rename :wk "Rename")
+    "rR" '(eglot-code-action-rewrite :wk "Rewrite")
+    "rf" '(eglot-code-action-quickfix :wk "Quick fix")
+    "ri" '(eglot-code-action-inline :wk "Inline")
+    "re" '(eglot-code-action-extract :wk "Extract")
+    "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
+    "eq" '(eglot-shutdown :wk "Shutdown")
+    "er" '(eglot-reconnect :wk "Reconnect")
+    "eQ" '(eglot-shutdown-all :wk "Shutdown all")
+    "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
+
+  (+eglot-register
+    '(c++-mode c++-ts-mode c-mode c-ts-mode)
+    '("clangd"
+      "--background-index"
+      "-j=12"
+      "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
+      "--clang-tidy"
+      ;; "--clang-tidy-checks=*"
+      "--all-scopes-completion"
+      "--cross-file-rename"
+      "--completion-style=detailed"
+      "--header-insertion-decorators"
+      "--header-insertion=iwyu"
+      "--pch-storage=memory")
+    "ccls"))
+
+(use-package eldoc
+  :straight (:type built-in)
+  :custom
+  (eldoc-documentation-strategy #'eldoc-documentation-compose))
+
+(use-package compile
+  :straight (:type built-in)
+  :commands +toggle-bury-compilation-buffer-if-successful
+  ;; Enable ANSI colors in compilation buffer
+  :hook (compilation-filter . ansi-color-compilation-filter)
+  :custom
+  (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
+  (compilation-always-kill t) ; Always kill current compilation process before starting a new one
+  (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
+  (compilation-window-height 12) ; Keep it readable
+  :init
+  (defcustom +compilation-auto-bury-msg-level "warning"
+    "Level of messages to consider OK to auto-bury the compilation buffer."
+    :group 'minemacs-prog
+    :type '(choice (const "warning") (const "error") string))
+  (defcustom +compilation-auto-bury-delay 3.0
+    "The delay in seconds after which the compilation buffer is buried."
+    :group 'minemacs-prog
+    :type 'number)
+  :config
+  ;; Integration of `compile' with `savehist'
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'compile-history))
+
+  ;; Auto-close the compilation buffer if succeeded without warnings.
+  ;; Adapted from: stackoverflow.com/q/11043004/3058915
+  (defun +compilation--bury-if-successful-h (buf str)
+    "Bury the compilation buffer if it succeeds without warnings."
+    (when (and
+           (string-match "compilation" (buffer-name buf))
+           (string-match "finished" str)
+           (not (with-current-buffer buf
+                  (save-excursion
+                    (goto-char (point-min))
+                    (search-forward +compilation-auto-bury-msg-level nil t)))))
+      (run-at-time
+       +compilation-auto-bury-delay nil
+       (lambda (b)
+         (with-selected-window (get-buffer-window b)
+           (kill-buffer-and-window))
+         (unless (current-message)
+           (message "Compilation finished without warnings.")))
+       buf)))
+
+  (defun +toggle-bury-compilation-buffer-if-successful ()
+    "Toggle auto-burying the successful compilation buffer."
+    (interactive)
+    (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
+        (progn
+          (message "Disabled burying compilation buffer.")
+          (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))
+      (message "Enabled burying compilation buffer.")
+      (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
+
+(use-package vhdl-mode
+  :straight (:type built-in)
+  :config
+  ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
+  (+eglot-register 'vhdl-mode "vhdl_ls"))
+
+(use-package verilog-mode
+  :straight (:type built-in)
+  :config
+  ;; Setup Verilog/SystemVerilog LSP servers
+  (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
+
+(use-package nxml-mode
+  :straight (:type built-in)
+  :config
+  (+eglot-register '(nxml-mode xml-mode) "lemminx"))
+
+(use-package elisp-mode
+  :straight (:type built-in)
+  :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
+  :after minemacs-loaded ; prevent elisp-mode from being loaded too early
+  :init
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
+    "p" #'check-parens)
+  :config
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+    "d"   '(nil :wk "edebug")
+    "df"  'edebug-defun
+    "dF"  'edebug-all-forms
+    "dd"  'edebug-all-defs
+    "dr"  'edebug-remove-instrumentation
+    "do"  'edebug-on-entry
+    "dO"  'edebug-cancel-on-entry
+    "db"  '(nil :wk "breakpoints")
+    "dbb" 'edebug-set-breakpoint
+    "dbr" 'edebug-unset-breakpoint
+    "dbn" 'edebug-next-breakpoint
+    "e"   '(nil :wk "eval")
+    "eb"  'eval-buffer
+    "ed"  'eval-defun
+    "ee"  'eval-last-sexp
+    "er"  'eval-region
+    "eR"  'elisp-eval-region-or-buffer
+    "el"  'load-library
+    "g"   '(nil :wk "goto/find")
+    "gf"  'find-function-at-point
+    "gR"  'find-function
+    "gv"  'find-variable-at-point
+    "gV"  'find-variable
+    "gL"  'find-library
+    "c"   '(nil :wk "compile")
+    "cc"  #'elisp-byte-compile-buffer
+    "cf"  #'elisp-byte-compile-file
+    "cn"  #'emacs-lisp-native-compile-and-load
+    "cb"  #'emacs-lisp-byte-compile-and-load)
+  (+map-local! :keymaps '(edebug-mode-map)
+    "e"   '(nil :wk "eval")
+    "ee"  'edebug-eval-last-sexp
+    "eE"  'edebug-eval-expression
+    "et"  'edebug-eval-top-level-form))
+
+(use-package scheme
+  :straight (:type built-in)
+  :custom
+  (scheme-program-name "guile"))
+
+(use-package gdb-mi
+  :straight (:type built-in)
+  :custom
+  (gdb-show-main t) ; display source file containing main routine at startup
+  (gdb-many-windows t) ; start in gdb-many-windows mode
+  (gdb-debug-log-max 1024) ; default 128
+  (gdb-restore-window-configuration-after-quit t)
+  (gdb-thread-buffer-verbose-names nil)
+  (gdb-window-configuration-directory (+directory-ensure minemacs-local-dir "gdb/"))
+  (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
+  (gdb-display-io-nopopup nil) ; IDEA: maybe change it!
+  :config
+  ;; Add an overlay for the current line (mimics dap-mode)
+  (defvar +gud-overlay
+    (let* ((overlay (make-overlay (point-min) (point-min))))
+      (overlay-put overlay 'face 'highlight)
+      overlay)
+    "Overlay variable for GUD highlighting.")
+
+  (advice-add
+   'gud-display-line :after
+   (defun +gud--display-overlay-a (true-file _line)
+     (let* ((overlay +gud-overlay)
+            (buffer (gud-find-file true-file)))
+       (with-current-buffer buffer
+         (move-overlay overlay (line-beginning-position) (line-end-position) (current-buffer))))))
+
+  (add-hook
+   'kill-buffer-hook
+   (defun +gud--delete-overlay-h ()
+     (when (derived-mode-p 'gud-mode)
+       (delete-overlay +gud-overlay)))))
+
+(use-package org
+  :straight (:type built-in)
+  :after minemacs-loaded
+  :preface
+  ;; Set to nil so we can detect user changes (in config.el)
+  (setq org-directory nil)
+  :custom
+  (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
+  (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
+  (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
+  (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
+  (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
+  (org-tags-column 0)
+  (org-auto-align-tags nil)
+  (org-startup-indented nil)
+  (org-cycle-hide-block-startup t)
+  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
+  (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
+  (org-fold-core-style 'overlays) ; Fix `evil' search problem (to be used with `evil-search')
+  (org-fontify-quote-and-verse-blocks t)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
+  (org-hide-emphasis-markers t)
+  (org-use-property-inheritance t) ; it's convenient to have properties inherited
+  (org-ellipsis " ↩")
+  (org-log-done 'time) ; having the time an item is done sounds convenient
+  (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
+  (org-export-in-background t) ; run export processes in external emacs process
+  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
+  (org-export-with-smart-quotes t) ; convert "this" to « this »
+  (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
+  (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
+  (org-highlight-latex-and-related '(native script entities))
+  (org-pretty-entities t)
+  (org-pretty-entities-include-sub-superscripts t)
+  (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
+  (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
+  (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
+  (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
+  :config
+  (+map-local! :keymaps 'org-mode-map
+    "l"  '(nil :wk "link")
+    "ll" #'org-insert-link
+    "e"  #'org-export-dispatch
+    "c"  #'org-edit-src-code
+    "s"  '(nil :wk "babel-session")
+    "sc" #'org-babel-switch-to-session-with-code
+    "ss" #'org-babel-switch-to-session
+    "sp" #'org-babel-pop-to-session
+    "sP" #'org-babel-pop-to-session-maybe
+    "sl" #'org-babel-load-in-session
+    "sL" #'org-babel-load-in-session-maybe
+    "si" #'org-babel-initiate-session
+    "b"  '(nil :wk "babel")
+    "bt" #'org-babel-tangle
+    "bd" #'org-babel-detangle
+    "bf" #'org-babel-tangle-file)
+  (+map-local! :keymaps 'org-src-mode-map
+    "s" #'org-edit-src-save
+    "q" #'org-edit-src-abort
+    "e" #'org-edit-src-exit)
+  (+nmap! :keymaps 'org-mode-map
+    "RET" #'org-open-at-point)
+
+  (setq org-export-async-debug minemacs-debug) ;; Can be useful!
+
+  ;; Dynamically change font size for Org heading levels, starting from
+  ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.
+  (defvar +org-level-base-size 1.3)
+
+  (dotimes (level 8)
+    (let ((size (max 1.0 (* +org-level-base-size (expt 0.9 level)))))
+      (set-face-attribute
+       (intern (format "org-level-%d" (1+ level))) nil
+       :weight 'bold
+       :height size)))
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (cl-loop
+    for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
+                  maxima eshell scheme python fortran gnuplot plantuml makefile)
+    collect (cons lang t)))
+
+  (with-eval-after-load 'org-src
+    (setq org-src-lang-modes
+          (append
+           '(("dot" . graphviz-dot))
+           (delete (assoc "dot" org-src-lang-modes #'equal) org-src-lang-modes))))
+
+  (with-eval-after-load 'plantuml-mode
+    (setq org-plantuml-jar-path plantuml-jar-path
+          org-plantuml-exec-mode plantuml-default-exec-mode
+          org-plantuml-executable-path plantuml-executable-path))
+
+  ;; From Doom Emacs
+  (with-no-warnings
+    (custom-declare-face '+org-todo-active  '((t (:inherit (bold font-lock-constant-face org-todo)))) "")
+    (custom-declare-face '+org-todo-project '((t (:inherit (bold font-lock-doc-face org-todo)))) "")
+    (custom-declare-face '+org-todo-onhold  '((t (:inherit (bold warning org-todo)))) "")
+    (custom-declare-face '+org-todo-cancel  '((t (:inherit (bold error org-todo)))) ""))
+
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"  ; A task that needs doing & is ready to do
+           "PROJ(p)"  ; A project, which usually contains other tasks
+           "LOOP(r)"  ; A recurring task
+           "STRT(s)"  ; A task that is in progress
+           "WAIT(w)"  ; Something external is holding up this task
+           "HOLD(h)"  ; This task is paused/on hold because of me
+           "IDEA(i)"  ; An unconfirmed and unapproved task or notion
+           "|"
+           "DONE(d)"  ; Task successfully completed
+           "KILL(k)") ; Task was cancelled, aborted or is no longer applicable
+          (sequence
+           "[ ](T)"   ; A task that needs doing
+           "[-](S)"   ; Task is in progress
+           "[?](W)"   ; Task is being held up or paused
+           "|"
+           "[X](D)")  ; Task was completed
+          (sequence
+           "|"
+           "OKAY(o)"
+           "YES(y)"
+           "NO(n)"))
+        org-todo-keyword-faces
+        '(("[-]"  . +org-todo-active)
+          ("STRT" . +org-todo-active)
+          ("[?]"  . +org-todo-onhold)
+          ("WAIT" . +org-todo-onhold)
+          ("HOLD" . +org-todo-onhold)
+          ("PROJ" . +org-todo-project)
+          ("NO"   . +org-todo-cancel)
+          ("KILL" . +org-todo-cancel))))
+
+(use-package ox-latex
+  :straight (:type built-in)
+  :after org
+  :custom
+  (org-latex-src-block-backend 'engraved)
+  (org-latex-prefer-user-labels t)
+  (org-latex-tables-booktabs t)
+  ;; Default `minted` options, can be overwritten in file/dir locals
+  (org-latex-minted-options
+   '(("frame"         "lines")
+     ("fontsize"      "\\footnotesize")
+     ("tabsize"       "2")
+     ("breaklines"    "true")
+     ("breakanywhere" "true") ;; break anywhere, no just on spaces
+     ("style"         "default")
+     ("bgcolor"       "GhostWhite")
+     ("linenos"       "true")))
+  :config
+  ;; (setq org-latex-line-break-safe "\\\\")
+  ;; Add this to your config to be able to export with minted:
+  ;; (with-eval-after-load 'ox-latex
+  ;;   (add-to-list 'org-latex-packages-alist '("" "minted"))
+  ;;   (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
+  ;;   (setq org-latex-src-block-backend 'minted
+  ;;         org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+
+  ;; Map some org-mode blocks' languages to lexers supported by minted
+  ;; you can see supported lexers by running this command in a terminal:
+  ;; 'pygmentize -L lexers'
+  (dolist (pair '((ipython    "python")
+                  (jupyter    "python")
+                  (scheme     "scheme")
+                  (lisp-data  "lisp")
+                  (conf-unix  "unixconfig")
+                  (conf-space "unixconfig")
+                  (authinfo   "unixconfig")
+                  (gdb-script "unixconfig")
+                  (conf-toml  "yaml")
+                  (conf       "ini")
+                  (gitconfig  "ini")
+                  (systemd    "ini")))
+    (unless (member pair org-latex-minted-langs)
+      (add-to-list 'org-latex-minted-langs pair)))
+
+  (cond
+   ((executable-find "latexmk")
+    (setq
+     org-latex-pdf-process
+     '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
+       "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+   ;; NOTE: Tectonic might have some issues with some documents (sagej + natbib)
+   ((executable-find "tectonic")
+    (setq
+     org-latex-pdf-process
+     '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
+
+(use-package org-agenda
+  :straight (:type built-in)
+  :custom
+  (org-agenda-tags-column 0)
+  (org-agenda-block-separator ?─)
+  (org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
+  (org-agenda-current-time-string
+   "⭠ now ─────────────────────────────────────────────────"))
+
+(use-package ediff
+  :straight (:type built-in)
+  :hook (ediff-before-setup . +ediff--save-window-config-h)
+  :custom
+  ;; Split horizontally
+  (ediff-split-window-function #'split-window-horizontally)
+  ;; Setup all windows in one frame
+  (ediff-window-setup-function #'ediff-setup-windows-plain)
+  :config
+  (defvar +ediff--saved-window-config nil)
+
+  ;; Save the current window configuration (hooked to `ediff-before-setup-hook')
+  (defun +ediff--save-window-config-h ()
+    (setq +ediff--saved-window-config (current-window-configuration)))
+
+  ;; Restore the saved window configuration on quit or suspend
+  (+add-hook! (ediff-quit ediff-suspend) :depth 101
+    (defun +ediff--restore-window-config-h ()
+      (when (window-configuration-p +ediff--saved-window-config)
+        (set-window-configuration +ediff--saved-window-config)))))
+
+(use-package octave
+  :straight (:type built-in)
+  :mode ("\\.m\\'" . octave-mode)
+  :config
+  (defun +octave-eval-last-sexp ()
+    "Evaluate Octave sexp before point and print value into current buffer."
+    (interactive)
+    (inferior-octave t)
+    (let ((print-escape-newlines nil)
+          (opoint (point)))
+      (prin1
+       (save-excursion
+         (forward-sexp -1)
+         (inferior-octave-send-list-and-digest
+          (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
+         (mapconcat 'identity inferior-octave-output-list "\n"))))))
 
 
 (provide 'me-builtin)

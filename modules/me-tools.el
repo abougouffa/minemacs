@@ -91,11 +91,7 @@
 (use-package docker-compose-mode
   :straight t)
 
-(if (+emacs-features-p 'tree-sitter)
-    ;; Emacs 29 comes with `dockerfile-ts-mode'
-    (use-package dockerfile-ts-mode
-      :straight (:type built-in)
-      :mode "/Dockerfile\\'")
+(unless (+emacs-features-p 'tree-sitter)
   (use-package dockerfile-mode
     :straight t))
 
@@ -126,15 +122,6 @@
   :custom
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
-
-(use-package tramp
-  :straight (:type built-in)
-  :init
-  ;; This is faster than the default "scp"
-  (unless os/win
-    (setq tramp-default-method "ssh"))
-  :custom
-  (tramp-default-remote-shell "/bin/bash"))
 
 (use-package bitwarden
   :straight (:host github :repo "seanfarley/emacs-bitwarden")

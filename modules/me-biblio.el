@@ -8,32 +8,6 @@
 
 ;;; Code:
 
-(use-package oc
-  :straight (:type built-in)
-  :after org
-  :demand t
-  :custom
-  (org-cite-export-processors '((latex biblatex) (t csl)))
-  (org-support-shift-select t)
-  :config
-  (+map-local! :keymaps 'org-mode-map
-    "C" #'org-cite-insert))
-
-(use-package oc-csl
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-natbib
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-biblatex
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
 (use-package zotxt
   :straight t
   :preface

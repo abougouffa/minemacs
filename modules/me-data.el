@@ -76,11 +76,6 @@
     "L" #'graphviz-turn-off-live-preview)
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
-(use-package nxml-mode
-  :straight (:type built-in)
-  :config
-  (+eglot-register '(nxml-mode xml-mode) "lemminx"))
-
 (use-package plantuml-mode
   :straight t
   :mode "\\.plantuml\\'"

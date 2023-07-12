@@ -8,12 +8,6 @@
 
 ;;; Code:
 
-(use-package doc-view
-  :straight (:type built-in)
-  :custom
-  (doc-view-continuous t)
-  (doc-view-mupdf-use-svg (+emacs-features-p 'rsvg)))
-
 (use-package pdf-tools
   :straight t
   :mode ("\\.pdf\\'" . pdf-view-mode)

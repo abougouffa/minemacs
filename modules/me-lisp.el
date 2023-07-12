@@ -115,11 +115,6 @@
 (use-package racket-mode
   :straight t)
 
-(use-package scheme
-  :straight (:type built-in)
-  :custom
-  (scheme-program-name "guile"))
-
 (use-package geiser
   :straight t
   :custom
@@ -167,51 +162,6 @@
   (+map-local! :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
-;; Emacs Lisp
-(use-package elisp-mode
-  :straight (:type built-in)
-  :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
-  :after minemacs-loaded ; prevent elisp-mode from being loaded too early
-  :init
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
-    "p" #'check-parens)
-  :config
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "d"   '(nil :wk "edebug")
-    "df"  'edebug-defun
-    "dF"  'edebug-all-forms
-    "dd"  'edebug-all-defs
-    "dr"  'edebug-remove-instrumentation
-    "do"  'edebug-on-entry
-    "dO"  'edebug-cancel-on-entry
-    "db"  '(nil :wk "breakpoints")
-    "dbb" 'edebug-set-breakpoint
-    "dbr" 'edebug-unset-breakpoint
-    "dbn" 'edebug-next-breakpoint
-    "e"   '(nil :wk "eval")
-    "eb"  'eval-buffer
-    "ed"  'eval-defun
-    "ee"  'eval-last-sexp
-    "er"  'eval-region
-    "eR"  'elisp-eval-region-or-buffer
-    "el"  'load-library
-    "g"   '(nil :wk "goto/find")
-    "gf"  'find-function-at-point
-    "gR"  'find-function
-    "gv"  'find-variable-at-point
-    "gV"  'find-variable
-    "gL"  'find-library
-    "c"   '(nil :wk "compile")
-    "cc"  #'elisp-byte-compile-buffer
-    "cf"  #'elisp-byte-compile-file
-    "cn"  #'emacs-lisp-native-compile-and-load
-    "cb"  #'emacs-lisp-byte-compile-and-load)
-  (+map-local! :keymaps '(edebug-mode-map)
-    "e"   '(nil :wk "eval")
-    "ee"  'edebug-eval-last-sexp
-    "eE"  'edebug-eval-expression
-    "et"  'edebug-eval-top-level-form))
-
 (use-package me-elisp-extras
   :after elisp-mode minemacs-loaded
   :demand t
@@ -252,7 +202,18 @@
   :custom
   (eros-eval-result-prefix "⟹ ")
   :config
-  (eros-mode 1))
+  (eros-mode 1)
+
+  ;; Add an Elisp-like evaluation for Octave
+  (with-eval-after-load 'octave
+    (defun +eros-octave-eval-last-sexp ()
+      "Wrapper for `+octave-eval-last-sexp' that overlays results."
+      (interactive)
+      (eros--eval-overlay (+octave-eval-last-sexp) (point)))
+
+    (+map-local! :keymaps 'octave-mode-map
+      "e"  '(nil :wk "eval")
+      "ee" #'+eros-octave-eval-last-sexp)))
 
 
 (provide 'me-lisp)
