@@ -9,7 +9,8 @@
 ;;; Code:
 
 (when (memq 'me-evil minemacs-core-modules)
-  (user-error "The `me-meow' module is incompatible with `me-evil'."))
+  (message "[Warning] The `me-meow' module is incompatible with `me-evil'.")
+  (push 'meow minemacs-disabled-packages))
 
 (use-package meow
   :straight t
