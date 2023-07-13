@@ -1,4 +1,4 @@
-;;; me-builtin.el --- Customization of some of Emacs' builtin libraries -*- lexical-binding: t; -*-
+;;; me-builtin.el --- Emacs built-in packages -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 

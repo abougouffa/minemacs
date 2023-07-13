@@ -15,25 +15,24 @@
 
 ;;; List of enabled modules
 (setq minemacs-modules
-      '(me-ui            ; User interface (focus, writeroom-mode, mixed-pitch, ...)
+      '(me-ui            ; User interface (svg-lib, focus, mixed-pitch, ...)
         me-editor        ; Editing (tempel, smartparens, unicode-fonts, ligature, ...)
         me-daemon        ; Emacs daemon tweaks
         me-undo          ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
         me-multi-cursors ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
         me-vc            ; Version control (magit, forge, core-review, diff-hl, ...)
-        me-project       ; Project management (project, consult-project-extra, ...)
-        me-prog          ; Programming stuff (tree-sitter, eglot, eldoc, eldoc-box, apheleia, editorconfig, ...)
-        me-checkers      ; Static checkers (flymake, flymake-easy, ...)
-        ;; me-assistants ; AI based assistants (chatgpt, codepilot, ...)
-        me-debug         ; Debugging tools (gdb-mi, realgud, disaster, ...)
+        me-project       ; Project management (consult-project-extra, ibuffer-project, ...)
+        me-prog          ; Programming stuff (tree-sitter, eldoc-box, apheleia, editorconfig, ...)
+        me-checkers      ; Static checkers (flymake-easy, ...)
+        me-debug         ; Debugging tools (realgud, disaster, ...)
         ;; me-lsp        ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
-        me-lisp          ; Lisps development (parinfer-rust, sly, macrostep, geiser, elisp, helpful, eros, ...)
-        ;; me-embedded   ; Embedded systems (arduino, openocd, bitbake, vhdl-mode, ...)
+        me-lisp          ; Lisps development (parinfer-rust, sly, macrostep, geiser, helpful, eros, ...)
+        ;; me-embedded   ; Embedded systems (arduino, openocd, bitbake, ...)
         ;; me-robot      ; Robotics stuff (ros, robot-mode, ...)
         me-data          ; Data file formats (csv, yaml, toml, json, plantuml-mode, ...)
-        ;; me-math       ; Mathematics (maxima, ess, ein, julia-mode, octave, ...)
+        ;; me-math       ; Mathematics (maxima, ess, ein, julia-mode, ...)
         ;; me-modeling   ; Modeling tools (scad-mode, ...)
-        me-org           ; Org-mode for life (org, org-contrib, org-modern, org-appear, ...)
+        me-org           ; Org-mode for life (org-contrib, org-modern, org-appear, ...)
         me-extra         ; Extra features (better-jumper, crux, ...)
         me-notes         ; Notes & Zettelkasten (org-roam, consult-org-roam, ...)
         me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
@@ -42,16 +41,16 @@
         ;; me-lifestyle  ; *Very* opinionated lifestyle packages (awqat, ...)
         me-docs          ; Documents (pdf-tools, nov, ...)
         ;; me-calendar   ; Calendar (calfw, calfw-org, calfw-ical, ...)
-        me-latex         ; LaTeX (auctex, auctex-latexmk, reftex, bibtex, ...)
-        ;; me-biblio     ; Bibliography & citations (org-cite, citar, zotxt, ...)
+        me-latex         ; LaTeX (auctex, auctex-latexmk, ...)
+        ;; me-biblio     ; Bibliography & citations (citar, zotxt, ...)
         me-natural-langs ; Natural language stuff (spell-fu, go-translate, eglot-ltex, ...)
         me-files         ; Files and directories (dirvish, treemacs, vlf, ...)
-        me-tools         ; System tools (tramp, vterm, tldr, ssh-deploy, docker, ...)
+        me-tools         ; System tools (vterm, tldr, ssh-deploy, docker, ...)
         me-tty           ; Emacs from terminal (xt-mouse, xclip, ...)
         me-fun           ; Games and funny packages (xkcd, speed-type, ...)
         me-media         ; Multimedia (empv, emms, ...)
-        ;; me-workspaces ; Workspace separation (tabspaces, tab-bar, ...)
-        me-binary        ; Display binary files in hex or decompile them (hexl, ...) ...
+        ;; me-workspaces ; Workspace separation (tabspaces, ...)
+        me-binary        ; Display binary files in hex or decompile them
         me-window))      ; Frame & window tweaks
 
 ;;; List of disabled packages
