@@ -206,6 +206,17 @@
   (tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
   (tramp-default-remote-shell "/bin/bash"))
 
+(use-package eshell
+  :straight (:type built-in)
+  :custom
+  (eshell-aliases-file (concat minemacs-local-dir "eshell/aliases"))
+  (eshell-directory-name (+directory-ensure minemacs-local-dir "eshell/"))
+  (eshell-history-file-name (concat minemacs-local-dir "eshell/history.el"))
+  (eshell-last-dir-ring-file-name (concat minemacs-local-dir "eshell/last-dir-ring.el"))
+  (eshell-login-script (concat minemacs-local-dir "eshell/login"))
+  (eshell-rc-script (concat minemacs-local-dir "eshell/rc"))
+  (eshell-scroll-to-bottom-on-input 'this))
+
 (use-package reftex ;; Inspired by Doom Emacs
   :straight (:type built-in)
   :hook (LaTeX-mode . turn-on-reftex)
@@ -289,6 +300,13 @@
     :straight (:type built-in)
     :mode "CMakeLists\\.txt\\'"
     :mode "\\.cmake\\'"))
+
+(use-package autoinsert
+  ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
+  :straight (:type built-in)
+  :hook (minemacs-after-startup . auto-insert-mode)
+  :custom
+  (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
 (use-package hideif
   :straight (:type built-in)
@@ -786,6 +804,132 @@
          (inferior-octave-send-list-and-digest
           (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
          (mapconcat 'identity inferior-octave-output-list "\n"))))))
+
+(use-package abbrev
+  :straight (:type built-in)
+  :custom
+  (abbrev-file-name (concat minemacs-local-dir "abbrev.el")))
+
+(use-package bookmark
+  :straight (:type built-in)
+  :custom
+  (bookmark-default-file (concat minemacs-local-dir "bookmark.el"))
+  ;; Save the bookmarks every time a bookmark is made
+  (bookmark-save-flag 1))
+
+(use-package calc
+  :straight (:type built-in)
+  :init
+  (+map! "o=" #'calc)
+  :custom
+  (calc-settings-file (concat minemacs-local-dir "calc-settings.el")))
+
+(use-package desktop
+  :straight (:type built-in)
+  :hook (minemacs-after-startup . desktop-save-mode)
+  :custom
+  ;; File name to use when saving desktop
+  (desktop-base-file-name "emacs-session.el")
+  ;; File name to use as a lock
+  (desktop-base-lock-name (concat desktop-base-file-name ".lock"))
+  ;; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
+  (desktop-restore-eager 5)
+  ;; Avoid writing contents unchanged between auto-saves
+  (desktop-file-checksum t)
+  ;; Save buffer status
+  (desktop-save-buffer t))
+
+(use-package recentf
+  :straight (:type built-in)
+  :after minemacs-loaded
+  :demand t
+  :custom
+  (recentf-save-file (concat minemacs-local-dir "recentf-save.el"))
+  ;; Increase the maximum number of saved items
+  (recentf-max-saved-items 100)
+  ;; Ignore case when searching recentf files
+  (recentf-case-fold-search t)
+  ;; Exclude some files from being remembered by recentf
+  (recentf-exclude
+   `(,(rx (* any)
+       (or
+        "elfeed-db"
+        "eln-cache"
+        "/cache/"
+        ".maildir/"
+        ".cache/")
+       (* any)
+       (? (or "html" "pdf" "tex" "epub")))
+     ,(rx "/"
+       (or "rsync" "ssh" "tmp" "yadm" "sudoedit" "sudo")
+       (* any))))
+  :config
+  ;; Enable `recentf-mode' to remember recent files
+  (+shutup! (recentf-mode 1)))
+
+(use-package url
+  :straight (:type built-in)
+  :custom
+  (url-cache-directory (+directory-ensure minemacs-cache-dir "url/"))
+  (url-configuration-directory (+directory-ensure minemacs-local-dir "url/"))
+  (url-cookie-file (concat minemacs-local-dir "url/cookie.el"))
+  (url-history-file (concat minemacs-local-dir "url/history.el")))
+
+(use-package webjump
+  :straight (:type built-in)
+  :custom
+  (webjump-sites
+   '(("Emacs Wiki"    . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
+     ("DuckDuckGo"    . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
+     ("Qwant"         . [simple-query "www.qwant.com" "www.qwant.com/?q=" ""])
+     ("Ecosia"        . [simple-query "www.ecosia.org" "www.ecosia.org/search?q=" ""])
+     ("Brave"         . [simple-query "search.brave.com" "search.brave.com/search?q=" ""])
+     ("Bing"          . [simple-query "www.bing.com" "www.bing.com/search?q=" ""])
+     ("Yahoo"         . [simple-query "www.yahoo.com" "search.yahoo.com/search?p=" ""])
+     ("Google"        . [simple-query "www.google.com" "www.google.com/search?q=" ""])
+     ("Google Maps"   . [simple-query "www.google.com" "www.google.com/maps?q=" ""])
+     ("Google Images" . [simple-query "www.google.com" "www.google.com/images?q=" ""])
+     ("Google Groups" . [simple-query "groups.google.com" "groups.google.com/groups?q=" ""])
+     ("StackOverflow" . [simple-query "stackoverflow.com" "stackoverflow.com/search?q=" ""])
+     ("GitHub Repo"   . [simple-query "github.com" "github.com/search?type=repositories&q=" ""])
+     ("GitHub Code"   . [simple-query "github.com" "github.com/search?type=code&q=" ""])
+     ("WolframAlpha"  . [simple-query "wolframalpha.com" "wolframalpha.com/input/?i=" ""])
+     ("MDN"           . [simple-query "developer.mozilla.org" "developer.mozilla.org/search?q=" ""])
+     ("Youtube"       . [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+     ("Reddit"        . [simple-query "www.reddit.com" "www.reddit.com/search/?q=" ""])
+     ("Wikipedia"     . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
+
+(use-package time-stamp
+  :straight (:type built-in)
+  ;; Update time stamp (if available) before saving a file.
+  :hook (before-save . time-stamp)
+  :custom
+  ;; Do enable time-stamps
+  (time-stamp-active t)
+  ;; Check the first 12 buffer lines for Time-stamp: <>
+  (time-stamp-line-limit 12)
+  ;; Timestamp format
+  (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
+
+(use-package whitespace
+  :straight (:type built-in)
+  :hook (before-save . +save--whitespace-cleanup-h)
+  :custom
+  ;; Default behavior for `whitespace-cleanup'
+  (whitespace-action '(cleanup auto-cleanup))
+  :init
+  (defcustom +whitespace-auto-cleanup-modes
+    '(prog-mode conf-mode org-mode markdown-mode
+      latex-mode tex-mode bibtex-mode)
+    "Enable auto white space cleanup before saving for these derived modes."
+    :group 'minemacs-edit
+    :type '(repeat symbol))
+  :config
+  ;; Auto-remove trailing white spaces before saving for modes defined in
+  ;; `+whitespace-auto-cleanup-modes'.
+  (defun +save--whitespace-cleanup-h ()
+    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes)
+      (whitespace-cleanup))))
 
 
 (provide 'me-builtin)
