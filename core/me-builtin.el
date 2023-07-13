@@ -52,7 +52,7 @@
   ;; Enable adding mail attachements from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
   :hook (dired-mode . turn-on-gnus-dired-mode)
-  :cutom
+  :custom
   (dired-dwim-target t)
   (dired-auto-revert-buffer t))
 
