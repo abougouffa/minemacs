@@ -106,7 +106,7 @@ This list is automatically constructed from the environment variables
 (defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t))
 (defconst os/mac (eq system-type 'darwin))
 
-(unless os/win
+(when os/win
   (message "[DISCLAIMER]: MINEMACS HAS NOT BEEN TESTED ON WINDOWS, YOU SHOULD INVESTIGATE THE ISSUES YOU FACE!"))
 
 ;; Should return x86_64, aarch64, armhf, ...
