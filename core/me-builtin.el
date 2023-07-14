@@ -931,6 +931,27 @@
     (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes)
       (whitespace-cleanup))))
 
+(use-package autorevert
+  :straight (:type built-in)
+  ;; Auto load files changed on disk
+  :hook (minemacs-after-startup . global-auto-revert-mode)
+  :custom
+  ;; Revert non-file buffers like dired
+  (global-auto-revert-non-file-buffers t))
+
+(use-package savehist
+  :straight (:type built-in)
+  :hook (minemacs-after-startup . savehist-mode)
+  :custom
+  (savehist-file (concat minemacs-local-dir "savehist.el")))
+
+(use-package saveplace
+  :straight (:type built-in)
+  ;; Save place in files
+  :hook (minemacs-after-startup . save-place-mode)
+  :custom
+  (save-place-file (concat minemacs-local-dir "save-place.el")))
+
 
 (provide 'me-builtin)
 

@@ -56,8 +56,6 @@
  rcirc-log-directory (+directory-ensure minemacs-local-dir "rcirc/log/")
  remember-data-directory (+directory-ensure minemacs-local-dir "remember/data/")
  remember-data-file (concat minemacs-local-dir "remember/data.el")
- save-place-file (concat minemacs-local-dir "save-place.el")
- savehist-file (concat minemacs-local-dir "savehist.el")
  semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/")
  shadow-info-file (concat minemacs-local-dir "shadow/info.el")
  shadow-todo-file (concat minemacs-local-dir "shadow/todo.el")
@@ -112,8 +110,6 @@
  enable-recursive-minibuffers t
  ;; Kill the shell buffer after exit
  shell-kill-buffer-on-exit t
- ;; Revert non-file buffers like dired
- global-auto-revert-non-file-buffers t
  ;; Don't prompt for confirmation when we create a new file or buffer
  confirm-nonexistent-file-or-buffer nil
  ;; More intuitive buffer naming style
@@ -358,15 +354,6 @@ or file path may exist now."
 
   ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
   (minibuffer-depth-indicate-mode 1)
-
-  ;; Save place in files
-  (save-place-mode 1)
-
-  ;; Enable saving minibuffer history
-  (savehist-mode 1)
-
-  ;; Auto load files changed on disk
-  (global-auto-revert-mode 1)
 
   ;; Show line number in mode-line
   (line-number-mode 1)
