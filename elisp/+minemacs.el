@@ -397,40 +397,32 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 
 ;;;###autoload
 (defun +env-save ()
-  "Load environment variables of the current session to the file
-  \".emacs.d/local/system-env.el\"."
+  "Load environment variables from shell and save them to `+env-file'."
   (interactive)
   (with-temp-buffer
     (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
-    (dolist (env-var +env-save-vars)
-      (when-let ((var-val (getenv env-var)))
-        (when (equal "PATH" env-var)
-          (insert
-           (format
-            "\n;; Helper function\n%s\n"
-            '(defun +add-to-path (path)
-              (unless (member path exec-path)
-               (add-to-list 'exec-path path)))))
-          (insert "\n;; Adding PATH content to `exec-path'\n")
-          (dolist (path (parse-colon-path var-val))
-            (when path
-              (insert
-               (format
-                "(+add-to-path \"%s\")\n"
-                path path))))
-          (insert "\n"))
+    (let ((env-vars
+           (mapcar ; Get environment variables from shell into an alist
+            (lambda (l) (let ((s (string-split l "="))) (cons (car s) (string-join (cdr s) "="))))
+            (string-lines (shell-command-to-string "env") "="))))
+      ;; Special treatment for the "PATH" variable, save it to `exec-path'
+      (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
         (insert
-         (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
-    (write-file (concat minemacs-local-dir "system-env.el"))))
+         (format "\n;; Adding PATH content to `exec-path'\n(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
+                 (mapcar (lambda (s) (concat "\"" s "\"")) (parse-colon-path path)))))
+      ;; Save the environment variables to `process-environment' using `setenv'
+      (insert ";; Adding the rest of the environment variables\n")
+      (dolist (env-var env-vars)
+        (unless (cl-some (+apply-partially-right #'string-match-p (car env-var)) +env-deny-vars)
+          (insert (format "(setenv \"%s\" \"%s\")\n" (car env-var) (cdr env-var))))))
+    (write-file +env-file)))
 
 ;;;###autoload
 (defun +env-load ()
-  "Load environment variables from the file saved in
-  \".emacs.d/local/system-env.el\" if available."
+  "Load environment variables from `+env-file'."
   (interactive)
-  (let ((env-file (concat minemacs-local-dir "system-env.el")))
-    (when (file-exists-p env-file)
-      (+load env-file))))
+  (unless (file-exists-p +env-file) (+env-save))
+  (+load +env-file))
 
 ;;;###autoload
 (defun +ignore-root (&rest roots)

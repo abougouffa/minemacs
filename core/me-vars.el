@@ -218,11 +218,33 @@ MinEmacs hooks will be run in this order:
       :variable-pitch-font-size 13)
     "Default fonts of MinEmacs."))
 
-(defcustom +env-save-vars
-  '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH" "LSP_USE_PLISTS")
-  "List of the environment variables to saved by `+env-save'.
-You need to run Emacs from terminal to get the environment variables.
-MinEmacs then save them when calling `+env-save' to be used in GUI sessions as well."
+(defcustom +env-file (concat minemacs-local-dir "system-env.el")
+  "The file in which the environment variables will be saved."
+  :group 'minemacs-core
+  :type 'file)
+
+;; List from Doom Emacs
+(defcustom +env-deny-vars
+  '(;; Unix/shell state that shouldn't be persisted
+    "^HOME$" "^\\(OLD\\)?PWD$" "^SHLVL$" "^PS1$" "^R?PROMPT$" "^TERM\\(CAP\\)?$"
+    "^USER$" "^GIT_CONFIG" "^INSIDE_EMACS$"
+    ;; X server, Wayland, or services' env  that shouldn't be persisted
+    "^DISPLAY$" "^WAYLAND_DISPLAY" "^DBUS_SESSION_BUS_ADDRESS$" "^XAUTHORITY$"
+    ;; Windows+WSL envvars that shouldn't be persisted
+    "^WSL_INTEROP$"
+    ;; XDG variables that are best not persisted.
+    "^XDG_CURRENT_DESKTOP$" "^XDG_RUNTIME_DIR$"
+    "^XDG_\\(VTNR\\|SEAT\\|SESSION_\\(TYPE\\|CLASS\\)\\)"
+    ;; Socket envvars, like I3SOCK, GREETD_SOCK, SEATD_SOCK, SWAYSOCK, etc.
+    "SOCK$"
+    ;; ssh and gpg variables that could quickly become stale if persisted.
+    "^SSH_\\(AUTH_SOCK\\|AGENT_PID\\)$" "^\\(SSH\\|GPG\\)_TTY$"
+    "^GPG_AGENT_INFO$"
+    ;; Internal Doom envvars
+    "^DEBUG$" "^INSECURE$" "^\\(EMACS\\|DOOM\\)DIR$" "^DOOMPROFILE$" "^__")
+  "Environment variables to omit.
+Each string is a regexp, matched against variable names to omit from
+`+env-file' when saving evnironment variables in `+env-save'."
   :group 'minemacs-core
   :type '(repeat string))
 
