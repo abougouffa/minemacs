@@ -396,6 +396,43 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
             (+shutup! (byte-compile fn)))))))
 
 ;;;###autoload
+(defun +env-save ()
+  "Load environment variables of the current session to the file
+  \".emacs.d/local/system-env.el\"."
+  (interactive)
+  (with-temp-buffer
+    (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
+    (dolist (env-var +env-save-vars)
+      (when-let ((var-val (getenv env-var)))
+        (when (equal "PATH" env-var)
+          (insert
+           (format
+            "\n;; Helper function\n%s\n"
+            '(defun +add-to-path (path)
+              (unless (member path exec-path)
+               (add-to-list 'exec-path path)))))
+          (insert "\n;; Adding PATH content to `exec-path'\n")
+          (dolist (path (parse-colon-path var-val))
+            (when path
+              (insert
+               (format
+                "(+add-to-path \"%s\")\n"
+                path path))))
+          (insert "\n"))
+        (insert
+         (format "(setenv \"%s\" \"%s\")\n" env-var var-val))))
+    (write-file (concat minemacs-local-dir "system-env.el"))))
+
+;;;###autoload
+(defun +env-load ()
+  "Load environment variables from the file saved in
+  \".emacs.d/local/system-env.el\" if available."
+  (interactive)
+  (let ((env-file (concat minemacs-local-dir "system-env.el")))
+    (when (file-exists-p env-file)
+      (+load env-file))))
+
+;;;###autoload
 (defun +ignore-root (&rest roots)
   "Add ROOTS to ignored projects, recentf, etc."
   (dolist (root roots)

@@ -128,6 +128,19 @@
     (when (file-exists-p user-init-tweaks)
       (+load user-init-tweaks))))
 
+;; HACK: When Emacs is launched from the terminal (in GNU/Linux), it inherits
+;; the terminal's environment variables, which can be useful specially for
+;; running commands under a custom "$PATH" directory. But when Emacs is launched
+;; from the desktop manager (KDE, Gnome, etc.), it can omit the terminal's
+;; environment variables. The way I solve this is by launching Emacs from
+;; terminal, which gives Emacs the full environment variables of the invoking
+;; terminal. Then I call the `+env-save' command, which reads the environment
+;; variables defined in `+env-save-vars' and stores them in
+;; "~/.emacs.d/local/system-env.el". This file is then loaded in the future
+;; Emacs sessions (launched either from terminal or from GUI) by calling the
+;; `+env-load' command.
+(+env-load) ; Load environment variables when available.
+
 ;; NOTE: This is MinEmacs' synchronization point. To get a fast Emacs startup,
 ;; MinEmacs tries to defer loading most of its packages until this hook is
 ;; executed. This is managed by the `minemacs-loaded' and `minemacs-lazy'

@@ -218,6 +218,14 @@ MinEmacs hooks will be run in this order:
       :variable-pitch-font-size 13)
     "Default fonts of MinEmacs."))
 
+(defcustom +env-save-vars
+  '("PATH" "MANPATH" "CMAKE_PREFIX_PATH" "PKG_CONFIG_PATH" "LSP_USE_PLISTS")
+  "List of the environment variables to saved by `+env-save'.
+You need to run Emacs from terminal to get the environment variables.
+MinEmacs then save them when calling `+env-save' to be used in GUI sessions as well."
+  :group 'minemacs-core
+  :type '(repeat string))
+
 
 (provide 'me-vars)
 
