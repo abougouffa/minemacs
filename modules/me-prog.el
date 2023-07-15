@@ -21,7 +21,8 @@
     ;; Install all languages when calling `treesit-auto-install-all'
     (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
-  ;; To avoid installing `tree-sitter' as this fork uses the built-in `treesit'
+  ;; To avoid installing `tree-sitter' as the used `ts-fold' fork uses the
+  ;; built-in `treesit'
   (push 'tree-sitter straight-built-in-pseudo-packages)
 
   (use-package ts-fold
@@ -165,8 +166,7 @@ the children of class at point."
 
 (use-package dumb-jump
   :straight t
-  :commands
-  +dumb-jump-hydra/body
+  :commands +dumb-jump-hydra/body
   :custom
   (dumb-jump-selector 'completing-read)
   :init
