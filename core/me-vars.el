@@ -101,8 +101,8 @@ This list is automatically constructed from the environment variables
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 
-(defconst os/linux (and (memq system-type '(gnu gnu/linux)) t))
-(defconst os/bsd (and (memq system-type '(darwin berkeley-unix gnu/kfreebsd)) t))
+(defconst os/linux (eq system-type 'gnu/linux))
+(defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t))
 (defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t))
 (defconst os/mac (eq system-type 'darwin))
 
