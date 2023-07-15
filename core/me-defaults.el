@@ -29,7 +29,6 @@
  ;; ====== Default directories for builtin packages ======
  auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/")
  backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/")))
-
  diary-file (concat minemacs-local-dir "diary")
  custom-theme-directory (concat minemacs-config-dir "themes/")
  ecomplete-database-file (concat minemacs-local-dir "ecomplete-database.el")
@@ -40,13 +39,7 @@
  eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/")
  fortune-dir (+directory-ensure minemacs-local-dir "fortune/")
  fortune-file (expand-file-name "local" fortune-dir)
- gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/")
- gnus-init-file (concat minemacs-config-dir "gnus/init.el")
- gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")
  ido-save-directory-list-file (concat minemacs-local-dir "ido-save-directory-list.el")
- image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/")
- image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el")
- image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")
  kkc-init-file-name (concat minemacs-local-dir "kkc-init.el")
  multisession-dir (concat minemacs-local-dir "multisession/")
  newsticker-cache-filename (concat minemacs-local-dir "newsticker/cache.el")
@@ -69,7 +62,7 @@
 
  ;; ====== Default behavior ======
  ;; Inhibit startup message
- inhibit-startup-message t
+ inhibit-startup-screen t
  ;; Do not ring
  ring-bell-function #'ignore
  ;; Set to non-nil to flash!
@@ -104,8 +97,6 @@
  vc-follow-symlinks t
  ;; Display the true file name for symlinks
  find-file-visit-truename t
- ;; Use completion in the minibuffer instead of definitions buffer
- xref-show-definitions-function #'xref-show-definitions-completing-read
  ;; Enable recursive calls to minibuffer
  enable-recursive-minibuffers t
  ;; Kill the shell buffer after exit
@@ -138,8 +129,6 @@
  window-combination-resize t
  ;; Enable time in the mode-line
  display-time-string-forms '((propertize (concat 24-hours ":" minutes)))
- ;; Relative line numbering
- display-line-numbers-type 'relative
  ;; No ugly button for widgets
  widget-image-enable nil
  ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
@@ -169,10 +158,6 @@
  tab-always-indent 'complete
  ;; End files with newline
  require-final-newline t
- ;; Enable Drag-and-Drop of regions
- mouse-drag-and-drop-region t
- ;; Enable Drag-and-Drop of regions from Emacs to external programs
- mouse-drag-and-drop-region-cross-program t
 
  ;; ====== Backups ======
  ;; Disable lockfiles
@@ -210,12 +195,6 @@
  hscroll-margin 2
  ;; The number of columns to scroll
  hscroll-step 1
- ;; Better scrolling on Emacs29+, specially on a touchpad
- pixel-scroll-precision-use-momentum t
- ;; Make mouse scroll a little faster
- mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale))
- ;; Make mouse scroll a little faster horizontally
- mouse-wheel-scroll-amount-horizontal 2
 
  ;; ====== Auto-Saving, sessions ======
  ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
@@ -237,35 +216,10 @@
  fill-column 80
  ;; Never mix, use only spaces
  indent-tabs-mode nil
- ;; Width for line numbers
- display-line-numbers-width 4
- ;; Display absolute line numbers in narrowed regions
- display-line-numbers-widen t
  ;; Small tab is enough!
  tab-width 2)
 
 ;; ====== Misc hooks and advices ======
-;; Advice `emacs-session-filename' to ensure creating "session.ID" files in
-;; a sub-directory
-(with-eval-after-load 'x-win
-  (advice-add
-   #'emacs-session-filename :filter-return
-   (defun +emacs-session-filename--in-subdir-a (session-filename)
-     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
-     (concat (+directory-ensure minemacs-local-dir "x-win/")
-             (file-name-nondirectory session-filename)))))
-
-;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
-;; `shell-kill-buffer-on-exit').
-(advice-add
- 'term-sentinel :around
- (defun +term--kill-after-exit-a (orig-fn proc msg)
-   (if (memq (process-status proc) '(signal exit))
-       (let ((buffer (process-buffer proc)))
-         (apply orig-fn (list proc msg))
-         (kill-buffer buffer))
-     (apply orig-fn (list proc msg)))))
-
 ;; Kill the minibuffer when switching by mouse to another window.
 ;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 (add-hook
@@ -290,13 +244,7 @@ or file path may exist now."
             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
             (set-auto-mode))))))
 
-;; Make scripts (files starting wiht shebang "#!") executable when saved
-(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
-
 ;; ====== Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode' ======
-;; Show line numbers
-(+add-hook! (prog-mode conf-mode text-mode) #'display-line-numbers-mode)
-
 ;; Highlight the current line
 (+add-hook! (prog-mode conf-mode text-mode) #'hl-line-mode)
 
@@ -340,11 +288,6 @@ or file path may exist now."
 
   ;; Display divider between windows
   (window-divider-mode 1)
-
-  ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
-  (if (>= emacs-major-version 29)
-      (pixel-scroll-precision-mode 1)
-    (pixel-scroll-mode 1))
 
   ;; Display time in mode-line
   (display-time-mode 1)

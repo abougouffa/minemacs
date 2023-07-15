@@ -328,6 +328,12 @@
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
 
+(use-package xref
+  :straight (:type built-in)
+  :custom
+  ;; Use completion in the minibuffer instead of definitions buffer
+  (xref-show-definitions-function #'xref-show-definitions-completing-read))
+
 (use-package eglot
   :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
   :hook (eglot-managed-mode . eglot-inlay-hints-mode)
@@ -951,6 +957,92 @@
   :hook (minemacs-after-startup . save-place-mode)
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
+
+(use-package x-win
+  :straight (:type built-in)
+  :config
+  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in
+  ;; a sub-directory
+  (advice-add
+   #'emacs-session-filename :filter-return
+   (defun +emacs-session-filename--in-subdir-a (session-filename)
+     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+     (concat (+directory-ensure minemacs-local-dir "x-win/")
+             (file-name-nondirectory session-filename)))))
+
+(use-package term
+  :straight (:type built-in)
+  :config
+  ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
+  ;; `shell-kill-buffer-on-exit').
+  (advice-add
+   'term-sentinel :around
+   (defun +term--kill-after-exit-a (orig-fn proc msg)
+     (if (memq (process-status proc) '(signal exit))
+         (let ((buffer (process-buffer proc)))
+           (apply orig-fn (list proc msg))
+           (kill-buffer buffer))
+       (apply orig-fn (list proc msg))))))
+
+(use-package executable
+  :straight (:type built-in)
+  ;; Make scripts (files starting wiht shebang "#!") executable when saved
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
+
+(use-package display-line-numbers
+  :straight (:type built-in)
+  ;; Show line numbers
+  :hook ((prog-mode conf-mode text-mode) . display-line-numbers-mode)
+  :custom
+  ;; Relative line numbering
+  (display-line-numbers-type 'relative)
+  ;; Width for line numbers
+  (display-line-numbers-width 4)
+  ;; Display absolute line numbers in narrowed regions
+  (display-line-numbers-widen t))
+
+(use-package pixel-scroll
+  :straight (:type built-in)
+  :after minemacs-loaded
+  :demand t
+  :custom
+  ;; Better scrolling on Emacs29+, specially on a touchpad
+  (pixel-scroll-precision-use-momentum t)
+  :config
+  ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
+  (if (>= emacs-major-version 29)
+      (pixel-scroll-precision-mode 1)
+    (pixel-scroll-mode 1)))
+
+(use-package mouse
+  :straight (:type built-in)
+  :custom
+  ;; Enable Drag-and-Drop of regions
+  (mouse-drag-and-drop-region t)
+  ;; Enable Drag-and-Drop of regions from Emacs to external programs
+  (mouse-drag-and-drop-region-cross-program t))
+
+(use-package wmouse
+  :straight (:type built-in)
+  :custom
+  ;; Make mouse scroll a little faster
+  (mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
+  ;; Make mouse scroll a little faster horizontally
+  (mouse-wheel-scroll-amount-horizontal 2))
+
+(use-package gnus
+  :straight (:type built-in)
+  :custom
+  (gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/"))
+  (gnus-init-file (concat minemacs-config-dir "gnus/init.el"))
+  (gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")))
+
+(use-package image-dired
+  :straight (:type built-in)
+  :custom
+  (image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/"))
+  (image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el"))
+  (image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")))
 
 
 (provide 'me-builtin)
