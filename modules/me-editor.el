@@ -31,20 +31,6 @@
   :after tempel
   :demand t)
 
-(use-package unicode-fonts
-  :straight t
-  :hook (minemacs-after-startup . +unicode-fonts-setup)
-  :config
-  (defun +unicode-fonts-setup ()
-    "Prefer the `:unicode-font-family' from `minemacs-fonts'."
-    (when-let ((frame (selected-frame)))
-      (when (display-multi-font-p frame)
-        (with-selected-frame frame
-          (when-let ((unicode-font-family (plist-get minemacs-fonts :unicode-font-family)))
-            (dolist (unicode-block unicode-fonts-block-font-mapping)
-              (push unicode-font-family (cadr unicode-block))))
-          (unicode-fonts-setup))))))
-
 (unless (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
   (push 'ligature minemacs-disabled-packages))
 

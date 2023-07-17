@@ -76,7 +76,8 @@
 ;; (setq minemacs-modules
 ;;       (append
 ;;        minemacs-modules
-;;        '(obsolete/me-yasnippet   ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
-;;          obsolete/me-writeroom   ; Replacement for `+writing-mode' (writeroom-mode, ...)
-;;          obsolete/me-projectile  ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
-;;          obsolete/me-flycheck))) ; Static checkers (flycheck, ...)
+;;        '(obsolete/me-yasnippet     ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
+;;          obsolete/me-writeroom     ; Replacement for `+writing-mode' (writeroom-mode, ...)
+;;          obsolete/me-projectile    ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
+;;          obsolete/me-unicode-fonts ; Better Unicode management mainly for non-latin fonts
+;;          obsolete/me-flycheck)))   ; Static checkers (flycheck, ...)

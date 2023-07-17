@@ -58,9 +58,6 @@
  type-break-file-name (concat minemacs-local-dir "type-break.el")
  viper-custom-file-name (concat minemacs-local-dir "viper.el")
 
- ;; ====== Additional directories for non-builtin but common packages ======
- pcache-directory (concat minemacs-cache-dir "pcache/")
-
  ;; ====== Default behavior ======
  ;; Inhibit startup message
  inhibit-startup-screen t
