@@ -79,12 +79,12 @@
           (when (and mixed-pitch-mode-p (bound-and-true-p display-line-numbers-mode))
             (setq-local +writing--line-nums-active-p display-line-numbers-type)
             (display-line-numbers-mode -1))
-          (+writing--scale-up-org-latex)
+          (when (derived-mode-p 'org-mode) (+writing--scale-up-org-latex))
           (run-hooks +writing-mode-enable-hook))
       ;; Disable
       (kill-local-variable 'visual-fill-column-center-text)
       (kill-local-variable 'visual-fill-column-width)
-      (+writing--scale-down-org-latex)
+      (when (derived-mode-p 'org-mode) (+writing--scale-down-org-latex))
       (when (and +writing--line-nums-active-p mixed-pitch-mode-p)
         (display-line-numbers-mode +writing--line-nums-active-p)))
 
