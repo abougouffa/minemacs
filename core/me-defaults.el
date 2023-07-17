@@ -56,6 +56,7 @@
  srecode-map-save-file (concat minemacs-local-dir "srecode-map.el")
  timeclock-file (concat minemacs-local-dir "timeclock")
  type-break-file-name (concat minemacs-local-dir "type-break.el")
+ viper-custom-file-name (concat minemacs-local-dir "viper.el")
 
  ;; ====== Additional directories for non-builtin but common packages ======
  pcache-directory (concat minemacs-cache-dir "pcache/")
@@ -127,8 +128,6 @@
  x-stretch-cursor t
  ;; Resize window combinations proportionally
  window-combination-resize t
- ;; Enable time in the mode-line
- display-time-string-forms '((propertize (concat 24-hours ":" minutes)))
  ;; No ugly button for widgets
  widget-image-enable nil
  ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
@@ -139,9 +138,6 @@
  use-system-tooltips nil
  ;; Animated images loop forever instead of playing the animation only once
  image-animate-loop t
- ;; Set line width for the divider in `window-divider-mode' to 2px
- window-divider-default-bottom-width 2
- window-divider-default-right-width 2
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
@@ -277,12 +273,6 @@ or file path may exist now."
 
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
   (winner-mode 1)
-
-  ;; Display divider between windows
-  (window-divider-mode 1)
-
-  ;; Display time in mode-line
-  (display-time-mode 1)
 
   ;; Replace selection after start typing
   (delete-selection-mode 1)

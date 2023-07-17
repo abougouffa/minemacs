@@ -1054,6 +1054,23 @@
   (image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el"))
   (image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")))
 
+(use-package time
+  :straight (:type built-in)
+  ;; Display time in mode-line
+  :hook (minemacs-after-startup . display-time-mode)
+  :custom
+  ;; Enable time in the mode-line
+  (display-time-string-forms '((propertize (concat 24-hours ":" minutes)))))
+
+(use-package frame
+  :straight (:type built-in)
+  ;; Display divider between windows
+  :hook (minemacs-after-startup . window-divider-mode)
+  :custom
+  ;; Set line width for the divider in `window-divider-mode' to 2px
+  (window-divider-default-bottom-width 2)
+  (window-divider-default-right-width 2))
+
 
 (provide 'me-builtin)
 
