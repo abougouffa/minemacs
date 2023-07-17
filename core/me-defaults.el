@@ -142,8 +142,6 @@
  ;; Set line width for the divider in `window-divider-mode' to 2px
  window-divider-default-bottom-width 2
  window-divider-default-right-width 2
- ;; Do not show tabs (`tab-bar' is configured in `me-workspaces')
- tab-bar-show nil
 
  ;; ====== Undo ======
  ;; 10MB (default is 160kB)
@@ -245,12 +243,6 @@ or file path may exist now."
             (set-auto-mode))))))
 
 ;; ====== Modes enabled locally, mainly for `prog-mode', `conf-mode' and `text-mode' ======
-;; Highlight the current line
-(+add-hook! (prog-mode conf-mode text-mode) #'hl-line-mode)
-
-;; Hide/show code blocks, a.k.a. code folding
-(+add-hook! (prog-mode conf-mode) #'hs-minor-mode)
-
 ;; Wrap long lines
 (+add-hook! (prog-mode conf-mode text-mode) #'visual-line-mode)
 

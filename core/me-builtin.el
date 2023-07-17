@@ -328,6 +328,16 @@
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
 
+(use-package hl-line
+  :straight (:type built-in)
+  ;; Highlight the current line
+  :hook ((prog-mode conf-mode text-mode) . hl-line-mode))
+
+(use-package hideshow
+  :straight (:type built-in)
+  ;; Hide/show code blocks, a.k.a. code folding
+  :hook ((prog-mode conf-mode) . hs-minor-mode))
+
 (use-package xref
   :straight (:type built-in)
   :custom
@@ -1026,7 +1036,7 @@
   :straight (:type built-in)
   :custom
   ;; Make mouse scroll a little faster
-  (mouse-wheel-scroll-amount  '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
+  (mouse-wheel-scroll-amount '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
   ;; Make mouse scroll a little faster horizontally
   (mouse-wheel-scroll-amount-horizontal 2))
 
