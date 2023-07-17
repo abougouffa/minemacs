@@ -47,6 +47,11 @@
            (remove-hook 'server-after-make-frame-hook
                         #'+citar--set-symbols-once-h)))))))
 
+;; If `org-roam' is not active, there is no need to install `citar-org-roam'
+(unless (and (memq 'me-notes minemacs-modules)
+             (not (memq 'org-roam minemacs-disabled-packages)))
+  (push 'citar-org-roam minemacs-disabled-packages))
+
 (use-package citar-org-roam
   :straight t
   :after citar org-roam
