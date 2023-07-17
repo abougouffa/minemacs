@@ -227,26 +227,31 @@ MinEmacs hooks will be run in this order:
 (defcustom +env-deny-vars
   '(;; Unix/shell state that shouldn't be persisted
     "^HOME$" "^\\(OLD\\)?PWD$" "^SHLVL$" "^PS1$" "^R?PROMPT$" "^TERM\\(CAP\\)?$"
-    "^USER$" "^GIT_CONFIG" "^INSIDE_EMACS$"
+    "^USER$" "^GIT_CONFIG" "^INSIDE_EMACS$" "^_$"
+    "^JOURNAL_STREAM$" "^INVOCATION_ID$" "^MANAGERPID$" "^SYSTEMD_EXEC_PID$"
+    "^DESKTOP_STARTUP_ID$"
+    "^SESSION_MANAGER$"
+    ;; KDE session
+    "^KDE_\\(FULL_SESSION\\|APPLICATIONS_.*\\|SESSION_\\(UID\\|VERSION\\)\\)$"
     ;; X server, Wayland, or services' env  that shouldn't be persisted
     "^DISPLAY$" "^WAYLAND_DISPLAY" "^DBUS_SESSION_BUS_ADDRESS$" "^XAUTHORITY$"
     ;; Windows+WSL envvars that shouldn't be persisted
     "^WSL_INTEROP$"
     ;; XDG variables that are best not persisted.
     "^XDG_CURRENT_DESKTOP$" "^XDG_RUNTIME_DIR$"
-    "^XDG_\\(VTNR\\|SEAT\\|SESSION_\\(TYPE\\|CLASS\\)\\)"
+    "^XDG_\\(VTNR\\|SEAT\\|SESSION_\\(TYPE\\|CLASS\\|ID\\|PATH\\|DESKTOP\\)\\)"
     ;; Socket envvars, like I3SOCK, GREETD_SOCK, SEATD_SOCK, SWAYSOCK, etc.
     "SOCK$"
     ;; ssh and gpg variables that could quickly become stale if persisted.
     "^SSH_\\(AUTH_SOCK\\|AGENT_PID\\)$" "^\\(SSH\\|GPG\\)_TTY$"
     "^GPG_AGENT_INFO$"
-    ;; Internal Doom envvars
-    "^DEBUG$" "^INSECURE$" "^\\(EMACS\\|DOOM\\)DIR$" "^DOOMPROFILE$" "^__")
+    ;; Internal MinEmacs envvars
+    "^MINEMACSDIR$" "^MINEMACS_\\(DIR\\|IGNORE_.*\\|DEBUG\\|VERBOSE\\|NOT_LAZY\\|MSG_LEVEL\\)$")
   "Environment variables to omit.
 Each string is a regexp, matched against variable names to omit from
 `+env-file' when saving evnironment variables in `+env-save'."
   :group 'minemacs-core
-  :type '(repeat string))
+  :type '(repeat regexp))
 
 
 (provide 'me-vars)
