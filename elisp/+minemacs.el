@@ -407,9 +407,9 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
             (string-lines (shell-command-to-string "env") "="))))
       ;; Special treatment for the "PATH" variable, save it to `exec-path'
       (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
-        (insert
-         (format "\n;; Adding PATH content to `exec-path'\n(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
-                 (mapcar (lambda (s) (concat "\"" s "\"")) (parse-colon-path path)))))
+        (insert "\n;; Adding PATH content to `exec-path'\n"
+                (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
+                        (mapcar (lambda (s) (concat "\"" s "\"")) (parse-colon-path path)))))
       ;; Save the environment variables to `process-environment' using `setenv'
       (insert ";; Adding the rest of the environment variables\n")
       (dolist (env-var env-vars)
