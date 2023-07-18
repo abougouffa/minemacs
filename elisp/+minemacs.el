@@ -439,7 +439,7 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 ;;;###autoload
 (defun minemacs-run-build-functions (&optional dont-ask-p)
   "Run all build functions in `minemacs-build-functions'."
-  (interactive)
+  (interactive "P")
   (dolist (fn minemacs-build-functions)
     (message "MinEmacs: Running `%s'" fn)
     (if dont-ask-p
