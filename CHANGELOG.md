@@ -2,6 +2,75 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.1.0](https://github.com/abougouffa/minemacs/compare/v1.0.3..v1.1.0) - 2023-07-18
+#### Bug Fixes
+- **(+writing-mode)** don't suppose Org to be loaded (#103) - ([6bedf30](https://github.com/abougouffa/minemacs/commit/6bedf30c78859a5f3402c63564dd4aaedefd6cf6)) - [@abougouffa](https://github.com/abougouffa)
+- **(bootstratp)** disable `exec-path-from-shell` in Windows (#99) - ([59b4864](https://github.com/abougouffa/minemacs/commit/59b486445ef1d2cdd1e9f57de222d45b8b8582e2)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** use-package error - ([285f46c](https://github.com/abougouffa/minemacs/commit/285f46ca0de3a81a27e9e112d4b27abd8246ecd7)) - [@abougouffa](https://github.com/abougouffa)
+- **(dumb-jump)** fixes find reference in C/C++ - ([02a7f39](https://github.com/abougouffa/minemacs/commit/02a7f3902ea99e6d0834860cdab2eb978aba846d)) - [@abougouffa](https://github.com/abougouffa)
+- **(elisp)** autoload a function - ([61a5862](https://github.com/abougouffa/minemacs/commit/61a58628c7010df9cce9097f8b4c46a6ad46739a)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** don't load environment vars on Win (#104) - ([5a38524](https://github.com/abougouffa/minemacs/commit/5a385249b816306805f1f44a21d63c0cc6eae2ab)) - [@abougouffa](https://github.com/abougouffa)
+- **(netextender)** use the right command function - ([541931f](https://github.com/abougouffa/minemacs/commit/541931f23fa30d2420278bd62a4d67f48b51e525)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** warn on Windows - ([279f58e](https://github.com/abougouffa/minemacs/commit/279f58eaba45cdf91aead5c838902dfb19c5cd71)) - [@abougouffa](https://github.com/abougouffa)
+- fix some byte compiler errors - ([7a46079](https://github.com/abougouffa/minemacs/commit/7a4607942acb949d9c15344f30e086ea1de16e16)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- update modules documentation - ([5828984](https://github.com/abougouffa/minemacs/commit/58289843c3fd4d6561f14ce6a5803c37b4094954)) - [@abougouffa](https://github.com/abougouffa)
+- update the screenshot - ([805f96b](https://github.com/abougouffa/minemacs/commit/805f96bb7fe21293639b3df0d9573ee9ac1372b6)) - [@abougouffa](https://github.com/abougouffa)
+- update screenshot - ([b84b2e0](https://github.com/abougouffa/minemacs/commit/b84b2e0ed5d16e6feba440fb8dacb50c913422a3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(cape)** helpers to make use of `cape-super-capf` - ([ac587e0](https://github.com/abougouffa/minemacs/commit/ac587e0800d1dea4026a2a3bf92e0ab9fa5f021f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better management of environment variables - ([87e498e](https://github.com/abougouffa/minemacs/commit/87e498e6460f0d0f0b86a6587f7337bce5ca23b3)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `cov` obsolete - ([4516c9b](https://github.com/abougouffa/minemacs/commit/4516c9b62ce3f9aa47f1bc4791f2a54ecbb26fd6)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add `chezmoi` support - ([c5386d3](https://github.com/abougouffa/minemacs/commit/c5386d3ae493a82dfdc0fce3f71c712d461714ff)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- update issue template - ([66054d4](https://github.com/abougouffa/minemacs/commit/66054d46be3d0a35427a47224ed3ee4daafca574)) - [@abougouffa](https://github.com/abougouffa)
+- add bug report template - ([10e3411](https://github.com/abougouffa/minemacs/commit/10e3411cdb030fbd4b92e5b74f153870885b1ac8)) - [@abougouffa](https://github.com/abougouffa)
+- minor Makefile edit - ([a5d2e65](https://github.com/abougouffa/minemacs/commit/a5d2e65657c5bf292675312ebb04d746a53da616)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(elisp)** minor refactoring - ([dd32645](https://github.com/abougouffa/minemacs/commit/dd326459d1765426ab2f5dd9554b7a8d7bbf585d)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** minor edits - ([5bcb8d2](https://github.com/abougouffa/minemacs/commit/5bcb8d26ef779ad3e06007691545b08e1ea435f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(which-key)** use explicit function symbol - ([01d4a5a](https://github.com/abougouffa/minemacs/commit/01d4a5ab0ad0206b7c9bbf527cae04af3c72e657)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core-ui)** make use of `+add-hook!` - ([3a35113](https://github.com/abougouffa/minemacs/commit/3a35113182d25db58ec3981e97bdd96b3e122c80)) - [@abougouffa](https://github.com/abougouffa)
+- move more settings to `me-builtin` - ([3f89b75](https://github.com/abougouffa/minemacs/commit/3f89b751783ca7ed4eb87ab47f3fd7c93149fb43)) - [@abougouffa](https://github.com/abougouffa)
+- move more settings to `me-builtin` - ([ac827ff](https://github.com/abougouffa/minemacs/commit/ac827ffcfdc36b52303b3f100c2f754cf0730f33)) - [@abougouffa](https://github.com/abougouffa)
+- move more settings from `me-defaults` to `me-builtin` - ([f0da499](https://github.com/abougouffa/minemacs/commit/f0da499a79cfc00ff2bfd8838132a62055e16083)) - [@abougouffa](https://github.com/abougouffa)
+- move more customization to `me-builtin` - ([24e6d3b](https://github.com/abougouffa/minemacs/commit/24e6d3bec762b6cc9a0153c7bb7be112b618c165)) - [@abougouffa](https://github.com/abougouffa)
+- move more settings to `me-builtin` - ([dcf61b7](https://github.com/abougouffa/minemacs/commit/dcf61b7caac1dd9be7cb873c6af9c46bbf680d11)) - [@abougouffa](https://github.com/abougouffa)
+- minor refactoring - ([90defba](https://github.com/abougouffa/minemacs/commit/90defba213c389be0e554a680a8507fd1603403d)) - [@abougouffa](https://github.com/abougouffa)
+- move all built-in packages configs to `me-builtin` - ([f3aeaa2](https://github.com/abougouffa/minemacs/commit/f3aeaa215f084df98e9c14956a7ee071dd4e0675)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(core)** remove `exec-path-from-shell` - ([8dfb0d9](https://github.com/abougouffa/minemacs/commit/8dfb0d9c96d22cba28f6bc23f1e56f4796c7d215)) - [@abougouffa](https://github.com/abougouffa)
+- **(header2)** remove it (use autoinsert instead) - ([b50c299](https://github.com/abougouffa/minemacs/commit/b50c299df7d585ea75e9e4998fae0e6769bf63d3)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(biblio)** install `citar-org-roam` only when needed - ([04590b6](https://github.com/abougouffa/minemacs/commit/04590b6977eafc413ec49714f082bc5e7af55a5e)) - [@abougouffa](https://github.com/abougouffa)
+- **(calfw)** change keybinding - ([29dc09d](https://github.com/abougouffa/minemacs/commit/29dc09d391c95e77118977adde2858fcfd31d653)) - [@abougouffa](https://github.com/abougouffa)
+- **(compile)** make auto bury customizable - ([9469b40](https://github.com/abougouffa/minemacs/commit/9469b40fc7282a9ca336c44e15e194b1a05f85e0)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor edit - ([b474c52](https://github.com/abougouffa/minemacs/commit/b474c524779c30efe7fa9ef386b1c6b4638ffe1d)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** ignore more envvars - ([7a49948](https://github.com/abougouffa/minemacs/commit/7a49948a9e42766de7d51c9a4a08a131efd06b52)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better management of environment variables - ([fc202b6](https://github.com/abougouffa/minemacs/commit/fc202b68c90fbdc7c547564af82e4c44198abb53)) - [@abougouffa](https://github.com/abougouffa)
+- **(daemon)** double-check for elfeed - ([55f3eae](https://github.com/abougouffa/minemacs/commit/55f3eaebb0a7b6831da44b005880ff0ce715c22d)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `unicode-fonts` obsolete - ([9e1af9a](https://github.com/abougouffa/minemacs/commit/9e1af9a624966babbd85e4b958beafc7654b2470)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** remove `goggles` - ([c06f811](https://github.com/abougouffa/minemacs/commit/c06f8112a4fc4deb5fc2e1f1ebbe77f11ba873bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(header2)** cleaner default header - ([8d5cb21](https://github.com/abougouffa/minemacs/commit/8d5cb212f99f7adcee2ee9b9caf757700a04fa02)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideif)** do not enable by default - ([ec7fe35](https://github.com/abougouffa/minemacs/commit/ec7fe35e24571d86a88cfc705d53fa608b022e7a)) - [@abougouffa](https://github.com/abougouffa)
+- **(json)** enable `json-mode` commands in `json-ts-mode` - ([72f5f90](https://github.com/abougouffa/minemacs/commit/72f5f9049a77f8886baa102bffc29a0e35904f32)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** use original command names - ([5f608b2](https://github.com/abougouffa/minemacs/commit/5f608b24c0bd1873942143e002708c483579e2b0)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** clean unused modes - ([b0a6c9f](https://github.com/abougouffa/minemacs/commit/b0a6c9f4b06ddcec84d4e03c990874273d8d4b16)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add `use-package` example - ([9905990](https://github.com/abougouffa/minemacs/commit/9905990086334e43dbbb6c17d76f5384f5149615)) - [@abougouffa](https://github.com/abougouffa)
+- **(tempel)** enable user-defined snippets - ([59d8b1f](https://github.com/abougouffa/minemacs/commit/59d8b1fd79e32ef21fb0d497c7245894ca88ef78)) - [@abougouffa](https://github.com/abougouffa)
+- **(undo-fu)** set `evil-undo-system` with `setopt` - ([7841b94](https://github.com/abougouffa/minemacs/commit/7841b94692009558c8ed3fd3b3b86916bf183c32)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** better OS checking - ([5f194cd](https://github.com/abougouffa/minemacs/commit/5f194cde9e84a6b164023f3af2a27c192295a275)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** add a disclaimer when Windows is detected - ([7763e04](https://github.com/abougouffa/minemacs/commit/7763e04c082a8db7a4302d07967e2b28d02a57f4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5c18fc3](https://github.com/abougouffa/minemacs/commit/5c18fc3c940ebbc09cd312c690c5c1decb139e1b)) - [@abougouffa](https://github.com/abougouffa)
+- remove empty `me-gnus` module - ([730c411](https://github.com/abougouffa/minemacs/commit/730c4118c4b515c32228fb1f5af5c1322a60b60c)) - [@abougouffa](https://github.com/abougouffa)
+- update packages versions - ([52262dd](https://github.com/abougouffa/minemacs/commit/52262dd8833dfc226518e6ade52b2470fdc5d748)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ad02cb3](https://github.com/abougouffa/minemacs/commit/ad02cb35f19a0c74b13657b20bd59f44457cb4c0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9ba6301](https://github.com/abougouffa/minemacs/commit/9ba63014cfc0080fd675289f8910f15d610014f9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0921dbf](https://github.com/abougouffa/minemacs/commit/0921dbfc6beed2daa3ee0541b1af8f9c2cfc4f7a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.0.3](https://github.com/abougouffa/minemacs/compare/v1.0.2..v1.0.3) - 2023-06-26
 #### Bug Fixes
 - **(daemon)** defer checking `+mu4e-available-p` (#79) - ([52d72de](https://github.com/abougouffa/minemacs/commit/52d72de5fa3a12e2bd4a25340c7e1b72b8115272)) - [@abougouffa](https://github.com/abougouffa)
