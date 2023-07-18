@@ -39,33 +39,15 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
-;; Add the `:pin-ref' extension to `use-package'
-(require 'me-use-package-pin-ref)
+;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
+;; add support for `minemacs-disabled-packages'.
+(require 'me-use-package-extra)
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
  use-package-verbose (cond (minemacs-debug 'debug) (minemacs-verbose t))
  ;; Defer loading packages by default, use `:demand' to force loading a package
  use-package-always-defer t)
-
-;; HACK: This advice around `use-package' checks if a package is disabled in
-;; `minemacs-disabled-packages' before calling `use-package'. This can come
-;; handy if the user wants to enable some module while excluding some packages
-;; from it.
-(advice-add
- 'use-package :around
- (defun +use-package--check-if-disabled-a (origfn package &rest args)
-   (unless (+package-disabled-p package)
-     (add-to-list 'minemacs-configured-packages package t)
-     (apply origfn package args))))
-
-;; The previous advice will be removed after loading MinEmacs packages to avoid
-;; messing with the user configuration (for example, if the user manually
-;; install a disabled package).
-(add-hook
- 'minemacs-after-loading-modules-hook
- (defun +use-package--remove-check-if-disabled-advice-h ()
-   (advice-remove 'use-package '+use-package--check-if-disabled-a)))
 
 
 (provide 'me-bootstrap)

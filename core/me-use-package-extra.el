@@ -1,4 +1,4 @@
-;; me-use-package-pin-ref.el --- Extend use-package to allow straight-x package pinning -*- lexical-binding: t; -*-
+;; me-use-package-extra.el --- Extend use-package to allow straight-x package pinning -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
@@ -34,9 +34,28 @@
           body
         `((let ((straight-current-profile 'pinned))
            (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
-           ,(macroexp-progn body)))))))
+           ,(macroexp-progn body))))))
+
+  ;; HACK: This advice around `use-package' checks if a package is disabled in
+  ;; `minemacs-disabled-packages' before calling `use-package'. This can come
+  ;; handy if the user wants to enable some module while excluding some packages
+  ;; from it.
+  (advice-add
+   'use-package :around
+   (defun +use-package--check-if-disabled-a (origfn package &rest args)
+     (unless (+package-disabled-p package)
+       (add-to-list 'minemacs-configured-packages package t)
+       (apply origfn package args))))
+
+  ;; The previous advice will be removed after loading MinEmacs packages to avoid
+  ;; messing with the user configuration (for example, if the user manually
+  ;; install a disabled package).
+  (add-hook
+   'minemacs-after-loading-modules-hook
+   (defun +use-package--remove-check-if-disabled-advice-h ()
+     (advice-remove 'use-package '+use-package--check-if-disabled-a))))
 
 
-(provide 'me-use-package-pin-ref)
+(provide 'me-use-package-extra)
 
-;;; me-use-package-pin-ref.el ends here
+;;; me-use-package-extra.el ends here
