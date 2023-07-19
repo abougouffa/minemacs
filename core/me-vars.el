@@ -229,7 +229,7 @@ MinEmacs hooks will be run in this order:
     "^HOME$" "^\\(OLD\\)?PWD$" "^SHLVL$" "^PS1$" "^R?PROMPT$" "^TERM\\(CAP\\)?$"
     "^USER$" "^GIT_CONFIG" "^INSIDE_EMACS$" "^SESSION_MANAGER$" "^_$"
     "^JOURNAL_STREAM$" "^INVOCATION_ID$" "^MANAGERPID$" "^SYSTEMD_EXEC_PID$"
-    "^DESKTOP_STARTUP_ID$"
+    "^DESKTOP_STARTUP_ID$" "^LS_?COLORS$" "^$"
     ;; KDE session
     "^KDE_\\(FULL_SESSION\\|APPLICATIONS_.*\\|SESSION_\\(UID\\|VERSION\\)\\)$"
     ;; X server, Wayland, or services' env  that shouldn't be persisted
