@@ -117,23 +117,11 @@
 (use-package git-commit
   :after magit
   :demand t
-  :hook (git-commit-mode . +git-gommit--set-fill-column-h)
-  :hook (git-commit-setup . +git-commit--enter-evil-insert-state-maybe-h)
   :custom
-  (git-commit-summary-max-length 50)
+  (git-commit-summary-max-length 72) ;; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
-  (defun +git-gommit--set-fill-column-h ()
-    (setq-local fill-column 72))
-
-  ;; Enter evil-insert-state for new commits (hooked to `git-commit-setup-hook')
-  (defun +git-commit--enter-evil-insert-state-maybe-h ()
-    (when (and (bound-and-true-p evil-mode)
-               (not (evil-emacs-state-p))
-               (bobp)
-               (eolp))
-      (evil-insert-state)))
-
+  (evil-set-initial-state 'git-commit-mode 'insert)
   (global-git-commit-mode 1))
 
 (use-package git-modes
