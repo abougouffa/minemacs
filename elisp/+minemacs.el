@@ -395,29 +395,11 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
           (let (byte-compile-warnings)
             (+shutup! (byte-compile fn)))))))
 
-(defvar +shell-file-name (or (getenv "SHELL") shell-file-name))
-
-(defvar +shell-extra-args
-  (pcase +shell-file-name
-    ("fish" (list "-l"))
-    ((rx (or "tsch" "csh")) (list "-d"))
-    (t (list "-l" "-i"))))
-
-(defun +shell-command-to-string (command &optional keep-errors shell)
-  (interactive "s")
-  (with-temp-buffer
-    (unless
-        (zerop
-         (call-process-shell-command
-          (string-join
-           (append (list (or shell +env-shell))
-                   +env-shell-args
-                   (list "-c" "'" command "'")
-                   (unless keep-errors (list "2>> /tmp/minemacs-env-err")))
-           " ")
-          nil (current-buffer)))
-      (user-error "The `%s' command exited with a non-zero code." command))
-    (buffer-string)))
+(defvar +env-shell-command-switch
+  (pcase shell-file-name
+    ((rx "fish") "-lc")
+    ((rx (or "tsch" "csh")) "-dc")
+    (t "-ilc")))
 
 ;;;###autoload
 (defun +env-save ()
@@ -428,8 +410,9 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
     (let ((env-vars
            (mapcar ; Get environment variables from shell into an alist
             (lambda (l) (let ((s (string-split l "="))) (cons (car s) (string-join (cdr s) "="))))
-            ;; "env --null" ends lines with null byte instead of newline
-            (string-split (+shell-command-to-string "env --null") "\0"))))
+            (let ((shell-command-switch +env-shell-command-switch))
+              ;; "env --null" ends lines with null byte instead of newline
+              (string-split (shell-command-to-string "env --null") "\0")))))
       ;; Special treatment for the "PATH" variable, save it to `exec-path'
       (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
         (insert "\n;; Adding PATH content to `exec-path'\n"
