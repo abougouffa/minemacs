@@ -131,6 +131,7 @@
 
 (use-package smerge-mode
   :straight t
+  :commands +smerge-hydra/body
   :init
   (+map! "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
