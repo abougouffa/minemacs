@@ -89,6 +89,8 @@
  delete-by-moving-to-trash t
  ;; Select help window for faster quit!
  help-window-select t
+ ;; Make apropos commands search more extensively
+ apropos-do-all t
  ;; More info on completions
  completions-detailed t
  ;; Do not ask obvious questions, follow symlinks
