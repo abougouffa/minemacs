@@ -101,16 +101,17 @@ This list is automatically constructed from the environment variables
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 
-(defconst os/linux (eq system-type 'gnu/linux))
-(defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t))
-(defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t))
-(defconst os/mac (eq system-type 'darwin))
+(defconst os/linux (eq system-type 'gnu/linux) "Non-nil on GNU/Linux systems.")
+(defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) "Non-nil on BSD systems.")
+(defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t) "Non-nil on Windows systems.")
+(defconst os/mac (eq system-type 'darwin) "Non-nil on MacOS systems.")
 
 (when os/win
   (message "[DISCLAIMER]: MINEMACS HAS NOT BEEN TESTED ON WINDOWS, YOU SHOULD INVESTIGATE THE ISSUES YOU FACE!"))
 
-;; Should return x86_64, aarch64, armhf, ...
-(defconst sys/arch (intern (car (split-string system-configuration "-"))))
+(defconst sys/arch (intern (car (split-string system-configuration "-")))
+  "The system's architecture read from `system-configuration'.
+It return a symbol like `x86_64', `aarch64', `armhf', ...")
 
 (defconst emacs/features
   (mapcar #'intern
