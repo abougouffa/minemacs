@@ -395,11 +395,22 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
           (let (byte-compile-warnings)
             (+shutup! (byte-compile fn)))))))
 
-(defvar +env-shell-command-switch
+(defvar +shell-command-switch
   (pcase shell-file-name
     ((rx "fish") "-lc")
     ((rx (or "tsch" "csh")) "-dc")
     (t "-ilc")))
+
+;; https://emacs.stackexchange.com/a/21432/37002
+(defun +shell-command-to-string-ignore-stderr (command)
+  "Execute shell command COMMAND and return its output as a string.
+
+Works like `shell-command-to-string' with two differences:
+1. It uses `+shell-command-switch' instead of `shell-command-switch'.
+2. It returns only stdout and ignore the output of stderr."
+  (with-output-to-string
+    (with-current-buffer standard-output
+      (process-file shell-file-name nil '(t nil) nil +shell-command-switch command))))
 
 ;;;###autoload
 (defun +env-save ()
@@ -409,15 +420,14 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
     (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
     (let ((env-vars
            (mapcar ; Get environment variables from shell into an alist
-            (lambda (l) (let ((s (string-split l "="))) (cons (car s) (string-join (cdr s) "="))))
-            (let ((shell-command-switch +env-shell-command-switch))
-              ;; "env --null" ends lines with null byte instead of newline
-              (string-split (shell-command-to-string "env --null") "\0")))))
+            (lambda (line) (let ((var-val (string-split line "="))) (cons (car var-val) (string-join (cdr var-val) "="))))
+            ;; "env --null" ends lines with null byte instead of newline
+            (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0"))))
       ;; Special treatment for the "PATH" variable, save it to `exec-path'
       (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
         (insert "\n;; Adding PATH content to `exec-path'\n"
                 (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
-                        (mapcar (lambda (s) (concat "\"" s "\"")) (parse-colon-path path)))))
+                        (mapcar (apply-partially #'format "\"%s\"") (parse-colon-path path)))))
       ;; Save the environment variables to `process-environment' using `setenv'
       (insert ";; Adding the rest of the environment variables\n")
       (dolist (env-var env-vars)
