@@ -89,8 +89,8 @@
     "f"   '(nil :wk "file")
     "fS"  '(write-file :wk "Save as ...")
     "fD"  #'+delete-this-file
-    "fu"  #'+sudo-find-file
-    "fU"  #'+sudo-this-file
+    "fF"  #'+sudo-find-file
+    "fu"  #'+sudo-this-file
     "fR"  #'+move-this-file
     "ff"  #'find-file
     "fs"  #'save-buffer
