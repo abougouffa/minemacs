@@ -10,6 +10,17 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
+**Emacs version**
+Run `M-x emacs-version` and put its output here:
+
+```elisp
+;; For example
+GNU Emacs XX.0.33 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.38, cairo version 1.17.8) of 2023-07-19
+```
+
+**Checkup list**
+- [ ] You've tested disabling your `config.el` using `MINEMACS_IGNORE_CONFIG_EL=1 emacs`?
+
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
