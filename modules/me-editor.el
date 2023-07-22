@@ -74,13 +74,14 @@
 
 (use-package smartparens
   :straight t
-  :hook (prog-mode . smartparens-mode)
+  :hook (minemacs-after-startup . smartparens-global-mode)
   :init
   ;; From Doom Emacs, disable expensive navigation features.
   (+setq-hook! smartparens-mode
     sp-navigate-skip-match nil
     sp-navigate-consider-sgml-tags nil)
   :config
+  (sp-local-pair 'org-mode "$" "$" :unless '(sp-point-after-word-p))
   (with-eval-after-load 'evil-mc
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
