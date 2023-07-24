@@ -399,7 +399,7 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
   (pcase shell-file-name
     ((rx "fish") "-lc")
     ((rx (or "tsch" "csh")) "-dc")
-    (t "-ilc")))
+    (_ "-ilc")))
 
 ;; https://emacs.stackexchange.com/a/21432/37002
 (defun +shell-command-to-string-ignore-stderr (command)
