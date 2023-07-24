@@ -119,6 +119,11 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   :group 'minemacs-core
   :type 'float)
 
+(defcustom +lazy-delay 1.0
+  "The default delay (in seconds) to consider in `+lazy!' macro."
+  :group 'minemacs-core
+  :type 'float)
+
 ;;;###autoload
 (defun +eval-when-idle (delay &rest fns)
   "Queue FNS to be processed when Emacs becomes idle."
@@ -180,7 +185,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
   `(with-eval-after-load 'minemacs-lazy
-    (+eval-when-idle-for! 1.0
+    (+eval-when-idle-for! +lazy-delay
      ,@body)))
 
 ;;;###autoload
