@@ -25,7 +25,7 @@
 (use-package mu4e
   :when +mu4e-available-p
   :load-path +mu4e-load-path
-  :commands mu4e-compose-new
+  :commands mu4e-compose-new mu4e
   :functions mu4e--start
   :hook (mu4e-headers-mode . (lambda ()
                                (visual-line-mode -1)
@@ -35,6 +35,7 @@
     "Automatically start `mu4e' in background in `me-daemon'."
     :group 'minemacs-mu4e
     :type 'boolean)
+  (+map! "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
@@ -125,8 +126,6 @@
 (use-package me-mu4e-extras
   :after mu4e
   :demand t
-  :init
-  (+map! "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
   :config
   ;; Enable MinEmacs's mu4e extra features, including:
   ;; - Auto BCC the `+mu4e-auto-bcc-address';
