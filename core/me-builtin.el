@@ -775,6 +775,10 @@
   :after ox
   :demand t)
 
+(use-package ox-odt
+  :after ox
+  :demand t)
+
 (use-package org-agenda
   :straight (:type built-in)
   :custom
