@@ -771,6 +771,10 @@
      org-latex-pdf-process
      '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
+(use-package ox-koma-letter
+  :after ox
+  :demand t)
+
 (use-package org-agenda
   :straight (:type built-in)
   :custom
