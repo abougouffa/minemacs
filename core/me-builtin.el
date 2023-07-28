@@ -717,7 +717,7 @@
 
 (use-package ox-latex
   :straight (:type built-in)
-  :after org
+  :after ox
   :custom
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)

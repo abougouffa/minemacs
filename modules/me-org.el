@@ -36,16 +36,16 @@
 ;; Org export
 (use-package ox-hugo
   :straight t
-  :after org
+  :after ox
   :demand t)
 
 (use-package ox-pandoc
   :straight t
-  :after org
+  :after ox
   :demand t)
 
 (use-package ox-extra
-  :after org
+  :after ox
   :demand t
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
