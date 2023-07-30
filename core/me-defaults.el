@@ -105,6 +105,10 @@
  confirm-nonexistent-file-or-buffer nil
  ;; More intuitive buffer naming style
  uniquify-buffer-name-style 'forward
+ ;; Ignore case when completing
+ completion-ignore-case t
+ read-buffer-completion-ignore-case t
+ read-file-name-completion-ignore-case t
 
  ;; ====== Performances ======
  ;; Don’t compact font caches during GC
