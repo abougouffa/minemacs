@@ -186,6 +186,11 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
           (const pandoc+context)
           (const pandoc)))
 
+(defcustom +html2pdf-backend-config-file nil
+  "A config file to use with the backend tool (pandoc, weasyprint, ...)."
+  :group 'minemacs-utils
+  :type 'file)
+
 ;;;###autoload
 (defun +html2pdf (infile outfile &optional backend)
   "Convert HTML file INFILE to PDF and save it to OUTFILE.
@@ -212,7 +217,8 @@ value of `+html2pdf-default-backend' is used."
               ('weasyprint
                (list "weasyprint"
                      "--encoding" "utf-8"
-                     "--stylesheet" (expand-file-name "templates/weasyprint-pdf.css" minemacs-assets-dir)
+                     "--stylesheet" (or +html2pdf-backend-config-file
+                                        (expand-file-name "templates/+html2pdf/weasyprint-pdf.css" minemacs-assets-dir))
                      infile outfile))
               ('pandoc+context
                (list "pandoc"
@@ -222,7 +228,8 @@ value of `+html2pdf-default-backend' is used."
                      "-o" outfile infile))
               ('pandoc
                (list "pandoc"
-                     "--defaults" (expand-file-name "templates/pandoc.yaml" minemacs-assets-dir)
+                     "--defaults" (or +html2pdf-backend-config-file
+                                      (expand-file-name "templates/+html2pdf/pandoc.yaml" minemacs-assets-dir))
                      "-o" outfile infile)))))
       (apply #'call-process (append (list (car backend-command) nil nil nil) (cdr backend-command)))
     (user-error "Backend \"%s\" not available." backend)))
