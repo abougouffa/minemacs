@@ -29,7 +29,10 @@
     ;; me-assistants
     me-debug
     ;; me-lsp
-    me-lisp
+    me-emacs-lisp
+    ;; me-common-lisp
+    ;; me-scheme
+    ;; me-clojure
     ;; me-embedded
     ;; me-robot
     me-data
