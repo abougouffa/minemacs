@@ -238,7 +238,7 @@ If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process.
 
 (fn NAME &optional FORCE-P)")
-(register-definition-prefixes "../elisp/+io" '("+html2pdf-default-backend" "+lock--" "+save-as-pdf-filename"))
+(register-definition-prefixes "../elisp/+io" '("+html2pdf-" "+lock--" "+save-as-pdf-filename"))
 
 
 ;;; Generated autoloads from ../elisp/+keybinding.el
@@ -323,10 +323,6 @@ Log info MSG and VARS using `message'.
 (fn MSG &rest VARS)" nil t)
 (autoload '+log! "../elisp/+minemacs" "\
 Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
-
-(fn MSG &rest VARS)" nil t)
-(autoload '+debug! "../elisp/+minemacs" "\
-Log error MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
 (autoload '+emacs-features-p "../elisp/+minemacs" "\
@@ -480,7 +476,7 @@ Run all build functions in `minemacs-build-functions'.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+resolve-hook-forms" "+setq-hook-fns"))
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+lazy-delay" "+resolve-hook-forms" "+s"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el
