@@ -29,13 +29,6 @@
       (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
 
 ;;;###autoload
-(defmacro +debug! (msg &rest vars)
-  "Log error MSG and VARS using `message'."
-  (when (>= minemacs-msg-level 4)
-    `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
-
-;;;###autoload
 (defun +emacs-features-p (&rest feats)
   "Is features FEATS are enabled in this Emacs build."
   (and (cl-every (lambda (feat) (memq feat emacs/features)) feats) t))

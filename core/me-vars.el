@@ -77,8 +77,7 @@ This list is automatically constructed from the environment variables
   "Level of printed messages.
 1 - `+error!'
 2 - `+info!'
-3 - `+log!'
-4 - `+debug!'"
+3 - `+log!'"
   :group 'minemacs-core
   :type '(choice
           (const :tag "Error" 1)
