@@ -338,10 +338,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer.
 Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated.
 
 (fn &rest BODY)" nil t)
-(autoload '+suppress! "../elisp/+minemacs" "\
-Suppress new messages temporarily in the echo area while BODY is evaluated.
-
-(fn &rest BODY)" nil t)
 (autoload '+cmdfy! "../elisp/+minemacs" "\
 Convert BODY to an interactive command.
 
@@ -378,11 +374,6 @@ Like `+deferred!', with BODY executed only if CONDITION is nil.
 
 (fn CONDITION &rest BODY)" nil t)
 (function-put '+deferred-unless! 'lisp-indent-function 1)
-(autoload '+deferred-or-immediate! "../elisp/+minemacs" "\
-Like `+deferred!', with BODY deferred if CONDITION is non-nil, otherwise it acts like `progn'.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+deferred-or-immediate! 'lisp-indent-function 1)
 (autoload '+lazy! "../elisp/+minemacs" "\
 Run BODY as a lazy block (see `minemacs-lazy').
 
@@ -397,11 +388,6 @@ Like `+lazy!', with BODY executed only if CONDITION is nil.
 
 (fn CONDITION &rest BODY)" nil t)
 (function-put '+lazy-unless! 'lisp-indent-function 1)
-(autoload '+lazy-or-immediate! "../elisp/+minemacs" "\
-Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts like `progn'.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+lazy-or-immediate! 'lisp-indent-function 1)
 (autoload '+after-load! "../elisp/+minemacs" "\
 Execute BODY after FEATURES have been loaded.
 
