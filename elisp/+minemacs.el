@@ -55,13 +55,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
     `(progn ,@body)))
 
 ;;;###autoload
-(defmacro +suppress! (&rest body)
-  "Suppress new messages temporarily in the echo area while BODY is evaluated."
-  (if (not minemacs-verbose)
-      `(with-temp-message (or (current-message) "") ,@body)
-    `(progn ,@body)))
-
-;;;###autoload
 (defmacro +cmdfy! (&rest body)
   "Convert BODY to an interactive command."
   `(lambda ()
@@ -169,12 +162,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   `(unless ,condition (+deferred! ,@body)))
 
 ;;;###autoload
-(defmacro +deferred-or-immediate! (condition &rest body)
-  "Like `+deferred!', with BODY deferred if CONDITION is non-nil, otherwise it acts like `progn'."
-  (declare (indent 1))
-  `(if ,condition (+deferred! ,@body) (progn ,@body)))
-
-;;;###autoload
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
   `(with-eval-after-load 'minemacs-lazy
@@ -192,12 +179,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   "Like `+lazy!', with BODY executed only if CONDITION is nil."
   (declare (indent 1))
   `(unless ,condition (+lazy! ,@body)))
-
-;;;###autoload
-(defmacro +lazy-or-immediate! (condition &rest body)
-  "Like `+lazy!', with BODY deferred if CONDITION is non nil, otherwise it acts like `progn'."
-  (declare (indent 1))
-  `(if ,condition (+lazy! ,@body) (progn ,@body)))
 
 ;;;###autoload
 (defmacro +after-load! (features &rest body)
