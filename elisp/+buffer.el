@@ -155,26 +155,4 @@ If no other window shows its buffer, kill the buffer too."
     (delete-window selwin)
     (unless (get-buffer-window buf 'visible) (kill-buffer buf))))
 
-;;;###autoload
-(defun +fill-scratch-buffer ()
-  "Fill the `initial-scratch-message'.
-When available, use \"fortune\" to add a random quote."
-  ;; Print load time, and a quote to *scratch*
-  (with-current-buffer (get-scratch-buffer-create)
-    (erase-buffer)
-    (insert (format
-             ";; MinEmacs loaded in %.2fs with %d garbage collection%s done!\n"
-             (string-to-number (car (string-split (emacs-init-time))))
-             gcs-done (if (> gcs-done 1) "s" "")))
-    (insert ";; ==============================\n")
-    ;; Insert a random quote from "fortune" when the command is available
-    (when (executable-find "fortune")
-      (insert (string-join
-               (mapcar (lambda (line) (string-trim-right (concat ";; " line)))
-                       (string-lines (shell-command-to-string "fortune")))
-               "\n"))
-      (insert "\n;; ==============================\n"))
-    ;; Set initial scratch message
-    (setq initial-scratch-message (buffer-string))))
-
 ;;; +buffer.el ends here
