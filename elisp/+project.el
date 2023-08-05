@@ -20,10 +20,10 @@ to scan directories recursively."
   :type '(repeat (choice directory (cons directory boolean))))
 
 ;;;###autoload
-(defun +project-scan-for-projects ()
-  "Scan and remember projects under `+project-scan-dir-paths'."
+(defun +project-scan-for-projects (&optional dir)
+  "Scan and remember projects under DIR or `+project-scan-dir-paths'."
   (interactive)
-  (dolist (cons-dir +project-scan-dir-paths)
+  (dolist (cons-dir (or dir +project-scan-dir-paths))
     (let* ((cons-dir (ensure-list cons-dir))
            (root-dir (car cons-dir))
            (recursive (cdr cons-dir))
