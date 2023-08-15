@@ -143,7 +143,7 @@
   :demand t
   :custom
   (dap-cpptools-extension-version
-   (+github-latest-release "microsoft" "vscode-cpptools" "1.16.3")))
+   (+github-latest-release "microsoft" "vscode-cpptools" "1.17.2")))
 
 (use-package dap-codelldb
   :after dap-mode
