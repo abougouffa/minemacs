@@ -87,6 +87,7 @@ Examples:
 
 (fn MODES &rest SERVERS)")
 (function-put '+eglot-register 'lisp-indent-function 0)
+(register-definition-prefixes "../elisp/+eglot" '("+eglot-ccls-inheritance-hierarchy"))
 
 
 ;;; Generated autoloads from ../elisp/+emacs.el
