@@ -26,6 +26,10 @@
   ;; Show in new window
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
 
+;; TEMP: Disable `magit-todos', it is currently causing the error:
+;; "magit-todos--scan-with-git-diff" failed with exit code 128.
+(push 'magit-todos minemacs-disabled-packages)
+
 (use-package magit-todos
   :straight t
   :after magit
