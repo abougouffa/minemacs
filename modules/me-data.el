@@ -169,6 +169,13 @@
    'org-babel-load-languages
    (append org-babel-load-languages '((d2 . t)))))
 
+(use-package gnuplot
+  :straight t
+  :hook (gnuplot-mode . display-line-numbers-mode)
+  :hook (gnuplot-mode . visual-line-mode)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.gnuplot\\'" . gnuplot-mode)))
+
 
 (provide 'me-data)
 
