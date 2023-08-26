@@ -495,6 +495,7 @@
 
 (use-package nxml-mode
   :straight (:type built-in)
+  :mode "\\.xmpi\\'"
   :config
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
