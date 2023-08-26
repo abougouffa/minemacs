@@ -252,7 +252,7 @@ Example: \"#+TITLE\" -> \"#+title\"
           ("book-no-parts-facile" ;; Compliant with the FACILE test (https://facile.cines.fr), must be compiled with pdfLaTeX.
            ,(string-join
              '("\\documentclass[12pt,a4paper]{book}"
-               "\\usepackage[a-1a,mathxmp]{pdfx}")
+               "\\usepackage[a-1b,mathxmp]{pdfx}")
              "\n")
            ("\\chapter{%s}"       . "\\chapter*{%s}")
            ("\\section{%s}"       . "\\section*{%s}")
