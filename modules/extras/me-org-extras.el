@@ -249,16 +249,6 @@ Example: \"#+TITLE\" -> \"#+title\"
            ("\\subsection{%s}"    . "\\subsection*{%s}")
            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
            ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
-          ("book-no-parts-facile" ;; Compliant with the FACILE test (https://facile.cines.fr), must be compiled with pdfLaTeX.
-           ,(string-join
-             '("\\documentclass[12pt,a4paper]{book}"
-               "\\usepackage[a-1b,mathxmp]{pdfx}")
-             "\n")
-           ("\\chapter{%s}"       . "\\chapter*{%s}")
-           ("\\section{%s}"       . "\\section*{%s}")
-           ("\\subsection{%s}"    . "\\subsection*{%s}")
-           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-           ("\\paragraph{%s}"     . "\\paragraph*{%s}"))
           ("lettre"
            "\\documentclass{lettre}"
            ("\\section{%s}"       . "\\section*{%s}")
