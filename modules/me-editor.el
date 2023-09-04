@@ -101,7 +101,7 @@
     :init
     (+vmap!
       "v" #'expreg-expand
-      "v" #'expreg-contract)))
+      "q" #'expreg-contract)))
 
 ;; Fallback to `expand-region' if `expreg' cannot be used
 (unless (+emacs-features-p 'tree-sitter)
