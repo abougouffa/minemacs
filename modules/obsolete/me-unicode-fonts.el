@@ -16,9 +16,10 @@
 (use-package unicode-fonts
   :straight t
   :hook (minemacs-after-startup . +unicode-fonts-setup)
-  :config
+  :init
   (defun +unicode-fonts-setup ()
     "Prefer the `:unicode-font-family' from `minemacs-fonts'."
+    (interactive)
     (when-let ((frame (selected-frame)))
       (when (display-multi-font-p frame)
         (with-selected-frame frame
