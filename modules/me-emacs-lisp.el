@@ -35,6 +35,9 @@
           (parinfer-rust-mode -1))
       (setq +parinter-rust--was-enabled-p nil)))
 
+  ;; The `evil-shif-right' (and `evil-shift-left' which uses it under the hood)
+  ;; behave strangely when `parinfer-rust-mode' is enabled, so lets disable when
+  ;; using this command.
   (dolist (cmd '(evil-shift-right))
     (advice-add cmd :before #'+parinter-rust--disable-a)
     (advice-add cmd :after #'+parinter-rust--restore-a)))
