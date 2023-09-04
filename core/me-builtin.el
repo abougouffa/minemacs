@@ -904,7 +904,6 @@
 
 (use-package desktop
   :straight (:type built-in)
-  :hook (minemacs-after-startup . desktop-save-mode)
   :custom
   ;; File name to use when saving desktop
   (desktop-base-file-name "emacs-session.el")
