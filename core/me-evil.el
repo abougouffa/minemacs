@@ -67,9 +67,6 @@
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map
         "gr" 'xref-find-references))))
 
-;; TEMP: Disable `evil-snipe' as it is not working with the new `evil'
-(push 'evil-snipe minemacs-disabled-packages)
-
 (use-package evil-snipe
   :straight t
   :hook (minemacs-after-startup . evil-snipe-mode)
