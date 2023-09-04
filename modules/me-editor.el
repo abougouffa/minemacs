@@ -95,10 +95,17 @@
   :after smartparens
   :demand t)
 
-(use-package expand-region
-  :straight t
-  :init
-  (+vmap! "v" #'er/expand-region))
+(when (+emacs-features-p 'tree-sitter)
+  (use-package expreg
+    :straight (:host github :repo "casouri/expreg")
+    :init
+    (+vmap!
+      "v" #'expreg-expand
+      "v" #'expreg-contract)))
+
+;; Fallback to `expand-region' if `expreg' cannot be used
+(unless (+emacs-features-p 'tree-sitter)
+  (+load minemacs-modules-dir "obsolete/me-expand-region.el"))
 
 (use-package drag-stuff
   :straight t
