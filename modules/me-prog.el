@@ -241,6 +241,11 @@
   :custom
   (lua-indent-level 2))
 
+(use-package fb-mode
+  :straight (:host github :repo "rversteegen/fb-mode")
+  :commands fb-mode
+  :mode "\\.b\\(i\\|as\\)\\'")
+
 (use-package franca-idl
   :straight (:host github :repo "zeph1e/franca-idl.el"))
 
