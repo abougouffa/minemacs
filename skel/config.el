@@ -1,6 +1,6 @@
 ;;; config.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022 Abdelhak Bougouffa
+;; Copyright (C) 2022-2023 Abdelhak Bougouffa
 
 ;; Personal info
 (setq user-full-name "Abdelhak Bougouffa"
