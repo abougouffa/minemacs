@@ -8,8 +8,7 @@
 
 ;;; Code:
 
-(message "MinEmacs: The `me-lisp' module is obsolete. It has been divided to 4 modules: `me-emacs-lisp', `me-common-lisp', `me-clojure' and `me-scheme'")
-(mapc (apply-partially #'+load minemacs-modules-dir) '("me-emacs-lisp.el" "me-common-lisp.el" "me-scheme.el" "me-clojure.el"))
+(warn "MinEmacs: The `me-lisp' module is obsolete. It has been divided to 4 modules: `me-emacs-lisp', `me-common-lisp', `me-clojure' and `me-scheme'")
 
 
 (provide 'me-lisp)
