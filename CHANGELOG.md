@@ -2,6 +2,44 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.3.0](https://github.com/abougouffa/minemacs/compare/v1.2.0..v1.3.0) - 2023-09-17
+#### Bug Fixes
+- **(core)** correctly handle edge cases in `+env-save` - ([6047d92](https://github.com/abougouffa/minemacs/commit/6047d92ca0372a8365ae73511809414123e8e674)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** respect `visual-line-mode` - ([672f31c](https://github.com/abougouffa/minemacs/commit/672f31c1b95c8d63f1f83e506e60599f543f0555)) - [@abougouffa](https://github.com/abougouffa)
+- **(regexp)** fix keybindings - ([49d7ff7](https://github.com/abougouffa/minemacs/commit/49d7ff75b87b1ce202356ea6f33fcf2eb3109827)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(emacs-lisp)** add a comment - ([0c4b0a4](https://github.com/abougouffa/minemacs/commit/0c4b0a4d4f40537fd3ebf6c262ba4fd3c851e4a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** update copyright year - ([ae42456](https://github.com/abougouffa/minemacs/commit/ae42456b7595f4cfd9a4404cbca37586088807d3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** add support for FreeBasic via `fb-mode` - ([510c299](https://github.com/abougouffa/minemacs/commit/510c29913b83e5b24e80b1885a87148e91d44230)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- cleanup changelog - ([2ea7834](https://github.com/abougouffa/minemacs/commit/2ea783408f7dc431327bcaf28db668a84d5fd913)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- clean file header - ([d2de9a2](https://github.com/abougouffa/minemacs/commit/d2de9a2dcf68aacb07344e3b7881ff598f73cc5b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** disable auto desktop saving - ([fcdb25e](https://github.com/abougouffa/minemacs/commit/fcdb25eee68906f69542ce4cae90e62e05232434)) - [@abougouffa](https://github.com/abougouffa)
+- **(dap)** bump `codelldb` and `cpptools` versions - ([25c78f0](https://github.com/abougouffa/minemacs/commit/25c78f07debeb37e83269fb79a233547df0128d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(dap)** bump `cpptools` version - ([8092276](https://github.com/abougouffa/minemacs/commit/809227660cd0b028952830c79c73ec77d91b38eb)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** replace `expand-region` with `expreg` - ([ea64eaa](https://github.com/abougouffa/minemacs/commit/ea64eaad6a1c0f5bcfd9c4129d0050aaa646ee49)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** restore `evil-snipe` - ([a4f2f05](https://github.com/abougouffa/minemacs/commit/a4f2f059eb69803b51129bd7d8ee067bbca5bc21)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** use π as prefix for `project-` - ([efef895](https://github.com/abougouffa/minemacs/commit/efef8953e3d8364649fe09fa30c019da02f4f95a)) - [@abougouffa](https://github.com/abougouffa)
+- **(lisp)** drop support for `me-lisp` - ([a616cb8](https://github.com/abougouffa/minemacs/commit/a616cb8825e4d2e315692325f2be5028fa4c0521)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete)** minor edit in the `unicode-fonts` package - ([7f96d85](https://github.com/abougouffa/minemacs/commit/7f96d855c983de67984ae00fd9059044ab1b8128)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** remove useless class - ([31c5960](https://github.com/abougouffa/minemacs/commit/31c59609e5ba350211e9fa45d5e3dff1cbb63b63)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** revert FACILE format to PDF/A-1b - ([62aa675](https://github.com/abougouffa/minemacs/commit/62aa67552d8f18fa8a1ba9a0f867267ff972dffb)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** additional latex classes - ([74e6914](https://github.com/abougouffa/minemacs/commit/74e69141ee3569a29ed813434a93c5e4944382d5)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** enable `magit-todos` - ([5244743](https://github.com/abougouffa/minemacs/commit/524474338d5438f0b555934c998af6e3e5936c67)) - [@abougouffa](https://github.com/abougouffa)
+- **(xml)** auto detect `*.xmpi` files - ([ee119c7](https://github.com/abougouffa/minemacs/commit/ee119c79b76ff27a7ade8ab5f2bb8f6a3b220d2a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([700c92b](https://github.com/abougouffa/minemacs/commit/700c92b972e9a7629ca5ab345fbe4c283361e778)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d12d29b](https://github.com/abougouffa/minemacs/commit/d12d29b6a97023ef2f9f44a324ae352910cc3ba2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6da0a15](https://github.com/abougouffa/minemacs/commit/6da0a1579ca313525af4db135efc548257b481e6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([aaf5857](https://github.com/abougouffa/minemacs/commit/aaf58574f2ca38a46034e819be59166ab733fbf2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0d4bb85](https://github.com/abougouffa/minemacs/commit/0d4bb85ad19cac30c35b9cd9fb3f17830c3ed359)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([917b968](https://github.com/abougouffa/minemacs/commit/917b968beb23c386e7e38b33f8624ec50a85248f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d40764a](https://github.com/abougouffa/minemacs/commit/d40764a6f5c2514bfff0072b1d4ee757cbd7e616)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.2.0](https://github.com/abougouffa/minemacs/compare/v1.1.0..v1.2.0) - 2023-08-18
 #### Bug Fixes
 - **(core)** fix deprecated `pcase` statement - ([5d8ed44](https://github.com/abougouffa/minemacs/commit/5d8ed4492ee9c02d72191fc4dc369b754112d9f1)) - [@abougouffa](https://github.com/abougouffa)
