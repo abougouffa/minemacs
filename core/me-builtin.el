@@ -204,7 +204,25 @@
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
   (tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
-  (tramp-default-remote-shell "/bin/bash"))
+  (tramp-default-remote-shell "/bin/bash")
+  :config
+  ;; BUG: Fix taken from: github.com/Phundrak/dotfiles/commit/566861ee
+  ;; There is currently a bug in Emacs TRAMP as described in issue
+  ;; github.com/magit/magit/issues/4720 of Magit and bug
+  ;; debbugs.gnu.org/cgi/bugreport.cgi?bug=62093 of Emacs. A workaround is to
+  ;; redefine the old `tramp-send-command' function through an advice.
+  (defun +tramp-send-command--workaround-stty-icanon-bug (conn-vec orig-command &rest args)
+    "See: https://github.com/magit/magit/issues/4720"
+    (let ((command
+           (if (string= "stty -icrnl -icanon min 1 time 0" orig-command)
+               "stty -icrnl"
+             orig-command)))
+      (append (list conn-vec command) args)))
+
+  (advice-add
+   'tramp-send-command :filter-args
+   (defun +tramp-send-command--workaround-stty-icanon-bug--filter-args (args)
+     (apply #'+tramp-send-command--workaround-stty-icanon-bug args))))
 
 (use-package eshell
   :straight (:type built-in)
