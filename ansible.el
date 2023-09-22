@@ -391,6 +391,23 @@ Also, automatically encrypts the file before saving the buffer."
     (when (and (f-directory? dict-dir) (boundp 'ac-user-dictionary-files))
       (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t))))
 
+;;;###ansible-lint
+; Compile regex for ansible-lint
+(require 'compile)
+(add-to-list 'compilation-error-regexp-alist
+             'ansible)
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(ansible "^\\(.*?\\):\\([0-9]+\\)" 1 2)
+             )
+
+; Replace make -k with ansible-lint, with an UTF-8 locale to avoid crashes
+(defun ansible-lint-errors ()
+  (make-local-variable 'compile-command)
+  (let ((ansiblelint_command "ansible-lint ") (loc "LANG=C.UTF-8 "))
+    (setq compile-command (concat loc ansiblelint_command buffer-file-name)))
+)
+(add-hook 'ansible-hook 'ansible-lint-errors)
+
 (provide 'ansible)
 
 ;;; ansible.el ends here
