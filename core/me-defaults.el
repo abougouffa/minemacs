@@ -274,6 +274,9 @@ or file path may exist now."
                (not (memq 'vertico minemacs-disabled-packages)))
     (fido-vertical-mode 1))
 
+  ;; Enable context menu on mouse right click
+  (context-menu-mode 1)
+
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
   (winner-mode 1)
 
