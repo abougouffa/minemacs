@@ -223,12 +223,13 @@
   (setq hl-todo-keyword-faces
         (append
          hl-todo-keyword-faces
-         '(("BUG" . "#ee5555")
-           ("PROJ" . "#447f44")
-           ("IDEA" . "#0fa050")
-           ("INFO" . "#0e9030")
+         '(("BUG"   . "#ee5555")
+           ("FIX"   . "#0fa050")
+           ("PROJ"  . "#447f44")
+           ("IDEA"  . "#0fa050")
+           ("INFO"  . "#0e9030")
            ("TWEAK" . "#fe9030")
-           ("PERF" . "#e09030")))))
+           ("PERF"  . "#e09030")))))
 
 (use-package rainbow-mode
   :straight t
