@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.0](https://github.com/abougouffa/minemacs/compare/v1.3.0..v1.4.0) - 2023-10-05
+#### Bug Fixes
+- **(tramp)** fix Tramp bug (thanks Phundrak) - ([d40fb21](https://github.com/abougouffa/minemacs/commit/d40fb21fbd2db5810a2e08bec10c4813ecae2597)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(defaults)** enable `context-menu-mode` - ([505c301](https://github.com/abougouffa/minemacs/commit/505c30146ff7a7469cd4b17d0a5cf968ad959714)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `makefile-executor` - ([e65bb1a](https://github.com/abougouffa/minemacs/commit/e65bb1a67fbe04075f9b1856b4b6eb269913a729)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(hl-todo)** add the `FIX` keyword - ([5dd383e](https://github.com/abougouffa/minemacs/commit/5dd383ea82b830acef908a1e8e7c71660faa4798)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete)** add `ts-fold` to `tree-sitter` - ([8e48553](https://github.com/abougouffa/minemacs/commit/8e48553f5423a59eed343f61830884e84fd1f4c0)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add `forge` config example to `config.el` - ([c2c900a](https://github.com/abougouffa/minemacs/commit/c2c900a4e74ebf54d9871fc6d7b1db46341c79fc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c990ed3](https://github.com/abougouffa/minemacs/commit/c990ed352f14bcca6fa4c04f2a756ab9d7e4cb2a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.3.0](https://github.com/abougouffa/minemacs/compare/v1.2.0..v1.3.0) - 2023-09-17
 #### Bug Fixes
 - **(core)** correctly handle edge cases in `+env-save` - ([6047d92](https://github.com/abougouffa/minemacs/commit/6047d92ca0372a8365ae73511809414123e8e674)) - [@abougouffa](https://github.com/abougouffa)
