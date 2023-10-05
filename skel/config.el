@@ -195,3 +195,14 @@
           :tramp-prefix "/docker:ros@ros-machine:"
           :workspace "~/ros2_ws"
           :extends '("/opt/ros/foxy/")))))
+
+;; Module: `me-vc' -- Package: `forge'
+(with-eval-after-load 'forge
+  ;; To setup private Gitlab instance
+  ;; 1. Add this to your ~/.gitconfig
+  ;; [gitlab "gitlab.private.com/api/v4"]
+  ;;   user = my.username
+  ;; 2. Then create an access token on GitLab. I ticked api and write_repository, which seems to work fine so far. Put the token in ~/.authinfo.gpg
+  ;; machine gitlab.private.com/api/v4 login my.user^forge password <token>
+  ;; 3. Use this in your config:
+  (add-to-list 'forge-alist '("gitlab.private.com" "gitlab.private.com/api/v4" "gitlab.private.com" forge-gitlab-repository)))
