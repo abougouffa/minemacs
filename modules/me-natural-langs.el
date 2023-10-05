@@ -163,6 +163,9 @@
               (t (gts-google-engine)))
         :render (gts-buffer-render))))))
 
+(use-package reverso
+  :straight (:host github :repo "SqrtMinusOne/reverso.el"))
+
 (use-package lexic
   :straight t
   :preface
