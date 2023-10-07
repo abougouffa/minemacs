@@ -115,6 +115,7 @@
             (seq-some #'derived-mode-p +writing-derived-major-modes))
     (+writing-mode 1)))
 
+;;;###autoload
 (define-globalized-minor-mode +writing-global-mode +writing-mode +turn-on-writing-mode)
 
 
