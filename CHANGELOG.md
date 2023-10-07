@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.7](https://github.com/abougouffa/minemacs/compare/v1.4.6..v1.4.7) - 2023-10-07
+#### Bug Fixes
+- **(core)** autoload error - ([6c53635](https://github.com/abougouffa/minemacs/commit/6c53635c265c879973823c8d3ce8d82771823032)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.6](https://github.com/abougouffa/minemacs/compare/v1.4.5..v1.4.6) - 2023-10-07
 #### Refactoring
 - **(latex)** move some vars from builtin to latex - ([65190dd](https://github.com/abougouffa/minemacs/commit/65190dd0e6b9e77a68f407b27f0666f6ff78b829)) - [@abougouffa](https://github.com/abougouffa)
