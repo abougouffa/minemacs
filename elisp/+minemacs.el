@@ -478,4 +478,23 @@ Works like `shell-command-to-string' with two differences:
   (message "[MinEmacs]: Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
 
+(defun minemacs-update-restore-locked ()
+  "Restore lockfile packages list. Takes into account the pinned ones."
+  (interactive)
+  (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
+         (default-directory (vc-git-root lockfile)))
+    (message "[MinEmacs]: Reverting file \"%s\" to the original" lockfile)
+    (unless (zerop (vc-git-revert lockfile))
+      (+error! "An error occured when trying to revert \"%s\"" lockfile)))
+
+  (message "[MinEmacs]: Restoring packages to the reverted lockfile versions")
+  (straight-x-thaw-pinned-versions)
+  (message "[MinEmacs]: Rebuilding packages")
+  (straight-rebuild-all)
+
+  ;; Runn package-specific build functions (ex: `pdf-tools-install')
+  (message "[MinEmacs]: Running additional package-specific build functions")
+  (minemacs-run-build-functions 'dont-ask))
+
+
 ;;; +minemacs.el ends here
