@@ -474,27 +474,28 @@ Works like `shell-command-to-string' with two differences:
   (message "[MinEmacs]: Rebuilding packages")
   (straight-rebuild-all)
 
-  ;; Runn package-specific build functions (ex: `pdf-tools-install')
+  ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
 
 (defun minemacs-update-restore-locked ()
   "Restore lockfile packages list. Takes into account the pinned ones."
   (interactive)
-  (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
-         (default-directory (vc-git-root lockfile)))
-    (message "[MinEmacs]: Reverting file \"%s\" to the original" lockfile)
-    (unless (zerop (vc-git-revert lockfile))
-      (+error! "An error occured when trying to revert \"%s\"" lockfile)))
-
-  (message "[MinEmacs]: Restoring packages to the reverted lockfile versions")
-  (straight-x-thaw-pinned-versions)
-  (message "[MinEmacs]: Rebuilding packages")
-  (straight-rebuild-all)
-
-  ;; Runn package-specific build functions (ex: `pdf-tools-install')
-  (message "[MinEmacs]: Running additional package-specific build functions")
-  (minemacs-run-build-functions 'dont-ask))
+  (if (not (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
+                  (default-directory (vc-git-root lockfile)))
+             (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
+             (zerop (vc-git-revert lockfile))))
+      ;; Signal an error when the `vc-git-revert' returns non-zero
+      (user-error "[MinEmacs] An error occured when trying to revert \"%s\"" lockfile)
+    ;; Restore packages to the versions pinned in lockfile
+    (message "[MinEmacs] Restoring packages to the reverted lockfile versions")
+    (straight-x-thaw-pinned-versions)
+    ;; Rebuild the packages
+    (message "[MinEmacs] Rebuilding packages")
+    (straight-rebuild-all)
+    ;; Run package-specific build functions (ex: `pdf-tools-install')
+    (message "[MinEmacs] Running additional package-specific build functions")
+    (minemacs-run-build-functions 'dont-ask)))
 
 
 ;;; +minemacs.el ends here
