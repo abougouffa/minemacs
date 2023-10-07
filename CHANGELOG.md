@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.3](https://github.com/abougouffa/minemacs/compare/v1.4.2..v1.4.3) - 2023-10-07
+#### Bug Fixes
+- **(treesit-auto)** minor bug when deleting `protobuf` - ([28cd503](https://github.com/abougouffa/minemacs/commit/28cd503a035d2f42eb34880fffe2e45556857762)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- add some examples and file templates - ([f3c1df2](https://github.com/abougouffa/minemacs/commit/f3c1df285e0fc89f19f27b06274315470424fb87)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.2](https://github.com/abougouffa/minemacs/compare/v1.4.1..v1.4.2) - 2023-10-07
 #### Bug Fixes
 - **(core)** fix a comment to make `parinfer-rust-mode` happy - ([9551edc](https://github.com/abougouffa/minemacs/commit/9551edc3c40a1789c2104faeb131191242ef62b6)) - [@abougouffa](https://github.com/abougouffa)
