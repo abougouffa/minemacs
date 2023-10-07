@@ -65,7 +65,8 @@
 
 (use-package me-writing-mode
   :init
-  (+map! "tw" #'+writing-mode))
+  (+map! "tw" #'+writing-mode
+         "tW" #'+writing-global-mode))
 
 (use-package page-break-lines
   :straight t
