@@ -1166,7 +1166,7 @@
      (left-fringe . 10)))
   :config
   (defun +speedbar-switch-to-quick-buffers ()
-    "Temporarily switch to quick-buffers expansion list.
+    "Temporary switch to quick-buffers expansion list.
 Useful for quickly switching to an open buffer."
     (interactive)
     (speedbar-change-initial-expansion-list "quick buffers"))
