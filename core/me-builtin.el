@@ -1150,6 +1150,52 @@
   (window-divider-default-bottom-width 2)
   (window-divider-default-right-width 2))
 
+(use-package speedbar ; config from Crafted Emacs
+  :straight (:type built-in)
+  :custom
+  (speedbar-update-flag t) ; Auto-update when the attached frame changes directory
+  (speedbar-use-images nil) ; Disable icon images, instead use text
+  (speedbar-frame-parameters ; Customize Speedbar Frame
+   '((name . "speedbar")
+     (title . "speedbar")
+     (minibuffer . nil)
+     (border-width . 2)
+     (menu-bar-lines . 0)
+     (tool-bar-lines . 0)
+     (unsplittable . t)
+     (left-fringe . 10)))
+  :config
+  (defun +speedbar-switch-to-quick-buffers ()
+    "Temporarily switch to quick-buffers expansion list.
+Useful for quickly switching to an open buffer."
+    (interactive)
+    (speedbar-change-initial-expansion-list "quick buffers"))
+
+  (+map-local! :keymaps 'speedbar-mode-map
+    "b" #'+speedbar-switch-to-quick-buffers)
+
+  ;; File Extensions
+  (speedbar-add-supported-extension
+   (list
+    ;; General Lisp Languages
+    ".cl" ".el" ".scm" ".lisp"
+    ;; Lua/Fennel (Lisp that transpiles to lua)
+    ".lua" ".fnl" ".fennel"
+    ;; JVM languages (Java, Kotlin, Clojure)
+    ".java" ".kt" ".mvn" ".gradle" ".properties" ".clj"
+    ;; C/C++
+    ".c" ".cpp" ".cc" ".h" ".hh" ".hpp"
+    ;; shellscript
+    ".sh" ".bash"
+    ;; Web Languages and Markup/Styling
+    ".php" ".js" ".ts" ".html" ".htm" ".css" ".less" ".scss" ".sass"
+    ;; Makefile
+    "makefile" "MAKEFILE" "Makefile"
+    ;; Data formats
+    ".json" ".yaml" ".toml"
+    ;; Notes and Markup
+    ".md" ".markdown" ".org" ".txt" "README")))
+
 
 (provide 'me-builtin)
 
