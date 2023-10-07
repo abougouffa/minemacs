@@ -478,8 +478,8 @@ Works like `shell-command-to-string' with two differences:
   (message "[MinEmacs]: Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
 
-(autoload 'vc-git-root 'vc-git)
-(autoload 'vc-git-revert 'vc-git)
+(autoload 'vc-git-root "vc-git")
+(autoload 'vc-git-revert "vc-git")
 
 (defun minemacs-update-restore-locked ()
   "Restore lockfile packages list. Takes into account the pinned ones."
