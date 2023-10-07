@@ -20,7 +20,7 @@
     :config
     ;; TEMP+BUG: Disable `protobuf's recipe from `treesit-auto-recipe-list', see #114
     (cl-delete-if (lambda (recipe)
-                    (memq (cl-struct-slot-value 'treesit-auto-recipe 'lang recipe)
+                    (memq (cl-struct-slot-value (type-of (car treesit-auto-recipe-list)) 'lang recipe)
                           '(protobuf)))
                   treesit-auto-recipe-list)
     ;; Install all languages when calling `treesit-auto-install-all'
