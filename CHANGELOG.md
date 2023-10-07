@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.2](https://github.com/abougouffa/minemacs/compare/v1.4.1..v1.4.2) - 2023-10-07
+#### Bug Fixes
+- **(core)** fix a comment to make `parinfer-rust-mode` happy - ([9551edc](https://github.com/abougouffa/minemacs/commit/9551edc3c40a1789c2104faeb131191242ef62b6)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(builtin)** fix a typo - ([1a5b6d1](https://github.com/abougouffa/minemacs/commit/1a5b6d1c06153d390daefbc6bdb7eb8e17ba92cb)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(+writing-mode)** add `+writing-global-mode` (fix #117) - ([2cabf08](https://github.com/abougouffa/minemacs/commit/2cabf0840326cbc26a38f35ab28597801d133c56)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `minemacs-update-restore-locked` - ([b0276fa](https://github.com/abougouffa/minemacs/commit/b0276fa81ec0793743960a154e6e9035383c0f53)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** default `speedbar` config from Crafted Emacs - ([b0fd9f4](https://github.com/abougouffa/minemacs/commit/b0fd9f41a241111f835de2c9b770a4ab14c6e0d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better error handling in `minemacs-update-restore-locked` - ([ffe08fa](https://github.com/abougouffa/minemacs/commit/ffe08faa94d798f7e3f83d55abbca70ddd65cc02)) - [@abougouffa](https://github.com/abougouffa)
+- **(defaults)** add pulse line - ([7d54316](https://github.com/abougouffa/minemacs/commit/7d54316323794e588944f6c95f232a35b6413ed5)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** temporary disable `protobuf` (see #114) - ([af0f970](https://github.com/abougouffa/minemacs/commit/af0f970f00e9158b309556931270b1d8ba225cb7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([51ac487](https://github.com/abougouffa/minemacs/commit/51ac4875dfbdb6c653c95470680cb29d88c5f15f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.1](https://github.com/abougouffa/minemacs/compare/v1.4.0..v1.4.1) - 2023-10-05
 #### Features
 - **(natural-langs)** add support for `reverso` - ([da98f62](https://github.com/abougouffa/minemacs/commit/da98f62ae69605aea12f63e2bb592010094eef87)) - [@abougouffa](https://github.com/abougouffa)
