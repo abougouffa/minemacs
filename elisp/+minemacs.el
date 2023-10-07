@@ -411,7 +411,7 @@ Works like `shell-command-to-string' with two differences:
       (insert ";; Adding the rest of the environment variables\n")
       (dolist (env-var env-vars)
         (unless (cl-some (+apply-partially-right #'string-match-p (car env-var)) +env-deny-vars)
-          ;; Correctly handle edge cases '\n' and '"'
+          ;; Correctly handle edge cases '\n' and '\"'
           (let ((value (string-replace "\n" "\\n" (string-replace "\"" "\\\"" (cdr env-var)))))
             (insert (format "(setenv \"%s\" \"%s\")\n"
                             (car env-var)
