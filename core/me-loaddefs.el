@@ -460,7 +460,7 @@ Run all build functions in `minemacs-build-functions'.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+lazy-delay" "+resolve-hook-forms" "+s"))
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+lazy-delay" "+resolve-hook-forms" "+s" "minemacs-update-restore-locked"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el
@@ -687,15 +687,15 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 (fn USER REPO &optional FALLBACK-RELEASE)")
 
 
+;;; Generated autoloads from me-defaults.el
+
+(register-definition-prefixes "me-defaults" '("+pulse-line"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
-
-
-;;; Generated autoloads from ../modules/extras/me-elfeed-extras.el
-
-(register-definition-prefixes "../modules/extras/me-elfeed-extras" '("+elfeed-" "+yt-dl"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
@@ -788,7 +788,31 @@ The mode's hook is called both when the mode is enabled and when
 it is disabled.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "../modules/extras/me-writing-mode" '("+writing-"))
+(put '+writing-global-mode 'globalized-minor-mode t)
+(defvar +writing-global-mode nil "\
+Non-nil if +Writing-Global mode is enabled.
+See the `+writing-global-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `+writing-global-mode'.")
+(custom-autoload '+writing-global-mode "../modules/extras/me-writing-mode" nil)
+(autoload '+writing-global-mode "../modules/extras/me-writing-mode" "\
+Toggle +Writing mode in all buffers.
+With prefix ARG, enable +Writing-Global mode if ARG is positive; otherwise,
+disable it.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.
+Enable the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
++Writing mode is enabled in all buffers where `+turn-on-writing-mode' would do
+it.
+
+See `+writing-mode' for more information on +Writing mode.
+
+(fn &optional ARG)" t)
+(register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
 
 
 ;;; Generated autoloads from ../elisp/netextender.el
