@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.5](https://github.com/abougouffa/minemacs/compare/v1.4.4..v1.4.5) - 2023-10-07
+#### Bug Fixes
+- **(+writing-mode)** autoload `+writing-global-mode` - ([f4291ce](https://github.com/abougouffa/minemacs/commit/f4291ce9107b997565e96c81592b3fe7df072f07)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(+writing-mode)** disassociate major modes from derived major modes - ([d5f6104](https://github.com/abougouffa/minemacs/commit/d5f6104de86877753e829143bd6e56b7fd69c9a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** regenerate loaddefs - ([180b550](https://github.com/abougouffa/minemacs/commit/180b550235b820b7484d5b957e4d26a87c0212b7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.4](https://github.com/abougouffa/minemacs/compare/v1.4.3..v1.4.4) - 2023-10-07
 #### Bug Fixes
 - **(+writing-mode)** enable globally for a set of modes - ([38d5339](https://github.com/abougouffa/minemacs/commit/38d5339251052bf35a97a25e79622f0a0e0c17e8)) - [@abougouffa](https://github.com/abougouffa)
