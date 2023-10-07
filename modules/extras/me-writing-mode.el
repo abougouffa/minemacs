@@ -44,6 +44,12 @@
   :group 'minemacs-ui
   :type '(repeat symbol))
 
+(defcustom +writing-major-modes
+  '(rst-mode text-mode markdown-mode org-mode)
+  "Enable `+writing-global-mode' for these modes."
+  :group 'minemacs-ui
+  :type '(repeat symbol))
+
 (defvar-local +writing--line-nums-active-p nil)
 (defvar-local +writing--org-format-latex-scale nil)
 
@@ -99,7 +105,8 @@
 
 (defun +turn-on-writing-mode ()
   (interactive)
-  (+writing-mode 1))
+  (when (seq-some #'derived-mode-p +writing-major-modes)
+    (+writing-mode 1)))
 
 (define-globalized-minor-mode +writing-global-mode +writing-mode +turn-on-writing-mode)
 
