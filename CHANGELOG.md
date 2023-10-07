@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.6](https://github.com/abougouffa/minemacs/compare/v1.4.5..v1.4.6) - 2023-10-07
+#### Refactoring
+- **(latex)** move some vars from builtin to latex - ([65190dd](https://github.com/abougouffa/minemacs/commit/65190dd0e6b9e77a68f407b27f0666f6ff78b829)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** autoload some `vc-git` commands - ([17149e0](https://github.com/abougouffa/minemacs/commit/17149e084aef2be928b699357da3a670d4a798ea)) - [@abougouffa](https://github.com/abougouffa)
+- **(latex)** additional tweaks - ([92c28a9](https://github.com/abougouffa/minemacs/commit/92c28a9216b583ce6a2a986cd358ac98d4de6b6f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.5](https://github.com/abougouffa/minemacs/compare/v1.4.4..v1.4.5) - 2023-10-07
 #### Bug Fixes
 - **(+writing-mode)** autoload `+writing-global-mode` - ([f4291ce](https://github.com/abougouffa/minemacs/commit/f4291ce9107b997565e96c81592b3fe7df072f07)) - [@abougouffa](https://github.com/abougouffa)
