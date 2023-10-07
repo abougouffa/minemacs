@@ -97,6 +97,12 @@
       (text-scale-set (if +writing-mode +writing-text-scale 0.0))
       (visual-fill-column-adjust))))
 
+(defun +turn-on-writing-mode ()
+  (interactive)
+  (+writing-mode 1))
+
+(define-globalized-minor-mode +writing-global-mode +writing-mode +turn-on-writing-mode)
+
 
 (provide 'me-writing-mode)
 
