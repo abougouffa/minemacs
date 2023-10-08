@@ -16,7 +16,7 @@
 ;;; List of enabled modules
 (setq minemacs-modules
       '(me-ui             ; User interface (svg-lib, focus, mixed-pitch, ...)
-        me-editor         ; Editing (tempel, smartparens, unicode-fonts, ligature, ...)
+        me-editor         ; Editing (tempel, smartparens, ligature, ...)
         me-daemon         ; Emacs daemon tweaks
         me-undo           ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
         me-multi-cursors  ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
@@ -37,7 +37,7 @@
         ;; me-modeling    ; Modeling tools (scad-mode, ...)
         me-org            ; Org-mode for life (org-contrib, org-modern, org-appear, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
-        me-notes          ; Notes & Zettelkasten (org-roam, consult-org-roam, ...)
+        me-notes          ; Notes & Zettelkasten (denote, ...)
         me-eaf            ; EAF apps (browser, jupyter, file-sender, ...)
         ;; me-email       ; Email (mu4e, mu4e-alert, org-msg, ...)
         ;; me-rss         ; News feed (elfeed, ...)
@@ -69,17 +69,21 @@
 ;; otherwise it will get installed as a dependency.
 ;;
 ;; You can also `push' (or `add-to-list') multiple packages at once (as a list).
-;; For example, to completely disable `iedit', you can use:
+;; For example, to completely disable `iedit' and its dependencies
+;; `evil-multiedit' and `evil-iedit-state', you can use:
 ;; (push '(iedit evil-multiedit evil-iedit-state) minemacs-disabled-packages)
 
 ;;; Using the obsolete modules
-;; You can use the obsolete configurations by adding the `obsolete/me-*' modules
-;; to `minemacs-modules'. However, these modules, as their names indicate, are
-;; OBSOLETE and not supported.
+;; You can use the obsolete packages configurations by adding the
+;; `obsolete/me-*' modules to `minemacs-modules'. However, these modules, as
+;; their names indicate, are OBSOLETE and NOT SUPPORTED.
 ;; (setq minemacs-modules
 ;;       (append
 ;;        minemacs-modules
 ;;        '(obsolete/me-yasnippet     ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
+;;          obsolete/me-tree-sitter   ; Tree-sitter module configuration (this module is automatically activated for Emacs 28 or 29+ built without treesitter support)
+;;          obsolete/me-org-roam      ; Org roam configuration (org-roam, consult-org-roam, ...)
+;;          obsolete/me-cov           ; Show code coverage results (cov, ...)
 ;;          obsolete/me-writeroom     ; Replacement for `+writing-mode' (writeroom-mode, ...)
 ;;          obsolete/me-projectile    ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
 ;;          obsolete/me-unicode-fonts ; Better Unicode management mainly for non-latin fonts
