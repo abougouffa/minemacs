@@ -155,4 +155,48 @@ If no other window shows its buffer, kill the buffer too."
     (delete-window selwin)
     (unless (get-buffer-window buf 'visible) (kill-buffer buf))))
 
+(defun +replace-in-buffer (old new)
+  "Replace OLD with NEW in the current buffer."
+  (save-excursion
+    (goto-char (point-min))
+    (let ((case-fold-search nil)
+          (matches 0))
+      (while (re-search-forward old nil t)
+        (replace-match new)
+        (cl-incf matches))
+      matches)))
+
+;;;###autoload
+(defun +clear-frenchy-ponctuations ()
+  "Replace french ponctuations (like unsectable space) by regular ones."
+  (interactive)
+  (let ((chars
+         '(("[\u00a0\u200b]" . "") ;; Non-breaking and zero-width spaces
+           ;; Special spaces and quads
+           ("[\u2000-\u200A\u202F\u205F\u3000]" . " ")
+           ("[‘’‚’]" . "'")
+           ("[“”„”«»]" . "\"")))
+        (matches 0))
+    (dolist (pair chars)
+      (cl-incf matches (+replace-in-buffer (car pair) (cdr pair))))
+    (message "Replaced %d match%s." matches (if (> matches 1) "es" ""))))
+
+;;;###autoload
+(defun +yank-region-as-paragraph ()
+  "Yank region as one paragraph. This command removes new line characters
+between lines."
+  (interactive)
+  (when (use-region-p)
+    (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
+      (with-temp-buffer
+        (insert text)
+        (goto-char (point-min))
+        (let ((case-fold-search nil))
+          (while (re-search-forward "\n[^\n]" nil t)
+            (replace-region-contents
+             (- (point) 2) (- (point) 1)
+             (lambda (&optional a b) " ")))
+          (kill-new (buffer-string)))))))
+
+
 ;;; +buffer.el ends here
