@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.8](https://github.com/abougouffa/minemacs/compare/v1.4.7..v1.4.8) - 2023-10-08
+#### Documentation
+- **(skel)** update modules documentation and examples - ([020af86](https://github.com/abougouffa/minemacs/commit/020af8627859e7f73b48375ea5c1eb82e2795cbf)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add some helper commands for text cleanup - ([396993a](https://github.com/abougouffa/minemacs/commit/396993adc2970ca84c8cd183d7617e86ded0e08b)) - [@abougouffa](https://github.com/abougouffa)
+- **(extra)** add a convenience command for Cocogitto - ([24f73eb](https://github.com/abougouffa/minemacs/commit/24f73ebdb35886626940c1925ed0f0d5a4c76fe2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** regenerate loaddefs - ([307dbef](https://github.com/abougouffa/minemacs/commit/307dbefad9a372b776c5cc8da0d1755298e57644)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** bind a helper command - ([6e2d8a4](https://github.com/abougouffa/minemacs/commit/6e2d8a417374463ee85d9e3338e94bdbaaeda57e)) - [@abougouffa](https://github.com/abougouffa)
+- **(markdown)** better integration with Pandoc - ([ae73311](https://github.com/abougouffa/minemacs/commit/ae73311ddc9fa42f29957296b0aa200bb1f79862)) - [@abougouffa](https://github.com/abougouffa)
+- **(tapspaces)** ensure reading package list at startup - ([b512fce](https://github.com/abougouffa/minemacs/commit/b512fce5a951dd04741a160a84ca5bc2e84ad277)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([698fca2](https://github.com/abougouffa/minemacs/commit/698fca23a98001419cfe50c32b19bf7d69d29c28)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.7](https://github.com/abougouffa/minemacs/compare/v1.4.6..v1.4.7) - 2023-10-07
 #### Bug Fixes
 - **(core)** autoload error - ([6c53635](https://github.com/abougouffa/minemacs/commit/6c53635c265c879973823c8d3ce8d82771823032)) - [@abougouffa](https://github.com/abougouffa)
