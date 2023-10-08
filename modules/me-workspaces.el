@@ -40,6 +40,10 @@
     "R" #'tabspaces-remove-selected-buffer
     "k" #'(tabspaces-kill-buffers-close-workspace :wk "Kill buffers & close WS"))
   :config
+  ;; Ensure reading project list
+  (require 'project)
+  (project--ensure-read-project-list)
+
   (defun +consult-tabspaces-setup ()
     "Deactivate isolated buffers when not using tabspaces."
     (require 'consult)
