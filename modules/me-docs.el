@@ -110,13 +110,15 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :custom
   (markdown-hide-markup t)
+  (markdown-enable-html t)
   (markdown-enable-math t))
 
 (use-package poly-markdown
   :straight t)
 
 (use-package pandoc-mode
-  :straight t)
+  :straight t
+  :hook (markdown-mode . conditionally-turn-on-pandoc))
 
 
 (provide 'me-docs)
