@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-;; Adapted from Doom Emacs
+;; Adapted from Doom Emacs and Crafted Emacs
 (use-package tex
   :straight auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
@@ -40,6 +40,7 @@
   ;; Compile to PDF by default
   (TeX-PDF-mode 1))
 
+;; Adapted from Doom Emacs and Crafted Emacs
 (use-package latex
   :straight auctex
   :hook (LaTeX-mode . latex-math-mode)
@@ -60,7 +61,12 @@
   (add-to-list 'LaTeX-verbatim-environments "lstlisting")
   (add-to-list 'LaTeX-verbatim-environments "Verbatim")
   (add-to-list 'LaTeX-verbatim-macros-with-braces "lstinline")
-  (add-to-list 'LaTeX-verbatim-macros-with-delims "lstinline"))
+  (add-to-list 'LaTeX-verbatim-macros-with-delims "lstinline")
+
+  ;; Electric pairs in auctex
+  (customize-set-variable 'TeX-electric-sub-and-superscript t)
+  (customize-set-variable 'LaTeX-electric-left-right-brace t)
+  (customize-set-variable 'TeX-electric-math (cons "$" "$")))
 
 ;; Adapted from Doom Emacs
 (use-package auctex-latexmk
