@@ -73,7 +73,12 @@ Delete all other windows showing the selected window's buffer." t)
 (autoload '+delete-window-maybe-kill-buffer "../elisp/+buffer" "\
 Delete selected window.
 If no other window shows its buffer, kill the buffer too." t)
-(register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list"))
+(autoload '+clear-frenchy-ponctuations "../elisp/+buffer" "\
+Replace french ponctuations (like unsectable space) by regular ones." t)
+(autoload '+yank-region-as-paragraph "../elisp/+buffer" "\
+Yank region as one paragraph. This command removes new line characters
+between lines." t)
+(register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list" "+replace-in-buffer"))
 
 
 ;;; Generated autoloads from ../elisp/+eglot.el
@@ -675,6 +680,19 @@ Enable auto generating Cape's super Capf.
 This depends on `+cape-hosts' and `+cape-global-capes'.
 
 (fn &optional DISABLE)" t)
+
+
+;;; Generated autoloads from ../modules/extras/me-cocogitto.el
+
+(autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
+Bump version LEVEL (`auto', `major', `minor' or `patch'), and with PRE if it
+is a pre-release.
+
+This command stashes the current workspace before bumping the version, and
+restores it after that.
+
+(fn LEVEL &optional PRE)" t)
+(register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-dap-utils.el
