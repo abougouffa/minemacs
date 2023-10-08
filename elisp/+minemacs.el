@@ -395,35 +395,37 @@ Works like `shell-command-to-string' with two differences:
 (defun +env-save ()
   "Load environment variables from shell and save them to `+env-file'."
   (interactive)
-  (with-temp-buffer
-    (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
-    (let ((env-vars
-           (mapcar ; Get environment variables from shell into an alist
-            (lambda (line) (let ((var-val (string-split line "="))) (cons (car var-val) (string-join (cdr var-val) "="))))
-            ;; "env --null" ends lines with null byte instead of newline
-            (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0"))))
-      ;; Special treatment for the "PATH" variable, save it to `exec-path'
-      (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
-        (insert "\n;; Adding PATH content to `exec-path'\n"
-                (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
-                        (mapcar (apply-partially #'format "\"%s\"") (parse-colon-path path)))))
-      ;; Save the environment variables to `process-environment' using `setenv'
-      (insert ";; Adding the rest of the environment variables\n")
-      (dolist (env-var env-vars)
-        (unless (cl-some (+apply-partially-right #'string-match-p (car env-var)) +env-deny-vars)
-          ;; Correctly handle edge cases '\n' and '\"'
-          (let ((value (string-replace "\n" "\\n" (string-replace "\"" "\\\"" (cdr env-var)))))
-            (insert (format "(setenv \"%s\" \"%s\")\n"
-                            (car env-var)
-                            (string-replace "\n" "\\n" value)))))))
-    (write-file +env-file)))
+  (unless os/win
+    (with-temp-buffer
+      (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
+      (let ((env-vars
+             (mapcar ; Get environment variables from shell into an alist
+              (lambda (line) (let ((var-val (string-split line "="))) (cons (car var-val) (string-join (cdr var-val) "="))))
+              ;; "env --null" ends lines with null byte instead of newline
+              (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0"))))
+        ;; Special treatment for the "PATH" variable, save it to `exec-path'
+        (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
+          (insert "\n;; Adding PATH content to `exec-path'\n"
+                  (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
+                          (mapcar (apply-partially #'format "\"%s\"") (parse-colon-path path)))))
+        ;; Save the environment variables to `process-environment' using `setenv'
+        (insert ";; Adding the rest of the environment variables\n")
+        (dolist (env-var env-vars)
+          (unless (cl-some (+apply-partially-right #'string-match-p (car env-var)) +env-deny-vars)
+            ;; Correctly handle edge cases '\n' and '\"'
+            (let ((value (string-replace "\n" "\\n" (string-replace "\"" "\\\"" (cdr env-var)))))
+              (insert (format "(setenv \"%s\" \"%s\")\n"
+                              (car env-var)
+                              (string-replace "\n" "\\n" value)))))))
+      (write-file +env-file))))
 
 ;;;###autoload
 (defun +env-load ()
   "Load environment variables from `+env-file'."
   (interactive)
-  (unless (file-exists-p +env-file) (+env-save))
-  (+load +env-file))
+  (unless os/win
+    (unless (file-exists-p +env-file) (+env-save))
+    (+load +env-file)))
 
 ;;;###autoload
 (defun +ignore-root (&rest roots)
