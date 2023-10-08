@@ -28,7 +28,7 @@ restores it after that."
     (insert (format "############ Cocogitto bump (%s) ############\n" level))
     (call-process-shell-command "git stash -u" nil (current-buffer))
     (call-process-shell-command
-     (format "cog bump --%s%s" level (if pre (format "--pre %s" pre) ""))
+     (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
      nil (current-buffer))
     (call-process-shell-command "git stash pop" nil (current-buffer))))
 
