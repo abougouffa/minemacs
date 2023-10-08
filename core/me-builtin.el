@@ -237,7 +237,6 @@
 
 (use-package reftex ;; Inspired by Doom Emacs
   :straight (:type built-in)
-  :hook (LaTeX-mode . turn-on-reftex)
   :hook (reftex-toc-mode . reftex-toc-rescan)
   :custom
   ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
@@ -252,7 +251,6 @@
      (?t . "\\textcite[]{%l}"))
    ;; This is needed when `reftex-cite-format' is set. See:
    ;; superuser.com/a/1386206
-   (LaTeX-reftex-cite-format-auto-activate nil)
    (reftex-plug-into-AUCTeX t)
    (reftex-toc-split-windows-fraction 0.3))
   :config

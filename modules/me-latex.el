@@ -42,12 +42,14 @@
 
 (use-package latex
   :straight auctex
-  :hook (latex-mode . latex-math-mode)
+  :hook (LaTeX-mode . latex-math-mode)
+  :hook (LaTeX-mode . turn-on-reftex)
   :custom
   ;; Add the TOC entry to the sectioning hooks.
   (LaTeX-fill-break-at-separators nil)
   (LaTeX-item-indent 0)
   (LaTeX-electric-left-right-brace t)
+  (LaTeX-reftex-cite-format-auto-activate nil)
   :config
   ;; Set a correct indentation in a few additional environments
   (add-to-list 'LaTeX-indent-environment-list '("lstlisting" current-indentation))
