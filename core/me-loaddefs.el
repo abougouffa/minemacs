@@ -465,7 +465,13 @@ Run all build functions in `minemacs-build-functions'.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-update "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
-(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+lazy-delay" "+resolve-hook-forms" "+s" "minemacs-update-restore-locked"))
+(autoload 'minemacs-update-restore-locked "../elisp/+minemacs" "\
+Restore lockfile packages list. Takes into account the pinned ones.
+When called with C-u or with RESTORE-FROM-BACKUP, it will restore the lockfile
+from backups, not Git.
+
+(fn RESTORE-FROM-BACKUP)" t)
+(register-definition-prefixes "../elisp/+minemacs" '("+eval-when-idle-" "+hook-once-num" "+lazy-delay" "+resolve-hook-forms" "+s"))
 
 
 ;;; Generated autoloads from ../elisp/+primitives.el

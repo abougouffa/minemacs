@@ -483,15 +483,29 @@ Works like `shell-command-to-string' with two differences:
 (autoload 'vc-git-root "vc-git")
 (autoload 'vc-git-revert "vc-git")
 
-(defun minemacs-update-restore-locked ()
-  "Restore lockfile packages list. Takes into account the pinned ones."
-  (interactive)
-  (if (not (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
-                  (default-directory (vc-git-root lockfile)))
-             (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
-             (zerop (vc-git-revert lockfile))))
-      ;; Signal an error when the `vc-git-revert' returns non-zero
-      (user-error "[MinEmacs] An error occured when trying to revert \"%s\"" lockfile)
+;;;###autoload
+(defun minemacs-update-restore-locked (restore-from-backup)
+  "Restore lockfile packages list. Takes into account the pinned ones.
+When called with C-u or with RESTORE-FROM-BACKUP, it will restore the lockfile
+from backups, not Git."
+  (interactive "P")
+  (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
+         (default-directory (vc-git-root lockfile)))
+    (if restore-from-backup
+        (let ((backup-dir (concat minemacs-local-dir "minemacs/versions/")))
+          (message "[MinEmacs] Trying to restore the lockfile from backups.")
+          (if-let* ((_ (file-exists-p backup-dir))
+                    (backups (directory-files backup-dir nil "[^.][^.]?$"))
+                    (restore-backup-file (completing-read "Select which backup file to restore: " backups))
+                    (last-backup (expand-file-name restore-backup-file backup-dir)))
+              (if (not (file-exists-p last-backup))
+                  (user-error "[MinEmacs] No backup file")
+                (copy-file last-backup lockfile 'overwrite-existing)
+                (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
+      (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
+      (unless (zerop (vc-git-revert lockfile))
+        ;; Signal an error when the `vc-git-revert' returns non-zero
+        (user-error "[MinEmacs] An error occured when trying to revert \"%s\"" lockfile)))
     ;; Restore packages to the versions pinned in lockfile
     (message "[MinEmacs] Restoring packages to the reverted lockfile versions")
     (straight-x-thaw-pinned-versions)
