@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.9](https://github.com/abougouffa/minemacs/compare/v1.4.8..v1.4.9) - 2023-10-09
+#### Bug Fixes
+- **(cocogitto)** buggy command on pre-release - ([e2d8a7a](https://github.com/abougouffa/minemacs/commit/e2d8a7ac7b4eece8e62f17690f078b3183593269)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(changelog)** add historical v0.1.0 + links to old commits - ([23ca7fc](https://github.com/abougouffa/minemacs/commit/23ca7fc7e247fb6ea6fad5f4c56365454ed1d716)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(cocogitto)** bump `actions/checkout` and `cocogitto/cocogitto-action` - ([ea4b575](https://github.com/abougouffa/minemacs/commit/ea4b575093e00fc4a6eae47510b26a0718f481b3)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** do not save/load environment variables in Windows - ([9f8ec81](https://github.com/abougouffa/minemacs/commit/9f8ec819c7793cd94d8aa3b461daab647f0f4387)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** enable restoring lockfile from backup - ([44c0b35](https://github.com/abougouffa/minemacs/commit/44c0b350d866268a212f3283abfe36482b86c7cb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.8](https://github.com/abougouffa/minemacs/compare/v1.4.7..v1.4.8) - 2023-10-08
 #### Documentation
 - **(skel)** update modules documentation and examples - ([020af86](https://github.com/abougouffa/minemacs/commit/020af8627859e7f73b48375ea5c1eb82e2795cbf)) - [@abougouffa](https://github.com/abougouffa)
