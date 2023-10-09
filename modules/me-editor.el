@@ -116,7 +116,7 @@
   (keymap-global-set "M-S-<right>" 'drag-stuff-right))
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "elisp/+buffer.el")
-(+nvmap! "gy" #'+yank-region-as-paragraph)
+(+nvmap! "gy" #'+kill-region-as-paragraph)
 
 (provide 'me-editor)
 

@@ -182,8 +182,8 @@ If no other window shows its buffer, kill the buffer too."
     (message "Replaced %d match%s." matches (if (> matches 1) "es" ""))))
 
 ;;;###autoload
-(defun +yank-region-as-paragraph ()
-  "Yank region as one paragraph. This command removes new line characters
+(defun +kill-region-as-paragraph ()
+  "Kill (copy) region as one paragraph. This command removes new line characters
 between lines."
   (interactive)
   (when (use-region-p)
@@ -196,7 +196,8 @@ between lines."
             (replace-region-contents
              (- (point) 2) (- (point) 1)
              (lambda (&optional a b) " ")))
-          (kill-new (buffer-string)))))))
+          (kill-new (buffer-string)))))
+    (deactivate-mark)))
 
 
 ;;; +buffer.el ends here

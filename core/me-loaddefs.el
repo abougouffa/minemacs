@@ -75,8 +75,8 @@ Delete selected window.
 If no other window shows its buffer, kill the buffer too." t)
 (autoload '+clear-frenchy-ponctuations "../elisp/+buffer" "\
 Replace french ponctuations (like unsectable space) by regular ones." t)
-(autoload '+yank-region-as-paragraph "../elisp/+buffer" "\
-Yank region as one paragraph. This command removes new line characters
+(autoload '+kill-region-as-paragraph "../elisp/+buffer" "\
+Kill (copy) region as one paragraph. This command removes new line characters
 between lines." t)
 (register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list" "+replace-in-buffer"))
 
