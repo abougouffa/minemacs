@@ -105,6 +105,21 @@
   :custom
   (diff-hl-draw-borders nil))
 
+(use-package blamer
+  :straight t
+  :hook (minemacs-after-startup . global-blamer-mode)
+  :custom
+  (blamer-idle-time 0.3)
+  (blamer-min-offset 60)
+  (blamer-prettify-time-p t)
+  (blamer-author-formatter "%s ")
+  (blamer-datetime-formatter "[%s], ")
+  (blamer-commit-formatter "“%s”")
+  :config
+  (+nvmap!
+    "gb" #'blamer-show-posframe-commit-info
+    "gB" #'blamer-show-commit-info))
+
 (use-package git-timemachine
   :straight t
   :init
