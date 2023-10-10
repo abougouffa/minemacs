@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.4.10](https://github.com/abougouffa/minemacs/compare/v1.4.9..v1.4.10) - 2023-10-10
+#### Bug Fixes
+- **(recentf)** more explicit exclusion regexps - ([79e93fd](https://github.com/abougouffa/minemacs/commit/79e93fdd2e9e22c0dcf3d41447a87a3f924388a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** fix language name to exclude Protobuf - ([0a2d2de](https://github.com/abougouffa/minemacs/commit/0a2d2def8807fc663aeb20b200cf85390d2fcd45)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(vc)** add `blamer` support - ([e44184f](https://github.com/abougouffa/minemacs/commit/e44184f605c5729a8f82e3daf4d63641320307b2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** minor changes in `minemacs-update-restore-locked` - ([7ac449f](https://github.com/abougouffa/minemacs/commit/7ac449fa010971b64eab65c370ce45ac8374513c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(blamer)** make font size 10% smaller than default - ([fcdf95e](https://github.com/abougouffa/minemacs/commit/fcdf95e87ac6cc32000dee2aff32c9c95228bc74)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** rename command + unselect region after kill - ([775f350](https://github.com/abougouffa/minemacs/commit/775f350701704fd743e1e10afa022358084c0951)) - [@abougouffa](https://github.com/abougouffa)
+- **(hydra)** hydra is behaving strangely, it gets loaded immediately - ([4d352ce](https://github.com/abougouffa/minemacs/commit/4d352ce0346e6cf1caa12e5b1d66a4ca01cf5d5c)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** remove `evil-textobj-tree-sitter` - ([d4ac03d](https://github.com/abougouffa/minemacs/commit/d4ac03da70f0e68ce9ab471a24396387332e09fc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([27da8da](https://github.com/abougouffa/minemacs/commit/27da8da177c7f1f944d164f616bcfa490e553432)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([de76af5](https://github.com/abougouffa/minemacs/commit/de76af5148025f99ca7b6cb12b9c37e6655a23c7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.9](https://github.com/abougouffa/minemacs/compare/v1.4.8..v1.4.9) - 2023-10-09
 #### Bug Fixes
 - **(cocogitto)** buggy command on pre-release - ([e2d8a7a](https://github.com/abougouffa/minemacs/commit/e2d8a7ac7b4eece8e62f17690f078b3183593269)) - [@abougouffa](https://github.com/abougouffa)
