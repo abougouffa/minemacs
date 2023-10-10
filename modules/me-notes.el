@@ -17,6 +17,7 @@
   :straight t
   :init
   (+map! :infix "n"
+    "n" #'denote-create-note
     "o" #'denote-open-or-create
     "j" #'denote-journal-extras-new-or-existing-entry
     "J" #'denote-journal-extras-new-entry
@@ -33,10 +34,16 @@
   :commands consult-notes consult-notes-search-in-all-notes
   :init
   (fmakunbound 'consult-notes-org-roam-mode)
+  (fmakunbound 'consult-notes-org-roam-find-node-relation)
+  (+map! :infix "n"
+    "f" #'consult-notes
+    "s" #'consult-notes-search-in-all-notes)
   :custom
   (consult-notes-file-dir-sources `(("Notes" "n" ,denote-directory))) ; Set notes dir(s), see below
   (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
   :config
+  (fmakunbound 'consult-notes-org-roam-mode)
+  (fmakunbound 'consult-notes-org-roam-find-node-relation)
   (consult-notes-denote-mode 1)
   (consult-notes-org-headings-mode 1))
 
