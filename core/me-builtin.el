@@ -944,18 +944,8 @@
   (recentf-case-fold-search t)
   ;; Exclude some files from being remembered by recentf
   (recentf-exclude
-   `(,(rx (* any)
-       (or
-        "elfeed-db"
-        "eln-cache"
-        "/cache/"
-        ".maildir/"
-        ".cache/")
-       (* any)
-       (? (or "html" "pdf" "tex" "epub")))
-     ,(rx "/"
-       (or "rsync" "ssh" "tmp" "yadm" "sudoedit" "sudo")
-       (* any))))
+   `(,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
+     ,(rx bol "/" (or "tmp/" "rsync:" "ssh:" "sudoedit:" "sudo:"))))
   :config
   ;; Enable `recentf-mode' to remember recent files
   (+shutup! (recentf-mode 1)))
