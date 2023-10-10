@@ -217,6 +217,7 @@
 
 (use-package hydra
   :straight t
+  :after minemacs-loaded
   :config
   ;; Make hydra bindings for `flymake'
   (with-eval-after-load 'flymake
