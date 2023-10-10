@@ -8,64 +8,37 @@
 
 ;;; Code:
 
-(use-package org-roam
+;; Useful resources:
+;; https://takeonrules.com/2022/10/01/exploring-the-denote-emacs-package/
+;; https://takeonrules.com/2022/10/02/migration-plan-for-org-roam-notes-to-denote/
+;; https://github.com/bitspook/notes-migrator
+
+(use-package denote
   :straight t
   :init
   (+map! :infix "n"
-    "f" #'org-roam-node-find
-    "r" #'org-roam-ref-find
-    "i" #'org-roam-node-insert
-    "R" #'org-roam-node-random
-    "B" #'org-roam-buffer-display-dedicated)
+    "o" #'denote-open-or-create
+    "j" #'denote-journal-extras-new-or-existing-entry
+    "J" #'denote-journal-extras-new-entry
+    "l" #'denote-add-links
+    "L" #'denote-add-missing-links
+    "b" #'denote-show-backlinks-buffer)
   :custom
-  (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:20}" 'face 'org-tag)))
-  :config
-  (org-roam-db-autosync-mode 1))
+  (denote-prompts '(title keywords)) ; These are the minimum viable prompts for notes
+  (denote-file-type 'org) ; I love org-mode format; reading ahead I'm setting this
+  (denote-date-prompt-use-org-read-date t)) ; And `org-read-date' is an amazing bit of tech
 
-(use-package org-roam-protocol
-  :after org-roam
-  :demand t
-  :custom
-  (org-roam-protocol-store-links t)
-  ;; Add this as bookmarklet in your browser
-  ;; javascript:location.href='org-protocol://roam-ref?template=r&ref=%27+encodeURIComponent(location.href)+%27&title=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(window.getSelection())
-  (org-roam-capture-ref-templates
-   '(("r" "ref" plain "%?"
-      :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
-      :unnarrowed t)))
-  :config
-  ;; Save a local snapshot of the captured web page using "single-file-cli"
-  (advice-add
-   'org-roam-protocol-open-ref :after
-   (defun +org-roam-protocol--single-file-snapshot-a (info)
-     (+single-file
-      (plist-get info :ref)
-      (+file-name-incremental
-       (expand-file-name
-        (concat "web/snapshots/" (+clean-file-name (plist-get info :title)) ".html")
-        org-roam-directory))))))
-
-(use-package org-roam-ui
+(use-package consult-notes
   :straight t
+  :commands consult-notes consult-notes-search-in-all-notes
   :init
-  (+map! "nu" #'org-roam-ui-open))
-
-(use-package consult-org-roam
-  :straight t
-  :init
-  (+map! :infix "n"
-    "s" #'consult-org-roam-search
-    "l" #'consult-org-roam-forward-links
-    "b" #'consult-org-roam-backlinks
-    "F" #'consult-org-roam-file-find)
+  (fmakunbound 'consult-notes-org-roam-mode)
   :custom
-  (consult-org-roam-grep-func #'consult-ripgrep)
-  (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'
-  (consult-org-roam-buffer-after-buffers t)
+  (consult-notes-file-dir-sources `(("Notes" "n" ,denote-directory))) ; Set notes dir(s), see below
+  (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
   :config
-  (consult-org-roam-mode 1)
-  ;; Eventually suppress previewing for certain functions
-  (consult-customize consult-org-roam-forward-links :preview-key (kbd "M-.")))
+  (consult-notes-denote-mode 1)
+  (consult-notes-org-headings-mode 1))
 
 
 (provide 'me-notes)

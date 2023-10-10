@@ -47,40 +47,6 @@
            (remove-hook 'server-after-make-frame-hook
                         #'+citar--set-symbols-once-h)))))))
 
-;; If `org-roam' is not active, there is no need to install `citar-org-roam'
-(unless (and (memq 'me-notes minemacs-modules)
-             (not (memq 'org-roam minemacs-disabled-packages)))
-  (push 'citar-org-roam minemacs-disabled-packages))
-
-(use-package citar-org-roam
-  :straight t
-  :after citar org-roam
-  :demand t
-  :commands +org-roam-node-from-cite
-  :config
-  ;; Modified form: jethrokuan.github.io/org-roam-guide/
-  (defun +org-roam-node-from-cite (entry-key)
-    "Create an Org-Roam node from a bibliography reference."
-    (interactive (list (citar-select-ref)))
-    (let ((title (citar-format--entry
-                  "${author editor} (${date urldate}) :: ${title}"
-                  (citar-get-entry entry-key))))
-      (org-roam-capture- :templates
-                         `(("r" "reference" plain
-                            "%?"
-                            :if-new (file+head "references/${citekey}.org"
-                                     ,(concat
-                                       ":properties:\n"
-                                       ":roam_refs: [cite:@${citekey}]\n"
-                                       ":end:\n"
-                                       "#+title: ${title}\n"))
-                            :immediate-finish t
-                            :unnarrowed t))
-                         :info (list :citekey entry-key)
-                         :node (org-roam-node-create :title title)
-                         :props '(:finalize find-file))))
-  (citar-org-roam-mode 1))
-
 (use-package citar-embark
   :straight t
   :after citar embark
