@@ -118,7 +118,10 @@
   :config
   (+nvmap!
     "gb" #'blamer-show-posframe-commit-info
-    "gB" #'blamer-show-commit-info))
+    "gB" #'blamer-show-commit-info)
+
+  ;; Use 10% smaller font size for blamer's text
+  (set-face-attribute 'blamer-face nil :height (truncate (* 0.9 (face-attribute 'default :height)))))
 
 (use-package git-timemachine
   :straight t
