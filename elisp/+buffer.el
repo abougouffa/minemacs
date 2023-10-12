@@ -199,5 +199,11 @@ between lines."
           (kill-new (buffer-string)))))
     (deactivate-mark)))
 
+;;;###autoload
+(defun +first-line-empty-p ()
+  "Returns t when the first line of the buffer is empty."
+  (save-excursion (goto-char (point-min))
+                  (and (bolp) (eolp))))
+
 
 ;;; +buffer.el ends here
