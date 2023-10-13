@@ -92,6 +92,9 @@
     (transient-append-suffix 'forge-dispatch "c u"
       '("c r" "review pull-request" code-review-forge-pr-at-point))))
 
+(use-package jiralib2
+  :straight t)
+
 (use-package diff-hl
   :straight t
   :hook (find-file . diff-hl-mode)
