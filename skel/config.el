@@ -206,3 +206,23 @@
   ;; machine gitlab.private.com/api/v4 login my.user^forge password <token>
   ;; 3. Use this in your config:
   (add-to-list 'forge-alist '("gitlab.private.com" "gitlab.private.com/api/v4" "gitlab.private.com" forge-gitlab-repository)))
+
+;; Module: `me-vc' -- Package: `jiralib2'
+;; When `jiralib2' is enabled, do some extra stuff
+(when (memq 'jiralib2 minemacs-configured-packages)
+  ;; You need to set `jiralib2-url' and `jiralib2-user-login-name'
+  (setq jiralib2-url "https://my-jira-server.tld/"
+        jiralib2-user-login-name "my-username")
+
+  ;; Add a hook on git-commit, so it adds the ticket number to the commit message
+  (add-hook
+   'git-commit-mode-hook
+   (defun +jira-commit-auto-insert-ticket-id-h ()
+     (when (and jiralib2-user-login-name
+                ;; Do not auto insert if the commit message is not empty (ex. amend)
+                (+first-line-empty-p))
+       (goto-char (point-min))
+       (insert "\n")
+       (goto-char (point-min))
+       (+jira-insert-ticket-id)
+       (insert ": ")))))
