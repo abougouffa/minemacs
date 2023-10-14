@@ -78,6 +78,8 @@ Replace french ponctuations (like unsectable space) by regular ones." t)
 (autoload '+kill-region-as-paragraph "../elisp/+buffer" "\
 Kill (copy) region as one paragraph. This command removes new line characters
 between lines." t)
+(autoload '+first-line-empty-p "../elisp/+buffer" "\
+Returns t when the first line of the buffer is empty.")
 (register-definition-prefixes "../elisp/+buffer" '("+kill-buffer-no-ask-list" "+replace-in-buffer"))
 
 
