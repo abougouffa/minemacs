@@ -93,7 +93,23 @@
       '("c r" "review pull-request" code-review-forge-pr-at-point))))
 
 (use-package jiralib2
-  :straight t)
+  :straight t
+  :commands +jira-insert-ticket-id
+  :config
+  (defun +jira--ticket-annotation-fn (t)
+    (let ((item (assoc t minibuffer-completion-table)))
+      (when item (concat "    " (cdr item)))))
+
+  (defun +jira-insert-ticket-id ()
+    "Insert ticket ID for \"open\", \"to do\", or \"in progress\" tickets."
+    (interactive)
+    (when-let* ((issues (jiralib2-jql-search (format "assignee=\"%s\" AND status in (\"open\",\"to do\",\"in progress\")" jiralib2-user-login-name)))
+                (tickets (mapcar (lambda (t) (cons (cdr (assoc 'key t)) (cdr (assoc 'summary (cdr (assoc 'fields t)))))) issues)))
+      (insert
+       (if (length= tickets 1)
+           (car (car tickets))
+         (let ((completion-extra-properties '(:annotation-function +jira--ticket-annotation-fn)))
+           (completing-read "Select ticket: " tickets)))))))
 
 (use-package diff-hl
   :straight t
