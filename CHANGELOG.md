@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.5.0](https://github.com/abougouffa/minemacs/compare/v1.4.10..v1.5.0) - 2023-10-14
+#### Features
+- **(core)** add `+first-line-empty-p` helper - ([d83aa23](https://github.com/abougouffa/minemacs/commit/d83aa23f5ed593e90560e89bcb5c780a77a79682)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** migrate from `org-roam` to `denote` - ([ef9fbb6](https://github.com/abougouffa/minemacs/commit/ef9fbb6c1c5e9cc09373336cbbb863c957605d44)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add support for `jiralib2` WIP - ([6c562ac](https://github.com/abougouffa/minemacs/commit/6c562ac8f8ac4f74eecda4589b5047110fe83329)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(version)** v1.4.11 - ([7256aba](https://github.com/abougouffa/minemacs/commit/7256abae8b300da1acd25838180f1a4732e95151)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** conditionally enable `treesit` stuff the MinEmacs way - ([b50775d](https://github.com/abougouffa/minemacs/commit/b50775df21ee81080509d759fda3332203fbbe35)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(denote)** unbind `consult-notes-org-roam` autoloads - ([ff3c86f](https://github.com/abougouffa/minemacs/commit/ff3c86f0a9a4a6abdadfefac684be0bfe6f1cab7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([eeb9e1d](https://github.com/abougouffa/minemacs/commit/eeb9e1d9d3be91b2f2133958755c11a124ab50ed)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.4.10](https://github.com/abougouffa/minemacs/compare/v1.4.9..v1.4.10) - 2023-10-10
 #### Bug Fixes
 - **(recentf)** more explicit exclusion regexps - ([79e93fd](https://github.com/abougouffa/minemacs/commit/79e93fdd2e9e22c0dcf3d41447a87a3f924388a4)) - [@abougouffa](https://github.com/abougouffa)
