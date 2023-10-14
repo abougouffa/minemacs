@@ -19,18 +19,17 @@ This command stashes the current workspace before bumping the version, and
 restores it after that."
   (interactive
    (list (if (yes-or-no-p "Manually set the target version? ")
-             (concat "version " (read-string "Vesion: "))
+             (concat "version " (read-string "Version: "))
            (completing-read "Increment the version: " '(auto major minor patch)))
          (when (yes-or-no-p "Is this version a pre-release? ")
            (read-string "Pre-release version: "))))
   (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
     (conf-colon-mode)
     (insert (format "############ Cocogitto bump (%s) ############\n" level))
-    (call-process-shell-command "git stash -u" nil (current-buffer))
-    (call-process-shell-command
-     (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
-     nil (current-buffer))
-    (call-process-shell-command "git stash pop" nil (current-buffer))))
+    (shell-command "git stash -u" (current-buffer) (current-buffer))
+    (shell-command (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
+                   (current-buffer) (current-buffer))
+    (shell-command "git stash pop" (current-buffer) (current-buffer))))
 
 
 (provide 'me-cocogitto)
