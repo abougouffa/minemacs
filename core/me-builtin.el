@@ -302,20 +302,22 @@
   :after oc
   :demand t)
 
-(when (+emacs-features-p 'tree-sitter)
-  (use-package treesit
-    :straight (:type built-in)
-    :custom
-    (treesit-font-lock-level 4))
+(unless (+emacs-features-p 'tree-sitter)
+  (push '(treesit dockerfile-ts-mode cmake-ts-mode) minemacs-disabled-packages))
 
-  (use-package dockerfile-ts-mode
-    :straight (:type built-in)
-    :mode "/Dockerfile\\'")
+(use-package treesit
+  :straight (:type built-in)
+  :custom
+  (treesit-font-lock-level 4))
 
-  (use-package cmake-ts-mode
-    :straight (:type built-in)
-    :mode "CMakeLists\\.txt\\'"
-    :mode "\\.cmake\\'"))
+(use-package dockerfile-ts-mode
+  :straight (:type built-in)
+  :mode "/Dockerfile\\'")
+
+(use-package cmake-ts-mode
+  :straight (:type built-in)
+  :mode "CMakeLists\\.txt\\'"
+  :mode "\\.cmake\\'")
 
 (use-package autoinsert
   ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
