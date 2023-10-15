@@ -188,6 +188,11 @@
 ;; Add it to the very begining of `emacs-startup-hook'
 (add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
 
+;; ========= Make some special hooks =========
+(+make-first-file-hook! "org" "\\.org$")
+(+make-first-file-hook! "elisp" "\\.elc?$")
+(+make-first-file-hook! nil ".")
+
 ;; ========= Load MinEmacs packages and user customization =========
 ;; When running in an async Org export context, the used modules are set in
 ;; modules/extras/me-org-export-async-init.el, so we must not overrite them with
