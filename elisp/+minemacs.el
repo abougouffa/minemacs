@@ -227,6 +227,36 @@ DEPTH and LOCAL are passed as is to `add-hook'."
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
 
+;;;###autoload
+(defmacro +make-first-file-hook! (filetype ext-regexp)
+  "Make a hook which runs on the first FILETYPE file which with an extension
+that matches EXT-REGEXP.
+
+This will creates a function named `+first-file--FILETYPE-h' which and adds it
+to `first-file-hook', this function will run on the first file that matches
+EXT-REGEXP. When it runs, this function provides a feature named
+`minemacs-first-FILETYPE-file' and a run all hooks in
+`minemacs-first-FILETYPE-file-hook'."
+  (let* ((filetype (+unquote filetype))
+         (fn-name (intern (format "+first-file-%s-h" (if filetype (format "-%s" filetype) ""))))
+         (hook-name (intern (format "minemacs-first%s-file-hook" (if filetype (format "-%s" filetype) ""))))
+         (feature-name (intern (format "minemacs-first%s-file" (if filetype (format "-%s" filetype) ""))))
+         (hook-docs (format "This hook will be run after opening the first %s file.\n\nExecuted inside `find-file-hook', it runs all hooks in `%s' and provide the `%s' feature."
+                            filetype hook-name feature-name)))
+    `(progn
+       (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'."
+        ',hook-name ',fn-name ',feature-name)
+       (defcustom ,hook-name nil ,hook-docs :group 'minemacs-core :type 'hook)
+       (add-hook 'find-file-hook
+        (defun ,fn-name ()
+         (+log! "Hook `find-file-hook' invoked, checking for `%s'." ',hook-name)
+         (when (and buffer-file-name (string-match-p ,ext-regexp buffer-file-name))
+          (+log! "Running %d `%s' hooks." (length ,hook-name) ',hook-name)
+          (remove-hook 'find-file-hook #',fn-name)
+          (provide ',feature-name)
+          (run-hooks ',hook-name)))
+        -101))))
+
 ;; From Doom Emacs
 (defun +resolve-hook-forms (hooks)
   "Converts a list of modes into a list of hook symbols.

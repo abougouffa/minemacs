@@ -410,6 +410,17 @@ Hook BODY in HOOK, it runs only once.
 
 (fn HOOK &rest BODY)" nil t)
 (function-put '+hook-once! 'lisp-indent-function 1)
+(autoload '+make-first-file-hook! "../elisp/+minemacs" "\
+Make a hook which runs on the first FILETYPE file which with an extension
+that matches EXT-REGEXP.
+
+This will creates a function named `+first-file--FILETYPE-h' which and adds it
+to `first-file-hook', this function will run on the first file that matches
+EXT-REGEXP. When it runs, this function provides a feature named
+`minemacs-first-FILETYPE-file' and a run all hooks in
+`minemacs-first-FILETYPE-file-hook'.
+
+(fn FILETYPE EXT-REGEXP)" nil t)
 (autoload '+add-hook! "../elisp/+minemacs" "\
 A convenience macro for adding N functions to M hooks.
 
