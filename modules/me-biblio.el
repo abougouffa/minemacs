@@ -21,7 +21,7 @@
 
 (use-package citar
   :straight t
-  :after oc
+  :after minemacs-first-org-file oc
   :demand t
   :custom
   (org-cite-insert-processor 'citar)

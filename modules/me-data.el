@@ -137,7 +137,7 @@
 
 (use-package ob-mermaid
   :straight (:host github :repo "arnm/ob-mermaid")
-  :after ob
+  :after minemacs-first-org-file ob
   :demand t
   :config
   (org-babel-do-load-languages
@@ -162,7 +162,7 @@
 
 (use-package ob-d2
   :straight t
-  :after ob
+  :after minemacs-first-org-file ob
   :demand t
   :config
   (org-babel-do-load-languages

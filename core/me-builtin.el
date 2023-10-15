@@ -276,32 +276,6 @@
     "l" #'bibtex-fill-entry
     "r" #'bibtex-reformat))
 
-(use-package oc
-  :straight (:type built-in)
-  :after org
-  :demand t
-  :custom
-  (org-cite-export-processors '((latex biblatex) (t csl)))
-  (org-support-shift-select t)
-  :config
-  (+map-local! :keymaps 'org-mode-map
-    "C" #'org-cite-insert))
-
-(use-package oc-csl
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-natbib
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-biblatex
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
 (unless (+emacs-features-p 'tree-sitter)
   (push '(treesit dockerfile-ts-mode cmake-ts-mode) minemacs-disabled-packages))
 
@@ -601,7 +575,7 @@
 
 (use-package org
   :straight (:type built-in)
-  :after minemacs-loaded
+  :after minemacs-first-org-file
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
@@ -734,9 +708,32 @@
           ("NO"   . +org-todo-cancel)
           ("KILL" . +org-todo-cancel))))
 
+(use-package org-agenda
+  :straight (:type built-in)
+  :custom
+  (org-agenda-tags-column 0)
+  (org-agenda-block-separator ?─)
+  (org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
+  (org-agenda-current-time-string
+   "⭠ now ─────────────────────────────────────────────────"))
+
+;; TEMP: This will solve the "Invalid face reference: org-indent [X times]"
+;; problem.
+(use-package org-indent
+  :straight (:type built-in)
+  :after minemacs-first-org-file org
+  :demand t)
+
+(use-package ox
+  :straight (:type built-in)
+  :after minemacs-first-org-file org)
+
 (use-package ox-latex
   :straight (:type built-in)
-  :after ox
+  :after minemacs-first-org-file ox
   :custom
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
@@ -791,28 +788,42 @@
      '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
 (use-package ox-koma-letter
-  :after ox
+  :after minemacs-first-org-file ox
   :demand t)
 
 (use-package ox-odt
-  :after ox
+  :after minemacs-first-org-file ox
   :demand t)
 
 (use-package ox-beamer
-  :after ox
+  :after minemacs-first-org-file ox
   :demand t)
 
-(use-package org-agenda
+(use-package oc
   :straight (:type built-in)
+  :after minemacs-first-org-file org
+  :demand t
   :custom
-  (org-agenda-tags-column 0)
-  (org-agenda-block-separator ?─)
-  (org-agenda-time-grid
-   '((daily today require-timed)
-     (800 1000 1200 1400 1600 1800 2000)
-     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
-  (org-agenda-current-time-string
-   "⭠ now ─────────────────────────────────────────────────"))
+  (org-cite-export-processors '((latex biblatex) (t csl)))
+  (org-support-shift-select t)
+  :config
+  (+map-local! :keymaps 'org-mode-map
+    "C" #'org-cite-insert))
+
+(use-package oc-csl
+  :straight (:type built-in)
+  :after minemacs-first-org-file oc
+  :demand t)
+
+(use-package oc-natbib
+  :straight (:type built-in)
+  :after minemacs-first-org-file oc
+  :demand t)
+
+(use-package oc-biblatex
+  :straight (:type built-in)
+  :after minemacs-first-org-file oc
+  :demand t)
 
 (use-package ediff
   :straight (:type built-in)
