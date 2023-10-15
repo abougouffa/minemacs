@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.6.0](https://github.com/abougouffa/minemacs/compare/v1.5.0..v1.6.0) - 2023-10-15
+#### Features
+- **(core)** add `+make-first-file-hook!` - ([5bc1777](https://github.com/abougouffa/minemacs/commit/5bc1777bc19ffc72e61c41624c08ec342ce1b055)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** define some first file hooks - ([580a089](https://github.com/abougouffa/minemacs/commit/580a0899a98c6c144a0b8c2c26c951e2b5fc99a6)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(extras)** simplify `+cocogitto-bump` - ([702c268](https://github.com/abougouffa/minemacs/commit/702c268d585625e86a8c13ea7a8b5ed20a876c16)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** conditionally disable `dockerfile-mode` MinEmacs way - ([8785b5a](https://github.com/abougouffa/minemacs/commit/8785b5afdd35da43480ad933b41f70cea55a7f6c)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(treesit-auto)** remove protobuf temporary hack, fixed upstream - ([cc7d74e](https://github.com/abougouffa/minemacs/commit/cc7d74e030d1735d32076a8d16b6f336a2b338a7)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(elisp)** make use of minemacs-first-elisp-file - ([1a3c3a5](https://github.com/abougouffa/minemacs/commit/1a3c3a5dc54b4dd41767e05f8db940b38cf22ce9)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib2)** add a helper command to get active ticket IDs - ([58f1eca](https://github.com/abougouffa/minemacs/commit/58f1eca7054035adbeb2f4212e72357b9067887c)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** make use of first org file hook to ensure deferring Org - ([dc4807b](https://github.com/abougouffa/minemacs/commit/dc4807b6075704fa8ab5d73e41064f796b132db6)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add a configuration example for `jiralib2` - ([773aadd](https://github.com/abougouffa/minemacs/commit/773aadd11291268629181c3597f4ecbeb33e702c)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([b05eb06](https://github.com/abougouffa/minemacs/commit/b05eb060ae5da664a62d0ab8b2edecd80c92d79f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.5.0](https://github.com/abougouffa/minemacs/compare/v1.4.10..v1.5.0) - 2023-10-14
 #### Features
 - **(core)** add `+first-line-empty-p` helper - ([d83aa23](https://github.com/abougouffa/minemacs/commit/d83aa23f5ed593e90560e89bcb5c780a77a79682)) - [@abougouffa](https://github.com/abougouffa)
