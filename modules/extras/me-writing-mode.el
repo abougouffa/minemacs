@@ -92,13 +92,14 @@
             (setq-local +writing--line-nums-active-p display-line-numbers-type)
             (display-line-numbers-mode -1))
           (when (derived-mode-p 'org-mode) (+writing--scale-up-org-latex))
-          (run-hooks +writing-mode-enable-hook))
+          (run-hooks '+writing-mode-enable-hook))
       ;; Disable
       (kill-local-variable 'visual-fill-column-center-text)
       (kill-local-variable 'visual-fill-column-width)
       (when (derived-mode-p 'org-mode) (+writing--scale-down-org-latex))
       (when (and +writing--line-nums-active-p mixed-pitch-mode-p)
-        (display-line-numbers-mode +writing--line-nums-active-p)))
+        (display-line-numbers-mode +writing--line-nums-active-p))
+      (run-hooks '+writing-mode-disable-hook))
 
     (visual-fill-column-mode (if +writing-mode 1 -1))
 
