@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.6.1](https://github.com/abougouffa/minemacs/compare/v1.6.0..v1.6.1) - 2023-10-16
+#### Bug Fixes
+- **(+writing-mode)** fix enable/disable hooks - ([7f21ba9](https://github.com/abougouffa/minemacs/commit/7f21ba979410f570240265637e95794f8799197c)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** revert `minemacs-first-org-file`, it causes Org export to fail - ([2466391](https://github.com/abougouffa/minemacs/commit/246639197c43cad75d9bfd7db647837d7d51b399)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(blamer)** disable when in `+writing-mode` - ([478d4f6](https://github.com/abougouffa/minemacs/commit/478d4f66da70dfa56f2e11773d1f35fffe17add2)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more generic `+env-save` - ([46fda3c](https://github.com/abougouffa/minemacs/commit/46fda3cc2409fab8fdfec3d0c07671e8c1a31f5b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.6.0](https://github.com/abougouffa/minemacs/compare/v1.5.0..v1.6.0) - 2023-10-15
 #### Features
 - **(core)** add `+make-first-file-hook!` - ([5bc1777](https://github.com/abougouffa/minemacs/commit/5bc1777bc19ffc72e61c41624c08ec342ce1b055)) - [@abougouffa](https://github.com/abougouffa)
