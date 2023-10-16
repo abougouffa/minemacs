@@ -140,7 +140,15 @@
     "gB" #'blamer-show-commit-info)
 
   ;; Use 10% smaller font size for blamer's text
-  (set-face-attribute 'blamer-face nil :height (truncate (* 0.9 (face-attribute 'default :height)))))
+  (set-face-attribute 'blamer-face nil :height (truncate (* 0.9 (face-attribute 'default :height))))
+
+  (with-eval-after-load 'me-writing-mode
+    (defvar-local +blamer-was-active-p blamer-mode)
+    (+add-hook! '+writing-mode-enable-hook
+      (setq-local +blamer-was-active-p blamer-mode)
+      (when +blamer-was-active-p (blamer-mode -1)))
+    (+add-hook! '+writing-mode-disable-hook
+      (when (bound-and-true-p +blamer-was-active-p) (blamer-mode 1)))))
 
 (use-package git-timemachine
   :straight t
