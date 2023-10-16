@@ -575,7 +575,6 @@
 
 (use-package org
   :straight (:type built-in)
-  :after minemacs-first-org-file
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
@@ -724,16 +723,16 @@
 ;; problem.
 (use-package org-indent
   :straight (:type built-in)
-  :after minemacs-first-org-file org
+  :after org
   :demand t)
 
 (use-package ox
   :straight (:type built-in)
-  :after minemacs-first-org-file org)
+  :after org)
 
 (use-package ox-latex
   :straight (:type built-in)
-  :after minemacs-first-org-file ox
+  :after ox
   :custom
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
@@ -788,20 +787,20 @@
      '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
 (use-package ox-koma-letter
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t)
 
 (use-package ox-odt
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t)
 
 (use-package ox-beamer
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t)
 
 (use-package oc
   :straight (:type built-in)
-  :after minemacs-first-org-file org
+  :after org
   :demand t
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
@@ -812,17 +811,17 @@
 
 (use-package oc-csl
   :straight (:type built-in)
-  :after minemacs-first-org-file oc
+  :after oc
   :demand t)
 
 (use-package oc-natbib
   :straight (:type built-in)
-  :after minemacs-first-org-file oc
+  :after oc
   :demand t)
 
 (use-package oc-biblatex
   :straight (:type built-in)
-  :after minemacs-first-org-file oc
+  :after oc
   :demand t)
 
 (use-package ediff

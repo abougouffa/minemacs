@@ -13,7 +13,7 @@
   :group 'minemacs)
 
 (use-package me-org-extras
-  :after minemacs-first-org-file org
+  :after org
   :demand t
   :config
   (+org-extras-outline-path-setup)
@@ -26,26 +26,26 @@
 
 (use-package org-contrib
   :straight t
-  :after minemacs-first-org-file org
+  :after org
   :demand t)
 
 (use-package engrave-faces
   :straight t
-  :after minemacs-first-org-file org)
+  :after org)
 
 ;; Org export
 (use-package ox-hugo
   :straight t
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t)
 
 (use-package ox-pandoc
   :straight t
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t)
 
 (use-package ox-extra
-  :after minemacs-first-org-file ox
+  :after ox
   :demand t
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
@@ -53,7 +53,6 @@
 ;; Other Org features
 (use-package org-appear
   :straight t
-  :after minemacs-first-org-file
   :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-inside-latex t)
@@ -161,11 +160,10 @@
 
 (use-package evil-org
   :straight t
-  :after minemacs-first-org-file
   :hook (org-mode . evil-org-mode))
 
 (use-package evil-org-agenda
-  :after minemacs-first-org-file evil-org
+  :after evil-org
   :demand t
   :config
   (evil-org-agenda-set-keys))
