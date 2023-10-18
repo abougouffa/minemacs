@@ -15,10 +15,13 @@
 
 (use-package tabspaces
   :straight t
+  ;; TEMP: Use a stable commit until I open a PR on upstream (WIP)
+  :pin-ref "3ecbd49fbd3c9c628a838957dc82547f1269b455"
   :after minemacs-loaded
   :hook (tabspaces-mode . +consult-tabspaces-setup)
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-initialize-project-with-todo nil)
   (tabspaces-default-tab "*default*")
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
