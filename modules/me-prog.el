@@ -32,6 +32,9 @@
     :init
     (global-ts-fold-mode 1))
 
+  (use-package awk-ts-mode
+    :straight t)
+
   (use-package combobulate
     :straight t
     :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
