@@ -101,7 +101,9 @@
     "ss" #'project-search
     "sn" '(fileloop-continue :wk "Next match")
     "sr" #'project-query-replace-regexp
-    "sf" #'project-find-regexp))
+    "sf" #'project-find-regexp)
+  :config
+  (add-hook 'kill-emacs-hook #'project-forget-zombie-projects))
 
 (use-package tab-bar
   :straight (:type built-in)
