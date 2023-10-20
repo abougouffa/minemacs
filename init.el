@@ -259,10 +259,13 @@
     (when (file-exists-p user-config)
       (+load user-config))))
 
-(+lazy-when! (featurep 'native-compile)
-  (+info! "Trying to clean outdated native compile cache")
-  ;; Delete outdated natively compiled files when Emacs become idle
-  (+shutup! (native-compile-prune-cache)))
+(+lazy!
+ (when (featurep 'native-compile)
+   (+info! "Trying to clean outdated native compile cache")
+   ;; Delete outdated natively compiled files when Emacs become idle
+   (+shutup! (native-compile-prune-cache)))
+ (+shutup! (+straight-compile-prune-cache)))
+
 
 (+log! "Loaded init.el")
 

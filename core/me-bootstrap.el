@@ -51,6 +51,22 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug))
 
+;;;###autoload
+(defun +straight-compile-prune-cache ()
+  (let* ((straight-dir (file-name-concat straight-base-dir "straight/"))
+         (builds (seq-filter
+                  (lambda (name)
+                    (not (member name (list straight-build-dir
+                                            (concat straight-build-dir "-cache.el")
+                                            "versions"
+                                            "repos"))))
+                  (directory-files straight-dir nil "[^.][^.]?$"))))
+    (dolist (file builds)
+      (let ((default-directory straight-dir))
+        (if (file-directory-p file)
+            (delete-directory file 'recursive 'trash)
+          (delete-file file 'trash))))))
+
 
 (provide 'me-bootstrap)
 

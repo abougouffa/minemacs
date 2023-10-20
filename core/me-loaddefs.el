@@ -681,6 +681,11 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "me-backports-29" '("loaddefs-generate" "messages-buffer-name" "native-compile-prune-cache" "scratch-buffer" "setopt" "with-memoization"))
 
 
+;;; Generated autoloads from me-bootstrap.el
+
+(autoload '+straight-compile-prune-cache "me-bootstrap")
+
+
 ;;; Generated autoloads from ../modules/extras/me-cape-super-capf.el
 
 (defvar +cape-global-capes '(tempel-complete :completion cape-dict) "\
