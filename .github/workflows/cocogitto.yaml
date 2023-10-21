@@ -1,10 +1,13 @@
-name: Conventional Commits Compliance (push)
-on: [push]
+name: Conventional Commits Compliance
+
+on:
+  push:
+  pull_request:
 
 jobs:
   cog_check_job:
     runs-on: ubuntu-latest
-    name: check conventional commit compliance
+    name: Check conventional commit compliance
     steps:
       - uses: actions/checkout@v4.1.0
         with:
