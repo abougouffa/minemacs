@@ -1,0 +1,33 @@
+name: Run MinEmacs with Emacs to check if it rises errors
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  # run every month just in case (packages may have been updated and cause errors on various variables etc.)
+  schedule:
+    - cron: '0 10 1 * *'
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: purcell/setup-emacs@master
+        with:
+          version: 29.1
+      # TODO: this is ugly and only needed for vterm to succeed in the pipeline...
+      - name: Install dependency needed for some Emacs packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libtool-bin cmake
+      - name: Print emacs version
+        run: emacs --version
+      - name: Install dependency needed for some Emacs packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libtool-bin cmake tree
+      - name: Show the workspace
+        run: tree
+      - name: Running Emacs
+        run: MINEMACS_DEBUG=1 emacs
