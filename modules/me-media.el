@@ -25,10 +25,10 @@
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
           ("." . browse-url-default-browser))))
 
+(defconst +mpv-available-p (executable-find +mpv-command))
+
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
-  :preface
-  (defconst +mpv-available-p (executable-find +mpv-command))
   :when +mpv-available-p
   :init
   (+map! :infix "o"

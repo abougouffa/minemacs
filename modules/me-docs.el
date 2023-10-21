@@ -79,11 +79,11 @@
                            '(:eval (doom-modeline-segment--major-mode))))))))))
        (:eval (doom-modeline-segment--major-mode))))))
 
+(defconst +tuntox-available-p (executable-find "tuntox"))
+(defconst +stunnel-available-p (executable-find "stunnel"))
+
 (use-package crdt
   :straight t
-  :preface
-  (defconst +tuntox-available-p (executable-find "tuntox"))
-  (defconst +stunnel-available-p (executable-find "stunnel"))
   :when (or +tuntox-available-p +stunnel-available-p)
   :init
   (cond (+tuntox-available-p

@@ -43,7 +43,13 @@
   (advice-add
    'use-package :around
    (defun +use-package--check-if-disabled-a (origfn package &rest args)
-     (unless (+package-disabled-p package)
+     (when (and (not (+package-disabled-p package))
+                (or (not (memq :if args))
+                    (and (memq :if args) (eval (plist-get args :if))))
+                (or (not (memq :when args))
+                    (and (memq :when args) (eval (plist-get args :when))))
+                (or (not (memq :unless args))
+                    (and (memq :unless args) (not (eval (plist-get args :unless))))))
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
 

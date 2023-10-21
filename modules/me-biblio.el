@@ -8,10 +8,10 @@
 
 ;;; Code:
 
+(defconst +zotero-available-p (executable-find "zotero"))
+
 (use-package zotxt
   :straight t
-  :preface
-  (defconst +zotero-available-p (executable-find "zotero"))
   :when +zotero-available-p
   :init
   (+map-local! :keymaps 'org-mode-map

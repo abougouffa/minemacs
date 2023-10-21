@@ -125,10 +125,10 @@
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
 
+(defconst +bitwarden-available-p (executable-find "bw"))
+
 (use-package bitwarden
   :straight (:host github :repo "seanfarley/emacs-bitwarden")
-  :preface
-  (defconst +bitwarden-available-p (executable-find "bw"))
   :when +bitwarden-available-p
   :custom
   (bitwarden-automatic-unlock

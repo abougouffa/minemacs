@@ -29,10 +29,10 @@
   :straight t
   :commands (ipdb realgud:ipdb))
 
+(defconst +objdump-available-p (executable-find "objdump"))
+
 (use-package disaster
   :straight t
-  :preface
-  (defconst +objdump-available-p (executable-find "objdump"))
   :when +objdump-available-p
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
