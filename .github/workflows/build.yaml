@@ -1,4 +1,4 @@
-name: Run MinEmacs with Emacs to check if it rises errors
+name: MinEmacs modules check
 
 on:
   push:
@@ -36,7 +36,8 @@ jobs:
           mkdir ../.minemacs.d/
           cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           export MINEMACS_CI=1
-          RUN_DATA=$(MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1 ; echo "DONE!")
+          MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1 | tee /tmp/emacs-run-output || echo "Exited with error code $?"
+          RUN_DATA=$(cat /tmp/emacs-run-output)
           echo "$RUN_DATA"
           WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
           LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
