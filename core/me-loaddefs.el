@@ -683,7 +683,7 @@ Unmount eCryptfs' private directory." t)
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(autoload '+straight-compile-prune-cache "me-bootstrap")
+(autoload '+straight-prune-build-cache "me-bootstrap")
 
 
 ;;; Generated autoloads from ../modules/extras/me-cape-super-capf.el
