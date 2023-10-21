@@ -46,4 +46,4 @@ jobs:
           LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
           ELISP_ERRORS=$(echo "$RUN_DATA" | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
           echo -e "# MinEmacs report ($EMACS_VERSION)\n## Loading errors\n$LOAD_ERRORS\n## Emacs Lisp errors\n$ELISP_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
-          if [ -z "$LOAD_ERRORS" ] || [ -z "ELISP_ERRORS" ]; then exit 1; fi
+          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]]; then exit 1; fi
