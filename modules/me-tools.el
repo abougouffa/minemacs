@@ -39,6 +39,7 @@
 
 (use-package vterm
   :straight t
+  :unless os/win
   :hook (minemacs-build-functions . vterm-module-compile)
   :init
   (+map!
@@ -59,6 +60,7 @@
 
 (use-package multi-vterm
   :straight t
+  :unless os/win
   :init
   (+map!
     "ott" #'multi-vterm
