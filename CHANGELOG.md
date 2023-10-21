@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v2.0.0](https://github.com/abougouffa/minemacs/compare/v1.7.1..v2.0.0) - 2023-10-21
+#### Bug Fixes
+- **(vterm)** disable on Windows - ([e082919](https://github.com/abougouffa/minemacs/commit/e082919664fa61958b26460625e7041b2c48b916)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** mention the CI actions - ([ef86e67](https://github.com/abougouffa/minemacs/commit/ef86e671917f22d34ceef58f37bdd75939de9c94)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** rename `build.yaml` to `ci.yaml` - ([5087247](https://github.com/abougouffa/minemacs/commit/5087247844659bb42d25d5f3846b748acfe53485)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** refactor and enable MacOS and Windows - ([ee6eb96](https://github.com/abougouffa/minemacs/commit/ee6eb9618e9958371d51f5c0fd5c527749558d3c)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** test on MacOS - ([f3d160f](https://github.com/abougouffa/minemacs/commit/f3d160fd8a2df06f614d1d0f468da9f808df41c6)) - [@abougouffa](https://github.com/abougouffa)
+- **(cocogitto)** merge push and pull request checks - ([4a5c562](https://github.com/abougouffa/minemacs/commit/4a5c5628b6ad6b5d23e199ccb7f7096854763c34)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(keybindings)** bind ecryptfs/netextender only when relevant - ([5724330](https://github.com/abougouffa/minemacs/commit/5724330d978549e72e36692f9a933298e23c49d1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.7.1](https://github.com/abougouffa/minemacs/compare/v1.7.0..v1.7.1) - 2023-10-21
 #### Bug Fixes
 - **(use-package)** better checking for disabled packages - ([71b2ad6](https://github.com/abougouffa/minemacs/commit/71b2ad66e189434f8c459ad67025c3014df6b0f5)) - [@abougouffa](https://github.com/abougouffa)
