@@ -83,19 +83,6 @@
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
   (plantuml-indent-level 2)
-  :config
-  (setq
-   plantuml-default-exec-mode
-   (cond
-    ;; Prefer the system's executable when available
-    ((executable-find plantuml-executable-path) 'executable)
-    ;; Then, use the JAR if it exists or try to download it
-    ((let ((ret (or (file-exists-p plantuml-jar-path)
-                    (and (not noninteractive) (ignore-errors (plantuml-download-jar))))))
-       (or (eq ret t) (and (stringp ret) (not (string-equal ret "Aborted.")))))
-     'jar)
-    ;; Fall back to the server configured at `plantuml-server-url'
-    'server))
 
   ;; Define `capf' function, based on `plantuml-complete-symbol'
   (defun +plantuml-completion-at-point ()
