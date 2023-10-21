@@ -17,10 +17,6 @@ jobs:
         with:
           version: 29.1
       # Install dependencies for vterm...
-      - name: Install system dependency needed for some Emacs packages
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libtool-bin cmake
       - name: Install dependency needed for some Emacs packages
         run: |
           sudo apt-get update
@@ -37,10 +33,10 @@ jobs:
           mkdir ../.minemacs.d/
           cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           echo "Running Emacs with MinEmacs configuration"
-          RUN_DATA=$(MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 || echo "Emacs exited with non-zero code $?")
+          RUN_DATA=$(MINEMACS_VERBOSE=1 MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 || echo "Emacs exited with non-zero code $?")
           echo "Emacs complete output"
           echo "$RUN_DATA"
-          WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
-          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
-          echo -e "# Tangle and byte-compile report\n## Errors\n$LOAD_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
+          WARNINGS=$(echo "$RUN_DATA" | grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
+          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)|(Debugger entered--Lisp error)" | sed 's/^/- /')
+          echo -e "# MinEmacs report\n## Errors\n$LOAD_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           [ -z "$LOAD_ERRORS" ] || exit 1
