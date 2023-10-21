@@ -54,7 +54,7 @@ packages.
 
 *** ⚠ Important note
 Please note that I'm using a fresh Emacs 29 built from source on a Manjaro Linux
-system. I have enabled basic [[https://github.com/abougouffa/minemacs/actions/workflows/build.yaml][Github CI actions]] to automatically test running
+system. I have enabled basic [[https://github.com/abougouffa/minemacs/actions/workflows/ci.yaml][Github CI actions]] to automatically test running
 Emacs on Ubuntu Linux (Emacs 28 and 29), MacOS (Emacs 29) and Windows (Emacs
 28). These actions ensure that MinEmacs is "runnable" on these systems, however,
 more testing should be done to validate the configuration on these systems.
