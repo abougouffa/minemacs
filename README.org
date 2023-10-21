@@ -1,5 +1,7 @@
 * MinEmacs
 
+[[https://github.com/abougouffa/minemacs/actions/workflows/build.yaml][https://github.com/abougouffa/minemacs/actions/workflows/build.yaml/badge.svg]]
+
 *MinEmacs* is a lightweight Emacs configuration framework. The keybinding is
 inspired by Doom Emacs.
 

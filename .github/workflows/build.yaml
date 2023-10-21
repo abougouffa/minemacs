@@ -38,6 +38,7 @@ jobs:
           export MINEMACS_CI=1
           MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1 | tee /tmp/emacs-run-output || echo "Exited with error code $?"
           RUN_DATA=$(cat /tmp/emacs-run-output)
+          echo "Emacs complete output"
           echo "$RUN_DATA"
           WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
           LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
