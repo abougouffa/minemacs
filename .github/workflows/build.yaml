@@ -33,11 +33,11 @@ jobs:
       - name: Running Emacs
         run: |
           ln -s "$(pwd)" "../.emacs.d"
+          echo "Enabling all MinEmacs modules"
           mkdir ../.minemacs.d/
           cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
-          export MINEMACS_CI=1
-          MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1 | tee /tmp/emacs-run-output || echo "Exited with error code $?"
-          RUN_DATA=$(cat /tmp/emacs-run-output)
+          echo "Running Emacs with MinEmacs configuration"
+          RUN_DATA=$(MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 || echo "Emacs exited with non-zero code $?")
           echo "Emacs complete output"
           echo "$RUN_DATA"
           WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
