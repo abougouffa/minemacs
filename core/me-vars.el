@@ -57,8 +57,12 @@ This list is automatically constructed from the environment variables
        "~/.minemacs.d/"))
   "MinEmacs user customization directory.")
 
+(defconst minemacs-ci
+  (and (getenv "MINEMACS_CI") t)
+  "Load all packages immediately, useful for CI.")
+
 (defconst minemacs-debug
-  (and (or (getenv "MINEMACS_DEBUG") init-file-debug) t)
+  (and (or (getenv "MINEMACS_DEBUG") init-file-debug minemacs-ci) t)
   "MinEmacs is started in debug mode.")
 
 (defconst minemacs-verbose
@@ -66,7 +70,7 @@ This list is automatically constructed from the environment variables
   "MinEmacs is started in verbose mode.")
 
 (defconst minemacs-not-lazy
-  (or (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
+  (or (daemonp) minemacs-ci (and (getenv "MINEMACS_NOT_LAZY") t))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
 (defcustom minemacs-msg-level

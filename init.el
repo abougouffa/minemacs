@@ -269,6 +269,10 @@
  (+info! "Trying to clean MinEmacs' root directory")
  (+shutup! (+minemacs-root-dir-cleanup)))
 
+(when minemacs-ci
+  (+log! "Running MinEmacs in CI mode, loading all packages.")
+  (mapc #'require minemacs-configured-packages))
+
 (+log! "Loaded init.el")
 
 ;;; init.el ends here
