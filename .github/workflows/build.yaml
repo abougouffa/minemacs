@@ -33,10 +33,11 @@ jobs:
           mkdir ../.minemacs.d/
           cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           echo "Running Emacs with MinEmacs configuration"
-          RUN_DATA=$(MINEMACS_VERBOSE=1 MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 || echo "Emacs exited with non-zero code $?")
+          RUN_DATA=$(MINEMACS_VERBOSE=1 MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 && "Emacs exited successfully" || echo "Emacs exited with non-zero code $?")
           echo "Emacs complete output"
           echo "$RUN_DATA"
           WARNINGS=$(echo "$RUN_DATA" | grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
-          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)|(Debugger entered--Lisp error)" | sed 's/^/- /')
-          echo -e "# MinEmacs report\n## Errors\n$LOAD_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
-          [ -z "$LOAD_ERRORS" ] || exit 1
+          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          ELISP_ERRORS=$(echo "$RUN_DATA" | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
+          echo -e "# MinEmacs report\n## Loading errors\n$LOAD_ERRORS\n## Emacs Lisp errors\n$ELISP_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
+          if [ -z "$LOAD_ERRORS" ] || [ -z "ELISP_ERRORS" ]; then exit 1; fi
