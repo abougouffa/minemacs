@@ -21,8 +21,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake
-      - name: Print emacs version
-        run: emacs --version
       - name: Install dependency needed for some Emacs packages
         run: |
           sudo apt-get update
@@ -33,4 +31,11 @@ jobs:
           echo "Content"
           tree
       - name: Running Emacs
-        run: MINEMACS_DEBUG=1 emacs -nw
+        run: |
+          ln -s "$(pwd)" "../.emacs.d"
+          RUN_DATA=$(HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1)
+          echo "$RUN_DATA"
+          WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
+          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          echo -e "# Tangle and byte-compile report\n## Errors\n$LOAD_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
+          [ -z "$LOAD_ERRORS" ] || exit 1
