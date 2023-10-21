@@ -169,8 +169,6 @@
     "td"  #'toggle-debug-on-error
     "tr"  #'read-only-mode
     "tl"  #'follow-mode
-    "tV"  #'netextender-toggle
-    "te"  #'ecryptfs-toggle-mount-private
     "tv"  #'visible-mode
 
     ;; ====== Code ======
@@ -201,6 +199,12 @@
 
     ;; ====== Project ======
     "p"   '(nil :wk "project"))
+
+  (when (or os/linux os/bsd)
+    (when (executable-find "netExtender")
+      (+map! "tV"  #'netextender-toggle))
+    (when (executable-find "ecryptfs-verify")
+      (+map! "te"  #'ecryptfs-toggle-mount-private)))
 
   ;; To handle repeated "SPC u" like repeated "C-u"
   (general-def
