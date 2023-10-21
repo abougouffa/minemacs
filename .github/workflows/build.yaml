@@ -9,23 +9,28 @@ on:
     - cron: "0 0 * * 0"
 
 jobs:
-  build-linux:
+  ci-linux:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        emacs_version:
+          - 28.2
+          - 29.1
     steps:
       - uses: actions/checkout@v4
       - uses: purcell/setup-emacs@master
         with:
-          version: 29.1
+          version: ${{ matrix.emacs_version }}
       # Install dependencies for vterm...
       - name: Install dependency needed for some Emacs packages
         run: |
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake tree
-      - name: Show the workspace
+      - name: Show Emacs version
         run: |
-          echo "Current work directory: $(pwd)"
-          echo "Content"
-          tree
+          EMACS_VERSION=$(emacs --version)
+          echo $EMACS_VERSION
+          echo "EMACS_VERSION='$(echo $EMACS_VERSION | head -n1)'" >> "$GITHUB_ENV"
       - name: Running Emacs
         run: |
           ln -s "$(pwd)" "../.emacs.d"
@@ -36,8 +41,8 @@ jobs:
           RUN_DATA=$(MINEMACS_VERBOSE=1 MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 && "Emacs exited successfully" || echo "Emacs exited with non-zero code $?")
           echo "Emacs complete output"
           echo "$RUN_DATA"
-          WARNINGS=$(echo "$RUN_DATA" | grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
+          WARNINGS=$(echo "$RUN_DATA" | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
           LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
           ELISP_ERRORS=$(echo "$RUN_DATA" | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
-          echo -e "# MinEmacs report\n## Loading errors\n$LOAD_ERRORS\n## Emacs Lisp errors\n$ELISP_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
+          echo -e "# MinEmacs report ($EMACS_VERSION)\n## Loading errors\n$LOAD_ERRORS\n## Emacs Lisp errors\n$ELISP_ERRORS\n## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           if [ -z "$LOAD_ERRORS" ] || [ -z "ELISP_ERRORS" ]; then exit 1; fi
