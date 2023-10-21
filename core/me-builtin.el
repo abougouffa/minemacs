@@ -152,7 +152,8 @@
         (append elisp-flymake-byte-compile-load-path load-path))
 
   ;; Larger right frings
-  (set-fringe-style '(8 . 13))
+  (with-eval-after-load 'fringe
+    (set-fringe-style '(8 . 13)))
 
   ;; Better fringe bitmaps
   (define-fringe-bitmap '+flymake-bitmap-arrow
