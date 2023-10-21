@@ -10,10 +10,13 @@ on:
 
 jobs:
   ci-linux:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
         emacs_version:
           - 28.2
           - 29.1
@@ -24,6 +27,7 @@ jobs:
           version: ${{ matrix.emacs_version }}
       # Install dependencies for vterm...
       - name: Install dependency needed for some Emacs packages
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake tree
