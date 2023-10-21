@@ -10,13 +10,10 @@ on:
 
 jobs:
   ci-linux:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
         emacs_version:
           - 28.2
           - 29.1
@@ -26,8 +23,7 @@ jobs:
         with:
           version: ${{ matrix.emacs_version }}
       # Install dependencies for vterm...
-      - name: Install dependency needed for some Emacs packages
-        if: ${{ matrix.os == 'ubuntu-latest' }}
+      - name: Install dependency needed for some Emacs packages (Ubuntu)
         run: |
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake tree
@@ -43,16 +39,14 @@ jobs:
           mkdir ../.minemacs.d/
           cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           echo "Running Emacs with MinEmacs configuration"
-          if RUN_DATA=$(MINEMACS_VERBOSE=1 MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1); then
+          if MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 | tee /tmp/minemacs-output; then
             echo "Emacs exited successfully"
           else
             echo "Emacs exited with non-zero code $?"
           fi
-          echo "Emacs complete output"
-          echo "$RUN_DATA"
-          WARNINGS=$(echo "$RUN_DATA" | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
-          LOAD_ERRORS=$(echo "$RUN_DATA" | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
-          ELISP_ERRORS=$(echo "$RUN_DATA" | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
+          WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
+          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          ELISP_ERRORS=$(cat /tmp/minemacs-output | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
           echo -e "# MinEmacs report ($EMACS_VERSION)\n" >> $GITHUB_STEP_SUMMARY
           if [[ ! -z "$LOAD_ERRORS" ]]; then
             echo -e "## Loading errors\n$LOAD_ERRORS\n" >> $GITHUB_STEP_SUMMARY
@@ -64,3 +58,59 @@ jobs:
             echo -e "## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           fi
           if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]]; then exit 1; fi
+
+  ci-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Emacs (MacOS)
+        run: |
+          brew install emacs
+      - name: Show Emacs version
+        run: |
+          EMACS_VERSION=$(emacs --version)
+          echo $EMACS_VERSION
+          echo "EMACS_VERSION=$(echo $EMACS_VERSION | head -n1 | sed -E 's/GNU Emacs ([^ ]*).*/\1/')" >> "$GITHUB_ENV"
+      - name: Running Emacs
+        run: |
+          ln -s "$(pwd)" "../.emacs.d"
+          echo "Enabling all MinEmacs modules"
+          mkdir ../.minemacs.d/
+          cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
+          echo "Running Emacs with MinEmacs configuration"
+          if MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 | tee /tmp/minemacs-output; then
+            echo "Emacs exited successfully"
+          else
+            echo "Emacs exited with non-zero code $?"
+          fi
+          WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
+          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          ELISP_ERRORS=$(cat /tmp/minemacs-output | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
+          echo -e "# MinEmacs report ($EMACS_VERSION)\n" >> $GITHUB_STEP_SUMMARY
+          if [[ ! -z "$LOAD_ERRORS" ]]; then
+            echo -e "## Loading errors\n$LOAD_ERRORS\n" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ! -z "$ELISP_ERRORS" ]]; then
+            echo -e "## Emacs Lisp errors\n$ELISP_ERRORS\n" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ! -z "$WARNINGS" ]]; then
+            echo -e "## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]]; then exit 1; fi
+
+  ci-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Emacs (Windows)
+        run: |
+          choco install emacs
+      - name: Show Emacs version
+        run: |
+          emacs --version
+      - name: Running Emacs
+        run: |
+          $env:HOME = "D:\a\minemacs\"
+          $env:MINEMACS_VERBOSE = 1
+          $env:MINEMACS_CI = 1
+          emacs --no-window-system --batch --script init.el
