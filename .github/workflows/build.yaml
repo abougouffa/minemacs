@@ -4,9 +4,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-  # run every month just in case (packages may have been updated and cause errors on various variables etc.)
+  # Run weekly
   schedule:
-    - cron: '0 10 1 * *'
+    - cron: "0 0 * * 0"
 
 jobs:
   build-linux:
@@ -33,6 +33,9 @@ jobs:
       - name: Running Emacs
         run: |
           ln -s "$(pwd)" "../.emacs.d"
+          mkdir ../.minemacs.d/
+          cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
+          export MINEMACS_CI=1
           RUN_DATA=$(HOME=$GITHUB_WORKSPACE/.. emacs --no-window-system --batch --script init.el 2>&1)
           echo "$RUN_DATA"
           WARNINGS=$(echo "$RUN_DATA" | sed '{/Warning/N;s/\n//;}' |  grep Warning | sed -E 's/^(.*\.el)/- \*\*\1\*\*/')
