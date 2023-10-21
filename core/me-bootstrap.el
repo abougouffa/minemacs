@@ -53,19 +53,15 @@
 
 ;;;###autoload
 (defun +straight-prune-build-cache ()
-  (let* ((straight-dir (file-name-concat straight-base-dir "straight/"))
-         (default-directory straight-dir)
-         (builds (seq-filter
-                  (lambda (name)
-                    (not (member name (list straight-build-dir
-                                            (concat straight-build-dir "-cache.el")
-                                            "versions"
-                                            "repos"))))
-                  (directory-files straight-dir nil "[^.][^.]?$"))))
-    (dolist (file builds)
-      (if (file-directory-p file)
-          (delete-directory file 'recursive 'trash)
-        (delete-file file 'trash)))))
+  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
+    (mapc #'+delete-file-or-directory
+          (seq-filter
+           (lambda (name)
+             (not (member name (list straight-build-dir
+                                     (concat straight-build-dir "-cache.el")
+                                     "versions"
+                                     "repos"))))
+           (directory-files default-directory nil "[^.][^.]?$")))))
 
 
 (provide 'me-bootstrap)

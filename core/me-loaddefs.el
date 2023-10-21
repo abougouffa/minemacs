@@ -176,6 +176,10 @@ If PATH is not specified, default to the current buffer's file.
 If FORCE-P, delete without confirmation.
 
 (fn &optional PATH FORCE-P)" t)
+(autoload '+delete-file-or-directory "../elisp/+io" "\
+Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'.
+
+(fn FILE-OR-DIRECTORY &optional TRASH RECURSIVE)")
 (autoload '+move-this-file "../elisp/+io" "\
 Move current buffer's file to NEW-PATH.
 

@@ -87,6 +87,13 @@ If FORCE-P, delete without confirmation."
           (error "Failed to delete %S" short-path))))))
 
 ;;;###autoload
+(defun +delete-file-or-directory (file-or-directory &optional trash recursive)
+  "Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'."
+  (if (file-directory-p file-or-directory)
+      (delete-directory file-or-directory recursive trash)
+    (delete-file file-or-directory trash)))
+
+;;;###autoload
 (defun +move-this-file (new-path &optional force-p)
   "Move current buffer's file to NEW-PATH.
 
