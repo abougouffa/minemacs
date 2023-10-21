@@ -259,6 +259,16 @@ or file path may exist now."
   (defun +show-trailing-whitespace-h ()
     (setq-local show-trailing-whitespace t)))
 
+;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
+;; sub-directory
+(with-eval-after-load 'x-win
+  (advice-add
+   #'emacs-session-filename :filter-return
+   (defun +emacs-session-filename--in-subdir-a (session-filename)
+     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+     (concat (+directory-ensure minemacs-local-dir "x-win/")
+             (file-name-nondirectory session-filename)))))
+
 ;; When MinEmacs is running in an asynchronous Org export context, there is no
 ;; need to enable these modes. So we load them only if we haven't been launched
 ;; through the `me-org-export-async-init' file.

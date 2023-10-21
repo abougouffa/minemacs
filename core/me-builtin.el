@@ -1050,18 +1050,6 @@
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 
-(use-package x-win
-  :straight (:type built-in)
-  :config
-  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in
-  ;; a sub-directory
-  (advice-add
-   #'emacs-session-filename :filter-return
-   (defun +emacs-session-filename--in-subdir-a (session-filename)
-     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
-     (concat (+directory-ensure minemacs-local-dir "x-win/")
-             (file-name-nondirectory session-filename)))))
-
 (use-package term
   :straight (:type built-in)
   :config
