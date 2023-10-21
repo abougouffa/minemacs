@@ -31,7 +31,7 @@ jobs:
         run: |
           EMACS_VERSION=$(emacs --version)
           echo $EMACS_VERSION
-          echo "EMACS_VERSION=$(echo $EMACS_VERSION | head -n1 | sed -E 's/GNU Emacs ([^ ]*)/\1/')" >> "$GITHUB_ENV"
+          echo "EMACS_VERSION=$(echo $EMACS_VERSION | head -n1 | sed -E 's/GNU Emacs ([^ ]*).*/\1/')" >> "$GITHUB_ENV"
       - name: Running Emacs
         run: |
           ln -s "$(pwd)" "../.emacs.d"
