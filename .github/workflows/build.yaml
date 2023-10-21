@@ -12,6 +12,7 @@ jobs:
   ci-linux:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         emacs_version:
           - 28.2
