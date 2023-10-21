@@ -16,8 +16,8 @@ jobs:
       - uses: purcell/setup-emacs@master
         with:
           version: 29.1
-      # TODO: this is ugly and only needed for vterm to succeed in the pipeline...
-      - name: Install dependency needed for some Emacs packages
+      # Install dependencies for vterm...
+      - name: Install system dependency needed for some Emacs packages
         run: |
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake
@@ -28,6 +28,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libtool-bin cmake tree
       - name: Show the workspace
-        run: tree
+        run: |
+          echo "Current work directory: $(pwd)"
+          echo "Content"
+          tree
       - name: Running Emacs
-        run: MINEMACS_DEBUG=1 emacs
+        run: MINEMACS_DEBUG=1 emacs -nw
