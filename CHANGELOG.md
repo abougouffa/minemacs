@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.7.1](https://github.com/abougouffa/minemacs/compare/v1.7.0..v1.7.1) - 2023-10-21
+#### Bug Fixes
+- **(use-package)** better checking for disabled packages - ([71b2ad6](https://github.com/abougouffa/minemacs/commit/71b2ad66e189434f8c459ad67025c3014df6b0f5)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** better reporting - ([db7606a](https://github.com/abougouffa/minemacs/commit/db7606a317ebfb9729de7652c7625c86fb4a8c85)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** fix failure checking - ([3eec9f1](https://github.com/abougouffa/minemacs/commit/3eec9f1ceac2c4efe006b7d4f8fded2993acfcf3)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** fix Emacs version extraction regexp - ([df45156](https://github.com/abougouffa/minemacs/commit/df45156b7aabd2c8f2640416ea774e93d327fa6e)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** disable `fail-fast` strategy - ([fe90ae9](https://github.com/abougouffa/minemacs/commit/fe90ae940e9a0c7f1627c377c26c5bd7a10c3946)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** better reporting - ([64b6f26](https://github.com/abougouffa/minemacs/commit/64b6f264da3587ca6a0c424ba3a9ea363d6ff10f)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** enable Emacs 28 & 29 + better reporting - ([8e53daf](https://github.com/abougouffa/minemacs/commit/8e53dafde1a0a88fb802e19927890c96d60aa145)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** better report generation - ([516ec07](https://github.com/abougouffa/minemacs/commit/516ec07e729ad8aaffcf03e9081d85f05e7c39eb)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** better report generation - ([fc610e5](https://github.com/abougouffa/minemacs/commit/fc610e58fa93fd640ff11c28981562d35e70ad8a)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- better conditional loading - ([b27a088](https://github.com/abougouffa/minemacs/commit/b27a088b57ec22909555d95cb4467266a6ad1a87)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(plantuml)** remove unneeded exec mode tweak - ([9e549f9](https://github.com/abougouffa/minemacs/commit/9e549f9bbbb870a36f9bc6e180b9e93baf1a3cdb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.7.0](https://github.com/abougouffa/minemacs/compare/v1.6.1..v1.7.0) - 2023-10-21
 #### Bug Fixes
 - **(blamer)** edge case when launching Emacs from tty - ([95b52ae](https://github.com/abougouffa/minemacs/commit/95b52ae287c20ad259be152db2645ef842b0c3bd)) - [@abougouffa](https://github.com/abougouffa)
