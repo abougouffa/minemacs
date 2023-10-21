@@ -264,8 +264,10 @@
    (+info! "Trying to clean outdated native compile cache")
    ;; Delete outdated natively compiled files when Emacs become idle
    (+shutup! (native-compile-prune-cache)))
- (+shutup! (+straight-prune-build-cache)))
-
+ (+info! "Trying to clean outdated straight build cache")
+ (+shutup! (+straight-prune-build-cache))
+ (+info! "Trying to clean MinEmacs' root directory")
+ (+shutup! (+minemacs-root-dir-cleanup)))
 
 (+log! "Loaded init.el")
 

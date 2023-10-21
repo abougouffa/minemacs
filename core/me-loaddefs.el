@@ -247,6 +247,7 @@ If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process.
 
 (fn NAME &optional FORCE-P)")
+(autoload '+minemacs-root-dir-cleanup "../elisp/+io")
 (register-definition-prefixes "../elisp/+io" '("+html2pdf-" "+lock--" "+save-as-pdf-filename"))
 
 

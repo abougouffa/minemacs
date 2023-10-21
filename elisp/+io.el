@@ -338,5 +338,11 @@ current process."
     (delete-file (+lock--file name))
     t))
 
+;;;###autoload
+(defun +minemacs-root-dir-cleanup ()
+  (let ((default-directory minemacs-root-dir))
+    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
+          (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list") eol))))))
+
 
 ;;; +io.el ends here
