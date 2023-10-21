@@ -54,7 +54,10 @@
 ;;;###autoload
 (defun +straight-prune-build-cache ()
   (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    (mapc #'+delete-file-or-directory
+    ;; Prune the build cache and build directory.
+    (straight-prune-build)
+    ;; Prune old build directories
+    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
           (seq-filter
            (lambda (name)
              (not (member name (list straight-build-dir
