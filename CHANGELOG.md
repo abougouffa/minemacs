@@ -2,6 +2,47 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v1.7.0](https://github.com/abougouffa/minemacs/compare/v1.6.1..v1.7.0) - 2023-10-21
+#### Bug Fixes
+- **(blamer)** edge case when launching Emacs from tty - ([95b52ae](https://github.com/abougouffa/minemacs/commit/95b52ae287c20ad259be152db2645ef842b0c3bd)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** check for `fringe` before using `set-fringe-style` - ([9a34479](https://github.com/abougouffa/minemacs/commit/9a34479a47fa022e28f68ed9c74c165f1d14efe4)) - [@abougouffa](https://github.com/abougouffa)
+- **(dockerfile-mode)** disable when Emacs have builtin tree-sitter - ([9919244](https://github.com/abougouffa/minemacs/commit/991924470e63e90d04c1a65e32d8d0b52a9c27c1)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** correctly call `+delete-file-or-directory` - ([ebb8ed5](https://github.com/abougouffa/minemacs/commit/ebb8ed54ff95796299cf73d0c192050f8cacc522)) - [@abougouffa](https://github.com/abougouffa)
+- **(tabspaces)** pin to a stable commit - ([bbc8bce](https://github.com/abougouffa/minemacs/commit/bbc8bce5a478d4113670e4149605f72c4ceab52a)) - [@abougouffa](https://github.com/abougouffa)
+- fix several deferred packages issues - ([60145fd](https://github.com/abougouffa/minemacs/commit/60145fd061fc22516f874b75aff97bb444792825)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** add workflow status badge - ([792a5f5](https://github.com/abougouffa/minemacs/commit/792a5f50ba4982ebaf42d46314ef73ca5fff4823)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** add `awk-ts-mode` - ([66657f7](https://github.com/abougouffa/minemacs/commit/66657f7fb73d54b574d970dcff87b33a16c9d8cc)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** minor tweaks for CI - ([c62a1cf](https://github.com/abougouffa/minemacs/commit/c62a1cf724ee668746432e9847761d54b75c0116)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** better management of output data - ([58456af](https://github.com/abougouffa/minemacs/commit/58456afbb96e6108bfb73e124a9f3c46c6bc1ad2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** better CI run - ([10594e0](https://github.com/abougouffa/minemacs/commit/10594e0a4404350ff097e508f2ec3edb58fd38ea)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** run MinEmacs directly in CI - ([f2bc02a](https://github.com/abougouffa/minemacs/commit/f2bc02a9a7ae2d1597ea0069da09d38a1e937188)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** run MinEmacs in CI mode, with all modules - ([40109b3](https://github.com/abougouffa/minemacs/commit/40109b3e15b33c92edb5db2f0c4a29b5575fb9de)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** WIP - ([ec6d024](https://github.com/abougouffa/minemacs/commit/ec6d024cd32f02e711e5fe6f057c1e6af6f99684)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** WIP - ([8bab9ea](https://github.com/abougouffa/minemacs/commit/8bab9ea3257fc22cec71cfea2151f46dc561b0e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** WIP build CI - ([35ea7da](https://github.com/abougouffa/minemacs/commit/35ea7da3ebe8093d0dad800265f3812683b3d5a9)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- edit the `non-executable-script.sh` example - ([a1be1b5](https://github.com/abougouffa/minemacs/commit/a1be1b5a35e361d4e24c4be9cedded0a112976f0)) - [@abougouffa](https://github.com/abougouffa)
+- add an example for `non-executable-script.sh` - ([e316607](https://github.com/abougouffa/minemacs/commit/e3166079b9cded34ee59ab5d0981d12d8ae273e0)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move advice from `me-builtin` to `me-defaults` - ([d285a56](https://github.com/abougouffa/minemacs/commit/d285a5654be4fe4f9cba47c30c3c0bc2080eaad5)) - [@abougouffa](https://github.com/abougouffa)
+- extract reusable `+delete-file-or-directory` function, refactor code - ([597df98](https://github.com/abougouffa/minemacs/commit/597df98bdaa09192d616481c90b28fc0a02527fe)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** load all packages when MinEmacs is invoked in CI context - ([09bc0be](https://github.com/abougouffa/minemacs/commit/09bc0be1a096c79d7d24d8c14e637291cde4fb5f)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** auto-cleanup MinEmacs directory (`eln-cache`, ...) - ([a8abb44](https://github.com/abougouffa/minemacs/commit/a8abb443c44ca1790d250141ec3b7e2c3a96bf9b)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** cleanup zombie projects on exit - ([fd07d8b](https://github.com/abougouffa/minemacs/commit/fd07d8b956e7bcebbaac7fdc086db728fe9b9e2a)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** refactor and rename straight cache cleaning function - ([f06b06a](https://github.com/abougouffa/minemacs/commit/f06b06aaddb6a53d70925db4c5345dfa436eea02)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** cleanup old byte compiled Elisp - ([733c89b](https://github.com/abougouffa/minemacs/commit/733c89be2daa1f4e76ce37ada50774b9084bf609)) - [@abougouffa](https://github.com/abougouffa)
+- **(tabspaces)** remove the explicit pin as upstream gets fixed - ([b423753](https://github.com/abougouffa/minemacs/commit/b4237531e0b6de99a0528059bafc5c2519399c54)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** add support for AWK - ([3ad602e](https://github.com/abougouffa/minemacs/commit/3ad602e37b563dd2bd4ac64c4a22d52990934f5c)) - [@abougouffa](https://github.com/abougouffa)
+- make EAF obsolete - ([8c4ff6f](https://github.com/abougouffa/minemacs/commit/8c4ff6fa743c76febc5bf9bfd50c73d283c1910d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5971a8a](https://github.com/abougouffa/minemacs/commit/5971a8ab87ad8862ffdc0ce9ee9da4502e7ebc30)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([183ebd9](https://github.com/abougouffa/minemacs/commit/183ebd90bf890c644e26c33797f41c4075391f9e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v1.6.1](https://github.com/abougouffa/minemacs/compare/v1.6.0..v1.6.1) - 2023-10-16
 #### Bug Fixes
 - **(+writing-mode)** fix enable/disable hooks - ([7f21ba9](https://github.com/abougouffa/minemacs/commit/7f21ba979410f570240265637e95794f8799197c)) - [@abougouffa](https://github.com/abougouffa)
