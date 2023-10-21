@@ -85,6 +85,6 @@
     (eaf-open-browser (browse-url-encode-url url) args)))
 
 
-(provide 'me-eaf)
+(provide 'obsolete/me-eaf)
 
 ;;; me-eaf.el ends here

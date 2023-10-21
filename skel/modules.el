@@ -38,7 +38,6 @@
         me-org            ; Org-mode for life (org-contrib, org-modern, org-appear, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
         me-notes          ; Notes & Zettelkasten (denote, ...)
-        me-eaf            ; EAF apps (browser, jupyter, file-sender, ...)
         ;; me-email       ; Email (mu4e, mu4e-alert, org-msg, ...)
         ;; me-rss         ; News feed (elfeed, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
@@ -80,11 +79,12 @@
 ;; (setq minemacs-modules
 ;;       (append
 ;;        minemacs-modules
-;;        '(obsolete/me-yasnippet     ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
-;;          obsolete/me-tree-sitter   ; Tree-sitter module configuration (this module is automatically activated for Emacs 28 or 29+ built without treesitter support)
+;;        '(obsolete/me-cov           ; Show code coverage results (cov, ...)
+;;          obsolete/me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
+;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-org-roam      ; Org roam configuration (org-roam, consult-org-roam, ...)
-;;          obsolete/me-cov           ; Show code coverage results (cov, ...)
-;;          obsolete/me-writeroom     ; Replacement for `+writing-mode' (writeroom-mode, ...)
 ;;          obsolete/me-projectile    ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
+;;          obsolete/me-tree-sitter   ; Tree-sitter module configuration (this module is automatically activated for Emacs 28 or 29+ built without treesitter support)
 ;;          obsolete/me-unicode-fonts ; Better Unicode management mainly for non-latin fonts
-;;          obsolete/me-flycheck)))   ; Static checkers (flycheck, ...)
+;;          obsolete/me-writeroom     ; Replacement for `+writing-mode' (writeroom-mode, ...)
+;;          obsolete/me-yasnippet)))  ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)

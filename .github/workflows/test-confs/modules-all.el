@@ -29,7 +29,6 @@
         me-org
         me-extra
         me-notes
-        me-eaf
         me-email
         me-rss
         me-lifestyle
