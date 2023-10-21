@@ -8,45 +8,51 @@
 
 ;;; Code:
 
-(if (not (+emacs-features-p 'tree-sitter))
-    ;; Use the external `tree-sitter' module
-    (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
-  (use-package treesit-auto
-    :straight (:host github :repo "renzmann/treesit-auto")
-    :hook (minemacs-after-startup . global-treesit-auto-mode)
-    :hook (minemacs-build-functions . treesit-auto-install-all)
-    :custom
-    (treesit-auto-install 'prompt)
-    :config
-    (push (make-treesit-auto-recipe
-           :lang 'awk
-           :ts-mode 'awk-ts-mode
-           :remap 'awk-mode
-           :url "https://github.com/Beaglefoot/tree-sitter-awk"
-           :ext "\\.awk\\'")
-          treesit-auto-recipe-list)
-    ;; Install all languages when calling `treesit-auto-install-all'
-    (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+(unless (+emacs-features-p 'tree-sitter)
+  ;; Use the external `tree-sitter' module
+  (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
+  (+load minemacs-modules-dir "obsolete/me-cmake.el"))
 
-  ;; To avoid installing `tree-sitter' as the used `ts-fold' fork uses the
-  ;; built-in `treesit'
-  (push 'tree-sitter straight-built-in-pseudo-packages)
+(use-package treesit-auto
+  :straight (:host github :repo "renzmann/treesit-auto")
+  :when (+emacs-features-p 'tree-sitter)
+  :hook (minemacs-after-startup . global-treesit-auto-mode)
+  :hook (minemacs-build-functions . treesit-auto-install-all)
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (push (make-treesit-auto-recipe
+         :lang 'awk
+         :ts-mode 'awk-ts-mode
+         :remap 'awk-mode
+         :url "https://github.com/Beaglefoot/tree-sitter-awk"
+         :ext "\\.awk\\'")
+        treesit-auto-recipe-list)
+  ;; Install all languages when calling `treesit-auto-install-all'
+  (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
-  (use-package ts-fold
-    :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
-    :after treesit treesit-auto
-    :demand t
-    :init
-    (global-ts-fold-mode 1))
+;; To avoid installing `tree-sitter' as the used `ts-fold' fork uses the
+;; built-in `treesit'
+(push 'tree-sitter straight-built-in-pseudo-packages)
 
-  (use-package awk-ts-mode
-    :straight t)
+(use-package ts-fold
+  :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
+  :when (+emacs-features-p 'tree-sitter)
+  :after treesit treesit-auto
+  :demand t
+  :init
+  (global-ts-fold-mode 1))
 
-  (use-package combobulate
-    :straight t
-    :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
-    :custom
-    (combobulate-key-prefix "C-c o")))
+(use-package awk-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter))
+
+(use-package combobulate
+  :straight t
+  :when (+emacs-features-p 'tree-sitter)
+  :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
+  :custom
+  (combobulate-key-prefix "C-c o"))
 
 (use-package consult-eglot
   :straight t
@@ -111,9 +117,6 @@
 (use-package vimrc-mode
   :straight t
   :mode "\\.vim\\(rc\\)?\\'")
-
-(unless (+emacs-features-p 'tree-sitter)
-  (+load minemacs-modules-dir "obsolete/me-cmake.el"))
 
 (use-package rust-mode
   :straight t

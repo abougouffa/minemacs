@@ -174,11 +174,9 @@
   :init
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
-(defconst +repo-available-p (executable-find "repo"))
-
 (use-package repo
   :straight t
-  :when +repo-available-p
+  :when (executable-find "repo")
   :init
   (+map! "gr" #'repo-status))
 

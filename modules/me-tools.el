@@ -125,11 +125,9 @@
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
 
-(defconst +bitwarden-available-p (executable-find "bw"))
-
 (use-package bitwarden
   :straight (:host github :repo "seanfarley/emacs-bitwarden")
-  :when +bitwarden-available-p
+  :when (executable-find "bw")
   :custom
   (bitwarden-automatic-unlock
    (lambda ()
@@ -145,6 +143,7 @@
 
 (use-package chezmoi
   :straight t
+  :when (executable-find "chezmoi")
   :commands
   chezmoi-find chezmoi-write chezmoi-diff chezmoi-ediff
   chezmoi-open-other chezmoi-sync-files chezmoi-magit-status

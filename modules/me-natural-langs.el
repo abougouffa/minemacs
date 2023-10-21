@@ -8,11 +8,9 @@
 
 ;;; Code:
 
-(defconst +aspell-available-p (executable-find "aspell"))
-
 (use-package spell-fu
   :straight t
-  :when +aspell-available-p
+  :when (executable-find "aspell")
   :hook (text-mode . spell-fu-mode)
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
@@ -166,11 +164,9 @@
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 
-(defconst +sdcv-available-p (executable-find "sdcv"))
-
 (use-package lexic
   :straight t
-  :when +sdcv-available-p
+  :when (executable-find "sdcv")
   :init
   (+map! :infix "s"
     "l" #'lexic-search-word-at-point

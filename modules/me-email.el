@@ -108,6 +108,7 @@
   (mu4e-icalendar-setup))
 
 (use-package me-mu4e-ui
+  :when +mu4e-available-p
   :after mu4e
   :demand t
   :config
@@ -116,6 +117,7 @@
   (+mu4e-ui-modeline-tweaks))
 
 (use-package me-mu4e-gmail
+  :when +mu4e-available-p
   :after mu4e
   :demand t
   :config
@@ -124,6 +126,7 @@
   (+mu4e-gmail-setup))
 
 (use-package me-mu4e-extras
+  :when +mu4e-available-p
   :after mu4e
   :demand t
   :config
@@ -142,6 +145,7 @@
 
 (use-package org-msg
   :straight t
+  :when +mu4e-available-p
   :after mu4e
   :demand t
   :custom
@@ -180,6 +184,7 @@
 
 (use-package org-mime
   :straight t
+  :when +mu4e-available-p
   :after mu4e org
   :demand t
   :config
@@ -192,6 +197,7 @@
 
 (use-package mu4e-alert
   :straight t
+  :when +mu4e-available-p
   :after mu4e
   :demand t
   :custom

@@ -31,11 +31,9 @@
   :after tempel
   :demand t)
 
-(unless (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
-  (push 'ligature minemacs-disabled-packages))
-
 (use-package ligature
   :straight t
+  :when (and (>= emacs-major-version 28) (+emacs-features-p 'harfbuzz 'cairo))
   :after minemacs-loaded
   :hook (prog-mode . ligature-mode)
   :config
@@ -95,13 +93,13 @@
   :after smartparens
   :demand t)
 
-(when (+emacs-features-p 'tree-sitter)
-  (use-package expreg
-    :straight (:host github :repo "casouri/expreg")
-    :init
-    (+vmap!
-      "v" #'expreg-expand
-      "q" #'expreg-contract)))
+(use-package expreg
+  :straight (:host github :repo "casouri/expreg")
+  :when (+emacs-features-p 'tree-sitter)
+  :init
+  (+vmap!
+    "v" #'expreg-expand
+    "q" #'expreg-contract))
 
 ;; Fallback to `expand-region' if `expreg' cannot be used
 (unless (+emacs-features-p 'tree-sitter)
