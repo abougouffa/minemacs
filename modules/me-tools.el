@@ -98,7 +98,7 @@
   :straight t)
 
 (use-package systemd
-  :straight t)
+  :straight (systemd :build (:not compile)))
 
 (use-package pkgbuild-mode
   :straight t

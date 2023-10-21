@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package realgud
-  :straight t
+  :straight (realgud :build (:not compile))
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
                           c-ts-mode-map c++-ts-mode-map python-ts-mode-map

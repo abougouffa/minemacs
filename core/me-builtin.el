@@ -1113,7 +1113,7 @@
   ;; Enable Drag-and-Drop of regions from Emacs to external programs
   (mouse-drag-and-drop-region-cross-program t))
 
-(use-package wmouse
+(use-package mwheel
   :straight (:type built-in)
   :custom
   ;; Make mouse scroll a little faster
