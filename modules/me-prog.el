@@ -38,6 +38,9 @@
 (use-package ts-fold
   :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
   :when (+emacs-features-p 'tree-sitter)
+  ;; TEMP: Normally, we don't have to hook it explicitly, but it seems that
+  ;; `global-ts-fold-mode' isn't working correctly on `yaml-ts-mode'
+  :hook (yaml-ts-mode . ts-fold-mode)
   :after treesit treesit-auto
   :demand t
   :init
