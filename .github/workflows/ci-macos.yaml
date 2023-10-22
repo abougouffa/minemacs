@@ -26,7 +26,7 @@ jobs:
           EMACS_VERSION=$(emacs --version)
           echo $EMACS_VERSION
           echo "EMACS_VERSION=$(echo $EMACS_VERSION | head -n1 | sed -E 's/GNU Emacs ([^ ]*).*/\1/')" >> "$GITHUB_ENV"
-      - name: Running Emacs
+      - name: Running MinEmacs with all modules
         run: |
           ln -s "$(pwd)" "../.emacs.d"
           echo "Enabling all MinEmacs modules"

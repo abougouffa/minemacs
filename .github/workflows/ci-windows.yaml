@@ -19,7 +19,7 @@ jobs:
       - name: Show Emacs version
         run: |
           emacs --version
-      - name: Running Emacs
+      - name: Running MinEmacs with all modules
         run: |
           $env:HOME = "D:\a\minemacs\"
           $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"

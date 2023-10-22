@@ -26,13 +26,13 @@ jobs:
       - name: Install dependency needed for some Emacs packages (Ubuntu)
         run: |
           sudo apt-get update
-          sudo apt-get install -y libtool-bin cmake tree
+          sudo apt-get install -y libtool-bin cmake
       - name: Show Emacs version
         run: |
           EMACS_VERSION=$(emacs --version)
           echo $EMACS_VERSION
           echo "EMACS_VERSION=$(echo $EMACS_VERSION | head -n1 | sed -E 's/GNU Emacs ([^ ]*).*/\1/')" >> "$GITHUB_ENV"
-      - name: Running Emacs
+      - name: Running MinEmacs with all modules
         run: |
           ln -s "$(pwd)" "../.emacs.d"
           echo "Enabling all MinEmacs modules"
