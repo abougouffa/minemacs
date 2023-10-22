@@ -38,10 +38,12 @@ jobs:
           echo "Enabling all MinEmacs modules"
           echo "Running Emacs with MinEmacs configuration"
           MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
-          if make ci | tee /tmp/minemacs-output; then
+          make ci | tee /tmp/minemacs-output
+          EMACS_EXIT_CODE=$?
+          if [[ $EMACS_EXIT_CODE == 0 ]]; then
             echo "Emacs exited successfully"
           else
-            echo "Emacs exited with non-zero code $?"
+            echo "Emacs exited with non-zero code ${EMACS_EXIT_CODE}"
           fi
           WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
           LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot (open )?load)|(Not found)" | sed 's/^/- /')
@@ -56,7 +58,7 @@ jobs:
           if [[ ! -z "$WARNINGS" ]]; then
             echo -e "## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           fi
-          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]]; then exit 1; fi
+          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]] || [[ ! -z "$EMACS_EXIT_CODE" ]]; then exit 1; fi
 
   ci-macos:
     runs-on: macos-latest
@@ -76,10 +78,12 @@ jobs:
           echo "Enabling all MinEmacs modules"
           echo "Running Emacs with MinEmacs configuration"
           MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
-          if make ci | tee /tmp/minemacs-output; then
+          make ci | tee /tmp/minemacs-output
+          EMACS_EXIT_CODE=$?
+          if [[ -z "$EMACS_EXIT_CODE" ]]; then
             echo "Emacs exited successfully"
           else
-            echo "Emacs exited with non-zero code $?"
+            echo "Emacs exited with non-zero code ${EMACS_EXIT_CODE}"
           fi
           WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
           LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot (open )?load)|(Not found)" | sed 's/^/- /')
@@ -94,7 +98,7 @@ jobs:
           if [[ ! -z "$WARNINGS" ]]; then
             echo -e "## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           fi
-          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]]; then exit 1; fi
+          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]] || [[ ! -z "$EMACS_EXIT_CODE" ]]; then exit 1; fi
 
   ci-windows:
     runs-on: windows-latest
