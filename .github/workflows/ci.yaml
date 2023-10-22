@@ -44,7 +44,7 @@ jobs:
             echo "Emacs exited with non-zero code $?"
           fi
           WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
-          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot (open )?load)|(Not found)" | sed 's/^/- /')
           ELISP_ERRORS=$(cat /tmp/minemacs-output | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
           echo -e "# MinEmacs report ($EMACS_VERSION)\n" >> $GITHUB_STEP_SUMMARY
           if [[ ! -z "$LOAD_ERRORS" ]]; then
@@ -82,7 +82,7 @@ jobs:
             echo "Emacs exited with non-zero code $?"
           fi
           WARNINGS=$(cat /tmp/minemacs-output | grep Warning | sed -E 's/^(.*\.el): Warning/- \*\*\1\*\*/' | sed -E 's/^Warning ([^:]*)/- \*\*\1\*\*/')
-          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot load)|(Not found)" | sed 's/^/- /')
+          LOAD_ERRORS=$(cat /tmp/minemacs-output | grep -E "(Cannot (open )?load)|(Not found)" | sed 's/^/- /')
           ELISP_ERRORS=$(cat /tmp/minemacs-output | awk -F': ' '/^Debugger entered--Lisp error: / { print "- **" $1 "**: `" $2 "`"; print "```elisp"; while (getline && match($0, "^[[:space:]]{2}")) print $0; print "```"}' )
           echo -e "# MinEmacs report ($EMACS_VERSION)\n" >> $GITHUB_STEP_SUMMARY
           if [[ ! -z "$LOAD_ERRORS" ]]; then
