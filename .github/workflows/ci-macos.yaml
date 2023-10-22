@@ -16,7 +16,6 @@ jobs:
       matrix:
         architecture:
           - macos-latest
-          - macos-latest-xlarge # M1
     steps:
       - uses: actions/checkout@v4
       - name: Setup Emacs (MacOS)
