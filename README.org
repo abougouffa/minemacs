@@ -1,6 +1,8 @@
 * MinEmacs
 
-[[https://github.com/abougouffa/minemacs/actions/workflows/ci.yaml][https://github.com/abougouffa/minemacs/actions/workflows/ci.yaml/badge.svg]]
+[[https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml][https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg]]
+[[https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml][https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg]]
+[[https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml][https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg]]
 
 *MinEmacs* is a lightweight Emacs configuration framework. The keybinding is
 inspired by Doom Emacs.
@@ -54,10 +56,11 @@ packages.
 
 *** ⚠ Important note
 Please note that I'm using a fresh Emacs 29 built from source on a Manjaro Linux
-system. I have enabled basic [[https://github.com/abougouffa/minemacs/actions/workflows/ci.yaml][Github CI actions]] to automatically test running
-Emacs on Ubuntu Linux (Emacs 28 and 29), MacOS (Emacs 29) and Windows (Emacs
-28). These actions ensure that MinEmacs is "runnable" on these systems, however,
-more testing should be done to validate the configuration on these systems.
+system. I have enabled basic [[https://github.com/abougouffa/minemacs/actions/workflows][Github CI actions]] to automatically test running
+Emacs on [[https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml][Ubuntu Linux (Emacs 28 and 29)]], [[https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml][MacOS (Emacs 29)]] and [[https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml][Windows (Emacs
+28)]]. These actions ensure that MinEmacs is "runnable" with all modules enabled
+on these systems. However, more testing should be done to validate the
+configuration on systems other than Linux.
 
 I'm trying to support at least Emacs 28.2, so [[file:core/me-backports-29.el][I back port some of the new
 functions/macros I use to Emacs 28]]. Furthermore, for Emacs 28 and earlier,

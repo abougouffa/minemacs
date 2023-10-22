@@ -1,0 +1,26 @@
+name: CI Windows
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  # Run weekly
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  ci-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Emacs (Windows)
+        run: |
+          choco install emacs
+      - name: Show Emacs version
+        run: |
+          emacs --version
+      - name: Running Emacs
+        run: |
+          $env:HOME = "D:\a\minemacs\"
+          $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"
+          emacs --no-window-system --batch --script .github\workflows\scripts\ci-init.el
