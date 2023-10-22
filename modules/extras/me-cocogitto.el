@@ -24,12 +24,14 @@ restores it after that."
          (when (yes-or-no-p "Is this version a pre-release? ")
            (read-string "Pre-release version: "))))
   (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
-    (conf-colon-mode)
-    (insert (format "############ Cocogitto bump (%s) ############\n" level))
-    (shell-command "git stash -u" (current-buffer) (current-buffer))
-    (shell-command (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
-                   (current-buffer) (current-buffer))
-    (shell-command "git stash pop" (current-buffer) (current-buffer))))
+    (when-let ((default-directory (vc-root-dir)))
+      (conf-colon-mode)
+      (insert (format "############ Cocogitto bump (%s) ############\n" level))
+      (call-process-shell-command "git stash -u" nil (current-buffer))
+      (call-process-shell-command
+       (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
+       nil (current-buffer))
+      (call-process-shell-command "git stash pop" nil (current-buffer)))))
 
 
 (provide 'me-cocogitto)
