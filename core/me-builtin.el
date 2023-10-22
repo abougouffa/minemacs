@@ -415,7 +415,9 @@
       "--header-insertion-decorators"
       "--header-insertion=iwyu"
       "--pch-storage=memory")
-    "ccls"))
+    "ccls")
+
+  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server"))
 
 (use-package eldoc
   :straight (:type built-in)
