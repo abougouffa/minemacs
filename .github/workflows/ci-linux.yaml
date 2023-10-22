@@ -14,14 +14,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        emacs_version:
+        emacs-version:
           - 28.2
           - 29.1
     steps:
       - uses: actions/checkout@v4
       - uses: purcell/setup-emacs@master
         with:
-          version: ${{ matrix.emacs_version }}
+          version: ${{ matrix.emacs-version }}
       # Install dependencies for vterm...
       - name: Install dependency needed for some Emacs packages (Ubuntu)
         run: |

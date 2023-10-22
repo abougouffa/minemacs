@@ -10,7 +10,13 @@ on:
 
 jobs:
   ci-macos:
-    runs-on: macos-latest
+    runs-on: "${{ matrix.architecture }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture:
+          - macos-latest
+          - macos-latest-xlarge # M1
     steps:
       - uses: actions/checkout@v4
       - name: Setup Emacs (MacOS)
