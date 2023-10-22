@@ -40,7 +40,7 @@ jobs:
           MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
           make ci | tee /tmp/minemacs-output
           EMACS_EXIT_CODE=$?
-          if [[ $EMACS_EXIT_CODE == 0 ]]; then
+          if [[ "$EMACS_EXIT_CODE" == 0 ]]; then
             echo "Emacs exited successfully"
           else
             echo "Emacs exited with non-zero code ${EMACS_EXIT_CODE}"
@@ -58,5 +58,5 @@ jobs:
           if [[ ! -z "$WARNINGS" ]]; then
             echo -e "## Warnings\n$WARNINGS" >> $GITHUB_STEP_SUMMARY
           fi
-          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]] || [[ ! -z "$EMACS_EXIT_CODE" ]]; then exit 1; fi
+          if [[ ! -z "$LOAD_ERRORS" ]] || [[ ! -z "$ELISP_ERRORS" ]] || [[ "$EMACS_EXIT_CODE" != 0 ]]; then exit 1; fi
 
