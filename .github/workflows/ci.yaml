@@ -1,4 +1,4 @@
-name: MinEmacs modules check
+name: CI
 
 on:
   push:
@@ -36,10 +36,9 @@ jobs:
         run: |
           ln -s "$(pwd)" "../.emacs.d"
           echo "Enabling all MinEmacs modules"
-          mkdir ../.minemacs.d/
-          cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           echo "Running Emacs with MinEmacs configuration"
-          if MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 | tee /tmp/minemacs-output; then
+          MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
+          if make ci | tee /tmp/minemacs-output; then
             echo "Emacs exited successfully"
           else
             echo "Emacs exited with non-zero code $?"
@@ -75,10 +74,9 @@ jobs:
         run: |
           ln -s "$(pwd)" "../.emacs.d"
           echo "Enabling all MinEmacs modules"
-          mkdir ../.minemacs.d/
-          cp .github/workflows/test-confs/modules-all.el ../.minemacs.d/modules.el
           echo "Running Emacs with MinEmacs configuration"
-          if MINEMACS_CI=1 HOME=$GITHUB_WORKSPACE/.. emacs -nw --batch --script init.el 2>&1 | tee /tmp/minemacs-output; then
+          MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
+          if make ci | tee /tmp/minemacs-output; then
             echo "Emacs exited successfully"
           else
             echo "Emacs exited with non-zero code $?"
@@ -111,6 +109,5 @@ jobs:
       - name: Running Emacs
         run: |
           $env:HOME = "D:\a\minemacs\"
-          $env:MINEMACS_VERBOSE = 1
-          $env:MINEMACS_CI = 1
-          emacs --no-window-system --batch --script init.el
+          $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"
+          emacs --no-window-system --batch --script .github\workflows\scripts\ci-init.el

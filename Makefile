@@ -41,3 +41,6 @@ update:
 
 cloc:
 	cloc --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/
+
+ci:
+	HOME=$(PWD)/.. $(EMACS) -nw --batch --script .github/workflows/test-confs/ci-init.el 2>&1
