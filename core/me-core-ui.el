@@ -55,7 +55,6 @@ Useful for keeping track of the enabled theme."
   :straight t
   :after evil evil-collection
   :demand t
-  :when (not (bound-and-true-p +dashboard-disable))
   :init
   (+map! "oD" #'dashboard-open)
   :custom
@@ -73,7 +72,8 @@ Useful for keeping track of the enabled theme."
   (evil-collection-dashboard-setup)
 
   ;; Avoid openning the dashboard when Emacs starts with an open file.
-  (unless (cl-some #'buffer-file-name (buffer-list))
+  (unless (or (bound-and-true-p +dashboard-disable)
+              (cl-some #'buffer-file-name (buffer-list)))
     (dashboard-open)))
 
 (use-package doom-modeline
