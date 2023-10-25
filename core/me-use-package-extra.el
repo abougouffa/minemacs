@@ -39,7 +39,9 @@
   ;; HACK: This advice around `use-package' checks if a package is disabled in
   ;; `minemacs-disabled-packages' before calling `use-package'. This can come
   ;; handy if the user wants to enable some module while excluding some packages
-  ;; from it.
+  ;; from it. This advice also evaluates `use-package's conditional sections
+  ;; (`:if', `:when' and `:unless') to prevent installing packages with
+  ;; `straight'.
   (advice-add
    'use-package :around
    (defun +use-package--check-if-disabled-a (origfn package &rest args)
