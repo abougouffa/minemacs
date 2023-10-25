@@ -48,7 +48,7 @@
   (let ((filename (file-truename (apply #'concat filename-parts))))
     (if (file-exists-p filename)
         (load filename nil (not minemacs-verbose))
-      (user-error "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
+      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 ;; HACK: Most core and third-party packages depends on the
 ;; `user-emacs-directory' variable to store some cache information and generated
