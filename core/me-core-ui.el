@@ -55,7 +55,7 @@ Useful for keeping track of the enabled theme."
   :straight t
   :after evil evil-collection
   :demand t
-  :when (not (bound-and-true-p +dashboard-disable))
+  :unless (bound-and-true-p +dashboard-disable)
   :init
   (+map! "oD" #'dashboard-open)
   :custom
