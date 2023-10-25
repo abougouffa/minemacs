@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v2.0.2](https://github.com/abougouffa/minemacs/compare/v2.0.1..v2.0.2) - 2023-10-25
+#### Bug Fixes
+- **(cocogitto)** fix the `+cocogitto-bump` command - ([45a4e0a](https://github.com/abougouffa/minemacs/commit/45a4e0aa0acee52f715e3be752860af936a51ab1)) - [@abougouffa](https://github.com/abougouffa)
+- **(cocogitto)** fix change log generation - ([91abc8a](https://github.com/abougouffa/minemacs/commit/91abc8a51fdc5d36a156821f4b70e782d209ae07)) - [@abougouffa](https://github.com/abougouffa)
+- **(dashboard)** adapt to the new `use-package` disabled packages check (#119) - ([a1c959b](https://github.com/abougouffa/minemacs/commit/a1c959be9bc5b53ed5ebaaceb002533ba5be7b4e)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** fix the real cause of #119 - ([00345fe](https://github.com/abougouffa/minemacs/commit/00345feb8b7051a3d97b46321e49472a07fc3a31)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(use-package)** add comment - ([1adbfeb](https://github.com/abougouffa/minemacs/commit/1adbfeb2bbf4140fa797e40c3dbdebf3de10a4ab)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add helper function `+varplist-get` - ([f5f8474](https://github.com/abougouffa/minemacs/commit/f5f847428e251fbff773a1207d50f55b4f2471ba)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** minor refactoring - ([3df04e7](https://github.com/abougouffa/minemacs/commit/3df04e784af1a11cc5be275a5feeda76c525c453)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(dashboard)** the bug was caused by the `use-package` advice - ([1f62efd](https://github.com/abougouffa/minemacs/commit/1f62efd04b95cbdd94a278a711630fc5a47d01f9)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dashboard)** use `:unless` instead of `:when (not ...)` - ([729f656](https://github.com/abougouffa/minemacs/commit/729f65660a57cb34bf23505a11cf467c28d4387c)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** don't fail when trying to load inexistant file in `+load` - ([18a47bd](https://github.com/abougouffa/minemacs/commit/18a47bdf4a5572ac8ff393a520fd163d554d855f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v2.0.1](https://github.com/abougouffa/minemacs/compare/v2.0.0..v2.0.1) - 2023-10-22
 #### Bug Fixes
 - **(evil)** evil repeat error - ([69b2258](https://github.com/abougouffa/minemacs/commit/69b22581e7a7e1391141042de5402438186f1450)) - donneyluck
