@@ -11,6 +11,16 @@
 ;;; === Some plist and alist missing functions ===
 
 ;;;###autoload
+(defun +varplist-get (vplist keyword &optional car-p)
+  "Get KEYWORD's value from variable value length VPLIST.
+Ex: (+varplist-get '(:a 'a :b 'val 'other-val) :b) -> '(val other-val)."
+  (funcall
+   (if car-p #'cadr #'cdr)
+   (cl-loop for element in (memq keyword vplist)
+            until (and (not (eq element keyword)) (keywordp element))
+            collect element)))
+
+;;;###autoload
 (defun +plist-keys (plist)
   "Return the keys of PLIST."
   (let (keys)

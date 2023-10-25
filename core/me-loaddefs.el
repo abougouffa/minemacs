@@ -494,6 +494,11 @@ from backups, not Git.
 
 ;;; Generated autoloads from ../elisp/+primitives.el
 
+(autoload '+varplist-get "../elisp/+primitives" "\
+Get KEYWORD's value from variable value length VPLIST.
+Ex: (+varplist-get '(:a 'a :b 'val 'other-val) :b) -> '(val other-val).
+
+(fn VPLIST KEYWORD &optional CAR-P)")
 (autoload '+plist-keys "../elisp/+primitives" "\
 Return the keys of PLIST.
 
