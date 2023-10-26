@@ -154,10 +154,6 @@
   ;; the fonts, load the theme or play with the scratch buffer.
   (unless (featurep 'me-org-export-async-init)
     (+log! "Applying `minemacs-fonts'.")
-    ;; Load fonts, values are read from `minemacs-fonts' if set in config.el,
-    ;; otherwise, they are read from the default `minemacs-default-fonts'.
-    (+set-fonts)
-
     ;; Initially MinEmacs loads the `doom-one-light' theme, and when
     ;; `minemacs-theme' is set in user configuration, it is loaded here.
     (+load-theme)
@@ -210,9 +206,6 @@
       (when (file-exists-p user-conf-modules)
         (+load user-conf-modules)))))
 
-;; Load fonts early (they are read from the default `minemacs-default-fonts').
-(+set-fonts)
-
 ;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
 ;; This GCMH minimizes GC interference with the activity by using a high GC
@@ -235,7 +228,7 @@
         (when (memq 'me-splash minemacs-core-modules) '(me-splash))
         '(me-bootstrap)
         (when (< emacs-major-version 29) '(me-compat))
-        '(me-builtin me-gc)
+        '(me-builtin me-gc me-fonts)
         minemacs-core-modules)))
 
 ;; Load MinEmacs modules

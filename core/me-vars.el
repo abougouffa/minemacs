@@ -119,16 +119,6 @@ It return a symbol like `x86_64', `aarch64', `armhf', ...")
   "List of symbols representing Emacs' enabled features.
 Compiled from the `system-configuration-features'.")
 
-(defcustom minemacs-fonts nil
-  "Fonts to use within MinEmacs."
-  :group 'minemacs-ui
-  :type '(plist
-          (:font-family string)
-          (:font-size natnum)
-          (:unicode-font-family string)
-          (:variable-pitch-font-family string)
-          (:variable-pitch-font-size natnum)))
-
 (defcustom minemacs-leader-key "SPC"
   "MinEmacs leader key."
   :group 'minemacs-keybinding
@@ -171,10 +161,12 @@ we set on `use-package' in `me-bootstrap'."
   :group 'minemacs-core
   :type 'hook)
 
-(defcustom minemacs-after-set-fonts-hook nil
-  "Runs after setting MinEmacs fonts, runs at the end of `+set-fonts'."
+(defcustom minemacs-after-setup-fonts-hook nil
+  "Runs after setting MinEmacs fonts, runs at the end of `+setup-fonts'."
   :group 'minemacs-ui
   :type 'hook)
+
+(make-obsolete-variable 'minemacs-after-set-fonts-hook 'minemacs-after-setup-fonts-hook "v3.0.0")
 
 (defcustom minemacs-after-load-theme-hook nil
   "Runs after loading MinEmacs theme, runs at the end of `+load-theme'."
@@ -202,21 +194,6 @@ MinEmacs hooks will be run in this order:
 (defvar minemacs-build-functions nil
   "Special hook for build functions that are run after completing package updates.")
 (defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
-
-;; Setup default fonts (depending on the OS)
-(let ((mono-font (cond (os/linux "monospace")
-                       (os/win "Lucida Console")
-                       (os/mac "monospace")))
-      (varp-font (cond (os/linux "monospace")
-                       (os/win "Tahoma")
-                       (os/mac "monospace"))))
-  (defconst minemacs-default-fonts
-    `(:font-family ,mono-font
-      :font-size 13
-      :unicode-font-family nil
-      :variable-pitch-font-family ,varp-font
-      :variable-pitch-font-size 13)
-    "Default fonts of MinEmacs."))
 
 (defcustom +env-file (concat minemacs-local-dir "system-env.el")
   "The file in which the environment variables will be saved."

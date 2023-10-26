@@ -99,10 +99,6 @@ Examples:
 
 ;;; Generated autoloads from ../elisp/+emacs.el
 
-(autoload '+font-installed-p "../elisp/+emacs" "\
-Check if FONT-FAMILY is installed on the system.
-
-(fn FONT-FAMILY)")
 (autoload '+dir-locals-reload-for-this-buffer "../elisp/+emacs" "\
 Reload directory-local for the current buffer" t)
 (autoload '+dir-locals-reload-for-all-buffers-in-this-directory "../elisp/+emacs" "\
@@ -356,8 +352,6 @@ Suppress new messages temporarily in the echo area and the `*Messages*' buffer w
 Convert BODY to an interactive command.
 
 (fn &rest BODY)" nil t)
-(autoload '+set-fonts "../elisp/+minemacs" "\
-Set Emacs' fonts from `minemacs-fonts'." t)
 (autoload '+load-theme "../elisp/+minemacs" "\
 Load Emacs' theme from `minemacs-theme'." t)
 (autoload '+eval-when-idle "../elisp/+minemacs" "\
@@ -757,6 +751,13 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 ;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
 
 (register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
+
+
+;;; Generated autoloads from me-fonts.el
+
+(autoload '+setup-fonts "me-fonts" "\
+Setup fonts." t)
+(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+set-fonts" "minemacs-fonts"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el

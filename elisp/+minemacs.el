@@ -62,30 +62,6 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
      ,@body))
 
 ;;;###autoload
-(defun +set-fonts ()
-  "Set Emacs' fonts from `minemacs-fonts'."
-  (interactive)
-  (custom-set-faces
-   `(default
-     ((t (:font ,(format "%s %d"
-                  (or (plist-get minemacs-fonts :font-family)
-                   (plist-get minemacs-default-fonts :font-family))
-                  (or (plist-get minemacs-fonts :font-size)
-                   (plist-get minemacs-default-fonts :font-size)))))))
-   `(fixed-pitch
-     ((t (:inherit (default)))))
-   `(fixed-pitch-serif
-     ((t (:inherit (default)))))
-   `(variable-pitch
-     ((t (:font ,(format "%s %d"
-                  (or (plist-get minemacs-fonts :variable-pitch-font-family)
-                   (plist-get minemacs-default-fonts :variable-pitch-font-family))
-                  (or (plist-get minemacs-fonts :variable-pitch-font-size)
-                   (plist-get minemacs-default-fonts :variable-pitch-font-size))))))))
-  ;; Run hooks
-  (run-hooks 'minemacs-after-set-fonts-hook))
-
-;;;###autoload
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
   (interactive)
