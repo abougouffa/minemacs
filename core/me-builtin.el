@@ -66,6 +66,7 @@
   :straight (:type built-in)
   :after minemacs-loaded
   :demand t
+  :hook (kill-emacs . project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
@@ -101,9 +102,7 @@
     "ss" #'project-search
     "sn" '(fileloop-continue :wk "Next match")
     "sr" #'project-query-replace-regexp
-    "sf" #'project-find-regexp)
-  :config
-  (add-hook 'kill-emacs-hook #'project-forget-zombie-projects))
+    "sf" #'project-find-regexp))
 
 (use-package tab-bar
   :straight (:type built-in)
