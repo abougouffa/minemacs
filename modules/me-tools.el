@@ -39,7 +39,7 @@
 
 (use-package vterm
   :straight t
-  :unless os/win
+  :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :init
   (+map!
@@ -60,7 +60,7 @@
 
 (use-package multi-vterm
   :straight t
-  :unless os/win
+  :when (and (not os/win) (+emacs-features-p 'modules))
   :init
   (+map!
     "ott" #'multi-vterm
