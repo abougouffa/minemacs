@@ -22,14 +22,14 @@ languages, email management, and staying updated with news, among other things.
 Hence, I wanted a framework that is both robust and straightforward. Doom Emacs
 seemed like a suitable choice initially. However, before I started this project
 back in September 2022, I encountered numerous issues with Doom Emacs.
-Occasionally, after running the `doom upgrade` command, everything would cease to
-function properly. These problems always seemed to arise during my busiest days,
-causing unnecessary additional stress. To be frank, at that time, Doom Emacs
-started to feel overly complex as a configuration framework. It incorporated a
-command line interface, an extensive library with extra features, numerous
-unnecessary hacks to tweak Emacs behavior for a negligible improvement in
-startup time, configuration modules that tightly combined various packages in an
-opinionated manner, CI commands, and even a profile manager! Each of these
+Occasionally, after running the `doom upgrade` command, everything would cease
+to function properly. These problems always seemed to arise during my busiest
+days, causing unnecessary additional stress. To be frank, at that time, Doom
+Emacs started to feel overly complex as a configuration framework. It
+incorporated a command line interface, an extensive library with extra features,
+numerous unnecessary hacks to tweak Emacs behavior for a negligible improvement
+in startup time, configuration modules that tightly combined various packages in
+an opinionated manner, CI commands, and even a profile manager! Each of these
 features introduced extra complexity and more failure points at every layer.
 
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
@@ -91,9 +91,9 @@ There are two main files that can be added in the `~/.minemacs.d` directory:
    customization, you can think of it as your `init.el`, which gets loaded at
    the end of MinEmacs' `init.el`!
 
-This repository contains skeleton files for [modules.el](skel/modules.el) and
-[config.el](skel/config.el) (under [skel/](skel)). We highly recommend following
-the same structure as in the skeleton files, specially the use of
+This repository contains skeleton files for [`modules.el`](skel/modules.el) and
+[`config.el`](skel/config.el) (under [`skel/`](skel)). We highly recommend
+following the same structure as in the skeleton files, specially the use of
 `with-eval-after-load` and `use-package` instead of using `require` directly
 (`require` loads the packages immediately, which increases the startup time of
 Emacs).
@@ -110,7 +110,7 @@ MinEmacs runnable on older Emacs versions, etc.
    `init.el` file. You can use it to do some useful stuff before MinEmacs starts
    to customize packages and load modules. This can be useful for porting
    MinEmacs to an older Emacs version by providing an implementation of new
-   functions MinEmacs uses. See the [init.el](init.el) for more information.
+   functions MinEmacs uses. See the [`init.el`](init.el) for more information.
 
 ### Environment variables
 You can customize MinEmacs' behavior via some environment variables.
