@@ -9,6 +9,11 @@
 ;;; Code:
 
 ;;;###autoload
+(defun +font-installed-p (font-family)
+  "Check if FONT-FAMILY is installed on the system."
+  (and (member font-family (font-family-list)) t))
+
+;;;###autoload
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer"
   (interactive)

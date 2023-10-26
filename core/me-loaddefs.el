@@ -99,6 +99,10 @@ Examples:
 
 ;;; Generated autoloads from ../elisp/+emacs.el
 
+(autoload '+font-installed-p "../elisp/+emacs" "\
+Check if FONT-FAMILY is installed on the system.
+
+(fn FONT-FAMILY)")
 (autoload '+dir-locals-reload-for-this-buffer "../elisp/+emacs" "\
 Reload directory-local for the current buffer" t)
 (autoload '+dir-locals-reload-for-all-buffers-in-this-directory "../elisp/+emacs" "\
