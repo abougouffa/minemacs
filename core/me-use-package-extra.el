@@ -55,13 +55,19 @@
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
 
+  ;; If you want to keep the `+use-package--check-if-disabled-a' advice after
+  ;; loading MinEmacs' modules. You need to set in in your
+  ;; "$MINEMACSDIR/early-config.el"
+  (defvar +use-package-keep-checking-for-disabled-p nil)
+
   ;; The previous advice will be removed after loading MinEmacs packages to avoid
   ;; messing with the user configuration (for example, if the user manually
   ;; install a disabled package).
   (add-hook
    'minemacs-after-loading-modules-hook
    (defun +use-package--remove-check-if-disabled-advice-h ()
-     (advice-remove 'use-package '+use-package--check-if-disabled-a))))
+     (unless +use-package-keep-checking-for-disabled-p
+       (advice-remove 'use-package '+use-package--check-if-disabled-a)))))
 
 
 (provide 'me-use-package-extra)
