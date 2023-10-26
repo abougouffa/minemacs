@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.0.0](https://github.com/abougouffa/minemacs/compare/v2.0.2..v3.0.0) - 2023-10-26
+#### Documentation
+- **(readme)** convert to Markdown - ([817db39](https://github.com/abougouffa/minemacs/commit/817db3922e2180f57065b7aeec3397bca0874527)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** fix link - ([7c26e8a](https://github.com/abougouffa/minemacs/commit/7c26e8ae2d99fcaa0b06bb7d0157f0d612145c36)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add an example to how to fix `vterm` compilation - ([19a5213](https://github.com/abougouffa/minemacs/commit/19a52137bc8ead5bd81ac47b941b9b4a94c95663)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** change font handling - ([7c4a8b8](https://github.com/abougouffa/minemacs/commit/7c4a8b8dfeb9f1e7b56c3c6444d82c76818ac525)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add helper function `+font-installed-p` - ([0200750](https://github.com/abougouffa/minemacs/commit/0200750c91f77f2e1ce3e1cb7c547341b649b04f)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** add an option to keep the "check if disabled" advice - ([f08c370](https://github.com/abougouffa/minemacs/commit/f08c370ed352992d8f8d8851a648d6c08b45ed44)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** minor tweak - ([c44d135](https://github.com/abougouffa/minemacs/commit/c44d135d0b1fe7bd75daa4db8bcde6a0527052eb)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(project)** use `use-package` `:hook` block - ([96b6d8b](https://github.com/abougouffa/minemacs/commit/96b6d8b392b5f76c305f69354cd3ec7156be3708)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(nerd-icons)** auto-install fonts when they aren't installed - ([6615a59](https://github.com/abougouffa/minemacs/commit/6615a59d033f5cceab190140e04a659d11a53621)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** include examples of the new font setting - ([35dad97](https://github.com/abougouffa/minemacs/commit/35dad970b97dd19e7ae155edcc0310e3aee871fe)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** don't install if Emacs don't support modules - ([c86aa7c](https://github.com/abougouffa/minemacs/commit/c86aa7c660f85a96b4f713e17c1768782178fdc0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v2.0.2](https://github.com/abougouffa/minemacs/compare/v2.0.1..v2.0.2) - 2023-10-25
 #### Bug Fixes
 - **(cocogitto)** fix the `+cocogitto-bump` command - ([45a4e0a](https://github.com/abougouffa/minemacs/commit/45a4e0aa0acee52f715e3be752860af936a51ab1)) - [@abougouffa](https://github.com/abougouffa)
