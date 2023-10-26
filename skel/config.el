@@ -12,18 +12,31 @@
 (setq
  ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
  ;; or built-in themes
- minemacs-theme 'doom-one ; `doom-one' is a dark theme, `doom-one-light' is the light one
- ;; Set Emacs fonts, some good choices include:
- ;; - Cascadia Code
- ;; - Fira Code, FiraCode Nerd Font
- ;; - Iosevka, Iosevka Fixed Curly Slab
- ;; - IBM Plex Mono
- ;; - JetBrains Mono
- minemacs-fonts
- '(:font-family "Iosevka Fixed Curly Slab"
-   :font-size 16
-   :variable-pitch-font-family "IBM Plex Serif"
-   :variable-pitch-font-size 16))
+ minemacs-theme 'doom-one) ; `doom-one' is a dark theme, `doom-one-light' is the light one
+
+;; MinEmacs defines the variable `minemacs-fonts-plist' that is used by the
+;; `+setup-fonts' function. The function checks and enables the first available
+;; font from these defined in `minemacs-fonts-plist'. This variable can be
+;; customized to enable some language-specific fonts.
+
+;; You can set a list of fonts to be used, like the snippet below. The first
+;; font found in the list will be used:
+(plist-put minemacs-fonts-plist
+           :default
+           '((:family "Iosevka Fixed Curly Slab" :height 130)
+             (:family "JetBrains Mono" :height 110)
+             (:family "Cascadia Code" :height 130)))
+
+;; Use "Amiri" or "KacstOne" for Arabic script (the first to be found)
+(plist-put minemacs-fonts-plist
+           :arabic
+           '((:family "Amiri" :scale 0.9)
+             (:family "KacstOne")))
+
+;; Use "LXGW WenKai Mono" for Han (Chinese) script
+(plist-put minemacs-fonts-plist
+           :han
+           '((:family "LXGW WenKai Mono" :scale 1.3)))
 
 ;; When `me-daemon' and `me-email' are enabled, MinEmacs will try to start
 ;; `mu4e' in background at startup. To disable this behavior, you can set
