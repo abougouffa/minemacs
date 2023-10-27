@@ -48,7 +48,25 @@
      (:family "PingFang SC" :scale 1.3)
      (:family "Microsoft Yahei UI" :scale 1.3)
      (:family "Simhei" :scale 1.3)))
-  "Default fonts of MinEmacs."
+  "MinEmacs fonts used by `+setup-fonts'.
+
+The function checks and enables the first available font from these defined in
+this plist. This variable can be customized to set font specs for specific Emacs
+faces or to enable some language-specific fonts.
+
+For example to set `default' face, use `:default', and to setup the `mode-line'
+face, use `:mode-line'. The parameters for each font in these cases are used in
+the `set-face-attribute' fucntion, so you can pass any key value pairs supported
+by `set-face-attribute' (like `:weight', `:slanted', ...).
+
+You can also setup some language-specific fonts. All scripts supported by Emacs
+can be found in `+known-scripts'. In this case, the parameters are used with
+`set-fontset-font', so you can send any key value pair supported by
+`set-fontset-font'.
+
+The value of the extra `:prepend' is passed the last argument to
+`set-fontset-font'. The extra `:scale' parameter can be used to set a scaling
+factor for the font in Emacs' `face-font-rescale-alist'."
   :group 'minemacs-ui
   :type '(choice
           (list string)
