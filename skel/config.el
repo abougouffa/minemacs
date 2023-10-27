@@ -17,21 +17,39 @@
 ;; MinEmacs defines the variable `minemacs-fonts-plist' that is used by the
 ;; `+setup-fonts' function. The function checks and enables the first available
 ;; font from these defined in `minemacs-fonts-plist'. This variable can be
-;; customized to enable some language-specific fonts.
+;; customized to set font specs for specific Emacs faces or to enable some
+;; language-specific fonts.
 
 ;; You can set a list of fonts to be used, like the snippet below. The first
-;; font found in the list will be used:
+;; font found on the system will be used:
 (plist-put minemacs-fonts-plist
-           :default
+           :default ;; <- applies to the `default' face usig `set-face-attribute'
            '((:family "Iosevka Fixed Curly Slab" :height 130)
-             (:family "JetBrains Mono" :height 110)
-             (:family "Cascadia Code" :height 130)))
+             (:family "JetBrains Mono" :height 110 :weight light)
+             (:family "Cascadia Code" :height 120 :weight semi-light)))
 
-;; Use "Amiri" or "KacstOne" for Arabic script (the first to be found)
+;; To set font for arbitrary Emacs face, you need just to write the face name as
+;; a keyword. For example `mode-line' -> `:mode-line':
 (plist-put minemacs-fonts-plist
-           :arabic
-           '((:family "Amiri" :scale 0.9)
-             (:family "KacstOne")))
+           :mode-line ;; <- applies to the `mode-line' face usig `set-face-attribute'
+           '((:family "Lato" :weight regular)
+             (:family "Roboto" :weight light)))
+
+(plist-put minemacs-fonts-plist
+           :mode-line-inactive ;; <- applies to the `mode-line-inactive'
+           '((:family "Lato" :weight regular)
+             (:family "Roboto" :weight light)))
+
+;; You can also setup some language-specific fonts. For example, to use "Amiri"
+;; or "KacstOne" for Arabic script (the first to be found). All scripts
+;; supported by Emacs can be found in `+known-scripts'. The value of the extra
+;; `:prepend' is passed the last argument to `set-fontset-font'. The extra
+;; `:scale' parameter can be used to set a scaling factor for the font in Emacs'
+;; `face-font-rescale-alist'.
+(plist-put minemacs-fonts-plist
+        :arabic ;; <- applies to arabic text using `set-fontset-font'
+        '((:family "Amiri" :scale 0.9)
+          (:family "KacstOne")))
 
 ;; Use "LXGW WenKai Mono" for Han (Chinese) script
 (plist-put minemacs-fonts-plist
