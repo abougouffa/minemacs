@@ -757,7 +757,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (autoload '+setup-fonts "me-fonts" "\
 Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+set-fonts" "minemacs-fonts"))
+(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+known-scripts" "+set-f" "minemacs-fonts"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
