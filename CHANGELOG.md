@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.0.1](https://github.com/abougouffa/minemacs/compare/v3.0.0..v3.0.1) - 2023-10-27
+#### Documentation
+- **(core)** add a description to `minemacs-fonts-plist` - ([53ce66b](https://github.com/abougouffa/minemacs/commit/53ce66b9e79b85cbd8bb71b384fcdf30aa421da1)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** minor edits - ([61f806e](https://github.com/abougouffa/minemacs/commit/61f806e043578c513f589add7cd91a6785dd8c53)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** more font setting examples - ([f627965](https://github.com/abougouffa/minemacs/commit/f6279650cbc4e0f2d101111140559e61037ae048)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(fonts)** accept full `font-spec/set-face-attribute` arguments (#120) - ([6ec46f1](https://github.com/abougouffa/minemacs/commit/6ec46f1525dba2a48d0e5fc7d1d84c1c024dd526)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** update loaddefs - ([a533aea](https://github.com/abougouffa/minemacs/commit/a533aeaf2eae5a5bcf9265ba555ca56dc844cf72)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.0.0](https://github.com/abougouffa/minemacs/compare/v2.0.2..v3.0.0) - 2023-10-26
 #### Documentation
 - **(readme)** convert to Markdown - ([817db39](https://github.com/abougouffa/minemacs/commit/817db3922e2180f57065b7aeec3397bca0874527)) - [@abougouffa](https://github.com/abougouffa)
