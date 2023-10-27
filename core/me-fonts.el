@@ -86,42 +86,48 @@
 
 (make-obsolete-variable 'minemacs-fonts 'minemacs-fonts-plist "v3.0.0")
 
-(defun +font--scale (spec)
-  (when (plistp spec) (plist-get spec :scale)))
+(defconst +known-scripts (mapcar #'car script-representative-chars))
 
-(defun +font--family (spec)
-  (if (stringp spec) spec (plist-get spec :family)))
+(defconst +font-family-list (font-family-list))
 
-(defun +font--height (spec)
-  (when (plistp spec) (plist-get spec :height)))
+(defconst +set-face-attribute-keywords
+  '(:family :foundry :width :height :weight :slant :foreground
+    :background :underline :overline :strike-through :box
+    :inverse-video :stipple :extend :font :inherit))
 
-(defun +font--prepend (spec)
-  (when (plistp spec) (plist-get spec :prepend)))
+(defconst +font-spec-keywords
+  '(:family :foundry :width :weight :slant :adstyle :registry :dpi :size :spacing
+    :avgwidth :name :script :lang :otf))
+
+(defun +font--get-valid-args (script-or-face font)
+  (if (stringp font)
+      `(:family ,font)
+    (apply
+     #'append
+     (mapcar (lambda (a) (list a (plist-get font a)))
+             (cl-intersection (+plist-keys font)
+                              (if (memq script-or-face +known-scripts)
+                                  +font-spec-keywords
+                                +set-face-attribute-keywords))))))
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
-  (and (member font-family (font-family-list)) t))
+  (and font-family (member font-family +font-family-list)) t)
 
 (defun +apply-font-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
   (catch 'done
     (dolist (font (plist-get minemacs-fonts-plist (intern (format ":%s" script-or-face))))
-      (let* ((family (+font--family font))
-             (scale (+font--scale font))
-             (height (+font--height font))
-             (prepend (+font--prepend font))
-             (spec (append `(:family ,family) (when height `(:height ,height)))))
+      (let* ((spec (+font--get-valid-args script-or-face font))
+             (prepend (and (plistp font) (plist-get font :family)))
+             (scale (and (plistp font) (plist-get font :scale)))
+             (family (plist-get spec :family)))
         (when (+font-installed-p family)
-          (if (not (memq script-or-face (mapcar #'car script-representative-chars)))
-              (apply #'set-face-attribute (append `(,script-or-face nil) spec))
-            (set-fontset-font t script-or-face (apply #'font-spec spec) nil prepend))
-          (when scale (add-to-list 'face-font-rescale-alist (cons family scale)))
-          (+log! "Font for `%s' set to \"%s\"%s" script-or-face family
-                 (format "%s%s%s"
-                         (if height (format " :height %s" height) "")
-                         (if scale (format " :scale %s" scale) "")
-                         (if prepend (format " :prepend %s" prepend) "")))
-          (throw 'done family))))))
+          (if (memq script-or-face +known-scripts)
+              (set-fontset-font t script-or-face (apply #'font-spec spec) nil prepend)
+            (apply #'set-face-attribute (append `(,script-or-face nil) spec)))
+          (when scale (add-to-list 'face-font-rescale-alist (cons (plist-get spec :family) scale)))
+          (throw 'done spec))))))
 
 ;; Inspired by: github.com/seagle0128/.emacs.d/blob/master/custom-example.el
 ;;;###autoload
