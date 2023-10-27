@@ -42,7 +42,7 @@
 
 (use-package epa-file
   :straight (:type built-in)
-  :after minemacs-loaded
+  :after minemacs-first-file
   :demand t
   :config
   (+shutup! (epa-file-enable)))
@@ -278,27 +278,27 @@
     "l" #'bibtex-fill-entry
     "r" #'bibtex-reformat))
 
-(unless (+emacs-features-p 'tree-sitter)
-  (push '(treesit dockerfile-ts-mode cmake-ts-mode) minemacs-disabled-packages))
-
 (use-package treesit
   :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
   :custom
   (treesit-font-lock-level 4))
 
 (use-package dockerfile-ts-mode
   :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
   :mode "/Dockerfile\\'")
 
 (use-package cmake-ts-mode
   :straight (:type built-in)
+  :when (+emacs-features-p 'tree-sitter)
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'")
 
 (use-package autoinsert
   ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
   :straight (:type built-in)
-  :hook (minemacs-after-startup . auto-insert-mode)
+  :hook (minemacs-first-file . auto-insert-mode)
   :custom
   (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
@@ -1033,7 +1033,7 @@
 (use-package autorevert
   :straight (:type built-in)
   ;; Auto load files changed on disk
-  :hook (minemacs-after-startup . global-auto-revert-mode)
+  :hook (minemacs-first-file . global-auto-revert-mode)
   :custom
   ;; Revert non-file buffers like dired
   (global-auto-revert-non-file-buffers t))
@@ -1047,7 +1047,7 @@
 (use-package saveplace
   :straight (:type built-in)
   ;; Save place in files
-  :hook (minemacs-after-startup . save-place-mode)
+  :hook (minemacs-first-file . save-place-mode)
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 

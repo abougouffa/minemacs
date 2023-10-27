@@ -10,7 +10,7 @@
 
 (use-package iedit
   :straight t
-  :after minemacs-lazy
+  :after minemacs-first-file
   :demand t
   :preface
   (+fn-inhibit-messages! iedit-update-key-bindings))
@@ -25,7 +25,7 @@
 
 (use-package evil-mc
   :straight t
-  :hook (minemacs-after-startup . global-evil-mc-mode)
+  :hook (minemacs-first-file . global-evil-mc-mode)
   :config
   ;; Use "gz" instead of "gr", this last is mapped to `xref-find-references' in
   ;; some programming modes.

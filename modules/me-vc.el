@@ -126,7 +126,7 @@
 
 (use-package blamer
   :straight t
-  :hook (minemacs-after-startup . global-blamer-mode)
+  :hook (minemacs-first-file . global-blamer-mode)
   :custom
   (blamer-idle-time 0.3)
   (blamer-min-offset 60)
