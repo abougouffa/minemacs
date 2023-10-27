@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.0.2](https://github.com/abougouffa/minemacs/compare/v3.0.1..v3.0.2) - 2023-10-27
+#### Tweaks
+- **(fonts)** code cleanup - ([dbaccf0](https://github.com/abougouffa/minemacs/commit/dbaccf0698791d85b74c572bad2b7a1194f0187f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.0.1](https://github.com/abougouffa/minemacs/compare/v3.0.0..v3.0.1) - 2023-10-27
 #### Documentation
 - **(core)** add a description to `minemacs-fonts-plist` - ([53ce66b](https://github.com/abougouffa/minemacs/commit/53ce66b9e79b85cbd8bb71b384fcdf30aa421da1)) - [@abougouffa](https://github.com/abougouffa)
