@@ -68,39 +68,10 @@ The value of the extra `:prepend' is passed the last argument to
 `set-fontset-font'. The extra `:scale' parameter can be used to set a scaling
 factor for the font in Emacs' `face-font-rescale-alist'."
   :group 'minemacs-ui
-  :type '(choice
-          (list string)
-          (plist
-           (:family string)
-           (:scale number)
-           (:height number))))
-
-;; Setup default fonts (depending on the OS)
-(let ((mono-font (cond (os/linux "monospace")
-                       (os/win "Lucida Console")
-                       (os/mac "monospace")))
-      (varp-font (cond (os/linux "monospace")
-                       (os/win "Tahoma")
-                       (os/mac "monospace"))))
-  (defconst minemacs-default-fonts
-    `(:font-family ,mono-font
-      :font-size 13
-      :unicode-font-family nil
-      :variable-pitch-font-family ,varp-font
-      :variable-pitch-font-size 13)
-    "Default fonts of MinEmacs."))
-
-(make-obsolete-variable 'minemacs-default-fonts nil "v3.0.0")
+  :type 'plist)
 
 (defcustom minemacs-fonts nil
-  "Fonts to use within MinEmacs."
-  :group 'minemacs-ui
-  :type '(plist
-          (:font-family string)
-          (:font-size natnum)
-          (:unicode-font-family string)
-          (:variable-pitch-font-family string)
-          (:variable-pitch-font-size natnum)))
+  "Fonts to use within MinEmacs.")
 
 (make-obsolete-variable 'minemacs-fonts 'minemacs-fonts-plist "v3.0.0")
 
@@ -159,33 +130,9 @@ factor for the font in Emacs' `face-font-rescale-alist'."
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
 
-(defun +set-fonts ()
-  "Set Emacs' fonts from `minemacs-fonts'."
-  (interactive)
-  (custom-set-faces
-   `(default
-     ((t (:font ,(format "%s %d"
-                  (or (plist-get minemacs-fonts :font-family)
-                   (plist-get minemacs-default-fonts :font-family))
-                  (or (plist-get minemacs-fonts :font-size)
-                   (plist-get minemacs-default-fonts :font-size)))))))
-   `(fixed-pitch
-     ((t (:inherit (default)))))
-   `(fixed-pitch-serif
-     ((t (:inherit (default)))))
-   `(variable-pitch
-     ((t (:font ,(format "%s %d"
-                  (or (plist-get minemacs-fonts :variable-pitch-font-family)
-                   (plist-get minemacs-default-fonts :variable-pitch-font-family))
-                  (or (plist-get minemacs-fonts :variable-pitch-font-size)
-                   (plist-get minemacs-default-fonts :variable-pitch-font-size))))))))
-  ;; Run hooks
-  (run-hooks 'minemacs-after-set-fonts-hook))
-
 (make-obsolete #'+set-fonts #'+setup-fonts "v3.0.0")
 
-(add-hook 'window-setup-hook #'+setup-fonts)
-(add-hook 'server-after-make-frame-hook #'+setup-fonts)
+(+add-hook! (window-setup server-after-make-frame) #'+setup-fonts)
 
 
 (provide 'me-fonts)
