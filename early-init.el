@@ -53,6 +53,10 @@
 ;; Load MinEmacs variables from the `me-vars' core module.
 (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
 
+;; Better titlebar on MacOS!
+(when (and os/mac (featurep 'ns))
+  (push '(ns-transparent-titlebar . t) default-frame-alist))
+
 ;; Load the user early configuration file from "$MINEMACSDIR/early-config.el"
 ;; if it exists.
 (unless (memq 'early-config minemacs-ignore-user-config)
