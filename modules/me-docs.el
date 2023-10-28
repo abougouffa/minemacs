@@ -57,7 +57,12 @@
   :custom
   (markdown-hide-markup t)
   (markdown-enable-html t)
-  (markdown-enable-math t))
+  (markdown-enable-math t)
+  :config
+  (+map-local! :keymaps 'markdown-mode-map
+    "l"  '(nil :wk "link")
+    "ll" #'markdown-insert-link
+    "e"  #'markdown-export))
 
 (use-package poly-markdown
   :straight t)
