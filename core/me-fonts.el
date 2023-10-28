@@ -21,8 +21,19 @@
      (:family "Source Code Pro" :height 130)
      (:family "Menlo" :height 130)
      (:family "Monaco" :height 130)
+     (:family "Ubuntu Mono" :height 130)
      (:family "DejaVu Sans Mono" :height 130)
      (:family "Consolas" :height 130))
+    :variable-pitch
+    ("Lato"
+     "Roboto"
+     "Inter"
+     "San Francisco"
+     "Helvetica Neue"
+     "Helvetica"
+     "Ubuntu"
+     "Liberation Sans"
+     "Segoe UI")
     :symbol
     ((:family "Segoe UI Symbol" :prepend t)
      (:family "Symbola" :prepend t)
@@ -34,8 +45,9 @@
      (:family "Quivira" :prepend t))
     ;; Arabic script
     :arabic
-    ("KacstOne"
-     "Amiri Typewriter"
+    ("Amiri Typewriter"
+     "KacstOne"
+     "Greta Arabic"
      "Scheherazade"
      "Koodak"
      (:family "Amiri" :scale 0.9))
