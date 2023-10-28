@@ -52,21 +52,28 @@
 
 The function checks and enables the first available font from these defined in
 this plist. This variable can be customized to set font specs for specific Emacs
-faces or to enable some language-specific fonts.
+faces or to enable some language-specific fonts. The plist keywords are either
+face names or script names expressed as keywords (with the \":\" prefix).
 
-For example to set `default' face, use `:default', and to setup the `mode-line'
-face, use `:mode-line'. The parameters for each font in these cases are used in
-the `set-face-attribute' fucntion, so you can pass any key value pairs supported
-by `set-face-attribute' (like `:weight', `:slanted', ...).
+For example to set `default' face, use `:default', to set the `mode-line' face,
+use `:mode-line', and so on. The parameters for each font in these cases (ie.
+for face names) are used in the `set-face-attribute' function, so you can pass
+any key value pairs supported by `set-face-attribute' (like `:weight',
+`:slanted', ...). A list of supported keywords are available in the variable
+`+set-face-attribute-keywords'.
 
 You can also setup some language-specific fonts. All scripts supported by Emacs
-can be found in `+known-scripts'. In this case, the parameters are used with
-`set-fontset-font', so you can send any key value pair supported by
-`set-fontset-font'.
+can be found in `+known-scripts'. The keyword in this plist will be the script
+name expressed as a keyword, for example, for `latin' use `:latin', for `arabic'
+use `:arabic', for `emoji' use `:emoji', and so on. In this case, the parameters
+are used with `set-fontset-font', so you can send any key value pair supported
+by `set-fontset-font'. A list of supported keywords in this case is available in
+`+font-spec-keywords'.
 
-The value of the extra `:prepend' is passed the last argument to
-`set-fontset-font'. The extra `:scale' parameter can be used to set a scaling
-factor for the font in Emacs' `face-font-rescale-alist'."
+The value of the extra `:prepend' keyword is passed the last argument to
+`set-fontset-font'. The value of the extra `:scale' keyword can be used to set a
+scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
+`+setup-fonts' implementation for more details."
   :group 'minemacs-ui
   :type 'plist)
 
@@ -75,18 +82,23 @@ factor for the font in Emacs' `face-font-rescale-alist'."
 
 (make-obsolete-variable 'minemacs-fonts 'minemacs-fonts-plist "v3.0.0")
 
-(defconst +known-scripts (mapcar #'car script-representative-chars))
+(defconst +known-scripts (mapcar #'car script-representative-chars)
+  "Supported scripts, like `latin', `arabic', `han', and so on.")
 
-(defconst +font-family-list (font-family-list))
+(defconst +font-family-list (font-family-list)
+  "List of available fonts on the system, initialized at startup from
+  `font-family-list'.")
 
 (defconst +set-face-attribute-keywords
   '(:family :foundry :width :height :weight :slant :foreground
     :background :underline :overline :strike-through :box
-    :inverse-video :stipple :extend :font :inherit))
+    :inverse-video :stipple :extend :font :inherit)
+  "Arguments accepted by the `set-face-attribute' function.")
 
 (defconst +font-spec-keywords
   '(:family :foundry :width :weight :slant :adstyle :registry :dpi :size :spacing
-    :avgwidth :name :script :lang :otf))
+    :avgwidth :name :script :lang :otf)
+  "Arguments accepted by the `font-spec' function.")
 
 (defun +font--get-valid-args (script-or-face font)
   (if (stringp font)
