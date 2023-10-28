@@ -9,8 +9,7 @@
 ;;; Code:
 
 (defconst +maxima-path-p "/usr/share/emacs/site-lisp/maxima/")
-(defconst +maxima-available-p (and (executable-find "maxima")
-                                   (file-directory-p +maxima-path-p)))
+(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path-p)))
 
 (use-package maxima
   :load-path +maxima-path-p
@@ -34,7 +33,6 @@
 
 (use-package ein
   :straight t
-  :mode ("\\.ipynb\\'" . ein:ipynb-mode)
   :custom
   (ein:output-area-inlined-images t)
   :init

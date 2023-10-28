@@ -10,7 +10,6 @@
 
 (use-package csv-mode
   :straight t
-  :mode "\\.csv\\'"
   :config
   (+map-local! :keymaps 'csv-mode-map
     "r" #'+csv-rainbow
@@ -48,8 +47,7 @@
   :hook (yaml-ts-mode . yaml-pro-ts-mode))
 
 (use-package toml-mode
-  :straight t
-  :mode "\\.toml\\'")
+  :straight t)
 
 (use-package json-mode
   :straight t
@@ -79,7 +77,6 @@
 
 (use-package plantuml-mode
   :straight t
-  :mode "\\.plantuml\\'"
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
@@ -159,10 +156,9 @@
 
 (use-package gnuplot
   :straight t
+  :mode ("\\.gnuplot\\'" . gnuplot-mode)
   :hook (gnuplot-mode . display-line-numbers-mode)
-  :hook (gnuplot-mode . visual-line-mode)
-  :init
-  (add-to-list 'auto-mode-alist '("\\.gnuplot\\'" . gnuplot-mode)))
+  :hook (gnuplot-mode . visual-line-mode))
 
 
 (provide 'me-data)

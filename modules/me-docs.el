@@ -10,7 +10,7 @@
 
 (use-package pdf-tools
   :straight t
-  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :hook (minemacs-build-functions . pdf-tools-install)
   :custom
@@ -20,8 +20,7 @@
 
 (use-package nov
   :straight t
-  :mode ("\\.epub\\'" . nov-mode)
-  :hook (nov-mode . +nov-mode-setup)
+  :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
   :config

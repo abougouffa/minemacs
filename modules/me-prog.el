@@ -118,8 +118,7 @@
 
 ;;; Modes
 (use-package vimrc-mode
-  :straight t
-  :mode "\\.vim\\(rc\\)?\\'")
+  :straight t)
 
 (use-package rust-mode
   :straight t

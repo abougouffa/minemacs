@@ -27,12 +27,10 @@
   :straight (:host bitbucket :repo "olanilsson/bitbake-modes"))
 
 (use-package mips-mode
-  :straight t
-  :mode "\\.mips\\'")
+  :straight t)
 
 (use-package riscv-mode
-  :straight t
-  :mode "\\.riscv\\'")
+  :straight t)
 
 (use-package x86-lookup
   :straight t
