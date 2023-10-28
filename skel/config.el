@@ -9,10 +9,9 @@
 ;; Set the default GPG key ID, see "gpg --list-secret-keys"
 ;; (setq-default epa-file-encrypt-to '("XXXX"))
 
-(setq
- ;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
- ;; or built-in themes
- minemacs-theme 'doom-one) ; `doom-one' is a dark theme, `doom-one-light' is the light one
+;; Set a theme for MinEmacs, supported themes include these from `doom-themes'
+;; or built-in themes
+(setq minemacs-theme 'doom-one) ; `doom-one' is a dark theme, `doom-one-light' is the light one
 
 ;; MinEmacs defines the variable `minemacs-fonts-plist' that is used by the
 ;; `+setup-fonts' function. The function checks and enables the first available
