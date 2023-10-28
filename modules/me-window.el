@@ -21,7 +21,7 @@
  ;; Show *Warnings* at bottom
 (add-to-list
  'display-buffer-alist
- `("*Warnings*"
+ `("\\*Warnings\\*"
    (display-buffer-reuse-window display-buffer-in-direction)
    (direction . bottom) ;; bottom (above below...)
    (dedicated . t) ;; Close when finished
