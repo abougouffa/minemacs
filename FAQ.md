@@ -1,31 +1,31 @@
-* MinEmacs FAQ
+# MinEmacs FAQ
 This file assembles solutions to some of the known issues and answers some of
 the frequently asked questions about MinEmacs.
 
-** Using =parinfer-rust-mode= in a non =x86_64= platform
-The =parinfer-rust-mode= package provide precompiled libraries for Linux, Windows
-and MacOS, but only for x86_64 machines. If you have a CPU (like M1 or other ARM
-based CPUs) of another architecture (=aarch64=, =arm32=, =arm64=, ...), you can
-compile the library from source [[https://github.com/justinbarclay/parinfer-rust-mode#option-2-building-library-from-sources][as described in the project's documentation]], and
-then add this to your =config.el=:
+## Using `parinfer-rust-mode` in a non `x86_64` platform
+The `parinfer-rust-mode` package provide precompiled libraries for Linux, Windows
+and MacOS, but only for x86\_64 machines. If you have a CPU (like M1 or other ARM
+based CPUs) of another architecture (`aarch64`, `arm32`, `arm64`, &#x2026;), you can
+compile the library from source [as described in the project's documentation](https://github.com/justinbarclay/parinfer-rust-mode#option-2-building-library-from-sources), and
+then add this to your `config.el`:
 
-#+begin_src emacs-lisp
+```elisp
 (setq parinfer-rust-library "/path/to/your/parinfer-rust-library.so")
-#+end_src
+```
 
-** Exporting Org documents in background ends with errors
-*** User configuration related errors
+## Exporting Org documents in background ends with errors
+### User configuration related errors
 In some circumstances, you can get an error when trying to export an Org file to
-PDF. For example, after hitting =SPC m e l p=, you get short after, the message
-="Org async export finised, see Org Export Process for more details."=.
+PDF. For example, after hitting `SPC m e l p`, you get short after, the message
+`"Org async export finised, see Org Export Process for more details."`.
 
-With something like this in the =*Org Export Process*= buffer:
+With something like this in the `*Org Export Process*` buffer:
 
-#+begin_src emacs-lisp
 Using MinEmacs’ "me-org-export-async-init.el" as init file.
 Loading "init.el" in an org-export-async context.
 Symbol s function definition is void: evil-snipe-mode
 
+```elisp
 Error: void-function (evil-snipe-mode)
   mapbacktrace(#f(compiled-function (evald func args flags) #<bytecode 0x187e658465ae87e8>))
   debug-early-backtrace()
@@ -45,79 +45,79 @@ Error: void-function (evil-snipe-mode)
   load("/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" nil t)
   command-line-1(("-l" "/home/abougouffa/.emacs.d/modules/extras/me-org-export-async-init.el" "-l" "/tmp/org-export-processktJyzH"))
   command-line()
-  normal-top-level()
-#+end_src
+      normal-top-level()
+```
 
 To resolve this, we need to understand how MinEmacs configures Org-mode's
-asynchronous export. By default, MinEmacs enables =org-export-in-background= to
+asynchronous export. By default, MinEmacs enables `org-export-in-background` to
 export documents asynchronously (in a child Emacs process). As this process do
 not need all of MinEmacs installed package, so there is a minimalist init file
-in =modules/extras/me-org-export-async-init.el= which will be used by default for
-the =org-export-async-init-file= variable.
+in `modules/extras/me-org-export-async-init.el` which will be used by default for
+the `org-export-async-init-file` variable.
 
-Therefore, if you invoke -in your =config.el=- a feature that is not enabled in
+Therefore, if you invoke -in your `config.el`- a feature that is not enabled in
 the minimalist init file, you will get random errors related to that. In the
-example above, Emacs is complaining about =evil-snipe-mode= because we have call
-to =(evil-snipe-mode 1)= in the =config.el=, however, evil and it's related packages
+example above, Emacs is complaining about `evil-snipe-mode` because we have call
+to `(evil-snipe-mode 1)` in the `config.el`, however, evil and it's related packages
 are not enabled in the minimalist init file.
 
-The minimalist init file provides a feature named =me-org-export-async-init=, so
-you can add conditional blocks in your =config.el= to be executed (or not) when
-this feature is present (/i.e./, when running in an Org async export context).
+The minimalist init file provides a feature named `me-org-export-async-init`, so
+you can add conditional blocks in your `config.el` to be executed (or not) when
+this feature is present (*i.e.*, when running in an Org async export context).
 
 So, to resolve this issue, you can either:
 
-- Fix your =config.el= by using =with-eval-after-load= blocks and by conditioning
+- Fix your `config.el` by using `with-eval-after-load` blocks and by conditioning
   the problematic code.
 
-#+begin_src emacs-lisp
+```elisp
 (with-eval-after-load 'projectile
   (do-some-extra-stuff))
 
 ;; Avoid running this block in org-export context
 (unless (featurep 'me-org-export-async-init)
   (do-something))
-#+end_src
+```
 
-- Disable =org-export-in-background= using:
+- Disable `org-export-in-background` using:
 
-#+begin_src emacs-lisp
+```elisp
 (with-eval-after-load 'org
   (setq org-export-in-background nil))
-#+end_src
+```
 
 - Or, you can revert to Org-mode's default behavior for the child export
-  process (will use MinEmacs' =init.el= file):
+  process (will use MinEmacs' `init.el` file):
 
-#+begin_src emacs-lisp
+```elisp
 (with-eval-after-load 'org
   ;; You can also set it to your own custom init.el, just do not forget to
   ;; provide `me-org-export-async-init' in it.
   (setq org-export-async-init-file nil))
-#+end_src
+```
 
-*** The =Odd length text property list= error
+### The `Odd length text property list` error
 For some reason, exporting Org documents in background can fail with this error:
 
-#+begin_src emacs-lisp
+```elisp
 (error "Odd length text property list")
-#+end_src
+```
 
 In such a case, you can remove the Org cache directory then try to export again.
 
-#+begin_src shell
+```shell
 # Remove the Org cache directory
 rm -rf ~/.emacs.d/local/cache/org/
-#+end_src
+```
 
-See [[https://github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814][this comment]] for more information.
+See [this comment](https://github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814) for more information.
 
-** Debugging MinEmacs
+## Debugging MinEmacs
 Sometimes Emacs might freezes and stop responding, the reflex in this case is to
-use =C-g= to call =keyboard-quit= which signals a "quit" condition. If Emacs stay
-frozen, you can send =SIGUSR2= via a terminal, this should stop the running code
-and show a backtrace.
+use `C-g` to call `keyboard-quit` which signals a "quit" condition. If Emacs
+stay frozen, you can send `SIGUSR2` via a terminal, this should stop the running
+code and show a backtrace.
 
-#+begin_src shell
+```shell
 kill -s SIGUSR2 $(pidof emacs)
-#+end_src
+```
