@@ -117,6 +117,9 @@
     "cfc" #'clang-format-buffer))
 
 ;;; Modes
+(use-package gitlab-ci-mode
+  :straight t)
+
 (use-package vimrc-mode
   :straight t)
 
