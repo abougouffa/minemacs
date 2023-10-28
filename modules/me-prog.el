@@ -66,7 +66,7 @@
   :config
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
-  (unless (or (memq 'me-lsp minemacs-modules)
+  (unless (or (memq 'lsp-mode minemacs-configured-packages)
               (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
