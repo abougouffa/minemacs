@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.1.2](https://github.com/abougouffa/minemacs/compare/v3.1.1..v3.1.2) - 2023-10-28
+#### Bug Fixes
+- **(vars)** fix environment variable for disabling `early-config.el` - ([7e22ce2](https://github.com/abougouffa/minemacs/commit/7e22ce27f8b2d2389b9a14cd7ec1519ea3c513ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** minor update - ([35878bd](https://github.com/abougouffa/minemacs/commit/35878bda704b59d33eddae25b789a724193c9131)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- remove the disclaimer on Windows - ([6c545b6](https://github.com/abougouffa/minemacs/commit/6c545b6e91dd339461e1233e960cddb58116cf1d)) - [@abougouffa](https://github.com/abougouffa)
+- simplify the code - ([d6ba81b](https://github.com/abougouffa/minemacs/commit/d6ba81b8ae537efc4d72a66135b9604ff9c8bc57)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(eaf)** use `:when` to condition `use-package` - ([a182961](https://github.com/abougouffa/minemacs/commit/a1829615a0ad7bd1ab445355d090bcc86b691f8a)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** better titlebar on MacOS! - ([f7efd93](https://github.com/abougouffa/minemacs/commit/f7efd934826ad8502d3d9752e9e917d7c3cb136d)) - [@abougouffa](https://github.com/abougouffa)
+- **(markdown)** add some local keybindings - ([3c8fce8](https://github.com/abougouffa/minemacs/commit/3c8fce8e2372b7ae9ffc5eadb5a6dd9e1c06121f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.1.1](https://github.com/abougouffa/minemacs/compare/v3.1.0..v3.1.1) - 2023-10-28
 #### Tweaks
 - **(cocogitto)** display a message after finishing - ([92bd36b](https://github.com/abougouffa/minemacs/commit/92bd36bcaba18810553c41293f24cb66418421df)) - [@abougouffa](https://github.com/abougouffa)
