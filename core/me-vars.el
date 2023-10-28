@@ -43,7 +43,7 @@
        '(config modules early-config init-tweaks)
      (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(config))
      (when (getenv "MINEMACS_IGNORE_MODULES_EL") '(modules))
-     (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(early-config))
+     (when (getenv "MINEMACS_IGNORE_EARLY_CONFIG_EL") '(early-config))
      (when (getenv "MINEMACS_IGNORE_INIT_TWEAKS_EL") '(init-tweaks))))
   "Ignore loading these user configuration files.
 Accepted values are: `config', `modules', `early-config' and `init-tweaks'.
