@@ -34,13 +34,14 @@ features introduced extra complexity and more failure points at every layer.
 
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
 *and it continues to serve that purpose*. I'm trying to tailor it to my specific
-needs while maintaining its modularity and portability. However, I have no
-intention or availability to create an alternative to Doom Emacs or Spacemacs.
-While I find joy (like every other Emacser out there) in tinkering with Emacs,
-MinEmacs remains just a tool that I use in my everyday work, and that I like to
-share with other Emacsers. However, please note that I am not really interested
-in becoming a full-time maintainer of this tool that I would only use to
-maintain itself!
+needs while maintaining its modularity and portability, you can refer to the
+[change log](CHANGELOG.md) for more information about the evolution of MinEmacs. However, I have
+no intention or availability to create an alternative to Doom Emacs or
+Spacemacs. While I find joy (like every other Emacser out there) in tinkering
+with Emacs, MinEmacs remains just a tool that I use in my everyday work, and
+that I like to share with other Emacsers. However, please note that I am not
+really interested in becoming a full-time maintainer of this tool that I would
+only use to maintain itself!
 
 ## Install
 Open a shell and run:
