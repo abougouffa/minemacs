@@ -8,12 +8,9 @@
 
 ;;; Code:
 
-(when (+emacs-features-p 'lucid)
-  ;; EAF don't work on LUCID, a.k.a. XEmacs.
-  (add-to-list 'minemacs-disabled-packages 'eaf))
-
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
+  :when (+emacs-features-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
   :init
   (+map! "oo" #'eaf-open)
