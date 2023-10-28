@@ -101,7 +101,7 @@ factor for the font in Emacs' `face-font-rescale-alist'."
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
-  (and font-family (member font-family +font-family-list)) t)
+  (and font-family (member font-family +font-family-list) t))
 
 (defun +apply-font-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
