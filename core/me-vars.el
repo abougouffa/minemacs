@@ -103,9 +103,6 @@ This list is automatically constructed from the environment variables
 (defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t) "Non-nil on Windows systems.")
 (defconst os/mac (eq system-type 'darwin) "Non-nil on MacOS systems.")
 
-(when os/win
-  (message "[DISCLAIMER]: MINEMACS HAS NOT BEEN TESTED ON WINDOWS, YOU SHOULD INVESTIGATE THE ISSUES YOU FACE!"))
-
 (defconst sys/arch (intern (car (split-string system-configuration "-")))
   "The system's architecture read from `system-configuration'.
 It return a symbol like `x86_64', `aarch64', `armhf', ...")
