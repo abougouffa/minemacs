@@ -386,7 +386,7 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
     ((rx (or "tsch" "csh")) "-dc")
     (_ "-ilc")))
 
-;; https://emacs.stackexchange.com/a/21432/37002
+;; Inspired by: emacs.stackexchange.com/a/21432/37002
 (defun +shell-command-to-string-ignore-stderr (command)
   "Execute shell command COMMAND and return its output as a string.
 

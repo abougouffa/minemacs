@@ -52,9 +52,7 @@ This list is automatically constructed from the environment variables
 
 (defconst minemacs-config-dir
   (file-name-as-directory
-   (or (getenv "MINEMACS_DIR")
-       (getenv "MINEMACSDIR")
-       "~/.minemacs.d/"))
+   (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR") "~/.minemacs.d/"))
   "MinEmacs user customization directory.")
 
 (defconst minemacs-debug
