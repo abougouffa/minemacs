@@ -122,9 +122,6 @@
       (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
     (append '(add-hook (quote spell-fu-mode-hook)) (list closure))))
 
-;;;###autoload
-(define-obsolete-function-alias '+spell-fu-register-dictionaries '+spell-fu-register-dictionaries! "2023-05-27")
-
 
 (provide 'me-spell-fu)
 

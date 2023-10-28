@@ -757,7 +757,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (autoload '+setup-fonts "me-fonts" "\
 Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+known-scripts" "+set-f" "minemacs-fonts"))
+(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+known-scripts" "+set-face-attribute-keywords" "minemacs-fonts"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
@@ -811,7 +811,6 @@ Correct spelling of word at point." t)
 Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 (fn &rest LANGS)" nil t)
-(define-obsolete-function-alias '+spell-fu-register-dictionaries '+spell-fu-register-dictionaries! "2023-05-27")
 (register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--"))
 
 
