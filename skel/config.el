@@ -24,12 +24,20 @@
 ;; font found on the system will be used:
 (plist-put minemacs-fonts-plist
            :default ;; <- applies to the `default' face usig `set-face-attribute'
-           '((:family "Iosevka Fixed Curly Slab" :height 130)
-             (:family "JetBrains Mono" :height 110 :weight light)
-             (:family "Cascadia Code" :height 120 :weight semi-light)))
+           '((:family "Iosevka Fixed Curly Slab" :height 130) ; <- priority 1
+             (:family "JetBrains Mono" :height 110 :weight light) ; <- priority 2
+             (:family "Cascadia Code" :height 120 :weight semi-light))) ; <- priority 3
 
 ;; To set font for arbitrary Emacs face, you need just to write the face name as
-;; a keyword. For example `mode-line' -> `:mode-line':
+;; a keyword. For example `variable-pitch' -> `:variable-pitch':
+(plist-put minemacs-fonts-plist
+           :variable-pitch ;; <- applies to the `variable-pitch' face usig `set-face-attribute'
+           '("Lato"
+             "Roboto"
+             "Inter"
+             "Helvetica"))
+
+;; For example to set custom font for `mode-line' -> `:mode-line':
 (plist-put minemacs-fonts-plist
            :mode-line ;; <- applies to the `mode-line' face usig `set-face-attribute'
            '((:family "Lato" :weight regular)
@@ -47,9 +55,9 @@
 ;; `:scale' parameter can be used to set a scaling factor for the font in Emacs'
 ;; `face-font-rescale-alist'.
 (plist-put minemacs-fonts-plist
-        :arabic ;; <- applies to arabic text using `set-fontset-font'
-        '((:family "Amiri" :scale 0.9)
-          (:family "KacstOne")))
+           :arabic ;; <- applies to arabic script using `set-fontset-font'
+           '((:family "Amiri" :scale 0.9)
+             (:family "KacstOne")))
 
 ;; Use "LXGW WenKai Mono" for Han (Chinese) script
 (plist-put minemacs-fonts-plist
