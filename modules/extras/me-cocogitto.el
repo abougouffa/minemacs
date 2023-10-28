@@ -31,7 +31,8 @@ restores it after that."
       (call-process-shell-command
        (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
        nil (current-buffer))
-      (call-process-shell-command "git stash pop" nil (current-buffer)))))
+      (call-process-shell-command "git stash pop" nil (current-buffer))
+      (message "Cocogitto finished!"))))
 
 
 (provide 'me-cocogitto)
