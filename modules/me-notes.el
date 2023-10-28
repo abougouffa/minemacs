@@ -31,10 +31,11 @@
 
 (use-package consult-notes
   :straight t
-  :commands consult-notes consult-notes-search-in-all-notes
   :init
-  (fmakunbound 'consult-notes-org-roam-mode)
-  (fmakunbound 'consult-notes-org-roam-find-node-relation)
+  (defun +consult-notes--unbound-org-roam ()
+    (fmakunbound 'consult-notes-org-roam-mode)
+    (fmakunbound 'consult-notes-org-roam-find-node-relation))
+  (+consult-notes--unbound-org-roam)
   (+map! :infix "n"
     "f" #'consult-notes
     "s" #'consult-notes-search-in-all-notes)
@@ -42,8 +43,7 @@
   (consult-notes-file-dir-sources `(("Notes" "n" ,denote-directory))) ; Set notes dir(s), see below
   (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
   :config
-  (fmakunbound 'consult-notes-org-roam-mode)
-  (fmakunbound 'consult-notes-org-roam-find-node-relation)
+  (+consult-notes--unbound-org-roam)
   (consult-notes-denote-mode 1)
   (consult-notes-org-headings-mode 1))
 
