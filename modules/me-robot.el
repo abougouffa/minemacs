@@ -80,10 +80,10 @@
   (+map! :infix "o"
     "r"  '(nil :wk "ros")
     "rr" '(+hydra-ros-main/body :wk "Hydra")
-    "rs" '(ros-set-workspace :wk "Set workspace")
-    "rp" '(ros-go-to-package :wk "Go to package")
-    "rC" '(ros-cache-clean :wk "Clean cache"))
-  :commands +hydra-ros-main/body
+    "rs" #'ros-set-workspace
+    "rp" #'ros-go-to-package
+    "rC" #'ros-cache-clean)
+  :commands +hydra-ros-main/body ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache
   :config
   (defhydra +hydra-ros-main (:color blue :hint nil :foreign-keys warn)
     "
