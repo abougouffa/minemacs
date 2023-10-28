@@ -11,7 +11,12 @@
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "Iosevka" :height 130)
+    ((:family "Iosevka Fixed Curly Slab" :height 130)
+     (:family "Iosevka Comfy Fixed" :height 130)
+     (:family "Iosevka Fixed Curly" :height 130)
+     (:family "Iosevka Comfy Motion Fixed" :height 130)
+     (:family "Iosevka" :height 130)
+     (:family "Iosevka Comfy" :height 130)
      (:family "Cascadia Code" :height 130)
      (:family "Fira Code" :height 130)
      (:family "Jetbrains Mono" :height 110)
@@ -89,8 +94,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   :group 'minemacs-ui
   :type 'plist)
 
-(defcustom minemacs-fonts nil
-  "Fonts to use within MinEmacs.")
+(defvar minemacs-fonts nil)
 
 (make-obsolete-variable 'minemacs-fonts 'minemacs-fonts-plist "v3.0.0")
 
