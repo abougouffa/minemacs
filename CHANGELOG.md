@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.0.3](https://github.com/abougouffa/minemacs/compare/v3.0.2..v3.0.3) - 2023-10-28
+#### Bug Fixes
+- **(fonts)** buggy check for installed fonts - ([31c1029](https://github.com/abougouffa/minemacs/commit/31c1029782eeac8f5b752721fbbacfaee5f9065e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(fonts)** add some documentation - ([c458053](https://github.com/abougouffa/minemacs/commit/c4580533b1e63779fbbb57c9a9ea8f77765242cc)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- add Github pages deployment - ([10aa065](https://github.com/abougouffa/minemacs/commit/10aa06585c1da29b8b8f643067e10ab26e5f235a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(fonts)** more default fonts settings - ([fbf6429](https://github.com/abougouffa/minemacs/commit/fbf6429499775e5dc5e0b08a1ffe1888183f0c32)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** more font setting examples in `skel/config.el` - ([129d917](https://github.com/abougouffa/minemacs/commit/129d917bbf271a4f1933f88eb8dc2c50d7f50ca6)) - [@abougouffa](https://github.com/abougouffa)
+- better modules loading - ([de54ff2](https://github.com/abougouffa/minemacs/commit/de54ff20f3c5d1da6ee85eb1f6c2fb36fd45375a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.0.2](https://github.com/abougouffa/minemacs/compare/v3.0.1..v3.0.2) - 2023-10-27
 #### Tweaks
 - **(fonts)** code cleanup - ([dbaccf0](https://github.com/abougouffa/minemacs/commit/dbaccf0698791d85b74c572bad2b7a1194f0187f)) - [@abougouffa](https://github.com/abougouffa)
