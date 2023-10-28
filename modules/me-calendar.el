@@ -30,10 +30,7 @@
   (advice-add
    'cfw:render-button :override
    (defun +cfw:render-button-flat-a (title command &optional state)
-     "render-button
- TITLE
- COMMAND
- STATE"
+     "Render a flat button with TITLE, COMMAND and STATE."
      (let ((text (concat " " title " "))
            (keymap (make-sparse-keymap)))
        (cfw:rt text (if state 'cfw:face-toolbar-button-on
