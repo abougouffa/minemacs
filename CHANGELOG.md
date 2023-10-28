@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.1.1](https://github.com/abougouffa/minemacs/compare/v3.1.0..v3.1.1) - 2023-10-28
+#### Tweaks
+- **(cocogitto)** display a message after finishing - ([92bd36b](https://github.com/abougouffa/minemacs/commit/92bd36bcaba18810553c41293f24cb66418421df)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.1.0](https://github.com/abougouffa/minemacs/compare/v3.0.3..v3.1.0) - 2023-10-28
 #### Bug Fixes
 - **(window)** fix warning window position - ([b2e48f0](https://github.com/abougouffa/minemacs/commit/b2e48f0572357adad949154341b5bf1045b4e823)) - [@abougouffa](https://github.com/abougouffa)
