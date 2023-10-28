@@ -7,56 +7,56 @@
 ;;; Code:
 
 (defcustom minemacs-core-modules
-  '(me-splash
-    me-keybindings
-    me-evil
+  '(me-completion
     me-core-ui
-    me-completion)
+    me-evil
+    me-keybindings
+    me-splash)
   "MinEmacs enabled core modules."
   :group 'minemacs-core
   :type '(repeat symbol))
 
 (defcustom minemacs-modules
-  '(me-ui
-    me-editor
-    me-daemon
-    me-undo
-    me-multi-cursors
-    me-vc
-    me-project
-    me-prog
-    me-checkers
-    ;; me-assistants
-    me-debug
-    ;; me-lsp
-    me-emacs-lisp
-    ;; me-common-lisp
-    ;; me-scheme
-    ;; me-clojure
-    ;; me-embedded
-    ;; me-robot
-    me-data
-    ;; me-math
-    ;; me-modeling
-    me-org
-    me-extra
-    me-notes
-    ;; me-email
-    ;; me-rss
-    ;; me-lifestyle
-    me-docs
-    ;; me-calendar
-    me-latex
+  '(
     ;; me-biblio
-    me-natural-langs
+    ;; me-binary
+    ;; me-calendar
+    me-checkers
+    ;; me-clojure
+    ;; me-common-lisp
+    me-daemon
+    me-data
+    me-debug
+    me-docs
+    me-editor
+    me-emacs-lisp
+    ;; me-email
+    ;; me-embedded
+    me-extra
     me-files
+    ;; me-fun
+    me-latex
+    ;; me-lifestyle
+    ;; me-lsp
+    ;; me-math
+    ;; me-media
+    ;; me-modeling
+    me-multi-cursors
+    me-natural-langs
+    me-notes
+    me-org
+    me-prog
+    me-project
+    ;; me-robot
+    ;; me-rss
+    ;; me-scheme
     me-tools
     me-tty
-    ;; me-fun
-    ;; me-media
-    ;; me-workspaces
-    me-binary
-    me-window)
+    me-ui
+    me-undo
+    me-vc
+    me-window
+    me-workspaces)
   "MinEmacs enabled modules."
   :group 'minemacs-core
   :type '(repeat symbol))
