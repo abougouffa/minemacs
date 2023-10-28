@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.1.0](https://github.com/abougouffa/minemacs/compare/v3.0.3..v3.1.0) - 2023-10-28
+#### Bug Fixes
+- **(window)** fix warning window position - ([b2e48f0](https://github.com/abougouffa/minemacs/commit/b2e48f0572357adad949154341b5bf1045b4e823)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(calfw)** document a command - ([19f2c37](https://github.com/abougouffa/minemacs/commit/19f2c37d1d583ff668a89dec000099469e577f51)) - [@abougouffa](https://github.com/abougouffa)
+- **(faq)** convert to markdown - ([c75c88f](https://github.com/abougouffa/minemacs/commit/c75c88fdbf9543564a057b4d4cfc1ebdf419861d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** add support for editing Gitlab CI YAML files - ([089ded9](https://github.com/abougouffa/minemacs/commit/089ded9e4675ff5e945180332c8f0a5f47c07062)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(modules)** remove the obsolete `me-lisp` module - ([20c6280](https://github.com/abougouffa/minemacs/commit/20c62809d7ddbf6e74aac629b669f9f565ec2b39)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult-eglot)** better check for LSP - ([fe4316a](https://github.com/abougouffa/minemacs/commit/fe4316a8167cefcf91c60fd9f5282fd64bcc1676)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-notes)** minor refactor - ([a05792a](https://github.com/abougouffa/minemacs/commit/a05792a27bdeaea6811f710a4ef0e3f4672eaa91)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** sort modules, enable `me-workspaces`, disable `me-binary` - ([c1b3ec0](https://github.com/abougouffa/minemacs/commit/c1b3ec011b43bb864cfa404ce675424ecf2b9d22)) - [@abougouffa](https://github.com/abougouffa)
+- **(daemon)** minor refactor - ([172a803](https://github.com/abougouffa/minemacs/commit/172a803f95ddcf99cbd47fe08831b4ce2c371d20)) - [@abougouffa](https://github.com/abougouffa)
+- **(fonts)** add more Iosevka fonts - ([44083e4](https://github.com/abougouffa/minemacs/commit/44083e49f3b53bd0589f1af6c61f02a9dab4c97b)) - [@abougouffa](https://github.com/abougouffa)
+- **(nov)** remove unneeded UI tweaks - ([4e3fd06](https://github.com/abougouffa/minemacs/commit/4e3fd0690b1554dd3a3897874f9b6faf9a5f80f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** make `org-present` obsolete - ([c6445db](https://github.com/abougouffa/minemacs/commit/c6445db84c28217abb2b2e165def1b3eff6b79fe)) - [@abougouffa](https://github.com/abougouffa)
+- **(ros)** autoload some commands - ([5e6a410](https://github.com/abougouffa/minemacs/commit/5e6a4109949ac277e4c8a387aa6f43b81a1120e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** minor `config.el` refactor - ([3a01518](https://github.com/abougouffa/minemacs/commit/3a01518044b5b3c6d2964ed6a85906bbbb6338f5)) - [@abougouffa](https://github.com/abougouffa)
+- **(spell-fu)** remove obsolete alias - ([6a03238](https://github.com/abougouffa/minemacs/commit/6a03238dc37a6edf21f021517a5fa7cbc01fcf21)) - [@abougouffa](https://github.com/abougouffa)
+- remove unneeded `:mode` blocks - ([05ca6d2](https://github.com/abougouffa/minemacs/commit/05ca6d21dfd1b0e0a0a64c19debfecd557bcb943)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.0.3](https://github.com/abougouffa/minemacs/compare/v3.0.2..v3.0.3) - 2023-10-28
 #### Bug Fixes
 - **(fonts)** buggy check for installed fonts - ([31c1029](https://github.com/abougouffa/minemacs/commit/31c1029782eeac8f5b752721fbbacfaee5f9065e)) - [@abougouffa](https://github.com/abougouffa)
