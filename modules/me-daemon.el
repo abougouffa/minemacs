@@ -41,7 +41,7 @@
       (server-start nil t))))
 
 ;; Reload theme when creating a frame on the daemon
-(+add-hook! server-after-make-frame (load-theme minemacs-theme :no-confirm))
+(add-hook 'server-after-make-frame-hook #'+load-theme)
 
 
 (provide 'me-daemon)
