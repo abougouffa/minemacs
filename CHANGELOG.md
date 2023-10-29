@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.1.3](https://github.com/abougouffa/minemacs/compare/v3.1.2..v3.1.3) - 2023-10-29
+#### Bug Fixes
+- **(fonts)** correctly set fonts with `custom-theme-set-faces` - ([c5d39f9](https://github.com/abougouffa/minemacs/commit/c5d39f92f6eeba6be69ca7f77ea479e0b7c64fb7)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** mark `seq` as builtin - ([d72f9ad](https://github.com/abougouffa/minemacs/commit/d72f9ad418c2fd2fb9df7e7049c8e54f4312d60c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** move backports to a separate directory - ([1f24de5](https://github.com/abougouffa/minemacs/commit/1f24de5158dbd2bab2ced1b0893e48309030adc3)) - [@abougouffa](https://github.com/abougouffa)
+- **(fonts)** inherit `default` in `fixed-pitch` and `fixed-pitch-serif` - ([01c0dea](https://github.com/abougouffa/minemacs/commit/01c0deadd66e68395dfaa77577ac9943d000e1a8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([99a5ae8](https://github.com/abougouffa/minemacs/commit/99a5ae85b701bd30deea3aca75d1c0334eee8506)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.1.2](https://github.com/abougouffa/minemacs/compare/v3.1.1..v3.1.2) - 2023-10-28
 #### Bug Fixes
 - **(vars)** fix environment variable for disabling `early-config.el` - ([7e22ce2](https://github.com/abougouffa/minemacs/commit/7e22ce27f8b2d2389b9a14cd7ec1519ea3c513ae)) - [@abougouffa](https://github.com/abougouffa)
