@@ -69,8 +69,9 @@
 ;; stage to provide its functionality to the rest of the modules so we can use
 ;; some new features when configuring them.
 (when (< emacs-major-version 29)
-  (mapc (apply-partially #'+load minemacs-core-dir)
-        (directory-files (concat minemacs-core-dir "backports") nil "\\.el$")))
+  (let ((backports-dir (concat minemacs-core-dir "backports/")))
+    (mapc (apply-partially #'+load backports-dir)
+          (directory-files backports-dir nil "\\.el$"))))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
