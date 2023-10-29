@@ -21,13 +21,6 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  (push (make-treesit-auto-recipe
-         :lang 'awk
-         :ts-mode 'awk-ts-mode
-         :remap 'awk-mode
-         :url "https://github.com/Beaglefoot/tree-sitter-awk"
-         :ext "\\.awk\\'")
-        treesit-auto-recipe-list)
   ;; Install all languages when calling `treesit-auto-install-all'
   (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
