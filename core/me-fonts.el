@@ -78,10 +78,10 @@ face names or script names expressed as keywords (with the \":\" prefix).
 
 For example to set `default' face, use `:default', to set the `mode-line' face,
 use `:mode-line', and so on. The parameters for each font in these cases (ie.
-for face names) are used in the `set-face-attribute' function, so you can pass
-any key value pairs supported by `set-face-attribute' (like `:weight',
-`:slanted', ...). A list of supported keywords are available in the variable
-`+set-face-attribute-keywords'.
+for face names) are used in the `custom-theme-set-faces' function, so you can
+pass any specs (key value pairs) supported by `custom-theme-set-faces' (like
+`:weight', `:slant', `:foreground', ...). A list of supported keywords are
+available in the variable `+face-attributes'.
 
 You can also setup some language-specific fonts. All scripts supported by Emacs
 can be found in `+known-scripts'. The keyword in this plist will be the script
@@ -109,10 +109,10 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   "List of available fonts on the system, initialized at startup from
   `font-family-list'.")
 
-(defconst +set-face-attribute-keywords
+(defconst +face-attributes
   '(:family :foundry :width :height :weight :slant :foreground
-    :background :underline :overline :strike-through :box
-    :inverse-video :stipple :extend :font :inherit)
+    :distant-foreground :background :underline :overline :strike-through
+    :box :inverse-video :stipple :font :inherit :extend)
   "Arguments accepted by the `set-face-attribute' function.")
 
 (defconst +font-spec-keywords
@@ -129,7 +129,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
              (cl-intersection (+plist-keys font)
                               (if (memq script-or-face +known-scripts)
                                   +font-spec-keywords
-                                +set-face-attribute-keywords))))))
+                                +face-attributes))))))
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
@@ -140,14 +140,17 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   (catch 'done
     (dolist (font (plist-get minemacs-fonts-plist (intern (format ":%s" script-or-face))))
       (let* ((spec (+font--get-valid-args script-or-face font))
-             (prepend (and (plistp font) (plist-get font :family)))
              (scale (and (plistp font) (plist-get font :scale)))
-             (family (plist-get spec :family)))
-        (when (+font-installed-p family)
-          (if (memq script-or-face +known-scripts)
-              (set-fontset-font t script-or-face (apply #'font-spec spec) nil prepend)
-            (apply #'set-face-attribute (append `(,script-or-face nil) spec)))
-          (when scale (add-to-list 'face-font-rescale-alist (cons (plist-get spec :family) scale)))
+             (prependp (and (plistp font) (plist-get font :family)))
+             (family (plist-get spec :family))
+             (scriptp (memq script-or-face +known-scripts)))
+        (when (or (not family) (+font-installed-p family))
+          (if scriptp
+              (set-fontset-font t script-or-face (apply #'font-spec spec) nil prependp)
+            (custom-theme-set-faces 'user `(,script-or-face ((t ,spec)))))
+          (when (and scale family)
+            (add-to-list 'face-font-rescale-alist (cons family scale)))
+          (+log! "Settinng %s `%s' to `%s'" (if scriptp "script" "face") script-or-face spec)
           (throw 'done spec))))))
 
 ;; Inspired by: github.com/seagle0128/.emacs.d/blob/master/custom-example.el
@@ -162,7 +165,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
 
-(make-obsolete #'+set-fonts #'+setup-fonts "v3.0.0")
+(define-obsolete-function-alias #'+set-fonts #'+setup-fonts "v3.0.0")
 
 (+add-hook! (window-setup server-after-make-frame) #'+setup-fonts)
 
