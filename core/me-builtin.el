@@ -21,6 +21,9 @@
 (use-package let-alist
   :straight (:type built-in))
 
+(use-package seq
+  :straight (:type built-in))
+
 (use-package password-cache
   :straight (:type built-in)
   :custom
