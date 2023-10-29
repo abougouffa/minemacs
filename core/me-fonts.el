@@ -29,6 +29,10 @@
      (:family "Ubuntu Mono" :height 130)
      (:family "DejaVu Sans Mono" :height 130)
      (:family "Consolas" :height 130))
+    :fixed-pitch
+    ((:inherit default))
+    :fixed-pitch-serif
+    ((:inherit default))
     :variable-pitch
     ("Lato"
      "Roboto"
