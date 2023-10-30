@@ -26,7 +26,8 @@
 
 ;; To avoid installing `tree-sitter' as the used `ts-fold' fork uses the
 ;; built-in `treesit'
-(push 'tree-sitter straight-built-in-pseudo-packages)
+(when (+emacs-features-p 'tree-sitter)
+  (push 'tree-sitter straight-built-in-pseudo-packages))
 
 (use-package ts-fold
   :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
