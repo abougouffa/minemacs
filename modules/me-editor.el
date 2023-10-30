@@ -67,8 +67,10 @@
   :straight t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
-  ;; Original "\\_<[[:digit:]].*?\\_>"
-  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
+  (setq highlight-numbers-generic-regexp
+        (rx (and symbol-start (one-or-more digit))
+            (optional "." (* digit))
+            symbol-end)))
 
 (use-package smartparens
   :straight t
@@ -115,6 +117,7 @@
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "elisp/+buffer.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
+
 
 (provide 'me-editor)
 
