@@ -63,8 +63,12 @@ This list is automatically constructed from the environment variables
   (and (or (getenv "MINEMACS_VERBOSE") minemacs-debug) t)
   "MinEmacs is started in verbose mode.")
 
+(defconst minemacs-always-demand
+  (and (getenv "MINEMACS_ALWAYS_DEMAND") t)
+  "Load all packages immediately, do not defer any package.")
+
 (defconst minemacs-not-lazy
-  (or (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
+  (or minemacs-always-demand (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
 (defcustom minemacs-msg-level

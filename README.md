@@ -125,6 +125,8 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_ALPHA`: Set frame `background-alpha` to percentage (value from 0 to
   100).
 - `MINEMACS_NOT_LAZY`: Load lazy packages immediately after loading Emacs.
+- `MINEMACS_ALWAYS_DEMAND`: Load all packages immediately (this works by setting
+ `use-package-always-demand` to `t` and `use-package-always-defer` to `nil`.
 - `MINEMACS_IGNORE_VERSION_CHECK`: Do not perform version check in `init.el`,
   this can be useful if you use `~/.minemacs.d/init-tweaks.el` to implement the
   functionalities used by MinEmacs and missing from your Emacs version.
