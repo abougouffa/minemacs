@@ -1830,7 +1830,7 @@ All notable changes to this project will be documented in this file. See [conven
 - **(defaults)** make recentf ignore some paths - ([7e51ba2](https://github.com/abougouffa/minemacs/commit/7e51ba2)) - [@abougouffa](https://github.com/abougouffa)
 - **(defaults)** scrolling settings - ([41961c4](https://github.com/abougouffa/minemacs/commit/41961c4)) - [@abougouffa](https://github.com/abougouffa)
 - **(defaults)** don't enable visual-line-mode globally - ([07e3847](https://github.com/abougouffa/minemacs/commit/07e3847)) - [@abougouffa](https://github.com/abougouffa)
-- **(defaults)** enable Shift+<Dir> to move between windows - ([15e03f9](https://github.com/abougouffa/minemacs/commit/15e03f9)) - [@abougouffa](https://github.com/abougouffa)
+- **(defaults)** enable `Shift+<Dir>` to move between windows - ([15e03f9](https://github.com/abougouffa/minemacs/commit/15e03f9)) - [@abougouffa](https://github.com/abougouffa)
 - **(defaults)** kill term buffer on exit - ([fca0c80](https://github.com/abougouffa/minemacs/commit/fca0c80)) - [@abougouffa](https://github.com/abougouffa)
 - **(defaults)** disable image widgets - ([bdbecd1](https://github.com/abougouffa/minemacs/commit/bdbecd1)) - [@abougouffa](https://github.com/abougouffa)
 - **(defaults)** kill shell buffer on exit - ([0fc9040](https://github.com/abougouffa/minemacs/commit/0fc9040)) - [@abougouffa](https://github.com/abougouffa)
