@@ -124,6 +124,9 @@
 ;; Then we load the loaddefs file
 (+load minemacs-loaddefs-file)
 
+;; Load fonts early
+(+setup-fonts)
+
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
 (unless (memq 'init-tweaks minemacs-ignore-user-config)
   (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
