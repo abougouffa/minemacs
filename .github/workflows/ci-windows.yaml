@@ -24,3 +24,9 @@ jobs:
           $env:HOME = "D:\a\minemacs\"
           $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"
           emacs --no-window-system --batch --script .github\workflows\scripts\ci-init.el
+      - name: Running MinEmacs in always demand mode
+        run: |
+          echo "Loading Emacs with MINEMACS_ALWAYS_DEMAND"
+          $env:HOME = "D:\a\minemacs\"
+          $env:MINEMACS_ALWAYS_DEMAND = "1"
+          emacs --no-window-system --batch --script .github\workflows\scripts\ci-init.el
