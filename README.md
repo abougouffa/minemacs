@@ -22,14 +22,14 @@ languages, email management, and staying updated with news, among other things.
 Hence, I wanted a framework that is both robust and straightforward. Doom Emacs
 seemed like a suitable choice initially. However, before I started this project
 back in September 2022, I encountered numerous issues with Doom Emacs.
-Occasionally, after running the `doom upgrade` command, everything would cease
-to function properly. These problems always seemed to arise during my busiest
-days, causing unnecessary additional stress. To be frank, at that time, Doom
-Emacs started to feel overly complex as a configuration framework. It
-incorporated a command line interface, an extensive library with extra features,
-numerous unnecessary hacks to tweak Emacs behavior for a negligible improvement
-in startup time, configuration modules that tightly combined various packages in
-an opinionated manner, CI commands, and even a profile manager! Each of these
+Occasionally, after running the `doom upgrade` command, everything would cease to
+function properly. These problems always seemed to arise during my busiest days,
+causing unnecessary additional stress. To be frank, at that time, Doom Emacs
+started to feel overly complex as a configuration framework. It incorporated a
+command line interface, an extensive library with extra features, numerous
+unnecessary hacks to tweak Emacs behavior for a negligible improvement in
+startup time, configuration modules that tightly combined various packages in an
+opinionated manner, CI commands, and even a profile manager! Each of these
 features introduced extra complexity and more failure points at every layer.
 
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
@@ -56,25 +56,18 @@ packages.
 
 > [!IMPORTANT]
 > Please note that I'm using a fresh Emacs 29 built from source on a Manjaro
-> Linux system. I have enabled basic [Github CI
-> actions](https://github.com/abougouffa/minemacs/actions) to automatically test
-> running Emacs on [Ubuntu Linux (Emacs 28 and
-> 29)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml),
-> [MacOS (Emacs
-> 29)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
-> and [Windows (Emacs
-> 28)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml).
-> These actions ensure that MinEmacs is "runnable"; with all modules enabled on
-> these systems. However, more testing should be done to validate the
-> configuration on systems other than Linux.
+> Linux system. I have enabled basic [Github CI actions](https://github.com/abougouffa/minemacs/actions) to automatically test
+> running Emacs 28, 29 and a fresh 30 build on [Ubuntu Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml) and [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml) and Emacs
+> 28 on [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml). These actions ensure that MinEmacs is "runnable"; with all
+> modules enabled on these systems. However, more testing should be done to
+> validate the configuration on systems other than Linux.
 >
 > I'm trying to support at least Emacs 28.2, so [I back port some of the new
-> functions/macros I use to Emacs 28](core/me-backports-29.el). Furthermore, for
-> Emacs 28 and earlier, MinEmacs includes the `me-compat` module which loads the
-> `compat` package at early stage (just after bootstrapping `straight` and
-> `use-package`), this can facilitate porting MinEmacs to earlier Emacs
-> versions. However, I've never tested MinEmacs with versions earlier than 28.2,
-> and I don't plan to do so!
+> functions/macros I use to Emacs 28](core/backports/). Furthermore, for Emacs 28 and earlier,
+> MinEmacs includes the `me-compat` module which loads the `compat` package at early
+> stage (just after bootstrapping `straight` and `use-package`), this can facilitate
+> porting MinEmacs to earlier Emacs versions. However, I've never tested
+> MinEmacs with versions earlier than 28.2, and I don't plan to do so!
 
 ## Customization
 To personalize MinEmacs, you can incorporate a specific set of files within the
@@ -89,15 +82,14 @@ There are two main files that can be added in the `~/.minemacs.d` directory:
    list of disabled packages (`minemacs-core-modules`, `minemacs-modules` and
    `minemacs-disabled-packages` can be set in this file).
 2. The `~/.minemacs.d/config.el` file contains the user configuration and
-   customization, you can think of it as your `init.el`, which gets loaded at
-   the end of MinEmacs' `init.el`!
+   customization, you can think of it as your `init.el`, which gets loaded at the
+   end of MinEmacs' `init.el`!
 
-This repository contains skeleton files for [`modules.el`](skel/modules.el) and
-[`config.el`](skel/config.el) (under [`skel/`](skel)). We highly recommend
-following the same structure as in the skeleton files, specially the use of
-`with-eval-after-load` and `use-package` instead of using `require` directly
-(`require` loads the packages immediately, which increases the startup time of
-Emacs).
+This repository contains skeleton files for [`modules.el`](skel/modules.el) and [`config.el`](skel/config.el) (under
+[`skel/`](skel)). We highly recommend following the same structure as in the skeleton
+files, specially the use of `with-eval-after-load` and `use-package` instead of
+using `require` directly (`require` loads the packages immediately, which increases
+the startup time of Emacs).
 
 ### Advanced configuration files
 MinEmacs provides also some advanced customization files, these files can be
@@ -116,8 +108,8 @@ MinEmacs runnable on older Emacs versions, etc.
 ### Environment variables
 You can customize MinEmacs' behavior via some environment variables.
 
-- `MINEMACS_DIR` or `MINEMACSDIR`: Path for MinEmacs user configuration
-  directory, if not set, `~/.minemacs.d/` is used.
+- `MINEMACS_DIR` or `MINEMACSDIR`: Path for MinEmacs user configuration directory,
+  if not set, `~/.minemacs.d/` is used.
 - `MINEMACS_MSG_LEVEL`: Change message log level, from 1 (only errors) to 4 (all
   messages).
 - `MINEMACS_VERBOSE`: Be more verbose (useful for debugging).
@@ -127,8 +119,8 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_NOT_LAZY`: Load lazy packages immediately after loading Emacs.
 - `MINEMACS_ALWAYS_DEMAND`: Load all packages immediately (this works by setting
  `use-package-always-demand` to `t` and `use-package-always-defer` to `nil`.
-- `MINEMACS_IGNORE_VERSION_CHECK`: Do not perform version check in `init.el`,
-  this can be useful if you use `~/.minemacs.d/init-tweaks.el` to implement the
+- `MINEMACS_IGNORE_VERSION_CHECK`: Do not perform version check in `init.el`, this
+  can be useful if you use `~/.minemacs.d/init-tweaks.el` to implement the
   functionalities used by MinEmacs and missing from your Emacs version.
 - `MINEMACS_IGNORE_CONFIG_EL`, `MINEMACS_IGNORE_MODULES_EL`,
   `MINEMACS_IGNORE_EARLY_CONFIG_EL` and `MINEMACS_IGNORE_INIT_TWEAKS_EL`: Ignore
@@ -139,5 +131,5 @@ You can customize MinEmacs' behavior via some environment variables.
   (present in `~/.minemacs.d`, or directory pointed by `$MINEMACSDIR`).
 
 ## Troubleshooting
-If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md),
-check [open issues or open a new one](https://github.com/abougouffa/minemacs/issues).
+If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md), check [open
+issues or open a new one](https://github.com/abougouffa/minemacs/issues).
