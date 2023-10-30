@@ -14,7 +14,8 @@
 
 (message "Running MinEmacs in CI mode, loading all packages.")
 
-(let ((root-dir (expand-file-name (concat (file-name-directory (or load-file-name buffer-file-name)) "../../../"))))
+(let* ((scripts-dir (file-name-directory (or load-file-name buffer-file-name)))
+       (root-dir (expand-file-name "../../../" scripts-dir)))
   (message "Calculated root directory is \"%s\"" root-dir)
   (message "Loading \"early-init.el\"")
   (load (expand-file-name "early-init.el" root-dir))
