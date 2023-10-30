@@ -18,23 +18,13 @@
   (vundo-window-max-height 8)
   (vundo-glyph-alist vundo-unicode-symbols))
 
-(use-package undo-fu
-  :straight t
-  :after minemacs-loaded
-  :demand t
-  :config
-  (with-eval-after-load 'evil
-    (setopt evil-undo-system 'undo-fu)))
-
 (use-package undo-fu-session
   :straight t
-  :after undo-fu
+  :hook (minemacs-after-startup . global-undo-fu-session-mode)
   :demand t
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz))
-  (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/"))
-  :config
-  (global-undo-fu-session-mode 1))
+  (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/")))
 
 
 (provide 'me-undo)
