@@ -93,11 +93,9 @@
 (use-package docker-compose-mode
   :straight t)
 
-(when (+emacs-features-p 'tree-sitter)
-  (push '(tree-sitter dockerfile-mode) minemacs-disabled-packages))
-
 (use-package dockerfile-mode
-  :straight t)
+  :straight t
+  :unless (+emacs-features-p 'tree-sitter))
 
 (use-package systemd
   :straight (systemd :build (:not compile)))
