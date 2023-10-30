@@ -11,7 +11,9 @@
 (use-package expand-region
   :straight t
   :init
-  (+vmap! "v" #'er/expand-region))
+  (+vmap!
+    "v" #'er/expand-region
+    "q" #'er/contract-region))
 
 (provide 'obsolete/me-expand-region)
 
