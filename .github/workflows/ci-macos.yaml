@@ -10,17 +10,19 @@ on:
 
 jobs:
   ci-macos:
-    runs-on: "${{ matrix.architecture }}"
+    runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
-        architecture:
-          - macos-latest
+        emacs-version:
+          - 28.2
+          - 29.1
+          - snapshot
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Emacs (MacOS)
-        run: |
-          brew install emacs
+      - uses: purcell/setup-emacs@master
+        with:
+          version: ${{ matrix.emacs-version }}
       - name: Show Emacs version
         run: |
           EMACS_VERSION=$(emacs --version)

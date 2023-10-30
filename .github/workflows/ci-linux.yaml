@@ -17,6 +17,7 @@ jobs:
         emacs-version:
           - 28.2
           - 29.1
+          - snapshot
     steps:
       - uses: actions/checkout@v4
       - uses: purcell/setup-emacs@master
