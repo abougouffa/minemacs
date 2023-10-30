@@ -14,14 +14,8 @@
 
 (message "Running MinEmacs in CI mode, loading all packages.")
 
-(let ((root-dir (file-name-directory ;; ./../../../ -> minemacs-root-dir
-                 (directory-file-name
-                  (file-name-directory
-                   (directory-file-name
-                    (file-name-directory
-                     (directory-file-name
-                      (file-name-directory load-file-name)))))))))
-  (message "Calculated root directory is \"%s\"" default-directory)
+(let ((root-dir (expand-file-name (concat (file-name-directory (or load-file-name buffer-file-name)) "../../../"))))
+  (message "Calculated root directory is \"%s\"" root-dir)
   (message "Loading \"early-init.el\"")
   (load (expand-file-name "early-init.el" root-dir))
 
