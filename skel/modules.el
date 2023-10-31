@@ -83,6 +83,7 @@
 ;;          obsolete/me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
 ;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-lexic         ; Offline dictionary using sdcv
+;;          obsolete/me-maxima        ; Maxima CAS (maxima, imaxima)
 ;;          obsolete/me-org-roam      ; Org roam configuration (org-roam, consult-org-roam, ...)
 ;;          obsolete/me-projectile    ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
 ;;          obsolete/me-tree-sitter   ; Tree-sitter module configuration (this module is automatically activated for Emacs 28 or 29+ built without treesitter support)
