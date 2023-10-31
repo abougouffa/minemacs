@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.2.0](https://github.com/abougouffa/minemacs/compare/v3.1.3..v3.2.0) - 2023-10-31
+#### Bug Fixes
+- **(backports)** correct load path for back ports - ([3627f8c](https://github.com/abougouffa/minemacs/commit/3627f8c84ae5da8c9781bbe339868bd25b05f1be)) - [@abougouffa](https://github.com/abougouffa)
+- treat `tree-sitter` as pseudo package only when built with treesit - ([62f5988](https://github.com/abougouffa/minemacs/commit/62f5988827273d16785df33e0cfc102617d4adbe)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(changelog)** minor fix - ([b873dd4](https://github.com/abougouffa/minemacs/commit/b873dd4f6e82c9c239678acb1f3575609ddd0872)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update the documentation - ([74d5dd1](https://github.com/abougouffa/minemacs/commit/74d5dd1478335d3583eff8a2339d41907620fce8)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(undo)** use builtin `undo-redo` instead of `undo-fu` - ([e9f1f4f](https://github.com/abougouffa/minemacs/commit/e9f1f4f2ab607f52991485cb726a875b4a3ac792)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** add an option to always demand packages - ([49cdf0d](https://github.com/abougouffa/minemacs/commit/49cdf0d4709e9a09d26da9d13fddfe952e81ec73)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** enable Emacs 28, 29 and snapshot on Linux and MacOS - ([5869e1b](https://github.com/abougouffa/minemacs/commit/5869e1ba1a3b5b3361bfcb3454270a76bcae574b)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** run a step of MinEmacs in always demand mode - ([6d430dc](https://github.com/abougouffa/minemacs/commit/6d430dce293b8ac626058958a1f911a8256704bb)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(ci)** minor refactor of init script - ([ca2bad4](https://github.com/abougouffa/minemacs/commit/ca2bad45bb0e85af5211a80010a938bbc6e005fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(highlight-numbers)** rewrite regexp with `rx` - ([d46593a](https://github.com/abougouffa/minemacs/commit/d46593a5f3d0888fd78f5350d0f6e51fc673937f)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make use of `:unless` - ([b04adb1](https://github.com/abougouffa/minemacs/commit/b04adb13c6d4e5dd4ff9f391b30ed23db37334e0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(ci)** simplify `minemacs-root-dir` deduction - ([988463d](https://github.com/abougouffa/minemacs/commit/988463d421607907055d61e11c046b1dded28ccf)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** load fonts early - ([2c2d1ce](https://github.com/abougouffa/minemacs/commit/2c2d1ced5c074d0115231c273f4393189399f16c)) - [@abougouffa](https://github.com/abougouffa)
+- **(lexic)** make lexic obsolete - ([9e15401](https://github.com/abougouffa/minemacs/commit/9e154013a89a5df202fe79555f126508327256a3)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete)** sync keybindings for `expand-region` to match `expreg` - ([87fc42e](https://github.com/abougouffa/minemacs/commit/87fc42e8c1f0c047d42cb0ddefee48740213145c)) - [@abougouffa](https://github.com/abougouffa)
+- **(systemd)** use the Company backend as Capf - ([aea6966](https://github.com/abougouffa/minemacs/commit/aea6966b832bd9f7c163494e6cba15aec5ea620e)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** nom need to add AWK support, merged upstream - ([c16c71d](https://github.com/abougouffa/minemacs/commit/c16c71d73d51ec4e9d8a7a5466c2aeec29c6ecda)) - [@abougouffa](https://github.com/abougouffa)
+- **(x86-lookup)** auto download the PDF if not available - ([f677cc2](https://github.com/abougouffa/minemacs/commit/f677cc24ce559c4c97af944d31c7a66ba958f9f4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cede9ee](https://github.com/abougouffa/minemacs/commit/cede9ee793ff49c292f04efce4704736bda08efc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.1.3](https://github.com/abougouffa/minemacs/compare/v3.1.2..v3.1.3) - 2023-10-29
 #### Bug Fixes
 - **(fonts)** correctly set fonts with `custom-theme-set-faces` - ([c5d39f9](https://github.com/abougouffa/minemacs/commit/c5d39f92f6eeba6be69ca7f77ea479e0b7c64fb7)) - [@abougouffa](https://github.com/abougouffa)
