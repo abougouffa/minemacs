@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+(autoload #'plistp "subr")
 
 (defcustom minemacs-fonts-plist
   '(:default
