@@ -8,8 +8,6 @@
 
 ;;; Code:
 
-(autoload #'plistp "subr")
-
 (defcustom minemacs-fonts-plist
   '(:default
     ((:family "Iosevka Fixed Curly Slab" :height 130)
