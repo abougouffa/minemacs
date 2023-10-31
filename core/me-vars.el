@@ -38,9 +38,9 @@
   :group 'minemacs)
 
 (defconst minemacs-ignore-user-config
-  (append
-   (if (getenv "MINEMACS_IGNORE_USER_CONFIG")
-       '(config modules early-config init-tweaks)
+  (if (getenv "MINEMACS_IGNORE_USER_CONFIG")
+      '(config modules early-config init-tweaks)
+    (append
      (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(config))
      (when (getenv "MINEMACS_IGNORE_MODULES_EL") '(modules))
      (when (getenv "MINEMACS_IGNORE_EARLY_CONFIG_EL") '(early-config))
