@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.2.1](https://github.com/abougouffa/minemacs/compare/v3.2.0..v3.2.1) - 2023-10-31
+#### Bug Fixes
+- **(fonts)** autoload `plistp` (fatal on Emacs 28) - ([3d51c8a](https://github.com/abougouffa/minemacs/commit/3d51c8aae9657bcf90ee0be1d4abfeaf5d9347e1)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** correctly manage the different `MINEMACS_IGNORE_*` vars - ([d68e20d](https://github.com/abougouffa/minemacs/commit/d68e20dbd7a6a5fd621c7ef1cc4aee829e255e40)) - [@abougouffa](https://github.com/abougouffa)
+- don't apply fonts too early - ([c393d1c](https://github.com/abougouffa/minemacs/commit/c393d1c2e12be9292c7c745da405167540675606)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** add `obsolete/me-lexic` to the list - ([621bf07](https://github.com/abougouffa/minemacs/commit/621bf07b7e959b871b9ed5879849da728a631edd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(math)** obsolete Maxima configuration as I'm not using it - ([2bb4192](https://github.com/abougouffa/minemacs/commit/2bb41920718f5f08a1a565e763447a2c4cc82739)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.2.0](https://github.com/abougouffa/minemacs/compare/v3.1.3..v3.2.0) - 2023-10-31
 #### Bug Fixes
 - **(backports)** correct load path for back ports - ([3627f8c](https://github.com/abougouffa/minemacs/commit/3627f8c84ae5da8c9781bbe339868bd25b05f1be)) - [@abougouffa](https://github.com/abougouffa)
