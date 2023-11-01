@@ -103,7 +103,17 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     (setq-local corfu-quit-at-boundary t
                 corfu-quit-no-match t
                 corfu-auto nil)
-    (corfu-mode 1)))
+    (corfu-mode 1))
+
+  ;; Taken from:
+  ;; git.sr.ht/~gagbo/doom-config/tree/master/item/modules/completion/corfu/config.el
+  (defun +corfu-complete-in-minibuffer ()
+    "Move current completions to the minibuffer."
+    (interactive)
+    (let ((completion-extra-properties corfu--extra)
+          completion-cycle-threshold
+          completion-cycling)
+      (apply #'consult-completion-in-region completion-in-region--data))))
 
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
