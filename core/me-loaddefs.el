@@ -527,15 +527,13 @@ Adapted from `org-plist-delete'.
 (fn ALIST &optional ADD-COL)")
 (autoload '+alist-set "../elisp/+primitives" "\
 Set property KEY to VAL in ALIST. Return new alist.
-This creates the association if it is missing, and otherwise sets
-the cdr of the first matching association in the list. It does
-not create duplicate associations. By default, key comparison is
-done with `equal'. However, if SYMBOL is non-nil, then `eq' is
-used instead.
+This creates the association if it is missing, and otherwise sets the cdr of the
+first matching association in the list. It does not create duplicate
+associations. By default, key comparison is done with `equal'. However, if
+SYMBOL is non-nil, then `eq' is used instead.
 
-This method may mutate the original alist, but you still need to
-use the return value of this method instead of the original
-alist, to ensure correct results.
+This method may mutate the original alist, but you still need to use the return
+value of this method instead of the original alist, to ensure correct results.
 
 (fn KEY VAL ALIST &optional SYMBOL)")
 (autoload '+serialize-sym "../elisp/+primitives" "\
@@ -684,34 +682,9 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
-;;; Generated autoloads from me-backports-29.el
-
-(register-definition-prefixes "me-backports-29" '("loaddefs-generate" "messages-buffer-name" "native-compile-prune-cache" "scratch-buffer" "setopt" "with-memoization"))
-
-
 ;;; Generated autoloads from me-bootstrap.el
 
 (autoload '+straight-prune-build-cache "me-bootstrap")
-
-
-;;; Generated autoloads from ../modules/extras/me-cape-super-capf.el
-
-(defvar +cape-global-capes '(tempel-complete :completion cape-dict) "\
-A list of global capes to be available at all times.
-The key :completion is used to specify where completion candidates should be
-placed, otherwise they come first.")
-(custom-autoload '+cape-global-capes "../modules/extras/me-cape-super-capf" t)
-(defvar +cape-hosts '(eglot-completion-at-point lsp-completion-at-point elisp-completion-at-point tags-completion-at-point-function) "\
-A prioritised list of host capfs to create a super cape onto from
-`+cape-global-capes'.")
-(custom-autoload '+cape-hosts "../modules/extras/me-cape-super-capf" t)
-(autoload '+cape-load-capes "../modules/extras/me-cape-super-capf" "\
-Load all capes specified in `+cape-global-capes'." t)
-(autoload '+toggle-cape-auto-super-capf "../modules/extras/me-cape-super-capf" "\
-Enable auto generating Cape's super Capf.
-This depends on `+cape-hosts' and `+cape-global-capes'.
-
-(fn &optional DISABLE)" t)
 
 
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
@@ -757,7 +730,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (autoload '+setup-fonts "me-fonts" "\
 Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-script" "+font-" "+known-scripts" "+set-face-attribute-keywords" "minemacs-fonts"))
+(register-definition-prefixes "me-fonts" '("+apply-font-script" "+f" "+known-scripts" "minemacs-fonts"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
