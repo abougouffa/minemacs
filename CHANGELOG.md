@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.3.1](https://github.com/abougouffa/minemacs/compare/v3.3.0..v3.3.1) - 2023-11-01
+#### Bug Fixes
+- **(latex)** remove buggy dead code - ([8537095](https://github.com/abougouffa/minemacs/commit/85370959a6cf32a9398d95e15b3706030ec891b1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.3.0](https://github.com/abougouffa/minemacs/compare/v3.2.1..v3.3.0) - 2023-11-01
 #### Bug Fixes
 - **(corfu)** correct function name in the hook - ([333ad2e](https://github.com/abougouffa/minemacs/commit/333ad2e3dfea4fa45af236377f74b06d633b4ce9)) - [@abougouffa](https://github.com/abougouffa)
