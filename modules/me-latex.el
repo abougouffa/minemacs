@@ -178,10 +178,6 @@
     ;; Add LatexMk as a TeX target.
     (auctex-latexmk-setup)))
 
-(use-package me-latex-fonts
-  :after latex
-  :demand t)
-
 
 (provide 'me-latex)
 
