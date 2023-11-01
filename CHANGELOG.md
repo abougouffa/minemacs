@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.3.0](https://github.com/abougouffa/minemacs/compare/v3.2.1..v3.3.0) - 2023-11-01
+#### Bug Fixes
+- **(corfu)** correct function name in the hook - ([333ad2e](https://github.com/abougouffa/minemacs/commit/333ad2e3dfea4fa45af236377f74b06d633b4ce9)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil-mc)** move and fix `evil-escape` integration - ([8cc883d](https://github.com/abougouffa/minemacs/commit/8cc883db352c9a2906d76802192e373e970a6a39)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** minor tweaks - ([eaf4581](https://github.com/abougouffa/minemacs/commit/eaf45811d5555d908be0e025ef84ffa6b217a7b2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(corfu)** canonize hook function name - ([cbf53a7](https://github.com/abougouffa/minemacs/commit/cbf53a72460ee884f19184ac43927484351757e0)) - [@abougouffa](https://github.com/abougouffa)
+- **(latex)** move fontification tweaks to `me-latex` - ([22fe929](https://github.com/abougouffa/minemacs/commit/22fe929108e4fbfbe954bd6e03fc3502fe9d6410)) - [@abougouffa](https://github.com/abougouffa)
+- **(vertico)** better way to extract extensions directory - ([559abe9](https://github.com/abougouffa/minemacs/commit/559abe9e93bc58601ea2568ee671aacc2687cfa7)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(vertico)** better way to extract extensions directory - ([56ac0ae](https://github.com/abougouffa/minemacs/commit/56ac0ae172057f67af7f7fd9f004f868863a7180)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cape)** move `cape-capf-super` stuff to `me-completion` - ([dbfc114](https://github.com/abougouffa/minemacs/commit/dbfc11412ff443c0a7be4d78ff7ba4a0cbe8a1cf)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** add a command to do corfu completions in minibuffer - ([c85ba97](https://github.com/abougouffa/minemacs/commit/c85ba9799216db3d19321c63c771cad2e426bc87)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** use TAB and S-TAB for next/previous - ([cb3f35d](https://github.com/abougouffa/minemacs/commit/cb3f35d64f7d2832e807b6c1bcdf2b867eed2d6f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([de449e3](https://github.com/abougouffa/minemacs/commit/de449e3b550479f26745114159c4875af32abacb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.2.1](https://github.com/abougouffa/minemacs/compare/v3.2.0..v3.2.1) - 2023-10-31
 #### Bug Fixes
 - **(fonts)** autoload `plistp` (fatal on Emacs 28) - ([3d51c8a](https://github.com/abougouffa/minemacs/commit/3d51c8aae9657bcf90ee0be1d4abfeaf5d9347e1)) - [@abougouffa](https://github.com/abougouffa)
