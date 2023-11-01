@@ -75,7 +75,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package corfu
   :straight t
   :hook (minemacs-after-startup . global-corfu-mode)
-  :hook (eshell-mode . +corfu-less-intrusive)
+  :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :init
   (add-to-list
@@ -99,7 +99,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
       (setq-local corfu-auto nil) ; Enable/disable auto completion
       (corfu-mode 1)))
 
-  (defun +corfu-less-intrusive ()
+  (defun +corfu-less-intrusive-h ()
     (setq-local corfu-quit-at-boundary t
                 corfu-quit-no-match t
                 corfu-auto nil)
