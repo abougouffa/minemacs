@@ -75,7 +75,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package corfu
   :straight t
   :hook (minemacs-after-startup . global-corfu-mode)
-  :hook (eshell-mode . +corfu-less-intrusive-h)
+  :hook (eshell-mode . +corfu-less-intrusive)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :init
   (add-to-list
