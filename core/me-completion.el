@@ -274,10 +274,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (vertico-resize nil)
   (vertico-count 12)
   :init
-  (add-to-list
-   'load-path (concat
-               straight-base-dir
-               (format "straight/%s/vertico/extensions" straight-build-dir)))
+  (add-to-list 'load-path (file-name-concat (file-name-directory (feature-file 'vertico)) "extensions/"))
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
   ;; to serve the original "C-k".
