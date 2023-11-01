@@ -8,11 +8,56 @@
 
 ;;; Code:
 
+(defgroup minemacs-completion nil
+  "Completion related stuff."
+  :group 'minemacs)
+
 (use-package cape
   :straight t
   :after minemacs-loaded
   :demand t
+  :init
+  (defcustom +cape-global-capes
+    '(tempel-complete :completion cape-dict)
+    "A list of global capes to be available at all times.
+The key `:completion' is used to specify where completion candidates should be
+placed, otherwise they come first."
+    :group 'minemacs-completion
+    :type '(repeat symbol))
+  (defcustom +cape-hosts
+    '(eglot-completion-at-point
+      lsp-completion-at-point
+      elisp-completion-at-point
+      tags-completion-at-point-function)
+    "A prioritised list of host capfs to create a super cape onto from
+`+cape-global-capes'."
+    :group 'minemacs-completion
+    :type '(repeat function))
   :config
+  ;; Make use of `cape''s super Capf functionality. Adapted from:
+  ;; git.sr.ht/~gagbo/doom-config/tree/master/item/modules/completion/corfu/config.el
+  (defun +cape-apply-capf-super ()
+    "Apply Capf super to all capes specified in `+cape-global-capes' and `+cape-hosts'."
+    (interactive)
+    (when-let ((host (cl-intersection +cape-hosts completion-at-point-functions)))
+      (setq-local
+       completion-at-point-functions
+       (cl-substitute (apply #'cape-capf-super
+                             (cl-substitute (car host)
+                                            :completion
+                                            (append (cl-pushnew :completion +cape-global-capes))))
+                      (car host)
+                      completion-at-point-functions))))
+
+  (defun +toggle-cape-auto-capf-super (&optional disable)
+    "Enable auto generating Cape's super Capf.
+This depends on `+cape-hosts' and `+cape-global-capes'."
+    (interactive)
+    (let ((enabled (get '+cape-auto-capf-super 'enabled)))
+      (dolist (hook '(lsp-mode-hook eglot-managed-mode-hook change-major-mode-hook))
+        (apply (if (or enabled disable) #'remove-hook #'add-hook) (list hook #'+cape-apply-capf-super))
+        (put '+cape-auto-capf-super 'enabled (not (or enabled disable))))))
+
   (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
 
   (+add-hook! (emacs-lisp-mode git-commit-mode)
