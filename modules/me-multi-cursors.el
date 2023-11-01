@@ -59,11 +59,28 @@
      (ess-smart-comma (:default . evil-mc-execute-call))
      (evil-digit-argument-or-evil-beginning-of-visual-line
       (:default . evil-mc-execute-default-call)
-      (visual . evil-mc-execute-visual-call)))))
+      (visual . evil-mc-execute-visual-call))))
 
-(use-package me-evil-mc-evil-escape
-  :after evil-mc evil-escape
-  :demand t)
+  (with-eval-after-load 'evil-escape
+    (defun +evil-mc-evil-escape-move-back-fake-cursors ()
+      (unless (bolp) (backward-char)))
+
+    (advice-add
+     'evil-escape-func :before
+     (defun +evil-mc--evil-escape-fix-a ()
+       (when (evil-mc-has-cursors-p)
+         (evil-mc-pause-cursors)
+         (run-with-idle-timer
+          0 nil
+          (lambda ()
+            (evil-mc-resume-cursors)
+            (let ((evil-mc-command '((:name . +evil-mc-evil-escape-move-back-fake-cursors))))
+              (evil-mc-execute-for-all)))))))
+
+    (add-to-list
+     'evil-mc-custom-known-commands
+     '(+evil-mc-evil-escape-move-back-fake-cursors
+       (:default . evil-mc-execute-default-call)))))
 
 (use-package evil-multiedit
   :straight t
