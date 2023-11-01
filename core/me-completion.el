@@ -87,9 +87,11 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
   :config
-  (with-eval-after-load 'evil
-    (keymap-set corfu-map "C-j" 'corfu-next)
-    (keymap-set corfu-map "C-k" 'corfu-previous))
+  (keymap-set corfu-map "C-j" 'corfu-next)
+  (keymap-set corfu-map "<tab>" 'corfu-next)
+  (keymap-set corfu-map "C-k" 'corfu-previous)
+  (keymap-set corfu-map "<backtab>" 'corfu-previous)
+  (keymap-set corfu-map "M-m" '+corfu-complete-in-minibuffer)
 
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
