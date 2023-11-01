@@ -1,10 +1,12 @@
 EMACS_DIR=.
 EMACS=emacs
 EMACS_BATCH=emacs --batch --script init.el
+CLOC=cloc
 
 all:
-	@echo "Cleaning options are: clean, clean_all, prune, loaddefs."
+	@echo "Cleaning options are: clean, clean_pcache, clean_all, prune, loaddefs."
 	@echo "Straight options are: pull, rebuild, check."
+	@echo "Extra options are: update, cloc, ci."
 
 clean:
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
@@ -40,7 +42,7 @@ update:
 	$(EMACS_BATCH) --eval='(minemacs-update)'
 
 cloc:
-	cloc --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
+	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
 
 ci:
 	HOME=$(PWD)/.. $(EMACS) -nw --batch --script .github/workflows/scripts/ci-init.el 2>&1
