@@ -45,13 +45,6 @@
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
-(use-package me-elisp-extras
-  :after elisp-mode minemacs-loaded
-  :demand t
-  :config
-  (+elisp-indent-setup)
-  (+elisp-highlighting-setup))
-
 (use-package elisp-demos
   :straight t
   :after elisp-mode minemacs-loaded
