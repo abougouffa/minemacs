@@ -200,18 +200,23 @@
     ;; ====== Project ======
     "p"   '(nil :wk "project"))
 
-  (when (or os/linux os/bsd)
-    (when (executable-find "netExtender")
-      (+map! "tV"  #'netextender-toggle))
-    (when (executable-find "ecryptfs-verify")
-      (+map! "te"  #'ecryptfs-toggle-mount-private)))
-
   ;; To handle repeated "SPC u" like repeated "C-u"
   (general-def
     :keymaps 'universal-argument-map
     :prefix minemacs-leader-key
     :global-prefix minemacs-global-mode-prefix
     "u" #'universal-argument-more)
+
+  ;; Text zooming keybindings
+  (keymap-global-set "C-+" #'text-scale-increase)
+  (keymap-global-set "C--" #'text-scale-decrease)
+  (keymap-global-set "C-=" #'text-scale-adjust)
+
+  (when (or os/linux os/bsd)
+    (when (executable-find "netExtender")
+      (+map! "tV"  #'netextender-toggle))
+    (when (executable-find "ecryptfs-verify")
+      (+map! "te"  #'ecryptfs-toggle-mount-private)))
 
   ;; HACK: This is a synchronization feature, providing `me-general-ready' tells
   ;; the `+map!', `+map-local!', ... macros that `general' is ready and the
