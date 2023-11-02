@@ -721,11 +721,6 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
-;;; Generated autoloads from ../modules/extras/me-elisp-extras.el
-
-(register-definition-prefixes "../modules/extras/me-elisp-extras" '("+elisp-" "+emacs-lisp--"))
-
-
 ;;; Generated autoloads from me-fonts.el
 
 (autoload '+setup-fonts "me-fonts" "\
