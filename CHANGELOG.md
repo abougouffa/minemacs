@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.3.2](https://github.com/abougouffa/minemacs/compare/v3.3.1..v3.3.2) - 2023-11-02
+#### Refactoring
+- **(elisp)** move Elisp tweaks to `me-builtin` - ([76dbbfa](https://github.com/abougouffa/minemacs/commit/76dbbfa5534b0d476bcdf3a96a4955ac94d58bf5)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(keybindings)** add keybindings for zooming text - ([1470550](https://github.com/abougouffa/minemacs/commit/14705506269efa8b503a8f1221a0730db28a5eed)) - [@abougouffa](https://github.com/abougouffa)
+- **(polymode)** enable in Markdown/GFM - ([4ff674a](https://github.com/abougouffa/minemacs/commit/4ff674adcaca4ec25b3a927378a9660ee971b89f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2d17f9a](https://github.com/abougouffa/minemacs/commit/2d17f9ab1b3ed2facbcd96672fad54372f7a60c6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([1386571](https://github.com/abougouffa/minemacs/commit/138657183fcfade89f36153606f9d104989f76c8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.3.1](https://github.com/abougouffa/minemacs/compare/v3.3.0..v3.3.1) - 2023-11-01
 #### Bug Fixes
 - **(latex)** remove buggy dead code - ([8537095](https://github.com/abougouffa/minemacs/commit/85370959a6cf32a9398d95e15b3706030ec891b1)) - [@abougouffa](https://github.com/abougouffa)
