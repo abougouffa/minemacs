@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.3.3](https://github.com/abougouffa/minemacs/compare/v3.3.2..v3.3.3) - 2023-11-03
+#### Bug Fixes
+- **(tramp)** set persistency file correctly - ([da81579](https://github.com/abougouffa/minemacs/commit/da815792017970e4038195dc51ee08a1b74aceab)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+delete-this-file-and-buffer` - ([46de381](https://github.com/abougouffa/minemacs/commit/46de38127b5e1f8943e16c332d03fd71165e05c4)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(init)** minor rewrite - ([d545d04](https://github.com/abougouffa/minemacs/commit/d545d049541d58641d35ade777a2a8c55792948a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(keybindings)** use my commands for delete/sudo instead of `crux`'s - ([f98c353](https://github.com/abougouffa/minemacs/commit/f98c353581ce1f4e188375741c43ac6bc8843cc6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5cc06b6](https://github.com/abougouffa/minemacs/commit/5cc06b616c6368068cc4e67b6aad95b64e6e6d83)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.3.2](https://github.com/abougouffa/minemacs/compare/v3.3.1..v3.3.2) - 2023-11-02
 #### Refactoring
 - **(elisp)** move Elisp tweaks to `me-builtin` - ([76dbbfa](https://github.com/abougouffa/minemacs/commit/76dbbfa5534b0d476bcdf3a96a4955ac94d58bf5)) - [@abougouffa](https://github.com/abougouffa)
