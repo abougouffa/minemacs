@@ -205,10 +205,11 @@
   ;; This is faster than the default "scp"
   (unless os/win
     (setq tramp-default-method "ssh"))
+  ;; HACK: Setting `tramp-persistency-file-name' in `:custom' is not working properly!
+  (setq tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
   :custom
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
-  (tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
   (tramp-default-remote-shell "/bin/bash")
   :config
   ;; BUG: Fix taken from: github.com/Phundrak/dotfiles/commit/566861ee
