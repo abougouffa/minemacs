@@ -187,8 +187,8 @@
 (add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
 
 ;; ========= Make some special hooks =========
-(+make-first-file-hook! "org" "\\.org$")
-(+make-first-file-hook! "elisp" "\\.elc?$")
+(+make-first-file-hook! 'org "\\.org$")
+(+make-first-file-hook! 'elisp "\\.elc?$")
 (+make-first-file-hook! nil ".")
 
 ;; ========= Load MinEmacs packages and user customization =========
