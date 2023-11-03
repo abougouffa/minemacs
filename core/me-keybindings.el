@@ -88,7 +88,8 @@
     ;; ====== Files ======
     "f"   '(nil :wk "file")
     "fS"  '(write-file :wk "Save as ...")
-    "fD"  #'+delete-this-file
+    "fd"  #'+delete-this-file
+    "fD"  #'+delete-this-file-and-buffer
     "fF"  #'+sudo-find-file
     "fu"  #'+sudo-this-file
     "fR"  #'+move-this-file

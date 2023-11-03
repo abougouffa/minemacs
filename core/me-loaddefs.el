@@ -176,6 +176,10 @@ If PATH is not specified, default to the current buffer's file.
 If FORCE-P, delete without confirmation.
 
 (fn &optional PATH FORCE-P)" t)
+(autoload '+delete-this-file-and-buffer "../elisp/+io" "\
+Kill the current buffer and deletes the file it is visiting.
+
+(fn &optional FILENAME)" t)
 (autoload '+delete-file-or-directory "../elisp/+io" "\
 Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'.
 
@@ -680,6 +684,11 @@ Mount eCryptfs' private directory." t)
 (autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\
 Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
+
+
+;;; Generated autoloads from ../elisp/magit-pretty-graph.el
+
+(register-definition-prefixes "../elisp/magit-pretty-graph" '("magit-pg"))
 
 
 ;;; Generated autoloads from me-bootstrap.el

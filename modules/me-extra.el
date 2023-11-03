@@ -21,8 +21,6 @@
   :init
   (+map!
     "fo" #'crux-open-with
-    "fu" #'crux-sudo-edit ; override `+sudo-this-file'
-    "fD" #'crux-delete-file-and-buffer ; override `+delete-this-file'
     "fC" #'crux-copy-file-preserve-attributes
     "id" #'crux-insert-date
     "bo" #'crux-kill-other-buffers))
