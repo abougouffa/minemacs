@@ -82,9 +82,26 @@ If FORCE-P, delete without confirmation."
       (user-error "Aborted"))
     (let ((buf (current-buffer)))
       (unwind-protect
-          (progn (delete-file path t) t)
+          (progn (delete-file path delete-by-moving-to-trash) t)
         (when (file-exists-p path)
           (error "Failed to delete %S" short-path))))))
+
+;; Rewrite of: crux-delete-file-and-buffer, proposes also to delete VC
+;; controlled files even when `vc-delete-file' fails (edited, conflict, ...).
+;;;###autoload
+(defun +delete-this-file-and-buffer (&optional filename)
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (when-let ((filename (or filename (buffer-file-name)))
+             (short-path (abbreviate-file-name filename)))
+    (if (vc-backend filename)
+        (or (ignore-errors (vc-delete-file (buffer-file-name)))
+            (+delete-this-file filename)
+            (kill-buffer))
+      (when (y-or-n-p (format "Are you sure you want to delete %s? " short-path))
+        (delete-file filename delete-by-moving-to-trash)
+        (message "Deleted file %s" short-path)
+        (kill-buffer)))))
 
 ;;;###autoload
 (defun +delete-file-or-directory (file-or-directory &optional trash recursive)
