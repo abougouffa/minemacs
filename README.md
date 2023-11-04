@@ -130,6 +130,34 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_IGNORE_USER_CONFIG`: Ignore loading all user configuration files
   (present in `~/.minemacs.d`, or directory pointed by `$MINEMACSDIR`).
 
+### Load and hooks order
+MinEmacs loads its features and run hooks in this order:
+
+- `~/.emacs.d/early-init.el`
+- `$MINEMACSDIR/early-config.el` (unless `$MINEMACS_IGNORE_USER_CONFIG` or `$MINEMACS_IGNORE_EARLY_CONFIG_EL`)
+- `~/.emacs.d/init.el`
+  - `~/.emacs.d/core/me-vars.el`
+  - `~/.emacs.d/core/backports/*.el` (when Emacs < 29)
+  - `~/.emacs.d/core/me-loaddefs.el`
+  - `~/.emacs.d/core/init-tweaks.el` (unless `$MINEMACS_IGNORE_USER_CONFIG` or `$MINEMACS_IGNORE_INIT_TWEAKS_EL`)
+  - `before-init-hook`
+  - `$MINEMACSDIR/modules.el` (unless `$MINEMACS_IGNORE_USER_CONFIG` or `$MINEMACS_IGNORE_MODULES_EL`)
+  - `~/.emacs.d/core/[minemacs-core-modules].el`
+  - `~/.emacs.d/modules/[minemacs-modules].el`
+  - `minemacs-after-loading-modules-hook`
+  - `$MINEMACSDIR/custom-vars.el`
+  - `$MINEMACSDIR/config.el` (unless `$MINEMACS_IGNORE_USER_CONFIG` or `$MINEMACS_IGNORE_CONFIG_EL`)
+  - `after-init-hook`
+  - `emacs-startup-hook`
+  - `minemacs-after-startup-hook`
+  - `minemacs-lazy-hook` (delayed)
+
+Special hooks defined with `+make-first-file-hook!`:
+
+- `minemacs-first-file-hook`
+- `minemacs-first-elisp-file-hook`
+- `minemacs-first-org-file-hook`
+
 ## Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).
