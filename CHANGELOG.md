@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.4.0](https://github.com/abougouffa/minemacs/compare/v3.3.3..v3.4.0) - 2023-11-04
+#### Bug Fixes
+- **(init)** correct way to handle loading `init.el` in Org async export - ([d8fe648](https://github.com/abougouffa/minemacs/commit/d8fe64889fb9fa628ffa321b7f0357cecb056ca8)) - [@abougouffa](https://github.com/abougouffa)
+- remove problematic `polymode` configuration (makes markdown unusable) - ([3754ecd](https://github.com/abougouffa/minemacs/commit/3754ecd9a3e49d9a822a9d031b24e8967057c2e8)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(init)** document load and hooks order - ([e3c7bb5](https://github.com/abougouffa/minemacs/commit/e3c7bb5c1b91222681464c21cc27838dea6bd433)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** remove redundant information - ([a68f3aa](https://github.com/abougouffa/minemacs/commit/a68f3aa816a1b7ed9158af3fb1acb56709e49c32)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** add hooks/files load order - ([48efe7c](https://github.com/abougouffa/minemacs/commit/48efe7c6869e7961a30d63c4e4b3269544299ba6)) - [@abougouffa](https://github.com/abougouffa)
+- minor fix in hooks order - ([f581114](https://github.com/abougouffa/minemacs/commit/f58111408ddb4879cd41b7d46fd911a65aec8800)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(electric)** electric indent on keywords - ([cf52c65](https://github.com/abougouffa/minemacs/commit/cf52c651afc6cc567ec2e40bef7a73b66fabd5bd)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(init)** add banner - ([3f5c207](https://github.com/abougouffa/minemacs/commit/3f5c2070760dda7bf262e7563dcfb67d321e5cea)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** kill splash screen at the last time - ([244b883](https://github.com/abougouffa/minemacs/commit/244b8834985e710a6df728f4549cb2ee7859cdf3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more robust `minemacs-first-*-file-hook` - ([6fb7628](https://github.com/abougouffa/minemacs/commit/6fb7628e7db6e0e5e443ffa488df74fd7c5d5ad4)) - [@abougouffa](https://github.com/abougouffa)
+- **(splash)** add a banner to the splash screen - ([b35987b](https://github.com/abougouffa/minemacs/commit/b35987bb15b91b9cc08406b44f7e4ae0d950aa58)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.3.3](https://github.com/abougouffa/minemacs/compare/v3.3.2..v3.3.3) - 2023-11-03
 #### Bug Fixes
 - **(tramp)** set persistency file correctly - ([da81579](https://github.com/abougouffa/minemacs/commit/da815792017970e4038195dc51ee08a1b74aceab)) - [@abougouffa](https://github.com/abougouffa)
