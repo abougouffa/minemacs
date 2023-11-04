@@ -6,21 +6,21 @@
 
 ;;; Commentary:
 
-;;            ..                        ...                                   ..:::::.....       .::::.     ..
-;;         .:::.                       :::::                                  :::::::::::::::::::::::::     .:::.
-;;        :::                          .:::.                                  .::::::.        ...:::::.        :::
-;;       ::.                                                                   .:::::                           .::
-;;      ::.       ::::::::..:::    :::::::       .::::.:::::.                    .::::.                          .::
-;;     .::        .::: .::: :::.   ...::::        :::::..::::                       .:::.                         ::.
-;;     ::.        .::. :::. :::       :::.        :::.    :::.               ..........::::.                      .::
-;;     ::.        :::  :::  :::       :::        .:::     :::          ..::::::::::::::::::::.                    .::
-;;     ::.       .::: .::: .::.      .:::        ::::    .:::        .::::::::::...                               .::
-;;     :::       :::. :::. :::       :::.   ..   :::.    :::.        :::::::::                                    :::
-;;      ::       :::  :::  :::.      ::::.::::  .:::    .::::         ::::::::                                    ::
-;;      .::      ::.  ::. .::::       .:::::.   .::.    .::::          .::::::::.                                ::.
-;;       :::                                                              .::::::::...             :.           :::
-;;        .::.                                                               ..::::::::::::.......:::.        .::.
-;;          .::.                                                                   ..:::::::::::::::.       .::.
+;;            ..                        ...                                   ..OOOOO.....       .OOOO.     ..
+;;         .OOO.                       OOOOO                                  OOOOOOOOOOOOOOOOOOOOOOOOO     .OOO.
+;;        OOO                          .OOO.                                  .OOOOOO.        ...OOOOO.        OOO
+;;       OO.                                                                   .OOOOO                           .OO
+;;      OO.       OOOOOOOO..OOO    OOOOOOO       .OOOO.OOOOO.                    .OOOO.                          .OO
+;;     .OO        .OOO .OOO OOO.   ...OOOO        OOOOO..OOOO                       .OOO.                         OO.
+;;     OO.        .OO. OOO. OOO       OOO.        OOO.    OOO.               ..........OOOO.                      .OO
+;;     OO.        OOO  OOO  OOO       OOO        .OOO     OOO          ..OOOOOOOOOOOOOOOOOOOO.                    .OO
+;;     OO.       .OOO .OOO .OO.      .OOO        OOOO    .OOO        .OOOOOOOOOO...                               .OO
+;;     OOO       OOO. OOO. OOO       OOO.   ..   OOO.    OOO.        OOOOOOOOO                                    OOO
+;;      OO       OOO  OOO  OOO.      OOOO.OOOO  .OOO    .OOOO         OOOOOOOO                                    OO
+;;      .OO      OO.  OO. .OOOO       .OOOOO.   .OO.    .OOOO          .OOOOOOOO.                                OO.
+;;       OOO                                                              .OOOOOOOO...             O.           OOO
+;;        .OO.                                                               ..OOOOOOOOOOOO.......OOO.        .OO.
+;;          .OO.                                                                   ..OOOOOOOOOOOOOOO.       .OO.
 ;;
 ;;                                 MINIMALIST & LIGHTWEIGHT EMACS CONFIGURATION FRAMEWORK
 ;;                                                          abougouffa.github.io/minemacs
