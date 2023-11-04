@@ -31,6 +31,10 @@
         ;; Vertical padding to center
         (insert-char ?\n padding-center)
 
+        (when (display-graphic-p)
+          (insert-image (create-image (concat minemacs-assets-dir "images/minemacs-small.png")))
+          (insert-char ?\n))
+
         ;; Central text
         (insert-char ?\s 10)
         (insert (propertize "MinEmacs" 'face 'bold))
