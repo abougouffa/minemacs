@@ -76,7 +76,7 @@
          (delete-dups
           (append file-name-handler-alist
                   (get 'file-name-handler-alist 'original-value)))))
- 101)
+ 100)
 
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
 ;; already loaded (in "early-init.el"). However, we double-check here and load

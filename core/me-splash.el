@@ -91,7 +91,8 @@
 (add-hook
  'emacs-startup-hook
  (defun +minemacs-splash--kill-h ()
-   (run-at-time 0.5 nil #'minemacs-splash-kill)))
+   (run-at-time 0.5 nil #'minemacs-splash-kill))
+ 101)
 
 
 (provide 'me-splash)
