@@ -64,16 +64,6 @@
     "ll" #'markdown-insert-link
     "e"  #'markdown-export))
 
-;; See how to define polymodes in:
-;; masteringemacs.org/article/polymode-multiple-major-modes-how-to-use-sql-python-in-one-buffer
-(use-package polymode
-  :straight t)
-
-(use-package poly-markdown
-  :straight t
-  :hook (markdown-mode . poly-markdown-mode)
-  :hook (gfm-mode . poly-gfm-mode))
-
 (use-package pandoc-mode
   :straight t
   :hook (markdown-mode . conditionally-turn-on-pandoc))

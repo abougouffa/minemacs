@@ -54,9 +54,6 @@
 (use-package ess-R-data-view
   :straight t)
 
-(use-package poly-R
-  :straight t)
-
 
 (provide 'me-math)
 
