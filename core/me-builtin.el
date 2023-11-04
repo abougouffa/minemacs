@@ -1029,6 +1029,30 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (+map-local! :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
+(use-package electric
+  :straight (:type built-in)
+  :config
+  ;; Electric indent on delete and enter
+  (setq-default electric-indent-chars '(?\n ?\^?))
+
+  (defvar-local +electric-indent-words '()
+    "The list of electric words. Typing these will trigger reindentation of the
+current line.")
+
+  ;; Electric indent at Bash/Sh keywords, extracted from the grammar
+  (+setq-hook! (sh-mode bash-ts-mode)
+    +electric-indent-words
+    (delete-dups (apply #'append (mapcar (lambda (e) (list (car e) (cdr e))) (cdar  -grammar)))))
+
+  ;; From Doom Emacs
+  (add-hook
+   'electric-indent-functions
+   (defun +electric-indent-char-fn (_c)
+     (when (and (eolp) +electric-indent-words)
+       (save-excursion
+         (backward-word)
+         (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
+
 (use-package oc-csl
   :straight (:type built-in)
   :after oc
