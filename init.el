@@ -241,8 +241,7 @@
 ;; the user's enabled modules.
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
-           (setq minemacs-not-lazy t)
-           (require 'minemacs-loaded))
+           (setq minemacs-not-lazy t))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
 
