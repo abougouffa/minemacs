@@ -2,6 +2,10 @@ name: CI Windows
 
 on:
   push:
+    paths-ignore:
+      - "**.md"
+      - ".git**" # .gitignore, .gitworkflow
+      - "skel/**"
   pull_request:
   workflow_dispatch:
   # Run weekly
