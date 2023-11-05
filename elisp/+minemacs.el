@@ -57,9 +57,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;;;###autoload
 (defmacro +cmdfy! (&rest body)
   "Convert BODY to an interactive command."
-  `(lambda ()
-     (interactive)
-     ,@body))
+  `(lambda () (interactive) ,@body))
 
 ;;;###autoload
 (defun +load-theme ()
@@ -108,22 +106,19 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   "Evaluate BODY when Emacs becomes idle."
   (declare (indent 0))
   `(+eval-when-idle ,+eval-when-idle-delay
-    (lambda ()
-      ,@body)))
+    (lambda () ,@body)))
 
 ;;;###autoload
 (defmacro +eval-when-idle-for! (delay &rest body)
   "Evaluate BODY after DELAY seconds from Emacs becoming idle."
   (declare (indent 1))
   `(+eval-when-idle ,delay
-    (lambda ()
-      ,@body)))
+    (lambda () ,@body)))
 
 ;;;###autoload
 (defmacro +deferred! (&rest body)
   "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'."
-  `(with-eval-after-load 'minemacs-loaded
-    ,@body))
+  `(with-eval-after-load 'minemacs-loaded ,@body))
 
 ;;;###autoload
 (defmacro +deferred-when! (condition &rest body)
@@ -141,8 +136,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
   `(with-eval-after-load 'minemacs-lazy
-    (+eval-when-idle-for! +lazy-delay
-     ,@body)))
+    (+eval-when-idle-for! +lazy-delay ,@body)))
 
 ;;;###autoload
 (defmacro +lazy-when! (condition &rest body)
@@ -167,9 +161,8 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
         (cond
          ((memq feature '(:or :any))
           (macroexp-progn
-           (cl-loop
-            for next in (cdr features)
-            collect `(with-eval-after-load ',(+unquote next) ,@body))))
+           (cl-loop for next in (cdr features)
+                    collect `(with-eval-after-load ',(+unquote next) ,@body))))
          ((memq feature '(:and :all))
           (dolist (next (reverse (cdr features)) (car body))
             (setq body `((with-eval-after-load ',(+unquote next) ,@body)))))
@@ -197,8 +190,7 @@ DEPTH and LOCAL are passed as is to `add-hook'."
   (declare (indent 1))
   (let ((hook (+unquote hook))
         (fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
-    `(add-hook
-      ',hook
+    `(add-hook ',hook
       (defun ,fn-name (&rest _)
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
@@ -217,7 +209,8 @@ EXT-REGEXP. When it runs, this function provides a feature named
          (fn-name (intern (format "+first-file-%s-h" (if filetype (format "-%s" filetype) ""))))
          (hook-name (intern (format "minemacs-first%s-file-hook" (if filetype (format "-%s" filetype) ""))))
          (feature-name (intern (format "minemacs-first%s-file" (if filetype (format "-%s" filetype) ""))))
-         (hook-docs (format "This hook will be run after opening the first %s file (files that matches \"%s\").\n\nExecuted before `after-find-file', it runs all hooks in `%s' and provide the `%s' feature."
+         (hook-docs (format "This hook will be run after opening the first %s file (files that matches \"%s\").
+Executed before `after-find-file', it runs all hooks in `%s' and provide the `%s' feature."
                             filetype ext-regexp hook-name feature-name)))
     `(progn
        (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'."
@@ -265,13 +258,12 @@ list is returned as-is."
                                  vars))
                          (nreverse vars))
            for hook in (+resolve-hook-forms hooks)
-           for mode = (string-remove-suffix "-hook" (symbol-name hook))
            append
            (cl-loop for (var . val) in vars
                     collect
                     (list var val hook
-                          (intern (format "minemacs--setq-%s-for-%s-h"
-                                          var mode))))))
+                          (intern (format "+setq--%s-in-%s-h"
+                                          var hook))))))
 
 ;; From Doom Emacs
 ;;;###autoload
@@ -288,6 +280,12 @@ This macro accepts, in order:
   3. The function(s) to be added: this can be a quoted function, a quoted list
      thereof, a list of `defun' or `cl-defun' forms, or arbitrary forms (will
      implicitly be wrapped in a lambda).
+
+If the hook function should receive an argument (like in
+`enable-theme-functions'), the `args' variable can be expanded in the forms
+
+  (+add-hook! 'enable-theme-functions
+    (message \"Enabled theme: %s\" (car args)))
 
 \(fn HOOKS [:append :local [:depth N]] FUNCTIONS-OR-FORMS...)"
   (declare (indent (lambda (indent-point state)
@@ -320,7 +318,7 @@ This macro accepts, in order:
                     ((memq first '(defun cl-defun))
                      (push next defn-forms)
                      (list 'function (cadr next)))
-                    ((prog1 `(lambda (&rest _) ,@(cons next rest))
+                    ((prog1 `(lambda (&rest args) ,@(cons next rest))
                        (setq rest nil))))
               func-forms)))
     `(progn
@@ -349,11 +347,18 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 (defmacro +setq-hook! (hooks &rest var-vals)
   "Sets buffer-local variables on HOOKS.
 
+HOOKS can be expect receiving arguments (like in `enable-theme-functions'), the
+`args' variable can be used inside VAR-VALS forms to get the arguments passed
+the the function.
+
+  (+setq-hook! 'enable-theme-functions
+    current-theme (car args))
+
 \(fn HOOKS &rest [SYM VAL]...)"
   (declare (indent 1))
   (macroexp-progn
    (cl-loop for (var val hook fn) in (+setq-hook-fns hooks var-vals)
-            collect `(defun ,fn (&rest _)
+            collect `(defun ,fn (&rest args)
                       ,(format "%s = %s" var (pp-to-string val))
                       (setq-local ,var ,val))
             collect `(add-hook ',hook #',fn -90))))
@@ -363,7 +368,7 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 (defmacro +unsetq-hook! (hooks &rest vars)
   "Unbind setq hooks on HOOKS for VARS.
 
-\(fn HOOKS &rest [SYM VAL]...)"
+\(fn HOOKS &rest VAR1 VAR2...)"
   (declare (indent 1))
   (macroexp-progn
    (cl-loop for (_var _val hook fn)

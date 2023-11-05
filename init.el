@@ -73,9 +73,8 @@
  'emacs-startup-hook
  (defun +mineamcs--restore-file-name-handler-alist-h ()
    (setq file-name-handler-alist
-         (delete-dups
-          (append file-name-handler-alist
-                  (get 'file-name-handler-alist 'original-value)))))
+         (delete-dups (append file-name-handler-alist
+                              (get 'file-name-handler-alist 'original-value)))))
  100)
 
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
@@ -114,8 +113,7 @@
 ;; some new features when configuring them.
 (when (< emacs-major-version 29)
   (let ((backports-dir (concat minemacs-core-dir "backports/")))
-    (mapc (apply-partially #'+load backports-dir)
-          (directory-files backports-dir nil "\\.el$"))))
+    (mapc (apply-partially #'+load backports-dir) (directory-files backports-dir nil "\\.el$"))))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
@@ -150,20 +148,15 @@
 (defun minemacs-generate-loaddefs ()
   "Generate MinEmacs' loaddefs file."
   (interactive)
-  (when (file-exists-p minemacs-loaddefs-file)
-    (delete-file minemacs-loaddefs-file))
-
-  (loaddefs-generate
-   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir)
-   minemacs-loaddefs-file))
+  (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
+  (loaddefs-generate (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) minemacs-loaddefs-file))
 
 ;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
 ;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
 ;; `minemacs-extras-dir' directories. The generated loaddefs file will be stored
 ;; in `minemacs-loaddefs-file'. We first regenerate the loaddefs file if it
 ;; doesn't exist.
-(unless (file-exists-p minemacs-loaddefs-file)
-  (minemacs-generate-loaddefs))
+(unless (file-exists-p minemacs-loaddefs-file) (minemacs-generate-loaddefs))
 
 ;; Then we load the loaddefs file
 (+load minemacs-loaddefs-file)
@@ -171,8 +164,7 @@
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
 (unless (memq 'init-tweaks minemacs-ignore-user-config)
   (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
-    (when (file-exists-p user-init-tweaks)
-      (+load user-init-tweaks))))
+    (when (file-exists-p user-init-tweaks) (+load user-init-tweaks))))
 
 ;; HACK: Load the environment variables saved from shell using `+env-save' to
 ;; `+env-file'. `+env-save' saves all environment variables except these matched
@@ -212,17 +204,7 @@
        ;; Switch to the previous buffer
        (switch-to-buffer buf)
        ;; And kill the Emacs' default scratch buffer
-       (when-let ((s (get-buffer "*scratch*"))) (kill-buffer s))))
-
-    ;; In `me-defaults', the `initial-major-mode' is set to `fundamental-mode'
-    ;; to enhance startup time. However, I like to use the scratch buffer to
-    ;; evaluate Elisp code, so we switch to Elisp mode in the scratch buffer
-    ;; when Emacs is idle for 10 seconds.
-    (+eval-when-idle-for! 10.0
-      (setq initial-major-mode 'lisp-interaction-mode)
-      (when-let ((scratch-buffer (get-buffer "*scratch*")))
-        (with-current-buffer scratch-buffer
-          (emacs-lisp-mode)))))
+       (when-let ((s (get-buffer "*scratch*"))) (kill-buffer s)))))
 
   ;; Require the virtual package to triggre loading packages depending on it
   (require 'minemacs-loaded))
@@ -248,8 +230,7 @@
   (unless (memq 'modules minemacs-ignore-user-config)
     ;; The modules.el file can override minemacs-modules and minemacs-core-modules
     (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
-      (when (file-exists-p user-conf-modules)
-        (+load user-conf-modules)))))
+      (when (file-exists-p user-conf-modules) (+load user-conf-modules)))))
 
 ;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
@@ -268,13 +249,12 @@
 ;; functionality.
 (setq minemacs-core-modules
       (delete-dups
-       (append
-        '(me-defaults)
-        (when (memq 'me-splash minemacs-core-modules) '(me-splash))
-        '(me-bootstrap)
-        (when (< emacs-major-version 29) '(me-compat))
-        '(me-builtin me-gc me-fonts)
-        minemacs-core-modules)))
+       (append '(me-defaults)
+               (when (memq 'me-splash minemacs-core-modules) '(me-splash))
+               '(me-bootstrap)
+               (when (< emacs-major-version 29) '(me-compat))
+               '(me-builtin me-gc me-fonts)
+               minemacs-core-modules)))
 
 ;; Load MinEmacs modules
 (dolist (module-file (append
@@ -288,14 +268,12 @@
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
 ;; Load the custom variables file if it exists
-(when (file-exists-p custom-file)
-  (+load custom-file))
+(when (file-exists-p custom-file) (+load custom-file))
 
 ;; Load user configuration from "$MINEMACSDIR/config.el" when available
 (unless (memq 'config minemacs-ignore-user-config)
   (let ((user-config (concat minemacs-config-dir "config.el")))
-    (when (file-exists-p user-config)
-      (+load user-config))))
+    (when (file-exists-p user-config) (+load user-config))))
 
 (+lazy!
  (when (featurep 'native-compile)

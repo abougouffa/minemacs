@@ -13,23 +13,17 @@
   (defun +theme--tweaks-h (&optional _)
     "Use smaller font (75% of the default) for line numbers in graphic mode."
     (when (display-graphic-p)
-      (set-face-attribute
-       'line-number nil
-       :background (face-attribute 'default :background)
-       :height (truncate (* 0.75 (face-attribute 'default :height)))
-       :weight 'semi-light)
-      (set-face-attribute
-       'line-number-current-line nil
-       :height (truncate (* 0.75 (face-attribute 'default :height)))
-       :weight 'bold))))
+      (set-face-attribute 'line-number nil
+                          :background (face-attribute 'default :background)
+                          :height (truncate (* 0.75 (face-attribute 'default :height)))
+                          :weight 'semi-light)
+      (set-face-attribute 'line-number-current-line nil
+                          :height (truncate (* 0.75 (face-attribute 'default :height)))
+                          :weight 'bold))))
 
-;; Save enabled theme
-(add-hook
- 'enable-theme-functions
- (defun +theme--save-enabled-theme-h (theme)
-   "Save the enabled theme to `minemacs-theme'.
-Useful for keeping track of the enabled theme."
-   (setq minemacs-theme theme)))
+;; Save the enabled theme to `minemacs-theme', useful for keeping track of the enabled theme.
+(+setq-hook! 'enable-theme-functions
+  minemacs-theme (car args))
 
 ;; Disable previously enabled custom themes before enabling a new one.
 (advice-add
