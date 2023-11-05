@@ -1042,7 +1042,7 @@ current line.")
   ;; Electric indent at Bash/Sh keywords, extracted from the grammar
   (+setq-hook! (sh-mode bash-ts-mode)
     +electric-indent-words
-    (delete-dups (apply #'append (mapcar (lambda (e) (list (car e) (cdr e))) (cdar  -grammar)))))
+    (delete-dups (apply #'append (mapcar (lambda (e) (list (car e) (cdr e))) (cdar sh-smie-sh-grammar)))))
 
   ;; From Doom Emacs
   (add-hook
