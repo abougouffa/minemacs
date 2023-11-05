@@ -21,10 +21,6 @@
                           :height (truncate (* 0.75 (face-attribute 'default :height)))
                           :weight 'bold))))
 
-;; Save the enabled theme to `minemacs-theme', useful for keeping track of the enabled theme.
-(+setq-hook! 'enable-theme-functions
-  minemacs-theme (car args))
-
 ;; Disable previously enabled custom themes before enabling a new one.
 (advice-add
  'load-theme :before
