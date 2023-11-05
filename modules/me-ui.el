@@ -82,6 +82,17 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+(use-package pulsar
+  :straight t
+  :hook (minemacs-after-startup . pulsar-global-mode)
+  :config
+  (with-eval-after-load 'evil
+    (setq pulsar-pulse-functions
+          (append pulsar-pulse-functions
+                  '(evil-yank evil-paste-after evil-paste-before
+                    evil-delete evil-delete-line evil-delete-whole-line
+                    evil-goto-last-change evil-goto-last-change-reverse)))))
+
 
 (provide 'me-ui)
 
