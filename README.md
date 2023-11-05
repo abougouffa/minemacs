@@ -150,7 +150,7 @@ MinEmacs loads its features and run hooks in this order:
   - `after-init-hook`
   - `emacs-startup-hook`
   - `minemacs-after-startup-hook`
-  - `minemacs-lazy-hook` (delayed)
+    - `minemacs-lazy-hook` (delayed)
 
 Special hooks defined with `+make-first-file-hook!`:
 
