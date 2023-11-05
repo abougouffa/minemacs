@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.4.1](https://github.com/abougouffa/minemacs/compare/v3.4.0..v3.4.1) - 2023-11-05
+#### Bug Fixes
+- **(electric)** fix sh/bash keywords extraction from grammar - ([9341311](https://github.com/abougouffa/minemacs/commit/93413115c8eb5e64bbd50968ac65e7327692e192)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ui)** add support for `pulsar` - ([a526580](https://github.com/abougouffa/minemacs/commit/a5265800b78761e310b3992505fd11a4b89bd80c)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** fine tune when CI get invoked - ([f05b572](https://github.com/abougouffa/minemacs/commit/f05b57280f1d64338be3f1380e30374b833297ed)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(init)** better contrast for ASCII banner - ([889ae07](https://github.com/abougouffa/minemacs/commit/889ae072a618b28be28d69ff528a9e3c440cfcd6)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** cleanup useless `minemacs-theme` set - ([679693a](https://github.com/abougouffa/minemacs/commit/679693a9181138672558bcc3376a4ee95c47caa8)) - [@abougouffa](https://github.com/abougouffa)
+- code cleanup and minor rewrites - ([4b28273](https://github.com/abougouffa/minemacs/commit/4b28273a82cdd466849699ede09a0b35f04c8de0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.4.0](https://github.com/abougouffa/minemacs/compare/v3.3.3..v3.4.0) - 2023-11-04
 #### Bug Fixes
 - **(init)** correct way to handle loading `init.el` in Org async export - ([d8fe648](https://github.com/abougouffa/minemacs/commit/d8fe64889fb9fa628ffa321b7f0357cecb056ca8)) - [@abougouffa](https://github.com/abougouffa)
