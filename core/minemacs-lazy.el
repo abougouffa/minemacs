@@ -25,8 +25,7 @@
   (setq minemacs-lazy-hook (append (delq 'gcmh-mode (reverse minemacs-lazy-hook)) '(gcmh-mode)))
   (if minemacs-not-lazy
       (progn ; If `minemacs-no-lazy' is bound and true, force loading lazy hooks immediately
-        (+log! "Loading %d lazy packages immediately."
-               (length minemacs-lazy-hook))
+        (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
         (run-hooks 'minemacs-lazy-hook))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
     ;; Run hooks one by one, as a FIFO.
