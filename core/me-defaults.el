@@ -311,6 +311,9 @@ or file path may exist now."
   ;; Show column numbers (a.k.a. cursor position) in the mode-line
   (column-number-mode 1)
 
+  ;; Display buffer size on mode line
+  (size-indication-mode 1)
+
   ;; Better handling for files with so long lines
   (global-so-long-mode 1)
 
