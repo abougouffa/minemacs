@@ -94,8 +94,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
        delay t
        (lambda ()
          (when-let (fn (pop fns))
-           (+log! "Running task %d, calling function `%s'" task-num
-                  (truncate-string-to-width (format "%s" fn) 40 nil nil "…"))
+           (+log! "Running task %d, calling function `%s'" task-num (truncate-string-to-width (format "%s" fn) 40 nil nil "…"))
            (funcall fn))
          (unless fns
            (cancel-timer (get task-name 'timer))
@@ -105,15 +104,13 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 (defmacro +eval-when-idle! (&rest body)
   "Evaluate BODY when Emacs becomes idle."
   (declare (indent 0))
-  `(+eval-when-idle ,+eval-when-idle-delay
-    (lambda () ,@body)))
+  `(+eval-when-idle ,+eval-when-idle-delay (lambda () ,@body)))
 
 ;;;###autoload
 (defmacro +eval-when-idle-for! (delay &rest body)
   "Evaluate BODY after DELAY seconds from Emacs becoming idle."
   (declare (indent 1))
-  `(+eval-when-idle ,delay
-    (lambda () ,@body)))
+  `(+eval-when-idle ,delay (lambda () ,@body)))
 
 ;;;###autoload
 (defmacro +deferred! (&rest body)
@@ -175,7 +172,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 The FUNCTION is delayed to be evaluated in SECS once HOOK is
 triggered.
 DEPTH and LOCAL are passed as is to `add-hook'."
-  (let* ((f-name (make-symbol (format "%s-on-%s-delayed-%ds-h" (+unquote function) (+unquote hook) secs)))
+  (let* ((f-name (make-symbol (format "+%s-on-%s-delayed-%.2fs-h" (+unquote function) (+unquote hook) secs)))
          (f-doc (format "Call `%s' in %d seconds" (symbol-name (+unquote function)) secs)))
     `(eval-when-compile
        (defun ,f-name () ,f-doc
@@ -392,8 +389,8 @@ the the function.
 
 (defvar +shell-command-switch
   (pcase shell-file-name
-    ((rx "fish") "-lc")
-    ((rx (or "tsch" "csh")) "-dc")
+    ((rx bol "fish" eol) "-lc")
+    ((rx bol (or "tsch" "csh") eol) "-dc")
     (_ "-ilc")))
 
 ;; Inspired by: emacs.stackexchange.com/a/21432/37002
