@@ -136,19 +136,12 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :straight t
   :hook (corfu-mode . corfu-terminal-mode))
 
-(use-package kind-icon
+(use-package nerd-icons-corfu
   :straight t
   :after corfu
   :demand t
-  :custom
-  (kind-icon-use-icons (+emacs-features-p 'rsvg)) ; Use icons only in Emacs built with SVG support
-  (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
-  (kind-icon-blend-background nil) ; Use midpoint color between foreground and background colors ("blended")?
   :config
-  ;; Fix the scaling/height
-  (plist-put kind-icon-default-style :scale 1.05)
-  (plist-put kind-icon-default-style :height 0.8)
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package consult
   :straight t
