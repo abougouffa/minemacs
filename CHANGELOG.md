@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.4.2](https://github.com/abougouffa/minemacs/compare/v3.4.1..v3.4.2) - 2023-11-07
+#### Documentation
+- **(readme)** minor edit - ([d3a494c](https://github.com/abougouffa/minemacs/commit/d3a494cd4e2326e85d51a0c7fe14b5b75095055b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(completion)** use `nerd-icons-corfu` instead of `kind-icons` - ([98c284f](https://github.com/abougouffa/minemacs/commit/98c284f5fe4e4112f3b21a4a69f3469825117b5b)) - [@abougouffa](https://github.com/abougouffa)
+- **(defaults)** show buffer size in mode line - ([b31d0ef](https://github.com/abougouffa/minemacs/commit/b31d0ef991ee42213f6578eaf751fc58e547004a)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** trigger github pages action only on Markdown changes - ([df2e586](https://github.com/abougouffa/minemacs/commit/df2e58628acfb63d25fde8d5693c26ffe620b72e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** minor edit - ([21e790d](https://github.com/abougouffa/minemacs/commit/21e790d87ffccbb4215f10db7cfbe64f4eee18e2)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor edits - ([4168a1f](https://github.com/abougouffa/minemacs/commit/4168a1fe934530d96bc2bab1c393d0b745bbcc01)) - [@abougouffa](https://github.com/abougouffa)
+- **(fonts)** minor change - ([68dc71b](https://github.com/abougouffa/minemacs/commit/68dc71b334c45a59a2a843c96b87601336679012)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.4.1](https://github.com/abougouffa/minemacs/compare/v3.4.0..v3.4.1) - 2023-11-05
 #### Bug Fixes
 - **(electric)** fix sh/bash keywords extraction from grammar - ([9341311](https://github.com/abougouffa/minemacs/commit/93413115c8eb5e64bbd50968ac65e7327692e192)) - [@abougouffa](https://github.com/abougouffa)
