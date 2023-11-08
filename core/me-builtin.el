@@ -200,6 +200,7 @@
       (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
   :config
   (defun +show-trailing-whitespace-h () (setq-local show-trailing-whitespace t))
+
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
   (defun +save--guess-file-mode-h ()
     "Guess major mode when saving a file in `fundamental-mode'.
@@ -210,12 +211,22 @@ or file path may exist now."
         (and (buffer-file-name buffer)
              (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
              (set-auto-mode)))))
+
   ;; Kill the minibuffer when switching by mouse to another window.
   ;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
   (defun +minibuffer--kill-on-mouse-h ()
     "Kill the minibuffer when switching to window with mouse."
     (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-      (abort-recursive-edit))))
+      (abort-recursive-edit)))
+
+  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
+  ;; sub-directory
+  (advice-add
+   #'emacs-session-filename :filter-return
+   (defun +emacs-session-filename--in-subdir-a (session-filename)
+     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+     (concat (+directory-ensure minemacs-local-dir "x-win/")
+             (file-name-nondirectory session-filename)))))
 
 (use-package minibuffer
   :straight (:type built-in)
@@ -1734,28 +1745,16 @@ Useful for quickly switching to an open buffer."
   ;; Navigate windows using Shift+Direction
   (windmove-default-keybindings 'shift))
 
-(use-package x-win
-  :straight (:type built-in)
-  :config
-  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
-  ;; sub-directory
-  (advice-add
-   #'emacs-session-filename :filter-return
-   (defun +emacs-session-filename--in-subdir-a (session-filename)
-     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
-     (concat (+directory-ensure minemacs-local-dir "x-win/")
-             (file-name-nondirectory session-filename)))))
-
 (use-package pulse
-  :straight (:type built-in)
-  :init
-  ;; Add visual pulse when changing focus, like beacon but built-in
-  ;; From https://karthinks.com/software/batteries-included-with-emacs/
-  (defun +pulse-line (&rest _)
-    "Pulse the current line."
-    (pulse-momentary-highlight-one-line (point)))
-  (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
-    (advice-add command :after #'+pulse-line)))
+ :straight (:type built-in)
+ :init
+ ;; Add visual pulse when changing focus, like beacon but built-in
+ ;; From https://karthinks.com/software/batteries-included-with-emacs/
+ (defun +pulse-line (&rest _)
+   "Pulse the current line."
+   (pulse-momentary-highlight-one-line (point)))
+ (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
+   (advice-add command :after #'+pulse-line)))
 
 
 (provide 'me-builtin)
