@@ -1382,6 +1382,18 @@ current line.")
   (window-divider-default-bottom-width 2)
   (window-divider-default-right-width 2))
 
+(use-package server
+  :straight (:type built-in)
+  :hook (server-after-make-frame . +load-theme) ; Reload theme when creating a frame on the daemon
+  :autoload server-running-p
+  :init
+  ;; When we start in a non-daemon Emacs, we start a server whe Emacs is idle.
+  (+lazy-unless! (daemonp)
+    (unless (server-running-p)
+      (let ((inhibit-message t))
+        (server-start nil t)
+        (+info! "Started Emacs daemon in background.")))))
+
 (use-package speedbar ; config from Crafted Emacs
   :straight (:type built-in)
   :custom

@@ -32,17 +32,6 @@
        (let ((inhibit-message t))
          (elfeed-update))))))
 
-;; When we start in a non-daemon Emacs, we start a server whe Emacs is idle.
-(+lazy-unless! (daemonp)
-  (require 'server) ; For using `server-running-p'
-  (unless (server-running-p)
-    (let ((inhibit-message t))
-      (+info! "Starting Emacs daemon in background.")
-      (server-start nil t))))
-
-;; Reload theme when creating a frame on the daemon
-(add-hook 'server-after-make-frame-hook #'+load-theme)
-
 
 (provide 'me-daemon)
 
