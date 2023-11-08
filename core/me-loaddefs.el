@@ -111,8 +111,6 @@ If ENABLE is non-nil, force enabling autoreloading.
 (fn &optional ENABLE)" t)
 (autoload '+dir-locals-open-or-create "../elisp/+emacs" "\
 Open or create the dir-locals.el for the current project." t)
-(autoload '+toggle-auto-whitespace-cleanup "../elisp/+emacs" "\
-Toggle auto-deleting trailing whitespaces." t)
 (autoload '+what-faces "../elisp/+emacs" "\
 Get the font faces at POS.
 
@@ -421,8 +419,8 @@ Hook BODY in HOOK, it runs only once.
 Make a hook which runs on the first FILETYPE file which with an extension
 that matches EXT-REGEXP.
 
-This will creates a function named `+first-file--FILETYPE-h' which and adds it
-to `first-file-hook', this function will run on the first file that matches
+This will creates a function named `+first-file--FILETYPE-h' which gets executed
+before `after-find-file'. This function will run on the first file that matches
 EXT-REGEXP. When it runs, this function provides a feature named
 `minemacs-first-FILETYPE-file' and a run all hooks in
 `minemacs-first-FILETYPE-file-hook'.
@@ -442,6 +440,12 @@ This macro accepts, in order:
      thereof, a list of `defun' or `cl-defun' forms, or arbitrary forms (will
      implicitly be wrapped in a lambda).
 
+If the hook function should receive an argument (like in
+`enable-theme-functions'), the `args' variable can be expanded in the forms
+
+  (+add-hook! 'enable-theme-functions
+    (message \"Enabled theme: %s\" (car args)))
+
 (fn HOOKS [:append :local [:depth N]] FUNCTIONS-OR-FORMS...)" nil t)
 (function-put '+add-hook! 'lisp-indent-function '(lambda (indent-point state) (goto-char indent-point) (when (looking-at-p "\\s-*(") (lisp-indent-defform state indent-point))))
 (autoload '+remove-hook! "../elisp/+minemacs" "\
@@ -456,12 +460,19 @@ If N and M = 1, there's no benefit to using this macro over `remove-hook'.
 (autoload '+setq-hook! "../elisp/+minemacs" "\
 Sets buffer-local variables on HOOKS.
 
+HOOKS can be expect receiving arguments (like in `enable-theme-functions'), the
+`args' variable can be used inside VAR-VALS forms to get the arguments passed
+the the function.
+
+  (+setq-hook! 'enable-theme-functions
+    current-theme (car args))
+
 (fn HOOKS &rest [SYM VAL]...)" nil t)
 (function-put '+setq-hook! 'lisp-indent-function 1)
 (autoload '+unsetq-hook! "../elisp/+minemacs" "\
 Unbind setq hooks on HOOKS for VARS.
 
-(fn HOOKS &rest [SYM VAL]...)" nil t)
+(fn HOOKS &rest VAR1 VAR2...)" nil t)
 (function-put '+unsetq-hook! 'lisp-indent-function 1)
 (autoload '+compile-functions "../elisp/+minemacs" "\
 Queue FNS to be byte/natively-compiled after a brief delay.
@@ -719,11 +730,6 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 (fn USER REPO &optional FALLBACK-RELEASE)")
 
 
-;;; Generated autoloads from me-defaults.el
-
-(register-definition-prefixes "me-defaults" '("+pulse-line"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
@@ -734,7 +740,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (autoload '+setup-fonts "me-fonts" "\
 Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-script" "+f" "+known-scripts" "minemacs-fonts"))
+(register-definition-prefixes "me-fonts" '("+apply-font-script" "+f" "+known-scripts" "minemacs-fonts-plist"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el

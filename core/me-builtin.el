@@ -189,6 +189,15 @@
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
   (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
 
+  (defun +toggle-auto-whitespace-cleanup ()
+    "Toggle auto-deleting trailing whitespaces."
+    (interactive)
+    (if (member #'+save--whitespace-cleanup-h before-save-hook)
+        (progn
+          (message "+toggle-auto-whitespace-cleanup: Disabled.")
+          (remove-hook 'before-save-hook #'+save--whitespace-cleanup-h))
+      (message "+toggle-auto-whitespace-cleanup: Enabled.")
+      (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
   :config
   (defun +show-trailing-whitespace-h () (setq-local show-trailing-whitespace t))
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).

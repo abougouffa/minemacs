@@ -62,18 +62,6 @@ If ENABLE is non-nil, force enabling autoreloading."
            ((vc-root-dir) (expand-file-name dir-locals-file (vc-root-dir)))
            (t (expand-file-name dir-locals-file (file-name-directory file-name)))))))
 
-;; The hook is defined and enabled by default in `me-defaults'
-;;;###autoload
-(defun +toggle-auto-whitespace-cleanup ()
-  "Toggle auto-deleting trailing whitespaces."
-  (interactive)
-  (if (member #'+save--whitespace-cleanup-h before-save-hook)
-      (progn
-        (message "+toggle-auto-whitespace-cleanup: Disabled.")
-        (remove-hook 'before-save-hook #'+save--whitespace-cleanup-h))
-    (message "+toggle-auto-whitespace-cleanup: Enabled.")
-    (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
-
 ;; Adapted from: rougier/nano-emacs
 ;;;###autoload
 (defun +what-faces (pos)
