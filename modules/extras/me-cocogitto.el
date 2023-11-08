@@ -23,16 +23,17 @@ restores it after that."
            (completing-read "Increment the version: " '(auto major minor patch)))
          (when (yes-or-no-p "Is this version a pre-release? ")
            (read-string "Pre-release version: "))))
-  (when-let ((default-directory (vc-root-dir)))
-    (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
-      (conf-colon-mode)
-      (insert (format "############ Cocogitto bump (%s) ############\n" level))
-      (call-process-shell-command "git stash -u" nil (current-buffer))
-      (call-process-shell-command
-       (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
-       nil (current-buffer))
-      (call-process-shell-command "git stash pop" nil (current-buffer))
-      (message "Cocogitto finished!"))))
+  (if-let ((default-directory (vc-root-dir)))
+      (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
+        (conf-colon-mode)
+        (insert (format "############ Cocogitto bump (%s) ############\n" level))
+        (call-process-shell-command "git stash -u" nil (current-buffer))
+        (call-process-shell-command
+         (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
+         nil (current-buffer))
+        (call-process-shell-command "git stash pop" nil (current-buffer))
+        (message "Cocogitto finished!"))
+    (user-error "Not in a VC managed directory.")))
 
 
 (provide 'me-cocogitto)
