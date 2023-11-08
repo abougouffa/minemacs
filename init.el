@@ -241,7 +241,7 @@
 ;; startup time, but needs to be set down to a more reasonable value after Emacs
 ;; gets loaded. The use of `gcmh-mode' ensures reverting this value so we don't
 ;; need to do it manually.
-;; NOTE: Ensure the `me-defaults', `me-splash', `me-bootstrap' and `me-compat'
+;; NOTE: Ensure the `me-splash', `me-bootstrap', `me-compat' and `me-builtin'
 ;; modules are in the right order. The `me-compat' should be loaded just after
 ;; `me-bootstrap' once `straight' and `use-package' are set up. This enables us
 ;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
@@ -249,11 +249,10 @@
 ;; functionality.
 (setq minemacs-core-modules
       (delete-dups
-       (append '(me-defaults)
-               (when (memq 'me-splash minemacs-core-modules) '(me-splash))
-               '(me-bootstrap)
+       (append (when (memq 'me-splash minemacs-core-modules) '(me-splash))
+               '(me-bootstrap me-builtin)
                (when (< emacs-major-version 29) '(me-compat))
-               '(me-builtin me-gc me-fonts)
+               '(me-gc me-fonts)
                minemacs-core-modules)))
 
 ;; Load MinEmacs modules

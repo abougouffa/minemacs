@@ -8,6 +8,214 @@
 
 ;;; Code:
 
+(use-package emacs
+  ;; Show trailing whitespace in `prog-mode' and `conf-mode'
+  :hook ((prog-mode conf-mode) . +show-trailing-whitespace-h)
+  :hook (after-save . +save--guess-file-mode-h)
+  :hook (mouse-leave-buffer . +minibuffer--kill-on-mouse-h)
+  :custom
+  ;; ====== Default directories for builtin packages ======
+  (diary-file (concat minemacs-local-dir "diary"))
+  (ecomplete-database-file (concat minemacs-local-dir "ecomplete-database.el"))
+  (ede-project-placeholder-cache-file (concat minemacs-local-dir "ede-projects.el"))
+  (erc-dcc-get-default-directory (+directory-ensure minemacs-local-dir "erc/dcc/"))
+  (erc-log-channels-directory (+directory-ensure minemacs-local-dir "erc/log-channels/"))
+  (eudc-options-file (concat minemacs-local-dir "eudc-options.el"))
+  (eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/"))
+  (fortune-dir (+directory-ensure minemacs-local-dir "fortune/"))
+  (fortune-file (expand-file-name "local" fortune-dir))
+  (ido-save-directory-list-file (concat minemacs-local-dir "ido-save-directory-list.el"))
+  (kkc-init-file-name (concat minemacs-local-dir "kkc-init.el"))
+  (multisession-dir (concat minemacs-local-dir "multisession/"))
+  (newsticker-cache-filename (concat minemacs-local-dir "newsticker/cache.el"))
+  (newsticker-dir (+directory-ensure minemacs-local-dir "newsticker/data/"))
+  (nsm-settings-file (concat minemacs-local-dir "nsm-settings.el"))
+  (quickurl-url-file (concat minemacs-local-dir "quickurl-url.el"))
+  (rcirc-log-directory (+directory-ensure minemacs-local-dir "rcirc/log/"))
+  (remember-data-directory (+directory-ensure minemacs-local-dir "remember/data/"))
+  (remember-data-file (concat minemacs-local-dir "remember/data.el"))
+  (semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/"))
+  (shadow-info-file (concat minemacs-local-dir "shadow/info.el"))
+  (shadow-todo-file (concat minemacs-local-dir "shadow/todo.el"))
+  (srecode-map-save-file (concat minemacs-local-dir "srecode-map.el"))
+  (timeclock-file (concat minemacs-local-dir "timeclock"))
+  (type-break-file-name (concat minemacs-local-dir "type-break.el"))
+  (viper-custom-file-name (concat minemacs-local-dir "viper.el"))
+  (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
+  (backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/"))))
+  (custom-theme-directory (concat minemacs-config-dir "themes/"))
+  (shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/"))
+  ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
+  (auto-save-default t)
+  ;; Include big deletions
+  (auto-save-include-big-deletions t)
+  ;; Set file naming transform
+  (auto-save-file-name-transforms
+   `(;; Prefix tramp autosaves with "tramp-"
+     ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") t)
+     ;; Local autosaves
+     (".*" ,auto-save-list-file-prefix t)))
+  ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
+  ;; emacs.stackexchange.com/a/28746
+  (auto-window-vscroll nil)
+  ;; Fast scrolling
+  (fast-but-imprecise-scrolling t)
+  ;; Keep the point in the same position while scrolling
+  (scroll-preserve-screen-position t)
+  ;; Do not move cursor to the center when scrolling
+  (scroll-conservatively 101)
+  ;; Scroll at a margin of one line
+  (scroll-margin 1)
+  ;; The number of lines to scroll
+  (scroll-step 1)
+  ;; Columns from the window edge point allowed before horizontal scroll
+  (hscroll-margin 2)
+  ;; The number of columns to scroll
+  (hscroll-step 1)
+  ;; Disable lockfiles
+  (create-lockfiles nil)
+  ;; Enable making backup files
+  (make-backup-files t)
+  ;; Number each backup file
+  (version-control t)
+  ;; Copy instead of renaming current file
+  (backup-by-copying t)
+  ;; Clean up after itself
+  (delete-old-versions t)
+  ;; Keep up to 5 old versions of each file
+  (kept-old-versions 5)
+  ;; Keep up to 5 new versions of each file
+  (kept-new-versions 5)
+  ;; Keep up to 5 versions when cleaning a directory
+  (dired-kept-versions 5)
+  ;; Hitting TAB behavior
+  (tab-always-indent 'complete)
+  ;; End files with newline
+  (require-final-newline t)
+  ;; 10MB (default is 160kB)
+  (undo-limit 10000000)
+  ;; 50MB (default is 240kB)
+  (undo-strong-limit 50000000)
+  ;; 150MB (default is 24MB)
+  (undo-outer-limit 150000000)
+  ;; Use small frames to display tooltips instead of the default OS tooltips
+  (use-system-tooltips nil)
+  ;; Resize window combinations proportionally
+  (window-combination-resize t)
+  ;; Stretch cursor to the glyph width
+  (x-stretch-cursor t)
+  ;; Do force frame size to be a multiple of char size
+  (frame-resize-pixelwise t)
+  ;; Don’t compact font caches during GC
+  (inhibit-compacting-font-caches t)
+  ;; Increase single chunk bytes to read from subprocess (default 4096)
+  (read-process-output-max (if os/linux
+                               (condition-case nil
+                                   ;; Android may raise permission-denied error
+                                   (with-temp-buffer
+                                     (insert-file-contents "/proc/sys/fs/pipe-max-size")
+                                     (string-to-number (buffer-string)))
+                                 ;; If an error occured, fallback to the default value
+                                 (error read-process-output-max))
+                             (* 1024 1024)))
+  ;; Don't prompt for confirmation when we create a new file or buffer
+  (confirm-nonexistent-file-or-buffer nil)
+  ;; Enable recursive calls to minibuffer
+  (enable-recursive-minibuffers t)
+  ;; Ignore case when completing
+  (completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  ;; Display the true file name for symlinks
+  (find-file-visit-truename t)
+  ;; Use single space between sentences
+  (sentence-end-double-space nil)
+  ;; Move stuff to trash
+  (delete-by-moving-to-trash t)
+  ;; Save files only in sub-directories of current project
+  (save-some-buffers-default-predicate #'save-some-buffers-root)
+  ;; Inhibit startup message
+  (inhibit-startup-screen t)
+  ;; Do not ring
+  (ring-bell-function #'ignore)
+  ;; Set to non-nil to flash!
+  (visible-bell nil)
+  ;; Increase the large file threshold to 50 MiB
+  (large-file-warning-threshold (* 50 1024 1024))
+  ;; Initial scratch message (will be overridden if "fortune" is installed)
+  (initial-scratch-message ";; MinEmacs -- start here!")
+  ;; Set initial buffer to fundamental-mode for faster load
+  (initial-major-mode 'fundamental-mode)
+  ;; Always prompt in minibuffer (no GUI)
+  (use-dialog-box nil)
+  ;; Use y or n instead of yes or no
+  (use-short-answers t)
+  ;; Confirm before quitting
+  (confirm-kill-emacs #'y-or-n-p)
+  ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
+  (prettify-symbols-unprettify-at-point t)
+  ;; Make apropos commands search more extensively
+  (apropos-do-all t)
+  ;; Do not ask obvious questions, follow symlinks
+  (vc-follow-symlinks t)
+  ;; Kill the shell buffer after exit
+  (shell-kill-buffer-on-exit t)
+  ;; More intuitive buffer naming style
+  (uniquify-buffer-name-style 'forward)
+  ;; No ugly button for widgets
+  (widget-image-enable nil)
+  ;; Make tooltips last a bit longer (default 10s)
+  (tooltip-hide-delay 20)
+  ;; Animated images loop forever instead of playing the animation only once
+  (image-animate-loop t)
+  :init
+  (setq-default truncate-lines nil ; Display long lines
+                fill-column 80 ; Default fill column width
+                tab-width 2) ; Small tab is enough!
+
+  ;; Inhibit startup message in echo area the brutal way!
+  ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there
+  ;; is only one unique way of setting it right!
+  ;; See: reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
+  (fset 'display-startup-echo-area-message #'ignore)
+
+  ;;; Why use anything but UTF-8?
+  (prefer-coding-system 'utf-8)
+  (set-charset-priority 'unicode)
+  (set-default-coding-systems 'utf-8)
+  ;; I use mainly English and French. Hence the "Latin-1" which is suitable for
+  ;; major Western Europe languages.
+  (set-language-environment "Latin-1")
+  (set-locale-environment "en_US.UTF-8")
+  ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+  (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
+
+  :config
+  (defun +show-trailing-whitespace-h () (setq-local show-trailing-whitespace t))
+  ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
+  (defun +save--guess-file-mode-h ()
+    "Guess major mode when saving a file in `fundamental-mode'.
+Likely, something has changed since the buffer was opened. e.g. A shebang line
+or file path may exist now."
+    (when (eq major-mode 'fundamental-mode)
+      (let ((buffer (or (buffer-base-buffer) (current-buffer))))
+        (and (buffer-file-name buffer)
+             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
+             (set-auto-mode)))))
+  ;; Kill the minibuffer when switching by mouse to another window.
+  ;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+  (defun +minibuffer--kill-on-mouse-h ()
+    "Kill the minibuffer when switching to window with mouse."
+    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+      (abort-recursive-edit))))
+
+(use-package minibuffer
+  :straight (:type built-in)
+  :custom
+  ;; Ignores case when completing files names
+  (read-file-name-completion-ignore-case t)
+  ;; More info on completions
+  (completions-detailed t))
+
 (use-package transient
   :straight (:type built-in)
   :config
@@ -1337,6 +1545,8 @@ current line.")
 
 (use-package mouse
   :straight (:type built-in)
+  ;; Enable context menu on mouse right click
+  :hook (minemacs-after-startup . context-menu-mode)
   :custom
   ;; Enable Drag-and-Drop of regions
   (mouse-drag-and-drop-region t)
@@ -1439,6 +1649,104 @@ Useful for quickly switching to an open buffer."
     ".json" ".yaml" ".toml"
     ;; Notes and Markup
     ".md" ".markdown" ".org" ".txt" "README")))
+
+(use-package simple
+  :straight (:type built-in)
+  :init
+  ;; Never mix, use only spaces
+  (setq-default indent-tabs-mode nil)
+  ;; Show line number in mode-line
+  :hook (minemacs-after-startup . line-number-mode)
+  ;; Show column numbers (a.k.a. cursor position) in the mode-line
+  :hook (minemacs-after-startup . column-number-mode)
+  ;; Display buffer size on mode line
+  :hook (minemacs-after-startup . size-indication-mode)
+  ;; Wrap long lines
+  :hook ((prog-mode conf-mode text-mode) . visual-line-mode)
+  :custom
+  ;; Filter duplicate entries in kill ring
+  (kill-do-not-save-duplicates t)
+  ;; Save existing clipboard text into the kill ring before replacing it.
+  (save-interprogram-paste-before-kill t))
+
+(use-package help
+  :straight (:type built-in)
+  :custom
+  ;; Select help window for faster quit!
+  (help-window-select t))
+
+(use-package winner
+  :straight (:type built-in)
+  ;; Window layout undo/redo (`winner-undo' / `winner-redo')
+  :hook (minemacs-after-startup . winner-mode))
+
+(use-package delsel
+  :straight (:type built-in)
+  ;; Replace selection after start typing
+  :hook (minemacs-after-startup . delete-selection-mode))
+
+(use-package mb-depth
+  :straight (:type built-in)
+  ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
+  :hook (minemacs-after-startup . minibuffer-depth-indicate-mode))
+
+(use-package subword
+  :straight (:type built-in)
+  ;; Global SubWord mode
+  :hook (minemacs-after-startup . global-subword-mode))
+
+(use-package so-long
+  :straight (:type built-in)
+  ;; Better handling for files with so long lines
+  :hook (minemacs-after-startup . global-so-long-mode))
+
+(use-package icomplete
+  :straight (:type built-in)
+  ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
+  ;; the `me-completion' (which contains `vertico-mode' configuration) core
+  ;; module is not enabled.
+  :unless (and (memq 'me-completion minemacs-core-modules) (not (memq 'vertico minemacs-disabled-packages)))
+  :hook (minemacs-after-startup . fido-vertical-mode))
+
+(use-package battery
+  :straight (:type built-in)
+  :unless (+shutup! (let ((battery-str (battery)))
+                      (or (equal "Battery status not available" battery-str)
+                          (string-match-p "unknown" battery-str)
+                          (string-match-p "N/A" battery-str))))
+  ;; Show the battery status (if available) in the mode-line
+  :hook (minemacs-after-startup . display-battery-mode))
+
+(use-package windmove
+  :straight (:type built-in)
+  :after minemacs-loaded
+  :demand t
+  :config
+  ;; Navigate windows using Shift+Direction
+  (windmove-default-keybindings 'shift))
+
+(use-package x-win
+  :straight (:type built-in)
+  :config
+  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
+  ;; sub-directory
+  (advice-add
+   #'emacs-session-filename :filter-return
+   (defun +emacs-session-filename--in-subdir-a (session-filename)
+     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+     (concat (+directory-ensure minemacs-local-dir "x-win/")
+             (file-name-nondirectory session-filename)))))
+
+(use-package pulse
+  :straight (:type built-in)
+  :init
+  ;; Add visual pulse when changing focus, like beacon but built-in
+  ;; From https://karthinks.com/software/batteries-included-with-emacs/
+  (defun +pulse-line (&rest _)
+    "Pulse the current line."
+    (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
+    (advice-add command :after #'+pulse-line)))
 
 
 (provide 'me-builtin)
