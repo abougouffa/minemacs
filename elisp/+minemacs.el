@@ -225,7 +225,12 @@ Executed before `after-find-file', it runs all hooks in `%s' and provide the `%s
          (run-hooks ',hook-name)))
        (if (daemonp)
            ;; Load immediately after init when in daemon mode
-           (add-hook 'after-init-hook #',fn-name 90)
+           (add-hook
+            'after-init-hook
+             (lambda ()
+               (provide ',feature-name)
+               (run-hooks ',hook-name))
+             #',fn-name 90)
          (advice-add 'after-find-file :before #',fn-name '((depth . -101)))))))
 
 ;; From Doom Emacs

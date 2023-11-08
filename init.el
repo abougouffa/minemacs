@@ -185,7 +185,7 @@
 ;; minemacs-lazy' can be loaded then it incrementally run the hooks in
 ;; `minemacs-lazy-hook' when Emacs goes idle.
 (defun +minemacs--loaded-h ()
-  (+log! "=============== Loaded Emacs ===============")
+  (+log! "=============== Loaded Emacs%s ===============" (if (daemonp) " (in daemon mode)" ""))
   (+info! "Loaded Emacs in %s." (emacs-init-time))
 
   ;; When running in an async Org export context, there is no need to set
