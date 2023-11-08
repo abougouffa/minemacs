@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.5.0](https://github.com/abougouffa/minemacs/compare/v3.4.2..v3.5.0) - 2023-11-08
+#### Bug Fixes
+- **(core)** first file stuff loaded immediately when in daemon mode - ([5711ac8](https://github.com/abougouffa/minemacs/commit/5711ac833fd5f3c5287ebd619c5433ce98b3b565)) - [@abougouffa](https://github.com/abougouffa)
+- **(treemacs)** remove `treemacs-evil` [#123] - ([96d6936](https://github.com/abougouffa/minemacs/commit/96d6936be0c4a8aa8c7bcf209d638af1916bcba2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** move `me-defaults` to `me-builtin` - ([7a645ae](https://github.com/abougouffa/minemacs/commit/7a645ae5248acfcb259a2ec8d7e44e56a004e4bd)) - [@abougouffa](https://github.com/abougouffa)
+- **(daemon)** move generic daemon tweaks to `me-builtin` - ([c38c671](https://github.com/abougouffa/minemacs/commit/c38c6712194ec190bb432d21845c65d006d7910e)) - [@abougouffa](https://github.com/abougouffa)
+- minor refactor, regenerate loaddefs - ([5807929](https://github.com/abougouffa/minemacs/commit/5807929102b94bec8cfac1ab93e3c5f33fb45c77)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.4.2](https://github.com/abougouffa/minemacs/compare/v3.4.1..v3.4.2) - 2023-11-07
 #### Documentation
 - **(readme)** minor edit - ([d3a494c](https://github.com/abougouffa/minemacs/commit/d3a494cd4e2326e85d51a0c7fe14b5b75095055b)) - [@abougouffa](https://github.com/abougouffa)
