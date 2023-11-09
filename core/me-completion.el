@@ -179,6 +179,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     "sh"  #'consult-history
     "sa"  #'consult-org-agenda
     "sl"  #'consult-locate
+    "si"  #'consult-isearch-history
     ;; project
     "pl"  #'consult-line-multi
     "pi"  #'consult-imenu-multi
