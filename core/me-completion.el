@@ -157,7 +157,10 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (keymap-global-set "C-s" 'consult-line)
   (+map!
     ;; buffer
-    "bl"  #'consult-line
+    "bll" #'consult-line
+    "blf" #'consult-focus-lines
+    "blk" #'consult-keep-lines
+    "blg" #'consult-goto-line
     "bb"  #'consult-buffer
     "bB"  #'consult-buffer-other-window
     "bF"  #'consult-buffer-other-frame
@@ -169,13 +172,13 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     ;; git/vc
     "gG"  #'consult-git-grep
     ;; search
-    "ss"  #'consult-ripgrep
-    "sg"  #'consult-grep
-    "sf"  #'consult-find
+    "ss"  (if (executable-find "rg") #'consult-ripgrep #'consult-grep)
+    "sf"  (if (executable-find "fd") #'consult-fd #'consult-find)
     "sM"  #'consult-man
     "st"  #'consult-locate
     "sh"  #'consult-history
     "sa"  #'consult-org-agenda
+    "sl"  #'consult-locate
     ;; project
     "pl"  #'consult-line-multi
     "pi"  #'consult-imenu-multi
