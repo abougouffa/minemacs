@@ -1739,15 +1739,15 @@ Useful for quickly switching to an open buffer."
   (windmove-default-keybindings 'shift))
 
 (use-package pulse
- :straight (:type built-in)
- :init
- ;; Add visual pulse when changing focus, like beacon but built-in
- ;; From https://karthinks.com/software/batteries-included-with-emacs/
- (defun +pulse-line (&rest _)
-   "Pulse the current line."
-   (pulse-momentary-highlight-one-line (point)))
- (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
-   (advice-add command :after #'+pulse-line)))
+  :straight (:type built-in)
+  :init
+  ;; Add visual pulse when changing focus, like beacon but built-in
+  ;; From https://karthinks.com/software/batteries-included-with-emacs/
+  (defun +pulse-line (&rest _)
+    "Pulse the current line."
+    (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
+    (advice-add command :after #'+pulse-line)))
 
 (use-package transient
   :straight (:type built-in)
@@ -1756,6 +1756,14 @@ Useful for quickly switching to an open buffer."
   (keymap-set transient-map "<escape>" 'transient-quit-one)
   (keymap-set transient-map "q" 'transient-quit-one))
 
+(use-package isearch
+  :straight (:type built-in)
+  :config
+  ;; Scroll in isearch history using UP/DOWN or C-j/C-k
+  (keymap-set isearch-mode-map "C-j" #'isearch-ring-advance)
+  (keymap-set isearch-mode-map "C-k" #'isearch-ring-retreat)
+  (keymap-set isearch-mode-map "<down>" #'isearch-ring-advance)
+  (keymap-set isearch-mode-map "<up>" #'isearch-ring-retreat))
 
 (provide 'me-builtin)
 
