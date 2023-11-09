@@ -236,13 +236,6 @@ or file path may exist now."
   ;; More info on completions
   (completions-detailed t))
 
-(use-package transient
-  :straight (:type built-in)
-  :config
-  ;; Map ESC and q to quit transient
-  (keymap-set transient-map "<escape>" 'transient-quit-one)
-  (keymap-set transient-map "q" 'transient-quit-one))
-
 (use-package map
   :straight (:type built-in))
 
@@ -1755,6 +1748,13 @@ Useful for quickly switching to an open buffer."
    (pulse-momentary-highlight-one-line (point)))
  (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
    (advice-add command :after #'+pulse-line)))
+
+(use-package transient
+  :straight (:type built-in)
+  :config
+  ;; Map ESC and q to quit transient
+  (keymap-set transient-map "<escape>" 'transient-quit-one)
+  (keymap-set transient-map "q" 'transient-quit-one))
 
 
 (provide 'me-builtin)
