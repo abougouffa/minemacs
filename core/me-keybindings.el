@@ -138,6 +138,7 @@
     ;; ====== Insert ======
     "i"    '(nil :wk "insert")
     "iu"   '(insert-char :wk "Unicode char")
+    "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
     "ie"   `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
 
     ;; ====== Window ======

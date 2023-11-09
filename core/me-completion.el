@@ -189,6 +189,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     "xc"  #'consult-complex-command
     ;; insert
     "iy"  #'consult-yank-from-kill-ring
+    "ip"  #'consult-yank-pop
     "ir"  '(nil :wk "register")
     "irr" #'consult-register
     "irl" #'consult-register-load
