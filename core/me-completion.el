@@ -198,37 +198,14 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
-  ;; TWEAK: Fill the `initial' query of `consult' commands from
-  ;; `thing-at-point'.
-  ;; NOTE: Some `consult' commands have slightly different signature, the
-  ;; `initial' argument can come first in some cases (like `consult-line') or
-  ;; second in some other cases (like `condult-grep'). These two advices are
-  ;; added to such family of commands so it is filled in the right place.
-  (dolist (cmd '(consult-line ; `initial' comes first in these commands
-                 consult-man))
-    (advice-add
-     cmd :around
-     (defun +consult--dwim-first-arg-a (orig-fn &optional initial opt)
-       (apply orig-fn
-              (append
-               (if (and (called-interactively-p) (not (minibufferp)))
-                   (list (or initial (+region-or-thing-at-point)))
-                 (list initial))
-               (when opt (list opt)))))))
-
-  (dolist (cmd '(consult-ripgrep ; `initial' comes second in these commands
-                 consult-line-multi
-                 consult-grep
-                 consult-find))
-    (advice-add
-     cmd :around
-     (defun +consult--dwim-second-arg-a (orig-fn &optional dir initial)
-       (apply orig-fn
-              (append
-               (list dir)
-               (if (and (called-interactively-p) (not (minibufferp)))
-                   (list (or initial (+region-or-thing-at-point)))
-                 (list initial))))))))
+  ;; Fill the initial query of `consult' commands from region or thing at point.
+  (consult-customize
+   consult-find :initial (+region-or-thing-at-point)
+   consult-grep :initial (+region-or-thing-at-point)
+   consult-line :initial (+region-or-thing-at-point)
+   consult-line-multi :initial (+region-or-thing-at-point)
+   consult-man :initial (+region-or-thing-at-point)
+   consult-ripgrep :initial (+region-or-thing-at-point)))
 
 (use-package embark
   :straight t
