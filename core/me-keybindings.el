@@ -211,11 +211,6 @@
     :global-prefix minemacs-global-mode-prefix
     "u" #'universal-argument-more)
 
-  ;; Text zooming keybindings
-  (keymap-global-set "C-+" #'text-scale-increase)
-  (keymap-global-set "C--" #'text-scale-decrease)
-  (keymap-global-set "C-=" #'text-scale-adjust)
-
   (when (or os/linux os/bsd)
     (when (executable-find "netExtender")
       (+map! "tV"  #'netextender-toggle))

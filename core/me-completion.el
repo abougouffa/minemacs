@@ -77,22 +77,20 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
+  :bind (:map corfu-map
+         ("M-m" . +corfu-complete-in-minibuffer)
+         ("<tab>" . corfu-next)
+         ("<backtab>" . corfu-previous)
+         ("C-j" . corfu-next)
+         ("C-k" . corfu-previous))
   :init
-  (add-to-list
-   'load-path
-   (format "%sstraight/%s/corfu/extensions" straight-base-dir straight-build-dir))
+  (add-to-list 'load-path (format "%sstraight/%s/corfu/extensions" straight-base-dir straight-build-dir))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
   :config
-  (keymap-set corfu-map "C-j" 'corfu-next)
-  (keymap-set corfu-map "<tab>" 'corfu-next)
-  (keymap-set corfu-map "C-k" 'corfu-previous)
-  (keymap-set corfu-map "<backtab>" 'corfu-previous)
-  (keymap-set corfu-map "M-m" '+corfu-complete-in-minibuffer)
-
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
@@ -117,13 +115,13 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
+  :bind (:map corfu-map
+         ("M-p" . corfu-popupinfo-scroll-down)
+         ("M-n" . corfu-popupinfo-scroll-up)
+         ("M-d" . corfu-popupinfo-toggle))
   :custom
   (corfu-popupinfo-delay 0.1)
-  (corfu-popupinfo-max-height 15)
-  :config
-  (keymap-set corfu-map "M-p" 'corfu-popupinfo-scroll-down)
-  (keymap-set corfu-map "M-n" 'corfu-popupinfo-scroll-up)
-  (keymap-set corfu-map "M-d" 'corfu-popupinfo-toggle))
+  (corfu-popupinfo-max-height 15))
 
 (use-package corfu-history
   :hook (corfu-mode . corfu-history-mode)
@@ -146,15 +144,16 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package consult
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
+  :bind (("C-s" . consult-line)
+         :map minibuffer-local-map
+         ("C-r" . consult-history)
+         ("C-S-v" . consult-yank-pop))
   :custom
   ;; Use `consult-xref' for `xref-find-references'
   (xref-show-xrefs-function #'consult-xref)
   ;; Better formatting for `view-register'
   (register-preview-function #'consult-register-format)
   :init
-  (keymap-set minibuffer-local-map "C-r"   'consult-history)
-  (keymap-set minibuffer-local-map "C-S-v" 'consult-yank-pop)
-  (keymap-global-set "C-s" 'consult-line)
   (+map!
     ;; buffer
     "bll" #'consult-line
@@ -213,8 +212,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package embark
   :straight t
+  :bind ("<remap> <describe-bindings>" . embark-bindings)
   :init
-  (keymap-global-set "<remap> <describe-bindings>" #'embark-bindings)
   ;; Use Embark to show bindings in a key prefix with `C-h`
   (setq prefix-help-command #'embark-prefix-help-command)
   (+map! "a" #'embark-act))
@@ -243,40 +242,34 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package vertico
   :straight t
   :hook (minemacs-after-startup . vertico-mode)
+  ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
+  ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
+  ;; to serve the original "C-k".
+  :bind (:map minibuffer-local-map
+         ("C-S-k" . kill-line)
+         :map vertico-map
+         ("C-j" . vertico-next)
+         ("C-k" . vertico-previous))
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
   (vertico-count 12)
   :init
-  (add-to-list
-   'load-path (concat
-               straight-base-dir
-               (format "straight/%s/vertico/extensions" straight-build-dir)))
-  ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
-  ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
-  ;; to serve the original "C-k".
-  (keymap-set minibuffer-local-map "C-S-k" 'kill-line)
-  :config
-  (with-eval-after-load 'evil
-    (keymap-set vertico-map "C-j" 'vertico-next)
-    (keymap-set vertico-map "C-k" 'vertico-previous)))
+  (add-to-list 'load-path (concat straight-base-dir (format "straight/%s/vertico/extensions" straight-build-dir))))
 
 (use-package vertico-directory
   :after vertico
   :demand t
-  :config
-  (keymap-set vertico-map "RET"   'vertico-directory-enter)
-  (keymap-set vertico-map "DEL"   'vertico-directory-delete-char)
-  (keymap-set vertico-map "M-DEL" 'vertico-directory-delete-word)
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-
-  (with-eval-after-load 'evil
-    (keymap-set vertico-map "M-h" 'vertico-directory-up)))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word)
+              ("M-h" . vertico-directory-up)))
 
 (use-package vertico-repeat
   :hook (minibuffer-setup . vertico-repeat-save)
-  :init
-  (keymap-global-set "M-R" #'vertico-repeat))
+  :bind ("M-R" . vertico-repeat))
 
 
 (provide 'me-completion)

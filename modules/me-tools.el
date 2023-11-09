@@ -41,6 +41,7 @@
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
+  :bind (:map vterm-mode-map ("<return>" . vterm-send-return))
   :init
   (+map!
     "ot" '(nil :wk "vterm")
@@ -54,9 +55,7 @@
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
-  (vterm-tramp-shells '(("docker" "/bin/bash")))
-  :config
-  (keymap-set vterm-mode-map "<return>" 'vterm-send-return))
+  (vterm-tramp-shells '(("docker" "/bin/bash"))))
 
 (use-package multi-vterm
   :straight t

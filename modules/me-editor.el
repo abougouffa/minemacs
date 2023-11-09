@@ -110,10 +110,10 @@
 (use-package drag-stuff
   :straight t
   :init
-  (keymap-global-set "M-S-<up>" 'drag-stuff-up)
-  (keymap-global-set "M-S-<down>" 'drag-stuff-down)
-  (keymap-global-set "M-S-<left>" 'drag-stuff-left)
-  (keymap-global-set "M-S-<right>" 'drag-stuff-right))
+  :bind (("M-S-<up>" . drag-stuff-up)
+         ("M-S-<down>" . drag-stuff-down)
+         ("M-S-<left>" . drag-stuff-left)
+         ("M-S-<right>" . drag-stuff-right)))
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "elisp/+buffer.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)

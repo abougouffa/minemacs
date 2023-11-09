@@ -1751,19 +1751,26 @@ Useful for quickly switching to an open buffer."
 
 (use-package transient
   :straight (:type built-in)
-  :config
   ;; Map ESC and q to quit transient
-  (keymap-set transient-map "<escape>" 'transient-quit-one)
-  (keymap-set transient-map "q" 'transient-quit-one))
+  :bind (:map transient-map
+         ("q" . transient-quit-one)
+         ("<escape>" . transient-quit-one)))
 
 (use-package isearch
   :straight (:type built-in)
-  :config
   ;; Scroll in isearch history using UP/DOWN or C-j/C-k
-  (keymap-set isearch-mode-map "C-j" #'isearch-ring-advance)
-  (keymap-set isearch-mode-map "C-k" #'isearch-ring-retreat)
-  (keymap-set isearch-mode-map "<down>" #'isearch-ring-advance)
-  (keymap-set isearch-mode-map "<up>" #'isearch-ring-retreat))
+  :bind (:map isearch-mode-map
+         ("C-k" . isearch-ring-retreat)
+         ("C-j" . isearch-ring-advance)
+         ("<up>" . isearch-ring-retreat)
+         ("<down>" . isearch-ring-advance)))
+
+(use-package face-remap
+  :straight (:type built-in)
+  :bind (("C-+" . text-scale-increase)
+         ("C--" . text-scale-decrease)
+         ("C-=" . text-scale-adjust)))
+
 
 (provide 'me-builtin)
 
