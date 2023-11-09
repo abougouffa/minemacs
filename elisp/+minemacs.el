@@ -225,12 +225,7 @@ Executed before `after-find-file', it runs all hooks in `%s' and provide the `%s
          (run-hooks ',hook-name)))
        (if (daemonp)
            ;; Load immediately after init when in daemon mode
-           (add-hook
-            'after-init-hook
-             (lambda ()
-               (provide ',feature-name)
-               (run-hooks ',hook-name))
-             #',fn-name 90)
+           (add-hook 'after-init-hook (lambda () (provide ',feature-name) (run-hooks ',hook-name)) #',fn-name 90)
          (advice-add 'after-find-file :before #',fn-name '((depth . -101)))))))
 
 ;; From Doom Emacs
@@ -487,6 +482,9 @@ Works like `shell-command-to-string' with two differences:
       (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
       (copy-file src-file dest-file)))
 
+  ;; Update straight recipe repositories
+  (straight-pull-recipe-repositories)
+
   ;; Run `straight's update cycle, taking into account the explicitly pinned
   ;; packages versions.
   (message "[MinEmacs]: Pulling packages")
@@ -512,6 +510,8 @@ from backups, not Git."
   (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
          (default-directory (vc-git-root lockfile))
          (backup-dir (concat minemacs-local-dir "minemacs/versions/")))
+    ;; Update straight recipe repositories
+    (straight-pull-recipe-repositories)
     (if (not restore-from-backup)
         (progn
           (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
