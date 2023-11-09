@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.6.0](https://github.com/abougouffa/minemacs/compare/v3.5.0..v3.6.0) - 2023-11-09
+#### Bug Fixes
+- **(builtin)** use `emacs` pseudo-package instead of `x-win` - ([da0e57d](https://github.com/abougouffa/minemacs/commit/da0e57ded6bfb60081da4fdc634509cbcee0f8c7)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** load `me-compat` before `me-builtin` - ([c5f39db](https://github.com/abougouffa/minemacs/commit/c5f39db85d2bd7cb831ab41df20de30c879ad2c3)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(consult)** fill initial query using `consult-customize` - ([600d22b](https://github.com/abougouffa/minemacs/commit/600d22b0c9c20930143e99a473b9d63544d0921c)) - [@abougouffa](https://github.com/abougouffa)
+- move `transient` to the end of `me-builtin` - ([e7d7d07](https://github.com/abougouffa/minemacs/commit/e7d7d070e5f286f8ab6889b25ac322e33043bd46)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cocogitto)** display error message when not in VC directory - ([e2b85e6](https://github.com/abougouffa/minemacs/commit/e2b85e6a6d30d747e17c432a56006ef1937a9b2a)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** bind `consult-isearch-history` to `SPC s i` - ([542e5f3](https://github.com/abougouffa/minemacs/commit/542e5f38f3c441187b2171825971c4d2773e8476)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** add more useful keybindings - ([1fb5994](https://github.com/abougouffa/minemacs/commit/1fb599415a631b704d3329c9263cc0eaafc7ac5c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** update recipe repositories on update - ([9240670](https://github.com/abougouffa/minemacs/commit/92406704cc8bfc539d950109dfeb34abfc6f9c97)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** use `isearch` instead of `evil-search` - ([1182d73](https://github.com/abougouffa/minemacs/commit/1182d73ee06062ebe731f720f2681c368e78e856)) - [@abougouffa](https://github.com/abougouffa)
+- **(isearch)** enable ring scrolling using `UP`/`DOWN` & `C-j`/`C-k` - ([04e985f](https://github.com/abougouffa/minemacs/commit/04e985fd4d3283c90b45007af0a18b99da9d58ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** add keybinding for `keep-lines` - ([6228628](https://github.com/abougouffa/minemacs/commit/622862840692369deedfe028d9d5828ae72b52cd)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.5.0](https://github.com/abougouffa/minemacs/compare/v3.4.2..v3.5.0) - 2023-11-08
 #### Bug Fixes
 - **(core)** first file stuff loaded immediately when in daemon mode - ([5711ac8](https://github.com/abougouffa/minemacs/commit/5711ac833fd5f3c5287ebd619c5433ce98b3b565)) - [@abougouffa](https://github.com/abougouffa)
