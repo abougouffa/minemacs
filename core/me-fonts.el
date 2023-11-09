@@ -102,10 +102,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (defconst +known-scripts (mapcar #'car script-representative-chars)
   "Supported scripts, like `latin', `arabic', `han', and so on.")
 
-(defconst +font-family-list (font-family-list)
-  "List of available fonts on the system, initialized at startup from
-  `font-family-list'.")
-
 (defconst +face-attributes
   '(:family :foundry :width :height :weight :slant :foreground
     :distant-foreground :background :underline :overline :strike-through
@@ -130,7 +126,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
-  (and font-family (member font-family +font-family-list) t))
+  (and font-family (member font-family (font-family-list)) t))
 
 (defun +apply-font-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
