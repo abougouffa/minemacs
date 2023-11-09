@@ -67,139 +67,142 @@
   ;; Define the built-in global keybindings
   (+minemacs--internal-map!
     ;; ====== Top level functions ======
-    "SPC" '(execute-extended-command :wk "M-x")
-    ">"   '(switch-to-next-buffer :wk "Next buffer")
-    "<"   '(switch-to-prev-buffer :wk "Previous buffer")
-    ";"   '(pp-eval-expression :wk "Eval expression")
-    "X"   #'org-capture
-    "u"   '(universal-argument :wk "C-u")
-    "C"   #'universal-coding-system-argument
+    "SPC"  '(execute-extended-command :wk "M-x")
+    ">"    '(switch-to-next-buffer :wk "Next buffer")
+    "<"    '(switch-to-prev-buffer :wk "Previous buffer")
+    ";"    '(pp-eval-expression :wk "Eval expression")
+    "X"    #'org-capture
+    "u"    '(universal-argument :wk "C-u")
+    "C"    #'universal-coding-system-argument
 
     ;; ====== Quit/Session ======
-    "q"   '(nil :wk "quit/session")
-    "qq"  #'save-buffers-kill-terminal
-    "qQ"  #'kill-emacs
-    "qS"  #'server-start
-    "qR"  #'recover-session
-    "qd"  #'desktop-read
-    "qD"  #'desktop-lazy-complete
-    "qs"  #'desktop-save
+    "q"    '(nil :wk "quit/session")
+    "qq"   #'save-buffers-kill-terminal
+    "qQ"   #'kill-emacs
+    "qS"   #'server-start
+    "qR"   #'recover-session
+    "qd"   #'desktop-read
+    "qD"   #'desktop-lazy-complete
+    "qs"   #'desktop-save
 
     ;; ====== Files ======
-    "f"   '(nil :wk "file")
-    "fS"  '(write-file :wk "Save as ...")
-    "fd"  #'+delete-this-file
-    "fD"  #'+delete-this-file-and-buffer
-    "fF"  #'+sudo-find-file
-    "fu"  #'+sudo-this-file
-    "fR"  #'+move-this-file
-    "ff"  #'find-file
-    "fs"  #'save-buffer
-    "ft"  #'recover-this-file
-    "fT"  #'recover-file
-    "fy"  #'+yank-this-file-name
-    "fE"  `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
-            :wk "User config directory")
+    "f"    '(nil :wk "file")
+    "fS"   '(write-file :wk "Save as ...")
+    "fd"   #'+delete-this-file
+    "fD"   #'+delete-this-file-and-buffer
+    "fF"   #'+sudo-find-file
+    "fu"   #'+sudo-this-file
+    "fR"   #'+move-this-file
+    "ff"   #'find-file
+    "fs"   #'save-buffer
+    "ft"   #'recover-this-file
+    "fT"   #'recover-file
+    "fy"   #'+yank-this-file-name
+    "fE"   `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
+              :wk "User config directory")
 
     ;; ====== Buffers ======
-    "b"   '(nil :wk "buffer")
-    "bI"  #'ibuffer
-    "bu"  #'+sudo-save-buffer
-    "bx"  #'bury-buffer
-    "bS"  #'save-some-buffers
-    "bs"  #'+scratch-open-project-scratch-buffer
-    "bM"  #'view-echo-area-messages
-    "bA"  #'+kill-some-buffers
-    "bk"  `(,(+cmdfy! (kill-buffer (current-buffer)))
-            :wk "Kill this buffer")
-    "bK"  `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
-            :wk "Kill this buffer and its windows")
-    "br"  '(revert-buffer :wk "Revert")
-    "bR"  '(rename-buffer :wk "Rename")
+    "b"    '(nil :wk "buffer")
+    "bI"   #'ibuffer
+    "bu"   #'+sudo-save-buffer
+    "bx"   #'bury-buffer
+    "bS"   #'save-some-buffers
+    "bs"   #'+scratch-open-project-scratch-buffer
+    "bM"   #'view-echo-area-messages
+    "bA"   #'+kill-some-buffers
+    "bk"   `(,(+cmdfy! (kill-buffer (current-buffer)))
+             :wk "Kill this buffer")
+    "bK"   `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
+             :wk "Kill this buffer and its windows")
+    "br"   '(revert-buffer :wk "Revert")
+    "bR"   '(rename-buffer :wk "Rename")
+    ;; Lines
+    "bl"   '(nil :wk "line")
+    "blk"  #'keep-lines ;; Will be overwritten with `consult-keep-lines'
     ;; Bookmarks
-    "bm"  '(nil :wk "bookmark")
+    "bm"   '(nil :wk "bookmark")
     "bmm"  #'bookmark-set
     "bmd"  #'bookmark-delete
     ;; Files / Local variables
-    "bv"  '(nil :wk "locals")
-    "bvv" '(add-file-local-variable :wk "Add")
-    "bvV" '(delete-file-local-variable :wk "Delete")
-    "bvp" '(add-file-local-variable-prop-line :wk "Add in prop line")
-    "bvP" '(delete-file-local-variable-prop-line :wk "Delete from prop line")
-    "bvd" '(add-dir-local-variable :wk "Add to dir-locals")
-    "bvD" '(delete-dir-local-variable :wk "Delete from dir-locals")
+    "bv"   '(nil :wk "locals")
+    "bvv"  '(add-file-local-variable :wk "Add")
+    "bvV"  '(delete-file-local-variable :wk "Delete")
+    "bvp"  '(add-file-local-variable-prop-line :wk "Add in prop line")
+    "bvP"  '(delete-file-local-variable-prop-line :wk "Delete from prop line")
+    "bvd"  '(add-dir-local-variable :wk "Add to dir-locals")
+    "bvD"  '(delete-dir-local-variable :wk "Delete from dir-locals")
     "bvr"  '(nil :wk "reload dir-locals for...")
     "bvrr" '(+dir-locals-reload-for-this-buffer :wk "This buffer")
     "bvrd" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "All buffers in this directory")
 
     ;; ====== Insert ======
-    "i"   '(nil :wk "insert")
-    "iu"  '(insert-char :wk "Unicode char")
-    "ie"  `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
+    "i"    '(nil :wk "insert")
+    "iu"   '(insert-char :wk "Unicode char")
+    "ie"   `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
 
     ;; ====== Window ======
-    "w"   '(nil :wk "window")
-    "wd"  #'delete-window
-    "wD"  #'delete-windows-on
-    "wo"  #'delete-other-windows
-    "wm"  #'maximize-window
-    "wu"  #'winner-undo
-    "wU"  #'winner-redo
+    "w"    '(nil :wk "window")
+    "wd"   #'delete-window
+    "wD"   #'delete-windows-on
+    "wo"   #'delete-other-windows
+    "wm"   #'maximize-window
+    "wu"   #'winner-undo
+    "wU"   #'winner-redo
 
     ;; ====== Applications (Open) ======
-    "o"   '(nil :wk "app/open")
-    "o-"  '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
-    "oa"  #'org-agenda
-    "oe"  #'eshell
+    "o"    '(nil :wk "app/open")
+    "o-"   '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
+    "oa"   #'org-agenda
+    "oe"   #'eshell
 
     ;; ====== Search ======
-    "s"   '(nil :wk "search")
-    "sw"  '+webjump
+    "s"    '(nil :wk "search")
+    "sw"   '+webjump
 
     ;; ======  Mode specific a.k.a. "local leader" ======
-    "m"   '(nil :wk "mode-specific")
+    "m"    '(nil :wk "mode-specific")
 
     ;; ====== VC ======
-    "g"   '(nil :wk "git/vc")
+    "g"    '(nil :wk "git/vc")
 
     ;; ====== Workspaces ======
-    "TAB" '(nil :wk "workspace")
+    "TAB"  '(nil :wk "workspace")
 
     ;; ====== Toggle ======
-    "t"   '(nil :wk "toggle")
-    "td"  #'toggle-debug-on-error
-    "tr"  #'read-only-mode
-    "tl"  #'follow-mode
-    "tv"  #'visible-mode
+    "t"    '(nil :wk "toggle")
+    "td"   #'toggle-debug-on-error
+    "tr"   #'read-only-mode
+    "tl"   #'follow-mode
+    "tv"   #'visible-mode
 
     ;; ====== Code ======
-    "c"   '(nil :wk "code")
-    "cf"  '(nil :wk "format buffer")
+    "c"    '(nil :wk "code")
+    "cf"   '(nil :wk "format buffer")
 
     ;; ====== Notes ======
-    "n"   '(nil :wk "notes")
+    "n"    '(nil :wk "notes")
 
     ;; ====== Help ======
-    "h"   '(nil :wk "help")
-    "hi"  #'info
-    "hg"  #'general-describe-keybindings
-    "hs"  #'+screenshot-svg
-    "he"  '(nil :wk "elisp/emacs")
-    "hes" #'elisp-index-search
-    "hem" #'info-emacs-manual
-    "hei" #'Info-search
-    "hd"  '(nil :wk "describe")
-    "hdk" #'describe-key
-    "hdm" #'describe-keymap
-    "hdb" #'describe-bindings
-    "hds" #'describe-symbol
-    "hdv" #'describe-variable
-    "hdc" #'describe-command
-    "hdf" #'describe-function
-    "hdp" #'describe-package
+    "h"    '(nil :wk "help")
+    "hi"   #'info
+    "hg"   #'general-describe-keybindings
+    "hs"   #'+screenshot-svg
+    "he"   '(nil :wk "elisp/emacs")
+    "hes"  #'elisp-index-search
+    "hem"  #'info-emacs-manual
+    "hei"  #'Info-search
+    "hd"   '(nil :wk "describe")
+    "hdk"  #'describe-key
+    "hdm"  #'describe-keymap
+    "hdb"  #'describe-bindings
+    "hds"  #'describe-symbol
+    "hdv"  #'describe-variable
+    "hdc"  #'describe-command
+    "hdf"  #'describe-function
+    "hdp"  #'describe-package
 
     ;; ====== Project ======
-    "p"   '(nil :wk "project"))
+    "p"    '(nil :wk "project"))
 
   ;; To handle repeated "SPC u" like repeated "C-u"
   (general-def
