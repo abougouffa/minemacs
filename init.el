@@ -250,9 +250,9 @@
 (setq minemacs-core-modules
       (delete-dups
        (append (when (memq 'me-splash minemacs-core-modules) '(me-splash))
-               '(me-bootstrap me-builtin)
+               '(me-bootstrap)
                (when (< emacs-major-version 29) '(me-compat))
-               '(me-gc me-fonts)
+               '(me-builtin me-gc me-fonts)
                minemacs-core-modules)))
 
 ;; Load MinEmacs modules
