@@ -4,8 +4,9 @@ on:
   push:
     paths-ignore:
       - "**.md"
-      - ".gitignore"
       - "skel/**"
+      - ".gitignore/workflows/cocogitto.yaml"
+      - ".gitignore/workflows/jekyll-gh-pages.yaml"
   pull_request:
   workflow_dispatch:
   # Run weekly

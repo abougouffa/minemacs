@@ -7,7 +7,7 @@ on:
 jobs:
   cog_check_job:
     runs-on: ubuntu-latest
-    name: Check conventional commit compliance
+    name: cocogitto
     steps:
       - uses: actions/checkout@v4.1.0
         with:
