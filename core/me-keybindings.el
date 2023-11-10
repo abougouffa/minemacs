@@ -202,6 +202,9 @@
     "hdf"  #'describe-function
     "hdp"  #'describe-package
 
+    ;; ====== Extras ======
+    "e"    '(nil :wk "extras")
+
     ;; ====== Project ======
     "p"    '(nil :wk "project"))
 

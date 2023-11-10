@@ -185,8 +185,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     ;; code
     "cm"  #'consult-flymake
     "cE"  #'consult-compile-error
-    ;; unclassified
-    "xc"  #'consult-complex-command
+    ;; extras
+    "ec"  #'consult-complex-command
     ;; insert
     "iy"  #'consult-yank-from-kill-ring
     "ip"  #'consult-yank-pop
@@ -210,6 +210,15 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
    consult-line-multi :initial (+region-or-thing-at-point)
    consult-man :initial (+region-or-thing-at-point)
    consult-ripgrep :initial (+region-or-thing-at-point)))
+
+(use-package consult-dir
+  :straight t
+  :bind (("C-x C-d" . consult-dir)
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file))
+  :init
+  (+map! "ed" #'consult-dir))
 
 (use-package embark
   :straight t
