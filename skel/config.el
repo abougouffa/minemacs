@@ -192,21 +192,9 @@
            "agenda.org"
            "projects.org"))))
 
-;; Module: `me-notes' -- Package: `org-roam'
-;; For better integration with other packages (like `citar-org-roam'), it is
-;; recommended to set the `org-roam-directory' before loading the package.
-(setq org-roam-directory "~/Org/slip-box/")
-
-(with-eval-after-load 'org-roam
-  (setq org-roam-db-location (concat org-roam-directory "org-roam.db"))
-
-  ;; Register capture template (via Org-Protocol)
-  ;; Add this as bookmarklet in your browser
-  ;; javascript:location.href='org-protocol://roam-ref?template=r&ref=%27+encodeURIComponent(location.href)+%27&title=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(window.getSelection())
-  (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain "%?"
-           :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
-           :unnarrowed t))))
+;; Module: `me-notes' -- Package: `denote'
+(with-eval-after-load 'denote
+  (setq denote-directory "~/Org/notes/"))
 
 ;; Module: `me-media' -- Package: `empv'
 (with-eval-after-load 'empv
