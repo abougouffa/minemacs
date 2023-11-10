@@ -127,22 +127,12 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     (make-directory (file-name-directory new-path) t)
     (rename-file old-path new-path (or force-p 1))
     (set-visited-file-name new-path t t)
-    ;; (doom-files--update-refs old-path new-path)
     (message "File moved to %S" (abbreviate-file-name new-path))))
 
 ;;;###autoload
 (defun +tramp-sudo-file-path (file)
   "Construct a Tramp sudo path to FILE. Works for both local and remote files."
-  (let ((host (or (file-remote-p file 'host) "localhost")))
-    (concat "/" (when (file-remote-p file)
-                  (concat (file-remote-p file 'method) ":"
-                          (if-let (user (file-remote-p file 'user))
-                              (concat user "@" host)
-                            host)
-                          "|"))
-            "sudo:root@" host
-            ":" (or (file-remote-p file 'localname)
-                    file))))
+  (tramp-make-tramp-file-name "sudo" tramp-root-id-string nil (or (file-remote-p file 'host) "localhost") nil file))
 
 ;;;###autoload
 (defun +sudo-find-file (file)
