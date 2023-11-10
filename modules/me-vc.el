@@ -139,8 +139,8 @@
     "gb" #'blamer-show-posframe-commit-info
     "gB" #'blamer-show-commit-info)
 
-  ;; Use 10% smaller font size for blamer's text
-  (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.9 (face-attribute 'default :height))) 1))
+  ;; Use 15% smaller font size for blamer's text
+  (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 (face-attribute 'default :height))) 1))
 
   (with-eval-after-load 'me-writing-mode
     (defvar-local +blamer-was-active-p blamer-mode)
