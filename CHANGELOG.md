@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.6.1](https://github.com/abougouffa/minemacs/compare/v3.6.0..v3.6.1) - 2023-11-10
+#### Bug Fixes
+- **(daemon)** empty font list if called too early - ([e99e989](https://github.com/abougouffa/minemacs/commit/e99e989815f85dad03d9931b14f7cc193e45a88d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(completion)** add `consult-dir` - ([877e677](https://github.com/abougouffa/minemacs/commit/877e6775130eb5c425e0b225637ddefe9504660b)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- use `use-package`'s `:bind` to bind keys - ([3637597](https://github.com/abougouffa/minemacs/commit/3637597e54761a9f4c0a34f04676b28459c714fa)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult)** add keybinding for `consult-yank-pop` - ([8ff02d2](https://github.com/abougouffa/minemacs/commit/8ff02d2ca83b488057a6ce88357ebef8cd117f9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** replace `org-roam` example with `denote`'s one - ([174f78a](https://github.com/abougouffa/minemacs/commit/174f78ab436a46486924821182e13ed7a0480c21)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** remove `affe`, buggy and stops randomly - ([bf54bcd](https://github.com/abougouffa/minemacs/commit/bf54bcdaeb5ed4351af5cfb2f21a67157d5643ff)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cbad02d](https://github.com/abougouffa/minemacs/commit/cbad02d3d64dd025a024a795d78ba840bd1fb514)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.6.0](https://github.com/abougouffa/minemacs/compare/v3.5.0..v3.6.0) - 2023-11-09
 #### Bug Fixes
 - **(builtin)** use `emacs` pseudo-package instead of `x-win` - ([da0e57d](https://github.com/abougouffa/minemacs/commit/da0e57ded6bfb60081da4fdc634509cbcee0f8c7)) - [@abougouffa](https://github.com/abougouffa)
