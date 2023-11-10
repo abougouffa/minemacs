@@ -54,6 +54,16 @@
   :config
   (treemacs-load-theme "nerd-icons"))
 
+(use-package sudo-edit
+  :straight t
+  :hook (minemacs-first-file . sudo-edit-indicator-mode)
+  :init
+  (+map!
+    "fF" #'sudo-edit-find-file
+    "fu" #'sudo-edit)
+  :config
+  (set-face-attribute 'sudo-edit-header-face nil :height (truncate (* .9 (face-attribute 'default :height)))))
+
 
 (provide 'me-files)
 
