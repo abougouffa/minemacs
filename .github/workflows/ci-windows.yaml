@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - "**.md"
-      - ".git**" # .gitignore, .gitworkflow
+      - ".gitignore"
       - "skel/**"
   pull_request:
   workflow_dispatch:
