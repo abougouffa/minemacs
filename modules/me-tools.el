@@ -7,19 +7,6 @@
 
 ;;; Code:
 
-(use-package affe
-  :straight t
-  :init
-  (+map! :infix "s"
-    "G" #'affe-grep
-    "F" #'affe-find)
-  :config
-  (with-eval-after-load 'orderless
-    (defun +affe-orderless-regexp-compiler (input &rest _)
-      (setq input (orderless-pattern-compiler input))
-      (cons input (apply-partially #'orderless--highlight input)))
-    (setq affe-regexp-compiler #'+affe-orderless-regexp-compiler)))
-
 (use-package ssh-deploy
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
