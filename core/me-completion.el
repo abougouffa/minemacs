@@ -223,7 +223,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package embark
   :straight t
-  :bind ("<remap> <describe-bindings>" . embark-bindings)
+  :bind (("<remap> <describe-bindings>" . embark-bindings)
+         ("C-²" . embark-act)) ; In a French AZERTY keyboard, the ² key is right above TAB
   :init
   ;; Use Embark to show bindings in a key prefix with `C-h`
   (setq prefix-help-command #'embark-prefix-help-command)
