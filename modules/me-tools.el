@@ -149,6 +149,14 @@
     "cs" #'chezmoi-sync-files
     "cg" #'chezmoi-magit-status))
 
+(use-package with-editor
+  :straight t
+  :hook ((shell-mode eshell-mode term-exec vterm-mode) . with-editor-export-editor)
+  :hook ((shell-mode eshell-mode term-exec vterm-mode) . with-editor-export-hg-editor)
+  :hook ((shell-mode eshell-mode term-exec vterm-mode) . with-editor-export-git-editor)
+  :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
+         ("<remap> <shell-command>" . with-editor-shell-command)))
+
 
 (provide 'me-tools)
 
