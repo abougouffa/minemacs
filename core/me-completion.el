@@ -213,6 +213,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package consult-dir
   :straight t
+  :after vertico
   :bind (("C-x C-d" . consult-dir)
          :map vertico-map
          ("C-x C-d" . consult-dir)
