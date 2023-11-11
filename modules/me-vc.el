@@ -96,8 +96,8 @@
   :straight t
   :commands +jira-insert-ticket-id
   :config
-  (defun +jira--ticket-annotation-fn (t)
-    (let ((item (assoc t minibuffer-completion-table)))
+  (defun +jira--ticket-annotation-fn (ticket)
+    (let ((item (assoc ticket minibuffer-completion-table)))
       (when item (concat "    " (cdr item)))))
 
   (defun +jira-insert-ticket-id ()
