@@ -152,23 +152,20 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 
 ;;;###autoload
 (defun +sudo-save-buffer ()
-  "Save this file as root."
+  "Save this buffer as root. Save as new file name if called with prefix."
   (interactive)
-  (if buffer-file-name
-      (if-let ((file (+tramp-sudo-file-path buffer-file-name))
-               (buffer (find-file-noselect file))
-               (origin (current-buffer)))
-          (progn
-            (copy-to-buffer buffer (point-min) (point-max))
-            (unwind-protect
-                (with-current-buffer buffer
-                  (save-buffer))
-              (unless (eq origin buffer)
-                (kill-buffer buffer))
-              (with-current-buffer origin
-                (revert-buffer t t))))
-        (user-error "Unable to open %S" file))
-    (user-error "Current buffer not bound to a file")))
+  (if-let ((file (or (and (or (not buffer-file-name) current-prefix-arg)
+                          (read-file-name "Save as root to: "))
+                     buffer-file-name))
+           (file (+tramp-sudo-file-path (expand-file-name file)))
+           (dest-buffer (find-file-noselect file))
+           (src-buffer (current-buffer)))
+      (progn
+        (copy-to-buffer dest-buffer (point-min) (point-max))
+        (unwind-protect (with-current-buffer dest-buffer (save-buffer))
+          (unless (eq src-buffer dest-buffer) (kill-buffer dest-buffer))
+          (with-current-buffer src-buffer (revert-buffer t t))))
+    (user-error "Unable to open %S" (abbreviate-file-name file))))
 
 ;;;###autoload
 (defun +yank-this-file-name ()
@@ -279,7 +276,7 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
            (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
              (+txt2html infile tmp-html mail-mode-p)
              (+html2pdf tmp-html outfile))))
-        (message "Exported PDF to %s"
+        (message "Exported PDF to %S"
                  (truncate-string-to-width
                   (abbreviate-file-name outfile)
                   (/ (window-width (minibuffer-window)) 2) nil nil t))
