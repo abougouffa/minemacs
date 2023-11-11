@@ -269,21 +269,16 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
                         (file-name-with-extension (file-name-base infile) ".pdf")
                         (file-name-directory infile))))))
     (if (zerop
-         ;; For HTML files, just call `+html2pdf'
-         (if (string= "html" (file-name-extension infile))
+         ;; For HTML files (with extension ".html" or ".htm"), just call `+html2pdf'
+         (if (string-match-p "^html?$" (file-name-extension infile))
              (+html2pdf infile outfile)
            ;; For non-HTML (plain-text) files, convert them to HTML then call `+html2pdf'
            (let ((tmp-html (make-temp-file "txt2html-" nil ".html")))
              (+txt2html infile tmp-html mail-mode-p)
              (+html2pdf tmp-html outfile))))
         (message "Exported PDF to %S"
-                 (truncate-string-to-width
-                  (abbreviate-file-name outfile)
-                  (/ (window-width (minibuffer-window)) 2) nil nil t))
-      (user-error
-       (if (file-exists-p outfile)
-           "PDF created but with some errors!"
-         "An error occurred, cannot create the PDF!")))))
+                 (truncate-string-to-width (abbreviate-file-name outfile) (/ (window-width (minibuffer-window)) 2) nil nil t))
+      (user-error (if (file-exists-p outfile) "PDF created but with some errors!" "An error occurred, cannot create the PDF!")))))
 
 ;;;###autoload
 (defcustom +single-file-executable "single-file"
