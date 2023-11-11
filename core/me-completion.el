@@ -34,6 +34,20 @@ placed, otherwise they come first."
     :group 'minemacs-completion
     :type '(repeat function))
   :config
+  ;; Silence the pcomplete capf, no errors or messages! Important for corfu!
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+  (when (< emacs-major-version 29)
+    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+
+  (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
+
+  (+add-hook! (emacs-lisp-mode git-commit-mode)
+    (add-hook 'completion-at-point-functions #'cape-symbol nil t))
+
+  (+add-hook! (TeX-mode LaTeX-mode)
+    (add-hook 'completion-at-point-functions #'cape-tex nil t))
+
   ;; Make use of `cape''s super Capf functionality. Adapted from:
   ;; git.sr.ht/~gagbo/doom-config/tree/master/item/modules/completion/corfu/config.el
   (defun +cape-apply-capf-super ()
@@ -56,21 +70,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     (let ((enabled (get '+cape-auto-capf-super 'enabled)))
       (dolist (hook '(lsp-mode-hook eglot-managed-mode-hook change-major-mode-hook))
         (apply (if (or enabled disable) #'remove-hook #'add-hook) (list hook #'+cape-apply-capf-super))
-        (put '+cape-auto-capf-super 'enabled (not (or enabled disable))))))
-
-  (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
-
-  (+add-hook! (emacs-lisp-mode git-commit-mode)
-    (add-hook 'completion-at-point-functions #'cape-symbol nil t))
-
-  (+add-hook! (TeX-mode LaTeX-mode)
-    (add-hook 'completion-at-point-functions #'cape-tex nil t))
-
-  ;; Silence the pcomplete capf, no errors or messages! Important for corfu!
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-
-  (when (< emacs-major-version 29)
-    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)))
+        (put '+cape-auto-capf-super 'enabled (not (or enabled disable)))))))
 
 (use-package corfu
   :straight t
@@ -115,7 +115,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
-  :bind (:map corfu-map
+  :bind (:package corfu
+         :map corfu-map
          ("M-p" . corfu-popupinfo-scroll-down)
          ("M-n" . corfu-popupinfo-scroll-up)
          ("M-d" . corfu-popupinfo-toggle))
@@ -147,6 +148,9 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :bind (("C-s" . consult-line)
          :map minibuffer-local-map
          ("C-r" . consult-history)
+         ("C-S-v" . consult-yank-pop)
+         :package isearch
+         :map isearch-mode-map
          ("C-S-v" . consult-yank-pop))
   :custom
   ;; Use `consult-xref' for `xref-find-references'
@@ -213,8 +217,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package consult-dir
   :straight t
-  :after vertico
   :bind (("C-x C-d" . consult-dir)
+         :package vertico
          :map vertico-map
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file))
@@ -257,11 +261,11 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
   ;; to serve the original "C-k".
-  :bind (:map minibuffer-local-map
-         ("C-S-k" . kill-line)
-         :map vertico-map
+  :bind (:map vertico-map
          ("C-j" . vertico-next)
-         ("C-k" . vertico-previous))
+         ("C-k" . vertico-previous)
+         :map minibuffer-local-map
+         ("C-S-k" . kill-line))
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
@@ -274,10 +278,10 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :demand t
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :bind (:map vertico-map
-              ("RET" . vertico-directory-enter)
-              ("DEL" . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word)
-              ("M-h" . vertico-directory-up)))
+         ("RET" . vertico-directory-enter)
+         ("DEL" . vertico-directory-delete-char)
+         ("M-DEL" . vertico-directory-delete-word)
+         ("M-h" . vertico-directory-up)))
 
 (use-package vertico-repeat
   :hook (minibuffer-setup . vertico-repeat-save)
