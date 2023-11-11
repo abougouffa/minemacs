@@ -90,8 +90,8 @@
     "fS"   '(write-file :wk "Save as ...")
     "fd"   #'+delete-this-file
     "fD"   #'+delete-this-file-and-buffer
-    "fF"   #'+sudo-find-file
-    "fu"   #'+sudo-this-file
+    "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
+    "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
     "fR"   #'+move-this-file
     "ff"   #'find-file
     "fs"   #'save-buffer
