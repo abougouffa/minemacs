@@ -48,4 +48,4 @@ ci:
 	HOME=$(PWD)/.. $(EMACS) -nw --batch --script .github/workflows/scripts/ci-init.el 2>&1
 
 ci-daemon:
-	HOME=$(PWD)/.. $(EMACS) --daemon --script .github/workflows/scripts/ci-init.el 2>&1
+	HOME=$(PWD)/.. $(EMACS) --daemon 2>&1
