@@ -29,7 +29,8 @@ to scan directories recursively."
            (recursive (cdr cons-dir))
            (sub-dirs (+directory-subdirs root-dir)))
       (dolist (dir sub-dirs)
-        (project-remember-projects-under dir recursive)))))
+        (when (file-directory-p dir)
+          (project-remember-projects-under dir recursive))))))
 
 ;;;###autoload
 (defun +project-add-project (dir &optional dont-ask)
