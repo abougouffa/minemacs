@@ -521,11 +521,12 @@ or file path may exist now."
   :mode "\\.cmake\\'")
 
 (use-package autoinsert
-  ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
   :straight (:type built-in)
-  :hook (minemacs-first-file . auto-insert-mode)
   :custom
-  (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
+  (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/"))
+  :init
+  ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
+  (+map! "fi" #'auto-insert))
 
 (use-package hideif
   :straight (:type built-in)
