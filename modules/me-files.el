@@ -40,8 +40,7 @@
 (use-package treemacs
   :straight t
   :init
-  (+map!
-    "op" '(treemacs :wk "Side panel"))
+  (+map! "op" #'treemacs)
   :custom
   (treemacs-persist-file (concat minemacs-local-dir "treemacs/persist.el"))
   (treemacs-last-error-persist-file (concat minemacs-local-dir "treemacs/last-error-persist.el"))
