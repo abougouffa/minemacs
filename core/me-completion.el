@@ -73,7 +73,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
         (put '+cape-auto-capf-super 'enabled (not (or enabled disable)))))))
 
 (use-package corfu
-  :straight t
+  :straight (corfu :files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
@@ -83,8 +83,6 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
          ("<backtab>" . corfu-previous)
          ("C-j" . corfu-next)
          ("C-k" . corfu-previous))
-  :init
-  (add-to-list 'load-path (format "%sstraight/%s/corfu/extensions" straight-base-dir straight-build-dir))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
@@ -256,7 +254,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
-  :straight t
+  :straight (vertico :files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . vertico-mode)
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
@@ -269,9 +267,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
-  (vertico-count 12)
-  :init
-  (add-to-list 'load-path (concat straight-base-dir (format "straight/%s/vertico/extensions" straight-build-dir))))
+  (vertico-count 12))
 
 (use-package vertico-directory
   :after vertico
