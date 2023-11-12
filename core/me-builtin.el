@@ -992,7 +992,10 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (gdb-thread-buffer-verbose-names nil)
   (gdb-window-configuration-directory (+directory-ensure minemacs-local-dir "gdb/"))
   (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
-  (gdb-display-io-nopopup nil) ; IDEA: maybe change it!
+  (gdb-display-io-nopopup nil)) ; IDEA: maybe change it!
+
+(use-package gud
+  :straight (:type built-in)
   :config
   ;; Add an overlay for the current line (mimics dap-mode)
   (defvar +gud-overlay
