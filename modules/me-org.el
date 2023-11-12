@@ -39,11 +39,6 @@
   :after ox
   :demand t)
 
-(use-package ox-pandoc
-  :straight t
-  :after ox
-  :demand t)
-
 (use-package ox-extra
   :after ox
   :demand t
