@@ -2,6 +2,22 @@
 This file assembles solutions to some of the known issues and answers some of
 the frequently asked questions about MinEmacs.
 
+## Trump gets stuck when trying to open a file via SSH
+Sometimes, when trying to open a distant file via SSH on Tramp, it can get
+stuck. A common reason for this can be the prompt pattern on the distant
+machine. Tramp have a variable `tramp-shell-prompt-pattern` that gets used to
+detect if tramp got a valid shell prompt or not (checking for $ or #, among
+other stuff). In machines using fancy shell configurations (Oh-my-Zsh,
+Oh-my-Bash, ...), the prompt can be different from the defaults. In these cases,
+you need to add this to your **distant** machine `.zshrc` or `.bashrc`:
+
+```shell
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+```
+
+More information [can be found
+here](https://www.gnu.org/software/emacs/manual/html_node/tramp/Frequently-Asked-Questions.html).
+
 ## Using `parinfer-rust-mode` in a non `x86_64` platform
 The `parinfer-rust-mode` package provide precompiled libraries for Linux, Windows
 and MacOS, but only for x86\_64 machines. If you have a CPU (like M1 or other ARM
