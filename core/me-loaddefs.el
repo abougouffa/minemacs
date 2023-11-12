@@ -199,7 +199,7 @@ Open FILE as root.
 (autoload '+sudo-this-file "../elisp/+io" "\
 Open the current file as root." t)
 (autoload '+sudo-save-buffer "../elisp/+io" "\
-Save this file as root." t)
+Save this buffer as root. Save as new file name if called with prefix." t)
 (autoload '+yank-this-file-name "../elisp/+io" "\
 Yank the file name of this buffer." t)
 (autoload '+clean-file-name "../elisp/+io" "\
@@ -249,6 +249,12 @@ If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process.
 
 (fn NAME &optional FORCE-P)")
+(autoload '+open-with-default-app "../elisp/+io" "\
+Open FILE-OR-URL in the system's default application (via \"xdg-open\").
+
+When FILE-OR-URL is nil, try to guess a file/directory name or ask for one.
+
+(fn &optional FILE-OR-URL)" t)
 (autoload '+minemacs-root-dir-cleanup "../elisp/+io")
 (register-definition-prefixes "../elisp/+io" '("+html2pdf-" "+lock--" "+save-as-pdf-filename"))
 
@@ -695,11 +701,6 @@ Mount eCryptfs' private directory." t)
 (autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\
 Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
-
-
-;;; Generated autoloads from ../elisp/magit-pretty-graph.el
-
-(register-definition-prefixes "../elisp/magit-pretty-graph" '("magit-pg"))
 
 
 ;;; Generated autoloads from me-bootstrap.el
