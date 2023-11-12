@@ -252,6 +252,12 @@
     (+map-local! :keymaps 'flymake-mode-map
       "ff" #'+flymake-main/body)))
 
+(use-package avy
+  :straight t
+  :bind (("C-\"" . avy-goto-char)
+         ("C-é" . avy-goto-line) ; French AZERTY
+         ("M-g l" . avy-goto-line)))
+
 
 (provide 'me-keybindings)
 

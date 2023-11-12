@@ -143,8 +143,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package consult
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
-  :bind (("C-s" . consult-line)
-         :map minibuffer-local-map
+  :bind (:map minibuffer-local-map
          ("C-r" . consult-history)
          ("C-S-v" . consult-yank-pop)
          :package isearch
