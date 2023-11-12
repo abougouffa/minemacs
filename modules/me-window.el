@@ -12,13 +12,21 @@
 
 ;;; Code:
 
+(use-package ace-window
+  :straight t
+  :bind (("M-o" . ace-window))
+  :custom
+  (aw-dispatch-always t)
+  :init
+  (+map! "wa" #'ace-window))
+
 (add-to-list
  'display-buffer-alist
  `(,(rx (seq "*" (or "Help" (seq "helpful" (zero-or-more not-newline))) "*"))
    (display-buffer-reuse-window display-buffer-pop-up-window)
    (inhibit-same-window . t)))
 
- ;; Show *Warnings* at bottom
+;; Show *Warnings* at bottom
 (add-to-list
  'display-buffer-alist
  `("\\*Warnings\\*"
@@ -28,7 +36,7 @@
    (reusable-frames . visible) ;;
    (window-height . 10)))
 
- ;; Show dictionary definition and completion buffer on the right side
+;; Show dictionary definition and completion buffer on the right side
 (add-to-list
  'display-buffer-alist
  `(,(rx (seq "*" (or "Dictionary" "lexic" "Completions") "*"))
@@ -73,7 +81,7 @@
            (when (and proj (not (string= proj "-")))
             (format " %s" proj)))))))
 
- ;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
+;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
 (with-eval-after-load 'hydra
   (defhydra +window-adjust-size (:hint nil :foreign-keys warn)
     "
@@ -88,9 +96,7 @@
     ("s" shrink-window)
     ("r" enlarge-window-horizontally))
 
-  (+map!
-    :infix "w"
-    "a" '(+window-adjust-size/body :wk "Adjust window size")))
+  (+map! "wj" '(+window-adjust-size/body :wk "+window-adjust-size")))
 
 
 (provide 'me-window)
