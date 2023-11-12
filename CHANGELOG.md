@@ -2,6 +2,43 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.7.0](https://github.com/abougouffa/minemacs/compare/v3.6.1..v3.7.0) - 2023-11-12
+#### Bug Fixes
+- **(consult-dir)** load after `vertico` - ([7c27876](https://github.com/abougouffa/minemacs/commit/7c278769dc20ff059e67152a417a13667aff10c8)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** don't try to add inexistant directories - ([50b8448](https://github.com/abougouffa/minemacs/commit/50b8448bc2fe93934370b92f3138f77abec4d118)) - [@abougouffa](https://github.com/abougouffa)
+- **(sudo-edit)** no extra overhead - ([c82ac39](https://github.com/abougouffa/minemacs/commit/c82ac3916ece50c5c0318166e5b6ac7b7a311edd)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(faq)** add a Tramp related question - ([dce96a0](https://github.com/abougouffa/minemacs/commit/dce96a049a9c9e0ad4811646930da8d9ce08884e)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** comment commands that are overwritten elsewhere - ([8c6e4d1](https://github.com/abougouffa/minemacs/commit/8c6e4d13b9f4ba3c7eb99e1b17c1cb8c97c285dc)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ace-window)** explicitly include Ace + add keybindings - ([2a7b4b5](https://github.com/abougouffa/minemacs/commit/2a7b4b5b13d4bbb9abf5447f0a68158fb53d8568)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add `sudo-edit` - ([faa1299](https://github.com/abougouffa/minemacs/commit/faa12993c6dd55597e8fbd82164bd2c6a3133902)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** explicitly add `avy` - ([005f1eb](https://github.com/abougouffa/minemacs/commit/005f1eb27d4c86c976915a9484ba8e35721faf8a)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add `with-editor` - ([8ae2ed8](https://github.com/abougouffa/minemacs/commit/8ae2ed820e5bb4c10916c4318699f6843e1823f4)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** minor Makefile edit - ([8ca3831](https://github.com/abougouffa/minemacs/commit/8ca38315cb6cb421aaba080f62d1ecfe965fee9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** minor tweaks - ([1b3f32c](https://github.com/abougouffa/minemacs/commit/1b3f32cb496b8bee230415ffbd369fafd5c8e93a)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** test MinEmacs in daemon mode - ([4efaf20](https://github.com/abougouffa/minemacs/commit/4efaf204abd027db5fad9f9cba0b65a9ca1c5094)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** run actions on workflow changes - ([a48d307](https://github.com/abougouffa/minemacs/commit/a48d307fad626b3000e473d791f9014d22cfb65f)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(jiralib2)** avoid confusing variable names - ([8d227b8](https://github.com/abougouffa/minemacs/commit/8d227b855e15cd1a67dc978a966ca9eee11d99ff)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(completion)** correctly load `vertico` and `corfu` extensions - ([0159597](https://github.com/abougouffa/minemacs/commit/01595977acceebf46ce026cc81a88b0edd752230)) - [@abougouffa](https://github.com/abougouffa)
+- **(completion)** some code formatting - ([3fd8e40](https://github.com/abougouffa/minemacs/commit/3fd8e4012e63fa7ef8b3f5bc1814a39e0f7e2d16)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** simpler `+sudo-save-buffer` - ([cccbb9a](https://github.com/abougouffa/minemacs/commit/cccbb9af3c29e7ac05064da7e9c2a1901fe4569b)) - [@abougouffa](https://github.com/abougouffa)
+- **(io)** don't reinvent the wheel - ([d746085](https://github.com/abougouffa/minemacs/commit/d746085ae53c0c27f6e176e4034833f75edb542a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(autoinsert)** disable `auto-insert-mode`, bind to `SPC f i` - ([a07f438](https://github.com/abougouffa/minemacs/commit/a07f438fa7f414289636921558eb2f2c149cb55b)) - [@abougouffa](https://github.com/abougouffa)
+- **(blamer)** a little smaller font size - ([890f6bb](https://github.com/abougouffa/minemacs/commit/890f6bba5a028fa6bf139bae05fbe97b1b924816)) - [@abougouffa](https://github.com/abougouffa)
+- **(chezmoi)** correctly load extensions - ([376bcfc](https://github.com/abougouffa/minemacs/commit/376bcfc0e5883a5b1bf9dd4cb526645155f0074f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** cleanup accidentally added `elpa` directories - ([aae6016](https://github.com/abougouffa/minemacs/commit/aae6016203fe2d7324cd733682f26c11c54a352f)) - [@abougouffa](https://github.com/abougouffa)
+- **(embark)** better keybindings - ([da58755](https://github.com/abougouffa/minemacs/commit/da5875595be6c9c37b9bd445127806beb3e0f228)) - [@abougouffa](https://github.com/abougouffa)
+- **(embark)** bind `embark-act` to `C-²` (for French AZERTY keyboards) - ([14385db](https://github.com/abougouffa/minemacs/commit/14385dbb558a6d3064fcd36c45e0ebe115a29346)) - [@abougouffa](https://github.com/abougouffa)
+- **(io)** accept `html` and `htm` extensions when converting to PDF - ([113515e](https://github.com/abougouffa/minemacs/commit/113515eefbde1d1a2f5d3c84703496f2ff4de908)) - [@abougouffa](https://github.com/abougouffa)
+- **(treemacs)** no rename for keybinding - ([88b7e3e](https://github.com/abougouffa/minemacs/commit/88b7e3e1ef148ebcff1d485cfbbfe1696194f185)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.6.1](https://github.com/abougouffa/minemacs/compare/v3.6.0..v3.6.1) - 2023-11-10
 #### Bug Fixes
 - **(daemon)** empty font list if called too early - ([e99e989](https://github.com/abougouffa/minemacs/commit/e99e989815f85dad03d9931b14f7cc193e45a88d)) - [@abougouffa](https://github.com/abougouffa)
