@@ -167,6 +167,12 @@
   :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
+(use-package app-launcher
+  :straight '(app-launcher :host github :repo "SebastienWae/app-launcher")
+  :when (or os/linux os/bsd)
+  :init
+  (+map! "oo" #'app-launcher-run-app))
+
 
 (provide 'me-tools)
 
