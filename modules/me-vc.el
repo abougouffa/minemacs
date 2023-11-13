@@ -134,6 +134,7 @@
   (blamer-author-formatter "%s ")
   (blamer-datetime-formatter "[%s], ")
   (blamer-commit-formatter "“%s”")
+  (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
   :config
   (+nvmap!
     "gb" #'blamer-show-posframe-commit-info
