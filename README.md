@@ -118,39 +118,40 @@ You can customize MinEmacs' behavior via some environment variables.
   100).
 - `MINEMACS_NOT_LAZY`: Load lazy packages immediately after loading Emacs.
 - `MINEMACS_ALWAYS_DEMAND`: Load all packages immediately (this works by setting
- `use-package-always-demand` to `t` and `use-package-always-defer` to `nil`.
+  `use-package-always-demand` to `t` and `use-package-always-defer` to `nil`.
 - `MINEMACS_IGNORE_VERSION_CHECK`: Do not perform version check in `init.el`, this
   can be useful if you use `~/.minemacs.d/init-tweaks.el` to implement the
   functionalities used by MinEmacs and missing from your Emacs version.
-- `MINEMACS_IGNORE_CONFIG_EL`, `MINEMACS_IGNORE_MODULES_EL`,
-  `MINEMACS_IGNORE_EARLY_CONFIG_EL` and `MINEMACS_IGNORE_INIT_TWEAKS_EL`: Ignore
-  loading, respectively, the user configuration files `~/.minemacs.d/config.el`,
-  `~/.minemacs.d/modules.el`, `~/.minemacs.d/early-config.el` et
-  `~/.minemacs.d/init-tweaks.el`.
-- `MINEMACS_IGNORE_USER_CONFIG`: Ignore loading all user configuration files
-  (present in `~/.minemacs.d`, or directory pointed by `$MINEMACSDIR`).
+- `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables loading
+  `~/.minemacs.d/<file>.el` user configuration files. Accepted values for `<file>`
+  are: `early-config`, `init-tweaks`, `modules`, `config`, `local/early-config`,
+  `local/init-tweaks`, `local/modules` and `local/config`.
 
 ### Load and hooks order
 MinEmacs loads its features and run hooks in this order:
 
 - `~/.emacs.d/early-init.el`
-- `$MINEMACSDIR/early-config.el` (unless `$MINEMACS_IGNORE_EARLY_CONFIG_EL`)
+- `$MINEMACSDIR/early-config.el` *(unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)*
+- `$MINEMACSDIR/local/early-config.el` _(unless disabled)_
 - `~/.emacs.d/init.el`
   - `before-init-hook`
   - `~/.emacs.d/core/me-vars.el`
-  - `~/.emacs.d/core/backports/*.el` (when Emacs < 29)
+  - `~/.emacs.d/core/backports/*.el` _(when Emacs < 29)_
   - `~/.emacs.d/core/me-loaddefs.el`
-  - `~/.emacs.d/core/init-tweaks.el` (unless `$MINEMACS_IGNORE_INIT_TWEAKS_EL`)
-  - `$MINEMACSDIR/modules.el` (unless `$MINEMACS_IGNORE_MODULES_EL`)
-  - `~/.emacs.d/core/[minemacs-core-modules].el`
-  - `~/.emacs.d/modules/[minemacs-modules].el`
+  - `$MINEMACSDIR/init-tweaks.el` _(unless disabled)_
+  - `$MINEMACSDIR/local/init-tweaks.el` _(unless disabled)_
+  - `$MINEMACSDIR/modules.el` _(unless disabled)_
+  - `$MINEMACSDIR/local/modules.el` _(unless disabled)_
+  - `~/.emacs.d/core/<module>.el` _(for module in `minemacs-core-modules`)_
+  - `~/.emacs.d/modules/<module>.el` _(for module in `minemacs-modules`)_
   - `minemacs-after-loading-modules-hook`
   - `$MINEMACSDIR/custom-vars.el`
-  - `$MINEMACSDIR/config.el` (unless `$MINEMACS_IGNORE_CONFIG_EL`)
+  - `$MINEMACSDIR/config.el` _(unless disabled)_
+  - `$MINEMACSDIR/local/config.el` _(unless disabled)_
   - `after-init-hook`
   - `emacs-startup-hook`
   - `minemacs-after-startup-hook`
-    - `minemacs-lazy-hook` (delayed)
+    - `minemacs-lazy-hook` _(delayed)_
 
 Special hooks defined with `+make-first-file-hook!`:
 
