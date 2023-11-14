@@ -37,14 +37,15 @@
   "MinEmacs utility functions."
   :group 'minemacs)
 
+(defconst minemacs--config-files '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config))
 (defconst minemacs-ignore-user-config
   (if (getenv "MINEMACS_IGNORE_USER_CONFIG")
-      '(config modules early-config init-tweaks)
-    (append
-     (when (getenv "MINEMACS_IGNORE_CONFIG_EL") '(config))
-     (when (getenv "MINEMACS_IGNORE_MODULES_EL") '(modules))
-     (when (getenv "MINEMACS_IGNORE_EARLY_CONFIG_EL") '(early-config))
-     (when (getenv "MINEMACS_IGNORE_INIT_TWEAKS_EL") '(init-tweaks))))
+      minemacs--config-files
+    (let (confs)
+      (dolist (conf minemacs--config-files)
+        (when (getenv (format "MINEMACS_IGNORE_%s_EL" (upcase (symbol-name conf))))
+          (push conf confs)))
+      confs))
   "Ignore loading these user configuration files.
 Accepted values are: `config', `modules', `early-config' and `init-tweaks'.
 This list is automatically constructed from the environment variables
@@ -227,6 +228,21 @@ Each string is a regexp, matched against variable names to omit from
 `+env-file' when saving evnironment variables in `+env-save'."
   :group 'minemacs-core
   :type '(repeat regexp))
+
+;; Functions
+(defun +load-user-configs (&rest configs)
+  (dolist (conf configs)
+    (unless (memq conf minemacs-ignore-user-config)
+      (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
+        (when (file-exists-p conf-path)
+          (load conf-path nil (not minemacs-verbose)))))))
+
+(defun +load (&rest filename-parts)
+  "Load a file, the FILENAME-PARTS are concatenated to form the file name."
+  (let ((filename (file-truename (apply #'concat filename-parts))))
+    (if (file-exists-p filename)
+        (load filename nil (not minemacs-verbose))
+      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 
 (provide 'me-vars)

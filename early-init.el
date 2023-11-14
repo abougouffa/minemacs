@@ -57,11 +57,7 @@
 (when (and os/mac (featurep 'ns))
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 
-;; Load the user early configuration file from "$MINEMACSDIR/early-config.el"
-;; if it exists.
-(unless (memq 'early-config minemacs-ignore-user-config)
-  (let ((early-config-path (concat minemacs-config-dir "early-config.el")))
-    (when (file-exists-p early-config-path)
-      (load early-config-path nil (not minemacs-verbose)))))
+;; Load the user early configuration files
+(+load-user-configs 'early-init 'local/early-init)
 
 ;;; early-init.el ends here

@@ -86,13 +86,6 @@
 (unless (featurep 'me-vars)
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
-(defun +load (&rest filename-parts)
-  "Load a file, the FILENAME-PARTS are concatenated to form the file name."
-  (let ((filename (file-truename (apply #'concat filename-parts))))
-    (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose))
-      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
-
 ;; HACK: Most core and third-party packages depends on the
 ;; `user-emacs-directory' variable to store some cache information and generated
 ;; configuration files. However, this will mess with MinEmacs' directory (which
@@ -162,9 +155,7 @@
 (+load minemacs-loaddefs-file)
 
 ;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
-(unless (memq 'init-tweaks minemacs-ignore-user-config)
-  (let ((user-init-tweaks (concat minemacs-config-dir "init-tweaks.el")))
-    (when (file-exists-p user-init-tweaks) (+load user-init-tweaks))))
+(+load-user-configs 'init-tweaks 'local-init-tweaks)
 
 ;; HACK: Load the environment variables saved from shell using `+env-save' to
 ;; `+env-file'. `+env-save' saves all environment variables except these matched
@@ -226,11 +217,7 @@
            (setq minemacs-not-lazy t))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
-
-  (unless (memq 'modules minemacs-ignore-user-config)
-    ;; The modules.el file can override minemacs-modules and minemacs-core-modules
-    (let ((user-conf-modules (concat minemacs-config-dir "modules.el")))
-      (when (file-exists-p user-conf-modules) (+load user-conf-modules)))))
+  (+load-user-configs 'modules 'local-modules))
 
 ;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
@@ -269,10 +256,8 @@
 ;; Load the custom variables file if it exists
 (when (file-exists-p custom-file) (+load custom-file))
 
-;; Load user configuration from "$MINEMACSDIR/config.el" when available
-(unless (memq 'config minemacs-ignore-user-config)
-  (let ((user-config (concat minemacs-config-dir "config.el")))
-    (when (file-exists-p user-config) (+load user-config))))
+;; Load user configuration
+(+load-user-configs 'config 'local-config)
 
 (+lazy!
  (when (featurep 'native-compile)
