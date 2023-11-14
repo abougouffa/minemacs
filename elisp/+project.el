@@ -27,10 +27,9 @@ to scan directories recursively."
     (let* ((cons-dir (ensure-list cons-dir))
            (root-dir (car cons-dir))
            (recursive (cdr cons-dir))
-           (sub-dirs (+directory-subdirs root-dir)))
-      (dolist (dir sub-dirs)
-        (when (file-directory-p dir)
-          (project-remember-projects-under dir recursive))))))
+           (sub-dirs (and (file-directory-p root-dir) (+directory-subdirs root-dir))))
+        (dolist (dir sub-dirs)
+          (project-remember-projects-under dir recursive)))))
 
 ;;;###autoload
 (defun +project-add-project (dir &optional dont-ask)
