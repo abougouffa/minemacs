@@ -154,8 +154,8 @@
 ;; Then we load the loaddefs file
 (+load minemacs-loaddefs-file)
 
-;; Load user init tweaks from "$MINEMACSDIR/init-tweaks.el" when available
-(+load-user-configs 'init-tweaks 'local-init-tweaks)
+;; Load user init tweaks when available
+(+load-user-configs 'init-tweaks 'local/init-tweaks)
 
 ;; HACK: Load the environment variables saved from shell using `+env-save' to
 ;; `+env-file'. `+env-save' saves all environment variables except these matched
@@ -217,7 +217,7 @@
            (setq minemacs-not-lazy t))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
-  (+load-user-configs 'modules 'local-modules))
+  (+load-user-configs 'modules 'local/modules))
 
 ;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
@@ -257,7 +257,7 @@
 (when (file-exists-p custom-file) (+load custom-file))
 
 ;; Load user configuration
-(+load-user-configs 'config 'local-config)
+(+load-user-configs 'config 'local/config)
 
 (+lazy!
  (when (featurep 'native-compile)
