@@ -27,23 +27,27 @@
 
 ;; Load and hooks order:
 ;; - ~/.emacs.d/early-init.el
-;; - $MINEMACSDIR/early-config.el (unless $MINEMACS_IGNORE_USER_CONFIG or $MINEMACS_IGNORE_EARLY_CONFIG_EL)
+;; - $MINEMACSDIR/early-config.el (unless disabled in $MINEMACS_IGNORE_USER_CONFIG)
+;; - $MINEMACSDIR/local/early-config.el (unless disabled)
 ;; - ~/.emacs.d/init.el
-;;   + `before-init-hook'
-;;   + ~/.emacs.d/core/me-vars.el
-;;   + ~/.emacs.d/core/backports/*.el (when Emacs < 29)
-;;   + ~/.emacs.d/core/me-loaddefs.el
-;;   + ~/.emacs.d/core/init-tweaks.el (unless $MINEMACS_IGNORE_USER_CONFIG or $MINEMACS_IGNORE_INIT_TWEAKS_EL)
-;;   + $MINEMACSDIR/modules.el (unless $MINEMACS_IGNORE_USER_CONFIG or $MINEMACS_IGNORE_MODULES_EL)
-;;   + ~/.emacs.d/core/[minemacs-core-modules].el
-;;   + ~/.emacs.d/modules/[minemacs-modules].el
-;;   + `minemacs-after-loading-modules-hook'
-;;   + $MINEMACSDIR/custom-vars.el
-;;   + $MINEMACSDIR/config.el (unless $MINEMACS_IGNORE_USER_CONFIG or $MINEMACS_IGNORE_CONFIG_EL)
-;;   + `after-init-hook'
-;;   + `emacs-startup-hook'
-;;   + `minemacs-after-startup-hook'
-;;     - `minemacs-lazy-hook' (delayed)
+;;   * `before-init-hook'
+;;   * ~/.emacs.d/core/me-vars.el
+;;   * ~/.emacs.d/core/backports/*.el (when Emacs < 29)
+;;   * ~/.emacs.d/core/me-loaddefs.el
+;;   * $MINEMACSDIR/init-tweaks.el (unless disabled)
+;;   * $MINEMACSDIR/local/init-tweaks.el (unless disabled)
+;;   * $MINEMACSDIR/modules.el (unless disabled)
+;;   * $MINEMACSDIR/local/modules.el (unless disabled)
+;;   * ~/.emacs.d/core/<module>.el (for module in `minemacs-core-modules')
+;;   * ~/.emacs.d/modules/<module>.el (for module in `minemacs-modules')
+;;   * `minemacs-after-loading-modules-hook'
+;;   * $MINEMACSDIR/custom-vars.el
+;;   * $MINEMACSDIR/config.el (unless disabled)
+;;   * $MINEMACSDIR/local/config.el (unless disabled)
+;;   * `after-init-hook'
+;;   * `emacs-startup-hook'
+;;   * `minemacs-after-startup-hook'
+;;     + `minemacs-lazy-hook' (delayed)
 
 ;; Special hooks defined with `+make-first-file-hook!'
 ;; - `minemacs-first-file-hook'
