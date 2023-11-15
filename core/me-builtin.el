@@ -731,29 +731,29 @@ or file path may exist now."
   :config
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")
-    "df"  'edebug-defun
-    "dF"  'edebug-all-forms
-    "dd"  'edebug-all-defs
-    "dr"  'edebug-remove-instrumentation
-    "do"  'edebug-on-entry
-    "dO"  'edebug-cancel-on-entry
+    "df"  #'edebug-defun
+    "dF"  #'edebug-all-forms
+    "dd"  #'edebug-all-defs
+    "dr"  #'edebug-remove-instrumentation
+    "do"  #'edebug-on-entry
+    "dO"  #'edebug-cancel-on-entry
     "db"  '(nil :wk "breakpoints")
-    "dbb" 'edebug-set-breakpoint
-    "dbr" 'edebug-unset-breakpoint
-    "dbn" 'edebug-next-breakpoint
+    "dbb" #'edebug-set-breakpoint
+    "dbr" #'edebug-unset-breakpoint
+    "dbn" #'edebug-next-breakpoint
     "e"   '(nil :wk "eval")
-    "eb"  'eval-buffer
-    "ed"  'eval-defun
-    "ee"  'eval-last-sexp
-    "er"  'eval-region
-    "eR"  'elisp-eval-region-or-buffer
-    "el"  'load-library
+    "eb"  #'eval-buffer
+    "ed"  #'eval-defun
+    "ee"  #'eval-last-sexp
+    "er"  #'eval-region
+    "eR"  #'elisp-eval-region-or-buffer
+    "el"  #'load-library
     "g"   '(nil :wk "goto/find")
-    "gf"  'find-function-at-point
-    "gR"  'find-function
-    "gv"  'find-variable-at-point
-    "gV"  'find-variable
-    "gL"  'find-library
+    "gf"  #'find-function-at-point
+    "gR"  #'find-function
+    "gv"  #'find-variable-at-point
+    "gV"  #'find-variable
+    "gL"  #'find-library
     "c"   '(nil :wk "compile")
     "cc"  #'elisp-byte-compile-buffer
     "cf"  #'elisp-byte-compile-file
@@ -761,9 +761,9 @@ or file path may exist now."
     "cb"  #'emacs-lisp-byte-compile-and-load)
   (+map-local! :keymaps '(edebug-mode-map)
     "e"   '(nil :wk "eval")
-    "ee"  'edebug-eval-last-sexp
-    "eE"  'edebug-eval-expression
-    "et"  'edebug-eval-top-level-form)
+    "ee"  #'edebug-eval-last-sexp
+    "eE"  #'edebug-eval-expression
+    "et"  #'edebug-eval-top-level-form)
 
   (defvar +emacs-lisp--face nil)
   (defvar +calculate-lisp-indent-check-for-keyword nil)
