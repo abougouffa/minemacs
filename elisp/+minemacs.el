@@ -402,7 +402,8 @@ Works like `shell-command-to-string' with two differences:
 2. It returns only stdout and ignore the output of stderr."
   (with-output-to-string
     (with-current-buffer standard-output
-      (process-file shell-file-name nil '(t nil) nil +shell-command-switch command))))
+      (let ((process-environment (append (list "TERM=smart") process-environment))) ; do not pretend to be dumb (aka, don't exit early when loading .bashrc)
+        (process-file shell-file-name nil '(t nil) nil +shell-command-switch command)))))
 
 ;;;###autoload
 (defun +env-save ()
