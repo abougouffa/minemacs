@@ -39,7 +39,9 @@
 
 (defconst minemacs-ignore-user-config
   (when-let ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG")))
-    (mapcar #'intern (mapcar #'downcase (split-string ignores))))
+    (if (string= (downcase ignores) "all")
+        '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
+      (mapcar #'intern (mapcar #'downcase (split-string ignores)))))
   "Ignore loading these user configuration files.
 Accepted values are: early-config, init-tweaks, modules, config,
 local/early-config, local/init-tweaks, local/modules and local/config.

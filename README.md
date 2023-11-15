@@ -125,7 +125,8 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables loading
   `~/.minemacs.d/<file>.el` user configuration files. Accepted values for `<file>`
   are: `early-config`, `init-tweaks`, `modules`, `config`, `local/early-config`,
-  `local/init-tweaks`, `local/modules` and `local/config`.
+  `local/init-tweaks`, `local/modules` and `local/config`. Use `all` to disable all
+  user configuration files.
 
 ### Load and hooks order
 MinEmacs loads its features and run hooks in this order:
