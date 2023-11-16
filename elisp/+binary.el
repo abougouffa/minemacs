@@ -27,27 +27,25 @@
   :group 'minemacs-binary
   :type 'boolean)
 
-(defun +binary-objdump-p (&optional filename)
+(defun +binary-objdump-p (filename)
   "Can FILENAME be recognized by \"objdump\"."
-  (when-let* ((file (or filename (buffer-file-name (current-buffer))))
-              (file (file-truename file)))
+  (when-let* ((file (and filename (file-truename filename))))
     (and +binary-objdump-executable
          (executable-find +binary-objdump-executable)
+         (not (file-remote-p file))
          (file-exists-p file)
          (not (file-directory-p file))
          (not (zerop (file-attribute-size (file-attributes file))))
-         (not (string-match-p
-               "file format not recognized"
-               (shell-command-to-string
-                (format "%s --file-headers %s"
-                        +binary-objdump-executable
-                        (shell-quote-argument file))))))))
+         (not (string-match-p "file format not recognized"
+                              (shell-command-to-string
+                               (format "%s --file-headers %s"
+                                       +binary-objdump-executable
+                                       (shell-quote-argument file))))))))
 
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
-  (when-let ((file (buffer-file-name buffer)))
-    (and (not (file-remote-p file)) +binary-objdump-enable (+binary-objdump-p file))))
+  (and +binary-objdump-enable (+binary-objdump-p (buffer-file-name buffer))))
 
 ;; A predicate for detecting binary files. Inspired by:
 ;; emacs.stackexchange.com/q/10277/37002)
