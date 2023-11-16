@@ -12,7 +12,6 @@
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   :hook ((prog-mode conf-mode) . +show-trailing-whitespace-h)
   :hook (after-save . +save--guess-file-mode-h)
-  :hook (mouse-leave-buffer . +minibuffer--kill-on-mouse-h)
   :custom
   ;; ====== Default directories for builtin packages ======
   (diary-file (concat minemacs-local-dir "diary"))
@@ -211,13 +210,6 @@ or file path may exist now."
         (and (buffer-file-name buffer)
              (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
              (set-auto-mode)))))
-
-  ;; Kill the minibuffer when switching by mouse to another window.
-  ;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
-  (defun +minibuffer--kill-on-mouse-h ()
-    "Kill the minibuffer when switching to window with mouse."
-    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-      (abort-recursive-edit)))
 
   ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
   ;; sub-directory
