@@ -46,7 +46,8 @@
 ;;;###autoload
 (defun +binary-objdump-buffer-p (&optional buffer)
   "Can the BUFFER be viewed as a disassembled code with objdump."
-  (and +binary-objdump-enable (+binary-objdump-p (buffer-file-name buffer))))
+  (when-let ((file (buffer-file-name buffer)))
+    (and (not (file-remote-p file)) +binary-objdump-enable (+binary-objdump-p file))))
 
 ;; A predicate for detecting binary files. Inspired by:
 ;; emacs.stackexchange.com/q/10277/37002)
