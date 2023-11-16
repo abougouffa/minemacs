@@ -82,6 +82,7 @@
 ;;        '(obsolete/me-cov           ; Show code coverage results (cov, ...)
 ;;          obsolete/me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
 ;;          obsolete/me-evil-escape   ; Escape without ESC (evil-escape, ...)
+;;          obsolete/me-ts-fold       ; Code folding with tree-sitter
 ;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-lexic         ; Offline dictionary using sdcv
 ;;          obsolete/me-maxima        ; Maxima CAS (maxima, imaxima)

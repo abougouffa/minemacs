@@ -20,17 +20,11 @@
 
 (use-package tree-sitter-langs
   :straight t
+  :hook (minemacs-build-functions . tree-sitter-langs-install-grammars)
   :preface
   (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
   :after tree-sitter
   :demand t)
-
-(use-package ts-fold
-  :straight (:host github :repo "emacs-tree-sitter/ts-fold")
-  :after tree-sitter
-  :demand t
-  :init
-  (global-ts-fold-mode 1))
 
 
 (provide 'obsolete/me-tree-sitter)

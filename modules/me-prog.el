@@ -24,22 +24,6 @@
   ;; Install all languages when calling `treesit-auto-install-all'
   (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
 
-;; To avoid installing `tree-sitter' as the used `ts-fold' fork uses the
-;; built-in `treesit'
-(when (+emacs-features-p 'tree-sitter)
-  (push 'tree-sitter straight-built-in-pseudo-packages))
-
-(use-package ts-fold
-  :straight (:host github :repo "abougouffa/ts-fold" :branch "andrew-sw/treesit-el-support")
-  :when (+emacs-features-p 'tree-sitter)
-  ;; TEMP: Normally, we don't have to hook it explicitly, but it seems that
-  ;; `global-ts-fold-mode' isn't working correctly on `yaml-ts-mode'
-  :hook (yaml-ts-mode . ts-fold-mode)
-  :after treesit treesit-auto
-  :demand t
-  :init
-  (global-ts-fold-mode 1))
-
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
