@@ -9,7 +9,7 @@
 (setq minemacs-core-modules
       '(me-splash        ; Simple splash screen
         me-keybindings   ; Keybinding (general, which-key, hydra, ...)
-        me-evil          ; Emacs as Vim (evil, evil-collection, evil-escape, evil-snipe, evil-numbers, ...)
+        me-evil          ; Emacs as Vim (evil, evil-collection, evil-snipe, evil-numbers, ...)
         me-core-ui       ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
         me-completion))  ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
 
@@ -81,6 +81,7 @@
 ;;        minemacs-modules
 ;;        '(obsolete/me-cov           ; Show code coverage results (cov, ...)
 ;;          obsolete/me-eaf           ; EAF apps (browser, jupyter, file-sender, ...)
+;;          obsolete/me-evil-escape   ; Escape without ESC (evil-escape, ...)
 ;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-lexic         ; Offline dictionary using sdcv
 ;;          obsolete/me-maxima        ; Maxima CAS (maxima, imaxima)

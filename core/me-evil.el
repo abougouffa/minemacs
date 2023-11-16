@@ -99,14 +99,6 @@
     "gc" #'evilnc-comment-operator
     "gC" #'evilnc-copy-and-comment-operator))
 
-(use-package evil-escape
-  :straight t
-  :hook (evil-mode . evil-escape-mode)
-  :custom
-  ;; The default "fd" interfere with the "f" (bound to `evil-snipe-f') binding.
-  (evil-escape-key-sequence "kj")
-  (evil-escape-unordered-key-sequence t)) ; "kj" or "jk"
-
 
 (provide 'me-evil)
 
