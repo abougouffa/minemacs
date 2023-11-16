@@ -72,7 +72,7 @@
   :straight t
   :hook (minemacs-after-startup . doom-modeline-mode)
   :custom
-  (doom-modeline-height 35)
+  (doom-modeline-height 28)
   (doom-modeline-bar-width 8)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
