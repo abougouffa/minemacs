@@ -80,6 +80,9 @@
   :config
   (evil-multiedit-default-keybinds))
 
+(use-package multiple-cursors
+  :straight t)
+
 
 (provide 'me-multi-cursors)
 
