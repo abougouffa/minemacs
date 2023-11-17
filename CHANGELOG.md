@@ -2,6 +2,43 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.8.0](https://github.com/abougouffa/minemacs/compare/v3.7.0..v3.8.0) - 2023-11-17
+#### Bug Fixes
+- **(binary)** don't objdump remote files - ([0fb752f](https://github.com/abougouffa/minemacs/commit/0fb752f0fcb7496953aa5896b30d6d6dd525e1a2)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better environement variables management - ([818131c](https://github.com/abougouffa/minemacs/commit/818131c897afd38544231d46d1eab28d27413253)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** load the right local configuration files - ([eae5274](https://github.com/abougouffa/minemacs/commit/eae5274f1736f07c2b162299781dde8b0c9c031e)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** load immediately if a directory is passed to Emacs as arg - ([5340fd8](https://github.com/abougouffa/minemacs/commit/5340fd804937cac7bf0104ff547a526dfa41e9f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** remove unused `ox-pandoc` - ([a544398](https://github.com/abougouffa/minemacs/commit/a544398b60d50b4ffe5478468f434f054623c8f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** correctly check if project root is a directory - ([7b31d73](https://github.com/abougouffa/minemacs/commit/7b31d738117a63a2838f55e48f3ee402d1ac4608)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(core)** update init file documentation - ([b65ee69](https://github.com/abougouffa/minemacs/commit/b65ee69e2f208746341f60ab4c0f9daf500c45c5)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update documentation - ([32ed27e](https://github.com/abougouffa/minemacs/commit/32ed27e76a806437d08b6bc435b34f886eea0949)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** enable local (machine-specific) configurations - ([fb5c52c](https://github.com/abougouffa/minemacs/commit/fb5c52c4d4268232a1644dc25c6cd4478e8f64e7)) - [@abougouffa](https://github.com/abougouffa)
+- **(debug)** initial support for `dape` - ([125d68c](https://github.com/abougouffa/minemacs/commit/125d68cba520c06656ef706d81f4a6f7a8eff8e8)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** use my `treesit-fold` fork of `ts-fold` - ([0fe2482](https://github.com/abougouffa/minemacs/commit/0fe24829dc8ae942b71ab54f26b6156d2ccd47c0)) - [@abougouffa](https://github.com/abougouffa)
+- **(io)** add `+open-with-default-app` - ([b84e73e](https://github.com/abougouffa/minemacs/commit/b84e73eb8693370abdca199daea1fb7fc4472e34)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make Chezmoi obsolete (migrated the simpler GNU Stow) - ([609781a](https://github.com/abougouffa/minemacs/commit/609781a4bf63c5abf718ea6a6265cc84bbfe94b1)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add `app-launcher` - ([9881bbc](https://github.com/abougouffa/minemacs/commit/9881bbc0bf28c546aa57e3cf58dcc803ed0256e0)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** minor edit - ([2885f64](https://github.com/abougouffa/minemacs/commit/2885f64a55914ff1b8edfeed57be1fdd24ae6167)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** setup `gud` parameters separately - ([5c568d8](https://github.com/abougouffa/minemacs/commit/5c568d8d39903dd9251470e10e4b4d2323b44af3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** simplify user config loading and ignoring - ([77d6cf2](https://github.com/abougouffa/minemacs/commit/77d6cf2a5550d395b03166f5a59e4bacd94d221d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(binary)** move the remote file check to `+binary-objdump-p` - ([f4a21da](https://github.com/abougouffa/minemacs/commit/f4a21da6d2e7e35b81ef77630a59b2de4f0ff558)) - [@abougouffa](https://github.com/abougouffa)
+- **(blamer)** store avatars in MinEmacs' cache - ([6b6ef59](https://github.com/abougouffa/minemacs/commit/6b6ef59908c20c3623b2271810191e6dc3f61c11)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** don't exit minibuffer on mouse click - ([396d9ee](https://github.com/abougouffa/minemacs/commit/396d9eeeb6a458c4dcf50ac3071a611eea837a75)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add an option to disable all user config files - ([5c6739e](https://github.com/abougouffa/minemacs/commit/5c6739ef8dbd7c0f0d2f331d6a0b2a045563693b)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** initial configuration for adapters - ([9b73891](https://github.com/abougouffa/minemacs/commit/9b7389184bd0bf8ce70f6f731bb39e9832636688)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-modeline)** decrease height form 35 to 28 - ([4b3fa3d](https://github.com/abougouffa/minemacs/commit/4b3fa3dafd16d6e15e1ef38acd9b15743c4f0b59)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** make `evil-escape` obsolete - ([b107371](https://github.com/abougouffa/minemacs/commit/b1073716fc2ac5957d892f8acc841e631a2b5fb2)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** bind `+open-with-default-app` to `SPC o SPC` - ([d65c6a0](https://github.com/abougouffa/minemacs/commit/d65c6a08e7379a6379d35ed805703976db9ea09d)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `ts-fold` obsolete - ([ee7208a](https://github.com/abougouffa/minemacs/commit/ee7208ae413b11c9a2c63d54eedc68ddb6567fd2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2651ac6](https://github.com/abougouffa/minemacs/commit/2651ac6873c925e7a9439cbe3fa14e2fb1fc45b1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([1018a12](https://github.com/abougouffa/minemacs/commit/1018a1295d8899b36742a8f67cb2640ad85af2ad)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.7.0](https://github.com/abougouffa/minemacs/compare/v3.6.1..v3.7.0) - 2023-11-12
 #### Bug Fixes
 - **(consult-dir)** load after `vertico` - ([7c27876](https://github.com/abougouffa/minemacs/commit/7c278769dc20ff059e67152a417a13667aff10c8)) - [@abougouffa](https://github.com/abougouffa)
