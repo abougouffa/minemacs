@@ -100,6 +100,15 @@ prefix or universal argument, it waits for a moment (defined by
     (when (stringp outfile) (copy-file tmp-file outfile))
     (message "Screenshot saved to %s" (or outfile tmp-file))))
 
+;; Kill the minibuffer even when in another windown.
+;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+;;;###autoload
+(defun +minibuffer-kill-minibuffer ()
+  "Kill the minibuffer when switching to window with mouse."
+  (interactive)
+  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+    (abort-recursive-edit)))
+
 ;;;###autoload
 (defun +region-or-thing-at-point ()
   "Return the region or the thing at point."

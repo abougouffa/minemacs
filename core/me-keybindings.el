@@ -222,6 +222,9 @@
     (when (executable-find "ecryptfs-verify")
       (+map! "te"  #'ecryptfs-toggle-mount-private)))
 
+  ;; Exit minibuffer from anywhere
+  (keymap-global-set "S-<escape>" #'+minibuffer-kill-minibuffer)
+
   ;; HACK: This is a synchronization feature, providing `me-general-ready' tells
   ;; the `+map!', `+map-local!', ... macros that `general' is ready and the
   ;; definers `+minemacs--internal-map!', `+minemacs--internal-map-local!', ...
