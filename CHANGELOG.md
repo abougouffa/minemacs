@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.8.1](https://github.com/abougouffa/minemacs/compare/v3.8.0..v3.8.1) - 2023-11-17
+#### Bug Fixes
+- **(treesit-fold)** load only when `treesit` is available - ([c033b65](https://github.com/abougouffa/minemacs/commit/c033b65d992cd2298d0a4827aa4071899ed2f530)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(multi-cursors)** add `multiple-cursors` (dep of `combobulate`) - ([879200e](https://github.com/abougouffa/minemacs/commit/879200ee580d68c6cf47fad9efd6863eafbe8df5)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** exit minibuffer from anywhere using `S-ESC` - ([070a9bd](https://github.com/abougouffa/minemacs/commit/070a9bd8bd62b1e691852b220e7be4a2e983b99b)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** additional adapters for GO and JS - ([664c17b](https://github.com/abougouffa/minemacs/commit/664c17ba73f23de96ddd4553b2a03c76dc64ac9a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.8.0](https://github.com/abougouffa/minemacs/compare/v3.7.0..v3.8.0) - 2023-11-17
 #### Bug Fixes
 - **(binary)** don't objdump remote files - ([0fb752f](https://github.com/abougouffa/minemacs/commit/0fb752f0fcb7496953aa5896b30d6d6dd525e1a2)) - [@abougouffa](https://github.com/abougouffa)
