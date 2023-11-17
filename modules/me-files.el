@@ -8,9 +8,12 @@
 
 ;;; Code:
 
+(defconst minemacs-started-with-directory-p
+  (let ((args (cdr command-line-args))) (cl-some #'file-directory-p args)))
+
 (use-package dirvish
   :straight t
-  :hook (minemacs-after-startup . dirvish-override-dired-mode)
+  :demand minemacs-started-with-directory-p
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size vc-state git-msg))
   (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
@@ -30,7 +33,9 @@
   (+nvmap! :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle
-    "y" #'dirvish-yank-menu))
+    "y" #'dirvish-yank-menu)
+
+  (dirvish-override-dired-mode 1))
 
 (use-package vlf-setup
   :straight vlf
