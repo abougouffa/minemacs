@@ -8,6 +8,11 @@
 
 ;;; Code:
 
+(use-package dape
+  :straight (:host github :repo "svaante/dape")
+  :custom
+  (dape-inline-variables t))
+
 (use-package realgud
   :straight (realgud :build (:not compile))
   :init
