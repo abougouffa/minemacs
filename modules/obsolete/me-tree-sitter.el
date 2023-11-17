@@ -26,6 +26,12 @@
   :after tree-sitter
   :demand t)
 
+(use-package ts-fold
+  :straight (:host github :repo "emacs-tree-sitter/ts-fold")
+  :after tree-sitter
+  :init
+  (global-ts-fold-mode 1))
+
 
 (provide 'obsolete/me-tree-sitter)
 

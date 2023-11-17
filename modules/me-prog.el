@@ -35,6 +35,12 @@
   :custom
   (combobulate-key-prefix "C-c o"))
 
+(use-package treesit-fold
+  :straight (:host github :repo "abougouffa/treesit-fold")
+  :after tree-sitter minemacs-loaded
+  :init
+  (global-treesit-fold-mode 1))
+
 (use-package consult-eglot
   :straight t
   :after consult eglot
