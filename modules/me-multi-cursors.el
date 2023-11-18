@@ -61,16 +61,19 @@
   :init
   (+nvmap! :infix "g"
     "ze" '(nil :wk "evil-multiedit")
-    "zem" #'evil-multiedit-match-all
-    "zed" #'evil-multiedit-match-and-next
-    "zeD" #'evil-multiedit-match-and-prev
-    "zes" #'evil-multiedit-match-symbol-and-next
-    "zeS" #'evil-multiedit-match-symbol-and-prev
+    "zee" #'evil-multiedit-match-all
+    "zer" #'evil-multiedit-restore
+    "zeq" #'evil-multiedit-abort
     "zen" #'evil-multiedit-next
     "zeN" #'evil-multiedit-prev
-    "zet" #'evil-multiedit-toggle-or-restrict-region
-    "zeT" #'evil-multiedit-toggle-marker-here
-    "zeq" #'evil-multiedit-abort)
+    "zet" #'evil-multiedit-toggle-or-restrict-region)
+  (+vmap! :infix "g"
+    "zed" #'evil-multiedit-match-and-next
+    "zeD" #'evil-multiedit-match-and-prev)
+  (+nmap! :infix "g"
+    "zed" #'evil-multiedit-match-symbol-and-next
+    "zeD" #'evil-multiedit-match-symbol-and-prev
+    "zeT" #'evil-multiedit-toggle-marker-here)
   :config
   (evil-multiedit-default-keybinds))
 
