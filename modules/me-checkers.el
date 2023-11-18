@@ -20,6 +20,11 @@
   :straight t
   :hook (minemacs-after-startup . flymake-collection-hook-setup))
 
+(use-package flymake-shellcheck
+  :straight t
+  :commands flymake-shellcheck-load
+  :hook ((sh-mode bash-ts-mode) . flymake-shellcheck-load))
+
 
 (provide 'me-checkers)
 
