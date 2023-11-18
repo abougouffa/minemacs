@@ -128,7 +128,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   "Check if FONT-FAMILY is installed on the system."
   (and font-family (member font-family (font-family-list)) t))
 
-(defun +apply-font-script (script-or-face)
+(defun +apply-font-or-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
   (catch 'done
     (dolist (font (plist-get minemacs-fonts-plist (intern (format ":%s" script-or-face))))
@@ -151,7 +151,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (defun +setup-fonts ()
   "Setup fonts."
   (interactive)
-  (mapc #'+apply-font-script
+  (mapc #'+apply-font-or-script
         (reverse
          (mapcar (lambda (k) (intern (substring (symbol-name k) 1)))
                  (+plist-keys minemacs-fonts-plist))))
