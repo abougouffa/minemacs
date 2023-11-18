@@ -571,11 +571,9 @@ or file path may exist now."
     "ee" #'eglot
     "eA" #'+eglot-auto-enable)
   (defcustom +eglot-auto-enable-modes
-    '(c++-mode c++-ts-mode c-mode c-ts-mode
-      python-mode python-ts-mode
-      rust-mode rust-ts-mode cmake-mode
-      js-mode js-ts-mode typescript-mode typescript-ts-mode
-      json-mode json-ts-mode js-json-mode)
+    '(c++-mode c++-ts-mode c-mode c-ts-mode python-mode python-ts-mode rust-mode
+      rust-ts-mode cmake-mode js-mode js-ts-mode typescript-mode
+      typescript-ts-mode json-mode json-ts-mode js-json-mode)
     "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
     :group 'minemacs-prog
     :type '(repeat symbol))

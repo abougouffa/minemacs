@@ -34,11 +34,10 @@
     "ot" '(nil :wk "vterm")
     "otT" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
   ;; Hide vterm install window
-  (add-to-list
-   'display-buffer-alist
-   `(" \\*Install vterm\\*"
-     (display-buffer-no-window)
-     (allow-no-window . t)))
+  (add-to-list 'display-buffer-alist
+               `(" \\*Install vterm\\*"
+                 (display-buffer-no-window)
+                 (allow-no-window . t)))
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
@@ -53,14 +52,13 @@
     "otd" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
   ;; Show at buttom
-  (add-to-list
-   'display-buffer-alist
-   `("\\*vterminal - .*\\*" ;; multi-vterm-project / dedicated
-     (display-buffer-reuse-window display-buffer-in-direction)
-     (direction . bottom)
-     (dedicated . t)
-     (reusable-frames . visible)
-     (window-height . 0.3)))
+  (add-to-list 'display-buffer-alist
+               `("\\*vterminal - .*\\*" ;; multi-vterm-project / dedicated
+                 (display-buffer-reuse-window display-buffer-in-direction)
+                 (direction . bottom)
+                 (dedicated . t)
+                 (reusable-frames . visible)
+                 (window-height . 0.3)))
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
@@ -88,8 +86,7 @@
   :hook (systemd-mode . +systemd-mode-capf-h)
   :config
   (defun +systemd-mode-capf-h ()
-    (add-hook 'completion-at-point-functions
-              (cape-company-to-capf 'systemd-company-backend) -100)))
+    (add-hook 'completion-at-point-functions (cape-company-to-capf 'systemd-company-backend) -100)))
 
 (use-package pkgbuild-mode
   :straight t
@@ -127,9 +124,8 @@
                (entry (nth 0 matches))
                (email (plist-get entry :user))
                (pass (plist-get entry :secret)))
-         (progn
-           (setq bitwarden-user email)
-           (if (functionp pass) (funcall pass) pass))
+         (progn (setq bitwarden-user email)
+                (if (functionp pass) (funcall pass) pass))
        ""))))
 
 (use-package with-editor

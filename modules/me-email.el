@@ -17,10 +17,7 @@
   :group 'minemacs)
 
 (defconst +mu4e-available-p
-  (and (executable-find "mu")
-       (executable-find "msmtp")
-       (executable-find "mbsync")
-       (file-directory-p +mu4e-load-path)))
+  (and (executable-find "mu") (executable-find "msmtp") (executable-find "mbsync") (file-directory-p +mu4e-load-path)))
 
 (use-package mu4e
   :when +mu4e-available-p
@@ -121,8 +118,7 @@
   :after mu4e
   :demand t
   :config
-  ;; Setup Gmail specific hacks (adapted from Doom Emacs, with a lot of
-  ;; improvements)
+  ;; Setup Gmail specific hacks (adapted from Doom Emacs, with a lot of improvements)
   (+mu4e-gmail-setup))
 
 (use-package me-mu4e-extras
@@ -174,8 +170,7 @@
     "p"  #'org-msg-preview)
   (org-msg-mode 1)
 
-  ;; HACK: When adding multiple attachements, we likely need it to remember the
-  ;; directory of the last added attachement.
+  ;; HACK: When adding multiple attachements, I likely need it to remember the directory of the last added attachement.
   (advice-add
    'org-msg-attach-attach :after
    (defun +org-msg-attach-attach--save-default-directory-a (file &rest _)
@@ -189,11 +184,7 @@
   :demand t
   :config
   ;; Do not export table of contents nor author name
-  (setq org-mime-export-options
-        '(:with-latex dvipng
-          :section-numbers t
-          :with-author nil
-          :with-toc nil)))
+  (setq org-mime-export-options '(:with-latex dvipng :section-numbers t :with-author nil :with-toc nil)))
 
 (use-package mu4e-alert
   :straight t
@@ -219,8 +210,7 @@
   (setq doom-modeline-mu4e t)
 
   ;; Ignore spams!
-  (setq mu4e-alert-interesting-mail-query
-        (+mu4e-extras-ignore-spams-query mu4e-alert-interesting-mail-query))
+  (setq mu4e-alert-interesting-mail-query (+mu4e-extras-ignore-spams-query mu4e-alert-interesting-mail-query))
 
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications)
@@ -229,9 +219,7 @@
   (defun +mu4e-name-or-email (msg)
     (let* ((from (car (plist-get msg :from)))
            (name (plist-get from :name)))
-      (if (or (null name) (eq name ""))
-          (plist-get from :email)
-        name)))
+      (if (or (null name) (eq name "")) (plist-get from :email) name)))
 
   (defun +mu4e-alert-grouped-mail-notif-formatter (mail-group _all-mails)
     "This function can be used for `mu4e-alert-grouped-mail-notification-formatter'."
@@ -239,21 +227,17 @@
       (start-process "mu4e-alert-bell" nil (car +mu4e-alert-bell-command) (cdr +mu4e-alert-bell-command)))
     (let ((mail-count (length mail-group)))
       (list
-       :title (format "You have %d unread email%s"
-                      mail-count (if (> mail-count 1) "s" ""))
+       :title (format "You have %d unread email%s" mail-count (if (> mail-count 1) "s" ""))
        :body (concat
               "• "
               (string-join
                (mapcar
                 (lambda (msg)
-                  (format "<b>%s</b>: %s"
-                          (+mu4e-name-or-email msg)
-                          (plist-get msg :subject)))
+                  (format "<b>%s</b>: %s" (+mu4e-name-or-email msg) (plist-get msg :subject)))
                 mail-group)
                "\n• ")))))
 
-  (setq mu4e-alert-grouped-mail-notification-formatter
-        #'+mu4e-alert-grouped-mail-notif-formatter))
+  (setq mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notif-formatter))
 
 
 (provide 'me-email)

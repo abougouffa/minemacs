@@ -23,10 +23,9 @@
   (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
     (use-package-only-one (symbol-name keyword) args
       (lambda (_label arg)
-        (cond
-         ((stringp arg) arg)
-         ((symbolp arg) (symbol-name arg))
-         (t (use-package-error ":pin-ref wants a commit hash or a ref."))))))
+        (cond ((stringp arg) arg)
+              ((symbolp arg) (symbol-name arg))
+              (t (use-package-error ":pin-ref wants a commit hash or a ref."))))))
 
   (defun use-package-handler/:pin-ref (name-symbol _keyword ref rest state)
     (let ((body (use-package-process-keywords name-symbol rest state)))

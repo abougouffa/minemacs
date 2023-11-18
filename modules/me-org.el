@@ -57,8 +57,7 @@
   (org-appear-autosubmarkers t)
   (org-appear-autolinks 'just-brackets)
   :config
-  ;; for proper first-time setup, `org-appear--set-elements'
-  ;; needs to be run after other hooks have acted.
+  ;; For proper first-time setup, `org-appear--set-elements' needs to be run after other hooks have acted.
   (run-at-time nil nil #'org-appear--set-elements))
 
 (use-package org-modern
@@ -75,24 +74,15 @@
   (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil)
   (org-modern-todo-faces
-   ;; Tweak colors, and force it to be monospaced, useful when using
-   ;; mixed-pitch-mode.
-   '(("IDEA" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "goldenrod"))
-     ("NEXT" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "IndianRed1"))
-     ("STRT" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "OrangeRed"))
-     ("WAIT" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "coral"))
-     ("KILL" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "DarkGreen"))
-     ("PROJ" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "LimeGreen"))
-     ("HOLD" . (:inherit org-verbatim :weight semi-bold
-                :foreground "white" :background "orange"))
-     ("DONE" . (:inherit org-verbatim :weight semi-bold
-                :foreground "black" :background "LightGray")))))
+   ;; Tweak colors, and force it to be monospaced, useful when using `mixed-pitch-mode'.
+   '(("IDEA" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "goldenrod"))
+     ("NEXT" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "IndianRed1"))
+     ("STRT" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "OrangeRed"))
+     ("WAIT" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "coral"))
+     ("KILL" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "DarkGreen"))
+     ("PROJ" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "LimeGreen"))
+     ("HOLD" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "orange"))
+     ("DONE" . (:inherit org-verbatim :weight semi-bold :foreground "black" :background "LightGray")))))
 
 ;; For latex fragments
 (use-package org-fragtog

@@ -42,9 +42,7 @@
     (let ((url (get-text-property (point) 'image-url)))
       (if (not url)
           (message "No image at point!")
-        (url-copy-file
-         url (expand-file-name (url-file-nondirectory url)
-                               (+directory-ensure +elfeed-images-dir))))))
+        (url-copy-file url (expand-file-name (url-file-nondirectory url) (+directory-ensure +elfeed-images-dir))))))
 
   (defun +yt-dl-it (url)
     "Downloads the URL with \"yt-dlp\" in an async shell."

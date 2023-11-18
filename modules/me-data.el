@@ -103,10 +103,9 @@
   (+map-local! :keymaps 'plantuml-mode-map
     "p" #'plantuml-preview-buffer
     "P" #'plantuml-preview
-    "d" `(,(+cmdfy!
-            (if plantuml-mode-debug-enabled
-                (plantuml-disable-debug)
-              (plantuml-enable-debug)))
+    "d" `(,(+cmdfy! (if plantuml-mode-debug-enabled
+                        (plantuml-disable-debug)
+                      (plantuml-enable-debug)))
           :wk "Toggle debug")))
 
 (use-package mermaid-mode

@@ -25,11 +25,9 @@
       (parinfer-rust-mode 1)))
 
   (defun +parinter-rust--disable-a (&rest _)
-    (if (and (bound-and-true-p parinfer-rust-mode)
-             (bound-and-true-p parinfer-rust-enabled))
-        (progn
-          (setq +parinter-rust--was-enabled-p t)
-          (parinfer-rust-mode -1))
+    (if (and (bound-and-true-p parinfer-rust-mode) (bound-and-true-p parinfer-rust-enabled))
+        (progn (setq +parinter-rust--was-enabled-p t)
+               (parinfer-rust-mode -1))
       (setq +parinter-rust--was-enabled-p nil)))
 
   ;; The `evil-shif-right' (and `evil-shift-left' which uses it under the hood)

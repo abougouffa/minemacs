@@ -145,10 +145,10 @@
 
   (with-eval-after-load 'me-writing-mode
     (defvar-local +blamer-was-active-p blamer-mode)
-    (+add-hook! '+writing-mode-enable-hook
+    (+add-hook! +writing-mode-enable
       (setq-local +blamer-was-active-p blamer-mode)
       (when +blamer-was-active-p (blamer-mode -1)))
-    (+add-hook! '+writing-mode-disable-hook
+    (+add-hook! +writing-mode-disable
       (when (bound-and-true-p +blamer-was-active-p) (blamer-mode 1)))))
 
 (use-package git-timemachine
@@ -158,13 +158,12 @@
   :custom
   (git-timemachine-show-minibuffer-details t))
 
-;; Enforce git commit conventions.
-;; See: chris.beams.io/posts/git-commit/
+;; Enforce git commit conventions. See: chris.beams.io/posts/git-commit
 (use-package git-commit
   :after magit
   :demand t
   :custom
-  (git-commit-summary-max-length 72) ;; defaults to Github's max commit message length
+  (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
   (evil-set-initial-state 'git-commit-mode 'insert)

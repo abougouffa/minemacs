@@ -104,13 +104,13 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 (defconst +face-attributes
   '(:family :foundry :width :height :weight :slant :foreground
-    :distant-foreground :background :underline :overline :strike-through
-    :box :inverse-video :stipple :font :inherit :extend)
+    :distant-foreground :background :underline :overline :strike-through :box
+    :inverse-video :stipple :font :inherit :extend)
   "Arguments accepted by the `set-face-attribute' function.")
 
 (defconst +font-spec-keywords
-  '(:family :foundry :width :weight :slant :adstyle :registry :dpi :size :spacing
-    :avgwidth :name :script :lang :otf)
+  '(:family :foundry :width :weight :slant :adstyle :registry :dpi :size
+    :spacing :avgwidth :name :script :lang :otf)
   "Arguments accepted by the `font-spec' function.")
 
 (defun +font--get-valid-args (script-or-face font)

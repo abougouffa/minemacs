@@ -214,8 +214,7 @@ MinEmacs hooks will be run in this order:
     ;; Socket envvars, like I3SOCK, GREETD_SOCK, SEATD_SOCK, SWAYSOCK, etc.
     "SOCK$"
     ;; SSH and GPG variables that could quickly become stale if persisted.
-    "^SSH_\\(AUTH_SOCK\\|AGENT_PID\\)$" "^\\(SSH\\|GPG\\)_TTY$"
-    "^GPG_AGENT_INFO$"
+    "^SSH_\\(AUTH_SOCK\\|AGENT_PID\\)$" "^\\(SSH\\|GPG\\)_TTY$" "^GPG_AGENT_INFO$"
     ;; MinEmacs envvars
     "^MINEMACS\\(_?DIR\\|_\\(ALPHA\\|DEBUG\\|VERBOSE\\|NOT_LAZY\\|MSG_LEVEL\\|IGNORE_.*\\)\\)$")
   "Environment variables to omit.

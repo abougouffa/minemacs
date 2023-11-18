@@ -22,48 +22,18 @@
 
   (defcustom +spell-excluded-faces-alist
     '((markdown-mode
-       . (markdown-code-face
-          markdown-html-attr-name-face
-          markdown-html-attr-value-face
-          markdown-html-tag-name-face
-          markdown-inline-code-face
-          markdown-link-face
-          markdown-markup-face
-          markdown-plain-url-face
-          markdown-reference-face
-          markdown-url-face))
+       . (markdown-code-face markdown-html-attr-name-face markdown-html-attr-value-face
+          markdown-html-tag-name-face markdown-inline-code-face markdown-link-face
+          markdown-markup-face markdown-plain-url-face markdown-reference-face markdown-url-face))
       (org-mode
-       . (org-block
-          org-block-begin-line
-          org-block-end-line
-          org-cite
-          org-cite-key
-          org-code
-          org-date
-          org-footnote
-          org-formula
-          org-inline-src-block
-          org-latex-and-related
-          org-link
-          org-meta-line
-          org-property-value
-          org-ref-cite-face
-          org-special-keyword
-          org-tag
-          org-todo
-          org-todo-keyword-done
-          org-todo-keyword-habt
-          org-todo-keyword-kill
-          org-todo-keyword-outd
-          org-todo-keyword-todo
-          org-todo-keyword-wait
-          org-verbatim))
+       . (org-block org-block-begin-line org-block-end-line org-cite org-cite-key org-code
+          org-date org-footnote org-formula org-inline-src-block org-latex-and-related org-link
+          org-meta-line org-property-value org-ref-cite-face org-special-keyword org-tag org-todo
+          org-todo-keyword-done org-todo-keyword-habt org-todo-keyword-kill org-todo-keyword-outd
+          org-todo-keyword-todo org-todo-keyword-wait org-verbatim))
       (latex-mode
-       . (font-latex-math-face
-          font-latex-sedate-face
-          font-lock-function-name-face
-          font-lock-keyword-face
-          font-lock-variable-name-face)))
+       . (font-latex-math-face font-latex-sedate-face font-lock-function-name-face
+          font-lock-keyword-face font-lock-variable-name-face)))
     "Faces in certain major modes that spell-fu will not spellcheck."
     :group 'minemacs-ui
     :type '(repeat (cons symbol (repeat face))))
@@ -77,8 +47,7 @@
   :straight (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
   :init
-  (+map-local! :keymaps '(org-mode-map text-mode-map markdown-mode-map
-                          tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+  (+map-local! :keymaps '(org-mode-map text-mode-map markdown-mode-map tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "t" '(nil :wk "translate")
     "tb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
     "td" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "Translate with DeepL")
@@ -88,20 +57,16 @@
     "tT" #'gts-do-translate)
   :custom
   ;; Your languages pairs
-  (gts-translate-list '(("en" "fr")
-                        ("en" "ar")
-                        ("fr" "ar")
-                        ("fr" "en")))
+  (gts-translate-list '(("en" "fr") ("en" "ar") ("fr" "ar") ("fr" "en")))
   :config
   ;; Config the default translator, which will be used by the command `gts-do-translate'
-  (setq gts-default-translator
-        (gts-translator
-         ;; Used to pick source text, from, to. choose one.
-         :picker (gts-prompt-picker)
-         ;; One or more engines, provide a parser to give different output.
-         :engines (gts-google-engine :parser (gts-google-summary-parser))
-         ;; Render, only one, used to consumer the output result.
-         :render (gts-buffer-render)))
+  (setq gts-default-translator (gts-translator
+                                ;; Used to pick source text, from, to. choose one.
+                                :picker (gts-prompt-picker)
+                                ;; One or more engines, provide a parser to give different output.
+                                :engines (gts-google-engine :parser (gts-google-summary-parser))
+                                ;; Render, only one, used to consumer the output result.
+                                :render (gts-buffer-render)))
 
   ;; Custom texter which remove newlines in the same paragraph
   (defclass +gts-translate-paragraph (gts-texter) ())
@@ -153,9 +118,7 @@
         (cond ((eq engine 'deepl)
                (gts-deepl-engine
                 :auth-key ;; Get API key from ~/.authinfo.gpg (machine api-free.deepl.com)
-                (funcall
-                 (plist-get (car (auth-source-search :host "api-free.deepl.com" :max 1))
-                            :secret))
+                (funcall (plist-get (car (auth-source-search :host "api-free.deepl.com" :max 1)) :secret))
                 :pro nil))
               ((eq engine 'bing) (gts-bing-engine))
               (t (gts-google-engine)))

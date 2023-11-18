@@ -61,10 +61,7 @@
     (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
           (seq-filter
            (lambda (name)
-             (not (member name (list straight-build-dir
-                                     (concat straight-build-dir "-cache.el")
-                                     "versions"
-                                     "repos"))))
+             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
            (directory-files default-directory nil "[^.][^.]?$")))))
 
 

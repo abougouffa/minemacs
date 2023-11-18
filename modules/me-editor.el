@@ -45,19 +45,16 @@
   ;; Enable all "Cascadia Code" ligatures in programming modes
   (ligature-set-ligatures
    'prog-mode
-   '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-     ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-     "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-     "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-     "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-     "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-     "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-     "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-     ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-     "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-     "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-     "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-     "\\\\" "://")))
+   '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>" ":::" "::="
+     "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!==" "!!." ">=>" ">>=" ">>>"
+     ">>-" ">->" "->>" "-->" "---" "-<<" "<~~" "<~>" "<*>" "<||" "<|>" "<$>"
+     "<==" "<=>" "<=<" "<->" "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###"
+     "#_(" "..<" "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+     "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|" "[|" "]#" "::"
+     ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:" ">=" ">>" ">-" "-~" "-|" "->"
+     "--" "-<" "<~" "<*" "<|" "<:" "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#["
+     "#:" "#=" "#!" "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+     "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)" "\\\\" "://")))
 
 (use-package rainbow-delimiters
   :straight t
@@ -67,10 +64,7 @@
   :straight t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
-  (setq highlight-numbers-generic-regexp
-        (rx (and symbol-start (one-or-more digit))
-            (optional "." (* digit))
-            symbol-end)))
+  (setq highlight-numbers-generic-regexp (rx (and symbol-start (one-or-more digit)) (optional "." (* digit)) symbol-end)))
 
 (use-package smartparens
   :straight t
@@ -86,8 +80,7 @@
     ;; Make evil-mc cooperate with smartparens better
     (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
       (unless (memq (car sp--mc/cursor-specific-vars) vars)
-        (setcdr (assq :default evil-mc-cursor-variables)
-                (append vars sp--mc/cursor-specific-vars))))))
+        (setcdr (assq :default evil-mc-cursor-variables) (append vars sp--mc/cursor-specific-vars))))))
 
 ;; Default `smartparens' configuration (for example, do not complete a single
 ;; quote)
