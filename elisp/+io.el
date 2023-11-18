@@ -337,29 +337,6 @@ current process."
     (delete-file (+lock--file name))
     t))
 
-(autoload #'mailcap-extension-to-mime "mailcap")
-
-;;;###autoload
-(defun +open-with-default-app (&optional file-or-url)
-  "Open FILE-OR-URL in the system's default application (via \"xdg-open\").
-
-When FILE-OR-URL is nil, try to guess a file/directory name or ask for one."
-  (interactive)
-  (let* ((file (or file-or-url
-                   ;; When in `dired', get file at point
-                   (and (derived-mode-p 'dired-mode) (dired-x-guess-file-name-at-point))
-                   (thing-at-point 'existing-filename)
-                   (thing-at-point 'url)
-                   (read-file-name "File or directory to open: " nil default-directory)))
-         (file-ext (file-name-extension file))
-         (file-mime (and file-ext (mailcap-extension-to-mime file-ext)))
-         (default-app (or (and file-mime (car (xdg-mime-apps file-mime))) "")))
-    (if (and file-mime (string-match-p "^emacs\\(client\\)?$" (file-name-base default-app)))
-        (progn (message "The default application for %S files (*.%s) is Emacs, openning with `find-file'." file-mime file-ext)
-               (find-file file))
-      (message "Opening %S with the default system application..." (abbreviate-file-name file))
-      (call-process-shell-command (format "xdg-open %S" (expand-file-name file))))))
-
 ;;;###autoload
 (defun +minemacs-root-dir-cleanup ()
   (let ((default-directory minemacs-root-dir))
