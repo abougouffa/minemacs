@@ -8,11 +8,16 @@
 
 ;;; Code:
 
+(defconst +parinfer-rust-path (concat minemacs-local-dir "parinfer-rust/"))
+
 (use-package parinfer-rust-mode
   :straight t
-  :when (and (+emacs-features-p 'modules) (eq sys/arch 'x86_64))
+  :when (and (+emacs-features-p 'modules) ; Emacs built with `--with-modules' option
+             (or (eq sys/arch 'x86_64) ; x86_64 modules can be downloaded as binaries
+                 ;; it is always possible to compile the module yourself on other architectures
+                 (directory-files +parinfer-rust-path nil (format "\\.%s$" (if os/win "dll" "so")))))
   :custom
-  (parinfer-rust-library-directory (concat minemacs-local-dir "parinfer-rust/"))
+  (parinfer-rust-library-directory +parinfer-rust-path)
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
   :hook (emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode)
   :config
