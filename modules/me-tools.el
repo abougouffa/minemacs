@@ -32,7 +32,7 @@
   :init
   (+map!
     "ot" '(nil :wk "vterm")
-    "otT" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
+    "otv" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
   ;; Hide vterm install window
   (add-to-list 'display-buffer-alist
                `(" \\*Install vterm\\*"
@@ -48,8 +48,8 @@
   :when (and (not os/win) (+emacs-features-p 'modules))
   :init
   (+map!
-    "ott" #'multi-vterm
-    "otd" #'multi-vterm-dedicated-toggle
+    "otT" #'multi-vterm
+    "ott" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
   ;; Show at buttom
   (add-to-list 'display-buffer-alist
