@@ -81,10 +81,7 @@
   :init
   (+map! "cff" #'apheleia-format-buffer)
   :config
-  (dolist (alist '((lisp-data-mode . lisp-indent)
-                   (emacs-lisp-mode . lisp-indent)
-                   (sh-mode . shfmt)))
-    (add-to-list 'apheleia-mode-alist alist)))
+  (push '(sh-mode . shfmt) apheleia-mode-alist))
 
 (use-package editorconfig
   :straight t
