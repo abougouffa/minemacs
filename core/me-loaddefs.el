@@ -122,6 +122,8 @@ prefix or universal argument, it waits for a moment (defined by
 `+screenshot-delay') before taking the screenshot.
 
 (fn OUTFILE)" t)
+(autoload '+minibuffer-kill-minibuffer "../elisp/+emacs" "\
+Kill the minibuffer when switching to window with mouse." t)
 (autoload '+region-or-thing-at-point "../elisp/+emacs" "\
 Return the region or the thing at point.")
 (autoload '+webjump "../elisp/+emacs" "\
@@ -805,7 +807,7 @@ Register dictionaries for `LANGS` to spell-fu's multi-dict.
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-" "emacs/features" "minemacs-" "os/" "sys/arch"))
+(register-definition-prefixes "me-vars" '("+env-" "+load" "emacs/features" "minemacs-" "os/" "sys/arch"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el
