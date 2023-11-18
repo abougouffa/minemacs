@@ -37,7 +37,7 @@
 
 (use-package treesit-fold
   :straight (:host github :repo "abougouffa/treesit-fold")
-  :after tree-sitter minemacs-loaded
+  :after treesit minemacs-loaded
   :when (+emacs-features-p 'tree-sitter)
   :init
   (global-treesit-fold-mode 1))
