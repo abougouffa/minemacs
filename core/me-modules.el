@@ -34,6 +34,7 @@
     ;; me-embedded
     me-extra
     me-files
+    me-formal
     ;; me-fun
     me-latex
     ;; me-lifestyle
