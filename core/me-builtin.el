@@ -1073,7 +1073,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (+nmap! :keymaps 'org-mode-map
     "RET" #'org-open-at-point)
 
-  (setq org-export-async-debug minemacs-debug) ;; Can be useful!
+  (setq org-export-async-debug minemacs-debug-p) ;; Can be useful!
 
   ;; Dynamically change font size for Org heading levels, starting from
   ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.

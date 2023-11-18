@@ -18,7 +18,7 @@
          (length minemacs-after-startup-hook))
   (run-hooks 'minemacs-after-startup-hook))
 
-(if minemacs-not-lazy
+(if minemacs-not-lazy-p
     (require 'minemacs-lazy)
   (+eval-when-idle-for! 2
     (require 'minemacs-lazy)))

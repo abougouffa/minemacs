@@ -342,7 +342,7 @@ Log info MSG and VARS using `message'.
 
 (fn MSG &rest VARS)" nil t)
 (autoload '+log! "../elisp/+minemacs" "\
-Log MSG and VARS using `message' when `minemacs-verbose' is non-nil.
+Log MSG and VARS using `message' when `minemacs-verbose-p' is non-nil.
 
 (fn MSG &rest VARS)" nil t)
 (autoload '+emacs-features-p "../elisp/+minemacs" "\

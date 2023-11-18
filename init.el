@@ -116,22 +116,22 @@
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
  ;; option or when the environment variable "$MINEMACS_DEBUG" is defined (see
  ;; `me-vars').
- debug-on-error minemacs-debug
+ debug-on-error minemacs-debug-p
  ;; Decrese the warning type to `:error', unless we are running in verbose mode
- warning-minimum-level (if minemacs-verbose :warning :error)
+ warning-minimum-level (if minemacs-verbose-p :warning :error)
  warning-minimum-log-level warning-minimum-level
  ;; Make byte compilation less noisy
- byte-compile-warnings minemacs-verbose
- byte-compile-verbose minemacs-verbose)
+ byte-compile-warnings minemacs-verbose-p
+ byte-compile-verbose minemacs-verbose-p)
 
 ;; Native compilation settings
 (when (featurep 'native-compile)
   (setq
    ;; Silence compiler warnings as they can be pretty disruptive, unless we are
-   ;; running in `minemacs-verbose' mode.
-   native-comp-async-report-warnings-errors (when minemacs-verbose 'silent)
-   native-comp-verbose (if minemacs-verbose 1 0) ; do not be too verbose
-   native-comp-debug (if minemacs-debug 1 0)
+   ;; running in `minemacs-verbose-p' mode.
+   native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
+   native-comp-verbose (if minemacs-verbose-p 1 0) ; do not be too verbose
+   native-comp-debug (if minemacs-debug-p 1 0)
    ;; Make native compilation happens asynchronously.
    native-comp-jit-compilation t)
 
@@ -218,7 +218,7 @@
 ;; the user's enabled modules.
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
-           (setq minemacs-not-lazy t))
+           (setq minemacs-not-lazy-p t))
   ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
   (+load minemacs-core-dir "me-modules.el")
   (+load-user-configs 'modules 'local/modules))

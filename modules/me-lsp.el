@@ -18,7 +18,7 @@
   (lsp-keep-workspace-alive nil)
   (lsp-log-io nil)
   (lsp-idle-delay 1.0)
-  (lsp-log-max (when minemacs-debug message-log-max))
+  (lsp-log-max (when minemacs-debug-p message-log-max))
   ;; Less intrusive UI
   (lsp-eldoc-render-all nil) ; clangd docs looks ugly on eldoc-box!
   (lsp-headerline-breadcrumb-enable nil)

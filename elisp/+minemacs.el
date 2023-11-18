@@ -23,7 +23,7 @@
 
 ;;;###autoload
 (defmacro +log! (msg &rest vars)
-  "Log MSG and VARS using `message' when `minemacs-verbose' is non-nil."
+  "Log MSG and VARS using `message' when `minemacs-verbose-p' is non-nil."
   (when (>= minemacs-msg-level 3)
     `(let ((inhibit-message t))
       (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
@@ -49,7 +49,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
 ;;;###autoload
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
-  (if (not minemacs-verbose)
+  (if (not minemacs-verbose-p)
       `(let ((message-log-max nil))
         (with-temp-message (or (current-message) "") ,@body))
     `(progn ,@body)))

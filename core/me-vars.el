@@ -55,25 +55,25 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
        (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))
   "MinEmacs user customization directory.")
 
-(defconst minemacs-debug
+(defconst minemacs-debug-p
   (and (or (getenv "MINEMACS_DEBUG") init-file-debug) t)
   "MinEmacs is started in debug mode.")
 
-(defconst minemacs-verbose
-  (and (or (getenv "MINEMACS_VERBOSE") minemacs-debug) t)
+(defconst minemacs-verbose-p
+  (and (or (getenv "MINEMACS_VERBOSE") minemacs-debug-p) t)
   "MinEmacs is started in verbose mode.")
 
-(defconst minemacs-always-demand
+(defconst minemacs-always-demand-p
   (and (getenv "MINEMACS_ALWAYS_DEMAND") t)
   "Load all packages immediately, do not defer any package.")
 
-(defconst minemacs-not-lazy
-  (or minemacs-always-demand (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
+(defconst minemacs-not-lazy-p
+  (or minemacs-always-demand-p (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
 (defcustom minemacs-msg-level
   (let ((level (string-to-number (or (getenv "MINEMACS_MSG_LEVEL") ""))))
-    (cond (minemacs-verbose 4)
+    (cond (minemacs-verbose-p 4)
           ((> level 0) level)
           (t 1)))
   "Level of printed messages.
@@ -230,13 +230,13 @@ Each string is a regexp, matched against variable names to omit from
     (unless (memq conf minemacs-ignore-user-config)
       (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
         (when (file-exists-p conf-path)
-          (load conf-path nil (not minemacs-verbose)))))))
+          (load conf-path nil (not minemacs-verbose-p)))))))
 
 (defun +load (&rest filename-parts)
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (file-truename (apply #'concat filename-parts))))
     (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose))
+        (load filename nil (not minemacs-verbose-p))
       (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 

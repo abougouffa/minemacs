@@ -10,7 +10,7 @@
 ;; Used to synchronize loading some other stuff after loading Emacs.
 
 ;; The hooks in `minemacs-lazy-hook' are loaded incrementally when Emacs goes
-;; idle, but when `minemacs-not-lazy' is set to t, they will be all loaded at
+;; idle, but when `minemacs-not-lazy-p' is set to t, they will be all loaded at
 ;; once.
 
 ;;; Code:
@@ -23,7 +23,7 @@
   ;; garbage collections during startup, it will be overwritten by `gcmh-mode',
   ;; so we defer loading it to the end to maximize the benefit.
   (setq minemacs-lazy-hook (append (delq 'gcmh-mode (reverse minemacs-lazy-hook)) '(gcmh-mode)))
-  (if minemacs-not-lazy
+  (if minemacs-not-lazy-p
       (progn ; If `minemacs-no-lazy' is bound and true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
         (run-hooks 'minemacs-lazy-hook))

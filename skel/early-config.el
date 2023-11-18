@@ -5,7 +5,7 @@
 ;; these used in macros.
 
 ;; Set log level to `info' rather than `error'
-(unless minemacs-verbose
+(unless minemacs-verbose-p
   (setq minemacs-msg-level 2))
 
 ;; Disable `dashboard'
@@ -17,7 +17,7 @@
 ;;   (push '(fullscreen . fullboth) default-frame-alist))
 
 ;; Force loading lazy packages immediately, not in idle time
-;; (setq minemacs-not-lazy t)
+;; (setq minemacs-not-lazy-p t)
 
 ;; Setup a `debug-on-message' to catch a wired message!
 ;; (setq debug-on-message "Package cl is deprecated")

@@ -45,12 +45,12 @@
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
- use-package-verbose (cond (minemacs-debug 'debug) (minemacs-verbose t))
+ use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
  ;; Defer loading packages by default, use `:demand' to force loading a package
- use-package-always-defer (not minemacs-always-demand)
- use-package-always-demand minemacs-always-demand
+ use-package-always-defer (not minemacs-always-demand-p)
+ use-package-always-demand minemacs-always-demand-p
  ;; Make the expanded code as minimal as possible, do not try to catch errors
- use-package-expand-minimally (not minemacs-debug))
+ use-package-expand-minimally (not minemacs-debug-p))
 
 ;;;###autoload
 (defun +straight-prune-build-cache ()
