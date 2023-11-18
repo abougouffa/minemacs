@@ -38,10 +38,11 @@
   :group 'minemacs)
 
 (defconst minemacs-ignore-user-config
-  (when-let ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG")))
-    (if (string= (downcase ignores) "all")
+  (when-let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))
+              (ignores (downcase ignores)))
+    (if (string= ignores "all")
         '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
-      (mapcar #'intern (mapcar #'downcase (split-string ignores)))))
+      (mapcar #'intern (split-string ignores))))
   "Ignore loading these user configuration files.
 Accepted values are: early-config, init-tweaks, modules, config,
 local/early-config, local/init-tweaks, local/modules and local/config.
@@ -50,7 +51,8 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 
 (defconst minemacs-config-dir
   (file-name-as-directory
-   (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR") "~/.minemacs.d/"))
+   (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR")
+       (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))
   "MinEmacs user customization directory.")
 
 (defconst minemacs-debug
@@ -86,11 +88,7 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
           (const :tag "Debug" 4)))
 
 ;; Derive the root directory from this file path
-(defconst minemacs-root-dir
-  (abbreviate-file-name
-   (file-name-directory
-    (directory-file-name
-     (file-name-directory (file-truename load-file-name))))))
+(defconst minemacs-root-dir (abbreviate-file-name (file-name-directory (directory-file-name (file-name-directory (file-truename load-file-name))))))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
 (defconst minemacs-assets-dir (concat minemacs-root-dir "assets/"))
 (defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
