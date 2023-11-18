@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.9.1](https://github.com/abougouffa/minemacs/compare/v3.9.0..v3.9.1) - 2023-11-18
+#### Bug Fixes
+- **(vars)** buggy variable set - ([8ca2aba](https://github.com/abougouffa/minemacs/commit/8ca2abab98ba72e078ed366f8f881f9ad8a7f4bf)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.9.0](https://github.com/abougouffa/minemacs/compare/v3.8.1..v3.9.0) - 2023-11-18
 #### Bug Fixes
 - **(treesit-fold)** wrong `:after` block - ([2745d3b](https://github.com/abougouffa/minemacs/commit/2745d3be9dd4934979af98d25f6a4ede993f06d6)) - [@abougouffa](https://github.com/abougouffa)
