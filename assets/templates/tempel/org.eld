@@ -1,6 +1,7 @@
 org-mode
 
 (python "#+begin_src python" n> r> n "#+end_src" :post (org-edit-src-code))
+(shell "#+begin_src shell" n> r> n "#+end_src" :post (org-edit-src-code))
 (name "#+name: " r> n)
 (hwidth "#+attr_html: :width " (p "500px") n)
 (width "#+attr_latex: :width " (p "0.5\textwidth") n)
