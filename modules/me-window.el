@@ -22,14 +22,14 @@
 
 (add-to-list
  'display-buffer-alist
- `(,(rx (seq "*" (or "Help" (seq "helpful" (zero-or-more not-newline))) "*"))
+ `(,(rx bol "*" (or "Help" (seq "helpful" (zero-or-more not-newline))) "*" eol)
    (display-buffer-reuse-window display-buffer-pop-up-window)
    (inhibit-same-window . t)))
 
 ;; Show *Warnings* at bottom
 (add-to-list
  'display-buffer-alist
- `("\\*Warnings\\*"
+ `("^\\*Warnings\\*$"
    (display-buffer-reuse-window display-buffer-in-direction)
    (direction . bottom) ;; bottom (above below...)
    (dedicated . t) ;; Close when finished
@@ -39,14 +39,14 @@
 ;; Show dictionary definition and completion buffer on the right side
 (add-to-list
  'display-buffer-alist
- `(,(rx (seq "*" (or "Dictionary" "lexic" "Completions") "*"))
+ `(,(rx bol "*" (or "Dictionary" "lexic" "Completions") "*" eol)
    (display-buffer-in-side-window)
    (side . right)
    (window-width . 82)))
 
 (add-to-list
  'display-buffer-alist
- `(,(rx (seq "*" (or "eshell" "terminal") "*"))
+ `(,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command") "*" eol)
    ;; (display-buffer-reuse-window display-buffer-at-bottom)
    (display-buffer-reuse-window display-buffer-in-direction)
    (direction . bottom) ;; bottom (above below...)
