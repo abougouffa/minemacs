@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.9.0](https://github.com/abougouffa/minemacs/compare/v3.8.1..v3.9.0) - 2023-11-18
+#### Bug Fixes
+- **(treesit-fold)** wrong `:after` block - ([2745d3b](https://github.com/abougouffa/minemacs/commit/2745d3be9dd4934979af98d25f6a4ede993f06d6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(formal)** add some modes for formal verification/proof tools - ([05d8c02](https://github.com/abougouffa/minemacs/commit/05d8c02b167719122ae42d323f43574dc2b2c4ef)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- minor code formatting - ([34c10e2](https://github.com/abougouffa/minemacs/commit/34c10e276b19b274730f8ea5fd51e54138301ccd)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(auctex-latexmk)** remove unnecessary hook - ([db88d81](https://github.com/abougouffa/minemacs/commit/db88d81e6e94fcae2a960c6c21adeab53c4dd650)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** rename some variables - ([f552bd6](https://github.com/abougouffa/minemacs/commit/f552bd656bf1f5c3d814a19c619d420fb4a65a2a)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** minor changes - ([24a19a7](https://github.com/abougouffa/minemacs/commit/24a19a755e692a2b4a4f2fa890115ee10ae2de6c)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(io)** `crux-open-with` provides this functionality - ([0fba2b7](https://github.com/abougouffa/minemacs/commit/0fba2b795206b101f29c9a356052bda02ce53379)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** remove unnecessary formatters (included in upstream) - ([5acf050](https://github.com/abougouffa/minemacs/commit/5acf050a960d2d4aa436bed6bd29bb87766f3229)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-modeline)** hide time icon - ([728d803](https://github.com/abougouffa/minemacs/commit/728d8033878795d9d512adaadf6048b36788d80a)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil-multiedit)** minor keybinding changes - ([79cd9c8](https://github.com/abougouffa/minemacs/commit/79cd9c855231ea89750420f8bf11a72ec6c49b23)) - [@abougouffa](https://github.com/abougouffa)
+- **(fonts)** rename function - ([3cb67a1](https://github.com/abougouffa/minemacs/commit/3cb67a1be14f248b1ad63bd473d40d593f9fda15)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** better check for `parinfer-rust` compatibility - ([636d673](https://github.com/abougouffa/minemacs/commit/636d6733cac18a6022f77c2d685eb1c1333a739c)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** minor keybinding changes - ([7bfc6dd](https://github.com/abougouffa/minemacs/commit/7bfc6dd40683fea1b16f0731ec80b106df534d61)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** cleanup irrelevant code - ([b39dfd2](https://github.com/abougouffa/minemacs/commit/b39dfd29d3c7c0a5159b76a76b6b4dd06b7230b1)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** more accurate display buffer rules - ([28f5f4f](https://github.com/abougouffa/minemacs/commit/28f5f4fdec8fed849f4ec08ebc2963568122a442)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([c688dac](https://github.com/abougouffa/minemacs/commit/c688dac7a196230d9715dbc51e759434a4b1518b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.8.1](https://github.com/abougouffa/minemacs/compare/v3.8.0..v3.8.1) - 2023-11-17
 #### Bug Fixes
 - **(treesit-fold)** load only when `treesit` is available - ([c033b65](https://github.com/abougouffa/minemacs/commit/c033b65d992cd2298d0a4827aa4071899ed2f530)) - [@abougouffa](https://github.com/abougouffa)
