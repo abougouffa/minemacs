@@ -164,16 +164,12 @@
   ;; Enable only if Latexmk is available
   (when (executable-find "latexmk")
     (setq-default
+     TeX-command-default "LatexMk-2"
      TeX-command-list
      (cons
       '("LatexMk-2" "latexmk -shell-escape %(-PDF)%S%(mode) %(file-line-error) %(extraopts) %t" TeX-run-latexmk nil
         (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMk with shell-escape")
       TeX-command-list))
-
-    (add-hook
-     'LaTeX-mode-hook
-     (defun +tex--set-latexmk-as-default-cmd-h ()
-       (setq TeX-command-default "LatexMk-2")))
 
     ;; Add LatexMk as a TeX target.
     (auctex-latexmk-setup)))
