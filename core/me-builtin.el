@@ -346,6 +346,7 @@ or file path may exist now."
 
 (use-package flymake
   :straight (:type built-in)
+  :hook ((prog-mode conf-mode) . flymake-mode)
   :init
   (+map! "tf" #'flymake-mode)
   :custom
