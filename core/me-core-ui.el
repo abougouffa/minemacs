@@ -74,6 +74,7 @@
   :custom
   (doom-modeline-height 28)
   (doom-modeline-bar-width 8)
+  (doom-modeline-time-icon nil)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
   (doom-modeline-enable-word-count t)
@@ -82,7 +83,7 @@
   :config
   ;; HACK: Add some padding to the right
   (doom-modeline-def-modeline 'main
-    '(bar workspace-name window-number modals matches follow buffer-info
+    '(eldoc bar workspace-name window-number modals matches follow buffer-info
       remote-host buffer-position word-count parrot selection-info)
     '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus
       github debug repl lsp minor-modes input-method indent-info buffer-encoding
