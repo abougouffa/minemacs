@@ -38,22 +38,17 @@
   :group 'minemacs)
 
 (defconst minemacs-ignore-user-config
-  (when-let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))
-              (ignores (downcase ignores)))
-    (if (string= ignores "all")
-        '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
-      (mapcar #'intern (split-string ignores))))
+  (let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))
+         (ignores (and ignores (downcase ignores))))
+    (when ignores
+      (if (string= ignores "all")
+          '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
+        (mapcar #'intern (split-string ignores)))))
   "Ignore loading these user configuration files.
 Accepted values are: early-config, init-tweaks, modules, config,
 local/early-config, local/init-tweaks, local/modules and local/config.
 This list is automatically constructed from the space-separated values in the
 environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
-
-(defconst minemacs-config-dir
-  (file-name-as-directory
-   (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR")
-       (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))
-  "MinEmacs user customization directory.")
 
 (defconst minemacs-debug-p
   (and (or (getenv "MINEMACS_DEBUG") init-file-debug) t)
@@ -97,6 +92,10 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
+(defconst minemacs-config-dir (file-name-as-directory
+                               (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR")
+                                   (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))
+  "MinEmacs user customization directory.")
 
 (defconst os/linux (eq system-type 'gnu/linux) "Non-nil on GNU/Linux systems.")
 (defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) "Non-nil on BSD systems.")
