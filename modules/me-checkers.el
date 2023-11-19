@@ -12,6 +12,10 @@
   :straight t
   :hook (minemacs-after-startup . flymake-collection-hook-setup))
 
+(use-package flymake-cppcheck
+  :straight (nil :host github :repo "shaohme/flymake-cppcheck")
+  :hook ((c-mode c-ts-mode c++-mode c++-ts-mode) . flymake-cppcheck-setup))
+
 (use-package flymake-quickdef
   :straight t
   :autoload flymake-quickdef-backend
