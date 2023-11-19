@@ -8,6 +8,26 @@
 
 ;;; Code:
 
+(defconst +maxima-path-p "/usr/share/emacs/site-lisp/maxima/")
+(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path-p)))
+
+(use-package maxima
+  :load-path +maxima-path-p
+  :when +maxima-available-p
+  :mode ("\\.ma[cx]\\'" . maxima-mode)
+  :interpreter ("maxima" . maxima-mode)
+  :commands inferior-maxima-mode maxima maxima-info maxima-start maxima-apropos
+  :custom
+  (maxima-display-maxima-buffer nil))
+
+(use-package imaxima
+  :load-path +maxima-path-p
+  :when +maxima-available-p
+  :commands imaxima imath-mode
+  :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
+  :custom
+  (imaxima-use-maxima-mode-flag nil))
+
 (use-package math-preview ; Needed by ein to render equations
   :straight t)
 
