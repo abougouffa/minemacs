@@ -56,7 +56,7 @@
 
 (setq
  frame-title-format
- '(""
+ '("%b"
    (:eval
     (let ((proj
            (ignore-errors
