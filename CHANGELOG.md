@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.1](https://github.com/abougouffa/minemacs/compare/v3.10.0..v3.10.1) - 2023-11-19
+#### Bug Fixes
+- **(window)** restore current buffer on title bar - ([b715232](https://github.com/abougouffa/minemacs/commit/b7152323a8407b65eb29b65fd4c5e5220bc1d787)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(flymake)** add `flymake-guile` - ([1dcdd21](https://github.com/abougouffa/minemacs/commit/1dcdd2187062b4391a34ce05ddb75273050fec0f)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** add `flymake-cppcheck` - ([9cd9ede](https://github.com/abougouffa/minemacs/commit/9cd9ede25f20d4fd99c73e6584ff2abfd8b8ffc5)) - [@abougouffa](https://github.com/abougouffa)
+- **(math)** add `julia-ts-mode` - ([1956bee](https://github.com/abougouffa/minemacs/commit/1956bee919af7c222c596b2f43502ae9a57dee9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(math)** restore Maxima configuration - ([9a2b356](https://github.com/abougouffa/minemacs/commit/9a2b35695b206f6f1dfe5f98469f72f638fb1292)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(builtin)** correct typos in comments - ([4719f17](https://github.com/abougouffa/minemacs/commit/4719f17d5661e37d95f51c2aef95eccfbfe652c0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(window)** better window placement for REPL buffers - ([7e66878](https://github.com/abougouffa/minemacs/commit/7e66878c1cabd069160f0009170827f53d0da175)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** show help/helpful/info buffers in a dedicated window - ([16f7d57](https://github.com/abougouffa/minemacs/commit/16f7d574b52964fab4325008d8d4c58dcbe77e79)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** smaller help window (40%) - ([4416062](https://github.com/abougouffa/minemacs/commit/4416062780338f63b4ee0d99dd424b6bf7e662c8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.0](https://github.com/abougouffa/minemacs/compare/v3.9.1..v3.10.0) - 2023-11-19
 #### Bug Fixes
 - **(plantuml)** buggy `use-package` block - ([66b23c6](https://github.com/abougouffa/minemacs/commit/66b23c61186f702e4fd6fa37f1c97af5f9f52af6)) - [@abougouffa](https://github.com/abougouffa)
