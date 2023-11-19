@@ -114,7 +114,7 @@
                                    (with-temp-buffer
                                      (insert-file-contents "/proc/sys/fs/pipe-max-size")
                                      (string-to-number (buffer-string)))
-                                 ;; If an error occured, fallback to the default value
+                                 ;; If an error occurred, fallback to the default value
                                  (error read-process-output-max))
                              (* 1024 1024)))
   ;; Don't prompt for confirmation when we create a new file or buffer
@@ -265,7 +265,7 @@ or file path may exist now."
 
 (use-package dired
   :straight (:type built-in)
-  ;; Enable adding mail attachements from dired "C-c RET C-a" for
+  ;; Enable adding mail attachments from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
   :hook (dired-mode . turn-on-gnus-dired-mode)
   :custom
@@ -801,7 +801,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (defun +emacs-lisp--calculate-lisp-indent-a (&optional parse-start)
     "Add better indentation for quoted and backquoted lists."
     ;; The `calculate-lisp-indent-last-sexp' is defined with `defvar' with it's
-    ;; value ommited, marking it special and only defining it locally. So if you
+    ;; value omitted, marking it special and only defining it locally. So if you
     ;; don't have this, you'll get a void variable error.
     (defvar calculate-lisp-indent-last-sexp)
     (save-excursion
@@ -1024,7 +1024,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (org-startup-indented nil)
   (org-cycle-hide-block-startup t)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
-  (org-fold-catch-invisible-edits 'smart) ; try not to accidently do weird stuff in invisible regions
+  (org-fold-catch-invisible-edits 'smart) ; try not to accidentally do weird stuff in invisible regions
   (org-fold-core-style 'overlays) ; Fix `evil' search problem (to be used with `evil-search')
   (org-fontify-quote-and-verse-blocks t)
   (org-special-ctrl-a/e t)
@@ -1323,7 +1323,7 @@ current line.")
   │  ^_g_^       [_b_] base       [_<_] upper/base    [_C_] Combine
   │  ^_C-k_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
   │  ^_k_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
-  │  ^_j_ ↓^     [_a_] all        [_H_] hightlight    [_n_] next in project
+  │  ^_j_ ↓^     [_a_] all        [_H_] highlight     [_n_] next in project
   │  ^_C-j_^     [_RET_] current  [_E_] ediff
   │  ^_G_^                                                 [_q_] quit
   ╰─────────────────────────────────────────────────────╯
@@ -1522,7 +1522,7 @@ current line.")
 
 (use-package executable
   :straight (:type built-in)
-  ;; Make scripts (files starting wiht shebang "#!") executable when saved
+  ;; Make scripts (files starting with shebang "#!") executable when saved
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
 (use-package display-line-numbers
@@ -1604,7 +1604,7 @@ current line.")
   :hook (server-after-make-frame . +load-theme) ; Reload theme when creating a frame on the daemon
   :autoload server-running-p
   :init
-  ;; When we start in a non-daemon Emacs, we start a server whe Emacs is idle.
+  ;; When we start in a non-daemon Emacs, we start a server when Emacs is idle.
   (+lazy-unless! (daemonp)
     (unless (server-running-p)
       (let ((inhibit-message t))
