@@ -81,7 +81,17 @@
   :init
   (+map! "cff" #'apheleia-format-buffer)
   :config
-  (push '(sh-mode . shfmt) apheleia-mode-alist))
+  (setq apheleia-mode-alist
+        (append apheleia-mode-alist
+                '((sh-mode . shfmt)
+                  (sql-mode . pgformatter))))
+  (setq apheleia-formatters
+        (append apheleia-formatters
+                '(
+                  (sqlformat . ("sqlformat" "--keywords" "upper" "-"))
+                  (pgformatter . ("pg_format"
+                                  (apheleia-formatters-indent "--tabs" "--spaces" 'tab-width)
+                                  (apheleia-formatters-fill-column "--wrap-limit")))))))
 
 (use-package editorconfig
   :straight t
