@@ -16,6 +16,10 @@
   :straight t
   :hook (minemacs-after-startup . flymake-collection-hook-setup))
 
+(use-package flymake-quickdef
+  :straight t
+  :autoload flymake-quickdef-backend)
+
 
 (provide 'me-checkers)
 

@@ -364,8 +364,7 @@ or file path may exist now."
     "fp" #'flymake-show-project-diagnostics)
 
   ;; Use the session's load-path with flymake
-  (setq elisp-flymake-byte-compile-load-path
-        (append elisp-flymake-byte-compile-load-path load-path))
+  (setq elisp-flymake-byte-compile-load-path (append elisp-flymake-byte-compile-load-path load-path))
 
   ;; Larger right frings
   (with-eval-after-load 'fringe
