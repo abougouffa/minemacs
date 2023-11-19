@@ -17,8 +17,13 @@
   :autoload flymake-quickdef-backend
   :hook ((python-mode python-ts-mode) . +flymake-bandit-load)
   :init
-  (defun +flymake-bandit-load ()
-    (add-hook 'flymake-diagnostic-functions #'flymake-check-bandit nil t))
+  ;; Automatically generate `backend-load' function to be used as a hook
+  (advice-add
+   'flymake-quickdef-backend :after
+   (defun +flymake-quickdef--make-load-fn (backend &rest _)
+     (let ((fn (intern (format "+%s-load" backend))))
+       (defalias fn
+         (lambda () (add-hook 'flymake-diagnostic-functions backend nil t))))))
   :config
   ;; Add Bandit support for Python (example from https://github.com/karlotness/flymake-quickdef)
   (flymake-quickdef-backend flymake-bandit
