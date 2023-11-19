@@ -22,10 +22,11 @@
 
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "Help" (seq "helpful" (zero-or-more not-newline))) "*" eol)
-   (display-buffer-reuse-window display-buffer-pop-up-window)
-   (inhibit-same-window . t)
-   (window-width . 0.4)))
+ `(,(rx bol "*" (or "info" "Help" (seq "helpful" (zero-or-more not-newline))) "*" eol)
+   (display-buffer-in-side-window)
+   (slot . 0)
+   (side . right)
+   (window-width . 80)))
 
 ;; Show *Warnings* at bottom
 (add-to-list
