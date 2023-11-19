@@ -16,6 +16,7 @@
   :straight t
   :autoload flymake-quickdef-backend
   :hook ((python-mode python-ts-mode) . +flymake-bandit-load)
+  :hook (prog-mode . +flymake-codespell-load)
   :init
   ;; Automatically generate `backend-load' function to be used as a hook
   (advice-add
@@ -45,7 +46,27 @@
                   ((string= severity "MEDIUM") :warning)
                   (t :note)))
            (msg (format "%s (%s)" text code)))
-      (list fmqd-source beg end type msg))))
+      (list fmqd-source beg end type msg)))
+
+  ;; Codespell backend from https://github.com/chmouel/flymake-codespell
+  (flymake-quickdef-backend flymake-codespell
+    :pre-let ((codespell-exec (executable-find "codespell")))
+    :pre-check (unless codespell-exec (error "Cannot find codespell executable"))
+    :write-type 'file
+    :proc-form (list codespell-exec "-d" "-i0" fmqd-temp-file)
+    :prep-diagnostic
+    (let* ((lnum (string-to-number (match-string 2)))
+           (text (match-string 3))
+           (pos (flymake-diag-region fmqd-source lnum))
+           (beg (car pos))
+           (end (cdr pos))
+           (type :warning)
+           (msg text))
+      (list fmqd-source beg end type msg))
+    :search-regexp
+    (rx bol (group (one-or-more (any alnum punct)))
+        ":" (group (one-or-more digit))
+        ":" space (group (one-or-more any)))))
 
 (use-package flymake-plantuml
   :straight (:host github :repo "shaohme/flymake-plantuml")
