@@ -65,6 +65,10 @@
 (use-package julia-mode
   :straight t)
 
+(use-package julia-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter))
+
 (use-package ess
   :straight t)
 
