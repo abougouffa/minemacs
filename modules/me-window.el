@@ -24,7 +24,8 @@
  'display-buffer-alist
  `(,(rx bol "*" (or "Help" (seq "helpful" (zero-or-more not-newline))) "*" eol)
    (display-buffer-reuse-window display-buffer-pop-up-window)
-   (inhibit-same-window . t)))
+   (inhibit-same-window . t)
+   (window-width . 0.4)))
 
 ;; Show *Warnings* at bottom
 (add-to-list
