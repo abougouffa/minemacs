@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(use-package flymake-easy
-  :straight t
-  :autoload flymake-easy-load)
-
 (use-package flymake-ruff
   :straight t
   :hook ((python-mode python-ts-mode) . flymake-ruff-load))
