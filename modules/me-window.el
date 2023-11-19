@@ -26,6 +26,7 @@
    (display-buffer-in-side-window)
    (slot . 0)
    (side . right)
+   (dedicated . t) ;; Close when finished
    (window-width . 80)))
 
 ;; Show *Warnings* at bottom
@@ -49,12 +50,22 @@
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command") "*" eol)
-   ;; (display-buffer-reuse-window display-buffer-at-bottom)
-   (display-buffer-reuse-window display-buffer-in-direction)
-   (direction . bottom) ;; bottom (above below...)
+   (display-buffer-reuse-window display-buffer-at-bottom)
    (dedicated . t) ;; Close when finished
    (reusable-frames . visible) ;;
    (window-height . 0.3)))
+
+(add-to-list
+ 'display-buffer-alist
+ `(,(rx bol "*"
+     (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua" "inferior-lisp" "prolog" "gnuplot"
+      (seq (or (seq "R" (opt ":" (any digit))) "julia") ":" (* any)))
+     "*" eol)
+   (display-buffer-in-side-window)
+   (side . right)
+   (dedicated . t) ;; Close when finished
+   (window-width . 0.5)
+   (reusable-frames . visible)))
 
 (setq
  frame-title-format
