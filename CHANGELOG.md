@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.0](https://github.com/abougouffa/minemacs/compare/v3.9.1..v3.10.0) - 2023-11-19
+#### Bug Fixes
+- **(plantuml)** buggy `use-package` block - ([66b23c6](https://github.com/abougouffa/minemacs/commit/66b23c61186f702e4fd6fa37f1c97af5f9f52af6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(checkers)** add `flymake-quickdef` - ([8db462e](https://github.com/abougouffa/minemacs/commit/8db462e42caf9c5de689ed2dae78762933222e74)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** remove old `flymake-easy` - ([1e8c126](https://github.com/abougouffa/minemacs/commit/1e8c12623fddce3d250633e2f865eac5e86e675f)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** add `flymake-shellcheck` - ([895a328](https://github.com/abougouffa/minemacs/commit/895a3282831cfbe5f215ad4e957c5a6d15779cfc)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** add `flymake-ruff` - ([cf838c7](https://github.com/abougouffa/minemacs/commit/cf838c76cbbe6c83b3ba7ebdac825de8a89d1e65)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** add `flymake-collection` - ([a7ae42c](https://github.com/abougouffa/minemacs/commit/a7ae42cbfe7271b5b34440b43cde9a73379ec0da)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** add a backend for Codespell - ([b15b6cb](https://github.com/abougouffa/minemacs/commit/b15b6cb7c8245f356b64bfb65ab0e48c97f8eaa6)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** add `flymake-plantuml` - ([b17b039](https://github.com/abougouffa/minemacs/commit/b17b039eaf945803737e35983c6058fbebfcd628)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** add Bandit backend for Python - ([c326db8](https://github.com/abougouffa/minemacs/commit/c326db8aec9083803aade6d9287bf0423c7aa832)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `web-mode` - ([efee175](https://github.com/abougouffa/minemacs/commit/efee17562608ab1ace1d80dc1b0315141c12a447)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(checkers)** remove `flymake-ruff`, present in `flymake-collection` - ([33c0fc3](https://github.com/abougouffa/minemacs/commit/33c0fc39477e952328c3f44619966c5eab2d2069)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** `flymake-shellcheck` included in `flymake-collection` - ([8b38ff5](https://github.com/abougouffa/minemacs/commit/8b38ff53389dfd949ca1823aaea325d2c235c0ac)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** add formatters for SQL - ([c6ceef0](https://github.com/abougouffa/minemacs/commit/c6ceef01d9e15d7e3cf9e8acfd03b7aad1c87c1d)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** auto enable when relevant - ([e21d176](https://github.com/abougouffa/minemacs/commit/e21d17689a6973e70f9c6e28c23e76f42148bdaa)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-quickdef)** advice to auto generate `+flymake-*-load` func - ([e12c8a7](https://github.com/abougouffa/minemacs/commit/e12c8a70cd1e717c06b435379f42bc3d70771b63)) - [@abougouffa](https://github.com/abougouffa)
+- **(tempel)** add a template for shell scripts in Org mode - ([fd1b3ae](https://github.com/abougouffa/minemacs/commit/fd1b3aee979dc4316390c7aeeee5193681e0806f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.9.1](https://github.com/abougouffa/minemacs/compare/v3.9.0..v3.9.1) - 2023-11-18
 #### Bug Fixes
 - **(vars)** buggy variable set - ([8ca2aba](https://github.com/abougouffa/minemacs/commit/8ca2abab98ba72e078ed366f8f881f9ad8a7f4bf)) - [@abougouffa](https://github.com/abougouffa)
