@@ -81,7 +81,7 @@
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
   (plantuml-indent-level 2)
-
+  :config
   ;; Define `capf' function, based on `plantuml-complete-symbol'
   (defun +plantuml-completion-at-point ()
     "Perform symbol-at-pt completion on word before cursor."
