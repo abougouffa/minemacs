@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(use-package flymake-ruff
-  :straight t
-  :hook ((python-mode python-ts-mode) . flymake-ruff-load))
-
 (use-package flymake-collection
   :straight t
   :hook (minemacs-after-startup . flymake-collection-hook-setup))
