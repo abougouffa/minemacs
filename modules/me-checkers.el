@@ -42,6 +42,10 @@
            (msg (format "%s (%s)" text code)))
       (list fmqd-source beg end type msg))))
 
+(use-package flymake-plantuml
+  :straight (:host github :repo "shaohme/flymake-plantuml")
+  :hook (plantuml-mode . flymake-plantuml-setup))
+
 
 (provide 'me-checkers)
 
