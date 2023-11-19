@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.2](https://github.com/abougouffa/minemacs/compare/v3.10.1..v3.10.2) - 2023-11-19
+#### Documentation
+- **(readme)** update screenshot - ([c36712c](https://github.com/abougouffa/minemacs/commit/c36712cf744e324a3487f625672c3499183e8b65)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(flymake)** add `flymenu-flymake` - ([8d9cf1c](https://github.com/abougouffa/minemacs/commit/8d9cf1c35da07bf85000cdcc6327aaa65c3786dd)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(spell-fu)** minor changes - ([37e3bfd](https://github.com/abougouffa/minemacs/commit/37e3bfda8302e0342cd7001bdfb18c79c72fd26f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.1](https://github.com/abougouffa/minemacs/compare/v3.10.0..v3.10.1) - 2023-11-19
 #### Bug Fixes
 - **(window)** restore current buffer on title bar - ([b715232](https://github.com/abougouffa/minemacs/commit/b7152323a8407b65eb29b65fd4c5e5220bc1d787)) - [@abougouffa](https://github.com/abougouffa)
