@@ -16,6 +16,10 @@
   :straight (nil :host github :repo "shaohme/flymake-cppcheck")
   :hook ((c-mode c-ts-mode c++-mode c++-ts-mode) . flymake-cppcheck-setup))
 
+(use-package flymake-guile
+  :straight t
+  :hook (scheme-mode . flymake-guile))
+
 (use-package flymake-quickdef
   :straight t
   :autoload flymake-quickdef-backend
