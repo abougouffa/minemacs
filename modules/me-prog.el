@@ -203,6 +203,9 @@
   :straight t
   :hook (makefile-mode . makefile-executor-mode))
 
+(use-package web-mode
+  :straight t)
+
 
 (provide 'me-prog)
 
