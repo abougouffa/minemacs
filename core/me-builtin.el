@@ -325,7 +325,18 @@ or file path may exist now."
     "fN" #'flymake-goto-prev-error
     "fs" #'flymake-start
     "fb" #'flymake-show-buffer-diagnostics
-    "fp" #'flymake-show-project-diagnostics)
+    "fp" #'flymake-show-project-diagnostics
+    "ff" #'+flymake-transient)
+
+  (transient-define-prefix +flymake-transient ()
+    "Transient for dape."
+    [[("n" "Next error" flymake-goto-next-error :transient t)
+      ("N" "Prev error" flymake-goto-prev-error :transient t)]
+     [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
+      ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
+      ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
+     [("S" "Start" flymake-start :transient t)
+      ("Q" "Quit" ignore :transient t)]])
 
   ;; Use the session's load-path with flymake
   (setq elisp-flymake-byte-compile-load-path (append elisp-flymake-byte-compile-load-path load-path))

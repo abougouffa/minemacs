@@ -273,29 +273,7 @@
   (provide 'me-general-ready))
 
 (use-package hydra
-  :straight t
-  :after minemacs-loaded
-  :config
-  ;; Make hydra bindings for `flymake'
-  (with-eval-after-load 'flymake
-    (defhydra +flymake-main (:color red :hint nil :foreign-keys warn)
-      "
-[Flymake]                                              [_q_] quit
-  ├──────────────────────────────────────────────────────────────────────╮
-  │  [_B_] Buffer diagnostics  [_P_] Project diagnostics  [_L_] Log buffer     │
-  │  [_n_] Next error          [_N_] Prev error           [_S_] Start          │
-  ╰──────────────────────────────────────────────────────────────────────╯
-"
-      ("B" flymake-show-buffer-diagnostics)
-      ("P" flymake-show-project-diagnostics)
-      ("L" flymake-switch-to-log-buffer)
-      ("n" flymake-goto-next-error)
-      ("N" flymake-goto-prev-error)
-      ("S" flymake-start)
-      ("q" nil :color blue))
-
-    (+map-local! :keymaps 'flymake-mode-map
-      "ff" #'+flymake-main/body)))
+  :straight t)
 
 (use-package avy
   :straight t
