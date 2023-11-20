@@ -187,6 +187,10 @@
     "cee"  #'eglot
     "ceA"  #'+eglot-auto-enable
 
+    ;; ====== Debug ======
+    "d"    '(nil :wk "debug")
+    "dG"   #'gdb
+
     ;; ====== Notes ======
     "n"    '(nil :wk "notes")
 
