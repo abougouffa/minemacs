@@ -28,8 +28,8 @@ to scan directories recursively."
            (root-dir (car cons-dir))
            (recursive (cdr cons-dir))
            (sub-dirs (and (file-directory-p root-dir) (+directory-subdirs root-dir))))
-        (dolist (dir sub-dirs)
-          (project-remember-projects-under dir recursive)))))
+      (dolist (dir sub-dirs)
+        (project-remember-projects-under dir recursive)))))
 
 ;;;###autoload
 (defun +project-add-project (dir &optional dont-ask)
@@ -50,5 +50,12 @@ When DIR is not detected as a project, ask to force it to be by adding a
   (interactive)
   (let ((default-directory (project-root (project-current t))))
     (call-interactively #'gdb)))
+
+(defun +project-forget-duplicate-projects ()
+  "Forget all duplicate known projects (/home/user/proj, ~/proj)."
+  (interactive)
+  (let* ((projs (mapcar #'expand-file-name (project-known-project-roots)))
+         (projs (cl-set-difference projs (cl-remove-duplicates projs :test #'string=))))
+    (mapc #'project-forget-project projs)))
 
 ;;; +project.el ends here
