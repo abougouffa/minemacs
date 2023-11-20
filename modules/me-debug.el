@@ -10,73 +10,9 @@
 
 (use-package dape
   :straight (:host github :repo "svaante/dape")
-  :init
-  (defvar +dape-cpptools-command
-    (concat minemacs-local-dir "dape/cpptools/extension/bin/cpptools"))
-  (defvar +dape-js-debug-path
-    (concat minemacs-local-dir "dape/js-debug/extension/"))
-  (defvar +dape-codelldb-command
-    (concat minemacs-local-dir "dape/codelldb/extension/adapter/codelldb"))
   :custom
   (dape-inline-variables t)
-  (dape-configs `((debugpy ; https://github.com/microsoft/debugpy
-                   modes (python-ts-mode python-mode)
-                   command "python3"
-                   command-args ("-m" "debugpy.adapter")
-                   :type "executable"
-                   :request "launch"
-                   :cwd dape-cwd-fn
-                   :program dape-find-file-buffer-default)
-                  (cpptools ; https://github.com/microsoft/vscode-cpptools
-                   modes (c-mode c-ts-mode c++-mode c++-ts-mode)
-                   command-cwd ,(file-name-directory +dape-cpptools-command)
-                   command +dape-cpptools-command
-                   :type "cpptools"
-                   :request "launch"
-                   :cwd dape-cwd-fn
-                   :program dape-find-file
-                   :MIMode ,(cond
-                             ((executable-find "gdb") "gdb")
-                             ((executable-find "lldb") "lldb")))
-                  (codelldb ; https://github.com/vadimcn/codelldb
-                   modes (c-mode c-ts-mode c++-mode c++-ts-mode rust-mode rust-ts-mode)
-                   command ,+dape-codelldb-command
-                   host "localhost"
-                   port 5818
-                   command-args ("--port" "5818")
-                   :type "lldb"
-                   :request "launch"
-                   :cwd dape-cwd-fn
-                   :program dape-find-file)
-                  (delve ; https://github.com/go-delve/delve
-                   modes (go-mode go-ts-mode)
-                   command "dlv"
-                   command-args ("dap" "--listen" "127.0.0.1:55878")
-                   command-cwd dape-cwd-fn
-                   host "127.0.0.1"
-                   port 55878
-                   :type "debug"
-                   :request "launch"
-                   :cwd dape-cwd-fn
-                   :program dape-cwd-fn)
-                  (js-debug ; https://github.com/microsoft/vscode-js-debug
-                   modes (js-mode js-ts-mode)
-                   host "localhost"
-                   port 8123
-                   command "node"
-                   command-cwd ,+dape-js-debug-path
-                   command-args ("src/dapDebugServer.js" "8123")
-                   :type "pwa-node"
-                   :request "launch"
-                   :cwd dape-cwd-fn
-                   :program dape-find-file-buffer-default
-                   :outputCapture "console"
-                   :sourceMapRenames t
-                   :pauseForSourceMap nil
-                   :enableContentValidation t
-                   :autoAttachChildProcesses t
-                   :console "internalConsole"
-                   :killBehavior "forceful"))))
+  (dape-adapter-dir (concat minemacs-local-dir "dape/")))
 
 (use-package realgud
   :straight (realgud :build (:not compile))
