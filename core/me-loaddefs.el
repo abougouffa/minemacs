@@ -251,12 +251,6 @@ If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process.
 
 (fn NAME &optional FORCE-P)")
-(autoload '+open-with-default-app "../elisp/+io" "\
-Open FILE-OR-URL in the system's default application (via \"xdg-open\").
-
-When FILE-OR-URL is nil, try to guess a file/directory name or ask for one.
-
-(fn &optional FILE-OR-URL)" t)
 (autoload '+minemacs-root-dir-cleanup "../elisp/+io")
 (register-definition-prefixes "../elisp/+io" '("+html2pdf-" "+lock--" "+save-as-pdf-filename"))
 
@@ -610,6 +604,8 @@ When DIR is not detected as a project, ask to force it to be by adding a
 (fn DIR &optional DONT-ASK)" t)
 (autoload '+project-gdb "../elisp/+project" "\
 Invoke `gdb' in the project's root." t)
+(autoload '+project-list-cleanup "../elisp/+project" "\
+Forget all duplicate known projects (/home/user/proj, ~/proj)." t)
 (register-definition-prefixes "../elisp/+project" '("+project-scan-dir-paths"))
 
 
@@ -743,7 +739,7 @@ Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (autoload '+setup-fonts "me-fonts" "\
 Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-script" "+f" "+known-scripts" "minemacs-fonts-plist"))
+(register-definition-prefixes "me-fonts" '("+apply-font-or-script" "+f" "+known-scripts" "minemacs-fonts-plist"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
