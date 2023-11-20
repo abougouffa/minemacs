@@ -310,9 +310,10 @@ or file path may exist now."
     "rC" #'project-async-shell-command
     ;; forget
     "F"  '(nil :wk "forget/cleanup")
-    "Fz" '(project-forget-zombie-projects :wk "Zombie projects")
-    "Fp" '(project-forget-project :wk "Project")
-    "Fu" '(project-forget-projects-under :wk "Projects under...")
+    "Fz" #'project-forget-zombie-projects
+    "Fp" #'project-forget-project
+    "Fu" #'project-forget-projects-under
+    "Fc" #'+project-cleanup-projects
     ;; search/replace
     "s"  '(nil :wk "search/replace")
     "ss" #'project-search

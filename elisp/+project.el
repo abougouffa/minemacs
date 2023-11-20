@@ -51,11 +51,18 @@ When DIR is not detected as a project, ask to force it to be by adding a
   (let ((default-directory (project-root (project-current t))))
     (call-interactively #'gdb)))
 
-(defun +project-forget-duplicate-projects ()
+;;;###autoload
+(defun +project-list-cleanup ()
   "Forget all duplicate known projects (/home/user/proj, ~/proj)."
   (interactive)
   (let* ((projs (mapcar #'expand-file-name (project-known-project-roots)))
-         (projs (cl-set-difference projs (cl-remove-duplicates projs :test #'string=))))
-    (mapc #'project-forget-project projs)))
+         (projs-dups (cl-set-difference projs (cl-remove-duplicates projs :test #'string=))))
+    (mapc #'project-forget-project projs-dups)
+    (project-forget-zombie-projects)
+    (dolist (proj projs)
+      (let ((proj-abbrev (abbreviate-file-name proj)))
+        (unless (string= proj proj-abbrev)
+          (project-forget-project proj)
+          (project-remember-projects-under proj-abbrev))))))
 
 ;;; +project.el ends here
