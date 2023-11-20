@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.3](https://github.com/abougouffa/minemacs/compare/v3.10.2..v3.10.3) - 2023-11-20
+#### Bug Fixes
+- **(transient)** install from Elpa on Emacs 28 - ([978a698](https://github.com/abougouffa/minemacs/commit/978a698545925bd6888f5c25adf4ccb94e0dab80)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core-ui)** add `lin` - ([d3e90a3](https://github.com/abougouffa/minemacs/commit/d3e90a37c1bf936b2809c06cd43839e28c8b369c)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add `+project-forget-duplicate-projects` helper - ([87345a3](https://github.com/abougouffa/minemacs/commit/87345a304b4768dce2ce82a10ba8aa94952dfaab)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** minor tweak - ([fcb11fe](https://github.com/abougouffa/minemacs/commit/fcb11fe53ebe2374631bf06502f6a927f5d554e7)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** define menu with `transient` instead of `hydra` - ([e615b37](https://github.com/abougouffa/minemacs/commit/e615b37a18c20fba00e812fdf5464a86633e843e)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** centralize global keybindings for builtin stuff - ([166233b](https://github.com/abougouffa/minemacs/commit/166233b9ffff3eeeeadbdb0cb32642c84bb2c29f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dape)** add keybindings - ([28dea66](https://github.com/abougouffa/minemacs/commit/28dea66c4b1227b939e9e9490667cca55cb101b5)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** now the batteries are already included! - ([6308572](https://github.com/abougouffa/minemacs/commit/6308572ba879e94b4a9cba7d2300e0e273dc8cb4)) - [@abougouffa](https://github.com/abougouffa)
+- **(denote)** better integration with Emacs' builtin packages - ([029d78b](https://github.com/abougouffa/minemacs/commit/029d78b62542109388ef003950b4a10f0a6bf09c)) - [@abougouffa](https://github.com/abougouffa)
+- **(denote)** autoload command aliases and tweak keybindings - ([383fe1a](https://github.com/abougouffa/minemacs/commit/383fe1a23579a0759107f626b8201a840bc4a014)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** add debug section - ([af3566f](https://github.com/abougouffa/minemacs/commit/af3566f6d9fc47be248c1c0ca8bb51c872999d26)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** make it obsolete, buggy when the font have no ligatures - ([2392012](https://github.com/abougouffa/minemacs/commit/2392012c54062a1730d1057d31323893e6cef5c7)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** better cleanup of duplicate projects - ([086eff9](https://github.com/abougouffa/minemacs/commit/086eff9c73f30f88d6e00ad18e6926f23ffc0940)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ea121ee](https://github.com/abougouffa/minemacs/commit/ea121ee4439b45677ad269c16bd4f5bdf96196e1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([02da9d2](https://github.com/abougouffa/minemacs/commit/02da9d2584c32c9f58e9de4aeec2fdc73139f481)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.2](https://github.com/abougouffa/minemacs/compare/v3.10.1..v3.10.2) - 2023-11-19
 #### Documentation
 - **(readme)** update screenshot - ([c36712c](https://github.com/abougouffa/minemacs/commit/c36712cf744e324a3487f625672c3499183e8b65)) - [@abougouffa](https://github.com/abougouffa)
