@@ -236,6 +236,13 @@ or file path may exist now."
 (use-package seq
   :straight (:type built-in))
 
+(use-package transient
+  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
+  ;; Map ESC and q to quit transient
+  :bind (:map transient-map
+         ("q" . transient-quit-one)
+         ("<escape>" . transient-quit-one)))
+
 (use-package password-cache
   :straight (:type built-in)
   :custom
@@ -1680,13 +1687,6 @@ Useful for quickly switching to an open buffer."
     (pulse-momentary-highlight-one-line (point)))
   (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
     (advice-add command :after #'+pulse-line)))
-
-(use-package transient
-  :straight (:type built-in)
-  ;; Map ESC and q to quit transient
-  :bind (:map transient-map
-         ("q" . transient-quit-one)
-         ("<escape>" . transient-quit-one)))
 
 (use-package isearch
   :straight (:type built-in)

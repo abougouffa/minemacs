@@ -87,20 +87,7 @@
 
 
 ;; Make hydra bindings for `flymake'
-(with-eval-after-load 'flymake
-  (+map-local! :keymaps 'flymake-mode-map "ff" #'+flymake-transient)
-  (transient-define-prefix +flymake-transient ()
-    "Transient for dape."
-    [[""
-      ("n" "Next error" flymake-goto-next-error :transient t)
-      ("N" "Prev error" flymake-goto-prev-error :transient t)]
-     [""
-      ("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
-      ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
-      ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
-     [""
-      ("S" "Start" flymake-start :transient t)
-      ("Q" "Quit" ignore :transient t)]]))
+(with-eval-after-load 'flymake)
 
 
 (provide 'me-checkers)
