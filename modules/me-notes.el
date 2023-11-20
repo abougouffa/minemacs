@@ -15,14 +15,16 @@
 
 (use-package denote
   :straight t
+  :commands denote-create-note denote-insert-link denote-show-backlinks-buffer
   :init
   (+map! :infix "n"
     "n" #'denote-create-note
     "o" #'denote-open-or-create
     "j" #'denote-journal-extras-new-or-existing-entry
     "J" #'denote-journal-extras-new-entry
-    "l" #'denote-add-links
-    "L" #'denote-add-missing-links
+    "l" #'denote-insert-link
+    "L" #'denote-add-links
+    "m" #'denote-add-missing-links
     "b" #'denote-show-backlinks-buffer)
   :custom
   (denote-prompts '(title keywords)) ; These are the minimum viable prompts for notes
