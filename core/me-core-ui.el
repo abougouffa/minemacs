@@ -89,6 +89,10 @@
       github debug repl lsp minor-modes input-method indent-info buffer-encoding
       major-mode process vcs checker time "  ")))
 
+(use-package lin
+  :straight t
+  :hook (minemacs-after-startup . lin-global-mode))
+
 
 (provide 'me-core-ui)
 
