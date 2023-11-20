@@ -284,41 +284,7 @@ or file path may exist now."
   :hook (kill-emacs . project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
-  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
-  :init
-  (+map! ":"  #'project-find-file)
-  (+map! :infix "p" ;; project
-    "w"  #'project-switch-project
-    "c"  #'project-compile
-    "d"  #'project-find-dir
-    "f"  #'project-find-file
-    "k"  #'project-kill-buffers
-    "b"  #'project-switch-to-buffer
-    "a"  #'+project-add-project
-    "D"  #'+dir-locals-open-or-create
-    "-"  #'project-dired
-    "x"  #'project-execute-extended-command
-    ;; compile/test
-    "c" #'project-compile
-    ;; run
-    "r"  '(nil :wk "run")
-    "re" #'project-eshell
-    "rg" #'+project-gdb
-    "rs" #'project-shell
-    "rc" #'project-shell-command
-    "rC" #'project-async-shell-command
-    ;; forget
-    "F"  '(nil :wk "forget/cleanup")
-    "Fz" #'project-forget-zombie-projects
-    "Fp" #'project-forget-project
-    "Fu" #'project-forget-projects-under
-    "Fc" #'+project-cleanup-projects
-    ;; search/replace
-    "s"  '(nil :wk "search/replace")
-    "ss" #'project-search
-    "sn" '(fileloop-continue :wk "Next match")
-    "sr" #'project-query-replace-regexp
-    "sf" #'project-find-regexp))
+  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project")))
 
 (use-package tab-bar
   :straight (:type built-in)
@@ -347,8 +313,6 @@ or file path may exist now."
 (use-package flymake
   :straight (:type built-in)
   :hook ((prog-mode conf-mode) . flymake-mode)
-  :init
-  (+map! "tf" #'flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
   (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
@@ -515,10 +479,7 @@ or file path may exist now."
 (use-package autoinsert
   :straight (:type built-in)
   :custom
-  (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/"))
-  :init
-  ;; NOTE: When prompting (like in Keywords), hit M-RET when finished
-  (+map! "fi" #'auto-insert))
+  (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
 (use-package hideif
   :straight (:type built-in)
@@ -564,39 +525,7 @@ or file path may exist now."
   (eglot-sync-connect 0) ; async, do not block
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
-  :init
-  ;; Register global keybinding
-  (+map! :infix "c"
-    "e"  '(nil :wk "eglot session")
-    "ee" #'eglot
-    "eA" #'+eglot-auto-enable)
-  (defcustom +eglot-auto-enable-modes
-    '(c++-mode c++-ts-mode c-mode c-ts-mode python-mode python-ts-mode rust-mode
-      rust-ts-mode cmake-mode js-mode js-ts-mode typescript-mode
-      typescript-ts-mode json-mode json-ts-mode js-json-mode)
-    "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
-    :group 'minemacs-prog
-    :type '(repeat symbol))
-  (defun +eglot-auto-enable ()
-    "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
-    (interactive)
-    (dolist (mode +eglot-auto-enable-modes)
-      (let ((hook (intern (format "%s-hook" mode))))
-        (add-hook hook #'eglot-ensure)
-        (remove-hook hook #'lsp-deferred))))
   :config
-  ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
-  ;; to fill `+eglot-auto-enable-modes' with all supported modes.
-  (defun +eglot-use-on-all-supported-modes (mode-list)
-    (dolist (mode-def mode-list)
-      (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
-        (cond
-         ((listp mode) (+eglot-use-on-all-supported-modes mode))
-         (t
-          (when (and (not (eq 'clojure-mode mode)) ; prefer cider
-                     (not (eq 'lisp-mode mode))    ; prefer sly
-                     (not (eq 'scheme-mode mode))) ; prefer geiser
-            (add-to-list '+eglot-auto-enable-modes mode)))))))
   (+map! :keymaps 'eglot-mode-map
     :infix "c"
     "fF" #'eglot-format-buffer
@@ -1384,8 +1313,6 @@ current line.")
 
 (use-package calc
   :straight (:type built-in)
-  :init
-  (+map! "o=" #'calc)
   :custom
   (calc-settings-file (concat minemacs-local-dir "calc-settings.el")))
 

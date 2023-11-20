@@ -85,6 +85,8 @@ Returns t when the first line of the buffer is empty.")
 
 ;;; Generated autoloads from ../elisp/+eglot.el
 
+(autoload '+eglot-auto-enable "../elisp/+eglot" "\
+Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'." t)
 (autoload '+eglot-register "../elisp/+eglot" "\
 Register MODES with LSP SERVERS.
 Examples:
@@ -94,7 +96,7 @@ Examples:
 
 (fn MODES &rest SERVERS)")
 (function-put '+eglot-register 'lisp-indent-function 0)
-(register-definition-prefixes "../elisp/+eglot" '("+eglot-ccls-inheritance-hierarchy"))
+(register-definition-prefixes "../elisp/+eglot" '("+eglot-"))
 
 
 ;;; Generated autoloads from ../elisp/+emacs.el

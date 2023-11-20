@@ -71,6 +71,7 @@
     ">"    '(switch-to-next-buffer :wk "Next buffer")
     "<"    '(switch-to-prev-buffer :wk "Previous buffer")
     ";"    '(pp-eval-expression :wk "Eval expression")
+    ":"    #'project-find-file
     "X"    #'org-capture
     "u"    '(universal-argument :wk "C-u")
     "C"    #'universal-coding-system-argument
@@ -92,6 +93,7 @@
     "fD"   #'+delete-this-file-and-buffer
     "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
     "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
+    "fi"   #'auto-insert
     "fR"   #'+move-this-file
     "ff"   #'find-file
     "fs"   #'save-buffer
@@ -99,7 +101,7 @@
     "fT"   #'recover-file
     "fy"   #'+yank-this-file-name
     "fE"   `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
-              :wk "User config directory")
+             :wk "User config directory")
 
     ;; ====== Buffers ======
     "b"    '(nil :wk "buffer")
@@ -155,7 +157,7 @@
     "o-"   '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
     "oa"   #'org-agenda
     "oe"   #'eshell
-    "o SPC" #'+open-with-default-app
+    "o="   #'calc
 
     ;; ====== Search ======
     "s"    '(nil :wk "search")
@@ -176,10 +178,14 @@
     "tr"   #'read-only-mode
     "tl"   #'follow-mode
     "tv"   #'visible-mode
+    "tf"   #'flymake-mode
 
     ;; ====== Code ======
     "c"    '(nil :wk "code")
     "cf"   '(nil :wk "format buffer")
+    "ce"   '(nil :wk "eglot session")
+    "cee"  #'eglot
+    "ceA"  #'+eglot-auto-enable
 
     ;; ====== Notes ======
     "n"    '(nil :wk "notes")
@@ -207,7 +213,38 @@
     "e"    '(nil :wk "extras")
 
     ;; ====== Project ======
-    "p"    '(nil :wk "project"))
+    "p"    '(nil :wk "project")
+    "pw"  #'project-switch-project
+    "pc"  #'project-compile
+    "pd"  #'project-find-dir
+    "pf"  #'project-find-file
+    "pk"  #'project-kill-buffers
+    "pb"  #'project-switch-to-buffer
+    "pa"  #'+project-add-project
+    "pD"  #'+dir-locals-open-or-create
+    "p-"  #'project-dired
+    "px"  #'project-execute-extended-command
+    ;; compile/test
+    "pc" #'project-compile
+    ;; run
+    "pr"  '(nil :wk "run")
+    "pre" #'project-eshell
+    "prg" #'+project-gdb
+    "prs" #'project-shell
+    "prc" #'project-shell-command
+    "prC" #'project-async-shell-command
+    ;; forget
+    "pF"  '(nil :wk "forget/cleanup")
+    "pFz" #'project-forget-zombie-projects
+    "pFp" #'project-forget-project
+    "pFu" #'project-forget-projects-under
+    "pFc" #'+project-list-cleanup
+    ;; search/replace
+    "ps"  '(nil :wk "search/replace")
+    "pss" #'project-search
+    "psn" '(fileloop-continue :wk "Next match")
+    "psr" #'project-query-replace-regexp
+    "psf" #'project-find-regexp)
 
   ;; To handle repeated "SPC u" like repeated "C-u"
   (general-def
@@ -218,9 +255,9 @@
 
   (when (or os/linux os/bsd)
     (when (executable-find "netExtender")
-      (+map! "tV"  #'netextender-toggle))
+      (+map! "tV" #'netextender-toggle))
     (when (executable-find "ecryptfs-verify")
-      (+map! "te"  #'ecryptfs-toggle-mount-private)))
+      (+map! "te" #'ecryptfs-toggle-mount-private)))
 
   ;; Exit minibuffer from anywhere
   (keymap-global-set "S-<escape>" #'+minibuffer-kill-minibuffer)
