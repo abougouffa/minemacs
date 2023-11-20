@@ -9,8 +9,6 @@
 ;;; Code:
 
 (use-package emacs
-  ;; Show trailing whitespace in `prog-mode' and `conf-mode'
-  :hook ((prog-mode conf-mode) . +show-trailing-whitespace-h)
   :hook (after-save . +save--guess-file-mode-h)
   :custom
   ;; ====== Default directories for builtin packages ======
@@ -198,7 +196,8 @@
       (message "+toggle-auto-whitespace-cleanup: Enabled.")
       (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
   :config
-  (defun +show-trailing-whitespace-h () (setq-local show-trailing-whitespace t))
+  ;; Show trailing whitespace in `prog-mode' and `conf-mode'
+  (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
   (defun +save--guess-file-mode-h ()
