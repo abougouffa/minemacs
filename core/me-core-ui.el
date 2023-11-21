@@ -83,10 +83,6 @@
   (dolist (face '(mode-line mode-line-active mode-line-inactive mode-line-emphasis))
     (setf (alist-get face solaire-mode-remap-alist) nil)))
 
-(use-package lin
-  :straight t
-  :hook (minemacs-after-startup . lin-global-mode))
-
 
 (provide 'me-core-ui)
 
