@@ -2,6 +2,13 @@
 
 ;; Copyright (C) 2022-2023 Abdelhak Bougouffa
 
+;; =============================================================================
+;; CAVEAT! PLEASE NOTE THAT THIS CONFIG FILE IS JUST AN EXAMPLE OF HOW TO SET
+;; SOME OF MINEMACS' FEATURES. IT IS NOT INTENDED TO BE USED AS IT IS UNLESS YOU
+;; UNDERSTAND IT ALL. IF YOU USE IT AS IT IS, YOU CAN SET SOME SETTINGS THAT YOU
+;; DON'T WANT TO SET!
+;; =============================================================================
+
 ;; Personal info
 (setq user-full-name "Abdelhak Bougouffa"
       user-mail-address (concat "abougouffa" "@" "fedora" "project" "." "org"))
