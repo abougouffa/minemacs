@@ -7,16 +7,16 @@
 
 ;;; Ordered list of enabled core modules
 (setq minemacs-core-modules
-      '(me-splash        ; Simple splash screen
-        me-keybindings   ; Keybinding (general, which-key, hydra, ...)
-        me-evil          ; Emacs as Vim (evil, evil-collection, evil-snipe, evil-numbers, ...)
-        me-core-ui       ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
-        me-completion))  ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
+      '(me-splash         ; Simple splash screen
+        me-keybindings    ; Keybinding (general, which-key, hydra, ...)
+        me-evil           ; Emacs as Vim (evil, evil-collection, evil-snipe, evil-numbers, ...)
+        me-core-ui        ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
+        me-completion))   ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
 
 ;;; List of enabled modules
 (setq minemacs-modules
       '(me-ui             ; User interface (svg-lib, focus, mixed-pitch, ...)
-        me-editor         ; Editing (tempel, smartparens, ligature, ...)
+        me-editor         ; Editing (tempel, tempel-collection, rainbow-delimiters, expreg, drag-stuff, ...)
         me-daemon         ; Emacs daemon tweaks
         me-undo           ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
         me-multi-cursors  ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
@@ -85,6 +85,7 @@
 ;;          obsolete/me-ts-fold       ; Code folding with tree-sitter
 ;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-lexic         ; Offline dictionary using sdcv
+;;          obsolete/me-smartparens   ; Smartparens
 ;;          obsolete/me-maxima        ; Maxima CAS (maxima, imaxima)
 ;;          obsolete/me-org-roam      ; Org roam configuration (org-roam, consult-org-roam, ...)
 ;;          obsolete/me-projectile    ; Project management (projectile, consult-projectile, treemacs-projectile, ...)

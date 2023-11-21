@@ -21,6 +21,7 @@
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
   :hook (emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode)
   :config
+  (setq parinfer-rust-troublesome-modes (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
   (defvar-local +parinter-rust--was-enabled-p nil)
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.

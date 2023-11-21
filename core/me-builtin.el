@@ -1703,6 +1703,10 @@ Useful for quickly switching to an open buffer."
          ("C--" . text-scale-decrease)
          ("C-=" . text-scale-adjust)))
 
+(use-package elec-pair
+  :straight (:type built-in)
+  :hook (minemacs-after-startup . electric-pair-mode))
+
 
 (provide 'me-builtin)
 
