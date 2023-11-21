@@ -22,7 +22,7 @@
 
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "info" "Help" (seq "helpful" (zero-or-more not-newline))) "*" eol)
+ `(,(rx bol "*" (or "info" "Help" (seq (or "helpful" "Man " "WoMan ") (* any))) "*")
    (display-buffer-in-side-window)
    (slot . 0)
    (side . right)
