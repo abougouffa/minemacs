@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.4](https://github.com/abougouffa/minemacs/compare/v3.10.3..v3.10.4) - 2023-11-21
+#### Bug Fixes
+- **(parinfer)** ensure that the directory exits (#129) - ([620cd92](https://github.com/abougouffa/minemacs/commit/620cd92aa98f46870b346312daa0667cbd8eccda)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** disable the buggy `treesit-fold` - ([94b31d6](https://github.com/abougouffa/minemacs/commit/94b31d6fb1915ff7c90966064fe7c6d28c862643)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** add a caveat to `config.el` - ([a9dd90f](https://github.com/abougouffa/minemacs/commit/a9dd90fa47240fc59789e094d96accbdd7149b83)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(builtin)** use `electric-pair-mode` for the moment - ([8301aee](https://github.com/abougouffa/minemacs/commit/8301aeeee8cffc2591d9b3903e56a1247a9e2dfd)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** initial support for `project-cmake` - ([92d4b89](https://github.com/abougouffa/minemacs/commit/92d4b8912d66cd7fb8c95c5d2ed750d91b3d96be)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `solaire-mode` - ([ed68c64](https://github.com/abougouffa/minemacs/commit/ed68c644bccec956f906acf5c8fff0e07bd3eb8d)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(core-ui)** remove `lin` - ([fb76722](https://github.com/abougouffa/minemacs/commit/fb76722ea4cb3aba3f8a14c459b1bf27dd1e1998)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(editor)** make `smartparens` obsolete - ([64a3601](https://github.com/abougouffa/minemacs/commit/64a360172eec553c53f8ce168acf0e49531b51ad)) - [@abougouffa](https://github.com/abougouffa)
+- **(electric-pair)** more rules for Org-mode and Markdown - ([3cd3a7d](https://github.com/abougouffa/minemacs/commit/3cd3a7d7cce74fadc6746f5d75252f1f80c4c5ab)) - [@abougouffa](https://github.com/abougouffa)
+- **(latex)** remove duplicate settings - ([0712396](https://github.com/abougouffa/minemacs/commit/07123965b32c85bba8cc574ff894d5009a8c883f)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** show `man` and `woman` on a dedicated side window - ([95f2637](https://github.com/abougouffa/minemacs/commit/95f26370ead16b755952568157aac4842065d137)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([76756f5](https://github.com/abougouffa/minemacs/commit/76756f5b50b85e456ed924ffd705f673608f7bb0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.3](https://github.com/abougouffa/minemacs/compare/v3.10.2..v3.10.3) - 2023-11-20
 #### Bug Fixes
 - **(transient)** install from Elpa on Emacs 28 - ([978a698](https://github.com/abougouffa/minemacs/commit/978a698545925bd6888f5c25adf4ccb94e0dab80)) - [@abougouffa](https://github.com/abougouffa)
