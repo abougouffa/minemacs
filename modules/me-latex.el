@@ -19,8 +19,8 @@
   (TeX-auto-local ".auctex-auto") ; use hidden directories for AUCTeX files.
   (TeX-style-local ".auctex-style")
   (TeX-source-correlate-method 'synctex)
-  (TeX-electric-math '("$" . "$")) ; auto close inline equations
   (TeX-source-correlate-start-server nil) ; don't start the Emacs server when correlating sources.
+  (TeX-electric-math '("$" . "$")) ; auto close inline equations
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
   (TeX-engine 'xetex) ; use XeLaTeX by default
@@ -62,11 +62,6 @@
   (add-to-list 'LaTeX-verbatim-environments "Verbatim")
   (add-to-list 'LaTeX-verbatim-macros-with-braces "lstinline")
   (add-to-list 'LaTeX-verbatim-macros-with-delims "lstinline")
-
-  ;; Electric pairs in auctex
-  (customize-set-variable 'TeX-electric-sub-and-superscript t)
-  (customize-set-variable 'LaTeX-electric-left-right-brace t)
-  (customize-set-variable 'TeX-electric-math (cons "$" "$"))
 
   ;; Fontification taken from: tex.stackexchange.com/a/86119/81279
   (setq font-latex-match-reference-keywords
