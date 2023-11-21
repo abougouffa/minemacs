@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(defconst +parinfer-rust-path (concat minemacs-local-dir "parinfer-rust/"))
+(defconst +parinfer-rust-path (+directory-ensure minemacs-local-dir "parinfer-rust/"))
 
 (use-package parinfer-rust-mode
   :straight t
