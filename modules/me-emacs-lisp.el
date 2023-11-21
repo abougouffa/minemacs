@@ -80,7 +80,7 @@
   :after elisp-mode minemacs-loaded
   :demand t
   :custom
-  (eros-eval-result-prefix "⟹ ")
+  (eros-eval-result-prefix "―→ ")
   :config
   (eros-mode 1)
 

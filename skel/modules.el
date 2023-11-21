@@ -85,6 +85,7 @@
 ;;          obsolete/me-ts-fold       ; Code folding with tree-sitter
 ;;          obsolete/me-flycheck      ; Static checkers (flycheck, ...)
 ;;          obsolete/me-lexic         ; Offline dictionary using sdcv
+;;          obsolete/me-ligature      ; Ligatures (needs further customization in function of the used font)
 ;;          obsolete/me-smartparens   ; Smartparens
 ;;          obsolete/me-maxima        ; Maxima CAS (maxima, imaxima)
 ;;          obsolete/me-org-roam      ; Org roam configuration (org-roam, consult-org-roam, ...)
