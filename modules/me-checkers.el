@@ -86,10 +86,6 @@
   :hook (plantuml-mode . flymake-plantuml-setup))
 
 
-;; Make hydra bindings for `flymake'
-(with-eval-after-load 'flymake)
-
-
 (provide 'me-checkers)
 
 ;;; me-checkers.el ends here
