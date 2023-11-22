@@ -1230,7 +1230,7 @@ current line.")
     (setq-local electric-pair-pairs (append electric-pair-pairs (alist-get major-mode +electric-pair-mode-pairs-alist))))
 
   (defvar +electric-pair-mode-pairs-alist
-    '((org-mode      . ((?= . ?=) (?~ . ?~) (?* . ?*) (?/ . ?/) (?` . ?')))
+    '((org-mode      . ((?= . ?=) (?~ . ?~) (?/ . ?/) (?` . ?')))
       (markdown-mode . ((?` . ?`) (?* . ?*)))))
 
   ;; Add the hooks to the concerned modes
