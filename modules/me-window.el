@@ -22,7 +22,7 @@
 
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "info" "Help" (seq (or "helpful" "Man " "WoMan ") (* any))) "*")
+ `(,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan ") (* any))) "*")
    (display-buffer-in-side-window)
    (slot . 0)
    (side . right)
