@@ -75,6 +75,7 @@
     :pre-check (unless codespell-exec (error "Cannot find codespell executable"))
     :write-type 'file
     :proc-form (list codespell-exec "-d" "-i0" fmqd-temp-file)
+    :search-regexp "^\\([[:alnum:][:punct:]]+\\):\\([[:digit:]]+\\):[[:space:]]\\(.+\\)"
     :prep-diagnostic
     (let* ((lnum (string-to-number (match-string 2)))
            (text (match-string 3))
@@ -83,11 +84,7 @@
            (end (cdr pos))
            (type :warning)
            (msg text))
-      (list fmqd-source beg end type msg))
-    :search-regexp
-    (rx bol (group (one-or-more (any alnum punct)))
-        ":" (group (one-or-more digit))
-        ":" space (group (one-or-more any)))))
+      (list fmqd-source beg end type msg))))
 
 (use-package flymake-plantuml
   :straight (:host github :repo "shaohme/flymake-plantuml")
