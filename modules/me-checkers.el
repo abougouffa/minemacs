@@ -97,6 +97,10 @@
 (use-package flymake-pmd
   :straight (:host github :repo "rody/flymake-pmd"))
 
+(use-package flymake-nasm
+  :straight (:host github :repo "juergenhoetzel/flymake-nasm")
+  :hook (asm-mode . flymake-nasm-setup))
+
 
 (provide 'me-checkers)
 
