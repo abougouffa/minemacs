@@ -10,7 +10,15 @@
 
 (use-package flymake-collection
   :straight t
-  :hook (minemacs-after-startup . flymake-collection-hook-setup))
+  :hook (minemacs-after-startup . flymake-collection-hook-setup)
+  :config
+  ;; Activate more checkers for Python
+  (setf (alist-get '(python-mode python-ts-mode) flymake-collection-hook-config nil nil 'equal)
+        '(flymake-collection-pycodestyle
+          flymake-collection-mypy
+          flymake-collection-pylint
+          flymake-collection-ruff
+          (flymake-collection-flake8 :disabled t))))
 
 (use-package flymake-cppcheck
   :straight (nil :host github :repo "shaohme/flymake-cppcheck")
