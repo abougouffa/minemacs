@@ -78,6 +78,7 @@
   :after sideline
   :demand t
   :custom
+  (sideline-blame-datetime-format "%b %d %Y ")
   (sideline-backends-right '((sideline-blame . up))))
 
 
