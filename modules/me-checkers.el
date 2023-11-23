@@ -93,6 +93,10 @@
   :straight (:host github :repo "shaohme/flymake-plantuml")
   :hook (plantuml-mode . flymake-plantuml-setup))
 
+(use-package flymake-relint
+  :straight t
+  :hook ((emacs-lisp-mode lisp-interaction-mode) . flymake-relint-setup))
+
 
 (provide 'me-checkers)
 
