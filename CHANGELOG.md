@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.5](https://github.com/abougouffa/minemacs/compare/v3.10.4..v3.10.5) - 2023-11-23
+#### Features
+- **(checkers)** add `flymake-nasm` - ([25eb2a2](https://github.com/abougouffa/minemacs/commit/25eb2a24ed43d4d1edf1e3cac677be861657f5a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** add `flymake-pmd` - ([79b09b0](https://github.com/abougouffa/minemacs/commit/79b09b09a7ead1be16f3c26b8ab96a9b45fcdab4)) - [@abougouffa](https://github.com/abougouffa)
+- **(checkers)** add `flymake-relint` to check regexps in Elisp - ([8639ad4](https://github.com/abougouffa/minemacs/commit/8639ad49268bc6804699a073516d36959749c836)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `sideline-blame` - ([0527103](https://github.com/abougouffa/minemacs/commit/0527103013a2c0ce1a878532bdbceee91c7893e6)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** make `blamer` obsolete - ([625d1d4](https://github.com/abougouffa/minemacs/commit/625d1d424bed31696acd98ccf3979191274fdcf3)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(checkers)** remove dead code - ([b52cdc0](https://github.com/abougouffa/minemacs/commit/b52cdc0fba5baf832f508f32de1ca55467259028)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(checkers)** code formatting - ([762c1c4](https://github.com/abougouffa/minemacs/commit/762c1c48e6fcb3469f16d22abc6365f68facd3fc)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(ui)** remove `sideline-blame` - ([189ce9c](https://github.com/abougouffa/minemacs/commit/189ce9c020602c14a2125921eb4a16cced64d540)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(elec-pair)** don't pair * in Org mode - ([c466e01](https://github.com/abougouffa/minemacs/commit/c466e01223ac09463cfd87fb03e8f0313946ec01)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** activate more checkers for Python - ([36dac31](https://github.com/abougouffa/minemacs/commit/36dac319332da92422c44f257edec0eb5a2318dd)) - [@abougouffa](https://github.com/abougouffa)
+- **(sideline)** change date format for `sideline-blame` - ([557af19](https://github.com/abougouffa/minemacs/commit/557af1927e89f44284637c40c92c703522cdbdd5)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** add more rules for displaying help buffers - ([a45e026](https://github.com/abougouffa/minemacs/commit/a45e026b22f5f51707fd9a74ebbc0f2bc6243417)) - [@abougouffa](https://github.com/abougouffa)
+- bump package versions - ([efdf896](https://github.com/abougouffa/minemacs/commit/efdf896f57ee4b46ff6e99501d123ff0707c4f43)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.4](https://github.com/abougouffa/minemacs/compare/v3.10.3..v3.10.4) - 2023-11-21
 #### Bug Fixes
 - **(parinfer)** ensure that the directory exits (#129) - ([620cd92](https://github.com/abougouffa/minemacs/commit/620cd92aa98f46870b346312daa0667cbd8eccda)) - [@abougouffa](https://github.com/abougouffa)
