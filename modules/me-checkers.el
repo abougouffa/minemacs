@@ -97,6 +97,9 @@
   :straight t
   :hook ((emacs-lisp-mode lisp-interaction-mode) . flymake-relint-setup))
 
+(use-package flymake-pmd
+  :straight (:host github :repo "rody/flymake-pmd"))
+
 
 (provide 'me-checkers)
 
