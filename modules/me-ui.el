@@ -69,6 +69,17 @@
                     evil-delete evil-delete-line evil-delete-whole-line
                     evil-goto-last-change evil-goto-last-change-reverse)))))
 
+(use-package sideline
+  :straight t
+  :hook (minemacs-after-startup . global-sideline-mode))
+
+(use-package sideline-blame
+  :straight t
+  :after sideline
+  :demand t
+  :custom
+  (sideline-backends-right '((sideline-blame . up))))
+
 
 (provide 'me-ui)
 
