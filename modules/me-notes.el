@@ -46,12 +46,10 @@
     "f" #'consult-notes
     "s" #'consult-notes-search-in-all-notes)
   :custom
-  (consult-notes-file-dir-sources `(("Notes" "n" ,denote-directory))) ; Set notes dir(s), see below
   (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
   :config
   (+consult-notes--unbound-org-roam)
-  (consult-notes-denote-mode 1)
-  (consult-notes-org-headings-mode 1))
+  (consult-notes-denote-mode 1))
 
 
 (provide 'me-notes)
