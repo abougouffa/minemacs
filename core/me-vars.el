@@ -185,16 +185,16 @@ MinEmacs hooks will be run in this order:
   :group 'minemacs-core
   :type 'hook)
 
+(defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
 (defvar minemacs-build-functions nil
   "Special hook for build functions that are run after completing package updates.")
-(defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
 
 (defcustom +env-file (concat minemacs-local-dir "system-env.el")
   "The file in which the environment variables will be saved."
   :group 'minemacs-core
   :type 'file)
 
-;; List from Doom Emacs
+;; Inspired by Doom Emacs
 (defcustom +env-deny-vars
   '(;; Unix/shell state that shouldn't be persisted
     "^HOME$" "^\\(OLD\\)?PWD$" "^SHLVL$" "^PS1$" "^R?PROMPT$" "^TERM\\(CAP\\)?$"
@@ -224,6 +224,7 @@ Each string is a regexp, matched against variable names to omit from
 
 ;; Functions
 (defun +load-user-configs (&rest configs)
+  "Load user configurations CONFIGS."
   (dolist (conf configs)
     (unless (memq conf minemacs-ignore-user-config)
       (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
