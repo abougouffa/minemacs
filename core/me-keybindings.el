@@ -75,6 +75,7 @@
     "X"    #'org-capture
     "u"    '(universal-argument :wk "C-u")
     "C"    #'universal-coding-system-argument
+    "O"    #'other-window-prefix
 
     ;; ====== Quit/Session ======
     "q"    '(nil :wk "quit/session")
