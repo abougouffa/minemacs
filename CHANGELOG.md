@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.6](https://github.com/abougouffa/minemacs/compare/v3.10.5..v3.10.6) - 2023-11-25
+#### Nitpicks, changes with no side effect
+- minor refactors - ([d65b966](https://github.com/abougouffa/minemacs/commit/d65b9660d48d463dd99c84efa9ac5f253621b028)) - [@abougouffa](https://github.com/abougouffa)
+- correct typos - ([de4184f](https://github.com/abougouffa/minemacs/commit/de4184f64e01341eafa3335750f17f5d41dfe52c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** remove `pgformatter` as it is merged upstream - ([3328cea](https://github.com/abougouffa/minemacs/commit/3328cea4f15f7c0ae1e438ff8f3a4f0c9f771078)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** enable `auto-save-visited-mode` - ([81c0441](https://github.com/abougouffa/minemacs/commit/81c0441597de9c47cca20f3f5b14ce59dfb2e86d)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-notes)** use only for Denote - ([d0bb198](https://github.com/abougouffa/minemacs/commit/d0bb1987f7a92c68e076ebef8d400a659ff47abc)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove the never used `me-meow` module - ([ab863c9](https://github.com/abougouffa/minemacs/commit/ab863c9065bd25378d64fc0989e2a59221f5bf19)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybinding)** bind `other-window-prefix` to `SPC O` - ([aafcb2d](https://github.com/abougouffa/minemacs/commit/aafcb2d78899e03eccbb5e33b41fe24b4231961e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([181815a](https://github.com/abougouffa/minemacs/commit/181815aed87e4723f9c14ec01ed438ec585534fc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.5](https://github.com/abougouffa/minemacs/compare/v3.10.4..v3.10.5) - 2023-11-23
 #### Features
 - **(checkers)** add `flymake-nasm` - ([25eb2a2](https://github.com/abougouffa/minemacs/commit/25eb2a24ed43d4d1edf1e3cac677be861657f5a4)) - [@abougouffa](https://github.com/abougouffa)
