@@ -10,6 +10,7 @@
 
 (use-package emacs
   :hook (after-save . +save--guess-file-mode-h)
+  :hook (minemacs-first-file . auto-save-visited-mode)
   :custom
   ;; ====== Default directories for builtin packages ======
   (diary-file (concat minemacs-local-dir "diary"))
