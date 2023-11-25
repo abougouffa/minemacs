@@ -154,7 +154,7 @@
   :after dap-mode
   :demand t
   :custom
-  (dap-python-debugger 'debugpy)) ; the default `ptvsd' has beed depracated
+  (dap-python-debugger 'debugpy)) ; the default `ptvsd' has been deprecated
 
 (use-package dap-mouse
   :after dap-mode
