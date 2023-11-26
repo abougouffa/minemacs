@@ -20,6 +20,7 @@
   :init
   (+map! "wa" #'ace-window))
 
+;; Help/info buffers
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan ") (* any))) "*")
@@ -47,6 +48,7 @@
    (side . right)
    (window-width . 82)))
 
+;; Terminal buffers
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command") "*" eol)
@@ -55,10 +57,12 @@
    (reusable-frames . visible) ;;
    (window-height . 0.3)))
 
+;; REPL buffers
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*"
-     (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua" "inferior-lisp" "prolog" "gnuplot"
+     (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
+      "inferior-lisp" "prolog" "gnuplot" "Nix-REPL"
       (seq (or (seq "R" (opt ":" (any digit))) "julia") ":" (* any)))
      "*" eol)
    (display-buffer-in-side-window)
