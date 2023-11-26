@@ -148,6 +148,12 @@
 (use-package nix-update
   :straight t)
 
+(use-package envrc
+  :straight t
+  :hook (minemacs-first-file . envrc-global-mode)
+  :custom
+  (envrc-debug minemacs-debug-p))
+
 
 (provide 'me-tools)
 
