@@ -101,6 +101,10 @@
   :straight (:host github :repo "juergenhoetzel/flymake-nasm")
   :hook (asm-mode . flymake-nasm-setup))
 
+(use-package flymake-pyre
+  :straight (:host github :repo "juergenhoetzel/flymake-pyre")
+  :hook (asm-mode . flymake-pyre-setup))
+
 
 (provide 'me-checkers)
 
