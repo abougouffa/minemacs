@@ -142,6 +142,12 @@
   :init
   (+map! "oo" #'app-launcher-run-app))
 
+(use-package nix-mode
+  :straight t)
+
+(use-package nix-update
+  :straight t)
+
 
 (provide 'me-tools)
 
