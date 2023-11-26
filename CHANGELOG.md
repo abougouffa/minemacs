@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.8](https://github.com/abougouffa/minemacs/compare/v3.10.7..v3.10.8) - 2023-11-26
+#### Bug Fixes
+- **(org)** stick Org to the built-in (stable) version - ([7c8635b](https://github.com/abougouffa/minemacs/commit/7c8635b89738ee29de835bf63faaf24125402f58)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(tools)** add `nix-ts-mode` and tweak Eglot servers to run for it - ([25b98eb](https://github.com/abougouffa/minemacs/commit/25b98ebc1eb058ae51a12225f45f4f0c7788d4ec)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(treesit-auto)** add Nix, use the `treesit-auto-langs` variable - ([600691e](https://github.com/abougouffa/minemacs/commit/600691ed2595a90be9b083fb9fa7f5753741e5c8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.7](https://github.com/abougouffa/minemacs/compare/v3.10.6..v3.10.7) - 2023-11-26
 #### Features
 - **(checkers)** add `flymake-pyre` - ([184f4b2](https://github.com/abougouffa/minemacs/commit/184f4b2e3b6cc449e54ed2534fb06bc635fa9c2f)) - [@abougouffa](https://github.com/abougouffa)
