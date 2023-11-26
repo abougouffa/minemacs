@@ -73,6 +73,7 @@
   (org-modern-table-horizontal 2)
   (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil)
+  (org-modern-checkbox nil) ;; Not that interesting! Maybe it depends on the used font
   (org-modern-todo-faces
    ;; Tweak colors, and force it to be monospaced, useful when using `mixed-pitch-mode'.
    '(("IDEA" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "goldenrod"))
