@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v3.10.7](https://github.com/abougouffa/minemacs/compare/v3.10.6..v3.10.7) - 2023-11-26
+#### Features
+- **(checkers)** add `flymake-pyre` - ([184f4b2](https://github.com/abougouffa/minemacs/commit/184f4b2e3b6cc449e54ed2534fb06bc635fa9c2f)) - [@abougouffa](https://github.com/abougouffa)
+- **(completion)** add `wgrep` (integrates with `consult` & `embark`) - ([4b66448](https://github.com/abougouffa/minemacs/commit/4b6644814603113486c7e924eb87d86ab166e43e)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `direnv` - ([aefdfa1](https://github.com/abougouffa/minemacs/commit/aefdfa1a3be7a77601229e5a27b532cc8792a202)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for Nix - ([0868ba9](https://github.com/abougouffa/minemacs/commit/0868ba9b7ec2570c062b87b4b918b2045f97e384)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(builtin)** disable `auto-save-visited-mode` - ([ca6725a](https://github.com/abougouffa/minemacs/commit/ca6725ab192f31a4629968f66eb3e12e8f15c9f0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** let straight decide where to get builtin packages - ([0f7300a](https://github.com/abougouffa/minemacs/commit/0f7300aa03b05b5ad0b2a047c3298e152b602e40)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** bind `grep`/`file` alongside with `rg`/`fd` - ([845bfb8](https://github.com/abougouffa/minemacs/commit/845bfb824341d5ceb485642a5355a5086202f926)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-modern)** disable rendering checkboxes as unicode chars - ([ee8f74a](https://github.com/abougouffa/minemacs/commit/ee8f74a636e81d723bc071d5b6a9e09bf669820c)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** add Nix-REPL to the REPLs display rule - ([ca2923c](https://github.com/abougouffa/minemacs/commit/ca2923c4db6babb8b1ecfa041750e41b0f15a4d8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1136d0a](https://github.com/abougouffa/minemacs/commit/1136d0accf0f3044619b0c30b5b6e72ecfbf416a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([72086e9](https://github.com/abougouffa/minemacs/commit/72086e95ee23e597747996890e5cb15f6f017595)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.6](https://github.com/abougouffa/minemacs/compare/v3.10.5..v3.10.6) - 2023-11-25
 #### Nitpicks, changes with no side effect
 - minor refactors - ([d65b966](https://github.com/abougouffa/minemacs/commit/d65b9660d48d463dd99c84efa9ac5f253621b028)) - [@abougouffa](https://github.com/abougouffa)
