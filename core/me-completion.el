@@ -286,6 +286,12 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :hook (minibuffer-setup . vertico-repeat-save)
   :bind ("M-R" . vertico-repeat))
 
+(use-package wgrep
+  :straight t
+  :commands wgrep-change-to-wgrep-mode
+  :custom
+  (wgrep-auto-save-buffer t))
+
 
 (provide 'me-completion)
 
