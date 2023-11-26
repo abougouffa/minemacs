@@ -220,57 +220,42 @@ or file path may exist now."
              (file-name-nondirectory session-filename)))))
 
 (use-package minibuffer
-  :straight (:type built-in)
   :custom
   ;; Ignores case when completing files names
   (read-file-name-completion-ignore-case t)
   ;; More info on completions
   (completions-detailed t))
 
-(use-package map
-  :straight (:type built-in))
-
-(use-package let-alist
-  :straight (:type built-in))
-
-(use-package seq
-  :straight (:type built-in))
-
 (use-package transient
-  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
+  :straight t
   ;; Map ESC and q to quit transient
   :bind (:map transient-map
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
 (use-package password-cache
-  :straight (:type built-in)
   :custom
   (password-cache t) ; Enable password caching
   (password-cache-expiry 60)) ; One minute, default is 16
 
 (use-package auth-source
-  :straight (:type built-in)
   :custom
   (auth-sources '("~/.authinfo.gpg")) ; Default auth-sources to GPG
   (auth-source-do-cache t) ; Enable caching, do not keep asking about GPG key
   (auth-source-cache-expiry 86400)) ; All day, default is 2h (7200)
 
 (use-package epa
-  :straight (:type built-in)
   :custom
   ;; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
   (epg-pinentry-mode 'loopback))
 
 (use-package epa-file
-  :straight (:type built-in)
   :after minemacs-first-file
   :demand t
   :config
   (+shutup! (epa-file-enable)))
 
 (use-package dired
-  :straight (:type built-in)
   ;; Enable adding mail attachments from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
   :hook (dired-mode . turn-on-gnus-dired-mode)
@@ -279,13 +264,12 @@ or file path may exist now."
   (dired-auto-revert-buffer t))
 
 (use-package doc-view
-  :straight (:type built-in)
   :custom
   (doc-view-continuous t)
   (doc-view-mupdf-use-svg (+emacs-features-p 'rsvg)))
 
 (use-package project
-  :straight (:type built-in)
+  :straight t
   :after minemacs-loaded
   :demand t
   :hook (kill-emacs . project-forget-zombie-projects)
@@ -294,7 +278,6 @@ or file path may exist now."
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project")))
 
 (use-package tab-bar
-  :straight (:type built-in)
   :hook (minemacs-after-startup . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history
@@ -318,7 +301,7 @@ or file path may exist now."
        'face (funcall tab-bar-tab-face-function tab)))))
 
 (use-package flymake
-  :straight (:type built-in)
+  :straight t
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
@@ -391,11 +374,9 @@ or file path may exist now."
     nil 13))
 
 (use-package xt-mouse
-  :straight (:type built-in)
   :hook (tty-setup . xterm-mouse-mode))
 
 (use-package tramp
-  :straight (:type built-in)
   :init
   ;; This is faster than the default "scp"
   (unless os/win
@@ -426,7 +407,6 @@ or file path may exist now."
      (apply #'+tramp-send-command--workaround-stty-icanon-bug args))))
 
 (use-package eshell
-  :straight (:type built-in)
   :custom
   (eshell-aliases-file (concat minemacs-local-dir "eshell/aliases"))
   (eshell-directory-name (+directory-ensure minemacs-local-dir "eshell/"))
@@ -437,7 +417,6 @@ or file path may exist now."
   (eshell-scroll-to-bottom-on-input 'this))
 
 (use-package reftex ;; Inspired by Doom Emacs
-  :straight (:type built-in)
   :hook (reftex-toc-mode . reftex-toc-rescan)
   :custom
   ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
@@ -466,7 +445,6 @@ or file path may exist now."
     (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
 
 (use-package bibtex
-  :straight (:type built-in)
   :hook (bibtex-mode . display-line-numbers-mode)
   :custom
   (bibtex-dialect 'biblatex)
@@ -478,29 +456,24 @@ or file path may exist now."
     "r" #'bibtex-reformat))
 
 (use-package treesit
-  :straight (:type built-in)
   :when (+emacs-features-p 'tree-sitter)
   :custom
   (treesit-font-lock-level 4))
 
 (use-package dockerfile-ts-mode
-  :straight (:type built-in)
   :when (+emacs-features-p 'tree-sitter)
   :mode "/Dockerfile\\'")
 
 (use-package cmake-ts-mode
-  :straight (:type built-in)
   :when (+emacs-features-p 'tree-sitter)
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'")
 
 (use-package autoinsert
-  :straight (:type built-in)
   :custom
   (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
 (use-package hideif
-  :straight (:type built-in)
   :init
   (defun +hide-ifdef-mode-maybe-h ()
     ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
@@ -520,23 +493,21 @@ or file path may exist now."
   (hide-ifdef-initially t))
 
 (use-package hl-line
-  :straight (:type built-in)
   ;; Highlight the current line
   :hook ((prog-mode conf-mode text-mode) . hl-line-mode))
 
 (use-package hideshow
-  :straight (:type built-in)
   ;; Hide/show code blocks, a.k.a. code folding
   :hook ((prog-mode conf-mode) . hs-minor-mode))
 
 (use-package xref
-  :straight (:type built-in)
+  :straight t
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 (use-package eglot
-  :straight `(:type ,(if (< emacs-major-version 29) 'git 'built-in))
+  :straight t
   :hook (eglot-managed-mode . eglot-inlay-hints-mode)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
@@ -582,12 +553,11 @@ or file path may exist now."
   (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server"))
 
 (use-package eldoc
-  :straight (:type built-in)
+  :straight t
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (use-package compile
-  :straight (:type built-in)
   :commands +toggle-bury-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
   :hook (compilation-filter . ansi-color-compilation-filter)
@@ -641,25 +611,21 @@ or file path may exist now."
       (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
 
 (use-package vhdl-mode
-  :straight (:type built-in)
   :config
   ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
   (+eglot-register 'vhdl-mode "vhdl_ls"))
 
 (use-package verilog-mode
-  :straight (:type built-in)
   :config
   ;; Setup Verilog/SystemVerilog LSP servers
   (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
 
 (use-package nxml-mode
-  :straight (:type built-in)
   :mode "\\.xmpi\\'"
   :config
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
 (use-package elisp-mode
-  :straight (:type built-in)
   :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-first-elisp-file ; prevent elisp-mode from being loaded too early
   :init
@@ -915,12 +881,10 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (+compile-functions #'+emacs-lisp--highlight-vars-and-faces #'+emacs-lisp--calculate-lisp-indent-a))
 
 (use-package scheme
-  :straight (:type built-in)
   :custom
   (scheme-program-name "guile"))
 
 (use-package gdb-mi
-  :straight (:type built-in)
   :custom
   (gdb-show-main t) ; display source file containing main routine at startup
   (gdb-many-windows t) ; start in gdb-many-windows mode
@@ -932,7 +896,6 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (gdb-display-io-nopopup nil)) ; IDEA: maybe change it!
 
 (use-package gud
-  :straight (:type built-in)
   :config
   ;; Add an overlay for the current line (mimics dap-mode)
   (defvar +gud-overlay
@@ -956,7 +919,6 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
        (delete-overlay +gud-overlay)))))
 
 (use-package org
-  :straight (:type built-in)
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
@@ -1090,7 +1052,6 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
           ("KILL" . +org-todo-cancel))))
 
 (use-package org-agenda
-  :straight (:type built-in)
   :custom
   (org-agenda-tags-column 0)
   (org-agenda-block-separator ?─)
@@ -1104,16 +1065,13 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 ;; TEMP: This will solve the "Invalid face reference: org-indent [X times]"
 ;; problem.
 (use-package org-indent
-  :straight (:type built-in)
   :after org
   :demand t)
 
 (use-package ox
-  :straight (:type built-in)
   :after org)
 
 (use-package ox-latex
-  :straight (:type built-in)
   :after ox
   :custom
   (org-latex-src-block-backend 'engraved)
@@ -1181,7 +1139,6 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   :demand t)
 
 (use-package oc
-  :straight (:type built-in)
   :after org
   :demand t
   :custom
@@ -1191,8 +1148,20 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (+map-local! :keymaps 'org-mode-map
     "C" #'org-cite-insert))
 
-(use-package electric
+(use-package oc-csl
+  :after oc
+  :demand t)
+
+(use-package oc-natbib
+  :after oc
+  :demand t)
+
+(use-package oc-biblatex
   :straight (:type built-in)
+  :after oc
+  :demand t)
+
+(use-package electric
   :config
   ;; Electric indent on delete and enter
   (setq-default electric-indent-chars '(?\n ?\^?))
@@ -1216,7 +1185,6 @@ current line.")
          (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
 
 (use-package elec-pair
-  :straight (:type built-in)
   :hook (minemacs-after-startup . electric-pair-mode)
   :hook (org-mode . +electric-pair-tweaks-h)
   :init
@@ -1237,23 +1205,7 @@ current line.")
   (dolist (mode (mapcar #'car +electric-pair-mode-pairs-alist))
     (add-hook (intern (format "%s-hook" mode)) #'+electric-pair-tweaks-h)))
 
-(use-package oc-csl
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-natbib
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
-(use-package oc-biblatex
-  :straight (:type built-in)
-  :after oc
-  :demand t)
-
 (use-package ediff
-  :straight (:type built-in)
   :hook (ediff-before-setup . +ediff--save-window-config-h)
   :custom
   ;; Split horizontally
@@ -1274,7 +1226,6 @@ current line.")
         (set-window-configuration +ediff--saved-window-config)))))
 
 (use-package smerge-mode
-  :straight (:type built-in)
   :commands +smerge-hydra/body
   :init
   (+map! "gm" '(+smerge-hydra/body :wk "sMerge"))
@@ -1323,7 +1274,6 @@ current line.")
       ("q" nil :color blue))))
 
 (use-package octave
-  :straight (:type built-in)
   :mode ("\\.m\\'" . octave-mode)
   :config
   (defun +octave-eval-last-sexp ()
@@ -1340,24 +1290,20 @@ current line.")
          (mapconcat 'identity inferior-octave-output-list "\n"))))))
 
 (use-package abbrev
-  :straight (:type built-in)
   :custom
   (abbrev-file-name (concat minemacs-local-dir "abbrev.el")))
 
 (use-package bookmark
-  :straight (:type built-in)
   :custom
   (bookmark-default-file (concat minemacs-local-dir "bookmark.el"))
   ;; Save the bookmarks every time a bookmark is made
   (bookmark-save-flag 1))
 
 (use-package calc
-  :straight (:type built-in)
   :custom
   (calc-settings-file (concat minemacs-local-dir "calc-settings.el")))
 
 (use-package desktop
-  :straight (:type built-in)
   :custom
   ;; File name to use when saving desktop
   (desktop-base-file-name "emacs-session.el")
@@ -1371,7 +1317,6 @@ current line.")
   (desktop-save-buffer t))
 
 (use-package recentf
-  :straight (:type built-in)
   :after minemacs-loaded
   :demand t
   :custom
@@ -1389,7 +1334,6 @@ current line.")
   (+shutup! (recentf-mode 1)))
 
 (use-package url
-  :straight (:type built-in)
   :custom
   (url-cache-directory (+directory-ensure minemacs-cache-dir "url/"))
   (url-configuration-directory (+directory-ensure minemacs-local-dir "url/"))
@@ -1397,7 +1341,6 @@ current line.")
   (url-history-file (concat minemacs-local-dir "url/history.el")))
 
 (use-package webjump
-  :straight (:type built-in)
   :custom
   (webjump-sites
    '(("Emacs Wiki"    . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
@@ -1421,7 +1364,6 @@ current line.")
      ("Wikipedia"     . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
 
 (use-package time-stamp
-  :straight (:type built-in)
   ;; Update time stamp (if available) before saving a file.
   :hook (before-save . time-stamp)
   :custom
@@ -1433,7 +1375,6 @@ current line.")
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
 
 (use-package whitespace
-  :straight (:type built-in)
   :hook (before-save . +save--whitespace-cleanup-h)
   :custom
   ;; Default behavior for `whitespace-cleanup'
@@ -1453,7 +1394,6 @@ current line.")
       (whitespace-cleanup))))
 
 (use-package autorevert
-  :straight (:type built-in)
   ;; Auto load files changed on disk
   :hook (minemacs-first-file . global-auto-revert-mode)
   :custom
@@ -1461,20 +1401,17 @@ current line.")
   (global-auto-revert-non-file-buffers t))
 
 (use-package savehist
-  :straight (:type built-in)
   :hook (minemacs-after-startup . savehist-mode)
   :custom
   (savehist-file (concat minemacs-local-dir "savehist.el")))
 
 (use-package saveplace
-  :straight (:type built-in)
   ;; Save place in files
   :hook (minemacs-first-file . save-place-mode)
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 
 (use-package term
-  :straight (:type built-in)
   :config
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
   ;; `shell-kill-buffer-on-exit').
@@ -1488,12 +1425,10 @@ current line.")
        (apply orig-fn (list proc msg))))))
 
 (use-package executable
-  :straight (:type built-in)
   ;; Make scripts (files starting with shebang "#!") executable when saved
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
 (use-package display-line-numbers
-  :straight (:type built-in)
   ;; Show line numbers
   :hook ((prog-mode conf-mode text-mode) . display-line-numbers-mode)
   :custom
@@ -1505,7 +1440,6 @@ current line.")
   (display-line-numbers-widen t))
 
 (use-package pixel-scroll
-  :straight (:type built-in)
   :after minemacs-loaded
   :demand t
   :custom
@@ -1518,7 +1452,6 @@ current line.")
     (pixel-scroll-mode 1)))
 
 (use-package mouse
-  :straight (:type built-in)
   ;; Enable context menu on mouse right click
   :hook (minemacs-after-startup . context-menu-mode)
   :custom
@@ -1528,7 +1461,6 @@ current line.")
   (mouse-drag-and-drop-region-cross-program t))
 
 (use-package mwheel
-  :straight (:type built-in)
   :custom
   ;; Make mouse scroll a little faster
   (mouse-wheel-scroll-amount '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
@@ -1536,21 +1468,18 @@ current line.")
   (mouse-wheel-scroll-amount-horizontal 2))
 
 (use-package gnus
-  :straight (:type built-in)
   :custom
   (gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/"))
   (gnus-init-file (concat minemacs-config-dir "gnus/init.el"))
   (gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")))
 
 (use-package image-dired
-  :straight (:type built-in)
   :custom
   (image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/"))
   (image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el"))
   (image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")))
 
 (use-package time
-  :straight (:type built-in)
   ;; Display time in mode-line
   :hook (minemacs-after-startup . display-time-mode)
   :custom
@@ -1558,7 +1487,6 @@ current line.")
   (display-time-string-forms '((propertize (concat 24-hours ":" minutes)))))
 
 (use-package frame
-  :straight (:type built-in)
   ;; Display divider between windows
   :hook (minemacs-after-startup . window-divider-mode)
   :custom
@@ -1567,7 +1495,6 @@ current line.")
   (window-divider-default-right-width 2))
 
 (use-package server
-  :straight (:type built-in)
   :hook (server-after-make-frame . +load-theme) ; Reload theme when creating a frame on the daemon
   :autoload server-running-p
   :init
@@ -1579,7 +1506,6 @@ current line.")
         (+info! "Started Emacs daemon in background.")))))
 
 (use-package speedbar ; config from Crafted Emacs
-  :straight (:type built-in)
   :custom
   (speedbar-update-flag t) ; Auto-update when the attached frame changes directory
   (speedbar-use-images nil) ; Disable icon images, instead use text
@@ -1625,7 +1551,6 @@ Useful for quickly switching to an open buffer."
     ".md" ".markdown" ".org" ".txt" "README")))
 
 (use-package simple
-  :straight (:type built-in)
   :init
   ;; Never mix, use only spaces
   (setq-default indent-tabs-mode nil)
@@ -1644,38 +1569,31 @@ Useful for quickly switching to an open buffer."
   (save-interprogram-paste-before-kill t))
 
 (use-package help
-  :straight (:type built-in)
   :custom
   ;; Select help window for faster quit!
   (help-window-select t))
 
 (use-package winner
-  :straight (:type built-in)
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
   :hook (minemacs-after-startup . winner-mode))
 
 (use-package delsel
-  :straight (:type built-in)
   ;; Replace selection after start typing
   :hook (minemacs-after-startup . delete-selection-mode))
 
 (use-package mb-depth
-  :straight (:type built-in)
   ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
   :hook (minemacs-after-startup . minibuffer-depth-indicate-mode))
 
 (use-package subword
-  :straight (:type built-in)
   ;; Global SubWord mode
   :hook (minemacs-after-startup . global-subword-mode))
 
 (use-package so-long
-  :straight (:type built-in)
   ;; Better handling for files with so long lines
   :hook (minemacs-after-startup . global-so-long-mode))
 
 (use-package icomplete
-  :straight (:type built-in)
   ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
   ;; the `me-completion' (which contains `vertico-mode' configuration) core
   ;; module is not enabled.
@@ -1683,7 +1601,6 @@ Useful for quickly switching to an open buffer."
   :hook (minemacs-after-startup . fido-vertical-mode))
 
 (use-package battery
-  :straight (:type built-in)
   :unless (+shutup! (let ((battery-str (battery)))
                       (or (equal "Battery status not available" battery-str)
                           (string-match-p "unknown" battery-str)
@@ -1692,7 +1609,6 @@ Useful for quickly switching to an open buffer."
   :hook (minemacs-after-startup . display-battery-mode))
 
 (use-package windmove
-  :straight (:type built-in)
   :after minemacs-loaded
   :demand t
   :config
@@ -1700,7 +1616,6 @@ Useful for quickly switching to an open buffer."
   (windmove-default-keybindings 'shift))
 
 (use-package pulse
-  :straight (:type built-in)
   :init
   ;; Add visual pulse when changing focus, like beacon but built-in
   ;; From https://karthinks.com/software/batteries-included-with-emacs/
@@ -1711,7 +1626,6 @@ Useful for quickly switching to an open buffer."
     (advice-add command :after #'+pulse-line)))
 
 (use-package isearch
-  :straight (:type built-in)
   ;; Scroll in isearch history using UP/DOWN or C-j/C-k
   :bind (:map isearch-mode-map
          ("C-k" . isearch-ring-retreat)
@@ -1720,7 +1634,6 @@ Useful for quickly switching to an open buffer."
          ("<down>" . isearch-ring-advance)))
 
 (use-package face-remap
-  :straight (:type built-in)
   :bind (("C-+" . text-scale-increase)
          ("C--" . text-scale-decrease)
          ("C-=" . text-scale-adjust)))
