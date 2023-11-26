@@ -919,6 +919,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
        (delete-overlay +gud-overlay)))))
 
 (use-package org
+  :straight (:type built-in)
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
