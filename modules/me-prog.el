@@ -21,8 +21,14 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  ;; Install all languages when calling `treesit-auto-install-all'
-  (setq treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+  (push (make-treesit-auto-recipe
+         :lang 'nix
+         :ts-mode 'nix-ts-mode
+         :remap 'nix-mode
+         :url "https://github.com/nix-community/tree-sitter-nix"
+         :ext "\\.nix\\'")
+        treesit-auto-recipe-list)
+  (setq treesit-auto-langs (seq-map #'treesit-auto-recipe-lang treesit-auto-recipe-list)))
 
 (use-package awk-ts-mode
   :straight t
