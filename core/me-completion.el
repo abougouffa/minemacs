@@ -173,7 +173,9 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     "gG"  #'consult-git-grep
     ;; search
     "ss"  (if (executable-find "rg") #'consult-ripgrep #'consult-grep)
+    "sS"  (if (executable-find "rg") #'consult-grep #'consult-ripgrep)
     "sf"  (if (executable-find "fd") #'consult-fd #'consult-find)
+    "sF"  (if (executable-find "fd") #'consult-find #'consult-fd)
     "sM"  #'consult-man
     "st"  #'consult-locate
     "sh"  #'consult-history
