@@ -563,7 +563,7 @@ or file path may exist now."
   (+nvmap! :keymaps 'sqlite-mode-map
     "X" #'sqlite-mode-delete
     "d" #'sqlite-mode-list-data
-    "t" #'sqlite-mode-list-data
+    "t" #'sqlite-mode-list-tables
     "c" #'sqlite-mode-list-columns))
 
 (use-package compile
