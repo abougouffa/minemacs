@@ -14,15 +14,17 @@
   :config
   ;; Activate more checkers for Python
   (setf (alist-get '(python-mode python-ts-mode) flymake-collection-hook-config nil nil 'equal)
-        '(flymake-collection-pycodestyle
-          flymake-collection-mypy
-          flymake-collection-pylint
-          flymake-collection-ruff
-          (flymake-collection-flake8 :disabled t))))
+        (append (when (executable-find "pycodestyle") '(flymake-collection-pycodestyle))
+                (when (executable-find "mypy") '(flymake-collection-mypy))
+                (when (executable-find "pylint") '(flymake-collection-pylint))
+                (when (executable-find "ruff") '(flymake-collection-ruff))
+                '((flymake-collection-flake8 :disabled t)))))
 
 (use-package flymake-cppcheck
   :straight (nil :host github :repo "shaohme/flymake-cppcheck")
-  :hook ((c-mode c-ts-mode c++-mode c++-ts-mode) . flymake-cppcheck-setup))
+  :init
+  (when (executable-find "cppcheck")
+    (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode) #'flymake-cppcheck-setup)))
 
 (use-package flymenu
   :straight (:host github :repo "KarimAziev/flymenu")
@@ -31,13 +33,12 @@
 
 (use-package flymake-guile
   :straight t
-  :hook (scheme-mode . flymake-guile))
+  :init
+  (when (executable-find "guild") (+add-hook! scheme-mode #'flymake-guile)))
 
 (use-package flymake-quickdef
   :straight t
-  :autoload flymake-quickdef-backend
-  :hook ((python-mode python-ts-mode) . +flymake-bandit-load)
-  :hook (prog-mode . +flymake-codespell-load)
+  :autoload flymake-quickdef-backend +flymake-bandit-load +flymake-codespell-load
   :init
   ;; Automatically generate `backend-load' function to be used as a hook
   (advice-add
@@ -46,6 +47,12 @@
      (let ((fn (intern (format "+%s-load" backend))))
        (defalias fn
          (lambda () (add-hook 'flymake-diagnostic-functions backend nil t))))))
+
+  (when (executable-find "bandit")
+    (+add-hook! (python-mode python-ts-mode) #'+flymake-bandit-load))
+
+  (when (executable-find "codespell")
+    (+add-hook! prog-mode #'+flymake-codespell-load))
   :config
   ;; Add Bandit support for Python (example from https://github.com/karlotness/flymake-quickdef)
   (flymake-quickdef-backend flymake-bandit
@@ -99,11 +106,13 @@
 
 (use-package flymake-nasm
   :straight (:host github :repo "juergenhoetzel/flymake-nasm")
-  :hook (asm-mode . flymake-nasm-setup))
+  :init
+  (when (executable-find "nasm") (+add-hook! asm-mode #'flymake-nasm-setup)))
 
 (use-package flymake-pyre
   :straight (:host github :repo "juergenhoetzel/flymake-pyre")
-  :hook (asm-mode . flymake-pyre-setup))
+  :init
+  (when (executable-find "pyre") (+add-hook! asm-mode #'flymake-pyre-setup)))
 
 
 (provide 'me-checkers)
