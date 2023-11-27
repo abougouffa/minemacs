@@ -63,7 +63,7 @@
  `(,(rx bol "*"
      (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
       "inferior-lisp" "prolog" "gnuplot" "Nix-REPL"
-      (seq (or (seq "R" (opt ":" (any digit))) "julia") ":" (* any)))
+      (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
      "*" eol)
    (display-buffer-in-side-window)
    (side . right)
