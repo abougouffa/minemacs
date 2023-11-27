@@ -528,9 +528,12 @@ from backups, not Git."
               (user-error "[MinEmacs] No backup file")
             (copy-file last-backup lockfile 'overwrite-existing)
             (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
-    ;; Restore packages to the versions pinned in lockfile
-    (message "[MinEmacs] Restoring packages to the reverted lockfile versions")
-    (straight-x-thaw-pinned-versions)
+    ;; Restore packages to the versions pinned in the lockfiles
+    (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
+      (message "[MinEmacs] Restoring pinned versions of packages")
+      (straight-x-thaw-pinned-versions))
+    (message "[MinEmacs] Restoring packages from the global lockfile versions")
+    (straight-thaw-versions)
     ;; Rebuild the packages
     (message "[MinEmacs] Rebuilding packages")
     (straight-rebuild-all)
