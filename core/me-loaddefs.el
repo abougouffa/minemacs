@@ -498,7 +498,7 @@ Is package PACKAGE disabled in `minemacs-disabled-packages'.
 Run all build functions in `minemacs-build-functions'.
 
 (fn &optional DONT-ASK-P)" t)
-(autoload 'minemacs-update "../elisp/+minemacs" "\
+(autoload 'minemacs-update-packages "../elisp/+minemacs" "\
 Update MinEmacs packages." t)
 (autoload 'minemacs-update-restore-locked "../elisp/+minemacs" "\
 Restore lockfile packages list. Takes into account the pinned ones.
