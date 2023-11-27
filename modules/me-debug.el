@@ -23,9 +23,10 @@
     "c" #'dape-continue
     "r" #'dape-restart
     "p" #'dape-pause
-    "b" #'dape-toggle-breakpoint
+    "b" #'dape-breakpoint-toggle
+    "e" #'dape-breakpoint-expression
     "r" #'dape-remove-breakpoint-at-point
-    "R" #'dape-remove-all-breakpoints
+    "R" #'dape-breakpoint-remove-all
     "t" #'+dape-transient
     "q" #'dape-kill
     "Q" #'dape-quit)
@@ -39,10 +40,11 @@
       ("c"  "Continue" dape-continue :transient t)
       ("r"  "Restart" dape-restart :transient t)]
      ["Breakpoints"
-      ("bb" "Toggle" dape-toggle-breakpoint :transient t)
+      ("bb" "Toggle" dape-breakpoint-toggle :transient t)
+      ("be" "Expression" dape-breakpoint-expression :transient t)
       ("bd" "Remove at pt" dape-remove-breakpoint-at-point :transient t)
-      ("bD" "Remove all" dape-remove-all-breakpoints :transient t)
-      ("bl" "Log" dape-log-breakpoint :transient t)]
+      ("bD" "Remove all" dape-breakpoint-face :transient t)
+      ("bl" "Log" dape-breakpoint-log :transient t)]
      ["Info"
       ("ii" "Info" dape-info :transient t)
       ("im" "Memory" dape-read-memory :transient t)
