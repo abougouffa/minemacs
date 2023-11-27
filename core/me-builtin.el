@@ -557,6 +557,15 @@ or file path may exist now."
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
+(use-package sqlite-mode
+  :when (and (>= emacs-major-version 29) (+emacs-features-p 'sqlite3))
+  :config
+  (+nvmap! :keymaps 'sqlite-mode-map
+    "X" #'sqlite-mode-delete
+    "d" #'sqlite-mode-list-data
+    "t" #'sqlite-mode-list-data
+    "c" #'sqlite-mode-list-columns))
+
 (use-package compile
   :commands +toggle-bury-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
