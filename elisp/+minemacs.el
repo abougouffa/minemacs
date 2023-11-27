@@ -469,7 +469,7 @@ Works like `shell-command-to-string' with two differences:
       (funcall-interactively fn))))
 
 ;;;###autoload
-(defun minemacs-update ()
+(defun minemacs-update-packages ()
   "Update MinEmacs packages."
   (interactive)
   ;; Backup the current installed versions, this file can be restored if version
