@@ -528,6 +528,8 @@ from backups, not Git."
               (user-error "[MinEmacs] No backup file")
             (copy-file last-backup lockfile 'overwrite-existing)
             (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
+    ;; This will ensure that the pinned lockfile is up-to-date
+    (straight-x-freeze-pinned-versions)
     ;; Restore packages to the versions pinned in the lockfiles
     (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
       (message "[MinEmacs] Restoring pinned versions of packages")
