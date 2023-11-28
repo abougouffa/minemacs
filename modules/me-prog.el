@@ -203,6 +203,10 @@
 (use-package web-mode
   :straight t)
 
+(use-package python-docstring
+  :straight t
+  :hook ((python-mode python-ts-mode) . python-docstring-mode))
+
 
 (provide 'me-prog)
 
