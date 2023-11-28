@@ -505,8 +505,8 @@ Works like `shell-command-to-string' with two differences:
 ;;;###autoload
 (defun minemacs-update-restore-locked (restore-from-backup)
   "Restore lockfile packages list. Takes into account the pinned ones.
-When called with C-u or with RESTORE-FROM-BACKUP, it will restore the lockfile
-from backups, not Git."
+When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
+restore the lockfile from backups, not Git."
   (interactive "P")
   (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
          (default-directory (vc-git-root lockfile))
