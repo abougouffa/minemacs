@@ -197,7 +197,6 @@
 
     (+deferred!
      (+log! "Loading the default persistent scratch buffer.")
-     (require 'me-pscratch)
      (let ((buf (current-buffer)))
        ;; Load the default persistent scratch buffer
        (+scratch-open-buffer nil nil 'same-window)
