@@ -20,7 +20,7 @@
 
 (defun +varplist-get (vplist keyword &optional car-p)
   "Get KEYWORD's value from variable value length VPLIST.
-Ex: (+varplist-get '(:a 'a :b 'val 'other-val) :b) -> '(val other-val)."
+Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
   (funcall
    (if car-p #'cadr #'cdr)
    (cl-loop for element in (memq keyword vplist)
@@ -69,6 +69,7 @@ Adapted from `org-plist-delete'."
     p))
 
 (defun +plist-to-alist (plist &optional trim-col)
+  "Convert PLIST to an alist, trim first colon when TRIM-COL."
   (let (res)
     (while plist
       (let* ((key (pop plist))
@@ -80,6 +81,7 @@ Adapted from `org-plist-delete'."
     (nreverse res)))
 
 (defun +alist-to-plist (alist &optional add-col)
+  "Convert ALIST to a plist, add colon to the keys when ADD-COL."
   (let (res)
     (dolist (x alist)
       (push (if add-col (intern (format ":%s" (car x))) (car x)) res)
@@ -449,7 +451,7 @@ HOOKS can be expect receiving arguments (like in `enable-theme-functions'), the
 `args' variable can be used inside VAR-VALS forms to get the arguments passed
 the the function.
 
-  (+setq-hook! 'enable-theme-functions
+  (+setq-hook! \\='enable-theme-functions
     current-theme (car args))
 
 \(fn HOOKS &rest [SYM VAL]...)"
@@ -634,7 +636,6 @@ restore the lockfile from backups, not Git."
     ;; Run package-specific build functions (ex: `pdf-tools-install')
     (message "[MinEmacs] Running additional package-specific build functions")
     (minemacs-run-build-functions 'dont-ask)))
-
 
 ;;; FILES, DIRECTORIES AND IO HELPER FUNCTIONS
 ;;; ==========================================
@@ -915,9 +916,11 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
     (user-error "Please set `+single-file-executable' accordingly")))
 
 (defun +lock--file (name)
+  "Get the absolute path of the lockfile for resource NAME."
   (expand-file-name (format "minemacs-%s.lock" name) temporary-file-directory))
 
 (defun +lock--locker-pid (name)
+  "Get thecker PID of resource NAME."
   (let ((fname (+lock--file name)))
     (and (file-exists-p fname) (string-to-number (+file-read-to-string fname)))))
 
@@ -951,13 +954,13 @@ current process."
     t))
 
 (defun +minemacs-root-dir-cleanup ()
+  "Cleanup MinEmacs' root directory."
   (let ((default-directory minemacs-root-dir))
     (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
           (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
 
-
 ;;; MISC EMACS TWEAKS
-
+;;; =================
 
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer."
@@ -1148,6 +1151,7 @@ be deleted.
       (remove-hook hook #'lsp-deferred))))
 
 (defun +eglot-use-on-all-supported-modes (mode-list)
+  "Enable Eglot in all supported modes in MODE-LIST."
   (dolist (mode-def mode-list)
     (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
       (cond
@@ -1201,10 +1205,8 @@ the children of class at point."
                          do (push (cons (1+ depth) child) tree)))))))
     (eglot--error "Hierarchy unavailable")))
 
-
 ;;; BINARY FILES TWEAKS
 ;;; ===================
-
 
 (defgroup minemacs-binary nil
   "MinEmacs binary files."
@@ -1290,12 +1292,12 @@ Returns either nil, or the position of the first null byte."
     (hexl-mode 1)))
 
 (defun +binary-setup-modes ()
+  "Setup binary modes (objdump and hexl) for relevant buffers and file types."
   (add-to-list 'magic-fallback-mode-alist '(+binary-objdump-buffer-p . objdump-disassemble-mode) t)
   (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
 
 ;;; BUFFER RELATED TWEAKS
 ;;; =====================
-
 
 (defgroup minemacs-buffer nil
   "MinEmacs buffer stuff."
@@ -1406,7 +1408,7 @@ See `kill-some-buffers'."
              (list comp-async-buffer-name comp-log-buffer-name)))))
 
 (defun +kill-buffer-ask-if-modified (buffer)
-  "Like `kill-buffer-ask', but kills BUFFER without confirmation if buffer is unmodified.
+  "Like `kill-buffer-ask', but kills BUFFER without confirmation when unmodified.
 Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
   (when (or (not (buffer-modified-p buffer))
             (member (buffer-name buffer) +kill-buffer-no-ask-list)
@@ -1463,8 +1465,8 @@ If no other window shows its buffer, kill the buffer too."
     (message "Replaced %d match%s." matches (if (> matches 1) "es" ""))))
 
 (defun +kill-region-as-paragraph ()
-  "Kill (copy) region as one paragraph. This command removes new line characters
-between lines."
+  "Kill (copy) region as one paragraph.
+This command removes new line characters between lines."
   (interactive)
   (when (use-region-p)
     (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
@@ -1484,10 +1486,8 @@ between lines."
   (save-excursion (goto-char (point-min))
                   (and (bolp) (eolp))))
 
-
 ;;; PROJECT TWEAKS
 ;;; ==============
-
 
 (defgroup minemacs-project nil
   "MinEmacs project stuff."
@@ -1513,7 +1513,7 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
 (defun +project-add-project (dir &optional dont-ask)
   "Switch to another project at DIR.
 When DIR is not detected as a project, ask to force it to be by adding a
-\".project.el\" file."
+\".project.el\" file. When DONT-ASK is non-nil, create the file without asking."
   (interactive (list (project-prompt-project-dir)))
   (project-switch-project dir)
   (when (and (not (project-current))
@@ -1541,7 +1541,6 @@ When DIR is not detected as a project, ask to force it to be by adding a
           (project-forget-project proj)
           (project-remember-projects-under proj-abbrev))))))
 
-
 ;;; SYSTEMD HELPERS
 ;;; ===============
 
@@ -1568,7 +1567,6 @@ When DIR is not detected as a project, ask to force it to be by adding a
 
 ;;; KEYBINDING MACROS
 ;;; =================
-
 
 ;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
 ;; initializing `general' and `evil'. After trying several configurations, I

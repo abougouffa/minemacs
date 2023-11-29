@@ -93,13 +93,14 @@
 ;; Load MinEmacs' library
 (+load (concat minemacs-core-dir "me-lib.el"))
 
-;; HACK: Most core and third-party packages depends on the
-;; `user-emacs-directory' variable to store some cache information and generated
-;; configuration files. However, this will mess with MinEmacs' directory (which
-;; defaults to `user-emacs-directory'). To keep the "~/.emacs.d/" directory
-;; clean, we overwrite the `user-emacs-directory' with `minemacs-local-dir' so
-;; all generated files gets stored in "~/.emacs.d/local/".
-;; BUG: It is important to set this here and not in `me-vars' nor in
+;; HACK: Most Emacs' builtin and third-party packages depends on the
+;; `user-emacs-directory' variable to store cache information, generated
+;; configuration files and downloaded utilities. However, this will mess with
+;; MinEmacs' directory (which defaults to `user-emacs-directory'). To keep the
+;; "~/.emacs.d/" directory clean, we overwrite the `user-emacs-directory' at
+;; early stage with `minemacs-local-dir' so all generated files gets stored in
+;; "~/.emacs.d/local/".
+;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
 (setq user-emacs-directory minemacs-local-dir)
 
@@ -208,7 +209,7 @@
   ;; Require the virtual package to triggre loading packages depending on it
   (require 'minemacs-loaded))
 
-;; Add it to the very begining of `emacs-startup-hook'
+;; Add it to the very beginning of `emacs-startup-hook'
 (add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
 
 ;; ========= Make some special hooks =========
@@ -218,7 +219,7 @@
 
 ;; ========= Load MinEmacs packages and user customization =========
 ;; When running in an async Org export context, the used modules are set in
-;; modules/extras/me-org-export-async-init.el, so we must not overrite them with
+;; modules/extras/me-org-export-async-init.el, so we must not override them with
 ;; the user's enabled modules.
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
