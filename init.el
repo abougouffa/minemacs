@@ -90,6 +90,9 @@
 (unless (featurep 'me-vars)
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
+;; Load MinEmacs' library
+(+load (concat minemacs-core-dir "me-lib.el"))
+
 ;; HACK: Most core and third-party packages depends on the
 ;; `user-emacs-directory' variable to store some cache information and generated
 ;; configuration files. However, this will mess with MinEmacs' directory (which
@@ -193,6 +196,7 @@
 
     (+deferred!
      (+log! "Loading the default persistent scratch buffer.")
+     (require 'me-pscratch)
      (let ((buf (current-buffer)))
        ;; Load the default persistent scratch buffer
        (+scratch-open-buffer nil nil 'same-window)

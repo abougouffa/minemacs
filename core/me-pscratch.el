@@ -1,4 +1,4 @@
-;;; +scratch.el --- Persistent and per-project scratch buffers -*- lexical-binding: t; -*-
+;;; me-pscratch.el --- Persistent and per-project scratch buffers -*- lexical-binding: t; -*-
 
 ;; -*- lexical-binding: t; -*-
 
@@ -201,4 +201,6 @@ If prefix ARG, delete all persistent scratches."
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
 
 
-;;; +scratch.el ends here
+(provide 'me-pscratch)
+
+;;; me-pscratch.el ends here
