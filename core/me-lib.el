@@ -1393,7 +1393,7 @@ See `kill-some-buffers'."
     (kill-some-buffers list)))
 
 (defcustom +kill-buffer-no-ask-list
-  (list messages-buffer-name "*Warnings*")
+  (list "*Messages*" "*Warnings*")
   "A list of buffer names to be killed without confirmation."
   :group 'minemacs-buffer
   :type '(repeat string))
