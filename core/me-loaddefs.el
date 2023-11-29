@@ -99,67 +99,6 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
-;;; Generated autoloads from me-pscratch.el
-
-(autoload '+scratch-load-persistent-scratch-buffer "me-pscratch" "\
-
-
-(fn &optional PROJECT-NAME)")
-(autoload '+scratch-buffer "me-pscratch" "\
-Return a scratchpad buffer in major MODE.
-
-(fn &optional DONT-RESTORE-P MODE DIRECTORY PROJECT-NAME)")
-(autoload '+scratch-persist-buffer-h "me-pscratch" "\
-Save the current buffer to `+scratch-dir'.
-
-(fn &rest _)")
-(autoload '+scratch-persist-buffers-h "me-pscratch" "\
-Save all scratch buffers to `+scratch-dir'.
-
-(fn &rest _)")
-(autoload '+scratch-persist-buffers-after-switch-h "me-pscratch" "\
-Kill scratch buffers when they are no longer visible, saving them to disk.
-
-(fn &rest _)")
-(unless noninteractive (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
-(autoload '+scratch-open-buffer "me-pscratch" "\
-Pop up a persistent scratch buffer.
-
-If passed the prefix ARG, do not restore the last scratch buffer.
-If PROJECT-P is non-nil, open a persistent scratch buffer associated with the
-  current project.
-
-(fn &optional ARG PROJECT-P SAME-WINDOW-P)" t)
-(autoload '+switch-to-scratch-buffer "me-pscratch" "\
-Like `+scratch-open-buffer', but switches to it in the current window.
-
-If passed the prefix ARG, do not restore the last scratch buffer.
-
-(fn &optional ARG PROJECT-P)" t)
-(autoload '+scratch-open-project-scratch-buffer "me-pscratch" "\
-Opens the (persistent) project scratch buffer in a popup.
-
-If passed the prefix ARG, do not restore the last scratch buffer.
-
-(fn &optional ARG SAME-WINDOW-P)" t)
-(autoload '+scratch-switch-to-project-scratch-buffer "me-pscratch" "\
-Like `+scratch-open-project-scratch-buffer', but switches to it in the current
-window.
-
-If passed the prefix ARG, do not restore the last scratch buffer.
-
-(fn &optional ARG)" t)
-(autoload '+scratch-revert-scratch-buffer "me-pscratch" "\
-Revert scratch buffer to last persistent state." t)
-(autoload '+scratch-delete-persistent-scratch-file "me-pscratch" "\
-Deletes a scratch buffer file in `+scratch-dir'.
-
-If prefix ARG, delete all persistent scratches.
-
-(fn &optional ARG)" t)
-(register-definition-prefixes "me-pscratch" '("+scratch-"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-realgud.el
 
 (autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
@@ -249,10 +188,10 @@ Toggle connection to NetExtender." t)
 
 (autoload 'valgrind "../elisp/valgrind" "\
 Run valgrind.
-Runs COMMAND, a shell command, in a separate process asynchronously
-with output going to the buffer `*valgrind*'.
-You can then use the command \\[next-error] to find the next error message
-and move to the source code that caused it.
+Runs a shell COMMAND in a separate process asynchronously with output going to
+the buffer `*valgrind*'.
+You can then use the command \\[next-error] to find the next error message and
+move to the source code that caused it.
 
 (fn COMMAND)" t)
 (register-definition-prefixes "../elisp/valgrind" '("valgrind-"))
