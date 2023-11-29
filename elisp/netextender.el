@@ -31,7 +31,7 @@ mandatory stored as a GPG encrypted file."
   :group 'minemacs-netextender
   :type '(choice string file))
 
-(defcustom netextender-launcher-command (concat minemacs-local-dir "netextender-launcher.sh")
+(defcustom netextender-launcher-command (locate-user-emacs-file "netextender-launcher.sh")
   "Custom NetExtender launcher command.
 
 This is a wrapper around the \"NetExtender\" command. It starts the sessions
@@ -50,19 +50,18 @@ temporary based on `netextender-command' and `netextender-passphrase-file' and
 returns it."
   ;; If the command doesn't exist, generate it.
   (if (not (executable-find netextender-command))
-      (user-error "The NetExtender command \"%s\" is not available." netextender-command)
+      (user-error "The NetExtender command \"%s\" is not available" netextender-command)
     (unless (executable-find netextender-launcher-command)
       (setq netextender-launcher-command (make-temp-file "netextender-launcher-" nil ".sh"))
       (set-file-modes netextender-launcher-command #o755) ;; Make it executable
-      (with-temp-buffer
-        (insert (format "#!/bin/bash
+      (with-temp-buffer (insert (format "#!/bin/bash
 
 MY_LOGIN_PARAMS_FILE=\"%s\"
 
 echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"${MY_LOGIN_PARAMS_FILE}\")"
-                        (expand-file-name netextender-passphrase-file)
-                        (executable-find netextender-command)))
-        (write-file netextender-launcher-command)))
+                                        (expand-file-name netextender-passphrase-file)
+                                        (executable-find netextender-command)))
+                        (write-file netextender-launcher-command)))
     ;; Return the command
     netextender-launcher-command))
 
@@ -73,7 +72,7 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
     ;; pppd must be run as root (via setuid)
     (if (and pppd-modes (zerop (logand (lsh 1 11) pppd-modes))) ;; Check if the setuid bit isn't set
         (prog1 nil ;; return nil
-          (user-error "pppd needs root permissions, please set the setuid bit of %s." pppd-command))
+          (user-error "The `pppd' command needs root permissions, please set the setuid bit of %s" pppd-command))
       t)))
 
 ;;;###autoload
@@ -86,8 +85,8 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
                           :buffer netextender-buffer-name
                           :command (list (netextender-launcher-command)))
             (message "Started NetExtender VPN session.")
-          (user-error "Cannot start NetExtender.")))
-    (user-error "Cannot start a netExtender VPN session.")))
+          (user-error "Cannot start NetExtender")))
+    (user-error "Cannot start a netExtender VPN session")))
 
 (defun netextender-kill ()
   "Kill the created NetExtender VPN session."
@@ -96,7 +95,7 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
     (if netextender-process
         (if (kill-process netextender-process)
             (message "Killed NetExtender VPN session.")
-          (user-error "Cannot kill NetExtender."))
+          (user-error "Cannot kill NetExtender"))
       (message "No running NetExtender session."))))
 
 ;;;###autoload

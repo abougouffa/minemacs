@@ -114,14 +114,14 @@
 ;; some new features when configuring them.
 (when (< emacs-major-version 29)
   (let ((backports-dir (concat minemacs-core-dir "backports/")))
-    (mapc (apply-partially #'+load backports-dir) (directory-files backports-dir nil "\\.el$"))))
+    (mapc (apply-partially #'+load backports-dir) (directory-files backports-dir nil "\\.el\\'"))))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the "--debug-init"
  ;; option or when the environment variable "$MINEMACS_DEBUG" is defined (see
  ;; `me-vars').
  debug-on-error minemacs-debug-p
- ;; Decrese the warning type to `:error', unless we are running in verbose mode
+ ;; Decrease the warning type to `:error', unless we are running in verbose mode
  warning-minimum-level (if minemacs-verbose-p :warning :error)
  warning-minimum-log-level warning-minimum-level
  ;; Make byte compilation less noisy
