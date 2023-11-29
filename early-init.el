@@ -58,6 +58,6 @@
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 
 ;; Load the user early configuration files
-(+load-user-configs 'early-init 'local/early-init)
+(+load-user-configs 'early-config 'local/early-config)
 
 ;;; early-init.el ends here
