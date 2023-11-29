@@ -14,6 +14,7 @@
 ;;; =================
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
+(require 'rx)
 
 ;;; === Some plist and alist missing functions ===
 
