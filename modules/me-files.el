@@ -66,6 +66,14 @@
     "fF" #'sudo-edit-find-file
     "fu" #'sudo-edit))
 
+(use-package dired-rsync
+  :straight (dired-rsync :files ("dired-rsync.el" "dired-rsync-transient.el"))
+  :when (executable-find "rsync")
+  :bind (:map
+         dired-mode-map
+         ("C-c C-r" . dired-rsync)
+         ("C-c C-x" . dired-rsync-transient)))
+
 
 (provide 'me-files)
 
