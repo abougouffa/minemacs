@@ -97,8 +97,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   :group 'minemacs-ui
   :type 'plist)
 
-(define-obsolete-variable-alias 'minemacs-fonts 'minemacs-fonts-plist "v3.0.0")
-
 (defconst +known-scripts (mapcar #'car script-representative-chars)
   "Supported scripts, like `latin', `arabic', `han', and so on.")
 
@@ -157,8 +155,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                  (+plist-keys minemacs-fonts-plist))))
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
-
-(define-obsolete-function-alias #'+set-fonts #'+setup-fonts "v3.0.0")
 
 (+add-hook! (window-setup server-after-make-frame) #'+setup-fonts)
 

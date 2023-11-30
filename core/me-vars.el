@@ -160,8 +160,6 @@ we set on `use-package' in `me-bootstrap'."
   :group 'minemacs-ui
   :type 'hook)
 
-(make-obsolete-variable 'minemacs-after-set-fonts-hook 'minemacs-after-setup-fonts-hook "v3.0.0")
-
 (defcustom minemacs-after-load-theme-hook nil
   "Runs after loading MinEmacs theme, runs at the end of `+load-theme'."
   :group 'minemacs-ui
