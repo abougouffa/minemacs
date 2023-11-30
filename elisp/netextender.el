@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+;; netextender.el -- NetExtender integration (start and stop VPN from Emacs) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 

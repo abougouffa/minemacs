@@ -386,7 +386,7 @@ This macro accepts, in order:
 If the hook function should receive an argument (like in
 `enable-theme-functions'), the `args' variable can be expanded in the forms
 
-  (+add-hook! 'enable-theme-functions
+  (+add-hook! \\='enable-theme-functions
     (message \"Enabled theme: %s\" (car args)))
 
 \(fn HOOKS [:append :local [:depth N]] FUNCTIONS-OR-FORMS...)"
@@ -437,7 +437,7 @@ If the hook function should receive an argument (like in
 
 Takes the same arguments as `add-hook!'.
 
-If N and M = 1, there's no benefit to using this macro over `remove-hook'.
+If N = 1 and M = 1, there's no benefit to using this macro over `remove-hook'.
 
 \(fn HOOKS [:append :local] FUNCTIONS)"
   (declare (indent defun) (debug t))
