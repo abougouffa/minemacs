@@ -6,8 +6,8 @@
 
 ;;; Commentary:
 
-;; Virtual module loaded at end of init.el (after custom-vars.el)
-;; Used to synchronize loading some other stuff after loading Emacs
+;; This feature is loaded at end of init.el (after loading custom-vars.el), it
+;; is used to synchronize loading some other stuff after loading Emacs
 
 ;;; Code:
 
@@ -24,6 +24,7 @@
     (require 'minemacs-lazy)))
 
 (+log! "Providing `minemacs-loaded'.")
+
 
 (provide 'minemacs-loaded)
 

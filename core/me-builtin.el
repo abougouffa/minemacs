@@ -229,7 +229,8 @@ or file path may exist now."
 (use-package transient
   :straight t
   ;; Map ESC and q to quit transient
-  :bind (:map transient-map
+  :bind (:map
+         transient-map
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
@@ -280,9 +281,7 @@ or file path may exist now."
 (use-package tab-bar
   :hook (minemacs-after-startup . tab-bar-mode)
   :custom
-  (tab-bar-format '(tab-bar-format-history
-                    tab-bar-format-tabs
-                    tab-bar-separator))
+  (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
   (tab-bar-tab-hints t)
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
   (tab-bar-close-button-show nil)
@@ -291,7 +290,7 @@ or file path may exist now."
   (defun +tab-bar-tab-spaced-name-format (tab i)
     (let ((current-p (eq (car tab) 'current-tab)))
       (propertize
-       (concat (if tab-bar-tab-hints (format " %c " (+ ?① (1- i)) " "))
+       (concat (if tab-bar-tab-hints (format " %c " (+ ?① (1- i))) "")
                (alist-get 'name tab)
                (or (and tab-bar-close-button-show
                         (not (eq tab-bar-close-button-show
@@ -319,7 +318,7 @@ or file path may exist now."
     "ff" #'+flymake-transient)
 
   (transient-define-prefix +flymake-transient ()
-    "Transient for dape."
+    "Transient for flymake."
     [[("n" "Next error" flymake-goto-next-error :transient t)
       ("N" "Prev error" flymake-goto-prev-error :transient t)]
      [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
@@ -1240,6 +1239,18 @@ current line.")
   :init
   (+map! "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
+  (defun +smerge-first ()
+    "Got to the first occurrence."
+    (interactive)
+    (goto-char (point-min))
+    (smerge-next))
+
+  (defun +smerge-last ()
+    "Got to the last occurrence."
+    (interactive)
+    (goto-char (point-max))
+    (smerge-prev))
+
   (with-eval-after-load 'hydra
     (defhydra +smerge-hydra (:hint nil
                                    :pre (if (not smerge-mode) (smerge-mode 1))
@@ -1258,8 +1269,8 @@ current line.")
   │  ^_G_^                                                 [_q_] quit
   ╰─────────────────────────────────────────────────────╯
 "
-      ("g" (progn (goto-char (point-min)) (smerge-next)))
-      ("G" (progn (goto-char (point-max)) (smerge-prev)))
+      ("g" +smerge-first)
+      ("G" +smerge-last)
       ("C-j" smerge-next)
       ("C-k" smerge-prev)
       ("j" next-line)
@@ -1628,7 +1639,7 @@ Useful for quickly switching to an open buffer."
 (use-package pulse
   :init
   ;; Add visual pulse when changing focus, like beacon but built-in
-  ;; From https://karthinks.com/software/batteries-included-with-emacs/
+  ;; From: https://karthinks.com/software/batteries-included-with-emacs/
   (defun +pulse-line (&rest _)
     "Pulse the current line."
     (pulse-momentary-highlight-one-line (point)))
@@ -1637,7 +1648,8 @@ Useful for quickly switching to an open buffer."
 
 (use-package isearch
   ;; Scroll in isearch history using UP/DOWN or C-j/C-k
-  :bind (:map isearch-mode-map
+  :bind (:map
+         isearch-mode-map
          ("C-k" . isearch-ring-retreat)
          ("C-j" . isearch-ring-advance)
          ("<up>" . isearch-ring-retreat)

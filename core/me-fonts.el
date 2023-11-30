@@ -160,3 +160,5 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 
 (provide 'me-fonts)
+
+;;; me-fonts.el ends here

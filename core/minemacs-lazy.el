@@ -6,8 +6,8 @@
 
 ;;; Commentary:
 
-;; Virtual module loaded when idle after `minemacs-loaded'.
-;; Used to synchronize loading some other stuff after loading Emacs.
+;; Feature loaded when Emacs is idle after `minemacs-loaded', it is used to
+;; lazily load other stuff after loading Emacs.
 
 ;; The hooks in `minemacs-lazy-hook' are loaded incrementally when Emacs goes
 ;; idle, but when `minemacs-not-lazy-p' is set to t, they will be all loaded at
@@ -24,7 +24,7 @@
   ;; so we defer loading it to the end to maximize the benefit.
   (setq minemacs-lazy-hook (append (delq 'gcmh-mode (reverse minemacs-lazy-hook)) '(gcmh-mode)))
   (if minemacs-not-lazy-p
-      (progn ; If `minemacs-no-lazy' is bound and true, force loading lazy hooks immediately
+      (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
         (run-hooks 'minemacs-lazy-hook))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
@@ -32,6 +32,7 @@
     (apply #'+eval-when-idle (append '(1) minemacs-lazy-hook))))
 
 (+log! "Providing `minemacs-lazy'.")
+
 
 (provide 'minemacs-lazy)
 

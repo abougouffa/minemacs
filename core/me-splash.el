@@ -14,7 +14,7 @@
 (defvar minemacs-splash-buffer-name "*minemacs-splash*")
 
 (defun minemacs-splash ()
-  "MinEmacs splash screen"
+  "MinEmacs splash screen."
   ;; If there are buffer associated with filenames, we don't show splash screen.
   (unless (seq-filter #'identity (mapcar #'buffer-file-name (buffer-list)))
     (let* ((buffer (get-buffer-create minemacs-splash-buffer-name))
@@ -48,7 +48,7 @@
                            ""))
                  'face 'shadow))
 
-        ;; Bootstraping
+        ;; Bootstrapping
         (unless (file-exists-p (concat minemacs-local-dir "straight/repos/straight.el/bootstrap.el"))
           (insert-char ?\n)
           (insert-char ?\s 10)
