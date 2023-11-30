@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.0.0](https://github.com/abougouffa/minemacs/compare/v3.11.0..v4.0.0) - 2023-11-30
+#### Bug Fixes
+- **(core)** undefined variable on Emacs 28 - ([6749e49](https://github.com/abougouffa/minemacs/commit/6749e49cb9092081404706422afe56ce0cded2f3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** loading `me-lib` fails on Emacs 28 - ([b199ffc](https://github.com/abougouffa/minemacs/commit/b199ffcf8d3f5536d06bee18ddbd1e54252bc6bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** load `early-config` instead of `early-init` - ([295cf57](https://github.com/abougouffa/minemacs/commit/295cf571fc2d48512b4cfe6b873daaa6ee9e4324)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(core)** minor documentation edits - ([0160a85](https://github.com/abougouffa/minemacs/commit/0160a858ec548b692305cba73997138d8030a184)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better documentation and comments - ([a21d66f](https://github.com/abougouffa/minemacs/commit/a21d66fa22d6e32fbc19c735953913bbb9ca9707)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more documentation for core functions - ([312485f](https://github.com/abougouffa/minemacs/commit/312485fe66fc27dd1328e88ab33412ea3f77c142)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(files)** add `dired-rsync` - ([0fc0c9b](https://github.com/abougouffa/minemacs/commit/0fc0c9b4b60e1747d32f10e149fd0649cd2ef094)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(skel)** correct some typos - ([1ade54f](https://github.com/abougouffa/minemacs/commit/1ade54f7b56b3411559ce172244e111fb52dcb12)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** move persistent scratch routines to `me-lib` - ([fa44fa3](https://github.com/abougouffa/minemacs/commit/fa44fa3735d75a096f897e6d3d1ef8cb10c997b0)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** move all core tweaks to `me-lib` - ([aca3d52](https://github.com/abougouffa/minemacs/commit/aca3d5277284d66af837b906c843bb782bbc36a6)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(fonts)** remove obsolete aliases - ([f127b7f](https://github.com/abougouffa/minemacs/commit/f127b7f6c98a9660258bcfaad3b5dc9ffaba5f87)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([58e5105](https://github.com/abougouffa/minemacs/commit/58e5105fb735b5b8a651bce42d6e3adf9bfc581f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([8c2cfae](https://github.com/abougouffa/minemacs/commit/8c2cfae248552d5f2e59827cc348a1aebd601c95)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v3.10.8](https://github.com/abougouffa/minemacs/compare/v3.10.7..v3.10.8) - 2023-11-26
 #### Bug Fixes
 - **(org)** stick Org to the built-in (stable) version - ([7c8635b](https://github.com/abougouffa/minemacs/commit/7c8635b89738ee29de835bf63faaf24125402f58)) - [@abougouffa](https://github.com/abougouffa)
