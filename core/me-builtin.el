@@ -282,9 +282,10 @@ or file path may exist now."
   :hook (minemacs-after-startup . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
-  (tab-bar-tab-hints t)
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
   (tab-bar-close-button-show nil)
+  (tab-bar-auto-width-max '(150 20))
+  (tab-bar-tab-hints t)
   (tab-bar-show nil)
   :config
   (defun +tab-bar-tab-spaced-name-format (tab i)
@@ -297,7 +298,11 @@ or file path may exist now."
                                  (if current-p 'non-selected 'selected)))
                         tab-bar-close-button)
                    ""))
-       'face (funcall tab-bar-tab-face-function tab)))))
+       'face (funcall tab-bar-tab-face-function tab))))
+  (with-eval-after-load 'nerd-icons
+    (setq tab-bar-close-button
+          (propertize (concat (nerd-icons-faicon "nf-fa-close" :height 0.5) " ")
+                      'close-tab t :help "Click to close tab"))))
 
 (use-package flymake
   :straight t
