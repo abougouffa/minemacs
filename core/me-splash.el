@@ -16,7 +16,7 @@
 (defun minemacs-splash ()
   "MinEmacs splash screen."
   ;; If there are buffer associated with filenames, we don't show splash screen.
-  (unless (seq-filter #'identity (mapcar #'buffer-file-name (buffer-list)))
+  (unless (seq-filter #'buffer-file-name (buffer-list))
     (let* ((buffer (get-buffer-create minemacs-splash-buffer-name))
            (height (- (window-body-height nil) 1))
            (padding-center (min 5 (- (/ height 3) 1)))
