@@ -52,6 +52,10 @@
   :config
   (citar-embark-mode 1))
 
+(use-package org-re-reveal-citeproc
+  :straight t
+  :when (and (memq 'me-org minemacs-modules) (not (memq 'org-re-reveal minemacs-disabled-packages))))
+
 
 (provide 'me-biblio)
 

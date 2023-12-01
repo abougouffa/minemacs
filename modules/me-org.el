@@ -102,6 +102,13 @@
   :config
   (evil-org-agenda-set-keys))
 
+(use-package org-re-reveal
+  :straight t)
+
+(use-package oer-reveal
+  :straight t
+  :hook (minemacs-build-functions . oer-reveal-setup-submodules))
+
 
 (provide 'me-org)
 
