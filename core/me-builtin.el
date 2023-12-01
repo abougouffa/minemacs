@@ -291,7 +291,7 @@ or file path may exist now."
   (defun +tab-bar-tab-spaced-name-format (tab i)
     (let ((current-p (eq (car tab) 'current-tab)))
       (propertize
-       (concat (if tab-bar-tab-hints (format " %c " (+ ?① (1- i))) "")
+       (concat (if tab-bar-tab-hints (format " %c " (+ ?❶ (1- i))) "")
                (alist-get 'name tab)
                (or (and tab-bar-close-button-show
                         (not (eq tab-bar-close-button-show
