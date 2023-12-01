@@ -16,6 +16,7 @@
   (user-error "This file should only be called from an Emacs 28.x"))
 
 (require 'cl-lib)
+(require 'cl-macs)
 (require 'cl-extra)
 (require 'rx)
 (require 'wid-edit) ;; Needed by `setopt--set'
