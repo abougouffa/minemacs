@@ -155,11 +155,13 @@
       (setcar server '(nix-mode nix-ts-mode)))))
 
 (use-package nix-update
-  :straight t)
+  :straight t
+  :when (executable-find "nix"))
 
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
+  :when (executable-find "direnv")
   :custom
   (envrc-debug minemacs-debug-p))
 
