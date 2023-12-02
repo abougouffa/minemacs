@@ -115,12 +115,11 @@ Return an AST with newlines counts in each level."
 
 (defun +org-extras-inject-latex-fragment (orig-func &rest args)
   "Advice function to inject latex code before and/or after the equation in a latex fragment.
-  You can use this to set \\mathversion{bold} for example to make
-  it bolder. The way it works is by defining
-  :latex-fragment-pre-body and/or :latex-fragment-post-body in the
-  variable `org-format-latex-options'. These strings will then be
-  injected before and after the code for the fragment before it is
-  made into an image."
+You can use this to set \\mathversion{bold} for example to make it bolder.
+The way it works is by defining :latex-fragment-pre-body and/or
+:latex-fragment-post-body in the variable `org-format-latex-options'. These
+strings will then be injected before and after the code for the fragment before
+it is made into an image."
   (setf (car args)
         (concat
          (or (plist-get org-format-latex-options :latex-fragment-pre-body) "")
