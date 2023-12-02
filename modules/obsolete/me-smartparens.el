@@ -1,3 +1,13 @@
+;;; me-smartparens.el --- Smartparens -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package smartparens
  :straight t
  :hook (minemacs-after-startup . smartparens-global-mode)
@@ -19,3 +29,8 @@
 (use-package smartparens-config
   :after smartparens
   :demand t)
+
+
+(provide 'obsolete/me-smartparens)
+
+;;; me-smartparens.el ends here
