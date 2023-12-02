@@ -165,6 +165,12 @@
   :custom
   (envrc-debug minemacs-debug-p))
 
+(use-package guix
+  :straight t
+  :when (executable-find "guix")
+  :init
+  (+map! "og" #'guix))
+
 
 (provide 'me-tools)
 
