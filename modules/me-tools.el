@@ -18,6 +18,7 @@
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)
+  :hook (tldr-mode . visual-line-mode)
   :init
   (+map! "ht" #'tldr)
   :custom
