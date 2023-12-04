@@ -1521,7 +1521,6 @@ current line.")
   (window-divider-default-right-width 2))
 
 (use-package server
-  :hook (server-after-make-frame . +load-theme) ; Reload theme when creating a frame on the daemon
   :autoload server-running-p
   :init
   ;; When we start in a non-daemon Emacs, we start a server when Emacs is idle.
