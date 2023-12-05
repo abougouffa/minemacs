@@ -905,14 +905,16 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 
 (defun +single-file (url out-file)
   "Save URL into OUT-FILE as a standalone HTML file."
+  (interactive
+   (let ((url (or (thing-at-point 'url) (read-string "URL to save: "))))
+     (list url (read-file-name "Save to: " nil nil nil (url-filename (url-generic-parse-url url))))))
   (if (executable-find +single-file-executable)
       (make-process
        :name "single-file-cli"
        :buffer "*single-file*"
-       :command (list
-                 +single-file-executable
-                 "--browser-executable-path" browse-url-chromium-program
-                 url out-file))
+       :command (list +single-file-executable
+                      "--browser-executable-path" browse-url-chromium-program
+                      url (expand-file-name out-file)))
     (user-error "Please set `+single-file-executable' accordingly")))
 
 (defun +lock--file (name)
