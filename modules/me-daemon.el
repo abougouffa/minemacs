@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;; Email (mu4e)
-(+lazy-when! (memq 'me-email minemacs-modules)
+(+lazy-when! (and (memq 'me-email minemacs-modules) (not (+package-disabled-p 'mu4e)))
   (when (and +mu4e-available-p +mu4e-auto-start (require 'mu4e nil :noerror))
     (defvar +daemon--mu4e-persist-timer
       (run-at-time
@@ -22,7 +22,7 @@
              (mu4e t))))))))
 
 ;; RSS (elfeed)
-(+lazy-when! (memq 'me-rss minemacs-modules)
+(+lazy-when! (and (memq 'me-rss minemacs-modules) (not (+package-disabled-p 'elfeed)))
   (when (require 'elfeed nil :noerror)
     (run-at-time
      (* 60 5) ;; 5min
