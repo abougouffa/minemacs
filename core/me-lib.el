@@ -1062,10 +1062,15 @@ by `+screenshot-delay') before taking the screenshot."
 
 (defun +region-or-thing-at-point ()
   "Return the region or the thing at point."
-  (when-let ((thing (or (prog1 (thing-at-point 'region t)
-                          (deactivate-mark))
-                        (cl-some (+apply-partially-right #'thing-at-point t)
-                                 '(symbol email number string word)))))
+  (when-let ((thing (condition-case nil
+                        (or (prog1 (thing-at-point 'region t)
+                              (deactivate-mark))
+                            (cl-some (+apply-partially-right #'thing-at-point t)
+                                     '(symbol email number string word)))
+                      ;; Sometimes, specially when in an empty buffer,
+                      ;; `thing-at-point' can raise an error, in this case, lets just
+                      ;; start with an empty string
+                      (error ""))))
     ;; If the matching thing has multi-lines, join them
     (string-join (string-lines thing))))
 
