@@ -61,13 +61,12 @@
          ("M-S-<left>" . drag-stuff-left)
          ("M-S-<right>" . drag-stuff-right)))
 
-(use-package auto-save
-  :straight (:host github :repo "manateelazycat/auto-save")
-  :hook (minemacs-first-file . auto-save-enable)
+(use-package super-save
+  :straight (:host github :repo "abougouffa/super-save")
+  :hook (minemacs-first-file . super-save-mode)
   :custom
-  (auto-save-idle 3)
-  (auto-save-silent t)
-  (auto-save-delete-trailing-whitespace t))
+  (super-save-silent t)
+  (super-save-delete-trailing-whitespaces 'except-current-line))
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
