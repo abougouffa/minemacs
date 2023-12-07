@@ -131,6 +131,8 @@ value of this method instead of the original alist, to ensure correct results."
   (lambda (&rest args2)
     (apply fun (append args2 args))))
 
+
+
 ;;; MINEMACS' CORE FUNCTIONS AND MACROS
 ;;; ===================================
 
@@ -637,6 +639,14 @@ restore the lockfile from backups, not Git."
     (message "[MinEmacs] Running additional package-specific build functions")
     (minemacs-run-build-functions 'dont-ask)))
 
+(defun +minemacs-root-dir-cleanup ()
+  "Cleanup MinEmacs' root directory."
+  (let ((default-directory minemacs-root-dir))
+    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
+          (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
+
+
+
 ;;; FILES, DIRECTORIES AND IO HELPER FUNCTIONS
 ;;; ==========================================
 
@@ -808,6 +818,11 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
     "[‘’‚“”„\"`'()&]+" ""
     (if downcase-p (downcase filename) filename))))
 
+
+
+;;; FILES EXPORT AND CONVERSION
+;;; ===========================
+
 (defcustom +html2pdf-default-backend 'wkhtmltopdf
   "The default backend to convert HTML files to PDFs in `+html2pdf'."
   :group 'minemacs-utils
@@ -917,6 +932,11 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
                       url (expand-file-name out-file)))
     (user-error "Please set `+single-file-executable' accordingly")))
 
+
+
+;;; LOCK FILES
+;;; ==========
+
 (defun +lock--file (name)
   "Get the absolute path of the lockfile for resource NAME."
   (expand-file-name (format "minemacs-%s.lock" name) temporary-file-directory))
@@ -955,14 +975,10 @@ current process."
     (delete-file (+lock--file name))
     t))
 
-(defun +minemacs-root-dir-cleanup ()
-  "Cleanup MinEmacs' root directory."
-  (let ((default-directory minemacs-root-dir))
-    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-          (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
+
 
-;;; MISC EMACS TWEAKS
-;;; =================
+;;; DIR LOCALS TWEAKS & HACKS
+;;; =========================
 
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer."
@@ -1014,6 +1030,11 @@ If ENABLE is non-nil, force enabling autoreloading."
            ((project-current) (expand-file-name dir-locals-file (project-root (project-current))))
            ((vc-root-dir) (expand-file-name dir-locals-file (vc-root-dir)))
            (t (expand-file-name dir-locals-file (file-name-directory file-name)))))))
+
+
+
+;;; MISC EMACS TWEAKS
+;;; =================
 
 ;; Adapted from: rougier/nano-emacs
 (defun +what-faces (pos)
@@ -1136,6 +1157,8 @@ be deleted.
        ,(macroexp-progn fn-body)
        #',fn-name)))
 
+
+
 ;;; EGLOT EXTRAS
 ;;; ============
 
@@ -1211,6 +1234,8 @@ the children of class at point."
                 (cl-loop for child across (plist-get node :children)
                          do (push (cons (1+ depth) child) tree)))))))
     (eglot--error "Hierarchy unavailable")))
+
+
 
 ;;; BINARY FILES TWEAKS
 ;;; ===================
@@ -1302,6 +1327,8 @@ Returns either nil, or the position of the first null byte."
   "Setup binary modes (objdump and hexl) for relevant buffers and file types."
   (add-to-list 'magic-fallback-mode-alist '(+binary-objdump-buffer-p . objdump-disassemble-mode) t)
   (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
+
+
 
 ;;; BUFFER RELATED TWEAKS
 ;;; =====================
@@ -1493,6 +1520,8 @@ This command removes new line characters between lines."
   (save-excursion (goto-char (point-min))
                   (and (bolp) (eolp))))
 
+
+
 ;;; PROJECT TWEAKS
 ;;; ==============
 
@@ -1548,6 +1577,8 @@ When DIR is not detected as a project, ask to force it to be by adding a
           (project-forget-project proj)
           (project-remember-projects-under proj-abbrev))))))
 
+
+
 ;;; SYSTEMD HELPERS
 ;;; ===============
 
@@ -1571,6 +1602,8 @@ When DIR is not detected as a project, ask to force it to be by adding a
 (defun +systemd-stop (service &optional pre-fn post-fn)
   "Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN."
   (+systemd-command service "stop" pre-fn post-fn))
+
+
 
 ;;; KEYBINDING MACROS
 ;;; =================
@@ -1664,6 +1697,8 @@ It is deferred until `general' gets loaded and configured."
   `(with-eval-after-load 'me-general-ready
     (general-nvmap ,@args)))
 
+
+
 ;;; SERIALIZATION
 ;;; =============
 
@@ -1703,6 +1738,8 @@ file dont exist."
         (ignore-errors (setq res (read (current-buffer)))))
       (when mutate (set sym res)))
     res))
+
+
 
 ;;; PERSISTENT SCRATCH BUFFER
 ;;; =========================
@@ -1887,6 +1924,8 @@ If prefix ARG, delete all persistent scratches."
           (message "%S does not exist" (abbreviate-file-name file))
         (delete-file file)
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
+
+
 
 (provide 'me-lib)
 
