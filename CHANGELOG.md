@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.0.2](https://github.com/abougouffa/minemacs/compare/v4.0.1..v4.0.2) - 2023-12-07
+#### Features
+- **(editor)** use the new `super-save` instead of `auto-save` - ([86dc4ec](https://github.com/abougouffa/minemacs/commit/86dc4ecfce64f1c3fa2628963ea4202b85cea08d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** simplify and remove dead code - ([6c3a45e](https://github.com/abougouffa/minemacs/commit/6c3a45e66d054a78ebab426cbb5abf1139f6e0a5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.0.1](https://github.com/abougouffa/minemacs/compare/v4.0.0..v4.0.1) - 2023-12-07
 #### Bug Fixes
 - **(core)** avoid `thing-at-point` errors - ([0a0dac7](https://github.com/abougouffa/minemacs/commit/0a0dac71aa8972d3feccef78759f9bfe2ca870be)) - [@abougouffa](https://github.com/abougouffa)
