@@ -61,7 +61,15 @@
          ("M-S-<left>" . drag-stuff-left)
          ("M-S-<right>" . drag-stuff-right)))
 
-;; Bind `+yank-region-as-paragraph' (autoloaded from "elisp/+buffer.el")
+(use-package auto-save
+  :straight (:host github :repo "manateelazycat/auto-save")
+  :hook (minemacs-first-file . auto-save-enable)
+  :custom
+  (auto-save-idle 3)
+  (auto-save-silent t)
+  (auto-save-delete-trailing-whitespace t))
+
+;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
 
 

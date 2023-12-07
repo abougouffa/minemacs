@@ -185,16 +185,6 @@
   (set-locale-environment "en_US.UTF-8")
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
   (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
-
-  (defun +toggle-auto-whitespace-cleanup ()
-    "Toggle auto-deleting trailing whitespaces."
-    (interactive)
-    (if (member #'+save--whitespace-cleanup-h before-save-hook)
-        (progn
-          (message "+toggle-auto-whitespace-cleanup: Disabled.")
-          (remove-hook 'before-save-hook #'+save--whitespace-cleanup-h))
-      (message "+toggle-auto-whitespace-cleanup: Enabled.")
-      (add-hook 'before-save-hook #'+save--whitespace-cleanup-h)))
   :config
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
@@ -1401,23 +1391,9 @@ current line.")
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
 
 (use-package whitespace
-  :hook (before-save . +save--whitespace-cleanup-h)
   :custom
   ;; Default behavior for `whitespace-cleanup'
-  (whitespace-action '(cleanup auto-cleanup))
-  :init
-  (defcustom +whitespace-auto-cleanup-modes
-    '(prog-mode conf-mode org-mode markdown-mode
-      latex-mode tex-mode bibtex-mode)
-    "Enable auto white space cleanup before saving for these derived modes."
-    :group 'minemacs-edit
-    :type '(repeat symbol))
-  :config
-  ;; Auto-remove trailing white spaces before saving for modes defined in
-  ;; `+whitespace-auto-cleanup-modes'.
-  (defun +save--whitespace-cleanup-h ()
-    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes)
-      (whitespace-cleanup))))
+  (whitespace-action '(cleanup auto-cleanup)))
 
 (use-package autorevert
   ;; Auto load files changed on disk
