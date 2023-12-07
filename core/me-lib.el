@@ -1870,12 +1870,9 @@ current project. When SAME-WINDOW-P is non-nil, open in the current window."
                   (string-match-p "^ ?\\*" (buffer-name)))
         major-mode)
       ((symbolp +scratch-initial-major-mode)
-       +scratch-initial-major-mode)
-      ((null +scratch-initial-major-mode)
-       nil)))
+       +scratch-initial-major-mode)))
     default-directory
-    (when-let ((project (project-current))
-               project-p)
+    (when-let ((project (and project-p (project-current))))
       (project-name project)))))
 
 (defun +switch-to-scratch-buffer (&optional arg project-p)
