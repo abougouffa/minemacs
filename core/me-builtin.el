@@ -170,8 +170,7 @@
                 tab-width 2) ; Small tab is enough!
 
   ;; Inhibit startup message in echo area the brutal way!
-  ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there
-  ;; is only one unique way of setting it right!
+  ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
   ;; See: reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
   (fset 'display-startup-echo-area-message #'ignore)
 
@@ -179,8 +178,7 @@
   (prefer-coding-system 'utf-8)
   (set-charset-priority 'unicode)
   (set-default-coding-systems 'utf-8)
-  ;; I use mainly English and French. Hence the "Latin-1" which is suitable for
-  ;; major Western Europe languages.
+  ;; I use mainly English and French. Hence the "Latin-1" which is suitable for major Western Europe languages.
   (set-language-environment "Latin-1")
   (set-locale-environment "en_US.UTF-8")
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
@@ -200,8 +198,7 @@ or file path may exist now."
              (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
              (set-auto-mode)))))
 
-  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a
-  ;; sub-directory
+  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
   (advice-add
    #'emacs-session-filename :filter-return
    (defun +emacs-session-filename--in-subdir-a (session-filename)
@@ -468,20 +465,6 @@ or file path may exist now."
   (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
 (use-package hideif
-  :init
-  (defun +hide-ifdef-mode-maybe-h ()
-    ;; If `me-lsp' is enabled, `lsp-semantic-tokens-mode' should do a better job,
-    ;; so we don't enable `hide-ifdef-mode'.
-    (unless (or (bound-and-true-p lsp-semantic-tokens-mode)
-                (bound-and-true-p lsp-semantic-tokens-enable))
-      (hide-ifdef-mode 1)))
-  (defun +hide-ifdef-auto-enable ()
-    (interactive)
-    (if prefix-arg
-        (+remove-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
-          #'+hide-ifdef-mode-maybe-h)
-      (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode cuda-mode opencl-mode)
-                  :depth 101 #'+hide-ifdef-mode-maybe-h)))
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t))
