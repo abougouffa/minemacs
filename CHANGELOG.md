@@ -2,6 +2,39 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.0.1](https://github.com/abougouffa/minemacs/compare/v4.0.0..v4.0.1) - 2023-12-07
+#### Bug Fixes
+- **(core)** avoid `thing-at-point` errors - ([0a0dac7](https://github.com/abougouffa/minemacs/commit/0a0dac71aa8972d3feccef78759f9bfe2ca870be)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** don't reload theme on frame creation [#136] - ([defe63f](https://github.com/abougouffa/minemacs/commit/defe63f334769c43bf570ae705158a83633ae68c)) - [@abougouffa](https://github.com/abougouffa)
+- move accidentally created `me-smartparens.el` to `obsolete` - ([a8c77a7](https://github.com/abougouffa/minemacs/commit/a8c77a7c628f33f3b6fd88297b668ee1d50324f0)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** add support for `auto-save` - ([ef19196](https://github.com/abougouffa/minemacs/commit/ef19196cf27b261a305be9f4f60ae8aa9f6b2a11)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** add `org-re-reveal`, `org-re-reveal-citeproc` & `oer-reveal` - ([3b1e01c](https://github.com/abougouffa/minemacs/commit/3b1e01c1b67eaaf1576c0bb920368edfe228c0cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add `guix` - ([920dee5](https://github.com/abougouffa/minemacs/commit/920dee518d154bbe1bbe7f0d346cff8756611ac7)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** insert lines to separate sections in `me-lib` - ([e1cf22a](https://github.com/abougouffa/minemacs/commit/e1cf22a151d8098e458dd1a30d29a6dae9e8494a)) - [@abougouffa](https://github.com/abougouffa)
+- comment - ([1df87a0](https://github.com/abougouffa/minemacs/commit/1df87a0fdb9b2f63253f52af4ec65daa4ad743a7)) - [@abougouffa](https://github.com/abougouffa)
+- code formatting - ([7b4fe80](https://github.com/abougouffa/minemacs/commit/7b4fe80e9fc855681ea342152edd6465d074b301)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** remove unneeded checks in persistent scratch - ([5bccc99](https://github.com/abougouffa/minemacs/commit/5bccc995627e72a003ca3087a1c883f0652d986f)) - [@abougouffa](https://github.com/abougouffa)
+- **(splash)** minor edit - ([5297c42](https://github.com/abougouffa/minemacs/commit/5297c42330ab94b6ea5da139f26ede03d60a8d78)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(ui)** restore the smaller lines numbers tweak - ([88a9282](https://github.com/abougouffa/minemacs/commit/88a9282bb1a8524c790e4bf90024803bfc9efd7d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(backports)** avoid problems on Emacs 28 - ([9ce07ee](https://github.com/abougouffa/minemacs/commit/9ce07eeea704d5532bb0329d0cfa1b2e7dc2057a)) - [@abougouffa](https://github.com/abougouffa)
+- **(backports)** better compatibility with Emacs 28 - ([c09eca1](https://github.com/abougouffa/minemacs/commit/c09eca114b1bd75d6fd3f83fd15a2be04c7395fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(daemon)** better conditions for `mu4e` and `elfeed` - ([bc51ebf](https://github.com/abougouffa/minemacs/commit/bc51ebfa28dbac3727edb716bca5d33e7a190713)) - [@abougouffa](https://github.com/abougouffa)
+- **(elec-pair)** don't complete / in Org (annoying when writing paths) - ([931f584](https://github.com/abougouffa/minemacs/commit/931f58494b084a47ba62249ae826038ea29730e8)) - [@abougouffa](https://github.com/abougouffa)
+- **(lib)** make `+single-file` a command - ([926262b](https://github.com/abougouffa/minemacs/commit/926262b908dae731c72303fd92fec6e90e0fb7bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** use filled numbers for hints - ([a76e2c0](https://github.com/abougouffa/minemacs/commit/a76e2c01f7b5c552193f2095851e9ea6f5aa9f68)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** better defaults + use of nerd-fonts for the close button - ([b6bb265](https://github.com/abougouffa/minemacs/commit/b6bb26513ea01d298b9c2e3f20151b6d4a0c8c04)) - [@abougouffa](https://github.com/abougouffa)
+- **(tldr)** minor tweaks - ([bc26fd9](https://github.com/abougouffa/minemacs/commit/bc26fd98d6f45975882cc26f1e17356746a20f56)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** conditionally install/configure packages - ([0446e34](https://github.com/abougouffa/minemacs/commit/0446e34acef51a7bc81ad1cc881a632f716ac053)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([051eb74](https://github.com/abougouffa/minemacs/commit/051eb742159c7e551d81ca8cf03ac82c8cf0f0d0)) - [@abougouffa](https://github.com/abougouffa)
+- multiple minor tweaks and edits - ([229dd56](https://github.com/abougouffa/minemacs/commit/229dd566e56b74a0d420b523a6a060e82f6f715e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.0.0](https://github.com/abougouffa/minemacs/compare/v3.11.0..v4.0.0) - 2023-11-30
 #### Bug Fixes
 - **(core)** undefined variable on Emacs 28 - ([6749e49](https://github.com/abougouffa/minemacs/commit/6749e49cb9092081404706422afe56ce0cded2f3)) - [@abougouffa](https://github.com/abougouffa)
