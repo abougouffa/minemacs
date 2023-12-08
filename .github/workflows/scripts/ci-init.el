@@ -22,6 +22,3 @@
 
   (message "Loading \"init.el\"")
   (load (expand-file-name "init.el" root-dir)))
-
-(message "Running MinEmacs in CI mode, loading all packages.")
-(mapc #'require minemacs-configured-packages)
