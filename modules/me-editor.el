@@ -62,11 +62,29 @@
          ("M-S-<right>" . drag-stuff-right)))
 
 (use-package super-save
-  :straight (:host github :repo "abougouffa/super-save")
+  :straight t
   :hook (minemacs-first-file . super-save-mode)
   :custom
   (super-save-silent t)
-  (super-save-delete-trailing-whitespaces 'except-current-line))
+  (super-save-delete-trailing-whitespaces 'except-current-line)
+  :config
+  ;; TEMP: Add support for auto-saving all buffers (until bbatsov/super-save/pull/44 gets merged)
+  (defvar super-save-all-buffers t)
+  (advice-add
+   'super-save-command :override
+   (lambda ()
+     "Save the current buffer if needed."
+     (dolist (buf (if super-save-all-buffers (buffer-list) (list (current-buffer))))
+       (with-current-buffer buf
+         (when (super-save-p)
+           (super-save-delete-trailing-whitespaces-maybe)
+           (if super-save-silent
+               (with-temp-message ""
+                 (let ((inhibit-message t)
+                       (inhibit-redisplay t)
+                       (message-log-max nil))
+                   (basic-save-buffer)))
+             (basic-save-buffer))))))))
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
