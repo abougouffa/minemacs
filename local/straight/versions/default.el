@@ -244,7 +244,7 @@
  ("straight.el" . "b3760f5829dba37e855add7323304561eb57a3d4")
  ("string-inflection" . "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
  ("sudo-edit" . "74eb1e6986461baed9a9269566ff838530b4379b")
- ("super-save" . "7f5e7f9d6e301e8f329e1ba735aef503077eeed3")
+ ("super-save" . "21132222967f13c47e80b4f6b7cbf31c026a2712")
  ("svg-lib" . "718d0f76d842919c8bf7fb23dd9cceca69ce9500")
  ("systemd-mode" . "8742607120fbc440821acbc351fda1e8e68a8806")
  ("tablist" . "fcd37147121fabdf003a70279cf86fbe08cfac6f")
