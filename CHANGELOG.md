@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.0.3](https://github.com/abougouffa/minemacs/compare/v4.0.2..v4.0.3) - 2023-12-08
+#### Features
+- **(ui)** add `anzu` to show number of matches in modeline - ([2f3b9e8](https://github.com/abougouffa/minemacs/commit/2f3b9e8f1db60e117cfa01f5d2a420770ed1be27)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** automatically detected all available modules - ([8456f69](https://github.com/abougouffa/minemacs/commit/8456f69e23c032b3232db686063c24b487d9ac75)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** don't force loading all packages in normal mode - ([baf864b](https://github.com/abougouffa/minemacs/commit/baf864bed9f01188e6834b1e0bf2ffb82ca0918a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(super-save)** remove the hack (merged upstream) - ([3bbe563](https://github.com/abougouffa/minemacs/commit/3bbe5639186189e891c7b6a5585a71f4e91db14e)) - [@abougouffa](https://github.com/abougouffa)
+- **(super-save)** temporary support for `super-save-all-buffers` - ([bf671e2](https://github.com/abougouffa/minemacs/commit/bf671e2941de0362cb6ee92081bd40f8c216900d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([192503a](https://github.com/abougouffa/minemacs/commit/192503a5beaea566c453aa539f37d2bfcf078ad2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.0.2](https://github.com/abougouffa/minemacs/compare/v4.0.1..v4.0.2) - 2023-12-07
 #### Features
 - **(editor)** use the new `super-save` instead of `auto-save` - ([86dc4ec](https://github.com/abougouffa/minemacs/commit/86dc4ecfce64f1c3fa2628963ea4202b85cea08d)) - [@abougouffa](https://github.com/abougouffa)
