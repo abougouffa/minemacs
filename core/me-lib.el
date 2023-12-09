@@ -557,7 +557,7 @@ Works like `shell-command-to-string' with two differences:
   "Is package PACKAGE disabled in `minemacs-disabled-packages'."
   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t))
 
-(defun +download-package-from-urls (pkgname &rest urls)
+(defun +package-download-from-urls (pkgname &rest urls)
   "Download PKGNAME files from URLS.
 
 Returns the load path of the package, useful for usage with `use-package''s

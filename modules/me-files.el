@@ -75,7 +75,7 @@
          ("C-c C-x" . dired-rsync-transient)))
 
 (defconst +sr-speedbar-path
-  (+download-package-from-urls 'sr-speedbar "https://www.emacswiki.org/emacs/download/sr-speedbar.el"))
+  (+package-download-from-urls 'sr-speedbar "https://www.emacswiki.org/emacs/download/sr-speedbar.el"))
 
 (use-package sr-speedbar
   :load-path +sr-speedbar-path
