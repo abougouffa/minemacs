@@ -150,6 +150,8 @@
   (confirm-kill-emacs #'y-or-n-p)
   ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
   (prettify-symbols-unprettify-at-point t)
+  ;; Use a dashed line for `display-fill-column-indicator-mode'
+  (display-fill-column-indicator-character ?\u250a)
   ;; Make apropos commands search more extensively
   (apropos-do-all t)
   ;; Do not ask obvious questions, follow symlinks
