@@ -2,6 +2,37 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.1.0](https://github.com/abougouffa/minemacs/compare/v4.0.3..v4.1.0) - 2023-12-09
+#### Bug Fixes
+- **(core)** ensure `minemacs-extra-packages-dir` exists - ([8bd5f50](https://github.com/abougouffa/minemacs/commit/8bd5f505b65547a0824e7ee3374338c10646f3cf)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** mark only non-installed grammar for install - ([fd0477f](https://github.com/abougouffa/minemacs/commit/fd0477f202b1a0621b88a45381a6bc04d389b3bf)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+download-package-from-urls` to pkgs from non-VC URLs - ([4300caf](https://github.com/abougouffa/minemacs/commit/4300cafb94c6d472f9ba70eb7c9434e3e170d06d)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** add support for `selection-highlight-mode` - ([e08c0c5](https://github.com/abougouffa/minemacs/commit/e08c0c5616f672939562b3f1304bf14139b903c9)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add support for `sr-speedbar` - ([dfc4c32](https://github.com/abougouffa/minemacs/commit/dfc4c323e42f24cfa41b6d63db3e0db326863908)) - [@abougouffa](https://github.com/abougouffa)
+- **(math)** add `julia-repl` - ([f5aaca2](https://github.com/abougouffa/minemacs/commit/f5aaca22ce8ed4dcde5f087570dd594621355da7)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** initial support for `quickrun` - ([ce60604](https://github.com/abougouffa/minemacs/commit/ce6060471394fdd742eb36e6189d82091320511e)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `html-ts-mode` - ([483224c](https://github.com/abougouffa/minemacs/commit/483224cdb8d1dada2b3460701ba5f84649ed0dc3)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for just files - ([42e336d](https://github.com/abougouffa/minemacs/commit/42e336d036d9b549cd80d7633c6fa515d88f80cc)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** 29.2 is not yet available - ([375ead4](https://github.com/abougouffa/minemacs/commit/375ead4db938f5990ff193cb3c87dfcad86db8f5)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** don't fail on Emacs snapshot - ([ad5a28c](https://github.com/abougouffa/minemacs/commit/ad5a28c9b818018955a0adcc17726199c235055c)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** add Emacs 28.1 & 29.2 to the matrix - ([5f09582](https://github.com/abougouffa/minemacs/commit/5f09582420d45712e7360b986b092d3db6bf15c1)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- correct a typo in a commit - ([86de1df](https://github.com/abougouffa/minemacs/commit/86de1dfd5b8efa905e197cc6bdc93294ee4d8a16)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** use a dashed line as a display fill column indicator - ([68736c1](https://github.com/abougouffa/minemacs/commit/68736c1c51a875a56bac1989f7bd7386e79a6ecb)) - [@abougouffa](https://github.com/abougouffa)
+- **(combobulate)** use `M-S-<up/down/left/right>` to avoid conflict - ([30ee5ee](https://github.com/abougouffa/minemacs/commit/30ee5eef8377264662f7b153f7e172026de5c375)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** use canonical function naming - ([84f653f](https://github.com/abougouffa/minemacs/commit/84f653f24ac1be14898f28634eca7d9c75624ee0)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** make use of `rename-visited-file` when available - ([ccefd5c](https://github.com/abougouffa/minemacs/commit/ccefd5c5387e5831379845670ffc542a743f7370)) - [@abougouffa](https://github.com/abougouffa)
+- **(core-ui)** don't make line numbers small, doesn't integrate well - ([9527fe1](https://github.com/abougouffa/minemacs/commit/9527fe1a7ac4bc3c803494b7239fe6f19af0c0da)) - [@abougouffa](https://github.com/abougouffa)
+- **(drag-stuff)** more intuitive keybindings - ([b3a925f](https://github.com/abougouffa/minemacs/commit/b3a925f9ba336a6de4c5b5d1fcfb8740d8868337)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight-mode)** use a different face than region - ([0991708](https://github.com/abougouffa/minemacs/commit/099170891a7f51ba6a1d025d002f923dad79fbef)) - [@abougouffa](https://github.com/abougouffa)
+- **(sr-speedbar)** remove unnecessary require - ([b49c064](https://github.com/abougouffa/minemacs/commit/b49c064fd0ff77e12a71244f2ce16f0637376054)) - [@abougouffa](https://github.com/abougouffa)
+- **(with-editor)** don't load on `julia-repl` - ([393d297](https://github.com/abougouffa/minemacs/commit/393d297e865b4f4fd29c15b0a4222ef03513b196)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.0.3](https://github.com/abougouffa/minemacs/compare/v4.0.2..v4.0.3) - 2023-12-08
 #### Features
 - **(ui)** add `anzu` to show number of matches in modeline - ([2f3b9e8](https://github.com/abougouffa/minemacs/commit/2f3b9e8f1db60e117cfa01f5d2a420770ed1be27)) - [@abougouffa](https://github.com/abougouffa)
