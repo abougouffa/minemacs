@@ -34,6 +34,10 @@
   :straight t
   :when (+emacs-features-p 'tree-sitter))
 
+(use-package html-ts-mode
+  :straight (:host github :repo "mickeynp/html-ts-mode")
+  :when (+emacs-features-p 'tree-sitter))
+
 (use-package combobulate
   :straight t
   :when (+emacs-features-p 'tree-sitter)
