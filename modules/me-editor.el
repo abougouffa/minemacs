@@ -73,7 +73,8 @@
 
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :hook (minemacs-first-file . selection-highlight-mode))
+  :hook (minemacs-first-file . selection-highlight-mode)
+  :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
 
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
