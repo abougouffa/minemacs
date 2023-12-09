@@ -92,6 +92,7 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
+(defconst minemacs-extra-packages-dir (concat minemacs-local-dir "extra-packages/"))
 (defconst minemacs-config-dir (file-name-as-directory
                                (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR")
                                    (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))

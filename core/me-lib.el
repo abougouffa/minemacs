@@ -14,6 +14,9 @@
 ;;; =================
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
+(autoload 'url-filename "url-parse")
+(autoload 'url-generic-parse-url "url-parse")
+
 (require 'rx)
 
 ;;; === Some plist and alist missing functions ===
@@ -553,6 +556,20 @@ Works like `shell-command-to-string' with two differences:
 (defun +package-disabled-p (package)
   "Is package PACKAGE disabled in `minemacs-disabled-packages'."
   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t))
+
+(defun +download-package-from-urls (pkgname &rest urls)
+  "Download PKGNAME files from URLS.
+
+Returns the load path of the package, useful for usage with `use-package''s
+`:load-path'."
+  (let* ((pkg-load-path (format "%s%s/" minemacs-extra-packages-dir pkgname))
+         (default-directory pkg-load-path))
+    (dolist (url urls)
+      (when-let* ((url-file-name (url-filename (url-generic-parse-url url)))
+                  (url-file-name (file-name-nondirectory url-file-name)))
+        (unless (file-exists-p url-file-name)
+          (url-copy-file url url-file-name))))
+    pkg-load-path))
 
 (defun minemacs-run-build-functions (&optional dont-ask-p)
   "Run all build functions in `minemacs-build-functions'."
