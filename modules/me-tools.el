@@ -51,7 +51,7 @@
     "otT" #'multi-vterm
     "ott" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
-  ;; Show at buttom
+  ;; Show at bottom
   (add-to-list 'display-buffer-alist
                `("\\*vterminal - .*\\*" ;; multi-vterm-project / dedicated
                  (display-buffer-reuse-window display-buffer-in-direction)
