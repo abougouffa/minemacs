@@ -69,6 +69,9 @@
   :straight t
   :when (+emacs-features-p 'tree-sitter))
 
+(use-package julia-repl
+  :straight t)
+
 (use-package ess
   :straight t)
 

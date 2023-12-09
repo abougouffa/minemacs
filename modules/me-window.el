@@ -62,7 +62,7 @@
  'display-buffer-alist
  `(,(rx bol "*"
      (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
-      "inferior-lisp" "prolog" "gnuplot" "Nix-REPL"
+      "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
       (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
      "*" eol)
    (display-buffer-in-side-window)
