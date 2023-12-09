@@ -204,6 +204,12 @@
 (use-package franca-idl
   :straight (:host github :repo "zeph1e/franca-idl.el"))
 
+(use-package just-mode
+  :straight t)
+
+(use-package justl
+  :straight t)
+
 (use-package makefile-executor
   :straight t
   :hook (makefile-mode . makefile-executor-mode))
