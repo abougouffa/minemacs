@@ -8,19 +8,6 @@
 
 ;;; Code:
 
-;; Apply tweaks
-(+add-hook! '(after-init-hook enable-theme-functions)
-  (defun +theme--tweaks-h (&optional _)
-    "Use smaller font (75% of the default) for line numbers in graphic mode."
-    (when (display-graphic-p)
-      (set-face-attribute 'line-number nil
-                          :background (face-attribute 'default :background)
-                          :height (truncate (* 0.75 (face-attribute 'default :height)))
-                          :weight 'semi-light)
-      (set-face-attribute 'line-number-current-line nil
-                          :height (truncate (* 0.75 (face-attribute 'default :height)))
-                          :weight 'bold))))
-
 ;; Disable previously enabled custom themes before enabling a new one.
 (advice-add
  'load-theme :before
