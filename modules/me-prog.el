@@ -39,7 +39,15 @@
   :when (+emacs-features-p 'tree-sitter)
   :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
   :custom
-  (combobulate-key-prefix "C-c o"))
+  (combobulate-key-prefix "C-c o")
+  :config
+  ;; The "M-<up/down/left/right>" keys are used globally by `drag-stuff', lets
+  ;; unset them for `combobulate' and use "M-S-<up/down/left/right>" instead.
+  (mapc (lambda (k) (keymap-unset combobulate-key-map k 'remove)) '("M-<up>" "M-<down>" "M-<left>" "M-<right>"))
+  (keymap-set combobulate-key-map "M-S-<up>" #'combobulate-splice-up)
+  (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-splice-down)
+  (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-yeet-forward)
+  (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
 
 (use-package consult-eglot
   :straight t
