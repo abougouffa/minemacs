@@ -71,6 +71,10 @@
   (super-save-auto-save-when-idle t)
   (super-save-delete-trailing-whitespaces 'except-current-line))
 
+(use-package selection-highlight-mode
+  :straight (:host github :repo "balloneij/selection-highlight-mode")
+  :hook (minemacs-first-file . selection-highlight-mode))
+
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
 
