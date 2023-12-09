@@ -745,23 +745,26 @@ RECURSIVE is non-nil."
       (delete-directory file-or-directory recursive trash)
     (delete-file file-or-directory trash)))
 
-(defun +move-this-file (new-path &optional force-p)
-  "Move current buffer's file to NEW-PATH.
+(if (fboundp 'rename-visited-file)
+    (defalias '+move-this-file #'rename-visited-file)
+
+  (defun +move-this-file (new-path &optional force-p)
+    "Move current buffer's file to NEW-PATH.
 
 If FORCE-P, overwrite the destination file if it exists, without confirmation."
-  (interactive
-   (list (read-file-name "Move file to: ")
-         current-prefix-arg))
-  (unless (and buffer-file-name (file-exists-p buffer-file-name))
-    (user-error "Buffer is not visiting any file"))
-  (let ((old-path (buffer-file-name (buffer-base-buffer)))
-        (new-path (expand-file-name new-path)))
-    (when (directory-name-p new-path)
-      (setq new-path (expand-file-name (file-name-nondirectory old-path) new-path)))
-    (make-directory (file-name-directory new-path) t)
-    (rename-file old-path new-path (or force-p 1))
-    (set-visited-file-name new-path t t)
-    (message "File moved to %S" (abbreviate-file-name new-path))))
+    (interactive
+     (list (read-file-name "Move file to: ")
+           current-prefix-arg))
+    (unless (and buffer-file-name (file-exists-p buffer-file-name))
+      (user-error "Buffer is not visiting any file"))
+    (let ((old-path (buffer-file-name (buffer-base-buffer)))
+          (new-path (expand-file-name new-path)))
+      (when (directory-name-p new-path)
+        (setq new-path (expand-file-name (file-name-nondirectory old-path) new-path)))
+      (make-directory (file-name-directory new-path) t)
+      (rename-file old-path new-path (or force-p 1))
+      (set-visited-file-name new-path t t)
+      (message "File moved to %S" (abbreviate-file-name new-path)))))
 
 (autoload 'tramp-make-tramp-file-name "tramp")
 (defvar tramp-root-id-string)
