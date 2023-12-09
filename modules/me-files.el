@@ -83,7 +83,6 @@
   :custom
   (sr-speedbar-right-side nil)
   :config
-  (require 'ezimage)
   (setq speedbar-use-images ezimage-use-images)
   (+nvmap! :keymaps 'speedbar-mode-map "q" #'sr-speedbar-close))
 
