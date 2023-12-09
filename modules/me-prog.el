@@ -110,7 +110,19 @@
                     cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
-;;; Modes
+(use-package quickrun
+  :straight t
+  :init
+  (+map!
+    "cq"  '(nil :wk "quickrun")
+    "cqq" #'quickrun
+    "cqQ" #'quickrun-select
+    "cqs" #'quickrun-shell
+    "cqa" #'quickrun-with-arg
+    "cqc" #'quickrun-compile-only
+    "cqC" #'quickrun-compile-only-select
+    "cqd" #'quickrun-select-default))
+
 (use-package gitlab-ci-mode
   :straight t)
 
