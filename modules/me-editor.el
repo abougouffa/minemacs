@@ -56,10 +56,10 @@
 (use-package drag-stuff
   :straight t
   :init
-  :bind (("M-S-<up>" . drag-stuff-up)
-         ("M-S-<down>" . drag-stuff-down)
-         ("M-S-<left>" . drag-stuff-left)
-         ("M-S-<right>" . drag-stuff-right)))
+  :bind (("M-<up>" . drag-stuff-up)
+         ("M-<down>" . drag-stuff-down)
+         ("M-<left>" . drag-stuff-left)
+         ("M-<right>" . drag-stuff-right)))
 
 (use-package super-save
   :straight t
