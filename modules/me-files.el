@@ -74,6 +74,19 @@
          ("C-c C-r" . dired-rsync)
          ("C-c C-x" . dired-rsync-transient)))
 
+(defconst +sr-speedbar-path
+  (+download-package-from-urls 'sr-speedbar "https://www.emacswiki.org/emacs/download/sr-speedbar.el"))
+
+(use-package sr-speedbar
+  :load-path +sr-speedbar-path
+  :commands sr-speedbar-toggle sr-speedbar-open
+  :custom
+  (sr-speedbar-right-side nil)
+  :config
+  (require 'ezimage)
+  (setq speedbar-use-images ezimage-use-images)
+  (+nvmap! :keymaps 'speedbar-mode-map "q" #'sr-speedbar-close))
+
 
 (provide 'me-files)
 
