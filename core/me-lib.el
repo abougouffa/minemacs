@@ -562,7 +562,7 @@ Works like `shell-command-to-string' with two differences:
 
 Returns the load path of the package, useful for usage with `use-package''s
 `:load-path'."
-  (let* ((pkg-load-path (format "%s%s/" minemacs-extra-packages-dir pkgname))
+  (let* ((pkg-load-path (+directory-ensure minemacs-extra-packages-dir (format "%s/" pkgname)))
          (default-directory pkg-load-path))
     (dolist (url urls)
       (when-let* ((url-file-name (url-filename (url-generic-parse-url url)))
