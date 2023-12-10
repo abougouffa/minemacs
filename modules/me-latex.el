@@ -169,6 +169,12 @@
     ;; Add LatexMk as a TeX target.
     (auctex-latexmk-setup)))
 
+(use-package latex-preview-pane
+  :straight t
+  :init
+  (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+    "p" #'latex-preview-pane-mode))
+
 
 (provide 'me-latex)
 
