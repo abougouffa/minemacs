@@ -18,6 +18,13 @@
   (pdf-view-image-relief 2)
   (pdf-view-use-scaling t))
 
+(use-package pdf-view-restore
+  :straight t
+  :hook (pdf-view-mode . pdf-view-restore-mode)
+  :custom
+  (use-file-base-name-flag nil)
+  (pdf-view-restore-filename (concat minemacs-local-dir "pdf-view-restore.el")))
+
 (use-package nov
   :straight t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)
