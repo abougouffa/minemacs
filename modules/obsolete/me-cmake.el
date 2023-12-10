@@ -1,6 +1,6 @@
 ;;; me-cmake.el --- Edit CMake files -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa and contributors
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 

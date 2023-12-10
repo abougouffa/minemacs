@@ -1,6 +1,6 @@
 ;;; me-mu4e.el --- Email stuff using mu4e -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa and contributors
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 

@@ -1,6 +1,6 @@
 ;;; me-backports-29.el --- Some Emacs 29 functionalities ported back to Emacs 28 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa and contributors
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 

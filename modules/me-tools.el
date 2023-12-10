@@ -1,7 +1,8 @@
 ;;  me-tools.el -- System tools -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa and contributors
+;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;;; Code:
 
 ;; Should be configured in per-project basis, good documentation at:

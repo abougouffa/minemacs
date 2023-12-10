@@ -1,6 +1,6 @@
 ;;; modules.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022 Abdelhak Bougouffa
+;; Copyright (C) 2022 Abdelhak Bougouffa and contributors
 
 ;; This file can be used to override `minemacs-modules'
 ;; and `minemacs-core-modules'
