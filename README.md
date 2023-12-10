@@ -11,16 +11,19 @@
 ![MinEmacs screenshot](assets/images/minemacs-screenshot.svg)
 
 ## Why?
-I was using Doom Emacs, which I initially considered to be a remarkable software
-that introduced me to the world of Emacs. Nonetheless, my experience with it
-turned out to be **less enjoyable** later.
+Since many years, Emacs forms the foundation of my workflow, serving as my go-to
+tool for various tasks such as document writing, academic paper writing,
+programming in multiple languages, email management, and staying updated with
+news, among other things.
 
-Emacs forms the foundation of my workflow, serving as my go-to tool for various
-tasks such as document writing, academic paper writing, programming in multiple
-languages, email management, and staying updated with news, among other things.
+Hence, I wanted a VIM-style framework that is both robust and straightforward.
+[Spacemacs](https://github.com/syl20bnr/spacemacs) was the first framework I've tested, I liked the idea of using `SPC` as
+a leader key, but I didn't like the way Spacemacs packs things in layers, and
+imposes a unique way of writing your configuration.
 
-Hence, I wanted a framework that is both robust and straightforward. Doom Emacs
-seemed like a suitable choice initially. However, before I started this project
+I discovered then [Doom Emacs](https://github.com/doomemacs/doomemacs), which I found a remarkable software that
+introduced me to the world of Emacs. Nonetheless, my experience with it turned
+out to be **less enjoyable** later. In fact, before I started the [MinEmacs](https://github.com/abougouffa/minemacs) project
 back in September 2022, I encountered numerous issues with Doom Emacs.
 Occasionally, after running the `doom upgrade` command, everything would cease to
 function properly. These problems always seemed to arise during my busiest days,
@@ -34,7 +37,7 @@ features introduced extra complexity and more failure points at every layer.
 
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
 *and it continues to serve that purpose*. I'm trying to tailor it to my specific
-needs while maintaining its modularity and portability, you can refer to the
+needs while maintaining its modularity and portability. You can refer to the
 [change log](CHANGELOG.md) for more information about the evolution of MinEmacs. However, I have
 no intention or availability to create an alternative to Doom Emacs or
 Spacemacs. While I find joy (like every other Emacser out there) in tinkering
@@ -62,12 +65,12 @@ packages.
 > modules enabled on these systems. However, more testing should be done to
 > validate the configuration on systems other than Linux.
 >
-> I'm trying to support at least Emacs 28.2, so [I back port some of the new
+> I'm trying to support at least Emacs 28.1, so [I back port some of the new
 > functions/macros I use to Emacs 28](core/backports/). Furthermore, for Emacs 28 and earlier,
 > MinEmacs includes the `me-compat` module which loads the `compat` package at early
 > stage (just after bootstrapping `straight` and `use-package`), this can facilitate
 > porting MinEmacs to earlier Emacs versions. However, I've never tested
-> MinEmacs with versions earlier than 28.2, and I don't plan to do so!
+> MinEmacs with versions earlier than 28.1, and I don't plan to do so!
 
 ## Customization
 To personalize MinEmacs, you can incorporate a specific set of files within the
@@ -90,6 +93,16 @@ This repository contains skeleton files for [`modules.el`](skel/modules.el) and 
 files, specially the use of `with-eval-after-load` and `use-package` instead of
 using `require` directly (`require` loads the packages immediately, which increases
 the startup time of Emacs).
+
+### Machine-specific configuration files
+In my workflow, I use mainly the same configuration files across all my machines
+(which are traditionally shared in my [dotfiles](https://github.com/abougouffa/dotfiles) repository). However, I have some
+machine-specific (local) configurations that I like to load. For example, to
+overwrite the email address on my workstation.
+
+For this purpose, MinEmacs will also check for files in
+`~/.minemacs.d/local/{early-config,config,modules}.el` and load them if they
+exists.
 
 ### Advanced configuration files
 MinEmacs provides also some advanced customization files, these files can be
