@@ -1,6 +1,6 @@
 ;;; me-dap-utils.el --- Utility functions for DAP mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2023  Abdelhak Bougouffa and contributors
 
 ;; Author: Abdelhak Bougouffa <abougouffa@fedoraproject.org>
 
