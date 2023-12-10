@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.1.1](https://github.com/abougouffa/minemacs/compare/v4.1.0..v4.1.1) - 2023-12-10
+#### Documentation
+- **(readme)** add a note on `general-describe-keybindings` - ([376266a](https://github.com/abougouffa/minemacs/commit/376266a82246fd99adbda65b9132f2f7af30b913)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update documentation - ([d8b62ce](https://github.com/abougouffa/minemacs/commit/d8b62ceadb9dc360fd11a92b97a47310e71a1625)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(latex)** add `latex-preview-pane` - ([525c936](https://github.com/abougouffa/minemacs/commit/525c9365c9c3c5ca0cf6056ba5f513679151d6c5)) - [@abougouffa](https://github.com/abougouffa)
+- **(pdf-tools)** save/restore position in PDFs using `pdf-view-restore` - ([1e392e1](https://github.com/abougouffa/minemacs/commit/1e392e1f8c4e70241919a22020140e7d410cdc74)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(readme)** prettify - ([39677df](https://github.com/abougouffa/minemacs/commit/39677df506a1871a34987630c510a2156f6d0f36)) - [@abougouffa](https://github.com/abougouffa)
+- **(tempel)** make use of `minemacs-assets-dir` - ([5106970](https://github.com/abougouffa/minemacs/commit/5106970f144a484fc80b823ad479aff40b8262e1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.1.0](https://github.com/abougouffa/minemacs/compare/v4.0.3..v4.1.0) - 2023-12-09
 #### Bug Fixes
 - **(core)** ensure `minemacs-extra-packages-dir` exists - ([8bd5f50](https://github.com/abougouffa/minemacs/commit/8bd5f505b65547a0824e7ee3374338c10646f3cf)) - [@abougouffa](https://github.com/abougouffa)
