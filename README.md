@@ -173,6 +173,12 @@ Special hooks defined with `+make-first-file-hook!`:
 - `minemacs-first-elisp-file-hook`
 - `minemacs-first-org-file-hook`
 
+## MinEmacs keybindings cheat sheet
+MinEmacs defines several keybindings, mainly using [**general.el**](https://github.com/noctuid/general.el). To see the full
+list of keybindings defined using general, you can type `SPC h g` or `M-x
+general-describe-keybindings`.
+
 ## Troubleshooting
 If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).
+
