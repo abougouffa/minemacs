@@ -11,6 +11,7 @@
 ![MinEmacs screenshot](assets/images/minemacs-screenshot.svg)
 
 ## Why?
+
 Since many years, Emacs forms the foundation of my workflow, serving as my go-to
 tool for various tasks such as document writing, academic paper writing,
 programming in multiple languages, email management, and staying updated with
@@ -36,7 +37,7 @@ opinionated manner, CI commands, and even a profile manager! Each of these
 features introduced extra complexity and more failure points at every layer.
 
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
-*and it continues to serve that purpose*. I'm trying to tailor it to my specific
+_and it continues to serve that purpose_. I'm trying to tailor it to my specific
 needs while maintaining its modularity and portability. You can refer to the
 [change log](CHANGELOG.md) for more information about the evolution of MinEmacs. However, I have
 no intention or availability to create an alternative to Doom Emacs or
@@ -47,6 +48,7 @@ really interested in becoming a full-time maintainer of this tool that I would
 only use to maintain itself!
 
 ## Install
+
 Open a shell and run:
 
 ```shell
@@ -73,12 +75,14 @@ packages.
 > MinEmacs with versions earlier than 28.1, and I don't plan to do so!
 
 ## Customization
+
 To personalize MinEmacs, you can incorporate a specific set of files within the
 default user configuration directory, which is located at `~/.minemacs.d`.
 However, if you prefer to use a different directory, you have the flexibility to
 do so by setting the `MINEMACSDIR` environment variable.
 
 ### Main configuration files
+
 There are two main files that can be added in the `~/.minemacs.d` directory:
 
 1. The `~/.minemacs.d/modules.el` file contains a list of enabled modules and a
@@ -95,6 +99,7 @@ using `require` directly (`require` loads the packages immediately, which increa
 the startup time of Emacs).
 
 ### Machine-specific configuration files
+
 In my workflow, I use mainly the same configuration files across all my machines
 (which are traditionally shared in my [dotfiles](https://github.com/abougouffa/dotfiles) repository). However, I have some
 machine-specific (local) configurations that I like to load. For example, to
@@ -105,6 +110,7 @@ For this purpose, MinEmacs will also check for files in
 exists.
 
 ### Advanced configuration files
+
 MinEmacs provides also some advanced customization files, these files can be
 used to tweak MinEmacs' behavior, add some early initialization code, make
 MinEmacs runnable on older Emacs versions, etc.
@@ -119,6 +125,7 @@ MinEmacs runnable on older Emacs versions, etc.
    functions MinEmacs uses. See the [`init.el`](init.el) for more information.
 
 ### Environment variables
+
 You can customize MinEmacs' behavior via some environment variables.
 
 - `MINEMACS_DIR` or `MINEMACSDIR`: Path for MinEmacs user configuration directory,
@@ -142,10 +149,11 @@ You can customize MinEmacs' behavior via some environment variables.
   user configuration files.
 
 ### Load and hooks order
+
 MinEmacs loads its features and run hooks in this order:
 
 - `~/.emacs.d/early-init.el`
-- `$MINEMACSDIR/early-config.el` *(unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)*
+- `$MINEMACSDIR/early-config.el` _(unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)_
 - `$MINEMACSDIR/local/early-config.el` _(unless disabled)_
 - `~/.emacs.d/init.el`
   - `before-init-hook`
@@ -174,11 +182,12 @@ Special hooks defined with `+make-first-file-hook!`:
 - `minemacs-first-org-file-hook`
 
 ## MinEmacs keybindings cheat sheet
+
 MinEmacs defines several keybindings, mainly using [**general.el**](https://github.com/noctuid/general.el). To see the full
 list of keybindings defined using general, you can type `SPC h g` or `M-x
 general-describe-keybindings`.
 
 ## Troubleshooting
+
 If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).
-
