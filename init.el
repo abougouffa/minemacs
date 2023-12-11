@@ -90,8 +90,11 @@
 (unless (featurep 'me-vars)
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
+;; Add some of MinEmacs' directories to `load-path'.
+(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) load-path))
+
 ;; Load MinEmacs' library
-(+load (concat minemacs-core-dir "me-lib.el"))
+(require 'me-lib)
 
 ;; HACK: Most Emacs' builtin and third-party packages depends on the
 ;; `user-emacs-directory' variable to store cache information, generated
@@ -142,9 +145,6 @@
   ;; Set the right directory to store the native compilation cache to avoid
   ;; messing with "~/.emacs.d/".
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
-
-;; Add some of MinEmacs' directories to `load-path'.
-(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) load-path))
 
 (defun minemacs-generate-loaddefs ()
   "Generate MinEmacs' loaddefs file."
