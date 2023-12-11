@@ -153,6 +153,9 @@
   :init
   (+map! "gr" #'repo-status))
 
+(use-package diffview
+  :straight t)
+
 
 (provide 'me-vc)
 
