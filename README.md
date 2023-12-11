@@ -148,44 +148,15 @@ You can customize MinEmacs' behavior via some environment variables.
   `local/init-tweaks`, `local/modules` and `local/config`. Use `all` to disable all
   user configuration files.
 
-### Load and hooks order
-
-MinEmacs loads its features and run hooks in this order:
-
-- `~/.emacs.d/early-init.el`
-- `$MINEMACSDIR/early-config.el` _(unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)_
-- `$MINEMACSDIR/local/early-config.el` _(unless disabled)_
-- `~/.emacs.d/init.el`
-  - `before-init-hook`
-  - `~/.emacs.d/core/me-vars.el`
-  - `~/.emacs.d/core/backports/*.el` _(when Emacs < 29)_
-  - `~/.emacs.d/core/me-loaddefs.el`
-  - `$MINEMACSDIR/init-tweaks.el` _(unless disabled)_
-  - `$MINEMACSDIR/local/init-tweaks.el` _(unless disabled)_
-  - `$MINEMACSDIR/modules.el` _(unless disabled)_
-  - `$MINEMACSDIR/local/modules.el` _(unless disabled)_
-  - `~/.emacs.d/core/<module>.el` _(for module in `minemacs-core-modules`)_
-  - `~/.emacs.d/modules/<module>.el` _(for module in `minemacs-modules`)_
-  - `minemacs-after-loading-modules-hook`
-  - `$MINEMACSDIR/custom-vars.el`
-  - `$MINEMACSDIR/config.el` _(unless disabled)_
-  - `$MINEMACSDIR/local/config.el` _(unless disabled)_
-  - `after-init-hook`
-  - `emacs-startup-hook`
-  - `minemacs-after-startup-hook`
-    - `minemacs-lazy-hook` _(delayed)_
-
-Special hooks defined with `+make-first-file-hook!`:
-
-- `minemacs-first-file-hook`
-- `minemacs-first-elisp-file-hook`
-- `minemacs-first-org-file-hook`
-
 ## MinEmacs keybindings cheat sheet
 
 MinEmacs defines several keybindings, mainly using [**general.el**](https://github.com/noctuid/general.el). To see the full
 list of keybindings defined using general, you can type `SPC h g` or `M-x
 general-describe-keybindings`.
+
+## Extra documentation
+More information about customization variables, functions and commands defined
+by MinEmacs can be found in the [documentation generated from the source code](DOCS.md).
 
 ## Troubleshooting
 
