@@ -26,24 +26,24 @@
 ;;                                                          abougouffa.github.io/minemacs
 
 ;; Load and hooks order:
-;; - ~/.emacs.d/early-init.el
-;; - $MINEMACSDIR/early-config.el (unless disabled in $MINEMACS_IGNORE_USER_CONFIG)
-;; - $MINEMACSDIR/local/early-config.el (unless disabled)
-;; - ~/.emacs.d/init.el
+;; - `~/.emacs.d/early-init.el`
+;; - `$MINEMACSDIR/early-config.el` (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
+;; - `$MINEMACSDIR/local/early-config.el` (unless disabled)
+;; - `~/.emacs.d/init.el`
 ;;   * `before-init-hook'
-;;   * ~/.emacs.d/core/me-vars.el
-;;   * ~/.emacs.d/core/backports/*.el (when Emacs < 29)
-;;   * ~/.emacs.d/core/me-loaddefs.el
-;;   * $MINEMACSDIR/init-tweaks.el (unless disabled)
-;;   * $MINEMACSDIR/local/init-tweaks.el (unless disabled)
-;;   * $MINEMACSDIR/modules.el (unless disabled)
-;;   * $MINEMACSDIR/local/modules.el (unless disabled)
-;;   * ~/.emacs.d/core/<module>.el (for module in `minemacs-core-modules')
-;;   * ~/.emacs.d/modules/<module>.el (for module in `minemacs-modules')
+;;   * `~/.emacs.d/core/me-vars.el`
+;;   * `~/.emacs.d/core/backports/*.el` (when Emacs < 29)
+;;   * `~/.emacs.d/core/me-loaddefs.el`
+;;   * `$MINEMACSDIR/init-tweaks.el` (unless disabled)
+;;   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
+;;   * `$MINEMACSDIR/modules.el` (unless disabled)
+;;   * `$MINEMACSDIR/local/modules.el` (unless disabled)
+;;   * `~/.emacs.d/core/<module>.el` (for module in `minemacs-core-modules')
+;;   * `~/.emacs.d/modules/<module>.el` (for module in `minemacs-modules')
 ;;   * `minemacs-after-loading-modules-hook'
-;;   * $MINEMACSDIR/custom-vars.el
-;;   * $MINEMACSDIR/config.el (unless disabled)
-;;   * $MINEMACSDIR/local/config.el (unless disabled)
+;;   * `$MINEMACSDIR/custom-vars.el`
+;;   * `$MINEMACSDIR/config.el` (unless disabled)
+;;   * `$MINEMACSDIR/local/config.el` (unless disabled)
 ;;   * `after-init-hook'
 ;;   * `emacs-startup-hook'
 ;;   * `minemacs-after-startup-hook'
@@ -57,7 +57,7 @@
 ;;; Code:
 
 ;; Check if Emacs version is supported. You can define the
-;; $MINEMACS_IGNORE_VERSION_CHECK environment variable to ignore this check.
+;; `$MINEMACS_IGNORE_VERSION_CHECK` environment variable to ignore this check.
 ;; This can be useful if you are stuck with an old Emacs version and you've
 ;; incrementally implemented the new Emacs routines MinEmacs needs in your
 ;; "init-tweaks.el".
@@ -120,8 +120,8 @@
     (mapc (apply-partially #'+load backports-dir) (directory-files backports-dir nil "\\.el\\'"))))
 
 (setq
- ;; Enable debugging on error when Emacs is launched with the "--debug-init"
- ;; option or when the environment variable "$MINEMACS_DEBUG" is defined (see
+ ;; Enable debugging on error when Emacs is launched with the `--debug-init`
+ ;; option or when the environment variable `$MINEMACS_DEBUG` is defined (see
  ;; `me-vars').
  debug-on-error minemacs-debug-p
  ;; Decrease the warning type to `:error', unless we are running in verbose mode

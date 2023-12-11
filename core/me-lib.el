@@ -10,16 +10,17 @@
 
 (require 'me-vars)
 
-;;; PRIMITIVE HELPERS
-;;; =================
-
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
 (autoload 'url-filename "url-parse")
 (autoload 'url-generic-parse-url "url-parse")
+(autoload 'vc-git-root "vc-git")
+(autoload 'vc-git-revert "vc-git")
+(autoload 'tramp-make-tramp-file-name "tramp")
+(defvar tramp-root-id-string) ; Make byte-compiler happy
 
 (require 'rx)
 
-;;; === Some plist and alist missing functions ===
+;;; Some plist and alist missing functions
 
 (defun +varplist-get (vplist keyword &optional car-p)
   "Get KEYWORD's value from variable value length VPLIST.
@@ -106,7 +107,7 @@ value of this method instead of the original alist, to ensure correct results."
     (push (cons key val) alist))
   alist)
 
-;;; === Misc ===
+;;; Missing primitive utilities
 
 ;; See: emacs.stackexchange.com/q/3022/37002
 (defun +reset-sym (sym)
@@ -136,8 +137,7 @@ value of this method instead of the original alist, to ensure correct results."
 
 
 
-;;; MINEMACS' CORE FUNCTIONS AND MACROS
-;;; ===================================
+;;; Minemacs' core functions and macros
 
 (defmacro +error! (msg &rest vars)
   "Log error MSG and VARS using `message'."
@@ -613,9 +613,6 @@ Returns the load path of the package, useful for usage with `use-package''s
   (message "[MinEmacs]: Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
 
-(autoload 'vc-git-root "vc-git")
-(autoload 'vc-git-revert "vc-git")
-
 (defun minemacs-update-restore-locked (restore-from-backup)
   "Restore lockfile packages list. Takes into account the pinned ones.
 When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
@@ -664,8 +661,7 @@ restore the lockfile from backups, not Git."
 
 
 
-;;; FILES, DIRECTORIES AND IO HELPER FUNCTIONS
-;;; ==========================================
+;;; Files, directories and IO helper functions
 
 (defun +file-mime-type (file)
   "Get MIME type for FILE based on magic codes provided by the \"file\" command.
@@ -764,7 +760,6 @@ RECURSIVE is non-nil."
 
 (if (fboundp 'rename-visited-file)
     (defalias '+move-this-file #'rename-visited-file)
-
   (defun +move-this-file (new-path &optional force-p)
     "Move current buffer's file to NEW-PATH.
 
@@ -782,9 +777,6 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
       (rename-file old-path new-path (or force-p 1))
       (set-visited-file-name new-path t t)
       (message "File moved to %S" (abbreviate-file-name new-path)))))
-
-(autoload 'tramp-make-tramp-file-name "tramp")
-(defvar tramp-root-id-string)
 
 (defun +tramp-sudo-file-path (file)
   "Construct a Tramp sudo path to FILE. Works for both local and remote files."
@@ -840,8 +832,7 @@ If FORCE-P, overwrite the destination file if it exists, without confirmation."
 
 
 
-;;; FILES EXPORT AND CONVERSION
-;;; ===========================
+;;; Exporter and converters
 
 (defcustom +html2pdf-default-backend 'wkhtmltopdf
   "The default backend to convert HTML files to PDFs in `+html2pdf'."
@@ -954,8 +945,7 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 
 
 
-;;; LOCK FILES
-;;; ==========
+;;; Lock files
 
 (defun +lock--file (name)
   "Get the absolute path of the lockfile for resource NAME."
@@ -997,8 +987,7 @@ current process."
 
 
 
-;;; DIR LOCALS TWEAKS & HACKS
-;;; =========================
+;;; Directory local tweaks & hacks
 
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer."
@@ -1053,8 +1042,7 @@ If ENABLE is non-nil, force enabling autoreloading."
 
 
 
-;;; MISC EMACS TWEAKS
-;;; =================
+;;; Misc emacs tweaks
 
 ;; Adapted from: rougier/nano-emacs
 (defun +what-faces (pos)
@@ -1175,8 +1163,7 @@ be deleted.
 
 
 
-;;; EGLOT EXTRAS
-;;; ============
+;;; Eglot extras
 
 ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
 ;; to fill `+eglot-auto-enable-modes' with all supported modes.
@@ -1253,8 +1240,7 @@ the children of class at point."
 
 
 
-;;; BINARY FILES TWEAKS
-;;; ===================
+;;; Binary files tweaks
 
 (defgroup minemacs-binary nil
   "MinEmacs binary files."
@@ -1346,8 +1332,7 @@ Returns either nil, or the position of the first null byte."
 
 
 
-;;; BUFFER RELATED TWEAKS
-;;; =====================
+;;; Buffer related tweaks
 
 (defgroup minemacs-buffer nil
   "MinEmacs buffer stuff."
@@ -1538,8 +1523,7 @@ This command removes new line characters between lines."
 
 
 
-;;; PROJECT TWEAKS
-;;; ==============
+;;; Project tweaks
 
 (defgroup minemacs-project nil
   "MinEmacs project stuff."
@@ -1595,8 +1579,7 @@ When DIR is not detected as a project, ask to force it to be by adding a
 
 
 
-;;; SYSTEMD HELPERS
-;;; ===============
+;;; Systemd helpers
 
 (defun +systemd-running-p (service)
   "Check if the systemd SERVICE is running."
@@ -1621,7 +1604,7 @@ When DIR is not detected as a project, ask to force it to be by adding a
 
 
 
-;;; KEYBINDING MACROS
+;;; Keybinding macros
 ;;; =================
 
 ;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
@@ -1715,8 +1698,7 @@ It is deferred until `general' gets loaded and configured."
 
 
 
-;;; SERIALIZATION
-;;; =============
+;;; Data serialization
 
 (defcustom +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/")
   "Default directory to store serialized symbols."
@@ -1757,8 +1739,7 @@ file dont exist."
 
 
 
-;;; PERSISTENT SCRATCH BUFFER
-;;; =========================
+;;; Persistent & per-project scratch buffers
 
 (defvar +scratch-default-file "__default"
   "The default file name for a project-less scratch buffer.
@@ -1833,7 +1814,7 @@ When provided, set the `default-directory' to DIRECTORY."
       (run-hooks '+scratch-buffer-created-hook)
       (current-buffer))))
 
-;;; Persistent scratch buffer
+;; Persistent scratch buffer
 
 (defun +scratch-persist-buffer-h (&rest _)
   "Save the current buffer to `+scratch-dir'."
@@ -1864,7 +1845,7 @@ When provided, set the `default-directory' to DIRECTORY."
 (unless noninteractive
   (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
 
-;;; Commands
+;; Commands
 
 (defun +scratch-open-buffer (&optional arg project-p same-window-p)
   "Pop up a persistent scratch buffer.
