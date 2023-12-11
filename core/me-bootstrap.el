@@ -50,6 +50,7 @@
 
 ;;;###autoload
 (defun +straight-prune-build-cache ()
+  "Prune straight.el build directories for old Emacs versions."
   (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
     ;; Prune the build cache and build directory.
     (straight-prune-build)
