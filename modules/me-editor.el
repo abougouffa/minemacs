@@ -67,7 +67,6 @@
   :custom
   (super-save-silent t)
   (super-save-all-buffers t)
-  (super-save-idle-duration 15)
   (super-save-auto-save-when-idle t)
   (super-save-delete-trailing-whitespaces 'except-current-line))
 
