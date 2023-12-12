@@ -1,4 +1,4 @@
-;;; me-data.el --- Data and visualizaion formats (csv, yaml, xml, graphviz, ...) -*- lexical-binding: t; -*-
+;;; me-data.el --- Data and vizualizaion formats (csv, yaml, xml, graphviz, ...) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
@@ -12,29 +12,19 @@
   :straight t
   :config
   (+map-local! :keymaps 'csv-mode-map
-    "r" #'+csv-rainbow
     "a" #'csv-align-fields
     "u" #'csv-unalign-fields
     "s" #'csv-sort-fields
     "S" #'csv-sort-numeric-fields
     "k" #'csv-kill-fields
-    "t" #'csv-transpose)
+    "t" #'csv-transpose))
 
-  ;; Adapted from: reddit.com/r/emacs/comments/26c71k/comment/chq2r8m
-  (defun +csv-rainbow (&optional separator)
-    "Colorize CSV columns."
-    (interactive (list (when current-prefix-arg (read-char "Separator: "))))
-    (require 'color)
-    (font-lock-mode 1)
-    (let* ((separator (or separator ?\,))
-           (n (count-matches (string separator) (point-at-bol) (point-at-eol)))
-           (colors (cl-loop for i from 0 to 1.0 by (/ 2.0 n)
-                            collect (apply #'color-rgb-to-hex
-                                           (color-hsl-to-rgb i 0.3 0.5)))))
-      (cl-loop for i from 2 to (1+ n) by 2
-               for c in colors
-               for r = (format "^\\([^%c\n]*[%c\n]\\)\\{%d\\}" separator separator i)
-               do (font-lock-add-keywords nil `((,r (1 '(face (:foreground ,c))))))))))
+(use-package rainbow-csv
+  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :init
+  (+map-local! :keymaps '(csv-mode-map tsv-mode-map)
+    "r" #'rainbow-csv-mode
+    "R" #'rainbow-csv-highlight))
 
 (use-package yaml-mode
   :straight t
