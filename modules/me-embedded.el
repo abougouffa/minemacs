@@ -24,7 +24,25 @@
   :hook (arduino-mode . hs-minor-mode))
 
 (use-package bitbake-modes
-  :straight (:host bitbucket :repo "olanilsson/bitbake-modes"))
+  :straight (:host bitbucket :repo "olanilsson/bitbake-modes")
+  :config
+  (+map-local! :keymaps 'bitbake-mode-map
+    "i" '(nil "insert/edit")
+    "ii" #'bitbake-inc-pr
+    "b"  #'bitbake-recipe-build-dir-dired))
+
+(use-package bitbake-electric
+  :hook (bitbake-mode . bitbake-electric-mode))
+
+(use-package bitbake-insert
+  :after bitbake
+  :demand t
+  :config
+  (+map-local! :keymaps 'bitbake-mode-map
+    "i"  '(nil "insert/edit")
+    "iv" #'bitbake-insert-var
+    "ia" #'bitbake-append-var
+    "io" #'bitbake-insert-override))
 
 (use-package mips-mode
   :straight t)
