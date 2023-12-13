@@ -153,6 +153,9 @@
   :init
   (+map! "gr" #'repo-status))
 
+(use-package gee
+  :straight (:host bitbucket :repo "olanilsson/gee"))
+
 (use-package diffview
   :straight t)
 
