@@ -227,14 +227,16 @@ Each string is a regexp, matched against variable names to omit from
   (dolist (conf configs)
     (unless (memq conf minemacs-ignore-user-config)
       (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
-        (when (file-exists-p conf-path)
-          (load conf-path nil (not minemacs-verbose-p)))))))
+        (when (file-exists-p conf-path) (+load conf-path))))))
 
 (defun +load (&rest filename-parts)
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (file-truename (apply #'concat filename-parts))))
     (if (file-exists-p filename)
-        (load filename nil (not minemacs-verbose-p))
+        (if minemacs-debug-p
+            (load filename nil)
+          (with-demoted-errors "[MinEmacs:LoadError] %s"
+            (load filename nil (not minemacs-verbose-p))))
       (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 
