@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.1.2](https://github.com/abougouffa/minemacs/compare/v4.1.1..v4.1.2) - 2023-12-14
+#### Bug Fixes
+- **(bitbake)** define keybindings consistently - ([f424e76](https://github.com/abougouffa/minemacs/commit/f424e764f09b34721ef8ca1ec40c0dea2ec02dc7)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(bootstrap)** add docstring to `+straight-prune-build-cache` - ([ab1707e](https://github.com/abougouffa/minemacs/commit/ab1707e438169bbbe096e3165a3823ffea6f76e7)) - [@abougouffa](https://github.com/abougouffa)
+- generate the documentation and mention it in README - ([6e5408d](https://github.com/abougouffa/minemacs/commit/6e5408ddf707cc2de88bda253e87a2f274e8c802)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits and formatting - ([3daabd4](https://github.com/abougouffa/minemacs/commit/3daabd435f0bcb8376acd8428115587d4ea098d1)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(data)** replace `+csv-rainbow` with `rainbow-csv` - ([00a1cb0](https://github.com/abougouffa/minemacs/commit/00a1cb0efc5bf7efac617e9b6ab761484eed01a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add `gee` for Gerrit support in Emacs (useful for Yocto) - ([316099a](https://github.com/abougouffa/minemacs/commit/316099acddfac6902e3ac01fad6840c98b4b9ee1)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add initial support for `diffview` - ([dff169e](https://github.com/abougouffa/minemacs/commit/dff169eecba834fe6a50212be327052261f0fdb2)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** enable documentation generation using - ([309c71f](https://github.com/abougouffa/minemacs/commit/309c71f4ef5d1ba688651b3139d828adc02f4b0f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake)** tailor bitbake modes and add keybindings - ([f0e38c7](https://github.com/abougouffa/minemacs/commit/f0e38c7e69495df7358a57406831ca4c8a2756b3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** demote errors when loading modules unless in debug mode - ([6b3b4cc](https://github.com/abougouffa/minemacs/commit/6b3b4cc0092fb7033680e212c9f695f47efcec6d)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** minor edit - ([2e3c4ed](https://github.com/abougouffa/minemacs/commit/2e3c4edb7d32462c60063546bb9cc4b65c006a49)) - [@abougouffa](https://github.com/abougouffa)
+- **(super-save)** add more trigger commands - ([49601c9](https://github.com/abougouffa/minemacs/commit/49601c95f05dcdd9f9516ace83e1638596a0709a)) - [@abougouffa](https://github.com/abougouffa)
+- **(super-save)** use the default idle duration (5s) - ([d6e030d](https://github.com/abougouffa/minemacs/commit/d6e030d25812c62bee7cd7c1a305ce62d06ee0ac)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c2624e2](https://github.com/abougouffa/minemacs/commit/c2624e2c3c92e645ae7f595f89694f727aeb6600)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.1.1](https://github.com/abougouffa/minemacs/compare/v4.1.0..v4.1.1) - 2023-12-10
 #### Documentation
 - **(readme)** add a note on `general-describe-keybindings` - ([376266a](https://github.com/abougouffa/minemacs/commit/376266a82246fd99adbda65b9132f2f7af30b913)) - [@abougouffa](https://github.com/abougouffa)
