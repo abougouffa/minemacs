@@ -529,9 +529,10 @@ Add ROOTS to ignored projects, recentf, etc.
 
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 
-#### `(+package-download-from-urls PKGNAME &rest URLS)`
+#### `(+package-download-from-urls PKGNAME &rest ARGS)`
 
-Download PKGNAME files from URLS.
+Download PKGNAME files from URLs in ARGS.
+Pass `:redownload` to force redownloading the package files.
 Returns the load path of the package, useful for usage with `use-package'`s
 `:load-path`.
 
