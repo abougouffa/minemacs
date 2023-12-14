@@ -23,26 +23,29 @@
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
-(use-package bitbake-modes
-  :straight (:host bitbucket :repo "olanilsson/bitbake-modes")
+(use-package bitbake
+  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :config
   (+map-local! :keymaps 'bitbake-mode-map
-    "i" '(nil "insert/edit")
-    "ii" #'bitbake-inc-pr
-    "b"  #'bitbake-recipe-build-dir-dired))
+    "b"  #'bitbake-recipe-build-dir-dired)
+  (+map-local! :keymaps 'bitbake-mode-map
+    :infix "i"
+    "i" #'bitbake-inc-pr))
 
 (use-package bitbake-electric
+  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode))
 
 (use-package bitbake-insert
+  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :after bitbake
   :demand t
   :config
   (+map-local! :keymaps 'bitbake-mode-map
-    "i"  '(nil "insert/edit")
-    "iv" #'bitbake-insert-var
-    "ia" #'bitbake-append-var
-    "io" #'bitbake-insert-override))
+    :infix "i"
+    "v" #'bitbake-insert-var
+    "a" #'bitbake-append-var
+    "o" #'bitbake-insert-override))
 
 (use-package mips-mode
   :straight t)
