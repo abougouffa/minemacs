@@ -557,16 +557,24 @@ Works like `shell-command-to-string' with two differences:
   "Is package PACKAGE disabled in `minemacs-disabled-packages'."
   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t))
 
-(defun +package-download-from-urls (pkgname &rest urls)
-  "Download PKGNAME files from URLS.
+(defvar +package--download-urls nil)
 
+(defun +package-download-from-urls (pkgname &rest args)
+  "Download PKGNAME files from URLs in ARGS.
+
+Pass `:redownload' to force redownloading the package files.
 Returns the load path of the package, useful for usage with `use-package''s
 `:load-path'."
   (let* ((pkg-load-path (+directory-ensure minemacs-extra-packages-dir (format "%s/" pkgname)))
-         (default-directory pkg-load-path))
+         (default-directory pkg-load-path)
+         (redownload-p (memq :redownload args))
+         (urls (remq :redownload args)))
+    (add-to-list '+package--download-urls (append (list pkgname) urls))
     (dolist (url urls)
       (when-let* ((url-file-name (url-filename (url-generic-parse-url url)))
                   (url-file-name (file-name-nondirectory url-file-name)))
+        (when (and redownload-p (file-exists-p url-file-name))
+          (delete-file url-file-name))
         (unless (file-exists-p url-file-name)
           (url-copy-file url url-file-name))))
     pkg-load-path))
@@ -608,6 +616,10 @@ Returns the load path of the package, useful for usage with `use-package''s
   (straight-x-freeze-versions)
   (message "[MinEmacs]: Rebuilding packages")
   (straight-rebuild-all)
+
+  ;; Updating packages installed from URLs
+  (message "[MinEmacs]: Updating packages installed from URLs")
+  (mapc (lambda (args) (apply #'+package-download-from-urls (append args '(:redownload)))) +package--download-urls)
 
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
