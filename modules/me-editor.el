@@ -68,7 +68,7 @@
   (super-save-silent t)
   (super-save-all-buffers t)
   (super-save-auto-save-when-idle t)
-  (super-save-delete-trailing-whitespaces 'except-current-line)
+  (super-save-delete-trailing-whitespace 'except-current-line)
   :config
   ;; Additional triggers
   (setq super-save-triggers
