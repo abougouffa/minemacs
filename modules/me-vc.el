@@ -157,7 +157,19 @@
   :straight (:host bitbucket :repo "olanilsson/gee"))
 
 (use-package diffview
-  :straight t)
+  :straight t
+  :init
+  (with-eval-after-load 'diff-mode
+    (+map-local! :keymaps 'diff-mode-map
+      "v" #'diffview-current
+      "V" #'diffview-region))
+  :config
+  (+nvmap! :keymaps 'diffview--mode-map
+    "="   #'diffview--align-windows
+    "+"   #'diffview--align-windows
+    "C-j" #'diffview--next-file
+    "C-k" #'diffview--prev-file
+    "q"   #'diffview--quit))
 
 
 (provide 'me-vc)
