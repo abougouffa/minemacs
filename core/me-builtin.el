@@ -12,6 +12,9 @@
   :hook (after-save . +save--guess-file-mode-h)
   :custom
   ;; ====== Default directories for builtin packages ======
+  (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
+  (backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/"))))
+  (custom-theme-directory (concat minemacs-config-dir "themes/"))
   (diary-file (concat minemacs-local-dir "diary"))
   (ecomplete-database-file (concat minemacs-local-dir "ecomplete-database.el"))
   (ede-project-placeholder-cache-file (concat minemacs-local-dir "ede-projects.el"))
@@ -34,14 +37,13 @@
   (semanticdb-default-system-save-directory (concat minemacs-local-dir "semantic/"))
   (shadow-info-file (concat minemacs-local-dir "shadow/info.el"))
   (shadow-todo-file (concat minemacs-local-dir "shadow/todo.el"))
+  (shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/"))
   (srecode-map-save-file (concat minemacs-local-dir "srecode-map.el"))
   (timeclock-file (concat minemacs-local-dir "timeclock"))
   (type-break-file-name (concat minemacs-local-dir "type-break.el"))
   (viper-custom-file-name (concat minemacs-local-dir "viper.el"))
-  (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
-  (backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/"))))
-  (custom-theme-directory (concat minemacs-config-dir "themes/"))
-  (shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/"))
+
+  ;; ====== Better defaults ======
   ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
   (auto-save-default t)
   ;; Include big deletions
@@ -910,40 +912,41 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   :straight (:type built-in)
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
-  (setq org-directory nil)
+  (setq org-directory nil
+        ;; Fix `evil' search problem (to be used with `evil-search')
+        org-fold-core-style 'overlays)
   :custom
-  (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
-  (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
-  (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
-  (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
-  (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
-  (org-tags-column 0)
   (org-auto-align-tags nil)
-  (org-startup-indented nil)
+  (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
   (org-cycle-hide-block-startup t)
-  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
-  (org-fold-catch-invisible-edits 'smart) ; try not to accidentally do weird stuff in invisible regions
-  (org-fold-core-style 'overlays) ; Fix `evil' search problem (to be used with `evil-search')
-  (org-fontify-quote-and-verse-blocks t)
-  (org-special-ctrl-a/e t)
-  (org-insert-heading-respect-content t)
-  (org-hide-emphasis-markers t)
-  (org-use-property-inheritance t) ; it's convenient to have properties inherited
-  (org-ellipsis " ↩")
-  (org-log-done 'time) ; having the time an item is done sounds convenient
-  (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
-  (org-export-in-background t) ; run export processes in external emacs process
-  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
-  (org-export-with-smart-quotes t) ; convert "this" to « this »
-  (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
-  (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
-  (org-highlight-latex-and-related '(native script entities))
-  (org-pretty-entities t)
-  (org-pretty-entities-include-sub-superscripts t)
-  (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
+  (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
   (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
-  (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
+  (org-ellipsis " ↩")
+  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
+  (org-export-in-background t) ; run export processes in external emacs process
+  (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
+  (org-export-with-smart-quotes t) ; convert "this" to « this »
+  (org-export-with-sub-superscripts '{}) ; Only explicit _{} ^{} are interpreted as sub/superscripts
+  (org-fold-catch-invisible-edits 'smart) ; try not to accidentally do weird stuff in invisible regions
+  (org-fontify-quote-and-verse-blocks t)
+  (org-hide-emphasis-markers t)
+  (org-highlight-latex-and-related '(native script entities))
+  (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
+  (org-insert-heading-respect-content t)
+  (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
+  (org-log-done 'time) ; having the time an item is done sounds convenient
+  (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
+  (org-pretty-entities t)
+  (org-pretty-entities-include-sub-superscripts t)
+  (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
+  (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
+  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
+  (org-special-ctrl-a/e t)
+  (org-startup-indented nil)
+  (org-tags-column 0)
+  (org-use-property-inheritance t) ; it's convenient to have properties inherited
+  (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
   (+map-local! :keymaps 'org-mode-map
     "l"  '(nil :wk "link")
