@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.1.3](https://github.com/abougouffa/minemacs/compare/v4.1.2..v4.1.3) - 2023-12-16
+#### Bug Fixes
+- **(super-save)** correct a renamed customization variable - ([98ab319](https://github.com/abougouffa/minemacs/commit/98ab319882063bdd00fa513da42b6689ced5f4b0)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate DOCS.md - ([c11dbc4](https://github.com/abougouffa/minemacs/commit/c11dbc406e815083ec3f1ab79aa8ef3c01312482)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** minor edit - ([9325ba5](https://github.com/abougouffa/minemacs/commit/9325ba5c746438befc298dcd64040747c7443131)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** allow updating packages downloaded from URLs - ([7cff195](https://github.com/abougouffa/minemacs/commit/7cff19560d9d665ad0eaa1e09862806a40c44f5e)) - [@abougouffa](https://github.com/abougouffa)
+- **(diffview)** add keybindings - ([d7b1998](https://github.com/abougouffa/minemacs/commit/d7b1998f90af7531eee879b913de80570318cea3)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib2)** make open status customizable - ([fbca453](https://github.com/abougouffa/minemacs/commit/fbca4539837c1d82a042ac243d187d58f8d664b5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a50fdba](https://github.com/abougouffa/minemacs/commit/a50fdba70c03b8bb2593925bae6d1adaf21c3537)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.1.2](https://github.com/abougouffa/minemacs/compare/v4.1.1..v4.1.2) - 2023-12-14
 #### Bug Fixes
 - **(bitbake)** define keybindings consistently - ([f424e76](https://github.com/abougouffa/minemacs/commit/f424e764f09b34721ef8ca1ec40c0dea2ec02dc7)) - [@abougouffa](https://github.com/abougouffa)
