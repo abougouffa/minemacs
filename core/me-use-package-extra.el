@@ -44,7 +44,13 @@
    'minemacs-after-loading-modules-hook
    (defun +use-package--remove-check-if-disabled-advice-h ()
      (unless +use-package-keep-checking-for-disabled-p
-       (advice-remove 'use-package '+use-package--check-if-disabled-a)))))
+       (advice-remove 'use-package '+use-package--check-if-disabled-a))))
+
+  ;; Make `:straight' an alias to `:elpaca' to provide a minimal backward
+  ;; compatibility
+  (add-to-list 'use-package-keywords :straight)
+  (defalias 'use-package-normalize/:straight 'use-package-normalize/:elpaca)
+  (defalias 'use-package-handler/:straight 'use-package-handler/:elpaca))
 
 
 (provide 'me-use-package-extra)
