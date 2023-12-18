@@ -74,7 +74,7 @@
 ;; After Emacs startup, we restore `file-name-handler-alist' while conserving
 ;; the potential edits made during startup.
 (add-hook
- 'emacs-startup-hook
+ 'elpaca-after-init-hook
  (defun +mineamcs--restore-file-name-handler-alist-h ()
    (setq file-name-handler-alist
          (delete-dups (append file-name-handler-alist
@@ -210,7 +210,8 @@
   (require 'minemacs-loaded))
 
 ;; Add it to the very beginning of `emacs-startup-hook'
-(add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
+;; (add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
+(add-hook 'elpaca-after-init-hook #'+minemacs--loaded-h -101)
 
 ;; ========= Make some special hooks =========
 (+make-first-file-hook! 'org "\\.org$")
@@ -239,7 +240,7 @@
 ;; need to do it manually.
 ;; NOTE: Ensure the `me-splash', `me-bootstrap', `me-compat' and `me-builtin'
 ;; modules are in the right order. The `me-compat' should be loaded just after
-;; `me-bootstrap' once `straight' and `use-package' are set up. This enables us
+;; `me-bootstrap' once `elpaca' and `use-package' are set up. This enables us
 ;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
 ;; this can be useful when configuring the module's packages and adding new
 ;; functionality.
@@ -273,8 +274,6 @@
    (+info! "Trying to clean outdated native compile cache")
    ;; Delete outdated natively compiled files when Emacs become idle
    (+shutup! (native-compile-prune-cache)))
- (+info! "Trying to clean outdated straight build cache")
- (+shutup! (+straight-prune-build-cache))
  (+info! "Trying to clean MinEmacs' root directory")
  (+shutup! (+minemacs-root-dir-cleanup)))
 

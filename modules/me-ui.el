@@ -9,18 +9,18 @@
 ;;; Code:
 
 (use-package svg-lib
-  :straight t
+  :elpaca t
   :custom
   (svg-lib-icons-dir (concat minemacs-cache-dir "svg-lib/icons/")))
 
 (use-package visual-fill-column
-  :straight t
+  :elpaca t
   :custom
   (visual-fill-column-width nil)
   (visual-fill-column-center-text t))
 
 (use-package mixed-pitch
-  :straight t
+  :elpaca t
   :init
   (+map! "tm" #'mixed-pitch-mode)
   :custom
@@ -46,20 +46,20 @@
     "tW" #'+writing-global-mode))
 
 (use-package page-break-lines
-  :straight t
+  :elpaca t
   :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
 
 (use-package focus
-  :straight t
+  :elpaca t
   :init
   (+map! "tF" #'focus-mode))
 
 (use-package nerd-icons-ibuffer
-  :straight t
+  :elpaca t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package pulsar
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . pulsar-global-mode)
   :config
   (with-eval-after-load 'evil
@@ -71,7 +71,7 @@
 
 ;; From Doom Emacs
 (use-package anzu
-  :straight t
+  :elpaca t
   :custom
   (anzu-cons-mode-line-p nil) ; We manage our own modeline segments
   :config
@@ -84,7 +84,7 @@
           anzu--cached-positions anzu--last-command anzu--last-isearch-string anzu--overflow-p)))
 
 (use-package evil-anzu
-  :straight t
+  :elpaca t
   :hook (evil-mode . global-anzu-mode))
 
 

@@ -9,14 +9,14 @@
 ;;; Code:
 
 (use-package better-jumper
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . better-jumper-mode)
   ;; Map extra mouse buttons to jump forward/backward
   :bind (("<mouse-8>" . better-jumper-jump-backward)
          ("<mouse-9>" . better-jumper-jump-forward)))
 
 (use-package crux
-  :straight t
+  :elpaca t
   :init
   (+map!
     "fo" #'crux-open-with

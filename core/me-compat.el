@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package compat
-  :straight t
+  :elpaca t
   :demand t)
 
 

@@ -14,7 +14,7 @@
   (+load minemacs-modules-dir "obsolete/me-cmake.el"))
 
 (use-package treesit-auto
-  :straight (:host github :repo "renzmann/treesit-auto")
+  :elpaca (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
   :hook (minemacs-after-startup . global-treesit-auto-mode)
   :hook (minemacs-build-functions . treesit-auto-install-all)
@@ -34,15 +34,15 @@
     (setq treesit-auto-langs (seq-difference langs (seq-filter #'treesit-language-available-p langs)))))
 
 (use-package awk-ts-mode
-  :straight t
+  :elpaca t
   :when (+emacs-features-p 'tree-sitter))
 
 (use-package html-ts-mode
-  :straight (:host github :repo "mickeynp/html-ts-mode")
+  :elpaca (:host github :repo "mickeynp/html-ts-mode")
   :when (+emacs-features-p 'tree-sitter))
 
 (use-package combobulate
-  :straight t
+  :elpaca (:host github :repo "mickeynp/combobulate")
   :when (+emacs-features-p 'tree-sitter)
   :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
   :custom
@@ -57,7 +57,7 @@
   (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
 
 (use-package consult-eglot
-  :straight t
+  :elpaca t
   :after consult eglot
   :init
   (+map! :keymaps 'eglot-mode-map
@@ -70,12 +70,12 @@
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
 (use-package eldoc-box
-  :straight t
+  :elpaca t
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
   :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
 (use-package compile-multi
-  :straight t
+  :elpaca t
   :commands +project-compile-multi
   :init
   (+map! "pC" #'+project-compile-multi)
@@ -91,12 +91,12 @@
       (call-interactively #'compile-multi))))
 
 (use-package apheleia
-  :straight t
+  :elpaca t
   :init
   (+map! "cff" #'apheleia-format-buffer))
 
 (use-package editorconfig
-  :straight t
+  :elpaca t
   :hook (prog-mode . editorconfig-mode)
   :init
   (+map!
@@ -104,14 +104,14 @@
     "cfe" #'editorconfig-format-buffer))
 
 (use-package clang-format
-  :straight t
+  :elpaca t
   :init
   (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map
                     cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
 (use-package quickrun
-  :straight t
+  :elpaca t
   :init
   (+map!
     "cq"  '(nil :wk "quickrun")
@@ -124,13 +124,13 @@
     "cqd" #'quickrun-select-default))
 
 (use-package gitlab-ci-mode
-  :straight t)
+  :elpaca t)
 
 (use-package vimrc-mode
-  :straight t)
+  :elpaca t)
 
 (use-package rust-mode
-  :straight t
+  :elpaca t
   :commands
   rust-compile rust-compile-release
   rust-check rust-test
@@ -151,16 +151,16 @@
     "S" #'rust-enable-format-on-save))
 
 (use-package cuda-mode
-  :straight t
+  :elpaca t
   :hook (cuda-mode . display-line-numbers-mode)
   :hook (cuda-mode . hs-minor-mode))
 
 (use-package opencl-mode
-  :straight t
+  :elpaca t
   :mode "\\.cl\\'")
 
 (use-package dumb-jump
-  :straight t
+  :elpaca t
   :commands +dumb-jump-hydra/body
   :custom
   (dumb-jump-selector 'completing-read)
@@ -190,7 +190,7 @@
     ("q" nil :color blue)))
 
 (use-package hl-todo
-  :straight (:host github :repo "tarsius/hl-todo")
+  :elpaca (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
   :config
   (setq hl-todo-keyword-faces
@@ -205,39 +205,39 @@
            ("PERF"  . "#e09030")))))
 
 (use-package rainbow-mode
-  :straight t
+  :elpaca t
   :init
   (+map! :keymaps '(prog-mode-map conf-mode-map text-mode-map)
     "tR" #'rainbow-mode))
 
 (use-package lua-mode
-  :straight t
+  :elpaca t
   :custom
   (lua-indent-level 2))
 
 (use-package fb-mode
-  :straight (:host github :repo "rversteegen/fb-mode")
+  :elpaca (:host github :repo "rversteegen/fb-mode")
   :commands fb-mode
   :mode "\\.b\\(i\\|as\\)\\'")
 
 (use-package franca-idl
-  :straight (:host github :repo "zeph1e/franca-idl.el"))
+  :elpaca (:host github :repo "zeph1e/franca-idl.el"))
 
 (use-package just-mode
-  :straight t)
+  :elpaca t)
 
 (use-package justl
-  :straight t)
+  :elpaca t)
 
 (use-package makefile-executor
-  :straight t
+  :elpaca t
   :hook (makefile-mode . makefile-executor-mode))
 
 (use-package web-mode
-  :straight t)
+  :elpaca t)
 
 (use-package python-docstring
-  :straight t
+  :elpaca t
   :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
 

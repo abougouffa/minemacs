@@ -11,36 +11,14 @@
 
 ;;; Code:
 
-(with-eval-after-load 'straight
-  ;; Add a profile (and lockfile) for stable package revisions.
-  (add-to-list 'straight-profiles '(pinned . "pinned.el"))
-  (require 'straight-x))
-
 ;; Allow pinning versions from `use-package' using the `:pin-ref' keyword
 (with-eval-after-load 'use-package-core
-  (add-to-list 'use-package-keywords :pin-ref)
-
-  (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
-    (use-package-only-one (symbol-name keyword) args
-      (lambda (_label arg)
-        (cond ((stringp arg) arg)
-              ((symbolp arg) (symbol-name arg))
-              (t (use-package-error ":pin-ref wants a commit hash or a ref"))))))
-
-  (defun use-package-handler/:pin-ref (name-symbol _keyword ref rest state)
-    (let ((body (use-package-process-keywords name-symbol rest state)))
-      (if (null ref)
-          body
-        `((let ((straight-current-profile 'pinned))
-           (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
-           ,(macroexp-progn body))))))
-
   ;; HACK: This advice around `use-package' checks if a package is disabled in
   ;; `minemacs-disabled-packages' before calling `use-package'. This can come
   ;; handy if the user wants to enable some module while excluding some packages
   ;; from it. This advice also evaluates `use-package's conditional sections
   ;; (`:if', `:when' and `:unless') to prevent installing packages with
-  ;; `straight'.
+  ;; `elpaca'.
   (advice-add
    'use-package :around
    (defun +use-package--check-if-disabled-a (origfn package &rest args)

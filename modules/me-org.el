@@ -25,17 +25,17 @@
   (+org-extras-lower-case-keywords-and-properties-setup))
 
 (use-package org-contrib
-  :straight t
+  :elpaca t
   :after org
   :demand t)
 
 (use-package engrave-faces
-  :straight t
+  :elpaca t
   :after org)
 
 ;; Org export
 (use-package ox-hugo
-  :straight t
+  :elpaca t
   :after ox
   :demand t)
 
@@ -47,7 +47,7 @@
 
 ;; Other Org features
 (use-package org-appear
-  :straight t
+  :elpaca t
   :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-inside-latex t)
@@ -61,7 +61,7 @@
   (run-at-time nil nil #'org-appear--set-elements))
 
 (use-package org-modern
-  :straight t
+  :elpaca t
   :hook (org-mode . org-modern-mode)
   :hook (org-agenda-finalize . org-modern-agenda)
   :custom-face
@@ -87,13 +87,13 @@
 
 ;; For latex fragments
 (use-package org-fragtog
-  :straight t
+  :elpaca t
   :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.2))
 
 (use-package evil-org
-  :straight t
+  :elpaca t
   :hook (org-mode . evil-org-mode))
 
 (use-package evil-org-agenda
@@ -103,10 +103,10 @@
   (evil-org-agenda-set-keys))
 
 (use-package org-re-reveal
-  :straight t)
+  :elpaca t)
 
 (use-package oer-reveal
-  :straight t
+  :elpaca t
   :hook (minemacs-build-functions . oer-reveal-setup-submodules))
 
 

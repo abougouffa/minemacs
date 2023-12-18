@@ -10,7 +10,7 @@
 
 ;; Visual Undo
 (use-package vundo
-  :straight t
+  :elpaca t
   :init
   (+map! "ou" #'vundo)
   :custom
@@ -19,7 +19,7 @@
   (vundo-glyph-alist vundo-unicode-symbols))
 
 (use-package undo-fu-session
-  :straight t
+  :elpaca t
   :init
   (undo-fu-session-global-mode 1)
   :custom

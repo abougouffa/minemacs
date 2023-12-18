@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package expand-region
-  :straight t
+  :elpaca t
   :init
   (+vmap!
     "v" #'er/expand-region

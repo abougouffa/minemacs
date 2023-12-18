@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package csv-mode
-  :straight t
+  :elpaca t
   :config
   (+map-local! :keymaps 'csv-mode-map
     "a" #'csv-align-fields
@@ -20,27 +20,27 @@
     "t" #'csv-transpose))
 
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :elpaca (:host github :repo "emacs-vs/rainbow-csv")
   :init
   (+map-local! :keymaps '(csv-mode-map tsv-mode-map)
     "r" #'rainbow-csv-mode
     "R" #'rainbow-csv-highlight))
 
 (use-package yaml-mode
-  :straight t
+  :elpaca t
   :mode "Procfile\\'")
 
 (use-package yaml-pro
-  :straight t
+  :elpaca t
   :when (+emacs-features-p 'tree-sitter)
   :hook (yaml-mode . yaml-pro-mode)
   :hook (yaml-ts-mode . yaml-pro-ts-mode))
 
 (use-package toml-mode
-  :straight t)
+  :elpaca t)
 
 (use-package json-mode
-  :straight t
+  :elpaca t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
   :config
   (+map-local! :keymaps '(json-mode-map json-ts-mode-map)
@@ -53,7 +53,7 @@
     "f" #'json-mode-beautify))
 
 (use-package graphviz-dot-mode
-  :straight (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
+  :elpaca (graphviz-dot-mode :files ("graphviz-dot-mode.el" "texinfo"))
   :custom
   (graphviz-dot-view-command "xdot %s")
   (graphviz-dot-preview-extension "svg")
@@ -66,7 +66,7 @@
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
 (use-package plantuml-mode
-  :straight t
+  :elpaca t
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
@@ -99,7 +99,7 @@
           :wk "Toggle debug")))
 
 (use-package mermaid-mode
-  :straight t
+  :elpaca t
   :config
   (+map-local! :keymaps 'mermaid-mode-map
     "c" 'mermaid-compile
@@ -110,7 +110,7 @@
     "d" 'mermaid-open-doc))
 
 (use-package ob-mermaid
-  :straight (:host github :repo "arnm/ob-mermaid")
+  :elpaca (:host github :repo "arnm/ob-mermaid")
   :after minemacs-first-org-file ob
   :demand t
   :config
@@ -119,7 +119,7 @@
    (append org-babel-load-languages '((mermaid . t)))))
 
 (use-package d2-mode
-  :straight t
+  :elpaca t
   :mode "\\.d2\\'"
   :config
   (+map-local! :keymaps 'd2-mode-map
@@ -135,7 +135,7 @@
     "h"  #'d2-open-doc))
 
 (use-package ob-d2
-  :straight t
+  :elpaca t
   :after minemacs-first-org-file ob
   :demand t
   :config
@@ -144,7 +144,7 @@
    (append org-babel-load-languages '((d2 . t)))))
 
 (use-package gnuplot
-  :straight t
+  :elpaca t
   :mode ("\\.gnuplot\\'" . gnuplot-mode)
   :hook (gnuplot-mode . display-line-numbers-mode)
   :hook (gnuplot-mode . visual-line-mode))

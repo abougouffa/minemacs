@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package lsp-mode
-  :straight t
+  :elpaca t
   :preface
   (setq lsp-use-plists t)
   :custom
@@ -68,7 +68,7 @@
     "lr" '(lsp-workspace-restart :wk "Restart")))
 
 (use-package ccls
-  :straight t
+  :elpaca t
   :custom
   ;; Customization of CCLS, see:
   ;; github.com/MaskRay/ccls/wiki/Customization#initialization-options
@@ -99,19 +99,19 @@
              :excludeArgs []))))
 
 (use-package lsp-pyright
-  :straight t
+  :elpaca t
   :after lsp-mode
   :demand t)
 
 (use-package consult-lsp
-  :straight t
+  :elpaca t
   :after consult lsp-mode
   :init
   (+map! :keymaps 'lsp-mode-map
     "cs" '(consult-lsp-file-symbols :wk "Symbols")))
 
 (use-package dap-mode
-  :straight t
+  :elpaca t
   :init
   (+map-local!
     :keymaps '(c-mode-map c++-mode-map python-mode-map

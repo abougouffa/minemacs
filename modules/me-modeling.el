@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package scad-mode
-  :straight t
+  :elpaca t
   :config
   (+map-local! :keymaps 'scad-mode-map
     "p" #'scad-preview)
@@ -25,7 +25,7 @@
   (+eglot-register 'scad-mode '("openscad-lsp" "--stdio")))
 
 (use-package modelica-mode
-  :straight t
+  :elpaca t
   :mode "\\.mo\\'")
 
 

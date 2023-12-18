@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package zotxt
-  :straight t
+  :elpaca t
   :when (executable-find "zotero")
   :init
   (+map-local! :keymaps 'org-mode-map
@@ -18,7 +18,7 @@
     "z" #'zotxt-citekey-mode))
 
 (use-package citar
-  :straight t
+  :elpaca t
   :after minemacs-first-org-file oc
   :demand t
   :custom
@@ -46,14 +46,14 @@
                         #'+citar--set-symbols-once-h)))))))
 
 (use-package citar-embark
-  :straight t
+  :elpaca t
   :after citar embark
   :demand t
   :config
   (citar-embark-mode 1))
 
 (use-package org-re-reveal-citeproc
-  :straight t
+  :elpaca t
   :when (and (memq 'me-org minemacs-modules) (not (memq 'org-re-reveal minemacs-disabled-packages))))
 
 

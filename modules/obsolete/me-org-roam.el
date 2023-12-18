@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package org-roam
-  :straight t
+  :elpaca t
   :init
   (+map! :infix "n"
     "f" #'org-roam-node-find
@@ -46,12 +46,12 @@
         org-roam-directory))))))
 
 (use-package org-roam-ui
-  :straight t
+  :elpaca t
   :init
   (+map! "nu" #'org-roam-ui-open))
 
 (use-package consult-org-roam
-  :straight t
+  :elpaca t
   :init
   (+map! :infix "n"
     "s" #'consult-org-roam-search
@@ -68,7 +68,7 @@
   (consult-customize consult-org-roam-forward-links :preview-key (kbd "M-.")))
 
 (use-package citar-org-roam
-  :straight t
+  :elpaca t
   :after citar org-roam
   :demand t
   :commands +org-roam-node-from-cite

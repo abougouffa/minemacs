@@ -13,7 +13,7 @@
   :group 'minemacs)
 
 (use-package cape
-  :straight t
+  :elpaca t
   :after minemacs-loaded
   :demand t
   :init
@@ -73,7 +73,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
         (put '+cape-auto-capf-super 'enabled (not (or enabled disable)))))))
 
 (use-package corfu
-  :straight (corfu :files (:defaults "extensions/*.el"))
+  :elpaca (corfu :files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
@@ -130,18 +130,18 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (use-package corfu-terminal
-  :straight t
+  :elpaca t
   :hook (corfu-mode . corfu-terminal-mode))
 
 (use-package nerd-icons-corfu
-  :straight t
+  :elpaca t
   :after corfu
   :demand t
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package consult
-  :straight t
+  :elpaca t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
   :bind (:map minibuffer-local-map
          ("C-r" . consult-history)
@@ -215,7 +215,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
    consult-ripgrep :initial (+region-or-thing-at-point)))
 
 (use-package consult-dir
-  :straight t
+  :elpaca t
   :bind (("C-x C-d" . consult-dir)
          :package vertico
          :map vertico-map
@@ -225,7 +225,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (+map! "ed" #'consult-dir))
 
 (use-package embark
-  :straight t
+  :elpaca t
   :bind (("<remap> <describe-bindings>" . embark-bindings)
          ("C-²" . embark-act) ; In a French AZERTY keyboard, the ² key is right above TAB
          ("M-²" . embark-collect)
@@ -238,20 +238,20 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
     "A" #'embark-collect))
 
 (use-package embark-consult
-  :straight t
+  :elpaca t
   :after embark consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package marginalia
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . marginalia-mode))
 
 (use-package nerd-icons-completion
-  :straight t
+  :elpaca t
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
 
 (use-package orderless
-  :straight t
+  :elpaca t
   :after minemacs-loaded
   :demand t
   :custom
@@ -259,7 +259,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
-  :straight (vertico :files (:defaults "extensions/*.el"))
+  :elpaca (vertico :files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . vertico-mode)
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
@@ -289,7 +289,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   :bind ("M-R" . vertico-repeat))
 
 (use-package wgrep
-  :straight t
+  :elpaca t
   :commands wgrep-change-to-wgrep-mode
   :custom
   (wgrep-auto-save-buffer t))

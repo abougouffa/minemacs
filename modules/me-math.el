@@ -29,10 +29,10 @@
   (imaxima-use-maxima-mode-flag nil))
 
 (use-package math-preview ; Needed by ein to render equations
-  :straight t)
+  :elpaca t)
 
 (use-package ein
-  :straight t
+  :elpaca t
   :custom
   (ein:output-area-inlined-images t)
   :init
@@ -56,30 +56,30 @@
     (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
 
 (use-package code-cells
-  :straight t
+  :elpaca t
   :init
   ;; Both `ein' and `code-cells' registers auto-mode for ".ipynb" files,
   ;; we remove `code-cells' so `ein' gets used by default.
   (setq auto-mode-alist (delete (rassoc 'code-cells-convert-ipynb auto-mode-alist) auto-mode-alist)))
 
 (use-package julia-mode
-  :straight t)
+  :elpaca t)
 
 (use-package julia-ts-mode
-  :straight t
+  :elpaca t
   :when (+emacs-features-p 'tree-sitter))
 
 (use-package julia-repl
-  :straight t)
+  :elpaca t)
 
 (use-package ess
-  :straight t)
+  :elpaca t)
 
 (use-package ess-view
-  :straight t)
+  :elpaca t)
 
 (use-package ess-R-data-view
-  :straight t)
+  :elpaca t)
 
 
 (provide 'me-math)

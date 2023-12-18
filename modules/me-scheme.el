@@ -9,27 +9,27 @@
 ;;; Code:
 
 (use-package racket-mode
-  :straight t)
+  :elpaca t)
 
 (use-package geiser
-  :straight t
+  :elpaca t
   :custom
   (geiser-default-implementation 'guile))
 
 (use-package geiser-chez
-  :straight t)
+  :elpaca t)
 
 (use-package geiser-guile
-  :straight t)
+  :elpaca t)
 
 (use-package geiser-mit
-  :straight t)
+  :elpaca t)
 
 (use-package geiser-racket
-  :straight t)
+  :elpaca t)
 
 (use-package macrostep-geiser
-  :straight t
+  :elpaca t
   :after geiser
   :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup)
   :init

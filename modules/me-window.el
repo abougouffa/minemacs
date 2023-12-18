@@ -13,7 +13,7 @@
 ;;; Code:
 
 (use-package ace-window
-  :straight t
+  :elpaca t
   :bind (("M-o" . ace-window))
   :custom
   (aw-dispatch-always t)

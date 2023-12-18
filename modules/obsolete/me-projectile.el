@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package projectile
-  :straight t
+  :elpaca t
   :after minemacs-loaded
   :demand t
   :custom
@@ -85,7 +85,7 @@
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
 
 (use-package consult-projectile
-  :straight t
+  :elpaca t
   :init
   (+map!
     ":"  '(consult-projectile-find-file :wk "Find file in project")
@@ -99,7 +99,7 @@
     "pf" '(consult-projectile-find-file :wk "Find file")))
 
 (use-package treemacs-projectile
-  :straight t
+  :elpaca t
   :after projectile treemacs
   :demand t)
 

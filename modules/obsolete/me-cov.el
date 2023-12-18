@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package cov
-  :straight (:host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
+  :elpaca (:host github :repo "abougouffa/cov" :branch "feat/gcov-cmake")
   :custom
   (cov-highlight-lines t)
   :config

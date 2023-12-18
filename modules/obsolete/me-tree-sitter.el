@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package tree-sitter
-  :straight t
+  :elpaca t
   :defer 5
   :when (eq sys/arch 'x86_64)
   :preface
@@ -19,7 +19,7 @@
   (global-tree-sitter-mode 1))
 
 (use-package tree-sitter-langs
-  :straight t
+  :elpaca t
   :hook (minemacs-build-functions . tree-sitter-langs-install-grammars)
   :preface
   (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
@@ -27,7 +27,7 @@
   :demand t)
 
 (use-package ts-fold
-  :straight (:host github :repo "emacs-tree-sitter/ts-fold")
+  :elpaca (:host github :repo "emacs-tree-sitter/ts-fold")
   :after tree-sitter
   :init
   (global-ts-fold-mode 1))

@@ -7,7 +7,7 @@
 ;; Should be configured in per-project basis, good documentation at:
 ;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
-  :straight t
+  :elpaca t
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
   :init
@@ -16,7 +16,7 @@
   (ssh-deploy-hydra "C-c C-z"))
 
 (use-package tldr
-  :straight t
+  :elpaca t
   :hook (minemacs-build-functions . tldr-update-docs)
   :hook (tldr-mode . visual-line-mode)
   :init
@@ -25,7 +25,7 @@
   (tldr-enabled-categories '("common" "linux" "osx")))
 
 (use-package vterm
-  :straight t
+  :elpaca t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :bind (:map vterm-mode-map ("<return>" . vterm-send-return))
@@ -44,7 +44,7 @@
   (vterm-tramp-shells '(("docker" "/bin/bash"))))
 
 (use-package multi-vterm
-  :straight t
+  :elpaca t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :init
   (+map!
@@ -70,26 +70,26 @@
     "<return>" #'evil-insert-resume))
 
 (use-package docker
-  :straight t
+  :elpaca t
   :init
   (+map! "ok" #'docker))
 
 (use-package docker-compose-mode
-  :straight t)
+  :elpaca t)
 
 (use-package dockerfile-mode
-  :straight t
+  :elpaca t
   :unless (+emacs-features-p 'tree-sitter))
 
 (use-package systemd
-  :straight (systemd :build (:not compile))
+  :elpaca (systemd :build (:not elpaca--byte-compile))
   :hook (systemd-mode . +systemd-mode-capf-h)
   :config
   (defun +systemd-mode-capf-h ()
     (add-hook 'completion-at-point-functions (cape-company-to-capf 'systemd-company-backend) -100)))
 
 (use-package pkgbuild-mode
-  :straight t
+  :elpaca t
   :config
   (+map-local! :keymaps 'pkgbuild-mode-map
     "b" #'pkgbuild-makepkg
@@ -101,20 +101,20 @@
     "e" #'pkgbuild-etags))
 
 (use-package journalctl-mode
-  :straight t
+  :elpaca t
   :config
   (+map-local! :keymaps 'journalctl-mode-map
     "J" #'journalctl-next-chunk
     "K" #'journalctl-previous-chunk))
 
 (use-package logview
-  :straight t
+  :elpaca t
   :custom
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
 
 (use-package bitwarden
-  :straight (:host github :repo "seanfarley/emacs-bitwarden")
+  :elpaca (:host github :repo "seanfarley/emacs-bitwarden")
   :when (executable-find "bw")
   :custom
   (bitwarden-automatic-unlock
@@ -129,7 +129,7 @@
        ""))))
 
 (use-package with-editor
-  :straight t
+  :elpaca t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
   :init
   ;; `julia-repl' seems to start on `term-mode', so let's check for it before exporting the editor
@@ -143,16 +143,16 @@
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
 (use-package app-launcher
-  :straight '(app-launcher :host github :repo "SebastienWae/app-launcher")
+  :elpaca (app-launcher :host github :repo "SebastienWae/app-launcher")
   :when (or os/linux os/bsd)
   :init
   (+map! "oo" #'app-launcher-run-app))
 
 (use-package nix-mode
-  :straight t)
+  :elpaca t)
 
 (use-package nix-ts-mode
-  :straight t
+  :elpaca t
   :when (+emacs-features-p 'tree-sitter)
   :mode "\\.nix\\'"
   :config
@@ -162,18 +162,18 @@
       (setcar server '(nix-mode nix-ts-mode)))))
 
 (use-package nix-update
-  :straight t
+  :elpaca t
   :when (executable-find "nix"))
 
 (use-package envrc
-  :straight t
+  :elpaca t
   :hook (minemacs-first-file . envrc-global-mode)
   :when (executable-find "direnv")
   :custom
   (envrc-debug minemacs-debug-p))
 
 (use-package guix
-  :straight t
+  :elpaca t
   :when (executable-find "guix")
   :init
   (+map! "og" #'guix))

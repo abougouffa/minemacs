@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package yasnippet
-  :straight t
+  :elpaca t
   :hook (minemacs-lazy . yas-global-mode)
   :init
   (defvar yas-verbosity 2)
@@ -18,7 +18,7 @@
   (yas-triggers-in-field t))
 
 (use-package cape-yasnippet
-  :straight (:host github :repo "elken/cape-yasnippet")
+  :elpaca (:host github :repo "elken/cape-yasnippet")
   :after cape yasnippet
   :demand t
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
@@ -30,17 +30,17 @@
       (add-to-list 'completion-at-point-functions #'cape-yasnippet))))
 
 (use-package yasnippet-snippets
-  :straight t
+  :elpaca t
   :after yasnippet
   :demand t)
 
 (use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
+  :elpaca (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
   :after yasnippet
   :demand t)
 
 (use-package license-snippets
-  :straight t
+  :elpaca t
   :after yasnippet
   :demand t
   :config

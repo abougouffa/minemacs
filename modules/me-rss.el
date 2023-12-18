@@ -13,7 +13,7 @@
   :group 'minemacs)
 
 (use-package elfeed
-  :straight t
+  :elpaca t
   :init
   (+map! "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
   (+nmap! :keymaps 'elfeed-search-mode-map

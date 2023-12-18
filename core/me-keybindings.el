@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package which-key
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . which-key-mode)
   :custom
   (which-key-idle-delay 1.0)
@@ -38,7 +38,7 @@
   (which-key-setup-minibuffer))
 
 (use-package general
-  :straight t
+  :elpaca t
   ;; PERF: Loading `general' early make Emacs very slow on startup.
   :after evil
   :demand t
@@ -274,10 +274,10 @@
   (provide 'me-general-ready))
 
 (use-package hydra
-  :straight t)
+  :elpaca t)
 
 (use-package avy
-  :straight t
+  :elpaca t
   :bind (("C-\"" . avy-goto-char)
          ("C-é" . avy-goto-line) ; French AZERTY
          ("M-g l" . avy-goto-line)))

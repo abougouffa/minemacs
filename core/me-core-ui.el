@@ -16,7 +16,7 @@
    (mapc #'disable-theme custom-enabled-themes)))
 
 (use-package nerd-icons
-  :straight t
+  :elpaca t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :config
   ;; Show .m files as matlab/octave files (integral icon)
@@ -26,12 +26,12 @@
     (nerd-icons-install-fonts 'dont-ask)))
 
 (use-package doom-themes
-  :straight t
+  :elpaca t
   :config
   (doom-themes-org-config))
 
 (use-package dashboard
-  :straight t
+  :elpaca t
   :after evil evil-collection
   :demand t
   :unless (bound-and-true-p +dashboard-disable)
@@ -56,7 +56,7 @@
     (dashboard-open)))
 
 (use-package doom-modeline
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . doom-modeline-mode)
   :custom
   (doom-modeline-height 28)
@@ -77,7 +77,7 @@
       major-mode process vcs checker time "  ")))
 
 (use-package solaire-mode
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . solaire-global-mode)
   :config
   (dolist (face '(mode-line mode-line-active mode-line-inactive mode-line-emphasis))

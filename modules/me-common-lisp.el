@@ -10,7 +10,7 @@
 
 ;; Common Lisp
 (use-package sly
-  :straight t
+  :elpaca t
   :custom
   (sly-mrepl-history-file-name (+directory-ensure minemacs-local-dir "sly/mrepl-history.el"))
   (sly-net-coding-system 'utf-8-unix)
@@ -66,22 +66,22 @@
     "rq" #'sly-quit-lisp))
 
 (use-package sly-quicklisp
-  :straight t
+  :elpaca t
   :after sly
   :demand t)
 
 (use-package sly-asdf
-  :straight t
+  :elpaca t
   :after sly
   :demand t)
 
 (use-package sly-repl-ansi-color
-  :straight t
+  :elpaca t
   :after sly
   :demand t)
 
 (use-package sly-macrostep
-  :straight t
+  :elpaca t
   :after sly
   :demand t
   :init

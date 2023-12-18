@@ -9,14 +9,14 @@
 ;;; Code:
 
 (use-package consult-project-extra
-  :straight t
+  :elpaca t
   :init
   (+map! :infix "p" ;; project
     "p" #'consult-project-extra-find
     "P" #'consult-project-extra-find-other-window))
 
 (use-package ibuffer-project
-  :straight t
+  :elpaca t
   :hook (ibuffer . +ibuffer-project-h)
   :config
   ;; From Crafted Emacs
@@ -26,7 +26,7 @@
       (ibuffer-do-sort-by-project-file-relative))))
 
 (use-package project-cmake
-  :straight (:host github :repo "juanjosegarciaripoll/project-cmake")
+  :elpaca (:host github :repo "juanjosegarciaripoll/project-cmake")
   :init
   (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map)
     :infix "p"

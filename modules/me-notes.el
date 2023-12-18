@@ -14,7 +14,7 @@
 ;; https://github.com/bitspook/notes-migrator
 
 (use-package denote
-  :straight t
+  :elpaca t
   :commands denote-create-note denote-insert-link denote-show-backlinks-buffer
   :hook (minemacs-after-startup . denote-modules-mode)
   :hook (minemacs-after-startup . denote-rename-buffer-mode)
@@ -36,7 +36,7 @@
   (denote-date-prompt-use-org-read-date t)) ; And `org-read-date' is an amazing bit of tech
 
 (use-package consult-notes
-  :straight t
+  :elpaca t
   :init
   (defun +consult-notes--unbound-org-roam ()
     (fmakunbound 'consult-notes-org-roam-mode)

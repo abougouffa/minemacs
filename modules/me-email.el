@@ -140,7 +140,7 @@
   (+mu4e-extras-locks-setup))
 
 (use-package org-msg
-  :straight t
+  :elpaca t
   :when +mu4e-available-p
   :after mu4e
   :demand t
@@ -178,7 +178,7 @@
        (setq-local default-directory dir)))))
 
 (use-package org-mime
-  :straight t
+  :elpaca t
   :when +mu4e-available-p
   :after mu4e org
   :demand t
@@ -187,7 +187,7 @@
   (setq org-mime-export-options '(:with-latex dvipng :section-numbers t :with-author nil :with-toc nil)))
 
 (use-package mu4e-alert
-  :straight t
+  :elpaca t
   :when +mu4e-available-p
   :after mu4e
   :demand t

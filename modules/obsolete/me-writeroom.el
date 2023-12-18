@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package writeroom-mode
-  :straight t
+  :elpaca t
   :init
   (+map! "tw" #'writeroom-mode)
   (defcustom +writeroom-text-scale 1.7

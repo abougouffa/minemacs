@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package magit
-  :straight t
+  :elpaca t
   :init
   (+map! :infix "g"
     "g" #'magit-status
@@ -27,24 +27,24 @@
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
 
 (use-package magit-todos
-  :straight t
+  :elpaca t
   :after magit
   :demand t
   :config
   (magit-todos-mode 1))
 
 (use-package magit-imerge
-  :straight t
+  :elpaca t
   :init
   (with-eval-after-load 'magit
     (transient-append-suffix 'magit-merge "m"
       '("M" "magit-imerge" magit-imerge))))
 
 (use-package closql
-  :straight t)
+  :elpaca t)
 
 (use-package forge
-  :straight t
+  :elpaca t
   :after magit
   :demand t
   :preface
@@ -66,7 +66,7 @@
     '("m" "forge merge (via API)" forge-merge)))
 
 (use-package emojify ;; Needed by `code-review'
-  :straight t
+  :elpaca t
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
@@ -77,7 +77,7 @@
     (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))))
 
 (use-package code-review
-  :straight (:host github :repo "phelrine/code-review" :branch "fix/closql-update")
+  :elpaca (:host github :repo "phelrine/code-review" :branch "fix/closql-update")
   :after magit
   :custom
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))
@@ -93,7 +93,7 @@
       '("c r" "review pull-request" code-review-forge-pr-at-point))))
 
 (use-package jiralib2
-  :straight t
+  :elpaca t
   :commands +jira-insert-ticket-id
   :init
   (defvar-local +jira-open-status '("open" "to do" "in progress"))
@@ -116,7 +116,7 @@
            (completing-read "Select ticket: " tickets)))))))
 
 (use-package diff-hl
-  :straight t
+  :elpaca t
   :hook (find-file . diff-hl-mode)
   :hook (dired-mode . diff-hl-dired-mode)
   :hook (vc-dir-mode . diff-hl-dir-mode)
@@ -129,7 +129,7 @@
   (diff-hl-draw-borders nil))
 
 (use-package git-timemachine
-  :straight t
+  :elpaca t
   :init
   (+map! "gt" #'git-timemachine-toggle)
   :custom
@@ -147,21 +147,21 @@
   (global-git-commit-mode 1))
 
 (use-package git-modes
-  :straight t
+  :elpaca t
   :init
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
 (use-package repo
-  :straight t
+  :elpaca t
   :when (executable-find "repo")
   :init
   (+map! "gr" #'repo-status))
 
 (use-package gee
-  :straight (:host bitbucket :repo "olanilsson/gee"))
+  :elpaca (:host "bitbucket.org" :repo "olanilsson/gee"))
 
 (use-package diffview
-  :straight t
+  :elpaca t
   :init
   (with-eval-after-load 'diff-mode
     (+map-local! :keymaps 'diff-mode-map

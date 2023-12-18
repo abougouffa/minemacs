@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package flycheck
-  :straight t
+  :elpaca t
   :custom
   (flycheck-idle-change-delay 1.0)
   (flycheck-check-syntax-automatically '(save idle-change mode-enabled))

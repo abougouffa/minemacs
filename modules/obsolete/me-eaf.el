@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package eaf
-  :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
+  :elpaca (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
   :when (+emacs-features-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
   :init

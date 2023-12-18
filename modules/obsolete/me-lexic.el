@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package lexic
-  :straight t
+  :elpaca t
   :when (executable-find "sdcv")
   :init
   (+map! :infix "s"

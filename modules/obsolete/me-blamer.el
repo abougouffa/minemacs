@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package blamer
-  :straight t
+  :elpaca t
   :hook (minemacs-first-file . global-blamer-mode)
   :custom
   (blamer-idle-time 0.3)

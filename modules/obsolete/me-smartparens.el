@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package smartparens
- :straight t
+ :elpaca t
  :hook (minemacs-after-startup . smartparens-global-mode)
  :init
  ;; From Doom Emacs, disable expensive navigation features.

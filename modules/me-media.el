@@ -26,7 +26,7 @@
           ("." . browse-url-default-browser))))
 
 (use-package empv
-  :straight (:host github :repo "isamert/empv.el")
+  :elpaca (:host github :repo "isamert/empv.el")
   :when (executable-find +mpv-command)
   :init
   (+map! :infix "o"
@@ -86,7 +86,7 @@
     (empv--playlist-apply #'+empv--dl-playlist path)))
 
 (use-package emms
-  :straight t)
+  :elpaca t)
 
 
 (provide 'me-media)

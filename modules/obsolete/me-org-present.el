@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package org-present
-  :straight t
+  :elpaca t
   :init
   (+map! "oP" :keymaps 'org-mode-map #'org-present)
   :hook (org-present-mode . +org-present--on-h)

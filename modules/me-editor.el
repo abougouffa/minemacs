@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package tempel
-  :straight t
+  :elpaca t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path
@@ -27,22 +27,22 @@
     (add-hook 'completion-at-point-functions #'tempel-complete -100 t)))
 
 (use-package tempel-collection
-  :straight t
+  :elpaca t
   :after tempel
   :demand t)
 
 (use-package rainbow-delimiters
-  :straight t
+  :elpaca t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package highlight-numbers
-  :straight t
+  :elpaca t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
   (setq highlight-numbers-generic-regexp (rx (and symbol-start (one-or-more digit)) (optional "." (* digit)) symbol-end)))
 
 (use-package expreg
-  :straight (:host github :repo "casouri/expreg")
+  :elpaca (:host github :repo "casouri/expreg")
   :when (+emacs-features-p 'tree-sitter)
   :init
   (+vmap!
@@ -54,7 +54,7 @@
   (+load minemacs-modules-dir "obsolete/me-expand-region.el"))
 
 (use-package drag-stuff
-  :straight t
+  :elpaca t
   :init
   :bind (("M-<up>" . drag-stuff-up)
          ("M-<down>" . drag-stuff-down)
@@ -62,7 +62,7 @@
          ("M-<right>" . drag-stuff-right)))
 
 (use-package super-save
-  :straight t
+  :elpaca t
   :hook (minemacs-first-file . super-save-mode)
   :custom
   (super-save-silent t)
@@ -76,7 +76,7 @@
                 '(magit magit-status winner-undo winner-redo find-file))))
 
 (use-package selection-highlight-mode
-  :straight (:host github :repo "balloneij/selection-highlight-mode")
+  :elpaca (:host github :repo "balloneij/selection-highlight-mode")
   :hook (minemacs-first-file . selection-highlight-mode)
   :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
 

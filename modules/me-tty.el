@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package xclip
-  :straight t
+  :elpaca t
   :hook (tty-setup . +xclip--enable-in-tty-h)
   :config
   (defun +xclip--enable-in-tty-h ()

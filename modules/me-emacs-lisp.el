@@ -11,7 +11,7 @@
 (defconst +parinfer-rust-path (+directory-ensure minemacs-local-dir "parinfer-rust/"))
 
 (use-package parinfer-rust-mode
-  :straight t
+  :elpaca t
   :when (and (+emacs-features-p 'modules) ; Emacs built with `--with-modules' option
              (or (eq sys/arch 'x86_64) ; x86_64 modules can be downloaded as binaries
                  ;; it is always possible to compile the module yourself on other architectures
@@ -44,13 +44,13 @@
     (advice-add cmd :after #'+parinter-rust--restore-a)))
 
 (use-package macrostep
-  :straight t
+  :elpaca t
   :init
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
 
 (use-package elisp-demos
-  :straight t
+  :elpaca t
   :after elisp-mode minemacs-loaded
   :demand t
   :init
@@ -61,7 +61,7 @@
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (use-package helpful
-  :straight t
+  :elpaca t
   :init
   (+map! :keymaps 'emacs-lisp-mode-map
     :infix "h"
@@ -72,11 +72,11 @@
     "f" #'helpful-callable))
 
 (use-package info-colors
-  :straight t
+  :elpaca t
   :hook (Info-selection . info-colors-fontify-node))
 
 (use-package eros
-  :straight t
+  :elpaca t
   :after elisp-mode minemacs-loaded
   :demand t
   :custom

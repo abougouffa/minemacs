@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package embed
-  :straight (:host github :repo "xal-0/embed-el")
+  :elpaca (:host github :repo "xal-0/embed-el")
   :init
   (+map! :infix "o"
     "b" '(nil :wk "embed")
@@ -19,12 +19,12 @@
     "bf" #'embed-openocd-flash))
 
 (use-package arduino-mode
-  :straight (:host github :repo "bookest/arduino-mode")
+  :elpaca (:host github :repo "bookest/arduino-mode")
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
 (use-package bitbake
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
+  :elpaca (bitbake-modes :host "bitbucket.org" :repo "olanilsson/bitbake-modes")
   :config
   (+map-local! :keymaps 'bitbake-mode-map
     "b"  #'bitbake-recipe-build-dir-dired)
@@ -33,11 +33,9 @@
     "i" #'bitbake-inc-pr))
 
 (use-package bitbake-electric
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode))
 
 (use-package bitbake-insert
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :after bitbake
   :demand t
   :config
@@ -48,13 +46,13 @@
     "o" #'bitbake-insert-override))
 
 (use-package mips-mode
-  :straight t)
+  :elpaca t)
 
 (use-package riscv-mode
-  :straight t)
+  :elpaca t)
 
 (use-package x86-lookup
-  :straight t
+  :elpaca t
   :custom
   (x86-lookup-browse-pdf-function 'x86-lookup-browse-pdf-pdf-tools)
   ;; Get manual from intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html

@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package evil
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . evil-mode)
   :preface
   ;; Needed by `evil-collection'
@@ -53,7 +53,7 @@
          (consult-buffer))))))
 
 (use-package evil-collection
-  :straight t
+  :elpaca t
   :after evil minemacs-loaded
   :demand t
   :config
@@ -71,7 +71,7 @@
         "gr" 'xref-find-references))))
 
 (use-package evil-snipe
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . evil-snipe-mode)
   :hook (minemacs-after-startup . evil-snipe-override-mode)
   :custom
@@ -80,7 +80,7 @@
   (evil-snipe-auto-scroll t))
 
 (use-package evil-numbers
-  :straight t
+  :elpaca t
   :init
   (+nmap!
     "g+" #'evil-numbers/inc-at-pt
@@ -92,7 +92,7 @@
     "g-" #'evil-numbers/dec-at-pt-incremental))
 
 (use-package evil-nerd-commenter
-  :straight t
+  :elpaca t
   :commands evilnc-comment-operator
   :init
   (+nvmap!

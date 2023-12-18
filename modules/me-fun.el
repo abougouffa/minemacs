@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package xkcd
-  :straight t
+  :elpaca t
   :init
   (+map! "ox" #'xkcd)
   :custom
@@ -30,10 +30,10 @@
   (+ignore-root xkcd-cache-dir))
 
 (use-package speed-type
-  :straight t)
+  :elpaca t)
 
 (use-package asm-blox
-  :straight t)
+  :elpaca t)
 
 
 (provide 'me-fun)

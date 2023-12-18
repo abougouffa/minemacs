@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package spell-fu
-  :straight t
+  :elpaca t
   :when (executable-find "aspell")
   :hook (text-mode . spell-fu-mode)
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
@@ -44,7 +44,7 @@
       (setq-local spell-fu-faces-exclude excluded))))
 
 (use-package go-translate
-  :straight (:host github :repo "lorniu/go-translate")
+  :elpaca (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
   :init
   (+map-local! :keymaps '(org-mode-map text-mode-map markdown-mode-map tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
@@ -125,7 +125,7 @@
         :render (gts-buffer-render))))))
 
 (use-package reverso
-  :straight (:host github :repo "SqrtMinusOne/reverso.el"))
+  :elpaca (:host github :repo "SqrtMinusOne/reverso.el"))
 
 ;; Add this to .dir-locals.el
 ;; ((nil (eglot-workspace-configuration

@@ -10,10 +10,10 @@
 
 ;; Clojure
 (use-package clojure-mode
-  :straight t)
+  :elpaca t)
 
 (use-package cider
-  :straight t)
+  :elpaca t)
 
 
 (provide 'me-clojure)

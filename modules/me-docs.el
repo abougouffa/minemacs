@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package pdf-tools
-  :straight t
+  :elpaca t
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :hook (minemacs-build-functions . pdf-tools-install)
@@ -19,14 +19,14 @@
   (pdf-view-use-scaling t))
 
 (use-package pdf-view-restore
-  :straight t
+  :elpaca t
   :hook (pdf-view-mode . pdf-view-restore-mode)
   :custom
   (use-file-base-name-flag nil)
   (pdf-view-restore-filename (concat minemacs-local-dir "pdf-view-restore.el")))
 
 (use-package nov
-  :straight t
+  :elpaca t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)
   :custom
   (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
@@ -38,7 +38,7 @@
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))
 
 (use-package crdt
-  :straight t
+  :elpaca t
   :when (or +tuntox-available-p +stunnel-available-p)
   :custom
   (crdt-tuntox-password-in-url t)
@@ -48,7 +48,7 @@
 (defconst +easydraw-available-p (+emacs-features-p 'rsvg 'zlib 'libxml2))
 
 (use-package edraw
-  :straight (:host github :repo "misohena/el-easydraw")
+  :elpaca (:host github :repo "misohena/el-easydraw")
   :when +easydraw-available-p
   :custom
   (edraw-ui-state-file (+directory-ensure minemacs-local-dir "edraw/ui-state.el"))
@@ -59,7 +59,7 @@
   :when +easydraw-available-p)
 
 (use-package markdown-mode
-  :straight t
+  :elpaca t
   :mode ("README\\.md\\'" . gfm-mode)
   :custom
   (markdown-hide-markup t)
@@ -72,7 +72,7 @@
     "e"  #'markdown-export))
 
 (use-package pandoc-mode
-  :straight t
+  :elpaca t
   :hook (markdown-mode . conditionally-turn-on-pandoc))
 
 

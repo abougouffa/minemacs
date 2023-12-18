@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package flymake-collection
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . flymake-collection-hook-setup)
   :config
   ;; Activate more checkers for Python
@@ -21,23 +21,23 @@
                 '((flymake-collection-flake8 :disabled t)))))
 
 (use-package flymake-cppcheck
-  :straight (nil :host github :repo "shaohme/flymake-cppcheck")
+  :elpaca (:host github :repo "shaohme/flymake-cppcheck")
   :init
   (when (executable-find "cppcheck")
     (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode) #'flymake-cppcheck-setup)))
 
 (use-package flymenu
-  :straight (:host github :repo "KarimAziev/flymenu")
+  :elpaca (:host github :repo "KarimAziev/flymenu")
   :init
   (+map! "cM" #'flymenu-flymake))
 
 (use-package flymake-guile
-  :straight t
+  :elpaca t
   :init
   (when (executable-find "guild") (+add-hook! scheme-mode #'flymake-guile)))
 
 (use-package flymake-quickdef
-  :straight t
+  :elpaca t
   :autoload flymake-quickdef-backend +flymake-bandit-load +flymake-codespell-load
   :init
   ;; Automatically generate `backend-load' function to be used as a hook
@@ -94,23 +94,23 @@
       (list fmqd-source beg end type msg))))
 
 (use-package flymake-plantuml
-  :straight (:host github :repo "shaohme/flymake-plantuml")
+  :elpaca (:host github :repo "shaohme/flymake-plantuml")
   :hook (plantuml-mode . flymake-plantuml-setup))
 
 (use-package flymake-relint
-  :straight t
+  :elpaca t
   :hook ((emacs-lisp-mode lisp-interaction-mode) . flymake-relint-setup))
 
 (use-package flymake-pmd
-  :straight (:host github :repo "rody/flymake-pmd"))
+  :elpaca (:host github :repo "rody/flymake-pmd"))
 
 (use-package flymake-nasm
-  :straight (:host github :repo "juergenhoetzel/flymake-nasm")
+  :elpaca (:host github :repo "juergenhoetzel/flymake-nasm")
   :init
   (when (executable-find "nasm") (+add-hook! asm-mode #'flymake-nasm-setup)))
 
 (use-package flymake-pyre
-  :straight (:host github :repo "juergenhoetzel/flymake-pyre")
+  :elpaca (:host github :repo "juergenhoetzel/flymake-pyre")
   :init
   (when (executable-find "pyre") (+add-hook! asm-mode #'flymake-pyre-setup)))
 

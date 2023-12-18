@@ -10,7 +10,7 @@
 
 ;; Adapted from Doom Emacs and Crafted Emacs
 (use-package tex
-  :straight auctex
+  :elpaca auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
   :custom
@@ -42,7 +42,6 @@
 
 ;; Adapted from Doom Emacs and Crafted Emacs
 (use-package latex
-  :straight auctex
   :hook (LaTeX-mode . latex-math-mode)
   :hook (LaTeX-mode . turn-on-reftex)
   :custom
@@ -150,7 +149,7 @@
 
 ;; Adapted from Doom Emacs
 (use-package auctex-latexmk
-  :straight t
+  :elpaca t
   :after latex
   :demand t
   :custom
@@ -170,7 +169,7 @@
     (auctex-latexmk-setup)))
 
 (use-package latex-preview-pane
-  :straight t
+  :elpaca t
   :init
   (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
     "p" #'latex-preview-pane-mode))

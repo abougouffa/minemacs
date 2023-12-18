@@ -70,12 +70,12 @@
                            nil buff nil "info" (expand-file-name file)))
             (rosbag-info-mode)))))))
 
-(when (>= emacs-major-version 29)
-  (push 'docker-tramp straight-built-in-pseudo-packages))
+; (when (>= emacs-major-version 29)
+;   (push 'docker-tramp straight-built-in-pseudo-packages))
 
 ;; ROS package
 (use-package ros
-  :straight (:host github :repo "DerBeutlin/ros.el")
+  :elpaca (:host github :repo "DerBeutlin/ros.el")
   :init
   (+map! :infix "o"
     "r"  '(nil :wk "ros")
@@ -104,7 +104,7 @@
     ("q" nil :color blue)))
 
 (use-package robot-mode
-  :straight t)
+  :elpaca t)
 
 
 (provide 'me-robot)

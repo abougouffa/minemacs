@@ -12,7 +12,7 @@
   (let ((args (cdr command-line-args))) (cl-some #'file-directory-p args)))
 
 (use-package dirvish
-  :straight t
+  :elpaca t
   :demand minemacs-started-with-directory-p
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size vc-state git-msg))
@@ -38,12 +38,12 @@
   (dirvish-override-dired-mode 1))
 
 (use-package vlf-setup
-  :straight vlf
+  :elpaca vlf
   :after minemacs-loaded
   :demand t)
 
 (use-package treemacs
-  :straight t
+  :elpaca t
   :init
   (+map! "op" #'treemacs)
   :custom
@@ -52,14 +52,14 @@
   (treemacs-width 30))
 
 (use-package treemacs-nerd-icons
-  :straight t
+  :elpaca t
   :after treemacs nerd-icons
   :demand t
   :config
   (treemacs-load-theme "nerd-icons"))
 
 (use-package sudo-edit
-  :straight t
+  :elpaca t
   :hook (minemacs-first-file . sudo-edit-indicator-mode)
   :init
   (+map!
@@ -67,7 +67,7 @@
     "fu" #'sudo-edit))
 
 (use-package dired-rsync
-  :straight (dired-rsync :files ("dired-rsync.el" "dired-rsync-transient.el"))
+  :elpaca (dired-rsync :files ("dired-rsync.el" "dired-rsync-transient.el"))
   :when (executable-find "rsync")
   :bind (:map
          dired-mode-map

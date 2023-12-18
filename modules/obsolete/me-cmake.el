@@ -9,12 +9,12 @@
 ;;; Code:
 
 (use-package cmake-mode
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*"))
+  :elpaca (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*"))
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'")
 
 (use-package cmake-font-lock
-  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :elpaca (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :hook (cmake-mode . cmake-font-lock-activate))
 
 

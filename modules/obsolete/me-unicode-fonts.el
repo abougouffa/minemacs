@@ -9,12 +9,12 @@
 ;;; Code:
 
 (use-package pcache
-  :straight t
+  :elpaca t
   :custom
   (pcache-directory (concat minemacs-cache-dir "pcache/")))
 
 (use-package unicode-fonts
-  :straight t
+  :elpaca t
   :hook (minemacs-after-startup . +unicode-fonts-setup)
   :init
   (defun +unicode-fonts-setup ()

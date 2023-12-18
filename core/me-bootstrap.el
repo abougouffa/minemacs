@@ -1,4 +1,4 @@
-;; me-bootstrap.el --- Bootstrap packages (straight & use-package) -*- lexical-binding: t; -*-
+;; me-bootstrap.el --- Bootstrap packages (elpaca & use-package) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2023  Abdelhak Bougouffa
 
@@ -8,36 +8,59 @@
 
 ;;; Code:
 
-(setq
- ;; Base directory
- straight-base-dir minemacs-local-dir
- ;; Add Emacs version and the Git hash to the build directory to avoid problems
- straight-build-dir (format "build-%s%s" emacs-version (if emacs-repository-version (format "-%s" (substring emacs-repository-version 0 8)) ""))
- ;; Use the "develop" branch on straight.el's repo.
- straight-repository-branch "develop"
- ;; Do not slow startup by checking for package modifs, check only on demand
- straight-check-for-modifications '(check-on-save find-when-checking))
+(defvar elpaca-installer-version 0.6)
+(defvar elpaca-directory (expand-file-name "elpaca/" minemacs-local-dir))
+(defvar elpaca-builds-directory (expand-file-name (format "builds-%s%s/" emacs-version (if emacs-repository-version (format "-%s" (substring emacs-repository-version 0 8)) "")) elpaca-directory))
+(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order '(elpaca
+                          :repo "https://github.com/progfolio/elpaca.git"
+                          :ref nil
+                          :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                          :build (:not elpaca--activate-package)))
+(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (< emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+        (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                 ((zerop (call-process "git" nil buffer t "clone"
+                                       (plist-get order :repo) repo)))
+                 ((zerop (call-process "git" nil buffer t "checkout"
+                                       (or (plist-get order :ref) "--"))))
+                 (emacs (concat invocation-directory invocation-name))
+                 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                 ((require 'elpaca))
+                 ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (load "./elpaca-autoloads")))
 
-;; Bootstrapping straight.el
-;; See: github.com/radian-software/straight.el#bootstrapping-straightel
-(defvar bootstrap-version)
-(let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer (url-retrieve-synchronously
-                          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-                          'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+(add-hook 'after-init-hook #'elpaca-process-queues)
 
-;; Configure `use-package'
+(elpaca `(,@elpaca-order))
+
 (unless (require 'use-package nil t)
-  (straight-use-package 'use-package))
+  (elpaca use-package))
 
-;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
-;; add support for `minemacs-disabled-packages'.
+;; Install use-package support
+(elpaca elpaca-use-package
+  ;; Enable :elpaca use-package keyword.
+  (elpaca-use-package-mode 1))
+
+;; Add support for `minemacs-disabled-packages' and better conditional blocks.
 (require 'me-use-package-extra)
+
+;; Block until current queue processed.
+(elpaca-wait)
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
@@ -47,19 +70,6 @@
  use-package-always-demand minemacs-always-demand-p
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p))
-
-;;;###autoload
-(defun +straight-prune-build-cache ()
-  "Prune straight.el build directories for old Emacs versions."
-  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    ;; Prune the build cache and build directory.
-    (straight-prune-build)
-    ;; Prune old build directories
-    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-          (seq-filter
-           (lambda (name)
-             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-           (directory-files default-directory nil "[^.][^.]?\\'")))))
 
 
 (provide 'me-bootstrap)

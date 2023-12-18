@@ -93,7 +93,7 @@
 
 ;; Close splash screen automatically after Emacs gets loaded
 (add-hook
- 'emacs-startup-hook
+ 'elpaca-after-init-hook
  (defun +minemacs-splash--kill-h ()
    (run-at-time 0.5 nil #'minemacs-splash-kill))
  101)

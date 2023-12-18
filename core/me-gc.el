@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package gcmh
-  :straight t
+  :elpaca t
   :hook (minemacs-lazy . gcmh-mode)
   :custom
   ;; Set the delay to 20s instead of the default 15. I tried using `auto', but

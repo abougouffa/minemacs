@@ -14,7 +14,7 @@
 ;;; Code:
 
 (use-package tabspaces
-  :straight t
+  :elpaca t
   :after minemacs-loaded
   :hook (tabspaces-mode . +consult-tabspaces-setup)
   :custom

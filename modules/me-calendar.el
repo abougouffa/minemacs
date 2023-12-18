@@ -11,7 +11,7 @@
 ;;; Code:
 
 (use-package calfw
-  :straight t
+  :elpaca t
   :custom
   (cfw:face-item-separator-color nil)
   (cfw:render-line-breaker #'cfw:render-line-breaker-none)
@@ -41,17 +41,17 @@
        text))))
 
 (use-package calfw-ical
-  :straight t
+  :elpaca t
   :demand t
   :after calfw)
 
 (use-package calfw-cal
-  :straight t
+  :elpaca t
   :demand t
   :after calfw)
 
 (use-package calfw-org
-  :straight t
+  :elpaca t
   :demand t
   :after calfw
   :commands +cfw-open-calendar

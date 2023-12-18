@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package dape
-  :straight (:host github :repo "svaante/dape")
+  :elpaca (:host github :repo "svaante/dape")
   :commands +dape-transient
   :custom
   (dape-inline-variables t)
@@ -55,7 +55,7 @@
       ("qk" "Kill" dape-kill :transient nil)]]))
 
 (use-package realgud
-  :straight (realgud :build (:not compile))
+  :elpaca (realgud :build (:not elpaca--byte-compile))
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
                           c-ts-mode-map c++-ts-mode-map python-ts-mode-map
@@ -66,17 +66,17 @@
     "rh" #'+realgud-hydra/body))
 
 (use-package realgud-lldb
-  :straight t
+  :elpaca t
   :init
   (defalias 'realgud:lldb #'realgud--lldb)
   :commands (realgud--lldb realgud:lldb lldb))
 
 (use-package realgud-ipdb
-  :straight t
+  :elpaca t
   :commands (ipdb realgud:ipdb))
 
 (use-package disaster
-  :straight t
+  :elpaca t
   :when (executable-find "objdump")
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
