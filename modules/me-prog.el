@@ -31,7 +31,7 @@
   ;; Setup `treesit-auto-langs' to include only the languages with non-installed
   ;; grammars from all supported languages.
   (let ((langs (mapcar #'treesit-auto-recipe-lang treesit-auto-recipe-list)))
-    (setq treesit-auto-langs (seq-difference (seq-filter #'treesit-language-available-p langs) langs))))
+    (setq treesit-auto-langs (seq-difference langs (seq-filter #'treesit-language-available-p langs)))))
 
 (use-package awk-ts-mode
   :straight t
