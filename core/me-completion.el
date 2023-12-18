@@ -43,7 +43,7 @@ placed, otherwise they come first."
   (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
 
   (+add-hook! (emacs-lisp-mode git-commit-mode)
-    (add-hook 'completion-at-point-functions #'cape-symbol nil t))
+    (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t))
 
   (+add-hook! (TeX-mode LaTeX-mode)
     (add-hook 'completion-at-point-functions #'cape-tex nil t))
