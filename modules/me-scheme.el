@@ -26,7 +26,7 @@
   :elpaca t)
 
 (use-package geiser-racket
-  :elpaca t)
+  :elpaca (:files (:defaults "bin" "src")))
 
 (use-package macrostep-geiser
   :elpaca t
