@@ -16,19 +16,11 @@
   ;; HACK: This advice around `use-package' checks if a package is disabled in
   ;; `minemacs-disabled-packages' before calling `use-package'. This can come
   ;; handy if the user wants to enable some module while excluding some packages
-  ;; from it. This advice also evaluates `use-package's conditional sections
-  ;; (`:if', `:when' and `:unless') to prevent installing packages with
-  ;; `elpaca'.
+  ;; from it.
   (advice-add
    'use-package :around
    (defun +use-package--check-if-disabled-a (origfn package &rest args)
-     (when (and (not (+package-disabled-p package))
-                (or (not (memq :if args))
-                    (and (memq :if args) (eval (+varplist-get args :if t))))
-                (or (not (memq :when args))
-                    (and (memq :when args) (eval (+varplist-get args :when t))))
-                (or (not (memq :unless args))
-                    (and (memq :unless args) (not (eval (+varplist-get args :unless t))))))
+     (when (not (+package-disabled-p package))
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
 
