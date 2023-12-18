@@ -28,7 +28,7 @@
    (slot . 0)
    (side . right)
    (dedicated . t) ;; Close when finished
-   (window-width . 80)))
+   (window-width . 85)))
 
 ;; Show *Warnings* at bottom
 (add-to-list
@@ -46,7 +46,7 @@
  `(,(rx bol "*" (or "Dictionary" "lexic" "Completions") "*" eol)
    (display-buffer-in-side-window)
    (side . right)
-   (window-width . 82)))
+   (window-width . 85)))
 
 ;; Terminal buffers
 (add-to-list
