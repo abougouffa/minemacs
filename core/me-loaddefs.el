@@ -20,7 +20,8 @@ Unmount eCryptfs' private directory." t)
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(autoload '+straight-prune-build-cache "me-bootstrap")
+(autoload '+straight-prune-build-cache "me-bootstrap" "\
+Prune straight.el build directories for old Emacs versions.")
 
 
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
