@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package chezmoi
-  :elpaca (chezmoi :files (:defaults "extensions/*.el"))
+  :elpaca (:files (:defaults "extensions/*.el"))
   :when (executable-find "chezmoi")
   :commands
   chezmoi-find chezmoi-write chezmoi-diff chezmoi-open-other

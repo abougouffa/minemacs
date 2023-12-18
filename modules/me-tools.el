@@ -99,7 +99,7 @@
   :unless (+emacs-features-p 'tree-sitter))
 
 (use-package systemd
-  :elpaca (systemd :build (:not elpaca--byte-compile))
+  :elpaca (:build (:not elpaca--byte-compile))
   :hook (systemd-mode . +systemd-mode-capf-h)
   :config
   (defun +systemd-mode-capf-h ()
@@ -160,7 +160,7 @@
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
 (use-package app-launcher
-  :elpaca (app-launcher :host github :repo "SebastienWae/app-launcher")
+  :elpaca (:host github :repo "SebastienWae/app-launcher")
   :when (or os/linux os/bsd)
   :init
   (+map! "oo" #'app-launcher-run-app))

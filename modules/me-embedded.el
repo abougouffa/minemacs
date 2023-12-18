@@ -24,7 +24,7 @@
   :hook (arduino-mode . hs-minor-mode))
 
 (use-package bitbake
-  :elpaca (bitbake-modes :host "bitbucket.org" :repo "olanilsson/bitbake-modes")
+  :elpaca (:host "bitbucket.org" :repo "olanilsson/bitbake-modes")
   :config
   (+map-local! :keymaps 'bitbake-mode-map
     "b"  #'bitbake-recipe-build-dir-dired)
