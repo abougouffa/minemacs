@@ -25,24 +25,7 @@
   (tldr-enabled-categories '("common" "linux" "osx")))
 
 (use-package vterm
-  ;; Using the default recipe will cause `vterm' to ask about compilation, which
-  ;; blocks elpaca. This hack is taken from github.com/progfolio/.emacs.d#vterm
-  :elpaca (vterm :post-build
-                 (progn
-                   (setq vterm-always-compile-module t)
-                   (require 'vterm)
-                   ;; print compilation info for elpaca
-                   (with-current-buffer (get-buffer-create vterm-install-buffer-name)
-                     (goto-char (point-min))
-                     (while (not (eobp))
-                       (message "%S" (buffer-substring (line-beginning-position) (line-end-position)))
-                       (forward-line)))
-                   (when-let ((so (expand-file-name "./vterm-module.so"))
-                              ((file-exists-p so)))
-                     (make-symbolic-link
-                      so (expand-file-name (file-name-nondirectory so)
-                                           "../../builds/vterm")
-                      'ok-if-already-exists))))
+  :elpaca t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :bind (:map vterm-mode-map ("<return>" . vterm-send-return))
@@ -61,7 +44,7 @@
   (vterm-tramp-shells '(("docker" "/bin/bash"))))
 
 (use-package multi-vterm
-  :elpaca t
+  :elpaca (:build (:not elpaca--byte-compile))
   :when (and (not os/win) (+emacs-features-p 'modules))
   :init
   (+map!
