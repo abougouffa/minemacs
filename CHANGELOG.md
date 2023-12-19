@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.2.0](https://github.com/abougouffa/minemacs/compare/v4.1.3..v4.2.0) - 2023-12-19
+#### Bug Fixes
+- **(cape)** rename obsolete `cape-symbol` to `cape-elisp-symbol` - ([6313c3d](https://github.com/abougouffa/minemacs/commit/6313c3d0b9d36c01b90d4f0dc71ebfb80be7f4e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** don't alias `loaddefs-generate` to `make-directory-autoloads` - ([00b241f](https://github.com/abougouffa/minemacs/commit/00b241ff4bfd1310421991ced70488e783683255)) - [@abougouffa](https://github.com/abougouffa)
+- **(saveplace)** enable at init to work with files passed as args - ([b91c3cc](https://github.com/abougouffa/minemacs/commit/b91c3cc74fb6a1373c6883480738adb06586c9ed)) - [@abougouffa](https://github.com/abougouffa)
+- **(saveplace)** enable before opening the first file [#142] - ([69aedcc](https://github.com/abougouffa/minemacs/commit/69aedcc0c286ba7ce1dca2b6ca6293091a000b8d)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** buggy detection for non-installed grammars [#140] - ([c770acb](https://github.com/abougouffa/minemacs/commit/c770acb7b8d1e24ece65404b2a2270ad0a5cc168)) - [@abougouffa](https://github.com/abougouffa)
+- **(undo-fu-session)** load early - ([c57c147](https://github.com/abougouffa/minemacs/commit/c57c147e0721f617c143dfbe05e534b9867a3d86)) - [@abougouffa](https://github.com/abougouffa)
+- **(undo-fu-session)** fix renamed global mode - ([8452ff5](https://github.com/abougouffa/minemacs/commit/8452ff579c026b573d40d3b742090794e72ffba8)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move constants to `me-vars` - ([1d7aeb7](https://github.com/abougouffa/minemacs/commit/1d7aeb7aceb8a2a63066e622972ee7baa7e703a7)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- restore the original `minemacs-directory-arg-p` constant - ([9a1e46d](https://github.com/abougouffa/minemacs/commit/9a1e46d86778211a5e9128059e3d226fc3cf1515)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(window)** wider help windows - ([c8c4d10](https://github.com/abougouffa/minemacs/commit/c8c4d10fdf8be03ff37d04eb5b06cf2572bcfa9f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([396efdb](https://github.com/abougouffa/minemacs/commit/396efdb05c97608750ea539a60b1be4b92f31bd0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([10a02e0](https://github.com/abougouffa/minemacs/commit/10a02e0ca226d366316bf95937a2c032808b9fb7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.1.3](https://github.com/abougouffa/minemacs/compare/v4.1.2..v4.1.3) - 2023-12-16
 #### Bug Fixes
 - **(super-save)** correct a renamed customization variable - ([98ab319](https://github.com/abougouffa/minemacs/commit/98ab319882063bdd00fa513da42b6689ced5f4b0)) - [@abougouffa](https://github.com/abougouffa)
