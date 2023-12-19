@@ -1397,7 +1397,7 @@ current line.")
 
 (use-package saveplace
   ;; Save place in files
-  :hook (minemacs-first-file . save-place-mode)
+  :hook (minemacs-after-startup . save-place-mode)
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 
