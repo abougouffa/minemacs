@@ -127,7 +127,6 @@ plain variables.  This means that `setopt' will execute any
 
 ;; Function aliases
 (defalias 'string-split #'split-string)
-(defalias 'loaddefs-generate #'make-directory-autoloads)
 
 
 (provide 'me-backports-29)
