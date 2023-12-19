@@ -82,6 +82,11 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
           (const :tag "Log" 3)
           (const :tag "Debug" 4)))
 
+(defconst minemacs-directory-arg-p
+  (let ((args (cdr command-line-args))) (cl-some #'file-directory-p args)))
+
+(defconst minemacs-file-arg-p (and (cdr command-line-args) t))
+
 ;; Derive the root directory from this file path
 (defconst minemacs-root-dir (abbreviate-file-name (file-name-directory (directory-file-name (file-name-directory (file-truename load-file-name))))))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
