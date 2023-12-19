@@ -20,8 +20,8 @@
 
 (use-package undo-fu-session
   :straight t
-  :hook (minemacs-after-startup . undo-fu-session-global-mode)
-  :demand t
+  :init
+  (undo-fu-session-global-mode 1)
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz))
   (undo-fu-session-directory (concat minemacs-local-dir "undo-fu-session/")))
