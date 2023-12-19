@@ -48,6 +48,9 @@
 (unless (require 'use-package nil t)
   (elpaca use-package))
 
+;; Block until current queue processed.
+(elpaca-wait)
+
 ;; Install `elpaca' integration with `use-package'
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword
