@@ -8,9 +8,12 @@
 
 ;;; Code:
 
+(defconst minemacs-started-with-directory-p
+  (let ((args (cdr command-line-args))) (cl-some #'file-directory-p args)))
+
 (use-package dirvish
   :straight t
-  :demand minemacs-directory-arg-p
+  :demand minemacs-started-with-directory-p
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size vc-state git-msg))
   (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
