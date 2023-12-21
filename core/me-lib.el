@@ -324,20 +324,23 @@ Executed before `after-find-file', it runs all hooks in `%s' and provide the `%s
        (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'."
         ',hook-name ',fn-name ',feature-name)
        (defcustom ,hook-name nil ,hook-docs :group 'minemacs-core :type 'hook)
-       (defun ,fn-name (&rest _)
+       (defun ,fn-name (&optional filename &rest _)
         (when (and
                after-init-time ; after Emacs initialization
-               (featurep 'minemacs-loaded) ; after MinEmacs is loaded
-               (buffer-file-name) ; for named files
-               (string-match-p ,ext-regexp (buffer-file-name))) ; file name matches the regexp
+               (or
+                (featurep 'minemacs-loaded) ; after MinEmacs is loaded
+                (when-let ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
+                 (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
+               filename ; for named files
+               (string-match-p ,ext-regexp filename)) ; file name matches the regexp
          (+log! "Running %d `%s' hooks." (length ,hook-name) ',hook-name)
-         (advice-remove 'after-find-file #',fn-name)
+         (advice-remove 'find-file-noselect #',fn-name)
          (provide ',feature-name)
          (run-hooks ',hook-name)))
        (if (daemonp)
            ;; Load immediately after init when in daemon mode
            (add-hook 'after-init-hook (lambda () (provide ',feature-name) (run-hooks ',hook-name)) #',fn-name 90)
-         (advice-add 'after-find-file :before #',fn-name '((depth . -101)))))))
+         (advice-add 'find-file-noselect :before #',fn-name '((depth . -101)))))))
 
 ;; From Doom Emacs
 (defun +resolve-hook-forms (hooks)
