@@ -1182,11 +1182,10 @@ current line.")
   (defun +electric-pair-tweaks-h ()
     ;; Org mode tweaks
     (with-eval-after-load 'elec-pair
-      (when (bound-and-true-p electric-pair-mode)
-        ;; Disable auto-pairing of "<" in `org-mode' when using `electric-pair-mode'
-        (setq-local electric-pair-inhibit-predicate
-                    `(lambda (char)
-                       (if (char-equal char ?<) t (,electric-pair-inhibit-predicate char)))))
+      ;; Disable auto-pairing of "<" in `org-mode' when using `electric-pair-mode'
+      (setq-local electric-pair-inhibit-predicate
+                  `(lambda (char)
+                     (if (char-equal char ?<) t (,electric-pair-inhibit-predicate char))))
       (setq-local electric-pair-pairs (append electric-pair-pairs (alist-get major-mode +electric-pair-mode-pairs-alist)))))
 
   (defvar +electric-pair-mode-pairs-alist
