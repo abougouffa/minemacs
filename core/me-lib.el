@@ -583,7 +583,9 @@ Returns the load path of the package, useful for usage with `use-package''s
     pkg-load-path))
 
 (defun minemacs-run-build-functions (&optional dont-ask-p)
-  "Run all build functions in `minemacs-build-functions'."
+  "Run all build functions in `minemacs-build-functions'.
+
+Call functions without asking when DONT-ASK-P is non-nil."
   (interactive "P")
   (dolist (fn minemacs-build-functions)
     (message "MinEmacs: Running `%s'" fn)
@@ -1190,16 +1192,19 @@ be deleted.
   :group 'minemacs-prog
   :type '(repeat symbol))
 
+(defun +eglot--ensure-maybe-h ()
+  "Maybe auto start Eglot if the current mode is in `+eglot-auto-enable-modes'."
+  (when (memq major-mode +eglot-auto-enable-modes)
+    (eglot-ensure)))
+
 (defun +eglot-auto-enable ()
   "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
   (interactive)
   (dolist (mode +eglot-auto-enable-modes)
-    (let ((hook (intern (format "%s-hook" mode))))
-      (add-hook hook #'eglot-ensure)
-      (remove-hook hook #'lsp-deferred))))
+    (add-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)))
 
 (defun +eglot-use-on-all-supported-modes (mode-list)
-  "Enable Eglot in all supported modes in MODE-LIST."
+  "Add all modes in MODE-LIST to `+eglot-auto-enable-modes'."
   (dolist (mode-def mode-list)
     (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
       (cond
