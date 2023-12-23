@@ -46,13 +46,16 @@
     "Modes for which LSP-mode can be automatically enabled by `+lsp-auto-enable'."
     :group 'minemacs-prog
     :type '(repeat symbol))
+  (defun +lsp--ensure-maybe-h ()
+    "Maybe auto start LSP if the current mode is in `+lsp-auto-enable-modes'."
+    (when (memq major-mode +lsp-auto-enable-modes)
+      (lsp-deferred)))
   (defun +lsp-auto-enable ()
     "Auto-enable LSP-mode in configured modes in `+lsp-auto-enable-modes'."
     (interactive)
     (dolist (mode +lsp-auto-enable-modes)
-      (let ((hook (intern (format "%s-hook" mode))))
-        (add-hook hook #'lsp-deferred)
-        (remove-hook hook #'eglot-ensure))))
+      (add-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h)
+      (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)))
   :config
   (+map! :keymaps 'lsp-mode-map
     :infix "c"
