@@ -539,6 +539,7 @@ Returns the load path of the package, useful for usage with `use-package'`s
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
 Run all build functions in `minemacs-build-functions`.
+Call functions without asking when DONT-ASK-P is non-nil.
 
 #### `(minemacs-update-packages)`
 
@@ -712,7 +713,7 @@ Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes`.
 
 #### `(+eglot-use-on-all-supported-modes MODE-LIST)`
 
-Enable Eglot in all supported modes in MODE-LIST.
+Add all modes in MODE-LIST to `+eglot-auto-enable-modes`.
 
 #### `(+eglot-register MODES &rest SERVERS)`
 
