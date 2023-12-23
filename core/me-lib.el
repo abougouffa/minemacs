@@ -1200,9 +1200,8 @@ be deleted.
 (defun +eglot-auto-enable ()
   "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
   (interactive)
-  (dolist (mode +eglot-auto-enable-modes)
-    (add-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)
-    (remove-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h)))
+  (add-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)
+  (remove-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h))
 
 (defun +eglot-use-on-all-supported-modes (mode-list)
   "Add all modes in MODE-LIST to `+eglot-auto-enable-modes'."

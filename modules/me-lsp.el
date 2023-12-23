@@ -53,9 +53,8 @@
   (defun +lsp-auto-enable ()
     "Auto-enable LSP-mode in configured modes in `+lsp-auto-enable-modes'."
     (interactive)
-    (dolist (mode +lsp-auto-enable-modes)
-      (add-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h)
-      (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)))
+    (add-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h)
+    (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h))
   :config
   (+map! :keymaps 'lsp-mode-map
     :infix "c"
