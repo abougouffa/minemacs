@@ -24,7 +24,10 @@ remote = "github.com"
 repository = "minemacs"
 owner = "abougouffa"
 authors = [
-  { signature = "Abdelhak Bougouffa", username = "abougouffa" }
+  { signature = "Abdelhak Bougouffa", username = "abougouffa" },
+  { signature = "DarkBuffalo", username = "DarkBuffalo"},
+  { signature = "donneyluck", username = "donneyluck"},
+  { signature = "Nguyễn Hữu Mạnh", username = "Hmanhng"}
 ]
 
 [bump_profiles]
