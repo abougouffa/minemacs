@@ -616,11 +616,11 @@ or file path may exist now."
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
 (use-package elisp-mode
-  :hook (emacs-lisp-mode . (lambda () (setq-local tab-width 8))) ;; to view built-in packages correctly
   :after minemacs-first-elisp-file ; prevent elisp-mode from being loaded too early
   :init
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
     "p" #'check-parens)
+  (+setq-hook! emacs-lisp-mode tab-width 8) ; to view built-in packages correctly
   :config
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
     "d"   '(nil :wk "edebug")
