@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.2.1](https://github.com/abougouffa/minemacs/compare/v4.2.0..v4.2.1) - 2023-12-24
+#### Bug Fixes
+- **(core)** better management of first files hooks [#142] - ([6d20b61](https://github.com/abougouffa/minemacs/commit/6d20b61cff9311c867976af362a2edcf5111a60b)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** better implementation for `+eglot-auto-enable` [#142] - ([26f6784](https://github.com/abougouffa/minemacs/commit/26f678455a65ee6d238908d7d1499f3ba0eaaebf)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot+lsp)** remove unneeded loop in auto-enable LSP/Eglot - ([4ad574a](https://github.com/abougouffa/minemacs/commit/4ad574a66a00744f1061f3639e2e85056204b068)) - [@abougouffa](https://github.com/abougouffa)
+- **(elec-pair)** disable auto-pairing of "<" in `org-mode' - ([ecb3675](https://github.com/abougouffa/minemacs/commit/ecb367584ca97883d257be1d02694ad1cafe573c)) - Hmanhng
+- **(recentf)** load early to work correctly on non-daemon Emacs [#142] - ([01f6f30](https://github.com/abougouffa/minemacs/commit/01f6f30d95fe8065e47a0156bea122962289ab0f)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([69b20ed](https://github.com/abougouffa/minemacs/commit/69b20ed251f3c3390e0a09acc9aa44cb7c79c407)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(elisp-mode)** make use of `+setq-hook!` - ([8748e8b](https://github.com/abougouffa/minemacs/commit/8748e8b6dfad9b515ab2bfbcbbe44e66d9e4dcd7)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(lsp)** update to the new auto-enable convention - ([6856b09](https://github.com/abougouffa/minemacs/commit/6856b098224a1ca68a9acb43599b3ae72e3059de)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f5a74cc](https://github.com/abougouffa/minemacs/commit/f5a74cc2e931c1499e53abb5f2f59e876c032446)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.2.0](https://github.com/abougouffa/minemacs/compare/v4.1.3..v4.2.0) - 2023-12-19
 #### Bug Fixes
 - **(cape)** rename obsolete `cape-symbol` to `cape-elisp-symbol` - ([6313c3d](https://github.com/abougouffa/minemacs/commit/6313c3d0b9d36c01b90d4f0dc71ebfb80be7f4e3)) - [@abougouffa](https://github.com/abougouffa)
