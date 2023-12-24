@@ -1320,8 +1320,6 @@ current line.")
   (desktop-save-buffer t))
 
 (use-package recentf
-  :after minemacs-loaded
-  :demand t
   :custom
   (recentf-save-file (concat minemacs-local-dir "recentf-save.el"))
   ;; Increase the maximum number of saved items
@@ -1332,7 +1330,7 @@ current line.")
   (recentf-exclude
    `(,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
      ,(rx bol "/" (or "tmp/" "rsync:" "ssh:" "sudoedit:" "sudo:"))))
-  :config
+  :init
   ;; Enable `recentf-mode' to remember recent files
   (+shutup! (recentf-mode 1)))
 
