@@ -17,8 +17,7 @@
   :after minemacs-loaded
   :demand t
   :init
-  (defcustom +cape-global-capes
-    '(tempel-complete :completion cape-dict)
+  (defcustom +cape-global-capes '(tempel-complete :completion cape-dict)
     "A list of global capes to be available at all times.
 The key `:completion' is used to specify where completion candidates should be
 placed, otherwise they come first."
@@ -40,10 +39,13 @@ placed, otherwise they come first."
   (when (< emacs-major-version 29)
     (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-  (+add-hook! 'completion-at-point-functions '(cape-file cape-elisp-block cape-keyword cape-dict))
+  (+add-hook! 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
 
   (+add-hook! (emacs-lisp-mode git-commit-mode)
     (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t))
+
+  (+add-hook! org-mode
+    (add-hook 'completion-at-point-functions #'cape-elisp-block nil t))
 
   (+add-hook! (TeX-mode LaTeX-mode)
     (add-hook 'completion-at-point-functions #'cape-tex nil t))
