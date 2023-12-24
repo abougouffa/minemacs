@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.2.2](https://github.com/abougouffa/minemacs/compare/v4.2.1..v4.2.2) - 2023-12-24
+#### Bug Fixes
+- **(cape)** enable `cape-elisp-block` in `org-mode` only - ([8331f8e](https://github.com/abougouffa/minemacs/commit/8331f8ea65d7c3fac1977498758077c48d133fac)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** pin to a working commit - ([9dee456](https://github.com/abougouffa/minemacs/commit/9dee456719ea03c3c3d25283f6e279509351f143)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.2.1](https://github.com/abougouffa/minemacs/compare/v4.2.0..v4.2.1) - 2023-12-24
 #### Bug Fixes
 - **(core)** better management of first files hooks [#142] - ([6d20b61](https://github.com/abougouffa/minemacs/commit/6d20b61cff9311c867976af362a2edcf5111a60b)) - [@abougouffa](https://github.com/abougouffa)
