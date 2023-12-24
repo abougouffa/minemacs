@@ -75,6 +75,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
         (put '+cape-auto-capf-super 'enabled (not (or enabled disable)))))))
 
 (use-package corfu
+  :pin-ref "8b5dbebea284a8b5b06bbd5dd20c3ce82c13cb1a"
   :straight (corfu :files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)

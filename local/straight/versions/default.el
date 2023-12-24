@@ -39,7 +39,6 @@
  ("consult-lsp" . "f8db3252c0daa41225ba4ed1c0d178b281cd3e90")
  ("consult-notes" . "12c8ca7eb3cdb7bb89958de20a6de42efd1493b9")
  ("consult-project-extra" . "982e8008d69ea6733a2a7548e245d645c0fefb3f")
- ("corfu" . "8167301b61ff479d34cb3e069154cfa119ed3b44")
  ("corfu-terminal" . "501548c3d51f926c687e8cd838c5865ec45d03cc")
  ("crdt" . "4a18cd8539c8f3364e3ae903580328dd8b05fa78")
  ("crux" . "3998b753d0eb4fc5a64ed9c9f05a1427ff4be22d")
