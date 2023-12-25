@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.2.3](https://github.com/abougouffa/minemacs/compare/v4.2.2..v4.2.3) - 2023-12-25
+#### Bug Fixes
+- **(evil-collection)** fix `corfu--setup` signature - ([feeae81](https://github.com/abougouffa/minemacs/commit/feeae81cf08f533084eecc015d4353f96fbfd040)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(cog)** add contributors, remove the long v0.1.0 changelog entry - ([2368c5b](https://github.com/abougouffa/minemacs/commit/2368c5b5041472db016083a77d892cf994a5ca55)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(app-launcher)** update recipe - ([22f34d1](https://github.com/abougouffa/minemacs/commit/22f34d1673a758e7ff987c06593f2a1a8b9df0b4)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([4cd8ed5](https://github.com/abougouffa/minemacs/commit/4cd8ed5fa56bddd6ff76d656ad4f937f4df8ec51)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.2.2](https://github.com/abougouffa/minemacs/compare/v4.2.1..v4.2.2) - 2023-12-24
 #### Bug Fixes
 - **(cape)** enable `cape-elisp-block` in `org-mode` only - ([8331f8e](https://github.com/abougouffa/minemacs/commit/8331f8ea65d7c3fac1977498758077c48d133fac)) - [@abougouffa](https://github.com/abougouffa)
