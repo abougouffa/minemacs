@@ -178,6 +178,9 @@
   :init
   (+map! "og" #'guix))
 
+(use-package osm
+  :straight t)
+
 
 (provide 'me-tools)
 
