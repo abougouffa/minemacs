@@ -8,6 +8,8 @@
 
 ;;; Code:
 
+(message "me-spell-fu is deprecated")
+
 ;; Adapted from Doom Emacs
 (defun +spell-fu--correct (replace poss word orig-pt start end)
   "Correct word with spell-fu."
@@ -98,11 +100,12 @@
 ;;;###autoload
 (defmacro +spell-fu-register-dictionaries! (&rest langs)
   "Register dictionaries for `LANGS` to spell-fu's multi-dict."
-  (let* ((fn-name (intern (format "+spell-fu--multi-langs-%s-h" (string-join langs "-"))))
-         (closure `(defun ,fn-name ())))
-    (dolist (lang langs)
-      (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
-    (append '(add-hook (quote spell-fu-mode-hook)) (list closure))))
+  (with-eval-after-load 'spell-fu
+    (let* ((fn-name (intern (format "+spell-fu--multi-langs-%s-h" (string-join langs "-"))))
+           (closure `(defun ,fn-name ())))
+      (dolist (lang langs)
+        (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
+      (append '(add-hook (quote spell-fu-mode-hook)) (list closure)))))
 
 
 (provide 'me-spell-fu)
