@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.2.4](https://github.com/abougouffa/minemacs/compare/v4.2.3..v4.2.4) - 2023-12-25
+#### Features
+- **(files)** add support for `ztree` - ([ef01c78](https://github.com/abougouffa/minemacs/commit/ef01c7846b7d3ddc3688d2a3ca649af1c8f05358)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** use `jinx` for spell checking instead of `spell-fu` - ([b2b62bb](https://github.com/abougouffa/minemacs/commit/b2b62bbfd3c148ed47f5d8cd8cc128a3224e7f74)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `osm` - ([9e8ae0a](https://github.com/abougouffa/minemacs/commit/9e8ae0ac702c262c086c2186b5f0077b62072657)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(jinx)** enable only when Emacs is built with modules support - ([c603e55](https://github.com/abougouffa/minemacs/commit/c603e5585fe32c8808c3b58e15fea7076df04282)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** make `spell-fu` obsolete - ([79aba80](https://github.com/abougouffa/minemacs/commit/79aba805c78d1a5c7f39f7c0509133556e9aef18)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.2.3](https://github.com/abougouffa/minemacs/compare/v4.2.2..v4.2.3) - 2023-12-25
 #### Bug Fixes
 - **(evil-collection)** fix `corfu--setup` signature - ([feeae81](https://github.com/abougouffa/minemacs/commit/feeae81cf08f533084eecc015d4353f96fbfd040)) - [@abougouffa](https://github.com/abougouffa)
