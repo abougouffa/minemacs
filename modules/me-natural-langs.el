@@ -10,10 +10,14 @@
 
 (use-package jinx
   :straight t
+  :when (+emacs-features-p 'modules)
   :hook (text-mode . jinx-mode)
   :init
   (+map! "ts" #'jinx-mode)
   (+nvmap! "z=" #'jinx-correct))
+
+(unless (+emacs-features-p 'modules)
+  (+load minemacs-modules-dir "obsolete/me-spell-fu.el"))
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")

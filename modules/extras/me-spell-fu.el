@@ -8,8 +8,6 @@
 
 ;;; Code:
 
-(message "me-spell-fu is deprecated")
-
 ;;;###autoload
 (defmacro +spell-fu-register-dictionaries! (&rest langs)
   "Register dictionaries for `LANGS` to spell-fu's multi-dict."
@@ -20,7 +18,7 @@
         (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
       (append '(add-hook (quote spell-fu-mode-hook)) (list closure)))))
 
-(make-obsolete '+spell-fu-register-dictionaries! 'jinx-mode "2023-12-25")
+(make-obsolete '+spell-fu-register-dictionaries! 'jinx-languages "2023-12-25")
 
 
 (provide 'me-spell-fu)
