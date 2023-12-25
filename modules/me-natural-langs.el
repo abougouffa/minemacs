@@ -8,6 +8,13 @@
 
 ;;; Code:
 
+(use-package jinx
+  :straight t
+  :hook (text-mode . jinx-mode)
+  :init
+  (+map! "ts" #'jinx-mode)
+  (+nvmap! "z=" #'jinx-correct))
+
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
