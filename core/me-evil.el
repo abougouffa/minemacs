@@ -64,6 +64,13 @@
                         elisp-mode)))) ; I don't like "gz" for `ielm', I like "gr" though
     evil-collection-mode-list))
 
+  ;; TEMP+FIX: Adapt `evil-collection-corfu' to the new `corfu--setup' signature, see:
+  ;; - https://github.com/minad/corfu/issues/403
+  ;; - https://github.com/emacs-evil/evil-collection/pull/767
+  (with-eval-after-load 'evil-collection-corfu
+    (advice-remove 'corfu--setup #'evil-normalize-keymaps)
+    (advice-add 'corfu--setup :after (lambda (&rest _) (evil-normalize-keymaps))))
+
   ;; Use "gr" to find references for elisp mode
   (with-eval-after-load 'elisp-mode
     (when evil-collection-want-find-usages-bindings
