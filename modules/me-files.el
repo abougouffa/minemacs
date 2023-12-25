@@ -74,6 +74,11 @@
          ("C-c C-r" . dired-rsync)
          ("C-c C-x" . dired-rsync-transient)))
 
+(use-package ztree
+  :straight t
+  :init
+  (+map! "oz" #'ztree-diff))
+
 (defconst +sr-speedbar-path
   (+package-download-from-urls 'sr-speedbar "https://www.emacswiki.org/emacs/download/sr-speedbar.el"))
 
