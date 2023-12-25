@@ -143,7 +143,7 @@
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
 (use-package app-launcher
-  :straight '(app-launcher :host github :repo "SebastienWae/app-launcher")
+  :straight (:host github :repo "SebastienWae/app-launcher")
   :when (or os/linux os/bsd)
   :init
   (+map! "oo" #'app-launcher-run-app))
