@@ -75,7 +75,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
         (put '+cape-auto-capf-super 'enabled (not (or enabled disable)))))))
 
 (use-package corfu
-  :straight (corfu :files (:defaults "extensions/*.el"))
+  :straight (:files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
@@ -261,7 +261,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
-  :straight (vertico :files (:defaults "extensions/*.el"))
+  :straight (:files (:defaults "extensions/*.el"))
   :hook (minemacs-after-startup . vertico-mode)
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"

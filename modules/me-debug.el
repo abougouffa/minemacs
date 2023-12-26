@@ -55,7 +55,7 @@
       ("qk" "Kill" dape-kill :transient nil)]]))
 
 (use-package realgud
-  :straight (realgud :build (:not compile))
+  :straight (:build (:not compile))
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
                           c-ts-mode-map c++-ts-mode-map python-ts-mode-map

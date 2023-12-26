@@ -21,7 +21,7 @@
                 '((flymake-collection-flake8 :disabled t)))))
 
 (use-package flymake-cppcheck
-  :straight (nil :host github :repo "shaohme/flymake-cppcheck")
+  :straight (:host github :repo "shaohme/flymake-cppcheck")
   :init
   (when (executable-find "cppcheck")
     (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode) #'flymake-cppcheck-setup)))

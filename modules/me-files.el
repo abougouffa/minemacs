@@ -67,7 +67,7 @@
     "fu" #'sudo-edit))
 
 (use-package dired-rsync
-  :straight (dired-rsync :files ("dired-rsync.el" "dired-rsync-transient.el"))
+  :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
   :when (executable-find "rsync")
   :bind (:map
          dired-mode-map

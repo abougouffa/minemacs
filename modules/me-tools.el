@@ -82,7 +82,7 @@
   :unless (+emacs-features-p 'tree-sitter))
 
 (use-package systemd
-  :straight (systemd :build (:not compile))
+  :straight (:build (:not compile))
   :hook (systemd-mode . +systemd-mode-capf-h)
   :config
   (defun +systemd-mode-capf-h ()
