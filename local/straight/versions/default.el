@@ -104,7 +104,7 @@
  ("esxml" . "225693096a587492d76bf696d1f0c25c61f7d531")
  ("evil" . "fc6bd006503258e5cc09c92de8882f4496992946")
  ("evil-anzu" . "d1e98ee6976437164627542909a25c6946497899")
- ("evil-collection" . "c30158a0df2e252f15cffcd61ceb0ad58a395096")
+ ("evil-collection" . "cf1a11912d1e77a197fab0e4f82d0c2268084455")
  ("evil-iedit-state" . "6f7b502447ba35676375169d7707372ebad2791f")
  ("evil-mc" . "bdf893ea6f52fd0f10bece8ddae813658e17bbb4")
  ("evil-multiedit" . "23b53bc8743fb82a8854ba907b1d277374c93a79")
