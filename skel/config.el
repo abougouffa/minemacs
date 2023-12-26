@@ -125,12 +125,6 @@
 ;; (with-eval-after-load 'vterm
 ;;   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
 
-;; Module: `me-natural-langs' -- Package: `spell-fu'
-(with-eval-after-load 'spell-fu
-  ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
-  ;; to enable multi-language spell checking.
-  (+spell-fu-register-dictionaries! "en" "fr"))
-
 ;; Module: `me-rss' -- Package: `elfeed'
 (with-eval-after-load 'elfeed
   ;; Add news feeds for `elfeed'
