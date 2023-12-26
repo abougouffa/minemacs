@@ -41,7 +41,13 @@
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
-  (vterm-tramp-shells '(("docker" "/bin/bash"))))
+  (vterm-tramp-shells '(("docker" "/bin/bash")))
+  :config
+  (+imap! :keymaps 'vterm-mode-map
+    "C-l" #'vterm-send-right
+    "C-h" #'vterm-send-left
+    "C-k" #'vterm-send-up
+    "C-j" #'vterm-send-down))
 
 (use-package multi-vterm
   :straight t
