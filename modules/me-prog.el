@@ -88,7 +88,11 @@
           (compilation-buffer-name-function
            (or project-compilation-buffer-name-function
                compilation-buffer-name-function)))
-      (call-interactively #'compile-multi))))
+      (call-interactively #'compile-multi)))
+
+  ;; Enable integration for `consult' and `embark'
+  (consult-compile-multi-mode 1)
+  (compile-multi-embark-mode 1))
 
 (use-package apheleia
   :straight t
