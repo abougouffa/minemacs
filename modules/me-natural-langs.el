@@ -10,13 +10,13 @@
 
 (use-package jinx
   :straight t
-  :when (+emacs-features-p 'modules)
+  :when (and (or os/linux os/bsd os/mac) (+emacs-features-p 'modules))
   :hook (text-mode . jinx-mode)
   :init
   (+map! "ts" #'jinx-mode)
   (+nvmap! "z=" #'jinx-correct))
 
-(unless (+emacs-features-p 'modules)
+(unless (or os/win (+emacs-features-p 'modules))
   (+load minemacs-modules-dir "obsolete/me-spell-fu.el"))
 
 (use-package go-translate
