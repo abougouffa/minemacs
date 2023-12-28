@@ -108,17 +108,6 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 (register-definition-prefixes "../modules/extras/me-realgud" '("+realgud:cmd-"))
 
 
-;;; Generated autoloads from ../modules/extras/me-spell-fu.el
-
-(autoload '+spell-fu-correct "../modules/extras/me-spell-fu" "\
-Correct spelling of word at point." t)
-(autoload '+spell-fu-register-dictionaries! "../modules/extras/me-spell-fu" "\
-Register dictionaries for `LANGS` to spell-fu's multi-dict.
-
-(fn &rest LANGS)" nil t)
-(register-definition-prefixes "../modules/extras/me-spell-fu" '("+spell-fu--"))
-
-
 ;;; Generated autoloads from me-splash.el
 
 (register-definition-prefixes "me-splash" '("minemacs-splash"))
