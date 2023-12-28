@@ -1127,10 +1127,6 @@ Reverse continue.
 
 Reverse finish.
 
-#### `(+spell-fu-correct)`
-
-Correct spelling of word at point.
-
 #### `(+spell-fu-register-dictionaries! &rest LANGS)` (macro)
 
 Register dictionaries for `LANGS` to spell-fu's multi-dict.
