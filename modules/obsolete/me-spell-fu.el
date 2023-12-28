@@ -19,7 +19,14 @@
   :init
   (+map! "ts" #'spell-fu-mode)
   (+nvmap! "z=" #'+spell-fu-correct) ; autoloaded from `me-spell-fu'
-
+  (defmacro +spell-fu-register-dictionaries! (&rest langs)
+    "Register dictionaries for `LANGS` to spell-fu's multi-dict."
+    (with-eval-after-load 'spell-fu
+      (let* ((fn-name (intern (format "+spell-fu--multi-langs-%s-h" (string-join langs "-"))))
+             (closure `(defun ,fn-name ())))
+        (dolist (lang langs)
+          (setq closure (append closure `((+spell-fu--add-dictionary ,lang)))))
+        (append '(add-hook (quote spell-fu-mode-hook)) (list closure)))))
   (defcustom +spell-excluded-faces-alist
     '((markdown-mode
        . (markdown-code-face markdown-html-attr-name-face markdown-html-attr-value-face
