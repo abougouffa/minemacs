@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.3.0](https://github.com/abougouffa/minemacs/compare/v4.2.4..v4.3.0) - 2023-12-28
+#### Bug Fixes
+- **(natural-langs)** fallback to `spell-fu` on Windows [#147] - ([9e91a1e](https://github.com/abougouffa/minemacs/commit/9e91a1ee6df25c3f5f2d16ea2e9840faaabdb888)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** remove obsolete `spell-fu` config example [#146] - ([8e6bc6d](https://github.com/abougouffa/minemacs/commit/8e6bc6dd2356b41bf91c3758e96eed4de9cafd34)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([e0891b2](https://github.com/abougouffa/minemacs/commit/e0891b29f17531dbe1216d724b6bec514d54c4bf)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- remove unnecessary straight recipe names - ([28b5aaf](https://github.com/abougouffa/minemacs/commit/28b5aafc76196d21b68b11168cd8152d0a9d7b76)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(compile-multi)** install the Embark and Consult extensions - ([1bac5a4](https://github.com/abougouffa/minemacs/commit/1bac5a47d756ca031542ecc1c834b4ac72d6ee0f)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil-collection)** remove the `corfu` hack, merged upstream - ([8947f29](https://github.com/abougouffa/minemacs/commit/8947f29a9e32388864e1cbaead8fa173e9179e23)) - [@abougouffa](https://github.com/abougouffa)
+- **(jinx)** add `jinx--load-module` to `minemacs-build-functions` - ([3357935](https://github.com/abougouffa/minemacs/commit/33579352255ba74d8aa225486970294ddb11e6a3)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** move `C-l/h/k/j` to directions - ([58198b8](https://github.com/abougouffa/minemacs/commit/58198b871e9a5d343f6b31ff76d3b895df46b7ed)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([44cb788](https://github.com/abougouffa/minemacs/commit/44cb78835db38fe9c91c6e3a23f34ec9b9c57e36)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.2.4](https://github.com/abougouffa/minemacs/compare/v4.2.3..v4.2.4) - 2023-12-25
 #### Features
 - **(files)** add support for `ztree` - ([ef01c78](https://github.com/abougouffa/minemacs/commit/ef01c7846b7d3ddc3688d2a3ca649af1c8f05358)) - [@abougouffa](https://github.com/abougouffa)
