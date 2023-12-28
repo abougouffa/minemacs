@@ -37,16 +37,6 @@ restores it after that.
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
-;;; Generated autoloads from ../modules/extras/me-dap-utils.el
-
-(autoload '+github-latest-release "../modules/extras/me-dap-utils" "\
-Get the latest release of USER/REPO. Strips the \"v\" at left.
-
-Fallback to FALLBACK-RELEASE when it can't get the last one.
-
-(fn USER REPO &optional FALLBACK-RELEASE)")
-
-
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
@@ -72,6 +62,12 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from me-lib.el
 
+(autoload '+github-latest-release "me-lib" "\
+Get the latest release of USER/REPO. Strips the \"v\" at left.
+
+Fallback to FALLBACK-RELEASE when it can't get the last one.
+
+(fn USER REPO &optional FALLBACK-RELEASE)")
 (register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+h" "+i" "+kill-" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+t" "+un" "+v" "+w" "+yank-this-file-name" "minemacs-" "objdump-disassemble-mode"))
 
 
