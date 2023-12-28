@@ -75,7 +75,7 @@
   :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
 (use-package compile-multi
-  :straight t
+  :straight (:files (:defaults "extensions/compile-multi-embark/*.el" "extensions/consult-compile-multi/*.el"))
   :commands +project-compile-multi
   :init
   (+map! "pC" #'+project-compile-multi)
