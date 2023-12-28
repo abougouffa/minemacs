@@ -12,6 +12,7 @@
   :straight t
   :when (and (or os/linux os/bsd os/mac) (+emacs-features-p 'modules))
   :hook (text-mode . jinx-mode)
+  :hook (minemacs-build-functions . jinx--load-module)
   :init
   (+map! "ts" #'jinx-mode)
   (+nvmap! "z=" #'jinx-correct))
