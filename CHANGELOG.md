@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.3.1](https://github.com/abougouffa/minemacs/compare/v4.3.0..v4.3.1) - 2023-12-28
+#### Documentation
+- regenerate documentation - ([524a903](https://github.com/abougouffa/minemacs/commit/524a9039fedca51e750321c3b1df6b039a098dcd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(compile-multi)** enable integration for `consult` and `embark` - ([47bcf99](https://github.com/abougouffa/minemacs/commit/47bcf99f69935e916976ced9acf463ecdb06765a)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** regenerate loaddefs - ([b37ed85](https://github.com/abougouffa/minemacs/commit/b37ed85b22f97f8d2d28c5bf86db1271609d8f8a)) - [@abougouffa](https://github.com/abougouffa)
+- **(spell-fu)** move dict registration macro to the obsolete module - ([116aa8e](https://github.com/abougouffa/minemacs/commit/116aa8ef71536f0c53ab17bd1ecdca61995129c6)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.3.0](https://github.com/abougouffa/minemacs/compare/v4.2.4..v4.3.0) - 2023-12-28
 #### Bug Fixes
 - **(natural-langs)** fallback to `spell-fu` on Windows [#147] - ([9e91a1e](https://github.com/abougouffa/minemacs/commit/9e91a1ee6df25c3f5f2d16ea2e9840faaabdb888)) - [@abougouffa](https://github.com/abougouffa)
