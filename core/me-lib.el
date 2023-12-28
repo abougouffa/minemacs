@@ -965,17 +965,15 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 ;;; Github
 
 ;;;###autoload
-(defun +github-latest-release (user repo &optional fallback-release)
-  "Get the latest release of USER/REPO. Strips the \"v\" at left.
+(defun +github-latest-release (repo &optional fallback-release)
+  "Get the latest release of REPO. Strips the \"v\" at left.
 
 Fallback to FALLBACK-RELEASE when it can't get the last one."
   (if-let ((latest
             (ignore-errors
               (with-temp-buffer
                 (url-insert-file-contents
-                 (format
-                  "https://api.github.com/repos/%s/%s/releases/latest"
-                  user repo))
+                 (format "https://api.github.com/repos/%s/releases/latest" repo))
                 (json-parse-buffer :object-type 'plist)))))
       (string-trim-left
        (car (last (split-string (plist-get latest :html_url) "/")))
