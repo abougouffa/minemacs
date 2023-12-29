@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.3.2](https://github.com/abougouffa/minemacs/compare/v4.3.1..v4.3.2) - 2023-12-29
+#### Refactoring
+- **(core)** change the signature of `+github-latest-release` - ([47087b8](https://github.com/abougouffa/minemacs/commit/47087b8e580cd672586bd5457dca5d87cb1e7a19)) - [@abougouffa](https://github.com/abougouffa)
+- move `+github-latest-release` to `me-lib` - ([bca42ac](https://github.com/abougouffa/minemacs/commit/bca42ac181a956c11abbeb6ae93b5b76aee52f88)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(jinx)** hook if the compilation is easy (Unix or Win+MSYS) [#147] - ([f09dd85](https://github.com/abougouffa/minemacs/commit/f09dd8583cd211e8fb8d60830430afd0535a9d6c)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add an example of how to force loading an obsolete module - ([293008d](https://github.com/abougouffa/minemacs/commit/293008dc239dd5d978f85efd1cf03b45c50b553b)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add an example of `jinx-languages` - ([6976d38](https://github.com/abougouffa/minemacs/commit/6976d3884ad0713abbc1617595c22d4228c24765)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.3.1](https://github.com/abougouffa/minemacs/compare/v4.3.0..v4.3.1) - 2023-12-28
 #### Documentation
 - regenerate documentation - ([524a903](https://github.com/abougouffa/minemacs/commit/524a9039fedca51e750321c3b1df6b039a098dcd)) - [@abougouffa](https://github.com/abougouffa)
