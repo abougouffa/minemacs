@@ -39,7 +39,7 @@ check:
 	$(EMACS_BATCH) --eval='(straight-check-all)'
 
 update:
-	$(EMACS_BATCH) --eval='(minemacs-update)'
+	$(EMACS_BATCH) --eval='(minemacs-update-packages)'
 
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
