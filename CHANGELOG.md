@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.3.3](https://github.com/abougouffa/minemacs/compare/v4.3.2..v4.3.3) - 2023-12-29
+#### Miscellaneous Chores
+- **(makefile)** add `locked` rule - ([2bbb4ee](https://github.com/abougouffa/minemacs/commit/2bbb4ee61a3360a49d12e270fccb2757fd52d8a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** fix the `update` rule - ([038ec19](https://github.com/abougouffa/minemacs/commit/038ec19108919cd5a619ff1f13ba984655339dbb)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** minor refactor - ([d4db4cf](https://github.com/abougouffa/minemacs/commit/d4db4cfb641a67267f2965531361fc978d205f9e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(fonts)** move font & script settings to `me-lib` - ([aa4de70](https://github.com/abougouffa/minemacs/commit/aa4de707d412ef635ad8a1f37ff8c48c9b8e4d8d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(init)** cleanup irrelevant comments/logs - ([f7c841d](https://github.com/abougouffa/minemacs/commit/f7c841d4064b39dbb58c8e24771b8992e359e2b7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f460d8f](https://github.com/abougouffa/minemacs/commit/f460d8fd4952fb43265a368b8d03338428d58740)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.3.2](https://github.com/abougouffa/minemacs/compare/v4.3.1..v4.3.2) - 2023-12-29
 #### Refactoring
 - **(core)** change the signature of `+github-latest-release` - ([47087b8](https://github.com/abougouffa/minemacs/commit/47087b8e580cd672586bd5457dca5d87cb1e7a19)) - [@abougouffa](https://github.com/abougouffa)
