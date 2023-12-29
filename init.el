@@ -76,9 +76,7 @@
 (add-hook
  'emacs-startup-hook
  (defun +mineamcs--restore-file-name-handler-alist-h ()
-   (setq file-name-handler-alist
-         (delete-dups (append file-name-handler-alist
-                              (get 'file-name-handler-alist 'original-value)))))
+   (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
  100)
 
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
@@ -191,11 +189,7 @@
   ;; When running in an async Org export context, there is no need to set
   ;; the fonts, load the theme or play with the scratch buffer.
   (unless (featurep 'me-org-export-async-init)
-    (+log! "Applying `minemacs-fonts'.")
-    ;; Initially MinEmacs loads the `doom-one-light' theme, and when
-    ;; `minemacs-theme' is set in user configuration, it is loaded here.
     (+load-theme)
-
     (+deferred!
      (+log! "Loading the default persistent scratch buffer.")
      (let ((buf (current-buffer)))
@@ -248,7 +242,7 @@
        (append (when (memq 'me-splash minemacs-core-modules) '(me-splash))
                '(me-bootstrap)
                (when (< emacs-major-version 29) '(me-compat))
-               '(me-builtin me-gc me-fonts)
+               '(me-builtin me-gc)
                minemacs-core-modules)))
 
 ;; Load MinEmacs modules
