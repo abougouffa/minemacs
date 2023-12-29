@@ -43,13 +43,6 @@ restores it after that.
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
-;;; Generated autoloads from me-fonts.el
-
-(autoload '+setup-fonts "me-fonts" "\
-Setup fonts." t)
-(register-definition-prefixes "me-fonts" '("+apply-font-or-script" "+f" "+known-scripts" "minemacs-fonts-plist"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
 
 (autoload '+gdb-set-layout "../modules/extras/me-gdb" "\
@@ -68,7 +61,9 @@ Get the latest release of REPO. Strips the \"v\" at left.
 Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 (fn REPO &optional FALLBACK-RELEASE)")
-(register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+h" "+i" "+kill-" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+t" "+un" "+v" "+w" "+yank-this-file-name" "minemacs-" "objdump-disassemble-mode"))
+(autoload '+setup-fonts "me-lib" "\
+Setup fonts." t)
+(register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+h" "+i" "+k" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+t" "+un" "+v" "+w" "+yank-this-file-name" "minemacs-" "objdump-disassemble-mode"))
 
 
 ;;; Generated autoloads from me-modules.el

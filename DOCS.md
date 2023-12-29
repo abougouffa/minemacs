@@ -643,6 +643,11 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 Save URL into OUT-FILE as a standalone HTML file.
 
+#### `(+github-latest-release REPO &optional FALLBACK-RELEASE)`
+
+Get the latest release of REPO. Strips the "v" at left.
+Fallback to FALLBACK-RELEASE when it can't get the last one.
+
 #### `(+lockedp NAME)`
 
 Return non-nil if the resource NAME is locked.
@@ -991,11 +996,6 @@ Bump version LEVEL (`auto`, `major`, `minor` or `patch`), and with PRE if it
 is a pre-release.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
-
-#### `(+github-latest-release USER REPO &optional FALLBACK-RELEASE)`
-
-Get the latest release of USER/REPO. Strips the "v" at left.
-Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 #### `(eglot-ltex-workspace-config-fn &optional SERVER)`
 
