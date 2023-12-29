@@ -41,6 +41,9 @@ check:
 update:
 	$(EMACS_BATCH) --eval='(minemacs-update-packages)'
 
+locked:
+	$(EMACS_BATCH) --eval='(minemacs-update-restore-locked)'
+
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
 
