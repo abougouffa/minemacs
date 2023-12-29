@@ -574,7 +574,7 @@ Returns the load path of the package, useful for usage with `use-package''s
          (default-directory pkg-load-path)
          (redownload-p (memq :redownload args))
          (urls (remq :redownload args)))
-    (add-to-list '+package--download-urls (append (list pkgname) urls))
+    (add-to-list '+package--download-urls (cons pkgname urls))
     (dolist (url urls)
       (when-let* ((url-file-name (url-filename (url-generic-parse-url url)))
                   (url-file-name (file-name-nondirectory url-file-name)))
