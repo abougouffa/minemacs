@@ -130,6 +130,16 @@
   ;; Check spelling for Arabic, English and French by default.
   (setq-default jinx-languages "ar en fr"))
 
+;; The `spell-fu' configuration is obsolete now (in favor of `jinx'). However,
+;; you can force MinEmacs to load obsolete configurations by loading them
+;; manually. Here is an example of how to force loading an obsolete module, you
+;; can do this here or in modules.el.
+;; (+load minemacs-modules-dir "obsolete/me-spell-fu.el")
+;; (with-eval-after-load 'spell-fu
+;;   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
+;;   ;; to enable multi-language spell checking.
+;;   (+spell-fu-register-dictionaries! "en" "fr"))
+
 ;; Module: `me-rss' -- Package: `elfeed'
 (with-eval-after-load 'elfeed
   ;; Add news feeds for `elfeed'
