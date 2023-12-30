@@ -101,11 +101,14 @@
 
 (use-package editorconfig
   :straight t
-  :hook (prog-mode . editorconfig-mode)
+  :hook (minemacs-first-file . editorconfig-mode)
   :init
   (+map!
     "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
-    "cfe" #'editorconfig-format-buffer))
+    "cfe" #'editorconfig-format-buffer)
+  :config
+  ;; Exclude compressed files
+  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
 
 (use-package clang-format
   :straight t
