@@ -176,7 +176,10 @@
   :hook (minemacs-first-file . envrc-global-mode)
   :when (and (not os/win) (executable-find "direnv"))
   :custom
-  (envrc-debug minemacs-debug-p))
+  (envrc-debug minemacs-debug-p)
+  :config
+  ;; Ensure loading envrc for babel source blocks
+  (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
 
 (use-package guix
   :straight t
