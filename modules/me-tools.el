@@ -174,7 +174,7 @@
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
-  :when (executable-find "direnv")
+  :when (and (not os/win) (executable-find "direnv"))
   :custom
   (envrc-debug minemacs-debug-p))
 
