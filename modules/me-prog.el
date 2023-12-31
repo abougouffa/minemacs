@@ -27,11 +27,7 @@
          :remap 'nix-mode
          :url "https://github.com/nix-community/tree-sitter-nix"
          :ext "\\.nix\\'")
-        treesit-auto-recipe-list)
-  ;; Setup `treesit-auto-langs' to include only the languages with non-installed
-  ;; grammars from all supported languages.
-  (let ((langs (mapcar #'treesit-auto-recipe-lang treesit-auto-recipe-list)))
-    (setq treesit-auto-langs (seq-difference langs (seq-filter #'treesit-language-available-p langs)))))
+        treesit-auto-recipe-list))
 
 (use-package awk-ts-mode
   :straight t
