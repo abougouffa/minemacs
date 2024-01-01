@@ -111,14 +111,21 @@ value of this method instead of the original alist, to ensure correct results."
 
 ;;; Missing primitive utilities
 
-;; See: emacs.stackexchange.com/q/3022/37002
+(defun +set-standard-value (variable value)
+  "Set the standard value of VARIABLE to VALUE."
+  (put variable 'standard-value `((funcall (function ,(lambda nil "" value))))))
+
+(defun +standard-value (variable)
+  "Return the standard value for VARIABLE."
+  (eval (car (get variable 'standard-value)) t))
+
 (defun +reset-sym (sym)
   "Reset SYM to its standard value."
-  (set sym (eval (car (get sym 'standard-value)))))
+  (set sym (+standard-value sym)))
 
 (defmacro +reset-var! (var)
   "Reset VAR to its standard value."
-  `(setq ,var (eval (car (get ',var 'standard-value)))))
+  `(setq ,var (+standard-value ',var)))
 
 ;; Adapted from `evil-unquote', takes functions into account
 (defun +unquote (expr)
