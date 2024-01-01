@@ -57,6 +57,7 @@
 
 (use-package doom-modeline
   :straight t
+  :unless (memq 'me-nano minemacs-modules)
   :hook (minemacs-after-startup . doom-modeline-mode)
   :custom
   (doom-modeline-height 28)
