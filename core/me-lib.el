@@ -200,8 +200,11 @@ This inhebits both the echo area and the `*Messages*' buffer."
     (+log! "Loading user theme: %s" minemacs-theme)
     ;; Fallback to built-in `tsdh-light' when `minemacs-theme' is not available.
     (unless (ignore-errors (load-theme minemacs-theme t))
-      (+error! "Cannot load theme \"%s\", falling back to \"tsdh-light\"." minemacs-theme)
-      (load-theme 'tsdh-light t)))
+      (let ((default-theme (+standard-value 'minemacs-theme)))
+        (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
+        (unless (ignore-errors (load-theme default-theme t))
+          (+error! "Cannot load default theme %S, falling back to the builtin tsdh-light theme" default-theme)
+          (load-theme 'tsdh-light t)))))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
 
@@ -973,7 +976,6 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 
 ;;; Github
 
-;;;###autoload
 (defun +github-latest-release (repo &optional fallback-release)
   "Get the latest release of REPO. Strips the \"v\" at left.
 
@@ -2109,7 +2111,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
           (throw 'done spec))))))
 
 ;; Inspired by: github.com/seagle0128/.emacs.d/blob/master/custom-example.el
-;;;###autoload
 (defun +setup-fonts ()
   "Setup fonts."
   (interactive)
