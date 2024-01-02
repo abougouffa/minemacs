@@ -421,27 +421,7 @@ Fall back to the default `citre--project-root'."
   :hook (prog-mode . treesitter-context-fold-mode)
   :when (+emacs-features-p 'tree-sitter)
   :config
-  (require 'treesitter-context)
-  (with-eval-after-load 'evil
-    (add-to-list 'evil-fold-list `((treesitter-context-fold-mode)
-                                   :delete     nil
-                                   :open-all   nil
-                                   :close-all  nil
-                                   :toggle     treesitter-context-fold-toggle
-                                   :open       treesitter-context-fold-show
-                                   :open-rec   nil
-                                   :close      treesitter-context-fold-hide)))
-
-  ;; Redefine the major minor mode
-  (define-minor-mode treesitter-context-fold-mode
-    "Fold code according to treesit syntax tree."
-    :global nil
-    :init-value nil
-    :keymap treesitter-context-fold-mode-map
-    (if treesitter-context-fold-mode
-        (unless (and (treesit-available-p) (member major-mode treesitter-context--supported-mode))
-          (message "Treesitter context fold mode cannot be enabled.")
-          (setq treesitter-context-fold-mode nil)))))
+  (require 'treesitter-context))
 
 (use-package breadcrumb
   :straight t)

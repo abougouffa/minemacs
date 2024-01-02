@@ -315,7 +315,7 @@
  ("treemacs-nerd-icons" . "9876cb478145a0ec4e36f64ff6583f3de7126216")
  ("treepy.el" . "75fe3ec37e6f9b2bdfd6d0584efd984d0c00a43e")
  ("treesit-auto" . "299dd88c9e5f1ff91a8f1989ad1e97e86c220020")
- ("treesitter-context.el" . "90806a7d8b277de36a8b10d42f69aec861640ae5")
+ ("treesitter-context.el" . "ac177e49564eec3b30ff582cff0761975b8d4d5d")
  ("ts-movement" . "7083bdeb135565c058c9cab15e5338875d8e398e")
  ("uuidgen-el" . "cebbe09d27c63abe61fe8c2e2248587d90265b59")
  ("vertico" . "68cbd47589446e9674921bae0b98ff8fbe28be23")
