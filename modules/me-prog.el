@@ -10,8 +10,8 @@
 
 (unless (+emacs-features-p 'tree-sitter)
   ;; Use the external `tree-sitter' module
-  (+load minemacs-modules-dir "obsolete/me-tree-sitter.el")
-  (+load minemacs-modules-dir "obsolete/me-cmake.el"))
+  (+load minemacs-obsolete-modules-dir "me-tree-sitter.el")
+  (+load minemacs-obsolete-modules-dir "me-cmake.el"))
 
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")

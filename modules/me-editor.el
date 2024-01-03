@@ -51,7 +51,7 @@
 
 ;; Fallback to `expand-region' if `expreg' cannot be used
 (unless (+emacs-features-p 'tree-sitter)
-  (+load minemacs-modules-dir "obsolete/me-expand-region.el"))
+  (+load minemacs-obsolete-modules-dir "me-expand-region.el"))
 
 (use-package drag-stuff
   :straight t
