@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.4.0](https://github.com/abougouffa/minemacs/compare/v4.3.3..v4.4.0) - 2024-01-03
+#### Features
+- **(core)** add function to get/set the standard values - ([540ad79](https://github.com/abougouffa/minemacs/commit/540ad79ab3f4b4784ff288087e8b3ddb17dc124e)) - [@abougouffa](https://github.com/abougouffa)
+- **(fun)** add `wordel` - ([d37b0d1](https://github.com/abougouffa/minemacs/commit/d37b0d1b6f21c17d608dc119a415842a323192ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(nano)** add initial N Λ N O Emacs UI (WIP) - ([761278f](https://github.com/abougouffa/minemacs/commit/761278f2d830ca98717cffaed7d48c7da528335c)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** make jinx obsolete, add `flyspell-correct` - ([1d10383](https://github.com/abougouffa/minemacs/commit/1d1038379c24c73853aca02797ee6b95fd9951a3)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** add an internal border of 15px - ([539e42c](https://github.com/abougouffa/minemacs/commit/539e42ced9b7e491b6e4b060b273f3f847c30485)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** be more intelligent when trying to load the theme - ([4e23071](https://github.com/abougouffa/minemacs/commit/4e23071ff51f13b0e65e93b9a52d58ec4a4647b6)) - [@abougouffa](https://github.com/abougouffa)
+- **(editorconfig)** trigger on the first file, exclude compressed files - ([c4a703c](https://github.com/abougouffa/minemacs/commit/c4a703cd90423b0954f8e64a59cc94a3df331ef9)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** ensure loading envrc for babel source blocks - ([9cc51e9](https://github.com/abougouffa/minemacs/commit/9cc51e9c501753455e7eca596eb4df0b79f5d60a)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** disable on Windows - ([cf348a7](https://github.com/abougouffa/minemacs/commit/cf348a79825cdf465edcfcfd212ee1b081a36669)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** `treesit-auto-langs` set incorrectly - ([3c5d6e9](https://github.com/abougouffa/minemacs/commit/3c5d6e9cd237d1206688b410b27263c9bcf3c350)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** add `minemacs-obsolete-modules-dir` - ([fb1a605](https://github.com/abougouffa/minemacs/commit/fb1a605c3cfb8dc6f542ad56c091f8ea82fd5be2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8f8b8f8](https://github.com/abougouffa/minemacs/commit/8f8b8f8b4658bf6df2947f1213f5d397275b4b77)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.3.3](https://github.com/abougouffa/minemacs/compare/v4.3.2..v4.3.3) - 2023-12-29
 #### Miscellaneous Chores
 - **(makefile)** add `locked` rule - ([2bbb4ee](https://github.com/abougouffa/minemacs/commit/2bbb4ee61a3360a49d12e270fccb2757fd52d8a4)) - [@abougouffa](https://github.com/abougouffa)
