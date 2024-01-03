@@ -35,6 +35,9 @@
 (use-package asm-blox
   :straight t)
 
+(use-package wordel
+  :straight t)
+
 
 (provide 'me-fun)
 
