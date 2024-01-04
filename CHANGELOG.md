@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.5.0](https://github.com/abougouffa/minemacs/compare/v4.4.0..v4.5.0) - 2024-01-04
+#### Features
+- **(embedded)** add support for DTS via `dts-mode` & `virtual-dts-mode` - ([2c2d7e7](https://github.com/abougouffa/minemacs/commit/2c2d7e7569b3bbf9e1157f7940a59201ba5016d3)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(natural-langs)** restore jinx - ([6014efa](https://github.com/abougouffa/minemacs/commit/6014efad5775cf9e3fedd447d4ef0798698cc529)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** restore `jinx` and `spell-fu` examples - ([9d0f9f5](https://github.com/abougouffa/minemacs/commit/9d0f9f5dda8c5c701276b16415070c2194c8f118)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** smaller internal border - ([3eddc3b](https://github.com/abougouffa/minemacs/commit/3eddc3b273a60d7c91a3e81b80aeb977bb2b60be)) - [@abougouffa](https://github.com/abougouffa)
+- **(highlight-numbers)** define the right number format for `dts-mode` - ([9f48b02](https://github.com/abougouffa/minemacs/commit/9f48b0273db4620aad9bccb47a5900fcfddf8566)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** use `jinx` if available or fallback to `spell-fu` - ([153cbd0](https://github.com/abougouffa/minemacs/commit/153cbd0f5d1532d2016acba94dfe412a628c28df)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** remove obsolete examples - ([e99daea](https://github.com/abougouffa/minemacs/commit/e99daea826ff2a075b500492375a1f7313a1edf6)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.4.0](https://github.com/abougouffa/minemacs/compare/v4.3.3..v4.4.0) - 2024-01-03
 #### Features
 - **(core)** add function to get/set the standard values - ([540ad79](https://github.com/abougouffa/minemacs/commit/540ad79ab3f4b4784ff288087e8b3ddb17dc124e)) - [@abougouffa](https://github.com/abougouffa)
