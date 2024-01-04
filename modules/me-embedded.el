@@ -23,6 +23,13 @@
   :hook (arduino-mode . display-line-numbers-mode)
   :hook (arduino-mode . hs-minor-mode))
 
+(use-package dts-mode
+  :straight t)
+
+(use-package virtual-dts-mode
+  :straight (:host github :repo "connorfeeley/virtual-dts-mode")
+  :when (executable-find "dtc"))
+
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :config
