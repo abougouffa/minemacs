@@ -37,6 +37,16 @@ restores it after that.
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
+;;; Generated autoloads from ../elisp/me-eglot-booster.el
+
+(autoload 'eglot-booster "../elisp/me-eglot-booster" "\
+Boost plain eglot server programs with emacs-lsp-booster.
+The emacs-lsp-booster program must be compiled and available on
+variable `exec-path'.  Only local stdin/out based lsp servers can
+be boosted." t)
+(register-definition-prefixes "../elisp/me-eglot-booster" '("eglot-booster-plain-command"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
@@ -55,15 +65,7 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from me-lib.el
 
-(autoload '+github-latest-release "me-lib" "\
-Get the latest release of REPO. Strips the \"v\" at left.
-
-Fallback to FALLBACK-RELEASE when it can't get the last one.
-
-(fn REPO &optional FALLBACK-RELEASE)")
-(autoload '+setup-fonts "me-lib" "\
-Setup fonts." t)
-(register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+h" "+i" "+k" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+t" "+un" "+v" "+w" "+yank-this-file-name" "minemacs-" "objdump-disassemble-mode"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+github-latest-release" "+h" "+i" "+k" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+t" "+un" "+v" "+w" "+yank-this-file-name" "minemacs-" "objdump-disassemble-mode"))
 
 
 ;;; Generated autoloads from me-modules.el
