@@ -8,13 +8,20 @@
 
 ;;; Code:
 
-(use-package flyspell-correct
-  :straight (:host github :repo "d12frosted/flyspell-correct" :files ("flyspell-correct.el"))
-  :hook (text-mode . flyspell-mode)
-  :hook (prog-mode . flyspell-prog-mode)
+(use-package jinx
+  :straight t
+  :when (+emacs-features-p 'modules)
   :init
-  (+map! "ts" `(,(+cmdfy! (if (derived-mode-p 'prog-mode) (flyspell-prog-mode) (flyspell-mode))) :wk "flyspell"))
-  (+nvmap! "z=" #'flyspell-correct-at-point))
+  (+map! "ts" #'jinx-mode)
+  (+nvmap! "z=" #'jinx-correct)
+  ;; Module compilation with libenchant should be easy on Linux, BSD and Mac OS,
+  ;; and on Windows when the installation is done using MSYS2. When Emacs flavor
+  ;; is MinGW, do not setup the hook by default.
+  (when (or os/linux os/bsd os/mac (and os/win (string-suffix-p "msys" system-configuration)))
+   (add-hook 'text-mode-hook #'jinx-mode)))
+
+(unless (+emacs-features-p 'modules)
+  (+load minemacs-modules-dir "obsolete/me-spell-fu.el"))
 
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
