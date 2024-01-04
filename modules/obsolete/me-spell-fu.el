@@ -11,14 +11,11 @@
 (use-package spell-fu
   :straight t
   :when (executable-find "aspell")
-  :hook (text-mode . spell-fu-mode)
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
   (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))
   (spell-fu-word-delimit-camel-case t)
   :init
-  (+map! "ts" #'spell-fu-mode)
-  (+nvmap! "z=" #'+spell-fu-correct) ; autoloaded from `me-spell-fu'
   (defmacro +spell-fu-register-dictionaries! (&rest langs)
     "Register dictionaries for `LANGS` to spell-fu's multi-dict."
     (with-eval-after-load 'spell-fu
