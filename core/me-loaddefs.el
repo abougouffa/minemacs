@@ -18,6 +18,16 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
+;;; Generated autoloads from ../elisp/eglot-booster.el
+
+(autoload 'eglot-booster "../elisp/eglot-booster" "\
+Boost plain eglot server programs with emacs-lsp-booster.
+The emacs-lsp-booster program must be compiled and available on
+variable `exec-path'.  Only local stdin/out based lsp servers can
+be boosted." t)
+(register-definition-prefixes "../elisp/eglot-booster" '("eglot-booster-plain-command"))
+
+
 ;;; Generated autoloads from me-bootstrap.el
 
 (autoload '+straight-prune-build-cache "me-bootstrap" "\
@@ -35,16 +45,6 @@ restores it after that.
 
 (fn LEVEL &optional PRE)" t)
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
-
-
-;;; Generated autoloads from ../elisp/me-eglot-booster.el
-
-(autoload 'eglot-booster "../elisp/me-eglot-booster" "\
-Boost plain eglot server programs with emacs-lsp-booster.
-The emacs-lsp-booster program must be compiled and available on
-variable `exec-path'.  Only local stdin/out based lsp servers can
-be boosted." t)
-(register-definition-prefixes "../elisp/me-eglot-booster" '("eglot-booster-plain-command"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
