@@ -92,6 +92,8 @@
 
 (use-package apheleia
   :straight t
+  :custom
+  (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :init
   (+map! "cff" #'apheleia-format-buffer))
 
