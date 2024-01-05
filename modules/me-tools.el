@@ -68,6 +68,13 @@
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
+  ;; If a dedicated terminal is run on a remote machine, it seems that
+  ;; `multi-vterm' don't get the working directory right, lets fix it!
+  (advice-add
+   'multi-vterm-dedicated-open :after
+   (defun +multi-vterm--remote-change-working-directory-a (&rest _)
+     (if-let ((dir (file-remote-p default-directory 'localname)))
+         (vterm-send-string (format "cd %S\n" dir)))))
   (+nvmap!
     :keymaps 'vterm-mode-map
     ",c" #'multi-vterm
