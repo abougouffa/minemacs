@@ -15,7 +15,16 @@
   :init
   (defun +jinx-load-module ()
     "Try to compile and load the jinx module and fail silently."
-    (condition-case nil (jinx--load-module) (error nil) (:success t))))
+    (condition-case nil
+        ;; Don't show the compilation buffer
+        (let ((display-buffer-alist
+               (cons '("\\*jinx module compilation\\*"
+                       (display-buffer-no-window)
+                       (allow-no-window . t))
+                     display-buffer-alist)))
+          (jinx--load-module))
+      (error nil)
+      (:success t))))
 
 (+load minemacs-obsolete-modules-dir "me-spell-fu.el")
 
