@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.5.1](https://github.com/abougouffa/minemacs/compare/v4.5.0..v4.5.1) - 2024-01-07
+#### Bug Fixes
+- **(jinx)** don't show compile buffer on failure in `+jinx-load-module` - ([008dbaa](https://github.com/abougouffa/minemacs/commit/008dbaaccd27702d1822c449486da9523fb87913)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-vterm)** change work dir correctly on remote dedicated terminal - ([aed3220](https://github.com/abougouffa/minemacs/commit/aed3220589226a4928f2911ca6bd4d528837a396)) - [@abougouffa](https://github.com/abougouffa)
+- **(python)** correct the condition for tweaking `pyenv` integration - ([f79dfe7](https://github.com/abougouffa/minemacs/commit/f79dfe7f6b95923b9bda7617a0c28a7c2f926e5b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(eglot)** add experimental `eglot-booster`! - ([6b2a8d4](https://github.com/abougouffa/minemacs/commit/6b2a8d45aa35e91d6cffd97097762c359b535a16)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** initial support for `pyvenv` (WIP) - ([8a34f24](https://github.com/abougouffa/minemacs/commit/8a34f243e79dd5f968dbc8ff0a0903e965781a32)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** format remote files using local formatters - ([74c113b](https://github.com/abougouffa/minemacs/commit/74c113b9f349a85d8c6811862883d2b0963d4ff4)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot-booster)** rename file - ([762da5f](https://github.com/abougouffa/minemacs/commit/762da5fa354b73e7b0aa02a036ad185f74a2b3ef)) - [@abougouffa](https://github.com/abougouffa)
+- **(jinx)** log the error message in `+jinx-load-module` - ([72db594](https://github.com/abougouffa/minemacs/commit/72db594a309dd372727fb3675dc40a2d966d4eaa)) - [@abougouffa](https://github.com/abougouffa)
+- **(python)** better `pyenv` integration (WIP) - ([685bdcf](https://github.com/abougouffa/minemacs/commit/685bdcf676f077e99b636933d278438fc811c0de)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([85008d7](https://github.com/abougouffa/minemacs/commit/85008d70c3e1467e79c6039e83d5051c36724401)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.5.0](https://github.com/abougouffa/minemacs/compare/v4.4.0..v4.5.0) - 2024-01-04
 #### Features
 - **(embedded)** add support for DTS via `dts-mode` & `virtual-dts-mode` - ([2c2d7e7](https://github.com/abougouffa/minemacs/commit/2c2d7e7569b3bbf9e1157f7940a59201ba5016d3)) - [@abougouffa](https://github.com/abougouffa)
