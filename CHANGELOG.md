@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.5.3](https://github.com/abougouffa/minemacs/compare/v4.5.2..v4.5.3) - 2024-01-08
+#### Bug Fixes
+- **(scratch)** always replace the default scratch with the persistent one - ([e4a0ed9](https://github.com/abougouffa/minemacs/commit/e4a0ed9b84db64e4422de7d9c1c0806dbba280a6)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([3ee82a9](https://github.com/abougouffa/minemacs/commit/3ee82a935286ca37709fd20dcadb6314b7593745)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.5.2](https://github.com/abougouffa/minemacs/compare/v4.5.1..v4.5.2) - 2024-01-08
 #### Bug Fixes
 - **(core)** avoid issues when evaluating buffer name variables [#150] - ([dd653fe](https://github.com/abougouffa/minemacs/commit/dd653fe55e4124bae27ad2ed49974d2d44538cc3)) - [@abougouffa](https://github.com/abougouffa)
