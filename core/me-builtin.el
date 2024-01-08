@@ -388,18 +388,17 @@ or file path may exist now."
   ;; github.com/magit/magit/issues/4720 of Magit and bug
   ;; debbugs.gnu.org/cgi/bugreport.cgi?bug=62093 of Emacs. A workaround is to
   ;; redefine the old `tramp-send-command' function through an advice.
-  (defun +tramp-send-command--workaround-stty-icanon-bug (conn-vec orig-command &rest args)
-    "See: https://github.com/magit/magit/issues/4720"
-    (let ((command
-           (if (string= "stty -icrnl -icanon min 1 time 0" orig-command)
-               "stty -icrnl"
-             orig-command)))
-      (append (list conn-vec command) args)))
-
   (advice-add
    'tramp-send-command :filter-args
-   (defun +tramp-send-command--workaround-stty-icanon-bug--filter-args (args)
-     (apply #'+tramp-send-command--workaround-stty-icanon-bug args))))
+   (defun +tramp-send-command--workaround-stty-icanon-bug:filter-args-a (&rest args)
+     "See: https://github.com/magit/magit/issues/4720"
+     (let* ((vec (car args))
+            (orig-command (cadr args))
+            (command (cond ((string= "stty -icrnl -icanon min 1 time 0" orig-command) "stty -icrnl")
+                           ((string= "stty -icanon min 1 time 0" orig-command) "stty")
+                           (t orig-command)))
+            (rest (cddr args)))
+       (append (list vec command) rest)))))
 
 (use-package eshell
   :custom
