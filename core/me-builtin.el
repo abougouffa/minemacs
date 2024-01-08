@@ -264,7 +264,7 @@ or file path may exist now."
   :straight t
   :after minemacs-loaded
   :demand t
-  :hook (kill-emacs . project-forget-zombie-projects)
+  :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project")))

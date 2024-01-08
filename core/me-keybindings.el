@@ -240,7 +240,7 @@
     "prC" #'project-async-shell-command
     ;; forget
     "pF"  '(nil :wk "forget/cleanup")
-    "pFz" #'project-forget-zombie-projects
+    "pFz" #'+project-forget-zombie-projects
     "pFp" #'project-forget-project
     "pFu" #'project-forget-projects-under
     "pFc" #'+project-list-cleanup

@@ -1609,6 +1609,18 @@ When DIR is not detected as a project, ask to force it to be by adding a
     (with-temp-buffer
       (write-file (expand-file-name ".project.el" dir)))))
 
+(defun +project-forget-zombie-projects ()
+  "Forget all known projects that don't exist any more.
+
+Like `project-forget-zombie-projects', but handles remote projects differently,
+it forget them only when we are sure they don't exist."
+  (interactive)
+  (dolist (proj (project-known-project-roots))
+    (unless (or (and (file-remote-p proj nil t) (file-readable-p proj)) ; Connected remote + existent project
+                (file-remote-p proj) ; Non connected remote project
+                (file-exists-p proj)) ; Existent local project
+      (project-forget-project proj))))
+
 (defun +project-gdb ()
   "Invoke `gdb' in the project's root."
   (interactive)
