@@ -1481,7 +1481,7 @@ See `kill-some-buffers'."
     (kill-some-buffers list)))
 
 (defcustom +kill-buffer-no-ask-list
-  (list "*Messages*" "*Warnings*")
+  (list (or (bound-and-true-p messages-buffer-name) "*Messages*") "*Warnings*")
   "A list of buffer names to be killed without confirmation."
   :group 'minemacs-buffer
   :type '(repeat string))
@@ -1491,7 +1491,8 @@ See `kill-some-buffers'."
     (setq
      +kill-buffer-no-ask-list
      (append +kill-buffer-no-ask-list
-             (list comp-async-buffer-name comp-log-buffer-name)))))
+             (ensure-list (bound-and-true-p comp-async-buffer-name))
+             (ensure-list (bound-and-true-p comp-log-buffer-name))))))
 
 (defun +kill-buffer-ask-if-modified (buffer)
   "Like `kill-buffer-ask', but kills BUFFER without confirmation when unmodified.
