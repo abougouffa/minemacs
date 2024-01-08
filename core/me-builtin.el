@@ -1334,13 +1334,14 @@ current line.")
   :custom
   (recentf-save-file (concat minemacs-local-dir "recentf-save.el"))
   ;; Increase the maximum number of saved items
-  (recentf-max-saved-items 100)
+  (recentf-max-saved-items 200)
   ;; Ignore case when searching recentf files
   (recentf-case-fold-search t)
   ;; Exclude some files from being remembered by recentf
   (recentf-exclude
-   `(,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
-     ,(rx bol "/" (or "tmp/" "rsync:" "ssh:" "sudoedit:" "sudo:"))))
+   `(file-remote-p
+     ,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
+     ,(rx bol "/tmp/")))
   :init
   ;; Enable `recentf-mode' to remember recent files
   (+shutup! (recentf-mode 1)))
