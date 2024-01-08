@@ -343,6 +343,14 @@ SYMBOL is non-nil, then `eq` is used instead.
 This method may mutate the original alist, but you still need to use the return
 value of this method instead of the original alist, to ensure correct results.
 
+#### `(+set-standard-value VARIABLE VALUE)`
+
+Set the standard value of VARIABLE to VALUE.
+
+#### `(+standard-value VARIABLE)`
+
+Return the standard value for VARIABLE.
+
 #### `(+reset-sym SYM)`
 
 Reset SYM to its standard value.
@@ -834,6 +842,12 @@ Switch to another project at DIR.
 When DIR is not detected as a project, ask to force it to be by adding a
 ".project.el" file. When DONT-ASK is non-nil, create the file without asking.
 
+#### `(+project-forget-zombie-projects)`
+
+Forget all known projects that don't exist any more.
+Like `project-forget-zombie-projects`, but handles remote projects differently,
+it forget them only when we are sure they don't exist.
+
 #### `(+project-gdb)`
 
 Invoke `gdb` in the project's root.
@@ -989,6 +1003,14 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 #### `(+setup-fonts)`
 
 Setup fonts.
+
+#### `(+spellcheck-correct)`
+
+Correct word at point.
+
+#### `(+spellcheck-mode)`
+
+Toggle spellchecking.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
