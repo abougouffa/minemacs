@@ -225,6 +225,19 @@ or file path may exist now."
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
+(use-package tramp
+  :straight t
+  :init
+  ;; This is faster than the default "scp"
+  (unless os/win
+    (setq tramp-default-method "ssh"))
+  ;; HACK: Setting `tramp-persistency-file-name' in `:custom' is not working properly!
+  (setq tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
+  :custom
+  (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
+  (tramp-backup-directory-alist backup-directory-alist)
+  (tramp-default-remote-shell "/bin/bash"))
+
 (use-package password-cache
   :custom
   (password-cache t) ; Enable password caching
@@ -370,35 +383,6 @@ or file path may exist now."
 
 (use-package xt-mouse
   :hook (tty-setup . xterm-mouse-mode))
-
-(use-package tramp
-  :init
-  ;; This is faster than the default "scp"
-  (unless os/win
-    (setq tramp-default-method "ssh"))
-  ;; HACK: Setting `tramp-persistency-file-name' in `:custom' is not working properly!
-  (setq tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
-  :custom
-  (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
-  (tramp-backup-directory-alist backup-directory-alist)
-  (tramp-default-remote-shell "/bin/bash")
-  :config
-  ;; BUG: Fix taken from: github.com/Phundrak/dotfiles/commit/566861ee
-  ;; There is currently a bug in Emacs TRAMP as described in issue
-  ;; github.com/magit/magit/issues/4720 of Magit and bug
-  ;; debbugs.gnu.org/cgi/bugreport.cgi?bug=62093 of Emacs. A workaround is to
-  ;; redefine the old `tramp-send-command' function through an advice.
-  (advice-add
-   'tramp-send-command :filter-args
-   (defun +tramp-send-command--workaround-stty-icanon-bug:filter-args-a (&rest args)
-     "See: https://github.com/magit/magit/issues/4720"
-     (let* ((vec (car args))
-            (orig-command (cadr args))
-            (command (cond ((string= "stty -icrnl -icanon min 1 time 0" orig-command) "stty -icrnl")
-                           ((string= "stty -icanon min 1 time 0" orig-command) "stty")
-                           (t orig-command)))
-            (rest (cddr args)))
-       (append (list vec command) rest)))))
 
 (use-package eshell
   :custom
