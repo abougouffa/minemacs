@@ -225,6 +225,17 @@ or file path may exist now."
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
+;; Due to a bug in Emacs 29.1, you must apply the following change prior
+;; installation or upgrading TRAMP 2.7.0 from GNU ELPA:
+;; gnu.org/software/tramp/#ELPA-Installation
+(when (version= emacs-version "29.1")
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/loaddefs-gen.el?h=emacs-29")
+    (goto-char (point-min))
+    (while (looking-at "^.+$") (forward-line))
+    (eval-region (point) (point-max))))
+
 (use-package tramp
   :straight t
   :init
