@@ -169,38 +169,25 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
-;; NOTE: This is MinEmacs' synchronization point. To get a fast Emacs startup,
-;; MinEmacs tries to defer loading most of its packages until this hook is
-;; executed. This is managed by the `minemacs-loaded' and `minemacs-lazy'
-;; pseudo-modules. After loading Emacs, the `emacs-startup-hook' gets executed,
-;; we use this hook to profile the startup time, load the fonts and the theme,
-;; and setup the *scratch* buffer content. Lastly we require the
-;; `minemacs-loaded' synchronization module, which runs internally the
-;; `minemacs-after-startup-hook' hooks and provide `minemacs-loaded' so the
-;; packages loaded with `:after minemacs-loaded' can be loaded. The
-;; `minemacs-loaded' will require `minemacs-lazy' when Emacs goes idle, this
-;; pseudo-module provides `minemacs-lazy' so the packages loaded with `:after
-;; minemacs-lazy' can be loaded then it incrementally run the hooks in
-;; `minemacs-lazy-hook' when Emacs goes idle.
 (defun +minemacs--loaded-h ()
-  (+log! "=============== Loaded Emacs%s ===============" (if (daemonp) " (in daemon mode)" ""))
-  (+info! "Loaded Emacs in %s." (emacs-init-time))
+  "This is MinEmacs' synchronization point.
 
-  ;; When running in an async Org export context, there is no need to set
-  ;; the fonts, load the theme or play with the scratch buffer.
-  (unless (featurep 'me-org-export-async-init)
-    (+load-theme)
-    (+deferred!
-     (+log! "Loading the default persistent scratch buffer.")
-     (let ((buf (current-buffer)))
-       ;; Load the default persistent scratch buffer
-       (+scratch-open-buffer nil nil 'same-window)
-       ;; Switch to the previous buffer
-       (switch-to-buffer buf)
-       ;; And kill the Emacs' default scratch buffer
-       (when-let ((s (get-buffer "*scratch*"))) (kill-buffer s)))))
+To achieve fast Emacs startup, we tries to defer loading most of the packages
+until this hook is executed. This is managed by the `minemacs-loaded' and
+`minemacs-lazy' features.
 
-  ;; Require the virtual package to triggre loading packages depending on it
+After loading Emacs, the `emacs-startup-hook' gets executed, we use this hook to
+profile the startup time, load the theme, and make a persistent scratch buffer.
+Lastly we require the `minemacs-loaded' synchronization module, which runs
+the `minemacs-after-startup-hook' hooks and provide `minemacs-loaded' so the
+packages loaded with `:after minemacs-loaded' can be loaded.
+
+The `minemacs-loaded' will require `minemacs-lazy' when Emacs goes idle, this
+provides `minemacs-lazy' so the packages loaded with `:after minemacs-lazy' can
+be loaded then it incrementally run the hooks in `minemacs-lazy-hook' when Emacs
+goes idle."
+  (+info! "Loaded Emacs%s in %s." (if (daemonp) " (in daemon mode)" "") (emacs-init-time))
+  (unless (featurep 'me-org-export-async-init) (+load-theme))
   (require 'minemacs-loaded))
 
 ;; Add it to the very beginning of `emacs-startup-hook'

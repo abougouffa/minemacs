@@ -1983,6 +1983,18 @@ If prefix ARG, delete all persistent scratches."
         (delete-file file)
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
 
+(defun +scratch-replace-with-persistent-scratch (&optional arg project-p)
+  "Replace the *scratch* buffer with a ."
+  (interactive "P")
+  (when-let ((buf (current-buffer))
+             (s (get-buffer "*scratch*")))
+    ;; Kill the Emacs' default scratch buffer
+    (kill-buffer s)
+    ;; Load the default persistent scratch buffer
+    (+scratch-open-buffer arg project-p 'same-window)
+    ;; Switch to the previous buffer
+    (when (buffer-live-p buf) (switch-to-buffer buf))))
+
 
 
 ;;; Font and script settings

@@ -1491,6 +1491,7 @@ current line.")
 
 (use-package server
   :autoload server-running-p
+  :hook ((server-after-make-frame minemacs-after-startup) . +scratch-replace-with-persistent-scratch)
   :init
   ;; When we start in a non-daemon Emacs, we start a server when Emacs is idle.
   (+lazy-unless! (daemonp)
