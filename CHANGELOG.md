@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.5.2](https://github.com/abougouffa/minemacs/compare/v4.5.1..v4.5.2) - 2024-01-08
+#### Bug Fixes
+- **(core)** avoid issues when evaluating buffer name variables [#150] - ([dd653fe](https://github.com/abougouffa/minemacs/commit/dd653fe55e4124bae27ad2ed49974d2d44538cc3)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** proper convention to forget remote zombie projects - ([aca7981](https://github.com/abougouffa/minemacs/commit/aca7981c0ff5fa8bbc41d3eaf19fd19deb999d41)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** fix the issue of upgrading Tramp on Emacs 29.1 - ([4a8a0a2](https://github.com/abougouffa/minemacs/commit/4a8a0a25f4ef61d2235eb79c3deb7b8338b0d650)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([c2dbbd9](https://github.com/abougouffa/minemacs/commit/c2dbbd943e059cefad6cb9a672a9e17c88364413)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(recentf)** better exclusion of remote files - ([f6f1a10](https://github.com/abougouffa/minemacs/commit/f6f1a1064876dcf145931d01397acbd4d8938778)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** use up-to-date Tramp, remove old Magit related fix - ([984c5da](https://github.com/abougouffa/minemacs/commit/984c5da9142b4c2a2f1526d0cb8ab0da688c410c)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** take the MacOS case into account in `stty` workaround - ([3267853](https://github.com/abougouffa/minemacs/commit/3267853f645de850321bb71c3dc98bb42356e58b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.5.1](https://github.com/abougouffa/minemacs/compare/v4.5.0..v4.5.1) - 2024-01-07
 #### Bug Fixes
 - **(jinx)** don't show compile buffer on failure in `+jinx-load-module` - ([008dbaa](https://github.com/abougouffa/minemacs/commit/008dbaaccd27702d1822c449486da9523fb87913)) - [@abougouffa](https://github.com/abougouffa)
