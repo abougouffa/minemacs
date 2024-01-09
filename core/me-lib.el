@@ -566,7 +566,7 @@ Works like `shell-command-to-string' with two differences:
   "Add ROOTS to ignored projects, recentf, etc."
   (dolist (root roots)
     (with-eval-after-load 'recentf
-      (add-to-list 'recentf-exclude root))))
+      (add-to-list 'recentf-exclude (rx-to-string `(or ,root ,(expand-file-name root)))))))
 
 (defun +package-disabled-p (package)
   "Is package PACKAGE disabled in `minemacs-disabled-packages'."
