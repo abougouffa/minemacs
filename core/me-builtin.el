@@ -203,12 +203,15 @@ or file path may exist now."
              (set-auto-mode)))))
 
   ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
-  (advice-add
-   #'emacs-session-filename :filter-return
-   (defun +emacs-session-filename--in-subdir-a (session-filename)
-     "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
-     (concat (+directory-ensure minemacs-local-dir "x-win/")
-             (file-name-nondirectory session-filename)))))
+  (let ((x-win-dir (+directory-ensure minemacs-local-dir "x-win/")))
+    (advice-add
+     #'emacs-session-filename :filter-return
+     (defun +emacs-session-filename--in-subdir-a (session-filename)
+       "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+       (concat x-win-dir (file-name-nondirectory session-filename))))
+
+    ;; Don't show session files in recentf list and so on
+    (+ignore-root x-win-dir)))
 
 (use-package minibuffer
   :custom
