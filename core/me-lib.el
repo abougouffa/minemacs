@@ -587,7 +587,8 @@ Returns the load path of the package, useful for usage with `use-package''s
     (add-to-list '+package--download-urls (cons pkgname urls))
     (dolist (url urls)
       (when-let* ((url-file-name (url-filename (url-generic-parse-url url)))
-                  (url-file-name (file-name-nondirectory url-file-name)))
+                  (url-file-name (file-name-nondirectory url-file-name))
+                  (url-file-name (car (string-split url-file-name "?")))) ;; url/file.el?h=tag
         (when (and redownload-p (file-exists-p url-file-name))
           (delete-file url-file-name))
         (unless (file-exists-p url-file-name)
