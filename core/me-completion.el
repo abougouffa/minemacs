@@ -39,7 +39,7 @@ placed, otherwise they come first."
   (when (< emacs-major-version 29)
     (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-  (+add-hook! 'completion-at-point-functions '(cape-file cape-keyword))
+  (+add-hook! 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
 
   (+add-hook! (emacs-lisp-mode git-commit-mode)
     (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t))
