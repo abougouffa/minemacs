@@ -21,6 +21,7 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
+  (push 'nix treesit-auto-langs)
   (push (make-treesit-auto-recipe
          :lang 'nix
          :ts-mode 'nix-ts-mode
