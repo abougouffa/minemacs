@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.5.4](https://github.com/abougouffa/minemacs/compare/v4.5.3..v4.5.4) - 2024-01-10
+#### Bug Fixes
+- **(core)** better inference of filename in `+package-download-from-urls` - ([b7e0739](https://github.com/abougouffa/minemacs/commit/b7e0739f3112b7da015a872126057737e4e83301)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** add Nix to the list of languages [#140] - ([63ff477](https://github.com/abougouffa/minemacs/commit/63ff4776dbf67051ee080cd3541a12cae58f4314)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(cape)** restore `cape-dict` (it in fact useful) [#150] - ([5caddc4](https://github.com/abougouffa/minemacs/commit/5caddc402bf9dc71325b29114d69b92ce36ec181)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** cache the downloaded `loaddefs-gen.el` file - ([0d26f30](https://github.com/abougouffa/minemacs/commit/0d26f30c79ef25ea4fa36bd27392c70b5077c212)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** make use of `+ignore-root` to exclude `x-win` sessions - ([b677fd6](https://github.com/abougouffa/minemacs/commit/b677fd6b6d5d27cef9fcbe47230749911ea54ce3)) - [@abougouffa](https://github.com/abougouffa)
+- **(cape)** disable unused `cape-dict` [#150] - ([ed2bae5](https://github.com/abougouffa/minemacs/commit/ed2bae5b9f5c68de65de6cf106170bbe406ad5b3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better exclusion of `recentf` files in `+ignore-roots` - ([4e619ae](https://github.com/abougouffa/minemacs/commit/4e619ae702ca8f93d8bd972a82651ff344561e68)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.5.3](https://github.com/abougouffa/minemacs/compare/v4.5.2..v4.5.3) - 2024-01-08
 #### Bug Fixes
 - **(scratch)** always replace the default scratch with the persistent one - ([e4a0ed9](https://github.com/abougouffa/minemacs/commit/e4a0ed9b84db64e4422de7d9c1c0806dbba280a6)) - [@abougouffa](https://github.com/abougouffa)
