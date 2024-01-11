@@ -992,6 +992,10 @@ Revert scratch buffer to last persistent state.
 Deletes a scratch buffer file in `+scratch-dir`.
 If prefix ARG, delete all persistent scratches.
 
+#### `(+scratch-replace-with-persistent-scratch &optional ARG PROJECT-P)`
+
+Replace the *scratch* buffer with a .
+
 #### `(+font-installed-p FONT-FAMILY)`
 
 Check if FONT-FAMILY is installed on the system.
@@ -1097,13 +1101,10 @@ If HERRING is set, it will be used to determine the face instead of STR.
 Will try to make unique when non-nil UNIQUE,
 a quoted symbol for a alist of current strings and faces provided.
 
-#### `(+org-extras-renumber-env ORIG-FUNC &rest ARGS)`
-
-A function to inject numbers in LaTeX fragment previews.
-
 #### `(+org-extras-toggle-latex-equation-numbering &optional ENABLE)`
 
 Toggle whether LaTeX fragments are numbered.
+Force enabling when ENABLE is non-nil.
 
 #### `(+org-extras-inject-latex-fragment ORIG-FUNC &rest ARGS)`
 
@@ -1124,6 +1125,38 @@ Lower case Org keywords and properties and block identifiers.
 Example: "#+TITLE" -> "#+title"
          "#+BEGIN_EXAMPLE" -> "#+begin_example"
          ":PROPERTIES:" -> ":properties:".
+
+#### `(+org-extras-responsive-images-setup)`
+
+Enable responsive images' size.
+
+#### `(+org-extras-equation-numbering-setup)`
+
+Enable LaTeX equations renumbering.
+
+#### `(+org-extras-multifiles-document-setup)`
+
+Enable multi-files documents.
+
+#### `(+org-extras-latex-classes-setup)`
+
+Setup some extra LaTeX classes.
+
+#### `(+org-extras-outline-path-setup)`
+
+Fix the font size issue in Org's outline in the echo area.
+
+#### `(+org-extras-pretty-latex-fragments-setup)`
+
+Enable prettifing Org's LaTeX fragments.
+
+#### `(+org-extras-lower-case-keywords-and-properties-setup)`
+
+Automatically convert KEYWORDS to lower case on save.
+
+#### `(+org-extras-setup)`
+
+Enable all Org-mode extra tweaks.
 
 #### `(+realgud:cmd-run ARG)`
 
