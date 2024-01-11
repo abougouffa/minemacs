@@ -2104,15 +2104,15 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   "Arguments accepted by the `font-spec' function.")
 
 (defun +font--get-valid-args (script-or-face font)
+  "Get valid arguments from FONT for SCRIPT-OR-FACE."
   (if (stringp font)
       `(:family ,font)
     (apply
      #'append
      (mapcar (lambda (a) (list a (plist-get font a)))
-             (cl-intersection (+plist-keys font)
-                              (if (memq script-or-face +known-scripts)
-                                  +font-spec-keywords
-                                +face-attributes))))))
+             (cl-intersection
+              (+plist-keys font)
+              (if (memq script-or-face +known-scripts) +font-spec-keywords +face-attributes))))))
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
