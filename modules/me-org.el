@@ -26,8 +26,7 @@
 
 (use-package org-contrib
   :straight t
-  :after org
-  :demand t)
+  :after org)
 
 (use-package engrave-faces
   :straight t
