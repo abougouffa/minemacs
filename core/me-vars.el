@@ -232,7 +232,7 @@ Each string is a regexp, matched against variable names to omit from
 
 (defun +load (&rest filename-parts)
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
-  (let ((filename (file-truename (apply #'concat filename-parts))))
+  (let ((filename (file-truename (apply #'file-name-concat filename-parts))))
     (if (file-exists-p filename)
         (if minemacs-debug-p
             (load filename nil)
