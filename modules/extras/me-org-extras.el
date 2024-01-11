@@ -25,22 +25,26 @@
 
 (put '+org-use-lower-case-keywords-and-properties 'safe-local-variable 'booleanp)
 
-(defvar-local +org-export-to-pdf-main-file nil
+(defvar-local +org-export-to-pdf-main-file "main.org"
   "The main (entry point) Org file for a multi-files document.")
 
 (put '+org-export-to-pdf-main-file 'safe-local-variable 'stringp)
 
 (defun +org-extras--responsive-image-h ()
+  "Set responsive image size tweak.
+
+This works by setting `org-image-actual-width' based on
+`+org-responsive-image-percentage' and `+org-responsive-image-width-limits'."
   (when (derived-mode-p 'org-mode)
     (setq-local
      org-image-actual-width
      (list (max (car +org-responsive-image-width-limits)
                 (min (cdr +org-responsive-image-width-limits)
-                     (truncate (* (window-pixel-width)
-                                  +org-responsive-image-percentage))))))))
+                     (truncate (* (window-pixel-width) +org-responsive-image-percentage))))))))
 
 (defun +org-extras--parse-latex-env (str)
   "Parse the LaTeX environment STR.
+
 Return an AST with newlines counts in each level."
   (let (ast)
     (with-temp-buffer
@@ -64,53 +68,45 @@ Return an AST with newlines counts in each level."
                 ((string= cmd "end")
                  (let ((child (pop ast))
                        (parent (pop ast)))
-                   (push (plist-put parent :childs (cons child (plist-get parent :childs))) ast)))))))
-    (plist-get (car ast) :childs)))
+                   (push (plist-put parent :children (cons child (plist-get parent :children))) ast)))))))
+    (plist-get (car ast) :children)))
 
 ;; Adapted from Scimax
-(defun +org-extras-renumber-env (orig-func &rest args)
-  "A function to inject numbers in LaTeX fragment previews."
-  (let ((results '())
-        (counter -1))
-    (setq results
-          (cl-loop for (begin . env) in
+(defun +org-extras--renumber-env-a (orig-func &rest args)
+  "An advice function to inject numbers in LaTeX fragment previews."
+  (let ((counter -1) results)
+    (setq results (cl-loop
+                   for (begin . env) in
                    (org-element-map (org-element-parse-buffer) 'latex-environment
-                     (lambda (env)
-                       (cons
-                        (org-element-property :begin env)
-                        (org-element-property :value env))))
+                     (lambda (env) (cons (org-element-property :begin env) (org-element-property :value env))))
                    collect
                    (cond
-                    ((and (string-match "\\\\begin{equation}" env)
-                          (not (string-match "\\\\tag{" env)))
+                    ((and (string-match "\\\\begin{equation}" env) (not (string-match "\\\\tag{" env)))
                      (cl-incf counter)
                      (cons begin counter))
                     ((string-match "\\\\begin{align}" env)
                      (cl-incf counter)
                      (let ((p (car (+org-extras--parse-latex-env env))))
                        ;; Parse the `env', count new lines in the align env as equations, unless
-                       (cl-incf counter (- (or (plist-get p :newline) 0)
-                                           (or (plist-get p :nonumber) 0))))
+                       (cl-incf counter (- (or (plist-get p :newline) 0) (or (plist-get p :nonumber) 0))))
                      (cons begin counter))
-                    (t
-                     (cons begin nil)))))
+                    (t (cons begin nil)))))
     (when-let ((number (cdr (assoc (point) results))))
-      (setf (car args)
-            (concat
-             (format "\\setcounter{equation}{%s}\n" number)
-             (car args)))))
+      (setf (car args) (concat (format "\\setcounter{equation}{%s}\n" number) (car args)))))
   (apply orig-func args))
 
 (defun +org-extras-toggle-latex-equation-numbering (&optional enable)
-  "Toggle whether LaTeX fragments are numbered."
+  "Toggle whether LaTeX fragments are numbered.
+
+Force enabling when ENABLE is non-nil."
   (interactive)
-  (if (or enable (not (get '+org-extras-renumber-env 'enabled)))
+  (if (or enable (not (get '+org-extras--renumber-env-a 'enabled)))
       (progn
-        (advice-add 'org-create-formula-image :around #'+org-extras-renumber-env)
-        (put '+org-extras-renumber-env 'enabled t)
+        (advice-add 'org-create-formula-image :around #'+org-extras--renumber-env-a)
+        (put '+org-extras--renumber-env-a 'enabled t)
         (message "LaTeX numbering enabled."))
-    (advice-remove 'org-create-formula-image #'+org-extras-renumber-env)
-    (put '+org-extras-renumber-env 'enabled nil)
+    (advice-remove 'org-create-formula-image #'+org-extras--renumber-env-a)
+    (put '+org-extras--renumber-env-a 'enabled nil)
     (message "LaTeX numbering disabled.")))
 
 (defun +org-extras-inject-latex-fragment (orig-func &rest args)
@@ -120,11 +116,9 @@ The way it works is by defining :latex-fragment-pre-body and/or
 :latex-fragment-post-body in the variable `org-format-latex-options'. These
 strings will then be injected before and after the code for the fragment before
 it is made into an image."
-  (setf (car args)
-        (concat
-         (or (plist-get org-format-latex-options :latex-fragment-pre-body) "")
-         (car args)
-         (or (plist-get org-format-latex-options :latex-fragment-post-body) "")))
+  (setf (car args) (concat (or (plist-get org-format-latex-options :latex-fragment-pre-body) "")
+                           (car args)
+                           (or (plist-get org-format-latex-options :latex-fragment-post-body) "")))
   (apply orig-func args))
 
 (defun +org-extras-inject-latex-fragments ()
@@ -148,8 +142,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (let ((case-fold-search nil)
-          (count 0))
+    (let ((case-fold-search nil) (count 0))
       (while (re-search-forward
               (rx (group-n 1
                     bol
@@ -164,30 +157,29 @@ Example: \"#+TITLE\" -> \"#+title\"
       (message "Lower-cased %d matches" count))))
 
 (defun +org-extras-responsive-images-setup ()
-  (add-hook 'window-configuration-change-hook
-            #'+org-extras--responsive-image-h))
+  "Enable responsive images' size."
+  (add-hook 'window-configuration-change-hook #'+org-extras--responsive-image-h))
 
 (defun +org-extras-equation-numbering-setup ()
-  ;; Enable LaTeX equations renumbering
-  (+shutup!
-   (+org-extras-toggle-latex-equation-numbering :enable)))
+  "Enable LaTeX equations renumbering."
+  (+shutup! (+org-extras-toggle-latex-equation-numbering :enable)))
 
 (defun +org-extras-multifiles-document-setup ()
+  "Enable multi-files documents."
   (advice-add
    'org-latex-export-to-pdf :around
    (defun +org--latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
-     (let* ((main-file (or +org-export-to-pdf-main-file "main.org"))
-            (main-file-exists-p (file-exists-p (expand-file-name main-file)))
-            (out-file
-             (if main-file-exists-p
-                 (with-current-buffer (find-file-noselect main-file)
-                   (apply orig-fn orig-args))
-               (apply orig-fn orig-args))))
+     (let* ((main-file (and +org-export-to-pdf-main-file
+                            (file-exists-p (expand-file-name +org-export-to-pdf-main-file))))
+            (out-file (if main-file
+                          (with-current-buffer (find-file-noselect main-file)
+                            (apply orig-fn orig-args))
+                        (apply orig-fn orig-args))))
        (if org-export-in-background
            (progn
              (message "Started exporting \"%s\" asynchronously."
                       (abbreviate-file-name
-                       (file-name-nondirectory (if main-file-exists-p main-file (buffer-file-name)))))
+                       (file-name-nondirectory (if main-file main-file (buffer-file-name)))))
              (when-let ((org-export-process (get-process "org-export-process")))
                (set-process-sentinel
                 org-export-process
@@ -195,10 +187,10 @@ Example: \"#+TITLE\" -> \"#+title\"
                   (unless (process-live-p process)
                     (message "Org async export finished, see *Org Export Process* for more details."))))))
          (message "PDF exported to: %s."
-                  (abbreviate-file-name
-                   (file-name-nondirectory out-file))))))))
+                  (abbreviate-file-name (file-name-nondirectory out-file))))))))
 
 (defun +org-extras-latex-classes-setup ()
+  "Setup some extra LaTeX classes."
   (with-eval-after-load 'ox-latex
     ;; Use `babel' with automatic language detection (from `#+language:' or
     ;; `org-export-default-language')
@@ -285,6 +277,7 @@ Example: \"#+TITLE\" -> \"#+title\"
            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))))))
 
 (defun +org-extras-outline-path-setup ()
+  "Fix the font size issue in Org's outline in the echo area."
   (advice-add
    #'org-format-outline-path :around
    (defun +org--strip-properties-from-outline-a (fn &rest args)
@@ -295,19 +288,19 @@ Example: \"#+TITLE\" -> \"#+title\"
        (apply fn args)))))
 
 (defun +org-extras-pretty-latex-fragments-setup ()
+  "Enable prettifing Org's LaTeX fragments."
   (require 'org-src)
   (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
 
   ;; Can be dvipng, dvisvgm, imagemagick
   (setq org-preview-latex-default-process 'dvisvgm)
 
-  (setq org-format-latex-options
-        (plist-put org-format-latex-options :background "Transparent"))
+  (setq org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
 
   (unless (+emacs-features-p 'pgtk) ;; PGTK not need extra up-scaling
     (add-hook
      'org-mode-hook
-     (defun +org--set-format-latex-scale ()
+     (defun +org--set-format-latex-scale-h ()
        (setq-local
         org-format-latex-options
         (plist-put
@@ -315,6 +308,7 @@ Example: \"#+TITLE\" -> \"#+title\"
          :scale (/ (float (or (face-attribute 'default :height) 100)) 100.0)))))))
 
 (defun +org-extras-lower-case-keywords-and-properties-setup ()
+  "Automatically convert KEYWORDS to lower case on save."
   (add-hook
    'before-save-hook
    (defun +org--lower-case-keywords-and-properties-h ()
@@ -323,6 +317,7 @@ Example: \"#+TITLE\" -> \"#+title\"
 
 
 (defun +org-extras-setup ()
+  "Enable all Org-mode extra tweaks."
   (+org-extras-outline-path-setup)
   (+org-extras-latex-classes-setup)
   (+org-extras-pretty-latex-fragments-setup)
