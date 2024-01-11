@@ -1,15 +1,15 @@
 # Project specific
 private/
 eln-cache/
+user-config/
 .directory
 test/
 
+# Ignore files in "local/" except the lockfile "local/straight/versions/default.el"
 local/*
 !local/straight/
-
 local/straight/*
 !local/straight/versions/
-
 local/straight/versions/*
 !local/straight/versions/default.el
 
@@ -23,6 +23,7 @@ local/straight/versions/*
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
+*.eln
 auto-save-list
 tramp
 .\#*
