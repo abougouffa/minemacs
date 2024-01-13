@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.6.1](https://github.com/abougouffa/minemacs/compare/v4.6.0..v4.6.1) - 2024-01-13
+#### Bug Fixes
+- **(core)** better implementation of `objdump-disassemble-mode` - ([b3f4149](https://github.com/abougouffa/minemacs/commit/b3f4149460f42b9166b7151ba4bf566d53da0e28)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-contrib)** use my mirror repo (sr.ht) isn't stable - ([056bfe8](https://github.com/abougouffa/minemacs/commit/056bfe87d39354600e89a77fbe6e40dddf2392df)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- update copyright year - ([45d5132](https://github.com/abougouffa/minemacs/commit/45d5132a38c7c1e6b6c9703678a2e1d3217db60c)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(early-init)** move `LSP_USE_PLISTS` to `me-lsp` - ([d1aa86a](https://github.com/abougouffa/minemacs/commit/d1aa86a511c7b84cbea79d38e05ba62f92cb5ecd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(binary)** don't disassemble by default - ([18a24e9](https://github.com/abougouffa/minemacs/commit/18a24e99f168e679981a1999c7dad6eb26917578)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.6.0](https://github.com/abougouffa/minemacs/compare/v4.5.4..v4.6.0) - 2024-01-13
 #### Documentation
 - **(core)** add documentation for `+font--get-valid-args` - ([8c3cb2c](https://github.com/abougouffa/minemacs/commit/8c3cb2c3eb0976cc40e6dd6500f3389b97cd2585)) - [@abougouffa](https://github.com/abougouffa)
