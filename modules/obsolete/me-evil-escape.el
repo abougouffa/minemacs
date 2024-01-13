@@ -24,7 +24,7 @@
 
     (advice-add
      'evil-escape-func :before
-     (defun +evil-mc--evil-escape-fix-a ()
+     (defun +evil-mc--evil-escape-fix:before-a ()
        (when (evil-mc-has-cursors-p)
          (evil-mc-pause-cursors)
          (run-with-idle-timer

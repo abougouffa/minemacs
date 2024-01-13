@@ -80,7 +80,7 @@
   ;; Switch to the scratch buffer after creating a new workspace
   (advice-add
    'tabspaces-switch-or-create-workspace :around
-   (defun +tabspaces--switch-to-scratch-after-create-a (origfn &rest workspace)
+   (defun +tabspaces--switch-to-scratch-after-create:around-a (origfn &rest workspace)
      (let ((before-list (tabspaces--list-tabspaces)))
        (apply origfn workspace)
        ;; Created a new empty workspace

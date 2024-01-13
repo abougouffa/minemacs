@@ -43,7 +43,7 @@
   ;; Automatically generate `backend-load' function to be used as a hook
   (advice-add
    'flymake-quickdef-backend :after
-   (defun +flymake-quickdef--make-load-fn (backend &rest _)
+   (defun +flymake-quickdef--make-load-fn:after-a (backend &rest _)
      (let ((fn (intern (format "+%s-load" backend))))
        (defalias fn
          (lambda () (add-hook 'flymake-diagnostic-functions backend nil t))))))

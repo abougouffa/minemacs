@@ -42,7 +42,7 @@
 
   (advice-add
    'gdb :around
-   (defun +gdb--set-window-layout-a (origfn &rest args)
+   (defun +gdb--set-window-layout:around-a (origfn &rest args)
      ;; Save current buffer
      (setq +gdb--old-win-config (current-window-configuration))
      (let ((c-buffer (window-buffer (selected-window))))
@@ -51,15 +51,15 @@
 
   (advice-add
    'gdb-reset :after
-   (defun +gdb--restore-window-layout-a (&rest _)
+   (defun +gdb--restore-window-layout:after-a (&rest _)
      (set-window-configuration +gdb--old-win-config))))
 
 (defun +gdb-reset-layout ()
   "Enable custom window layout for gdb."
   (interactive)
   (setq gdb-many-windows +gdb--many-windows-old)
-  (advice-remove 'gdb #'+gdb--set-window-layout-a)
-  (advice-add 'gdb-reset #'+gdb--restore-window-layout-a))
+  (advice-remove 'gdb #'+gdb--set-window-layout:around-a)
+  (advice-add 'gdb-reset #'+gdb--restore-window-layout:after-a))
 
 ;;;###autoload
 (defun +emacs-gdb-enable ()

@@ -43,7 +43,7 @@
   ;; `straight'.
   (advice-add
    'use-package :around
-   (defun +use-package--check-if-disabled-a (origfn package &rest args)
+   (defun +use-package--check-if-disabled:around-a (origfn package &rest args)
      (when (and (not (+package-disabled-p package))
                 (or (not (memq :if args))
                     (and (memq :if args) (eval (+varplist-get args :if t))))
@@ -54,7 +54,7 @@
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
 
-  ;; If you want to keep the `+use-package--check-if-disabled-a' advice after
+  ;; If you want to keep the `+use-package--check-if-disabled:around-a' advice after
   ;; loading MinEmacs' modules. You need to set in in your
   ;; "$MINEMACSDIR/early-config.el"
   (defvar +use-package-keep-checking-for-disabled-p nil)
@@ -66,7 +66,7 @@
    'minemacs-after-loading-modules-hook
    (defun +use-package--remove-check-if-disabled-advice-h ()
      (unless +use-package-keep-checking-for-disabled-p
-       (advice-remove 'use-package '+use-package--check-if-disabled-a)))))
+       (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))))
 
 
 (provide 'me-use-package-extra)

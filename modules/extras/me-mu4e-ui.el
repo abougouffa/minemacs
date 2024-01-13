@@ -13,7 +13,7 @@
 (defvar +mu4e-main-bullet "⦿"
   "Prefix to use instead of \"  *\" in the mu4e main view.
 This is enacted by `+mu4e--main-action-str-prettier-a' and
-`+mu4e--main-keyval-str-prettier-a'.")
+`+mu4e--main-keyval-str-prettier:filter-return-a'.")
 
 (defvar +mu4e-header-colorized-faces
   '(nerd-icons-green
@@ -66,7 +66,7 @@ integer OFFSET."
                      +mu4e-header-colorized-faces)))
     color))
 
-(defun +mu4e--main-action-prettier-a (title cmd &optional bindstr alt)
+(defun +mu4e--main-action-prettier:override-a (title cmd &optional bindstr alt)
   (let* ((bindstr (or bindstr (mu4e-key-description cmd) (and alt (string alt))
                       (mu4e-error "No binding for %s" cmd)))
          (bindstr (if (and alt (> (length bindstr) 1)) alt bindstr))
@@ -100,7 +100,7 @@ integer OFFSET."
                        (- (length title) 1) 'mouse-face 'highlight title)
     (propertize title 'keymap map)))
 
-(defun +mu4e--main-keyval-str-prettier-a (str)
+(defun +mu4e--main-keyval-str-prettier:filter-return-a (str)
   "Replace '*' with `+mu4e-main-bullet' in STR."
   (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str))
 
@@ -224,8 +224,8 @@ will also be the width of all other printable characters."
                          (:from-or-to . 25)
                          (:subject-truncated)))
 
-  (advice-add 'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier-a)
-  (advice-add 'mu4e--main-action :override #'+mu4e--main-action-prettier-a))
+  (advice-add 'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier:filter-return-a)
+  (advice-add 'mu4e--main-action :override #'+mu4e--main-action-prettier:override-a))
 
 (defun +mu4e-ui-setup ()
   (if (display-graphic-p)

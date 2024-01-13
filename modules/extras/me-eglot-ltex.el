@@ -53,7 +53,7 @@
 (defvar eglot-ltex-disable-rules
   (+deserialize-sym 'eglot-ltex-disable-rules eglot-ltex-user-rules-path))
 
-(defun eglot-ltex--process-client-commands-a (_srv cmd args)
+(defun eglot-ltex--process-client-commands:before-a (_srv cmd args)
   "Process LTeX-LS client commands."
   (cond
    ((string= cmd "_ltex.addToDictionary")
@@ -101,12 +101,12 @@ When STORE is non-nil, this will also store the new plist in the directory
 (defun eglot-ltex-enable-handling-client-commands ()
   "Enable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
-  (advice-add 'eglot-execute-command :before #'eglot-ltex--process-client-commands-a))
+  (advice-add 'eglot-execute-command :before #'eglot-ltex--process-client-commands:before-a))
 
 (defun eglot-ltex-disable-handling-client-commands ()
   "Disable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
-  (advice-remove 'eglot-execute-command #'eglot-ltex--process-client-commands-a))
+  (advice-remove 'eglot-execute-command #'eglot-ltex--process-client-commands:before-a))
 
 
 (provide 'me-eglot-ltex)

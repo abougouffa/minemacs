@@ -37,7 +37,7 @@
   ;; Save a local snapshot of the captured web page using "single-file-cli"
   (advice-add
    'org-roam-protocol-open-ref :after
-   (defun +org-roam-protocol--single-file-snapshot-a (info)
+   (defun +org-roam-protocol--single-file-snapshot:after-a (info)
      (+single-file
       (plist-get info :ref)
       (+file-name-incremental

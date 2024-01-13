@@ -72,7 +72,7 @@ Return an AST with newlines counts in each level."
     (plist-get (car ast) :children)))
 
 ;; Adapted from Scimax
-(defun +org-extras--renumber-env-a (orig-func &rest args)
+(defun +org-extras--renumber-env:around-a (orig-func &rest args)
   "An advice function to inject numbers in LaTeX fragment previews."
   (let ((counter -1) results)
     (setq results (cl-loop
@@ -100,16 +100,16 @@ Return an AST with newlines counts in each level."
 
 Force enabling when ENABLE is non-nil."
   (interactive)
-  (if (or enable (not (get '+org-extras--renumber-env-a 'enabled)))
+  (if (or enable (not (get '+org-extras--renumber-env:around-a 'enabled)))
       (progn
-        (advice-add 'org-create-formula-image :around #'+org-extras--renumber-env-a)
-        (put '+org-extras--renumber-env-a 'enabled t)
+        (advice-add 'org-create-formula-image :around #'+org-extras--renumber-env:around-a)
+        (put '+org-extras--renumber-env:around-a 'enabled t)
         (message "LaTeX numbering enabled."))
-    (advice-remove 'org-create-formula-image #'+org-extras--renumber-env-a)
-    (put '+org-extras--renumber-env-a 'enabled nil)
+    (advice-remove 'org-create-formula-image #'+org-extras--renumber-env:around-a)
+    (put '+org-extras--renumber-env:around-a 'enabled nil)
     (message "LaTeX numbering disabled.")))
 
-(defun +org-extras-inject-latex-fragment (orig-func &rest args)
+(defun +org-extras-inject-latex-fragment:around-a (orig-func &rest args)
   "Advice function to inject latex code before and/or after the equation in a latex fragment.
 You can use this to set \\mathversion{bold} for example to make it bolder.
 The way it works is by defining :latex-fragment-pre-body and/or
@@ -124,13 +124,13 @@ it is made into an image."
 (defun +org-extras-inject-latex-fragments ()
   "Toggle whether you can insert latex in fragments."
   (interactive)
-  (if (not (get '+org-extras-inject-latex-fragment 'enabled))
+  (if (not (get '+org-extras-inject-latex-fragment:around-a 'enabled))
       (progn
-        (advice-add 'org-create-formula-image :around #'+org-extras-inject-latex-fragment)
-        (put '+org-extras-inject-latex-fragment 'enabled t)
+        (advice-add 'org-create-formula-image :around #'+org-extras-inject-latex-fragment:around-a)
+        (put '+org-extras-inject-latex-fragment:around-a 'enabled t)
         (message "Inject latex enabled"))
-    (advice-remove 'org-create-formula-image #'+org-extras-inject-latex-fragment)
-    (put '+org-extras-inject-latex-fragment 'enabled nil)
+    (advice-remove 'org-create-formula-image #'+org-extras-inject-latex-fragment:around-a)
+    (put '+org-extras-inject-latex-fragment:around-a 'enabled nil)
     (message "Inject latex disabled")))
 
 ;; Adapted from: github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
@@ -168,7 +168,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Enable multi-files documents."
   (advice-add
    'org-latex-export-to-pdf :around
-   (defun +org--latex-export-to-pdf-main-file-a (orig-fn &rest orig-args)
+   (defun +org--latex-export-to-pdf-main-file:around-a (orig-fn &rest orig-args)
      (let* ((main-file (and +org-export-to-pdf-main-file
                             (file-exists-p (expand-file-name +org-export-to-pdf-main-file))))
             (out-file (if main-file
@@ -280,7 +280,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Fix the font size issue in Org's outline in the echo area."
   (advice-add
    #'org-format-outline-path :around
-   (defun +org--strip-properties-from-outline-a (fn &rest args)
+   (defun +org--strip-properties-from-outline:around-a (fn &rest args)
      (let ((org-level-faces
             (cl-loop for face in org-level-faces
                      collect `(:foreground ,(face-foreground face nil t)

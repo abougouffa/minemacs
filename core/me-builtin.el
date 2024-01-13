@@ -206,7 +206,7 @@ or file path may exist now."
   (let ((x-win-dir (+directory-ensure minemacs-local-dir "x-win/")))
     (advice-add
      #'emacs-session-filename :filter-return
-     (defun +emacs-session-filename--in-subdir-a (session-filename)
+     (defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
        "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
        (concat x-win-dir (file-name-nondirectory session-filename))))
 
@@ -698,7 +698,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 
   ;; Taken from:
   ;; reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists
-  (defun +emacs-lisp--calculate-lisp-indent-a (&optional parse-start)
+  (defun +emacs-lisp--calculate-lisp-indent:override-a (&optional parse-start)
     "Add better indentation for quoted and backquoted lists."
     ;; The `calculate-lisp-indent-last-sexp' is defined with `defvar' with it's
     ;; value omitted, marking it special and only defining it locally. So if you
@@ -857,7 +857,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 
   ;; Override the `calculate-lisp-indent' to indent plists correctly. See:
   ;; reddit.com/r/emacs/comments/d7x7x8/finally_fixing_indentation_of_quoted_lists/
-  (advice-add 'calculate-lisp-indent :override #'+emacs-lisp--calculate-lisp-indent-a)
+  (advice-add 'calculate-lisp-indent :override #'+emacs-lisp--calculate-lisp-indent:override-a)
 
   ;; Better fontification for Emacs Lisp code (colorizes functions, ...)
   (font-lock-add-keywords 'emacs-lisp-mode '((+emacs-lisp--highlight-vars-and-faces . +emacs-lisp--face)))
@@ -865,7 +865,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   ;; HACK: Adapted from Doom. Quite a few functions here are called often, and
   ;; so are especially performance sensitive, so we compile these functions
   ;; on-demand.
-  (+compile-functions #'+emacs-lisp--highlight-vars-and-faces #'+emacs-lisp--calculate-lisp-indent-a))
+  (+compile-functions #'+emacs-lisp--highlight-vars-and-faces #'+emacs-lisp--calculate-lisp-indent:override-a))
 
 (use-package scheme
   :custom
@@ -893,7 +893,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 
   (advice-add
    'gud-display-line :after
-   (defun +gud--display-overlay-a (true-file _line)
+   (defun +gud--display-overlay:after-a (true-file _line)
      (let* ((overlay +gud-overlay)
             (buffer (gud-find-file true-file)))
        (with-current-buffer buffer
@@ -1415,7 +1415,7 @@ current line.")
   ;; `shell-kill-buffer-on-exit').
   (advice-add
    'term-sentinel :around
-   (defun +term--kill-after-exit-a (orig-fn proc msg)
+   (defun +term--kill-after-exit:around-a (orig-fn proc msg)
      (if (memq (process-status proc) '(signal exit))
          (let ((buffer (process-buffer proc)))
            (apply orig-fn (list proc msg))
@@ -1617,11 +1617,12 @@ Useful for quickly switching to an open buffer."
   :init
   ;; Add visual pulse when changing focus, like beacon but built-in
   ;; From: https://karthinks.com/software/batteries-included-with-emacs/
-  (defun +pulse-line (&rest _)
-    "Pulse the current line."
-    (pulse-momentary-highlight-one-line (point)))
   (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
-    (advice-add command :after #'+pulse-line)))
+    (advice-add
+     command :after
+     (defun +pulse--line:after-a (&rest _)
+       "Pulse the current line."
+       (pulse-momentary-highlight-one-line (point))))))
 
 (use-package isearch
   ;; Scroll in isearch history using UP/DOWN or C-j/C-k

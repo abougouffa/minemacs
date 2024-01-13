@@ -89,7 +89,7 @@
   ;; Force running update and index in background
   (advice-add
    'mu4e-update-mail-and-index :around
-   (defun +mu4e--update-mail-quitely-a (origfn run-in-background)
+   (defun +mu4e--update-mail-quitely:around-a (origfn run-in-background)
      (+info! "Getting new emails")
      (apply origfn '(t)))))
 
@@ -173,7 +173,7 @@
   ;; HACK: When adding multiple attachements, I likely need it to remember the directory of the last added attachement.
   (advice-add
    'org-msg-attach-attach :after
-   (defun +org-msg-attach-attach--save-default-directory-a (file &rest _)
+   (defun +org-msg-attach-attach--save-default-directory:after-a (file &rest _)
      (when-let ((dir (file-name-directory file)))
        (setq-local default-directory dir)))))
 

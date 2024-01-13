@@ -172,7 +172,7 @@ value of this method instead of the original alist, to ensure correct results."
 (defmacro +fn-inhibit-messages! (fn &optional no-message-log)
   "Add an advice around the function FN to suppress messages in echo area.
 If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
-  (let ((advice-fn (make-symbol (format "+%s--inhibit-messages-a" fn))))
+  (let ((advice-fn (make-symbol (format "+%s--inhibit-messages:around-a" fn))))
     `(advice-add
       ',fn :around
       (defun ,advice-fn (origfn &rest args)
@@ -326,7 +326,7 @@ EXT-REGEXP. When it runs, this function provides a feature named
 `minemacs-first-FILETYPE-file' and a run all hooks in
 `minemacs-first-FILETYPE-file-hook'."
   (let* ((filetype (+unquote filetype))
-         (fn-name (intern (format "+first-file-%s-h" (if filetype (format "-%s" filetype) ""))))
+         (fn-name (intern (format "+first-%s-file:after-a" (if filetype (format "-%s" filetype) ""))))
          (hook-name (intern (format "minemacs-first%s-file-hook" (if filetype (format "-%s" filetype) ""))))
          (feature-name (intern (format "minemacs-first%s-file" (if filetype (format "-%s" filetype) ""))))
          (hook-docs (format "This hook will be run after opening the first %s file (files that matches \"%s\").

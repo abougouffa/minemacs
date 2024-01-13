@@ -25,12 +25,12 @@
   (defvar-local +parinter-rust--was-enabled-p nil)
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
-  (defun +parinter-rust--restore-a (&rest _)
+  (defun +parinter-rust--restore:after-a (&rest _)
     (when +parinter-rust--was-enabled-p
       (setq +parinter-rust--was-enabled-p nil)
       (parinfer-rust-mode 1)))
 
-  (defun +parinter-rust--disable-a (&rest _)
+  (defun +parinter-rust--disable:before-a (&rest _)
     (if (and (bound-and-true-p parinfer-rust-mode) (bound-and-true-p parinfer-rust-enabled))
         (progn (setq +parinter-rust--was-enabled-p t)
                (parinfer-rust-mode -1))
@@ -40,8 +40,8 @@
   ;; behave strangely when `parinfer-rust-mode' is enabled, so lets disable when
   ;; using this command.
   (dolist (cmd '(evil-shift-right))
-    (advice-add cmd :before #'+parinter-rust--disable-a)
-    (advice-add cmd :after #'+parinter-rust--restore-a)))
+    (advice-add cmd :before #'+parinter-rust--disable:before-a)
+    (advice-add cmd :after #'+parinter-rust--restore:after-a)))
 
 (use-package macrostep
   :straight t

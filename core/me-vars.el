@@ -152,8 +152,8 @@ of being enabled."
 
 (defcustom minemacs-after-loading-modules-hook nil
   "This hook will be run after loading MinEmacs modules.
-It is used internally to remove the `+use-package--check-if-disabled-a' advice
-we set on `use-package' in `me-bootstrap'."
+It is used internally to remove the `+use-package--check-if-disabled:around-a'
+advice we set on `use-package' in `me-bootstrap'."
   :group 'minemacs-core
   :type 'hook)
 

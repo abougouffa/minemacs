@@ -47,9 +47,8 @@
   ;; Ask for a buffer when splitting windows
   (with-eval-after-load 'consult
     (dolist (fn '(evil-window-split evil-window-vsplit))
-      (advice-add
-       fn :after
-       (defun +evil--cunsult-buffer-after-window-split-a (&rest _)
+      (advice-add fn :after
+       (defun +evil--cunsult-buffer-after-window-split:after-a (&rest _)
          (consult-buffer))))))
 
 (use-package evil-collection
