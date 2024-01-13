@@ -88,8 +88,8 @@ of being enabled.
 #### `minemacs-after-loading-modules-hook`
 
 This hook will be run after loading MinEmacs modules.
-It is used internally to remove the `+use-package--check-if-disabled-a` advice
-we set on `use-package` in `me-bootstrap`.
+It is used internally to remove the `+use-package--check-if-disabled:around-a`
+advice we set on `use-package` in `me-bootstrap`.
 
 #### `minemacs-after-setup-fonts-hook`
 
@@ -1052,7 +1052,7 @@ This will overwrite the built-in "gdb-mi" for this session.
 
 #### `(+mu4e-view-select-attachment)`
 
-Use completing-read to select a single attachment.
+Use `completing-read` to select a single attachment.
 Acts like a singular `mu4e-view-save-attachments`, without the saving.
 
 #### `(+mu4e-view-open-attachment)`
@@ -1088,6 +1088,10 @@ Copy message at point to somewhere else as <date>_<subject>.eml.
 Save current MSG as PDF.
 If SKIP-HEADERS is set, do not show include message headers.
 
+#### `(+mu4e-extras-locks-setup)`
+
+Setup locks for mu4e's server.
+
 #### `(+mu4e-sent-from-gmail-p &optional MSG)`
 
 Return the "from" address if it is in the registred Gmail accounts.
@@ -1101,12 +1105,20 @@ If HERRING is set, it will be used to determine the face instead of STR.
 Will try to make unique when non-nil UNIQUE,
 a quoted symbol for a alist of current strings and faces provided.
 
+#### `(+mu4e-ui-setup)`
+
+Apply UI setup.
+
+#### `(+mu4e-ui-modeline-tweaks)`
+
+Apply UI tweaks based on `nerd-icons`.
+
 #### `(+org-extras-toggle-latex-equation-numbering &optional ENABLE)`
 
 Toggle whether LaTeX fragments are numbered.
 Force enabling when ENABLE is non-nil.
 
-#### `(+org-extras-inject-latex-fragment ORIG-FUNC &rest ARGS)`
+#### `(+org-extras-inject-latex-fragment:around-a ORIG-FUNC &rest ARGS)`
 
 Advice function to inject latex code before and/or after the equation in a latex fragment.
 You can use this to set \mathversion{bold} for example to make it bolder.
