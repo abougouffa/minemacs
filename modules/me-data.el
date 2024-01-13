@@ -1,6 +1,6 @@
 ;;; me-data.el --- Data and vizualizaion formats (csv, yaml, xml, graphviz, ...) -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 

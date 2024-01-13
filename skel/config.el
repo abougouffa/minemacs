@@ -1,6 +1,6 @@
 ;;; config.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023 Abdelhak Bougouffa
+;; Copyright (C) 2022-2024 Abdelhak Bougouffa
 
 ;; =============================================================================
 ;; CAVEAT! PLEASE NOTE THAT THIS CONFIG FILE IS JUST AN EXAMPLE OF HOW TO SET

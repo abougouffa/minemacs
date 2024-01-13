@@ -1,6 +1,6 @@
 ;;; me-mu4e-ui.el --- Better UI for mu4e -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 

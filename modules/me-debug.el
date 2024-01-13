@@ -1,6 +1,6 @@
 ;;; me-debug.el --- Debugging stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2023  Abdelhak Bougouffa
+;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 
