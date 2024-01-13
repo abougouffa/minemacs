@@ -105,9 +105,9 @@ integer OFFSET."
   (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str))
 
 (defun +mu4e--get-string-width (str)
-  "Return the width in pixels of a string in the current
-window's default font. If the font is mono-spaced, this
-will also be the width of all other printable characters."
+  "Return the width in pixels of STR in the current window's default font.
+If the font is mono-spaced, this will also be the width of all other printable
+characters."
   (let ((window (selected-window))
         (remapping face-remapping-alist))
     (with-temp-buffer
@@ -133,6 +133,7 @@ will also be the width of all other printable characters."
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
 
 (defun +mu4e--ui-setup ()
+  "Tweak UI elements."
   ;; Add a column to display what email account the email belongs to,
   ;; and an account color stripe column
   (defvar +mu4e-header--maildir-colors nil)
@@ -228,6 +229,7 @@ will also be the width of all other printable characters."
   (advice-add 'mu4e--main-action :override #'+mu4e--main-action-prettier:override-a))
 
 (defun +mu4e-ui-setup ()
+  "Apply UI setup."
   (if (display-graphic-p)
       (+mu4e--ui-setup)
     (+hook-once! 'server-after-make-frame-hook
@@ -235,6 +237,7 @@ will also be the width of all other printable characters."
         (+mu4e--ui-setup)))))
 
 (defun +mu4e-ui-modeline-tweaks ()
+  "Apply UI tweaks based on `nerd-icons'."
   (with-eval-after-load 'nerd-icons
     (setq mu4e-modeline-all-clear `("C:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-read")))
           mu4e-modeline-all-read `("R:" . ,(format "%s  " (nerd-icons-octicon "nf-oct-check")))

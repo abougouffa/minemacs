@@ -21,7 +21,7 @@
 ;; Some of these functions are adapted from Doom Emacs
 
 (defun +mu4e-view-select-attachment ()
-  "Use completing-read to select a single attachment.
+  "Use `completing-read' to select a single attachment.
 Acts like a singular `mu4e-view-save-attachments', without the saving."
   (if-let ((parts (delq nil (mapcar
                              (lambda (part)
@@ -267,7 +267,7 @@ If SKIP-HEADERS is set, do not show include message headers."
                 mu4e-attachment-dir)))
           ;; `gnus-article-browse-html-parts' will try to display the text/html part
           ;; of the message, but as `+save-as-pdf' is used as browse-url function,
-          ;; it will be called with the proper argumets.
+          ;; it will be called with the proper arguments.
           (unless (gnus-article-browse-html-parts parts header)
             ;; If the mail doesn't contain a text/html part, we save the plain-text message
             ;; and then we explicitly use `+save-as-pdf' to save it.
@@ -278,6 +278,7 @@ If SKIP-HEADERS is set, do not show include message headers."
         (mm-destroy-parts parts)))))
 
 (defun +mu4e-extras-locks-setup ()
+  "Setup locks for mu4e's server."
   (advice-add 'mu4e--server-kill :after (defun +mu4e--unlock:after-a (&rest _) (+unlock 'mu)))
   (advice-add 'mu4e--server-start :after (defun +mu4e--lock:after-a (&rest _) (+lock 'mu))))
 
@@ -288,7 +289,7 @@ If SKIP-HEADERS is set, do not show include message headers."
 
   ;; Register actions
   (add-to-list 'mu4e-view-actions '("pdf" . +mu4e-view-save-mail-as-pdf))
-  (add-to-list 'mu4e-view-actions '("all attachements save" . +mu4e-view-save-all-attachments))
+  (add-to-list 'mu4e-view-actions '("all attachments save" . +mu4e-view-save-all-attachments))
   (add-to-list 'mu4e-view-actions '("Save message" . +mu4e-save-message-at-point)))
 
 

@@ -170,7 +170,7 @@
     "p"  #'org-msg-preview)
   (org-msg-mode 1)
 
-  ;; HACK: When adding multiple attachements, I likely need it to remember the directory of the last added attachement.
+  ;; HACK: When adding multiple attachments, I likely need it to remember the directory of the last added attachment.
   (advice-add
    'org-msg-attach-attach :after
    (defun +org-msg-attach-attach--save-default-directory:after-a (file &rest _)
