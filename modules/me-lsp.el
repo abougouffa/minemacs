@@ -11,6 +11,10 @@
 (use-package lsp-mode
   :straight t
   :preface
+  ;; HACK: Define the `$LSP_USE_PLISTS=true` to improve `lsp-mode' performances.
+  ;; We set this environment variable here so we don't need to relay on the
+  ;; system's environment variables.
+  (setenv "LSP_USE_PLISTS" "true")
   (setq lsp-use-plists t)
   :custom
   (lsp-session-file (concat minemacs-local-dir "lsp/session.el"))

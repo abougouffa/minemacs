@@ -45,12 +45,6 @@
     (push (cons 'alpha-background (if (or (zerop alpha) (> alpha 100)) 93 alpha))
           default-frame-alist)))
 
-;; HACK: In `lsp-mode' (see the `me-lsp' module), the user can define the
-;; `$LSP_USE_PLISTS=true` to improve `lsp-mode' performances. We set this
-;; environment variable here so we don't need to add it to the system's
-;; environment variables.
-(setenv "LSP_USE_PLISTS" "true")
-
 ;; Load MinEmacs variables from the `me-vars' core module.
 (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
 
