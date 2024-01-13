@@ -1352,23 +1352,26 @@ Returns either nil, or the position of the first null byte."
        (not (+binary-objdump-buffer-p buffer))))
 
 (define-derived-mode objdump-disassemble-mode
-  asm-mode "Objdump Mode"
+  special-mode "Objdump Mode"
   "Major mode for viewing executable files disassembled using objdump."
   (if-let* ((file (buffer-file-name))
             (objdump-file (+binary-objdump-p file)))
       (let ((buffer-read-only nil))
-        (message "Disassembling file \"%s\" using objdump." (file-name-nondirectory file))
+        (message "Disassembling %S using objdump." (file-name-nondirectory file))
         (erase-buffer)
+        (set-visited-file-name (file-name-with-extension file "_dias.objdump"))
         (call-process "objdump" nil (current-buffer) nil "-d" file)
-        (view-mode)
         (goto-char (point-min))
-        (set-buffer-modified-p nil)
-        (set-visited-file-name nil t)
         (buffer-disable-undo)
         (set-buffer-modified-p nil)
-        (asm-mode)
-        (setq-local buffer-read-only t))
-    (message "Objdump can not be used with this buffer.")))
+        (view-mode 1)
+        (read-only-mode 1)
+        ;; Apply syntax highlighting from `asm-mode'
+        (require 'asm-mode)
+        (set-syntax-table (make-syntax-table asm-mode-syntax-table))
+        (modify-syntax-entry ?# "< b") ; use # for comments
+        (setq-local font-lock-defaults '(asm-font-lock-keywords)))
+    (user-error "Objdump can not be used with this buffer")))
 
 (defun +binary-hexl-mode-maybe ()
   "Activate `hexl-mode' if relevant for the current buffer."
