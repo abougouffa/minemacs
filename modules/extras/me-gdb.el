@@ -70,9 +70,7 @@ This will overwrite the built-in \"gdb-mi\" for this session."
       (when (yes-or-no-p "Loading \"emacs-gdb\" will overwrite \"gdb-mi\" for this session, continue?")
         (use-package gdb-mi
           ;; I use my own fork in which I've merged some open PRs on the upstream.
-          :straight '(:host github :repo "weirdNox/emacs-gdb"
-                      :files (:defaults "*.c" "*.h" "Makefile")
-                      :fork (:host github :repo "abougouffa/emacs-gdb"))
+          :straight (:host github :repo "abougouffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
           :demand t
           :init
           (fmakunbound 'gdb)
