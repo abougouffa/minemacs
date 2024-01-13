@@ -35,6 +35,22 @@
   :when (+emacs-features-p 'tree-sitter)
   :hook (minemacs-first-file . global-treesit-fold-mode))
 
+(use-package evil-textobj-tree-sitter
+  :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
+  :after evil
+  :init
+  ;; Require the package on the first `prog-mode' file
+  (+hook-once! prog-mode-hook (with-eval-after-load 'evil (require 'evil-textobj-tree-sitter)))
+  :config
+  ;; Goto start of next function
+  (define-key evil-normal-state-map (kbd "]f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer")))
+  ;; Goto start of previous function
+  (define-key evil-normal-state-map (kbd "[f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t)))
+  ;; Goto end of next function
+  (define-key evil-normal-state-map (kbd "]F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" nil t)))
+  ;; Goto end of previous function
+  (define-key evil-normal-state-map (kbd "[F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
+
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
