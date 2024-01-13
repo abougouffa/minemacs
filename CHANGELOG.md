@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.6.0](https://github.com/abougouffa/minemacs/compare/v4.5.4..v4.6.0) - 2024-01-13
+#### Documentation
+- **(core)** add documentation for `+font--get-valid-args` - ([8c3cb2c](https://github.com/abougouffa/minemacs/commit/8c3cb2c3eb0976cc40e6dd6500f3389b97cd2585)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documenatation - ([b738333](https://github.com/abougouffa/minemacs/commit/b7383330dc244daef39c4774347fa18d80603144)) - [@abougouffa](https://github.com/abougouffa)
+- minor documentation tweaks - ([3e9cfb2](https://github.com/abougouffa/minemacs/commit/3e9cfb234e1f5074a54f5e1facf186a7b2d29b72)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([649d3d5](https://github.com/abougouffa/minemacs/commit/649d3d5b738fcd444ef4764e6afbf0695a9b4d9b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** add support for `evil-textobj-tree-sitter-get-textobj` - ([a8325b0](https://github.com/abougouffa/minemacs/commit/a8325b0bddc2f855b7d4fb5ccbb86023078df9a6)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-fold)** restore support after fixes (still WIP) - ([874fa85](https://github.com/abougouffa/minemacs/commit/874fa8513af7d977231fdf210994e25fb2a932e8)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(git)** add `user-config` to `.gitignore` - ([f22165b](https://github.com/abougouffa/minemacs/commit/f22165b10bf2129c79f872f6521f7aeb058cbd2b)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(org)** simplify the code and add documentation - ([874a87b](https://github.com/abougouffa/minemacs/commit/874a87b6a38cc87d40a03f8438260be4c3c5a3b8)) - [@abougouffa](https://github.com/abougouffa)
+- better convention for advice functions naming - ([569f10b](https://github.com/abougouffa/minemacs/commit/569f10b160ca7e544d216aea0994f4d333604f4e)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** use `file-name-concat` in `+load` - ([08cc205](https://github.com/abougouffa/minemacs/commit/08cc20541b4fe07aaa730372007f5a92979bc83f)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-gdb)** directly use my recipe - ([92719c7](https://github.com/abougouffa/minemacs/commit/92719c702fe4a0752be93ff29c8449b45f6b7efe)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile-executor)** add keybindings - ([8871df4](https://github.com/abougouffa/minemacs/commit/8871df469df11ed7e4c690ae3879d5e0c4dc6f31)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-contrib)** make it lazy - ([1b0777c](https://github.com/abougouffa/minemacs/commit/1b0777c8cd03df5d90ed818ab9eabb3002741d87)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.5.4](https://github.com/abougouffa/minemacs/compare/v4.5.3..v4.5.4) - 2024-01-10
 #### Bug Fixes
 - **(core)** better inference of filename in `+package-download-from-urls` - ([b7e0739](https://github.com/abougouffa/minemacs/commit/b7e0739f3112b7da015a872126057737e4e83301)) - [@abougouffa](https://github.com/abougouffa)
