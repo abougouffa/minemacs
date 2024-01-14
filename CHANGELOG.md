@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.6.2](https://github.com/abougouffa/minemacs/compare/v4.6.1..v4.6.2) - 2024-01-14
+#### Refactoring
+- **(obsolete/flycheck)** minor edits - ([f34a85b](https://github.com/abougouffa/minemacs/commit/f34a85bd3ba973ce336010a41a5e8e753d1f37c2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(multi-cursors)** remove unused `multiple-cursors` - ([8226319](https://github.com/abougouffa/minemacs/commit/82263197b56ec55e1709218070a8b2694b056127)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-cursors)** better packages loading - ([f81a573](https://github.com/abougouffa/minemacs/commit/f81a573ba1dabdf3c467c4c915dfaa2513daa136)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([92eb5ef](https://github.com/abougouffa/minemacs/commit/92eb5ef154a5975f41f2eda0f855c4e47dcceacb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.6.1](https://github.com/abougouffa/minemacs/compare/v4.6.0..v4.6.1) - 2024-01-13
 #### Bug Fixes
 - **(core)** better implementation of `objdump-disassemble-mode` - ([b3f4149](https://github.com/abougouffa/minemacs/commit/b3f4149460f42b9166b7151ba4bf566d53da0e28)) - [@abougouffa](https://github.com/abougouffa)
