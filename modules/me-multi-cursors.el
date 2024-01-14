@@ -9,19 +9,46 @@
 ;;; Code:
 
 (use-package iedit
+  :straight t)
+
+(use-package evil-multiedit ; This will load `iedit' and suppresses it
   :straight t
-  :after minemacs-first-file
+  :after evil minemacs-first-file
   :demand t
-  :preface
-  (+fn-inhibit-messages! iedit-update-key-bindings))
+  :init
+  (+nvmap! :infix "g"
+    "ze" '(nil :wk "evil-multiedit")
+    "zee" #'evil-multiedit-match-all
+    "zer" #'evil-multiedit-restore
+    "zeq" #'evil-multiedit-abort
+    "zen" #'evil-multiedit-next
+    "zeN" #'evil-multiedit-prev
+    "zet" #'evil-multiedit-toggle-or-restrict-region)
+  (+vmap! :infix "g"
+    "zed" #'evil-multiedit-match-and-next
+    "zeD" #'evil-multiedit-match-and-prev)
+  (+nmap! :infix "g"
+    "zed" #'evil-multiedit-match-symbol-and-next
+    "zeD" #'evil-multiedit-match-symbol-and-prev
+    "zeT" #'evil-multiedit-toggle-marker-here)
+  :config
+  (evil-multiedit-default-keybinds))
 
 (use-package evil-iedit-state
   :straight t
-  :after iedit evil
-  :demand t
-  :config
+  :commands evil-iedit-state/iedit-mode
+  :init
   ;; Use the `iedit' key to trigger `evil-iedit-state/iedit-mode'.
-  (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode))
+  (with-eval-after-load 'iedit
+    (when iedit-toggle-key-default
+      (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode)))
+  :config
+  ;; FIX: When we press "C-;" (`iedit-toggle-key-default') to enter `iedit-mode'
+  ;; and then "C-;" to quit it, `evil-iedit-state' will stay in `iedit-mode'
+  ;; even if the selections aren't displayed and no `iedit' indication is
+  ;; displayed in minibuffer.
+  (when iedit-toggle-key-default
+    (keymap-set evil-iedit-state-map (key-description iedit-toggle-key-default) 'evil-iedit-state/quit-iedit-mode)))
 
 (use-package evil-mc
   :straight t
@@ -53,29 +80,6 @@
           (evil-digit-argument-or-evil-beginning-of-visual-line
            (:default . evil-mc-execute-default-call)
            (visual . evil-mc-execute-visual-call)))))
-
-(use-package evil-multiedit
-  :straight t
-  :after iedit evil
-  :demand t
-  :init
-  (+nvmap! :infix "g"
-    "ze" '(nil :wk "evil-multiedit")
-    "zee" #'evil-multiedit-match-all
-    "zer" #'evil-multiedit-restore
-    "zeq" #'evil-multiedit-abort
-    "zen" #'evil-multiedit-next
-    "zeN" #'evil-multiedit-prev
-    "zet" #'evil-multiedit-toggle-or-restrict-region)
-  (+vmap! :infix "g"
-    "zed" #'evil-multiedit-match-and-next
-    "zeD" #'evil-multiedit-match-and-prev)
-  (+nmap! :infix "g"
-    "zed" #'evil-multiedit-match-symbol-and-next
-    "zeD" #'evil-multiedit-match-symbol-and-prev
-    "zeT" #'evil-multiedit-toggle-marker-here)
-  :config
-  (evil-multiedit-default-keybinds))
 
 (use-package multiple-cursors
   :straight t)
