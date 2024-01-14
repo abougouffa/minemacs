@@ -81,9 +81,6 @@
            (:default . evil-mc-execute-default-call)
            (visual . evil-mc-execute-visual-call)))))
 
-(use-package multiple-cursors
-  :straight t)
-
 
 (provide 'me-multi-cursors)
 
