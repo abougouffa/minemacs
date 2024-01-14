@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.6.3](https://github.com/abougouffa/minemacs/compare/v4.6.2..v4.6.3) - 2024-01-14
+#### Bug Fixes
+- **(core)** ignore case when matching regexps in `+make-first-file-hook!` - ([6241629](https://github.com/abougouffa/minemacs/commit/624162920477929775abaad623e9a1c8681b7f44)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(skel)** add an example of `init-tweaks.el` - ([57d796f](https://github.com/abougouffa/minemacs/commit/57d796f6d52ee054f09e119bc59d849aa65cc557)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- obfuscate email addresses with `rot13` - ([3c3c709](https://github.com/abougouffa/minemacs/commit/3c3c709d2f22f8cefb03feb7ad95748b91483a66)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(evil-iedit-state)** use `:after iedit` instead - ([0521268](https://github.com/abougouffa/minemacs/commit/052126838e74ee0fe0549241134ef67eceba43ec)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.6.2](https://github.com/abougouffa/minemacs/compare/v4.6.1..v4.6.2) - 2024-01-14
 #### Refactoring
 - **(obsolete/flycheck)** minor edits - ([f34a85b](https://github.com/abougouffa/minemacs/commit/f34a85bd3ba973ce336010a41a5e8e753d1f37c2)) - [@abougouffa](https://github.com/abougouffa)
