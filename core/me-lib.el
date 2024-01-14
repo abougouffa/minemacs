@@ -343,7 +343,8 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
                 (when-let ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
                  (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
                filename ; for named files
-               (string-match-p ,ext-regexp filename)) ; file name matches the regexp
+               (let ((case-fold-search t)) ;; case-insensitive
+                (string-match-p ,ext-regexp filename))) ; file name matches the regexp
          (+log! "Running %d `%s' hooks." (length ,hook-name) ',hook-name)
          (advice-remove 'find-file-noselect #',fn-name)
          (provide ',feature-name)
