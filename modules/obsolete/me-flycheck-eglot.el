@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
+;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
 ;;; Commentary:
 ;; This file sets up flycheck so that, when eglot receives a publishDiagnostics
