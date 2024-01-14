@@ -37,11 +37,11 @@
 (use-package evil-iedit-state
   :straight t
   :commands evil-iedit-state/iedit-mode
+  :after iedit
   :init
   ;; Use the `iedit' key to trigger `evil-iedit-state/iedit-mode'.
-  (with-eval-after-load 'iedit
-    (when iedit-toggle-key-default
-      (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode)))
+  (when iedit-toggle-key-default
+    (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode))
   :config
   ;; FIX: When we press "C-;" (`iedit-toggle-key-default') to enter `iedit-mode'
   ;; and then "C-;" to quit it, `evil-iedit-state' will stay in `iedit-mode'
