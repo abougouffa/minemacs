@@ -16,20 +16,12 @@
   (flycheck-buffer-switch-check-intermediate-buffers nil) ; maybe set it to t
   (flycheck-display-errors-delay 0.5)
   :init
-  (defvar +flycheck-disabled-explicitly nil)
-  (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-cmake.el")
-  (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-eglot.el")
+  (+after-load! '(:any cmake-mode cmake-ts-mode)
+    (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-cmake.el"))
+  (+after-load! 'eglot
+    (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-eglot.el"))
   :config
-  (defun +flycheck-mode-toggle ()
-    (interactive)
-    (if (bound-and-true-p flycheck-mode)
-        (progn
-          (flycheck-mode -1)
-          (setq +flycheck-disabled-explicitly t))
-      (flycheck-mode 1)
-      (setq +flycheck-disabled-explicitly nil)))
-
-  (+map! "tc" #'+flycheck-mode-toggle)
+  (+map! "tc" #'flycheck-mode)
   (+map!
     :keymaps 'flycheck-error-list-mode-map
     "j"   #'flycheck-error-list-next-error
