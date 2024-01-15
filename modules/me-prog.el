@@ -30,11 +30,6 @@
          :ext "\\.nix\\'")
         treesit-auto-recipe-list))
 
-(use-package treesit-fold
-  :straight (:host github :repo "abougouffa/treesit-fold")
-  :when (+emacs-features-p 'tree-sitter)
-  :hook (minemacs-first-file . global-treesit-fold-mode))
-
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
   :after evil
