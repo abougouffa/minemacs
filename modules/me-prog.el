@@ -146,17 +146,7 @@
     "cqd" #'quickrun-select-default))
 
 (use-package pyvenv
-  :straight t
-  :config
-  (defun +pyenv--use-pyvenv-interpreter-h ()
-    (when pyvenv-virtual-env
-      (put 'python-shell-interpreter 'previous-value python-shell-interpreter)
-      (setq python-shell-interpreter (concat pyvenv-virtual-env "python3"))))
-  (defun +pyenv--restore-interpreter-h ()
-    (setq python-shell-interpreter (or (get 'python-shell-interpreter 'previous-value) (+standard-value 'python-shell-interpreter))))
-  :custom
-  (pyvenv-post-activate-hooks (list #'+pyenv--use-pyvenv-interpreter-h))
-  (pyvenv-post-deactivate-hooks (list #'+pyenv--restore-interpreter-h)))
+  :straight t)
 
 (use-package gitlab-ci-mode
   :straight t)
