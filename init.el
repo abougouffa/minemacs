@@ -196,6 +196,8 @@ goes idle."
 ;; ========= Make some special hooks =========
 (+make-first-file-hook! 'org "\\.org$")
 (+make-first-file-hook! 'elisp "\\.elc?$")
+(+make-first-file-hook! 'python (rx "." (or "py" "pyw" "pyx" "pyz" "pyzw") eol))
+(+make-first-file-hook! 'c/c++ (rx "." (or "c" "cpp" "cxx" "cc" "c++" "h" "hpp" "hxx" "hh" "h++" "ixx" "cppm" "cxxm" "c++m" "ccm") eol))
 (+make-first-file-hook! nil ".")
 
 ;; ========= Load MinEmacs packages and user customization =========
