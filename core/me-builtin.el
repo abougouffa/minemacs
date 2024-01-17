@@ -476,7 +476,7 @@ or file path may exist now."
 
 (use-package hideshow
   ;; Hide/show code blocks, a.k.a. code folding
-  :hook ((prog-mode conf-mode) . hs-minor-mode))
+  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode))
 
 (use-package xref
   :straight t
