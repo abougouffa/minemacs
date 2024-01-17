@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.7.0](https://github.com/abougouffa/minemacs/compare/v4.6.3..v4.7.0) - 2024-01-17
+#### Bug Fixes
+- **(repo)** use my fork until it gets merged upstream - ([fb9363b](https://github.com/abougouffa/minemacs/commit/fb9363bfc62eaa86fe9b29ebf2276a5d38e43b17)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(init)** more first file special hooks - ([55e6bb3](https://github.com/abougouffa/minemacs/commit/55e6bb3afd81e17b9709560d9e1a1a6564f3da0e)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `pyenv` via `pyenv.el` - ([9bb5b84](https://github.com/abougouffa/minemacs/commit/9bb5b8451dc7ddcb9e5c7cba7fb0983ce5dcc698)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add more Gerrit/repo utilities from ChromeOS's `dev-util` - ([6f25cf3](https://github.com/abougouffa/minemacs/commit/6f25cf36ad02dbf4935d57e1ae703839b9b06bc9)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(treesit-fold)** still buggy, crashing in C/C++ files - ([fec0f2f](https://github.com/abougouffa/minemacs/commit/fec0f2f2bd5684ccca8c31f60cb68af76ea85ab0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** enable `hs-minor-mode` in `nxml-mode` - ([e8338bc](https://github.com/abougouffa/minemacs/commit/e8338bcfc3eaf55638b806f1a71d84635f4860b6)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** prioritize `minemacs-first-file` over `minemacs-first-X-file` - ([c846a0f](https://github.com/abougouffa/minemacs/commit/c846a0f45545e4e31a05774ad9a50c57fe8260b2)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-contrib)** ensure using the right branch - ([0c7d38d](https://github.com/abougouffa/minemacs/commit/0c7d38dbcc8c5e34b88fdf05ec0ec0bbd9583c33)) - [@abougouffa](https://github.com/abougouffa)
+- **(pyvenv)** remove unnecessary tweaks - ([2436e29](https://github.com/abougouffa/minemacs/commit/2436e29a35cfc7dd5283c6a9a25b65ffac7c736b)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** exclude the `VIRTUAL_ENV` from saved env vars - ([7f8c0da](https://github.com/abougouffa/minemacs/commit/7f8c0da1d64e91ea8d4d559948b26050023823f3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([29a7467](https://github.com/abougouffa/minemacs/commit/29a74670526c0c1348d4cbb7c2d59662ae940152)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.6.3](https://github.com/abougouffa/minemacs/compare/v4.6.2..v4.6.3) - 2024-01-14
 #### Bug Fixes
 - **(core)** ignore case when matching regexps in `+make-first-file-hook!` - ([6241629](https://github.com/abougouffa/minemacs/commit/624162920477929775abaad623e9a1c8681b7f44)) - [@abougouffa](https://github.com/abougouffa)
