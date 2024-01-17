@@ -152,10 +152,13 @@
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
 (use-package repo
-  :straight t
+  ;; TEMP: Use my fork until my PR gets merged upstream
+  :straight (:host github :repo "abougouffa/repo-el")
   :when (executable-find "repo")
   :init
-  (+map! "gr" #'repo-status))
+  (+map!
+    "gr" '(nil :wk "repo")
+    "grg" #'repo-status))
 
 (use-package gee
   :straight (:host bitbucket :repo "olanilsson/gee"))
