@@ -85,6 +85,13 @@
   :hook (minemacs-first-file . selection-highlight-mode)
   :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
 
+(use-package highlight-indent-guides
+  :straight t
+  :custom
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-character #x2506)
+  (highlight-indent-guides-responsive 'top))
+
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
 
