@@ -112,7 +112,9 @@
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :init
-  (+map! "cff" #'apheleia-format-buffer))
+  (+map! "cff" #'apheleia-format-buffer)
+  :config
+  (push '(nxml-mode . xmllint) apheleia-mode-alist))
 
 (use-package editorconfig
   :straight t
@@ -128,8 +130,7 @@
 (use-package clang-format
   :straight t
   :init
-  (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map
-                    cuda-mode-map scad-mode-map)
+  (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map cuda-mode-map scad-mode-map)
     "cfc" #'clang-format-buffer))
 
 (use-package quickrun
