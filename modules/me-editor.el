@@ -92,6 +92,26 @@
   (highlight-indent-guides-character #x2506)
   (highlight-indent-guides-responsive 'top))
 
+(use-package vimish-fold
+  :straight t
+  :hook (minemacs-first-file . vimish-fold-global-mode))
+
+(use-package evil-vimish-fold
+  :straight t
+  :hook (vimish-fold-global-mode . evil-vimish-fold-mode)
+  :when (and (memq 'me-evil minemacs-core-modules) (not (+package-disabled-p 'evil)))
+  :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
+  :custom
+  (vimish-fold-dir (concat minemacs-cache-dir "vimish-fold/"))
+  (vimish-fold-indication-mode 'right-fringe)
+  :init
+  (with-eval-after-load 'evil
+    (evil-define-key* 'motion 'global
+      "zf" #'evil-vimish-fold/create
+      "zF" #'evil-vimish-fold/create-line
+      "zd" #'vimish-fold-delete
+      "zE" #'vimish-fold-delete-all)))
+
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
 
