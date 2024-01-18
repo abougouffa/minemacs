@@ -92,6 +92,20 @@
   (highlight-indent-guides-character #x2506)
   (highlight-indent-guides-responsive 'top))
 
+(use-package me-code-folding
+  :init
+  ;; Add vimish-fold, outline-mode & hideshow support to folding commands
+  (keymap-global-set "<remap> <evil-toggle-fold>"   '+fold/toggle)
+  (keymap-global-set "<remap> <evil-close-fold>"    '+fold/close)
+  (keymap-global-set "<remap> <evil-open-fold>"     '+fold/open)
+  (keymap-global-set "<remap> <evil-open-fold-rec>" '+fold/open)
+  (keymap-global-set "<remap> <evil-close-folds>"   '+fold/close-all)
+  (keymap-global-set "<remap> <evil-open-folds>"    '+fold/open-all)
+  (with-eval-after-load 'evil
+    (evil-define-key* 'motion 'global
+      "zj" #'+fold/next
+      "zk" #'+fold/previous)))
+
 (use-package vimish-fold
   :straight t
   :hook (minemacs-first-file . vimish-fold-global-mode))
