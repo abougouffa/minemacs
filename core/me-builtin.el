@@ -476,7 +476,44 @@ or file path may exist now."
 
 (use-package hideshow
   ;; Hide/show code blocks, a.k.a. code folding
-  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode))
+  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode)
+  :custom
+  (hs-hide-comments-when-hiding-all nil)
+  :config
+  ;; Add extra modes support, needs functions defined in `me-code-folding'
+  (unless (assq 't hs-special-modes-alist)
+    (setq hs-special-modes-alist
+          (append
+           '((vimrc-mode "{{{" "}}}" "\"")
+             (yaml-mode "\\s-*\\_<\\(?:[^:]+\\)\\_>"
+              ""
+              "#"
+              +fold-hideshow-forward-block-by-indent-fn nil)
+             (haml-mode "[#.%]" "\n" "/" +fold-hideshow-haml-forward-sexp-fn nil)
+             (ruby-mode "class\\|d\\(?:ef\\|o\\)\\|module\\|[[{]"
+              "end\\|[]}]"
+              "#\\|=begin"
+              ruby-forward-sexp)
+             (matlab-mode "if\\|switch\\|case\\|otherwise\\|while\\|for\\|try\\|catch"
+              "end"
+              nil (lambda (_arg) (matlab-forward-sexp)))
+             (nxml-mode "<!--\\|<[^/>]*[^/]>"
+              "-->\\|</[^/>]*[^/]>"
+              "<!--" sgml-skip-tag-forward nil)
+             (latex-mode
+              ;; LaTeX-find-matching-end needs to be inside the env
+              ("\\\\begin{[a-zA-Z*]+}\\(\\)" 1)
+              "\\\\end{[a-zA-Z*]+}"
+              "%"
+              (lambda (_arg)
+                ;; Don't fold whole document, that's useless
+                (unless (save-excursion
+                          (search-backward "\\begin{document}"
+                           (line-beginning-position) t))
+                 (LaTeX-find-matching-end)))
+              nil))
+           hs-special-modes-alist
+           '((t))))))
 
 (use-package xref
   :straight t
