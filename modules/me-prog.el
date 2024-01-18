@@ -150,7 +150,6 @@
 
 (use-package pyenv
   :straight (:host github :repo "aiguofer/pyenv.el")
-  :when (executable-find "pyenv")
   :hook (minemacs-first-python-file . global-pyenv-mode)
   :custom
   (pyenv-show-active-python-in-modeline nil))

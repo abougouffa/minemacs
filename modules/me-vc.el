@@ -154,7 +154,6 @@
 (use-package repo
   ;; TEMP: Use my fork until my PR gets merged upstream
   :straight (:host github :repo "abougouffa/repo-el")
-  :when (executable-find "repo")
   :init
   (+map!
     "gr" '(nil :wk "repo")

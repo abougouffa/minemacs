@@ -77,7 +77,6 @@
 
 (use-package disaster
   :straight t
-  :when (executable-find "objdump")
   :init
   (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
     "D" #'disaster))

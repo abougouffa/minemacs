@@ -68,7 +68,6 @@
 
 (use-package dired-rsync
   :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
-  :when (executable-find "rsync")
   :bind (:map
          dired-mode-map
          ("C-c C-r" . dired-rsync)

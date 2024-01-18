@@ -27,8 +27,7 @@
   :straight t)
 
 (use-package virtual-dts-mode
-  :straight (:host github :repo "connorfeeley/virtual-dts-mode")
-  :when (executable-find "dtc"))
+  :straight (:host github :repo "connorfeeley/virtual-dts-mode"))
 
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
