@@ -151,9 +151,16 @@
 
 (use-package pyenv
   :straight (:host github :repo "aiguofer/pyenv.el")
-  :hook (minemacs-first-python-file . global-pyenv-mode)
+  :hook (minemacs-first-python-file . +global-pyenv-mode-maybe)
   :custom
-  (pyenv-show-active-python-in-modeline nil))
+  (pyenv-show-active-python-in-modeline nil)
+  :config
+  (defun +global-pyenv-mode-maybe (&optional arg)
+    "Enable `pyenv-global-mode' if it can be enabled."
+    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
+    (if (file-executable-p pyenv-executable)
+        (global-pyenv-mode arg)
+      (+log! "The %S file doesn't exist or is not executable, `pyenv' cannot be enabled."))))
 
 (use-package gitlab-ci-mode
   :straight t)
