@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.8.1](https://github.com/abougouffa/minemacs/compare/v4.8.0..v4.8.1) - 2024-01-20
+#### Bug Fixes
+- **(evil-vimish-fold)** enable the mode globally - ([64e1cbf](https://github.com/abougouffa/minemacs/commit/64e1cbf6cf0d62454390daddc4c81e70c6e34810)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(code-folding)** cleanup dead code - ([9b27509](https://github.com/abougouffa/minemacs/commit/9b27509166c660cee87d8c6e30cab9df3c4f3615)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** use `add-hook` instead of `+add-hook!` in simple cases - ([e1bc8a0](https://github.com/abougouffa/minemacs/commit/e1bc8a01e9403ac4c9acf6656ab144b4b1b63e16)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** better hook documentation in `+make-first-file-hook!` - ([a32eb79](https://github.com/abougouffa/minemacs/commit/a32eb79b76048a83f403913d5dbafeadffe45cc7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.8.0](https://github.com/abougouffa/minemacs/compare/v4.7.0..v4.8.0) - 2024-01-20
 #### Bug Fixes
 - **(core)** fix `+make-first-file-hook!` behavior in daemon mode - ([6dbfae6](https://github.com/abougouffa/minemacs/commit/6dbfae6848d47bcfd620090e7e040c4562207a2e)) - [@abougouffa](https://github.com/abougouffa)
