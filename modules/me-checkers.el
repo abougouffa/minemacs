@@ -34,7 +34,7 @@
 (use-package flymake-guile
   :straight t
   :init
-  (when (executable-find "guild") (+add-hook! scheme-mode #'flymake-guile)))
+  (when (executable-find "guild") (add-hook 'scheme-mode-hook #'flymake-guile)))
 
 (use-package flymake-quickdef
   :straight t
@@ -107,12 +107,12 @@
 (use-package flymake-nasm
   :straight (:host github :repo "juergenhoetzel/flymake-nasm")
   :init
-  (when (executable-find "nasm") (+add-hook! asm-mode #'flymake-nasm-setup)))
+  (when (executable-find "nasm") (add-hook 'asm-mode-hook #'flymake-nasm-setup)))
 
 (use-package flymake-pyre
   :straight (:host github :repo "juergenhoetzel/flymake-pyre")
   :init
-  (when (executable-find "pyre") (+add-hook! asm-mode #'flymake-pyre-setup)))
+  (when (executable-find "pyre") (add-hook 'asm-mode-hook #'flymake-pyre-setup)))
 
 
 (provide 'me-checkers)
