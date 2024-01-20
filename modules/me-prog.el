@@ -160,7 +160,7 @@
     (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
     (if (file-executable-p pyenv-executable)
         (global-pyenv-mode arg)
-      (+log! "The %S file doesn't exist or is not executable, `pyenv' cannot be enabled."))))
+      (+log! "The %S file doesn't exist or is not executable, `pyenv' cannot be enabled." pyenv-executable))))
 
 (use-package gitlab-ci-mode
   :straight t)
