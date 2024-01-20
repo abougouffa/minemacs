@@ -112,7 +112,7 @@
 
 (use-package evil-vimish-fold
   :straight t
-  :hook (vimish-fold-global-mode . evil-vimish-fold-mode)
+  :hook (vimish-fold-global-mode . global-evil-vimish-fold-mode)
   :when (and (memq 'me-evil minemacs-core-modules) (not (+package-disabled-p 'evil)))
   :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
   :custom
