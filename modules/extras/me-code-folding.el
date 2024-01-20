@@ -17,7 +17,7 @@
 ;;; Helpers
 
 (defun +fold--ensure-hideshow-mode ()
-  (unless (bound-and-true-p hs-minor-mode) (hs-minor-mode +1)))
+  (unless (bound-and-true-p hs-minor-mode) (hs-minor-mode 1)))
 
 (defun +fold--vimish-fold-p ()
   (and (featurep 'vimish-fold) (cl-some #'vimish-fold--vimish-overlay-p (overlays-at (point)))))
@@ -31,9 +31,7 @@
     (ignore-errors
       (or (hs-looking-at-block-start-p)
           (hs-find-block-beginning)
-          (unless (eolp)
-            (end-of-line)
-            (+fold--hideshow-fold-p))))))
+          (unless (eolp) (end-of-line) (+fold--hideshow-fold-p))))))
 
 (defun +fold--invisible-points (count)
   (let (points)
@@ -58,7 +56,6 @@
      ,@body))
 
 
-;;
 ;;; Commands
 
 ;;;###autoload
@@ -70,8 +67,7 @@ Targets `vimmish-fold', `hideshow' and `outline' folds."
   (save-excursion
     (cond ((+fold--vimish-fold-p) (vimish-fold-toggle))
           ((+fold--outline-fold-p)
-           (cl-letf (((symbol-function #'outline-hide-subtree)
-                      (symbol-function #'outline-hide-entry)))
+           (cl-letf (((symbol-function #'outline-hide-subtree) #'outline-hide-entry))
              (outline-toggle-children)))
           ((+fold--hideshow-fold-p) (+fold-from-eol (hs-toggle-hiding))))))
 
@@ -83,9 +79,7 @@ Targets `vimmish-fold', `hideshow' and `outline' folds."
   (interactive)
   (save-excursion
     (cond ((+fold--vimish-fold-p) (vimish-fold-unfold))
-          ((+fold--outline-fold-p)
-           (outline-show-children)
-           (outline-show-entry))
+          ((+fold--outline-fold-p) (outline-show-children) (outline-show-entry))
           ((+fold--hideshow-fold-p) (+fold-from-eol (hs-show-block))))))
 
 ;;;###autoload
@@ -120,11 +114,9 @@ Targets `vimmish-fold', `hideshow' and `outline' folds."
 ;;;###autoload
 (defun +fold/close-all (&optional level)
   "Close folds at LEVEL (or all folds if LEVEL is nil)."
-  (interactive
-   (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg))))
+  (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg))))
   (save-excursion
-    (when (featurep 'vimish-fold)
-      (vimish-fold-refold-all))
+    (when (featurep 'vimish-fold) (vimish-fold-refold-all))
     (+fold--ensure-hideshow-mode)
     (hs-life-goes-on
      (if (integerp level)
@@ -163,11 +155,6 @@ Targets `vimmish-fold', `hideshow' and `outline' folds."
 
 ;;; hideshow.el
 
-(defface +fold-hideshow-folded-face
-  `((t (:inherit font-lock-comment-face :weight light)))
-  "Face to hightlight `hideshow' overlays."
-  :group 'minemacs-ui)
-
 ;;;###autoload
 (defun +fold-hideshow-haml-forward-sexp-fn (arg)
   (haml-forward-sexp arg)
@@ -182,21 +169,7 @@ Targets `vimmish-fold', `hideshow' and `outline' folds."
         (goto-char (cadr range))
         (end-of-line)))))
 
-;;;###autoload
-(defun +fold-hideshow-set-up-overlay-fn (ov)
-  (when (eq 'code (overlay-get ov 'hs))
-    (when (featurep 'vimish-fold)
-      (overlay-put
-       ov 'before-string
-       (propertize "…" 'display
-                   (list vimish-fold-indication-mode
-                         'empty-line
-                         'vimish-fold-fringe))))
-    (overlay-put
-     ov 'display (propertize "  [...]  " 'face '+fold-hideshow-folded-face))))
 
-
-;;
 ;;; Indentation detection
 
 (defun +fold--hideshow-empty-line-p (_)
