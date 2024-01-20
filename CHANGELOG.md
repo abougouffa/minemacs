@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.8.0](https://github.com/abougouffa/minemacs/compare/v4.7.0..v4.8.0) - 2024-01-20
+#### Bug Fixes
+- **(core)** fix `+make-first-file-hook!` behavior in daemon mode - ([6dbfae6](https://github.com/abougouffa/minemacs/commit/6dbfae6848d47bcfd620090e7e040c4562207a2e)) - [@abougouffa](https://github.com/abougouffa)
+- **(pyenv)** missing argument in a `+log!` statement - ([ace25b8](https://github.com/abougouffa/minemacs/commit/ace25b86df0df0eec8a36603cb3b8c23919ffed0)) - [@abougouffa](https://github.com/abougouffa)
+- **(pyenv)** ensure before enabling it globally (daemon hanging issue) - ([5984552](https://github.com/abougouffa/minemacs/commit/59845528a33fff8991e66055b6be2ade53d127b6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(code-folding)** better code folding experience (from Doom Emacs) - ([f76a571](https://github.com/abougouffa/minemacs/commit/f76a5715f140d6870f066dec293b0df9ccc34d06)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** add `vimish-fold` and `evil-vimish-fold` - ([13d1107](https://github.com/abougouffa/minemacs/commit/13d11074fa46d9f8822f682cb1a878f98571e256)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** add `highlight-indent-guides`, but as an opt-in (slow!) - ([0792ea4](https://github.com/abougouffa/minemacs/commit/0792ea4af3bfd001557691095304d26233f2c359)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** make `xmllint` the default for `nxml-mode` - ([eeac59e](https://github.com/abougouffa/minemacs/commit/eeac59e8c02ef022e3a75803b090ea407f33dd76)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideshow)** additional modes' rules - ([641dd76](https://github.com/abougouffa/minemacs/commit/641dd7620799cba383da97a8cd6081fad9da3005)) - [@abougouffa](https://github.com/abougouffa)
+- **(repo)** restore the default repository, fix merged - ([a37537e](https://github.com/abougouffa/minemacs/commit/a37537e868bf987555e4b97e30fd3c72ff7147bb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([20e3e5d](https://github.com/abougouffa/minemacs/commit/20e3e5db24b1eeb69d67e93b3bd3c2c113b8ba7d)) - [@abougouffa](https://github.com/abougouffa)
+- don't disable some packages based on `executable-find` - ([c466611](https://github.com/abougouffa/minemacs/commit/c466611a555c457aef3bf3a2e310694d3629ea5b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.7.0](https://github.com/abougouffa/minemacs/compare/v4.6.3..v4.7.0) - 2024-01-17
 #### Bug Fixes
 - **(repo)** use my fork until it gets merged upstream - ([fb9363b](https://github.com/abougouffa/minemacs/commit/fb9363bfc62eaa86fe9b29ebf2276a5d38e43b17)) - [@abougouffa](https://github.com/abougouffa)
