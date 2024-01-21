@@ -1423,9 +1423,53 @@ current line.")
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
 
 (use-package whitespace
+  :hook (before-save . +save--whitespace-delete-trailing-h)
   :custom
   ;; Default behavior for `whitespace-cleanup'
-  (whitespace-action '(cleanup auto-cleanup)))
+  (whitespace-action '(cleanup auto-cleanup))
+  :init
+  (defcustom +whitespace-auto-cleanup-modes '(prog-mode conf-mode org-mode markdown-mode latex-mode tex-mode bibtex-mode)
+    "Enable auto white space cleanup before saving for these derived modes."
+    :group 'minemacs-edit
+    :type '(repeat symbol))
+
+  (defcustom +whitespace-auto-cleanup-except-current-line t
+    "Cleanup all white spaces except the current line."
+    :group 'minemacs-edit
+    :type 'boolean)
+
+  (defun +toggle-auto-whitespace-cleanup ()
+    "Toggle auto-deleting trailing whitespaces."
+    (interactive)
+    (if (member #'+save--whitespace-delete-trailing-h before-save-hook)
+        (progn
+          (message "+toggle-auto-whitespace-cleanup: Disabled.")
+          (remove-hook 'before-save-hook #'+save--whitespace-delete-trailing-h))
+      (message "+toggle-auto-whitespace-cleanup: Enabled.")
+      (add-hook 'before-save-hook #'+save--whitespace-delete-trailing-h)))
+  :config
+  (defun +whitespace-delete-trailing ()
+    "Delete trailing whitespace, optionally avoiding the current line.
+
+See `+whitespace-auto-cleanup-except-current-line'."
+    (if +whitespace-auto-cleanup-except-current-line
+        (let ((start (line-beginning-position))
+              (current (point)))
+          (save-excursion
+            (when (< (point-min) start)
+              (save-restriction
+                (narrow-to-region (point-min) (1- start))
+                (delete-trailing-whitespace)))
+            (when (> (point-max) current)
+              (save-restriction
+                (narrow-to-region current (point-max))
+                (delete-trailing-whitespace)))))
+      (delete-trailing-whitespace)))
+
+  ;; Auto-remove trailing white spaces before saving for modes defined in
+  ;; `+whitespace-auto-cleanup-modes'.
+  (defun +save--whitespace-delete-trailing-h ()
+    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes) (+whitespace-delete-trailing))))
 
 (use-package autorevert
   ;; Auto load files changed on disk
