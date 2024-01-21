@@ -69,6 +69,33 @@
   (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-yeet-forward)
   (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
 
+(use-package citre
+  :straight t
+  :after minemacs-first-file
+  :demand t
+  :custom
+  (citre-project-root-function #'+citre-recursive-project-root)
+  :init
+  (defvar +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root"))
+  :config
+  (defun +citre-recursive-project-root ()
+    "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
+Fall back to the default `citre--project-root'."
+    (or
+     (let ((dir (buffer-file-name)))
+       (catch 'root
+         (while dir
+           (when (cl-some #'file-exists-p (mapcar (+apply-partially-right #'expand-file-name dir) +citre-recursive-root-project-detection-files))
+             (throw 'root dir))
+           (setq dir (file-name-parent-directory dir)))))
+     ;; Fall back to the default detection!
+     (citre--project-root))))
+
+(use-package citre-config
+  :straight citre
+  :after citre
+  :demand t)
+
 (use-package consult-eglot
   :straight t
   :after consult eglot
