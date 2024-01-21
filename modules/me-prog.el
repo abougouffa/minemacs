@@ -74,7 +74,10 @@
   :after minemacs-first-file
   :demand t
   :custom
+  ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
+  ;; Use the project root by default to create the tags file and run the indexing command
+  (citre-use-project-root-when-creating-tags t)
   :init
   (defvar +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root"))
   :config
