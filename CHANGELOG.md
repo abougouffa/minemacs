@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.9.0](https://github.com/abougouffa/minemacs/compare/v4.8.1..v4.9.0) - 2024-01-21
+#### Features
+- **(prog)** add `citre` for Universal Tags (`ctags`) support - ([6bf0f8b](https://github.com/abougouffa/minemacs/commit/6bf0f8b6be99e9386233fc54aea84db07cde0871)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(citre)** use the detected project root by default - ([c723218](https://github.com/abougouffa/minemacs/commit/c723218583b2484cb155e68093565bea329e6e5a)) - [@abougouffa](https://github.com/abougouffa)
+- **(whitespace)** smartly auto cleanup trailing white space on save - ([f892550](https://github.com/abougouffa/minemacs/commit/f8925505a5eb30aab465afe9f278386421d4e4eb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2f04c2a](https://github.com/abougouffa/minemacs/commit/2f04c2a6b9646879217bd50954775a7779631589)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.8.1](https://github.com/abougouffa/minemacs/compare/v4.8.0..v4.8.1) - 2024-01-20
 #### Bug Fixes
 - **(evil-vimish-fold)** enable the mode globally - ([64e1cbf](https://github.com/abougouffa/minemacs/commit/64e1cbf6cf0d62454390daddc4c81e70c6e34810)) - [@abougouffa](https://github.com/abougouffa)
