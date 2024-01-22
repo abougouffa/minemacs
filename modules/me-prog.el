@@ -317,6 +317,9 @@ Fall back to the default `citre--project-root'."
   :straight t
   :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
+(use-package eglot-booster
+  :straight (:host github :repo "jdtsmith/eglot-booster"))
+
 
 (provide 'me-prog)
 
