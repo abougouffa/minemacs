@@ -1837,7 +1837,7 @@ the first, fresh scratch buffer you create. This accepts:
   "The name of the project associated with the current scratch buffer.")
 (put '+scratch-current-project 'permanent-local t)
 
-(defvar +scratch-buffer-hook ()
+(defvar +scratch-buffer-created-hook ()
   "The hooks to run after a scratch buffer is created.")
 
 (defun +scratch-load-persistent-scratch-buffer (&optional project-name)
@@ -1857,25 +1857,23 @@ the first, fresh scratch buffer you create. This accepts:
         (goto-char point)
         t))))
 
-(defun +scratch-buffer (&optional dont-restore-p mode directory project-name)
+(defun +scratch-buffer (&optional dont-restore-p mode directory proj-name)
   "Return a scratchpad buffer in major MODE.
 
 When DONT-RESTORE-P, do not load the previously saved persistent buffer. Load
-persistent buffer dedicated to PROJECT-NAME when provided.
+persistent buffer dedicated to PROJ-NAME when provided.
 
 When provided, set the `default-directory' to DIRECTORY."
-  (let* ((buffer-name (if project-name (format "*pscratch:%s*" project-name) "*pscratch*"))
-         (buffer (get-buffer buffer-name)))
-    (with-current-buffer
-        (or buffer (get-buffer-create buffer-name))
-      (setq default-directory directory)
-      (setq-local so-long--inhibited t)
+  (let* ((buff-name (if proj-name (format "*pscratch:%s*" proj-name) "*pscratch*"))
+         (pscratch-buff (get-buffer buff-name)))
+    (with-current-buffer (or pscratch-buff (get-buffer-create buff-name))
+      (setq-local default-directory (or directory default-directory)
+                  so-long--inhibited t)
       (if dont-restore-p
           (erase-buffer)
-        (unless buffer
-          (+scratch-load-persistent-scratch-buffer project-name)
-          (when (and (eq major-mode 'fundamental-mode)
-                     (functionp mode))
+        (unless pscratch-buff
+          (+scratch-load-persistent-scratch-buffer proj-name)
+          (when (and (eq major-mode 'fundamental-mode) (functionp mode))
             (funcall mode))))
       (cl-pushnew (current-buffer) +scratch-buffers)
       (+hook-once! 'window-buffer-change-functions (+scratch-persist-buffers-h))
@@ -1890,19 +1888,14 @@ When provided, set the `default-directory' to DIRECTORY."
 (defun +scratch-persist-buffer-h (&rest _)
   "Save the current buffer to `+scratch-dir'."
   (let ((content (buffer-substring-no-properties (point-min) (point-max)))
-        (point (point))
+        (curr-point (point))
         (mode major-mode))
-    (with-temp-file (expand-file-name (concat (or +scratch-current-project
-                                                  +scratch-default-file)
-                                              ".el")
-                                      +scratch-dir)
-      (prin1 (list content point mode)
-             (current-buffer)))))
+    (with-temp-file (expand-file-name (concat (or +scratch-current-project +scratch-default-file) ".el") +scratch-dir)
+      (prin1 (list content curr-point mode) (current-buffer)))))
 
 (defun +scratch-persist-buffers-h (&rest _)
   "Save all scratch buffers to `+scratch-dir'."
-  (setq +scratch-buffers
-        (cl-delete-if-not #'buffer-live-p +scratch-buffers))
+  (setq +scratch-buffers (cl-delete-if-not #'buffer-live-p +scratch-buffers))
   (dolist (buffer +scratch-buffers)
     (with-current-buffer buffer
       (+scratch-persist-buffer-h))))
@@ -1926,19 +1919,17 @@ If PROJECT-P is non-nil, open a persistent scratch buffer associated with the
 current project. When SAME-WINDOW-P is non-nil, open in the current window."
   (interactive "P")
   (funcall
-   (if same-window-p
-       #'switch-to-buffer
-     #'pop-to-buffer)
+   (if same-window-p #'switch-to-buffer #'pop-to-buffer)
    (+scratch-buffer
     arg
     (cond
      ((eq +scratch-initial-major-mode t)
-      (unless (or buffer-read-only
-                  (derived-mode-p 'special-mode)
-                  (string-match-p "^ ?\\*" (buffer-name)))
-        major-mode)
-      ((symbolp +scratch-initial-major-mode)
-       +scratch-initial-major-mode)))
+      (unless (or buffer-read-only ;; not a read-only buffer
+                  (derived-mode-p 'special-mode) ;; not in some sort of special mode (view only)
+                  (string-match-p "^ ?\\*" (buffer-name))) ;; not a hidden buffer
+        major-mode))
+     ((symbolp +scratch-initial-major-mode)
+      +scratch-initial-major-mode))
     default-directory
     (when-let ((project (and project-p (project-current))))
       (project-name project)))))
@@ -1991,7 +1982,7 @@ If prefix ARG, delete all persistent scratches."
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
 
 (defun +scratch-replace-with-persistent-scratch (&optional arg project-p)
-  "Replace the *scratch* buffer with a ."
+  "Replace the *scratch* buffer with a persistent one."
   (interactive "P")
   (when-let ((buf (current-buffer))
              (s (get-buffer "*scratch*")))
