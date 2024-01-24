@@ -2001,7 +2001,7 @@ ARG and PROJECT-P are passed to `+scratch-open-buffer'."
         (append (butlast project-switch-commands 1)
                 '((+scratch-open-project-scratch-buffer "Scratch buffer"))
                 (last project-switch-commands)))
-  (keymap-set project-prefix-map "S" #'+scratch-open-project-scratch-buffer))
+  (define-key project-prefix-map "X" #'+scratch-open-project-scratch-buffer))
 
 
 
