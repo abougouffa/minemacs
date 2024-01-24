@@ -259,8 +259,6 @@
     "u" #'universal-argument-more)
 
   (when (or os/linux os/bsd)
-    (when (executable-find "netExtender")
-      (+map! "tV" #'netextender-toggle))
     (when (executable-find "ecryptfs-verify")
       (+map! "te" #'ecryptfs-toggle-mount-private)))
 

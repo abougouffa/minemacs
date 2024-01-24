@@ -1,4 +1,4 @@
-;; netextender.el -- NetExtender integration (start and stop VPN from Emacs) -*- lexical-binding: t; -*-
+;; me-netextender.el -- NetExtender integration (start and stop VPN sessions from Emacs) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
@@ -107,6 +107,6 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
     (netextender-start)))
 
 
-(provide 'netextender)
+(provide 'obsolete/me-netextender)
 
-;;; netextender.el ends here
+;;; me-netextender.el ends here
