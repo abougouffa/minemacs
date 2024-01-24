@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.10.0](https://github.com/abougouffa/minemacs/compare/v4.9.0..v4.10.0) - 2024-01-24
+#### Bug Fixes
+- **(core)** `+scratch-open-...` conflict with `project-cmake` - ([b9e4cbb](https://github.com/abougouffa/minemacs/commit/b9e4cbbb9e252da8311f1f6885dd7f970baf1751)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** refactor and fix persistent buffer implementation - ([99ea57d](https://github.com/abougouffa/minemacs/commit/99ea57d4630800d6deaa1e8d859f80f18feff9ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** include the full list of obsolete modules - ([d33e0fa](https://github.com/abougouffa/minemacs/commit/d33e0faae903c076b577d3a7d8de9b5be3b0d721)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** reintegrate `cmake-mode` and `cmake-font-lock` - ([03e9bf1](https://github.com/abougouffa/minemacs/commit/03e9bf1eea28f2f962624006b836e7dae7ddea70)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `eglot-booster` as a package - ([f9e77d5](https://github.com/abougouffa/minemacs/commit/f9e77d5c648cf6252facb1ab8c9b421aa3ab4cb5)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(docker)** add a docker image with utils included (WIP) - ([5baf8b0](https://github.com/abougouffa/minemacs/commit/5baf8b0da32726c3aeda932783af10fd93ac7290)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** move a variable to `me-vars` - ([e12ee0c](https://github.com/abougouffa/minemacs/commit/e12ee0c8400e508036cec8136f85d8c87f42eba0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** minor tweak and documentation change - ([ea9ab4c](https://github.com/abougouffa/minemacs/commit/ea9ab4c4662b1572d0e2b1e31c23c38c24d323fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better implementation of persistent scratch buffers - ([99645cf](https://github.com/abougouffa/minemacs/commit/99645cf12625dcf4b156172a9e5cd217e6bd876a)) - [@abougouffa](https://github.com/abougouffa)
+- **(treemacs)** smaller font size for root nodes - ([d35f55c](https://github.com/abougouffa/minemacs/commit/d35f55c3bb8929ca9e388715648652b2e6be2312)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9ff3223](https://github.com/abougouffa/minemacs/commit/9ff3223ba6134091734383dd683d958e6a845011)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([e1d6b6f](https://github.com/abougouffa/minemacs/commit/e1d6b6f167c3b3105a98f29f6ea3a4ad55dbcd0c)) - [@abougouffa](https://github.com/abougouffa)
+- make NetExtender integration obsolete, not used any more - ([ca2c631](https://github.com/abougouffa/minemacs/commit/ca2c631b49069096af77e208f9d0ab4c00fb25f5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.9.0](https://github.com/abougouffa/minemacs/compare/v4.8.1..v4.9.0) - 2024-01-21
 #### Features
 - **(prog)** add `citre` for Universal Tags (`ctags`) support - ([6bf0f8b](https://github.com/abougouffa/minemacs/commit/6bf0f8b6be99e9386233fc54aea84db07cde0871)) - [@abougouffa](https://github.com/abougouffa)
