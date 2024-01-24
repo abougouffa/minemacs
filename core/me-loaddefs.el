@@ -18,16 +18,6 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
-;;; Generated autoloads from ../elisp/eglot-booster.el
-
-(autoload 'eglot-booster "../elisp/eglot-booster" "\
-Boost plain eglot server programs with emacs-lsp-booster.
-The emacs-lsp-booster program must be compiled and available on
-variable `exec-path'.  Only local stdin/out based lsp servers can
-be boosted." t)
-(register-definition-prefixes "../elisp/eglot-booster" '("eglot-booster-plain-command"))
-
-
 ;;; Generated autoloads from me-bootstrap.el
 
 (autoload '+straight-prune-build-cache "me-bootstrap" "\
@@ -85,10 +75,6 @@ Jump to the previous vimish fold, outline heading or folded region.
 
 
 (fn ARG)")
-(autoload '+fold-hideshow-set-up-overlay-fn "../modules/extras/me-code-folding" "\
-
-
-(fn OV)")
 (register-definition-prefixes "../modules/extras/me-code-folding" '("+fold-"))
 
 
@@ -201,15 +187,6 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
-
-
-;;; Generated autoloads from ../elisp/netextender.el
-
-(autoload 'netextender-start "../elisp/netextender" "\
-Launch a NetExtender VPN session." t)
-(autoload 'netextender-toggle "../elisp/netextender" "\
-Toggle connection to NetExtender." t)
-(register-definition-prefixes "../elisp/netextender" '("netextender-"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
