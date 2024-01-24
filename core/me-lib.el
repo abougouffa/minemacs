@@ -1918,21 +1918,20 @@ If passed the prefix ARG, do not restore the last scratch buffer.
 If PROJECT-P is non-nil, open a persistent scratch buffer associated with the
 current project. When SAME-WINDOW-P is non-nil, open in the current window."
   (interactive "P")
-  (funcall
-   (if same-window-p #'switch-to-buffer #'pop-to-buffer)
-   (+scratch-buffer
-    arg
-    (cond
-     ((eq +scratch-initial-major-mode t)
-      (unless (or buffer-read-only ;; not a read-only buffer
-                  (derived-mode-p 'special-mode) ;; not in some sort of special mode (view only)
-                  (string-match-p "^ ?\\*" (buffer-name))) ;; not a hidden buffer
-        major-mode))
-     ((symbolp +scratch-initial-major-mode)
-      +scratch-initial-major-mode))
-    default-directory
-    (when-let ((project (and project-p (project-current))))
-      (project-name project)))))
+  (let ((proj (and project-p (project-current))))
+    (funcall
+     (if same-window-p #'switch-to-buffer #'pop-to-buffer)
+     (+scratch-buffer
+      arg
+      (cond ((eq +scratch-initial-major-mode t)
+             (unless (or buffer-read-only ;; not a read-only buffer
+                         (derived-mode-p 'special-mode) ;; not in some sort of special mode (view only)
+                         (string-match-p "^ ?\\*" (buffer-name))) ;; not a hidden buffer
+               major-mode))
+            ((symbolp +scratch-initial-major-mode)
+             +scratch-initial-major-mode))
+      (and proj (project-root proj))
+      (and proj (project-name proj))))))
 
 (defun +switch-to-scratch-buffer (&optional arg project-p)
   "Like `+scratch-open-buffer', but switch to it in the current window.
@@ -1986,12 +1985,21 @@ If prefix ARG, delete all persistent scratches."
   (interactive "P")
   (when-let ((buf (current-buffer))
              (s (get-buffer "*scratch*")))
-    ;; Kill the Emacs' default scratch buffer
-    (kill-buffer s)
     ;; Load the default persistent scratch buffer
     (+scratch-open-buffer arg project-p 'same-window)
+    ;; Kill the Emacs' default scratch buffer
+    (kill-buffer s)
     ;; Switch to the previous buffer
-    (when (buffer-live-p buf) (switch-to-buffer buf))))
+    (when (and (buffer-live-p buf) (string-match-p (rx bol (not " ")) (buffer-name buf)))
+      (switch-to-buffer buf))))
+
+(with-eval-after-load 'project
+  (setq project-switch-commands
+        ;; Insert it before the last element ("Other")
+        (append (butlast project-switch-commands 1)
+                '((+scratch-open-project-scratch-buffer "Scratch buffer"))
+                (last project-switch-commands)))
+  (keymap-set project-prefix-map "S" #'+scratch-open-project-scratch-buffer))
 
 
 
