@@ -10,8 +10,7 @@
 
 (unless (+emacs-features-p 'tree-sitter)
   ;; Use the external `tree-sitter' module
-  (+load minemacs-obsolete-modules-dir "me-tree-sitter.el")
-  (+load minemacs-obsolete-modules-dir "me-cmake.el"))
+  (+load minemacs-obsolete-modules-dir "me-tree-sitter.el"))
 
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
@@ -309,6 +308,14 @@ Fall back to the default `citre--project-root'."
   (+map-local! :keymaps 'makefile-mode-map
     "pmt" #'makefile-executor-execute-target
     "pmb" #'makefile-executor-execute-dedicated-buffer))
+
+(use-package cmake-mode
+  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+
+(use-package cmake-font-lock
+  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :custom
+  (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
 
 (use-package web-mode
   :straight t)
