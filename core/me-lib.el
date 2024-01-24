@@ -1981,7 +1981,9 @@ If prefix ARG, delete all persistent scratches."
         (message "Successfully deleted %S" (abbreviate-file-name file))))))
 
 (defun +scratch-replace-with-persistent-scratch (&optional arg project-p)
-  "Replace the *scratch* buffer with a persistent one."
+  "Replace the *scratch* buffer with a persistent one.
+
+ARG and PROJECT-P are passed to `+scratch-open-buffer'."
   (interactive "P")
   (when-let ((buf (current-buffer))
              (s (get-buffer "*scratch*")))
@@ -1989,8 +1991,8 @@ If prefix ARG, delete all persistent scratches."
     (+scratch-open-buffer arg project-p 'same-window)
     ;; Kill the Emacs' default scratch buffer
     (kill-buffer s)
-    ;; Switch to the previous buffer
-    (when (and (buffer-live-p buf) (string-match-p (rx bol (not " ")) (buffer-name buf)))
+    ;; Switch to the previous buffer, unless it has been killed (we was in *scratch*) or it is a hidden buffer
+    (when (and (buffer-live-p buf) (string-match-p "^[^ ]" (buffer-name buf)))
       (switch-to-buffer buf))))
 
 (with-eval-after-load 'project
