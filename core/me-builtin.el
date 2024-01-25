@@ -171,7 +171,7 @@
   :init
   (setq-default truncate-lines nil ; Display long lines
                 fill-column 80 ; Default fill column width
-                tab-width 2) ; Small tab is enough!
+                tab-width 4) ; Default (8) is too big!
 
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
