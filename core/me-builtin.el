@@ -1423,7 +1423,6 @@ current line.")
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
 
 (use-package whitespace
-  :hook (before-save . +save--whitespace-delete-trailing-h)
   :custom
   ;; Default behavior for `whitespace-cleanup'
   (whitespace-action '(cleanup auto-cleanup))
@@ -1438,15 +1437,13 @@ current line.")
     :group 'minemacs-edit
     :type 'boolean)
 
-  (defun +toggle-auto-whitespace-cleanup ()
-    "Toggle auto-deleting trailing whitespaces."
-    (interactive)
-    (if (member #'+save--whitespace-delete-trailing-h before-save-hook)
-        (progn
-          (message "+toggle-auto-whitespace-cleanup: Disabled.")
-          (remove-hook 'before-save-hook #'+save--whitespace-delete-trailing-h))
-      (message "+toggle-auto-whitespace-cleanup: Enabled.")
-      (add-hook 'before-save-hook #'+save--whitespace-delete-trailing-h)))
+  (define-minor-mode +whitespace-auto-cleanup-mode
+    "Automatically highlight matches to the current selection in active windows."
+    :init-value nil
+    :global t
+    (if +whitespace-auto-cleanup-mode
+        (add-hook 'before-save-hook #'+whitespace--delete-trailing-h)
+      (remove-hook 'before-save-hook #'+whitespace--delete-trailing-h)))
   :config
   (defun +whitespace-delete-trailing ()
     "Delete trailing whitespace, optionally avoiding the current line.
@@ -1468,7 +1465,7 @@ See `+whitespace-auto-cleanup-except-current-line'."
 
   ;; Auto-remove trailing white spaces before saving for modes defined in
   ;; `+whitespace-auto-cleanup-modes'.
-  (defun +save--whitespace-delete-trailing-h ()
+  (defun +whitespace--delete-trailing-h ()
     (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes) (+whitespace-delete-trailing))))
 
 (use-package autorevert
