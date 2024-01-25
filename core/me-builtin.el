@@ -87,8 +87,10 @@
   (kept-new-versions 5)
   ;; Keep up to 5 versions when cleaning a directory
   (dired-kept-versions 5)
-  ;; Hitting TAB behavior
-  (tab-always-indent 'complete)
+  ;; Make TAB indents first, then inserts the TAB character
+  (tab-always-indent nil)
+  ;; TAB completion behavior
+  (tab-first-completion 'word)
   ;; End files with newline
   (require-final-newline t)
   ;; 10MB (default is 160kB)
