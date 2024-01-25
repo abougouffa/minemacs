@@ -16,6 +16,7 @@
 ;;; List of enabled modules
 (setq minemacs-modules
       '(me-ui             ; User interface (svg-lib, focus, mixed-pitch, ...)
+        me-ai             ; AI assistant using ollama (ellama, llm, ...)
         me-editor         ; Editing (tempel, tempel-collection, rainbow-delimiters, expreg, drag-stuff, ...)
         me-daemon         ; Emacs daemon tweaks
         me-undo           ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
