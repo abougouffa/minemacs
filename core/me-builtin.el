@@ -191,6 +191,11 @@
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
+  ;; Change the color of trailing whitespace, it seems that setting this too
+  ;; early (even after `faces') doesn't persist.
+  (with-eval-after-load 'minemacs-loaded
+    (set-face-background 'trailing-whitespace "snow3"))
+
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
   (defun +save--guess-file-mode-h ()
     "Guess major mode when saving a file in `fundamental-mode'.
