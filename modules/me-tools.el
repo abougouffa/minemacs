@@ -15,6 +15,9 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
+(use-package ack
+  :straight t)
+
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)
