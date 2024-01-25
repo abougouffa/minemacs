@@ -98,6 +98,9 @@ Fall back to the default `citre--project-root'."
   :after citre
   :demand t)
 
+(use-package srefactor
+  :straight t)
+
 (use-package consult-eglot
   :straight t
   :after consult eglot
