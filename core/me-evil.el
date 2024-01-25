@@ -40,6 +40,10 @@
     "w+" '(evil-window-increase-width :wk "Increase width")
     "w-" '(evil-window-decrease-width :wk "Decrease width"))
 
+  (+nvmap!
+    "gl" #'evil-jump-forward
+    "gh" #'evil-jump-backward)
+
   ;; Use `isearch', it integrates better with other commands like
   ;; `consult-isearch-history'
   (evil-select-search-module 'evil-search-module 'isearch)
