@@ -1451,6 +1451,8 @@ current line.")
     (if +whitespace-auto-cleanup-mode
         (add-hook 'before-save-hook #'+whitespace--delete-trailing-h)
       (remove-hook 'before-save-hook #'+whitespace--delete-trailing-h)))
+
+  (+map! "tc" #'+whitespace-auto-cleanup-mode)
   :config
   (defun +whitespace-delete-trailing ()
     "Delete trailing whitespace, optionally avoiding the current line.
