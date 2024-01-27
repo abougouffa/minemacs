@@ -1725,6 +1725,10 @@ Useful for quickly switching to an open buffer."
          ("C--" . text-scale-decrease)
          ("C-=" . text-scale-adjust)))
 
+(use-package yaml-ts-mode
+  :when (+emacs-features-p 'tree-sitter)
+  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
+
 
 (provide 'me-builtin)
 

@@ -28,7 +28,8 @@
 
 (use-package yaml-mode
   :straight t
-  :mode "Procfile\\'")
+  :mode "Procfile\\'"
+  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
 
 (use-package yaml-pro
   :straight t
