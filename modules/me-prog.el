@@ -98,6 +98,10 @@ Fall back to the default `citre--project-root'."
   :after citre
   :demand t)
 
+(use-package xcscope
+  :straight t
+  :commands cscope-create-list-of-files-to-index cscope-index-files)
+
 (use-package srefactor
   :straight t)
 
