@@ -102,6 +102,14 @@ Fall back to the default `citre--project-root'."
   :straight t
   :commands cscope-create-list-of-files-to-index cscope-index-files)
 
+(use-package rtags
+  :straight t)
+
+(use-package rtags-xref
+  :straight t
+  :after xref
+  :demand t)
+
 (use-package eopengrok
   :straight t
   :commands
