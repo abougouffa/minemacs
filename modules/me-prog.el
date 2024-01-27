@@ -102,6 +102,12 @@ Fall back to the default `citre--project-root'."
   :straight t
   :commands cscope-create-list-of-files-to-index cscope-index-files)
 
+(use-package eopengrok
+  :straight t
+  :commands
+  eopengrok-mode eopengrok-find-reference eopengrok-find-text eopengrok-find-definition eopengrok-find-custom
+  eopengrok-jump-to-source eopengrok-create-index eopengrok-create-index-with-enable-projects)
+
 (use-package srefactor
   :straight t)
 
