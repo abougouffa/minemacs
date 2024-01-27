@@ -1433,6 +1433,7 @@ current line.")
   :custom
   ;; Default behavior for `whitespace-cleanup'
   (whitespace-action '(cleanup auto-cleanup))
+  :commands +whitespace-auto-cleanup-mode
   :init
   (defcustom +whitespace-auto-cleanup-modes '(prog-mode conf-mode org-mode markdown-mode latex-mode tex-mode bibtex-mode)
     "Enable auto white space cleanup before saving for these derived modes."
@@ -1445,7 +1446,7 @@ current line.")
     :type 'boolean)
 
   (define-minor-mode +whitespace-auto-cleanup-mode
-    "Automatically highlight matches to the current selection in active windows."
+    "Automatically cleanup trailing whitespace."
     :init-value nil
     :global t
     (if +whitespace-auto-cleanup-mode
