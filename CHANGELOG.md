@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.11.0](https://github.com/abougouffa/minemacs/compare/v4.10.0..v4.11.0) - 2024-01-28
+#### Bug Fixes
+- **(builtin)** fix loading the `+whitespace-auto-cleanup-mode` hook - ([2245c31](https://github.com/abougouffa/minemacs/commit/2245c317b5b388cffb58937ca2f3e20451195d1d)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** ignore previewing `*.po` files - ([6bd406d](https://github.com/abougouffa/minemacs/commit/6bd406dc65965dbfb24c6b938b870e075bb2a4b9)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(prog)** add a comment - ([4da1401](https://github.com/abougouffa/minemacs/commit/4da1401d4282cfe2f34617620b96e5f48097fb1e)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+binary-file-p` - ([e9fee97](https://github.com/abougouffa/minemacs/commit/e9fee97b1b79630e0d081f4db72ac07d258fefde)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `rtags` support - ([5b11206](https://github.com/abougouffa/minemacs/commit/5b11206ec6d7d4b6b86a52cf6bbeed240dc1ba2f)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `eopengrok` support - ([8a876f5](https://github.com/abougouffa/minemacs/commit/8a876f52b0504a698f0508fbbf206f43192f4a42)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `xcscope` - ([111c68f](https://github.com/abougouffa/minemacs/commit/111c68fab088dc024d0a4b2611dd73b128c8588e)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `semantic-refactor` for use with non-LSP workspaces - ([d0aec15](https://github.com/abougouffa/minemacs/commit/d0aec15dcff703f1a1f5ce1e18edc408e0bb8ac0)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add `ack` - ([98279ac](https://github.com/abougouffa/minemacs/commit/98279ac30f9df964644bf7bebf1cc062c512302c)) - [@abougouffa](https://github.com/abougouffa)
+- add `me-ai` module - ([6e293e3](https://github.com/abougouffa/minemacs/commit/6e293e3d15eb9b36f2c64ffb63c3468f817354c8)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** map `SPC t c` to toggle `+whitespace-auto-cleanup-mode` - ([7db8582](https://github.com/abougouffa/minemacs/commit/7db858281b3a8de8b0f8c4d1efe63897107c3d29)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** change default TAB behavior - ([262a43f](https://github.com/abougouffa/minemacs/commit/262a43f8db0958e0254fd2a3f40604e630b6de17)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** make the default tab width 4 - ([3ae0f65](https://github.com/abougouffa/minemacs/commit/3ae0f65820d1628615ea5fc60a9b4bcecd1af420)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** better color for displaying trailing white space - ([bcf5089](https://github.com/abougouffa/minemacs/commit/bcf5089f8c4e9aa95f177b433779d17d3dd51691)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** add `+whitespace-auto-cleanup-mode` - ([f7804eb](https://github.com/abougouffa/minemacs/commit/f7804eb64d7e57a77a47ccd8926ecb24d2645051)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** map `gl` and `gh` to jump forward and backward - ([cdd2c9d](https://github.com/abougouffa/minemacs/commit/cdd2c9d8103f1f7f45a6b061c61faefb577e384f)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add `me-nano` in the examples - ([a2c58cc](https://github.com/abougouffa/minemacs/commit/a2c58cc933ce67b582ac9e71008ff4e9ce1974a2)) - [@abougouffa](https://github.com/abougouffa)
+- open `clang-[format|tidy]` in YAML mode - ([0f1e448](https://github.com/abougouffa/minemacs/commit/0f1e4484db7c0aa5a9e76a580053ae1b7c8e77bc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.10.0](https://github.com/abougouffa/minemacs/compare/v4.9.0..v4.10.0) - 2024-01-24
 #### Bug Fixes
 - **(core)** `+scratch-open-...` conflict with `project-cmake` - ([b9e4cbb](https://github.com/abougouffa/minemacs/commit/b9e4cbbb9e252da8311f1f6885dd7f970baf1751)) - [@abougouffa](https://github.com/abougouffa)
