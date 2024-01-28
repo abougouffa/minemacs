@@ -1348,6 +1348,15 @@ Returns either nil, or the position of the first null byte."
       (goto-char (point-min))
       (search-forward (string ?\x00) nil t 1))))
 
+(defun +binary-file-p (file &optional chunk)
+  "Is FILE a binary?
+
+This checks the first CHUNK of bytes, defaults to 1024."
+  (with-temp-buffer
+    (insert-file-contents-literally file nil 0 (or chunk 1024))
+    (goto-char (point-min))
+    (search-forward (string ?\x00) nil t 1)))
+
 (defun +binary-hexl-buffer-p (&optional buffer)
   "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
   (and +binary-hexl-enable
