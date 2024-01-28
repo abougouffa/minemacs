@@ -39,3 +39,4 @@ you might need install some of these tools.
 33. [`autoconf`](https://www.gnu.org/software/make) - Generate configuration script
 34. [`aspell`](http://aspell.net) - Interactive spell checker
 35. [`enchant-2`](https://github.com/AbiWord/enchant) - A generic spell checker
+36. [`pyenv`](https://github.com/pyenv/pyenv) - Simple Python version management
