@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.12.1](https://github.com/abougouffa/minemacs/compare/v4.12.0..v4.12.1) - 2024-01-28
+#### Documentation
+- **(external-tools)** regenerate the list - ([13dc390](https://github.com/abougouffa/minemacs/commit/13dc3905a0b8cb06b481f62bf9b373d44dd84be3)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** update the list - ([f8a8262](https://github.com/abougouffa/minemacs/commit/f8a82621c0dcf7497585f68c37b41a140870ca95)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** declare external dependencies - ([82088d2](https://github.com/abougouffa/minemacs/commit/82088d2e0e641858af185af1d752d679fbf23a6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** add an example in `init-tweaks.el` - ([2beb3d7](https://github.com/abougouffa/minemacs/commit/2beb3d7ac48a91ebc7a43efe4a87a46ba4a60895)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.12.0](https://github.com/abougouffa/minemacs/compare/v4.11.0..v4.12.0) - 2024-01-28
 #### Bug Fixes
 - **(dirvish)** ignore previewing `*.po` files - ([79dabfb](https://github.com/abougouffa/minemacs/commit/79dabfb586e6fc5a61a4da19276d4e955852cda1)) - [@abougouffa](https://github.com/abougouffa)
