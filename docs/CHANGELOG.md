@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.12.0](https://github.com/abougouffa/minemacs/compare/v4.11.0..v4.12.0) - 2024-01-28
+#### Bug Fixes
+- **(dirvish)** ignore previewing `*.po` files - ([79dabfb](https://github.com/abougouffa/minemacs/commit/79dabfb586e6fc5a61a4da19276d4e955852cda1)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(external-tools)** update the list - ([45405e2](https://github.com/abougouffa/minemacs/commit/45405e20f3635cf542b60805f12918ea64dc92a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update links - ([a6e5785](https://github.com/abougouffa/minemacs/commit/a6e57851aa89b8c485ea538efbe95ef9a9838dfc)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** show pictures - ([27e7e7e](https://github.com/abougouffa/minemacs/commit/27e7e7ecc93d70eab766c783faa0a81049c871a3)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate documentation - ([f4211e3](https://github.com/abougouffa/minemacs/commit/f4211e3ab8fce5ecc0d6907bffb1d89578192c59)) - [@abougouffa](https://github.com/abougouffa)
+- add a list of external tools (WIP) - ([f31b94b](https://github.com/abougouffa/minemacs/commit/f31b94bad762fbf35a52b055b7031c673b708480)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+binary-file-p` - ([2cc53c6](https://github.com/abougouffa/minemacs/commit/2cc53c6b1ca3c2e8d476f4ef96fcf3f40bed95f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `rscope` - ([431d3b2](https://github.com/abougouffa/minemacs/commit/431d3b2ad69bb55bbf25d0496396ac2d4c8994a7)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `eopengrok` support - ([6dde0da](https://github.com/abougouffa/minemacs/commit/6dde0da0f5fe717f1997be5a3ee67484854efb0b)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `rtags` support - ([f311840](https://github.com/abougouffa/minemacs/commit/f3118407cdcf1df7245a7e5bdd49fea66a14619a)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `eopengrok` support - ([2efe395](https://github.com/abougouffa/minemacs/commit/2efe395db7bd596e8d91c14bdf46e549ae94fa17)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(docs)** move documentation to a separate directory - ([897d5ab](https://github.com/abougouffa/minemacs/commit/897d5ab41780ef6b25d90191be1a1efa96acd2d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** update `DOCS.md` path - ([6f1de1c](https://github.com/abougouffa/minemacs/commit/6f1de1cc2df56ffcc6ec96e2878e203dedcd91f1)) - [@abougouffa](https://github.com/abougouffa)
+- **(version)** v4.11.0 - ([0d9da59](https://github.com/abougouffa/minemacs/commit/0d9da59eb35340b46f1127b68cf7ba9e6578d520)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(rtags)** defer until explicitly enabled - ([41395b7](https://github.com/abougouffa/minemacs/commit/41395b79627a39250205e7f2d230ce44303f2610)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.11.0](https://github.com/abougouffa/minemacs/compare/v4.10.0..v4.11.0) - 2024-01-28
 #### Bug Fixes
 - **(builtin)** fix loading the `+whitespace-auto-cleanup-mode` hook - ([2245c31](https://github.com/abougouffa/minemacs/commit/2245c317b5b388cffb58937ca2f3e20451195d1d)) - [@abougouffa](https://github.com/abougouffa)
