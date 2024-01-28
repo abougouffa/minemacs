@@ -16,5 +16,7 @@
   (+make-first-file-hook! 'c/c++ (rx "." (or "c" "cpp" "cxx" "cc" "c++" "h" "hpp" "hxx" "hh" "h++" "ixx" "cppm" "cxxm" "c++m" "ccm") eol))
   (+make-first-file-hook! 'python (rx "." (or "py" "pyw" "pyx" "pyz" "pyzw") eol)))
 
+;; Enable `pyenv' integration
+;; (setq +python-enable-pyenv t)
 
 ;;; init-tweaks.el ends here
