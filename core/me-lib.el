@@ -2167,6 +2167,32 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 
 
+(defun +list-external-dependencies ()
+  "Show the list of declared external dependencies."
+  (interactive)
+  (unless (featurep 'me-external-tools) (+load minemacs-core-dir "me-external-tools.el"))
+  (with-current-buffer (get-buffer-create "*external-dependencies*")
+    (read-only-mode -1)
+    (delete-region (point-min) (point-max))
+    (insert "# External Tools
+To get the maximum out of this configuration, you would need to install some
+external tools, either in your development machine, docker, remote host, etc.
+The presence of these programs isn't mandatory, however, for better experience,
+you might need install some of these tools.\n\n")
+    (let ((counter 0))
+      (dolist (dep minemacs-external-dependencies)
+        (insert (format "%d. [%s](%s) - %s\n"
+                        (cl-incf counter)
+                        (string-join (mapcar (apply-partially #'format "`%s`")
+                                             (ensure-list (plist-get dep :tool)))
+                                     ", ")
+                        (plist-get dep :link)
+                        (plist-get dep :desc)))))
+    (markdown-mode)
+    (read-only-mode 1)
+    (pop-to-buffer (current-buffer))))
+
+
 
 (provide 'me-lib)
 
