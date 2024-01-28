@@ -107,8 +107,7 @@ Fall back to the default `citre--project-root'."
 
 (use-package rtags-xref
   :straight t
-  :after xref
-  :demand t)
+  :commands rtags-xref-enable)
 
 (use-package eopengrok
   :straight t
