@@ -109,6 +109,10 @@ Fall back to the default `citre--project-root'."
   :straight t
   :commands rtags-xref-enable)
 
+(use-package rscope
+  :straight (:host github :repo "rjarzmik/rscope")
+  :commands rscope-init rscope-regenerate-database)
+
 (use-package eopengrok
   :straight t
   :commands
