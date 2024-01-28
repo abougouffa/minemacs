@@ -6,9 +6,9 @@
 
 **MinEmacs** is a lightweight Emacs configuration framework.
 
-[MinEmacs banner](images/minemacs-cover.svg)
+![MinEmacs banner](/docs/images/minemacs-cover.svg)
 
-[MinEmacs screenshot](images/minemacs-screenshot.svg)
+![MinEmacs screenshot](/docs/images/minemacs-screenshot.svg)
 
 ## Why?
 
