@@ -756,6 +756,11 @@ Return whether BUFFER or the current buffer is binary.
 A binary buffer is defined as containing at least one null byte.
 Returns either nil, or the position of the first null byte.
 
+#### `(+binary-file-p FILE &optional CHUNK)`
+
+Is FILE a binary?
+This checks the first CHUNK of bytes, defaults to 1024.
+
 #### `(+binary-hexl-buffer-p &optional BUFFER)`
 
 Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode`.
@@ -940,11 +945,11 @@ If FILENAME-FORMAT is non-nil, use it to as a format (ex. "file-%s.el").
 Return the deserialized object, or nil if the SYM.el
 file dont exist.
 
-#### `(+scratch-buffer &optional DONT-RESTORE-P MODE DIRECTORY PROJECT-NAME)`
+#### `(+scratch-buffer &optional DONT-RESTORE-P MODE DIRECTORY PROJ-NAME)`
 
 Return a scratchpad buffer in major MODE.
 When DONT-RESTORE-P, do not load the previously saved persistent buffer. Load
-persistent buffer dedicated to PROJECT-NAME when provided.
+persistent buffer dedicated to PROJ-NAME when provided.
 When provided, set the `default-directory` to DIRECTORY.
 
 #### `(+scratch-persist-buffer-h &rest _)`
@@ -994,7 +999,8 @@ If prefix ARG, delete all persistent scratches.
 
 #### `(+scratch-replace-with-persistent-scratch &optional ARG PROJECT-P)`
 
-Replace the *scratch* buffer with a .
+Replace the *scratch* buffer with a persistent one.
+ARG and PROJECT-P are passed to `+scratch-open-buffer`.
 
 #### `(+font-installed-p FONT-FAMILY)`
 
@@ -1022,6 +1028,47 @@ Bump version LEVEL (`auto`, `major`, `minor` or `patch`), and with PRE if it
 is a pre-release.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
+
+#### `(+fold-from-eol &rest BODY)` (macro)
+
+Execute BODY after moving to the end of the line.
+
+#### `(+fold/toggle)`
+
+Toggle the fold at point.
+Targets `vimmish-fold`, `hideshow` and `outline` folds.
+
+#### `(+fold/open)`
+
+Open the folded region at point.
+Targets `vimmish-fold`, `hideshow` and `outline` folds.
+
+#### `(+fold/close)`
+
+Close the folded region at point.
+Targets `vimmish-fold`, `hideshow` and `outline` folds.
+
+#### `(+fold/open-all &optional LEVEL)`
+
+Open folds at LEVEL (or all folds if LEVEL is nil).
+
+#### `(+fold/close-all &optional LEVEL)`
+
+Close folds at LEVEL (or all folds if LEVEL is nil).
+
+#### `(+fold/next COUNT)`
+
+Jump to the next vimish fold, outline heading or folded region.
+
+#### `(+fold/previous COUNT)`
+
+Jump to the previous vimish fold, outline heading or folded region.
+
+#### `(+fold-hideshow-indent-range &optional POINT)`
+
+Return the point at the begin and end of the text block with the same (or greater) indentation.
+If POINT is supplied and non-nil it will return the
+begin and end of the block surrounding point.
 
 #### `(eglot-ltex-workspace-config-fn &optional SERVER)`
 

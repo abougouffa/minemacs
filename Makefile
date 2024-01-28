@@ -59,7 +59,7 @@ make-readme-markdown.el:
 combined.el:
 	cat init.el early-init.el core/me-{vars,lib,builtin,gc,compat,core-ui}.el modules/me-*.el modules/extras/me-*.el >combined.el
 
-docs: combined.el make-readme-markdown.el
+documentation: combined.el make-readme-markdown.el
 	emacs --script make-readme-markdown.el <combined.el >docs/DOCS.md 2>/dev/null
 
 .INTERMEDIATE: make-readme-markdown.el combined.el
