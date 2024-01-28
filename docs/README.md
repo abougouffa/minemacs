@@ -39,7 +39,7 @@ features introduced extra complexity and more failure points at every layer.
 As a result, MinEmacs emerged as my personal configuration framework for Emacs,
 _and it continues to serve that purpose_. I'm trying to tailor it to my specific
 needs while maintaining its modularity and portability. You can refer to the
-[change log](CHANGELOG.md) for more information about the evolution of MinEmacs. However, I have
+[change log](/docs/CHANGELOG.md) for more information about the evolution of MinEmacs. However, I have
 no intention or availability to create an alternative to Doom Emacs or
 Spacemacs. While I find joy (like every other Emacser out there) in tinkering
 with Emacs, MinEmacs remains just a tool that I use in my everyday work, and
@@ -68,7 +68,7 @@ packages.
 > validate the configuration on systems other than Linux.
 >
 > I'm trying to support at least Emacs 28.1, so [I back port some of the new
-> functions/macros I use to Emacs 28](core/backports/). Furthermore, for Emacs 28 and earlier,
+> functions/macros I use to Emacs 28](/core/backports/). Furthermore, for Emacs 28 and earlier,
 > MinEmacs includes the `me-compat` module which loads the `compat` package at early
 > stage (just after bootstrapping `straight` and `use-package`), this can facilitate
 > porting MinEmacs to earlier Emacs versions. However, I've never tested
@@ -92,8 +92,8 @@ There are two main files that can be added in the `~/.minemacs.d` directory:
    customization, you can think of it as your `init.el`, which gets loaded at the
    end of MinEmacs' `init.el`!
 
-This repository contains skeleton files for [`modules.el`](skel/modules.el) and [`config.el`](skel/config.el) (under
-[`skel/`](skel)). We highly recommend following the same structure as in the skeleton
+This repository contains skeleton files for [`modules.el`](/skel/modules.el) and [`config.el`](/skel/config.el) (under
+[`skel/`](/skel)). We highly recommend following the same structure as in the skeleton
 files, specially the use of `with-eval-after-load` and `use-package` instead of
 using `require` directly (`require` loads the packages immediately, which increases
 the startup time of Emacs).
@@ -122,7 +122,7 @@ MinEmacs runnable on older Emacs versions, etc.
    `init.el` file. You can use it to do some useful stuff before MinEmacs starts
    to customize packages and load modules. This can be useful for porting
    MinEmacs to an older Emacs version by providing an implementation of new
-   functions MinEmacs uses. See the [`init.el`](init.el) for more information.
+   functions MinEmacs uses. See the [`init.el`](/init.el) for more information.
 
 ### Environment variables
 
@@ -156,7 +156,7 @@ general-describe-keybindings`.
 
 ## Extra documentation
 More information about customization variables, functions and commands defined
-by MinEmacs can be found in the [documentation generated from the source code](DOCS.md).
+by MinEmacs can be found in the [documentation generated from the source code](/docs/DOCS.md).
 
 ## Troubleshooting
 
