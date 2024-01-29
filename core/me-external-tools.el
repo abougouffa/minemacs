@@ -5,6 +5,15 @@
   '((:tool file
      :link "https://darwinsys.com/file"
      :desc "A tool to determine file types")
+    (:tool mbsync
+     :link "https://isync.sourceforge.io"
+     :desc "Free IMAP and MailDir mailbox synchronizer")
+    (:tool mu
+     :link "https://github.com/djcb/mu"
+     :desc "Maildir indexer/searcher + Emacs mail client + Guile bindings")
+    (:tool msmtp
+     :link "https://github.com/marlam/msmtp"
+     :desc "SMTP client with sendmail compatible interface")
     (:tool (objdump binutils)
      :link "https://en.wikipedia.org/wiki/Objdump"
      :desc "A tool to display information from object files")
@@ -122,6 +131,12 @@
     (:tool clangd
      :link "https://clangd.llvm.org"
      :desc "A C/C++ language server that provides IDE-like features to editors")
+    (:tool clang
+     :link "https://clang.llvm.org"
+     :desc "A C language family frontend for LLVM")
+    (:tool luac
+     :link "https://www.lua.org"
+     :desc "Lua compiler")
     (:tool rust-analyzer
      :link "https://github.com/rust-lang/rust-analyzer"
      :desc "A Rust compiler front-end for IDEs, aka. Rust LSP")
@@ -163,7 +178,67 @@
      :desc "A generic spell checker")
     (:tool clink
      :link "https://github.com/Smattr/clink"
-     :desc "A modern re-implementation of Cscope based on Clang")))
+     :desc "A modern re-implementation of Cscope based on Clang")
+    (:tool codespell
+     :link "https://github.com/codespell-project/codespell"
+     :desc "Check code for common misspellings")
+    (:tool bandit
+     :link "https://github.com/pycqa/bandit"
+     :desc "A tool designed to find common security issues in Python code")
+    (:tool guild
+     :link "https://www.gnu.org/software/guile"
+     :desc "The command-line interface to Guile’s compiler and utilities")
+    (:tool pmd
+     :link "https://pmd.github.io"
+     :desc "An extensible cross-language static code analyzer")
+    (:tool pyre
+     :link "https://pyre-check.org"
+     :desc "A performant type-checker for Python 3")
+    (:tool nasm
+     :link "https://www.nasm.us"
+     :desc "Netwide Assembler (NASM), an assembler for the x86 CPU")
+    (:tool cppcheck
+     :link "https://cppcheck.sourceforge.io"
+     :desc "A tool for static C/C++ code analysis")
+    (:tool pycodestyle
+     :link "https://github.com/pycqa/pycodestyle"
+     :desc "Simple Python style checker in one Python file")
+    (:tool mypy
+     :link "https://mypy-lang.org"
+     :desc "Optional Static Typing for Python")
+    (:tool ruff
+     :link "https://github.com/astral-sh/ruff"
+     :desc "An extremely fast Python linter and code formatter, written in Rust")
+    (:tool pylint
+     :link "https://github.com/pylint-dev/pylint"
+     :desc "It's not just a linter that annoys you!")
+    (:tool flake8
+     :link "https://github.com/pycqa/flake8"
+     :desc "Glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code")
+    (:tool sqlint
+     :link "https://github.com/purcell/sqlint"
+     :desc "ItSimple SQL linter supporting ANSI and PostgreSQL syntaxes")
+    (:tool sql-lint
+     :link "https://github.com/joereynolds/sql-lint"
+     :desc "An SQL linter")
+    (:tool markdownlint
+     :link "https://github.com/markdownlint/markdownlint"
+     :desc "Markdown lint tool")
+    (:tool tidy
+     :link "https://github.com/htacg/tidy-html5"
+     :desc "The granddaddy of HTML tools, with support for modern standards")
+    (:tool luacheck
+     :link "https://github.com/mpeterv/luacheck"
+     :desc "A tool for linting and static analysis of Lua code")
+    (:tool yamllint
+     :link "https://github.com/adrienverge/yamllint"
+     :desc "A linter for YAML files")
+    (:tool eslint
+     :link "https://github.com/eslint/eslint"
+     :desc "Find and fix problems in your JavaScript code")
+    (:tool jsonlint
+     :link "https://github.com/zaach/jsonlint"
+     :desc "A JSON parser and validator with a CLI")))
 
 
 (provide 'me-external-tools)
