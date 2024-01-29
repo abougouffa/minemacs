@@ -123,12 +123,7 @@
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
     (or
-     (let ((dir (buffer-file-name)))
-       (catch 'root
-         (while dir
-           (when (cl-some #'file-exists-p (mapcar (+apply-partially-right #'expand-file-name dir) +citre-recursive-root-project-detection-files))
-             (throw 'root dir))
-           (setq dir (file-name-parent-directory dir)))))
+     (+directory-root-containing-file +citre-recursive-root-project-detection-files)
      ;; Fall back to the default detection!
      (citre--project-root))))
 
