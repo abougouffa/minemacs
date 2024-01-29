@@ -54,6 +54,36 @@
   ;; Goto end of previous function
   (define-key evil-normal-state-map (kbd "[F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
 
+(push 'treesit straight-built-in-pseudo-packages) ; ts-movement depends on it
+
+(use-package ts-movement
+  :straight (:host github :repo "haritkapadia/ts-movement")
+  :hook ((prog-mode conf-mode) . +ts-movement-maybe)
+  :config
+  (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
+  (defun +ts-movement-maybe (&optional arg)
+    "Enable `ts-movement-mode' when if `major-mode' is a trees-sitter mode."
+    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
+    (when (string-suffix-p "-ts-mode" (symbol-name major-mode))
+      (ts-movement-mode arg)))
+  (transient-define-prefix +ts-movement-transient ()
+    "Transient for ts-movement."
+    [[("d" "delete-overlay-at-point" tsm/delete-overlay-at-point :transient t)
+      ("D" "clear-overlays-of-type" tsm/clear-overlays-of-type :transient t)
+      ("C-b" "backward-overlay" tsm/backward-overlay :transient t)
+      ("C-f" "forward-overlay" tsm/forward-overlay :transient t)
+      ("c" "tsm/mc/mark-all-overlays" tsm/mc/mark-all-overlays :transient t)]
+     [("a" "node-start" tsm/node-start :transient t)
+      ("e" "node-end" tsm/node-end :transient t)
+      ("b" "node-prev" tsm/node-prev :transient t)
+      ("f" "node-next" tsm/node-next :transient t)]
+     [("p" "node-parent" tsm/node-parent :transient t)
+      ("n" "node-child" tsm/node-child :transient t)
+      ("N" "node-children" tsm/node-children :transient t)
+      ("s" "node-children-of-type" tsm/node-children-of-type :transient t)
+      ("m" "node-mark" tsm/node-mark :transient t)]]
+    [("Q" "Quit" ignore :transient t)]))
+
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
