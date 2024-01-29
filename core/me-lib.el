@@ -744,6 +744,15 @@ that directory."
         (+error! "Cannot create directory %s" parent-dir)))
     path))
 
+(defun +directory-root-containing-file (files &optional start-path)
+  "Return the path containing a file from FILES starting from START-PATH."
+  (let ((dir (or start-path (buffer-file-name))))
+    (catch 'root
+      (while dir
+        (when (cl-some #'file-exists-p (mapcar (+apply-partially-right #'expand-file-name dir) (ensure-list files)))
+          (throw 'root dir))
+        (setq dir (file-name-parent-directory dir))))))
+
 (defun +delete-this-file (&optional path force-p)
   "Delete PATH.
 
