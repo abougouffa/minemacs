@@ -27,6 +27,15 @@
          :remap 'nix-mode
          :url "https://github.com/nix-community/tree-sitter-nix"
          :ext "\\.nix\\'")
+        treesit-auto-recipe-list)
+  (push 'xml treesit-auto-langs)
+  (push (make-treesit-auto-recipe
+         :lang 'xml
+         :ts-mode 'xml-ts-mode
+         :remap '(nxml-mode xml-mode)
+         :url "https://github.com/ObserverOfTime/tree-sitter-xml"
+         :source-dir "tree-sitter-xml/src"
+         :ext "\\.xml\\'")
         treesit-auto-recipe-list))
 
 (use-package evil-textobj-tree-sitter
