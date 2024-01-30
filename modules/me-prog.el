@@ -208,7 +208,9 @@ Fall back to the default `citre--project-root'."
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :init
   (+map! "cff" #'apheleia-format-buffer)
+  (defvar +xmllint-indent "    ")
   :config
+  (add-hook 'nxml-mode-hook (defun +xmllint--set-indent-h () (setenv "XMLLINT_INDENT" +xmllint-indent)))
   (push '(nxml-mode . xmllint) apheleia-mode-alist))
 
 (use-package editorconfig
