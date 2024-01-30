@@ -38,7 +38,7 @@
 
 (use-package flymake-quickdef
   :straight t
-  :autoload flymake-quickdef-backend +flymake-bandit-load +flymake-codespell-load
+  :autoload flymake-quickdef-backend +flymake-bandit-load +flymake-codespell-load +flymake-clang-tidy-load
   :init
   ;; Automatically generate `backend-load' function to be used as a hook
   (advice-add
@@ -53,6 +53,16 @@
 
   (when (executable-find "codespell")
     (+add-hook! prog-mode #'+flymake-codespell-load))
+
+  ;; Custom variables for `flymake-clang-tidy'
+  (defcustom flymake-clang-tidy-build-path "build"
+    "Clang build directory."
+    :type '(choice (const nil) directory)
+    :group 'minemacs-prog)
+  (defcustom flymake-clang-tidy-extra-options nil
+    "Extra options to pass to Clang-tidy."
+    :type '(choice (const nil) (repeat string))
+    :group 'minemacs-prog)
   :config
   ;; Add Bandit support for Python (example from https://github.com/karlotness/flymake-quickdef)
   (flymake-quickdef-backend flymake-bandit
@@ -91,7 +101,55 @@
            (end (cdr pos))
            (type :warning)
            (msg text))
-      (list fmqd-source beg end type msg))))
+      (list fmqd-source beg end type msg)))
+
+  ;; Define backend for Clang-tidy (inspired by `flycheck-clang-tidy')
+  (flymake-quickdef-backend flymake-clang-tidy
+    :pre-let ((clang-tidy-exec (executable-find "clang-tidy")))
+    :pre-check (unless clang-tidy-exec (error "Cannot find clang-tidy executable"))
+    :write-type 'file
+    :proc-form (append
+                (list clang-tidy-exec)
+                (when flymake-clang-tidy-build-path (list "-p" flymake-clang-tidy-build-path))
+                (list (concat "-extra-arg=-I" (file-name-directory (buffer-file-name))))
+                (when (flymake-clang-tidy-get-config) (list (concat "-config=" (flymake-clang-tidy-get-config))))
+                (ensure-list flymake-clang-tidy-extra-options)
+                (list fmqd-temp-file))
+    :search-regexp (rx bol (group (+ (not ?:))) ":" (group (+ num)) ":" (group (+ num)) ": " (group (+ (not ?:))) ": " (group (* any)) eol)
+    :prep-diagnostic
+    (let* ((file (match-string 1))
+           (lnum (string-to-number (match-string 2)))
+           (lcol (string-to-number (match-string 3)))
+           (severity (match-string 4))
+           (type (cond ((string= severity "warning") :warning)
+                       ((string= severity "error") :error)
+                       (t :note)))
+           (msg (match-string 5))
+           (pos (flymake-diag-region fmqd-source lnum))
+           (beg (car pos))
+           (end (cdr pos)))
+      (list fmqd-source beg end type msg)))
+
+  ;; Helper functions for `flymake-clang-tidy'
+  (defun flymake-clang-tidy-find-project-root (_checker)
+    "Find the project root for CHECKER.
+This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
+    (or
+     (and (project-current) (project-root (project-current)))
+     (when (and (featurep 'projectile) (bound-and-true-p projectile-mode)) (projectile-project-root))
+     (vc-root-dir)
+     (+directory-root-containing-file (buffer-file-name) ".clang-tidy")
+     (progn
+       (message "Could not determine project root, trying current directory.")
+       (file-name-directory (buffer-file-name)))))
+
+  (defun flymake-clang-tidy-get-config ()
+    "Find and read .clang-tidy."
+    (when-let* ((config-dir (+directory-root-containing-file ".clang-tidy"))
+                (config-file (expand-file-name ".clang-tidy" config-dir)))
+      (with-temp-buffer
+        (insert-file-contents config-file)
+        (buffer-string)))))
 
 (use-package flymake-plantuml
   :straight (:host github :repo "shaohme/flymake-plantuml")
