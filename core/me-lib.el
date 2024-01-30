@@ -746,7 +746,7 @@ that directory."
 
 (defun +directory-root-containing-file (files &optional start-path)
   "Return the path containing a file from FILES starting from START-PATH."
-  (let ((dir (or start-path (buffer-file-name))))
+  (let ((dir (or start-path (and buffer-file-name (file-name-directory buffer-file-name)) default-directory)))
     (catch 'root
       (while dir
         (when (cl-some #'file-exists-p (mapcar (+apply-partially-right #'expand-file-name dir) (ensure-list files)))

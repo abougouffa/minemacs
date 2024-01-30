@@ -138,10 +138,10 @@ This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
      (and (project-current) (project-root (project-current)))
      (when (and (featurep 'projectile) (bound-and-true-p projectile-mode)) (projectile-project-root))
      (vc-root-dir)
-     (+directory-root-containing-file (buffer-file-name) ".clang-tidy")
+     (+directory-root-containing-file ".clang-tidy")
      (progn
        (message "Could not determine project root, trying current directory.")
-       (file-name-directory (buffer-file-name)))))
+       (file-name-directory buffer-file-name))))
 
   (defun flymake-clang-tidy-get-config ()
     "Find and read .clang-tidy."
