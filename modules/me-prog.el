@@ -60,13 +60,14 @@
   :straight (:host github :repo "haritkapadia/ts-movement")
   :when (+emacs-features-p 'tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
-  :config
-  (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
+  :init
   (defun +ts-movement-maybe (&optional arg)
     "Enable `ts-movement-mode' when if `major-mode' is a trees-sitter mode."
     (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
     (when (string-suffix-p "-ts-mode" (symbol-name major-mode))
       (ts-movement-mode arg)))
+  :config
+  (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
   (transient-define-prefix +ts-movement-transient ()
     "Transient for ts-movement."
     [[("d" "delete-overlay-at-point" tsm/delete-overlay-at-point :transient t)
