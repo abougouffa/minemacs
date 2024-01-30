@@ -58,6 +58,7 @@
 
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")
+  :when (+emacs-features-p 'tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
   :config
   (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
