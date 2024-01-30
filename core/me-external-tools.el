@@ -26,6 +26,9 @@
     (:tool jq
      :link "https://jqlang.github.io/jq"
      :desc "A lightweight and flexible command-line JSON processor")
+    (:tool yq
+     :link "https://github.com/mikefarah/yq"
+     :desc "A portable command-line YAML, JSON, XML, CSV, TOML and properties processor")
     (:tool xmllint
      :link "https://github.com/GNOME/libxml2"
      :desc "Parse the XML files and output the result of the parsing")
