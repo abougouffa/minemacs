@@ -589,6 +589,10 @@ Ensure the path exists, if not create it. The exact behavior is to create the
 parent directory if the path is a file, and if the path is a directory, create
 that directory.
 
+#### `(+directory-root-containing-file FILES &optional START-PATH)`
+
+Return the path containing a file from FILES starting from START-PATH.
+
 #### `(+delete-this-file &optional PATH FORCE-P)`
 
 Delete PATH.
@@ -1013,6 +1017,10 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 #### `(+setup-fonts)`
 
 Setup fonts.
+
+#### `(+list-external-dependencies)`
+
+Show the list of declared external dependencies.
 
 #### `(+spellcheck-correct)`
 
