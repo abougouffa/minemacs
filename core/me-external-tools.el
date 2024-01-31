@@ -5,7 +5,7 @@
   '((:tool file
      :link "https://darwinsys.com/file"
      :desc "A tool to determine file types")
-    (:tool mbsync
+    (:tool (mbsync isync)
      :link "https://isync.sourceforge.io"
      :desc "Free IMAP and MailDir mailbox synchronizer")
     (:tool mu
@@ -24,7 +24,7 @@
      :link "https://github.com/gildas-lormeau/single-file-cli"
      :desc "CLI tool for saving a faithful copy of a complete web page in a single HTML file")
     (:tool jq
-     :link "https://jqlang.github.io/jq"
+     :link "https://github.com/jqlang/jq"
      :desc "A lightweight and flexible command-line JSON processor")
     (:tool yq
      :link "https://github.com/mikefarah/yq"
@@ -60,7 +60,7 @@
      :link "https://github.com/blahgeek/emacs-lsp-booster"
      :desc "Emacs LSP performance booster")
     (:tool cmake
-     :link "https://cmake.org"
+     :link "https://github.com/Kitware/CMake"
      :desc "A Powerful Software Build System")
     (:tool make
      :link "https://www.gnu.org/software/make"
@@ -95,6 +95,9 @@
     (:tool cpptools
      :link "https://github.com/microsoft/vscode-cpptools"
      :desc "Microsoft official C/C++ extension for VS Code, DAP support for C/C++")
+    (:tool code-debug
+     :link "https://github.com/WebFreak001/code-debug"
+     :desc "Native debugging for VSCode, DAP implementation")
     (:tool debugpy
      :link "https://github.com/microsoft/debugpy"
      :desc "An implementation of the Debug Adapter Protocol for Python")
@@ -120,7 +123,7 @@
      :link "https://github.com/sharkdp/fd"
      :desc "A simple, fast and user-friendly alternative to 'find'")
     (:tool git
-     :link "https://git-scm.com"
+     :link "https://github.com/git/git"
      :desc "The stupid content tracker")
     (:tool python
      :link "https://python.org"
@@ -156,11 +159,14 @@
      :link "https://github.com/valentjn/ltex-ls"
      :desc "LTeX Language Server based on Language Tool")
     (:tool sqlfluff
-     :link "https://sqlfluff.com"
+     :link "https://github.com/sqlfluff/sqlfluff"
      :desc "SQLFluff is a modular SQL linter for humans")
     (:tool sqlformat
-     :link "https://sqlformat.org"
-     :desc "SQL formatter")
+     :link "https://github.com/andialbrecht/sqlparse"
+     :desc "SQL formatter based on sqlparse")
+    (:tool pg_format
+     :link "https://github.com/darold/pgFormatter"
+     :desc "A PostgreSQL SQL syntax beautifier that can work as a console program or as a CGI")
     (:tool docker
      :link "https://www.docker.com"
      :desc "A self-sufficient runtime for containers")
@@ -171,17 +177,14 @@
      :link "https://github.com/Smattr/clink"
      :desc "A modern re-implementation of Cscope based on Clang")
     (:tool autoconf
-     :link "https://www.gnu.org/software/make"
+     :link "https://www.gnu.org/software/autoconf"
      :desc "Generate configuration script")
     (:tool aspell
-     :link "http://aspell.net"
+     :link "https://github.com/GNUAspell/aspell"
      :desc "Interactive spell checker")
     (:tool enchant-2
      :link "https://github.com/AbiWord/enchant"
      :desc "A generic spell checker")
-    (:tool clink
-     :link "https://github.com/Smattr/clink"
-     :desc "A modern re-implementation of Cscope based on Clang")
     (:tool codespell
      :link "https://github.com/codespell-project/codespell"
      :desc "Check code for common misspellings")
@@ -192,22 +195,22 @@
      :link "https://www.gnu.org/software/guile"
      :desc "The command-line interface to Guile’s compiler and utilities")
     (:tool pmd
-     :link "https://pmd.github.io"
+     :link "https://github.com/pmd/pmd"
      :desc "An extensible cross-language static code analyzer")
     (:tool pyre
-     :link "https://pyre-check.org"
+     :link "https://github.com/facebook/pyre-check"
      :desc "A performant type-checker for Python 3")
     (:tool nasm
-     :link "https://www.nasm.us"
+     :link "https://github.com/netwide-assembler/nasm"
      :desc "Netwide Assembler (NASM), an assembler for the x86 CPU")
     (:tool cppcheck
-     :link "https://cppcheck.sourceforge.io"
+     :link "https://github.com/danmar/cppcheck"
      :desc "A tool for static C/C++ code analysis")
     (:tool pycodestyle
      :link "https://github.com/pycqa/pycodestyle"
      :desc "Simple Python style checker in one Python file")
     (:tool mypy
-     :link "https://mypy-lang.org"
+     :link "https://github.com/python/mypy"
      :desc "Optional Static Typing for Python")
     (:tool ruff
      :link "https://github.com/astral-sh/ruff"
