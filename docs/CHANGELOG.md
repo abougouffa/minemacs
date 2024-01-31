@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.13.0](https://github.com/abougouffa/minemacs/compare/v4.12.1..v4.13.0) - 2024-01-31
+#### Bug Fixes
+- **(flymake)** fix finding the `.clang-tidy` file - ([fd128f6](https://github.com/abougouffa/minemacs/commit/fd128f608d7db99b9a61944b3f50a238aa9fd580)) - [@abougouffa](https://github.com/abougouffa)
+- **(ts-movement)** install only when Emacs has tree-sitter support - ([90ef5da](https://github.com/abougouffa/minemacs/commit/90ef5da71674931e87c14706455ded057ffd5fd2)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(external-tools)** update the list of external tools - ([7687639](https://github.com/abougouffa/minemacs/commit/76876399b82f660407cde4892f75e664b0b06373)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** regenerate the list - ([4f7e4c1](https://github.com/abougouffa/minemacs/commit/4f7e4c1a4e0f0e6c3eb4bf392d95153d2c3bfd3f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add an option to load all modules - ([4cbdf1e](https://github.com/abougouffa/minemacs/commit/4cbdf1e707493ab38236ce5694030fbb31c00c1f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+directory-root-containing-file` - ([3ee9727](https://github.com/abougouffa/minemacs/commit/3ee9727780aa700f8933239b895b4d41190c4b90)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add a `flymake` backend for `clang-tidy` - ([f652ab1](https://github.com/abougouffa/minemacs/commit/f652ab1b766998db2e376cc84d2b56ff7a48dee9)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `ts-movement` - ([a0e5a3d](https://github.com/abougouffa/minemacs/commit/a0e5a3df2c4b798d9ad04a4ed0e6933112e4ba4d)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** make use of the new `MINEMACS_LOAD_ALL_MODULES` envvar - ([2e24998](https://github.com/abougouffa/minemacs/commit/2e2499839aa9cb4defaed4cb4bcc6387a621e656)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** add an option for `+xmllint-indent` to set indentation - ([d8af747](https://github.com/abougouffa/minemacs/commit/d8af747b08a30c43d5f7569af576a52359247213)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** make use of `+directory-root-containing-file` - ([d411a14](https://github.com/abougouffa/minemacs/commit/d411a1498aee92da51ffa5d028e586e1183ca8e6)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** add `yq` - ([dc0da27](https://github.com/abougouffa/minemacs/commit/dc0da27d569b6b5001089de8a546b1208d8ec2db)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** install XML grammar - ([a853a72](https://github.com/abougouffa/minemacs/commit/a853a72bfeb58b04f85b50707964d94b0095d70c)) - [@abougouffa](https://github.com/abougouffa)
+- **(ts-movement)** move `+ts-movement-maybe` to `:init` - ([554bee5](https://github.com/abougouffa/minemacs/commit/554bee56ee31a00c80bb1fdb4eb782688cfef48c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0700633](https://github.com/abougouffa/minemacs/commit/0700633de628124997df3d233b3043fd18dfe63f)) - [@abougouffa](https://github.com/abougouffa)
+- declare more external tools - ([ad6de25](https://github.com/abougouffa/minemacs/commit/ad6de25150195d31e4f2c25cf222c23e35d0a987)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.12.1](https://github.com/abougouffa/minemacs/compare/v4.12.0..v4.12.1) - 2024-01-28
 #### Documentation
 - **(external-tools)** regenerate the list - ([13dc390](https://github.com/abougouffa/minemacs/commit/13dc3905a0b8cb06b481f62bf9b373d44dd84be3)) - [@abougouffa](https://github.com/abougouffa)
