@@ -48,7 +48,7 @@ jobs:
           ln -s "$(pwd)" "../.emacs.d"
           echo "Enabling all MinEmacs modules"
           echo "Running Emacs with MinEmacs configuration"
-          MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
+          MINEMACS_LOAD_ALL_MODULES=1
           make ci | tee /tmp/minemacs-output
           EMACS_EXIT_CODE=$?
           if [[ "$EMACS_EXIT_CODE" == 0 ]]; then
@@ -73,7 +73,7 @@ jobs:
       - name: Running MinEmacs in always demand mode
         run: |
           echo "Loading Emacs with MINEMACS_ALWAYS_DEMAND"
-          MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
+          MINEMACS_LOAD_ALL_MODULES=1
           MINEMACS_ALWAYS_DEMAND=1
           make ci | tee /tmp/minemacs-output
           EMACS_EXIT_CODE=$?
@@ -99,7 +99,7 @@ jobs:
       - name: Running MinEmacs in daemon mode
         run: |
           echo "Loading Emacs in daemon mode"
-          MINEMACSDIR=.github/workflows/scripts/minemacs-all.d/
+          MINEMACS_LOAD_ALL_MODULES=1
           make ci-daemon | tee /tmp/minemacs-output
           EMACS_EXIT_CODE=$?
           if [[ "$EMACS_EXIT_CODE" == 0 ]]; then

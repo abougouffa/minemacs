@@ -27,7 +27,7 @@ jobs:
       - name: Running MinEmacs with all modules
         run: |
           $env:HOME = "D:\a\minemacs\"
-          $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"
+          $env:MINEMACS_LOAD_ALL_MODULES = "1"
           emacs --no-window-system --batch --script .github\workflows\scripts\ci-init.el
       - name: Running MinEmacs in always demand mode
         run: |
@@ -38,6 +38,6 @@ jobs:
       - name: Running MinEmacs in daemon mode
         run: |
           echo "Loading Emacs in daemon mode"
-          $env:MINEMACSDIR = "D:\a\minemacs\.github\workflows\scripts\minemacs-all.d\"
+          $env:MINEMACS_LOAD_ALL_MODULES = "1"
           emacs --daemon --script .github\workflows\scripts\ci-init.el
           echo "Finished"
