@@ -28,7 +28,8 @@
 (use-package doom-themes
   :straight t
   :config
-  (doom-themes-org-config))
+  (with-eval-after-load 'org
+    (doom-themes-org-config)))
 
 (use-package dashboard
   :straight t
