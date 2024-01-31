@@ -84,6 +84,11 @@ Jump to the previous vimish fold, outline heading or folded region.
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
+;;; Generated autoloads from me-external-tools.el
+
+(register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
 
 (autoload '+gdb-set-layout "../modules/extras/me-gdb" "\
