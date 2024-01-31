@@ -211,6 +211,12 @@ goes idle."
   (+load minemacs-core-dir "me-modules.el")
   (+load-user-configs 'modules 'local/modules))
 
+;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
+;; loading all modules.
+(when minemacs-load-all-modules-p
+  (setq minemacs-core-modules '(me-splash me-keybindings me-evil me-core-ui me-completion)
+        minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\.el\\'")))))
+
 ;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
 ;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
 ;; This GCMH minimizes GC interference with the activity by using a high GC
