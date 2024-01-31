@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.13.2](https://github.com/abougouffa/minemacs/compare/v4.13.1..v4.13.2) - 2024-01-31
+#### Documentation
+- **(external-tools)** regenerate the list - ([f18f495](https://github.com/abougouffa/minemacs/commit/f18f4953d96b9e2ba116c05ba03d217d4914a126)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate documentation - ([ee5fe28](https://github.com/abougouffa/minemacs/commit/ee5fe287c2e219da10a064c81686bf068c5fd41c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(doom-themes)** defer loading the Org extension - ([4e782c8](https://github.com/abougouffa/minemacs/commit/4e782c88909a36b39bb32e34cfbe7b57c00f3ec1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([647b0f2](https://github.com/abougouffa/minemacs/commit/647b0f2f2d0b55a5cbd91929c493bb0fffd1c238)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.13.1](https://github.com/abougouffa/minemacs/compare/v4.13.0..v4.13.1) - 2024-01-31
 #### Miscellaneous Chores
 - **(ci)** add Emacs 29.2 to the CI matrix - ([ec7b395](https://github.com/abougouffa/minemacs/commit/ec7b395511660f18f178d620b78c8d4dc1e6c864)) - [@abougouffa](https://github.com/abougouffa)
