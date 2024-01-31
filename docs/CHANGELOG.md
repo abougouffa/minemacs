@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.13.1](https://github.com/abougouffa/minemacs/compare/v4.13.0..v4.13.1) - 2024-01-31
+#### Miscellaneous Chores
+- **(ci)** add Emacs 29.2 to the CI matrix - ([ec7b395](https://github.com/abougouffa/minemacs/commit/ec7b395511660f18f178d620b78c8d4dc1e6c864)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(external-tools)** prefer GitHub links when available, update the list - ([68126dd](https://github.com/abougouffa/minemacs/commit/68126ddf8ad39c07398849ca650a6514dd29dd81)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.13.0](https://github.com/abougouffa/minemacs/compare/v4.12.1..v4.13.0) - 2024-01-31
 #### Bug Fixes
 - **(flymake)** fix finding the `.clang-tidy` file - ([fd128f6](https://github.com/abougouffa/minemacs/commit/fd128f608d7db99b9a61944b3f50a238aa9fd580)) - [@abougouffa](https://github.com/abougouffa)
