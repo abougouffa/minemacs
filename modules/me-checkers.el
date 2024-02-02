@@ -44,9 +44,9 @@
   (advice-add
    'flymake-quickdef-backend :after
    (defun +flymake-quickdef--make-load-fn:after-a (backend &rest _)
-     (let ((fn (intern (format "+%s-load" backend))))
-       (defalias fn
-         (lambda () (add-hook 'flymake-diagnostic-functions backend nil t))))))
+     (defalias (intern (format "+%s-load" backend))
+       (lambda () (add-hook 'flymake-diagnostic-functions backend nil t))
+       (format "Load %s as a Flymake backend in the current buffer." backend))))
 
   (when (executable-find "bandit")
     (+add-hook! (python-mode python-ts-mode) #'+flymake-bandit-load))
