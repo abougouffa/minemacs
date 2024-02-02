@@ -111,7 +111,7 @@
     :proc-form (append
                 (list clang-tidy-exec)
                 (when flymake-clang-tidy-build-path (list "-p" flymake-clang-tidy-build-path))
-                (list (concat "-extra-arg=-I" (file-name-directory (buffer-file-name))))
+                (when buffer-file-name (list (concat "-extra-arg=-I" (file-name-directory buffer-file-name))))
                 (when (flymake-clang-tidy-get-config) (list (concat "-config=" (flymake-clang-tidy-get-config))))
                 (ensure-list flymake-clang-tidy-extra-options)
                 (list fmqd-temp-file))
