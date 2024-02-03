@@ -13,6 +13,7 @@
 
 (use-package evil-multiedit ; This will load `iedit' and suppresses it
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :after evil minemacs-first-file
   :demand t
   :init
@@ -36,6 +37,7 @@
 
 (use-package evil-iedit-state
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :commands evil-iedit-state/iedit-mode
   :after iedit
   :init
@@ -52,6 +54,7 @@
 
 (use-package evil-mc
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :hook (minemacs-first-file . global-evil-mc-mode)
   :config
   ;; Use "gz" instead of "gr", this last is mapped to `xref-find-references' in some programming modes.

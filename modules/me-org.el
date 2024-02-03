@@ -93,10 +93,12 @@
 
 (use-package evil-org
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :hook (org-mode . evil-org-mode))
 
 (use-package evil-org-agenda
   :after evil-org
+  :unless (+package-disabled-p 'evil 'me-evil)
   :demand t
   :config
   (evil-org-agenda-set-keys))

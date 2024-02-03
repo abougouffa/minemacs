@@ -57,6 +57,7 @@
 
 (use-package evil-collection
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :after evil minemacs-loaded
   :demand t
   :config
@@ -75,6 +76,7 @@
 
 (use-package evil-snipe
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :hook (minemacs-after-startup . evil-snipe-mode)
   :hook (minemacs-after-startup . evil-snipe-override-mode)
   :custom
@@ -84,6 +86,7 @@
 
 (use-package evil-numbers
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :init
   (+nmap!
     "g+" #'evil-numbers/inc-at-pt
@@ -96,6 +99,7 @@
 
 (use-package evil-nerd-commenter
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :commands evilnc-comment-operator
   :init
   (+nvmap!

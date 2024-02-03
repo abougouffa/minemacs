@@ -10,6 +10,7 @@
 
 (use-package evil-escape
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :hook (evil-mode . evil-escape-mode)
   :custom
   ;; The default "fd" interfere with the "f" (bound to `evil-snipe-f') binding.

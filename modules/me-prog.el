@@ -40,6 +40,7 @@
 
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
+  :unless (+package-disabled-p 'evil 'me-evil)
   :after evil
   :init
   ;; Require the package on the first `prog-mode' file

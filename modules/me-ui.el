@@ -85,6 +85,7 @@
 
 (use-package evil-anzu
   :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
   :hook (evil-mode . global-anzu-mode))
 
 
