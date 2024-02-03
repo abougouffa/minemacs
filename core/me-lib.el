@@ -571,9 +571,13 @@ Works like `shell-command-to-string' with two differences:
     (with-eval-after-load 'recentf
       (add-to-list 'recentf-exclude (rx-to-string `(or ,root ,(expand-file-name root)))))))
 
-(defun +package-disabled-p (package)
-  "Is package PACKAGE disabled in `minemacs-disabled-packages'."
-  (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t))
+(defun +package-disabled-p (package &optional module)
+  "Is package PACKAGE disabled in `minemacs-disabled-packages'.
+
+Optionally, check also for the containing MODULE."
+  (or
+   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
+   (and module (not (memq 'me-evil (append minemacs-core-modules minemacs-modules))))))
 
 (defvar +package--download-urls nil)
 
