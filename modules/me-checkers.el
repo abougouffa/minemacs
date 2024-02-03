@@ -115,7 +115,7 @@
                 (when (flymake-clang-tidy-get-config) (list (concat "-config=" (flymake-clang-tidy-get-config))))
                 (ensure-list flymake-clang-tidy-extra-options)
                 (list fmqd-temp-file))
-    :search-regexp (rx bol (group (+ (not ?:))) ":" (group (+ num)) ":" (group (+ num)) ": " (group (+ (not ?:))) ": " (group (* any)) eol)
+    :search-regexp "^\\([[:alnum:][:punct:]]+\\):\\([[:digit:]]+\\):\\([[:digit:]]+\\): \\(\\(?:error\\|note\\|warning\\)\\): \\(.*\\)$"
     :prep-diagnostic
     (let* ((file (match-string 1))
            (lnum (string-to-number (match-string 2)))
