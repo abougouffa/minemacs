@@ -175,8 +175,7 @@ Fall back to the default `citre--project-root'."
   :config
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
-  (unless (or (memq 'lsp-mode minemacs-configured-packages)
-              (fboundp 'consult-lsp-file-symbols))
+  (unless (or (not (+package-disabled-p 'lsp-mode 'me-lsp)) (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
 (use-package eldoc-box
