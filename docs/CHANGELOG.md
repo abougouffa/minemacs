@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.13.3](https://github.com/abougouffa/minemacs/compare/v4.13.2..v4.13.3) - 2024-02-04
+#### Bug Fixes
+- **(core)** buggy `+package-disabled-p` - ([1da5b30](https://github.com/abougouffa/minemacs/commit/1da5b306a6fbfb9fdb149d8fe1a4e7c1cb8cff2e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(external-tools)** regenerate - ([5db1bb2](https://github.com/abougouffa/minemacs/commit/5db1bb2b234a71135a2124a0d1d0933cedbf38fa)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult-eglot)** make use of `+package-disabled-p` - ([d2c45d1](https://github.com/abougouffa/minemacs/commit/d2c45d1b7d94f17bce82dd1813d59105a465bcb1)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add an option to check for modules in `+package-disabled-p` - ([c348bbb](https://github.com/abougouffa/minemacs/commit/c348bbb0089e3b7954d2c8ec3c29a0e689555cb9)) - [@abougouffa](https://github.com/abougouffa)
+- **(ellama)** auto load installed models - ([0a6f71d](https://github.com/abougouffa/minemacs/commit/0a6f71d848de19033c108203da0b430b69cbb63e)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** make use of `+package-disabled-p` to control installing evil packages - ([3d69084](https://github.com/abougouffa/minemacs/commit/3d690840039bc9a3471fb33b3f3a4ea08475e0d4)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** update the list - ([eef78cc](https://github.com/abougouffa/minemacs/commit/eef78cc4544e15a2e9e78fbbc227420d1c8be703)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-quickdef)** more accurate regexp in `flymake-clang-tidy` - ([c674dd2](https://github.com/abougouffa/minemacs/commit/c674dd2e2e814f44d155c02862a7e1983794ad20)) - [@abougouffa](https://github.com/abougouffa)
+- **(xcscope)** disable on Windows - ([ee7db68](https://github.com/abougouffa/minemacs/commit/ee7db68a7f0e607d33750c9986c36c052b9692cf)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.13.2](https://github.com/abougouffa/minemacs/compare/v4.13.1..v4.13.2) - 2024-01-31
 #### Documentation
 - **(external-tools)** regenerate the list - ([f18f495](https://github.com/abougouffa/minemacs/commit/f18f4953d96b9e2ba116c05ba03d217d4914a126)) - [@abougouffa](https://github.com/abougouffa)
