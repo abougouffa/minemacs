@@ -140,6 +140,9 @@
     (:tool clang
      :link "https://clang.llvm.org"
      :desc "A C language family frontend for LLVM")
+    (:tool clang-tidy
+     :link "https://clang.llvm.org/extra/clang-tidy"
+     :desc "Clang-based C++ “linter” tool")
     (:tool luac
      :link "https://www.lua.org"
      :desc "Lua compiler")
@@ -244,7 +247,10 @@
      :desc "Find and fix problems in your JavaScript code")
     (:tool jsonlint
      :link "https://github.com/zaach/jsonlint"
-     :desc "A JSON parser and validator with a CLI")))
+     :desc "A JSON parser and validator with a CLI")
+    (:tool ollama
+     :link "https://github.com/ollama/ollama"
+     :desc "Get up and running with Llama 2, Mistral, and other large language models locally")))
 
 
 (provide 'me-external-tools)
