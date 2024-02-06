@@ -397,6 +397,9 @@ Fall back to the default `citre--project-root'."
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
+(use-package breadcrumb
+  :straight t)
+
 
 (provide 'me-prog)
 
