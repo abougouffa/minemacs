@@ -69,6 +69,50 @@
   (unless (file-exists-p x86-lookup-pdf)
     (url-copy-file "https://cdrdv2.intel.com/v1/dl/getContent/671200" x86-lookup-pdf t)))
 
+(autoload 'term-send-string "term")
+(defcustom +serial-port "/dev/ttyUSB0"
+  "The default port (device) to use."
+  :group 'minemacs-embedded
+  :type 'file)
+
+(defcustom +serial-baudrate 115200
+  "The default baudrate to use."
+  :group 'minemacs-embedded
+  :type 'natnum)
+
+(defcustom +serial-first-commands nil
+  "A list of commands to run in the serial terminal after creation."
+  :group 'minemacs-embedded
+  :type '(repeat string))
+
+(defvar +serial-buffer nil)
+(defvar +serial-process nil)
+
+(defun +serial-running-p () (buffer-live-p +serial-buffer) (process-live-p +serial-process))
+
+(defun +serial--run-command-via-serial (port baud &rest commands)
+  "Run COMMANDS on a device via serial communication.
+
+Connect at PORT with baudrate BAUD."
+  (let ((commands (ensure-list commands)))
+    (unless (+serial-running-p)
+      (setq +serial-buffer (serial-term port baud)
+            +serial-process (get-buffer-process +serial-buffer)
+            commands (append +serial-first-commands commands)))
+    (if (+serial-running-p)
+        (term-send-string +serial-process (string-join (append commands '("\n")) "\n"))
+      (user-error "Unable to communicate with the serial terminal process"))))
+
+(defun +serial-run-command-via-serial (&optional port baud &rest commands)
+  "Run COMMANDS on a device via serial communication.
+
+If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
+  (interactive)
+  (let* ((port (or port +serial-port))
+         (baud (or baud +serial-baudrate))
+         (commands (or commands (list (read-shell-command (format "Run on %s@%d: " port baud))))))
+    (apply #'+serial--run-command-via-serial (append (list port baud) commands))))
+
 
 (provide 'me-embedded)
 
