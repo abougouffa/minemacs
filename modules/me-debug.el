@@ -10,6 +10,7 @@
 
 (use-package dape
   :straight (:host github :repo "svaante/dape")
+  :when (> emacs-major-version 28)
   :commands +dape-transient
   :custom
   (dape-inline-variables t)
