@@ -397,6 +397,18 @@ Fall back to the default `citre--project-root'."
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
+(use-package posframe-plus
+  :straight (:host github :repo "zbelial/posframe-plus"))
+
+(use-package treesitter-context
+  :straight (:host github :repo "zbelial/treesitter-context.el")
+  :when (+emacs-features-p 'tree-sitter)
+  :commands treesitter-context-mode
+  :custom
+  (treesitter-context-background-color "#EEEEEE")
+  (treesitter-context-border-color "#000000")
+  (treesitter-context-idle-time 0.5))
+
 (use-package breadcrumb
   :straight t)
 
