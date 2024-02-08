@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.14.0](https://github.com/abougouffa/minemacs/compare/v4.13.3..v4.14.0) - 2024-02-08
+#### Bug Fixes
+- **(dape)** disable on Emacs 28 (requires new `jsonrpc`) - ([a2c8f98](https://github.com/abougouffa/minemacs/commit/a2c8f98724dd0d34761f31e24d628edb0ee34b8b)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([e78ef9e](https://github.com/abougouffa/minemacs/commit/e78ef9e907373bb427a968641d33a52ef688a995)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate documentation - ([b1d3779](https://github.com/abougouffa/minemacs/commit/b1d37791a8f5cbae8e713e8bbd2b69860bedc383)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add proxy setup - ([06fc5ec](https://github.com/abougouffa/minemacs/commit/06fc5ec32ab0c0efff7c3c97bbee0bc806a74ec9)) - [@abougouffa](https://github.com/abougouffa)
+- **(embedded)** add `+serial-run-command-on-host` - ([c200b53](https://github.com/abougouffa/minemacs/commit/c200b537d9d36d322c7c3e51b98aae12493b3166)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `treesitter-context` - ([a22fd0b](https://github.com/abougouffa/minemacs/commit/a22fd0bc0d57cb84dcd188f4776180f9884eed85)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `breadcrumb` - ([5788292](https://github.com/abougouffa/minemacs/commit/5788292636b1d8175deae07e451efb784b7d3103)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** automatically enable proxies when set - ([bf1f0be](https://github.com/abougouffa/minemacs/commit/bf1f0be3a69aad06ae026fff4181198f4a3adf45)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** move `+serial-*` to `me-lib`, several enhancements - ([20a41ee](https://github.com/abougouffa/minemacs/commit/20a41eee1c648ecbd0a04f354b32b818b9d2e236)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-quickdef)** include docstring in the generated function - ([e9db03d](https://github.com/abougouffa/minemacs/commit/e9db03d630f7cf0bf7b8a9623a848d321155cb7f)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-quickdef)** better args handling in `flymake-clang-tidy` - ([ff6c407](https://github.com/abougouffa/minemacs/commit/ff6c407fbbd7cab063cd04ff86c915bab113fce6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([664a3b2](https://github.com/abougouffa/minemacs/commit/664a3b2e28f7dfc15cff125673706ad9b6fe4cbc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.13.3](https://github.com/abougouffa/minemacs/compare/v4.13.2..v4.13.3) - 2024-02-04
 #### Bug Fixes
 - **(core)** buggy `+package-disabled-p` - ([1da5b30](https://github.com/abougouffa/minemacs/commit/1da5b306a6fbfb9fdb149d8fe1a4e7c1cb8cff2e)) - [@abougouffa](https://github.com/abougouffa)
