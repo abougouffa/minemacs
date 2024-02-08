@@ -115,6 +115,22 @@ MinEmacs hooks will be run in this order:
 1. `minemacs-after-startup-hook`
 2. `minemacs-lazy-hook`
 
+#### `minemacs-proxies`
+
+MinEmacs proxies.
+
+Example, set it to:
+
+\='(("no" . "localhost,127.0.0.1,.local,.mylocaltld")
+  ("ftp" . "http://myproxy.local:8080/")
+  ("http" . "http://myproxy.local:8080/")
+  ("https" . "http://myproxy.local:8080/")))
+
+These will set the environment variables "no_proxy", "ftp_proxy", ...
+
+When set in "early-config.el" or in "init-tweaks.el", MinEmacs will enable
+it automatically.
+
 #### `+env-file`
 
 The file in which the environment variables will be saved.
@@ -906,6 +922,14 @@ Start systemd SERVICE. Optionally run PRE-FN and POST-FN.
 #### `(+systemd-stop SERVICE &optional PRE-FN POST-FN)`
 
 Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
+
+#### `(minemacs-enable-proxy)`
+
+Set *_proxy Linux environment variables from `minemacs-proxies`.
+
+#### `(minemacs-disable-proxy)`
+
+Unset *_proxy Linux environment variables.
 
 #### `(+map! &rest ARGS)` (macro)
 
