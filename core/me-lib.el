@@ -1758,6 +1758,24 @@ it forget them only when we are sure they don't exist."
 
 
 
+;;; Proxy
+;;; =====
+
+(defun minemacs-enable-proxy ()
+  "Set *_proxy Linux environment variables from `minemacs-proxies'."
+  (interactive)
+  (dolist (prox minemacs-proxies)
+    (let ((var (format "%s_proxy" (car prox))))
+      (+info! "Set %S to %S" var (cdr prox))
+      (setenv var (cdr prox)))))
+
+(defun minemacs-disable-proxy ()
+  "Unset *_proxy Linux environment variables."
+  (interactive)
+  (mapc #'setenv (mapcar (apply-partially #'format "%s_proxy") (mapcar #'car minemacs-proxies))))
+
+
+
 ;;; Keybinding macros
 ;;; =================
 

@@ -190,6 +190,23 @@ MinEmacs hooks will be run in this order:
   :group 'minemacs-core
   :type 'hook)
 
+(defcustom minemacs-proxies nil
+  "MinEmacs proxies.
+
+Example, set it to:
+
+\\='((\"no\" . \"localhost,127.0.0.1,.local,.mylocaltld\")
+  (\"ftp\" . \"http://myproxy.local:8080/\")
+  (\"http\" . \"http://myproxy.local:8080/\")
+  (\"https\" . \"http://myproxy.local:8080/\")))
+
+These will set the environment variables \"no_proxy\", \"ftp_proxy\", ...
+
+When set in \"early-config.el\" or in \"init-tweaks.el\", MinEmacs will enable
+it automatically."
+  :group 'minemacs-core
+  :type '(repeat (cons string string)))
+
 (defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
 (defvar minemacs-build-functions nil
   "Special hook for build functions that are run after completing package updates.")
