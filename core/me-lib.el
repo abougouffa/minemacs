@@ -991,6 +991,67 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 
 
 
+;;; Serial port
+
+(autoload 'term-send-string "term")
+(defcustom +serial-port "/dev/ttyUSB0"
+  "The default port (device) to use."
+  :group 'minemacs-serial
+  :type 'file)
+
+(defcustom +serial-baudrate 115200
+  "The default baudrate to use."
+  :group 'minemacs-serial
+  :type 'natnum)
+
+(defcustom +serial-first-commands nil
+  "A list of commands to run in the serial terminal after creation."
+  :group 'minemacs-serial
+  :type '(repeat string))
+
+(defvar +serial-buffer nil)
+(defvar +serial-process nil)
+
+(defun +serial-running-p ()
+  "Is there a serial port terminal running?"
+  (buffer-live-p +serial-buffer) (process-live-p +serial-process))
+
+(defun +serial--run-commands (port baud &rest commands)
+  "Run COMMANDS on a device via serial communication.
+
+Connect at PORT with baudrate BAUD."
+  (let ((commands (ensure-list commands)))
+    (unless (+serial-running-p)
+      (setq +serial-buffer (serial-term port baud)
+            +serial-process (get-buffer-process +serial-buffer)
+            commands (append +serial-first-commands commands)))
+    (if (+serial-running-p)
+        (term-send-string +serial-process (string-join (append commands '("\n")) "\n"))
+      (user-error "Unable to communicate with the serial terminal process"))))
+
+(defun +serial-run-commands (commands &optional port baud)
+  "Run COMMANDS on a device via serial communication.
+
+If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
+  (interactive (list (read-shell-command (format "Run command via serial port: "))))
+  (let ((port (or port +serial-port))
+        (baud (or baud +serial-baudrate)))
+    (+log! "Dev %s@%d: running commands %S" port baud commands)
+    (apply #'+serial--run-commands (append (list port baud) (ensure-list commands)))))
+
+
+
+;;; Networking
+
+(defvar +net-default-device "wlan0")
+
+(defun +net-get-ip-address (&optional dev)
+  "Get the IP-address for device DEV (default: eth0) of the current machine."
+  (let ((dev (or dev +net-default-device)))
+    (format-network-address (car (network-interface-info dev)) t)))
+
+
+
 ;;; Github
 
 (defun +github-latest-release (repo &optional fallback-release)
