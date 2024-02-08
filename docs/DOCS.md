@@ -145,6 +145,18 @@ A config file to use with the backend tool (pandoc, weasyprint, ...).
 
 The executable for "single-file" which is used archive HTML pages.
 
+#### `+serial-port`
+
+The default port (device) to use.
+
+#### `+serial-baudrate`
+
+The default baudrate to use.
+
+#### `+serial-first-commands`
+
+A list of commands to run in the serial terminal after creation.
+
 #### `+screenshot-delay`
 
 A delay to wait before taking the screenshot.
@@ -533,9 +545,10 @@ Load environment variables from `+env-file`.
 
 Add ROOTS to ignored projects, recentf, etc.
 
-#### `(+package-disabled-p PACKAGE)`
+#### `(+package-disabled-p PACKAGE &optional MODULE)`
 
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
+Optionally, check also for the containing MODULE.
 
 #### `(+package-download-from-urls PKGNAME &rest ARGS)`
 
@@ -654,6 +667,19 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 #### `(+single-file URL OUT-FILE)`
 
 Save URL into OUT-FILE as a standalone HTML file.
+
+#### `(+serial-running-p)`
+
+Is there a serial port terminal running?
+
+#### `(+serial-run-commands COMMANDS &optional PORT BAUD)`
+
+Run COMMANDS on a device via serial communication.
+If PORT or BAUD are nil, use values from `+serial-port` and `+serial-baudrate`.
+
+#### `(+net-get-ip-address &optional DEV)`
+
+Get the IP-address for device DEV (default: eth0) of the current machine.
 
 #### `(+github-latest-release REPO &optional FALLBACK-RELEASE)`
 
