@@ -75,6 +75,20 @@
   :straight t
   :hook (markdown-mode . conditionally-turn-on-pandoc))
 
+(use-package rfc-mode
+  :straight t
+  :custom
+  (rfc-mode-directory (concat minemacs-local-dir "rfc"))
+  :init
+  ;; Use a window wide enough but not too wide
+  (add-to-list
+   'display-buffer-alist
+   `((derived-mode . rfc-mode)
+     (display-buffer-in-side-window)
+     (slot . 0)
+     (side . right)
+     (dedicated . t) ;; Close when finished
+     (window-width . 76))))
 
 (provide 'me-docs)
 
