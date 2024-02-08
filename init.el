@@ -164,6 +164,10 @@
 ;; Load user init tweaks when available
 (+load-user-configs 'init-tweaks 'local/init-tweaks)
 
+;; When `minemacs-proxies' is set in "early-init.el" or in "init-tweaks.el",
+;; `minemacs-enable-proxy' will set the environment variables accordingly.
+(minemacs-enable-proxy)
+
 ;; HACK: Load the environment variables saved from shell using `+env-save' to
 ;; `+env-file'. `+env-save' saves all environment variables except these matched
 ;; by `+env-deny-vars'.

@@ -11,6 +11,13 @@
 ;; Disable `dashboard'
 ;; (setq +dashboard-disable t)
 
+;; Setup proxies
+;; (setq minemacs-proxies
+;;       '(("no" . "localhost,127.0.0.1,.local,.mylocaltld")
+;;         ("ftp" . "http://myproxy.local:8080/")
+;;         ("http" . "http://myproxy.local:8080/")
+;;         ("https" . "http://myproxy.local:8080/")))
+
 ;; Enable full screen at startup
 ;; (if-let ((fullscreen (assq 'fullscreen default-frame-alist)))
 ;;     (setcdr fullscreen 'fullboth)
