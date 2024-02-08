@@ -39,7 +39,7 @@ check:
 	$(EMACS_BATCH) --eval='(straight-check-all)'
 
 update:
-	$(EMACS_BATCH) --eval='(minemacs-update-packages)'
+	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs-update-packages)'
 
 locked:
 	$(EMACS_BATCH) --eval='(minemacs-update-restore-locked)'
