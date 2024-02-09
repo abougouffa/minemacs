@@ -42,7 +42,7 @@ update:
 	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs-update-packages)'
 
 locked:
-	$(EMACS_BATCH) --eval='(minemacs-update-restore-locked)'
+	$(EMACS_BATCH) --eval='(minemacs-update-restore-locked nil)'
 
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
