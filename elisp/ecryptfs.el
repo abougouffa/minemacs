@@ -13,6 +13,7 @@
 
 ;;; Code:
 
+(require 'epa)
 (require 'epg)
 (autoload 'cl-every "cl-extras")
 
