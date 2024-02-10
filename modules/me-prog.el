@@ -412,6 +412,13 @@ Fall back to the default `citre--project-root'."
 (use-package breadcrumb
   :straight t)
 
+(use-package protobuf-mode
+  :straight t)
+
+(use-package protobuf-ts-mode
+  :straight (:host github :repo "emacsmirror/protobuf-ts-mode")
+  :when (+emacs-features-p 'tree-sitter))
+
 
 (provide 'me-prog)
 
