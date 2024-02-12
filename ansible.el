@@ -244,7 +244,7 @@
      (3 font-lock-builtin-face t))
     (,ansible-section-keywords-regex    (1 ansible-section-face t))
     (,ansible-task-keywords-regex       (1 font-lock-keyword-face t))
-    ("^ *- \\(name\\):\\(.*\\)"
+    ("^ *- \\(name\\):\\([^#\n]*\\)"
      (1 font-lock-builtin-face t)
      (2 ansible-task-label-face t))
     (,ansible-keywords-regex            (1 font-lock-builtin-face t)))
