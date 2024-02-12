@@ -419,6 +419,16 @@ Fall back to the default `citre--project-root'."
   :straight (:host github :repo "emacsmirror/protobuf-ts-mode")
   :when (+emacs-features-p 'tree-sitter))
 
+(use-package devdocs
+  :straight t
+  :when (+emacs-features-p 'libxml2)
+  :init
+  (+map!
+    "hhh" #'devdocs-lookup
+    "hhp" #'devdocs-peruse
+    "hhs" #'devdocs-search
+    "hhI" #'devdocs-install))
+
 
 (provide 'me-prog)
 
