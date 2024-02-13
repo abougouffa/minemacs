@@ -28,10 +28,7 @@
 
 (use-package magit-todos
   :straight t
-  :after magit
-  :demand t
-  :config
-  (magit-todos-mode 1))
+  :after magit)
 
 (use-package magit-imerge
   :straight t
