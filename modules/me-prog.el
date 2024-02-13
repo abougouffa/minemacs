@@ -121,14 +121,34 @@
   (citre-use-project-root-when-creating-tags t)
   :init
   (defvar +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root"))
+  (defvar +citre-gtags-recursive-files-list t)
+  (defvar +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh"))
+  (defvar +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" "_MTN" "_darcs" "_sgbak" "debian"))
   :config
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
-    (or
-     (+directory-root-containing-file +citre-recursive-root-project-detection-files)
-     ;; Fall back to the default detection!
-     (citre--project-root))))
+    (or (+directory-root-containing-file +citre-recursive-root-project-detection-files)
+        (citre--project-root))) ; Fall back to the default detection!
+
+  (defun +citre-gtags-find-files-command (&optional dir)
+    (let* ((default-directory (or dir default-directory)))
+      (concat
+       "echo 'Creating list of files to index ...'\n"
+       (find-cmd
+        (unless +citre-gtags-recursive-files-list '(maxdepth "1"))
+        `(prune (and (type "d") (name ,@+citre-gtags-files-list-ignored-directories)))
+        `(iname ,@+citre-gtags-files-list-suffixes)
+        '(type "f" "l")
+        '(print))
+       " > gtags.files\n"
+       "echo 'Creating list of files to index ... done'\n")))
+
+  (defun +citre-gtags-create-list-of-files-to-index (top-directory)
+    "Create a list of files to index in TOP-DIRECTORY."
+    (interactive "DCreate file list in directory: ")
+    (let* ((default-directory top-directory))
+      (start-process-shell-command "+citre-gtags-files-list" "*+citre-gtags-files-list*" (+citre-gtags-find-files-command)))))
 
 (use-package citre-config
   :straight citre
