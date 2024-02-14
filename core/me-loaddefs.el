@@ -7,6 +7,40 @@
 
 
 
+;;; Generated autoloads from ../elisp/backup-each-save.el
+
+(autoload 'backup-each-save "../elisp/backup-each-save" "\
+Perform a backup the `buffer-file-name' if needed.")
+(defvar backup-each-save-mode nil "\
+Non-nil if Backup-Each-Save mode is enabled.
+See the `backup-each-save-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `backup-each-save-mode'.")
+(custom-autoload 'backup-each-save-mode "../elisp/backup-each-save" nil)
+(autoload 'backup-each-save-mode "../elisp/backup-each-save" "\
+Automatically backup files after saving them.
+
+This is a global minor mode.  If called interactively, toggle the
+`Backup-Each-Save mode' mode.  If the prefix argument is
+positive, enable the mode, and if it is zero or negative, disable
+the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='backup-each-save-mode)'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t)
+(register-definition-prefixes "../elisp/backup-each-save" '("backup-each-save-"))
+
+
 ;;; Generated autoloads from ../elisp/ecryptfs.el
 
 (autoload 'ecryptfs-toggle-mount-private "../elisp/ecryptfs" "\
