@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.15.0](https://github.com/abougouffa/minemacs/compare/v4.14.0..v4.15.0) - 2024-02-14
+#### Bug Fixes
+- **(ecryptfs)** `epa` needed if `ecryptfs-mount-private` is invoked early - ([d4a52d1](https://github.com/abougouffa/minemacs/commit/d4a52d1a6ba4ae674b819fb4a37ef6a826d221f7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+sensitive-data-mode` - ([fec482a](https://github.com/abougouffa/minemacs/commit/fec482ae957b0894fa2533e4aa19519e127a3405)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `devdocs` - ([94c0654](https://github.com/abougouffa/minemacs/commit/94c0654952a6dfac0a1af18996263a8f94a0e753)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add Protocol Buffers support - ([12e8494](https://github.com/abougouffa/minemacs/commit/12e8494e53386b22ee92008b90e9c9bf7f2597e8)) - [@abougouffa](https://github.com/abougouffa)
+- **(rfc-mode)** add a mode to download and display RFCs - ([707d80c](https://github.com/abougouffa/minemacs/commit/707d80ce3c37d4b510ae93212db2a8f53a06c966)) - [@abougouffa](https://github.com/abougouffa)
+- integrate a tweaked version of `backup-each-save` - ([bd0a364](https://github.com/abougouffa/minemacs/commit/bd0a364bcffbd922b2fd2566907f8d1bdaa4ec11)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(dockerfile)** add more tools (WIP) - ([e78a7a5](https://github.com/abougouffa/minemacs/commit/e78a7a5bd7f17983fe68e90a8f620e7c479cab30)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** fix the `locked` rule - ([23c1a74](https://github.com/abougouffa/minemacs/commit/23c1a74f01db69b98f216a3940b6e624479a6376)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** update all packages on `make update` - ([c583a41](https://github.com/abougouffa/minemacs/commit/c583a41c39ba410923e9407194be8c607a93ca66)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(citre)** load after the first C/C++ file - ([ebc4431](https://github.com/abougouffa/minemacs/commit/ebc4431e386b4c1b3ed490535d3efd02ab654cd8)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** ignore `.repo` when generating files list - ([7cc4608](https://github.com/abougouffa/minemacs/commit/7cc4608f988c2fce5321f101b3b503a632ad9e95)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** add a command to generate `gtags.files` - ([ed5bbee](https://github.com/abougouffa/minemacs/commit/ed5bbeef1430248808593cf7a8702ac80118b046)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** decrease default font size - ([a8ce083](https://github.com/abougouffa/minemacs/commit/a8ce083b24079f89fb2422af1f8d093bc34d11a7)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** no need for version check, fixed upstream - ([a2e2d82](https://github.com/abougouffa/minemacs/commit/a2e2d826a2f79e7fb65e5e7aad031f3bfdaf0ace)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-todos)** do not enable (too slow on big code bases) - ([e845bcb](https://github.com/abougouffa/minemacs/commit/e845bcb0bd383296f689c20ac26dfe64827e105d)) - [@abougouffa](https://github.com/abougouffa)
+- **(vertico)** enable `vertico-mouse-mode` - ([48b10dd](https://github.com/abougouffa/minemacs/commit/48b10dd6d059934ec4b6b7bed4a910b91a1be83e)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** change `frame-title-format` - ([0ea96fb](https://github.com/abougouffa/minemacs/commit/0ea96fb43abaef7610219b36825fd85e61493371)) - [@abougouffa](https://github.com/abougouffa)
+- update packages versions - ([b6963a8](https://github.com/abougouffa/minemacs/commit/b6963a85f96a88bfa387ae19cc6517b05261d1ce)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9738ac4](https://github.com/abougouffa/minemacs/commit/9738ac4e1c36b1f0bfa3b438993be5e34258098d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ee40277](https://github.com/abougouffa/minemacs/commit/ee40277b86243118460277cef006860263be916f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.14.0](https://github.com/abougouffa/minemacs/compare/v4.13.3..v4.14.0) - 2024-02-08
 #### Bug Fixes
 - **(dape)** disable on Emacs 28 (requires new `jsonrpc`) - ([a2c8f98](https://github.com/abougouffa/minemacs/commit/a2c8f98724dd0d34761f31e24d628edb0ee34b8b)) - [@abougouffa](https://github.com/abougouffa)
