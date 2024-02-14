@@ -20,23 +20,29 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  (push 'nix treesit-auto-langs)
-  (push (make-treesit-auto-recipe
-         :lang 'nix
-         :ts-mode 'nix-ts-mode
-         :remap 'nix-mode
-         :url "https://github.com/nix-community/tree-sitter-nix"
-         :ext "\\.nix\\'")
-        treesit-auto-recipe-list)
-  (push 'xml treesit-auto-langs)
-  (push (make-treesit-auto-recipe
-         :lang 'xml
-         :ts-mode 'xml-ts-mode
-         :remap '(nxml-mode xml-mode)
-         :url "https://github.com/ObserverOfTime/tree-sitter-xml"
-         :source-dir "tree-sitter-xml/src"
-         :ext "\\.xml\\'")
-        treesit-auto-recipe-list))
+  (setq treesit-auto-langs (append treesit-auto-langs '(nix xml elisp))
+        treesit-auto-recipe-list
+        (append
+         treesit-auto-recipe-list
+         (list (make-treesit-auto-recipe
+                :lang 'nix
+                :ts-mode 'nix-ts-mode
+                :remap 'nix-mode
+                :url "https://github.com/nix-community/tree-sitter-nix"
+                :ext "\\.nix\\'")
+               (make-treesit-auto-recipe
+                :lang 'xml
+                :ts-mode 'xml-ts-mode
+                :remap '(nxml-mode xml-mode)
+                :url "https://github.com/ObserverOfTime/tree-sitter-xml"
+                :source-dir "tree-sitter-xml/src"
+                :ext "\\.xml\\'")
+               (make-treesit-auto-recipe
+                :lang 'elisp
+                :ts-mode 'emacs-lisp-ts-mode
+                :remap 'emacs-lisp-mode
+                :url "https://github.com/Wilfred/tree-sitter-elisp"
+                :ext "\\.el\\'")))))
 
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
