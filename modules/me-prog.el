@@ -81,11 +81,9 @@
   :when (+emacs-features-p 'tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
   :init
-  (defun +ts-movement-maybe (&optional arg)
+  (defun +ts-movement-maybe ()
     "Enable `ts-movement-mode' when if `major-mode' is a trees-sitter mode."
-    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
-    (when (string-suffix-p "-ts-mode" (symbol-name major-mode))
-      (ts-movement-mode arg)))
+    (run-with-timer 1.0 nil (lambda () (when (treesit-parser-list) (ts-movement-mode 1)))))
   :config
   (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
   (transient-define-prefix +ts-movement-transient ()
