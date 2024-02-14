@@ -112,7 +112,7 @@
 
 (use-package citre
   :straight t
-  :after minemacs-first-file
+  :after minemacs-first-c/c++-file
   :demand t
   :custom
   ;; Better (!) project root detection function
