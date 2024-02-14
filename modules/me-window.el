@@ -71,20 +71,19 @@
    (window-width . 0.5)
    (reusable-frames . visible)))
 
-(setq
- frame-title-format
- '("%b"
-   (:eval
-    (let ((proj
-           (ignore-errors
-             (cond
-              ((featurep 'projectile) (projectile-project-name))
-              (t (or
-                  (project-name (project-current))
-                  (file-name-nondirectory (string-trim-right (expand-file-name (vc-root-dir)) "/"))))))))
-     (concat
-      (if (buffer-modified-p) " ○" " ●")
-      (when (and proj (not (string= proj "-"))) (format " %s" proj)))))))
+(setq frame-title-format
+      '("GNU Emacs (" "%b"
+        (:eval
+         (let ((proj (cond
+                      ((featurep 'projectile) (projectile-project-name))
+                      (t (or
+                          (ignore-errors (project-name (project-current)))
+                          (ignore-errors (file-name-nondirectory (string-trim-right (expand-file-name (vc-root-dir)) "/")))
+                          "*no-project*")))))
+          (concat
+           (if (buffer-modified-p) " ○" " ●")
+           (when (and proj (not (string= proj "-"))) (format " %s" proj)))))
+        ")"))
 
 ;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
 (with-eval-after-load 'hydra
