@@ -123,7 +123,7 @@
   (defvar +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root"))
   (defvar +citre-gtags-recursive-files-list t)
   (defvar +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh"))
-  (defvar +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" "_MTN" "_darcs" "_sgbak" "debian"))
+  (defvar +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian"))
   :config
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
