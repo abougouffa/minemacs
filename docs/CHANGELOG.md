@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.16.0](https://github.com/abougouffa/minemacs/compare/v4.15.0..v4.16.0) - 2024-02-14
+#### Tweaks
+- **(treesit-auto)** enable treesit parsers even in non-treesit modes - ([8af4ad8](https://github.com/abougouffa/minemacs/commit/8af4ad8fc0e7dee5fa6b8e7212cf4a18cdf1efcc)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** install `elisp` grammar - ([2422c85](https://github.com/abougouffa/minemacs/commit/2422c854be84c13478dcaa895018834c92b1ed9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(ts-movement)** better detection of treesit enabled modes - ([09b365d](https://github.com/abougouffa/minemacs/commit/09b365d210e43a1fbf0bb0dc089dfd54a5e355b6)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.15.0](https://github.com/abougouffa/minemacs/compare/v4.14.0..v4.15.0) - 2024-02-14
 #### Bug Fixes
 - **(ecryptfs)** `epa` needed if `ecryptfs-mount-private` is invoked early - ([d4a52d1](https://github.com/abougouffa/minemacs/commit/d4a52d1a6ba4ae674b819fb4a37ef6a826d221f7)) - [@abougouffa](https://github.com/abougouffa)
