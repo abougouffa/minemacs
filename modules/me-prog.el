@@ -16,6 +16,7 @@
   :straight (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
   :hook (minemacs-after-startup . global-treesit-auto-mode)
+  :hook (minemacs-first-file . +treesit-enable-available-grammars-on-normal-modes)
   :hook (minemacs-build-functions . treesit-auto-install-all)
   :custom
   (treesit-auto-install 'prompt)
@@ -42,7 +43,19 @@
                 :ts-mode 'emacs-lisp-ts-mode
                 :remap 'emacs-lisp-mode
                 :url "https://github.com/Wilfred/tree-sitter-elisp"
-                :ext "\\.el\\'")))))
+                :ext "\\.el\\'"))))
+
+  ;; Make `treesit' parsers even in non-treesit modes, useful for packages like `expreg' and `ts-movement'
+  (defun +treesit-enable-available-grammars-on-normal-modes ()
+    (dolist (recipe treesit-auto-recipe-list)
+      (let ((ts-mode (treesit-auto-recipe-ts-mode recipe))
+            (lang (treesit-auto-recipe-lang recipe))
+            (remap-modes (ensure-list (treesit-auto-recipe-remap recipe))))
+        (unless (fboundp ts-mode) ;; When the `xxx-ts-mode' is not available
+          (dolist (remap-mode remap-modes)
+            (let ((fn-name (intern (format "+treesit-enable-on-%s-h" remap-mode)))
+                  (hook-name (intern (format "%s-hook" remap-mode))))
+              (add-hook hook-name (defalias fn-name (lambda () (treesit-parser-create lang)))))))))))
 
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
