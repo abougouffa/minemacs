@@ -106,21 +106,23 @@ on size.")
 ;;;###autoload
 (defun backup-each-save ()
   "Perform a backup the `buffer-file-name' if needed."
-  (let ((buff-file-name (buffer-file-name)))
-    (when (and (or backup-each-save-remote-files (not (file-remote-p buff-file-name)))
-               (funcall backup-each-save-filter-function buff-file-name)
+  (let ((filename (buffer-file-name)))
+    (when (and (or backup-each-save-remote-files (not (file-remote-p filename)))
+               (funcall backup-each-save-filter-function filename)
                (or (not backup-each-save-size-limit) (<= (buffer-size) backup-each-save-size-limit)))
-      (copy-file buff-file-name (backup-each-save-compute-location buff-file-name 'unique) t t t t)
-      (when backup-each-save-auto-cleanup (backup-each-save-cleanup buff-file-name)))))
+      (copy-file filename (backup-each-save-compute-location filename 'unique) t t t)
+      (when backup-each-save-auto-cleanup (backup-each-save-cleanup filename)))))
 
 (defun backup-each-save-cleanup (filename)
   "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
   (interactive (list buffer-file-name))
-  (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
-         (backup-files (backup-each-save-backups-for-file filename)))
-    (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
-      (let ((fname (expand-file-name file backup-dir)))
-        (delete-file fname t)))))
+  (if (not filename)
+      (user-error "This buffer is not visiting a file")
+    (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+           (backup-files (backup-each-save-backups-for-file filename)))
+      (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
+        (let ((fname (expand-file-name file backup-dir)))
+          (delete-file fname t))))))
 
 (defun backup-each-save-compute-location (filename &optional unique)
   "Compute backup location for FILENAME.
@@ -146,15 +148,17 @@ When UNIQUE is provided, add a date after the file name."
 (defun backup-each-save-open-backup (filename)
   "Open a backup of FILENAME or the current buffer."
   (interactive (list buffer-file-name))
-  (let* ((current-major-mode major-mode)
-         (backup-dir (file-name-directory (backup-each-save-compute-location filename)))
-         (completion-extra-properties
-          `(:annotation-function
-            ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
-         (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
-    (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
-      ;; Apply the same major mode as the original
-      (funcall current-major-mode))))
+  (if (not filename)
+      (user-error "This buffer is not visiting a file")
+    (let* ((current-major-mode major-mode)
+           (backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+           (completion-extra-properties
+            `(:annotation-function
+              ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
+           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
+      (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
+        ;; Apply the same major mode as the original
+        (funcall current-major-mode)))))
 
 ;;;###autoload
 (define-minor-mode backup-each-save-mode
