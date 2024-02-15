@@ -48,14 +48,14 @@
   ;; Make `treesit' parsers even in non-treesit modes, useful for packages like `expreg' and `ts-movement'
   (defun +treesit-enable-available-grammars-on-normal-modes ()
     (dolist (recipe treesit-auto-recipe-list)
-      (let ((ts-mode (treesit-auto-recipe-ts-mode recipe))
-            (lang (treesit-auto-recipe-lang recipe))
-            (remap-modes (ensure-list (treesit-auto-recipe-remap recipe))))
-        (unless (fboundp ts-mode) ;; When the `xxx-ts-mode' is not available
-          (dolist (remap-mode remap-modes)
-            (let ((fn-name (intern (format "+treesit-enable-on-%s-h" remap-mode)))
-                  (hook-name (intern (format "%s-hook" remap-mode))))
-              (add-hook hook-name (defalias fn-name (lambda () (treesit-parser-create lang)))))))))))
+      (let ((lang (treesit-auto-recipe-lang recipe)))
+        (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ;; When the `xxx-ts-mode' is not available
+          (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe)))
+            (add-hook (intern (format "%s-hook" remap-mode))
+                      (defalias (intern (format "+treesit--enable-on-%s-h" remap-mode))
+                        (lambda ()
+                          (when (and (treesit-available-p) (treesit-language-available-p lang))
+                            (treesit-parser-create lang)))))))))))
 
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
