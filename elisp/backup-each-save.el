@@ -156,8 +156,10 @@ When UNIQUE is provided, add a date after the file name."
            (completion-extra-properties
             `(:annotation-function
               ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
-           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
+           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name)))
+           (basename (file-name-nondirectory filename)))
       (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
+        (rename-buffer (concat basename " (" (backup-each-save--display-time (string-remove-prefix (concat basename "#") backup-file)) ")"))
         ;; Apply the same major mode as the original
         (funcall current-major-mode)))))
 
