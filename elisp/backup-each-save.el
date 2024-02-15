@@ -103,7 +103,6 @@ on size.")
 (defvar backup-each-save-auto-cleanup nil
   "Automatically cleanup after making a backup.")
 
-;;;###autoload
 (defun backup-each-save ()
   "Perform a backup the `buffer-file-name' if needed."
   (let ((filename (buffer-file-name)))
@@ -112,17 +111,6 @@ on size.")
                (or (not backup-each-save-size-limit) (<= (buffer-size) backup-each-save-size-limit)))
       (copy-file filename (backup-each-save-compute-location filename 'unique) t t t)
       (when backup-each-save-auto-cleanup (backup-each-save-cleanup filename)))))
-
-(defun backup-each-save-cleanup (filename)
-  "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
-  (interactive (list buffer-file-name))
-  (if (not filename)
-      (user-error "This buffer is not visiting a file")
-    (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
-           (backup-files (backup-each-save-backups-for-file filename)))
-      (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
-        (let ((fname (expand-file-name file backup-dir)))
-          (delete-file fname t))))))
 
 (defun backup-each-save-compute-location (filename &optional unique)
   "Compute backup location for FILENAME.
@@ -145,6 +133,19 @@ When UNIQUE is provided, add a date after the file name."
          (backup-dir (file-name-directory backup-filename)))
     (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) "#" backup-each-save-time-match-regexp "$"))))
 
+;;;###autoload
+(defun backup-each-save-cleanup (filename)
+  "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
+  (interactive (list buffer-file-name))
+  (if (not filename)
+      (user-error "This buffer is not visiting a file")
+    (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+           (backup-files (backup-each-save-backups-for-file filename)))
+      (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
+        (let ((fname (expand-file-name file backup-dir)))
+          (delete-file fname t))))))
+
+;;;###autoload
 (defun backup-each-save-open-backup (filename)
   "Open a backup of FILENAME or the current buffer."
   (interactive (list buffer-file-name))
