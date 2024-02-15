@@ -78,10 +78,10 @@
 
 Defaults to nil.")
 
-(defconst backup-each-save-time-format "#%Y-%m-%d-%H-%M-%S"
+(defconst backup-each-save-time-format "%Y-%m-%d-%H-%M-%S"
   "Format given to `format-time-string' which is appended to the filename.")
 
-(defconst backup-each-save-time-match-regexp "#[[:digit:]]\\{4\\}\\(-[[:digit:]]\\{2\\}\\)\\{5\\}$"
+(defconst backup-each-save-time-match-regexp "[[:digit:]]\\{4\\}\\(-[[:digit:]]\\{2\\}\\)\\{5\\}"
   "A regexp that matches `backup-each-save-time-format'.")
 
 (defvar backup-each-save-filter-function #'identity
@@ -113,9 +113,8 @@ on size.")
 (defun backup-each-save-cleanup (filename)
   "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
   (interactive (list buffer-file-name))
-  (let* ((backup-filename (backup-each-save-compute-location filename))
-         (backup-dir (file-name-directory backup-filename))
-         (backup-files (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) backup-each-save-time-match-regexp))))
+  (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+         (backup-files (backup-each-save-backups-for-file filename)))
     (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
       (let ((fname (expand-file-name file backup-dir)))
         (delete-file fname t)))))
@@ -129,11 +128,30 @@ When UNIQUE is provided, add a date after the file name."
          (host (or (file-remote-p filename 'host) "localhost"))
          (user (or (file-remote-p filename 'user) user-real-login-name))
          (containing-dir (file-name-directory localname))
-         (basename (file-name-nondirectory localname))
-         (backup-dir (funcall #'file-name-concat backup-each-save-directory method host user containing-dir)))
+         (backup-dir (funcall #'file-name-concat backup-each-save-directory method host user containing-dir))
+         (backup-basename (format "%s%s" (file-name-nondirectory localname) (if unique (concat "#" (format-time-string backup-each-save-time-format)) ""))))
     (when (not (file-exists-p backup-dir))
       (make-directory backup-dir t))
-    (expand-file-name (format "%s%s" basename (if unique (format-time-string backup-each-save-time-format) "")) backup-dir)))
+    (expand-file-name backup-basename backup-dir)))
+
+(defun backup-each-save-backups-for-file (filename)
+  "List of backups for FILENAME."
+  (let* ((backup-filename (backup-each-save-compute-location filename))
+         (backup-dir (file-name-directory backup-filename)))
+    (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) "#" backup-each-save-time-match-regexp "$"))))
+
+(defun backup-each-save-open-backup (filename)
+  "Open a backup of FILENAME or the current buffer."
+  (interactive (list buffer-file-name))
+  (let* ((current-major-mode major-mode)
+         (backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+         (completion-extra-properties
+          `(:annotation-function
+            ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
+         (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
+    (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
+      ;; Apply the same major mode as the original
+      (funcall current-major-mode))))
 
 ;;;###autoload
 (define-minor-mode backup-each-save-mode
