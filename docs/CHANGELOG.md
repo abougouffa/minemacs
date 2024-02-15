@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.16.1](https://github.com/abougouffa/minemacs/compare/v4.16.0..v4.16.1) - 2024-02-15
+#### Bug Fixes
+- **(treesit-auto)** do not create parsers for non-installed grammars - ([a5be915](https://github.com/abougouffa/minemacs/commit/a5be9159e56b19adda72c5bf69b6e4147cecfaa6)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(backup)** bump version, update docs - ([8ec19bc](https://github.com/abougouffa/minemacs/commit/8ec19bcc5948258879d20c791b70116d0dd1457b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(backup)** signal an error if in non-visiting buffer - ([a7c845c](https://github.com/abougouffa/minemacs/commit/a7c845ca83dbfb507b43372ddb3f50f9b3f629d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(backup)** more tweaks and features for `backup-each-save` - ([b5a6ffb](https://github.com/abougouffa/minemacs/commit/b5a6ffb6ff61874368e680344287fbec28da1080)) - [@abougouffa](https://github.com/abougouffa)
+- **(backup-each-save)** add backup cleanup support - ([65656f4](https://github.com/abougouffa/minemacs/commit/65656f440b3a66c3066f1fd084bd44716156b532)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.16.0](https://github.com/abougouffa/minemacs/compare/v4.15.0..v4.16.0) - 2024-02-14
 #### Tweaks
 - **(treesit-auto)** enable treesit parsers even in non-treesit modes - ([8af4ad8](https://github.com/abougouffa/minemacs/commit/8af4ad8fc0e7dee5fa6b8e7212cf4a18cdf1efcc)) - [@abougouffa](https://github.com/abougouffa)
