@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.16.2](https://github.com/abougouffa/minemacs/compare/v4.16.1..v4.16.2) - 2024-02-15
+#### Tweaks
+- **(backup)** rename buffer when viewing a backup file - ([4a8568a](https://github.com/abougouffa/minemacs/commit/4a8568ad0ff31623a593675c87c0e3dfb61f069f)) - [@abougouffa](https://github.com/abougouffa)
+- **(backup)** autoload - ([151b527](https://github.com/abougouffa/minemacs/commit/151b527f3cb5cf1501d662d06a304e035dcee17f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8f24e85](https://github.com/abougouffa/minemacs/commit/8f24e857b7a1fb9a9626a302817e005f72a17613)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([a14238a](https://github.com/abougouffa/minemacs/commit/a14238ad1ae70af2ad7de4d3a557cba3e4406bdd)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.16.1](https://github.com/abougouffa/minemacs/compare/v4.16.0..v4.16.1) - 2024-02-15
 #### Bug Fixes
 - **(treesit-auto)** do not create parsers for non-installed grammars - ([a5be915](https://github.com/abougouffa/minemacs/commit/a5be9159e56b19adda72c5bf69b6e4147cecfaa6)) - [@abougouffa](https://github.com/abougouffa)
