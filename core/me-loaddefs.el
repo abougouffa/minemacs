@@ -9,8 +9,14 @@
 
 ;;; Generated autoloads from ../elisp/backup-each-save.el
 
-(autoload 'backup-each-save "../elisp/backup-each-save" "\
-Perform a backup the `buffer-file-name' if needed.")
+(autoload 'backup-each-save-cleanup "../elisp/backup-each-save" "\
+Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies.
+
+(fn FILENAME)" t)
+(autoload 'backup-each-save-open-backup "../elisp/backup-each-save" "\
+Open a backup of FILENAME or the current buffer.
+
+(fn FILENAME)" t)
 (defvar backup-each-save-mode nil "\
 Non-nil if Backup-Each-Save mode is enabled.
 See the `backup-each-save-mode' command
@@ -38,7 +44,12 @@ The mode's hook is called both when the mode is enabled and when
 it is disabled.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "../elisp/backup-each-save" '("backup-each-save-"))
+(register-definition-prefixes "../elisp/backup-each-save" '("backup-each-save"))
+
+
+;;; Generated autoloads from ../elisp/clink.el
+
+(register-definition-prefixes "../elisp/clink" '("clink-"))
 
 
 ;;; Generated autoloads from ../elisp/ecryptfs.el
@@ -226,6 +237,11 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
+
+
+;;; Generated autoloads from ../elisp/opengrok.el
+
+(register-definition-prefixes "../elisp/opengrok" '("opengrok-"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
