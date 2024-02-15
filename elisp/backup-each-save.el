@@ -69,6 +69,8 @@
 
 ;;; Code:
 
+(autoload 'cl-set-difference "cl-seq")
+
 (defvar backup-each-save-directory (locate-user-emacs-file "backup-each-save/"))
 
 (defvar backup-each-save-remote-files t
@@ -76,8 +78,11 @@
 
 Defaults to nil.")
 
-(defvar backup-each-save-time-format "%Y-%m-%d-%H-%M-%S"
+(defconst backup-each-save-time-format "#%Y-%m-%d-%H-%M-%S"
   "Format given to `format-time-string' which is appended to the filename.")
+
+(defconst backup-each-save-time-match-regexp "#[[:digit:]]\\{4\\}\\(-[[:digit:]]\\{2\\}\\)\\{5\\}$"
+  "A regexp that matches `backup-each-save-time-format'.")
 
 (defvar backup-each-save-filter-function #'identity
   "Function which should return non-nil if the file should be backed up.")
@@ -89,6 +94,12 @@ If a file is greater than this size, don't make a backup of it.
 Setting this variable to nil disables backup suppressions based
 on size.")
 
+(defvar backup-each-save-cleanup-keep 20
+  "Number of copies to keep for each file in `backup-each-save-cleanup'.")
+
+(defvar backup-each-save-auto-cleanup nil
+  "Automatically cleanup after making a backup.")
+
 ;;;###autoload
 (defun backup-each-save ()
   "Perform a backup the `buffer-file-name' if needed."
@@ -96,10 +107,23 @@ on size.")
     (when (and (or backup-each-save-remote-files (not (file-remote-p buff-file-name)))
                (funcall backup-each-save-filter-function buff-file-name)
                (or (not backup-each-save-size-limit) (<= (buffer-size) backup-each-save-size-limit)))
-      (copy-file buff-file-name (backup-each-save-compute-location buff-file-name) t t t t))))
+      (copy-file buff-file-name (backup-each-save-compute-location buff-file-name 'unique) t t t t)
+      (when backup-each-save-auto-cleanup (backup-each-save-cleanup buff-file-name)))))
 
-(defun backup-each-save-compute-location (filename)
-  "Compute backup location for FILENAME."
+(defun backup-each-save-cleanup (filename)
+  "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
+  (interactive (list buffer-file-name))
+  (let* ((backup-filename (backup-each-save-compute-location filename))
+         (backup-dir (file-name-directory backup-filename))
+         (backup-files (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) backup-each-save-time-match-regexp))))
+    (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
+      (let ((fname (expand-file-name file backup-dir)))
+        (delete-file fname t)))))
+
+(defun backup-each-save-compute-location (filename &optional unique)
+  "Compute backup location for FILENAME.
+
+When UNIQUE is provided, add a date after the file name."
   (let* ((localname (or (file-remote-p filename 'localname) filename))
          (method (or (file-remote-p filename 'method) "local"))
          (host (or (file-remote-p filename 'host) "localhost"))
@@ -109,7 +133,7 @@ on size.")
          (backup-dir (funcall #'file-name-concat backup-each-save-directory method host user containing-dir)))
     (when (not (file-exists-p backup-dir))
       (make-directory backup-dir t))
-    (expand-file-name (format "%s#%s" basename (format-time-string backup-each-save-time-format)) backup-dir)))
+    (expand-file-name (format "%s%s" basename (if unique (format-time-string backup-each-save-time-format) "")) backup-dir)))
 
 ;;;###autoload
 (define-minor-mode backup-each-save-mode
