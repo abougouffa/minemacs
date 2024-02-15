@@ -5,7 +5,7 @@
 
 ;; Author: Benjamin Rutt <brutt@bloomington.in.us>
 ;;         Abdelhak BOUGOUFFA
-;; Version: 2.0
+;; Version: 2.1
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -60,12 +60,15 @@
 
 ;;; ChangeLog
 ;; v1.0 -> v1.1:  added backup-each-save-filter-function
-;; v1.1 -> v1.2:  i)  added backup-each-save-size-limit
-;;                ii) fixed "Local Variables" docs, which was inadvertently
-;;                    being activated
+;; v1.1 -> v1.2:  1) added backup-each-save-size-limit
+;;                2) fixed "Local Variables" docs, which was inadvertently
+;;                   being activated
 ;; v1.2 -> v1.3:  fix for some emacsen not having `file-remote-p'
-;; v1.3 -> v1.4: added footer and autoload
-;; v1.4 -> v2.0: refactor, deprecate old Emacs
+;; v1.3 -> v1.4:  added footer and autoload
+;; v1.4 -> v2.0:  refactor, deprecate old Emacs
+;; v2.0 -> v2.1:  1) more features and tweaks
+;;                2) add `backup-each-save-cleanup' and `backup-each-save-auto-cleanup'
+;;                3) add `backup-each-save-open-backup'
 
 ;;; Code:
 
