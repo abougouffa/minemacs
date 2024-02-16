@@ -7,51 +7,6 @@
 
 
 
-;;; Generated autoloads from ../elisp/backup-each-save.el
-
-(autoload 'backup-each-save-cleanup "../elisp/backup-each-save" "\
-Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies.
-
-(fn FILENAME)" t)
-(autoload 'backup-each-save-open-backup "../elisp/backup-each-save" "\
-Open a backup of FILENAME or the current buffer.
-
-(fn FILENAME)" t)
-(defvar backup-each-save-mode nil "\
-Non-nil if Backup-Each-Save mode is enabled.
-See the `backup-each-save-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `backup-each-save-mode'.")
-(custom-autoload 'backup-each-save-mode "../elisp/backup-each-save" nil)
-(autoload 'backup-each-save-mode "../elisp/backup-each-save" "\
-Automatically backup files after saving them.
-
-This is a global minor mode.  If called interactively, toggle the
-`Backup-Each-Save mode' mode.  If the prefix argument is
-positive, enable the mode, and if it is zero or negative, disable
-the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate `(default-value \\='backup-each-save-mode)'.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-(fn &optional ARG)" t)
-(register-definition-prefixes "../elisp/backup-each-save" '("backup-each-save"))
-
-
-;;; Generated autoloads from ../elisp/clink.el
-
-(register-definition-prefixes "../elisp/clink" '("clink-"))
-
-
 ;;; Generated autoloads from ../elisp/ecryptfs.el
 
 (autoload 'ecryptfs-toggle-mount-private "../elisp/ecryptfs" "\
@@ -239,9 +194,43 @@ See `+writing-mode' for more information on +Writing mode.
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
 
 
-;;; Generated autoloads from ../elisp/opengrok.el
+;;; Generated autoloads from ../elisp/real-backup.el
 
-(register-definition-prefixes "../elisp/opengrok" '("opengrok-"))
+(autoload 'real-backup-cleanup "../elisp/real-backup" "\
+Cleanup backups of FILENAME, keeping `real-backup-cleanup-keep' copies.
+
+(fn FILENAME)" t)
+(autoload 'real-backup-open-backup "../elisp/real-backup" "\
+Open a backup of FILENAME or the current buffer.
+
+(fn FILENAME)" t)
+(defvar real-backup-mode nil "\
+Non-nil if Real-Backup mode is enabled.
+See the `real-backup-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `real-backup-mode'.")
+(custom-autoload 'real-backup-mode "../elisp/real-backup" nil)
+(autoload 'real-backup-mode "../elisp/real-backup" "\
+Automatically backup files after saving them.
+
+This is a global minor mode.  If called interactively, toggle the
+`Real-Backup mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='real-backup-mode)'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t)
+(register-definition-prefixes "../elisp/real-backup" '("real-backup"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el

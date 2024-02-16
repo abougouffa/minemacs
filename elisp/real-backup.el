@@ -1,11 +1,11 @@
-;;; backup-each-save.el --- backup each savepoint of a file
+;;; real-backup.el --- backup each savepoint of a file
 
 ;; Copyright (C) 2004  Benjamin Rutt
 ;; Copyright (C) 2024  Abdelhak BOUGOUFFA
 
 ;; Author: Benjamin Rutt <brutt@bloomington.in.us>
 ;;         Abdelhak BOUGOUFFA
-;; Version: 2.1
+;; Version: 3.1
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -34,14 +34,14 @@
 ;; To activate globally, place this file in your `load-path', and add
 ;; the following lines to your ~/.emacs file:
 ;;
-;; (require 'backup-each-save)
-;; (add-hook 'after-save-hook 'backup-each-save)
+;; (require 'real-backup)
+;; (add-hook 'after-save-hook 'real-backup)
 
 ;; To activate only for individual files, add the require line as
 ;; above to your ~/.emacs, and place a local variables entry at the
 ;; end of your file containing the statement:
 ;;
-;; eval: (add-hook (make-local-variable 'after-save-hook) 'backup-each-save)
+;; eval: (add-hook (make-local-variable 'after-save-hook) 'real-backup)
 ;;
 ;; NOTE:  I would give a full example of how to do this here, but it
 ;; would then try to activate it for this file since it is a short
@@ -49,115 +49,132 @@
 ;; variables region.  :)
 
 ;; To filter out which files it backs up, use a custom function for
-;; `backup-each-save-filter-function'.  For example, to filter out
+;; `real-backup-filter-function'.  For example, to filter out
 ;; the saving of gnus .newsrc.eld files, do:
 ;;
-;; (defun backup-each-save-no-newsrc-eld (filename)
+;; (defun real-backup-no-newsrc-eld (filename)
 ;;   (cond
 ;;    ((string= (file-name-nondirectory filename) ".newsrc.eld") nil)
 ;;    (t t)))
-;; (setq backup-each-save-filter-function 'backup-each-save-no-newsrc-eld)
+;; (setq real-backup-filter-function 'real-backup-no-newsrc-eld)
 
 ;;; ChangeLog
-;; v1.0 -> v1.1:  added backup-each-save-filter-function
-;; v1.1 -> v1.2:  1) added backup-each-save-size-limit
+;; v1.0 -> v1.1:  added real-backup-filter-function
+;; v1.1 -> v1.2:  1) added real-backup-size-limit
 ;;                2) fixed "Local Variables" docs, which was inadvertently
 ;;                   being activated
 ;; v1.2 -> v1.3:  fix for some emacsen not having `file-remote-p'
 ;; v1.3 -> v1.4:  added footer and autoload
 ;; v1.4 -> v2.0:  refactor, deprecate old Emacs
 ;; v2.0 -> v2.1:  1) more features and tweaks
-;;                2) add `backup-each-save-cleanup' and `backup-each-save-auto-cleanup'
-;;                3) add `backup-each-save-open-backup'
+;;                2) add `real-backup-cleanup' and `real-backup-auto-cleanup'
+;;                3) add `real-backup-open-backup'
+;; v2.1 -> v3.0:  rebrand the package as `real-backup'
+;; v3.0 -> v3.1:  add compression support
 
 ;;; Code:
 
 (autoload 'cl-set-difference "cl-seq")
 
-(defvar backup-each-save-directory (locate-user-emacs-file "backup-each-save/"))
+(defvar real-backup-directory (locate-user-emacs-file "real-backup/"))
 
-(defvar backup-each-save-remote-files t
+(defvar real-backup-remote-files t
   "Whether to backup remote files at each save.
 
 Defaults to nil.")
 
-(defconst backup-each-save-time-format "%Y-%m-%d-%H-%M-%S"
+(defconst real-backup-time-format "%Y-%m-%d-%H-%M-%S"
   "Format given to `format-time-string' which is appended to the filename.")
 
-(defconst backup-each-save-time-match-regexp "[[:digit:]]\\{4\\}\\(-[[:digit:]]\\{2\\}\\)\\{5\\}"
-  "A regexp that matches `backup-each-save-time-format'.")
+(defconst real-backup-time-match-regexp "[[:digit:]]\\{4\\}\\(-[[:digit:]]\\{2\\}\\)\\{5\\}"
+  "A regexp that matches `real-backup-time-format'.")
 
-(defvar backup-each-save-filter-function #'identity
+(defvar real-backup-filter-function #'identity
   "Function which should return non-nil if the file should be backed up.")
 
-(defvar backup-each-save-size-limit 800000
+(defvar real-backup-size-limit (* 1 1024 1024)
   "Maximum size of a file (in bytes) that should be copied at each savepoint.
 
 If a file is greater than this size, don't make a backup of it.
 Setting this variable to nil disables backup suppressions based
 on size.")
 
-(defvar backup-each-save-cleanup-keep 20
-  "Number of copies to keep for each file in `backup-each-save-cleanup'.")
+(defvar real-backup-cleanup-keep 20
+  "Number of copies to keep for each file in `real-backup-cleanup'.")
 
-(defvar backup-each-save-auto-cleanup nil
+(defvar real-backup-auto-cleanup nil
   "Automatically cleanup after making a backup.")
 
-(defun backup-each-save ()
-  "Perform a backup the `buffer-file-name' if needed."
-  (let ((filename (buffer-file-name)))
-    (when (and (or backup-each-save-remote-files (not (file-remote-p filename)))
-               (funcall backup-each-save-filter-function filename)
-               (or (not backup-each-save-size-limit) (<= (buffer-size) backup-each-save-size-limit)))
-      (copy-file filename (backup-each-save-compute-location filename 'unique) t t t)
-      (when backup-each-save-auto-cleanup (backup-each-save-cleanup filename)))))
+(defvar real-backup-compress t
+  "Compress the backup files.")
 
-(defun backup-each-save-compute-location (filename &optional unique)
+(defvar real-backup-compression-program (or (executable-find "zstd") (executable-find "gzip"))
+  "Compression program to be used when `real-backup-compress' is enabled.")
+
+(defvar real-backup-compression-program-args (when (executable-find "zstd") "--rm"))
+
+(defun real-backup ()
+  "Perform a backup the `buffer-file-name' if needed."
+  (let* ((filename (buffer-file-name))
+         (backup-filename (real-backup-compute-location filename 'unique)))
+    (when (and (or real-backup-remote-files (not (file-remote-p filename)))
+               (funcall real-backup-filter-function filename)
+               (or (not real-backup-size-limit) (<= (buffer-size) real-backup-size-limit)))
+      (copy-file filename backup-filename t t t)
+      (when real-backup-compress
+        (let ((default-directory (file-name-directory backup-filename))
+              (file (file-name-nondirectory backup-filename)))
+          (start-process-shell-command
+           "real-backup-compress" nil
+           (concat real-backup-compression-program " " real-backup-compression-program-args " " file))))
+      (when real-backup-auto-cleanup (real-backup-cleanup filename)))))
+
+(defun real-backup-compute-location (filename &optional unique)
   "Compute backup location for FILENAME.
 
-When UNIQUE is provided, add a date after the file name."
+When UNIQUE is provided, add a unique timestamp after the file name."
   (let* ((localname (or (file-remote-p filename 'localname) filename))
          (method (or (file-remote-p filename 'method) "local"))
          (host (or (file-remote-p filename 'host) "localhost"))
          (user (or (file-remote-p filename 'user) user-real-login-name))
          (containing-dir (file-name-directory localname))
-         (backup-dir (funcall #'file-name-concat backup-each-save-directory method host user containing-dir))
-         (backup-basename (format "%s%s" (file-name-nondirectory localname) (if unique (concat "#" (format-time-string backup-each-save-time-format)) ""))))
+         (backup-dir (funcall #'file-name-concat real-backup-directory method host user containing-dir))
+         (backup-basename (format "%s%s" (file-name-nondirectory localname) (if unique (concat "#" (format-time-string real-backup-time-format)) ""))))
     (when (not (file-exists-p backup-dir))
       (make-directory backup-dir t))
     (expand-file-name backup-basename backup-dir)))
 
-(defun backup-each-save-backups-for-file (filename)
+(defun real-backup-backups-for-file (filename)
   "List of backups for FILENAME."
-  (let* ((backup-filename (backup-each-save-compute-location filename))
+  (let* ((backup-filename (real-backup-compute-location filename))
          (backup-dir (file-name-directory backup-filename)))
-    (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) "#" backup-each-save-time-match-regexp "$"))))
+    (directory-files backup-dir nil (concat "^" (regexp-quote (file-name-nondirectory backup-filename)) "#" real-backup-time-match-regexp "\\(\\.[[:alnum:]]+\\)?" "$"))))
 
 ;;;###autoload
-(defun backup-each-save-cleanup (filename)
-  "Cleanup backups of FILENAME, keeping `backup-each-save-cleanup-keep' copies."
+(defun real-backup-cleanup (filename)
+  "Cleanup backups of FILENAME, keeping `real-backup-cleanup-keep' copies."
   (interactive (list buffer-file-name))
   (if (not filename)
       (user-error "This buffer is not visiting a file")
-    (let* ((backup-dir (file-name-directory (backup-each-save-compute-location filename)))
-           (backup-files (backup-each-save-backups-for-file filename)))
-      (dolist (file (cl-set-difference backup-files (last backup-files backup-each-save-cleanup-keep) :test #'string=))
+    (let* ((backup-dir (file-name-directory (real-backup-compute-location filename)))
+           (backup-files (real-backup-backups-for-file filename)))
+      (dolist (file (cl-set-difference backup-files (last backup-files real-backup-cleanup-keep) :test #'string=))
         (let ((fname (expand-file-name file backup-dir)))
           (delete-file fname t))))))
 
 ;;;###autoload
-(defun backup-each-save-open-backup (filename)
+(defun real-backup-open-backup (filename)
   "Open a backup of FILENAME or the current buffer."
   (interactive (list buffer-file-name))
   (if (not filename)
       (user-error "This buffer is not visiting a file")
     (let* ((current-major-mode major-mode)
            (default-dir default-directory)
-           (backup-dir (file-name-directory (backup-each-save-compute-location filename)))
+           (backup-dir (file-name-directory (real-backup-compute-location filename)))
            (completion-extra-properties
             `(:annotation-function
               ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
-           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
+           (backup-file (completing-read "Select file: " (real-backup-backups-for-file buffer-file-name))))
       (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
         ;; Apply the same major mode and the same default directory as the original file
         (funcall current-major-mode)
@@ -165,15 +182,15 @@ When UNIQUE is provided, add a date after the file name."
         (read-only-mode 1)))))
 
 ;;;###autoload
-(define-minor-mode backup-each-save-mode
+(define-minor-mode real-backup-mode
   "Automatically backup files after saving them."
   :init-value nil
   :lighter " Backup"
   :global t
-  (if backup-each-save-mode
-      (add-hook 'after-save-hook 'backup-each-save)
-    (remove-hook 'after-save-hook 'backup-each-save)))
+  (if real-backup-mode
+      (add-hook 'after-save-hook 'real-backup)
+    (remove-hook 'after-save-hook 'real-backup)))
 
 
-(provide 'backup-each-save)
-;;; backup-each-save.el ends here
+(provide 'real-backup)
+;;; real-backup.el ends here
