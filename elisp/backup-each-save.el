@@ -152,16 +152,17 @@ When UNIQUE is provided, add a date after the file name."
   (if (not filename)
       (user-error "This buffer is not visiting a file")
     (let* ((current-major-mode major-mode)
+           (default-dir default-directory)
            (backup-dir (file-name-directory (backup-each-save-compute-location filename)))
            (completion-extra-properties
             `(:annotation-function
               ,(lambda (bak) (format "   [%s bytes]" (file-attribute-size (file-attributes (expand-file-name bak backup-dir)))))))
-           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name)))
-           (basename (file-name-nondirectory filename)))
+           (backup-file (completing-read "Select file: " (backup-each-save-backups-for-file buffer-file-name))))
       (with-current-buffer (find-file (expand-file-name backup-file backup-dir))
-        (rename-buffer (concat basename " (" (backup-each-save--display-time (string-remove-prefix (concat basename "#") backup-file)) ")"))
-        ;; Apply the same major mode as the original
-        (funcall current-major-mode)))))
+        ;; Apply the same major mode and the same default directory as the original file
+        (funcall current-major-mode)
+        (setq-local default-directory default-dir)
+        (read-only-mode 1)))))
 
 ;;;###autoload
 (define-minor-mode backup-each-save-mode
