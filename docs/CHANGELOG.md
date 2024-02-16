@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.16.3](https://github.com/abougouffa/minemacs/compare/v4.16.2..v4.16.3) - 2024-02-16
+#### Bug Fixes
+- **(backup)** remove dead code and avoid errors when viewing backups - ([d87b73d](https://github.com/abougouffa/minemacs/commit/d87b73d6cf48601cb1e4a6444fc57c8489fbe6db)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(real-backup)** make `real-backup` as a separate package - ([f892016](https://github.com/abougouffa/minemacs/commit/f892016b74a7dc0b16dfad1f727fbbb2bf9604bc)) - [@abougouffa](https://github.com/abougouffa)
+- **(real-backup)** bump package, new version with new features - ([bf02dc2](https://github.com/abougouffa/minemacs/commit/bf02dc2c9b52ec8e74031ae35727cf81d54ce920)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.16.2](https://github.com/abougouffa/minemacs/compare/v4.16.1..v4.16.2) - 2024-02-15
 #### Tweaks
 - **(backup)** rename buffer when viewing a backup file - ([4a8568a](https://github.com/abougouffa/minemacs/commit/4a8568ad0ff31623a593675c87c0e3dfb61f069f)) - [@abougouffa](https://github.com/abougouffa)
