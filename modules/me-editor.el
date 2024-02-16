@@ -80,6 +80,10 @@
         (append super-save-triggers
                 '(magit magit-status winner-undo winner-redo find-file))))
 
+(use-package real-backup
+  :straight (:host github :repo "abougouffa/real-backup")
+  :hook (minemacs-first-file . real-backup-mode))
+
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
   :hook (minemacs-first-file . selection-highlight-mode)

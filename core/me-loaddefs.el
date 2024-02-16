@@ -194,43 +194,7 @@ See `+writing-mode' for more information on +Writing mode.
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
 
 
-;;; Generated autoloads from ../elisp/real-backup.el
 
-(autoload 'real-backup-cleanup "../elisp/real-backup" "\
-Cleanup backups of FILENAME, keeping `real-backup-cleanup-keep' copies.
-
-(fn FILENAME)" t)
-(autoload 'real-backup-open-backup "../elisp/real-backup" "\
-Open a backup of FILENAME or the current buffer.
-
-(fn FILENAME)" t)
-(defvar real-backup-mode nil "\
-Non-nil if Real-Backup mode is enabled.
-See the `real-backup-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `real-backup-mode'.")
-(custom-autoload 'real-backup-mode "../elisp/real-backup" nil)
-(autoload 'real-backup-mode "../elisp/real-backup" "\
-Automatically backup files after saving them.
-
-This is a global minor mode.  If called interactively, toggle the
-`Real-Backup mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate `(default-value \\='real-backup-mode)'.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-(fn &optional ARG)" t)
-(register-definition-prefixes "../elisp/real-backup" '("real-backup"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
