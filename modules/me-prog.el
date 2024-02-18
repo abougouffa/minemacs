@@ -177,6 +177,10 @@ Fall back to the default `citre--project-root'."
   :unless os/win
   :commands cscope-create-list-of-files-to-index cscope-index-files)
 
+(use-package clink
+  :straight (:host github :repo "abougouffa/clink.el")
+  :when (+emacs-features-p 'sqlite3))
+
 (use-package rtags
   :straight t)
 
