@@ -4,8 +4,18 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
+;;; Commentary:
+
+;;; Code:
+
+(require 'gdb-mi)
+
+(defvar +gdb--old-win-config nil)
+(defvar +gdb--many-windows-old nil)
+
+;; From stackoverflow.com/q/39762833/846686
 (defun +gdb--set-layout (&optional c-buffer)
-  ;; from stackoverflow.com/q/39762833/846686
+  "Set the GDB layout around the current buffer C-BUFFER."
   (set-window-dedicated-p (selected-window) nil) ;; unset dedicate state if needed
   (switch-to-buffer gud-comint-buffer)
   (delete-other-windows) ;; clean all
@@ -35,8 +45,6 @@
 (defun +gdb-set-layout ()
   "Enable custom window layout for gdb."
   (interactive)
-  (require 'gdb-mi)
-
   (setq +gdb--many-windows-old gdb-many-windows
         gdb-many-windows nil)
 
@@ -52,7 +60,8 @@
   (advice-add
    'gdb-reset :after
    (defun +gdb--restore-window-layout:after-a (&rest _)
-     (set-window-configuration +gdb--old-win-config))))
+     (when +gdb--old-win-config
+       (set-window-configuration +gdb--old-win-config)))))
 
 (defun +gdb-reset-layout ()
   "Enable custom window layout for gdb."
@@ -67,7 +76,7 @@
 This will overwrite the built-in \"gdb-mi\" for this session."
   (interactive)
   (if (+emacs-features-p 'modules)
-      (when (yes-or-no-p "Loading \"emacs-gdb\" will overwrite \"gdb-mi\" for this session, continue?")
+      (when (y-or-n-p "Loading \"emacs-gdb\" will overwrite \"gdb-mi\" for this session, continue?")
         (use-package gdb-mi
           ;; I use my own fork in which I've merged some open PRs on the upstream.
           :straight (:host github :repo "abougouffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
@@ -78,4 +87,4 @@ This will overwrite the built-in \"gdb-mi\" for this session."
           :custom
           (gdb-window-setup-function #'gdb--setup-windows)
           (gdb-ignore-gdbinit nil)))
-    (message "Cannot enable \"emacs-gdb\", Emacs was built without modules support!")))
+    (user-error "Cannot enable \"emacs-gdb\", Emacs was built without modules support!")))
