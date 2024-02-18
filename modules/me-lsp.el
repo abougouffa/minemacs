@@ -140,14 +140,14 @@
   :demand t
   :custom
   (dap-gdb-lldb-extension-version
-   (+github-latest-release "WebFreak001/code-debug" "0.26.1")))
+   (+github-latest-release "WebFreak001/code-debug" "0.27.0")))
 
 (use-package dap-cpptools
   :after dap-mode
   :demand t
   :custom
   (dap-cpptools-extension-version
-   (+github-latest-release "microsoft/vscode-cpptools" "1.17.5")))
+   (+github-latest-release "microsoft/vscode-cpptools" "1.18.5")))
 
 (use-package dap-codelldb
   :after dap-mode
