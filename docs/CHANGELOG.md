@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v4.16.4](https://github.com/abougouffa/minemacs/compare/v4.16.3..v4.16.4) - 2024-02-20
+#### Features
+- **(prog)** add an experimental support for Clink - ([0db4963](https://github.com/abougouffa/minemacs/commit/0db49635fdd76cf4a42126e0e25afbdaf8abf98f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(clink)** auto enable when available - ([cc19a02](https://github.com/abougouffa/minemacs/commit/cc19a029f61224dfc4323103dd63e1d43af4ec29)) - [@abougouffa](https://github.com/abougouffa)
+- **(dap)** bump versions of `cpptools` and `code-debug` - ([39c2465](https://github.com/abougouffa/minemacs/commit/39c2465fc37e0e72842142d0e0374fbb5dada43b)) - [@abougouffa](https://github.com/abougouffa)
+- **(gdb)** minor edits in the GDB integration - ([32f1afc](https://github.com/abougouffa/minemacs/commit/32f1afccceae48e697360f1b03e6ba0bdad791d2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bdc8039](https://github.com/abougouffa/minemacs/commit/bdc803906cfad73ca7fa0aabd178af335cd87659)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([06f7d26](https://github.com/abougouffa/minemacs/commit/06f7d26b24f5a47088658d7ccc27eb5fe0a1d239)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.16.3](https://github.com/abougouffa/minemacs/compare/v4.16.2..v4.16.3) - 2024-02-16
 #### Bug Fixes
 - **(backup)** remove dead code and avoid errors when viewing backups - ([d87b73d](https://github.com/abougouffa/minemacs/commit/d87b73d6cf48601cb1e4a6444fc57c8489fbe6db)) - [@abougouffa](https://github.com/abougouffa)
