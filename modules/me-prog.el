@@ -179,7 +179,8 @@ Fall back to the default `citre--project-root'."
 
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
-  :when (+emacs-features-p 'sqlite3))
+  :when (+emacs-features-p 'sqlite3)
+  :hook (minemacs-first-file . global-clink-mode))
 
 (use-package rtags
   :straight t)
