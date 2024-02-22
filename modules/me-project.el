@@ -15,6 +15,21 @@
     "p" #'consult-project-extra-find
     "P" #'consult-project-extra-find-other-window))
 
+(use-package compile-multi
+  :straight t)
+
+(use-package compile-multi-embark
+  :straight t
+  :after embark
+  :config
+  (compile-multi-embark-mode 1))
+
+(use-package consult-compile-multi
+  :straight t
+  :after consult
+  :config
+  (consult-compile-multi-mode 1))
+
 (use-package projection
   :straight t
   ;; Enable the `projection-hook' feature.

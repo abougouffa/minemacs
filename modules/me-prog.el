@@ -225,13 +225,6 @@ Fall back to the default `citre--project-root'."
   :hook (prog-mode . eldoc-box-hover-at-point-mode)
   :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
 
-(use-package compile-multi
-  :straight (:files (:defaults "extensions/compile-multi-embark/*.el" "extensions/consult-compile-multi/*.el"))
-  :config
-  ;; Enable integration for `consult' and `embark'
-  (consult-compile-multi-mode 1)
-  (compile-multi-embark-mode 1))
-
 (use-package apheleia
   :straight t
   :custom
