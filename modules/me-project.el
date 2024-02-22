@@ -15,24 +15,18 @@
     "p" #'consult-project-extra-find
     "P" #'consult-project-extra-find-other-window))
 
-(use-package ibuffer-project
-  :straight t
-  :hook (ibuffer . +ibuffer-project-h)
-  :config
-  ;; From Crafted Emacs
-  (defun +ibuffer-project-h ()
-    (setq ibuffer-filter-groups (ibuffer-project-generate-filter-groups))
-    (unless (eq ibuffer-sorting-mode 'project-file-relative)
-      (ibuffer-do-sort-by-project-file-relative))))
-
 (use-package projection
   :straight t
   ;; Enable the `projection-hook' feature.
+  :hook (ibuffer . ibuffer-projection-set-filter-groups)
   :hook (minemacs-after-startup . global-projection-hook-mode)
-  :config
+  :init
   (with-eval-after-load 'project (require 'projection))
   ;; Access pre-configured projection commands from a keybinding of your choice.
   ;; Run `M-x describe-keymap projection-map` for a list of available commands.
+  :config
+  ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
+  (+add-hook! ibuffer (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update))))
   :bind-keymap
   ("C-x P" . projection-map))
 
