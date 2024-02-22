@@ -25,6 +25,14 @@
   (use-file-base-name-flag nil)
   (pdf-view-restore-filename (concat minemacs-local-dir "pdf-view-restore.el")))
 
+(use-package pdfgrep
+  :straight t
+  :when (executable-find "pdfgrep")
+  :custom
+  (pdfgrep-options " -H -n -r --include \"*.pdf\" ")
+  :config
+  (grep-mode 1))
+
 (use-package nov
   :straight t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)

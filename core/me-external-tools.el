@@ -113,6 +113,9 @@
     (:tool grep
      :link "https://www.gnu.org/software/grep/manual/grep.html"
      :desc "Prints lines that contain a match for one or more patterns")
+    (:tool pdfgrep
+     :link "https://gitlab.com/pdfgrep/pdfgrep"
+     :desc "A tool to search text in PDF files. It works similarly to grep")
     (:tool (find findutils)
      :link "https://www.gnu.org/software/findutils"
      :desc "Search for files in a directory hierarchy")
