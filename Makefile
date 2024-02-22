@@ -6,7 +6,7 @@ CLOC=cloc
 all:
 	@echo "Cleaning options are: clean, clean_pcache, clean_all, prune, loaddefs."
 	@echo "Straight options are: pull, rebuild, check."
-	@echo "Extra options are: update, cloc, ci."
+	@echo "Extra options are: bump, cloc, ci."
 
 clean:
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
@@ -38,11 +38,11 @@ rebuild:
 check:
 	$(EMACS_BATCH) --eval='(straight-check-all)'
 
-update:
-	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs-update-packages)'
+bump:
+	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs--bump-packages)'
 
 locked:
-	$(EMACS_BATCH) --eval='(minemacs-update-restore-locked nil)'
+	$(EMACS_BATCH) --eval='(minemacs-restore-locked-packages nil)'
 
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/

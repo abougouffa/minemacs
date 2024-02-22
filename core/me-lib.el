@@ -608,7 +608,7 @@ Returns the load path of the package, useful for usage with `use-package''s
 Call functions without asking when DONT-ASK-P is non-nil."
   (interactive "P")
   (dolist (fn minemacs-build-functions)
-    (message "MinEmacs: Running `%s'" fn)
+    (message "[MinEmacs]: Running `%s'" fn)
     (if dont-ask-p
         ;; Do not ask before installing
         (cl-letf (((symbol-function 'yes-or-no-p) #'always)
@@ -616,9 +616,8 @@ Call functions without asking when DONT-ASK-P is non-nil."
           (funcall-interactively fn))
       (funcall-interactively fn))))
 
-(defun minemacs-update-packages ()
-  "Update MinEmacs packages."
-  (interactive)
+(defun minemacs--bump-packages ()
+  "Bump MinEmacs packages to the latest revisions."
   ;; Backup the current installed versions, this file can be restored if version
   ;; upgrade does break some packages.
   (message "[MinEmacs]: Creating backups for the current versions of packages")
@@ -650,7 +649,14 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (message "[MinEmacs]: Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
 
-(defun minemacs-update-restore-locked (restore-from-backup)
+(defun minemacs-bump-packages ()
+  "Update MinEmacs packages to the last revisions (can cause breakages)."
+  (interactive)
+  (let ((default-directory minemacs-root-dir)
+        (compilation-buffer-name-function (lambda (_) "" "*minemacs-bump-packages*")))
+    (compile "make bump")))
+
+(defun minemacs-restore-locked-packages (restore-from-backup)
   "Restore lockfile packages list. Takes into account the pinned ones.
 When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
 restore the lockfile from backups, not Git."
@@ -689,6 +695,21 @@ restore the lockfile from backups, not Git."
     ;; Run package-specific build functions (ex: `pdf-tools-install')
     (message "[MinEmacs] Running additional package-specific build functions")
     (minemacs-run-build-functions 'dont-ask)))
+
+(define-obsolete-function-alias 'minemacs-update-packages 'minemacs-bump-packages "v5.0")
+(define-obsolete-function-alias 'minemacs-update-restore-locked 'minemacs-restore-locked-packages "v5.0")
+
+(defun minemacs-upgrade (pull-minemacs)
+  "Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
+
+When PULL-MINEMACS is non-nil, run a \"git pull\" in MinEmacs' directory.
+
+This calls `minemacs-update-restore-locked' asynchronously."
+  (interactive "P")
+  (let ((default-directory minemacs-root-dir)
+        (compilation-buffer-name-function (lambda (_) "" "*minemacs-upgrade*"))
+        (cmd (format "sh -c '%smake locked'" (if pull-minemacs "git pull && " ""))))
+    (compile cmd)))
 
 (defun +minemacs-root-dir-cleanup ()
   "Cleanup MinEmacs' root directory."
