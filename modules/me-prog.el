@@ -227,20 +227,7 @@ Fall back to the default `citre--project-root'."
 
 (use-package compile-multi
   :straight (:files (:defaults "extensions/compile-multi-embark/*.el" "extensions/consult-compile-multi/*.el"))
-  :commands +project-compile-multi
-  :init
-  (+map! "pC" #'+project-compile-multi)
   :config
-  (defun +project-compile-multi ()
-    "Like `project-compile', but uses `compile-multi'."
-    (declare (interactive-only compile))
-    (interactive)
-    (let ((default-directory (project-root (project-current t)))
-          (compilation-buffer-name-function
-           (or project-compilation-buffer-name-function
-               compilation-buffer-name-function)))
-      (call-interactively #'compile-multi)))
-
   ;; Enable integration for `consult' and `embark'
   (consult-compile-multi-mode 1)
   (compile-multi-embark-mode 1))
