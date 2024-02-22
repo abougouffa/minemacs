@@ -409,18 +409,6 @@ Fall back to the default `citre--project-root'."
 (use-package justl
   :straight t)
 
-(use-package makefile-executor
-  :straight t
-  :hook (makefile-mode . makefile-executor-mode)
-  :init
-  (+map!
-    "pm" '(nil :wk "makefile-executor")
-    "pmm" #'makefile-executor-execute-project-target
-    "pml" #'makefile-executor-execute-last)
-  (+map-local! :keymaps 'makefile-mode-map
-    "pmt" #'makefile-executor-execute-target
-    "pmb" #'makefile-executor-execute-dedicated-buffer))
-
 (use-package cmake-mode
   :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
 
