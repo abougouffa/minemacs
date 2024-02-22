@@ -427,9 +427,6 @@ Fall back to the default `citre--project-root'."
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
-(use-package posframe-plus
-  :straight (:host github :repo "zbelial/posframe-plus"))
-
 (use-package treesitter-context
   :straight (:host github :repo "zbelial/treesitter-context.el")
   :when (+emacs-features-p 'tree-sitter)
