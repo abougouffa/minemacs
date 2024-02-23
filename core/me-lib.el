@@ -1784,7 +1784,7 @@ it forget them only when we are sure they don't exist."
   (interactive)
   (dolist (prox minemacs-proxies)
     (let ((var (format "%s_proxy" (car prox))))
-      (+info! "Set %S to %S" var (cdr prox))
+      (+log! "Set %S to %S" var (cdr prox))
       (setenv var (cdr prox)))))
 
 (defun minemacs-disable-proxy ()
