@@ -18,6 +18,9 @@
   (pdf-view-image-relief 2)
   (pdf-view-use-scaling t))
 
+(use-package pdf-isearch
+  :hook (pdf-view-mode . pdf-isearch-minor-mode))
+
 (use-package pdf-view-restore
   :straight t
   :hook (pdf-view-mode . pdf-view-restore-mode)
@@ -27,11 +30,11 @@
 
 (use-package pdfgrep
   :straight t
-  :when (executable-find "pdfgrep")
+  :commands pdfgrep-mode pdfgrep
   :custom
   (pdfgrep-options " -H -n -r --include \"*.pdf\" ")
   :config
-  (grep-mode 1))
+  (pdfgrep-mode 1))
 
 (use-package nov
   :straight t
