@@ -696,9 +696,6 @@ restore the lockfile from backups, not Git."
     (message "[MinEmacs] Running additional package-specific build functions")
     (minemacs-run-build-functions 'dont-ask)))
 
-(define-obsolete-function-alias 'minemacs-update-packages 'minemacs-bump-packages "v5.0")
-(define-obsolete-function-alias 'minemacs-update-restore-locked 'minemacs-restore-locked-packages "v5.0")
-
 (defun minemacs-upgrade (pull-minemacs)
   "Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
 
