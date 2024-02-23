@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.0.0](https://github.com/abougouffa/minemacs/compare/v4.16.4..v5.0.0) - 2024-02-23
+#### Bug Fixes
+- **(compile-multi)** must be installed before `projection` - ([001428d](https://github.com/abougouffa/minemacs/commit/001428d3a4b3b9efe26a5993c190704d6d714977)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-modeline)** do not redefine the segments - ([76603aa](https://github.com/abougouffa/minemacs/commit/76603aab1be29aff12cf60ff2ceffaf6214ea1b3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** run bump and upgrade asynchronously - ([445ba4b](https://github.com/abougouffa/minemacs/commit/445ba4b90304319017b01131a07d905fe26f1414)) - [@abougouffa](https://github.com/abougouffa)
+- **(docs)** add `pdfgrep` - ([12872d2](https://github.com/abougouffa/minemacs/commit/12872d2a71bb8351b8ce6b9c030976f3429da748)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `makefile-executor` obsolete - ([f42dc43](https://github.com/abougouffa/minemacs/commit/f42dc43005997e8d003ce0e35af88b0925ccdf20)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add `projection` for better out-of-the-box experience - ([35855b2](https://github.com/abougouffa/minemacs/commit/35855b2d1d99aecfc04de0d49623a47c7a476389)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** make `project-cmake` obsolete - ([c3630f7](https://github.com/abougouffa/minemacs/commit/c3630f7cb30a68c8f7cb2d14e8fce8fa72e57079)) - [@abougouffa](https://github.com/abougouffa)
+- replace `ibuffer-project` with `projection-ibuffer` - ([baaa638](https://github.com/abougouffa/minemacs/commit/baaa6389a7295826bb764bba5aa39f83aacb058a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(prog)** remove the unused `posframe-plus` project - ([bb8e43e](https://github.com/abougouffa/minemacs/commit/bb8e43eb535ed3222ea339ce8f2cbf8ec2fa0ab4)) - [@abougouffa](https://github.com/abougouffa)
+- remove obsolete commands - ([79ec179](https://github.com/abougouffa/minemacs/commit/79ec179e42c3e54f25130903dd307deccf3fff9d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([393ce5b](https://github.com/abougouffa/minemacs/commit/393ce5baaf50fe83d095af4fba38ab7b4352c59c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([420c43e](https://github.com/abougouffa/minemacs/commit/420c43ee53f9e48c7ee3135fb9c98c2ae374f446)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v4.16.4](https://github.com/abougouffa/minemacs/compare/v4.16.3..v4.16.4) - 2024-02-20
 #### Features
 - **(prog)** add an experimental support for Clink - ([0db4963](https://github.com/abougouffa/minemacs/commit/0db49635fdd76cf4a42126e0e25afbdaf8abf98f)) - [@abougouffa](https://github.com/abougouffa)
