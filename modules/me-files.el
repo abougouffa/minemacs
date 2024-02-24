@@ -89,8 +89,8 @@
   :commands sr-speedbar-toggle sr-speedbar-open
   :custom
   (sr-speedbar-right-side nil)
+  (speedbar-use-images nil)
   :config
-  (setq speedbar-use-images ezimage-use-images)
   (+nvmap! :keymaps 'speedbar-mode-map "q" #'sr-speedbar-close))
 
 
