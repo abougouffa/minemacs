@@ -27,6 +27,8 @@
   :hook (mu4e-headers-mode . (lambda ()
                                (visual-line-mode -1)
                                (display-line-numbers-mode -1)))
+  :custom-face
+  (mu4e-thread-fold-face ((t (:inherit default))))
   :init
   (defcustom +mu4e-auto-start t
     "Automatically start `mu4e' in background in `me-daemon'."
