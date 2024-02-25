@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.0.1](https://github.com/abougouffa/minemacs/compare/v5.0.0..v5.0.1) - 2024-02-25
+#### Bug Fixes
+- **(email)** temporary disable `org-msg` until fixed for `mu` 1.12.0 - ([e317cfa](https://github.com/abougouffa/minemacs/commit/e317cfaaafbdab35b2edbacb000dc000d57dd43a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** make msgs of `minemacs-enable-proxy` logs instead of infos - ([68a821b](https://github.com/abougouffa/minemacs/commit/68a821b10af85cc50ba184bc93f322058ed951ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(mu4e)** use a less intrusive face for threads - ([52d8768](https://github.com/abougouffa/minemacs/commit/52d8768465046328c3a32293c43bca90648ed5cc)) - [@abougouffa](https://github.com/abougouffa)
+- **(sr-speedbar)** disable icons - ([41f0f31](https://github.com/abougouffa/minemacs/commit/41f0f31ca3642b72e7d230fb2cb9ddd3dcabd8d9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.0.0](https://github.com/abougouffa/minemacs/compare/v4.16.4..v5.0.0) - 2024-02-23
 #### Bug Fixes
 - **(compile-multi)** must be installed before `projection` - ([001428d](https://github.com/abougouffa/minemacs/commit/001428d3a4b3b9efe26a5993c190704d6d714977)) - [@abougouffa](https://github.com/abougouffa)
