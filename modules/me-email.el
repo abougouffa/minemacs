@@ -141,6 +141,10 @@
   ;; Create/destroy lock files on server start/kill
   (+mu4e-extras-locks-setup))
 
+;; TEMP: Disabled until mu 1.12.0 related issues are fixed
+;; https://github.com/jeremy-compostella/org-msg/issues/182
+(push 'org-msg minemacs-disabled-packages)
+
 (use-package org-msg
   :straight t
   :when +mu4e-available-p
