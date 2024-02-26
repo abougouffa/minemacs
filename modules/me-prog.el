@@ -412,9 +412,10 @@ Fall back to the default `citre--project-root'."
   :when (+emacs-features-p 'tree-sitter)
   :commands treesitter-context-mode
   :custom
-  (treesitter-context-background-color "#EEEEEE")
-  (treesitter-context-border-color "#000000")
-  (treesitter-context-idle-time 0.5))
+  (treesitter-context-idle-time 0.5)
+  :config
+  (setq treesitter-context-background-color "#EEEEEE"
+        treesitter-context-border-color "#000000"))
 
 (use-package breadcrumb
   :straight t)
