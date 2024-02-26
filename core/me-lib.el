@@ -2270,6 +2270,11 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
         (reverse
          (mapcar (lambda (k) (intern (substring (symbol-name k) 1)))
                  (+plist-keys minemacs-fonts-plist))))
+
+  ;; Set the tooltip font accordingly
+  (when-let ((font (car (fontset-list))))
+    (setq tooltip-frame-parameters (+alist-set 'font font tooltip-frame-parameters)))
+
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
 
