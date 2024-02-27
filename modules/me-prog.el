@@ -222,8 +222,12 @@ Fall back to the default `citre--project-root'."
 
 (use-package eldoc-box
   :straight t
-  :hook (prog-mode . eldoc-box-hover-at-point-mode)
-  :hook (eglot-managed-mode . eldoc-box-hover-at-point-mode))
+  :hook (prog-mode . +eldoc-box-hover-at-point-mode-maybe)
+  :hook (eglot-managed-mode . +eldoc-box-hover-at-point-mode-maybe)
+  :init
+  (defun +eldoc-box-hover-at-point-mode-maybe (&optional arg)
+    (when (display-graphic-p)
+      (eldoc-box-hover-at-point-mode arg))))
 
 (use-package apheleia
   :straight t
