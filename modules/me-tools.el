@@ -189,8 +189,7 @@
       (setcar server '(nix-mode nix-ts-mode)))))
 
 (use-package nix-update
-  :straight t
-  :when (executable-find "nix"))
+  :straight t)
 
 (use-package envrc
   :straight t
