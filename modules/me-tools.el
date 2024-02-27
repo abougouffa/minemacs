@@ -18,6 +18,17 @@
 (use-package ack
   :straight t)
 
+(use-package fzf
+  :straight t
+  :init
+  (+map!
+    "sz" '(nil :wk "fzf")
+    "szz" #'fzf
+    "szg" #'fzf-grep
+    "szG" #'fzf-grep-dwim
+    "szf" #'fzf-find-file
+    "szF" #'fzf-find-file-in-dir))
+
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)
