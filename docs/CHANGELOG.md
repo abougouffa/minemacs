@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.1.0](https://github.com/abougouffa/minemacs/compare/v5.0.1..v5.1.0) - 2024-02-27
+#### Bug Fixes
+- **(eldoc-box)** do not enable in terminal mode - ([10f660c](https://github.com/abougouffa/minemacs/commit/10f660cfbb47e7057945ea88bc6cf88b48988ca7)) - [@abougouffa](https://github.com/abougouffa)
+- **(pdfgrep)** autoload commands + require `pdf-isearch` - ([70ce45c](https://github.com/abougouffa/minemacs/commit/70ce45c2b9648078e0b4c9889bd90ad00ddc0744)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesitter-context)** correctly set colors variables - ([9fc6b46](https://github.com/abougouffa/minemacs/commit/9fc6b467b62eaa45551e2f981273ce4236056647)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(external-tools)** regenerate the list - ([eab6060](https://github.com/abougouffa/minemacs/commit/eab6060e317677f53ccfdf660125d8aeb1e8e376)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** regenerate the list - ([a394f8e](https://github.com/abougouffa/minemacs/commit/a394f8eac1f4735a2346ac10cef890dcd9513c0c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(tools)** add `fzf` support - ([fcc6358](https://github.com/abougouffa/minemacs/commit/fcc63583d46a196580a438229fe215971ae657ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** setup tooltip font in `+setup-fonts` - ([d4b608d](https://github.com/abougouffa/minemacs/commit/d4b608da55772296007b2ce5665e9a90e8da1977)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** add `fzf` - ([d3d7d7c](https://github.com/abougouffa/minemacs/commit/d3d7d7cf69ea6d3036149a453f4b3e8a0588b353)) - [@abougouffa](https://github.com/abougouffa)
+- **(nix-update)** install despite `nix` availability - ([1454e75](https://github.com/abougouffa/minemacs/commit/1454e75338f5a1dca5cef9952aad0e4e8856838d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f69310b](https://github.com/abougouffa/minemacs/commit/f69310b051abe6be4f0a178d15f91871b45314ff)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.0.1](https://github.com/abougouffa/minemacs/compare/v5.0.0..v5.0.1) - 2024-02-25
 #### Bug Fixes
 - **(email)** temporary disable `org-msg` until fixed for `mu` 1.12.0 - ([e317cfa](https://github.com/abougouffa/minemacs/commit/e317cfaaafbdab35b2edbacb000dc000d57dd43a)) - [@abougouffa](https://github.com/abougouffa)
