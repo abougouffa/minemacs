@@ -122,6 +122,9 @@
     (:tool ripgrep
      :link "https://github.com/BurntSushi/ripgrep"
      :desc "Recursively search directories for a regex pattern while respecting your gitignore")
+    (:tool fzf
+     :link "https://github.com/junegunn/fzf"
+     :desc "A command-line fuzzy finder")
     (:tool fd
      :link "https://github.com/sharkdp/fd"
      :desc "A simple, fast and user-friendly alternative to 'find'")
