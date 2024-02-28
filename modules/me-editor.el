@@ -96,6 +96,10 @@
   (highlight-indent-guides-character #x2506)
   (highlight-indent-guides-responsive 'top))
 
+(use-package cc-isearch-menu
+  :straight t
+  :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
+
 (use-package me-code-folding
   :init
   ;; Add vimish-fold, outline-mode & hideshow support to folding commands
