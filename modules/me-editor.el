@@ -100,40 +100,6 @@
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
 
-(use-package me-code-folding
-  :init
-  ;; Add vimish-fold, outline-mode & hideshow support to folding commands
-  (keymap-global-set "<remap> <evil-toggle-fold>"   '+fold/toggle)
-  (keymap-global-set "<remap> <evil-close-fold>"    '+fold/close)
-  (keymap-global-set "<remap> <evil-open-fold>"     '+fold/open)
-  (keymap-global-set "<remap> <evil-open-fold-rec>" '+fold/open)
-  (keymap-global-set "<remap> <evil-close-folds>"   '+fold/close-all)
-  (keymap-global-set "<remap> <evil-open-folds>"    '+fold/open-all)
-  (with-eval-after-load 'evil
-    (evil-define-key* 'motion 'global
-      "zj" #'+fold/next
-      "zk" #'+fold/previous)))
-
-(use-package vimish-fold
-  :straight t
-  :hook (minemacs-first-file . vimish-fold-global-mode))
-
-(use-package evil-vimish-fold
-  :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
-  :hook (vimish-fold-global-mode . global-evil-vimish-fold-mode)
-  :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
-  :custom
-  (vimish-fold-dir (concat minemacs-cache-dir "vimish-fold/"))
-  (vimish-fold-indication-mode 'right-fringe)
-  :init
-  (with-eval-after-load 'evil
-    (evil-define-key* 'motion 'global
-      "zf" #'evil-vimish-fold/create
-      "zF" #'evil-vimish-fold/create-line
-      "zd" #'vimish-fold-delete
-      "zE" #'vimish-fold-delete-all)))
-
 ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
 (+nvmap! "gy" #'+kill-region-as-paragraph)
 

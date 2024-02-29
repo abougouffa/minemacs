@@ -16,6 +16,38 @@
 ;;
 ;;; Helpers
 
+(use-package vimish-fold
+  :straight t
+  :hook (minemacs-first-file . vimish-fold-global-mode))
+
+(use-package evil-vimish-fold
+  :straight t
+  :unless (+package-disabled-p 'evil 'me-evil)
+  :hook (vimish-fold-global-mode . global-evil-vimish-fold-mode)
+  :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
+  :custom
+  (vimish-fold-dir (concat minemacs-cache-dir "vimish-fold/"))
+  (vimish-fold-indication-mode 'right-fringe)
+  :init
+  (with-eval-after-load 'evil
+    (evil-define-key* 'motion 'global
+      "zf" #'evil-vimish-fold/create
+      "zF" #'evil-vimish-fold/create-line
+      "zd" #'vimish-fold-delete
+      "zE" #'vimish-fold-delete-all)))
+
+(with-eval-after-load 'evil
+  ;; Add vimish-fold, outline-mode & hideshow support to folding commands
+  (keymap-global-set "<remap> <evil-toggle-fold>"   '+fold/toggle)
+  (keymap-global-set "<remap> <evil-close-fold>"    '+fold/close)
+  (keymap-global-set "<remap> <evil-open-fold>"     '+fold/open)
+  (keymap-global-set "<remap> <evil-open-fold-rec>" '+fold/open)
+  (keymap-global-set "<remap> <evil-close-folds>"   '+fold/close-all)
+  (keymap-global-set "<remap> <evil-open-folds>"    '+fold/open-all)
+  (evil-define-key* 'motion 'global
+    "zj" #'+fold/next
+    "zk" #'+fold/previous))
+
 (defun +fold--ensure-hideshow-mode ()
   (unless (bound-and-true-p hs-minor-mode) (hs-minor-mode 1)))
 
@@ -223,6 +255,6 @@ begin and end of the block surrounding point."
       (list begin end base-indent))))
 
 
-(provide 'me-code-folding)
+(provide 'obsolete/me-code-folding)
 
 ;; me-code-folding.el ends here
