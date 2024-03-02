@@ -16,7 +16,6 @@
 (use-package denote
   :straight t
   :commands denote-create-note denote-insert-link denote-show-backlinks-buffer
-  :hook (minemacs-after-startup . denote-modules-mode)
   :hook (minemacs-after-startup . denote-rename-buffer-mode)
   :hook (dired-mode . denote-dired-mode)
   :init
