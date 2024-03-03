@@ -26,10 +26,8 @@
     "J" #'denote-journal-extras-new-entry
     "l" #'denote-insert-link
     "L" #'denote-add-links
-    "m" #'denote-add-missing-links
     "b" #'denote-show-backlinks-buffer)
   :custom
-  (denote-modules '(project xref ffap)) ; Enable integration with Emacs modules
   (denote-prompts '(title keywords)) ; These are the minimum viable prompts for notes
   (denote-file-type 'org) ; I love org-mode format; reading ahead I'm setting this
   (denote-date-prompt-use-org-read-date t)) ; And `org-read-date' is an amazing bit of tech
