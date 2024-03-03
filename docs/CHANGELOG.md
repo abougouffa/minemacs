@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.1.1](https://github.com/abougouffa/minemacs/compare/v5.1.0..v5.1.1) - 2024-03-03
+#### Bug Fixes
+- **(denote)** remove obsolete - ([553097a](https://github.com/abougouffa/minemacs/commit/553097af1047ad8166ab1518e1c40319689c43b3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** add `cc-isearch-menu` - ([3be4ef2](https://github.com/abougouffa/minemacs/commit/3be4ef2c74b6b1eb70d16be274a0cc7e2d6ed61f)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** use `treesitter-context-fold` for code folding - ([caabcf8](https://github.com/abougouffa/minemacs/commit/caabcf86864283415fb41213dcd95a9f561085d9)) - [@abougouffa](https://github.com/abougouffa)
+- make the code folding spaghetti code obsolete - ([aa8dbb2](https://github.com/abougouffa/minemacs/commit/aa8dbb26970adbb57ae954519c3b5049dd8309f7)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(rust-mode)** enable deriving from `treesit` when available - ([34a0cae](https://github.com/abougouffa/minemacs/commit/34a0caed7961106a015fb6fe9613adb109136712)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesitter-context)** remove old hack (merged upstream) - ([a0c8b3d](https://github.com/abougouffa/minemacs/commit/a0c8b3dfc6e448088cc27e9080a9ad6902fc8a0f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7bbcb13](https://github.com/abougouffa/minemacs/commit/7bbcb1391c97b4e2200f429466226c3ac32770d5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.1.0](https://github.com/abougouffa/minemacs/compare/v5.0.1..v5.1.0) - 2024-02-27
 #### Bug Fixes
 - **(eldoc-box)** do not enable in terminal mode - ([10f660c](https://github.com/abougouffa/minemacs/commit/10f660cfbb47e7057945ea88bc6cf88b48988ca7)) - [@abougouffa](https://github.com/abougouffa)
