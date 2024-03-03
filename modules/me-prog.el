@@ -113,9 +113,9 @@
   :when (+emacs-features-p 'tree-sitter))
 
 (use-package combobulate
-  :straight t
+  :straight (:host github :repo "mickeynp/combobulate" :nonrecursive t) ; Cloning the `html-ts-mode' submodule causes problems
   :when (+emacs-features-p 'tree-sitter)
-  :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode) . combobulate-mode)
+  :hook ((python-ts-mode js-ts-mode css-ts-mode yaml-ts-mode typescript-ts-mode tsx-ts-mode html-ts-mode) . combobulate-mode)
   :custom
   (combobulate-key-prefix "C-c o")
   :config
