@@ -21,6 +21,8 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
+  ;; Remove the grammar of HTML to use a specific revision (for `html-ts-mode')
+  (setq treesit-auto-recipe-list (cl-remove 'html treesit-auto-recipe-list :key #'treesit-auto-recipe-lang))
   (setq treesit-auto-langs (append treesit-auto-langs '(nix xml elisp))
         treesit-auto-recipe-list
         (append
@@ -43,7 +45,14 @@
                 :ts-mode 'emacs-lisp-ts-mode
                 :remap 'emacs-lisp-mode
                 :url "https://github.com/Wilfred/tree-sitter-elisp"
-                :ext "\\.el\\'"))))
+                :ext "\\.el\\'")
+               (make-treesit-auto-recipe
+                :lang 'html
+                :ts-mode 'html-ts-mode
+                :remap '(mhtml-mode sgml-mode)
+                :revision "v0.20.1"
+                :url "https://github.com/tree-sitter/tree-sitter-html"
+                :ext "\\.html\\'"))))
 
   ;; Make `treesit' parsers even in non-treesit modes, useful for packages like `expreg' and `ts-movement'
   (defun +treesit-enable-available-grammars-on-normal-modes ()
