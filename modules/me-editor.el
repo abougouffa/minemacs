@@ -86,7 +86,7 @@
 
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :hook (minemacs-first-file . selection-highlight-mode)
+  :hook (minemacs-first-file . (lambda () (run-with-timer 2.0 nil #'selection-highlight-mode))) ; Starting it without a delay can cause issues
   :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
 
 (use-package highlight-indent-guides
