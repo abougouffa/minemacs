@@ -62,12 +62,29 @@
   :hook (minemacs-after-startup . doom-modeline-mode)
   :custom
   (doom-modeline-height 28)
-  (doom-modeline-bar-width 8)
+  (doom-modeline-bar-width 1)
   (doom-modeline-time-icon nil)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
   (doom-modeline-enable-word-count t)
-  (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode)))
+  (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode))
+  :custom-face
+  ;; Hide the modeline bar
+  (doom-modeline-bar ((t (:inherit mode-line :background nil)))))
+
+(use-package spacious-padding
+  :straight t
+  :hook (minemacs-after-startup . spacious-padding-mode)
+  :custom
+  (spacious-padding-subtle-mode-line t)
+  (spacious-padding-widths '(:internal-border-width 15
+                             :right-divider-width 20
+                             :header-line-width 4
+                             :mode-line-width 1
+                             :tab-width 3
+                             :scroll-bar-width 8
+                             :left-fringe-width 8
+                             :right-fringe-width 13)))
 
 
 (provide 'me-core-ui)
