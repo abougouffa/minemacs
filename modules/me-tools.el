@@ -20,8 +20,10 @@
 
 (use-package fzf
   :straight t
+  :commands fzf-project
   :init
   (+map!
+    "/"   #'fzf-project
     "sz" '(nil :wk "fzf")
     "szz" #'fzf
     "szg" #'fzf-grep
