@@ -69,13 +69,6 @@
   (doom-modeline-enable-word-count t)
   (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode)))
 
-(use-package solaire-mode
-  :straight t
-  :hook (minemacs-after-startup . solaire-global-mode)
-  :config
-  (dolist (face '(mode-line mode-line-active mode-line-inactive mode-line-emphasis))
-    (setf (alist-get face solaire-mode-remap-alist) nil)))
-
 
 (provide 'me-core-ui)
 
