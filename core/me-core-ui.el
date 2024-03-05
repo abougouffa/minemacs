@@ -70,7 +70,8 @@
   (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode))
   :custom-face
   ;; Hide the modeline bar
-  (doom-modeline-bar ((t (:inherit mode-line :background nil)))))
+  (doom-modeline-bar ((t (:inherit mode-line :background nil))))
+  (doom-modeline-bar-inactive ((t (:inherit mode-line :background nil)))))
 
 (use-package spacious-padding
   :straight t
