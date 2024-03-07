@@ -2114,14 +2114,6 @@ ARG and PROJECT-P are passed to `+scratch-open-buffer'."
     (when (and (buffer-live-p buf) (string-match-p "^[^ ]" (buffer-name buf)))
       (switch-to-buffer buf))))
 
-(with-eval-after-load 'project
-  (setq project-switch-commands
-        ;; Insert it before the last element ("Other")
-        (append (butlast project-switch-commands 1)
-                '((+scratch-open-project-scratch-buffer "Scratch buffer"))
-                (last project-switch-commands)))
-  (define-key project-prefix-map "X" #'+scratch-open-project-scratch-buffer))
-
 
 
 ;;; Font and script settings
