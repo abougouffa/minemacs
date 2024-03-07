@@ -83,7 +83,8 @@
   ;; Goto end of previous function
   (define-key evil-normal-state-map (kbd "[F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
 
-(push 'treesit straight-built-in-pseudo-packages) ; ts-movement depends on it
+(when (+emacs-features-p 'tree-sitter)
+  (push 'treesit straight-built-in-pseudo-packages)) ; ts-movement depends on it
 
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")
