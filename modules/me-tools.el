@@ -79,6 +79,7 @@
 (use-package multi-vterm
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
+  :bind (("<remap> <project-shell>" . multi-vterm-project))
   :init
   (+map!
     "otT" #'multi-vterm
