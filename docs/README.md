@@ -162,5 +162,5 @@ by MinEmacs can be found in the [documentation generated from the source code](/
 
 ## Troubleshooting
 
-If you experienced an issue with MinEmacs, you can check the [FAQ](FAQ.md), check [open
+If you experienced an issue with MinEmacs, you can check the [FAQ](/docs/FAQ.md), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).
