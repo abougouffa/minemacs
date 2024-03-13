@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.1.2](https://github.com/abougouffa/minemacs/compare/v5.1.1..v5.1.2) - 2024-03-13
+#### Bug Fixes
+- **(combobulate)** temporary disable on Windows - ([9068009](https://github.com/abougouffa/minemacs/commit/9068009439e9a8aa81d80829a021a74686950e6e)) - [@abougouffa](https://github.com/abougouffa)
+- **(combobulate)** disable the problematic `html-ts-mode` submodule - ([40994e9](https://github.com/abougouffa/minemacs/commit/40994e9297ac3c5e812349083688bc718378e0e2)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-modeline)** hide the vertical bar correctly - ([c784e12](https://github.com/abougouffa/minemacs/commit/c784e1277e68a5a35c2aeed447e49c3546f200a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** add support for searching the current project via `project.el` - ([273f0db](https://github.com/abougouffa/minemacs/commit/273f0db83fc996e2e438c555ad7b9b2b761681d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** fix FAQ link - ([551c9b2](https://github.com/abougouffa/minemacs/commit/551c9b23bdb18ae28d89a0bac238a27cd0e71623)) - Ezequiel Birman
+- **(selection-highlight)** delay enabling it by 2.0 to avoid issues - ([d135281](https://github.com/abougouffa/minemacs/commit/d13528142605576c4a9a9e0ecc8bb0f7592e9808)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** document `MINEMACS_LOAD_ALL_MODULES` - ([74331b0](https://github.com/abougouffa/minemacs/commit/74331b0678918f9341e0848cb4ebec074430925a)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ui)** add `logos` - ([9095fcc](https://github.com/abougouffa/minemacs/commit/9095fcc1658e5feb1e1537c16ff1f8c01922a26d)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** initial support for `spacious-padding` - ([ad8a44d](https://github.com/abougouffa/minemacs/commit/ad8a44d7c0143f8657cf4b3058c4ea2735d76533)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `solaire-mode` obsolete - ([b5c958f](https://github.com/abougouffa/minemacs/commit/b5c958f195d5736a394b55e26c1e696cef56dc5b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** remove scratch project from `project-prefix-map` - ([32fbfa8](https://github.com/abougouffa/minemacs/commit/32fbfa8863f0a6760f172ae8982a990e0be5926b)) - [@abougouffa](https://github.com/abougouffa)
+- **(denote)** remove obsolete configs - ([a912ab8](https://github.com/abougouffa/minemacs/commit/a912ab812f8452c9b4d1197016567dff9f7f38bd)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** bind `find-project` to `SPC /` (analogue to `SPC :`) - ([fdb62bf](https://github.com/abougouffa/minemacs/commit/fdb62bf65e0f42a10ceadc82b11a0a7f165cb50d)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-vterm)** remap `multi-vterm-project` to `project-shell` - ([b00936a](https://github.com/abougouffa/minemacs/commit/b00936a995eca53aa4efd462d279bb71fd8b4678)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** declare `treesit` as pseudo package when TS is available - ([97f679c](https://github.com/abougouffa/minemacs/commit/97f679c7f7b6aea62b51bd5422861ffe70cf3443)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto+html-ts-mode)** pin HTML grammar to v0.20.1 - ([fd4994d](https://github.com/abougouffa/minemacs/commit/fd4994ddba3f70260286248f377dca8881e39e37)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesitter-context)** suppress `treesitter-context-fold-mode` - ([6905f23](https://github.com/abougouffa/minemacs/commit/6905f2394fd076123760b7b3689b0d7b18e1957b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.1.1](https://github.com/abougouffa/minemacs/compare/v5.1.0..v5.1.1) - 2024-03-03
 #### Bug Fixes
 - **(denote)** remove obsolete - ([553097a](https://github.com/abougouffa/minemacs/commit/553097af1047ad8166ab1518e1c40319689c43b3)) - [@abougouffa](https://github.com/abougouffa)
