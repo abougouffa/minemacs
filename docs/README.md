@@ -147,6 +147,8 @@ You can customize MinEmacs' behavior via some environment variables.
   are: `early-config`, `init-tweaks`, `modules`, `config`, `local/early-config`,
   `local/init-tweaks`, `local/modules` and `local/config`. Use `all` to disable all
   user configuration files.
+- `MINEMACS_LOAD_ALL_MODULES`: Load all modules (without taking
+  `~/.minemacs.d/modules.el` into account).
 
 ## MinEmacs keybindings cheat sheet
 
