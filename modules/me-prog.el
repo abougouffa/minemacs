@@ -442,7 +442,7 @@ Fall back to the default `citre--project-root'."
   :straight t)
 
 (use-package protobuf-ts-mode
-  :straight (:host github :repo "emacsmirror/protobuf-ts-mode")
+  :straight (:host github :repo "emacsattic/protobuf-ts-mode")
   :when (+emacs-features-p 'tree-sitter))
 
 (use-package devdocs
