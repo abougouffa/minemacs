@@ -32,10 +32,9 @@
 
 (use-package magit-imerge
   :straight t
+  :after magit
   :init
-  (with-eval-after-load 'magit
-    (transient-append-suffix 'magit-merge "m"
-      '("M" "magit-imerge" magit-imerge))))
+  (transient-append-suffix 'magit-merge "m" '("M" "magit-imerge" magit-imerge)))
 
 (use-package closql
   :straight t)
@@ -82,12 +81,9 @@
   (code-review-log-file (concat minemacs-local-dir "code-review/code-review-error.log"))
   (code-review-auth-login-marker 'forge) ; use the same credentials as forge in ~/.authinfo.gpg
   :init
-  (with-eval-after-load 'magit
-    (transient-append-suffix 'magit-merge "i"
-      '("y" "Review pull-request" code-review-forge-pr-at-point)))
+  (transient-append-suffix 'magit-merge "i" '("y" "Review pull-request" code-review-forge-pr-at-point))
   (with-eval-after-load 'forge
-    (transient-append-suffix 'forge-dispatch "c u"
-      '("c r" "review pull-request" code-review-forge-pr-at-point))))
+    (transient-append-suffix 'forge-dispatch "c u" '("c r" "review pull-request" code-review-forge-pr-at-point))))
 
 (use-package jiralib2
   :straight t
