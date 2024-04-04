@@ -142,8 +142,8 @@
   (visible-bell nil)
   ;; Increase the large file threshold to 50 MiB
   (large-file-warning-threshold (* 50 1024 1024))
-  ;; Initial scratch message (will be overridden if "fortune" is installed)
-  (initial-scratch-message ";; MinEmacs -- start here!")
+  ;; No initial scratch message
+  (initial-scratch-message nil)
   ;; Set initial buffer to fundamental-mode for faster load
   (initial-major-mode 'fundamental-mode)
   ;; Always prompt in minibuffer (no GUI)
@@ -179,6 +179,7 @@
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
   ;; See: reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
   (fset 'display-startup-echo-area-message #'ignore)
+  (fset 'display-startup-screen #'ignore)
 
   ;;; Why use anything but UTF-8?
   (prefer-coding-system 'utf-8)
