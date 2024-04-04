@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.1.3](https://github.com/abougouffa/minemacs/compare/bc6b6de407e74932d059b9b0ccf57d487b8f3abf..v5.1.3) - 2024-04-04
+#### Bug Fixes
+- **(protobuf-ts-mode)** use a working repo - ([bc6b6de](https://github.com/abougouffa/minemacs/commit/bc6b6de407e74932d059b9b0ccf57d487b8f3abf)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** add Emacs 29.3 to the CI matrix - ([3caff17](https://github.com/abougouffa/minemacs/commit/3caff17d9c681a865dc9422b6f82ab53b9d2cf25)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(vc)** remove unneeded `with-eval-after-load` - ([937d19d](https://github.com/abougouffa/minemacs/commit/937d19d29704d3a68302e2c69439760fbb81115e)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(selection-highlight)** enable after startup - ([8636072](https://github.com/abougouffa/minemacs/commit/8636072e1238f1bdf18bc22f36f9d638e5d6b03e)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** add ts modes to `auto-mode-alist` - ([d6a0227](https://github.com/abougouffa/minemacs/commit/d6a022738ea76e406e2bc2116d32ae1cd429ebda)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([035dbc6](https://github.com/abougouffa/minemacs/commit/035dbc6a2a19376ab9d41b156037f05b8efdb8bf)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([34d5edd](https://github.com/abougouffa/minemacs/commit/34d5edd038adf92432088479bc42c46fc8a9df50)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.1.2](https://github.com/abougouffa/minemacs/compare/v5.1.1..v5.1.2) - 2024-03-13
 #### Bug Fixes
 - **(combobulate)** temporary disable on Windows - ([9068009](https://github.com/abougouffa/minemacs/commit/9068009439e9a8aa81d80829a021a74686950e6e)) - [@abougouffa](https://github.com/abougouffa)
