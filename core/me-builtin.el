@@ -260,17 +260,6 @@ It disables backup creation and auto saving."
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
-;; Due to a bug in Emacs 29.1, you must apply the following change prior
-;; installation or upgrading TRAMP 2.7.0 from GNU ELPA:
-;; gnu.org/software/tramp/#ELPA-Installation
-(when-let ((_ (version= emacs-version "29.1"))
-           (dir (+package-download-from-urls
-                 'emacs-29.1-loaddefs-gen-fix
-                 "https://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/emacs-lisp/loaddefs-gen.el?h=emacs-29")))
-  (with-temp-buffer
-    (insert-file-contents (expand-file-name "loaddefs-gen.el" dir))
-    (eval-region (point-min) (point-max))))
-
 (use-package tramp
   :straight t
   :init
