@@ -566,27 +566,26 @@ Add ROOTS to ignored projects, recentf, etc.
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 Optionally, check also for the containing MODULE.
 
-#### `(+package-download-from-urls PKGNAME &rest ARGS)`
-
-Download PKGNAME files from URLs in ARGS.
-Pass `:redownload` to force redownloading the package files.
-Returns the load path of the package, useful for usage with `use-package'`s
-`:load-path`.
-
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
 Run all build functions in `minemacs-build-functions`.
 Call functions without asking when DONT-ASK-P is non-nil.
 
-#### `(minemacs-update-packages)`
+#### `(minemacs-bump-packages)`
 
-Update MinEmacs packages.
+Update MinEmacs packages to the last revisions (can cause breakages).
 
-#### `(minemacs-update-restore-locked RESTORE-FROM-BACKUP)`
+#### `(minemacs-restore-locked-packages RESTORE-FROM-BACKUP)`
 
 Restore lockfile packages list. Takes into account the pinned ones.
 When called with C-u or with RESTORE-FROM-BACKUP, it will
 restore the lockfile from backups, not Git.
+
+#### `(minemacs-upgrade PULL-MINEMACS)`
+
+Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
+When PULL-MINEMACS is non-nil, run a "git pull" in MinEmacs' directory.
+This calls `minemacs-update-restore-locked` asynchronously.
 
 #### `(+minemacs-root-dir-cleanup)`
 
@@ -1086,47 +1085,6 @@ Bump version LEVEL (`auto`, `major`, `minor` or `patch`), and with PRE if it
 is a pre-release.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
-
-#### `(+fold-from-eol &rest BODY)` (macro)
-
-Execute BODY after moving to the end of the line.
-
-#### `(+fold/toggle)`
-
-Toggle the fold at point.
-Targets `vimmish-fold`, `hideshow` and `outline` folds.
-
-#### `(+fold/open)`
-
-Open the folded region at point.
-Targets `vimmish-fold`, `hideshow` and `outline` folds.
-
-#### `(+fold/close)`
-
-Close the folded region at point.
-Targets `vimmish-fold`, `hideshow` and `outline` folds.
-
-#### `(+fold/open-all &optional LEVEL)`
-
-Open folds at LEVEL (or all folds if LEVEL is nil).
-
-#### `(+fold/close-all &optional LEVEL)`
-
-Close folds at LEVEL (or all folds if LEVEL is nil).
-
-#### `(+fold/next COUNT)`
-
-Jump to the next vimish fold, outline heading or folded region.
-
-#### `(+fold/previous COUNT)`
-
-Jump to the previous vimish fold, outline heading or folded region.
-
-#### `(+fold-hideshow-indent-range &optional POINT)`
-
-Return the point at the begin and end of the text block with the same (or greater) indentation.
-If POINT is supplied and non-nil it will return the
-begin and end of the block surrounding point.
 
 #### `(eglot-ltex-workspace-config-fn &optional SERVER)`
 
