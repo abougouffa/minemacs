@@ -219,31 +219,7 @@ or file path may exist now."
        (concat x-win-dir (file-name-nondirectory session-filename))))
 
     ;; Don't show session files in recentf list and so on
-    (+ignore-root x-win-dir))
-
-  ;; https://anirudhsasikumar.net/blog/2005.01.21.html
-  (define-minor-mode +sensitive-data-mode
-    "For sensitive files like password lists.
-
-It disables backup creation and auto saving."
-    ;; The initial value.
-    :init-value nil
-    ;; The indicator for the mode line.
-    :lighter " Sensitive"
-    ;; The minor mode bindings.
-    :keymap nil
-    (if +sensitive-data-mode
-        (progn
-          ;; Disable backups
-          (setq-local backup-inhibited t)
-          ;; Disable auto-save
-          (when auto-save-default (auto-save-mode -1))
-          ;; Disable super-save
-          (when (bound-and-true-p super-save-mode) (super-save-mode -1)))
-      ;; Restore to default value of backup-inhibited
-      (kill-local-variable 'backup-inhibited)
-      ;; Restore to default auto save setting
-      (when auto-save-default (auto-save-mode 1)))))
+    (+ignore-root x-win-dir)))
 
 (use-package minibuffer
   :custom
