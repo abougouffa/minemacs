@@ -8,7 +8,14 @@ all:
 	@echo "Straight options are: pull, rebuild, check."
 	@echo "Extra options are: bump, cloc, ci."
 
-clean:
+clean_extras:
+	rm -rf $(EMACS_DIR)/local/parinfer-rust || true
+	rm -rf $(EMACS_DIR)/local/tree-sitter || true
+	rm -rf $(EMACS_DIR)/local/lsp || true
+	rm -rf $(EMACS_DIR)/local/extra-packages || true
+	rm -rf $(EMACS_DIR)/local/clean_extras || true
+
+clean: clean_extras
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
 
 clean_pcache:
