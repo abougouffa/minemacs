@@ -187,9 +187,6 @@
     (when-let ((server (assoc 'nix-mode eglot-server-programs)))
       (setcar server '(nix-mode nix-ts-mode)))))
 
-(use-package nix-update
-  :straight t)
-
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
@@ -199,12 +196,6 @@
   :config
   ;; Ensure loading envrc for babel source blocks
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
-
-(use-package guix
-  :straight t
-  :when (executable-find "guix")
-  :init
-  (+map! "og" #'guix))
 
 (use-package osm
   :straight t)
