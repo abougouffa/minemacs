@@ -8,15 +8,6 @@
 
 ;;; Code:
 
-(use-package zotxt
-  :straight t
-  :when (executable-find "zotero")
-  :init
-  (+map-local! :keymaps 'org-mode-map
-    "z" #'org-zotxt-mode)
-  (+map-local! :keymaps 'markdown-mode-map
-    "z" #'zotxt-citekey-mode))
-
 (use-package citar
   :straight t
   :after minemacs-first-org-file oc
