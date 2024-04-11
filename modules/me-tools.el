@@ -154,21 +154,6 @@
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
 
-(use-package bitwarden
-  :straight (:host github :repo "seanfarley/emacs-bitwarden")
-  :when (executable-find "bw")
-  :custom
-  (bitwarden-automatic-unlock
-   (lambda ()
-     (require 'auth-source)
-     (if-let* ((matches (auth-source-search :host "bitwarden.com" :max 1))
-               (entry (nth 0 matches))
-               (email (plist-get entry :user))
-               (pass (plist-get entry :secret)))
-         (progn (setq bitwarden-user email)
-                (if (functionp pass) (funcall pass) pass))
-       ""))))
-
 (use-package with-editor
   :straight t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
