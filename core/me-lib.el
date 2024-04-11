@@ -687,6 +687,31 @@ This calls `minemacs-update-restore-locked' asynchronously."
     (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
           (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
 
+(defun +straight-prune-build-cache ()
+  "Prune straight.el build directories for old Emacs versions."
+  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
+    ;; Prune the build cache and build directory.
+    (straight-prune-build)
+    ;; Prune old build directories
+    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
+          (seq-filter
+           (lambda (name)
+             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
+           (directory-files default-directory nil "[^.][^.]?\\'")))))
+
+(defun +minemacs-cleanup-emacs-directory ()
+  "Cleanup unwanted files/directories from MinEmacs' directory."
+  (interactive)
+  (when (featurep 'native-compile)
+    (+info! "Trying to clean outdated native compile cache")
+    ;; Delete outdated natively compiled files when Emacs become idle
+    (+shutup! (native-compile-prune-cache)))
+  (+info! "Trying to clean outdated straight build cache")
+  (+shutup! (+straight-prune-build-cache))
+  (+info! "Trying to clean MinEmacs' root directory")
+  (+shutup! (+minemacs-root-dir-cleanup)))
+
+
 
 
 ;;; Files, directories and IO helper functions

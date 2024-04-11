@@ -48,19 +48,6 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p))
 
-;;;###autoload
-(defun +straight-prune-build-cache ()
-  "Prune straight.el build directories for old Emacs versions."
-  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    ;; Prune the build cache and build directory.
-    (straight-prune-build)
-    ;; Prune old build directories
-    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-          (seq-filter
-           (lambda (name)
-             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-           (directory-files default-directory nil "[^.][^.]?\\'")))))
-
 
 (provide 'me-bootstrap)
 

@@ -261,16 +261,6 @@ goes idle."
 ;; Load user configuration
 (+load-user-configs 'config 'local/config)
 
-(+lazy!
- (when (featurep 'native-compile)
-   (+info! "Trying to clean outdated native compile cache")
-   ;; Delete outdated natively compiled files when Emacs become idle
-   (+shutup! (native-compile-prune-cache)))
- (+info! "Trying to clean outdated straight build cache")
- (+shutup! (+straight-prune-build-cache))
- (+info! "Trying to clean MinEmacs' root directory")
- (+shutup! (+minemacs-root-dir-cleanup)))
-
 
 (+log! "Loaded init.el")
 
