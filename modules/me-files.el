@@ -22,10 +22,11 @@
   :init
   (+map!
     ;; Open
-    "o-" '(dirvish :wk "Dirvish")
-    "oq" '(dirvish-quick-access :wk "Dirvish quick access")
+    "o-" #'dirvish
+    "op" #'dirvish-side
+    "oq" #'dirvish-quick-access
     ;; Search
-    "sd" '(dirvish-fd :wk "Dirvish fd"))
+    "sd" #'dirvish-fd)
   :config
   (+nvmap! :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
