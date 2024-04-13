@@ -268,6 +268,13 @@ Example: \"#+TITLE\" -> \"#+title\"
            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
            ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+          ("mdpi"
+           "\\documentclass{Definitions/mdpi}"
+           ("\\section{%s}"       . "\\section*{%s}")
+           ("\\subsection{%s}"    . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
           ("ws-us"
            "\\documentclass{ws-us}"
            ("\\section{%s}"       . "\\section*{%s}")
