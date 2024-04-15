@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.0](https://github.com/abougouffa/minemacs/compare/6c80599d2092afd6dd8ac1e8d0c424172b270bd2..v6.0.0) - 2024-04-15
+#### Tweaks
+- **(skel)** update modules list - ([4b9a0c4](https://github.com/abougouffa/minemacs/commit/4b9a0c4068b8646345ab83335b5232db637efe03)) - [@abougouffa](https://github.com/abougouffa)
+- bump `tabspaces` version - ([c43f0e7](https://github.com/abougouffa/minemacs/commit/c43f0e7752c7b60d31a98cca1e6840b0a12b7a8e)) - [@abougouffa](https://github.com/abougouffa)
+- make `lsp` + `dap` obsolete in favor of `eglot` + `dape` - ([6c80599](https://github.com/abougouffa/minemacs/commit/6c80599d2092afd6dd8ac1e8d0c424172b270bd2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.2.0](https://github.com/abougouffa/minemacs/compare/3b3ac4820f1cae822ecf0926c46cc2f5e46e483c..v5.2.0) - 2024-04-15
 #### Documentation
 - regenerate the documentation - ([ee6866c](https://github.com/abougouffa/minemacs/commit/ee6866c1bb0a43f4507c997f9d39525bfd1632f7)) - [@abougouffa](https://github.com/abougouffa)
