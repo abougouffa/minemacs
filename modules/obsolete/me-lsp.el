@@ -167,6 +167,6 @@
   :demand t)
 
 
-(provide 'me-lsp)
+(provide 'obsolete/me-lsp)
 
 ;;; me-lsp.el ends here
