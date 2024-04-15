@@ -591,6 +591,14 @@ This calls `minemacs-update-restore-locked` asynchronously.
 
 Cleanup MinEmacs' root directory.
 
+#### `(+straight-prune-build-cache)`
+
+Prune straight.el build directories for old Emacs versions.
+
+#### `(+minemacs-cleanup-emacs-directory)`
+
+Cleanup unwanted files/directories from MinEmacs' directory.
+
 #### `(+file-mime-type FILE)`
 
 Get MIME type for FILE based on magic codes provided by the "file" command.
