@@ -20,38 +20,37 @@
         me-ai             ; AI assistant using ollama (ellama, llm, ...)
         me-editor         ; Editing (tempel, tempel-collection, rainbow-delimiters, expreg, drag-stuff, ...)
         me-daemon         ; Emacs daemon tweaks
-        me-undo           ; Better undoing (undo-fu, undo-fu-session, vundo, ...)
+        me-undo           ; Better undoing (undo-fu-session, vundo, ...)
         me-multi-cursors  ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
         me-vc             ; Version control (magit, forge, core-review, diff-hl, ...)
-        me-project        ; Project management (consult-project-extra, ibuffer-project, ...)
+        me-project        ; Project management (projection, compile-multi, consult-project-extra, ...)
         me-prog           ; Programming stuff (tree-sitter, eldoc-box, apheleia, editorconfig, ...)
-        me-checkers       ; Static checkers (flymake-easy, ...)
-        me-debug          ; Debugging tools (realgud, disaster, ...)
-        ;; me-lsp         ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
+        me-checkers       ; Static checkers (flymake-collection, flymenu, flymake-quickdef, flymake-cppcheck, ...)
+        me-debug          ; Debugging tools (realgud, disaster, dape, ...)
         me-emacs-lisp     ; Emacs lisp development (parinfer-rust, macrostep, eros, helpful, ...)
         ;; me-common-lisp ; Common Lisp development (sly, sly-quicklisp, ...)
         ;; me-scheme      ; Scheme development (racket-mode, geiser, ...)
         ;; me-clojure     ; Clojure development (clojure-mode, cider, ...)
-        ;; me-embedded    ; Embedded systems (arduino, openocd, bitbake, ...)
+        ;; me-embedded    ; Embedded systems (embed, arduino, openocd, bitbake, dts-mode, ...)
         ;; me-robot       ; Robotics stuff (ros, robot-mode, ...)
         me-data           ; Data file formats (csv, yaml, toml, json, plantuml-mode, ...)
-        ;; me-math        ; Mathematics (maxima, ess, ein, julia-mode, ...)
-        ;; me-modeling    ; Modeling tools (scad-mode, ...)
-        me-org            ; Org-mode for life (org-contrib, org-modern, org-appear, ...)
+        ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
+        ;; me-modeling    ; Modeling tools (scad-mode, modelica-mode, ...)
+        me-org            ; Org-mode for life (org-contrib, org-modern, org-appear, engrave-faces, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
-        me-notes          ; Notes & Zettelkasten (denote, ...)
+        me-notes          ; Notes & Zettelkasten (denote, consult-notes, ...)
         ;; me-email       ; Email (mu4e, mu4e-alert, org-msg, ...)
         ;; me-rss         ; News feed (elfeed, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
-        me-docs           ; Documents (pdf-tools, nov, ...)
+        me-docs           ; Documents (pdf-tools, pdf-view-restore, nov, crdt, edraw, markdown-mode, ...)
         ;; me-calendar    ; Calendar (calfw, calfw-org, calfw-ical, ...)
-        me-latex          ; LaTeX (auctex, auctex-latexmk, ...)
-        ;; me-biblio      ; Bibliography & citations (citar, zotxt, ...)
-        me-natural-langs  ; Natural language stuff (spell-fu, go-translate, eglot-ltex, ...)
-        me-files          ; Files and directories (dirvish, vlf, ...)
-        me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, ...)
-        me-tty            ; Emacs from terminal (xt-mouse, xclip, ...)
-        me-fun            ; Games and funny packages (xkcd, speed-type, ...)
+        me-latex          ; LaTeX (auctex, auctex-latexmk, LaTeX-preview-pane, ...)
+        ;; me-biblio      ; Bibliography & citations (citar, citar-embark, org-re-reveal-citeproc, ...)
+        me-natural-langs  ; Natural language stuff (jinx, spell-fu, go-translate, eglot-ltex, ...)
+        me-files          ; Files and directories (dirvish, vlf, sudo-edit, ztree, ...)
+        me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
+        me-tty            ; Emacs from terminal (xclip, ...)
+        me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
         me-media          ; Multimedia (empv, emms, ...)
         ;; me-workspaces  ; Workspace separation (tabspaces, ...)
         me-binary         ; Display binary files in hex or decompile them
@@ -77,7 +76,9 @@
 ;;; Using the obsolete modules
 ;; You can use the obsolete packages configurations by adding the
 ;; `obsolete/me-*' modules to `minemacs-modules'. However, these modules, as
-;; their names indicate, are OBSOLETE and NOT SUPPORTED.
+;; their names indicate, are OBSOLETE and NOT SUPPORTED. This is a
+;; non-comprehensive list of obsolete modules, see "modules/obsolete/*.el" for
+;; the full list.
 ;; (setq minemacs-modules
 ;;       (append
 ;;        minemacs-modules
@@ -93,6 +94,7 @@
 ;;          obsolete/me-flycheck-eglot ; Flycheck + Eglot
 ;;          obsolete/me-lexic          ; Offline dictionary using sdcv
 ;;          obsolete/me-ligature       ; Ligatures (needs further customization in function of the used font)
+;;          obsolete/me-lsp            ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
 ;;          obsolete/me-netextender    ; NetExtender integration (start/stop VPN sessions from Emacs)
 ;;          obsolete/me-org-present    ; Org presentations in Emacs
 ;;          obsolete/me-org-roam       ; Org roam configuration (org-roam, consult-org-roam, ...)

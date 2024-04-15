@@ -38,7 +38,6 @@
     ;; me-fun
     me-latex
     ;; me-lifestyle
-    ;; me-lsp
     ;; me-math
     ;; me-media
     ;; me-modeling
