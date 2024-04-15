@@ -297,7 +297,7 @@
  ("svg-lib" . "1032525a1a5221b1b17d33f98c8be88006de65af")
  ("systemd-mode" . "8742607120fbc440821acbc351fda1e8e68a8806")
  ("tablist" . "fcd37147121fabdf003a70279cf86fbe08cfac6f")
- ("tabspaces" . "73d9cecaeb671e14409c80b10a17be64acebc43c")
+ ("tabspaces" . "c21f28b96b63926a530babe50d2c4de81ebaaa18")
  ("tempel" . "bcc3185202edce67c7f7fc74287cc2ecbeef10c6")
  ("tempel-collection" . "e87b1fee9554f9bc7415df053c8d8c9f03c13955")
  ("themes" . "3b2422b208d28e8734b300cd3cc6a7f4af5eba55")
