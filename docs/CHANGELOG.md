@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v5.2.0](https://github.com/abougouffa/minemacs/compare/3b3ac4820f1cae822ecf0926c46cc2f5e46e483c..v5.2.0) - 2024-04-15
+#### Documentation
+- regenerate the documentation - ([ee6866c](https://github.com/abougouffa/minemacs/commit/ee6866c1bb0a43f4507c997f9d39525bfd1632f7)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** don't run tests on Emacs 28.1 & 29.1 - ([92a2467](https://github.com/abougouffa/minemacs/commit/92a24679e205b4113a0b59a8c7ed588e7f45ba80)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** cleanup extra stuff to avoid problems - ([f08045e](https://github.com/abougouffa/minemacs/commit/f08045e831ec5a6b51d7c1fdbad093bc581f0313)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(core)** remove an old fix intended for Emacs 29.1 - ([233b4ed](https://github.com/abougouffa/minemacs/commit/233b4edd5070216d5df52c6be217129721337c1d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(biblio)** make `zotxt` obsolete, never really used! - ([cd1ae59](https://github.com/abougouffa/minemacs/commit/cd1ae5961def3070c192b17ddf38cfe0a68677bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** minor performance tweaks - ([3b3ac48](https://github.com/abougouffa/minemacs/commit/3b3ac4820f1cae822ecf0926c46cc2f5e46e483c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** don't auto cleanup MinEmacs' directory - ([58cbde9](https://github.com/abougouffa/minemacs/commit/58cbde95f58a41ed15ba1ce7dc7b86fb6be9014b)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove unused `+sensitive-data-mode` - ([592b335](https://github.com/abougouffa/minemacs/commit/592b3351226de3026ea361b428d1b663a6f2af43)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove unneeded `+package-download-from-urls` - ([0e0c070](https://github.com/abougouffa/minemacs/commit/0e0c070613d9c2cb3338b47efd43b8f27c395a22)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** bind `dirvish-side` - ([8891bf3](https://github.com/abougouffa/minemacs/commit/8891bf3609505b0d17f7390a0fadf59293712e0b)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-lisp)** make `elisp-demos` obsolete - ([dcd02af](https://github.com/abougouffa/minemacs/commit/dcd02af4095e8e9ebb70e6a3582a671305e29a04)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** prevent an annoying error when `direnv` isn't installed - ([1250c6b](https://github.com/abougouffa/minemacs/commit/1250c6b8906fdcd6036bf249ea8bbf36bc5824cc)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `treemacs` obsolete - ([1b9b00c](https://github.com/abougouffa/minemacs/commit/1b9b00c189ba7375643aac47ce0d08e0654d9d12)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** remove unused `sr-speedbar` - ([401d4bc](https://github.com/abougouffa/minemacs/commit/401d4bcd653bf04b4658cc4d04bd0b8f59ac9717)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** add a LaTeX class for MPDI template - ([8dd590d](https://github.com/abougouffa/minemacs/commit/8dd590d72f5b8d3ca4b0ef41bdb59a7c560b596b)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `nix-update` & `guix` obsolete - ([6401380](https://github.com/abougouffa/minemacs/commit/6401380334f81776382e3b869561f2359f61912b)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `bitwarden` obsolete - ([9d35669](https://github.com/abougouffa/minemacs/commit/9d35669eaa923f0b3de49c0a90794cc684d81082)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** make `code-review` obsolete - ([868e99f](https://github.com/abougouffa/minemacs/commit/868e99fac9b8615b709eb32edc42b7b5ba2a6129)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([77e928a](https://github.com/abougouffa/minemacs/commit/77e928aec2e6c3cb6c2ee75b6c9907b11951b4f4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v5.1.3](https://github.com/abougouffa/minemacs/compare/bc6b6de407e74932d059b9b0ccf57d487b8f3abf..v5.1.3) - 2024-04-04
 #### Bug Fixes
 - **(protobuf-ts-mode)** use a working repo - ([bc6b6de](https://github.com/abougouffa/minemacs/commit/bc6b6de407e74932d059b9b0ccf57d487b8f3abf)) - [@abougouffa](https://github.com/abougouffa)
