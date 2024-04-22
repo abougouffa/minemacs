@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.1](https://github.com/abougouffa/minemacs/compare/eb99c88d5fe072510755be197b9ff412a0c7c6ac..v6.0.1) - 2024-04-22
+#### Documentation
+- **(documentation)** regenerate the documentation - ([eb99c88](https://github.com/abougouffa/minemacs/commit/eb99c88d5fe072510755be197b9ff412a0c7c6ac)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([67bade8](https://github.com/abougouffa/minemacs/commit/67bade8584af0b220477405984fbc0e2a3332c53)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.0](https://github.com/abougouffa/minemacs/compare/6c80599d2092afd6dd8ac1e8d0c424172b270bd2..v6.0.0) - 2024-04-15
 #### Tweaks
 - **(skel)** update modules list - ([4b9a0c4](https://github.com/abougouffa/minemacs/commit/4b9a0c4068b8646345ab83335b5232db637efe03)) - [@abougouffa](https://github.com/abougouffa)
