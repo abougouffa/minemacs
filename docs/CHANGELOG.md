@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.2](https://github.com/abougouffa/minemacs/compare/1fa52656297bb4a3ee185c0dfcb1b47205e83685..v6.0.2) - 2024-04-25
+#### Tweaks
+- **(dirvish)** don't show Git status - ([60c24a1](https://github.com/abougouffa/minemacs/commit/60c24a1b9b2cb0fb1d86b4244d6ae13d04a85323)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** don't show Git messages - ([1fa5265](https://github.com/abougouffa/minemacs/commit/1fa52656297bb4a3ee185c0dfcb1b47205e83685)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3e182d8](https://github.com/abougouffa/minemacs/commit/3e182d80aefabaceef3782540fbf956d7159ded1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.1](https://github.com/abougouffa/minemacs/compare/eb99c88d5fe072510755be197b9ff412a0c7c6ac..v6.0.1) - 2024-04-22
 #### Documentation
 - **(documentation)** regenerate the documentation - ([eb99c88](https://github.com/abougouffa/minemacs/commit/eb99c88d5fe072510755be197b9ff412a0c7c6ac)) - [@abougouffa](https://github.com/abougouffa)
