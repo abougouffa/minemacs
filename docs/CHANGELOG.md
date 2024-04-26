@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.3](https://github.com/abougouffa/minemacs/compare/557f0a74610d702962fed376bdc0d05be693650a..v6.0.3) - 2024-04-26
+#### Bug Fixes
+- **(auctex)** revert to the prvious revision (regression on Windows) - ([557f0a7](https://github.com/abougouffa/minemacs/commit/557f0a74610d702962fed376bdc0d05be693650a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(auctex)** pin to an older version due to an issue with Windows - ([747f779](https://github.com/abougouffa/minemacs/commit/747f779ee6018bb4af973cf97bb27a45c4a1d162)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d51e6c7](https://github.com/abougouffa/minemacs/commit/d51e6c7d7169dfe8c3b49e9075b1c883cd635a68)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.2](https://github.com/abougouffa/minemacs/compare/1fa52656297bb4a3ee185c0dfcb1b47205e83685..v6.0.2) - 2024-04-25
 #### Tweaks
 - **(dirvish)** don't show Git status - ([60c24a1](https://github.com/abougouffa/minemacs/commit/60c24a1b9b2cb0fb1d86b4244d6ae13d04a85323)) - [@abougouffa](https://github.com/abougouffa)
