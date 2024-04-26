@@ -13,7 +13,7 @@
  ("app-launcher" . "d5015e394b0a666a8c7c4d4bdf786266e773b145")
  ("arduino-mode" . "3e2bad4569ad26e929e6db2cbcff0d6d36812698")
  ("asm-blox" . "6731d8e4f78d0b43ec9b90d8184c1d86d725ac7c")
- ("auctex" . "a99081a89f2c641b730eb8179e92066ed62539f1")
+ ("auctex" . "85cb7ac5cabdcb615f28218b066a52a4437df408")
  ("auctex-latexmk" . "b00a95e6b34c94987fda5a57c20cfe2f064b1c7a")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("awk-ts-mode" . "9cd2b2ad05d85e05be9da7275077697223d79878")
