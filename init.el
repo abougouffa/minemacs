@@ -53,6 +53,7 @@
 ;; - `minemacs-first-file-hook'
 ;; - `minemacs-first-elisp-file-hook'
 ;; - `minemacs-first-org-file-hook'
+;; - `minemacs-first-c/c++-file-hook'
 
 ;;; Code:
 
