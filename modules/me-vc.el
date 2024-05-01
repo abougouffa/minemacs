@@ -132,13 +132,7 @@
 
 ;; https://chromium.googlesource.com/chromiumos/platform/dev-util/+/HEAD/contrib/emacs/gerrit/README.md
 (use-package gerrit
-  :straight (chromeos-gerrit :type git :host nil
-                             :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util"
-                             :files ("contrib/emacs/gerrit/*")))
-
-(use-package gerrit-section
-  :straight chromeos-gerrit
-  :commands gerrit-comments)
+  :straight (chromeos-gerrit :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))
 
 (use-package repo-transient
   :straight chromeos-gerrit
@@ -146,8 +140,7 @@
   repo-upload-menu repo-upload-menu-with-repohooks repo-start-menu repo-sync-menu repo-rebase-menu repo-main-menu
   repo:all-projects repo:current-project
   :init
-  (+map!
-    "grr" #'repo-main-menu))
+  (+map! "grr" #'repo-main-menu))
 
 (use-package diffview
   :straight t
