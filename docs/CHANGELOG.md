@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.4](https://github.com/abougouffa/minemacs/compare/99fb7b1814c1edf34979a15e25f690bbe2ad4022..v6.0.4) - 2024-05-01
+#### Documentation
+- **(init)** update documentation - ([9450101](https://github.com/abougouffa/minemacs/commit/945010147866c43d103f6c9ab41f39e6411da04e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(early-init)** minor simplification - ([d5e9365](https://github.com/abougouffa/minemacs/commit/d5e9365b5e876e04b91a4fa35a6ce04aac16cf54)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(early-init)** remove duplicate parameters set in `spacious-padding` - ([99fb7b1](https://github.com/abougouffa/minemacs/commit/99fb7b1814c1edf34979a15e25f690bbe2ad4022)) - [@abougouffa](https://github.com/abougouffa)
+- **(gerrit)** remove `gerrit-section`, uses obsolete functionalities - ([493a74e](https://github.com/abougouffa/minemacs/commit/493a74ed876163521633d6b60aeea718b38eacd0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.3](https://github.com/abougouffa/minemacs/compare/557f0a74610d702962fed376bdc0d05be693650a..v6.0.3) - 2024-04-26
 #### Bug Fixes
 - **(auctex)** revert to the prvious revision (regression on Windows) - ([557f0a7](https://github.com/abougouffa/minemacs/commit/557f0a74610d702962fed376bdc0d05be693650a)) - [@abougouffa](https://github.com/abougouffa)
