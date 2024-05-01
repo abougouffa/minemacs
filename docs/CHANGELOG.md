@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.5](https://github.com/abougouffa/minemacs/compare/b88214b3f1dce738b23bc3c58a3e88584545c209..v6.0.5) - 2024-05-01
+#### Revert
+- **(early-init)** minor simplification (not working on Emacs 28.2) - ([b88214b](https://github.com/abougouffa/minemacs/commit/b88214b3f1dce738b23bc3c58a3e88584545c209)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.4](https://github.com/abougouffa/minemacs/compare/99fb7b1814c1edf34979a15e25f690bbe2ad4022..v6.0.4) - 2024-05-01
 #### Documentation
 - **(init)** update documentation - ([9450101](https://github.com/abougouffa/minemacs/commit/945010147866c43d103f6c9ab41f39e6411da04e)) - [@abougouffa](https://github.com/abougouffa)
