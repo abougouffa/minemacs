@@ -44,13 +44,17 @@
   (advice-add
    'use-package :around
    (defun +use-package--check-if-disabled:around-a (origfn package &rest args)
-     (when (and (not (+package-disabled-p package))
-                (or (not (memq :if args))
-                    (and (memq :if args) (eval (+varplist-get args :if t))))
-                (or (not (memq :when args))
-                    (and (memq :when args) (eval (+varplist-get args :when t))))
-                (or (not (memq :unless args))
-                    (and (memq :unless args) (not (eval (+varplist-get args :unless t))))))
+     (if (or (+package-disabled-p package)
+             (and (memq :if args)
+                  (not (and (memq :if args) (eval (+varplist-get args :if t)))))
+             (and (memq :when args)
+                  (not (and (memq :when args) (eval (+varplist-get args :when t)))))
+             (and (memq :unless args)
+                  (not (and (memq :unless args) (not (eval (+varplist-get args :unless t)))))))
+         ;; Register the package but don't enable it, useful when creating the lockfile,
+         ;; this is the official straight.el way for conditionally installing packages
+         (straight-register-package package)
+       ;; Otherwise, add it to the list of configured packages and apply the `use-package' form
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
 
