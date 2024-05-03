@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.6](https://github.com/abougouffa/minemacs/compare/633137915c6433062f7eed16e5ae4fce01ff3a3a..v6.0.6) - 2024-05-03
+#### Bug Fixes
+- **(transient)** fix void symbol issue on Emacs 30 - ([624cc7e](https://github.com/abougouffa/minemacs/commit/624cc7eff18080f1799310a1beced28346af84d5)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate the documentation - ([6331379](https://github.com/abougouffa/minemacs/commit/633137915c6433062f7eed16e5ae4fce01ff3a3a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(org)** remove unneeded `:after` blocks - ([b540f01](https://github.com/abougouffa/minemacs/commit/b540f01619b24df0107419eb63e2ac7c7cec3d60)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** register conditionally disabled packages - ([87e8b1a](https://github.com/abougouffa/minemacs/commit/87e8b1ab6554ff52da884a2b57a12c6905814132)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8a7fb31](https://github.com/abougouffa/minemacs/commit/8a7fb31eb8ac842820e7da8b6775e3b0face0b08)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.5](https://github.com/abougouffa/minemacs/compare/b88214b3f1dce738b23bc3c58a3e88584545c209..v6.0.5) - 2024-05-01
 #### Revert
 - **(early-init)** minor simplification (not working on Emacs 28.2) - ([b88214b](https://github.com/abougouffa/minemacs/commit/b88214b3f1dce738b23bc3c58a3e88584545c209)) - [@abougouffa](https://github.com/abougouffa)
