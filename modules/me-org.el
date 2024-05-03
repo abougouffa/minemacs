@@ -25,12 +25,10 @@
   (+org-extras-lower-case-keywords-and-properties-setup))
 
 (use-package org-contrib
-  :straight (:host github :repo "abougouffa/org-contrib" :branch "master")
-  :after org)
+  :straight (:host github :repo "abougouffa/org-contrib" :branch "master"))
 
 (use-package engrave-faces
-  :straight t
-  :after org)
+  :straight t)
 
 ;; Org export
 (use-package ox-hugo
