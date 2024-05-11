@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.0.7](https://github.com/abougouffa/minemacs/compare/26fae161fd85919ca47f7788e0254e32809f4763..v6.0.7) - 2024-05-11
+#### Bug Fixes
+- bootstrapping error when Emacs lack some builtin features - ([26fae16](https://github.com/abougouffa/minemacs/commit/26fae161fd85919ca47f7788e0254e32809f4763)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([1198fcc](https://github.com/abougouffa/minemacs/commit/1198fcc0544efac23c2f368af0a8e9cfdf8e9003)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.6](https://github.com/abougouffa/minemacs/compare/633137915c6433062f7eed16e5ae4fce01ff3a3a..v6.0.6) - 2024-05-03
 #### Bug Fixes
 - **(transient)** fix void symbol issue on Emacs 30 - ([624cc7e](https://github.com/abougouffa/minemacs/commit/624cc7eff18080f1799310a1beced28346af84d5)) - [@abougouffa](https://github.com/abougouffa)
