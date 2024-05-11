@@ -53,7 +53,12 @@
                   (not (and (memq :unless args) (not (eval (+varplist-get args :unless t)))))))
          ;; Register the package but don't enable it, useful when creating the lockfile,
          ;; this is the official straight.el way for conditionally installing packages
-         (straight-register-package package)
+         (when-let* ((recipe (+varplist-get args :straight t)))
+           (let* ((recipe (if (eq recipe t) (list package) recipe))
+                  (car-recipe (and (listp recipe) (car recipe)))
+                  (car-recipe-is-pkg (and (symbolp car-recipe) (not (keywordp car-recipe))))
+                  (recipe (if (and car-recipe car-recipe-is-pkg) recipe (append (list package) recipe))))
+             (straight-register-package recipe)))
        ;; Otherwise, add it to the list of configured packages and apply the `use-package' form
        (add-to-list 'minemacs-configured-packages package t)
        (apply origfn package args))))
