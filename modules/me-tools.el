@@ -200,6 +200,9 @@
 (use-package osm
   :straight t)
 
+(use-package verb
+  :straight t)
+
 
 (provide 'me-tools)
 
