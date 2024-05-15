@@ -203,6 +203,9 @@
 (use-package verb
   :straight t)
 
+(use-package impostman
+  :straight t)
+
 
 (provide 'me-tools)
 
