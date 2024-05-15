@@ -1777,18 +1777,44 @@ it forget them only when we are sure they don't exist."
 ;;; Proxy
 ;;; =====
 
-(defun minemacs-enable-proxy ()
-  "Set *_proxy Linux environment variables from `minemacs-proxies'."
-  (interactive)
-  (dolist (prox minemacs-proxies)
-    (let ((var (format "%s_proxy" (car prox))))
-      (+log! "Set %S to %S" var (cdr prox))
-      (setenv var (cdr prox)))))
+(defun minemacs-get-enabled-proxies ()
+  "Get a list of enabled proxies."
+  (cl-loop
+   for prox in '("no" "ftp" "http" "https")
+   append (cl-loop for fn in '(downcase upcase)
+                   collect (cons (funcall fn prox) (getenv (funcall fn (format "%s_proxy" prox)))))))
+
+(defun minemacs-set-enabled-proxies (proxies)
+  "Set PROXIES."
+  (cl-loop
+   for prox in proxies
+   do (cl-loop
+       for fn in '(upcase downcase)
+       do (cons (funcall fn (car prox)) (setenv (funcall fn (format "%s_proxy" (car prox))) (cdr prox))))))
+
+(defun minemacs-enable-proxy (proxies)
+  "Set *_proxy Linux environment variables from PROXIES."
+  (interactive (list minemacs-proxies))
+  (minemacs-set-enabled-proxies proxies))
 
 (defun minemacs-disable-proxy ()
   "Unset *_proxy Linux environment variables."
   (interactive)
-  (mapc #'setenv (mapcar (apply-partially #'format "%s_proxy") (mapcar #'car minemacs-proxies))))
+  (minemacs-set-enabled-proxies (mapcar (lambda (a) (list (car a))) minemacs-proxies)))
+
+(defmacro +with-proxies (&rest body)
+  "Execute BODY with proxies enabled from `minemacs-proxies'."
+  `(progn
+    (minemacs-enable-proxy minemacs-proxies)
+    ,@body
+    (minemacs-disable-proxy)))
+
+(defmacro +with-no-proxies (&rest body)
+  "Execute BODY with proxies disabled."
+  `(let ((old-proxies (minemacs-get-enabled-proxies)))
+    (minemacs-enable-proxy minemacs-proxies)
+    ,@body
+    (minemacs-disable-proxy)))
 
 
 
