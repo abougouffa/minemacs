@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.1.0](https://github.com/abougouffa/minemacs/compare/87e6c5fb66291b3756791b8ead083c8f5a47165a..v6.1.0) - 2024-05-15
+#### Bug Fixes
+- **(core)** use `+with-proxies` when updating - ([0452e5c](https://github.com/abougouffa/minemacs/commit/0452e5c5284a4e3ac6884c9a48aeed18019ac10b)) - [@abougouffa](https://github.com/abougouffa)
+- **(dashboard)** do Evil stuff after loading Evil - ([b5f55ab](https://github.com/abougouffa/minemacs/commit/b5f55ab0d231c827bee897e2010c6c14ee1b46e1)) - [@abougouffa](https://github.com/abougouffa)
+- apply Evil-specific tweaks only when Evil is loaded - ([96d917d](https://github.com/abougouffa/minemacs/commit/96d917dbe88f36ac535a2816dc67aa5d45c4b0be)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** better implementation of proxies - ([401c43b](https://github.com/abougouffa/minemacs/commit/401c43bff3b1f7671524bcd6014978d48af4f11e)) - [@abougouffa](https://github.com/abougouffa)
+- **(data)** add `jq-mode` with `yq` integration for YAML - ([f678163](https://github.com/abougouffa/minemacs/commit/f6781634308da44320488070be972844b2552285)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for impostman - ([20bf7f2](https://github.com/abougouffa/minemacs/commit/20bf7f28afd16e7f6f30cd545fe86981d22c8a97)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for verb.el - ([d990039](https://github.com/abougouffa/minemacs/commit/d9900395ef48f8971ef7aabe8ee6a2ed215d4572)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** change the proxy handling mechanism (don't enable globally) - ([67bbfde](https://github.com/abougouffa/minemacs/commit/67bbfdee7b05f2653e59a46c21f3e636a88fb15e)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** regenerate loaddefs - ([87e6c5f](https://github.com/abougouffa/minemacs/commit/87e6c5fb66291b3756791b8ead083c8f5a47165a)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `osm` obsolete - ([da908cb](https://github.com/abougouffa/minemacs/commit/da908cbaac80116192e01b5ddf5fcca84c9c0897)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1801878](https://github.com/abougouffa/minemacs/commit/180187881047f10b713e5f1c43e52aac9eafb8fd)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.0.7](https://github.com/abougouffa/minemacs/compare/26fae161fd85919ca47f7788e0254e32809f4763..v6.0.7) - 2024-05-11
 #### Bug Fixes
 - bootstrapping error when Emacs lack some builtin features - ([26fae16](https://github.com/abougouffa/minemacs/commit/26fae161fd85919ca47f7788e0254e32809f4763)) - [@abougouffa](https://github.com/abougouffa)
