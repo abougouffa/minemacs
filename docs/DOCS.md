@@ -931,13 +931,29 @@ Start systemd SERVICE. Optionally run PRE-FN and POST-FN.
 
 Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 
-#### `(minemacs-enable-proxy)`
+#### `(minemacs-get-enabled-proxies)`
 
-Set *_proxy Linux environment variables from `minemacs-proxies`.
+Get a list of enabled proxies.
+
+#### `(minemacs-set-enabled-proxies PROXIES)`
+
+Set PROXIES.
+
+#### `(minemacs-enable-proxy PROXIES)`
+
+Set *_proxy Linux environment variables from PROXIES.
 
 #### `(minemacs-disable-proxy)`
 
 Unset *_proxy Linux environment variables.
+
+#### `(+with-proxies &rest BODY)` (macro)
+
+Execute BODY with proxies enabled from `minemacs-proxies`.
+
+#### `(+with-no-proxies &rest BODY)` (macro)
+
+Execute BODY with proxies disabled.
 
 #### `(+map! &rest ARGS)` (macro)
 
@@ -1241,6 +1257,14 @@ Automatically convert KEYWORDS to lower case on save.
 #### `(+org-extras-setup)`
 
 Enable all Org-mode extra tweaks.
+
+#### `(+realgud:start &optional PATH)`
+
+Start the RealGUD debugger suitable for the current mode.
+
+#### `(+realgud:toggle-breakpoint &optional BANG)`
+
+Toggle break point.
 
 #### `(+realgud:cmd-run ARG)`
 
