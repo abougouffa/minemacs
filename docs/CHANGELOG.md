@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.1.1](https://github.com/abougouffa/minemacs/compare/ff4405287b9cf77e8a0e89dfbff193224c740e0d..v6.1.1) - 2024-05-15
+#### Tweaks
+- **(natural-langs)** make `go-translate` obsolete - ([4a34b9a](https://github.com/abougouffa/minemacs/commit/4a34b9a644eed05d562af0297fd4c401356ec685)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([ff44052](https://github.com/abougouffa/minemacs/commit/ff4405287b9cf77e8a0e89dfbff193224c740e0d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.1.0](https://github.com/abougouffa/minemacs/compare/87e6c5fb66291b3756791b8ead083c8f5a47165a..v6.1.0) - 2024-05-15
 #### Bug Fixes
 - **(core)** use `+with-proxies` when updating - ([0452e5c](https://github.com/abougouffa/minemacs/commit/0452e5c5284a4e3ac6884c9a48aeed18019ac10b)) - [@abougouffa](https://github.com/abougouffa)
