@@ -18,12 +18,6 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
-;;; Generated autoloads from me-bootstrap.el
-
-(autoload '+straight-prune-build-cache "me-bootstrap" "\
-Prune straight.el build directories for old Emacs versions.")
-
-
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
@@ -35,47 +29,6 @@ restores it after that.
 
 (fn LEVEL &optional PRE)" t)
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
-
-
-;;; Generated autoloads from ../modules/extras/me-code-folding.el
-
-(autoload '+fold/toggle "../modules/extras/me-code-folding" "\
-Toggle the fold at point.
-
-Targets `vimmish-fold', `hideshow' and `outline' folds." t)
-(autoload '+fold/open "../modules/extras/me-code-folding" "\
-Open the folded region at point.
-
-Targets `vimmish-fold', `hideshow' and `outline' folds." t)
-(autoload '+fold/close "../modules/extras/me-code-folding" "\
-Close the folded region at point.
-
-Targets `vimmish-fold', `hideshow' and `outline' folds." t)
-(autoload '+fold/open-all "../modules/extras/me-code-folding" "\
-Open folds at LEVEL (or all folds if LEVEL is nil).
-
-(fn &optional LEVEL)" t)
-(autoload '+fold/close-all "../modules/extras/me-code-folding" "\
-Close folds at LEVEL (or all folds if LEVEL is nil).
-
-(fn &optional LEVEL)" t)
-(autoload '+fold/next "../modules/extras/me-code-folding" "\
-Jump to the next vimish fold, outline heading or folded region.
-
-(fn COUNT)" t)
-(autoload '+fold/previous "../modules/extras/me-code-folding" "\
-Jump to the previous vimish fold, outline heading or folded region.
-
-(fn COUNT)" t)
-(autoload '+fold-hideshow-haml-forward-sexp-fn "../modules/extras/me-code-folding" "\
-
-
-(fn ARG)")
-(autoload '+fold-hideshow-forward-block-by-indent-fn "../modules/extras/me-code-folding" "\
-
-
-(fn ARG)")
-(register-definition-prefixes "../modules/extras/me-code-folding" '("+fold-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
@@ -192,9 +145,6 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
-
-
-
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
