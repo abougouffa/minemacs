@@ -197,9 +197,6 @@
   ;; Ensure loading envrc for babel source blocks
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
 
-(use-package osm
-  :straight t)
-
 (use-package verb
   :straight t)
 
