@@ -53,6 +53,20 @@
     "-" #'json-decrement-number-at-point
     "f" #'json-mode-beautify))
 
+(use-package jq-mode
+  :straight t
+  :custom
+  (jq-interactive-font-lock-mode (if (+emacs-features-p 'tree-sitter) #'json-ts-mode #'json-mode))
+  :init
+  (defun +yq-interactively ()
+    "Use `jq-interactively' with \"yq\" for YAML."
+    (interactive)
+    (let ((jq-interactive-command "yq")
+          (jq-interactive-default-prompt "yq: ")
+          (jq-interactive-font-lock-mode (if (+emacs-features-p 'tree-sitter) #'yaml-ts-mode #'yaml-mode))
+          (jq-interactive-default-options "")) ;; "--yaml-roundtrip"
+      (call-interactively #'jq-interactively))))
+
 (use-package graphviz-dot-mode
   :straight (:files ("graphviz-dot-mode.el" "texinfo"))
   :custom
