@@ -11,10 +11,10 @@
 
 ;;; Code:
 
-;;;###autoload(autoload '+realgud:start "../modules/extras/me-realgud" "Start the RealGUD debugger suitable for the current mode." t)
-(evil-define-command +realgud:start (&optional path)
+;;;###autoload
+(defun +realgud:start (&optional path)
   "Start the RealGUD debugger suitable for the current mode."
-  (interactive "<f>")
+  (interactive (list (when evil-called-from-ex-p (evil-ex-file-arg)))) ;; <=> `evil-define-command' with (interactive "<f>")
   (let ((default-directory
          (or (and (project-current) (project-root (project-current)))
              (and (fboundp 'projectile-project-root) (projectile-project-root))
@@ -38,11 +38,15 @@
          (_ (user-error "No shell debugger for %s" sh-shell))))
       (_ (user-error "No debugger for %s" major-mode)))))
 
-;;;###autoload(autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "Toggle break point." t)
-(evil-define-command +realgud:toggle-breakpoint (&optional bang)
+;;;###autoload
+(defun +realgud:toggle-breakpoint (&optional bang)
   "Toggle break point."
-  (interactive "<!>")
+  (interactive (list evil-ex-bang)) ;; <=> `evil-define-command' with (interactive "<!>")
   (call-interactively (if bang #'realgud:cmd-clear #'realgud:cmd-break)))
+
+(with-eval-after-load 'evil
+  (evil-set-command-properties +realgud:start '(:ex-arg file))
+  (evil-set-command-properties +realgud:toggle-breakpoint '(:ex-arg t)))
 
 ;; Add some missing gdb/rr commands
 (defun +realgud:cmd-run (arg)
