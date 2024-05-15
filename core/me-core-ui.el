@@ -50,7 +50,7 @@
   (dashboard-startup-banner (concat minemacs-assets-dir "images/minemacs.png"))
   :config
   ;; Ensure setting the keybindings before opening the dashboard
-  (evil-collection-dashboard-setup)
+  (with-eval-after-load 'evil (evil-collection-dashboard-setup))
 
   ;; Avoid opening the dashboard when Emacs starts with an open file.
   (unless (cl-some #'buffer-file-name (buffer-list))
