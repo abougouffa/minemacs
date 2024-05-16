@@ -1803,21 +1803,21 @@ it forget them only when we are sure they don't exist."
 (defun minemacs-disable-proxy ()
   "Unset *_proxy Linux environment variables."
   (interactive)
-  (minemacs-set-enabled-proxies (mapcar (lambda (a) (list (car a))) minemacs-proxies)))
+  (minemacs-set-enabled-proxies (mapcar (lambda (a) (list (car a))) (minemacs-get-enabled-proxies))))
 
 (defmacro +with-proxies (&rest body)
   "Execute BODY with proxies enabled from `minemacs-proxies'."
-  `(progn
-     (minemacs-enable-proxy minemacs-proxies)
-     ,@body
-     (minemacs-disable-proxy)))
+  `(let ((old-proxies (minemacs-get-enabled-proxies)))
+    (minemacs-enable-proxy minemacs-proxies)
+    ,@body
+    (minemacs-enable-proxy old-proxies)))
 
 (defmacro +with-no-proxies (&rest body)
   "Execute BODY with proxies disabled."
   `(let ((old-proxies (minemacs-get-enabled-proxies)))
-    (minemacs-enable-proxy minemacs-proxies)
+    (minemacs-disable-proxy)
     ,@body
-    (minemacs-disable-proxy)))
+    (minemacs-enable-proxy old-proxies)))
 
 
 
