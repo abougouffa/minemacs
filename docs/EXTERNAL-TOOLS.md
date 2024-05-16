@@ -80,12 +80,13 @@ you might need install some of these tools.
 74. [`ruff`](https://github.com/astral-sh/ruff) - An extremely fast Python linter and code formatter, written in Rust
 75. [`pylint`](https://github.com/pylint-dev/pylint) - It's not just a linter that annoys you!
 76. [`flake8`](https://github.com/pycqa/flake8) - Glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code
-77. [`sqlint`](https://github.com/purcell/sqlint) - ItSimple SQL linter supporting ANSI and PostgreSQL syntaxes
-78. [`sql-lint`](https://github.com/joereynolds/sql-lint) - An SQL linter
-79. [`markdownlint`](https://github.com/markdownlint/markdownlint) - Markdown lint tool
-80. [`tidy`](https://github.com/htacg/tidy-html5) - The granddaddy of HTML tools, with support for modern standards
-81. [`luacheck`](https://github.com/mpeterv/luacheck) - A tool for linting and static analysis of Lua code
-82. [`yamllint`](https://github.com/adrienverge/yamllint) - A linter for YAML files
-83. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
-84. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
-85. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
+77. [`sqlint`](https://github.com/purcell/sqlint) - Simple SQL linter supporting ANSI and PostgreSQL syntaxes
+78. [`sqlite3`](https://github.com/sqlite/sqlite) - A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
+79. [`sql-lint`](https://github.com/joereynolds/sql-lint) - An SQL linter
+80. [`markdownlint`](https://github.com/markdownlint/markdownlint) - Markdown lint tool
+81. [`tidy`](https://github.com/htacg/tidy-html5) - The granddaddy of HTML tools, with support for modern standards
+82. [`luacheck`](https://github.com/mpeterv/luacheck) - A tool for linting and static analysis of Lua code
+83. [`yamllint`](https://github.com/adrienverge/yamllint) - A linter for YAML files
+84. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
+85. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
+86. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
