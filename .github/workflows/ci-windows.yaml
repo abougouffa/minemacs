@@ -3,8 +3,12 @@ name: CI Windows
 on:
   push:
     paths-ignore:
+      - "cog.toml"
       - "**.md"
       - "skel/**"
+      - "assets/**"
+      - "docs/**"
+      - "modules/obsolete/**"
       - ".gitignore/workflows/cocogitto.yaml"
       - ".gitignore/workflows/jekyll-gh-pages.yaml"
   pull_request:
