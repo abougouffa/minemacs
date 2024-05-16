@@ -584,15 +584,14 @@ Optionally, check also for the containing MODULE."
 
 Call functions without asking when DONT-ASK-P is non-nil."
   (interactive "P")
-  (+with-proxies
-   (dolist (fn minemacs-build-functions)
-     (message "[MinEmacs]: Running `%s'" fn)
-     (if dont-ask-p
-         ;; Do not ask before installing
-         (cl-letf (((symbol-function 'yes-or-no-p) #'always)
-                   ((symbol-function 'y-or-n-p) #'always))
-           (funcall-interactively fn))
-       (funcall-interactively fn)))))
+  (dolist (fn minemacs-build-functions)
+    (message "[MinEmacs]: Running `%s'" fn)
+    (if dont-ask-p
+        ;; Do not ask before installing
+        (cl-letf (((symbol-function 'yes-or-no-p) #'always)
+                  ((symbol-function 'y-or-n-p) #'always))
+          (funcall-interactively fn))
+      (funcall-interactively fn))))
 
 (defun minemacs--bump-packages ()
   "Bump MinEmacs packages to the latest revisions."
@@ -607,18 +606,17 @@ Call functions without asking when DONT-ASK-P is non-nil."
       (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
       (copy-file src-file dest-file)))
 
-  (+with-proxies
-   ;; Update straight recipe repositories
-   (straight-pull-recipe-repositories)
+  ;; Update straight recipe repositories
+  (straight-pull-recipe-repositories)
 
-   ;; Run `straight's update cycle, taking into account the explicitly pinned
-   ;; packages versions.
-   (message "[MinEmacs]: Pulling packages")
-   (straight-x-pull-all)
-   (message "[MinEmacs]: Freezing packages")
-   (straight-x-freeze-versions)
-   (message "[MinEmacs]: Rebuilding packages")
-   (straight-rebuild-all))
+  ;; Run `straight's update cycle, taking into account the explicitly pinned
+  ;; packages versions.
+  (message "[MinEmacs]: Pulling packages")
+  (straight-x-pull-all)
+  (message "[MinEmacs]: Freezing packages")
+  (straight-x-freeze-versions)
+  (message "[MinEmacs]: Rebuilding packages")
+  (straight-rebuild-all)
 
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
@@ -629,7 +627,7 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (interactive)
   (let ((default-directory minemacs-root-dir)
         (compilation-buffer-name-function (lambda (_) "" "*minemacs-bump-packages*")))
-    (+with-proxies (compile "make bump"))))
+    (compile "make bump")))
 
 (defun minemacs-restore-locked-packages (restore-from-backup)
   "Restore lockfile packages list. Takes into account the pinned ones.
@@ -639,38 +637,37 @@ restore the lockfile from backups, not Git."
   (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
          (default-directory (vc-git-root lockfile))
          (backup-dir (concat minemacs-local-dir "minemacs/versions/")))
-    (+with-proxies
-     ;; Update straight recipe repositories
-     (straight-pull-recipe-repositories)
-     (if (not restore-from-backup)
-         (progn
-           (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
-           (unless (zerop (vc-git-revert lockfile))
-             ;; Signal an error when the `vc-git-revert' returns non-zero
-             (user-error "[MinEmacs] An error occurred when trying to revert \"%s\"" lockfile)))
-       (message "[MinEmacs] Trying to restore the lockfile from backups.")
-       (if-let* ((_ (file-exists-p backup-dir))
-                 (backups (directory-files backup-dir nil "[^.][^.]?\\'"))
-                 (restore-backup-file (completing-read "Select which backup to restore: " backups))
-                 (last-backup (expand-file-name restore-backup-file backup-dir)))
-           (if (not (file-exists-p last-backup))
-               (user-error "[MinEmacs] No backup file")
-             (copy-file last-backup lockfile 'overwrite-existing)
-             (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
-     ;; This will ensure that the pinned lockfile is up-to-date
-     (straight-x-freeze-pinned-versions)
-     ;; Restore packages to the versions pinned in the lockfiles
-     (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
-       (message "[MinEmacs] Restoring pinned versions of packages")
-       (straight-x-thaw-pinned-versions))
-     (message "[MinEmacs] Restoring packages from the global lockfile versions")
-     (straight-thaw-versions)
-     ;; Rebuild the packages
-     (message "[MinEmacs] Rebuilding packages")
-     (straight-rebuild-all)
-     ;; Run package-specific build functions (ex: `pdf-tools-install')
-     (message "[MinEmacs] Running additional package-specific build functions")
-     (minemacs-run-build-functions 'dont-ask))))
+    ;; Update straight recipe repositories
+    (straight-pull-recipe-repositories)
+    (if (not restore-from-backup)
+        (progn
+          (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
+          (unless (zerop (vc-git-revert lockfile))
+            ;; Signal an error when the `vc-git-revert' returns non-zero
+            (user-error "[MinEmacs] An error occurred when trying to revert \"%s\"" lockfile)))
+      (message "[MinEmacs] Trying to restore the lockfile from backups.")
+      (if-let* ((_ (file-exists-p backup-dir))
+                (backups (directory-files backup-dir nil "[^.][^.]?\\'"))
+                (restore-backup-file (completing-read "Select which backup to restore: " backups))
+                (last-backup (expand-file-name restore-backup-file backup-dir)))
+          (if (not (file-exists-p last-backup))
+              (user-error "[MinEmacs] No backup file")
+            (copy-file last-backup lockfile 'overwrite-existing)
+            (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
+    ;; This will ensure that the pinned lockfile is up-to-date
+    (straight-x-freeze-pinned-versions)
+    ;; Restore packages to the versions pinned in the lockfiles
+    (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
+      (message "[MinEmacs] Restoring pinned versions of packages")
+      (straight-x-thaw-pinned-versions))
+    (message "[MinEmacs] Restoring packages from the global lockfile versions")
+    (straight-thaw-versions)
+    ;; Rebuild the packages
+    (message "[MinEmacs] Rebuilding packages")
+    (straight-rebuild-all)
+    ;; Run package-specific build functions (ex: `pdf-tools-install')
+    (message "[MinEmacs] Running additional package-specific build functions")
+    (minemacs-run-build-functions 'dont-ask)))
 
 (defun minemacs-upgrade (pull-minemacs)
   "Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
@@ -682,7 +679,7 @@ This calls `minemacs-update-restore-locked' asynchronously."
   (let ((default-directory minemacs-root-dir)
         (compilation-buffer-name-function (lambda (_) "" "*minemacs-upgrade*"))
         (cmd (format "sh -c '%smake locked'" (if pull-minemacs "git pull && " ""))))
-    (+with-proxies (compile cmd))))
+    (compile cmd)))
 
 (defun +minemacs-root-dir-cleanup ()
   "Cleanup MinEmacs' root directory."
