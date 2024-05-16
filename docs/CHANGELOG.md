@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.2.0](https://github.com/abougouffa/minemacs/compare/76cc8b6e611ff3f54f7ecd76e9efe6d4f11406e1..v6.2.0) - 2024-05-16
+#### Bug Fixes
+- **(core)** fix implementation of `+with-proxies` and `+with-no-proxies` - ([2e5d123](https://github.com/abougouffa/minemacs/commit/2e5d1235072d23b0c0b8020d19e550390bee4e53)) - [@abougouffa](https://github.com/abougouffa)
+- use proxies in async update - ([a20a23e](https://github.com/abougouffa/minemacs/commit/a20a23e6900a45d97ac6d32b52150281ef684ff4)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate the documentation - ([76cc8b6](https://github.com/abougouffa/minemacs/commit/76cc8b6e611ff3f54f7ecd76e9efe6d4f11406e1)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(bootstrap)** add support for system packages dependencies - ([3494b59](https://github.com/abougouffa/minemacs/commit/3494b59bdaeb789f8b06cde35d9a799b75b328e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `pet` (Python Executable Tracker) - ([3492b7f](https://github.com/abougouffa/minemacs/commit/3492b7f867129f11fd65f0f3e1b2de857ab926f4)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(core)** restore old proxy behavior (issues with deferred stuff) - ([51eaafb](https://github.com/abougouffa/minemacs/commit/51eaafb339e37bb7bc3642617e7a3b15c0975822)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** revert to using global proxies - ([b288093](https://github.com/abougouffa/minemacs/commit/b288093574cc86b57053b2960162322bb328a320)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** make use of `:ensure-system-package` - ([cbbdc14](https://github.com/abougouffa/minemacs/commit/cbbdc1459d184d03a8f057bdc3e7eabad5a5e080)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** obsolete `pyenv` and `pyvenv` (to be replaced with `pet`) - ([650b10c](https://github.com/abougouffa/minemacs/commit/650b10ce59ec7b99506f19699b94d321cc5a7cd8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([47c8810](https://github.com/abougouffa/minemacs/commit/47c881042056bd5553291bd0186587fb29fd0c98)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.1.1](https://github.com/abougouffa/minemacs/compare/ff4405287b9cf77e8a0e89dfbff193224c740e0d..v6.1.1) - 2024-05-15
 #### Tweaks
 - **(natural-langs)** make `go-translate` obsolete - ([4a34b9a](https://github.com/abougouffa/minemacs/commit/4a34b9a644eed05d562af0297fd4c401356ec685)) - [@abougouffa](https://github.com/abougouffa)
