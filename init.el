@@ -165,6 +165,10 @@
 ;; Load user init tweaks when available
 (+load-user-configs 'init-tweaks 'local/init-tweaks)
 
+;; When `minemacs-proxies' is set in "early-init.el" or in "init-tweaks.el",
+;; `minemacs-enable-proxy' will set the environment variables accordingly.
+(minemacs-enable-proxy minemacs-proxies)
+
 ;; HACK: Load the environment variables saved from shell using `+env-save' to
 ;; `+env-file'. `+env-save' saves all environment variables except these matched
 ;; by `+env-deny-vars'.
@@ -241,27 +245,22 @@ goes idle."
                '(me-builtin me-gc)
                minemacs-core-modules)))
 
-;; When `minemacs-proxies' is set in "early-init.el" or in "init-tweaks.el",
-;; `+with-proxies' will set the environment variables accordingly. This is
-;; useful when you are on a network that requires a specific proxy to connect to
-;; internet.
-(+with-proxies
- ;; Load MinEmacs modules
- (dolist (module-file (append
-                       (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) minemacs-core-modules)
-                       (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
-   (+load module-file))
+;; Load MinEmacs modules
+(dolist (module-file (append
+                      (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) minemacs-core-modules)
+                      (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
+  (+load module-file))
 
- (run-hooks 'minemacs-after-loading-modules-hook)
+(run-hooks 'minemacs-after-loading-modules-hook)
 
- ;; Write user custom variables to separate file instead of "init.el"
- (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
+;; Write user custom variables to separate file instead of "init.el"
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 
- ;; Load the custom variables file if it exists
- (when (file-exists-p custom-file) (+load custom-file))
+;; Load the custom variables file if it exists
+(when (file-exists-p custom-file) (+load custom-file))
 
- ;; Load user configuration
- (+load-user-configs 'config 'local/config))
+;; Load user configuration
+(+load-user-configs 'config 'local/config)
 
 
 (+log! "Loaded init.el")
