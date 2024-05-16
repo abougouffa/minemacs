@@ -35,6 +35,9 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
+;; Add support for ensuring system dependencies using `:ensure-system-package' in `use-package'.
+(straight-use-package 'system-packages)
+
 ;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
