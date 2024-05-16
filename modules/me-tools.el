@@ -190,8 +190,7 @@
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
-  :when (not os/win)
-  :ensure-system-package direnv
+  :when (and (not os/win) (executable-find "direnv"))
   :custom
   (envrc-debug minemacs-debug-p)
   :config
@@ -200,7 +199,7 @@
 
 (use-package pet
   :straight t
-  :ensure-system-package (dasel sqlite3)
+  :when (and (or (executable-find "dasel") (executable-find "yq")) (executable-find "sqlite3"))
   :config
   (+add-hook! python-base-mode :depth -30
     (setq-local python-shell-interpreter (pet-executable-find "python")
