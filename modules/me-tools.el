@@ -198,6 +198,17 @@
   ;; Ensure loading envrc for babel source blocks
   (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
 
+(use-package pet
+  :straight t
+  :ensure-system-package (dasel sqlite3)
+  :config
+  (+add-hook! python-base-mode :depth -30
+    (setq-local python-shell-interpreter (pet-executable-find "python")
+                python-shell-virtualenv-root (pet-virtualenv-root))
+
+    ;; Setup Eglot support
+    (pet-eglot-setup)))
+
 (use-package verb
   :straight t)
 
