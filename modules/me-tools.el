@@ -85,14 +85,6 @@
     "otT" #'multi-vterm
     "ott" #'multi-vterm-dedicated-toggle
     "otp" #'multi-vterm-project)
-  ;; Show at bottom
-  (add-to-list 'display-buffer-alist
-               `("\\*vterminal - .*\\*" ;; multi-vterm-project / dedicated
-                 (display-buffer-reuse-window display-buffer-in-direction)
-                 (direction . bottom)
-                 (dedicated . t)
-                 (reusable-frames . visible)
-                 (window-height . 0.3)))
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
