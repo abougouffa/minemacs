@@ -629,7 +629,7 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (interactive)
   (let ((default-directory minemacs-root-dir)
         (compilation-buffer-name-function (lambda (_) "" "*minemacs-bump-packages*")))
-    (compile "make bump")))
+    (+with-proxies (compile "make bump"))))
 
 (defun minemacs-restore-locked-packages (restore-from-backup)
   "Restore lockfile packages list. Takes into account the pinned ones.
@@ -682,7 +682,7 @@ This calls `minemacs-update-restore-locked' asynchronously."
   (let ((default-directory minemacs-root-dir)
         (compilation-buffer-name-function (lambda (_) "" "*minemacs-upgrade*"))
         (cmd (format "sh -c '%smake locked'" (if pull-minemacs "git pull && " ""))))
-    (compile cmd)))
+    (+with-proxies (compile cmd))))
 
 (defun +minemacs-root-dir-cleanup ()
   "Cleanup MinEmacs' root directory."
