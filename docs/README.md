@@ -8,7 +8,7 @@
 
 ![MinEmacs banner](/docs/images/minemacs-cover.svg)
 
-![MinEmacs screenshot](/docs/images/minemacs-screenshot.svg)
+![MinEmacs screenshot](/docs/images/minemacs-screenshot.png)
 
 ## Why?
 
