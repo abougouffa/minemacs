@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.2.2](https://github.com/abougouffa/minemacs/compare/e03e2d15fa668399d953d26c1c6da767a257cd84..v6.2.2) - 2024-05-16
+#### Documentation
+- **(external-tools)** regenerate - ([5b83f5a](https://github.com/abougouffa/minemacs/commit/5b83f5a5c77b1c765ce6b5b8e1359a6bb190f08a)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update screenshot - ([77a92a5](https://github.com/abougouffa/minemacs/commit/77a92a5da5bf19beca916e3dfa079ccc97702cfd)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** add more ignores - ([4703c6e](https://github.com/abougouffa/minemacs/commit/4703c6e870a6de99859ab9a38f357eec281c4fe5)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(multi-vterm)** move display buffer properties to `me-window` - ([596442a](https://github.com/abougouffa/minemacs/commit/596442a89888994d8887588294ab229609881763)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- add SQLite to the external tools - ([e03e2d1](https://github.com/abougouffa/minemacs/commit/e03e2d15fa668399d953d26c1c6da767a257cd84)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.2.1](https://github.com/abougouffa/minemacs/compare/a0b672b6d241f21b83cf429e44efc7627d5e25b4..v6.2.1) - 2024-05-16
 #### Bug Fixes
 - don't use `:ensure-system-package` (not available on Emacs 28) - ([a0b672b](https://github.com/abougouffa/minemacs/commit/a0b672b6d241f21b83cf429e44efc7627d5e25b4)) - [@abougouffa](https://github.com/abougouffa)
