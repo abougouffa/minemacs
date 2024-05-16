@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.2.1](https://github.com/abougouffa/minemacs/compare/a0b672b6d241f21b83cf429e44efc7627d5e25b4..v6.2.1) - 2024-05-16
+#### Bug Fixes
+- don't use `:ensure-system-package` (not available on Emacs 28) - ([a0b672b](https://github.com/abougouffa/minemacs/commit/a0b672b6d241f21b83cf429e44efc7627d5e25b4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.2.0](https://github.com/abougouffa/minemacs/compare/76cc8b6e611ff3f54f7ecd76e9efe6d4f11406e1..v6.2.0) - 2024-05-16
 #### Bug Fixes
 - **(core)** fix implementation of `+with-proxies` and `+with-no-proxies` - ([2e5d123](https://github.com/abougouffa/minemacs/commit/2e5d1235072d23b0c0b8020d19e550390bee4e53)) - [@abougouffa](https://github.com/abougouffa)
