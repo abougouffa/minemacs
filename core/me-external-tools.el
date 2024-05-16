@@ -232,7 +232,10 @@
      :desc "Glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code")
     (:tool sqlint
      :link "https://github.com/purcell/sqlint"
-     :desc "ItSimple SQL linter supporting ANSI and PostgreSQL syntaxes")
+     :desc "Simple SQL linter supporting ANSI and PostgreSQL syntaxes")
+    (:tool sqlite3
+     :link "https://github.com/sqlite/sqlite"
+     :desc "A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.")
     (:tool sql-lint
      :link "https://github.com/joereynolds/sql-lint"
      :desc "An SQL linter")
