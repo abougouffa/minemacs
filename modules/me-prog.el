@@ -133,10 +133,25 @@
   ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
   :init
-  (defvar +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root"))
-  (defvar +citre-gtags-recursive-files-list t)
-  (defvar +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh"))
-  (defvar +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian"))
+  (defcustom +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root")
+    "A list of files/directories to use as a project root markers."
+    :type '(repeat string)
+    :group 'minemacs-prog)
+
+  (defcustom +citre-gtags-recursive-files-list t
+    "Find files to index recursively."
+    :type 'boolean
+    :group 'minemacs-prog)
+
+  (defcustom +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh")
+    "List of filename suffixes globs to index (for extensions for example)."
+    :type '(repeat string)
+    :group 'minemacs-prog)
+
+  (defcustom +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian")
+    "List of directories to be ignored when creating the file list using `+citre-gtags-find-files-command'."
+    :type '(repeat string)
+    :group 'minemacs-prog)
   :config
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
