@@ -412,6 +412,10 @@ Fall back to the default `citre--project-root'."
   :straight (:host github :repo "emacsattic/protobuf-ts-mode")
   :when (+emacs-features-p 'tree-sitter))
 
+(use-package llvm-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter))
+
 (use-package devdocs
   :straight t
   :when (+emacs-features-p 'libxml2)
