@@ -21,7 +21,7 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  (setq treesit-auto-langs (append treesit-auto-langs '(nix xml elisp))
+  (setq treesit-auto-langs (append treesit-auto-langs '(xml elisp))
         treesit-auto-recipe-list
         (append
          treesit-auto-recipe-list
