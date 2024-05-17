@@ -15,11 +15,14 @@
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
-  :hook (minemacs-after-startup . global-treesit-auto-mode)
-  :hook (minemacs-first-file . +treesit-enable-available-grammars-on-normal-modes)
   :hook (minemacs-build-functions . treesit-auto-install-all)
+  :commands global-treesit-auto-mode
   :custom
   (treesit-auto-install 'prompt)
+  :init
+  (+hook-once! prog-mode-hook
+    (global-treesit-auto-mode 1)
+    (+treesit-enable-available-grammars-on-normal-modes))
   :config
   (setq treesit-auto-langs (append treesit-auto-langs '(xml elisp))
         treesit-auto-recipe-list
@@ -60,7 +63,7 @@
   :after evil
   :init
   ;; Require the package on the first `prog-mode' file
-  (+hook-once! prog-mode-hook (with-eval-after-load 'evil (require 'evil-textobj-tree-sitter)))
+  (+hook-once! prog-mode-hook (require 'evil-textobj-tree-sitter))
   :config
   ;; Goto start of next function
   (define-key evil-normal-state-map (kbd "]f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer")))
@@ -191,7 +194,7 @@ Fall back to the default `citre--project-root'."
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
   :when (+emacs-features-p 'sqlite3)
-  :hook (minemacs-first-file . global-clink-mode))
+  :hook (minemacs-first-c/c++-file . global-clink-mode))
 
 (use-package rtags
   :straight t)

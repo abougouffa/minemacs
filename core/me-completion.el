@@ -72,7 +72,6 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package corfu
   :straight (:files (:defaults "extensions/*.el"))
-  :hook (minemacs-after-startup . global-corfu-mode)
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :bind (:map corfu-map
@@ -86,6 +85,8 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
+  :init
+  (+hook-once! prog-mode-hook (global-corfu-mode 1))
   :config
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
