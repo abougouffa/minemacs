@@ -192,13 +192,8 @@
 (use-package pet
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq")) (executable-find "sqlite3"))
-  :config
-  (+add-hook! python-base-mode :depth -30
-    (setq-local python-shell-interpreter (pet-executable-find "python")
-                python-shell-virtualenv-root (pet-virtualenv-root))
-
-    ;; Setup Eglot support
-    (pet-eglot-setup)))
+  :init
+  (add-hook (if (< emacs-major-version 29) 'python-mode-hook 'python-base-mode-hook) #'pet-mode))
 
 (use-package verb
   :straight t)
