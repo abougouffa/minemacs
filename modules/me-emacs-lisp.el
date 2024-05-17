@@ -19,7 +19,7 @@
   :custom
   (parinfer-rust-library-directory +parinfer-rust-path)
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
-  :hook (emacs-lisp-mode clojure-mode scheme-mode lisp-mode racket-mode hy-mode)
+  :hook ((lisp-mode lisp-data-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . parinfer-rust-mode)
   :config
   (setq parinfer-rust-troublesome-modes (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
   (defvar-local +parinter-rust--was-enabled-p nil)
