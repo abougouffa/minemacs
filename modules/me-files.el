@@ -10,7 +10,6 @@
 
 (use-package dirvish
   :straight t
-  :demand minemacs-started-with-extra-args-p
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size))
   (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
@@ -27,6 +26,8 @@
     "oq" #'dirvish-quick-access
     ;; Search
     "sd" #'dirvish-fd)
+  ;; Load immediately if Emacs is launched in an "open with" fashion
+  (when minemacs-started-with-extra-args-p (require 'dirvish))
   :config
   (+nvmap! :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
