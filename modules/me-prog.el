@@ -26,12 +26,6 @@
         (append
          treesit-auto-recipe-list
          (list (make-treesit-auto-recipe
-                :lang 'nix
-                :ts-mode 'nix-ts-mode
-                :remap 'nix-mode
-                :url "https://github.com/nix-community/tree-sitter-nix"
-                :ext "\\.nix\\'")
-               (make-treesit-auto-recipe
                 :lang 'xml
                 :ts-mode 'xml-ts-mode
                 :remap '(nxml-mode xml-mode)
