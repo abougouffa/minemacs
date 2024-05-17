@@ -69,6 +69,10 @@
   (unless (file-exists-p x86-lookup-pdf)
     (url-copy-file "https://cdrdv2.intel.com/v1/dl/getContent/671200" x86-lookup-pdf t)))
 
+(use-package verilog-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter))
+
 
 (provide 'me-embedded)
 
