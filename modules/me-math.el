@@ -60,7 +60,8 @@
   :init
   ;; Both `ein' and `code-cells' registers auto-mode for ".ipynb" files,
   ;; we remove `code-cells' so `ein' gets used by default.
-  (setq auto-mode-alist (delete (rassoc 'code-cells-convert-ipynb auto-mode-alist) auto-mode-alist)))
+  (unless (memq 'ein minemacs-disabled-packages)
+    (setq auto-mode-alist (delete (rassoc 'code-cells-convert-ipynb auto-mode-alist) auto-mode-alist))))
 
 (use-package julia-mode
   :straight t)
