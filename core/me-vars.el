@@ -8,34 +8,23 @@
 
 ;;; Code:
 
+;;; MinEmacs groups
+
+(defgroup minemacs nil "MinEmacs specific functionalities.")
+(defgroup minemacs-apps nil "MinEmacs applications." :group 'minemacs)
+(defgroup minemacs-binary nil "MinEmacs binary files." :group 'minemacs)
+(defgroup minemacs-buffer nil "MinEmacs buffer stuff." :group 'minemacs)
+(defgroup minemacs-completion nil "Completion related stuff." :group 'minemacs)
+(defgroup minemacs-core nil "MinEmacs core tweaks." :group 'minemacs)
+(defgroup minemacs-edit nil "MinEmacs editor tweaks." :group 'minemacs)
+(defgroup minemacs-keybinding nil "MinEmacs keybinding." :group 'minemacs)
+(defgroup minemacs-org nil "MinEmacs org-mode tweaks." :group 'minemacs)
+(defgroup minemacs-prog nil "MinEmacs programming stuff." :group 'minemacs)
+(defgroup minemacs-project nil "MinEmacs project stuff." :group 'minemacs)
+(defgroup minemacs-ui nil "MinEmacs UI tweaks." :group 'minemacs)
+(defgroup minemacs-utils nil "MinEmacs utility functions." :group 'minemacs)
+
 ;;; MinEmacs directories
-
-(defgroup minemacs nil
-  "MinEmacs specific functionalities.")
-
-(defgroup minemacs-core nil
-  "MinEmacs core tweaks."
-  :group 'minemacs)
-
-(defgroup minemacs-ui nil
-  "MinEmacs UI tweaks."
-  :group 'minemacs)
-
-(defgroup minemacs-edit nil
-  "MinEmacs editor tweaks."
-  :group 'minemacs)
-
-(defgroup minemacs-prog nil
-  "MinEmacs programming stuff."
-  :group 'minemacs)
-
-(defgroup minemacs-keybinding nil
-  "MinEmacs keybinding."
-  :group 'minemacs)
-
-(defgroup minemacs-utils nil
-  "MinEmacs utility functions."
-  :group 'minemacs)
 
 (defconst minemacs-ignore-user-config
   (let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))

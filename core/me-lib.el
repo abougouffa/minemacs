@@ -989,7 +989,7 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 (defcustom +single-file-executable "single-file"
   "The executable for \"single-file\" which is used archive HTML pages."
   :type 'string
-  :group 'minemacs)
+  :group 'minemacs-utils)
 
 (defun +single-file (url out-file)
   "Save URL into OUT-FILE as a standalone HTML file."
@@ -1012,17 +1012,17 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
 (autoload 'term-send-string "term")
 (defcustom +serial-port "/dev/ttyUSB0"
   "The default port (device) to use."
-  :group 'minemacs-serial
+  :group 'minemacs-utils
   :type 'file)
 
 (defcustom +serial-baudrate 115200
   "The default baudrate to use."
-  :group 'minemacs-serial
+  :group 'minemacs-utils
   :type 'natnum)
 
 (defcustom +serial-first-commands nil
   "A list of commands to run in the serial terminal after creation."
-  :group 'minemacs-serial
+  :group 'minemacs-utils
   :type '(repeat string))
 
 (defvar +serial-buffer nil)
@@ -1387,10 +1387,6 @@ the children of class at point."
 
 ;;; Binary files tweaks
 
-(defgroup minemacs-binary nil
-  "MinEmacs binary files."
-  :group 'minemacs)
-
 (defcustom +binary-objdump-executable "objdump"
   "The \"objdump\" command."
   :group 'minemacs-binary
@@ -1490,10 +1486,6 @@ This checks the first CHUNK of bytes, defaults to 1024."
 
 
 ;;; Buffer related tweaks
-
-(defgroup minemacs-buffer nil
-  "MinEmacs buffer stuff."
-  :group 'minemacs)
 
 ;; From: emacswiki.org/emacs/download/misc-cmds.el
 ;; Candidate as a replacement for `kill-buffer', at least when used interactively.
@@ -1682,10 +1674,6 @@ This command removes new line characters between lines."
 
 
 ;;; Project tweaks
-
-(defgroup minemacs-project nil
-  "MinEmacs project stuff."
-  :group 'minemacs)
 
 (defcustom +project-scan-dir-paths nil
   "A list of paths to scan and add to known projects list.

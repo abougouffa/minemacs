@@ -33,7 +33,7 @@
 
 (defgroup minemacs-eglot-ltex nil
   "LTeX-LS related settings."
-  :group 'minemacs)
+  :group 'minemacs-utils)
 
 (defvar-local eglot-ltex-language "auto")
 ;;;###autoload(put 'eglot-ltex-language 'safe-local-variable 'stringp)

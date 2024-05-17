@@ -945,7 +945,8 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   (defcustom +python-enable-pyenv nil
     "Enable integration for pyenv.
 This variable should be set early, either in \"early-config.el\" or \"init-tweaks.el\"."
-    :group 'minemacs :type 'boolean)
+    :group 'minemacs-utils
+    :type 'boolean)
   (when (and +python-enable-pyenv (executable-find "pyenv") (file-directory-p "~/.pyenv/shims/"))
     (setenv "WORKON_HOME" "~/.pyenv/versions")
     (setenv "PIPENV_PYTHON" "~/.pyenv/shims/python")

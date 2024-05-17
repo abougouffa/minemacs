@@ -10,7 +10,7 @@
 
 (defgroup minemacs-elfeed nil
   "MinEmacs elfeed tweaks."
-  :group 'minemacs)
+  :group 'minemacs-apps)
 
 (use-package elfeed
   :straight t
@@ -28,7 +28,7 @@
     :group 'minemacs-elfeed)
   (defcustom +yt-dlp-command "yt-dlp"
     "The \"yt-dlp\" command."
-    :group 'minemacs-tools)
+    :group 'minemacs-utils)
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))

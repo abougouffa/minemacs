@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(defgroup minemacs-org nil
-  "MinEmacs org-mode tweaks."
-  :group 'minemacs)
-
 (use-package me-org-extras
   :after org
   :demand t

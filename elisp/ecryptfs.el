@@ -19,7 +19,7 @@
 
 (defgroup minemacs-ecryptfs nil
   "MinEmacs eCryptfs."
-  :group 'minemacs)
+  :group 'minemacs-utils)
 
 (defcustom ecryptfs-private-dir-name "Private"
   "The eCryptfs private directory name."

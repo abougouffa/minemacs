@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(defgroup minemacs-completion nil
-  "Completion related stuff."
-  :group 'minemacs)
-
 (use-package cape
   :straight t
   :after minemacs-loaded

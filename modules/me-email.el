@@ -14,7 +14,7 @@
 
 (defgroup minemacs-mu4e nil
   "MinEmacs mu4e tweaks."
-  :group 'minemacs)
+  :group 'minemacs-apps)
 
 (defconst +mu4e-available-p
   (and (executable-find "mu") (executable-find "msmtp") (executable-find "mbsync") (file-directory-p +mu4e-load-path)))
