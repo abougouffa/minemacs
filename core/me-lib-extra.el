@@ -8,10 +8,10 @@
 
 ;;; Code:
 
-(make-obsolete '+deferred-when! "This macro will be removed." "2024-05-18")
-(make-obsolete '+deferred-unless! "This macro will be removed." "2024-05-18")
-(make-obsolete '+lazy-when! "This macro will be removed." "2024-05-18")
-(make-obsolete '+lazy-unless! "This macro will be removed." "2024-05-18")
+(make-obsolete '+deferred-when! "This macro will be removed, use (when COND (+deferred! BODY)) instead." "2024-05-18")
+(make-obsolete '+deferred-unless! "This macro will be removed, use (unless COND (+deferred! BODY)) instead.." "2024-05-18")
+(make-obsolete '+lazy-when! "This macro will be removed, use (when COND (+lazy! BODY)) instead.." "2024-05-18")
+(make-obsolete '+lazy-unless! "This macro will be removed, use (unless COND (+lazy! BODY)) instead.." "2024-05-18")
 
 ;;; Minemacs' core functions and macros
 
