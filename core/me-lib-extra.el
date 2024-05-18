@@ -1084,7 +1084,7 @@ it forget them only when we are sure they don't exist."
 (defun +list-external-dependencies ()
   "Show the list of declared external dependencies."
   (interactive)
-  (unless (featurep 'me-external-tools) (+load minemacs-core-dir "me-external-tools.el"))
+  (require 'me-external-tools)
   (with-current-buffer (get-buffer-create "*external-dependencies*")
     (read-only-mode -1)
     (delete-region (point-min) (point-max))
