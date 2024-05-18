@@ -8,6 +8,10 @@
 
 ;;; Code:
 
+(use-package lacarte
+  :straight t
+  :bind ([f10] . lacarte-execute-menu-command))
+
 (use-package svg-lib
   :straight t
   :custom
