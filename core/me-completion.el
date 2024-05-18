@@ -10,9 +10,9 @@
 
 (use-package cape
   :straight t
-  :after minemacs-loaded
+  :after minemacs-first-file
   :demand t
-  :init
+  :preface
   (defcustom +cape-global-capes '(tempel-complete :completion cape-dict)
     "A list of global capes to be available at all times.
 The key `:completion' is used to specify where completion candidates should be

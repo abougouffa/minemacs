@@ -66,13 +66,10 @@
 
 (use-package eros
   :straight t
-  :after elisp-mode minemacs-loaded
-  :demand t
+  :hook (minemacs-first-elisp-file . eros-mode)
   :custom
   (eros-eval-result-prefix "―→ ")
   :config
-  (eros-mode 1)
-
   ;; Add an Elisp-like evaluation for Octave
   (with-eval-after-load 'octave
     (defun +eros-octave-eval-last-sexp ()

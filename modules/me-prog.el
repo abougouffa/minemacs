@@ -60,7 +60,7 @@
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
   :unless (+package-disabled-p 'evil 'me-evil)
-  :after evil
+  :after evil minemacs-first-file
   :init
   ;; Require the package on the first `prog-mode' file
   (+hook-once! prog-mode-hook (require 'evil-textobj-tree-sitter))

@@ -85,7 +85,7 @@
 
 (use-package pulsar
   :straight t
-  :hook (minemacs-after-startup . pulsar-global-mode)
+  :hook (minemacs-first-file . pulsar-global-mode)
   :config
   (with-eval-after-load 'evil
     (setq pulsar-pulse-functions
