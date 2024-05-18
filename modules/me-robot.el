@@ -36,39 +36,40 @@
                     ("\\.action\\'" . gdb-script-mode)))
   (add-to-list 'auto-mode-alist ext-mode))
 
-(+deferred-when! (cl-some (lambda (cmd) (and cmd (executable-find cmd)))
-                          (list +ros-mcap-command +ros-rosbag-command +ros-ros2-command))
-  ;; A mode to display info from ROS bag files (via MCAP)
-  (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
-    "Major mode for viewing ROS/ROS2 bag files."
-    :interactive nil
-    (buffer-disable-undo)
-    (set-buffer-modified-p nil)
-    (setq-local buffer-read-only t
-                truncate-lines t))
+(when (cl-some (lambda (cmd) (and cmd (executable-find cmd)))
+               (list +ros-mcap-command +ros-rosbag-command +ros-ros2-command))
+  (+deferred!
+   ;; A mode to display info from ROS bag files (via MCAP)
+   (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
+     "Major mode for viewing ROS/ROS2 bag files."
+     :interactive nil
+     (buffer-disable-undo)
+     (set-buffer-modified-p nil)
+     (setq-local buffer-read-only t
+                 truncate-lines t))
 
-  (defun rosbag-info-mode-open-file (file)
-    "Browse the contents of an ROS bag (v1, SQLite, or MCAP) file."
-    (interactive "fROS/ROS2/MCAP bag file name: ")
-    (let ((bag-format (file-name-extension file)))
-      (if (not (member bag-format '("bag" "db3" "mcap")))
-          (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
-                      (file-name-nondirectory file))
-        (let ((buffer-read-only nil)
-              (buff (get-buffer-create
-                     (format "*ROS (%s) %s*" (upcase bag-format) (file-name-nondirectory file)))))
-          (pop-to-buffer buff)
-          (pcase bag-format
-            ("bag"
-             (call-process +ros-rosbag-command
-                           nil buff nil "info" (expand-file-name file)))
-            ("db3"
-             (call-process +ros-ros2-command
-                           nil buff nil "bag" "info" (expand-file-name file)))
-            ("mcap"
-             (call-process +ros-mcap-command
-                           nil buff nil "info" (expand-file-name file)))
-            (rosbag-info-mode)))))))
+   (defun rosbag-info-mode-open-file (file)
+     "Browse the contents of an ROS bag (v1, SQLite, or MCAP) file."
+     (interactive "fROS/ROS2/MCAP bag file name: ")
+     (let ((bag-format (file-name-extension file)))
+       (if (not (member bag-format '("bag" "db3" "mcap")))
+           (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
+                       (file-name-nondirectory file))
+         (let ((buffer-read-only nil)
+               (buff (get-buffer-create
+                      (format "*ROS (%s) %s*" (upcase bag-format) (file-name-nondirectory file)))))
+           (pop-to-buffer buff)
+           (pcase bag-format
+             ("bag"
+              (call-process +ros-rosbag-command
+                            nil buff nil "info" (expand-file-name file)))
+             ("db3"
+              (call-process +ros-ros2-command
+                            nil buff nil "bag" "info" (expand-file-name file)))
+             ("mcap"
+              (call-process +ros-mcap-command
+                            nil buff nil "info" (expand-file-name file)))
+             (rosbag-info-mode))))))))
 
 (when (>= emacs-major-version 29)
   (push 'docker-tramp straight-built-in-pseudo-packages))

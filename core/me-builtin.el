@@ -1579,11 +1579,12 @@ See `+whitespace-auto-cleanup-except-current-line'."
   :hook ((server-after-make-frame minemacs-after-startup) . +scratch-replace-with-persistent-scratch)
   :init
   ;; When we start in a non-daemon Emacs, we start a server when Emacs is idle.
-  (+lazy-unless! (daemonp)
-    (unless (server-running-p)
-      (let ((inhibit-message t))
-        (server-start nil t)
-        (+info! "Started Emacs daemon in background.")))))
+  (unless (daemonp)
+    (+lazy!
+     (unless (server-running-p)
+       (let ((inhibit-message t))
+         (server-start nil t)
+         (+info! "Started Emacs daemon in background."))))))
 
 (use-package speedbar ; config from Crafted Emacs
   :custom

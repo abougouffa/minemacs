@@ -249,30 +249,10 @@ This inhebits both the echo area and the `*Messages*' buffer."
   "Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded'."
   `(with-eval-after-load 'minemacs-loaded ,@body))
 
-(defmacro +deferred-when! (condition &rest body)
-  "Like `+deferred!', with BODY executed only if CONDITION is non-nil."
-  (declare (indent 1))
-  `(when ,condition (+deferred! ,@body)))
-
-(defmacro +deferred-unless! (condition &rest body)
-  "Like `+deferred!', with BODY executed only if CONDITION is nil."
-  (declare (indent 1))
-  `(unless ,condition (+deferred! ,@body)))
-
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
   `(with-eval-after-load 'minemacs-lazy
     (+eval-when-idle-for! +lazy-delay ,@body)))
-
-(defmacro +lazy-when! (condition &rest body)
-  "Like `+lazy!', with BODY executed only if CONDITION is non-nil."
-  (declare (indent 1))
-  `(when ,condition (+lazy! ,@body)))
-
-(defmacro +lazy-unless! (condition &rest body)
-  "Like `+lazy!', with BODY executed only if CONDITION is nil."
-  (declare (indent 1))
-  `(unless ,condition (+lazy! ,@body)))
 
 (defmacro +after-load! (features &rest body)
   "Execute BODY after FEATURES have been loaded."
