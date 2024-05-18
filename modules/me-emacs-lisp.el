@@ -1,4 +1,4 @@
-;;; lisp.el --- Lisp, Scheme, Elisp -*- lexical-binding: t; -*-
+;;; me-emacs-lisp.el --- Lisp, Scheme, Elisp -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
@@ -82,6 +82,6 @@
       "ee" #'+eros-octave-eval-last-sexp)))
 
 
-(provide 'me-lisp)
+(provide 'me-emacs-lisp)
 
-;;; me-lisp.el ends here
+;;; me-emacs-lisp.el ends here
