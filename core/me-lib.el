@@ -316,6 +316,11 @@ DEPTH and LOCAL are passed as is to `add-hook'."
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
 
+(defcustom +first-file-hook-ignore-list nil
+  "A list of files to ignore in the `minemacs-first-*-file-hook'."
+  :group 'minemacs-core
+  :type '(repeat file))
+
 (defmacro +make-first-file-hook! (filetype ext-regexp)
   "Make a hook which run on the first FILETYPE file of a particular extensions.
 The extension should matches EXT-REGEXP.
@@ -341,19 +346,20 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
        (defun ,fn-name (&optional filename &rest _)
         (when (and
                after-init-time ; after Emacs initialization
+               filename ; for named files
                (or
                 (featurep 'minemacs-loaded) ; after MinEmacs is loaded
                 (when-let ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
                  (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
-               filename ; for named files
-               (let ((case-fold-search t)) ;; case-insensitive
-                (string-match-p ,ext-regexp filename))) ; file name matches the regexp
-         (+log! "Running %d `%s' hooks." (length ,hook-name) ',hook-name)
+               (not ; not an ignored file
+                (member (expand-file-name filename) (mapcar #'expand-file-name +first-file-hook-ignore-list)))
+               (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
+                (string-match-p ,ext-regexp filename)))
+         (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
          (advice-remove 'find-file-noselect #',fn-name)
          (provide ',feature-name)
          (run-hooks ',hook-name)))
-       (if (daemonp)
-           ;; Load immediately after init when in daemon mode
+       (if (daemonp) ; load immediately after init when in daemon mode
            (add-hook 'after-init-hook (lambda () (provide ',feature-name) (run-hooks ',hook-name)) 90)
          (advice-add 'find-file-noselect :before #',fn-name '((depth . ,(if filetype -100 -101))))))))
 

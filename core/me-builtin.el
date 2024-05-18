@@ -1345,7 +1345,9 @@ current line.")
   :custom
   (bookmark-default-file (concat minemacs-local-dir "bookmark.el"))
   ;; Save the bookmarks every time a bookmark is made
-  (bookmark-save-flag 1))
+  (bookmark-save-flag 1)
+  :config
+  (push bookmark-default-file +first-file-hook-ignore-list))
 
 (use-package calc
   :custom
