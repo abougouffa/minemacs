@@ -285,6 +285,10 @@ or file path may exist now."
     (interactive (list (when current-prefix-arg (read-string "Dired listing switches: " dired-listing-switches))))
     (dired default-directory switches)))
 
+(use-package dired-aux
+  :custom
+  (dired-vc-rename-file t))
+
 (use-package doc-view
   :custom
   (doc-view-continuous t)
