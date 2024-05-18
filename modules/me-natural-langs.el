@@ -25,20 +25,18 @@
       (error (+log! (error-message-string err)) nil)
       (:success t))))
 
-(+load minemacs-obsolete-modules-dir "me-spell-fu.el")
-
 (defun +spellcheck-correct ()
   "Correct word at point."
   (interactive)
   (cond ((bound-and-true-p jinx-mode) (call-interactively #'jinx-correct))
         ((bound-and-true-p spell-fu-mode) (call-interactively #'+spell-fu-correct))))
 
-(defun +spellcheck-mode ()
-  "Toggle spellchecking."
-  (interactive)
+(defun +spellcheck-mode (&optional arg)
+  "Spell checking mode."
+  (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
   (cond ((and (fboundp 'jinx-mode) (+jinx-load-module))
          (jinx-mode (if (bound-and-true-p jinx-mode) -1 1)))
-        ((and (fboundp 'spell-fu-mode))
+        ((and (+load minemacs-obsolete-modules-dir "me-spell-fu.el") (fboundp 'spell-fu-mode))
          (spell-fu-mode (if (bound-and-true-p spell-fu-mode) -1 1)))
         (t ; Fallback to builtin `flyspell'
          (flyspell-mode (if (bound-and-true-p flyspell-mode) -1 1)))))
