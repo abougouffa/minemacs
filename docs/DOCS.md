@@ -150,34 +150,9 @@ The default delay (in seconds) to consider in `+eval-when-idle!` macro.
 
 The default delay (in seconds) to consider in `+lazy!` macro.
 
-#### `+html2pdf-default-backend`
+#### `+first-file-hook-ignore-list`
 
-The default backend to convert HTML files to PDFs in `+html2pdf`.
-
-#### `+html2pdf-backend-config-file`
-
-A config file to use with the backend tool (pandoc, weasyprint, ...).
-
-#### `+single-file-executable`
-
-The executable for "single-file" which is used archive HTML pages.
-
-#### `+serial-port`
-
-The default port (device) to use.
-
-#### `+serial-baudrate`
-
-The default baudrate to use.
-
-#### `+serial-first-commands`
-
-A list of commands to run in the serial terminal after creation.
-
-#### `+screenshot-delay`
-
-A delay to wait before taking the screenshot.
-Applicable only when calling `+screenshot-svg` with a prefix.
+A list of files to ignore in the `minemacs-first-*-file-hook`.
 
 #### `+eglot-auto-enable-modes`
 
@@ -194,10 +169,6 @@ Enable or disable disassembling suitable files with objdump.
 #### `+binary-hexl-enable`
 
 Enable or disable opening suitable files in `hexl-mode`.
-
-#### `+kill-buffer-no-ask-list`
-
-A list of buffer names to be killed without confirmation.
 
 #### `+project-scan-dir-paths`
 
@@ -451,36 +422,13 @@ Evaluate BODY after DELAY seconds from Emacs becoming idle.
 
 Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded`.
 
-#### `(+deferred-when! CONDITION &rest BODY)` (macro)
-
-Like `+deferred!`, with BODY executed only if CONDITION is non-nil.
-
-#### `(+deferred-unless! CONDITION &rest BODY)` (macro)
-
-Like `+deferred!`, with BODY executed only if CONDITION is nil.
-
 #### `(+lazy! &rest BODY)` (macro)
 
 Run BODY as a lazy block (see `minemacs-lazy`).
 
-#### `(+lazy-when! CONDITION &rest BODY)` (macro)
-
-Like `+lazy!`, with BODY executed only if CONDITION is non-nil.
-
-#### `(+lazy-unless! CONDITION &rest BODY)` (macro)
-
-Like `+lazy!`, with BODY executed only if CONDITION is nil.
-
 #### `(+after-load! FEATURES &rest BODY)` (macro)
 
 Execute BODY after FEATURES have been loaded.
-
-#### `(+hook-with-delay! HOOK SECS FUNCTION &optional DEPTH LOCAL)` (macro)
-
-Add the FUNCTION to the value of HOOK.
-The FUNCTION is delayed to be evaluated in SECS once HOOK is
-triggered.
-DEPTH and LOCAL are passed as is to `add-hook`.
 
 #### `(+hook-once! HOOK &rest BODY)` (macro)
 
@@ -567,50 +515,6 @@ Add ROOTS to ignored projects, recentf, etc.
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 Optionally, check also for the containing MODULE.
 
-#### `(minemacs-run-build-functions &optional DONT-ASK-P)`
-
-Run all build functions in `minemacs-build-functions`.
-Call functions without asking when DONT-ASK-P is non-nil.
-
-#### `(minemacs-bump-packages)`
-
-Update MinEmacs packages to the last revisions (can cause breakages).
-
-#### `(minemacs-restore-locked-packages RESTORE-FROM-BACKUP)`
-
-Restore lockfile packages list. Takes into account the pinned ones.
-When called with C-u or with RESTORE-FROM-BACKUP, it will
-restore the lockfile from backups, not Git.
-
-#### `(minemacs-upgrade PULL-MINEMACS)`
-
-Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
-When PULL-MINEMACS is non-nil, run a "git pull" in MinEmacs' directory.
-This calls `minemacs-update-restore-locked` asynchronously.
-
-#### `(+minemacs-root-dir-cleanup)`
-
-Cleanup MinEmacs' root directory.
-
-#### `(+straight-prune-build-cache)`
-
-Prune straight.el build directories for old Emacs versions.
-
-#### `(+minemacs-cleanup-emacs-directory)`
-
-Cleanup unwanted files/directories from MinEmacs' directory.
-
-#### `(+file-mime-type FILE)`
-
-Get MIME type for FILE based on magic codes provided by the "file" command.
-Return a symbol of the MIME type, ex: `text/x-lisp`, `text/plain`,
-`application/x-object`, `application/octet-stream`, etc.
-
-#### `(+file-name-incremental FILENAME)`
-
-Return a unique file name for FILENAME.
-If "file.ext" exists, returns "file-0.ext".
-
 #### `(+file-read-to-string FILENAME)`
 
 Return a string with the contents of FILENAME.
@@ -625,90 +529,6 @@ Concatenate PATH-PARTS to construct a path and return it.
 Ensure the path exists, if not create it. The exact behavior is to create the
 parent directory if the path is a file, and if the path is a directory, create
 that directory.
-
-#### `(+directory-root-containing-file FILES &optional START-PATH)`
-
-Return the path containing a file from FILES starting from START-PATH.
-
-#### `(+delete-this-file &optional PATH FORCE-P)`
-
-Delete PATH.
-If PATH is not specified, default to the current buffer's file.
-If FORCE-P, delete without confirmation.
-
-#### `(+delete-this-file-and-buffer &optional FILENAME)`
-
-Delete FILENAME and its associated visiting buffer.
-
-#### `(+delete-file-or-directory FILE-OR-DIRECTORY &optional TRASHRECURSIVE)`
-
-Delete FILE-OR-DIRECTORY with `delete-file` or `delete-directory`.
-Move to trash when TRASH is non-nil, delete directories recursively when
-RECURSIVE is non-nil.
-
-#### `(+tramp-sudo-file-path FILE)`
-
-Construct a Tramp sudo path to FILE. Works for both local and remote files.
-
-#### `(+sudo-find-file FILE)`
-
-Open FILE as root.
-
-#### `(+sudo-this-file)`
-
-Open the current file as root.
-
-#### `(+sudo-save-buffer)`
-
-Save this buffer as root. Save as new file name if called with prefix.
-
-#### `(+yank-this-file-name)`
-
-Yank the file name of this buffer.
-
-#### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
-
-Clean FILENAME, optionally convert to DOWNCASE-P.
-
-#### `(+html2pdf INFILE OUTFILE &optional BACKEND)`
-
-Convert HTML file INFILE to PDF and save it to OUTFILE.
-When BACKEND is provided, the corresponding program is used, otherwise, the
-value of `+html2pdf-default-backend` is used.
-
-#### `(+txt2html INFILE OUTFILE &optional MAIL-MODE-P)`
-
-Convert plain-text file INFILE to HTML and save it to OUTFILE.
-When MAIL-MODE-P is non-nil, --mailmode is passed to "txt2html".
-
-#### `(+save-as-pdf INFILE &optional MAIL-MODE-P)`
-
-Save URL as PDF.
-This function's signature is compatible with `browse-url-browser-function`
-so it can be used to save HTML pages or emails to PDF.
-When MAIL-MODE-P is non-nil, treat INFILE as a mail.
-
-#### `(+single-file URL OUT-FILE)`
-
-Save URL into OUT-FILE as a standalone HTML file.
-
-#### `(+serial-running-p)`
-
-Is there a serial port terminal running?
-
-#### `(+serial-run-commands COMMANDS &optional PORT BAUD)`
-
-Run COMMANDS on a device via serial communication.
-If PORT or BAUD are nil, use values from `+serial-port` and `+serial-baudrate`.
-
-#### `(+net-get-ip-address &optional DEV)`
-
-Get the IP-address for device DEV (default: eth0) of the current machine.
-
-#### `(+github-latest-release REPO &optional FALLBACK-RELEASE)`
-
-Get the latest release of REPO. Strips the "v" at left.
-Fallback to FALLBACK-RELEASE when it can't get the last one.
 
 #### `(+lockedp NAME)`
 
@@ -727,45 +547,6 @@ Lock the resource named NAME.
 Unlock the resource named NAME if locked by this process.
 If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process.
-
-#### `(+dir-locals-reload-for-this-buffer)`
-
-Reload directory-local for the current buffer.
-
-#### `(+dir-locals-reload-for-all-buffers-in-this-directory)`
-
-Reload dir-locals for all buffers in the current `default-directory`.
-
-#### `(+dir-locals-toggle-autoreload &optional ENABLE)`
-
-Toggle autoloading dir-local variables after editing the ".dir-locals" file.
-If ENABLE is non-nil, force enabling autoreloading.
-
-#### `(+dir-locals-open-or-create)`
-
-Open or create the dir-locals.el for the current project.
-
-#### `(+what-faces POS)`
-
-Get the font faces at POS.
-
-#### `(+screenshot-svg OUTFILE)`
-
-Save a screenshot of the current frame as an SVG image to OUTFILE.
-If launched with a prefix or universal argument, it waits for a moment (defined
-by `+screenshot-delay`) before taking the screenshot.
-
-#### `(+minibuffer-kill-minibuffer)`
-
-Kill the minibuffer when switching to window with mouse.
-
-#### `(+region-or-thing-at-point)`
-
-Return the region or the thing at point.
-
-#### `(+webjump)`
-
-Like `webjump`, with initial query filled from `+region-org-thing-at-point`.
 
 #### `(+def-dedicated-tab! NAME [[:exit-hook HOOK] [:exit-func FUNC]]FORMS...)` (macro)
 
@@ -790,146 +571,13 @@ Examples:
   (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
   (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
-#### `(+eglot-ccls-inheritance-hierarchy &optional DERIVED)`
-
-Show inheritance hierarchy for the thing at point.
-If DERIVED is non-nil (interactively, with prefix argument), show
-the children of class at point.
-
-#### `(+binary-objdump-p FILENAME)`
-
-Can FILENAME be recognized by "objdump".
-
-#### `(+binary-objdump-buffer-p &optional BUFFER)`
-
-Can the BUFFER be viewed as a disassembled code with objdump.
-
-#### `(+binary-buffer-p &optional BUFFER)`
-
-Return whether BUFFER or the current buffer is binary.
-A binary buffer is defined as containing at least one null byte.
-Returns either nil, or the position of the first null byte.
-
-#### `(+binary-file-p FILE &optional CHUNK)`
-
-Is FILE a binary?
-This checks the first CHUNK of bytes, defaults to 1024.
-
-#### `(+binary-hexl-buffer-p &optional BUFFER)`
-
-Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode`.
-
-#### `(+binary-hexl-mode-maybe)`
-
-Activate `hexl-mode` if relevant for the current buffer.
-
 #### `(+binary-setup-modes)`
 
 Setup binary modes (objdump and hexl) for relevant buffers and file types.
 
-#### `(+kill-buffer-and-its-windows BUFFER &optional MSGP)`
-
-Kill BUFFER and delete its windows.  Default is `current-buffer`.
-BUFFER may be either a buffer or its name (a string).
-
-#### `(+region-to-buffer START END BUFFER ARG)`
-
-Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
-START and END are the region boundaries.
-BUFFER is a buffer or its name (a string).
-With prefix ARG >= 0: `append-to-buffer`:
-  Append contents of region to end of BUFFER.
-  (Point is moved to end of BUFFER first.)
-With prefix ARG < 0:  `prepend-to-buffer`:
-  Prepend contents of region to beginning of BUFFER.
-  (Point is moved to beginning of BUFFER first.)
-With no prefix ARG (nil): `copy-to-buffer`.
-  Write region to BUFFER, replacing any previous contents.
-
-#### `(+region-to-file START END FILENAME ARG)`
-
-With prefix arg, this is `append-to-file`.  Without, it is `write-region`.
-START and END are the region boundaries.
-Prefix ARG non-nil means append region to end of file FILENAME.
-Prefix ARG nil means write region to FILENAME, replacing contents.
-
-#### `(+kill-some-buffers &optional LIST)`
-
-Kill some buffers.  Asks the user whether to kill the modified ones.
-Non-interactively, if optional argument LIST is non-nil, it
-specifies the list of buffers to kill, asking for approval for each one.
-See `kill-some-buffers`.
-
-#### `(+kill-buffer-ask-if-modified BUFFER)`
-
-Like `kill-buffer-ask`, but kills BUFFER without confirmation when unmodified.
-Kill without asking for buffer names in `+kill-buffer-no-ask-list`.
-
-#### `(+delete-extra-windows-for-buffer)`
-
-Delete all other windows showing the selected window's buffer.
-
-#### `(+delete-window-maybe-kill-buffer)`
-
-Delete selected window.
-If no other window shows its buffer, kill the buffer too.
-
-#### `(+replace-in-buffer OLD NEW)`
-
-Replace OLD with NEW in the current buffer.
-
-#### `(+clear-frenchy-ponctuations)`
-
-Replace french ponctuations (like unsectable space) by regular ones.
-
-#### `(+kill-region-as-paragraph)`
-
-Kill (copy) region as one paragraph.
-This command removes new line characters between lines.
-
-#### `(+first-line-empty-p)`
-
-Return t when the first line of the buffer is empty.
-
 #### `(+project-scan-for-projects &optional DIR)`
 
 Scan and remember projects under DIR or `+project-scan-dir-paths`.
-
-#### `(+project-add-project DIR &optional DONT-ASK)`
-
-Switch to another project at DIR.
-When DIR is not detected as a project, ask to force it to be by adding a
-".project.el" file. When DONT-ASK is non-nil, create the file without asking.
-
-#### `(+project-forget-zombie-projects)`
-
-Forget all known projects that don't exist any more.
-Like `project-forget-zombie-projects`, but handles remote projects differently,
-it forget them only when we are sure they don't exist.
-
-#### `(+project-gdb)`
-
-Invoke `gdb` in the project's root.
-
-#### `(+project-list-cleanup)`
-
-Forget all duplicate known projects (/home/user/proj, ~/proj).
-
-#### `(+systemd-running-p SERVICE)`
-
-Check if the systemd SERVICE is running.
-
-#### `(+systemd-command SERVICE COMMAND &optional PRE-FN POST-FN)`
-
-Call systemd with COMMAND and SERVICE.
-
-#### `(+systemd-start SERVICE &optional PRE-FN POST-FN)`
-
-Start systemd SERVICE. Optionally run PRE-FN and POST-FN.
-
-#### `(+systemd-stop SERVICE &optional PRE-FN POST-FN)`
-
-Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 
 #### `(minemacs-get-enabled-proxies)`
 
@@ -1092,17 +740,13 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 
 Setup fonts.
 
-#### `(+list-external-dependencies)`
-
-Show the list of declared external dependencies.
-
 #### `(+spellcheck-correct)`
 
 Correct word at point.
 
-#### `(+spellcheck-mode)`
+#### `(+spellcheck-mode &optional ARG)`
 
-Toggle spellchecking.
+Spell checking mode.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
