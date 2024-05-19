@@ -140,9 +140,9 @@
 
     ;; ====== Insert ======
     "i"    '(nil :wk "insert")
-    "iu"   '(insert-char :wk "Unicode char")
+    "iu"   #'insert-char
     "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
-    "ie"   `(,(when (>= emacs-major-version 29) #'emoji-search) :wk "Emoji")
+    "ie"   (when (>= emacs-major-version 29) #'emoji-search)
 
     ;; ====== Window ======
     "w"    '(nil :wk "window")
@@ -155,7 +155,7 @@
 
     ;; ====== Applications (Open) ======
     "o"    '(nil :wk "open")
-    "o-"   '(dired :wk "Dired") ;; Will be overwritten if dirvish is used
+    "o-"   #'dired-jump ;; Will be overwritten if `dirvish' is used
     "oa"   #'org-agenda
     "oe"   #'eshell
     "o="   #'calc
