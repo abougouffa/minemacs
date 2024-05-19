@@ -32,6 +32,12 @@
                               :source-dir "tree-sitter-xml/src"
                               :ext "\\.xml\\'")
                              (make-treesit-auto-recipe
+                              :lang 'llvm
+                              :ts-mode 'llvm-ts-mode
+                              :remap 'llvm-mode
+                              :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
+                              :ext "\\.ll\\'")
+                             (make-treesit-auto-recipe
                               :lang 'elisp
                               :ts-mode 'emacs-lisp-ts-mode
                               :remap 'emacs-lisp-mode
