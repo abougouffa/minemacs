@@ -327,7 +327,6 @@ or file path may exist now."
 (use-package project
   :straight t
   :after minemacs-loaded
-  :demand t
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
@@ -1233,7 +1232,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   :demand t)
 
 (use-package oc-biblatex
-  :straight (:type built-in)
   :after oc
   :demand t)
 
@@ -1261,7 +1259,7 @@ current line.")
          (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
 
 (use-package elec-pair
-  :hook (minemacs-after-startup . electric-pair-mode)
+  :hook (minemacs-first-file . electric-pair-mode)
   :init
   (defun +electric-pair-tweaks-h ()
     ;; Org mode tweaks
@@ -1361,7 +1359,6 @@ current line.")
       ("q" nil :color blue))))
 
 (use-package octave
-  :mode ("\\.m\\'" . octave-mode)
   :config
   (defun +octave-eval-last-sexp ()
     "Evaluate Octave sexp before point and print value into current buffer."
