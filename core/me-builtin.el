@@ -278,7 +278,10 @@ or file path may exist now."
   :hook (dired-mode . turn-on-gnus-dired-mode)
   :custom
   (dired-dwim-target t)
-  (dired-auto-revert-buffer t))
+  (dired-auto-revert-buffer t)
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'top)
+  (dired-clean-confirm-killing-deleted-buffers nil))
 
 (use-package dired-aux
   :custom
