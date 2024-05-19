@@ -278,12 +278,7 @@ or file path may exist now."
   :hook (dired-mode . turn-on-gnus-dired-mode)
   :custom
   (dired-dwim-target t)
-  (dired-auto-revert-buffer t)
-  :init
-  (defun +dired-here (&optional switches)
-    "Run `dired' in DIR or in the current directory."
-    (interactive (list (when current-prefix-arg (read-string "Dired listing switches: " dired-listing-switches))))
-    (dired default-directory switches)))
+  (dired-auto-revert-buffer t))
 
 (use-package dired-aux
   :custom
