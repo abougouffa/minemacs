@@ -285,7 +285,8 @@ or file path may exist now."
 
 (use-package dired-aux
   :custom
-  (dired-vc-rename-file t))
+  (dired-vc-rename-file t)
+  (dired-create-destination-dirs 'ask))
 
 (use-package doc-view
   :custom
