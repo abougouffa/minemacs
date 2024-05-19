@@ -382,6 +382,9 @@ Fall back to the default `citre--project-root'."
   :commands fb-mode
   :mode "\\.b\\(i\\|as\\)\\'")
 
+(use-package zig-mode
+  :straight t)
+
 (use-package franca-idl
   :straight (:host github :repo "zeph1e/franca-idl.el"))
 
