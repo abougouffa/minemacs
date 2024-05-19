@@ -28,8 +28,8 @@
                               :lang 'xml
                               :ts-mode 'xml-ts-mode
                               :remap '(nxml-mode xml-mode)
-                              :url "https://github.com/ObserverOfTime/tree-sitter-xml"
-                              :source-dir "tree-sitter-xml/src"
+                              :url "https://github.com/tree-sitter-grammars/tree-sitter-xml"
+                              :source-dir "xml/src"
                               :ext "\\.xml\\'")
                              (make-treesit-auto-recipe
                               :lang 'llvm
