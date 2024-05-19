@@ -28,7 +28,9 @@
 
 (use-package magit-todos
   :straight t
-  :after magit)
+  :init
+  (+map-local! :keymaps 'magit-status-mode-map
+    "t" `(,(+cmdfy! (magit-todos-mode 'toggle) (magit-refresh)) :wk "magit-todos-mode")))
 
 (use-package magit-imerge
   :straight t
