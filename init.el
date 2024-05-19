@@ -4,8 +4,6 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
-;;; Commentary:
-
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
 ;;    | \  / |_ _ __   | |__   _ __ ___   __ _  ___ ___
@@ -15,6 +13,10 @@
 ;;
 ;;  MINIMALIST & LIGHTWEIGHT EMACS CONFIGURATION FRAMEWORK
 ;;                           abougouffa.github.io/minemacs
+
+;;; Commentary:
+
+;; # MinEmacs - a minimalist & lightweight Emacs configuration framework
 
 ;; Load and hooks order:
 ;; - `~/.emacs.d/early-init.el`

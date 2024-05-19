@@ -1,14 +1,6 @@
 <img src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs Logo" width="80" height="80" align="right">
 
-    __  __ _         ______
-   |  \/  (_)       |  ____|
-   | \  / |_ _ __   | |__   _ __ ___   __ _  ___ ___
-   | |\/| | | '_ \  |  __| | '_ ` _ \ / _` |/ __/ __|
-   | |  | | | | | | | |____| | | | | | (_| | (__\__ \
-   |_|  |_|_|_| |_| |______|_| |_| |_|\__,_|\___|___/
-
- MINIMALIST & LIGHTWEIGHT EMACS CONFIGURATION FRAMEWORK
-                          abougouffa.github.io/minemacs
+# MinEmacs - a minimalist & lightweight Emacs configuration framework
 
 Load and hooks order:
 - `~/.emacs.d/early-init.el`
