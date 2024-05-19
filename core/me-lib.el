@@ -283,6 +283,28 @@ This inhebits both the echo area and the `*Messages*' buffer."
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
 
+(defvar +advice-once-num 0)
+
+(defmacro +advice-once! (fns how &rest body)
+  "Run BODY as a HOW advice for FNS, and make it run only once.
+
+FNS can be one function or a list of functions, quoted or not.
+
+Inside BODY, you will have access to the original args as `orig-args'."
+  (declare (indent 2))
+  (let* ((fns (ensure-list (+unquote fns)))
+         (fn-name (intern (format "+advice-once--function-%d-h" (cl-incf +advice-once-num))))
+         (external-forms)
+         (internal-forms))
+    (dolist (fn fns)
+      (push `(advice-add ',fn ,how ',fn-name) external-forms)
+      (push `(advice-remove ',fn ',fn-name) internal-forms))
+    (macroexp-progn
+     (append
+      (list (append `(defun ,fn-name (&rest orig-args))
+                    internal-forms body))
+      external-forms))))
+
 (defcustom +first-file-hook-ignore-list nil
   "A list of files to ignore in the `minemacs-first-*-file-hook'."
   :group 'minemacs-core
