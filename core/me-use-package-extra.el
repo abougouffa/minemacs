@@ -11,6 +11,10 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'straight)
+  (require 'use-package))
+
 (with-eval-after-load 'straight
   ;; Add a profile (and lockfile) for stable package revisions.
   (add-to-list 'straight-profiles '(pinned . "pinned.el"))
@@ -19,7 +23,25 @@
 ;; Allow pinning versions from `use-package' using the `:pin-ref' keyword
 (with-eval-after-load 'use-package-core
   (add-to-list 'use-package-keywords :pin-ref)
+  (add-to-list 'use-package-keywords :trigger-commands)
 
+  ;; :trigger-commands
+  (defun use-package-normalize/:trigger-commands (name keyword args)
+    (setq args (use-package-normalize-recursive-symlist name keyword args))
+    (if (consp args) args (list args)))
+
+  (defun use-package-handler/:trigger-commands (name _keyword arg rest state)
+    (use-package-concat
+     (cl-mapcan
+      #'(lambda (command)
+          (when (symbolp command)
+           (append
+            (unless (plist-get state :demand)
+             `((+advice-once! ,command :before (require ,name)))))))
+      (delete-dups arg))
+     (use-package-process-keywords name rest state)))
+
+  ;; :pin-ref
   (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
     (use-package-only-one (symbol-name keyword) args
       (lambda (_label arg)
