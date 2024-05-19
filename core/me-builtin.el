@@ -288,6 +288,37 @@ or file path may exist now."
   (dired-vc-rename-file t)
   (dired-create-destination-dirs 'ask))
 
+(use-package dired-x
+  :hook (dired-mode . dired-omit-mode)
+  :custom
+  (dired-omit-verbose nil)
+  :config
+  (+map-local! :keymaps 'dired-mode-map
+    "h" #'dired-omit-mode)
+
+  (setq dired-omit-files
+        (concat
+         dired-omit-files
+         "\\|^\\.\\(?:svn\\|git\\|hg\\|repo\\)\\'"
+         "\\|^\\.DS_Store\\'"
+         "\\|^flycheck_.*"
+         "\\|^\\.ccls-cache\\'"
+         "\\|^\\.tags\\'"
+         "\\|\\(?:\\.js\\)?\\.meta\\'"
+         "\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"))
+  ;; Open some files with OS' default application
+  (when-let (cmd (cond ((or os/linux os/bsd) "xdg-open") (os/mac "open") (os/win "start")))
+    (setq dired-guess-shell-alist-user
+          `(("\\.\\(?:docx\\|pdf\\|djvu\\|eps\\)\\'" ,cmd)
+            ("\\.\\(?:jpe?g\\|png\\|gif\\|xpm\\)\\'" ,cmd)
+            ("\\.\\(?:xcf\\)\\'" ,cmd)
+            ("\\.csv\\'" ,cmd)
+            ("\\.tex\\'" ,cmd)
+            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
+            ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
+            ("\\.html?\\'" ,cmd)
+            ("\\.md\\'" ,cmd)))))
+
 (use-package doc-view
   :custom
   (doc-view-continuous t)
