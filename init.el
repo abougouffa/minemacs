@@ -6,24 +6,15 @@
 
 ;;; Commentary:
 
-;;            ..                        ...                                   ..OOOOO.....       .OOOO.     ..
-;;         .OOO.                       OOOOO                                  OOOOOOOOOOOOOOOOOOOOOOOOO     .OOO.
-;;        OOO                          .OOO.                                  .OOOOOO.        ...OOOOO.        OOO
-;;       OO.                                                                   .OOOOO                           .OO
-;;      OO.       OOOOOOOO..OOO    OOOOOOO       .OOOO.OOOOO.                    .OOOO.                          .OO
-;;     .OO        .OOO .OOO OOO.   ...OOOO        OOOOO..OOOO                       .OOO.                         OO.
-;;     OO.        .OO. OOO. OOO       OOO.        OOO.    OOO.               ..........OOOO.                      .OO
-;;     OO.        OOO  OOO  OOO       OOO        .OOO     OOO          ..OOOOOOOOOOOOOOOOOOOO.                    .OO
-;;     OO.       .OOO .OOO .OO.      .OOO        OOOO    .OOO        .OOOOOOOOOO...                               .OO
-;;     OOO       OOO. OOO. OOO       OOO.   ..   OOO.    OOO.        OOOOOOOOO                                    OOO
-;;      OO       OOO  OOO  OOO.      OOOO.OOOO  .OOO    .OOOO         OOOOOOOO                                    OO
-;;      .OO      OO.  OO. .OOOO       .OOOOO.   .OO.    .OOOO          .OOOOOOOO.                                OO.
-;;       OOO                                                              .OOOOOOOO...             O.           OOO
-;;        .OO.                                                               ..OOOOOOOOOOOO.......OOO.        .OO.
-;;          .OO.                                                                   ..OOOOOOOOOOOOOOO.       .OO.
+;;     __  __ _         ______
+;;    |  \/  (_)       |  ____|
+;;    | \  / |_ _ __   | |__   _ __ ___   __ _  ___ ___
+;;    | |\/| | | '_ \  |  __| | '_ ` _ \ / _` |/ __/ __|
+;;    | |  | | | | | | | |____| | | | | | (_| | (__\__ \
+;;    |_|  |_|_|_| |_| |______|_| |_| |_|\__,_|\___|___/
 ;;
-;;                                 MINIMALIST & LIGHTWEIGHT EMACS CONFIGURATION FRAMEWORK
-;;                                                          abougouffa.github.io/minemacs
+;;  MINIMALIST & LIGHTWEIGHT EMACS CONFIGURATION FRAMEWORK
+;;                           abougouffa.github.io/minemacs
 
 ;; Load and hooks order:
 ;; - `~/.emacs.d/early-init.el`
