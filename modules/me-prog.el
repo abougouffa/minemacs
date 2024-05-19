@@ -24,23 +24,21 @@
     (global-treesit-auto-mode 1)
     (+treesit-enable-available-grammars-on-normal-modes))
   :config
-  (setq treesit-auto-langs (append treesit-auto-langs '(xml elisp))
-        treesit-auto-recipe-list
-        (append
-         treesit-auto-recipe-list
-         (list (make-treesit-auto-recipe
-                :lang 'xml
-                :ts-mode 'xml-ts-mode
-                :remap '(nxml-mode xml-mode)
-                :url "https://github.com/ObserverOfTime/tree-sitter-xml"
-                :source-dir "tree-sitter-xml/src"
-                :ext "\\.xml\\'")
-               (make-treesit-auto-recipe
-                :lang 'elisp
-                :ts-mode 'emacs-lisp-ts-mode
-                :remap 'emacs-lisp-mode
-                :url "https://github.com/Wilfred/tree-sitter-elisp"
-                :ext "\\.el\\'"))))
+  (let ((extra-recipes (list (make-treesit-auto-recipe
+                              :lang 'xml
+                              :ts-mode 'xml-ts-mode
+                              :remap '(nxml-mode xml-mode)
+                              :url "https://github.com/ObserverOfTime/tree-sitter-xml"
+                              :source-dir "tree-sitter-xml/src"
+                              :ext "\\.xml\\'")
+                             (make-treesit-auto-recipe
+                              :lang 'elisp
+                              :ts-mode 'emacs-lisp-ts-mode
+                              :remap 'emacs-lisp-mode
+                              :url "https://github.com/Wilfred/tree-sitter-elisp"
+                              :ext "\\.el\\'"))))
+    (setq treesit-auto-langs (append treesit-auto-langs (mapcar #'treesit-auto-recipe-lang extra-recipes))
+          treesit-auto-recipe-list (append treesit-auto-recipe-list extra-recipes)))
 
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
