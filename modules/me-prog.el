@@ -253,6 +253,9 @@ Fall back to the default `citre--project-root'."
     (when (display-graphic-p)
       (eldoc-box-hover-at-point-mode arg))))
 
+(use-package reformatter
+  :straight t)
+
 (use-package apheleia
   :straight t
   :custom
