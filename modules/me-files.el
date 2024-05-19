@@ -22,7 +22,6 @@
   (+map!
     ;; Open
     "o-" #'dirvish
-    "op" #'dirvish-side
     "oq" #'dirvish-quick-access
     ;; Search
     "sd" #'dirvish-fd)
@@ -38,6 +37,13 @@
   (push "po" dirvish-preview-disabled-exts)
 
   (dirvish-override-dired-mode 1))
+
+(use-package neotree
+  :straight (:host github :repo "abougouffa/emacs-neotree" :branch "feat/nerd-icons")
+  :custom
+  (neo-theme 'nerd-icons)
+  :init
+  (+map! "op" #'neotree-toggle))
 
 (use-package vlf-setup
   :straight vlf
