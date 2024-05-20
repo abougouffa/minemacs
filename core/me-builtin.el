@@ -1718,12 +1718,16 @@ Useful for quickly switching to an open buffer."
   :hook (minemacs-after-startup . fido-vertical-mode))
 
 (use-package battery
-  :unless (+shutup! (let ((battery-str (battery)))
-                      (or (equal "Battery status not available" battery-str)
-                          (string-match-p "unknown" battery-str)
-                          (string-match-p "N/A" battery-str))))
+  :hook (minemacs-lazy . +display-battery-mode-maybe)
+  :init
   ;; Show the battery status (if available) in the mode-line
-  :hook (minemacs-after-startup . display-battery-mode))
+  (defun +display-battery-mode-maybe ()
+    (+shutup!
+     (when-let* ((battery-str (battery))
+                 (_ (not (or (equal "Battery status not available" battery-str)
+                             (string-match-p "unknown" battery-str)
+                             (string-match-p "N/A" battery-str)))))
+       (display-battery-mode 1)))))
 
 (use-package windmove
   :after minemacs-loaded
