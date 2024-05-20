@@ -84,6 +84,19 @@
 (use-package rmsbolt
   :straight t)
 
+(use-package beardbolt
+  :straight (:host github :repo "abougouffa/beardbolt" :branch "beardbolt-prefix" :files ("*.el" "starters"))
+  :hook (beardbolt--asm-mode . flymake-mode-off)
+  :config
+  ;; Add Treesit languages
+  (setq beardbolt-languages
+        (append beardbolt-languages
+                (let ((langs))
+                  (dolist (lang-spec beardbolt-languages)
+                    (let ((ts-lang (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car lang-spec)))))))
+                      (push (cons ts-lang (cdr lang-spec)) langs)))
+                  langs))))
+
 
 (provide 'me-debug)
 
