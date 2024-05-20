@@ -33,7 +33,6 @@
 (use-package projection
   :straight t
   :hook (ibuffer . ibuffer-projection-set-filter-groups)
-  :after project
   :bind-keymap ("C-x P" . projection-map)
   :init
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
