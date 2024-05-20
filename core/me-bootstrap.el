@@ -42,6 +42,10 @@
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
 
+;; TODO: Integrate `once' to simplify stuff, maybe integrate `satch' also
+;; (straight-use-package '(once :host github :repo "emacs-magus/once"))
+;; (straight-use-package '(satch :host github :repo "emacs-magus/satch.el"))
+
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
  use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
