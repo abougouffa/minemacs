@@ -6,8 +6,16 @@
 
 ;;; Commentary:
 
-;; Add support for pinning versions of individual packages. See:
-;; github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
+;; ## Use-package & straight.el extensions
+
+;; - :pin-ref - allow pinning versions to a specific revision from `use-package'
+;;   using the `:pin-ref' keyword. See:
+;;   github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
+;;
+;; - `:trigger-commands' - allow loading a package before executing a specific
+;;   command/function using the `:trigger-commands' keyword
+;;
+;; - Better handling of conditionally enabled packages.
 
 ;;; Code:
 
@@ -20,7 +28,6 @@
   (add-to-list 'straight-profiles '(pinned . "pinned.el"))
   (require 'straight-x))
 
-;; Allow pinning versions from `use-package' using the `:pin-ref' keyword
 (with-eval-after-load 'use-package-core
   (add-to-list 'use-package-keywords :pin-ref)
   (add-to-list 'use-package-keywords :trigger-commands)
