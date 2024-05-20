@@ -46,6 +46,11 @@
            (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
            highlight-numbers-modelist))
 
+(use-package zones
+  :straight t
+  :demand t
+  :after minemacs-lazy)
+
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
   :when (+emacs-features-p 'tree-sitter)
