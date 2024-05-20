@@ -230,7 +230,7 @@ or file path may exist now."
 
 (use-package transient
   :straight t
-  :demand t
+  :functions transient-define-prefix transient-define-infix transient-define-suffix
   ;; Map ESC and q to quit transient
   :bind (:map
          transient-map
