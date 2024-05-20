@@ -247,10 +247,8 @@ Each string is a regexp, matched against variable names to omit from
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (file-truename (apply #'file-name-concat filename-parts))))
     (if (file-exists-p filename)
-        (if minemacs-debug-p
-            (load filename nil)
-          (with-demoted-errors "[MinEmacs:LoadError] %s"
-            (load filename nil (not minemacs-verbose-p))))
+        (with-demoted-errors "[MinEmacs:LoadError] %s"
+          (load filename nil (not minemacs-verbose-p)))
       (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
 
 
