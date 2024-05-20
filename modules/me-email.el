@@ -23,7 +23,7 @@
   :when +mu4e-available-p
   :load-path +mu4e-load-path
   :commands mu4e-compose-new mu4e
-  :functions mu4e--start
+  :autoload mu4e--start
   :hook (mu4e-headers-mode . (lambda ()
                                (visual-line-mode -1)
                                (display-line-numbers-mode -1)))
