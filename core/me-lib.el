@@ -1301,7 +1301,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
-  (and font-family (member font-family (font-family-list)) t))
+  (and font-family (member font-family (and (fboundp 'font-family-list) (font-family-list))) t))
 
 (defun +apply-font-or-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
@@ -1325,14 +1325,15 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (defun +setup-fonts ()
   "Setup fonts."
   (interactive)
-  (mapc #'+apply-font-or-script
-        (reverse
-         (mapcar (lambda (k) (intern (substring (symbol-name k) 1)))
-                 (+plist-keys minemacs-fonts-plist))))
+  (when (display-graphic-p)
+    (mapc #'+apply-font-or-script
+          (reverse
+           (mapcar (lambda (k) (intern (substring (symbol-name k) 1)))
+                   (+plist-keys minemacs-fonts-plist))))
 
-  ;; Set the tooltip font accordingly
-  (when-let ((font (car (fontset-list))))
-    (setq tooltip-frame-parameters (+alist-set 'font font tooltip-frame-parameters)))
+    ;; Set the tooltip font accordingly
+    (when-let ((font (car (and (fboundp 'fontset-list) (fontset-list)))))
+      (setq tooltip-frame-parameters (+alist-set 'font font tooltip-frame-parameters))))
 
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
