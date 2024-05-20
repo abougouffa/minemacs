@@ -17,33 +17,28 @@
   (yas-snippet-dirs nil)
   (yas-triggers-in-field t))
 
-(use-package cape-yasnippet
-  :straight (:host github :repo "elken/cape-yasnippet")
+(use-package yasnippet-capf
+  :straight t
   :after cape yasnippet
   :demand t
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
   :config
   ;; To avoid auto-expanding snippets
-  (plist-put cape-yasnippet--properties :exit-function #'always)
+  (plist-put yasnippet-capf--properties :exit-function #'always)
   (defun +cape-yasnippet--setup-h ()
     (when (bound-and-true-p yas-minor-mode)
-      (add-to-list 'completion-at-point-functions #'cape-yasnippet))))
+      (add-to-list 'completion-at-point-functions #'yasnippet-capf))))
 
 (use-package yasnippet-snippets
-  :straight t
-  :after yasnippet
-  :demand t)
+  :straight t)
 
 (use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*"))
-  :after yasnippet
-  :demand t)
+  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
 
 (use-package license-snippets
   :straight t
   :after yasnippet
-  :demand t
-  :config
+  :init
   (license-snippets-init))
 
 
