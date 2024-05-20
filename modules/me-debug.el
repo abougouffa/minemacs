@@ -81,6 +81,9 @@
   (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
     "D" #'disaster))
 
+(use-package rmsbolt
+  :straight t)
+
 
 (provide 'me-debug)
 
