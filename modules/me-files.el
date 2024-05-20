@@ -67,7 +67,7 @@
          ("C-c C-x" . dired-rsync-transient)))
 
 (use-package ztree
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :init
   (+map! "oz" #'ztree-diff))
 
