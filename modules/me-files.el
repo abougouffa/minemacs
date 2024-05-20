@@ -46,9 +46,10 @@
   (+map! "op" #'neotree-toggle))
 
 (use-package vlf-setup
-  :straight vlf
+  :straight (vlf :source gnu-elpa-mirror)
   :after minemacs-loaded
-  :demand t)
+  :config
+  (add-to-list 'so-long-mode-preserved-variables 'vlf-mode))
 
 (use-package sudo-edit
   :straight t
