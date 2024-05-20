@@ -50,6 +50,12 @@
   :init
   (projection-multi-embark-setup-command-map))
 
+(use-package projection-dape
+  :straight t
+  :init
+  (+map! :infix "d"
+    "D" #'projection-dape))
+
 
 (provide 'me-project)
 
