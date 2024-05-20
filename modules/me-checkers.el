@@ -163,9 +163,7 @@ This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
   :straight (:host github :repo "rody/flymake-pmd"))
 
 (use-package flymake-nasm
-  :straight (:host github :repo "juergenhoetzel/flymake-nasm")
-  :init
-  (when (executable-find "nasm") (add-hook 'asm-mode-hook #'flymake-nasm-setup)))
+  :straight (:host github :repo "juergenhoetzel/flymake-nasm"))
 
 (use-package flymake-pyre
   :straight (:host github :repo "juergenhoetzel/flymake-pyre")
