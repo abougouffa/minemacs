@@ -417,6 +417,12 @@ Execute BODY after FEATURES have been loaded.
 
 Hook BODY in HOOK, and make it run only once.
 
+#### `(+advice-once! FNS HOW &rest BODY)` (macro)
+
+Run BODY as a HOW advice for FNS, and make it run only once.
+FNS can be one function or a list of functions, quoted or not.
+Inside BODY, you will have access to the original args as `orig-args`.
+
 #### `(+make-first-file-hook! FILETYPE EXT-REGEXP)` (macro)
 
 Make a hook which run on the first FILETYPE file of a particular extensions.
