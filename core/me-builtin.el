@@ -326,7 +326,7 @@ or file path may exist now."
 
 (use-package project
   :straight t
-  :after minemacs-loaded
+  :commands project-remember-projects-under
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
