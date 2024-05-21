@@ -11,7 +11,7 @@
 ;; Disable previously enabled custom themes before enabling a new one.
 (advice-add
  'load-theme :before
- (defun +theme--disable-previous-themes:before-a (&rest _)
+ (satch-defun +theme--disable-previous-themes:before-a (&rest _)
    "Disable previously enabled themes before enabling the new one."
    (mapc #'disable-theme custom-enabled-themes)))
 

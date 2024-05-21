@@ -101,7 +101,7 @@ from the envelope of the current message."
   ;;       -> Choose: "Move the message to the Trash"
   (add-hook
    'mu4e-mark-execute-pre-hook
-   (defun +mu4e-gmail--fix-flags-h (mark msg)
+   (satch-defun +mu4e-gmail--fix-flags-h (mark msg)
      (when (+mu4e-msg-gmail-p msg)
        (pcase mark
          ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft,-\\Spam"))

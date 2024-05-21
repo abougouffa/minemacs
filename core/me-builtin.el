@@ -213,8 +213,8 @@ or file path may exist now."
   ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
   (let ((x-win-dir (+directory-ensure minemacs-local-dir "x-win/")))
     (advice-add
-     #'emacs-session-filename :filter-return
-     (defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
+     'emacs-session-filename :filter-return
+     (satch-defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
        "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
        (concat x-win-dir (file-name-nondirectory session-filename))))
 
@@ -975,7 +975,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 
   (advice-add
    'gud-display-line :after
-   (defun +gud--display-overlay:after-a (true-file _line)
+   (satch-defun +gud--display-overlay:after-a (true-file _line)
      (let* ((overlay +gud-overlay)
             (buffer (gud-find-file true-file)))
        (with-current-buffer buffer
@@ -983,7 +983,7 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
 
   (add-hook
    'kill-buffer-hook
-   (defun +gud--delete-overlay-h ()
+   (satch-defun +gud--delete-overlay-h ()
      (when (derived-mode-p 'gud-mode)
        (delete-overlay +gud-overlay)))))
 
@@ -1261,7 +1261,7 @@ current line.")
   ;; From Doom Emacs
   (add-hook
    'electric-indent-functions
-   (defun +electric-indent-char-fn (_c)
+   (satch-defun +electric-indent-char-fn (_c)
      (when (and (eolp) +electric-indent-words)
        (save-excursion
          (backward-word)
@@ -1303,7 +1303,7 @@ current line.")
 
   ;; Restore the saved window configuration on quit or suspend
   (+add-hook! (ediff-quit ediff-suspend) :depth 101
-    (defun +ediff--restore-window-config-h ()
+    (satch-defun +ediff--restore-window-config-h ()
       (when (window-configuration-p +ediff--saved-window-config)
         (set-window-configuration +ediff--saved-window-config)))))
 
@@ -1542,7 +1542,7 @@ See `+whitespace-auto-cleanup-except-current-line'."
   ;; `shell-kill-buffer-on-exit').
   (advice-add
    'term-sentinel :around
-   (defun +term--kill-after-exit:around-a (orig-fn proc msg)
+   (satch-defun +term--kill-after-exit:around-a (orig-fn proc msg)
      (if (memq (process-status proc) '(signal exit))
          (let ((buffer (process-buffer proc)))
            (apply orig-fn (list proc msg))
@@ -1752,7 +1752,7 @@ Useful for quickly switching to an open buffer."
   (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
     (advice-add
      command :after
-     (defun +pulse--line:after-a (&rest _)
+     (satch-defun +pulse--line:after-a (&rest _)
        "Pulse the current line."
        (pulse-momentary-highlight-one-line (point))))))
 

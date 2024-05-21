@@ -175,7 +175,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   (let ((advice-fn (make-symbol (format "+%s--inhibit-messages:around-a" fn))))
     `(advice-add
       ',fn :around
-      (defun ,advice-fn (origfn &rest args)
+      (satch-defun ,advice-fn (origfn &rest args)
        (let ((message-log-max (unless ,no-message-log message-log-max)))
         (with-temp-message (or (current-message) "")
          (+log! "Inhibiting messages of %s" ,(symbol-name fn))
@@ -279,7 +279,7 @@ This inhebits both the echo area and the `*Messages*' buffer."
   (let ((hook (+unquote hook))
         (fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
     `(add-hook ',hook
-      (defun ,fn-name (&rest _)
+      (satch-defun ,fn-name (&rest _)
        ,(macroexp-progn body)
        (remove-hook ',hook ',fn-name)))))
 

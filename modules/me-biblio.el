@@ -30,7 +30,7 @@
         (+citar--set-symbols)
       (add-hook
        'server-after-make-frame-hook
-       (defun +citar--set-symbols-once-h ()
+       (satch-defun +citar--set-symbols-once-h ()
          (when (display-graphic-p)
            (+citar--set-symbols)
            (remove-hook 'server-after-make-frame-hook

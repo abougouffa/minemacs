@@ -61,11 +61,13 @@
       (let ((lang (treesit-auto-recipe-lang recipe)))
         (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ;; When the `xxx-ts-mode' is not available
           (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe)))
-            (add-hook (intern (format "%s-hook" remap-mode))
-                      (defalias (intern (format "+treesit--enable-on-%s-h" remap-mode))
-                        (lambda ()
-                          (when (and (treesit-available-p) (treesit-language-available-p lang))
-                            (treesit-parser-create lang)))))))))))
+            (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
+                  (hook-name (intern (format "%s-hook" remap-mode))))
+              (defalias fn-name
+                (lambda ()
+                  (when (and (treesit-available-p) (treesit-language-available-p lang))
+                    (treesit-parser-create lang))))
+              (add-hook hook-name fn-name))))))))
 
 (use-package evil-textobj-tree-sitter
   :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
@@ -173,7 +175,7 @@
   (+map! "cff" #'apheleia-format-buffer)
   (defvar +xmllint-indent "    ")
   :config
-  (add-hook 'nxml-mode-hook (defun +xmllint--set-indent-h () (setenv "XMLLINT_INDENT" +xmllint-indent)))
+  (add-hook 'nxml-mode-hook (satch-defun +xmllint--set-indent-h () (setenv "XMLLINT_INDENT" +xmllint-indent)))
   (push '(nxml-mode . xmllint) apheleia-mode-alist))
 
 (use-package editorconfig

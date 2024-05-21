@@ -91,12 +91,11 @@
 ;; Display splash screen
 (minemacs-splash)
 
+(defun +minemacs-splash--kill-h ()
+  (run-at-time 0.5 nil #'minemacs-splash-kill))
+
 ;; Close splash screen automatically after Emacs gets loaded
-(add-hook
- 'emacs-startup-hook
- (defun +minemacs-splash--kill-h ()
-   (run-at-time 0.5 nil #'minemacs-splash-kill))
- 101)
+(add-hook 'emacs-startup-hook '+minemacs-splash--kill-h 101)
 
 
 (provide 'me-splash)

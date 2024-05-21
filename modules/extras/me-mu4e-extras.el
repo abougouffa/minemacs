@@ -279,8 +279,8 @@ If SKIP-HEADERS is set, do not show include message headers."
 
 (defun +mu4e-extras-locks-setup ()
   "Setup locks for mu4e's server."
-  (advice-add 'mu4e--server-kill :after (defun +mu4e--unlock:after-a (&rest _) (+unlock 'mu)))
-  (advice-add 'mu4e--server-start :after (defun +mu4e--lock:after-a (&rest _) (+lock 'mu))))
+  (advice-add 'mu4e--server-kill :after (satch-defun +mu4e--unlock:after-a (&rest _) (+unlock 'mu)))
+  (advice-add 'mu4e--server-start :after (satch-defun +mu4e--lock:after-a (&rest _) (+lock 'mu))))
 
 (defun +mu4e-extras-setup ()
   (add-hook 'mu4e-compose-mode-hook '+mu4e--auto-bcc-h)

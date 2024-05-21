@@ -266,7 +266,7 @@
   ;; Add a hook on git-commit, so it adds the ticket number to the commit message
   (add-hook
    'git-commit-mode-hook
-   (defun +jira-commit-auto-insert-ticket-id-h ()
+   (satch-defun +jira-commit-auto-insert-ticket-id-h ()
      (when (and jiralib2-user-login-name
                 ;; Do not auto insert if the commit message is not empty (ex. amend)
                 (+first-line-empty-p))

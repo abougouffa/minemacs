@@ -70,7 +70,7 @@
     ;; Increase latex previews scale in Zen mode
     (add-hook
      'writeroom-mode-enable-hook
-     (defun +writeroom--scale-up-latex-h ()
+     (satch-defun +writeroom--scale-up-latex-h ()
        (setq-local
         +writeroom-org-format-latex-scale
         (plist-get org-format-latex-options :scale)
@@ -85,7 +85,7 @@
 
     (add-hook
      'writeroom-mode-disable-hook
-     (defun +writeroom--scale-down-latex-h ()
+     (satch-defun +writeroom--scale-down-latex-h ()
        (setq-local
         org-format-latex-options
         (plist-put org-format-latex-options

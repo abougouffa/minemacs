@@ -88,7 +88,7 @@
   ;; `multi-vterm' don't get the working directory right, lets fix it!
   (advice-add
    'multi-vterm-dedicated-open :after
-   (defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
+   (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
      (if-let ((dir (file-remote-p default-directory 'localname)))
          (vterm-send-string (format "cd %S\n" dir)))))
   (+nvmap!

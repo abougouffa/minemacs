@@ -67,7 +67,9 @@
                  evil-mc-skip-and-goto-prev-cursor evil-mc-skip-and-goto-next-cursor
                  evil-mc-make-and-goto-prev-match evil-mc-make-and-goto-next-match
                  evil-mc-skip-and-goto-prev-match evil-mc-skip-and-goto-next-match))
-    (advice-add cmd :around (lambda (fn) (dotimes (i (if (integerp current-prefix-arg) current-prefix-arg 1)) (funcall fn)))))
+    (let ((fn-name (intern (format "+%s--repeat:around-a" cmd))))
+      (defalias fn-name (lambda (fn) (dotimes (i (if (integerp current-prefix-arg) current-prefix-arg 1)) (funcall fn))))
+      (advice-add cmd :around fn-name)))
 
   ;; Custom commands to execute with `evil-mc'
   (setq evil-mc-custom-known-commands

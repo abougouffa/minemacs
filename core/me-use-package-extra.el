@@ -72,7 +72,7 @@
   ;; `straight'.
   (advice-add
    'use-package :around
-   (defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+   (satch-defun +use-package--check-if-disabled:around-a (origfn package &rest args)
      (if (or (+package-disabled-p package)
              (and (memq :if args)
                   (not (and (memq :if args) (eval (+varplist-get args :if t)))))
@@ -102,7 +102,7 @@
   ;; install a disabled package).
   (add-hook
    'minemacs-after-loading-modules-hook
-   (defun +use-package--remove-check-if-disabled-advice-h ()
+   (satch-defun +use-package--remove-check-if-disabled-advice-h ()
      (unless +use-package-keep-checking-for-disabled-p
        (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))))
 

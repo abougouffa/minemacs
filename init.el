@@ -67,11 +67,9 @@
 (set-default-toplevel-value 'file-name-handler-alist nil)
 ;; After Emacs startup, we restore `file-name-handler-alist' while conserving
 ;; the potential edits made during startup.
-(add-hook
- 'emacs-startup-hook
- (defun +mineamcs--restore-file-name-handler-alist-h ()
-   (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
- 100)
+(defun +mineamcs--restore-file-name-handler-alist-h ()
+  (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
+(add-hook 'emacs-startup-hook '+mineamcs--restore-file-name-handler-alist-h 100)
 
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
 ;; already loaded (in "early-init.el"). However, we double-check here and load

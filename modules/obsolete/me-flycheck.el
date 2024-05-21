@@ -35,7 +35,7 @@
   (with-eval-after-load 'eldoc
     (add-hook
      'eldoc-mode-hook
-     (defun +flycheck--register-documentation-function-h ()
+     (satch-defun +flycheck--register-documentation-function-h ()
        (add-hook 'eldoc-documentation-functions '+flycheck-eldoc-function 100 t)))
 
     (setopt eldoc-documentation-strategy #'eldoc-documentation-default ; combine docs
