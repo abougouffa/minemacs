@@ -601,7 +601,16 @@ or file path may exist now."
       "--pch-storage=memory")
     "ccls")
 
-  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server"))
+  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
+
+  ;; Optimization from Doom Emacs
+  ;; NOTE: This setting disable the `eglot-events-buffer' enabling more
+  ;; consistent performance on long running Emacs instance. Default is 2000000
+  ;; lines. After each new event the whole buffer is pretty printed which causes
+  ;; steady performance decrease over time. CPU is spent on pretty priting and
+  ;; Emacs GC is put under high pressure.
+  (unless minemacs-debug-p
+    (cl-callf plist-put eglot-events-buffer-config :size 0)))
 
 (use-package eldoc
   :straight t
