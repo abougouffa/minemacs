@@ -702,17 +702,6 @@ or file path may exist now."
   (+setq-hook! emacs-lisp-mode tab-width 8) ; to view built-in packages correctly
   :config
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "d"   '(nil :wk "edebug")
-    "df"  #'edebug-defun
-    "dF"  #'edebug-all-forms
-    "dd"  #'edebug-all-defs
-    "dr"  #'edebug-remove-instrumentation
-    "do"  #'edebug-on-entry
-    "dO"  #'edebug-cancel-on-entry
-    "db"  '(nil :wk "breakpoints")
-    "dbb" #'edebug-set-breakpoint
-    "dbr" #'edebug-unset-breakpoint
-    "dbn" #'edebug-next-breakpoint
     "e"   '(nil :wk "eval")
     "eb"  #'eval-buffer
     "ed"  #'eval-defun
@@ -731,11 +720,6 @@ or file path may exist now."
     "cf"  #'elisp-byte-compile-file
     "cn"  #'emacs-lisp-native-compile-and-load
     "cb"  #'emacs-lisp-byte-compile-and-load)
-  (+map-local! :keymaps '(edebug-mode-map)
-    "e"   '(nil :wk "eval")
-    "ee"  #'edebug-eval-last-sexp
-    "eE"  #'edebug-eval-expression
-    "et"  #'edebug-eval-top-level-form)
 
   (defvar +emacs-lisp--face nil)
   (defvar +calculate-lisp-indent-check-for-keyword nil)
@@ -948,6 +932,30 @@ Functions are differentiated into \"special forms\", \"built-in functions\" and
   ;; so are especially performance sensitive, so we compile these functions
   ;; on-demand.
   (+compile-functions #'+emacs-lisp--highlight-vars-and-faces #'+emacs-lisp--calculate-lisp-indent:override-a))
+
+(use-package edebug
+  :after elisp-mode
+  :custom
+  (edebug-inhibit-emacs-lisp-mode-bindings t)
+  :init
+  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+    "d"   '(nil :wk "edebug")
+    "df"  #'edebug-defun
+    "dF"  #'edebug-all-forms
+    "dd"  #'edebug-all-defs
+    "dr"  #'edebug-remove-instrumentation
+    "do"  #'edebug-on-entry
+    "dO"  #'edebug-cancel-on-entry
+    "db"  '(nil :wk "breakpoints")
+    "dbb" #'edebug-set-breakpoint
+    "dbr" #'edebug-unset-breakpoint
+    "dbn" #'edebug-next-breakpoint)
+
+  (+map-local! :keymaps '(edebug-mode-map)
+    "e"   '(nil :wk "eval")
+    "ee"  #'edebug-eval-last-sexp
+    "eE"  #'edebug-eval-expression
+    "et"  #'edebug-eval-top-level-form))
 
 (use-package scheme
   :custom
