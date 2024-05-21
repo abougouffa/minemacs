@@ -45,6 +45,7 @@
     "s" #'consult-notes-search-in-all-notes)
   :custom
   (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
+  (consult-notes-use-rg (and (executable-find "rg") t))
   :config
   (+consult-notes--unbound-org-roam)
   (consult-notes-denote-mode 1))
