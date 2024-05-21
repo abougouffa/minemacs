@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.4.0](https://github.com/abougouffa/minemacs/compare/60d176a92768fceeda7a2f456830d63abaa75a09..v6.4.0) - 2024-05-21
+#### Bug Fixes
+- `defalias` (hence, `defun`) isn't guaranteed to return the name - ([5d7231b](https://github.com/abougouffa/minemacs/commit/5d7231bb8a75516cdd958029554a1deff42cae31)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- update the list of modules - ([5b06b53](https://github.com/abougouffa/minemacs/commit/5b06b53573c50a9c00e04933a444ce5aa7e13c98)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(bootstrap)** add support for `satch` and `once` - ([d23861e](https://github.com/abougouffa/minemacs/commit/d23861eda559ad254e0bdf21eb48df0a15a8f632)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** restore the `+eglot-help-at-point` command - ([ba2e628](https://github.com/abougouffa/minemacs/commit/ba2e628b6272fc6256e66dfe9f93a10d999cea87)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** extra performance tweaks via `+eglot-optimization-mode` - ([9ebb7b5](https://github.com/abougouffa/minemacs/commit/9ebb7b5579827f45fc37415ade64f6776c4dade7)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add initial support for `find-file-in-project` - ([9a215f3](https://github.com/abougouffa/minemacs/commit/9a215f3c96c1d0eadae31bbcc04b678bbad29d4b)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** add initial support for `ggtags - ([f5cbe58](https://github.com/abougouffa/minemacs/commit/f5cbe588935c5fd8b9622116176b9348596e0bf2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult-notes)** use ripgrep only if available - ([1a3f3c6](https://github.com/abougouffa/minemacs/commit/1a3f3c676f25598462232d34bd1a6cacae15e469)) - [@abougouffa](https://github.com/abougouffa)
+- **(dumb-jump)** prefer `xref` interface over obsolete commands - ([60d176a](https://github.com/abougouffa/minemacs/commit/60d176a92768fceeda7a2f456830d63abaa75a09)) - [@abougouffa](https://github.com/abougouffa)
+- **(edebug)** decouple from `elisp-mode` and inhibit bindings - ([c7f996f](https://github.com/abougouffa/minemacs/commit/c7f996f3ff525aeb2924282179fd98ef0c17c024)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** better performance by disabling logging to events buffer - ([82cfe06](https://github.com/abougouffa/minemacs/commit/82cfe062e56c9814324acc28ce12c168b64f2bdb)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** make it believe that `projectile` is available to get `fzf-project` - ([78e7d24](https://github.com/abougouffa/minemacs/commit/78e7d242b7984cb3c9b61c5b1575d7e92f3ca295)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** move non-LSP source code tagging packages to `me-tags` - ([4bcaef3](https://github.com/abougouffa/minemacs/commit/4bcaef38268c2578ec8b61d245ae17196c6ddbc1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7887c8c](https://github.com/abougouffa/minemacs/commit/7887c8c5c7fcbde06e799fb8692a1a16a90e224b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.3.0](https://github.com/abougouffa/minemacs/compare/440936fd8f30a299007bdbe3b7bfb0e1259da40d..v6.3.0) - 2024-05-21
 #### Bug Fixes
 - **(core)** use-package `::trigger-commands` implementation - ([95de9a5](https://github.com/abougouffa/minemacs/commit/95de9a5d272c4aa73d9b039132b7057a364c6f5b)) - [@abougouffa](https://github.com/abougouffa)
