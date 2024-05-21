@@ -35,16 +35,20 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
-;; Add support for ensuring system dependencies using `:ensure-system-package' in `use-package'.
-(straight-use-package 'system-packages)
+;; Add support for ensuring system dependencies using `:ensure-system-package'
+;; in `use-package'.
+(use-package system-packages
+  :straight t)
+
+(use-package once
+  :straight (:host github :repo "emacs-magus/once"))
+
+(use-package satch
+  :straight (:host github :repo "emacs-magus/satch.el"))
 
 ;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
-
-;; TODO: Integrate `once' to simplify stuff, maybe integrate `satch' also
-;; (straight-use-package '(once :host github :repo "emacs-magus/once"))
-;; (straight-use-package '(satch :host github :repo "emacs-magus/satch.el"))
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
