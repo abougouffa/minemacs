@@ -31,15 +31,11 @@
     "szf" #'fzf-find-file
     "szF" #'fzf-find-file-in-dir)
   :config
-  (defun fzf-project (&optional with-preview)
-    "Starts an fzf session at the root of the current project."
-    (interactive "P")
-    (let ((fzf/args (if with-preview (concat fzf/args " " fzf/args-for-preview) fzf/args))
-          (fzf--target-validator (fzf--use-validator (function fzf--validate-filename))))
-      (fzf--start (or (ignore-errors (project-root (project-current))) default-directory) #'fzf--action-find-file)))
+  (defalias 'fzf-project 'fzf-projectile)
 
   ;; fzf.el relays on `projectile-project-root' to guess the project root
   (unless (fboundp 'projectile-project-root)
+    (provide 'projectile) ; provide `projectile' because `fzf-projectile' will try to require it
     (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current)))))))
 
 (use-package tldr
