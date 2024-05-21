@@ -88,3 +88,8 @@ This will overwrite the built-in \"gdb-mi\" for this session."
           (gdb-window-setup-function #'gdb--setup-windows)
           (gdb-ignore-gdbinit nil)))
     (user-error "Cannot enable \"emacs-gdb\", Emacs was built without modules support!")))
+
+
+(provide 'me-gdb)
+
+;;; me-gdb.el ends here
