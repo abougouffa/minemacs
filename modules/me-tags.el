@@ -9,6 +9,9 @@
 ;;; Code:
 
 
+(use-package ggtags
+  :straight t)
+
 (use-package citre
   :straight t
   :after minemacs-first-c/c++-file
