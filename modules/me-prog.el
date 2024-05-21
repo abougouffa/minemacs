@@ -332,33 +332,12 @@ Fall back to the default `citre--project-root'."
 
 (use-package dumb-jump
   :straight t
-  :commands +dumb-jump-hydra/body
+  :after xref
   :custom
   (dumb-jump-selector 'completing-read)
   :init
-  (+map!
-    "cj" '(+dumb-jump-hydra/body :wk "+dumb-jump-hydra"))
-  ;; Use as xref backend
-  (with-eval-after-load 'xref
-    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-  :config
-  ;; Define Hydra keybinding (from the repo's examples)
-  (defhydra +dumb-jump-hydra (:color blue :hint nil :foreign-keys warn)
-    "
-[Dumb Jump]                                                                         [_q_] quit
-  ├─────────────────────────────────────────────────────────────────────────────────────────╮
-  │  [_j_] Go          [_o_] Go other window    [_e_] Go external   [_x_] Go external other window  │
-  │  [_i_] Go prompt   [_l_] Quici look         [_b_] Back                                        │
-  ╰─────────────────────────────────────────────────────────────────────────────────────────╯
-"
-    ("j" dumb-jump-go)
-    ("o" dumb-jump-go-other-window)
-    ("e" dumb-jump-go-prefer-external)
-    ("x" dumb-jump-go-prefer-external-other-window)
-    ("i" dumb-jump-go-prompt)
-    ("l" dumb-jump-quick-look)
-    ("b" dumb-jump-back)
-    ("q" nil :color blue)))
+  ;; Use `dumb-jump' as `xref' backend
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
