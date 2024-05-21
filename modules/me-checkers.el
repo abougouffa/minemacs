@@ -10,7 +10,10 @@
 
 (use-package flymake-collection
   :straight t
-  :hook (minemacs-lazy . flymake-collection-hook-setup)
+  :init
+  (+hook-once! 'prog-mode-hook (flymake-collection-hook-setup))
+  :custom
+  (flymake-collection-hook-inherit-config t)
   :config
   ;; Activate more checkers for Python
   (setf (alist-get '(python-mode python-ts-mode) flymake-collection-hook-config nil nil 'equal)
@@ -23,6 +26,20 @@
 (use-package flymake-collection-define
   :straight flymake-collection
   :autoload flymake-collection-define flymake-collection-define-rx)
+
+(use-package me-flymake-extras
+  :after flymake-collection
+  :init
+  (let ((checkers (assoc '(python-mode python-ts-mode) flymake-collection-hook-config 'equal)))
+    (setcdr checkers (append (cdr checkers)
+                             (when (executable-find "pyre") '(flymake-collection-pyre))
+                             (when (executable-find "bandit") '(flymake-collection-bandit))
+                             (when (executable-find "codespell") '(flymake-collection-codespell)))))
+
+  (let ((checkers (assoc '(c++-mode c++-ts-mode) flymake-collection-hook-config 'equal)))
+    (setcdr checkers (append (cdr checkers)
+                             (when (executable-find "clang-tidy") '(flymake-collection-clang-tidy))
+                             (when (executable-find "codespell") '(flymake-collection-codespell))))))
 
 (use-package flymake-cppcheck
   :straight (:host github :repo "shaohme/flymake-cppcheck")
