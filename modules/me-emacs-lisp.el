@@ -61,7 +61,12 @@
     "o" #'helpful-symbol
     "c" #'helpful-command
     "F" #'helpful-function
-    "f" #'helpful-callable))
+    "f" #'helpful-callable)
+  :bind (("<remap> <describe-variable>" . helpful-variable)
+         ("<remap> <describe-symbol>" . helpful-symbol)
+         ("<remap> <describe-function>" . helpful-function)
+         ("<remap> <describe-command>" . helpful-command)
+         ("<remap> <describe-key>" . helpful-key)))
 
 (use-package info-colors
   :straight t
