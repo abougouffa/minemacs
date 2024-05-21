@@ -15,25 +15,26 @@
 
 ;;; List of enabled modules
 (setq minemacs-modules
-      '(me-ui             ; User interface (svg-lib, focus, mixed-pitch, ...)
-        me-nano           ; N Λ N O Emacs, ...
-        me-ai             ; AI assistant using ollama (ellama, llm, ...)
+      '(me-ui             ; User interface (svg-lib, focus, mixed-pitch, page-break-lines, ...)
+        ;; me-nano        ; N Λ N O Emacs (nano-theme, nano-modeline, nano-vertico, ...)
+        me-ai             ; AI assistant using Ollama (ellama, llm, ...)
         me-editor         ; Editing (tempel, tempel-collection, rainbow-delimiters, expreg, drag-stuff, ...)
         me-daemon         ; Emacs daemon tweaks
         me-undo           ; Better undoing (undo-fu-session, vundo, ...)
         me-multi-cursors  ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
-        me-vc             ; Version control (magit, forge, core-review, diff-hl, ...)
+        me-vc             ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
         me-project        ; Project management (projection, compile-multi, consult-project-extra, ...)
         me-prog           ; Programming stuff (tree-sitter, eldoc-box, apheleia, editorconfig, ...)
-        me-checkers       ; Static checkers (flymake-collection, flymenu, flymake-quickdef, flymake-cppcheck, ...)
-        me-debug          ; Debugging tools (realgud, disaster, dape, ...)
+        ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
+        me-checkers       ; Static checkers (flymake-collection, flymenu, flymake-cppcheck, ...)
+        me-debug          ; Debugging tools (realgud, disaster, dape, rmsbolt, beardbolt, ...)
         me-emacs-lisp     ; Emacs lisp development (parinfer-rust, macrostep, eros, helpful, ...)
         ;; me-common-lisp ; Common Lisp development (sly, sly-quicklisp, ...)
         ;; me-scheme      ; Scheme development (racket-mode, geiser, ...)
         ;; me-clojure     ; Clojure development (clojure-mode, cider, ...)
-        ;; me-embedded    ; Embedded systems (embed, arduino, openocd, bitbake, dts-mode, ...)
+        ;; me-embedded    ; Embedded systems (embed, arduino-mode, openocd, bitbake, dts-mode, ...)
         ;; me-robot       ; Robotics stuff (ros, robot-mode, ...)
-        me-data           ; Data file formats (csv, yaml, toml, json, plantuml-mode, ...)
+        me-data           ; Data file formats and tools (csv, yaml, toml, json, plantuml-mode, jq-mode, ...)
         ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
         ;; me-modeling    ; Modeling tools (scad-mode, modelica-mode, ...)
         me-org            ; Org-mode for life (org-contrib, org-modern, org-appear, engrave-faces, ...)
@@ -54,7 +55,7 @@
         me-media          ; Multimedia (empv, emms, ...)
         ;; me-workspaces  ; Workspace separation (tabspaces, ...)
         me-binary         ; Display binary files in hex or decompile them
-        me-window))       ; Frame & window tweaks
+        me-window))       ; Frame & window tweaks (ace-window, ...)
 
 ;;; List of disabled packages
 ;; You can set `minemacs-disabled-packages' to disable some packages. For
