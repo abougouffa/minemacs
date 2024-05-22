@@ -497,14 +497,13 @@ the the function.
   "Queue FNS to be byte/natively-compiled after a brief delay."
   (dolist (fn fns)
     (+eval-when-idle!
-      (or (and (featurep 'native-compile)
-               (or (subr-native-elisp-p (indirect-function fn))
-                   ;; Do not log to `comp-log-buffer-name'
-                   (cl-letf (((symbol-function 'comp-log-to-buffer) #'ignore))
-                     (+shutup! (ignore-errors (native-compile fn))))))
-          (byte-code-function-p fn)
+      (if (featurep 'native-compile)
+          (unless (subr-native-elisp-p (indirect-function fn))
+            (cl-letf (((symbol-function 'comp-log-to-buffer) #'ignore)) ; do not log to `comp-log-buffer-name'
+              (+shutup! (ignore-errors (native-compile fn)))))
+        (unless (byte-code-function-p fn)
           (let (byte-compile-warnings)
-            (+shutup! (byte-compile fn)))))))
+            (+shutup! (byte-compile fn))))))))
 
 (defvar +shell-command-switch
   (pcase shell-file-name
