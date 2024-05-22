@@ -192,7 +192,9 @@
   (add-hook (if (< emacs-major-version 29) 'python-mode-hook 'python-base-mode-hook) #'pet-mode))
 
 (use-package verb
-  :straight t)
+  :straight t
+  :config
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package impostman
   :straight t)
