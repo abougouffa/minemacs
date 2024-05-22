@@ -31,6 +31,12 @@
   :after tempel
   :demand t)
 
+(use-package spdx
+  :straight (:host github :repo "condy0919/spdx.el")
+  :custom
+  (spdx-copyright-holder 'user)
+  (spdx-project-detection 'auto))
+
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
