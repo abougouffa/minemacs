@@ -59,6 +59,10 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
   (and (getenv "MINEMACS_LOAD_ALL_MODULES") t)
   "Force loading all MinEmacs modules.")
 
+(defconst minemacs-no-proxies-p
+  (and (getenv "MINEMACS_NO_PROXIES") t)
+  "Disable proxies in `minemacs-proxies'.")
+
 (defcustom minemacs-msg-level
   (let ((level (string-to-number (or (getenv "MINEMACS_MSG_LEVEL") ""))))
     (cond (minemacs-verbose-p 4)
