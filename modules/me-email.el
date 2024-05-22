@@ -245,6 +245,13 @@
 
   (setq mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notif-formatter))
 
+(use-package mu4e-crypto
+  :straight t
+  :when +mu4e-available-p
+  :after mu4e
+  :bind (:map mu4e-compose-mode-map ("C-c C-m e" . mu4e-crypto-encrypt-message))
+  :bind (:map mu4e-view-mode-map ("C-c C-m d" . mu4e-crypto-decrypt-message)))
+
 
 (provide 'me-email)
 
