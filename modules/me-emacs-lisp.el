@@ -8,6 +8,12 @@
 
 ;;; Code:
 
+(use-package elisp-plus
+  :straight (:host github :repo "abougouffa/elisp-plus")
+  :after minemacs-first-elisp-file
+  :init
+  (elisp-plus-mode 1))
+
 (defconst +parinfer-rust-path (+directory-ensure minemacs-local-dir "parinfer-rust/"))
 
 (use-package parinfer-rust-mode
