@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.4.1](https://github.com/abougouffa/minemacs/compare/e09a2c2276f6a7901c4ea6ed882d801f81a500f8..v6.4.1) - 2024-05-22
+#### Bug Fixes
+- **(flymake-guile)** use a mirror on GitHub (Framagit issues) - ([9a3786a](https://github.com/abougouffa/minemacs/commit/9a3786a2bc6fa53f17343f78f4cf48897b9aa76f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core-ui)** enable the lightweight `light-dashboard` - ([f368331](https://github.com/abougouffa/minemacs/commit/f3683310a4dd2867870af658661b6a76cc182e24)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** add support for `spdx` - ([46e78aa](https://github.com/abougouffa/minemacs/commit/46e78aac6bcad718c9d6c998b9397c8a71acffd4)) - [@abougouffa](https://github.com/abougouffa)
+- **(email)** add initial support for `mu4e-crypto` - ([82a0716](https://github.com/abougouffa/minemacs/commit/82a0716740aeb901865b19dce4eb1771281c5f5e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** minor edits - ([d4349f2](https://github.com/abougouffa/minemacs/commit/d4349f291bce5604f0af719a720d6c70c634425a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** add an option to disable proxies via environment variable - ([e09a2c2](https://github.com/abougouffa/minemacs/commit/e09a2c2276f6a7901c4ea6ed882d801f81a500f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-lisp)** move Elisp customization to a separate package - ([958462a](https://github.com/abougouffa/minemacs/commit/958462a9380dcefeb2aa4d753a5d11451408c34a)) - [@abougouffa](https://github.com/abougouffa)
+- **(verb)** use the default keybinding - ([9c47e37](https://github.com/abougouffa/minemacs/commit/9c47e37154c67b56e1b3b75f62db85024484ba09)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.4.0](https://github.com/abougouffa/minemacs/compare/60d176a92768fceeda7a2f456830d63abaa75a09..v6.4.0) - 2024-05-21
 #### Bug Fixes
 - `defalias` (hence, `defun`) isn't guaranteed to return the name - ([5d7231b](https://github.com/abougouffa/minemacs/commit/5d7231bb8a75516cdd958029554a1deff42cae31)) - [@abougouffa](https://github.com/abougouffa)
