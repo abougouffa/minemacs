@@ -62,6 +62,11 @@
                              :left-fringe-width 8
                              :right-fringe-width 13)))
 
+(use-package light-dashboard
+  :straight (:host github :repo "ichernyshovvv/light-dashboard")
+  :init
+  (setq initial-buffer-choice #'light-dashboard))
+
 
 (provide 'me-core-ui)
 
