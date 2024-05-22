@@ -682,12 +682,12 @@ or file path may exist now."
 (use-package vhdl-mode
   :config
   ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-  (+eglot-register 'vhdl-mode "vhdl_ls"))
+  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls"))
 
 (use-package verilog-mode
   :config
   ;; Setup Verilog/SystemVerilog LSP servers
-  (+eglot-register 'verilog-mode "svls" "verible-verilog-ls" "svlangserver"))
+  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver"))
 
 (use-package nxml-mode
   :mode "\\.xmpi\\'"
