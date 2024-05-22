@@ -53,7 +53,7 @@
   (+map! "cM" #'flymenu-flymake))
 
 (use-package flymake-guile
-  :straight t
+  :straight (:source emacsmirror-mirror)
   :init
   (when (executable-find "guild") (add-hook 'scheme-mode-hook #'flymake-guile)))
 
