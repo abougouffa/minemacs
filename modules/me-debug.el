@@ -97,6 +97,9 @@
                       (push (cons ts-lang (cdr lang-spec)) langs)))
                   langs))))
 
+(use-package objdump-disassemble
+  :straight (:host github :repo "abougouffa/objdump-disassemble"))
+
 
 (provide 'me-debug)
 
