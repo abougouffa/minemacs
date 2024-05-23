@@ -15,8 +15,12 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
-(use-package ack
-  :straight t)
+(use-package rg
+  :straight t
+  :init
+  (+map!
+    "sr" #'rg-dwim
+    "sR" #'rg))
 
 (use-package fzf
   :straight t
