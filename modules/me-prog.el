@@ -335,6 +335,13 @@
     "hhs" #'devdocs-search
     "hhI" #'devdocs-install))
 
+(use-package add-node-modules-path
+  :straight t
+  :hook ((js-mode js-ts-mode js2-mode) . add-node-modules-path)
+  :config
+  (when (executable-find "pnpm")
+    (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
+
 
 (provide 'me-prog)
 
