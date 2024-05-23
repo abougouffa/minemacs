@@ -222,11 +222,14 @@ or file path may exist now."
     (+ignore-root x-win-dir)))
 
 (use-package minibuffer
+  :hook (minibuffer-setup . cursor-intangible-mode)
   :custom
   ;; Ignores case when completing files names
   (read-file-name-completion-ignore-case t)
   ;; More info on completions
-  (completions-detailed t))
+  (completions-detailed t)
+  ;; Do not allow the cursor in the minibuffer prompt (goes with `cursor-intangible-mode')
+  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)))
 
 (use-package transient
   :straight t
