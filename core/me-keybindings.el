@@ -94,7 +94,6 @@
     "fD"   #'+delete-this-file-and-buffer
     "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
     "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
-    "fi"   #'auto-insert
     "fR"   #'+move-this-file
     "ff"   #'find-file
     "fs"   #'save-buffer
@@ -140,6 +139,7 @@
 
     ;; ====== Insert ======
     "i"    '(nil :wk "insert")
+    "ii"   #'auto-insert
     "iu"   #'insert-char
     "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
     "ie"   (when (>= emacs-major-version 29) #'emoji-search)
