@@ -773,25 +773,12 @@ Examples:
 
 ;;; Binary files tweaks
 
-(defcustom +binary-objdump-executable "objdump"
-  "The \"objdump\" command."
-  :group 'minemacs-binary
-  :type '(choice file string))
-
-(defcustom +binary-objdump-enable t
-  "Enable or disable disassembling suitable files with objdump."
-  :group 'minemacs-binary
-  :type 'boolean)
+;; (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
 
 (defcustom +binary-hexl-enable t
   "Enable or disable opening suitable files in `hexl-mode'."
   :group 'minemacs-binary
   :type 'boolean)
-
-(defun +binary-setup-modes ()
-  "Setup binary modes (objdump and hexl) for relevant buffers and file types."
-  (add-to-list 'magic-fallback-mode-alist '(+binary-objdump-buffer-p . objdump-disassemble-mode) t)
-  (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
 
 
 

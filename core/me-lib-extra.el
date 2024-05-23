@@ -765,29 +765,8 @@ the children of class at point."
 
 ;;; Binary files tweaks
 
-;;;###autoload
-(defun +binary-objdump-p (filename)
-  "Can FILENAME be recognized by \"objdump\"."
-  (when-let* ((file (and filename (file-truename filename))))
-    (and +binary-objdump-executable
-         (executable-find +binary-objdump-executable)
-         (not (file-remote-p file))
-         (file-exists-p file)
-         (not (file-directory-p file))
-         (not (zerop (file-attribute-size (file-attributes file))))
-         (not (string-match-p "file format not recognized"
-                              (shell-command-to-string
-                               (format "%s --file-headers %s"
-                                       +binary-objdump-executable
-                                       (shell-quote-argument file))))))))
-
-;;;###autoload
-(defun +binary-objdump-buffer-p (&optional buffer)
-  "Can the BUFFER be viewed as a disassembled code with objdump."
-  (and +binary-objdump-enable (+binary-objdump-p (buffer-file-name buffer))))
-
 ;; A predicate for detecting binary files. Inspired by:
-;; emacs.stackexchange.com/q/10277/37002)
+;; emacs.stackexchange.com/q/10277/37002
 ;;;###autoload
 (defun +binary-buffer-p (&optional buffer)
   "Return whether BUFFER or the current buffer is binary.
@@ -807,39 +786,16 @@ Returns either nil, or the position of the first null byte."
 This checks the first CHUNK of bytes, defaults to 1024."
   (with-temp-buffer
     (insert-file-contents-literally file nil 0 (or chunk 1024))
-    (goto-char (point-min))
-    (search-forward (string ?\x00) nil t 1)))
+    (+binary-buffer-p)))
 
 ;;;###autoload
 (defun +binary-hexl-buffer-p (&optional buffer)
   "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
   (and +binary-hexl-enable
        (+binary-buffer-p buffer)
-       ;; Executables are viewed with objdump mode
-       (not (+binary-objdump-buffer-p buffer))))
-
-;;;###autoload
-(define-derived-mode objdump-disassemble-mode
-  special-mode "Objdump Mode"
-  "Major mode for viewing executable files disassembled using objdump."
-  (if-let* ((file (buffer-file-name))
-            (objdump-file (+binary-objdump-p file)))
-      (let ((buffer-read-only nil))
-        (message "Disassembling %S using objdump." (file-name-nondirectory file))
-        (erase-buffer)
-        (set-visited-file-name (file-name-with-extension file "_dias.objdump"))
-        (call-process "objdump" nil (current-buffer) nil "-d" file)
-        (goto-char (point-min))
-        (buffer-disable-undo)
-        (set-buffer-modified-p nil)
-        (view-mode 1)
-        (read-only-mode 1)
-        ;; Apply syntax highlighting from `asm-mode'
-        (require 'asm-mode)
-        (set-syntax-table (make-syntax-table asm-mode-syntax-table))
-        (modify-syntax-entry ?# "< b") ; use # for comments
-        (setq-local font-lock-defaults '(asm-font-lock-keywords)))
-    (user-error "Objdump can not be used with this buffer")))
+       (not (and (fboundp 'objdump-recognizable-buffer-p)
+                 ;; Executables are viewed with objdump mode
+                 (objdump-recognizable-buffer-p buffer)))))
 
 ;;;###autoload
 (defun +binary-hexl-mode-maybe ()
