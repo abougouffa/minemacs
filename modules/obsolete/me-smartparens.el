@@ -28,7 +28,7 @@
 ;; quote)
 (use-package smartparens-config
   :after smartparens
-  :demand t)
+  :demand)
 
 
 (provide 'obsolete/me-smartparens)

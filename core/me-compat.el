@@ -10,7 +10,7 @@
 
 (use-package compat
   :straight t
-  :demand t)
+  :demand)
 
 
 (provide 'me-compat)

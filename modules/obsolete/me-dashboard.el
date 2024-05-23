@@ -12,7 +12,7 @@
 (use-package dashboard
   :straight t
   :after evil evil-collection
-  :demand t
+  :demand
   :unless (bound-and-true-p +dashboard-disable)
   :init
   (+map! "oD" #'dashboard-open)

@@ -20,7 +20,7 @@
 (use-package yasnippet-capf
   :straight t
   :after cape yasnippet
-  :demand t
+  :demand
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
   :config
   ;; To avoid auto-expanding snippets

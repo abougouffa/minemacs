@@ -27,7 +27,7 @@
 (use-package nano-modeline
   :straight (:host github :repo "rougier/nano-modeline")
   :after minemacs-loaded
-  :demand t
+  :demand
   :config
   ;; Disable the default mode-line
   (setq-default mode-line-format nil)

@@ -24,7 +24,7 @@
   :preface
   (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
   :after tree-sitter
-  :demand t)
+  :demand)
 
 (use-package ts-fold
   :straight (:host github :repo "emacs-tree-sitter/ts-fold")

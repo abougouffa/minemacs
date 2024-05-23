@@ -100,7 +100,7 @@
   :when +mu4e-available-p
   :load-path +mu4e-load-path
   :after mu4e
-  :demand t
+  :demand
   :custom
   (mu4e-icalendar-trash-after-reply t)
   :config
@@ -109,7 +109,7 @@
 (use-package me-mu4e-ui
   :when +mu4e-available-p
   :after mu4e
-  :demand t
+  :demand
   :config
   ;; Setup the UI (mostly inspired by Doom Emacs, with a lot of improvements)
   (+mu4e-ui-setup)
@@ -118,7 +118,7 @@
 (use-package me-mu4e-gmail
   :when +mu4e-available-p
   :after mu4e
-  :demand t
+  :demand
   :config
   ;; Setup Gmail specific hacks (adapted from Doom Emacs, with a lot of improvements)
   (+mu4e-gmail-setup))
@@ -126,7 +126,7 @@
 (use-package me-mu4e-extras
   :when +mu4e-available-p
   :after mu4e
-  :demand t
+  :demand
   :config
   ;; Enable MinEmacs's mu4e extra features, including:
   ;; - Auto BCC the `+mu4e-auto-bcc-address';
@@ -149,7 +149,7 @@
   :straight t
   :when +mu4e-available-p
   :after mu4e
-  :demand t
+  :demand
   :custom
   (org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng")
   (org-msg-startup "hidestars indent inlineimages")
@@ -187,7 +187,7 @@
   :straight t
   :when +mu4e-available-p
   :after mu4e org
-  :demand t
+  :demand
   :config
   ;; Do not export table of contents nor author name
   (setq org-mime-export-options '(:with-latex dvipng :section-numbers t :with-author nil :with-toc nil)))
@@ -196,7 +196,7 @@
   :straight t
   :when +mu4e-available-p
   :after mu4e
-  :demand t
+  :demand
   :custom
   (mu4e-alert-icon
    (let ((icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"))

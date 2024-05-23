@@ -56,7 +56,7 @@
 ;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
 (use-package me-eglot-ltex
   :after eglot
-  :demand t
+  :demand
   :config
   (eglot-ltex-enable-handling-client-commands)
   (+eglot-register

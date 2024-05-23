@@ -11,7 +11,7 @@
 (use-package elisp-demos
   :straight t
   :after elisp-mode minemacs-loaded
-  :demand t
+  :demand
   :init
   (+map! :infix "he"
     "d" #'elisp-demos-find-demo

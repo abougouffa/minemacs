@@ -15,7 +15,7 @@
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
   :after evil minemacs-first-file
-  :demand t
+  :demand
   :init
   (+nvmap! :infix "g"
     "ze" '(nil :wk "evil-multiedit")

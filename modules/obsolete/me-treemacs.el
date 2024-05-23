@@ -21,7 +21,7 @@
 (use-package treemacs-nerd-icons
   :straight t
   :after treemacs nerd-icons
-  :demand t
+  :demand
   :config
   (treemacs-load-theme "nerd-icons"))
 

@@ -29,7 +29,7 @@
 (use-package tempel-collection
   :straight t
   :after tempel
-  :demand t)
+  :demand)
 
 (use-package spdx
   :straight (:host github :repo "condy0919/spdx.el")
@@ -54,7 +54,7 @@
 
 (use-package zones
   :straight t
-  :demand t
+  :demand
   :after minemacs-lazy)
 
 (use-package expreg

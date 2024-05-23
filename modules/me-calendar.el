@@ -42,17 +42,17 @@
 
 (use-package calfw-ical
   :straight t
-  :demand t
+  :demand
   :after calfw)
 
 (use-package calfw-cal
   :straight t
-  :demand t
+  :demand
   :after calfw)
 
 (use-package calfw-org
   :straight t
-  :demand t
+  :demand
   :after calfw
   :commands +cfw-open-calendar
   :config

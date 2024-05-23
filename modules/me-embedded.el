@@ -45,7 +45,7 @@
 (use-package bitbake-insert
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :after bitbake
-  :demand t
+  :demand
   :config
   (+map-local! :keymaps 'bitbake-mode-map
     :infix "i"

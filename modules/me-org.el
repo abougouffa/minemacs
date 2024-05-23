@@ -10,7 +10,7 @@
 
 (use-package me-org-extras
   :after org
-  :demand t
+  :demand
   :config
   (+org-extras-outline-path-setup)
   (+org-extras-latex-classes-setup)
@@ -30,11 +30,11 @@
 (use-package ox-hugo
   :straight t
   :after ox
-  :demand t)
+  :demand)
 
 (use-package ox-extra
   :after ox
-  :demand t
+  :demand
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
@@ -93,7 +93,7 @@
 (use-package evil-org-agenda
   :after evil-org
   :unless (+package-disabled-p 'evil 'me-evil)
-  :demand t
+  :demand
   :config
   (evil-org-agenda-set-keys))
 

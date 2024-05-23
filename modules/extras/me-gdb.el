@@ -80,7 +80,7 @@ This will overwrite the built-in \"gdb-mi\" for this session."
         (use-package gdb-mi
           ;; I use my own fork in which I've merged some open PRs on the upstream.
           :straight (:host github :repo "abougouffa/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile"))
-          :demand t
+          :demand
           :init
           (fmakunbound 'gdb)
           (fmakunbound 'gdb-enable-debug)

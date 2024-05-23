@@ -15,7 +15,7 @@
 (use-package citre
   :straight t
   :after minemacs-first-c/c++-file
-  :demand t
+  :demand
   :custom
   ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
@@ -68,7 +68,7 @@ Fall back to the default `citre--project-root'."
 (use-package citre-config
   :straight citre
   :after citre
-  :demand t)
+  :demand)
 
 (use-package xcscope
   :straight t

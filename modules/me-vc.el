@@ -44,7 +44,7 @@
 (use-package forge
   :straight t
   :after magit
-  :demand t
+  :demand
   :preface
   ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
@@ -109,7 +109,7 @@
 ;; Enforce git commit conventions. See: chris.beams.io/posts/git-commit
 (use-package git-commit
   :after magit
-  :demand t
+  :demand
   :custom
   (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))

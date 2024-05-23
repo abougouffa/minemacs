@@ -68,22 +68,22 @@
 (use-package sly-quicklisp
   :straight t
   :after sly
-  :demand t)
+  :demand)
 
 (use-package sly-asdf
   :straight t
   :after sly
-  :demand t)
+  :demand)
 
 (use-package sly-repl-ansi-color
   :straight t
   :after sly
-  :demand t)
+  :demand)
 
 (use-package sly-macrostep
   :straight t
   :after sly
-  :demand t
+  :demand
   :init
   (+map-local! :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))

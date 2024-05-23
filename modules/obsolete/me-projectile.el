@@ -11,7 +11,7 @@
 (use-package projectile
   :straight t
   :after minemacs-loaded
-  :demand t
+  :demand
   :custom
   (projectile-cache-file (+directory-ensure minemacs-cache-dir "projectile/cache.el"))
   (projectile-known-projects-file (+directory-ensure minemacs-local-dir "projectile/known-projects.el"))
@@ -101,7 +101,7 @@
 (use-package treemacs-projectile
   :straight t
   :after projectile treemacs
-  :demand t)
+  :demand)
 
 
 (provide 'obsolete/me-projectile)

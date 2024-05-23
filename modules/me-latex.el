@@ -152,7 +152,7 @@
 (use-package auctex-latexmk
   :straight t
   :after latex
-  :demand t
+  :demand
   :custom
   (auctex-latexmk-inherit-TeX-PDF-mode t)
   :config

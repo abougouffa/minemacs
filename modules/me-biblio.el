@@ -11,7 +11,7 @@
 (use-package citar
   :straight t
   :after minemacs-first-org-file oc
-  :demand t
+  :demand
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
@@ -39,7 +39,7 @@
 (use-package citar-embark
   :straight t
   :after citar embark
-  :demand t
+  :demand
   :config
   (citar-embark-mode 1))
 

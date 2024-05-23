@@ -60,7 +60,7 @@
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
   :after evil minemacs-loaded
-  :demand t
+  :demand
   :config
   (evil-collection-init
    (seq-filter

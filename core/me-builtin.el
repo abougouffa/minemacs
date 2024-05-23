@@ -280,7 +280,7 @@ or file path may exist now."
 
 (use-package epa-file
   :after minemacs-first-file
-  :demand t
+  :demand
   :config
   (+shutup! (epa-file-enable)))
 
@@ -968,7 +968,7 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
 ;; problem.
 (use-package org-indent
   :after org
-  :demand t)
+  :demand)
 
 (use-package ox
   :after org)
@@ -1030,19 +1030,19 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
 
 (use-package ox-koma-letter
   :after ox
-  :demand t)
+  :demand)
 
 (use-package ox-odt
   :after ox
-  :demand t)
+  :demand)
 
 (use-package ox-beamer
   :after ox
-  :demand t)
+  :demand)
 
 (use-package oc
   :after org
-  :demand t
+  :demand
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
@@ -1052,15 +1052,15 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
 
 (use-package oc-csl
   :after oc
-  :demand t)
+  :demand)
 
 (use-package oc-natbib
   :after oc
-  :demand t)
+  :demand)
 
 (use-package oc-biblatex
   :after oc
-  :demand t)
+  :demand)
 
 (use-package electric
   :config
@@ -1384,7 +1384,7 @@ See `+whitespace-auto-cleanup-except-current-line'."
 
 (use-package pixel-scroll
   :after minemacs-loaded
-  :demand t
+  :demand
   :custom
   ;; Better scrolling on Emacs29+, specially on a touchpad
   (pixel-scroll-precision-use-momentum t)
@@ -1558,7 +1558,7 @@ Useful for quickly switching to an open buffer."
 
 (use-package windmove
   :after minemacs-loaded
-  :demand t
+  :demand
   :config
   ;; Navigate windows using Shift+Direction
   (windmove-default-keybindings 'shift))
