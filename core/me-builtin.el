@@ -231,6 +231,15 @@ or file path may exist now."
   ;; Do not allow the cursor in the minibuffer prompt (goes with `cursor-intangible-mode')
   (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)))
 
+(use-package crm
+  :config
+  ;; From: https://github.com/a-schaefers/spartan-emacs/blob/main/spartan-layers/spartan-vertico.el
+  ;; Add prompt indicator to `completing-read-multiple'. We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (advice-add
+   #'completing-read-multiple :filter-args
+   (satch-defun +crm--indicator:filter-args-a (args)
+     (cons (format "[CRM%s] %s" (replace-regexp-in-string "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" "" crm-separator) (car args)) (cdr args)))))
+
 (use-package transient
   :straight t
   :autoload transient-define-prefix transient-define-infix transient-define-suffix
