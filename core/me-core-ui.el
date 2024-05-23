@@ -48,20 +48,6 @@
   (doom-modeline-bar ((t (:inherit mode-line :background nil))))
   (doom-modeline-bar-inactive ((t (:inherit mode-line :background nil)))))
 
-(use-package spacious-padding
-  :straight t
-  :hook (minemacs-after-startup . spacious-padding-mode)
-  :custom
-  (spacious-padding-subtle-mode-line t)
-  (spacious-padding-widths '(:internal-border-width 15
-                             :right-divider-width 20
-                             :header-line-width 4
-                             :mode-line-width 1
-                             :tab-width 3
-                             :scroll-bar-width 8
-                             :left-fringe-width 8
-                             :right-fringe-width 13)))
-
 (use-package light-dashboard
   :straight (:host github :repo "ichernyshovvv/light-dashboard")
   :init

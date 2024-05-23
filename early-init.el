@@ -21,6 +21,9 @@
  default-frame-alist '((tool-bar-lines . 0)
                        (menu-bar-lines . 0)
                        (vertical-scroll-bars)
+                       (left-fringe . 8)
+                       (right-fringe . 13)
+                       (internal-border-width . 15)
                        (mouse-color . "blue")
                        (fullscreen . maximized))
  ;; Explicitly set modes disabled in `default-frame-alist' to nil
