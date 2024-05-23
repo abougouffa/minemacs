@@ -8,8 +8,10 @@
 
 ;;; Code:
 
-;; Mainly from: https://github.com/jjuliano/practical.org.el
-
+(use-package org-gtd
+  :straight t
+  :custom
+  (org-gtd-directory (+directory-ensure org-directory "gtd/")))
 
 
 (provide 'me-gtd)
