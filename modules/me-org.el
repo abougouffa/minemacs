@@ -61,10 +61,8 @@
   ;; Force monospaced font for tags
   (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "LightGray" :box "black"))))
   :custom
-  (org-modern-star '("◉" "○" "◈" "◇" "✳" "◆" "✸" "▶"))
   (org-modern-table-vertical 5)
   (org-modern-table-horizontal 2)
-  (org-modern-list '((?+ . "➤") (?- . "–") (?* . "•")))
   (org-modern-block-fringe nil)
   (org-modern-checkbox nil) ;; Not that interesting! Maybe it depends on the used font
   (org-modern-todo-faces
