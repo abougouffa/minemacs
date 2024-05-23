@@ -220,8 +220,9 @@ it automatically."
     "^VIRTUAL_ENV$"
     ;; KDE session
     "^KDE_\\(FULL_SESSION\\|APPLICATIONS_.*\\|SESSION_\\(UID\\|VERSION\\)\\)$"
-    ;; X server, Wayland, or services' env  that shouldn't be persisted
+    ;; X server, Wayland, or services' env that shouldn't be persisted
     "^DISPLAY$" "^WAYLAND_DISPLAY" "^DBUS_SESSION_BUS_ADDRESS$" "^XAUTHORITY$"
+    "^WINDOWID$" "^GIO_LAUNCHED_DESKTOP_FILE_PID$"
     ;; Windows+WSL envvars that shouldn't be persisted
     "^WSL_INTEROP$"
     ;; XDG variables that are best not persisted.
@@ -231,8 +232,10 @@ it automatically."
     "SOCK$"
     ;; SSH and GPG variables that could quickly become stale if persisted.
     "^SSH_\\(AUTH_SOCK\\|AGENT_PID\\)$" "^\\(SSH\\|GPG\\)_TTY$" "^GPG_AGENT_INFO$"
+    ;; Tmux session
+    "^TMUX$"
     ;; MinEmacs envvars
-    "^MINEMACS\\(_?DIR\\|_\\(ALPHA\\|DEBUG\\|VERBOSE\\|NOT_LAZY\\|MSG_LEVEL\\|IGNORE_.*\\)\\)$")
+    "^MINEMACS\\(_?DIR\\|_\\(ALPHA\\|DEBUG\\|VERBOSE\\|NOT_LAZY\\|NO_PROXIES\\|MSG_LEVEL\\|IGNORE_.*\\)\\)$")
   "Environment variables to omit.
 Each string is a regexp, matched against variable names to omit from
 `+env-file' when saving evnironment variables in `+env-save'."
