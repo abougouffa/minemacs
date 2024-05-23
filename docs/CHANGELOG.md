@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.6.0](https://github.com/abougouffa/minemacs/compare/178a7403c9ef1c50e3c99e41662136b799c6138d..v6.6.0) - 2024-05-23
+#### Bug Fixes
+- **(keybindings)** bind `auto-insert` to the insert menu - ([178a740](https://github.com/abougouffa/minemacs/commit/178a7403c9ef1c50e3c99e41662136b799c6138d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(debug)** add support for `objdump-disassemble` - ([9887a12](https://github.com/abougouffa/minemacs/commit/9887a1213f106b5c78507a431c2a4a046827a23f)) - [@abougouffa](https://github.com/abougouffa)
+- remove `me-binary` module and the `objdump` stuff - ([e3766b0](https://github.com/abougouffa/minemacs/commit/e3766b002da70bd87b488e88fee6f24d5080875a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(spdx)** add some insert keybindings - ([91e9ad2](https://github.com/abougouffa/minemacs/commit/91e9ad2960b3e2fd196f271fa38c26df67404697)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.5.0](https://github.com/abougouffa/minemacs/compare/2e3f35b4faab281ba2dc2a17c359774f64aa7f3a..v6.5.0) - 2024-05-23
 #### Features
 - **(core-ui)** make `spacious-padding` obsolete - ([078f79d](https://github.com/abougouffa/minemacs/commit/078f79d2c3672f95bd51fa35d2d543ce549b620f)) - [@abougouffa](https://github.com/abougouffa)
