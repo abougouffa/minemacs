@@ -522,6 +522,15 @@ or file path may exist now."
   ;; Highlight the current line
   :hook ((prog-mode conf-mode text-mode) . hl-line-mode))
 
+(use-package cc-vars
+  :config
+  (mapc (lambda (m) (setq-default c-default-style (+alist-set (car m) (cdr m) c-default-style)))
+        '((c-mode . "k&r") (c++-mode . "k&r"))))
+
+(use-package c-ts-mode
+  :custom
+  (c-ts-mode-indent-style 'k&r))
+
 (use-package hideshow
   ;; Hide/show code blocks, a.k.a. code folding
   :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode)
