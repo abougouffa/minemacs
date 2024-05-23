@@ -35,6 +35,15 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
+(setq
+ ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
+ use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
+ ;; Defer loading packages by default, use `:demand' to force loading a package
+ use-package-always-defer (not minemacs-always-demand-p)
+ use-package-always-demand minemacs-always-demand-p
+ ;; Make the expanded code as minimal as possible, do not try to catch errors
+ use-package-expand-minimally (not minemacs-debug-p))
+
 ;; Add support for ensuring system dependencies using `:ensure-system-package'
 ;; in `use-package'.
 (use-package system-packages
@@ -49,15 +58,6 @@
 ;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
-
-(setq
- ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
- use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
- ;; Defer loading packages by default, use `:demand' to force loading a package
- use-package-always-defer (not minemacs-always-demand-p)
- use-package-always-demand minemacs-always-demand-p
- ;; Make the expanded code as minimal as possible, do not try to catch errors
- use-package-expand-minimally (not minemacs-debug-p))
 
 
 (provide 'me-bootstrap)

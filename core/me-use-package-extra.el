@@ -40,10 +40,10 @@
   (defun use-package-handler/:trigger-commands (name _keyword arg rest state)
     (use-package-concat
      (cl-mapcan
-      #'(lambda (command)
-          (when (symbolp command)
-           (append
-            (unless (plist-get state :demand)
+      (lambda (command)
+        (when (symbolp command)
+          (append
+           (unless (plist-get state :demand)
              `((+advice-once! ,command :before (require ',name)))))))
       (delete-dups arg))
      (use-package-process-keywords name rest state)))
