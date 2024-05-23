@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.5.0](https://github.com/abougouffa/minemacs/compare/2e3f35b4faab281ba2dc2a17c359774f64aa7f3a..v6.5.0) - 2024-05-23
+#### Features
+- **(core-ui)** make `spacious-padding` obsolete - ([078f79d](https://github.com/abougouffa/minemacs/commit/078f79d2c3672f95bd51fa35d2d543ce549b620f)) - [@abougouffa](https://github.com/abougouffa)
+- **(gtd)** initial support for `org-gtd` - ([9ce4266](https://github.com/abougouffa/minemacs/commit/9ce4266a51416644e40bcc73d3593e214dc89c3c)) - [@abougouffa](https://github.com/abougouffa)
+- **(gtd)** empty module for Getting Things Done workflow - ([5f4ea3f](https://github.com/abougouffa/minemacs/commit/5f4ea3fd7fd558461bc4f40e83762112b7583da0)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `add-node-modules-path` - ([d5f490e](https://github.com/abougouffa/minemacs/commit/d5f490e362359ef75b48ae96c7bfbbf4bb560a59)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** replace unused `ack` with `rg` - ([d0f9d63](https://github.com/abougouffa/minemacs/commit/d0f9d638298ee63720e1555fb98abd53a3f0aa23)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(use-package)** remove unnecessary `t` argument from `:demand` - ([1e91729](https://github.com/abougouffa/minemacs/commit/1e91729144b1d331ef5f35c84edb7a1ea0df7a23)) - [@abougouffa](https://github.com/abougouffa)
+- add options file for `ctags` (to be used later) - ([5f8ef60](https://github.com/abougouffa/minemacs/commit/5f8ef60ea020e45c258ddd09fc8ac22f963315e6)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** minor edit - ([e5de394](https://github.com/abougouffa/minemacs/commit/e5de3945aae6e18b90254b76c4cb6fac252c2bf7)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(parinfer-rust)** remove temporary hack after being fixed upstream - ([8eda977](https://github.com/abougouffa/minemacs/commit/8eda977209fa6674e3ff72f716706bf7d2d11de8)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(c-mode)** use K&R style by default - ([d09be4b](https://github.com/abougouffa/minemacs/commit/d09be4b23a41d8f3ad2188cdf953d857863c0b3f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more ignored environment variables - ([21e13c8](https://github.com/abougouffa/minemacs/commit/21e13c803fc43bfdc0fe210d45d9d73080cf65ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(crm)** indicate in the prompt about `completing-read-multiple` - ([02cd1a0](https://github.com/abougouffa/minemacs/commit/02cd1a070e42cef7c494d7c6175cff7f6559ed02)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** take `vhdl-ts-mode` and `verilog-ts-mode` into account - ([2e3f35b](https://github.com/abougouffa/minemacs/commit/2e3f35b4faab281ba2dc2a17c359774f64aa7f3a)) - [@abougouffa](https://github.com/abougouffa)
+- **(minibuffer)** don't move cursor to the prompt region - ([786a089](https://github.com/abougouffa/minemacs/commit/786a0897396338a3b0d46b1ab65cdfbfdb31a599)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-modern)** stick to the defaults for lists and stars - ([adc38d8](https://github.com/abougouffa/minemacs/commit/adc38d8e0fb0a7c888dd14ee0cc9a86e2e7dfa93)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** hook only to the base mode `lisp-data-mode` - ([ac06034](https://github.com/abougouffa/minemacs/commit/ac0603461ecf51994cc9ee12e3fdb9248d35318d)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** set `use-package` options after tweaking its settings - ([9cf959c](https://github.com/abougouffa/minemacs/commit/9cf959cbed343cdfaf067e07c1db689522e0d2f4)) - [@abougouffa](https://github.com/abougouffa)
+- **(wgrep)** move from `me-completion` to `me-editor` - ([212c7a8](https://github.com/abougouffa/minemacs/commit/212c7a8ef5780deb30484a53d96c47a674e33671)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ce049d5](https://github.com/abougouffa/minemacs/commit/ce049d52b047e397d23839e1f1d1d7cb38c1dec9)) - [@abougouffa](https://github.com/abougouffa)
+- enable `compilation-shell-minor-mode` in terminals - ([fb0e773](https://github.com/abougouffa/minemacs/commit/fb0e773f857f214ae461e189dcce5b1e731c00bc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.4.1](https://github.com/abougouffa/minemacs/compare/e09a2c2276f6a7901c4ea6ed882d801f81a500f8..v6.4.1) - 2024-05-22
 #### Bug Fixes
 - **(flymake-guile)** use a mirror on GitHub (Framagit issues) - ([9a3786a](https://github.com/abougouffa/minemacs/commit/9a3786a2bc6fa53f17343f78f4cf48897b9aa76f)) - [@abougouffa](https://github.com/abougouffa)
