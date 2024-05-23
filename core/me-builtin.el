@@ -630,6 +630,7 @@ or file path may exist now."
   :commands +toggle-bury-compilation-buffer-if-successful
   ;; Enable ANSI colors in compilation buffer
   :hook (compilation-filter . ansi-color-compilation-filter)
+  :hook (shell-mode . compilation-shell-minor-mode)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one

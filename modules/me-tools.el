@@ -51,6 +51,7 @@
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
+  :hook (vterm-mode . compilation-shell-minor-mode)
   :bind (:map vterm-mode-map ("<return>" . vterm-send-return))
   :init
   (+map!
