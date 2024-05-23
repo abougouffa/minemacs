@@ -41,7 +41,11 @@
   :straight (:host github :repo "condy0919/spdx.el")
   :custom
   (spdx-copyright-holder 'user)
-  (spdx-project-detection 'auto))
+  (spdx-project-detection 'auto)
+  :init
+  (+map!
+    "il" #'spdx-insert-spdx-only
+    "ic" #'spdx-insert-spdx-copyright))
 
 (use-package rainbow-delimiters
   :straight t
