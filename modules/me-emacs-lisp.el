@@ -30,9 +30,6 @@
   (setq parinfer-rust-troublesome-modes (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
   (defvar-local +parinter-rust--was-enabled-p nil)
 
-  ;; TEMP+BUG: Disable auto usage of fast strategy on long buffers
-  (remove-hook 'parinfer-rust-mode-hook 'parinfer-rust--auto-apply-fast-mode)
-
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
   (defun +parinter-rust--restore:after-a (&rest _)
     (when +parinter-rust--was-enabled-p
