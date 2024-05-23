@@ -31,6 +31,12 @@
   :after tempel
   :demand)
 
+(use-package wgrep
+  :straight t
+  :commands wgrep-change-to-wgrep-mode
+  :custom
+  (wgrep-auto-save-buffer t))
+
 (use-package spdx
   :straight (:host github :repo "condy0919/spdx.el")
   :custom

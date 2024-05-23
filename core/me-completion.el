@@ -286,12 +286,6 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 (use-package vertico-mouse
   :hook (vertico-mode . vertico-mouse-mode))
 
-(use-package wgrep
-  :straight t
-  :commands wgrep-change-to-wgrep-mode
-  :custom
-  (wgrep-auto-save-buffer t))
-
 
 (provide 'me-completion)
 
