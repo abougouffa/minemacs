@@ -199,7 +199,16 @@
 (use-package verb
   :straight t
   :config
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+  (+map-local! :keymaps 'verb-mode-map
+    "r"     '(nil :wk "verb")
+    "r RET" #'verb-send-request-on-point-no-window
+    "rs"    #'verb-send-request-on-point-other-window
+    "rr"    #'verb-send-request-on-point-other-window-stay
+    "rf"    #'verb-send-request-on-point
+    "re"    #'verb-export-request-on-point
+    "rv"    #'verb-set-var
+    "rx"    #'verb-show-vars))
 
 (use-package impostman
   :straight t)
