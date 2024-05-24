@@ -822,9 +822,11 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   :straight (:type built-in)
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
-  (setq org-directory nil
-        ;; Fix `evil' search problem (to be used with `evil-search')
-        org-fold-core-style 'overlays)
+  (setq org-directory nil)
+  (with-eval-after-load 'evil
+    ;; Fix `evil' search problem (to be used with `evil-search')
+    (when (eq evil-search-module 'evil-search)
+      (setq org-fold-core-style 'overlays)))
   :custom
   (org-auto-align-tags nil)
   (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
@@ -841,7 +843,7 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   (org-fold-catch-invisible-edits 'smart) ; try not to accidentally do weird stuff in invisible regions
   (org-fontify-quote-and-verse-blocks t)
   (org-hide-emphasis-markers t)
-  (org-highlight-latex-and-related '(native script entities))
+  (org-highlight-latex-and-related '(native latex script entities))
   (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
   (org-insert-heading-respect-content t)
   (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
@@ -962,9 +964,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
 (use-package org-indent
   :after org
   :demand)
-
-(use-package ox
-  :after org)
 
 (use-package ox-latex
   :after ox
