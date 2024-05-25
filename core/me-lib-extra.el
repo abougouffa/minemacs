@@ -1012,7 +1012,7 @@ This command removes new line characters between lines."
   "Switch to another project at DIR.
 When DIR is not detected as a project, ask to force it to be by adding a
 \".project.el\" file. When DONT-ASK is non-nil, create the file without asking."
-  (interactive (list (project-prompt-project-dir)))
+  (interactive (list (funcall project-prompter)))
   (project-switch-project dir)
   (let ((proj-file ".project.el"))
     (when (and (not (project-current))
