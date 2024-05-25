@@ -32,6 +32,12 @@
   (+map-local! :keymaps 'magit-status-mode-map
     "t" `(,(+cmdfy! (magit-todos-mode 'toggle) (magit-refresh)) :wk "magit-todos-mode")))
 
+(use-package magit-file-icons
+  :straight t
+  :after magit-status
+  :init
+  (magit-file-icons-mode 1))
+
 (use-package magit-imerge
   :straight t
   :after magit
