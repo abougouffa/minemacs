@@ -60,6 +60,16 @@
   (+map! :infix "d"
     "D" #'projection-dape))
 
+(use-package project-x
+  :straight (:host github :repo "karthink/project-x")
+  :after project
+  :commands project-x-window-state-save project-x-window-state-load
+  :custom
+  (project-x-window-list-file (concat minemacs-local-dir "project-x/project-window-list.el"))
+  (project-x-local-identifier '("project.el" ".project.el"))
+  :init
+  (project-x-mode 1))
+
 
 (provide 'me-project)
 
