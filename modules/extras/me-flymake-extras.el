@@ -37,14 +37,14 @@ This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
    (and (project-current) (project-root (project-current)))
    (when (and (featurep 'projectile) (bound-and-true-p projectile-mode)) (projectile-project-root))
    (vc-root-dir)
-   (+directory-root-containing-file ".clang-tidy")
+   (locate-dominating-file (or buffer-file-name default-directory) ".clang-tidy")
    (progn
      (message "Could not determine project root, trying current directory.")
      (file-name-directory buffer-file-name))))
 
 (defun flymake-collection-clang-tidy-get-config ()
   "Find and read .clang-tidy."
-  (when-let* ((config-dir (+directory-root-containing-file ".clang-tidy"))
+  (when-let* ((config-dir (locate-dominating-file (or buffer-file-name default-directory) ".clang-tidy"))
               (config-file (expand-file-name ".clang-tidy" config-dir)))
     (with-temp-buffer
       (insert-file-contents config-file)

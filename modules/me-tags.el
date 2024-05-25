@@ -20,7 +20,7 @@
   ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
   :init
-  (defcustom +citre-recursive-root-project-detection-files '(".tags/" ".repo/" ".citre_root")
+  (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre_root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
     :group 'minemacs-prog)
@@ -43,7 +43,13 @@
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
-    (or (+directory-root-containing-file +citre-recursive-root-project-detection-files)
+    (or (locate-dominating-file ;; locate the root containing the file
+         (or buffer-file-name default-directory)
+         (lambda (dir)
+           (directory-files
+            (file-name-directory dir)
+            nil
+            (rx-to-string `(seq bol (or ,@+citre-recursive-root-project-detection-files) eol)))))
         (citre--project-root))) ; Fall back to the default detection!
 
   (defun +citre-gtags-find-files-command (&optional dir)

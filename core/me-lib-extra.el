@@ -12,6 +12,7 @@
 (make-obsolete '+deferred-unless! "This macro will be removed, use (unless COND (+deferred! BODY)) instead.." "2024-05-18")
 (make-obsolete '+lazy-when! "This macro will be removed, use (when COND (+lazy! BODY)) instead.." "2024-05-18")
 (make-obsolete '+lazy-unless! "This macro will be removed, use (unless COND (+lazy! BODY)) instead.." "2024-05-18")
+(make-obsolete '+directory-root-containing-file "Use builtin `locate-dominating-file' instead." "2024-05-25")
 
 ;;; Minemacs' core functions and macros
 
@@ -225,12 +226,13 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
 ;;;###autoload
 (defun +directory-root-containing-file (files &optional start-path)
   "Return the path containing a file from FILES starting from START-PATH."
-  (let ((dir (or start-path (and buffer-file-name (file-name-directory buffer-file-name)) default-directory)))
-    (catch 'root
-      (while dir
-        (when (cl-some #'file-exists-p (mapcar (+apply-partially-right #'expand-file-name dir) (ensure-list files)))
-          (throw 'root dir))
-        (setq dir (file-name-parent-directory dir))))))
+  (locate-dominating-file ;; locate the root containing the file
+   (or start-path buffer-file-name default-directory)
+   (lambda (dir)
+     (directory-files
+      (file-name-directory dir)
+      nil
+      (rx-to-string `(seq bol (or ,@(ensure-list files)) eol))))))
 
 ;;;###autoload
 (defun +delete-this-file (&optional path force-p)
