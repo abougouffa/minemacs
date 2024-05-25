@@ -23,17 +23,14 @@
   ;; `which-key-replacement-alist'
   (which-key-allow-multiple-replacements t)
   :config
-  (setq
-   which-key-replacement-alist
-   (append
-    which-key-replacement-alist
+  (cl-callf append which-key-replacement-alist
     (list
      '(("\\`g z" . "\\`evil-\\(?:mc\\|multiedit\\)-\\(.*\\)")    . (nil . "⌶·\\1"))
      '(("\\`g c" . "\\`evilnc-\\(.*\\)")                         . (nil . "#·\\1"))
      '(("\\`g" . "\\`[Ii]nfo[-:]?\\(?:a-\\)?\\(.*\\)")           . (nil . "ɩ·\\1"))
      '(("\\`SPC TAB" . "\\`tabspaces-\\(.*\\)")                  . (nil . "⭾·\\1"))
      '(("\\`SPC p" . "\\`\\+?\\(?:consult-\\)?project-\\(.*\\)") . (nil . "π·\\1"))
-     '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)")                  . (nil . "ɛ·\\1")))))
+     '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)")                  . (nil . "ɛ·\\1"))))
   ;; Setup `which-key' integration with the minibuffer
   (which-key-setup-minibuffer))
 

@@ -57,7 +57,7 @@
 
   (with-eval-after-load 'org
     (org-babel-do-load-languages 'org-babel-load-languages (append org-babel-load-languages '((ein . t))))
-    (setq org-src-lang-modes (append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia))))))
+    (cl-callf append org-src-lang-modes '(("ein-python" . python) ("ein-r" . r) ("ein-julia" . julia)))))
 
 (use-package code-cells
   :straight t

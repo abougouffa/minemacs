@@ -49,8 +49,8 @@
                               :remap 'emacs-lisp-mode
                               :url "https://github.com/Wilfred/tree-sitter-elisp"
                               :ext "\\.el\\'"))))
-    (setq treesit-auto-langs (append treesit-auto-langs (mapcar #'treesit-auto-recipe-lang extra-recipes))
-          treesit-auto-recipe-list (append treesit-auto-recipe-list extra-recipes)))
+    (cl-callf append treesit-auto-langs (mapcar #'treesit-auto-recipe-lang extra-recipes))
+    (cl-callf append treesit-auto-recipe-list extra-recipes))
 
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
@@ -254,16 +254,14 @@
   :straight (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
   :config
-  (setq hl-todo-keyword-faces
-        (append
-         hl-todo-keyword-faces
-         '(("BUG"   . "#ee5555")
-           ("FIX"   . "#0fa050")
-           ("PROJ"  . "#447f44")
-           ("IDEA"  . "#0fa050")
-           ("INFO"  . "#0e9030")
-           ("TWEAK" . "#fe9030")
-           ("PERF"  . "#e09030")))))
+  (cl-callf append hl-todo-keyword-faces
+    '(("BUG"   . "#ee5555")
+      ("FIX"   . "#0fa050")
+      ("PROJ"  . "#447f44")
+      ("IDEA"  . "#0fa050")
+      ("INFO"  . "#0e9030")
+      ("TWEAK" . "#fe9030")
+      ("PERF"  . "#e09030"))))
 
 (use-package rainbow-mode
   :straight t

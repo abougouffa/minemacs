@@ -492,8 +492,8 @@ Connect at PORT with baudrate BAUD."
   (let ((commands (ensure-list commands)))
     (unless (+serial-running-p)
       (setq +serial-buffer (serial-term port baud)
-            +serial-process (get-buffer-process +serial-buffer)
-            commands (append +serial-first-commands commands)))
+            +serial-process (get-buffer-process +serial-buffer))
+      (cl-callf append commands +serial-first-commands))
     (if (+serial-running-p)
         (term-send-string +serial-process (string-join (append commands '("\n")) "\n"))
       (user-error "Unable to communicate with the serial terminal process"))))
@@ -911,11 +911,9 @@ See `kill-some-buffers'."
 
 (with-eval-after-load 'comp
   (when (featurep 'native-compile)
-    (setq
-     +kill-buffer-no-ask-list
-     (append +kill-buffer-no-ask-list
-             (ensure-list (bound-and-true-p comp-async-buffer-name))
-             (ensure-list (bound-and-true-p comp-log-buffer-name))))))
+    (cl-callf append +kill-buffer-no-ask-list
+      (ensure-list (bound-and-true-p comp-async-buffer-name))
+      (ensure-list (bound-and-true-p comp-log-buffer-name)))))
 
 ;;;###autoload
 (defun +kill-buffer-ask-if-modified (buffer)
@@ -1014,11 +1012,11 @@ When DIR is not detected as a project, ask to force it to be by adding a
 \".project.el\" file. When DONT-ASK is non-nil, create the file without asking."
   (interactive (list (project-prompt-project-dir)))
   (project-switch-project dir)
-  (when (and (not (project-current))
-             (or dont-ask
-                 (yes-or-no-p "Directory not detected as a project, add \".project.el\"? ")))
-    (with-temp-buffer
-      (write-file (expand-file-name ".project.el" dir)))))
+  (let ((proj-file ".project.el"))
+    (when (and (not (project-current))
+               (or dont-ask (y-or-n-p (format "Directory not detected as a project, add %S? " proj-file))))
+      (with-temp-buffer
+        (write-file (expand-file-name proj-file dir))))))
 
 ;;;###autoload
 (defun +project-forget-zombie-projects ()

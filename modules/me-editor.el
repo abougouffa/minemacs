@@ -97,9 +97,8 @@
   (super-save-delete-trailing-whitespace 'except-current-line)
   :config
   ;; Additional triggers
-  (setq super-save-triggers
-        (append super-save-triggers
-                '(magit magit-status winner-undo winner-redo find-file))))
+  (cl-callf append super-save-triggers
+    '(magit magit-status winner-undo winner-redo find-file)))
 
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")

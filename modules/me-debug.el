@@ -89,13 +89,12 @@
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   ;; Add Treesit languages
-  (setq beardbolt-languages
-        (append beardbolt-languages
-                (let ((langs))
-                  (dolist (lang-spec beardbolt-languages)
-                    (let ((ts-lang (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car lang-spec)))))))
-                      (push (cons ts-lang (cdr lang-spec)) langs)))
-                  langs))))
+  (cl-callf append beardbolt-languages
+    (let ((langs))
+      (dolist (lang-spec beardbolt-languages)
+        (let ((ts-lang (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car lang-spec)))))))
+          (push (cons ts-lang (cdr lang-spec)) langs)))
+      langs)))
 
 (use-package objdump-disassemble
   :straight (:host github :repo "abougouffa/objdump-disassemble"))

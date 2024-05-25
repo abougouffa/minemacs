@@ -42,9 +42,8 @@
      (cl-mapcan
       (lambda (command)
         (when (symbolp command)
-          (append
-           (unless (plist-get state :demand)
-             `((+advice-once! ,command :before (require ',name)))))))
+          (unless (plist-get state :demand)
+            `((+advice-once! ,command :before (require ',name))))))
       (delete-dups arg))
      (use-package-process-keywords name rest state)))
 

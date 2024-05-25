@@ -204,10 +204,7 @@ Example: \"#+TITLE\" -> \"#+title\"
              "\\pagestyle{fancyplain}"
              "\\renewcommand{\\FrenchLabelItem}{\\textbullet}")))
       ;; Some additional LaTeX classes
-      (setq
-       org-latex-classes
-       (append
-        org-latex-classes
+      (cl-callf append org-latex-classes
         `(("blank"
            "[NO-DEFAULT-PACKAGES]\n[NO-PACKAGES]\n[EXTRA]"
            ("\\section{%s}"       . "\\section*{%s}")
@@ -281,7 +278,7 @@ Example: \"#+TITLE\" -> \"#+title\"
            ("\\subsection{%s}"    . "\\subsection*{%s}")
            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
            ("\\paragraph{%s}"     . "\\paragraph*{%s}")
-           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))))))))
+           ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))))))
 
 (defun +org-extras-outline-path-setup ()
   "Fix the font size issue in Org's outline in the echo area."

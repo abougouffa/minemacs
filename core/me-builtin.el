@@ -308,16 +308,15 @@ or file path may exist now."
   (+map-local! :keymaps 'dired-mode-map
     "h" #'dired-omit-mode)
 
-  (setq dired-omit-files
-        (concat
-         dired-omit-files
-         "\\|^\\.\\(?:svn\\|git\\|hg\\|repo\\)\\'"
-         "\\|^\\.DS_Store\\'"
-         "\\|^flycheck_.*"
-         "\\|^\\.ccls-cache\\'"
-         "\\|^\\.tags\\'"
-         "\\|\\(?:\\.js\\)?\\.meta\\'"
-         "\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"))
+  (cl-callf concat dired-omit-files
+    "\\|^\\.\\(?:svn\\|git\\|hg\\|repo\\)\\'"
+    "\\|^\\.DS_Store\\'"
+    "\\|^flycheck_.*"
+    "\\|^\\.ccls-cache\\'"
+    "\\|^\\.tags\\'"
+    "\\|\\(?:\\.js\\)?\\.meta\\'"
+    "\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'")
+
   ;; Open some files with OS' default application
   (when-let (cmd (cond ((or os/linux os/bsd) "xdg-open") (os/mac "open") (os/win "start")))
     (setq dired-guess-shell-alist-user
@@ -365,6 +364,7 @@ or file path may exist now."
                         tab-bar-close-button)
                    ""))
        'face (funcall tab-bar-tab-face-function tab))))
+
   (with-eval-after-load 'nerd-icons
     (setq tab-bar-close-button
           (propertize (concat (nerd-icons-faicon "nf-fa-close" :height 0.5) " ")
@@ -399,7 +399,7 @@ or file path may exist now."
       ("Q" "Quit" ignore :transient t)]])
 
   ;; Use the session's load-path with flymake
-  (setq elisp-flymake-byte-compile-load-path (append elisp-flymake-byte-compile-load-path load-path))
+  (cl-callf append elisp-flymake-byte-compile-load-path load-path)
 
   ;; Larger right frings
   (with-eval-after-load 'fringe
@@ -539,38 +539,29 @@ or file path may exist now."
   :config
   ;; Add extra modes support, needs functions defined in `me-code-folding'
   (unless (assq 't hs-special-modes-alist)
-    (setq hs-special-modes-alist
-          (append
-           '((vimrc-mode "{{{" "}}}" "\"")
-             (yaml-mode "\\s-*\\_<\\(?:[^:]+\\)\\_>"
-              ""
-              "#"
-              +fold-hideshow-forward-block-by-indent-fn nil)
-             (haml-mode "[#.%]" "\n" "/" +fold-hideshow-haml-forward-sexp-fn nil)
-             (ruby-mode "class\\|d\\(?:ef\\|o\\)\\|module\\|[[{]"
-              "end\\|[]}]"
-              "#\\|=begin"
-              ruby-forward-sexp)
-             (matlab-mode "if\\|switch\\|case\\|otherwise\\|while\\|for\\|try\\|catch"
-              "end"
-              nil (lambda (_arg) (matlab-forward-sexp)))
-             (nxml-mode "<!--\\|<[^/>]*[^/]>"
-              "-->\\|</[^/>]*[^/]>"
-              "<!--" sgml-skip-tag-forward nil)
-             (latex-mode
-              ;; LaTeX-find-matching-end needs to be inside the env
-              ("\\\\begin{[a-zA-Z*]+}\\(\\)" 1)
-              "\\\\end{[a-zA-Z*]+}"
-              "%"
-              (lambda (_arg)
-                ;; Don't fold whole document, that's useless
-                (unless (save-excursion
-                          (search-backward "\\begin{document}"
-                           (line-beginning-position) t))
-                 (LaTeX-find-matching-end)))
-              nil))
-           hs-special-modes-alist
-           '((t))))))
+    (cl-callf2 append
+        '((vimrc-mode "{{{" "}}}" "\"")
+          (ruby-mode "class\\|d\\(?:ef\\|o\\)\\|module\\|[[{]"
+           "end\\|[]}]"
+           "#\\|=begin"
+           ruby-forward-sexp)
+          (matlab-mode "if\\|switch\\|case\\|otherwise\\|while\\|for\\|try\\|catch"
+           "end"
+           nil (lambda (_arg) (matlab-forward-sexp)))
+          (nxml-mode "<!--\\|<[^/>]*[^/]>"
+           "-->\\|</[^/>]*[^/]>"
+           "<!--" sgml-skip-tag-forward nil)
+          (latex-mode
+           ;; LaTeX-find-matching-end needs to be inside the env
+           ("\\\\begin{[a-zA-Z*]+}\\(\\)" 1)
+           "\\\\end{[a-zA-Z*]+}"
+           "%"
+           (lambda (_arg)
+             ;; Don't fold whole document, that's useless
+             (unless (save-excursion (search-backward "\\begin{document}" (line-beginning-position) t))
+              (LaTeX-find-matching-end)))
+           nil))
+        hs-special-modes-alist '((t)))))
 
 (use-package xref
   :straight t
@@ -905,10 +896,7 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
     collect (cons lang t)))
 
   (with-eval-after-load 'org-src
-    (setq org-src-lang-modes
-          (append
-           '(("dot" . graphviz-dot))
-           (delete (assoc "dot" org-src-lang-modes #'equal) org-src-lang-modes))))
+    (+alist-set "dot" 'graphviz-dot org-src-lang-modes))
 
   (with-eval-after-load 'plantuml-mode
     (setq org-plantuml-jar-path plantuml-jar-path

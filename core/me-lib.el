@@ -48,7 +48,7 @@ Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
     (while (length> key-vals 0)
       (let ((key (pop key-vals))
             (val (pop key-vals)))
-        (setq out (append out `((setq ,plist (plist-put ,plist ,key ,val)))))))
+        (cl-callf append out `((setq ,plist (plist-put ,plist ,key ,val))))))
     out))
 
 (defun +plist-combine (&rest plists)

@@ -57,7 +57,7 @@ placed, otherwise they come first."
        (cl-substitute (apply #'cape-capf-super
                              (cl-substitute (car host)
                                             :completion
-                                            (append (cl-pushnew :completion +cape-global-capes))))
+                                            (cl-pushnew :completion +cape-global-capes)))
                       (car host)
                       completion-at-point-functions))))
 
