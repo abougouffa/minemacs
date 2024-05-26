@@ -10,7 +10,7 @@
 
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
-  :when (+emacs-features-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
+  :unless (+emacs-features-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
   :init
   (+map! "oo" #'eaf-open)
@@ -29,9 +29,6 @@
   ;; Debug
   (eaf-enable-debug nil)
   ;; Web engine
-  (eaf-webengine-font-family (plist-get minemacs-fonts :font-family))
-  (eaf-webengine-fixed-font-family (plist-get minemacs-fonts :font-family))
-  (eaf-webengine-serif-font-family (plist-get minemacs-fonts :variable-pitch-font-family))
   (eaf-webengine-font-size 16)
   (eaf-webengine-fixed-font-size 16)
   (eaf-webengine-enable-scrollbar t)
@@ -63,7 +60,6 @@
      ("f" . "toggle_fullscreen")
      ("R" . "restart")))
   ;; Jupyter
-  (eaf-jupyter-font-family (plist-get minemacs-fonts :font-family))
   (eaf-jupyter-font-size 14)
   ;; PDF viewer
   (eaf-pdf-outline-buffer-indent 2)
