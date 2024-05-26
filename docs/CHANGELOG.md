@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.7.1](https://github.com/abougouffa/minemacs/compare/41b7f6c16c5ac3e4490d2ad3ea5c28dd5d5cf843..v6.7.1) - 2024-05-26
+#### Features
+- **(core-ui)** move to `light-dashboard` successor `enlight` [#168] - ([41b7f6c](https://github.com/abougouffa/minemacs/commit/41b7f6c16c5ac3e4490d2ad3ea5c28dd5d5cf843)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.7.0](https://github.com/abougouffa/minemacs/compare/11f30450973c69fc05d878a834afe731be5e2269..v6.7.0) - 2024-05-26
 #### Bug Fixes
 - **(project-tab-groups)** correctly set tab group naming function - ([977fbab](https://github.com/abougouffa/minemacs/commit/977fbabe69a581ad075311d92ac27a048edea411)) - [@abougouffa](https://github.com/abougouffa)
