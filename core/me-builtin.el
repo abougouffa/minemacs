@@ -1166,6 +1166,7 @@ current line.")
       ("q" nil :color blue))))
 
 (use-package octave
+  :mode ("\\.m\\'" . octave-maybe-mode)
   :config
   (defun +octave-eval-last-sexp ()
     "Evaluate Octave sexp before point and print value into current buffer."
