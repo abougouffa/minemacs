@@ -51,6 +51,7 @@
 
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
+  :when (>= emacs-major-version 29) ; TEMP+BUG: There is an issue with Emacs 28
   :custom
   (enlight-content
    (enlight-menu
