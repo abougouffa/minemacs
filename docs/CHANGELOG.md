@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.7.4](https://github.com/abougouffa/minemacs/compare/ffaa6c184988ab8a791f16f78e1a225bcf18011b..v6.7.4) - 2024-05-26
+#### Tweaks
+- **(cocogitto)** better stashing on dirty work directory - ([ffaa6c1](https://github.com/abougouffa/minemacs/commit/ffaa6c184988ab8a791f16f78e1a225bcf18011b)) - [@abougouffa](https://github.com/abougouffa)
+- add group for the top level `minemacs` group - ([bb35d3f](https://github.com/abougouffa/minemacs/commit/bb35d3fa46a2af8e0dd7ce553b0df5079da5557f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.7.3](https://github.com/abougouffa/minemacs/compare/7d3be45302a7fdacc82ea510de304f2b9d4f84b9..v6.7.3) - 2024-05-26
 #### Refactoring
 - use `+package-disabled-p` when needed - ([4dbe652](https://github.com/abougouffa/minemacs/commit/4dbe6529bfd83a47f4caec899c69d76d28c604f1)) - [@abougouffa](https://github.com/abougouffa)
