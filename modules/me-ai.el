@@ -57,6 +57,9 @@
                      collect (cons model (make-llm-ollama :chat-model model :embedding-model model)))
             ellama-provider (cdr (car ellama-providers)))))
 
+(use-package elisa
+  :straight t)
+
 
 (provide 'me-ai)
 
