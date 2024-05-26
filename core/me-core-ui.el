@@ -40,7 +40,6 @@
   (doom-modeline-time-icon nil)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
-  (doom-modeline-indent-info t)
   (doom-modeline-total-line-number t)
   (doom-modeline-enable-word-count t)
   (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode))
