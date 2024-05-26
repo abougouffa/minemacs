@@ -8,6 +8,12 @@
 
 ;;; Code:
 
+;; The `gc-cons-threshold' has been set in "early-init.el" to a ridiculously
+;; high value (`most-positive-fixnum') to reduce the number of garbage
+;; collections during startup, it will be overwritten by `gcmh-mode' or by the
+;; following hook, so we place it at the end of `minemacs-lazy-hook' to maximize
+;; the benefit.
+
 ;; NOTE: I'm experimenting with these settings instead of using `gcmh'.
 ;; See: https://zenodo.org/records/10213384
 (when (memq 'gcmh minemacs-disabled-packages)
@@ -16,11 +22,12 @@
    (satch-defun +minemacs--gc-tweaks-h ()
      (setq gc-cons-threshold (* 128 1024 1024)
            gc-cons-percentage 0.25))
-   101))
+   90))
 
 (use-package gcmh
   :straight t
-  :hook (minemacs-lazy . gcmh-mode)
+  :init
+  (add-hook 'minemacs-lazy-hook #'gcmh-mode 90)
   :custom
   ;; Set the delay to 20s instead of the default 15. I tried using `auto', but
   ;; with the default 20 of `gcmh-auto-idle-delay-factor', it triggers GC each

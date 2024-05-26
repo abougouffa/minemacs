@@ -65,7 +65,8 @@
         (require 'benchmark-init-modes)
         (benchmark-init/show-durations-tree))
 
-      (add-hook 'emacs-startup-hook #'+benchmark-init--desactivate-and-show-h 101))))
+      (with-eval-after-load 'me-vars
+        (add-hook 'minemacs-lazy-hook #'+benchmark-init--desactivate-and-show-h 99)))))
 
 ;; Check if Emacs version is supported. You can define the
 ;; `$MINEMACS_IGNORE_VERSION_CHECK` environment variable to ignore this check.
