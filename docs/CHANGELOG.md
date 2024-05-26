@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.7.3](https://github.com/abougouffa/minemacs/compare/7d3be45302a7fdacc82ea510de304f2b9d4f84b9..v6.7.3) - 2024-05-26
+#### Refactoring
+- use `+package-disabled-p` when needed - ([4dbe652](https://github.com/abougouffa/minemacs/commit/4dbe6529bfd83a47f4caec899c69d76d28c604f1)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(doom-modeline)** hide indent information - ([7d3be45](https://github.com/abougouffa/minemacs/commit/7d3be45302a7fdacc82ea510de304f2b9d4f84b9)) - [@abougouffa](https://github.com/abougouffa)
+- prefer lazy loading for almost all packages - ([299e340](https://github.com/abougouffa/minemacs/commit/299e3409e3972446465b4435b9a31a444dbf151c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.7.2](https://github.com/abougouffa/minemacs/compare/4f91a0a8d32733ade1d38ae90d67ab18f6a74e09..v6.7.2) - 2024-05-26
 #### Bug Fixes
 - **(enlight)** temporary disable on Emacs 28 - ([09e6588](https://github.com/abougouffa/minemacs/commit/09e658811e464680eff697249ae41fb79a45b21b)) - [@abougouffa](https://github.com/abougouffa)
