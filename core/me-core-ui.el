@@ -48,10 +48,17 @@
   (doom-modeline-bar ((t (:inherit mode-line :background nil))))
   (doom-modeline-bar-inactive ((t (:inherit mode-line :background nil)))))
 
-(use-package light-dashboard
-  :straight (:host github :repo "ichernyshovvv/light-dashboard")
+(use-package enlight
+  :straight (:host github :repo "ichernyshovvv/enlight")
+  :custom
+  (enlight-content
+   (enlight-menu
+    '(("Org Mode"
+       ("Org-Agenda (today)" (org-agenda nil "a") "a"))
+      ("Projects"
+       ("Switch to project" project-switch-project "p")))))
   :init
-  (setq initial-buffer-choice #'light-dashboard))
+  (setq initial-buffer-choice #'enlight))
 
 
 (provide 'me-core-ui)
