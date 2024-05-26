@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.7.0](https://github.com/abougouffa/minemacs/compare/11f30450973c69fc05d878a834afe731be5e2269..v6.7.0) - 2024-05-26
+#### Bug Fixes
+- **(project-tab-groups)** correctly set tab group naming function - ([977fbab](https://github.com/abougouffa/minemacs/commit/977fbabe69a581ad075311d92ac27a048edea411)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ai)** initial support for `elisa` - ([0fe89d2](https://github.com/abougouffa/minemacs/commit/0fe89d2b6ff406638e66a5dc4eac53e1a14652e1)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** add benchmarking option using `benchmark-init` - ([7ab3307](https://github.com/abougouffa/minemacs/commit/7ab3307d9e668dc48dae930cf91bce6d848ad24c)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add support for `project-x` - ([6e1c164](https://github.com/abougouffa/minemacs/commit/6e1c164d3539b72a41cee16fb206773d0238e399)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add support for `magit-file-icons` - ([efb7c4f](https://github.com/abougouffa/minemacs/commit/efb7c4f04cddb6bceb034331a0df78b0c3a963d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(workspaces)** add support for `project-tab-groups` - ([e8e9d50](https://github.com/abougouffa/minemacs/commit/e8e9d507c59343a85e6c068ae60a28470ca71a6e)) - [@abougouffa](https://github.com/abougouffa)
+- **(workspaces)** make `tabspaces` obsolete - ([313d2ff](https://github.com/abougouffa/minemacs/commit/313d2ffb8a6c9a5bf2ab205f114b49a34bbdf357)) - [@abougouffa](https://github.com/abougouffa)
+- better lazy loading! - ([f2271f6](https://github.com/abougouffa/minemacs/commit/f2271f6e6ee705cbafdf90ab4f5c8a291942716d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- make use of the builtin `locate-dominating-file` - ([9fcac8f](https://github.com/abougouffa/minemacs/commit/9fcac8fcaa9896b65c0dbe7b39193e27aa24b759)) - [@abougouffa](https://github.com/abougouffa)
+- refactor and make use of `cl-callf` when possible - ([1658153](https://github.com/abougouffa/minemacs/commit/165815307395de20bd15391ceb527f5738442d01)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(eros)** minor edit - ([3cdda14](https://github.com/abougouffa/minemacs/commit/3cdda14f33cf537d1e3d6a94c64bdb19aba70518)) - [@abougouffa](https://github.com/abougouffa)
+- **(gc)** minor tweaks and cleanup - ([42f93be](https://github.com/abougouffa/minemacs/commit/42f93beec2569558907d324b8a3ca54e8d272799)) - [@abougouffa](https://github.com/abougouffa)
+- **(gc)** experimenting with `gc-cons-percentage` without `gcmh` - ([676a3b0](https://github.com/abougouffa/minemacs/commit/676a3b000fabf6af7fdb4c605ed6ec788a52683c)) - [@abougouffa](https://github.com/abougouffa)
+- **(llm)** minor refactoring - ([dc4372f](https://github.com/abougouffa/minemacs/commit/dc4372f969e3d078e8dce47c7f48b27e4a047ac5)) - [@abougouffa](https://github.com/abougouffa)
+- **(octave)** use `octave-maybe-mode` for `.m` - ([c03e197](https://github.com/abougouffa/minemacs/commit/c03e1978be79dc662c296b4713db6a973750664b)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** minor cleanup - ([3ddb276](https://github.com/abougouffa/minemacs/commit/3ddb2761d259ec6aa09a7bbbba2397e83e3a8f8d)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-agenda)** stick to the defaults for some options - ([11f3045](https://github.com/abougouffa/minemacs/commit/11f30450973c69fc05d878a834afe731be5e2269)) - [@abougouffa](https://github.com/abougouffa)
+- **(verb)** add keybindings - ([f3d782f](https://github.com/abougouffa/minemacs/commit/f3d782f846ac3646bca242fd0694ac57b79ccddb)) - [@abougouffa](https://github.com/abougouffa)
+- more lazy and deferred stuff - ([0c363e0](https://github.com/abougouffa/minemacs/commit/0c363e0a96844563e5173811affe00636d273a15)) - [@abougouffa](https://github.com/abougouffa)
+- use `project-prompter` when relevant - ([4ab109a](https://github.com/abougouffa/minemacs/commit/4ab109a376cf084ff2ea45c61101e35cb732131b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d42ce53](https://github.com/abougouffa/minemacs/commit/d42ce53d85eba203fe5c66948afb89ce96596274)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.6.0](https://github.com/abougouffa/minemacs/compare/178a7403c9ef1c50e3c99e41662136b799c6138d..v6.6.0) - 2024-05-23
 #### Bug Fixes
 - **(keybindings)** bind `auto-insert` to the insert menu - ([178a740](https://github.com/abougouffa/minemacs/commit/178a7403c9ef1c50e3c99e41662136b799c6138d)) - [@abougouffa](https://github.com/abougouffa)
