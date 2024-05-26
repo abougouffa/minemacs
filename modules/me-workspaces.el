@@ -21,9 +21,8 @@
     "TAB" #'tab-bar-switch-to-tab
     "o" #'project-switch-project
     "d" #'tab-bar-close-tab)
-  :custom
-  (project-tab-groups-tab-group-name-function #'+project-tab-groups-name-by-project-root)
   :init
+  (setq project-tab-groups-tab-group-name-function #'+project-tab-groups-name-by-project-root)
   (project-tab-groups-mode 1)
   :config
   (defun +project-tab-groups-name-by-project-root (dir)
