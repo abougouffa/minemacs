@@ -27,11 +27,10 @@ restores it after that."
       (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
         (conf-colon-mode)
         (insert (format "############ Cocogitto bump (%s) ############\n" level))
-        (call-process-shell-command "git stash -u" nil (current-buffer))
-        (call-process-shell-command
-         (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) ""))
-         nil (current-buffer))
-        (call-process-shell-command "git stash pop" nil (current-buffer))
+        (let ((stashed (string-match-p "COCOGITTO SAVED STATE" (shell-command-to-string "git stash -u -m \"COCOGITTO SAVED STATE\""))))
+          (call-process-shell-command (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) "")) nil (current-buffer))
+          (when stashed
+            (call-process-shell-command "git stash pop" nil (current-buffer))))
         (message "Cocogitto finished!"))
     (user-error "Not in a VC managed directory.")))
 
