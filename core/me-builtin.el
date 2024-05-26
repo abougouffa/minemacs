@@ -1324,14 +1324,13 @@ See `+whitespace-auto-cleanup-except-current-line'."
   (global-auto-revert-non-file-buffers t))
 
 (use-package savehist
-  :hook (minemacs-after-startup . savehist-mode)
+  :hook (minemacs-lazy . savehist-mode)
   :custom
   (savehist-file (concat minemacs-local-dir "savehist.el")))
 
 (use-package saveplace
-  :init
   ;; Save place in files
-  (save-place-mode 1)
+  :hook (minemacs-first-file . save-place-mode)
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 
@@ -1364,20 +1363,20 @@ See `+whitespace-auto-cleanup-except-current-line'."
   (display-line-numbers-widen t))
 
 (use-package pixel-scroll
-  :after minemacs-loaded
-  :demand
+  :hook (minemacs-lazy . +pixel-scroll-mode)
   :custom
   ;; Better scrolling on Emacs29+, specially on a touchpad
   (pixel-scroll-precision-use-momentum t)
   :config
-  ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
-  (if (>= emacs-major-version 29)
-      (pixel-scroll-precision-mode 1)
-    (pixel-scroll-mode 1)))
+  (defun +pixel-scroll-mode ()
+    ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
+    (if (>= emacs-major-version 29)
+        (pixel-scroll-precision-mode 1)
+      (pixel-scroll-mode 1))))
 
 (use-package mouse
   ;; Enable context menu on mouse right click
-  :hook (minemacs-after-startup . context-menu-mode)
+  :hook (minemacs-lazy . context-menu-mode)
   :custom
   ;; Enable Drag-and-Drop of regions
   (mouse-drag-and-drop-region t)
@@ -1405,14 +1404,14 @@ See `+whitespace-auto-cleanup-except-current-line'."
 
 (use-package time
   ;; Display time in mode-line
-  :hook (minemacs-after-startup . display-time-mode)
+  :hook (minemacs-lazy . display-time-mode)
   :custom
   ;; Enable time in the mode-line
   (display-time-string-forms '((propertize (concat 24-hours ":" minutes)))))
 
 (use-package frame
   ;; Display divider between windows
-  :hook (minemacs-after-startup . window-divider-mode)
+  :hook (minemacs-lazy . window-divider-mode)
   :custom
   ;; Set line width for the divider in `window-divider-mode' to 2px
   (window-divider-default-bottom-width 2)
@@ -1480,11 +1479,11 @@ Useful for quickly switching to an open buffer."
   ;; Never mix, use only spaces
   (setq-default indent-tabs-mode nil)
   ;; Show line number in mode-line
-  :hook (minemacs-after-startup . line-number-mode)
+  :hook (minemacs-lazy . line-number-mode)
   ;; Show column numbers (a.k.a. cursor position) in the mode-line
-  :hook (minemacs-after-startup . column-number-mode)
+  :hook (minemacs-lazy . column-number-mode)
   ;; Display buffer size on mode line
-  :hook (minemacs-after-startup . size-indication-mode)
+  :hook (minemacs-lazy . size-indication-mode)
   ;; Wrap long lines
   :hook ((prog-mode conf-mode text-mode) . visual-line-mode)
   :custom
@@ -1500,19 +1499,19 @@ Useful for quickly switching to an open buffer."
 
 (use-package winner
   ;; Window layout undo/redo (`winner-undo' / `winner-redo')
-  :hook (minemacs-after-startup . winner-mode))
+  :hook (minemacs-lazy . winner-mode))
 
 (use-package delsel
   ;; Replace selection after start typing
-  :hook (minemacs-after-startup . delete-selection-mode))
+  :hook (minemacs-lazy . delete-selection-mode))
 
 (use-package mb-depth
   ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
-  :hook (minemacs-after-startup . minibuffer-depth-indicate-mode))
+  :hook (minemacs-lazy . minibuffer-depth-indicate-mode))
 
 (use-package subword
   ;; Global SubWord mode
-  :hook (minemacs-after-startup . global-subword-mode))
+  :hook (minemacs-lazy . global-subword-mode))
 
 (use-package so-long
   ;; Better handling for files with so long lines
@@ -1538,7 +1537,7 @@ Useful for quickly switching to an open buffer."
        (display-battery-mode 1)))))
 
 (use-package windmove
-  :after minemacs-loaded
+  :after minemacs-lazy
   :demand
   :config
   ;; Navigate windows using Shift+Direction
