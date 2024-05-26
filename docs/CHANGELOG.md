@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.7.2](https://github.com/abougouffa/minemacs/compare/4f91a0a8d32733ade1d38ae90d67ab18f6a74e09..v6.7.2) - 2024-05-26
+#### Bug Fixes
+- **(enlight)** temporary disable on Emacs 28 - ([09e6588](https://github.com/abougouffa/minemacs/commit/09e658811e464680eff697249ae41fb79a45b21b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(doom-modeline)** minor tweaks - ([4f91a0a](https://github.com/abougouffa/minemacs/commit/4f91a0a8d32733ade1d38ae90d67ab18f6a74e09)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9cbe61f](https://github.com/abougouffa/minemacs/commit/9cbe61fe5b0dd6c550a6b354e3f96fb24e306bbc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.7.1](https://github.com/abougouffa/minemacs/compare/41b7f6c16c5ac3e4490d2ad3ea5c28dd5d5cf843..v6.7.1) - 2024-05-26
 #### Features
 - **(core-ui)** move to `light-dashboard` successor `enlight` [#168] - ([41b7f6c](https://github.com/abougouffa/minemacs/commit/41b7f6c16c5ac3e4490d2ad3ea5c28dd5d5cf843)) - [@abougouffa](https://github.com/abougouffa)
