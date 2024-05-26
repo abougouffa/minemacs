@@ -79,7 +79,7 @@
   :straight t
   :hook (minemacs-first-elisp-file . eros-mode)
   :custom
-  (eros-eval-result-prefix "―→ ")
+  (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>"))
   :config
   ;; Add an Elisp-like evaluation for Octave
   (with-eval-after-load 'octave
