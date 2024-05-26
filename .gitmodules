@@ -1,0 +1,3 @@
+[submodule "elisp/benchmark-init"]
+	path = elisp/benchmark-init
+	url = https://github.com/dholm/benchmark-init-el

@@ -51,6 +51,22 @@
 
 ;;; Code:
 
+;; Run a profiling session if `$MINEMACS_PROFILE' is defined.
+(when (getenv "MINEMACS_PROFILE")
+  (let ((dir (concat (file-name-directory load-file-name) "elisp/benchmark-init/")))
+    (if (not (file-exists-p (concat dir "benchmark-init.el")))
+        (message "[MinEmacs]: `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory.")
+      (add-to-list 'load-path dir)
+      (require 'benchmark-init)
+      (benchmark-init/activate)
+
+      (defun +benchmark-init--desactivate-and-show-h ()
+        (benchmark-init/deactivate)
+        (require 'benchmark-init-modes)
+        (benchmark-init/show-durations-tree))
+
+      (add-hook 'emacs-startup-hook #'+benchmark-init--desactivate-and-show-h 101))))
+
 ;; Check if Emacs version is supported. You can define the
 ;; `$MINEMACS_IGNORE_VERSION_CHECK` environment variable to ignore this check.
 ;; This can be useful if you are stuck with an old Emacs version and you've

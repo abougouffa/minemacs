@@ -52,7 +52,7 @@ only use to maintain itself!
 Open a shell and run:
 
 ```shell
-git clone https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
+git clone --recursive https://github.com/abougouffa/minemacs.git ~/.emacs.d && emacs
 ```
 
 By executing this command, the repository will be cloned, and Emacs will be
