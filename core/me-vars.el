@@ -10,7 +10,7 @@
 
 ;;; MinEmacs groups
 
-(defgroup minemacs nil "MinEmacs specific functionalities.")
+(defgroup minemacs nil "MinEmacs specific functionalities." :group 'emacs)
 (defgroup minemacs-apps nil "MinEmacs applications." :group 'minemacs)
 (defgroup minemacs-binary nil "MinEmacs binary files." :group 'minemacs)
 (defgroup minemacs-buffer nil "MinEmacs buffer stuff." :group 'minemacs)
