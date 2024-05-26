@@ -22,14 +22,37 @@
   ;; set in "early-init.el" to a ridiculously high value to reduce the number of
   ;; garbage collections during startup, it will be overwritten by `gcmh-mode',
   ;; so we defer loading it to the end to maximize the benefit.
-  (setq minemacs-lazy-hook (append (delq 'gcmh-mode (reverse minemacs-lazy-hook)) '(gcmh-mode)))
+  (when (memq 'gcmh-mode minemacs-lazy-hook)
+    (setq minemacs-lazy-hook (append (delq 'gcmh-mode (reverse minemacs-lazy-hook)) '(gcmh-mode))))
+
   (if minemacs-not-lazy-p
       (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
         (run-hooks 'minemacs-lazy-hook))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
-    ;; Run hooks one by one, as a FIFO.
-    (apply #'+eval-when-idle (append '(1) minemacs-lazy-hook))))
+    (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook) minemacs--lazy-high-priority-forms)))
+
+(defvar minemacs--lazy-high-priority-timer
+  (run-with-timer
+   0.1 0.001
+   (lambda ()
+     (if minemacs--lazy-high-priority-forms
+         (let ((inhibit-message (not minemacs-verbose-p)))
+           (eval (pop minemacs--lazy-high-priority-forms)))
+       (progn
+         (cancel-timer minemacs--lazy-high-priority-timer))))))
+
+(defvar minemacs--lazy-low-priority-timer
+  (run-with-timer
+   0.3 0.001
+   (lambda ()
+     (if minemacs--lazy-low-priority-forms
+         (let ((inhibit-message (not minemacs-verbose-p)))
+           (eval (pop minemacs--lazy-low-priority-forms)))
+       (progn
+         (cancel-timer minemacs--lazy-low-priority-timer))))))
+
+(provide 'minemacs-lazy)
 
 (+log! "Providing `minemacs-lazy'.")
 
