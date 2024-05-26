@@ -8,6 +8,16 @@
 
 ;;; Code:
 
+;; NOTE: I'm experimenting with these settings instead of using `gcmh'.
+;; See: https://zenodo.org/records/10213384
+(when (memq 'gcmh minemacs-disabled-packages)
+  (add-hook
+   'minemacs-lazy-hook
+   (satch-defun +minemacs--gc-tweaks-h ()
+     (setq gc-cons-threshold (* 128 1024 1024)
+           gc-cons-percentage 0.25))
+   101))
+
 (use-package gcmh
   :straight t
   :hook (minemacs-lazy . gcmh-mode)
