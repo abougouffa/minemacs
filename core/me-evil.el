@@ -10,7 +10,7 @@
 
 (use-package evil
   :straight t
-  :hook (minemacs-after-startup . evil-mode)
+  :hook (minemacs-lazy . evil-mode)
   :preface
   ;; Needed by `evil-collection'
   (setq evil-want-keybinding nil
@@ -78,8 +78,8 @@
 (use-package evil-snipe
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
-  :hook (minemacs-after-startup . evil-snipe-mode)
-  :hook (minemacs-after-startup . evil-snipe-override-mode)
+  :hook (minemacs-lazy . evil-snipe-mode)
+  :hook (minemacs-lazy . evil-snipe-override-mode)
   :custom
   (evil-snipe-scope 'buffer)
   (evil-snipe-smart-case t)
@@ -101,7 +101,7 @@
 (use-package evil-nerd-commenter
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
-  :commands evilnc-comment-operator
+  :commands evilnc-comment-operator evilnc-copy-and-comment-operator
   :init
   (+nvmap!
     "gc" #'evilnc-comment-operator

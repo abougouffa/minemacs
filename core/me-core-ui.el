@@ -34,7 +34,7 @@
 (use-package doom-modeline
   :straight t
   :unless (memq 'me-nano minemacs-modules)
-  :hook (minemacs-after-startup . doom-modeline-mode)
+  :hook (minemacs-lazy . doom-modeline-mode)
   :custom
   (doom-modeline-bar-width 1)
   (doom-modeline-time-icon nil)

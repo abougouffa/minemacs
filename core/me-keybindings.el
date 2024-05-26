@@ -10,7 +10,7 @@
 
 (use-package which-key
   :straight t
-  :hook (minemacs-after-startup . which-key-mode)
+  :hook (minemacs-lazy . which-key-mode)
   :custom
   (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay nil)

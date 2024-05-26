@@ -39,7 +39,7 @@
 
 (use-package nano-vertico
   :straight (:host github :repo "rougier/nano-vertico")
-  :hook (minemacs-after-startup . nano-vertico-mode))
+  :hook (minemacs-lazy . nano-vertico-mode))
 
 
 (provide 'me-nano)

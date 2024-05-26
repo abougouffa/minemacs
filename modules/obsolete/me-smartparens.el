@@ -10,7 +10,7 @@
 
 (use-package smartparens
  :straight t
- :hook (minemacs-after-startup . smartparens-global-mode)
+ :hook (minemacs-lazy . smartparens-global-mode)
  :init
  ;; From Doom Emacs, disable expensive navigation features.
  (+setq-hook! smartparens-mode

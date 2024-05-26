@@ -242,7 +242,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package marginalia
   :straight t
-  :hook (minemacs-after-startup . marginalia-mode))
+  :hook (minemacs-lazy . marginalia-mode))
 
 (use-package nerd-icons-completion
   :straight t
@@ -256,7 +256,7 @@ This depends on `+cape-hosts' and `+cape-global-capes'."
 
 (use-package vertico
   :straight (:files (:defaults "extensions/*.el"))
-  :hook (minemacs-after-startup . vertico-mode)
+  :hook (minemacs-lazy . vertico-mode)
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
   ;; to serve the original "C-k".

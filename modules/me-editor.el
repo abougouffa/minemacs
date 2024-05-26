@@ -106,7 +106,7 @@
 
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :hook (minemacs-after-startup . selection-highlight-mode)
+  :hook (minemacs-lazy . selection-highlight-mode)
   :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
 
 (use-package highlight-indent-guides

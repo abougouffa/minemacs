@@ -15,7 +15,7 @@
 
 (use-package unicode-fonts
   :straight t
-  :hook (minemacs-after-startup . +unicode-fonts-setup)
+  :hook (minemacs-lazy . +unicode-fonts-setup)
   :init
   (defun +unicode-fonts-setup ()
     "Prefer the `:unicode-font-family' from `minemacs-fonts'."

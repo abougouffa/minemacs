@@ -344,7 +344,7 @@ or file path may exist now."
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project")))
 
 (use-package tab-bar
-  :hook (minemacs-after-startup . tab-bar-mode)
+  :hook (minemacs-lazy . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
@@ -1522,7 +1522,7 @@ Useful for quickly switching to an open buffer."
   ;; the `me-completion' (which contains `vertico-mode' configuration) core
   ;; module is not enabled.
   :unless (and (memq 'me-completion minemacs-core-modules) (not (+package-disabled-p 'vertico)))
-  :hook (minemacs-after-startup . fido-vertical-mode))
+  :hook (minemacs-lazy . fido-vertical-mode))
 
 (use-package battery
   :hook (minemacs-lazy . +display-battery-mode-maybe)

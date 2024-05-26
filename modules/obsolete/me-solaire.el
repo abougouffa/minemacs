@@ -10,7 +10,7 @@
 
 (use-package solaire-mode
   :straight t
-  :hook (minemacs-after-startup . solaire-global-mode)
+  :hook (minemacs-lazy . solaire-global-mode)
   :config
   (dolist (face '(mode-line mode-line-active mode-line-inactive mode-line-emphasis))
     (setf (alist-get face solaire-mode-remap-alist) nil)))
