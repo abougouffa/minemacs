@@ -45,7 +45,7 @@
 
 (use-package org-re-reveal-citeproc
   :straight t
-  :when (and (memq 'me-org minemacs-modules) (not (memq 'org-re-reveal minemacs-disabled-packages))))
+  :when (and (memq 'me-org minemacs-modules) (not (+package-disabled-p 'org-re-reveal))))
 
 
 (provide 'me-biblio)
