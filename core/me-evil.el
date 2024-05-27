@@ -78,10 +78,11 @@
 (use-package evil-snipe
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
-  :hook (minemacs-lazy . evil-snipe-mode)
-  :hook (minemacs-lazy . evil-snipe-override-mode)
+  :hook (evil-mode . evil-snipe-mode)
+  :hook (evil-mode . evil-snipe-override-mode)
   :custom
   (evil-snipe-scope 'buffer)
+  (evil-snipe-repeat-scope 'buffer)
   (evil-snipe-smart-case t)
   (evil-snipe-auto-scroll t))
 
