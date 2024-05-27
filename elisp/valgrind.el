@@ -51,7 +51,7 @@ move to the source code that caused it."
                                    (eval valgrind-command) nil nil
                                    '(valgrind-history . 1)))
      (list (eval valgrind-command))))
-  (let ((default-directory (or (project-root (project-current)) default-directory)))
+  (let ((default-directory (or (let ((proj (project-current))) (project-root proj)) default-directory)))
     (unless (equal command (eval valgrind-command))
       (setq valgrind-command command))
     (compilation-start command nil (lambda (_) "*valgrind*"))))
