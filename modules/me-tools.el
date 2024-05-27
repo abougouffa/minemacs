@@ -15,6 +15,9 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
+(use-package tmux
+  :straight (:host github :repo "abougouffa/tmux.el"))
+
 (use-package rg
   :straight t
   :init
