@@ -91,7 +91,17 @@
        (if (length= tickets 1)
            (car (car tickets))
          (let ((completion-extra-properties '(:annotation-function +jira--ticket-annotation-fn)))
-           (completing-read "Select ticket: " tickets)))))))
+           (completing-read "Select ticket: " tickets))))))
+
+  (defun +jira-insert-ticket-link ()
+    "Insert ticket link, choose from states defined in `+jira-open-status'."
+    (interactive)
+    (let* ((id (with-temp-buffer (+jira-insert-ticket-id) (buffer-string)))
+           (link (format "%s/browse/%s" jiralib2-url id)))
+      (insert
+       (cond ((derived-mode-p 'org-mode) (format "[[%s][%s]]" link id))
+             ((derived-mode-p 'markdown-mode 'git-commit-mode) (format "[%s](%s)" id link))
+             (t link))))))
 
 
 (provide 'me-project)
