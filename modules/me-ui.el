@@ -97,6 +97,9 @@
         evil-delete evil-delete-line evil-delete-whole-line
         evil-goto-last-change evil-goto-last-change-reverse))))
 
+(use-package golden-ratio
+  :straight t)
+
 
 (provide 'me-ui)
 
