@@ -103,6 +103,9 @@
              ((derived-mode-p 'markdown-mode 'git-commit-mode) (format "[%s](%s)" id link))
              (t link))))))
 
+(use-package org-jira
+  :straight (:host github :repo "ahungry/org-jira"))
+
 
 (provide 'me-project)
 
