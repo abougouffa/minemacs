@@ -55,7 +55,7 @@
 (when (getenv "MINEMACS_PROFILE")
   (let ((dir (concat (file-name-directory load-file-name) "elisp/benchmark-init/")))
     (if (not (file-exists-p (concat dir "benchmark-init.el")))
-        (message "[MinEmacs]: `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory.")
+        (error "[MinEmacs:Error] `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory")
       (add-to-list 'load-path dir)
       (require 'benchmark-init)
       (benchmark-init/activate)

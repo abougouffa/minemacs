@@ -235,7 +235,7 @@ it automatically."
     ;; Tmux session
     "^TMUX$"
     ;; MinEmacs envvars
-    "^MINEMACS\\(_?DIR\\|_\\(ALPHA\\|DEBUG\\|VERBOSE\\|NOT_LAZY\\|NO_PROXIES\\|MSG_LEVEL\\|IGNORE_.*\\)\\)$")
+    "^MINEMACS\\(_?DIR\\|_\\(ALPHA\\|DEBUG\\|PROFILE\\|VERBOSE\\|NOT_LAZY\\|NO_PROXIES\\|MSG_LEVEL\\|IGNORE_.*\\)\\)$")
   "Environment variables to omit.
 Each string is a regexp, matched against variable names to omit from
 `+env-file' when saving evnironment variables in `+env-save'."
