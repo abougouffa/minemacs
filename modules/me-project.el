@@ -70,6 +70,29 @@
   :init
   (project-x-mode 1))
 
+(use-package jiralib2
+  :straight t
+  :commands +jira-insert-ticket-id +jira-insert-ticket-link
+  :init
+  (defvar-local +jira-open-status '("open" "to do" "in progress"))
+  :config
+  (defun +jira--ticket-annotation-fn (ticket)
+    (let ((item (assoc ticket minibuffer-completion-table)))
+      (when item (concat "    " (cdr item)))))
+
+  (defun +jira-insert-ticket-id ()
+    "Insert ticket ID, choose from states defined in `+jira-open-status'."
+    (interactive)
+    (when-let* ((issues (jiralib2-jql-search (format "assignee=\"%s\" AND status in (%s)"
+                                                     jiralib2-user-login-name
+                                                     (string-join (mapcar (apply-partially #'format "%S") +jira-open-status) ", "))))
+                (tickets (mapcar (lambda (t) (cons (cdr (assoc 'key t)) (cdr (assoc 'summary (cdr (assoc 'fields t)))))) issues)))
+      (insert
+       (if (length= tickets 1)
+           (car (car tickets))
+         (let ((completion-extra-properties '(:annotation-function +jira--ticket-annotation-fn)))
+           (completing-read "Select ticket: " tickets)))))))
+
 
 (provide 'me-project)
 
