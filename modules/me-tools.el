@@ -238,6 +238,9 @@ certs, rather than reject them silently."
 (use-package restclient-jq
   :straight t)
 
+(use-package restclient-test
+  :straight t)
+
 (use-package impostman
   :straight t)
 
