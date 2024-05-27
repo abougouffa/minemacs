@@ -241,6 +241,12 @@ certs, rather than reject them silently."
 (use-package restclient-test
   :straight t)
 
+(use-package ob-restclient
+  :straight t
+  :after org
+  :init
+  (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t))))
+
 (use-package impostman
   :straight t)
 
