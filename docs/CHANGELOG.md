@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.8.0](https://github.com/abougouffa/minemacs/compare/c65e497953c27a627fac4a0b38772de128d6be13..v6.8.0) - 2024-05-27
+#### Bug Fixes
+- **(eaf)** remove references to `minemacs-fonts` - ([c65e497](https://github.com/abougouffa/minemacs/commit/c65e497953c27a627fac4a0b38772de128d6be13)) - [@abougouffa](https://github.com/abougouffa)
+- **(valgrind)** better detection of the project root - ([57fca4b](https://github.com/abougouffa/minemacs/commit/57fca4b0c029358f78aca5934ab17d266b2be202)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** update the modules list - ([ed97985](https://github.com/abougouffa/minemacs/commit/ed9798522d5ae0a1ff99786631e27f90d613e0d9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(jiralib2)** add `+jira-insert-ticket-link` - ([384fd38](https://github.com/abougouffa/minemacs/commit/384fd3874d1e3819d33384b5e83b7f154b6e4e87)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add initial support for `org-jira` - ([222e9dd](https://github.com/abougouffa/minemacs/commit/222e9ddaf6e8006c6dcd7276025bd8fbead1edf6)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** add a new module for services, move `jiralib2` and `org-jira` - ([8590218](https://github.com/abougouffa/minemacs/commit/85902186a1d9e8983cf53a31730561e5d05a74ea)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `tmux` - ([d6ba7e7](https://github.com/abougouffa/minemacs/commit/d6ba7e7f317ab2b241fcbff0596fc9c85f7b602e)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `ob-restclient` - ([8d99771](https://github.com/abougouffa/minemacs/commit/8d99771ee1b029f3538a4c990f495645604c146c)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `restclient-test` - ([7c20b9c](https://github.com/abougouffa/minemacs/commit/7c20b9cc95438c60a23c086cd07a8b0d738353a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `restclient` - ([209bb6b](https://github.com/abougouffa/minemacs/commit/209bb6b96f4a1c3abebae2c214f8083d35de2f0f)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add initial support for `golden-ratio` - ([013af49](https://github.com/abougouffa/minemacs/commit/013af491f6754caa3711eebdc3ee8717d455d0aa)) - [@abougouffa](https://github.com/abougouffa)
+- move `jiralib2` from `me-vc` to `me-project` - ([3cebfc3](https://github.com/abougouffa/minemacs/commit/3cebfc374255e4ed02a8aec7070ef01b4c40c599)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(better-jumper)** use instead of `evil-jump-[forward/backward]` - ([c4f0a8c](https://github.com/abougouffa/minemacs/commit/c4f0a8cf1d0077d34c3486f60566306eff46fd95)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** don't pop as initial buff when a file is opened via args - ([cd64605](https://github.com/abougouffa/minemacs/commit/cd646056b6c09b6f558ae537a34e443642a62931)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil-snipe)** minor edits - ([cbad2a9](https://github.com/abougouffa/minemacs/commit/cbad2a9623a8e748b0038421cce33abc98e388d5)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-tab-groups)** use a better group naming function - ([010f58a](https://github.com/abougouffa/minemacs/commit/010f58aba380aa57f8a0dd8a42f95265a3b4e423)) - [@abougouffa](https://github.com/abougouffa)
+- minor tweaks related to profiling MinEmacs - ([4de550d](https://github.com/abougouffa/minemacs/commit/4de550d480e555fd4990fa9108c632ee2d65d935)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.7.4](https://github.com/abougouffa/minemacs/compare/ffaa6c184988ab8a791f16f78e1a225bcf18011b..v6.7.4) - 2024-05-26
 #### Tweaks
 - **(cocogitto)** better stashing on dirty work directory - ([ffaa6c1](https://github.com/abougouffa/minemacs/commit/ffaa6c184988ab8a791f16f78e1a225bcf18011b)) - [@abougouffa](https://github.com/abougouffa)
