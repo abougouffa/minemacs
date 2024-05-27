@@ -52,6 +52,7 @@
     ;; me-robot
     ;; me-rss
     ;; me-scheme
+    ;; me-services
     ;; me-tags
     me-tools
     me-tty
