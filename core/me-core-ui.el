@@ -59,7 +59,9 @@
       ("Projects"
        ("Switch to project" project-switch-project "p")))))
   :init
-  (setq initial-buffer-choice #'enlight))
+  (if minemacs-started-with-extra-args-p
+      (enlight-open)
+    (setq initial-buffer-choice #'enlight)))
 
 
 (provide 'me-core-ui)
