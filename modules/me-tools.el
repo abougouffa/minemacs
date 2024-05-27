@@ -195,7 +195,8 @@
 
 (use-package pet
   :straight t
-  :when (and (or (executable-find "dasel") (executable-find "yq")) (executable-find "sqlite3"))
+  :when (and (or (executable-find "dasel") (executable-find "yq"))
+             (or (+emacs-features-p 'sqlite3) (executable-find "sqlite3")))
   :init
   (add-hook (if (< emacs-major-version 29) 'python-mode-hook 'python-base-mode-hook) #'pet-mode))
 
