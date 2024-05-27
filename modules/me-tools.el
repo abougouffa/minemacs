@@ -210,6 +210,34 @@
     "rv"    #'verb-set-var
     "rx"    #'verb-show-vars))
 
+(use-package restclient
+  :straight t
+  :hook (restclient-mode . display-line-numbers-mode)
+  :mode ("\\.http\\'" . restclient-mode)
+  :config
+  (+map-local! :keymaps 'restclient-mode-map
+    "r"     '(nil :wk "restclinet")
+    "r RET" #'restclient-http-send-current-suppress-response-buffer
+    "rs"    #'restclient-http-send-current
+    "rr"    #'restclient-http-send-current-stay-in-window
+    "rf"    #'restclient-http-send-current-raw
+    "re"    #'restclient-copy-curl-command)
+
+  (+setq-hook! restclient-mode
+    imenu-generic-expression '((nil "^[A-Z]+\s+.+" 0)))
+
+  ;; From Doom Emacs (in case `gnutls-verify-error' policy is set to something)
+  (advice-add
+   #'restclient-http-do :around
+   (satch-defun +restclient--permit-self-signed-ssl:around-a (orig-fn &rest args)
+     "Forces underlying SSL verification to prompt for self-signed or invalid
+certs, rather than reject them silently."
+     (require 'gnutls)
+     (let (gnutls-verify-error) (apply orig-fn args)))))
+
+(use-package restclient-jq
+  :straight t)
+
 (use-package impostman
   :straight t)
 
