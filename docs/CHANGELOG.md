@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.8.1](https://github.com/abougouffa/minemacs/compare/f73cea17ec10f15ca5c4ea81716f527267306cae..v6.8.1) - 2024-05-28
+#### Bug Fixes
+- **(tmux)** disable on Windows - ([98d1b9f](https://github.com/abougouffa/minemacs/commit/98d1b9fdfddb2c24a3c265c712f19da0afbc5b04)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(pet)** better activation condition - ([f73cea1](https://github.com/abougouffa/minemacs/commit/f73cea17ec10f15ca5c4ea81716f527267306cae)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2c8a584](https://github.com/abougouffa/minemacs/commit/2c8a58454f201a74f58231a367c87ea5d4fabcd2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.8.0](https://github.com/abougouffa/minemacs/compare/c65e497953c27a627fac4a0b38772de128d6be13..v6.8.0) - 2024-05-27
 #### Bug Fixes
 - **(eaf)** remove references to `minemacs-fonts` - ([c65e497](https://github.com/abougouffa/minemacs/commit/c65e497953c27a627fac4a0b38772de128d6be13)) - [@abougouffa](https://github.com/abougouffa)
