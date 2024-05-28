@@ -45,6 +45,9 @@
 (use-package org-jira
   :straight (:host github :repo "ahungry/org-jira"))
 
+(use-package tributary
+  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc")))
+
 
 (provide 'me-services)
 
