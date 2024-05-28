@@ -191,6 +191,9 @@
     (:tool autoconf
      :link "https://www.gnu.org/software/autoconf"
      :desc "Generate configuration script")
+    (:tool tmux
+     :link "https://github.com/tmux/tmux"
+     :desc "THE terminal multiplexer")
     (:tool aspell
      :link "https://github.com/GNUAspell/aspell"
      :desc "Interactive spell checker")
