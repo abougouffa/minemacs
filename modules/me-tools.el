@@ -216,7 +216,7 @@
     "rx"    #'verb-show-vars))
 
 (use-package restclient
-  :straight t
+  :straight (:host github :repo "abougouffa/restclient.el")
   :hook (restclient-mode . display-line-numbers-mode)
   :mode ("\\.http\\'" . restclient-mode)
   :config
@@ -241,7 +241,7 @@ certs, rather than reject them silently."
      (let (gnutls-verify-error) (apply orig-fn args)))))
 
 (use-package restclient-jq
-  :straight t)
+  :straight (:host github :repo "abougouffa/restclient.el"))
 
 (use-package restclient-test
   :straight t)
