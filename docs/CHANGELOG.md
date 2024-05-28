@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v6.8.2](https://github.com/abougouffa/minemacs/compare/9f70fd72f5fd04ed00f2cfce318034bee8330cd4..v6.8.2) - 2024-05-28
+#### Documentation
+- add `tmux` to the list of external dependencies - ([e53b232](https://github.com/abougouffa/minemacs/commit/e53b232c1e6db2b8d71585cf816b47491c0c59a4)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(jq-mode)** add `+xq-interactively` for XML - ([297e31c](https://github.com/abougouffa/minemacs/commit/297e31c5d07ddbe36dd3fd8d333731be1c6edbb6)) - [@abougouffa](https://github.com/abougouffa)
+- **(restclient)** use my fork - ([7c5c378](https://github.com/abougouffa/minemacs/commit/7c5c3786226f2d8de47eaca5ea0a070e97a539a1)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** add initial support for `tributary` (Confluence) - ([b03a091](https://github.com/abougouffa/minemacs/commit/b03a0915b072a5aba4534993c294ca98b16cc35f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(parinfer-rust)** simplify conditions, remove unnecessary (!) hacks - ([9f70fd7](https://github.com/abougouffa/minemacs/commit/9f70fd72f5fd04ed00f2cfce318034bee8330cd4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8b61854](https://github.com/abougouffa/minemacs/commit/8b61854f8e675adeb94833b0564bc6756d76e1ab)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v6.8.1](https://github.com/abougouffa/minemacs/compare/f73cea17ec10f15ca5c4ea81716f527267306cae..v6.8.1) - 2024-05-28
 #### Bug Fixes
 - **(tmux)** disable on Windows - ([98d1b9f](https://github.com/abougouffa/minemacs/commit/98d1b9fdfddb2c24a3c265c712f19da0afbc5b04)) - [@abougouffa](https://github.com/abougouffa)
