@@ -29,6 +29,9 @@
     (:tool yq
      :link "https://github.com/mikefarah/yq"
      :desc "A portable command-line YAML, JSON, XML, CSV, TOML and properties processor")
+    (:tool xq
+     :link "https://github.com/sibprogrammer/xq"
+     :desc "Command-line XML and HTML beautifier and content extractor")
     (:tool xmllint
      :link "https://github.com/GNOME/libxml2"
      :desc "Parse the XML files and output the result of the parsing")
