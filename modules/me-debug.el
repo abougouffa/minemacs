@@ -85,7 +85,7 @@
   :straight t)
 
 (use-package beardbolt
-  :straight (:host github :repo "abougouffa/beardbolt" :branch "beardbolt-prefix" :files ("*.el" "starters"))
+  :straight (:host github :repo "abougouffa/beardbolt" :files ("*.el" "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   ;; Add Treesit languages
