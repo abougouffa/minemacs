@@ -710,6 +710,8 @@ or file path may exist now."
 
 (use-package elisp-mode
   :after minemacs-first-elisp-file ; prevent elisp-mode from being loaded too early
+  :custom-face ; better the default cyan color!
+  (elisp-shorthand-font-lock-face ((t :inherit font-lock-keyword-face :foreground "red")))
   :init
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
     "p" #'check-parens)
