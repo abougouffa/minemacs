@@ -398,8 +398,9 @@ or file path may exist now."
      [("S" "Start" flymake-start :transient t)
       ("Q" "Quit" ignore :transient t)]])
 
-  ;; Use the session's load-path with flymake
-  (cl-callf append elisp-flymake-byte-compile-load-path load-path)
+  ;; Use the session's `load-path' with flymake
+  (with-eval-after-load 'elisp-mode
+    (cl-callf append elisp-flymake-byte-compile-load-path load-path))
 
   ;; Larger right frings
   (with-eval-after-load 'fringe
