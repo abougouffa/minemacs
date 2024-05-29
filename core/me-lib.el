@@ -131,12 +131,10 @@ value of this method instead of the original alist, to ensure correct results."
 
 For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
   `(cl-callf append ,mode-alist
-    (let (modes)
-     (dolist (mode-spec ,mode-alist)
-      (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
-       (when (fboundp ts-mode)
-        (push (cons ts-mode (cdr mode-spec)) modes))))
-     modes)))
+    (cl-loop
+     for mode-spec in ,mode-alist
+     collect (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
+              (when (fboundp ts-mode) (cons ts-mode (cdr mode-spec)))))))
 
 ;;; Missing primitive utilities
 
