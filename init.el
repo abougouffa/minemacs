@@ -200,7 +200,7 @@ The `minemacs-loaded' will require `minemacs-lazy' when Emacs goes idle, this
 provides `minemacs-lazy' so the packages loaded with `:after minemacs-lazy' can
 be loaded then it incrementally run the hooks in `minemacs-lazy-hook' when Emacs
 goes idle."
-  (+info! "Loaded Emacs%s in %s." (if (daemonp) " (in daemon mode)" "") (emacs-init-time))
+  (+info! "Loaded Emacs%s in %s, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "") (emacs-init-time) gc-elapsed gcs-done)
   (unless (featurep 'me-org-export-async-init) (+load-theme))
   (require 'minemacs-loaded))
 
