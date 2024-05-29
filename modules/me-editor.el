@@ -106,8 +106,12 @@
 
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :hook (minemacs-lazy . selection-highlight-mode)
-  :custom-face (selection-highlight-mode-match-face ((t (:background "lavender")))))
+  :custom-face (selection-highlight-mode-match-face ((t (:background "lavender"))))
+  :init
+  ;; HACK: For some reason, `selection-highlight-mode' dosn't work sometimes
+  ;; unless it is disabled the enabled again. It is quite difficult to reproduce
+  ;; as it happens pretty randomly.
+  (+with-delayed-1! (selection-highlight-mode 1)))
 
 (use-package highlight-indent-guides
   :straight t
