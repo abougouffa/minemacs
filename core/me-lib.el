@@ -126,6 +126,18 @@ value of this method instead of the original alist, to ensure correct results."
     (push (cons key val) alist))
   alist)
 
+(defmacro +mode-alist-add-ts-modes! (mode-alist)
+  "Duplicate elements in MODE-ALIST to include Treesit modes.
+
+For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
+  `(cl-callf append ,mode-alist
+    (let (modes)
+     (dolist (mode-spec ,mode-alist)
+      (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
+       (when (fboundp ts-mode)
+        (push (cons ts-mode (cdr mode-spec)) modes))))
+     modes)))
+
 ;;; Missing primitive utilities
 
 (defun +set-standard-value (variable value)
