@@ -255,6 +255,9 @@ certs, rather than reject them silently."
 (use-package impostman
   :straight t)
 
+(use-package hurl-mode
+  :straight (:host github :repo "JasZhe/hurl-mode"))
+
 
 (provide 'me-tools)
 
