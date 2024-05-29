@@ -82,19 +82,15 @@
     "D" #'disaster))
 
 (use-package rmsbolt
-  :straight t)
+  :straight t
+  :config
+  (+mode-alist-add-ts-modes! rmsbolt-languages))
 
 (use-package beardbolt
   :straight (:host github :repo "abougouffa/beardbolt" :files ("*.el" "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
-  ;; Add Treesit languages
-  (cl-callf append beardbolt-languages
-    (let ((langs))
-      (dolist (lang-spec beardbolt-languages)
-        (let ((ts-lang (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car lang-spec)))))))
-          (push (cons ts-lang (cdr lang-spec)) langs)))
-      langs)))
+  (+mode-alist-add-treesit-modes! beardbolt-languages))
 
 (use-package objdump-disassemble
   :straight (:host github :repo "abougouffa/objdump-disassemble"))
