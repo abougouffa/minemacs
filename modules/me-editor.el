@@ -26,9 +26,7 @@
     (add-hook 'completion-at-point-functions #'tempel-complete -100 t)))
 
 (use-package tempel-collection
-  :straight t
-  :after tempel
-  :demand)
+  :straight t)
 
 (use-package wgrep
   :straight t
@@ -62,9 +60,7 @@
            highlight-numbers-modelist))
 
 (use-package zones
-  :straight t
-  :demand
-  :after minemacs-lazy)
+  :straight t)
 
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
