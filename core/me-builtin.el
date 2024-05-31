@@ -191,6 +191,9 @@
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
   (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
   :config
+  ;; Make `ESC' behave like `C-g'
+  (keymap-global-set "<escape>" #'keyboard-escape-quit)
+
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
