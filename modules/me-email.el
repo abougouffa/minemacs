@@ -104,7 +104,7 @@
   :custom
   (mu4e-icalendar-trash-after-reply t)
   :config
-  (mu4e-icalendar-setup))
+  (gnus-icalendar-setup))
 
 (use-package me-mu4e-ui
   :when +mu4e-available-p
