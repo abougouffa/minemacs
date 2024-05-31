@@ -113,13 +113,6 @@
   ;; as it happens pretty randomly.
   (+with-delayed-1! (selection-highlight-mode 1)))
 
-(use-package highlight-indent-guides
-  :straight t
-  :custom
-  (highlight-indent-guides-method 'character)
-  (highlight-indent-guides-character #x2506)
-  (highlight-indent-guides-responsive 'top))
-
 (use-package cc-isearch-menu
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
