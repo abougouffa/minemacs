@@ -64,7 +64,7 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-" "+c" "+d" "+e" "+f" "+hook-once" "+i" "+known-scripts" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+un" "+v" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+hook-once" "+i" "+known-scripts" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+un" "+v" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -253,14 +253,35 @@ If DERIVED is non-nil (interactively, with prefix argument), show
 the children of class at point.
 
 (fn &optional DERIVED)" t)
-(autoload '+binary-objdump-p "me-lib-extra" "\
-Can FILENAME be recognized by \"objdump\".
+(defvar +eglot-optimization-mode nil "\
+Non-nil if +Eglot-Optimization mode is enabled.
+See the `+eglot-optimization-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `+eglot-optimization-mode'.")
+(custom-autoload '+eglot-optimization-mode "me-lib-extra" nil)
+(autoload '+eglot-optimization-mode "me-lib-extra" "\
+Deploys universal GC and IPC optimizations for `eglot'.
 
-(fn FILENAME)")
-(autoload '+binary-objdump-buffer-p "me-lib-extra" "\
-Can the BUFFER be viewed as a disassembled code with objdump.
+This is a global minor mode.  If called interactively, toggle the
+`+Eglot-Optimization mode' mode.  If the prefix argument is
+positive, enable the mode, and if it is zero or negative, disable
+the mode.
 
-(fn &optional BUFFER)")
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='+eglot-optimization-mode)'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+(fn &optional ARG)" t)
+(autoload '+eglot-help-at-point "me-lib-extra" "\
+Request documentation for the thing at point." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
 Return whether BUFFER or the current buffer is binary.
 
@@ -279,10 +300,6 @@ This checks the first CHUNK of bytes, defaults to 1024.
 Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'.
 
 (fn &optional BUFFER)")
-(autoload 'objdump-disassemble-mode "me-lib-extra" "\
-Major mode for viewing executable files disassembled using objdump.
-
-(fn)" t)
 (autoload '+binary-hexl-mode-maybe "me-lib-extra" "\
 Activate `hexl-mode' if relevant for the current buffer." t)
 (autoload '+kill-buffer-and-its-windows "me-lib-extra" "\
@@ -372,7 +389,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+dir-locals--autoreload-" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+dir-locals--autoreload-" "+eglot--" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from me-modules.el
@@ -416,7 +433,7 @@ Toggle break point.
 
 ;;; Generated autoloads from me-splash.el
 
-(register-definition-prefixes "me-splash" '("minemacs-splash"))
+(register-definition-prefixes "me-splash" '("+minemacs-splash--kill-h" "minemacs-splash"))
 
 
 ;;; Generated autoloads from me-vars.el
@@ -469,6 +486,11 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
+
+
+;;; Generated autoloads from minemacs-lazy.el
+
+(register-definition-prefixes "minemacs-lazy" '("minemacs--lazy-"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
