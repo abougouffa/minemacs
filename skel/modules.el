@@ -31,7 +31,6 @@
         ;; me-embedded    ; Embedded systems (embed, arduino-mode, openocd, bitbake, dts-mode, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
         me-files          ; Files and directories (dirvish, vlf, sudo-edit, ztree, ...)
-        me-formal         ; Formal methods and theorem provers (alloy-mode, proof-general, ...)
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)
         me-latex          ; LaTeX (auctex, auctex-latexmk, LaTeX-preview-pane, ...)

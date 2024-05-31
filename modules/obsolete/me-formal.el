@@ -19,6 +19,6 @@
   (setq auto-mode-alist (delete (rassoc 'coq-mode auto-mode-alist) auto-mode-alist)))
 
 
-(provide 'me-formal)
+(provide 'obsolete/me-formal)
 
 ;;; me-formal.el ends here
