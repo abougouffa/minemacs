@@ -40,10 +40,7 @@
   :straight t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)
   :custom
-  (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el"))
-  :config
-  (+nmap! :keymaps 'nov-mode-map
-    "RET" #'nov-scroll-up))
+  (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el")))
 
 (defconst +tuntox-available-p (and (executable-find "tuntox") t))
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))

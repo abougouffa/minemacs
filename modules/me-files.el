@@ -28,14 +28,8 @@
   ;; Load immediately if Emacs is launched in an "open with" fashion
   (when minemacs-started-with-extra-args-p (require 'dirvish))
   :config
-  (+nvmap! :keymaps 'dirvish-mode-map
-    "q" #'dirvish-quit
-    "s" #'dirvish-subtree-toggle
-    "y" #'dirvish-yank-menu)
-
   ;; Cscope generate *.po files which that makes dirvish preview freeze
   (push "po" dirvish-preview-disabled-exts)
-
   (dirvish-override-dired-mode 1))
 
 (use-package neotree

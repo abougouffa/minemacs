@@ -32,7 +32,7 @@
         ((bound-and-true-p spell-fu-mode) (call-interactively #'+spell-fu-correct))))
 
 (defun +spellcheck-mode (&optional arg)
-  "Spell checking mode."
+  "Spell checking mode, based on `jinx-mode' if available, or based on `spell-fu-mode'."
   (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
   (cond ((and (fboundp 'jinx-mode) (+jinx-load-module))
          (jinx-mode (if (bound-and-true-p jinx-mode) -1 1)))
@@ -42,7 +42,6 @@
          (flyspell-mode (if (bound-and-true-p flyspell-mode) -1 1)))))
 
 (+map! "ts" #'+spellcheck-mode)
-(+nvmap! "z=" #'+spellcheck-correct)
 
 (add-hook #'text-mode-hook #'+spellcheck-mode)
 

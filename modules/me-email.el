@@ -65,11 +65,6 @@
   (mail-specify-envelope-from t)
   (mail-user-agent 'mu4e-user-agent)
   :config
-  (+nvmap! :keymaps 'mu4e-view-mode-map
-    "p" #'mu4e-view-save-attachments)
-  (+nvmap! :keymaps '(mu4e-headers-mode-map mu4e-view-mode-map)
-    "gw" #'+mu4e-open-mail-as-html
-    "g RET" #'browse-url-at-point)
   (+map-local! :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
     "s" #'message-send-and-exit
     "d" #'message-kill-buffer
@@ -166,8 +161,6 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" (any space ?: ?\; ?, ?.))))))) ;; p.j
   :config
-  (+nvmap! :keymaps 'org-msg-edit-mode-map
-    "gg" #'org-msg-goto-body)
   (+map-local! :keymaps 'org-msg-edit-mode-map
     "a"  '(nil :wk "attach")
     "aa" #'org-msg-attach-attach

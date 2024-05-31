@@ -83,18 +83,6 @@
   :custom
   (org-fragtog-preview-delay 0.2))
 
-(use-package evil-org
-  :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
-  :hook (org-mode . evil-org-mode))
-
-(use-package evil-org-agenda
-  :after evil-org
-  :unless (+package-disabled-p 'evil 'me-evil)
-  :demand
-  :config
-  (evil-org-agenda-set-keys))
-
 (use-package org-re-reveal
   :straight t)
 

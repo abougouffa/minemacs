@@ -97,7 +97,6 @@
   (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :config
-  (with-eval-after-load 'evil (evil-set-initial-state 'git-commit-mode 'insert))
   (global-git-commit-mode 1))
 
 (use-package git-modes
@@ -133,14 +132,7 @@
   (with-eval-after-load 'diff-mode
     (+map-local! :keymaps 'diff-mode-map
       "v" #'diffview-current
-      "V" #'diffview-region))
-  :config
-  (+nvmap! :keymaps 'diffview--mode-map
-    "="   #'diffview--align-windows
-    "+"   #'diffview--align-windows
-    "C-j" #'diffview--next-file
-    "C-k" #'diffview--prev-file
-    "q"   #'diffview--quit))
+      "V" #'diffview-region)))
 
 
 (provide 'me-vc)

@@ -73,13 +73,7 @@
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)
-  (vterm-tramp-shells '(("docker" "/bin/bash")))
-  :config
-  (+imap! :keymaps 'vterm-mode-map
-    "C-l" #'vterm-send-right
-    "C-h" #'vterm-send-left
-    "C-k" #'vterm-send-up
-    "C-j" #'vterm-send-down))
+  (vterm-tramp-shells '(("docker" "/bin/bash"))))
 
 (use-package multi-vterm
   :straight t
@@ -98,14 +92,8 @@
   (advice-add
    'multi-vterm-dedicated-open :after
    (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
-     (if-let ((dir (file-remote-p default-directory 'localname)))
-         (vterm-send-string (format "cd %S\n" dir)))))
-  (+nvmap!
-    :keymaps 'vterm-mode-map
-    ",c" #'multi-vterm
-    ",n" #'multi-vterm-next
-    ",p" #'multi-vterm-prev
-    "<return>" #'evil-insert-resume))
+     (when-let ((dir (file-remote-p default-directory 'localname)))
+       (vterm-send-string (format "cd %S\n" dir))))))
 
 (use-package docker
   :straight t

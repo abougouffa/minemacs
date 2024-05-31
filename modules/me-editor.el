@@ -12,9 +12,8 @@
   :straight t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
-  (tempel-path
-   (list (concat minemacs-assets-dir "templates/tempel/*.eld")
-         (concat minemacs-config-dir "templates/tempel/*.eld")))
+  (tempel-path (list (concat minemacs-assets-dir "templates/tempel/*.eld")
+                     (concat minemacs-config-dir "templates/tempel/*.eld")))
   :bind (("M-\"" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert)
          :map tempel-map
@@ -69,11 +68,7 @@
 
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
-  :when (+emacs-features-p 'tree-sitter)
-  :init
-  (+vmap!
-    "v" #'expreg-expand
-    "q" #'expreg-contract))
+  :when (+emacs-features-p 'tree-sitter))
 
 ;; Fallback to `expand-region' if `expreg' cannot be used
 (unless (+emacs-features-p 'tree-sitter)
@@ -116,9 +111,6 @@
 (use-package cc-isearch-menu
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
-
-;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
-(+nvmap! "gy" #'+kill-region-as-paragraph)
 
 
 (provide 'me-editor)

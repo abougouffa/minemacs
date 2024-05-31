@@ -16,10 +16,6 @@
   :straight t
   :init
   (+map! "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
-  (+nmap! :keymaps 'elfeed-search-mode-map
-    "d" #'+elfeed-youtube-dl)
-  (+nmap! :keymaps 'elfeed-show-mode-map
-    "D" #'+elfeed-download-image)
   (defcustom +elfeed-videos-dir "~/Videos/elfeed/"
     "Directory of downloaded videos."
     :group 'minemacs-elfeed)

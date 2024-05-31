@@ -89,13 +89,7 @@
 
 (use-package pulsar
   :straight t
-  :hook (minemacs-first-file . pulsar-global-mode)
-  :config
-  (with-eval-after-load 'evil
-    (cl-callf append pulsar-pulse-functions
-      '(evil-yank evil-paste-after evil-paste-before
-        evil-delete evil-delete-line evil-delete-whole-line
-        evil-goto-last-change evil-goto-last-change-reverse))))
+  :hook (minemacs-first-file . pulsar-global-mode))
 
 (use-package golden-ratio
   :straight t)

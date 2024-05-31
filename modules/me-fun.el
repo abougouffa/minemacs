@@ -16,17 +16,6 @@
   (xkcd-cache-dir (+directory-ensure minemacs-local-dir "xkcd/"))
   (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))
   :config
-  (+nvmap! :keymaps 'xkcd-mode-map
-    "j" #'xkcd-next
-    "k" #'xkcd-prev
-    "l" #'xkcd-get-latest
-    "L" #'xkcd-get-latest-cached
-    "<right>" #'xkcd-next
-    "<left>" #'xkcd-prev
-    "o" #'xkcd-open-browser
-    "O" #'xkcd-open-explanation-browser
-    "r" #'xkcd-rand
-    "y" #'xkcd-copy-link)
   (+ignore-root xkcd-cache-dir))
 
 (use-package speed-type

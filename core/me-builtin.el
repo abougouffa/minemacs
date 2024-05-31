@@ -481,9 +481,7 @@ or file path may exist now."
     "j"   #'next-line
     "k"   #'previous-line
     "q"   #'kill-buffer-and-window
-    "ESC" #'kill-buffer-and-window)
-  (with-eval-after-load 'evil
-    (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
+    "ESC" #'kill-buffer-and-window))
 
 (use-package bibtex
   :hook (bibtex-mode . display-line-numbers-mode)
@@ -817,10 +815,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
-  (with-eval-after-load 'evil
-    ;; Fix `evil' search problem (to be used with `evil-search')
-    (when (eq evil-search-module 'evil-search)
-      (setq org-fold-core-style 'overlays)))
   :custom
   (org-auto-align-tags nil)
   (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
@@ -847,7 +841,7 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   (org-pretty-entities-include-sub-superscripts t)
   (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
   (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
-  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, see below)
+  (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, (see `me-evil'))
   (org-special-ctrl-a/e t)
   (org-startup-indented nil)
   (org-tags-column 0)
@@ -875,8 +869,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
     "s" #'org-edit-src-save
     "q" #'org-edit-src-abort
     "e" #'org-edit-src-exit)
-  (+nmap! :keymaps 'org-mode-map
-    "RET" #'org-open-at-point)
 
   (setq org-export-async-debug minemacs-debug-p) ;; Can be useful!
 
