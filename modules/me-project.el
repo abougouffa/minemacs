@@ -15,11 +15,6 @@
     "p" #'consult-project-extra-find
     "P" #'consult-project-extra-find-other-window))
 
-(use-package find-file-in-project
-  :straight t
-  :custom
-  (ffip-use-rust-fd (and (executable-find "fd") t)))
-
 (use-package compile-multi
   :straight t)
 
