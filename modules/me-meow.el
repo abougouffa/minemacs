@@ -111,6 +111,10 @@
     (+meow-setup/azerty)
     (meow-global-mode 1))
 
+  ;; Quit the `corfu' auto-completion on exiting the insert state
+  (with-eval-after-load 'corfu
+    (add-hook 'meow-insert-exit-hook #'corfu-quit))
+
   ;; Start `git-commit-mode' in insert state
   (with-eval-after-load 'git-commit
     (+add-hook! git-commit-mode (when (bound-and-true-p meow-mode) (meow-insert-mode 1)))))
