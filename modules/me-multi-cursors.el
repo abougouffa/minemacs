@@ -9,7 +9,8 @@
 ;;; Code:
 
 (use-package iedit
-  :straight t)
+  :straight t
+  :bind ("C-;" . iedit-mode))
 
 
 (provide 'me-multi-cursors)
