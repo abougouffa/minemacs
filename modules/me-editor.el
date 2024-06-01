@@ -95,15 +95,6 @@
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
 
-(use-package selection-highlight-mode
-  :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :custom-face (selection-highlight-mode-match-face ((t (:background "lavender"))))
-  :init
-  ;; HACK: For some reason, `selection-highlight-mode' dosn't work sometimes
-  ;; unless it is disabled the enabled again. It is quite difficult to reproduce
-  ;; as it happens pretty randomly.
-  (+with-delayed-1! (selection-highlight-mode 1)))
-
 (use-package cc-isearch-menu
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
