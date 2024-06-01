@@ -1015,17 +1015,9 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
      org-latex-pdf-process
      '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
-(use-package ox-koma-letter
-  :after ox
-  :demand)
-
-(use-package ox-odt
-  :after ox
-  :demand)
-
-(use-package ox-beamer
-  :after ox
-  :demand)
+(use-package ox
+  :config
+  (mapc #'require '(ox-odt ox-beamer ox-koma-letter)))
 
 (use-package oc
   :after org
@@ -1034,20 +1026,8 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
   :config
-  (+map-local! :keymaps 'org-mode-map
-    "C" #'org-cite-insert))
-
-(use-package oc-csl
-  :after oc
-  :demand)
-
-(use-package oc-natbib
-  :after oc
-  :demand)
-
-(use-package oc-biblatex
-  :after oc
-  :demand)
+  (+map-local! :keymaps 'org-mode-map "C" #'org-cite-insert)
+  (mapc #'require '(oc-csl oc-natbib oc-biblatex)))
 
 (use-package electric
   :config
