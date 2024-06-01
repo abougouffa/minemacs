@@ -23,8 +23,7 @@
 (provide 'me-org-export-async-init)
 
 ;; Load only some essential modules
-(setq minemacs-core-modules '(me-builtin)
-      minemacs-modules '(me-org me-biblio me-latex me-project me-prog me-data me-emacs-lisp))
+(setq minemacs-modules '(me-org me-biblio me-latex me-project me-prog me-data me-emacs-lisp))
 
 (load (concat user-emacs-directory "init.el") nil t)
 

@@ -99,7 +99,7 @@
   (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
 
 ;; Add some of MinEmacs' directories to `load-path'.
-(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) load-path))
+(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-modules-dir) load-path))
 
 ;; Load MinEmacs' library
 (require 'me-lib)
@@ -246,19 +246,16 @@ goes idle."
 ;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
 ;; this can be useful when configuring the module's packages and adding new
 ;; functionality.
-(setq minemacs-core-modules
-      (delete-dups
-       (append (when (memq 'me-splash minemacs-core-modules) '(me-splash))
-               '(me-bootstrap)
-               (when (< emacs-major-version 29) '(me-compat))
-               '(me-builtin me-gc)
-               minemacs-core-modules)))
+(let ((splash (when (memq 'me-splash minemacs-core-modules) '(me-splash))))
+  (setq minemacs-modules (delete-dups (append minemacs-core-modules minemacs-modules))
+        minemacs-core-modules '(me-bootstrap me-compat me-builtin me-gc))
 
-;; Load MinEmacs modules
-(dolist (module-file (append
-                      (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) minemacs-core-modules)
-                      (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
-  (+load module-file))
+  ;; Load MinEmacs modules
+  (dolist (module (delete-dups (append splash minemacs-core-modules minemacs-modules)))
+    (let ((module-file (format "%s%s.el" minemacs-core-dir module)))
+      (if (file-exists-p module-file)
+          (+load module-file)
+        (+load (format "%s%s.el" minemacs-modules-dir module))))))
 
 (run-hooks 'minemacs-after-loading-modules-hook)
 

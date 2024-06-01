@@ -1519,7 +1519,7 @@ Useful for quickly switching to an open buffer."
   ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
   ;; the `me-completion' (which contains `vertico-mode' configuration) core
   ;; module is not enabled.
-  :unless (and (memq 'me-completion minemacs-core-modules) (not (+package-disabled-p 'vertico)))
+  :when (+package-disabled-p 'vertico 'me-completion)
   :hook (minemacs-lazy . fido-vertical-mode))
 
 (use-package battery
