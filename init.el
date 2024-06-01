@@ -231,21 +231,9 @@ goes idle."
   (setq minemacs-core-modules '(me-splash me-keybindings me-evil me-core-ui me-completion)
         minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\.el\\'")))))
 
-;; NOTE: Ensure the `me-gc' module is in the core modules list. This module
-;; enables the `gcmh-mode' package (a.k.a. the Garbage Collector Magic Hack).
-;; This GCMH minimizes GC interference with the activity by using a high GC
-;; threshold during normal use, then when Emacs is idling, GC is triggered and a
-;; low threshold is set. In MinEmacs, we set the threshold (`gc-cons-threshold'
-;; variable) to an unlimited size in "early-init.el", this helps improving the
-;; startup time, but needs to be set down to a more reasonable value after Emacs
-;; gets loaded. The use of `gcmh-mode' ensures reverting this value so we don't
-;; need to do it manually.
-;; NOTE: Ensure the `me-splash', `me-bootstrap', `me-compat' and `me-builtin'
-;; modules are in the right order. The `me-compat' should be loaded just after
-;; `me-bootstrap' once `straight' and `use-package' are set up. This enables us
-;; to use some of the new Emacs 29 functions even on earlier Emacs versions,
-;; this can be useful when configuring the module's packages and adding new
-;; functionality.
+;; New MinEmacs uses only `minemacs-modules'. The `minemacs-core-modules' is
+;; left for now just for compatibility issues. Ensure the `me-splash' module is
+;; loaded the first.
 (let ((splash (when (memq 'me-splash minemacs-core-modules) '(me-splash))))
   (setq minemacs-modules (delete-dups (append minemacs-core-modules minemacs-modules))
         minemacs-core-modules '(me-bootstrap me-compat me-builtin me-gc))

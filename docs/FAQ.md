@@ -2,6 +2,14 @@
 This file assembles solutions to some of the known issues and answers some of
 the frequently asked questions about MinEmacs.
 
+## MinEmacs (with Evil) keybindings cheat sheet
+
+MinEmacs defines several keybindings, mainly using [**general.el**](https://github.com/noctuid/general.el). To see the full
+list of keybindings defined using general, you can type `SPC h g` or `M-x
+general-describe-keybindings`.
+
+This is usable only when you have `me-evil` enabled.
+
 ## Trump gets stuck when trying to open a file via SSH
 Sometimes, when trying to open a distant file via SSH on Tramp, it can get
 stuck. A common reason for this can be the prompt pattern on the distant

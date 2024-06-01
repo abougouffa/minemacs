@@ -60,19 +60,19 @@ launched. During the initial run, Emacs will automatically install the necessary
 packages.
 
 > [!IMPORTANT]
-> Please note that I'm using a fresh Emacs 29 built from source on a Manjaro
-> Linux system. I have enabled basic [Github CI actions](https://github.com/abougouffa/minemacs/actions) to automatically test
-> running Emacs 28, 29 and a fresh 30 build on [Ubuntu Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml) and [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml) and Emacs
-> 28 on [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml). These actions ensure that MinEmacs is "runnable"; with all
-> modules enabled on these systems. However, more testing should be done to
-> validate the configuration on systems other than Linux.
+> Please note that I'm using a fresh Emacs 29 built from source mainly on a
+> Manjaro Linux and a quite old Debian systems. I have enabled basic [Github CI
+> actions](https://github.com/abougouffa/minemacs/actions) to automatically test running Emacs 28, 29 and a 30 builds on [Ubuntu
+> Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml) and [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml) and Emacs 29 on [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml). These actions ensure that MinEmacs is
+> "runnable" on these systems; with all modules enabled. However, more testing
+> should be done to validate the configuration on systems other than Linux.
 >
 > I'm trying to support at least Emacs 28.1, so [I back port some of the new
-> functions/macros I use to Emacs 28](/core/backports/). Furthermore, for Emacs 28 and earlier,
-> MinEmacs includes the `me-compat` module which loads the `compat` package at early
-> stage (just after bootstrapping `straight` and `use-package`), this can facilitate
-> porting MinEmacs to earlier Emacs versions. However, I've never tested
-> MinEmacs with versions earlier than 28.1, and I don't plan to do so!
+> functions/macros I use to Emacs 28](/core/backports/). Furthermore, MinEmacs includes the
+> `me-compat` module which loads the `compat` package at early stage (just after
+> bootstrapping `straight` and `use-package`), this can facilitate porting MinEmacs
+> to earlier Emacs versions. However, I've never tested MinEmacs with versions
+> earlier than 28.1, and I don't plan to do so!
 
 ## Customization
 
@@ -86,8 +86,8 @@ do so by setting the `MINEMACSDIR` environment variable.
 There are two main files that can be added in the `~/.minemacs.d` directory:
 
 1. The `~/.minemacs.d/modules.el` file contains a list of enabled modules and a
-   list of disabled packages (`minemacs-core-modules`, `minemacs-modules` and
-   `minemacs-disabled-packages` can be set in this file).
+   list of disabled packages (`minemacs-modules` and `minemacs-disabled-packages`
+   can be set in this file).
 2. The `~/.minemacs.d/config.el` file contains the user configuration and
    customization, you can think of it as your `init.el`, which gets loaded at the
    end of MinEmacs' `init.el`!
@@ -145,16 +145,10 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables loading
   `~/.minemacs.d/<file>.el` user configuration files. Accepted values for `<file>`
   are: `early-config`, `init-tweaks`, `modules`, `config`, `local/early-config`,
-  `local/init-tweaks`, `local/modules` and `local/config`. Use `all` to disable all
-  user configuration files.
+  `local/init-tweaks`, `local/modules` and `local/config`. Use `all` to disable all user
+  configuration files.
 - `MINEMACS_LOAD_ALL_MODULES`: Load all modules (without taking
   `~/.minemacs.d/modules.el` into account).
-
-## MinEmacs keybindings cheat sheet
-
-MinEmacs defines several keybindings, mainly using [**general.el**](https://github.com/noctuid/general.el). To see the full
-list of keybindings defined using general, you can type `SPC h g` or `M-x
-general-describe-keybindings`.
 
 ## Extra documentation
 More information about customization variables, functions and commands defined
