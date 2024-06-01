@@ -194,6 +194,10 @@
   ;; Make `ESC' behave like `C-g'
   (keymap-global-set "<escape>" #'keyboard-escape-quit)
 
+  ;; Unbind some annoying commands
+  (keymap-global-unset "C-z" 'remove)
+  (keymap-global-unset "C-x C-z" 'remove)
+
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
