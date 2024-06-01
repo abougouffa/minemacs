@@ -547,6 +547,7 @@ or file path may exist now."
   :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode)
   :custom
   (hs-hide-comments-when-hiding-all nil)
+  :bind (:map hs-minor-mode-map ("C-c f" . #'hs-toggle-hiding))
   :config
   ;; Add extra modes support, needs functions defined in `me-code-folding'
   (unless (assq 't hs-special-modes-alist)
