@@ -12,7 +12,6 @@
 (use-package meow
   :straight t
   :hook (minemacs-lazy . +meow-activate)
-  :unless (memq 'me-evil minemacs-modules)
   :config
   (defun +meow-setup/azerty ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
@@ -108,6 +107,8 @@
       (call-interactively 'meow-find)))
 
   (defun +meow-activate ()
+    (when (bound-and-true-p evil-mode)
+       (warn "Meow isn't supposed to be used with Evil"))
     (+meow-setup/azerty)
     (meow-global-mode 1))
 
