@@ -198,6 +198,11 @@
   (keymap-global-unset "C-z" 'remove)
   (keymap-global-unset "C-x C-z" 'remove)
 
+  ;; Remap some keys/page
+  (keymap-global-set "C-x C-r" #'recentf) ; Instead of `find-file-read-only'
+  (keymap-global-set "C-x k" #'kill-this-buffer) ; Instead of `kill-buffer'
+  (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
+
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
