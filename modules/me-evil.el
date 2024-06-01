@@ -500,6 +500,17 @@
 
 
 
+;;; For `me-extra'
+
+(+evil-conf-for! better-jumper me-extra
+  :init-form
+  (progn
+   (keymap-global-set "<remap> <evil-jump-forward>" #'better-jumper-jump-forward)
+   (keymap-global-set "<remap> <evil-jump-backward>" #'better-jumper-jump-backward)
+   (keymap-global-set "<remap> <xref-pop-marker-stack>" #'better-jumper-jump-backward)))
+
+
+
 ;;; For `me-tools'
 
 (+evil-conf-for! vterm me-tools
