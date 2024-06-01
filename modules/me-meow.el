@@ -64,6 +64,7 @@
      '("e" . meow-next-word)
      '("E" . meow-next-symbol)
      '("f" . meow-find)
+     '("F" . +meow-negative-find)
      '("g" . meow-cancel-selection)
      '("G" . meow-grab)
      '("h" . meow-left)
@@ -81,6 +82,7 @@
      '("o" . meow-block)
      '("O" . meow-to-block)
      '("p" . meow-clipboard-yank)
+     '("P" . meow-yank-pop)
      '("q" . meow-quit)
      '("Q" . meow-goto-line)
      '("r" . meow-replace)
@@ -99,6 +101,11 @@
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore)))
+
+  (defun +meow-negative-find ()
+    (interactive)
+    (let ((current-prefix-arg -1))
+      (call-interactively 'meow-find)))
 
   (defun +meow-activate ()
     (+meow-setup/azerty)
