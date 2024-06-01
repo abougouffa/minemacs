@@ -1353,8 +1353,6 @@ See `+whitespace-auto-cleanup-except-current-line'."
   ;; Show line numbers
   :hook ((prog-mode conf-mode text-mode) . display-line-numbers-mode)
   :custom
-  ;; Relative line numbering
-  (display-line-numbers-type 'relative)
   ;; Width for line numbers
   (display-line-numbers-width 4)
   ;; Display absolute line numbers in narrowed regions
