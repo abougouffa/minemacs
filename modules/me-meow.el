@@ -11,10 +11,10 @@
 
 (use-package meow
   :straight t
-  :hook (minemacs-lazy . meow-global-mode)
+  :hook (minemacs-lazy . +meow-activate)
   :unless (memq 'me-evil minemacs-modules)
-  :init
-  (defun meow-setup ()
+  :config
+  (defun +meow-setup/azerty ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
     (meow-motion-overwrite-define-key
      '("j" . meow-next)
@@ -99,8 +99,10 @@
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore)))
-  :config
-  (meow-setup)
+
+  (defun +meow-activate ()
+    (+meow-setup/azerty)
+    (meow-global-mode 1))
 
   ;; Start `git-commit-mode' in insert state
   (with-eval-after-load 'git-commit
