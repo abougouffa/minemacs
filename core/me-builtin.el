@@ -1389,6 +1389,10 @@ See `+whitespace-auto-cleanup-except-current-line'."
   (window-divider-default-bottom-width 2)
   (window-divider-default-right-width 2))
 
+(use-package repeat
+  ;; Enable repeat mode, "C-x o then C-x o" becomes "C-x o o"
+  :hook (minemacs-lazy . repeat-mode))
+
 (use-package server
   :autoload server-running-p
   :hook ((server-after-make-frame minemacs-after-startup) . +scratch-replace-with-persistent-scratch)
