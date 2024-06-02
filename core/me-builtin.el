@@ -1517,7 +1517,14 @@ Useful for quickly switching to an open buffer."
   :demand
   :config
   ;; Navigate windows using Shift+Direction
-  (windmove-default-keybindings 'shift))
+  (windmove-default-keybindings 'shift)
+  (defvar-keymap +windmove-keys
+    :repeat t ; Make it work with `repeat-mode'
+    "k" #'windmove-up
+    "j" #'windmove-down
+    "h" #'windmove-left
+    "l" #'windmove-right)
+  (keymap-global-set "C-c w" +windmove-keys))
 
 (use-package pulse
   :init
