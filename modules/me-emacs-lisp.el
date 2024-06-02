@@ -29,6 +29,7 @@
 
 (use-package macrostep
   :straight t
+  :bind (:map emacs-lisp-mode-map ("C-c m" . macrostep-expand))
   :init
   (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
     "m" '(macrostep-expand :wk "Expand macro")))
