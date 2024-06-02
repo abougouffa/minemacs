@@ -525,8 +525,16 @@ or file path may exist now."
   :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode)
   :custom
   (hs-hide-comments-when-hiding-all nil)
-  :bind (:map hs-minor-mode-map ("C-c f" . #'hs-toggle-hiding))
+  :bind (:map hs-minor-mode-map
+              ("C-c f" . #'hs-toggle-hiding)
+              ("C-c F" . #'+hs-toggle-all))
   :config
+  (defvar-local +hs-toggle-all-show nil)
+  (defun +hs-toggle-all ()
+    (interactive)
+    (if +hs-toggle-all-show (hs-show-all) (hs-hide-all))
+    (setq +hs-toggle-all-show (not +hs-toggle-all-show)))
+
   ;; Add extra modes support, needs functions defined in `me-code-folding'
   (unless (assq 't hs-special-modes-alist)
     (cl-callf2 append
