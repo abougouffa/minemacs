@@ -64,6 +64,9 @@
      :contents-sources
      (list (cfw:org-create-source (face-foreground 'default))))))
 
+(use-package org-timeblock
+  :straight t)
+
 
 (provide 'me-calendar)
 
