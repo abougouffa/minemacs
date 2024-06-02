@@ -419,28 +419,6 @@ or file path may exist now."
     (set-fringe-style '(8 . 13)))
 
   ;; Better fringe bitmaps
-  (define-fringe-bitmap '+flymake-bitmap-arrow
-    [#b11111000
-     #b01111100
-     #b00111110
-     #b00011111
-     #b00111110
-     #b01111100
-     #b11111000])
-  (define-fringe-bitmap '+flymake-bitmap-arrow-hi-res
-    [#b01111000000
-     #b00111100000
-     #b00011110000
-     #b00001111000
-     #b00000111100
-     #b00000011110
-     #b00000011110
-     #b00000111100
-     #b00001111000
-     #b00011110000
-     #b00111100000
-     #b01111000000]
-    nil 13)
   (define-fringe-bitmap '+flymake-bitmap-left-arrow-hi-res
     [#b00000011110
      #b00000111100
