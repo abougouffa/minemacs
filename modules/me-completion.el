@@ -221,34 +221,26 @@
 (use-package vertico
   :straight (:files (:defaults "extensions/*.el"))
   :hook (minemacs-lazy . vertico-mode)
+  :hook (minemacs-lazy . vertico-mouse-mode)
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :hook (minibuffer-setup . vertico-repeat-save)
   ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
   ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
   ;; to serve the original "C-k".
-  :bind (:map vertico-map
+  :bind (("M-R" . vertico-repeat)
+         :map vertico-map
          ("C-j" . vertico-next)
          ("C-k" . vertico-previous)
+         ("RET" . vertico-directory-enter)
+         ("DEL" . vertico-directory-delete-char)
+         ("M-DEL" . vertico-directory-delete-word)
+         ("M-h" . vertico-directory-up)
          :map minibuffer-local-map
          ("C-S-k" . kill-line))
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
   (vertico-count 12))
-
-(use-package vertico-directory
-  :after vertico
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
-  :bind (:map vertico-map
-         ("RET" . vertico-directory-enter)
-         ("DEL" . vertico-directory-delete-char)
-         ("M-DEL" . vertico-directory-delete-word)
-         ("M-h" . vertico-directory-up)))
-
-(use-package vertico-repeat
-  :hook (minibuffer-setup . vertico-repeat-save)
-  :bind ("M-R" . vertico-repeat))
-
-(use-package vertico-mouse
-  :hook (vertico-mode . vertico-mouse-mode))
 
 
 (provide 'me-completion)
