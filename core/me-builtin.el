@@ -203,6 +203,13 @@
   (keymap-global-set "C-x k" #'kill-this-buffer) ; Instead of `kill-buffer'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
 
+  ;; Disable previously enabled custom themes before enabling a new one.
+  (advice-add
+   'load-theme :before
+   (satch-defun +theme--disable-previous-themes:before-a (&rest _)
+     "Disable previously enabled themes before enabling the new one."
+     (mapc #'disable-theme custom-enabled-themes)))
+
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 

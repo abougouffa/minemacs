@@ -8,13 +8,6 @@
 
 ;;; Code:
 
-;; Disable previously enabled custom themes before enabling a new one.
-(advice-add
- 'load-theme :before
- (satch-defun +theme--disable-previous-themes:before-a (&rest _)
-   "Disable previously enabled themes before enabling the new one."
-   (mapc #'disable-theme custom-enabled-themes)))
-
 (use-package nerd-icons
   :straight t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
