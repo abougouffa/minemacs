@@ -16,13 +16,9 @@
   :straight (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
   :hook (minemacs-build-functions . treesit-auto-install-all)
-  :commands global-treesit-auto-mode
+  :hook (minemacs-lazy . global-treesit-auto-mode)
   :custom
   (treesit-auto-install 'prompt)
-  :init
-  (+hook-once! prog-mode-hook
-    (global-treesit-auto-mode 1)
-    (+treesit-enable-available-grammars-on-normal-modes))
   :config
   (let ((extra-recipes (list (make-treesit-auto-recipe
                               :lang 'xml
@@ -67,8 +63,10 @@
                 (lambda ()
                   (when (and (treesit-available-p) (treesit-language-available-p lang))
                     (treesit-parser-create lang))))
-              (add-hook hook-name fn-name))))))))
+              (add-hook hook-name fn-name)))))))
 
+  ;; Enable `treesit' parses in non-treesit modes
+  (+treesit-enable-available-grammars-on-normal-modes))
 
 (when (+emacs-features-p 'tree-sitter)
   (push 'treesit straight-built-in-pseudo-packages)) ; ts-movement depends on it
