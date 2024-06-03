@@ -126,7 +126,12 @@
 
   ;; Start `git-commit-mode' in insert state
   (with-eval-after-load 'git-commit
-    (+add-hook! git-commit-mode (when (bound-and-true-p meow-mode) (meow-insert-mode 1)))))
+    (+add-hook! git-commit-mode (when (bound-and-true-p meow-mode) (meow-insert-mode 1))))
+
+  ;; Bound to "k", but "k" is used as "up" in motion state
+  (with-eval-after-load 'magit
+    (keymap-set magit-mode-map "*" #'magit-delete-thing)))
+
 
 (provide 'me-meow)
 ;;; me-meow.el ends here
