@@ -63,7 +63,7 @@
      '("e" . meow-next-word)
      '("E" . meow-next-symbol)
      '("f" . meow-find)
-     '("F" . +meow-negative-find)
+     '("F" . +meow-backward-find)
      '("g" . meow-cancel-selection)
      '("G" . meow-grab)
      '("h" . meow-left)
@@ -90,18 +90,20 @@
      '("t" . meow-till)
      '("u" . meow-undo)
      '("U" . meow-undo-in-selection)
-     '("v" . meow-visit)
+     '("v" . ignore) ;; TODO
+     '("V" . meow-visit)
      '("w" . meow-mark-word)
      '("W" . meow-mark-symbol)
      '("x" . meow-line)
-     '("X" . meow-goto-line)
+     '("X" . ignore) ;; TODO
      '("y" . meow-save)
      '("Y" . meow-sync-grab)
      '("z" . meow-pop-selection)
+     '("$" . meow-line)
      '("'" . repeat)
      '("<escape>" . ignore)))
 
-  (defun +meow-negative-find ()
+  (defun +meow-backward-find ()
     (interactive)
     (let ((current-prefix-arg -1))
       (call-interactively 'meow-find)))
@@ -113,7 +115,7 @@
 
   (defun +meow-activate ()
     (when (bound-and-true-p evil-mode)
-       (warn "Meow isn't supposed to be used with Evil"))
+      (warn "Meow isn't supposed to be used with Evil"))
     (+meow-setup/azerty)
     (meow-global-mode 1))
 
