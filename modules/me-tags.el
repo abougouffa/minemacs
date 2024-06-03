@@ -40,6 +40,8 @@
     :type '(repeat string)
     :group 'minemacs-prog)
   :config
+  (require 'citre-config) ; default configuration
+
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
@@ -70,11 +72,6 @@ Fall back to the default `citre--project-root'."
     (interactive "DCreate file list in directory: ")
     (let* ((default-directory top-directory))
       (start-process-shell-command "+citre-gtags-files-list" "*+citre-gtags-files-list*" (+citre-gtags-find-files-command)))))
-
-(use-package citre-config
-  :straight citre
-  :after citre
-  :demand)
 
 (use-package xcscope
   :straight t
