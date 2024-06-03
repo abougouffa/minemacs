@@ -532,7 +532,24 @@
 
 
 
-;;; For `me-editor'
+;;; For `me-prog'
+
+(use-package evil-textobj-tree-sitter
+  :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
+  :when (memq 'me-prog minemacs-modules)
+  :after evil minemacs-first-file
+  :init
+  ;; Require the package on the first `prog-mode' file
+  (+hook-once! prog-mode-hook (require 'evil-textobj-tree-sitter))
+  :config
+  ;; Goto start of next function
+  (define-key evil-normal-state-map (kbd "]f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer")))
+  ;; Goto start of previous function
+  (define-key evil-normal-state-map (kbd "[f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t)))
+  ;; Goto end of next function
+  (define-key evil-normal-state-map (kbd "]F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" nil t)))
+  ;; Goto end of previous function
+  (define-key evil-normal-state-map (kbd "[F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
 
 (+evil-conf-for! expreg me-prog
   :init-form

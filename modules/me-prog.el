@@ -69,22 +69,6 @@
                     (treesit-parser-create lang))))
               (add-hook hook-name fn-name))))))))
 
-(use-package evil-textobj-tree-sitter
-  :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
-  :unless (+package-disabled-p 'evil 'me-evil)
-  :after evil minemacs-first-file
-  :init
-  ;; Require the package on the first `prog-mode' file
-  (+hook-once! prog-mode-hook (require 'evil-textobj-tree-sitter))
-  :config
-  ;; Goto start of next function
-  (define-key evil-normal-state-map (kbd "]f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer")))
-  ;; Goto start of previous function
-  (define-key evil-normal-state-map (kbd "[f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t)))
-  ;; Goto end of next function
-  (define-key evil-normal-state-map (kbd "]F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" nil t)))
-  ;; Goto end of previous function
-  (define-key evil-normal-state-map (kbd "[F") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer" t t))))
 
 (when (+emacs-features-p 'tree-sitter)
   (push 'treesit straight-built-in-pseudo-packages)) ; ts-movement depends on it
