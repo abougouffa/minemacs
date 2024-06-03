@@ -94,6 +94,7 @@
 
 (use-package nerd-icons-corfu
   :straight t
+  :after corfu
   :init
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
