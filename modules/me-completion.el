@@ -38,17 +38,26 @@
   :straight (:files (:defaults "extensions/*.el"))
   :hook (eshell-mode . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
-  :bind (:map corfu-map
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :hook (corfu-mode . corfu-history-mode)
+  :bind (;; JK for movement
+         :map corfu-map
          ("M-m" . +corfu-complete-in-minibuffer)
          ("<tab>" . corfu-next)
          ("<backtab>" . corfu-previous)
          ("C-j" . corfu-next)
-         ("C-k" . corfu-previous))
+         ("C-k" . corfu-previous)
+         ;; For `corfu-popupinfo'
+         ("M-p" . corfu-popupinfo-scroll-down)
+         ("M-n" . corfu-popupinfo-scroll-up)
+         ("M-d" . corfu-popupinfo-toggle))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
+  (corfu-popupinfo-delay 0.1)
+  (corfu-popupinfo-max-height 15)
   :init
   (+hook-once! prog-mode-hook (global-corfu-mode 1))
   :config
@@ -72,22 +81,9 @@
     (let ((completion-extra-properties corfu--extra)
           completion-cycle-threshold
           completion-cycling)
-      (apply #'consult-completion-in-region completion-in-region--data))))
+      (apply #'consult-completion-in-region completion-in-region--data)))
 
-(use-package corfu-popupinfo
-  :hook (corfu-mode . corfu-popupinfo-mode)
-  :bind (:package corfu
-         :map corfu-map
-         ("M-p" . corfu-popupinfo-scroll-down)
-         ("M-n" . corfu-popupinfo-scroll-up)
-         ("M-d" . corfu-popupinfo-toggle))
-  :custom
-  (corfu-popupinfo-delay 0.1)
-  (corfu-popupinfo-max-height 15))
-
-(use-package corfu-history
-  :hook (corfu-mode . corfu-history-mode)
-  :config
+  ;; Ensure `savehist-mode' is on add `corfu-history' to the saved variables
   (unless (bound-and-true-p savehist-mode)
     (savehist-mode 1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
@@ -98,7 +94,6 @@
 
 (use-package nerd-icons-corfu
   :straight t
-  :after corfu
   :init
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
