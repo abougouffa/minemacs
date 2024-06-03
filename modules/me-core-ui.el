@@ -31,9 +31,8 @@
   (with-eval-after-load 'org
     (doom-themes-org-config)))
 
-;; TEMP: github.com/seagle0128/doom-modeline/pull/722
 (use-package doom-modeline
-  :straight (:host github :repo "abougouffa/doom-modeline" :branch "feat/better-meow-state")
+  :straight t
   :unless (memq 'me-nano minemacs-modules)
   :hook (minemacs-lazy . doom-modeline-mode)
   :custom
