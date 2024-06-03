@@ -64,10 +64,7 @@
     "fs" #'forge-edit-topic-state
     "fd" #'forge-edit-topic-draft)
   :custom
-  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite"))
-  :config
-  (transient-append-suffix 'forge-dispatch "M"
-    '("m" "forge merge (via API)" forge-merge)))
+  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
 (use-package diff-hl
   :straight t
