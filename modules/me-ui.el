@@ -17,12 +17,6 @@
   :custom
   (svg-lib-icons-dir (concat minemacs-cache-dir "svg-lib/icons/")))
 
-(use-package visual-fill-column
-  :straight t
-  :custom
-  (visual-fill-column-width nil)
-  (visual-fill-column-center-text t))
-
 (use-package mixed-pitch
   :straight t
   :init
@@ -57,6 +51,9 @@
   :straight t
   :init
   (+map! "tF" #'focus-mode))
+
+(use-package olivetti
+  :straight t)
 
 (use-package logos
   :straight t

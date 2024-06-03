@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(require 'visual-fill-column)
+(require 'olivetti)
 (require 'mixed-pitch nil t)
 
 (defcustom +writing-mode-enable-hook nil
@@ -27,7 +27,7 @@
   :type 'float)
 
 (defcustom +writing-text-width nil
-  "Like `visual-fill-column-width'."
+  "Like `olivetti-body-width'."
   :group 'minemacs-ui
   :type '(choice
           (const :tag "Use `fill-column'" :value nil)
@@ -86,29 +86,26 @@
     (if +writing-mode
         ;; Enable
         (progn
-          (setq-local visual-fill-column-center-text t
-                      visual-fill-column-width +writing-text-width)
+          (setq-local olivetti-body-width (or +writing-text-width 100))
           (when (and mixed-pitch-mode-p (bound-and-true-p display-line-numbers-mode))
             (setq-local +writing--line-nums-active-p display-line-numbers-type)
             (display-line-numbers-mode -1))
           (when (derived-mode-p 'org-mode) (+writing--scale-up-org-latex))
           (run-hooks '+writing-mode-enable-hook))
       ;; Disable
-      (kill-local-variable 'visual-fill-column-center-text)
-      (kill-local-variable 'visual-fill-column-width)
+      (kill-local-variable 'olivetti-body-width)
       (when (derived-mode-p 'org-mode) (+writing--scale-down-org-latex))
       (when (and +writing--line-nums-active-p mixed-pitch-mode-p)
         (display-line-numbers-mode +writing--line-nums-active-p))
       (run-hooks '+writing-mode-disable-hook))
 
-    (visual-fill-column-mode (if +writing-mode 1 -1))
+    (olivetti-mode (if +writing-mode 1 -1))
 
     (when (fboundp 'mixed-pitch-mode)
       (mixed-pitch-mode (if (and +writing-mode mixed-pitch-mode-p +writing-mixed-pitch-enable) 1 -1)))
 
     (when (/= +writing-text-scale 0.0)
-      (text-scale-set (if +writing-mode +writing-text-scale 0.0))
-      (visual-fill-column-adjust))))
+      (text-scale-set (if +writing-mode +writing-text-scale 0.0)))))
 
 (defun +turn-on-writing-mode ()
   (interactive)
