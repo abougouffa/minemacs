@@ -183,7 +183,7 @@
 
 (use-package embark
   :straight t
-  :bind (("<remap> <describe-bindings>" . embark-bindings)
+  :bind (([remap describe-bindings] . embark-bindings)
          ("C-²" . embark-act) ; In a French AZERTY keyboard, the ² key is right above TAB
          ("M-²" . embark-collect)
          ("C-&" . embark-dwim))
@@ -195,9 +195,7 @@
     "A" #'embark-collect))
 
 (use-package embark-consult
-  :straight t
-  :after embark consult
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
+  :straight t)
 
 (use-package marginalia
   :straight t
