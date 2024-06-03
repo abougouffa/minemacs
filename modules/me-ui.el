@@ -8,6 +8,54 @@
 
 ;;; Code:
 
+(use-package nerd-icons
+  :straight t
+  :hook (minemacs-build-functions . nerd-icons-install-fonts)
+  :config
+  ;; Show .m files as matlab/octave files (integral icon)
+  (setcdr (assoc "m" nerd-icons-extension-icon-alist)
+          '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange))
+  (when (and (display-graphic-p) (not (+font-installed-p nerd-icons-font-family)))
+    (nerd-icons-install-fonts 'dont-ask)))
+
+(use-package doom-themes
+  :straight t
+  :config
+  (with-eval-after-load 'org
+    (doom-themes-org-config)))
+
+(use-package doom-modeline
+  :straight t
+  :unless (memq 'me-nano minemacs-modules)
+  :hook (minemacs-lazy . doom-modeline-mode)
+  :custom
+  (doom-modeline-bar-width 1)
+  (doom-modeline-time-icon nil)
+  (doom-modeline-buffer-encoding 'nondefault)
+  (doom-modeline-unicode-fallback t)
+  (doom-modeline-total-line-number t)
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode rst-mode latex-mode tex-mode text-mode))
+  :custom-face
+  ;; Hide the modeline bar
+  (doom-modeline-bar ((t (:inherit mode-line :background unspecified))))
+  (doom-modeline-bar-inactive ((t (:inherit mode-line :background unspecified)))))
+
+(use-package enlight
+  :straight (:host github :repo "ichernyshovvv/enlight")
+  :when (>= emacs-major-version 29) ; TEMP+BUG: There is an issue with Emacs 28
+  :custom
+  (enlight-content
+   (enlight-menu
+    '(("Org Mode"
+       ("Org-Agenda (today)" (org-agenda nil "a") "a"))
+      ("Projects"
+       ("Switch to project" project-switch-project "p")))))
+  :init
+  (if minemacs-started-with-extra-args-p
+      (enlight-open)
+    (setq initial-buffer-choice #'enlight)))
+
 (use-package lacarte
   :straight t
   :bind ([f10] . lacarte-execute-menu-command))
