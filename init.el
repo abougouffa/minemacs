@@ -228,23 +228,20 @@ goes idle."
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules.
 (when minemacs-load-all-modules-p
-  (setq minemacs-core-modules '(me-splash me-keybindings me-evil me-core-ui me-completion)
-        minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\.el\\'")))))
+  (setq minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\.el\\'")))))
 
-;; New MinEmacs uses only `minemacs-modules'. The `minemacs-core-modules' is
-;; left for now just for compatibility issues. Ensure the `me-splash' module is
-;; loaded the first.
-(let ((splash (when (memq 'me-splash minemacs-core-modules) '(me-splash))))
-  (setq minemacs-modules (delete-dups (append minemacs-core-modules minemacs-modules))
-        minemacs-core-modules '(me-bootstrap me-compat me-builtin me-gc))
+(when minemacs-core-modules
+  (message "[MinEmacs:Warn] The `me-completion', `me-keybindings' and `me-evil' modules have been moved to `minemacs-modules'. The `minemacs-core-modules' variable is now obsolete."))
 
-  ;; Load MinEmacs modules
-  (dolist (module (delete-dups (append splash minemacs-core-modules minemacs-modules)))
-    (let ((module-file (format "%s%s.el" minemacs-core-dir module)))
-      (if (file-exists-p module-file)
-          (+load module-file)
-        (+load (format "%s%s.el" minemacs-modules-dir module))))))
+;; MinEmacs 7.0.0 uses only `minemacs-modules'. The `minemacs-core-modules' is left for now just to ensure compatibility.
+(setq minemacs-modules (cl-delete-if (+apply-partially-right #'memq '(me-splash me-bootstrap me-builtin me-compat me-gc))
+                                     (delete-dups (append minemacs-core-modules minemacs-modules))))
 
+;; Load modules
+(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin me-gc)))
+(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
+
+;; Run hooks
 (run-hooks 'minemacs-after-loading-modules-hook)
 
 ;; Write user custom variables to separate file instead of "init.el"

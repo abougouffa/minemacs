@@ -16,7 +16,6 @@
 (defcustom minemacs-modules
   '(;; me-ai
     ;; me-biblio
-    ;; me-binary
     ;; me-calendar
     me-checkers
     ;; me-clojure
@@ -53,7 +52,6 @@
     ;; me-rss
     ;; me-scheme
     ;; me-services
-    me-splash
     ;; me-tags
     me-tools
     me-tty

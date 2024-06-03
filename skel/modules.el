@@ -44,7 +44,6 @@
         ;; me-rss         ; News feed (elfeed, ...)
         ;; me-scheme      ; Scheme development (racket-mode, geiser, ...)
         me-services       ; Web services (org-jira, ...)
-        me-splash         ; Simple splash screen
         ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
         me-tty            ; Emacs from terminal (xclip, ...)
