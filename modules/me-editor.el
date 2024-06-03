@@ -78,19 +78,6 @@
          ("M-<left>" . drag-stuff-left)
          ("M-<right>" . drag-stuff-right)))
 
-(use-package super-save
-  :straight t
-  :hook (minemacs-first-file . super-save-mode)
-  :custom
-  (super-save-silent t)
-  (super-save-all-buffers t)
-  (super-save-auto-save-when-idle t)
-  (super-save-delete-trailing-whitespace 'except-current-line)
-  :config
-  ;; Additional triggers
-  (cl-callf append super-save-triggers
-    '(magit magit-status winner-undo winner-redo find-file)))
-
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
