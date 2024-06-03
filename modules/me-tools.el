@@ -137,7 +137,18 @@
   :straight t
   :custom
   (logview-views-file (concat minemacs-local-dir "logview-views.el"))
-  (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el")))
+  (logview-cache-filename (concat minemacs-cache-dir "logview-cache.el"))
+  (logview-additional-timestamp-formats '(("RDK" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))))
+  (logview-additional-submodes '(("RDK Ccsp logs"
+                                  (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]")
+                                  (levels . "RDK"))))
+  (logview-additional-level-mappings '(("RDK"
+                                        (error "ERROR")
+                                        (warning "WARN")
+                                        (information "INFO")
+                                        (debug "DEBUG")
+                                        (trace "NOTICE")))))
+
 
 (use-package with-editor
   :straight t
