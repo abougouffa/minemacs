@@ -84,10 +84,6 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
-(use-package pulsar
-  :straight t
-  :hook (minemacs-first-file . pulsar-global-mode))
-
 (use-package golden-ratio
   :straight t)
 
