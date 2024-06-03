@@ -87,6 +87,7 @@
      '("r" . meow-replace)
      '("R" . meow-swap-grab)
      '("s" . meow-kill)
+     '("S" . meow-kill-whole-line)
      '("t" . meow-till)
      '("u" . meow-undo)
      '("U" . meow-undo-in-selection)
