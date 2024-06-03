@@ -100,17 +100,84 @@
 (use-package consult
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
-  :bind (:map minibuffer-local-map
-         ("C-r" . consult-history)
-         ("C-S-v" . consult-yank-pop)
-         :package isearch
+  ;; Enable automatic preview at point in the *Completions* buffer. This is
+  ;; relevant when you use the default completion UI.
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :bind (;; C-c bindings in `mode-specific-map'
+         ("C-c M-x" . consult-mode-command)
+         ("C-c k"   . consult-kmacro)
+         ("C-c h"   . consult-history)
+         ("C-c r"   . consult-ripgrep)
+         ("C-c T"   . consult-theme)
+         ("C-c c e" . consult-colors-emacs)
+         ("C-c c w" . consult-colors-web)
+         ("C-c c f" . describe-face)
+         ("C-c c t" . consult-theme)
+         ("C-c i"   . consult-info)
+         ([remap Info-search] . consult-info)
+         ([remap recentf-open-files] . consult-recent-file)
+         ([remap recentf] . consult-recent-file)
+
+         ;; C-x bindings in `ctl-x-map'
+         ([remap repeat-complex-command] . consult-complex-command) ; C-x M-:
+         ([remap switch-to-buffer] . consult-buffer) ; C-x b
+         ([remap switch-to-buffer-other-window] . consult-buffer-other-window) ; C-x 4 b
+         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame) ; C-x 5 b
+         ([remap switch-to-buffer-other-tab] . consult-buffer-other-tab) ; C-x t b
+         ([remap bookmark-jump] . consult-bookmark) ; C-x r b
+         ([remap project-switch-to-buffer] . consult-project-buffer) ; C-x p b
+
+         ;; Custom M-# bindings for fast register access
+         ("M-#"     . consult-register-load)
+         ("M-'"     . consult-register-store) ; overwrite `abbrev-prefix-mark' (unrelated)
+         ("C-M-#"   . consult-register)
+
+         ;; Other custom bindings
+         ([remap yank-pop] . consult-yank-pop) ; M-y
+
+         ;; M-g bindings in `goto-map'
+         ("M-g e"   . consult-compile-error)
+         ("M-g f"   . consult-flymake)               ;; Alternative: consult-flycheck
+         ([remap goto-line] . consult-goto-line) ; M-g g or M-g M-g
+         ("M-g o"   . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m"   . consult-mark)
+         ("M-g k"   . consult-global-mark)
+         ([remap imenu] . consult-imenu)
+         ("M-g I"   . consult-imenu-multi)
+
+         ;; M-s bindings in `search-map'
+         ("M-s d"   . consult-find)
+         ("M-s D"   . consult-locate)
+         ("M-s g"   . consult-grep)
+         ("M-s G"   . consult-git-grep)
+         ("M-s r"   . consult-ripgrep)
+         ("M-s l"   . consult-line)
+         ("M-s L"   . consult-line-multi)
+         ("M-s k"   . consult-keep-lines)
+         ("M-s u"   . consult-focus-lines)
+
+         ;; Isearch integration
+         ("M-s e"   . consult-isearch-history)
+
          :map isearch-mode-map
+         ("M-e"     . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s e"   . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s l"   . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-s L"   . consult-line-multi)            ;; needed by consult-line to detect isearch
+
+         ;; Minibuffer history
+         :map minibuffer-local-map
+         ("C-s" . +consult-thing-at-point)
+         ([remap next-matching-history-element] . consult-history) ; M-s
+         ([remap previous-matching-history-element] . consult-history) ; M-r
          ("C-S-v" . consult-yank-pop))
   :custom
-  ;; Use `consult-xref' for `xref-find-references'
+  ;; Use `consult-xref' for `xref-find-references' and `xref-find-definitions'
   (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref)
   ;; Better formatting for `view-register'
   (register-preview-function #'consult-register-format)
+  (consult-narrow-key "<")
   :init
   (+map!
     ;; buffer
@@ -160,6 +227,15 @@
   (+map-local! :keymaps 'org-mode-map
     "h"   #'consult-org-heading)
   :config
+  (defun +consult-thing-at-point ()
+    "Insert region or symbol in the minibuffer."
+    (interactive)
+    (insert (with-current-buffer (window-buffer (minibuffer-selected-window))
+              (or (and transient-mark-mode mark-active (/= (point) (mark))
+                       (buffer-substring-no-properties (point) (mark)))
+                  (thing-at-point 'symbol t)
+                  ""))))
+
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
   ;; Fill the initial query of `consult' commands from region or thing at point.
@@ -175,7 +251,7 @@
   :straight t
   :bind (("C-x C-d" . consult-dir)
          :package vertico
-         :map vertico-map
+         :map minibuffer-local-completion-map
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file))
   :init
