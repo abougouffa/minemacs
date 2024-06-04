@@ -62,6 +62,13 @@
 (use-package zones
   :straight t)
 
+(use-package smartparens
+  :straight t
+  :hook (minemacs-lazy . smartparens-global-mode)
+  :config
+  (sp-local-pair 'org-mode "$" "$" :unless '(sp-point-after-word-p))
+  (require 'smartparens-config))
+
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
   :when (+emacs-features-p 'tree-sitter))
