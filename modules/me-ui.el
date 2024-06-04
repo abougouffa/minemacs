@@ -85,12 +85,6 @@
        org-quote org-ref-cite-face org-sexp-date org-special-keyword org-src
        org-table org-tag org-tag-group org-todo org-verbatim org-verse)))))
 
-(use-package me-writing-mode
-  :init
-  (+map!
-    "tw" #'+writing-mode
-    "tW" #'+writing-global-mode))
-
 (use-package page-break-lines
   :straight t
   :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
@@ -102,6 +96,12 @@
 
 (use-package olivetti
   :straight t)
+
+(use-package me-writing-mode
+  :init
+  (+map!
+    "tw" #'+writing-mode
+    "tW" #'+writing-global-mode))
 
 (use-package logos
   :straight t
