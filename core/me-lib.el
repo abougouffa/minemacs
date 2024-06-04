@@ -891,15 +891,31 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
   "A wrapper around `+minemacs--internal-map!'.
 It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
-  `(with-eval-after-load 'me-general-ready
-    (+minemacs--internal-map! ,@args)))
+  (let (pkg mod)
+    (when (eq (car args) :package)
+      (setq pkg (cadr args)
+            args (cddr args))
+      (when (eq (car args) :module)
+        (setq mod (cadr args)
+              args (cddr args))))
+    `(unless ,(when pkg (append (list '+package-disabled-p (list 'quote pkg)) (when mod (list (list 'quote mod)))))
+      (with-eval-after-load 'me-general-ready
+       (+minemacs--internal-map! ,@args)))))
 
 (defmacro +map-local! (&rest args)
   "A wrapper around `+minemacs--internal-map-local!'.
 It is deferred until `general' gets loaded and configured."
   (declare (indent defun))
-  `(with-eval-after-load 'me-general-ready
-    (+minemacs--internal-map-local! ,@args)))
+  (let (pkg mod)
+    (when (eq (car args) :package)
+      (setq pkg (cadr args)
+            args (cddr args))
+      (when (eq (car args) :module)
+        (setq mod (cadr args)
+              args (cddr args))))
+    `(unless ,(when pkg (append (list '+package-disabled-p (list 'quote pkg)) (when mod (list (list 'quote mod)))))
+      (with-eval-after-load 'me-general-ready
+       (+minemacs--internal-map-local! ,@args)))))
 
 ;; Wrappers around `general's VIM like definers, needs `general-evil-setup' to
 ;; be executed (See `me-keybindings')
