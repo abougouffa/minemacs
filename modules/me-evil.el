@@ -557,6 +557,14 @@
     "v" #'expreg-expand
     "q" #'expreg-contract))
 
+(+evil-conf-for! smartparens me-prog
+  :config-form
+  (with-eval-after-load 'evil-mc
+    ;; Make evil-mc cooperate with smartparens better
+    (let ((vars (cdr (assq :default evil-mc-cursor-variables))))
+      (unless (memq (car sp--mc/cursor-specific-vars) vars)
+        (setcdr (assq :default evil-mc-cursor-variables) (append vars sp--mc/cursor-specific-vars))))))
+
 
 
 ;;; For `me-files'
