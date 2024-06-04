@@ -18,6 +18,7 @@
   (dirvish-fd-default-dir "~/")
   (dirvish-use-header-line t) ; 'global make header line span all panes
   (dirvish-use-mode-line t)
+  (dirvish-subtree-state-style 'nerd)
   :init
   (+map!
     ;; Open
@@ -30,6 +31,12 @@
   :config
   ;; Cscope generate *.po files which that makes dirvish preview freeze
   (push "po" dirvish-preview-disabled-exts)
+  ;; Use `nerd-icons' for path separators (fromas https://github.com/rainstormstudio/nerd-icons.el)
+  (with-eval-after-load 'nerd-icons
+    (setq dirvish-path-separators (list
+                                   (format "  %s " (nerd-icons-codicon "nf-cod-home"))
+                                   (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
+                                   (format " %s " (nerd-icons-faicon "nf-fa-angle_right")))))
   (dirvish-override-dired-mode 1))
 
 (use-package neotree
