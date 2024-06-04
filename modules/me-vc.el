@@ -86,7 +86,6 @@
   :custom
   (git-timemachine-show-minibuffer-details t))
 
-;; Enforce git commit conventions. See: chris.beams.io/posts/git-commit
 (use-package git-commit
   :after magit
   :demand
@@ -108,18 +107,10 @@
     "gr" '(nil :wk "repo")
     "grg" #'repo-status))
 
-(use-package gee
-  :straight (:host bitbucket :repo "olanilsson/gee"))
-
 ;; https://chromium.googlesource.com/chromiumos/platform/dev-util/+/HEAD/contrib/emacs/gerrit/README.md
-(use-package gerrit
-  :straight (chromeos-gerrit :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))
-
 (use-package repo-transient
-  :straight chromeos-gerrit
-  :commands repo-sync repo-prune repo-start repo-start-temp repo-rebase repo-upload-all repo-upload-current
-  repo-upload-menu repo-upload-menu-with-repohooks repo-start-menu repo-sync-menu repo-rebase-menu repo-main-menu
-  repo:all-projects repo:current-project
+  :straight (:type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/repo-transient.el"))
+  :commands repo-main-menu
   :init
   (+map! "grr" #'repo-main-menu))
 
