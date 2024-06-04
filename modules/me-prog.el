@@ -20,6 +20,12 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
+  ;; BUG+FIX: Remove the C++ grammar to force using v0.22.0, newer versions
+  ;; cause problems with syntax highlighting in `c++-ts-mode' buffers.
+  ;; See: https://github.com/abougouffa/minemacs/discussions/135
+  (cl-callf2 cl-delete-if
+      (lambda (lang) (eq 'cpp (treesit-auto-recipe-lang lang)))
+      treesit-auto-recipe-list)
   (let ((extra-recipes (list (make-treesit-auto-recipe
                               :lang 'xml
                               :ts-mode 'xml-ts-mode
@@ -27,6 +33,13 @@
                               :url "https://github.com/tree-sitter-grammars/tree-sitter-xml"
                               :source-dir "xml/src"
                               :ext "\\.xml\\'")
+                             (make-treesit-auto-recipe
+                              :lang 'cpp
+                              :ts-mode 'c++-ts-mode
+                              :remap 'c++-mode
+                              :url "https://github.com/tree-sitter/tree-sitter-cpp"
+                              :revision "v0.22.0"
+                              :ext "\\.cpp\\'")
                              (make-treesit-auto-recipe
                               :lang 'llvm
                               :ts-mode 'llvm-ts-mode

@@ -53,7 +53,6 @@
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
   (setq highlight-numbers-generic-regexp (rx (and symbol-start (one-or-more digit)) (optional "." (* digit)) symbol-end))
-
   ;; Define the right format for numbers in `dts-mode'
   (puthash 'dts-mode
            (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
