@@ -1046,26 +1046,6 @@ current line.")
          (backward-word)
          (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
 
-(use-package elec-pair
-  :hook (minemacs-first-file . electric-pair-mode)
-  :init
-  (defun +electric-pair-tweaks-h ()
-    ;; Org mode tweaks
-    (with-eval-after-load 'elec-pair
-      ;; Disable auto-pairing of "<" in `org-mode' when using `electric-pair-mode'
-      (setq-local electric-pair-inhibit-predicate
-                  `(lambda (char)
-                     (if (char-equal char ?<) t (,electric-pair-inhibit-predicate char))))
-      (setq-local electric-pair-pairs (append electric-pair-pairs (alist-get major-mode +electric-pair-mode-pairs-alist)))))
-
-  (defvar +electric-pair-mode-pairs-alist
-    '((org-mode      . ((?= . ?=) (?~ . ?~) (?` . ?')))
-      (markdown-mode . ((?` . ?`) (?* . ?*)))))
-
-  ;; Add the hooks to the concerned modes
-  (dolist (mode (mapcar #'car +electric-pair-mode-pairs-alist))
-    (add-hook (intern (format "%s-hook" mode)) #'+electric-pair-tweaks-h)))
-
 (use-package ediff
   :hook (ediff-before-setup . +ediff--save-window-config-h)
   :custom
