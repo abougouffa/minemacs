@@ -11,6 +11,29 @@
 
 ;;; Code:
 
+
+(use-package realgud
+  :straight (:build (:not compile))
+  :init
+  (+map-local! :keymaps '(c-mode-map c++-mode-map python-mode-map
+                          c-ts-mode-map c++-ts-mode-map python-ts-mode-map
+                          rust-mode-map rust-ts-mode-map
+                          sh-mode-map bash-ts-mode-map)
+    "r" '(nil :wk "realgud")
+    "rd" #'+realgud:start
+    "rh" #'+realgud-hydra/body))
+
+(use-package realgud-lldb
+  :straight t
+  :init
+  (defalias 'realgud:lldb #'realgud--lldb)
+  :commands (realgud--lldb realgud:lldb lldb))
+
+(use-package realgud-ipdb
+  :straight t
+  :commands (ipdb realgud:ipdb))
+
+
 ;;;###autoload
 (defun +realgud:start (&optional path)
   "Start the RealGUD debugger suitable for the current mode."
@@ -118,4 +141,6 @@
   ("q"  nil :color blue) ;; :exit
   ("Qq" realgud:cmd-quit :color blue)) ;; :exit
 
+
+(provide 'obsolete/me-realgud)
 ;;; me-realgud.el ends here
