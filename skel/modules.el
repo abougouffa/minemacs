@@ -13,7 +13,6 @@
         ;; me-clojure     ; Clojure development (clojure-mode, cider, ...)
         ;; me-common-lisp ; Common Lisp development (sly, sly-quicklisp, ...)
         me-completion     ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
-        me-core-ui        ; Core UI (doom-themes, modus-themes, doom-modeline, ...)
         ;; me-daemon      ; Emacs daemon tweaks
         me-data           ; Data file formats and tools (csv, yaml, toml, json, plantuml-mode, jq-mode, ...)
         me-debug          ; Debugging tools (realgud, disaster, dape, rmsbolt, beardbolt, ...)
@@ -47,7 +46,7 @@
         ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
         me-tty            ; Emacs from terminal (xclip, ...)
-        me-ui             ; User interface (svg-lib, focus, mixed-pitch, page-break-lines, ...)
+        me-ui             ; User interface (doom-themes, modus-themes, doom-modeline, svg-lib, page-break-lines, ...)
         me-undo           ; Better undoing (undo-fu-session, vundo, ...)
         me-vc             ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
         ;; me-workspaces  ; Workspace separation (project-tab-groups, ...)

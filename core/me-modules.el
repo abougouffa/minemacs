@@ -21,7 +21,6 @@
     ;; me-clojure
     ;; me-common-lisp
     me-completion
-    me-core-ui
     me-daemon
     me-data
     me-debug
