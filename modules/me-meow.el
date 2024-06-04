@@ -82,7 +82,7 @@
      '("O" . meow-to-block)
      '("p" . meow-yank)
      '("P" . meow-yank-pop)
-     '("q" . +meow-smart-quit)
+     '("q" . +meow-quit-dwim)
      '("Q" . meow-quit)
      '("r" . meow-replace)
      '("R" . meow-swap-grab)
@@ -91,8 +91,8 @@
      '("t" . meow-till)
      '("u" . meow-undo)
      '("U" . meow-undo-in-selection)
-     '("v" . ignore) ;; TODO
-     '("V" . meow-visit)
+     ;; v/V are used by `expreg' below
+     '("_" . meow-visit)
      '("w" . meow-mark-word)
      '("W" . meow-mark-symbol)
      '("x" . meow-line)
@@ -109,7 +109,7 @@
     (let ((current-prefix-arg -1))
       (call-interactively 'meow-find)))
 
-  (defun +meow-smart-quit ()
+  (defun +meow-quit-dwim ()
     "Like `meow-quit', but doesn't quit file-visiting buffers/windows."
     (interactive)
     (unless (buffer-file-name) (meow-quit)))
@@ -130,7 +130,13 @@
 
   ;; Bound to "k", but "k" is used as "up" in motion state
   (with-eval-after-load 'magit
-    (keymap-set magit-mode-map "*" #'magit-delete-thing)))
+    (keymap-set magit-mode-map "*" #'magit-delete-thing))
+
+  ;; Bind `expreg-expand' to "v" in normal state
+  (unless (+package-disabled-p 'expreg 'me-editor)
+    (meow-normal-define-key
+     '("v" . expreg-expand)
+     '("V" . expreg-contract))))
 
 
 (provide 'me-meow)
