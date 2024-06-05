@@ -193,6 +193,11 @@
   :custom
   (rust-mode-treesitter-derive (+emacs-features-p 'tree-sitter)))
 
+(use-package rustic
+  :straight t
+  :custom
+  (rustic-lsp-client 'eglot))
+
 (use-package cuda-mode
   :straight t
   :hook (cuda-mode . display-line-numbers-mode)
