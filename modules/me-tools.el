@@ -13,9 +13,8 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
-(use-package tmux
-  :straight (:host github :repo "abougouffa/tmux.el")
-  :unless os/win)
+(use-package emamux
+  :straight t)
 
 (use-package rg
   :straight t)
