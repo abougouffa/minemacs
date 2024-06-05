@@ -198,6 +198,9 @@
   :custom
   (rustic-lsp-client 'eglot))
 
+(use-package cargo
+  :straight t)
+
 (use-package cuda-mode
   :straight t
   :hook (cuda-mode . display-line-numbers-mode)
