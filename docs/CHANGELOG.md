@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.1.0](https://github.com/abougouffa/minemacs/compare/5d688f72d4f857a1f5cad0d506bc4b75052c31d2..v7.1.0) - 2024-06-05
+#### Bug Fixes
+- **(core)** more robust `+dir-locals-open-or-create` - ([3e80a92](https://github.com/abougouffa/minemacs/commit/3e80a92713412b3f2181259268c37c9a9051ff52)) - [@abougouffa](https://github.com/abougouffa)
+- **(me-writing-mode)** load after `olivetti` (fix CI failure on Windows) - ([5ee5a28](https://github.com/abougouffa/minemacs/commit/5ee5a282243b74a8100df4e11f88f775b0fbbc8e)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** restore `projection-*` extensions - ([106ed5a](https://github.com/abougouffa/minemacs/commit/106ed5a47eda5179a3c22135eebab7e9887b4c88)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** force v0.22.0 of C++ grammar (fix syntax highlighting) - ([b10bca5](https://github.com/abougouffa/minemacs/commit/b10bca5bb180fa3b31b07f9d18e5dab5e467b754)) - [@abougouffa](https://github.com/abougouffa)
+- remove references to `me-core-ui` - ([ea3397b](https://github.com/abougouffa/minemacs/commit/ea3397b582706e29d4e08dc22bceb717cd3af1b1)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(builtin)** remove customization for `elec-pair` - ([50f09a4](https://github.com/abougouffa/minemacs/commit/50f09a443c170409a76fd771ee3228c190d08e3b)) - [@abougouffa](https://github.com/abougouffa)
+- **(debug)** make `realgud` obsolete - ([091a11e](https://github.com/abougouffa/minemacs/commit/091a11e4b9aa33fb2dd7fec4651b661b36e4d812)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** restore `smartparens` - ([02373fc](https://github.com/abougouffa/minemacs/commit/02373fc01c8064ccf5a45ffcef5b61078fef1ad0)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `cargo.el` - ([77fffc8](https://github.com/abougouffa/minemacs/commit/77fffc8bc7963f362402905fd088fb78d9a56fcb)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `rustic` - ([bfb5d53](https://github.com/abougouffa/minemacs/commit/bfb5d5338cb50130f260bab0cc341060b70b941e)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** replace `tmux.el` with `emamux` - ([1f819f2](https://github.com/abougouffa/minemacs/commit/1f819f245114fe0d341837a0ebceb34a46315012)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `mlscroll` - ([3ee9ce3](https://github.com/abougouffa/minemacs/commit/3ee9ce31434c8a7329f765188d400238de14b0ce)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `pulsar` obsolete - ([fa1a38d](https://github.com/abougouffa/minemacs/commit/fa1a38df07181a4ed31f18e8f307f4de5b48ac9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** replace `visual-fill-column` with `olivetti` - ([686ccca](https://github.com/abougouffa/minemacs/commit/686cccac4fc77a66beafb4fc376d8005b6c943c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** make `gee` and `gerrit` obsolete, only keep `repo-transient` - ([3cde4b1](https://github.com/abougouffa/minemacs/commit/3cde4b1416ce94ef8a7a0d0c13d612d13032b8bf)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** move all `+map!` and `+map-local!` blocks to `me-evil` - ([401bb41](https://github.com/abougouffa/minemacs/commit/401bb41cbf9ae20fa86ace9e06731b3c461a8bf9)) - [@abougouffa](https://github.com/abougouffa)
+- move all `SPC` leader keybindings to `me-evil` - ([e2f69db](https://github.com/abougouffa/minemacs/commit/e2f69dbdddb4557400f88a990fb7a9b229fa8605)) - [@abougouffa](https://github.com/abougouffa)
+- remove `me-splash` and simplify modules loading section - ([5d688f7](https://github.com/abougouffa/minemacs/commit/5d688f72d4f857a1f5cad0d506bc4b75052c31d2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** accept `:package` & `:module` in `+map` & `+map-local!` - ([7993ed3](https://github.com/abougouffa/minemacs/commit/7993ed3986c1c3031655d224498957a84138d079)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** better integration with `nerd-icons` - ([a9facf2](https://github.com/abougouffa/minemacs/commit/a9facf27a7b0fbb57899eaa28f461c9d84ef5d0f)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** restore the `evil-mc` hack for `smartparens` - ([c3030be](https://github.com/abougouffa/minemacs/commit/c3030bec89a185e89c04bfb6cb25e9ec07c9a1fd)) - [@abougouffa](https://github.com/abougouffa)
+- **(logview)** minor tweak for RDK logs sumbode - ([b7a5e21](https://github.com/abougouffa/minemacs/commit/b7a5e211fc27fb58f3b98b111a17c3f3e7c0b8fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(meow)** bind `expreg-expand` & `expreg-contract` to `v` & `V` - ([aec189a](https://github.com/abougouffa/minemacs/commit/aec189a4f8d60333d37f7008ba9901a7a81ea90f)) - [@abougouffa](https://github.com/abougouffa)
+- **(meow)** bind `*` to `magit-delete-thing` - ([9890086](https://github.com/abougouffa/minemacs/commit/989008647207a10f15586d6b55635a52f2815783)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** DRY - ([6500f90](https://github.com/abougouffa/minemacs/commit/6500f90a60889b5b68a473fbc4ff362c4b1944f1)) - [@abougouffa](https://github.com/abougouffa)
+- merge `me-core-ui` in `me-ui` - ([f5a5729](https://github.com/abougouffa/minemacs/commit/f5a5729a43ff353af1bf2b9efeaf95e6d29e6f67)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([30e5d69](https://github.com/abougouffa/minemacs/commit/30e5d69a1b7eab21372ffbe27c436cda1a72549d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.0.0](https://github.com/abougouffa/minemacs/compare/a98aea952b08a059a4f5433dadd7a360585d9f35..v7.0.0) - 2024-06-03
 #### Bug Fixes
 - **(beardbolt)** correct macro name, cleaner macro implementation - ([9d9b615](https://github.com/abougouffa/minemacs/commit/9d9b615b5533dfe6deae7030a56b148ea836e3b5)) - [@abougouffa](https://github.com/abougouffa)
