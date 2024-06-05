@@ -10,15 +10,6 @@
 
 (use-package magit
   :straight t
-  :init
-  (+map! :infix "g"
-    "g" #'magit-status
-    "C" #'magit-clone
-    "b" #'magit-blame
-    "l" #'magit-log
-    "d" #'magit-diff-dwim
-    "s" #'magit-stage
-    "i" #'magit-init)
   :custom
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
@@ -27,10 +18,7 @@
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
 
 (use-package magit-todos
-  :straight t
-  :init
-  (+map-local! :keymaps 'magit-status-mode-map
-    "t" `(,(+cmdfy! (magit-todos-mode 'toggle) (magit-refresh)) :wk "magit-todos-mode")))
+  :straight t)
 
 (use-package magit-file-icons
   :straight t
@@ -54,15 +42,6 @@
   :preface
   ;; Keybindings will be overriten by `evil-collection'
   (setq forge-add-default-bindings nil)
-  :init
-  (+map! :infix "g"
-    "f" '(nil :wk "forge")
-    "ff" #'forge-dispatch
-    "fc" #'forge-create-post
-    "fe" #'forge-edit-post
-    "ft" #'forge-edit-topic-title
-    "fs" #'forge-edit-topic-state
-    "fd" #'forge-edit-topic-draft)
   :custom
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
@@ -74,15 +53,11 @@
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :hook (magit-pre-refresh . diff-hl-magit-pre-refresh)
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :init
-  (+map! "gs" #'diff-hl-stage-current-hunk)
   :custom
   (diff-hl-draw-borders nil))
 
 (use-package git-timemachine
   :straight t
-  :init
-  (+map! "gt" #'git-timemachine-toggle)
   :custom
   (git-timemachine-show-minibuffer-details t))
 
@@ -97,30 +72,18 @@
 
 (use-package git-modes
   :straight t
-  :init
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
 (use-package repo
-  :straight t
-  :init
-  (+map!
-    "gr" '(nil :wk "repo")
-    "grg" #'repo-status))
+  :straight t)
 
 ;; https://chromium.googlesource.com/chromiumos/platform/dev-util/+/HEAD/contrib/emacs/gerrit/README.md
 (use-package repo-transient
   :straight (:type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/repo-transient.el"))
-  :commands repo-main-menu
-  :init
-  (+map! "grr" #'repo-main-menu))
+  :commands repo-main-menu)
 
 (use-package diffview
-  :straight t
-  :init
-  (with-eval-after-load 'diff-mode
-    (+map-local! :keymaps 'diff-mode-map
-      "v" #'diffview-current
-      "V" #'diffview-region)))
+  :straight t)
 
 
 (provide 'me-vc)

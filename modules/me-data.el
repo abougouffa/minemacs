@@ -124,15 +124,7 @@
           :wk "Toggle debug")))
 
 (use-package mermaid-mode
-  :straight t
-  :config
-  (+map-local! :keymaps 'mermaid-mode-map
-    "c" 'mermaid-compile
-    "f" 'mermaid-compile-file
-    "b" 'mermaid-compile-buffer
-    "r" 'mermaid-compile-region
-    "b" 'mermaid-open-browser
-    "d" 'mermaid-open-doc))
+  :straight t)
 
 (use-package ob-mermaid
   :straight (:host github :repo "arnm/ob-mermaid")
@@ -145,19 +137,7 @@
 
 (use-package d2-mode
   :straight t
-  :mode "\\.d2\\'"
-  :config
-  (+map-local! :keymaps 'd2-mode-map
-    "cc" #'d2-compile
-    "cf" #'d2-compile-file
-    "cb" #'d2-compile-buffer
-    "cr" #'d2-compile-region
-    "cF" #'d2-compile-file-and-browse
-    "cB" #'d2-compile-buffer-and-browse
-    "cR" #'d2-compile-region-and-browse
-    "o"  #'d2-open-browser
-    "v"  #'d2-view-current-svg
-    "h"  #'d2-open-doc))
+  :mode "\\.d2\\'")
 
 (use-package ob-d2
   :straight t

@@ -10,8 +10,6 @@
 
 (use-package xkcd
   :straight t
-  :init
-  (+map! "ox" #'xkcd)
   :custom
   (xkcd-cache-dir (+directory-ensure minemacs-local-dir "xkcd/"))
   (xkcd-cache-latest (concat minemacs-local-dir "xkcd/latest"))

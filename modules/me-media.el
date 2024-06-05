@@ -28,14 +28,6 @@
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
   :when (executable-find +mpv-command)
-  :init
-  (+map! :infix "o"
-    "v"  '(nil :wk "empv")
-    "vp" '(empv-play :wk "Play")
-    "vy" '(consult-empv-youtube :wk "Seach Youtube")
-    "vr" '(empv-play-radio :wk "Play radio")
-    "vs" '(empv-playtlist-save-to-file :wk "Save current playlist")
-    "vD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
   :custom
   ;; See: docs.invidious.io/instances/
   (empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")

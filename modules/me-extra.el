@@ -16,13 +16,7 @@
          ("<mouse-9>" . better-jumper-jump-forward)))
 
 (use-package crux
-  :straight t
-  :init
-  (+map!
-    "fo" #'crux-open-with
-    "fC" #'crux-copy-file-preserve-attributes
-    "id" #'crux-insert-date
-    "bo" #'crux-kill-other-buffers))
+  :straight t)
 
 
 (provide 'me-extra)

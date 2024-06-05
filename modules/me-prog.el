@@ -93,7 +93,6 @@
     "Enable `ts-movement-mode' when if `major-mode' is a trees-sitter mode."
     (run-with-timer 1.0 nil (lambda () (when (treesit-parser-list) (ts-movement-mode 1)))))
   :config
-  (+map-local! :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
   (transient-define-prefix +ts-movement-transient ()
     "Transient for ts-movement."
     [[("d" "delete-overlay-at-point" tsm/delete-overlay-at-point :transient t)
@@ -141,9 +140,6 @@
 (use-package consult-eglot
   :straight t
   :after consult eglot
-  :init
-  (+map! :keymaps 'eglot-mode-map
-    "cs" '(consult-eglot-symbols :wk "Symbols"))
   :config
   ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
@@ -167,7 +163,6 @@
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :init
-  (+map! "cff" #'apheleia-format-buffer)
   (defvar +xmllint-indent "    ")
   :config
   (add-hook 'nxml-mode-hook (satch-defun +xmllint--set-indent-h () (setenv "XMLLINT_INDENT" +xmllint-indent)))
@@ -176,33 +171,16 @@
 (use-package editorconfig
   :straight t
   :hook (minemacs-first-file . editorconfig-mode)
-  :init
-  (+map!
-    "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
-    "cfe" #'editorconfig-format-buffer)
   :config
   ;; Exclude compressed files
   (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
 
 ;; for bin in $(ls $(dirname $(which clang-13))/clang-*); do ln -s $bin $HOME/.local/bin/$(basename ${bin%-13}); done
 (use-package clang-format
-  :straight t
-  :init
-  (+map! :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map cuda-mode-map scad-mode-map)
-    "cfc" #'clang-format-buffer))
+  :straight t)
 
 (use-package quickrun
-  :straight t
-  :init
-  (+map!
-    "cq"  '(nil :wk "quickrun")
-    "cqq" #'quickrun
-    "cqQ" #'quickrun-select
-    "cqs" #'quickrun-shell
-    "cqa" #'quickrun-with-arg
-    "cqc" #'quickrun-compile-only
-    "cqC" #'quickrun-compile-only-select
-    "cqd" #'quickrun-select-default))
+  :straight t)
 
 (use-package gitlab-ci-mode
   :straight t)
@@ -213,19 +191,7 @@
 (use-package rust-mode
   :straight t
   :custom
-  (rust-mode-treesitter-derive (+emacs-features-p 'tree-sitter))
-  :config
-  (+map-local! :keymaps '(rust-mode-map rust-ts-mode-map)
-    "c" #'rust-compile
-    "C" #'rust-compile-release
-    "k" #'rust-check
-    "t" #'rust-test
-    "r" #'rust-run
-    "R" #'rust-run-release
-    "y" #'rust-run-clippy
-    "f" #'rust-format-buffer
-    "F" #'rust-goto-format-problem
-    "S" #'rust-enable-format-on-save))
+  (rust-mode-treesitter-derive (+emacs-features-p 'tree-sitter)))
 
 (use-package cuda-mode
   :straight t
@@ -259,10 +225,7 @@
       ("PERF"  . "#e09030"))))
 
 (use-package rainbow-mode
-  :straight t
-  :init
-  (+map! :keymaps '(prog-mode-map conf-mode-map text-mode-map)
-    "tR" #'rainbow-mode))
+  :straight t)
 
 (use-package lua-mode
   :straight t
@@ -320,13 +283,7 @@
 
 (use-package devdocs
   :straight t
-  :when (+emacs-features-p 'libxml2)
-  :init
-  (+map!
-    "hhh" #'devdocs-lookup
-    "hhp" #'devdocs-peruse
-    "hhs" #'devdocs-search
-    "hhI" #'devdocs-install))
+  :when (+emacs-features-p 'libxml2))
 
 (use-package add-node-modules-path
   :straight t

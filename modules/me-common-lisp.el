@@ -29,41 +29,7 @@
        'sly-lisp-implementations
        `(,(intern impl) (,impl) :coding-system utf-8-unix))))
   (setq inferior-lisp-program (caar (cdar sly-lisp-implementations))
-        sly-default-lisp (caar sly-lisp-implementations))
-
-  (+map-local! :keymaps '(lisp-mode-map)
-    "s"  #'sly
-    "c"  '(nil :wk "compile")
-    "cc" #'sly-compile-file
-    "cC" #'sly-compile-and-load-file
-    "cd" #'sly-compile-defun
-    "cr" #'sly-compile-region
-    "g"  '(nil :wk "goto/find")
-    "gn" #'sly-goto-first-note
-    "gL" #'sly-load-file
-    "gn" #'sly-next-note
-    "gN" #'sly-previous-note
-    "gs" #'sly-stickers-next-sticker
-    "gS" #'sly-stickers-prev-sticker
-    "gN" #'sly-previous-note
-    "gd" #'sly-edit-definition
-    "gD" #'sly-edit-definition-other-window
-    "gb" #'sly-pop-find-definition-stack
-    "h"  '(nil :wk "help/info")
-    "hs" #'sly-describe-symbol
-    "hf" #'sly-describe-function
-    "hc" #'sly-who-calls
-    "hC" #'sly-calls-who
-    "hs" #'sly-who-calls
-    "hC" #'sly-calls-who
-    "hd" #'sly-disassemble-symbol
-    "hD" #'sly-disassemble-definition
-    "r"  '(nil :wk "repl")
-    "rr" #'sly-restart-inferior-lisp
-    "rc" #'sly-mrepl-clear-repl
-    "rs" #'sly-mrepl-sync
-    "rn" #'sly-mrepl-new
-    "rq" #'sly-quit-lisp))
+        sly-default-lisp (caar sly-lisp-implementations)))
 
 (use-package sly-quicklisp
   :straight t
@@ -83,10 +49,7 @@
 (use-package sly-macrostep
   :straight t
   :after sly
-  :demand
-  :init
-  (+map-local! :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
-    "m" '(macrostep-expand :wk "Expand macro")))
+  :demand)
 
 
 (provide 'me-common-lisp)

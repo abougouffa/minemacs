@@ -9,14 +9,7 @@
 ;;; Code:
 
 (use-package embed
-  :straight (:host github :repo "xal-0/embed-el")
-  :init
-  (+map! :infix "o"
-    "b" '(nil :wk "embed")
-    "bo" #'embed-openocd-start
-    "bO" #'embed-openocd-stop
-    "bg" #'embed-openocd-gdb
-    "bf" #'embed-openocd-flash))
+  :straight (:host github :repo "xal-0/embed-el"))
 
 (use-package arduino-mode
   :straight (:host github :repo "bookest/arduino-mode")
@@ -31,27 +24,10 @@
 
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
+  :hook (bitbake-mode . bitbake-electric-mode)
   :config
-  (+map-local! :keymaps 'bitbake-mode-map
-    "b"  #'bitbake-recipe-build-dir-dired)
-  (+map-local! :keymaps 'bitbake-mode-map
-    :infix "i"
-    "i" #'bitbake-inc-pr))
-
-(use-package bitbake-electric
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
-  :hook (bitbake-mode . bitbake-electric-mode))
-
-(use-package bitbake-insert
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
-  :after bitbake
-  :demand
-  :config
-  (+map-local! :keymaps 'bitbake-mode-map
-    :infix "i"
-    "v" #'bitbake-insert-var
-    "a" #'bitbake-append-var
-    "o" #'bitbake-insert-override))
+  (require 'bitbake-insert)
+  (require 'bitbake-electric))
 
 (use-package mips-mode
   :straight t)

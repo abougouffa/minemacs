@@ -9,11 +9,7 @@
 ;;; Code:
 
 (use-package consult-project-extra
-  :straight t
-  :init
-  (+map! :infix "p" ;; project
-    "p" #'consult-project-extra-find
-    "P" #'consult-project-extra-find-other-window))
+  :straight t)
 
 (use-package compile-multi
   :straight t)
@@ -36,24 +32,9 @@
   :bind-keymap ("C-x P" . projection-map)
   :init
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
-  (+add-hook! ibuffer (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update)))))
-
-(use-package projection-multi
-  :straight t
-  :init
-  (+map! "pC" #'projection-multi-compile))
-
-(use-package projection-multi-embark
-  :straight t
-  :after embark projection-multi
-  :init
-  (projection-multi-embark-setup-command-map))
-
-(use-package projection-dape
-  :straight t
-  :init
-  (+map! :infix "d"
-    "D" #'projection-dape))
+  (+add-hook! ibuffer (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update))))
+  (with-eval-after-load 'embark
+    (projection-multi-embark-setup-command-map)))
 
 (use-package project-x
   :straight (:host github :repo "karthink/project-x")

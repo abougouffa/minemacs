@@ -179,54 +179,6 @@
   ;; Better formatting for `view-register'
   (register-preview-function #'consult-register-format)
   (consult-narrow-key "<")
-  :init
-  (+map!
-    ;; buffer
-    "bll" #'consult-line
-    "blf" #'consult-focus-lines
-    "blk" #'consult-keep-lines
-    "blg" #'consult-goto-line
-    "bb"  #'consult-buffer
-    "bB"  #'consult-buffer-other-window
-    "bF"  #'consult-buffer-other-frame
-    "bmM" #'consult-bookmark
-    "bi"  #'consult-imenu
-    "bO"  #'consult-outline
-    ;; file
-    "fr"  #'consult-recent-file
-    ;; git/vc
-    "gG"  #'consult-git-grep
-    ;; search
-    "ss"  (if (executable-find "rg") #'consult-ripgrep #'consult-grep)
-    "sS"  (if (executable-find "rg") #'consult-grep #'consult-ripgrep)
-    "sf"  (if (executable-find "fd") #'consult-fd #'consult-find)
-    "sF"  (if (executable-find "fd") #'consult-find #'consult-fd)
-    "sM"  #'consult-man
-    "st"  #'consult-locate
-    "sh"  #'consult-history
-    "sa"  #'consult-org-agenda
-    "sl"  #'consult-locate
-    "si"  #'consult-isearch-history
-    ;; project
-    "pl"  #'consult-line-multi
-    "pi"  #'consult-imenu-multi
-    ;; code
-    "cm"  #'consult-flymake
-    "cE"  #'consult-compile-error
-    ;; extras
-    "ec"  #'consult-complex-command
-    ;; insert
-    "iy"  #'consult-yank-from-kill-ring
-    "ip"  #'consult-yank-pop
-    "ir"  '(nil :wk "register")
-    "irr" #'consult-register
-    "irl" #'consult-register-load
-    "irs" #'consult-register-store
-    ;; help
-    "hu"  #'consult-theme
-    "hI"  #'consult-info)
-  (+map-local! :keymaps 'org-mode-map
-    "h"   #'consult-org-heading)
   :config
   (defun +consult-thing-at-point ()
     "Insert region or symbol in the minibuffer."
@@ -254,9 +206,7 @@
          :package vertico
          :map minibuffer-local-completion-map
          ("C-x C-d" . consult-dir)
-         ("C-x C-j" . consult-dir-jump-file))
-  :init
-  (+map! "ed" #'consult-dir))
+         ("C-x C-j" . consult-dir-jump-file)))
 
 (use-package embark
   :straight t
@@ -266,10 +216,7 @@
          ("C-&" . embark-dwim))
   :init
   ;; Use Embark to show bindings in a key prefix with `C-h`
-  (setq prefix-help-command #'embark-prefix-help-command)
-  (+map!
-    "a" #'embark-act
-    "A" #'embark-collect))
+  (setq prefix-help-command #'embark-prefix-help-command))
 
 (use-package embark-consult
   :straight t)

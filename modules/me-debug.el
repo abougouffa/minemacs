@@ -14,22 +14,6 @@
   :custom
   (dape-inline-variables t)
   (dape-adapter-dir (concat minemacs-local-dir "dape/"))
-  :init
-  (+map! :infix "d"
-    "d" #'dape
-    "n" #'dape-next
-    "s" #'dape-step-in
-    "o" #'dape-step-out
-    "c" #'dape-continue
-    "r" #'dape-restart
-    "p" #'dape-pause
-    "b" #'dape-breakpoint-toggle
-    "e" #'dape-breakpoint-expression
-    "r" #'dape-remove-breakpoint-at-point
-    "R" #'dape-breakpoint-remove-all
-    "t" #'+dape-transient
-    "q" #'dape-kill
-    "Q" #'dape-quit)
   :config
   (transient-define-prefix +dape-transient ()
     "Transient for dape."
@@ -55,10 +39,7 @@
       ("qk" "Kill" dape-kill :transient nil)]]))
 
 (use-package disaster
-  :straight t
-  :init
-  (+map-local! :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
-    "D" #'disaster))
+  :straight t)
 
 (use-package rmsbolt
   :straight t

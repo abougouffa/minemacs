@@ -90,18 +90,10 @@
   :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
 
 (use-package focus
-  :straight t
-  :init
-  (+map! "tF" #'focus-mode))
+  :straight t)
 
 (use-package olivetti
   :straight t)
-
-(use-package me-writing-mode
-  :init
-  (+map!
-    "tw" #'+writing-mode
-    "tW" #'+writing-global-mode))
 
 (use-package logos
   :straight t

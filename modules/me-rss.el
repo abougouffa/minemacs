@@ -15,7 +15,6 @@
 (use-package elfeed
   :straight t
   :init
-  (+map! "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
   (defcustom +elfeed-videos-dir "~/Videos/elfeed/"
     "Directory of downloaded videos."
     :group 'minemacs-elfeed)

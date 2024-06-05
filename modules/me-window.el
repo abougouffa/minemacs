@@ -16,9 +16,7 @@
   :straight t
   :bind (("M-o" . ace-window))
   :custom
-  (aw-dispatch-always t)
-  :init
-  (+map! "wa" #'ace-window))
+  (aw-dispatch-always t))
 
 ;; Help/info buffers
 (add-to-list

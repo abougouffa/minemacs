@@ -29,21 +29,10 @@
 
 (use-package macrostep
   :straight t
-  :bind (:map emacs-lisp-mode-map ("C-c m" . macrostep-expand))
-  :init
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-mode-map)
-    "m" '(macrostep-expand :wk "Expand macro")))
+  :bind (:map emacs-lisp-mode-map ("C-c m" . macrostep-expand)))
 
 (use-package helpful
   :straight t
-  :init
-  (+map! :keymaps 'emacs-lisp-mode-map
-    :infix "h"
-    "p" #'helpful-at-point
-    "o" #'helpful-symbol
-    "c" #'helpful-command
-    "F" #'helpful-function
-    "f" #'helpful-callable)
   :bind (("<remap> <describe-variable>" . helpful-variable)
          ("<remap> <describe-symbol>" . helpful-symbol)
          ("<remap> <describe-function>" . helpful-function)
@@ -65,11 +54,7 @@
     (defun +eros-octave-eval-last-sexp ()
       "Wrapper for `+octave-eval-last-sexp' that overlays results."
       (interactive)
-      (eros--eval-overlay (+octave-eval-last-sexp) (point)))
-
-    (+map-local! :keymaps 'octave-mode-map
-      "e"  '(nil :wk "eval")
-      "ee" #'+eros-octave-eval-last-sexp)))
+      (eros--eval-overlay (+octave-eval-last-sexp) (point)))))
 
 
 (provide 'me-emacs-lisp)

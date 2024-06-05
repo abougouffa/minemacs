@@ -17,15 +17,6 @@
   :straight t
   :commands denote-create-note denote-insert-link denote-show-backlinks-buffer
   :hook (dired-mode . denote-dired-mode)
-  :init
-  (+map! :infix "n"
-    "n" #'denote-create-note
-    "o" #'denote-open-or-create
-    "j" #'denote-journal-extras-new-or-existing-entry
-    "J" #'denote-journal-extras-new-entry
-    "l" #'denote-insert-link
-    "L" #'denote-add-links
-    "b" #'denote-show-backlinks-buffer)
   :custom
   (denote-prompts '(title keywords)) ; These are the minimum viable prompts for notes
   (denote-file-type 'org) ; I love org-mode format; reading ahead I'm setting this
@@ -40,9 +31,6 @@
     (fmakunbound 'consult-notes-org-roam-mode)
     (fmakunbound 'consult-notes-org-roam-find-node-relation))
   (+consult-notes--unbound-org-roam)
-  (+map! :infix "n"
-    "f" #'consult-notes
-    "s" #'consult-notes-search-in-all-notes)
   :custom
   (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
   (consult-notes-use-rg (and (executable-find "rg") t))

@@ -16,11 +16,6 @@
 (use-package project-tab-groups
   :straight t
   :after project
-  :preface
-  (+map! :infix "TAB"
-    "TAB" #'tab-bar-switch-to-tab
-    "o" #'project-switch-project
-    "d" #'tab-bar-close-tab)
   :init
   (setq project-tab-groups-tab-group-name-function #'+project-tab-groups-name-by-project-root)
   (project-tab-groups-mode 1)

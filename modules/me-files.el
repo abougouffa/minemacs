@@ -20,12 +20,6 @@
   (dirvish-use-mode-line t)
   (dirvish-subtree-state-style 'nerd)
   :init
-  (+map!
-    ;; Open
-    "o-" #'dirvish
-    "oq" #'dirvish-quick-access
-    ;; Search
-    "sd" #'dirvish-fd)
   ;; Load immediately if Emacs is launched in an "open with" fashion
   (when minemacs-started-with-extra-args-p (require 'dirvish))
   :config
@@ -42,9 +36,7 @@
 (use-package neotree
   :straight (:host github :repo "abougouffa/emacs-neotree" :branch "feat/nerd-icons")
   :custom
-  (neo-theme 'nerd-icons)
-  :init
-  (+map! "op" #'neotree-toggle))
+  (neo-theme 'nerd-icons))
 
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
@@ -54,11 +46,7 @@
 
 (use-package sudo-edit
   :straight t
-  :hook (minemacs-first-file . sudo-edit-indicator-mode)
-  :init
-  (+map!
-    "fF" #'sudo-edit-find-file
-    "fu" #'sudo-edit))
+  :hook (minemacs-first-file . sudo-edit-indicator-mode))
 
 (use-package dired-rsync
   :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
@@ -68,9 +56,7 @@
          ("C-c C-x" . dired-rsync-transient)))
 
 (use-package ztree
-  :straight (:source gnu-elpa-mirror)
-  :init
-  (+map! "oz" #'ztree-diff))
+  :straight (:source gnu-elpa-mirror))
 
 
 (provide 'me-files)

@@ -31,11 +31,7 @@
 (use-package macrostep-geiser
   :straight t
   :after geiser
-  :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup)
-  :init
-  (+map-local! :keymaps '(geiser-mode-map geiser-repl-mode-map)
-    "m" '(macrostep-expand :wk "Expand macro")
-    "M" #'macrostep-geiser-expand-all))
+  :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup))
 
 
 (provide 'me-scheme)

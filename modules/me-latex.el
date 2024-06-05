@@ -24,12 +24,6 @@
   (TeX-electric-sub-and-superscript t) ; automatically insert braces after sub/superscript in `LaTeX-math-mode'.
   (TeX-save-query nil) ; just save, don't ask before each compilation.
   (TeX-engine 'xetex) ; use XeLaTeX by default
-  :init
-  (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
-    "c" #'TeX-command-run-all
-    "m" #'TeX-command-master
-    "e" #'TeX-engine-set
-    "v" #'TeX-view)
   :config
   (when (functionp 'pdf-tools-install)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools")))
@@ -170,10 +164,7 @@
     (auctex-latexmk-setup)))
 
 (use-package latex-preview-pane
-  :straight t
-  :init
-  (+map-local! :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
-    "p" #'latex-preview-pane-mode))
+  :straight t)
 
 
 (provide 'me-latex)

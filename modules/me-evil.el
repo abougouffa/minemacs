@@ -72,8 +72,7 @@
   ;; Use "gr" to find references for elisp mode
   (with-eval-after-load 'elisp-mode
     (when evil-collection-want-find-usages-bindings
-      (evil-collection-define-key 'normal 'emacs-lisp-mode-map
-        "gr" 'xref-find-references))))
+      (evil-collection-define-key 'normal 'emacs-lisp-mode-map "gr" 'xref-find-references))))
 
 (use-package evil-snipe
   :straight t
@@ -483,12 +482,71 @@
     (keymap-set vertico-map "C-j" #'vertico-next)
     (keymap-set vertico-map "C-k" #'vertico-previous)))
 
+(+map! :package consult :module me-completion
+  ;; buffer
+  "bll" #'consult-line
+  "blf" #'consult-focus-lines
+  "blk" #'consult-keep-lines
+  "blg" #'consult-goto-line
+  "bb"  #'consult-buffer
+  "bB"  #'consult-buffer-other-window
+  "bF"  #'consult-buffer-other-frame
+  "bmM" #'consult-bookmark
+  "bi"  #'consult-imenu
+  "bO"  #'consult-outline
+  ;; file
+  "fr"  #'consult-recent-file
+  ;; git/vc
+  "gG"  #'consult-git-grep
+  ;; search
+  "ss"  (if (executable-find "rg") #'consult-ripgrep #'consult-grep)
+  "sS"  (if (executable-find "rg") #'consult-grep #'consult-ripgrep)
+  "sf"  (if (executable-find "fd") #'consult-fd #'consult-find)
+  "sF"  (if (executable-find "fd") #'consult-find #'consult-fd)
+  "sM"  #'consult-man
+  "st"  #'consult-locate
+  "sh"  #'consult-history
+  "sa"  #'consult-org-agenda
+  "sl"  #'consult-locate
+  "si"  #'consult-isearch-history
+  ;; project
+  "pl"  #'consult-line-multi
+  "pi"  #'consult-imenu-multi
+  ;; code
+  "cm"  #'consult-flymake
+  "cE"  #'consult-compile-error
+  ;; extras
+  "ec"  #'consult-complex-command
+  ;; insert
+  "iy"  #'consult-yank-from-kill-ring
+  "ip"  #'consult-yank-pop
+  "ir"  '(nil :wk "register")
+  "irr" #'consult-register
+  "irl" #'consult-register-load
+  "irs" #'consult-register-store
+  ;; help
+  "hu"  #'consult-theme
+  "hI"  #'consult-info)
+
+(+map-local! :package consult :module me-completion
+  :keymaps 'org-mode-map
+  "h"   #'consult-org-heading)
+
+(+map! :package consult-dir :module me-completion
+  "ed" #'consult-dir)
+
+(+map! :package embark :module me-completion
+  "a" #'embark-act
+  "A" #'embark-collect)
+
 
 
 ;;; For `me-natural-langs'
 
 (when (memq 'me-natural-langs minemacs-modules)
   (+nvmap! "z=" #'+spellcheck-correct))
+
+(+map! "ts" #'+spellcheck-mode)
 
 
 
@@ -498,6 +556,11 @@
   ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
   (+nvmap! "gy" #'+kill-region-as-paragraph))
 
+(+map! :package spdx :module me-editor
+  "il" #'spdx-insert-spdx-only
+  "ic" #'spdx-insert-spdx-copyright)
+
+
 
 
 ;;; For `me-extra'
@@ -505,9 +568,15 @@
 (+evil-conf-for! better-jumper me-extra
   :init-form
   (progn
-   (keymap-global-set "<remap> <evil-jump-forward>" #'better-jumper-jump-forward)
-   (keymap-global-set "<remap> <evil-jump-backward>" #'better-jumper-jump-backward)
-   (keymap-global-set "<remap> <xref-pop-marker-stack>" #'better-jumper-jump-backward)))
+    (keymap-global-set "<remap> <evil-jump-forward>" #'better-jumper-jump-forward)
+    (keymap-global-set "<remap> <evil-jump-backward>" #'better-jumper-jump-backward)
+    (keymap-global-set "<remap> <xref-pop-marker-stack>" #'better-jumper-jump-backward)))
+
+(+map! :package crux :module me-extra
+  "fo" #'crux-open-with
+  "fC" #'crux-copy-file-preserve-attributes
+  "id" #'crux-insert-date
+  "bo" #'crux-kill-other-buffers)
 
 
 
@@ -529,6 +598,130 @@
     ",n" #'multi-vterm-next
     ",p" #'multi-vterm-prev
     "<return>" #'evil-insert-resume))
+
+(+map! :package ssh-deploy :module me-tools
+  "od" '(ssh-deploy-hydra/body :wk "ssh-deploy"))
+
+(+map! :package rg :module me-tools
+  "sr" #'rg-dwim
+  "sR" #'rg)
+
+(+map! :package fzf :module me-tools
+  "/"   #'fzf-project
+  "sz" '(nil :wk "fzf")
+  "szz" #'fzf
+  "szg" #'fzf-grep
+  "szG" #'fzf-grep-dwim
+  "szf" #'fzf-find-file
+  "szF" #'fzf-find-file-in-dir)
+
+(+map! :package tldr :module me-tools
+  "ht" #'tldr)
+
+(+map! :package vterm :module me-tools
+  "ot" '(nil :wk "vterm")
+  "otv" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
+
+(+map! :package multi-vterm :module me-tools
+  "otT" #'multi-vterm
+  "ott" #'multi-vterm-dedicated-toggle
+  "otp" #'multi-vterm-project)
+
+(+map! :package docker :module me-tools
+  "ok" #'docker)
+
+(+map-local! :package pkgbuild-mode :module me-tools
+  :keymaps 'pkgbuild-mode-map
+  "b" #'pkgbuild-makepkg
+  "a" #'pkgbuild-tar
+  "r" #'pkgbuild-increase-release-tag
+  "u" #'pkgbuild-browse-url
+  "m" #'pkgbuild-update-sums-line
+  "s" #'pkgbuild-update-srcinfo
+  "e" #'pkgbuild-etags)
+
+(+map-local! :package journalctl-mode :module me-tools
+  :keymaps 'journalctl-mode-map
+  "J" #'journalctl-next-chunk
+  "K" #'journalctl-previous-chunk)
+
+(+map! :package app-launcher :module me-tools
+  "oo" #'app-launcher-run-app)
+
+(+map-local! :package verb :module me-tools
+  :keymaps 'verb-mode-map
+  "r"     '(nil :wk "verb")
+  "r RET" #'verb-send-request-on-point-no-window
+  "rs"    #'verb-send-request-on-point-other-window
+  "rr"    #'verb-send-request-on-point-other-window-stay
+  "rf"    #'verb-send-request-on-point
+  "re"    #'verb-export-request-on-point
+  "rv"    #'verb-set-var
+  "rx"    #'verb-show-vars)
+
+(+map-local! :package restclient :module me-tools
+  :keymaps 'restclient-mode-map
+  "r"     '(nil :wk "restclinet")
+  "r RET" #'restclient-http-send-current-suppress-response-buffer
+  "rs"    #'restclient-http-send-current
+  "rr"    #'restclient-http-send-current-stay-in-window
+  "rf"    #'restclient-http-send-current-raw
+  "re"    #'restclient-copy-curl-command)
+
+
+
+;;; For `me-robot'
+
+(+map! :package ros :module me-robot
+  :infix "o"
+  "r"  '(nil :wk "ros")
+  "rr" '(+hydra-ros-main/body :wk "Hydra")
+  "rs" #'ros-set-workspace
+  "rp" #'ros-go-to-package
+  "rC" #'ros-cache-clean)
+
+
+
+;;; For `me-notes'
+
+(+map! :package denote :module me-notes
+  :infix "n"
+  "n" #'denote-create-note
+  "o" #'denote-open-or-create
+  "j" #'denote-journal-extras-new-or-existing-entry
+  "J" #'denote-journal-extras-new-entry
+  "l" #'denote-insert-link
+  "L" #'denote-add-links
+  "b" #'denote-show-backlinks-buffer)
+
+(+map! :package consult-notes :module me-notes
+  :infix "n"
+  "f" #'consult-notes
+  "s" #'consult-notes-search-in-all-notes)
+
+(+map! :package empv :module me-media
+  :infix "o"
+  "v"  '(nil :wk "empv")
+  "vp" '(empv-play :wk "Play")
+  "vy" '(consult-empv-youtube :wk "Seach Youtube")
+  "vr" '(empv-play-radio :wk "Play radio")
+  "vs" '(empv-playtlist-save-to-file :wk "Save current playlist")
+  "vD" '(+empv-download-playtlist-files :wk "Download current's playlist files"))
+
+
+
+;;; For `me-latex'
+
+(+map-local! :package auctex :module me-latex
+  :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+  "c" #'TeX-command-run-all
+  "m" #'TeX-command-master
+  "e" #'TeX-engine-set
+  "v" #'TeX-view)
+
+(+map-local! :package latex-preview-pane :module me-latex
+  :keymaps '(tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+  "p" #'latex-preview-pane-mode)
 
 
 
@@ -565,6 +758,76 @@
       (unless (memq (car sp--mc/cursor-specific-vars) vars)
         (setcdr (assq :default evil-mc-cursor-variables) (append vars sp--mc/cursor-specific-vars))))))
 
+(+map-local! :package ts-movement :module me-prog
+  :keymaps 'ts-movement-map "v" #'+ts-movement-transient)
+
+(+map! :package consult-eglot :module me-prog
+  :keymaps 'eglot-mode-map
+  "cs" '(consult-eglot-symbols :wk "Symbols"))
+
+(+map! :package apheleia :module me-prog
+  "cff" #'apheleia-format-buffer)
+
+(+map! :package editorconfig :module me-prog
+  "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
+  "cfe" #'editorconfig-format-buffer)
+
+(+map! :package clang-format :module me-prog
+  :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map cuda-mode-map scad-mode-map)
+  "cfc" #'clang-format-buffer)
+
+(+map! :package quickrun :module me-prog
+  "cq"  '(nil :wk "quickrun")
+  "cqq" #'quickrun
+  "cqQ" #'quickrun-select
+  "cqs" #'quickrun-shell
+  "cqa" #'quickrun-with-arg
+  "cqc" #'quickrun-compile-only
+  "cqC" #'quickrun-compile-only-select
+  "cqd" #'quickrun-select-default)
+
+(+map-local! :package rust-mode :module me-prog
+  :keymaps '(rust-mode-map rust-ts-mode-map)
+  "c" #'rust-compile
+  "C" #'rust-compile-release
+  "k" #'rust-check
+  "t" #'rust-test
+  "r" #'rust-run
+  "R" #'rust-run-release
+  "y" #'rust-run-clippy
+  "f" #'rust-format-buffer
+  "F" #'rust-goto-format-problem
+  "S" #'rust-enable-format-on-save)
+
+(+map! :package rainbow-mode :module me-prog
+  :keymaps '(prog-mode-map conf-mode-map text-mode-map)
+  "tR" #'rainbow-mode)
+
+(+map! :package devdocs :module me-prog
+  "hhh" #'devdocs-lookup
+  "hhp" #'devdocs-peruse
+  "hhs" #'devdocs-search
+  "hhI" #'devdocs-install)
+
+
+
+;;; For `me-math'
+
+(+map! :package ein :module me-math
+  :infix "o"
+  "j" '(nil :wk "ein")
+  "jr" #'ein:run
+  "jl" #'ein:login
+  "jf" #'ein:file-open
+  "jn" #'ein:notebook-open)
+
+(+map-local! :package ein :module me-math
+  :keymaps 'ein:ipynb-mode-map
+  "o" #'ein:process-find-file-callback
+  "O" #'ein:process-open-notebook
+  "r" #'ein:gat-run-remote
+  "l" #'ein:gat-run-local)
+
 
 
 ;;; For `me-files'
@@ -575,6 +838,24 @@
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle
     "y" #'dirvish-yank-menu))
+
+(+map! :package dirvish :module me-files
+  ;; Open
+  "o-" #'dirvish
+  "oq" #'dirvish-quick-access
+  ;; Search
+  "sd" #'dirvish-fd)
+
+(+map! :package neotree :module me-files
+  "op" #'neotree-toggle)
+
+(+map! :package sudo-edit :module me-files
+  "fF" #'sudo-edit-find-file
+  "fu" #'sudo-edit)
+
+(+map! :package ztree :module me-files
+  "oz" #'ztree-diff)
+
 
 
 
@@ -592,6 +873,61 @@
   :config-form
   (+nvmap! :keymaps 'org-msg-edit-mode-map "gg" #'org-msg-goto-body))
 
+(+map! :package mu4e :module me-email
+  "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
+
+(+map-local! :package mu4e :module me-email
+  :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
+  "s" #'message-send-and-exit
+  "d" #'message-kill-buffer
+  "S" #'message-dont-send)
+
+(+map-local! :package org-msg :module me-email
+  :keymaps 'org-msg-edit-mode-map
+  "a"  '(nil :wk "attach")
+  "aa" #'org-msg-attach-attach
+  "ad" #'org-msg-attach-delete
+  "k"  #'org-msg-edit-kill-buffer
+  "p"  #'org-msg-preview)
+
+
+
+;;; For `me-debug'
+
+(+map! :package dape :module me-debug
+  :infix "d"
+  "d" #'dape
+  "n" #'dape-next
+  "s" #'dape-step-in
+  "o" #'dape-step-out
+  "c" #'dape-continue
+  "r" #'dape-restart
+  "p" #'dape-pause
+  "b" #'dape-breakpoint-toggle
+  "e" #'dape-breakpoint-expression
+  "r" #'dape-remove-breakpoint-at-point
+  "R" #'dape-breakpoint-remove-all
+  "t" #'+dape-transient
+  "q" #'dape-kill
+  "Q" #'dape-quit)
+
+(+map-local! :package disaster :module me-debug
+  :keymaps '(c-mode-map c++-mode-map fortran-mode-map)
+  "D" #'disaster)
+
+
+
+;;; For `me-tags'
+
+(+evil-conf-for! eopengrok me-tags
+  :config-form
+  (+nmap!
+    :keymaps 'eopengrok-mode-map
+    "n" #'eopengrok-next-line
+    "p" #'eopengrok-previous-line
+    "q" #'eopengrok-quit
+    "RET" #'eopengrok-jump-to-source))
+
 
 
 ;;; For `me-docs'
@@ -600,15 +936,50 @@
   :config-form
   (+nmap! :keymaps 'nov-mode-map "RET" #'nov-scroll-up))
 
+(+map-local! :package markdown-mode :module me-docs
+  :keymaps 'markdown-mode-map
+  "l"  '(nil :wk "link")
+  "ll" #'markdown-insert-link
+  "e"  #'markdown-export)
+
 
 
-;;; For `me-docs'
+;;; For `me-data'
+
+(+map-local! :package mermaid-mode :module me-data
+  :keymaps 'mermaid-mode-map
+  "c" 'mermaid-compile
+  "f" 'mermaid-compile-file
+  "b" 'mermaid-compile-buffer
+  "r" 'mermaid-compile-region
+  "b" 'mermaid-open-browser
+  "d" 'mermaid-open-doc)
+
+(+map-local! :package d2-mode :module me-data
+  :keymaps 'd2-mode-map
+  "cc" #'d2-compile
+  "cf" #'d2-compile-file
+  "cb" #'d2-compile-buffer
+  "cr" #'d2-compile-region
+  "cF" #'d2-compile-file-and-browse
+  "cB" #'d2-compile-buffer-and-browse
+  "cR" #'d2-compile-region-and-browse
+  "o"  #'d2-open-browser
+  "v"  #'d2-view-current-svg
+  "h"  #'d2-open-doc)
+
+
+
+;;; For `me-rss'
 
 (+evil-conf-for! elfeed me-rss
   :config-form
   (progn
     (+nmap! :keymaps 'elfeed-search-mode-map "d" #'+elfeed-youtube-dl)
     (+nmap! :keymaps 'elfeed-show-mode-map "D" #'+elfeed-download-image)))
+
+(+map! :package elfeed :module me-rss
+  "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
 
 
 
@@ -628,6 +999,9 @@
     "r" #'xkcd-rand
     "y" #'xkcd-copy-link))
 
+(+map! :package xkcd :module me-fun
+  "ox" #'xkcd)
+
 
 
 ;;; For `me-vc'
@@ -635,10 +1009,6 @@
 (+evil-conf-for! git-commit me-vc
   :config-form
   (with-eval-after-load 'evil (evil-set-initial-state 'git-commit-mode 'insert)))
-
-
-
-;;; For `me-vc'
 
 (+evil-conf-for! diffview me-vc
   :config-form
@@ -648,6 +1018,49 @@
     "C-j" #'diffview--next-file
     "C-k" #'diffview--prev-file
     "q"   #'diffview--quit))
+
+(+map! :package magit :module me-vc
+  :infix "g"
+  "g" #'magit-status
+  "C" #'magit-clone
+  "b" #'magit-blame
+  "l" #'magit-log
+  "d" #'magit-diff-dwim
+  "s" #'magit-stage
+  "i" #'magit-init)
+
+(+map-local! :package magit-todos :module me-vc
+  :keymaps 'magit-status-mode-map
+  "t" `(,(+cmdfy! (magit-todos-mode 'toggle) (magit-refresh)) :wk "magit-todos-mode"))
+
+(+map! :package forge :module me-vc
+  :infix "g"
+  "f" '(nil :wk "forge")
+  "ff" #'forge-dispatch
+  "fc" #'forge-create-post
+  "fe" #'forge-edit-post
+  "ft" #'forge-edit-topic-title
+  "fs" #'forge-edit-topic-state
+  "fd" #'forge-edit-topic-draft)
+
+(+map! :package diff-hl :module me-vc
+  "gs" #'diff-hl-stage-current-hunk)
+
+(+map! :package git-timemachine :module me-vc
+  "gt" #'git-timemachine-toggle)
+
+(+map! :package repo :module me-vc
+  "gr" '(nil :wk "repo")
+  "grg" #'repo-status)
+
+(+map! :package repo-transient :module me-vc
+  "grr" #'repo-main-menu)
+
+(with-eval-after-load 'diff-mode
+  (+map-local! :package diffview :module me-vc
+    :keymaps 'diff-mode-map
+    "v" #'diffview-current
+    "V" #'diffview-region))
 
 
 
@@ -660,6 +1073,157 @@
       '(evil-yank evil-paste-after evil-paste-before
         evil-delete evil-delete-line evil-delete-whole-line
         evil-goto-last-change evil-goto-last-change-reverse))))
+
+(+map! :package focus :module me-ui
+  "tF" #'focus-mode)
+
+(+map! :package me-writing-mode :module me-ui
+  "tw" #'+writing-mode
+  "tW" #'+writing-global-mode)
+
+
+
+;;; For `me-workspaces'
+
+(+map! :package project-tab-groups :module me-workspaces
+  :infix "TAB"
+  "TAB" #'tab-bar-switch-to-tab
+  "o" #'project-switch-project
+  "d" #'tab-bar-close-tab)
+
+
+
+;;; For `me-emacs-lisp'
+
+(+map-local! :package macrostep :module me-emacs-lisp
+  :keymaps '(emacs-lisp-mode-map lisp-mode-map)
+  "m" '(macrostep-expand :wk "Expand macro"))
+
+(+map! :package macrostep :module me-emacs-lisp
+  :keymaps 'emacs-lisp-mode-map
+  :infix "h"
+  "p" #'helpful-at-point
+  "o" #'helpful-symbol
+  "c" #'helpful-command
+  "F" #'helpful-function
+  "f" #'helpful-callable)
+
+(with-eval-after-load 'octave
+  (+map-local! :package eros :module me-emacs-lisp
+    :keymaps 'octave-mode-map
+    "e"  '(nil :wk "eval")
+    "ee" #'+eros-octave-eval-last-sexp))
+
+
+
+;;; For `me-common-lisp'
+
+(+map-local! :package sly :module me-common-lisp
+  :keymaps '(lisp-mode-map)
+  "s"  #'sly
+  "c"  '(nil :wk "compile")
+  "cc" #'sly-compile-file
+  "cC" #'sly-compile-and-load-file
+  "cd" #'sly-compile-defun
+  "cr" #'sly-compile-region
+  "g"  '(nil :wk "goto/find")
+  "gn" #'sly-goto-first-note
+  "gL" #'sly-load-file
+  "gn" #'sly-next-note
+  "gN" #'sly-previous-note
+  "gs" #'sly-stickers-next-sticker
+  "gS" #'sly-stickers-prev-sticker
+  "gN" #'sly-previous-note
+  "gd" #'sly-edit-definition
+  "gD" #'sly-edit-definition-other-window
+  "gb" #'sly-pop-find-definition-stack
+  "h"  '(nil :wk "help/info")
+  "hs" #'sly-describe-symbol
+  "hf" #'sly-describe-function
+  "hc" #'sly-who-calls
+  "hC" #'sly-calls-who
+  "hs" #'sly-who-calls
+  "hC" #'sly-calls-who
+  "hd" #'sly-disassemble-symbol
+  "hD" #'sly-disassemble-definition
+  "r"  '(nil :wk "repl")
+  "rr" #'sly-restart-inferior-lisp
+  "rc" #'sly-mrepl-clear-repl
+  "rs" #'sly-mrepl-sync
+  "rn" #'sly-mrepl-new
+  "rq" #'sly-quit-lisp)
+
+(+map-local! :package sly-macrostep :module me-common-lisp
+  :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
+  "m" '(macrostep-expand :wk "Expand macro"))
+
+
+
+;;; For `me-modeling'
+
+(+map-local! :package scad-mode :module me-modeling
+  :keymaps 'scad-mode-map
+  "p" #'scad-preview)
+
+
+
+;;; For `me-embedded'
+
+(+map! :package embed :module me-embedded
+  :infix "o"
+  "b" '(nil :wk "embed")
+  "bo" #'embed-openocd-start
+  "bO" #'embed-openocd-stop
+  "bg" #'embed-openocd-gdb
+  "bf" #'embed-openocd-flash)
+
+(+map-local! :package bitbake :module me-embedded
+  :keymaps 'bitbake-mode-map
+  "b"  #'bitbake-recipe-build-dir-dired
+  "ii" #'bitbake-inc-pr
+  "iv" #'bitbake-insert-var
+  "ia" #'bitbake-append-var
+  "io" #'bitbake-insert-override)
+
+
+
+;;; For `me-calendar'
+
+(+map! :package calfw :module me-calendar
+  "oC" (+def-dedicated-tab! cfw:open-calendar-buffer))
+
+
+
+;;; For `me-project'
+
+(+map! :package consult-project-extra :module me-project
+  :infix "p" ;; project
+  "p" #'consult-project-extra-find
+  "P" #'consult-project-extra-find-other-window)
+
+(+map! :package projection :module me-project
+  "pC" #'projection-multi-compile
+  "dD" #'projection-dape)
+
+
+
+;;; For `me-window'
+
+(+map! :package ace-window :module me-window
+  "wa" #'ace-window)
+
+
+
+;;; For `me-scheme'
+
+(+map-local! :package macrostep-geiser :module me-scheme
+  :keymaps '(geiser-mode-map geiser-repl-mode-map)
+  "m" '(macrostep-expand :wk "Expand macro")
+  "M" #'macrostep-geiser-expand-all)
+
+
+
+;;; For 
 
 
 (provide 'me-evil)

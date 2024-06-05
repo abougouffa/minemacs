@@ -72,12 +72,7 @@
   :custom
   (markdown-hide-markup t)
   (markdown-enable-html t)
-  (markdown-enable-math t)
-  :config
-  (+map-local! :keymaps 'markdown-mode-map
-    "l"  '(nil :wk "link")
-    "ll" #'markdown-insert-link
-    "e"  #'markdown-export))
+  (markdown-enable-math t))
 
 (use-package pandoc-mode
   :straight t
@@ -97,6 +92,7 @@
      (side . right)
      (dedicated . t) ;; Close when finished
      (window-width . 76))))
+
 
 (provide 'me-docs)
 

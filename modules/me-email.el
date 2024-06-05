@@ -34,7 +34,6 @@
     "Automatically start `mu4e' in background in `me-daemon'."
     :group 'minemacs-mu4e
     :type 'boolean)
-  (+map! "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
@@ -65,11 +64,6 @@
   (mail-specify-envelope-from t)
   (mail-user-agent 'mu4e-user-agent)
   :config
-  (+map-local! :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
-    "s" #'message-send-and-exit
-    "d" #'message-kill-buffer
-    "S" #'message-dont-send)
-
   (defun +mu4e-open-mail-as-html ()
     "Open the HTML mail in EAF Browser."
     (interactive)
@@ -161,12 +155,6 @@
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" (any space ?: ?\; ?, ?.))))))) ;; p.j
   :config
-  (+map-local! :keymaps 'org-msg-edit-mode-map
-    "a"  '(nil :wk "attach")
-    "aa" #'org-msg-attach-attach
-    "ad" #'org-msg-attach-delete
-    "k"  #'org-msg-edit-kill-buffer
-    "p"  #'org-msg-preview)
   (org-msg-mode 1)
 
   ;; HACK: When adding multiple attachments, I likely need it to remember the directory of the last added attachment.
