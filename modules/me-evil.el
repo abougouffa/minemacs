@@ -356,6 +356,140 @@
 
 
 
+;;; For `me-builtin'
+
+(+map-local! :package edebug
+  :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+  "d"   '(nil :wk "edebug")
+  "df"  #'edebug-defun
+  "dF"  #'edebug-all-forms
+  "dd"  #'edebug-all-defs
+  "dr"  #'edebug-remove-instrumentation
+  "do"  #'edebug-on-entry
+  "dO"  #'edebug-cancel-on-entry
+  "db"  '(nil :wk "breakpoints")
+  "dbb" #'edebug-set-breakpoint
+  "dbr" #'edebug-unset-breakpoint
+  "dbn" #'edebug-next-breakpoint)
+
+(+map-local! :package edebug
+  :keymaps '(edebug-mode-map)
+  "e"   '(nil :wk "eval")
+  "ee"  #'edebug-eval-last-sexp
+  "eE"  #'edebug-eval-expression
+  "et"  #'edebug-eval-top-level-form)
+
+(+map-local! :package dired-x
+  :keymaps 'dired-mode-map
+  "h" #'dired-omit-mode)
+
+(+map-local! :package flymake
+  :keymaps 'flymake-mode-map
+  "f"  '(nil :wk "flymake")
+  "fn" #'flymake-goto-next-error
+  "fN" #'flymake-goto-prev-error
+  "fs" #'flymake-start
+  "fb" #'flymake-show-buffer-diagnostics
+  "fp" #'flymake-show-project-diagnostics
+  "ff" #'+flymake-transient)
+
+(+map-local! :package reftex
+  :keymaps 'reftex-mode-map
+  ";" 'reftex-toc)
+
+(with-eval-after-load 'reftex
+  (+nvmap! :keymaps 'reftex-toc-mode-map
+    "j"   #'next-line
+    "k"   #'previous-line
+    "q"   #'kill-buffer-and-window
+    "ESC" #'kill-buffer-and-window))
+
+(+map! :package eglot
+  :keymaps 'eglot-mode-map
+  :infix "c"
+  "fF" #'eglot-format-buffer
+  "d"  '(eglot-find-declaration :wk "Find declaration")
+  "i"  '(eglot-find-implementation :wk "Find implementation")
+  "t"  '(eglot-find-typeDefinition :wk "Find type definition")
+  "a"  '(eglot-code-actions :wk "Code actions")
+  "r"  '(nil :wk "refactor")
+  "rr" '(eglot-rename :wk "Rename")
+  "rR" '(eglot-code-action-rewrite :wk "Rewrite")
+  "rf" '(eglot-code-action-quickfix :wk "Quick fix")
+  "ri" '(eglot-code-action-inline :wk "Inline")
+  "re" '(eglot-code-action-extract :wk "Extract")
+  "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
+  "eq" '(eglot-shutdown :wk "Shutdown")
+  "er" '(eglot-reconnect :wk "Reconnect")
+  "eQ" '(eglot-shutdown-all :wk "Shutdown all")
+  "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
+
+(+map-local! :package elisp-mode
+  :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
+  "p" #'check-parens)
+
+(+map-local! :package elisp-mode
+  :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
+  "e"   '(nil :wk "eval")
+  "eb"  #'eval-buffer
+  "ed"  #'eval-defun
+  "ee"  #'eval-last-sexp
+  "er"  #'eval-region
+  "eR"  #'elisp-eval-region-or-buffer
+  "el"  #'load-library
+  "g"   '(nil :wk "goto/find")
+  "gf"  #'find-function-at-point
+  "gR"  #'find-function
+  "gv"  #'find-variable-at-point
+  "gV"  #'find-variable
+  "gL"  #'find-library
+  "c"   '(nil :wk "compile")
+  "cc"  #'elisp-byte-compile-buffer
+  "cf"  #'elisp-byte-compile-file
+  "cn"  #'emacs-lisp-native-compile-and-load
+  "cb"  #'emacs-lisp-byte-compile-and-load)
+
+(+map-local! :package org
+  :keymaps 'org-mode-map
+  "l"  '(nil :wk "link")
+  "ll" #'org-insert-link
+  "e"  #'org-export-dispatch
+  "c"  #'org-edit-src-code
+  "s"  '(nil :wk "babel-session")
+  "sc" #'org-babel-switch-to-session-with-code
+  "ss" #'org-babel-switch-to-session
+  "sp" #'org-babel-pop-to-session
+  "sP" #'org-babel-pop-to-session-maybe
+  "sl" #'org-babel-load-in-session
+  "sL" #'org-babel-load-in-session-maybe
+  "si" #'org-babel-initiate-session
+  "b"  '(nil :wk "babel")
+  "bt" #'org-babel-tangle
+  "bd" #'org-babel-detangle
+  "bf" #'org-babel-tangle-file)
+
+(+map-local! :package org
+  :keymaps 'org-src-mode-map
+  "s" #'org-edit-src-save
+  "q" #'org-edit-src-abort
+  "e" #'org-edit-src-exit)
+
+(+map-local! :package oc
+  :keymaps 'org-mode-map "C" #'org-cite-insert)
+
+(+map! :package smerge-mode
+  "gm" '(+smerge-hydra/body :wk "sMerge"))
+
+(+map! :package whitespace
+  "tc" #'+whitespace-auto-cleanup-mode)
+
+(+map-local! :package bibtex
+  :keymaps 'bibtex-mode-map
+  "l" #'bibtex-fill-entry
+  "r" #'bibtex-reformat)
+
+
+
 ;;; For `me-multi-cursors'
 
 (use-package evil-multiedit ; This will load `iedit' and suppresses it

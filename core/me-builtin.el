@@ -324,9 +324,6 @@ or file path may exist now."
   :custom
   (dired-omit-verbose nil)
   :config
-  (+map-local! :keymaps 'dired-mode-map
-    "h" #'dired-omit-mode)
-
   (cl-callf concat dired-omit-files
     "\\|^\\.\\(?:svn\\|git\\|hg\\|repo\\)\\'"
     "\\|^\\.DS_Store\\'"
@@ -398,15 +395,6 @@ or file path may exist now."
   (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
   (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
   :config
-  (+map-local! :keymaps 'flymake-mode-map
-    "f"  '(nil :wk "flymake")
-    "fn" #'flymake-goto-next-error
-    "fN" #'flymake-goto-prev-error
-    "fs" #'flymake-start
-    "fb" #'flymake-show-buffer-diagnostics
-    "fp" #'flymake-show-project-diagnostics
-    "ff" #'+flymake-transient)
-
   (transient-define-prefix +flymake-transient ()
     "Transient for flymake."
     [[("n" "Next error" flymake-goto-next-error :transient t)
@@ -470,15 +458,7 @@ or file path may exist now."
    ;; This is needed when `reftex-cite-format' is set. See:
    ;; superuser.com/a/1386206
    (reftex-plug-into-AUCTeX t)
-   (reftex-toc-split-windows-fraction 0.3))
-  :config
-  (+map-local! :keymaps 'reftex-mode-map
-    ";" 'reftex-toc)
-  (+nvmap! :keymaps 'reftex-toc-mode-map
-    "j"   #'next-line
-    "k"   #'previous-line
-    "q"   #'kill-buffer-and-window
-    "ESC" #'kill-buffer-and-window))
+   (reftex-toc-split-windows-fraction 0.3)))
 
 (use-package bibtex
   :hook (bibtex-mode . display-line-numbers-mode)
@@ -583,25 +563,6 @@ or file path may exist now."
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   :config
-  (+map! :keymaps 'eglot-mode-map
-    :infix "c"
-    "fF" #'eglot-format-buffer
-    "d"  '(eglot-find-declaration :wk "Find declaration")
-    "i"  '(eglot-find-implementation :wk "Find implementation")
-    "t"  '(eglot-find-typeDefinition :wk "Find type definition")
-    "a"  '(eglot-code-actions :wk "Code actions")
-    "r"  '(nil :wk "refactor")
-    "rr" '(eglot-rename :wk "Rename")
-    "rR" '(eglot-code-action-rewrite :wk "Rewrite")
-    "rf" '(eglot-code-action-quickfix :wk "Quick fix")
-    "ri" '(eglot-code-action-inline :wk "Inline")
-    "re" '(eglot-code-action-extract :wk "Extract")
-    "ro" '(eglot-code-action-organize-imports :wk "Organize imports")
-    "eq" '(eglot-shutdown :wk "Shutdown")
-    "er" '(eglot-reconnect :wk "Reconnect")
-    "eQ" '(eglot-shutdown-all :wk "Shutdown all")
-    "w"  '(eglot-show-workspace-configuration :wk "Eglot workspace config"))
-
   (+eglot-register
     '(c++-mode c++-ts-mode c-mode c-ts-mode)
     '("clangd"
@@ -717,53 +678,12 @@ or file path may exist now."
   :custom-face ; better the default cyan color!
   (elisp-shorthand-font-lock-face ((t :inherit font-lock-keyword-face :foreground "red")))
   :init
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map ielm-map lisp-mode-map racket-mode-map scheme-mode-map)
-    "p" #'check-parens)
-  (+setq-hook! emacs-lisp-mode tab-width 8) ; to view built-in packages correctly
-  :config
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "e"   '(nil :wk "eval")
-    "eb"  #'eval-buffer
-    "ed"  #'eval-defun
-    "ee"  #'eval-last-sexp
-    "er"  #'eval-region
-    "eR"  #'elisp-eval-region-or-buffer
-    "el"  #'load-library
-    "g"   '(nil :wk "goto/find")
-    "gf"  #'find-function-at-point
-    "gR"  #'find-function
-    "gv"  #'find-variable-at-point
-    "gV"  #'find-variable
-    "gL"  #'find-library
-    "c"   '(nil :wk "compile")
-    "cc"  #'elisp-byte-compile-buffer
-    "cf"  #'elisp-byte-compile-file
-    "cn"  #'emacs-lisp-native-compile-and-load
-    "cb"  #'emacs-lisp-byte-compile-and-load))
+  (+setq-hook! emacs-lisp-mode tab-width 8)) ; to view built-in packages correctly
 
 (use-package edebug
   :after elisp-mode
   :custom
-  (edebug-inhibit-emacs-lisp-mode-bindings t)
-  :init
-  (+map-local! :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-    "d"   '(nil :wk "edebug")
-    "df"  #'edebug-defun
-    "dF"  #'edebug-all-forms
-    "dd"  #'edebug-all-defs
-    "dr"  #'edebug-remove-instrumentation
-    "do"  #'edebug-on-entry
-    "dO"  #'edebug-cancel-on-entry
-    "db"  '(nil :wk "breakpoints")
-    "dbb" #'edebug-set-breakpoint
-    "dbr" #'edebug-unset-breakpoint
-    "dbn" #'edebug-next-breakpoint)
-
-  (+map-local! :keymaps '(edebug-mode-map)
-    "e"   '(nil :wk "eval")
-    "ee"  #'edebug-eval-last-sexp
-    "eE"  #'edebug-eval-expression
-    "et"  #'edebug-eval-top-level-form))
+  (edebug-inhibit-emacs-lisp-mode-bindings t))
 
 (use-package scheme
   :custom
@@ -854,29 +774,10 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   (org-use-property-inheritance t) ; it's convenient to have properties inherited
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
-  (+map-local! :keymaps 'org-mode-map
-    "l"  '(nil :wk "link")
-    "ll" #'org-insert-link
-    "e"  #'org-export-dispatch
-    "c"  #'org-edit-src-code
-    "s"  '(nil :wk "babel-session")
-    "sc" #'org-babel-switch-to-session-with-code
-    "ss" #'org-babel-switch-to-session
-    "sp" #'org-babel-pop-to-session
-    "sP" #'org-babel-pop-to-session-maybe
-    "sl" #'org-babel-load-in-session
-    "sL" #'org-babel-load-in-session-maybe
-    "si" #'org-babel-initiate-session
-    "b"  '(nil :wk "babel")
-    "bt" #'org-babel-tangle
-    "bd" #'org-babel-detangle
-    "bf" #'org-babel-tangle-file)
-  (+map-local! :keymaps 'org-src-mode-map
-    "s" #'org-edit-src-save
-    "q" #'org-edit-src-abort
-    "e" #'org-edit-src-exit)
-
   (setq org-export-async-debug minemacs-debug-p) ;; Can be useful!
+
+  ;; TEMP: This solve the "Invalid face reference: org-indent [X times]" problem.
+  (require 'org-indent)
 
   ;; Dynamically change font size for Org heading levels, starting from
   ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.
@@ -948,12 +849,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   :custom
   (org-agenda-tags-column 0))
 
-;; TEMP: This will solve the "Invalid face reference: org-indent [X times]"
-;; problem.
-(use-package org-indent
-  :after org
-  :demand)
-
 (use-package ox-latex
   :after ox
   :custom
@@ -1020,7 +915,6 @@ This variable should be set early, either in \"early-config.el\" or \"init-tweak
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
   :config
-  (+map-local! :keymaps 'org-mode-map "C" #'org-cite-insert)
   (mapc #'require '(oc-csl oc-natbib oc-biblatex)))
 
 (use-package electric
@@ -1243,15 +1137,6 @@ current line.")
     "Cleanup all white spaces except the current line."
     :group 'minemacs-edit
     :type 'boolean)
-
-  (define-minor-mode +whitespace-auto-cleanup-mode
-    "Automatically cleanup trailing whitespace."
-    :init-value nil
-    :global t
-    (if +whitespace-auto-cleanup-mode
-        (add-hook 'before-save-hook #'+whitespace--delete-trailing-h)
-      (remove-hook 'before-save-hook #'+whitespace--delete-trailing-h)))
-
   (+map! "tc" #'+whitespace-auto-cleanup-mode)
   :config
   (defun +whitespace-delete-trailing ()
@@ -1275,7 +1160,15 @@ See `+whitespace-auto-cleanup-except-current-line'."
   ;; Auto-remove trailing white spaces before saving for modes defined in
   ;; `+whitespace-auto-cleanup-modes'.
   (defun +whitespace--delete-trailing-h ()
-    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes) (+whitespace-delete-trailing))))
+    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes) (+whitespace-delete-trailing)))
+
+  (define-minor-mode +whitespace-auto-cleanup-mode
+    "Automatically cleanup trailing whitespace."
+    :init-value nil
+    :global t
+    (if +whitespace-auto-cleanup-mode
+        (add-hook 'before-save-hook #'+whitespace--delete-trailing-h)
+      (remove-hook 'before-save-hook #'+whitespace--delete-trailing-h))))
 
 (use-package autorevert
   ;; Auto load files changed on disk
@@ -1406,36 +1299,26 @@ See `+whitespace-auto-cleanup-except-current-line'."
      (unsplittable . t)
      (left-fringe . 10)))
   :config
-  (defun +speedbar-switch-to-quick-buffers ()
-    "Temporary switch to quick-buffers expansion list.
-Useful for quickly switching to an open buffer."
-    (interactive)
-    (speedbar-change-initial-expansion-list "quick buffers"))
-
-  (+map-local! :keymaps 'speedbar-mode-map
-    "b" #'+speedbar-switch-to-quick-buffers)
-
   ;; File Extensions
   (speedbar-add-supported-extension
-   (list
-    ;; General Lisp Languages
-    ".cl" ".el" ".scm" ".lisp"
-    ;; Lua/Fennel (Lisp that transpiles to lua)
-    ".lua" ".fnl" ".fennel"
-    ;; JVM languages (Java, Kotlin, Clojure)
-    ".java" ".kt" ".mvn" ".gradle" ".properties" ".clj"
-    ;; C/C++
-    ".c" ".cpp" ".cc" ".h" ".hh" ".hpp"
-    ;; shellscript
-    ".sh" ".bash"
-    ;; Web Languages and Markup/Styling
-    ".php" ".js" ".ts" ".html" ".htm" ".css" ".less" ".scss" ".sass"
-    ;; Makefile
-    "makefile" "MAKEFILE" "Makefile"
-    ;; Data formats
-    ".json" ".yaml" ".toml"
-    ;; Notes and Markup
-    ".md" ".markdown" ".org" ".txt" "README")))
+   '(;; Classic Lisp Languages
+     ".cl" ".el" ".scm" ".lisp"
+     ;; Lua/Fennel (Lisp that transpiles to lua)
+     ".lua" ".fnl" ".fennel"
+     ;; JVM languages (Java, Kotlin, Clojure)
+     ".java" ".kt" ".mvn" ".gradle" ".properties" ".clj"
+     ;; C/C++
+     ".c" ".cpp" ".cc" ".h" ".hh" ".hpp"
+     ;; Shell scripts
+     ".sh" ".bash"
+     ;; Web Languages and Markup/Styling
+     ".php" ".js" ".ts" ".html" ".htm" ".css" ".less" ".scss" ".sass"
+     ;; Makefile
+     "makefile" "MAKEFILE" "Makefile"
+     ;; Data formats
+     ".json" ".yaml" ".toml"
+     ;; Notes and Markup
+     ".md" ".markdown" ".org" ".txt" "README")))
 
 (use-package simple
   :init
