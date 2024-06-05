@@ -42,7 +42,7 @@
   :commands project-x-window-state-save project-x-window-state-load
   :custom
   (project-x-window-list-file (concat minemacs-local-dir "project-x/project-window-list.el"))
-  (project-x-local-identifier '(".project.el" ".project" ".projectile"))
+  (project-x-local-identifier project-vc-extra-root-markers)
   :init
   (project-x-mode 1))
 
