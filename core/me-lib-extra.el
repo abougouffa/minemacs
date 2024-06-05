@@ -594,7 +594,7 @@ If ENABLE is non-nil, force enabling autoreloading."
 (defun +dir-locals-open-or-create ()
   "Open or create the dir-locals.el for the current project."
   (interactive)
-  (let* ((file-name (buffer-file-name))
+  (let* ((file-name (or buffer-file-name default-directory))
          (base-dir (car (ensure-list (dir-locals-find-file file-name)))))
     (find-file
      (cond (base-dir (expand-file-name dir-locals-file base-dir))
