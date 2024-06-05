@@ -38,6 +38,9 @@
   :custom
   (neo-theme 'nerd-icons))
 
+(use-package sr-speedbar
+  :straight t)
+
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
   :after minemacs-loaded
