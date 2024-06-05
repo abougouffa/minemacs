@@ -41,6 +41,10 @@
   (doom-modeline-bar ((t (:inherit mode-line :background unspecified))))
   (doom-modeline-bar-inactive ((t (:inherit mode-line :background unspecified)))))
 
+(use-package mlscroll
+  :straight (:host github :repo "jdtsmith/mlscroll")
+  :hook (minemacs-lazy . mlscroll-mode))
+
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
   :when (>= emacs-major-version 29) ; TEMP+BUG: There is an issue with Emacs 28
