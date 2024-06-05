@@ -200,7 +200,7 @@
 
   ;; Remap some keys/page
   (keymap-global-set "C-x C-r" #'recentf) ; Instead of `find-file-read-only'
-  (keymap-global-set "C-x k" #'kill-this-buffer) ; Instead of `kill-buffer'
+  (keymap-global-set "C-x k" #'kill-current-buffer) ; Instead of `kill-buffer'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
 
   ;; Disable previously enabled custom themes before enabling a new one.
