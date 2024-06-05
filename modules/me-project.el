@@ -29,12 +29,32 @@
 (use-package projection
   :straight t
   :hook (ibuffer . ibuffer-projection-set-filter-groups)
+  :after project
+  :demand
   :bind-keymap ("C-x P" . projection-map)
   :init
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
   (+add-hook! ibuffer (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update))))
+  ;; Mark compile commands as safe (customized in ".dir-locals.el")
+  (dolist (var '(projection-commands-configure-project projection-commands-build-project
+                 projection-commands-test-project projection-commands-run-project
+                 projection-commands-package-project projection-commands-install-project))
+    (put var 'safe-local-variable #'stringp))
+  ;; Enable `projection-hook', adds the possibility to run functions in per-project basis
+  (global-projection-hook-mode 1))
+
+(use-package projection-multi
+  :straight t)
+
+(use-package projection-multi-embark
+  :straight t
+  :after embark projection-multi
+  :init
   (with-eval-after-load 'embark
     (projection-multi-embark-setup-command-map)))
+
+(use-package projection-dape
+  :straight t)
 
 (use-package project-x
   :straight (:host github :repo "karthink/project-x")

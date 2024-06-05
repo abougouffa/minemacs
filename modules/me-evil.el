@@ -1335,9 +1335,11 @@
   "p" #'consult-project-extra-find
   "P" #'consult-project-extra-find-other-window)
 
-(+map! :package projection :module me-project
-  "pC" #'projection-multi-compile
+(+map! :package projection-dape :module me-project
   "dD" #'projection-dape)
+
+(+map! :package projection-multi :module me-project
+  "pC" #'projection-multi-compile)
 
 
 
