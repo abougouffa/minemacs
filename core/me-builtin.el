@@ -57,119 +57,68 @@
   ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
   ;; emacs.stackexchange.com/a/28746
   (auto-window-vscroll nil)
-  ;; Fast scrolling
-  (fast-but-imprecise-scrolling t)
-  ;; Keep the point in the same position while scrolling
-  (scroll-preserve-screen-position t)
-  ;; Do not move cursor to the center when scrolling
-  (scroll-conservatively 101)
-  ;; Scroll at a margin of one line
-  (scroll-margin 1)
-  ;; The number of lines to scroll
-  (scroll-step 1)
-  ;; Columns from the window edge point allowed before horizontal scroll
-  (hscroll-margin 2)
-  ;; The number of columns to scroll
-  (hscroll-step 1)
-  ;; Disable lockfiles
-  (create-lockfiles nil)
-  ;; Enable making backup files
-  (make-backup-files t)
-  ;; Number each backup file
-  (version-control t)
-  ;; Copy instead of renaming current file
-  (backup-by-copying t)
-  ;; Clean up after itself
-  (delete-old-versions t)
-  ;; Keep up to 5 old versions of each file
-  (kept-old-versions 5)
-  ;; Keep up to 5 new versions of each file
-  (kept-new-versions 5)
-  ;; Keep up to 5 versions when cleaning a directory
-  (dired-kept-versions 5)
-  ;; Make TAB indents first, then inserts the TAB character
-  (tab-always-indent nil)
-  ;; TAB completion behavior
-  (tab-first-completion 'word)
-  ;; End files with newline
-  (require-final-newline t)
-  ;; 10MB (default is 160kB)
-  (undo-limit 10000000)
-  ;; 50MB (default is 240kB)
-  (undo-strong-limit 50000000)
-  ;; 150MB (default is 24MB)
-  (undo-outer-limit 150000000)
-  ;; Use small frames to display tooltips instead of the default OS tooltips
-  (use-system-tooltips nil)
-  ;; Resize window combinations proportionally
-  (window-combination-resize t)
-  ;; Stretch cursor to the glyph width
-  (x-stretch-cursor t)
-  ;; Do force frame size to be a multiple of char size
-  (frame-resize-pixelwise t)
-  ;; Don’t compact font caches during GC
-  (inhibit-compacting-font-caches t)
-  ;; Increase single chunk bytes to read from subprocess (default 4096)
-  (read-process-output-max (if os/linux
-                               (condition-case nil
-                                   ;; Android may raise permission-denied error
-                                   (with-temp-buffer
-                                     (insert-file-contents "/proc/sys/fs/pipe-max-size")
-                                     (string-to-number (buffer-string)))
-                                 ;; If an error occurred, fallback to the default value
-                                 (error read-process-output-max))
-                             (* 1024 1024)))
-  ;; Don't prompt for confirmation when we create a new file or buffer
-  (confirm-nonexistent-file-or-buffer nil)
-  ;; Enable recursive calls to minibuffer
-  (enable-recursive-minibuffers t)
-  ;; Ignore case when completing
-  (completion-ignore-case t)
+  (fast-but-imprecise-scrolling t) ; Fast scrolling
+  (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
+  (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
+  (scroll-margin 1) ; Scroll at a margin of one line
+  (scroll-step 1) ; The number of lines to scroll
+  (hscroll-margin 2) ; Columns from the window edge point allowed before horizontal scroll
+  (hscroll-step 1) ; The number of columns to scroll
+  (create-lockfiles nil) ; Disable lockfiles
+  (make-backup-files t) ; Enable making backup files
+  (version-control t) ; Number each backup file
+  (backup-by-copying t) ; Copy instead of renaming current file
+  (delete-old-versions t) ; Clean up after itself
+  (kept-old-versions 5) ; Keep up to 5 old versions of each file
+  (kept-new-versions 5) ; Keep up to 5 new versions of each file
+  (dired-kept-versions 5) ; Keep up to 5 versions when cleaning a directory
+  (tab-always-indent nil) ; Make TAB indents first, then inserts the TAB character
+  (tab-first-completion 'word) ; TAB completion behavior
+  (require-final-newline t) ; End files with newline
+  (undo-limit 10000000) ; 10MB (default is 160kB)
+  (undo-strong-limit 50000000) ; 50MB (default is 240kB)
+  (undo-outer-limit 150000000) ; 150MB (default is 24MB)
+  (use-system-tooltips nil) ; Use small frames to display tooltips instead of the default OS tooltips
+  (window-combination-resize t) ; Resize window combinations proportionally
+  (x-stretch-cursor t) ; Stretch cursor to the glyph width
+  (frame-resize-pixelwise t) ; Do force frame size to be a multiple of char size
+  (inhibit-compacting-font-caches t) ; Don’t compact font caches during GC
+  (read-process-output-max ; Increase single chunk bytes to read from subprocess (default 4096)
+   (if os/linux
+       (condition-case nil
+           ;; Android may raise permission-denied error
+           (with-temp-buffer
+             (insert-file-contents "/proc/sys/fs/pipe-max-size")
+             (string-to-number (buffer-string)))
+         ;; If an error occurred, fallback to the default value
+         (error read-process-output-max))
+     (* 1024 1024)))
+  (confirm-nonexistent-file-or-buffer nil) ; Don't prompt for confirmation when we create a new file or buffer
+  (enable-recursive-minibuffers t) ; Enable recursive calls to minibuffer
+  (completion-ignore-case t) ; Ignore case when completing
   (read-buffer-completion-ignore-case t)
-  ;; Display the true file name for symlinks
-  (find-file-visit-truename t)
-  ;; Use single space between sentences
-  (sentence-end-double-space nil)
-  ;; Move stuff to trash
-  (delete-by-moving-to-trash t)
-  ;; Save files only in sub-directories of current project
-  (save-some-buffers-default-predicate #'save-some-buffers-root)
-  ;; Inhibit startup message
-  (inhibit-startup-screen t)
-  ;; Do not ring
-  (ring-bell-function #'ignore)
-  ;; Set to non-nil to flash!
-  (visible-bell nil)
-  ;; Increase the large file threshold to 50 MiB
-  (large-file-warning-threshold (* 50 1024 1024))
-  ;; No initial scratch message
-  (initial-scratch-message nil)
-  ;; Set initial buffer to fundamental-mode for faster load
-  (initial-major-mode 'fundamental-mode)
-  ;; Always prompt in minibuffer (no GUI)
-  (use-dialog-box nil)
-  ;; Use y or n instead of yes or no
-  (use-short-answers t)
-  ;; Confirm before quitting
-  (confirm-kill-emacs #'y-or-n-p)
-  ;; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
-  (prettify-symbols-unprettify-at-point t)
-  ;; Use a dashed line for `display-fill-column-indicator-mode'
-  (display-fill-column-indicator-character ?\u250a)
-  ;; Make apropos commands search more extensively
-  (apropos-do-all t)
-  ;; Do not ask obvious questions, follow symlinks
-  (vc-follow-symlinks t)
-  ;; Kill the shell buffer after exit
-  (shell-kill-buffer-on-exit t)
-  ;; More intuitive buffer naming style
-  (uniquify-buffer-name-style 'forward)
-  ;; No ugly button for widgets
-  (widget-image-enable nil)
-  ;; Make tooltips last a bit longer (default 10s)
-  (tooltip-hide-delay 20)
-  ;; Animated images loop forever instead of playing the animation only once
-  (image-animate-loop t)
+  (find-file-visit-truename t) ; Display the true file name for symlinks
+  (sentence-end-double-space nil) ; Use single space between sentences
+  (delete-by-moving-to-trash t) ; Move stuff to trash
+  (save-some-buffers-default-predicate #'save-some-buffers-root) ; Save files only in sub-directories of current project
+  (inhibit-startup-screen t) ; Inhibit startup message
+  (ring-bell-function #'ignore) ; Do not ring
+  (visible-bell nil) ; Set to non-nil to flash!
+  (large-file-warning-threshold (* 50 1024 1024)) ; Increase the large file threshold to 50 MiB
+  (initial-scratch-message nil) ; No initial scratch message
+  (initial-major-mode 'fundamental-mode) ; Set initial buffer to fundamental-mode for faster load
+  (use-dialog-box nil) ; Always prompt in minibuffer (no GUI)
+  (use-short-answers t) ; Use y or n instead of yes or no
+  (confirm-kill-emacs #'y-or-n-p) ; Confirm before quitting
+  (prettify-symbols-unprettify-at-point t) ; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
+  (display-fill-column-indicator-character ?\u250a) ; Use a dashed line for `display-fill-column-indicator-mode'
+  (apropos-do-all t) ; Make apropos commands search more extensively
+  (vc-follow-symlinks t) ; Do not ask obvious questions, follow symlinks
+  (shell-kill-buffer-on-exit t) ; Kill the shell buffer after exit
+  (uniquify-buffer-name-style 'forward) ; More intuitive buffer naming style
+  (widget-image-enable nil) ; No ugly button for widgets
+  (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
+  (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   :init
   (setq-default truncate-lines nil ; Display long lines
                 fill-column 80 ; Default fill column width
