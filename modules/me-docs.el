@@ -70,9 +70,10 @@
   :straight t
   :mode ("README\\.md\\'" . gfm-mode)
   :custom
-  (markdown-hide-markup t)
   (markdown-enable-html t)
-  (markdown-enable-math t))
+  (markdown-enable-math t)
+  (markdown-fontify-code-blocks-natively t)
+  (markdown-enable-highlighting-syntax t))
 
 (use-package pandoc-mode
   :straight t
