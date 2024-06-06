@@ -75,8 +75,7 @@
   :straight t)
 
 (use-package dockerfile-mode
-  :straight t
-  :unless (+emacs-features-p 'tree-sitter))
+  :straight t)
 
 (use-package systemd
   :straight (:build (:not compile))

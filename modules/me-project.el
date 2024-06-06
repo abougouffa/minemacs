@@ -48,10 +48,9 @@
 
 (use-package projection-multi-embark
   :straight t
-  :after embark projection-multi
+  :after embark
   :init
-  (with-eval-after-load 'embark
-    (projection-multi-embark-setup-command-map)))
+  (projection-multi-embark-setup-command-map))
 
 (use-package projection-dape
   :straight t)
