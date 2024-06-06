@@ -53,19 +53,6 @@
   (crdt-use-tuntox +tuntox-available-p)
   (crdt-use-stunnel +stunnel-available-p))
 
-(defconst +easydraw-available-p (+emacs-features-p 'rsvg 'zlib 'libxml2))
-
-(use-package edraw
-  :straight (:host github :repo "misohena/el-easydraw")
-  :when +easydraw-available-p
-  :custom
-  (edraw-ui-state-file (+directory-ensure minemacs-local-dir "edraw/ui-state.el"))
-  (edraw-shape-picker-entries-file (concat minemacs-local-dir "edraw/shape-picker-entries.el")))
-
-(use-package edraw-org
-  :hook (org-mode . edraw-org-setup-default)
-  :when +easydraw-available-p)
-
 (use-package markdown-mode
   :straight t
   :mode ("README\\.md\\'" . gfm-mode)
