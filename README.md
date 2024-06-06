@@ -32,7 +32,7 @@ or hook
 ### Ansible Vault support
 
 Set up a password in `ansible-vault-password-file`: (default value:
-"~/vault_pass")
+"~/.vault_pass")
 
     (setq ansible-vault-password-file "path/to/pwd/file")
 
