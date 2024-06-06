@@ -31,6 +31,14 @@
  menu-bar-mode nil
  scroll-bar-mode nil)
 
+;; In `me-builtin', we advice `load-theme' to save the background color of the
+;; current theme to a file. If that file exists, we load the color and apply it
+;; early to avoid flickering at startup.
+(let* ((bg-color (concat (file-name-directory load-file-name) "local/cache/background-color"))
+       (bg-color (and (file-exists-p bg-color) (with-temp-buffer (insert-file-contents bg-color) (string-trim (buffer-string))))))
+  (when bg-color
+    (push `(background-color . ,bg-color) default-frame-alist)))
+
 ;; NOTE: In Emacs29+, frames can have a transparent background via the
 ;; `alpha-background' parameter. For a better experience, this value should be
 ;; set early before any frame gets created (i.e. in "early-init.el"). MinEmacs
@@ -42,8 +50,7 @@
 (when (>= emacs-major-version 29)
   (when-let* ((alpha (getenv "MINEMACS_ALPHA"))
               (alpha (string-to-number alpha)))
-    (push (cons 'alpha-background (if (or (zerop alpha) (> alpha 100)) 93 alpha))
-          default-frame-alist)))
+    (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist)))
 
 ;; Load MinEmacs variables from the `me-vars' core module.
 (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
