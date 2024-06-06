@@ -136,6 +136,18 @@ rm -rf ~/.emacs.d/local/cache/org/
 
 See [this comment](https://github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814) for more information.
 
+## `vterm-module` compilation issue
+In some old systems, you can run into a compilation issue of `vterm-module`. By
+default, `vterm` will try to use the `libvterm` installed in your system,
+however, the version provided by your system might be incompatible with
+`vterm-module`. In similar cases, you can try to add this to your `config.el`:
+
+```elisp
+;; To be able to compile vterm-module
+(with-eval-after-load 'vterm
+  (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
+```
+
 ## Debugging MinEmacs
 Sometimes Emacs might freezes and stop responding, the reflex in this case is to
 use `C-g` to call `keyboard-quit` which signals a "quit" condition. If Emacs
