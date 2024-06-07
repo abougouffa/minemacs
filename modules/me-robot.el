@@ -8,71 +8,8 @@
 
 ;;; Code:
 
-(defgroup minemacs-robot nil
-  "MinEmacs robotics stuff."
-  :group 'minemacs)
-
-(defcustom +ros-mcap-command "mcap-cli"
-  "ROS 2 MCAP command."
-  :group 'minemacs-robot
-  :type '(choice file string))
-
-(defcustom +ros-rosbag-command "rosbag"
-  "ROS 1 \"rosbag\" command."
-  :group 'minemacs-robot
-  :type '(choice file string))
-
-(defcustom +ros-ros2-command "ros2"
-  "ROS 2 \"ros2\" command."
-  :group 'minemacs-robot
-  :type '(choice file string))
-
-(dolist (ext-mode '(("\\.rviz\\'"   . conf-unix-mode)
-                    ("\\.urdf\\'"   . xml-mode)
-                    ("\\.xacro\\'"  . xml-mode)
-                    ("\\.launch\\'" . xml-mode)
-                    ("\\.msg\\'"    . gdb-script-mode)
-                    ("\\.srv\\'"    . gdb-script-mode)
-                    ("\\.action\\'" . gdb-script-mode)))
-  (add-to-list 'auto-mode-alist ext-mode))
-
-(when (cl-some (lambda (cmd) (and cmd (executable-find cmd)))
-               (list +ros-mcap-command +ros-rosbag-command +ros-ros2-command))
-  (+deferred!
-   ;; A mode to display info from ROS bag files (via MCAP)
-   (define-derived-mode rosbag-info-mode conf-colon-mode "ROS bag"
-     "Major mode for viewing ROS/ROS2 bag files."
-     :interactive nil
-     (buffer-disable-undo)
-     (set-buffer-modified-p nil)
-     (setq-local buffer-read-only t
-                 truncate-lines t))
-
-   (defun rosbag-info-mode-open-file (file)
-     "Browse the contents of an ROS bag (v1, SQLite, or MCAP) file."
-     (interactive "fROS/ROS2/MCAP bag file name: ")
-     (let ((bag-format (file-name-extension file)))
-       (if (not (member bag-format '("bag" "db3" "mcap")))
-           (user-error "File \"%s\" doesn't seem to be a ROS/ROS2 bag file."
-                       (file-name-nondirectory file))
-         (let ((buffer-read-only nil)
-               (buff (get-buffer-create
-                      (format "*ROS (%s) %s*" (upcase bag-format) (file-name-nondirectory file)))))
-           (pop-to-buffer buff)
-           (pcase bag-format
-             ("bag"
-              (call-process +ros-rosbag-command
-                            nil buff nil "info" (expand-file-name file)))
-             ("db3"
-              (call-process +ros-ros2-command
-                            nil buff nil "bag" "info" (expand-file-name file)))
-             ("mcap"
-              (call-process +ros-mcap-command
-                            nil buff nil "info" (expand-file-name file)))
-             (rosbag-info-mode))))))))
-
-(when (>= emacs-major-version 29)
-  (push 'docker-tramp straight-built-in-pseudo-packages))
+;; Needed by `ros', but provided by `tramp'
+(push 'docker-tramp straight-built-in-pseudo-packages)
 
 ;; ROS package
 (use-package ros
@@ -96,6 +33,9 @@
     ("a" hydra-ros-actions/body)
     ("x" ros-cache-clean)
     ("q" nil :color blue)))
+
+(use-package rosbag-info
+  :straight (:host github :repo "abougouffa/rosbag-info"))
 
 (use-package robot-mode
   :straight t)
