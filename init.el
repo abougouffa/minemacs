@@ -31,7 +31,7 @@
 ;;   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
 ;;   * `$MINEMACSDIR/modules.el` (unless disabled)
 ;;   * `$MINEMACSDIR/local/modules.el` (unless disabled)
-;;   * `~/.emacs.d/core/<module>.el` (for module in `minemacs-core-modules')
+;;   * `~/.emacs.d/core/<module>.el`
 ;;   * `~/.emacs.d/modules/<module>.el` (for module in `minemacs-modules')
 ;;   * `minemacs-after-loading-modules-hook'
 ;;   * `$MINEMACSDIR/custom-vars.el`
@@ -221,21 +221,21 @@ goes idle."
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
            (setq minemacs-not-lazy-p t))
-  ;; Load the default list of enabled modules (`minemacs-modules' and `minemacs-core-modules')
+  ;; Load the default list of enabled modules `minemacs-modules'
   (+load minemacs-core-dir "me-modules.el")
   (+load-user-configs 'modules 'local/modules))
 
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules.
 (when minemacs-load-all-modules-p
-  (setq minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\.el\\'")))))
+  (setq minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))))
 
-(when minemacs-core-modules
+(when (bound-and-true-p minemacs-core-modules)
   (message "[MinEmacs:Warn] The `me-completion', `me-keybindings' and `me-evil' modules have been moved to `minemacs-modules'. The `minemacs-core-modules' variable is now obsolete."))
 
 ;; MinEmacs 7.0.0 uses only `minemacs-modules'. The `minemacs-core-modules' is left for now just to ensure compatibility.
 (setq minemacs-modules (cl-delete-if (+apply-partially-right #'memq '(me-splash me-bootstrap me-builtin me-compat me-gc))
-                                     (delete-dups (append minemacs-core-modules minemacs-modules))))
+                                     (delete-dups (append (bound-and-true-p minemacs-core-modules) minemacs-modules))))
 
 ;; Load modules
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin me-gc)))

@@ -598,7 +598,7 @@ Works like `shell-command-to-string' with two differences:
 Optionally, check also for the containing MODULE."
   (or
    (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
-   (and module (not (memq module (append minemacs-core-modules minemacs-modules))))))
+   (and module (not (memq module (append (bound-and-true-p minemacs-core-modules) minemacs-modules))))))
 
 
 

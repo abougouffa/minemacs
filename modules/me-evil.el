@@ -110,7 +110,7 @@
 (cl-defmacro +evil-conf-for! (package module &optional &key init-form &key config-form)
   (declare (indent 2))
   `(when (and (not (+package-disabled-p ',package ',module))
-          (memq ',module (append minemacs-core-modules minemacs-modules)))
+          (memq ',module (append (bound-and-true-p minemacs-core-modules) minemacs-modules)))
     ,init-form
     ,(when config-form
       `(with-eval-after-load ',package ,config-form))))

@@ -27,6 +27,6 @@
 
 (load (concat user-emacs-directory "init.el") nil t)
 
-(message "Loaded %d modules!" (+ (length minemacs-core-modules) (length minemacs-modules)))
+(message "Loaded %d modules!" (length minemacs-modules))
 
 ;;; me-org-export-async-init.el ends here
