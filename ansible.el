@@ -408,7 +408,7 @@ The string that results will be returned."
 
 (defun ansible-vault-string (mode str)
   "Do ansible-vault MODE (should be 'decrypt' or 'encrypt') on STR and return result."
-  (when (or (string-equal "decrypt" mode) (string-equal "encrypt" mode))
+  (if (or (string-equal "decrypt" mode) (string-equal "encrypt" mode))
     (let ((output (ansible-vault mode str (ansible-vault-get-password))))
 
       ;; Clean up any temp password file ansible-vault-get-password may have produced.
@@ -416,7 +416,8 @@ The string that results will be returned."
         (delete-file ansible-vault-store-cleanup-file)
         (setq ansible-vault-store-cleanup-file nil))
 
-      output)))
+      output)
+    (error "MODE should be one of 'encrypt' or 'decrypt'")))
 
 (defun ansible-decrypt-buffer ()
   "Decrypt current buffer."
