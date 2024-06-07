@@ -18,6 +18,9 @@
   :custom
   (aw-dispatch-always t))
 
+(use-package window-purpose
+  :straight t)
+
 ;; Help/info buffers
 (add-to-list
  'display-buffer-alist
