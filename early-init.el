@@ -35,8 +35,9 @@
 ;; current theme to a file. If that file exists, we load the color and apply it
 ;; early to avoid flickering at startup.
 (let* ((bg-color (concat (file-name-directory load-file-name) "local/cache/background-color"))
-       (bg-color (and (file-exists-p bg-color) (with-temp-buffer (insert-file-contents bg-color) (string-trim (buffer-string))))))
-  (when bg-color
+       (bg-color (and (file-exists-p bg-color) (with-temp-buffer (insert-file-contents bg-color) (buffer-string)))))
+  ;; Extra checks to ensure we have a valid color value, like #0123fe3
+  (when (and bg-color (length= bg-color 7) (string-equal (substring bg-color 0 1) "#"))
     (push `(background-color . ,bg-color) default-frame-alist)))
 
 ;; NOTE: In Emacs29+, frames can have a transparent background via the
