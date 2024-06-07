@@ -251,27 +251,38 @@
   ;; 1. Add this to your ~/.gitconfig
   ;; [gitlab "gitlab.private.com/api/v4"]
   ;;   user = my.username
-  ;; 2. Then create an access token on GitLab. I ticked api and write_repository, which seems to work fine so far. Put the token in ~/.authinfo.gpg
+  ;; 2. Then create an access token on GitLab. I ticked api and
+  ;; write_repository, which seems to work fine so far. Put the token in
+  ;; ~/.authinfo.gpg:
   ;; machine gitlab.private.com/api/v4 login my.user^forge password <token>
   ;; 3. Use this in your config:
   (add-to-list 'forge-alist '("gitlab.private.com" "gitlab.private.com/api/v4" "gitlab.private.com" forge-gitlab-repository)))
 
-;; Module: `me-vc' -- Package: `jiralib2'
+;; Module: `me-services' -- Package: `jiralib' / `org-jira'
 ;; When `jiralib2' is enabled, do some extra stuff
-(when (memq 'jiralib2 minemacs-configured-packages)
-  ;; You need to set `jiralib2-url' and `jiralib2-user-login-name'
-  (setq jiralib2-url "https://my-jira-server.tld/"
-        jiralib2-user-login-name "my-username")
+(when (memq 'jiralib minemacs-configured-packages)
+  ;; You need to set `jiralib-url', `jiralib-host' and `jiralib-user' are optional
+  (setq jiralib-url "https://my-jira-server.tld/"
+        jiralib-host "my-jira-server.tld"
+        jiralib-user "my-username")
 
-  ;; Add a hook on git-commit, so it adds the ticket number to the commit message
+  ;; Add a hook on git-commit, so it automatically prompt for a ticket number to
+  ;; add to the commit message
   (add-hook
    'git-commit-mode-hook
    (satch-defun +jira-commit-auto-insert-ticket-id-h ()
-     (when (and jiralib2-user-login-name
+     (require 'jiralib)
+     (when (and jiralib-url jiralib-token
                 ;; Do not auto insert if the commit message is not empty (ex. amend)
                 (+first-line-empty-p))
        (goto-char (point-min))
        (insert "\n")
        (goto-char (point-min))
        (+jira-insert-ticket-id)
-       (insert ": ")))))
+       (insert ": "))))
+
+  ;; Login automatically using credentials from `auth-source'
+  ;; You can achieve this by adding this line in your "~/.authinfo.gpg"
+  ;; machine my-jira-server.tld login my-username password MY-pAsSwOrD-123
+  (with-eval-after-load 'jiralib
+    (+jiralib-auto-login)))
