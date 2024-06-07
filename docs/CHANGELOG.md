@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.2.0](https://github.com/abougouffa/minemacs/compare/e5bb799fade281f85c7ff239dc14a1a39ccbad30..v7.2.0) - 2024-06-07
+#### Bug Fixes
+- **(org)** async export bug due to obsolete `minemacs-core-modules` - ([3b28a95](https://github.com/abougouffa/minemacs/commit/3b28a953ef7bd4204a65c5ff38244530e70354c0)) - [@abougouffa](https://github.com/abougouffa)
+- use `kill-current-buffer` instead of `kill-this-buffer` - ([8532fed](https://github.com/abougouffa/minemacs/commit/8532fede5f1adfb43011c310e9dbda300da9036d)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(faq)** add an answer for `vterm-module` compilation issue - ([8b7b552](https://github.com/abougouffa/minemacs/commit/8b7b552bd6d7e61e6b7a3ce9fa70d24542b2d4b7)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** update code examples in `skel/config.el` - ([c864239](https://github.com/abougouffa/minemacs/commit/c864239b4db9cd104a35b2e89c0c7b56e8f53040)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(docs)** make `edraw` obsolete - ([de857d8](https://github.com/abougouffa/minemacs/commit/de857d8005ebaaf4e93710305f8a93872b866db8)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `logos` obsolete - ([c6905b5](https://github.com/abougouffa/minemacs/commit/c6905b53dbb428531d554c538d07d2d4580559c9)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add `sr-speedbar` - ([11179be](https://github.com/abougouffa/minemacs/commit/11179be92a5126f20eba167dee4f49bbe30e6b4b)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** replace `jiralib2` with `jiralib` + port my stuff to it - ([d14d869](https://github.com/abougouffa/minemacs/commit/d14d8698dcd209e731ef2eb5d1dc752db11deddc)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** initial support for `window-purpose` (to be tested) - ([5e20103](https://github.com/abougouffa/minemacs/commit/5e20103d9b22d601d46d60c39af6601ca7961ada)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- save some lines - ([5757000](https://github.com/abougouffa/minemacs/commit/575700038f4c3c9f2ecf3067f255357a854dbeb4)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(biblio)** minor edit - ([e5bb799](https://github.com/abougouffa/minemacs/commit/e5bb799fade281f85c7ff239dc14a1a39ccbad30)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([883f259](https://github.com/abougouffa/minemacs/commit/883f259b6b6da15a6327d9aefc1fe27e7fe3d586)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- don't overwrite the `trailing-whitespace` color - ([adf2c00](https://github.com/abougouffa/minemacs/commit/adf2c00492f4f1df60fea2c3940912722a7129b1)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(jiralib2)** enable inserting ticket summary - ([2e29afa](https://github.com/abougouffa/minemacs/commit/2e29afae63d9c158b5199e2289016440238fbe5b)) - [@abougouffa](https://github.com/abougouffa)
+- **(markdown)** enable highlighting syntax & code blocks fontification - ([b3f03cf](https://github.com/abougouffa/minemacs/commit/b3f03cfdbeb1326c45960f883a7deb8f78ee4415)) - [@abougouffa](https://github.com/abougouffa)
+- **(tributary)** auto load some commands - ([0056312](https://github.com/abougouffa/minemacs/commit/0056312601e8decc2b49266bb7911ec03453d3ab)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([01cc748](https://github.com/abougouffa/minemacs/commit/01cc7486e914772271cd625e146296d4444e4ff0)) - [@abougouffa](https://github.com/abougouffa)
+- avoid flickering UI on initialization - ([d37e4e2](https://github.com/abougouffa/minemacs/commit/d37e4e2aa392230e288236cd62aff639544dd3c8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b30ddc9](https://github.com/abougouffa/minemacs/commit/b30ddc90bb51c1338cc35c0259835c0241de9ba4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.1.0](https://github.com/abougouffa/minemacs/compare/5d688f72d4f857a1f5cad0d506bc4b75052c31d2..v7.1.0) - 2024-06-05
 #### Bug Fixes
 - **(core)** more robust `+dir-locals-open-or-create` - ([3e80a92](https://github.com/abougouffa/minemacs/commit/3e80a92713412b3f2181259268c37c9a9051ff52)) - [@abougouffa](https://github.com/abougouffa)
