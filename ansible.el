@@ -62,7 +62,7 @@
 (require 'easy-mmode)
 
 (defgroup ansible nil
-  "Ansible minor mode"
+  "Ansible minor mode."
   :group 'languages
   :prefix "ansible-")
 
@@ -96,7 +96,7 @@
 (defvar ansible-task-label-face 'ansible-task-label-face)
 (defface ansible-task-label-face
   '((((class color) (min-colors 88) (background dark))  :foreground "green" ))
-  "Face for ansible task names in playbooks"
+  "Face for ansible task names in playbooks."
   :group 'ansible)
 
 (defconst ansible-section-keywords-regex
@@ -251,19 +251,19 @@
   "Font lock definitions for ansible playbooks.")
 
 
-(defun ansible-add-font-lock()
+(defun ansible-add-font-lock ()
   "Extend YAML with syntax highlight for ansible playbooks."
   (interactive)
   (font-lock-add-keywords 'nil ansible-playbook-font-lock 'append)
   (font-lock-flush))
 
-(defun ansible-remove-font-lock()
+(defun ansible-remove-font-lock ()
   "Add syntax highlight to ansible playbooks."
   (interactive)
   (font-lock-remove-keywords 'nil ansible-playbook-font-lock)
   (font-lock-flush))
 
-(defun ansible-maybe-unload-snippets(&optional buffer-count)
+(defun ansible-maybe-unload-snippets (&optional buffer-count)
   "Unload ansible snippets in case no other ansible buffers exists."
   ;; mitigates: https://github.com/k1LoW/emacs-ansible/issues/5
   (when (and (featurep 'yasnippet)
@@ -404,8 +404,8 @@ Also, automatically encrypts the file before saving the buffer."
 (defun ansible-lint-errors ()
   (make-local-variable 'compile-command)
   (let ((ansiblelint_command "ansible-lint ") (loc "LANG=C.UTF-8 "))
-    (setq compile-command (concat loc ansiblelint_command buffer-file-name)))
-)
+    (setq compile-command (concat loc ansiblelint_command buffer-file-name))))
+
 (add-hook 'ansible-hook 'ansible-lint-errors)
 
 (provide 'ansible)
