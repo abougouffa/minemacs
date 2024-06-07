@@ -65,7 +65,8 @@
         (jiralib-login user pass)))))
 
 (use-package tributary
-  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc")))
+  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
+  :commands tributary-mode tributary-push tributary-pull-id tributary-pull-url)
 
 
 (provide 'me-services)
