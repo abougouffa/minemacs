@@ -78,7 +78,7 @@
   :type 'file
   :group 'ansible)
 
-(defcustom ansible-vault-password nil
+(defcustom ansible-vault-password 'file
   "Password for ansible-vault.  This can be a file path (from `ansible-vault-password-file) or a function."
   :type '(choice
            (const
@@ -353,12 +353,12 @@
 (defun ansible-vault-get-password ()
   "Retrieve the password based on the value of `ansible-vault-password`."
   (cond
-   ((functionp ansible-vault-password)
+    ((functionp ansible-vault-password)
      (funcall ansible-vault-password))
-   ((eq ansible-vault-password 'file)
+    ((eq ansible-vault-password 'file)
      (format "--vault-password-file=%s" (expand-file-name ansible-vault-password-file)))
-   (t
-    (error "Invalid ansible-vault-password value"))))
+    (t
+      (error "Invalid ansible-vault-password value"))))
 
 (defun ansible-vault (mode str param-str)
   "Execute ansible-vault MODE on STR with the given PARAM-STR.
@@ -450,7 +450,7 @@ The string that results will be returned."
 (defun ansible-encrypt-region (start end)
   "Encrypt from START to END (current region)."
   (interactive "r")
-  (ansible-vault-region "decrypt" start end))
+  (ansible-vault-region "encrypt" start end))
 
 (defun ansible-auto-decrypt-encrypt ()
   "Decrypt current buffer if it is a vault encrypted file.
