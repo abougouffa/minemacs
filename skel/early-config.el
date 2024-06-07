@@ -1,4 +1,6 @@
-;;; early-config.el -*- coding: utf-8-unix; lexical-binding: t; -*-
+;;; early-config.el --- Early configuration file -*- coding: utf-8-unix; lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2024 Abdelhak Bougouffa
 
 ;; This file will be loaded at the end of `early-init.el', it can be used to set
 ;; some early initialization stuff, or to set some MinEmacs variables, specially
@@ -7,9 +9,6 @@
 ;; Set log level to `info' rather than `error'
 (unless minemacs-verbose-p
   (setq minemacs-msg-level 2))
-
-;; Disable `dashboard'
-;; (setq +dashboard-disable t)
 
 ;; Setup proxies
 ;; (setq minemacs-proxies
