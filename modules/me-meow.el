@@ -110,9 +110,10 @@
       (call-interactively 'meow-find)))
 
   (defun +meow-quit-dwim ()
-    "Like `meow-quit', but doesn't quit file-visiting buffers/windows."
+    "Like `meow-quit', but smarter."
     (interactive)
-    (unless (buffer-file-name) (meow-quit)))
+    (cond ((bound-and-true-p macrostep-mode) (macrostep-mode -1))
+          ((not buffer-file-name) (meow-quit))))
 
   (defun +meow-activate ()
     (when (bound-and-true-p evil-mode)
