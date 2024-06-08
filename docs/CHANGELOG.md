@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.3.1](https://github.com/abougouffa/minemacs/compare/328b50cf41592d6aeb98a6ce72e58a1a05fd360a..v7.3.1) - 2024-06-08
+#### Refactoring
+- ensure moving all `+map!` & `+map-local!` blocks to `me-evil` - ([95d9cb3](https://github.com/abougouffa/minemacs/commit/95d9cb364205d0e9b06da1bdbf6dde879886a7ea)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(expreg)** use `C-M-SPC` to expand and `S-C-M-SPC` to contract - ([328b50c](https://github.com/abougouffa/minemacs/commit/328b50cf41592d6aeb98a6ce72e58a1a05fd360a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.3.0](https://github.com/abougouffa/minemacs/compare/e67d34e3076bb212f7b2e7024bdba4b377513e7d..v7.3.0) - 2024-06-08
 #### Bug Fixes
 - **(early-init)** more checks before trying to restore the background color - ([2ff90e7](https://github.com/abougouffa/minemacs/commit/2ff90e790caa17c205259bf7107de74f113bbfa8)) - [@abougouffa](https://github.com/abougouffa)
