@@ -70,6 +70,8 @@
 
 (use-package mixed-pitch
   :straight t
+  :custom
+  (mixed-pitch-variable-pitch-cursor nil)
   :config
   (setq
    mixed-pitch-fixed-pitch-faces
