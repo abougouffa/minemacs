@@ -11,8 +11,6 @@
 ;; Visual Undo
 (use-package vundo
   :straight t
-  :init
-  (+map! "ou" #'vundo)
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)

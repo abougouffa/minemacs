@@ -100,9 +100,7 @@
     ("c" shrink-window-horizontally)
     ("t" enlarge-window)
     ("s" shrink-window)
-    ("r" enlarge-window-horizontally))
-
-  (+map! "wj" '(+window-adjust-size/body :wk "+window-adjust-size")))
+    ("r" enlarge-window-horizontally)))
 
 
 (provide 'me-window)

@@ -414,11 +414,7 @@ or file path may exist now."
   :custom
   (bibtex-dialect 'biblatex)
   (bibtex-align-at-equal-sign t)
-  (bibtex-text-indentation 20)
-  :config
-  (+map-local! :keymaps 'bibtex-mode-map
-    "l" #'bibtex-fill-entry
-    "r" #'bibtex-reformat))
+  (bibtex-text-indentation 20))
 
 (use-package treesit
   :when (+emacs-features-p 'tree-sitter)
@@ -911,8 +907,6 @@ current line.")
 
 (use-package smerge-mode
   :commands +smerge-hydra/body
-  :init
-  (+map! "gm" '(+smerge-hydra/body :wk "sMerge"))
   :config
   (defun +smerge-first ()
     "Got to the first occurrence."
@@ -1086,7 +1080,6 @@ current line.")
     "Cleanup all white spaces except the current line."
     :group 'minemacs-edit
     :type 'boolean)
-  (+map! "tc" #'+whitespace-auto-cleanup-mode)
   :config
   (defun +whitespace-delete-trailing ()
     "Delete trailing whitespace, optionally avoiding the current line.

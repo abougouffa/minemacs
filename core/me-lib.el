@@ -877,6 +877,10 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
 ;;; Keybinding macros
 ;;; =================
 
+;; TEMP: These macros are specific to `evil' and `general'. MinEmacs moved since
+;; v7.0.0 to a more classic (non Evil-based) keybindings. These macros are left
+;; for now to avoid breaking users configurations, they might be deleted in a
+;; future release.
 ;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
 ;; initializing `general' and `evil'. After trying several configurations, I
 ;; figured out that deferring `general' solves the issue. However, deferring

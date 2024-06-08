@@ -48,9 +48,7 @@
     (+add-hook! (c-mode c-ts-mode c++-mode c++-ts-mode) #'flymake-cppcheck-setup)))
 
 (use-package flymenu
-  :straight (:host github :repo "KarimAziev/flymenu")
-  :init
-  (+map! "cM" #'flymenu-flymake))
+  :straight (:host github :repo "KarimAziev/flymenu"))
 
 (use-package flymake-guile
   :straight (:source emacsmirror-mirror)

@@ -9,22 +9,10 @@
 ;;; Code:
 
 (use-package csv-mode
-  :straight t
-  :config
-  (+map-local! :keymaps 'csv-mode-map
-    "a" #'csv-align-fields
-    "u" #'csv-unalign-fields
-    "s" #'csv-sort-fields
-    "S" #'csv-sort-numeric-fields
-    "k" #'csv-kill-fields
-    "t" #'csv-transpose))
+  :straight t)
 
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv")
-  :init
-  (+map-local! :keymaps '(csv-mode-map tsv-mode-map)
-    "r" #'rainbow-csv-mode
-    "R" #'rainbow-csv-highlight))
+  :straight (:host github :repo "emacs-vs/rainbow-csv"))
 
 (use-package yaml-mode
   :straight t
@@ -42,16 +30,7 @@
 
 (use-package json-mode
   :straight t
-  :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'"
-  :config
-  (+map-local! :keymaps '(json-mode-map json-ts-mode-map)
-    "p" #'json-mode-show-path
-    "t" #'json-toggle-boolean
-    "d" #'json-mode-kill-path
-    "x" #'json-nullify-sexp
-    "+" #'json-increment-number-at-point
-    "-" #'json-decrement-number-at-point
-    "f" #'json-mode-beautify))
+  :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'")
 
 (use-package jq-mode
   :straight t
@@ -83,11 +62,6 @@
   (graphviz-dot-view-command "xdot %s")
   (graphviz-dot-preview-extension "svg")
   :config
-  (+map-local! :keymaps 'graphviz-dot-mode-map
-    "p" #'graphviz-dot-preview
-    "P" #'graphviz-dot-view
-    "l" #'graphviz-turn-on-live-preview
-    "L" #'graphviz-turn-off-live-preview)
   (+eglot-register 'graphviz-dot-mode '("dot-language-server" "--stdio")))
 
 (use-package plantuml-mode
@@ -113,15 +87,7 @@
 
   ;; Add support for `capf'
   (defun +plantuml-mode-setup ()
-    (add-to-list 'completion-at-point-functions #'+plantuml-completion-at-point))
-
-  (+map-local! :keymaps 'plantuml-mode-map
-    "p" #'plantuml-preview-buffer
-    "P" #'plantuml-preview
-    "d" `(,(+cmdfy! (if plantuml-mode-debug-enabled
-                        (plantuml-disable-debug)
-                      (plantuml-enable-debug)))
-          :wk "Toggle debug")))
+    (add-to-list 'completion-at-point-functions #'+plantuml-completion-at-point)))
 
 (use-package mermaid-mode
   :straight t)

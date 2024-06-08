@@ -408,6 +408,11 @@
     "q"   #'kill-buffer-and-window
     "ESC" #'kill-buffer-and-window))
 
+(with-eval-after-load 'bibtex
+  (+map-local! :keymaps 'bibtex-mode-map
+    "l" #'bibtex-fill-entry
+    "r" #'bibtex-reformat))
+
 (+map! :package eglot
   :keymaps 'eglot-mode-map
   :infix "c"
@@ -452,6 +457,12 @@
   "cf"  #'elisp-byte-compile-file
   "cn"  #'emacs-lisp-native-compile-and-load
   "cb"  #'emacs-lisp-byte-compile-and-load)
+
+(+map! :package smerge-mode
+  "gm" '(+smerge-hydra/body :wk "sMerge"))
+
+(+map! :package whitespace
+  "tc" #'+whitespace-auto-cleanup-mode)
 
 (+map-local! :package org
   :keymaps 'org-mode-map
@@ -1106,6 +1117,53 @@
   "v"  #'d2-view-current-svg
   "h"  #'d2-open-doc)
 
+(+map-local! :package csv-mode :module me-data
+  :keymaps 'csv-mode-map
+  "a" #'csv-align-fields
+  "u" #'csv-unalign-fields
+  "s" #'csv-sort-fields
+  "S" #'csv-sort-numeric-fields
+  "k" #'csv-kill-fields
+  "t" #'csv-transpose)
+
+(+map-local! :package rainbow-csv :module me-data
+  :keymaps '(csv-mode-map tsv-mode-map)
+  "r" #'rainbow-csv-mode
+  "R" #'rainbow-csv-highlight)
+
+(+map-local! :package json-mode :module me-data
+  :keymaps '(json-mode-map json-ts-mode-map)
+  "p" #'json-mode-show-path
+  "t" #'json-toggle-boolean
+  "d" #'json-mode-kill-path
+  "x" #'json-nullify-sexp
+  "+" #'json-increment-number-at-point
+  "-" #'json-decrement-number-at-point
+  "f" #'json-mode-beautify)
+
+(+map-local! :package graphviz-dot-mode :module me-data
+  :keymaps 'graphviz-dot-mode-map
+  "p" #'graphviz-dot-preview
+  "P" #'graphviz-dot-view
+  "l" #'graphviz-turn-on-live-preview
+  "L" #'graphviz-turn-off-live-preview)
+
+(+map-local! :package plantuml-mode :module me-data
+  :keymaps 'plantuml-mode-map
+  "p" #'plantuml-preview-buffer
+  "P" #'plantuml-preview
+  "d" `(,(+cmdfy! (if plantuml-mode-debug-enabled
+                      (plantuml-disable-debug)
+                    (plantuml-enable-debug)))
+        :wk "Toggle debug"))
+
+
+
+;;; For `me-undo'
+
+(+map! :package vundo :module me-undo
+  "ou" #'vundo)
+
 
 
 ;;; For `me-rss'
@@ -1218,6 +1276,10 @@
 (+map! :package me-writing-mode :module me-ui
   "tw" #'+writing-mode
   "tW" #'+writing-global-mode)
+
+(+evil-conf-for! mixed-pitch me-ui
+  :init-form
+  (+map! "tm" #'mixed-pitch-mode))
 
 
 
@@ -1344,6 +1406,14 @@
 
 
 
+;;; For `me-checkers'
+
+(+evil-conf-for! flymenu me-checkers
+  :init-form
+  (+map! "cM" #'flymenu-flymake))
+
+
+
 ;;; For `me-calendar'
 
 (+map! :package calfw :module me-calendar
@@ -1371,6 +1441,8 @@
 (+map! :package ace-window :module me-window
   "wa" #'ace-window)
 
+(+map! "wj" '(+window-adjust-size/body :wk "+window-adjust-size"))
+
 
 
 ;;; For `me-scheme'
@@ -1382,9 +1454,5 @@
 
 
 
-;;; For 
-
-
 (provide 'me-evil)
-
 ;;; me-evil.el ends here
