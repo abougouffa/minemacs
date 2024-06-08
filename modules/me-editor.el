@@ -8,6 +8,35 @@
 
 ;;; Code:
 
+(use-package yasnippet
+  :straight t
+  :hook (minemacs-first-file . yas-global-mode)
+  :init
+  (defvar yas-verbosity (if minemacs-verbose-p 4 2))
+  :custom
+  (yas-triggers-in-field t))
+
+(use-package yasnippet-capf
+  :straight t
+  :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
+  :bind (("C-c p y" . yasnippet-capf))
+  :init
+  (defun +cape-yasnippet--setup-h ()
+    (when (bound-and-true-p yas-minor-mode)
+      (add-to-list 'completion-at-point-functions #'yasnippet-capf))))
+
+(use-package yasnippet-snippets
+  :straight t)
+
+(use-package doom-snippets
+  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
+
+(use-package license-snippets
+  :straight t
+  :after yasnippet
+  :init
+  (license-snippets-init))
+
 (use-package wgrep
   :straight t
   :commands wgrep-change-to-wgrep-mode
