@@ -25,7 +25,25 @@
 
   (defun +parinfer-rust-mode-maybe ()
     (when (or parinfer-rust-auto-download (file-exists-p (expand-file-name parinfer-rust--lib-name parinfer-rust-library-directory)))
-      (parinfer-rust-mode 1))))
+      (parinfer-rust-mode 1)))
+
+  ;; HACK: Disable `parinfer-rust-mode' on some commands.
+  (defvar-local +parinfer-rust--was-enabled-p nil)
+
+  (defun +parinfer-rust--restore (&rest _)
+    (when +parinfer-rust--was-enabled-p
+      (setq +parinfer-rust--was-enabled-p nil)
+      (parinfer-rust-mode 1)))
+
+  (defun +parinfer-rust--disable (&rest _)
+    (setq +parinfer-rust--was-enabled-p (bound-and-true-p parinfer-rust-mode))
+    (when +parinfer-rust--was-enabled-p
+      (parinfer-rust-mode -1)))
+
+  ;; Fix the issue of `vundo` (related to `track-changes`) when exploring the undo tree
+  (with-eval-after-load 'vundo
+    (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
+    (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))
 
 (use-package macrostep
   :straight t

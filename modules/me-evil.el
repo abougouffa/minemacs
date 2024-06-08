@@ -1229,6 +1229,15 @@
 
 ;;; For `me-emacs-lisp'
 
+(with-eval-after-load 'parinfer-rust-mode
+  ;; The `evil-shif-right' (and `evil-shift-left' which uses it under the hood)
+  ;; behave strangely when `parinfer-rust-mode' is enabled, so lets disable when
+  ;; using this command.
+  (when (fboundp '+parinfer-rust--disable) ; defined in `me-emacs-lisp'
+    (with-eval-after-load 'evil
+      (advice-add #'evil-shift-right :before #'+parinfer-rust--disable)
+      (advice-add #'evil-shift-right :after #'+parinfer-rust--restore))))
+
 (+map-local! :package macrostep :module me-emacs-lisp
   :keymaps '(emacs-lisp-mode-map lisp-mode-map)
   "m" '(macrostep-expand :wk "Expand macro"))
