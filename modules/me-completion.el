@@ -11,6 +11,23 @@
 (use-package cape
   :straight t
   :after minemacs-first-file
+  :bind (("C-c p p" . completion-at-point) ; capf
+         ("C-c p t" . complete-tag) ; etags
+         ("C-c p d" . cape-dabbrev) ; or dabbrev-completion
+         ("C-c p h" . cape-history)
+         ("C-c p f" . cape-file)
+         ("C-c p k" . cape-keyword)
+         ("C-c p s" . cape-elisp-symbol)
+         ("C-c p e" . cape-elisp-block)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict)
+         ("C-c p :" . cape-emoji)
+         ("C-c p \\" . cape-tex)
+         ("C-c p _" . cape-tex)
+         ("C-c p ^" . cape-tex)
+         ("C-c p &" . cape-sgml)
+         ("C-c p r" . cape-rfc1345))
   :init
   ;; Silence the pcomplete capf, no errors or messages! Important for corfu!
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
