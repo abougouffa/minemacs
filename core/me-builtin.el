@@ -44,19 +44,14 @@
   (viper-custom-file-name (concat minemacs-local-dir "viper.el"))
 
   ;; ====== Better defaults ======
-  ;; Enable auto-save (use `recover-file' or `recover-session' to recover)
-  (auto-save-default t)
-  ;; Include big deletions
-  (auto-save-include-big-deletions t)
-  ;; Set file naming transform for `auto-save'
-  (auto-save-file-name-transforms
+  (auto-save-default t) ; Enable auto-save (use `recover-file' or `recover-session' to recover)
+  (auto-save-include-big-deletions t) ; Include big deletions
+  (auto-save-file-name-transforms ; Set file naming transform for `auto-save'
    `(;; Prefix tramp autosaves with "tramp-"
      ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") t)
      ;; Local autosaves
      (".*" ,auto-save-list-file-prefix t)))
-  ;; Do not adjust window-vscroll to view tall lines. Fixes some lag issues see:
-  ;; emacs.stackexchange.com/a/28746
-  (auto-window-vscroll nil)
+  (auto-window-vscroll nil) ; Do not adjust window-vscroll to view tall lines. Fixes some lag issues: emacs.stackexchange.com/a/28746
   (fast-but-imprecise-scrolling t) ; Fast scrolling
   (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
   (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
@@ -122,7 +117,8 @@
   :init
   (setq-default truncate-lines nil ; Display long lines
                 fill-column 80 ; Default fill column width
-                tab-width 4) ; Default (8) is too big!
+                tab-width 4 ; Default (8) is too big!
+                cursor-type 'bar) ; Use a bar by default, this can be changed by other modes (`evil', `god-mode', etc.)
 
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
