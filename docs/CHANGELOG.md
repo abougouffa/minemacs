@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.3.0](https://github.com/abougouffa/minemacs/compare/e67d34e3076bb212f7b2e7024bdba4b377513e7d..v7.3.0) - 2024-06-08
+#### Bug Fixes
+- **(early-init)** more checks before trying to restore the background color - ([2ff90e7](https://github.com/abougouffa/minemacs/commit/2ff90e790caa17c205259bf7107de74f113bbfa8)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** disable on some problematic commands - ([b1b51bb](https://github.com/abougouffa/minemacs/commit/b1b51bb31bdcf1d2503ed8bb404d809184d417dd)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** update examples - ([e67d34e](https://github.com/abougouffa/minemacs/commit/e67d34e3076bb212f7b2e7024bdba4b377513e7d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** restore `yasnippet` - ([8b4bcba](https://github.com/abougouffa/minemacs/commit/8b4bcbaf76002835e25770361839d5d5c5f4a7b4)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `tempel` obsolete - ([1d74136](https://github.com/abougouffa/minemacs/commit/1d7413655850d79bf52b1190e0df8870f886b7fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `spdx` obsolete - ([e696e3b](https://github.com/abougouffa/minemacs/commit/e696e3b550341f4683ae79efabfd661df9d24c9b)) - [@abougouffa](https://github.com/abougouffa)
+- **(god)** initial support for `god-mode` - ([70da847](https://github.com/abougouffa/minemacs/commit/70da847aea102f2ddec80ae02ae2bdea19f18fea)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(robot)** extract `rosbag-info-mode` to a separate package - ([8215399](https://github.com/abougouffa/minemacs/commit/8215399d646c44aa1dce76bb7d555478e982b59d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** remove `text-scale-*` bindings to `C-+`, `C-=` & `C--` - ([d34270f](https://github.com/abougouffa/minemacs/commit/d34270f2c39a30c643d3ed2665dd0b9bd5275c92)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** minor edits, set cursor type to `bar` - ([6d48bd8](https://github.com/abougouffa/minemacs/commit/6d48bd812f38b2559b5a37dc9f3b7f3690dda677)) - [@abougouffa](https://github.com/abougouffa)
+- **(cape)** add keybindings from Cape's example - ([841eac8](https://github.com/abougouffa/minemacs/commit/841eac832eef1980ff0c83ed60b6ff63663c1847)) - [@abougouffa](https://github.com/abougouffa)
+- **(helpful)** bind useless `C-h h` to `helpful-at-point` - ([589ebdd](https://github.com/abougouffa/minemacs/commit/589ebdd2f709b7de6e1bd7fa0d23fa05d8f7053f)) - [@abougouffa](https://github.com/abougouffa)
+- **(meow)** `q` quits `macrostep-mode` when expanding macros - ([c6c465b](https://github.com/abougouffa/minemacs/commit/c6c465b7f6034d4e1b9dd4efc51880bffc2bb3ea)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([09813f8](https://github.com/abougouffa/minemacs/commit/09813f8a0aa7843a4758049c871a33be5bf347c4)) - [@abougouffa](https://github.com/abougouffa)
+- drop Vim-like movement HJKL - ([1283a08](https://github.com/abougouffa/minemacs/commit/1283a08183ecb729c6cef7eb4a64a7fd4de98f16)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.2.0](https://github.com/abougouffa/minemacs/compare/e5bb799fade281f85c7ff239dc14a1a39ccbad30..v7.2.0) - 2024-06-07
 #### Bug Fixes
 - **(org)** async export bug due to obsolete `minemacs-core-modules` - ([3b28a95](https://github.com/abougouffa/minemacs/commit/3b28a953ef7bd4204a65c5ff38244530e70354c0)) - [@abougouffa](https://github.com/abougouffa)
