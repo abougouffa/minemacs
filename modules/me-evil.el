@@ -358,6 +358,10 @@
 
 ;;; For `me-builtin'
 
+(with-eval-after-load 'isearch
+  (keymap-global-set "C-k" #'isearch-ring-retreat)
+  (keymap-global-set "C-j" #'isearch-ring-advance))
+
 (+map-local! :package edebug
   :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
   "d"   '(nil :wk "edebug")

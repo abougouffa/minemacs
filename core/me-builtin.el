@@ -937,19 +937,19 @@ current line.")
   Movement   Keep           Diff              Other         │
   ╭─────────────────────────────────────────────────────────╯
   │  ^_g_^       [_b_] base       [_<_] upper/base    [_C_] Combine
-  │  ^_C-k_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
-  │  ^_k_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
-  │  ^_j_ ↓^     [_a_] all        [_H_] highlight     [_n_] next in project
-  │  ^_C-j_^     [_RET_] current  [_E_] ediff
+  │  ^_C-p_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
+  │  ^_p_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
+  │  ^_n_ ↓^     [_a_] all        [_H_] highlight     [_n_] next in project
+  │  ^_C-n_^     [_RET_] current  [_E_] ediff
   │  ^_G_^                                                 [_q_] quit
   ╰─────────────────────────────────────────────────────╯
 "
       ("g" +smerge-first)
       ("G" +smerge-last)
-      ("C-j" smerge-next)
-      ("C-k" smerge-prev)
-      ("j" next-line)
-      ("k" previous-line)
+      ("C-n" smerge-next)
+      ("C-p" smerge-prev)
+      ("n" next-line)
+      ("p" previous-line)
       ("b" smerge-keep-base)
       ("u" smerge-keep-upper)
       ("l" smerge-keep-lower)
@@ -1357,11 +1357,8 @@ See `+whitespace-auto-cleanup-except-current-line'."
        (pulse-momentary-highlight-one-line (point))))))
 
 (use-package isearch
-  ;; Scroll in isearch history using UP/DOWN or C-j/C-k
   :bind (:map
          isearch-mode-map
-         ("C-k" . isearch-ring-retreat)
-         ("C-j" . isearch-ring-advance)
          ("<up>" . isearch-ring-retreat)
          ("<down>" . isearch-ring-advance)))
 

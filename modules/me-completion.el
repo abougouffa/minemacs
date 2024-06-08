@@ -40,13 +40,11 @@
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :hook (corfu-mode . corfu-popupinfo-mode)
   :hook (corfu-mode . corfu-history-mode)
-  :bind (;; JK for movement
+  :bind ( ; Bidn some useful commands
          :map corfu-map
          ("M-m" . +corfu-complete-in-minibuffer)
          ("<tab>" . corfu-next)
          ("<backtab>" . corfu-previous)
-         ("C-j" . corfu-next)
-         ("C-k" . corfu-previous)
          ;; For `corfu-popupinfo'
          ("M-p" . corfu-popupinfo-scroll-down)
          ("M-n" . corfu-popupinfo-scroll-up)
@@ -170,8 +168,7 @@
          :map minibuffer-local-map
          ("C-s" . +consult-thing-at-point)
          ([remap next-matching-history-element] . consult-history) ; M-s
-         ([remap previous-matching-history-element] . consult-history) ; M-r
-         ("C-S-v" . consult-yank-pop))
+         ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
   ;; Use `consult-xref' for `xref-find-references' and `xref-find-definitions'
   (xref-show-xrefs-function #'consult-xref)
@@ -241,19 +238,12 @@
   :hook (minemacs-lazy . vertico-mouse-mode)
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :hook (minibuffer-setup . vertico-repeat-save)
-  ;; In the minibuffer, "C-k" is be mapped to act like "<up>". However, in
-  ;; Emacs, "C-k" have a special meaning of `kill-line'. So lets map "C-S-k"
-  ;; to serve the original "C-k".
   :bind (("M-R" . vertico-repeat)
          :map vertico-map
-         ("C-j" . vertico-next)
-         ("C-k" . vertico-previous)
          ("RET" . vertico-directory-enter)
          ("DEL" . vertico-directory-delete-char)
          ("M-DEL" . vertico-directory-delete-word)
-         ("M-h" . vertico-directory-up)
-         :map minibuffer-local-map
-         ("C-S-k" . kill-line))
+         ("M-h" . vertico-directory-up))
   :custom
   (vertico-cycle t)
   (vertico-resize nil)
