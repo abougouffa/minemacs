@@ -55,7 +55,8 @@
          ("<remap> <describe-symbol>" . helpful-symbol)
          ("<remap> <describe-function>" . helpful-function)
          ("<remap> <describe-command>" . helpful-command)
-         ("<remap> <describe-key>" . helpful-key)))
+         ("<remap> <describe-key>" . helpful-key)
+         ("C-h h" . helpful-at-point))) ; orig. `view-hello-file'
 
 (use-package info-colors
   :straight t
