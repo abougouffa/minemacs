@@ -1362,11 +1362,6 @@ See `+whitespace-auto-cleanup-except-current-line'."
          ("<up>" . isearch-ring-retreat)
          ("<down>" . isearch-ring-advance)))
 
-(use-package face-remap
-  :bind (("C-+" . text-scale-increase)
-         ("C--" . text-scale-decrease)
-         ("C-=" . text-scale-adjust)))
-
 (use-package yaml-ts-mode
   :when (+emacs-features-p 'tree-sitter)
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
