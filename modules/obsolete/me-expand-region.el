@@ -10,11 +10,13 @@
 
 (use-package expand-region
   :straight t
+  :bind (("C-M-SPC" . er/expand-region) ; orig. `mark-sexp'
+         ("S-C-M-SPC" . er/contract-region))
   :init
   (+vmap!
     "v" #'er/expand-region
     "q" #'er/contract-region))
 
-(provide 'obsolete/me-expand-region)
 
+(provide 'obsolete/me-expand-region)
 ;;; me-expand-region.el ends here
