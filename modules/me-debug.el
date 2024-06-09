@@ -47,7 +47,7 @@
   (+mode-alist-add-ts-modes! rmsbolt-languages))
 
 (use-package beardbolt
-  :straight (:host github :repo "abougouffa/beardbolt" :files ("*.el" "starters"))
+  :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   (+mode-alist-add-ts-modes! beardbolt-languages))
