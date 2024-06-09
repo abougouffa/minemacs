@@ -1441,7 +1441,7 @@
 (+map! :package ace-window :module me-window
   "wa" #'ace-window)
 
-(+map! "wj" '(+window-adjust-size/body :wk "+window-adjust-size"))
+(+map! "wj" '(+window-adjust-size-transient :wk "+window-adjust-size"))
 
 
 

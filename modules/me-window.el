@@ -73,22 +73,17 @@
    (window-width . 0.5)
    (reusable-frames . visible)))
 
-;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
-(with-eval-after-load 'hydra
-  (defhydra +window-adjust-size (:hint nil :foreign-keys warn)
-    "
-^Zoom^                                ^Other
-^^^^^^^-----------------------------------------
-[_t_/_s_] shrink/enlarge vertically   [_q_] quit
-[_c_/_r_] shrink/enlarge horizontally
-"
-    ("q" nil :exit t)
-    ("c" shrink-window-horizontally)
-    ("t" enlarge-window)
-    ("s" shrink-window)
-    ("r" enlarge-window-horizontally)))
 
 (setq frame-title-format '("GNU Emacs (%b)"))
+
+(with-eval-after-load 'transient
+  (transient-define-prefix +window-adjust-size-transient ()
+    "Transient for adjusting window size."
+    [[("s" "Shrink" shrink-window :transient t)
+      ("e" "Enlarge" enlarge-window :transient t)]
+     [("h" "Shrink horizontally" shrink-window-horizontally :transient t)
+      ("l" "Enlarge horizontally" enlarge-window-horizontally :transient t)]
+     [("Q" "Quit" ignore :transient t)]]))
 
 
 (provide 'me-window)
