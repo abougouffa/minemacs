@@ -68,13 +68,9 @@
       (with-eval-after-load 'me-vars
         (add-hook 'minemacs-lazy-hook #'+benchmark-init--desactivate-and-show-h 99)))))
 
-;; Check if Emacs version is supported. You can define the
-;; `$MINEMACS_IGNORE_VERSION_CHECK` environment variable to ignore this check.
-;; This can be useful if you are stuck with an old Emacs version and you've
-;; incrementally implemented the new Emacs routines MinEmacs needs in your
-;; "init-tweaks.el".
-(let ((min-ver "28.0"))
-  (when (and (version< emacs-version min-ver) (not (getenv "MINEMACS_IGNORE_VERSION_CHECK")))
+;; Check if Emacs version is supported.
+(let ((min-ver 28))
+  (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%s or higher" emacs-version min-ver)))
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
@@ -84,7 +80,7 @@
 ;; Make sure the new value survives any current let-binding.
 (set-default-toplevel-value 'file-name-handler-alist nil)
 ;; After Emacs startup, we restore `file-name-handler-alist' while conserving
-;; the potential edits made during startup.
+;; the potential new elements made during startup.
 (defun +mineamcs--restore-file-name-handler-alist-h ()
   (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
 (add-hook 'emacs-startup-hook '+mineamcs--restore-file-name-handler-alist-h 100)
