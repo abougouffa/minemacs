@@ -44,11 +44,11 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/extras/me-flymake-extras.el
 
- (autoload 'flymake-collection-nasm "me-flymake-extras")
- (autoload 'flymake-collection-pyre "me-flymake-extras")
- (autoload 'flymake-collection-codespell "me-flymake-extras")
- (autoload 'flymake-collection-bandit "me-flymake-extras")
- (autoload 'flymake-collection-clang-tidy "me-flymake-extras")
+(autoload 'flymake-collection-nasm "me-flymake-extras")
+(autoload 'flymake-collection-pyre "me-flymake-extras")
+(autoload 'flymake-collection-codespell "me-flymake-extras")
+(autoload 'flymake-collection-bandit "me-flymake-extras")
+(autoload 'flymake-collection-clang-tidy "me-flymake-extras")
 (register-definition-prefixes "../modules/extras/me-flymake-extras" '("flymake-c"))
 
 
@@ -415,25 +415,6 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/extras/me-org-extras.el
 
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
-
-
-;;; Generated autoloads from ../modules/extras/me-realgud.el
-
-(autoload '+realgud:start "../modules/extras/me-realgud" "\
-Start the RealGUD debugger suitable for the current mode.
-
-(fn &optional PATH)" t)
-(autoload '+realgud:toggle-breakpoint "../modules/extras/me-realgud" "\
-Toggle break point.
-
-(fn &optional BANG)" t)
-(autoload '+realgud-hydra/body "../modules/extras/me-realgud" "Hydra keys for RealGUD." t)
-(register-definition-prefixes "../modules/extras/me-realgud" '("+realgud:cmd-"))
-
-
-;;; Generated autoloads from me-splash.el
-
-(register-definition-prefixes "me-splash" '("+minemacs-splash--kill-h" "minemacs-splash"))
 
 
 ;;; Generated autoloads from me-vars.el
