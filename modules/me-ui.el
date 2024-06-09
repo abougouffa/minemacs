@@ -21,7 +21,9 @@
   :straight t
   :config
   (with-eval-after-load 'org
-    (doom-themes-org-config)))
+    (doom-themes-org-config))
+  ;; Enable blinking modeline on errors (`visible-bell')
+  (+with-delayed-1! (doom-themes-visual-bell-config)))
 
 (use-package doom-modeline
   :straight t
