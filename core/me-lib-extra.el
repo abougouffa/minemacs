@@ -714,30 +714,9 @@ the children of class at point."
                          do (push (cons (1+ depth) child) tree)))))))
     (eglot--error "Hierarchy unavailable")))
 
-;; Inspired by Doom Emacs
-(defvar +eglot--default-read-process-output-max nil)
-(defvar +eglot--default-gcmh-high-cons-threshold nil)
-(defvar +eglot--optimization-active-p nil)
-
-;;;###autoload
-(define-minor-mode +eglot-optimization-mode
-  "Deploys universal GC and IPC optimizations for `eglot'."
-  :global t
-  :init-value nil
-  (if (not +eglot-optimization-mode)
-      (setq-default read-process-output-max +eglot--default-read-process-output-max
-                    gcmh-high-cons-threshold +eglot--default-gcmh-high-cons-threshold
-                    +eglot--optimization-active-p nil)
-    ;; Only apply these settings once!
-    (unless +eglot--optimization-active-p
-      (setq +eglot--default-read-process-output-max (default-value 'read-process-output-max)
-            +eglot--default-gcmh-high-cons-threshold (default-value 'gcmh-high-cons-threshold))
-      (setq-default read-process-output-max (* 1024 1024)
-                    gcmh-high-cons-threshold (* 2 +eglot--default-gcmh-high-cons-threshold))
-      (gcmh-set-high-threshold)
-      (setq +eglot--optimization-active-p t))))
-
-;; From: https://github.com/doomemacs/doomemacs/blob/master/modules/tools/lsp/autoload/eglot.el
+;; Adapted from: Doom Emacs
+;; github.com/doomemacs/doomemacs/blob/master/modules/tools/lsp/autoload/eglot.el
+;;
 ;; HACK: Eglot removed `eglot-help-at-point' in joaotavora/eglot@a044dec for a
 ;; more problematic approach of deferred to eldoc. Here, I've restored it.
 ;; This handler try to open documentation in a separate window (so it can be
