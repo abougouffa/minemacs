@@ -53,15 +53,16 @@ MinEmacs was mainly based on Evil and General (for the `SPC` leader), even
 though Evil still supported via the `me-evil` module, I'm moving away recently
 from Evil to embrace the classic Emacs experience. Vim is awesome, and Evil does
 a great job in emulating Vim functionalities in Emacs. However, using Emacs via
-Evil hides a lot of Emacs features and alters the classical Emacs experience,
-and to be honest, Evil is quite slow and sometimes messy, and doesn't integrate
-well with other packages. For these reasons and other, I started embracing Emacs
-as it is, trying to make use of its features as they are intended to be used.
+Evil hides a lot of Emacs beauty and alters the classical Emacs experience, and
+to be honest, Evil is quite slow and sometimes messy, and doesn't integrate well
+with other packages. For these reasons and other, I started embracing Emacs as
+it is, trying to make use of its features as they are intended to be used.
 
-Please note that I have no intent or availability to create an alternative to
-Doom Emacs or Spacemacs. While I find joy (like every other Emacser out there)
-in tinkering with Emacs, MinEmacs remains just a tool that I use in my everyday
-work, and that I like to share with other Emacsers.
+> [!NOTE]
+> Please note that I have no intent or availability to create an alternative to
+> Doom Emacs or Spacemacs. While I find joy (like every other Emacser out there)
+> in tinkering with Emacs, MinEmacs remains just a tool that I use in my
+> everyday work, and that I like to share with other Emacsers.
 
 ## Install
 
@@ -77,17 +78,18 @@ packages. You might need to run `M-x minemacs-run-build-functions` when Emacs
 loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
-> [!IMPORTANT] Please note that I'm using a fresh Emacs 29 *(recommended
-> version)* built from the `emacs-29` branch mainly on two machines, one based
-> on Manjaro Linux and the other on (the quite old) Debian 10. However, I have
-> set up some basic [Github CI
-> actions](https://github.com/abougouffa/minemacs/actions) that automatically
-> test running this configuration on Emacs 28, 29 and 30 in [Ubuntu
+> [!IMPORTANT]
+> Please note that I'm using a fresh Emacs 29 *(recommended version)* built from
+> the `emacs-29` branch mainly on two machines, one based on Manjaro Linux and
+> the other on (the quite old) Debian 10. However, I have set up some basic
+> [Github CI actions](https://github.com/abougouffa/minemacs/actions) that
+> automatically test running this configuration on Emacs 28, 29 and 30 in
+> [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 > and on Emacs 29 in
-> [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml.
+> [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml).
 > These actions ensure that MinEmacs is "runnable" on these systems; with all
 > its modules enabled. However, more testing should be done to validate the
 > configuration on systems other than Linux.
