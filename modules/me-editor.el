@@ -14,7 +14,8 @@
   :init
   (defvar yas-verbosity (if minemacs-verbose-p 4 2))
   :custom
-  (yas-triggers-in-field t))
+  (yas-triggers-in-field t)
+  (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/"))))
 
 (use-package yasnippet-capf
   :straight t
