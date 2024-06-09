@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.4.0](https://github.com/abougouffa/minemacs/compare/088db1a5b456efbdcb2851cf2c7ac50621dbad55..v7.4.0) - 2024-06-09
+#### Features
+- **(elfeed)** obsolete `yt-dl` commands - ([ac9a5b2](https://github.com/abougouffa/minemacs/commit/ac9a5b2b3ec285cf70a69e9567e7e439198158d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(fun)** remove `asm-box` - ([088db1a](https://github.com/abougouffa/minemacs/commit/088db1a5b456efbdcb2851cf2c7ac50621dbad55)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `mlscroll` obsolete - ([19f896f](https://github.com/abougouffa/minemacs/commit/19f896f2586adc5b4bea2dd2b97d1205bd90e860)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(citar-embark)** minor edit - ([44f9828](https://github.com/abougouffa/minemacs/commit/44f9828868b372bad8ec4b65c843d3f1b4298086)) - [@abougouffa](https://github.com/abougouffa)
+- **(evil)** move command dedicated tabs creation to relevant modules - ([a779f72](https://github.com/abougouffa/minemacs/commit/a779f7234a747616eee94440297e29af218e141f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** better default keybindings - ([8a30cff](https://github.com/abougouffa/minemacs/commit/8a30cffc65fd8cd01c1b17f1aa992499ef132f7d)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-themes)** enable visual bell extension - ([a13f510](https://github.com/abougouffa/minemacs/commit/a13f5103d14da83089c3454bd01c90875291facb)) - [@abougouffa](https://github.com/abougouffa)
+- **(elfeed)** prevent `db/index` from triggering `minemacs-first-file` - ([ec16f4a](https://github.com/abougouffa/minemacs/commit/ec16f4abecf22d60bbb548ed2b586dc287833ae0)) - [@abougouffa](https://github.com/abougouffa)
+- **(lib-extra)** remove unneeded `+eglot-optimization-mode` - ([ff128c1](https://github.com/abougouffa/minemacs/commit/ff128c15c89413f868f74aa0a149b514e3d88701)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** additional keybindings - ([1511f83](https://github.com/abougouffa/minemacs/commit/1511f833ba11a7bd935bbb848d3fa158eb61b463)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** add keybindings, move `meow` stuff to `me-meow` - ([7cfec92](https://github.com/abougouffa/minemacs/commit/7cfec92ba569f12c2b00eabf54c3f39e904c0785)) - [@abougouffa](https://github.com/abougouffa)
+- **(yasnippet)** add a snippet for obsolete MinEmacs modules - ([aeaee51](https://github.com/abougouffa/minemacs/commit/aeaee513293e0b8f98ae1e5296c2723cd2211db1)) - [@abougouffa](https://github.com/abougouffa)
+- more keybindings - ([8c780f6](https://github.com/abougouffa/minemacs/commit/8c780f6ba138d38622e954b0e5de5459351ecf4d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.3.3](https://github.com/abougouffa/minemacs/compare/31bd912da0c26cbcb4e3475de97d26a9f221bfad..v7.3.3) - 2024-06-09
 #### Documentation
 - **(readme)** update documentation - ([31bd912](https://github.com/abougouffa/minemacs/commit/31bd912da0c26cbcb4e3475de97d26a9f221bfad)) - [@abougouffa](https://github.com/abougouffa)
