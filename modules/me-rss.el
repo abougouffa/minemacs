@@ -18,6 +18,7 @@
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."
     :group 'minemacs-elfeed)
+  (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window)
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))

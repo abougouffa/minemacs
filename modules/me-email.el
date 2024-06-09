@@ -34,6 +34,8 @@
     "Automatically start `mu4e' in background in `me-daemon'."
     :group 'minemacs-mu4e
     :type 'boolean)
+  ;; Make `+mu4e' dedicated tab for `mu4e'
+  (+def-dedicated-tab! mu4e :exit-func mu4e-quit)
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)

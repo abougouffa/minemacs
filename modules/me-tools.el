@@ -48,6 +48,7 @@
                `(" \\*Install vterm\\*"
                  (display-buffer-no-window)
                  (allow-no-window . t)))
+  (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions)
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 5000)

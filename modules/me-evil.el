@@ -358,10 +358,6 @@
 
 ;;; For `me-builtin'
 
-(with-eval-after-load 'isearch
-  (keymap-global-set "C-k" #'isearch-ring-retreat)
-  (keymap-global-set "C-j" #'isearch-ring-advance))
-
 (+map-local! :package edebug
   :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
   "d"   '(nil :wk "edebug")
@@ -769,7 +765,7 @@
 
 (+map! :package vterm :module me-tools
   "ot" '(nil :wk "vterm")
-  "otv" (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions))
+  "otv" #'+vterm)
 
 (+map! :package multi-vterm :module me-tools
   "otT" #'multi-vterm
@@ -1023,7 +1019,7 @@
   (+nvmap! :keymaps 'org-msg-edit-mode-map "gg" #'org-msg-goto-body))
 
 (+map! :package mu4e :module me-email
-  "om" (+def-dedicated-tab! mu4e :exit-func mu4e-quit))
+  "om" #'+mu4e)
 
 (+map-local! :package mu4e :module me-email
   :keymaps '(mu4e-compose-mode-map org-msg-edit-mode-map)
@@ -1175,7 +1171,7 @@
     (+nmap! :keymaps 'elfeed-show-mode-map "D" #'+elfeed-download-image)))
 
 (+map! :package elfeed :module me-rss
-  "of" (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window))
+  "of" #'+elfeed)
 
 
 
@@ -1417,7 +1413,7 @@
 ;;; For `me-calendar'
 
 (+map! :package calfw :module me-calendar
-  "oC" (+def-dedicated-tab! cfw:open-calendar-buffer))
+  "oC" #'+cfw:open-calendar-buffer)
 
 
 
