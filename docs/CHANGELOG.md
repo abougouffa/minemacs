@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.3.3](https://github.com/abougouffa/minemacs/compare/31bd912da0c26cbcb4e3475de97d26a9f221bfad..v7.3.3) - 2024-06-09
+#### Documentation
+- **(readme)** update documentation - ([31bd912](https://github.com/abougouffa/minemacs/commit/31bd912da0c26cbcb4e3475de97d26a9f221bfad)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- add `+server-restart` - ([47e3507](https://github.com/abougouffa/minemacs/commit/47e3507a49726f1a6e1c9d46b51e7844ab0ccf66)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(beardbolt)** switch the the upstream repo, fix merged - ([f5badb7](https://github.com/abougouffa/minemacs/commit/f5badb7f3b158a1898ccf0b5cd60aeaa32ea0b90)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** use `transient` for `+window-adjust-size-transient` - ([2ee13fc](https://github.com/abougouffa/minemacs/commit/2ee13fcdc4b0384bcad5ba9790495e30e6cc0231)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** simpler frame title - ([603a574](https://github.com/abougouffa/minemacs/commit/603a5744021d1444e912a7e25030a6e0251f2526)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.3.2](https://github.com/abougouffa/minemacs/compare/1f605fbad9761740dc397eb07ff3f289a1aab708..v7.3.2) - 2024-06-09
 #### Documentation
 - **(documentation)** regenerate the documentation - ([d0fbf32](https://github.com/abougouffa/minemacs/commit/d0fbf32f39f2bfcc94cb61179f382b659574b7f2)) - [@abougouffa](https://github.com/abougouffa)
