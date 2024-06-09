@@ -133,6 +133,13 @@
   (with-eval-after-load 'magit
     (keymap-set magit-mode-map "*" #'magit-delete-thing))
 
+  ;; Add some `meow' commands to be applied in multiple cursors mode
+  (with-eval-after-load 'multiple-cursors
+    (cl-callf append mc--default-cmds-to-run-for-all
+      '(meow-insert meow-append meow-backward-delete
+        meow-delete meow-replace meow-replace-char
+        meow-yank meow-yank-pop meow-kill)))
+
   ;; Bind `expreg-expand' to "v" in normal state
   (unless (+package-disabled-p 'expreg 'me-editor)
     (meow-normal-define-key

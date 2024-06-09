@@ -14,11 +14,10 @@
 
 (use-package multiple-cursors
   :straight t
-  :config
-  (cl-callf append mc--default-cmds-to-run-for-all
-    '(meow-insert meow-append meow-backward-delete
-      meow-delete meow-replace meow-replace-char
-      meow-yank meow-yank-pop meow-kill)))
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-S-c C-S-c" . mc/edit-lines)))
 
 
 (provide 'me-multi-cursors)
