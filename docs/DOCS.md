@@ -15,7 +15,7 @@ Load and hooks order:
   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
   * `$MINEMACSDIR/modules.el` (unless disabled)
   * `$MINEMACSDIR/local/modules.el` (unless disabled)
-  * `~/.emacs.d/core/<module>.el` (for module in `minemacs-core-modules`)
+  * `~/.emacs.d/core/<module>.el`
   * `~/.emacs.d/modules/<module>.el` (for module in `minemacs-modules`)
   * `minemacs-after-loading-modules-hook`
   * `$MINEMACSDIR/custom-vars.el`
@@ -29,6 +29,7 @@ Load and hooks order:
 Special hooks defined with `+make-first-file-hook!`
 - `minemacs-first-file-hook`
 - `minemacs-first-elisp-file-hook`
+- `minemacs-first-python-file-hook`
 - `minemacs-first-org-file-hook`
 - `minemacs-first-c/c++-file-hook`
 
@@ -141,14 +142,6 @@ A list of files to ignore in the `minemacs-first-*-file-hook`.
 
 Modes for which Eglot can be automatically enabled by `+eglot-auto-enable`.
 
-#### `+binary-objdump-executable`
-
-The "objdump" command.
-
-#### `+binary-objdump-enable`
-
-Enable or disable disassembling suitable files with objdump.
-
 #### `+binary-hexl-enable`
 
 Enable or disable opening suitable files in `hexl-mode`.
@@ -195,21 +188,21 @@ scaling factor for the font in Emacs' `face-font-rescale-alist`. See the
 
 The MPV command.
 
-#### `+ros-mcap-command`
-
-ROS 2 MCAP command.
-
-#### `+ros-rosbag-command`
-
-ROS 1 "rosbag" command.
-
-#### `+ros-ros2-command`
-
-ROS 2 "ros2" command.
-
 #### `eglot-ltex-user-rules-path`
 
 Path to save user rules.
+
+#### `flymake-collection-clang-tidy-build-path`
+
+Clang build directory.
+
+#### `flymake-collection-clang-tidy-extra-options`
+
+Extra options to pass to Clang-tidy.
+
+#### `flymake-collection-nasm-format`
+
+The NASM output format.
 
 #### `+mu4e-account-aliases`
 
@@ -252,7 +245,7 @@ The text-scaling level for `+writing-mode`.
 
 #### `+writing-text-width`
 
-Like `visual-fill-column-width`.
+Like `olivetti-body-width`.
 
 #### `+writing-mixed-pitch-enable`
 
@@ -283,6 +276,14 @@ Load user configurations CONFIGS.
 #### `(+load &rest FILENAME-PARTS)`
 
 Load a file, the FILENAME-PARTS are concatenated to form the file name.
+
+#### `(+with-delayed! &rest BODY)` (macro)
+
+Delay evaluating BODY with priority 0 (high priority).
+
+#### `(+with-delayed-1! &rest BODY)` (macro)
+
+Delay evaluating BODY with priority 1.
 
 #### `(+varplist-get VPLIST KEYWORD &optional CAR-P)`
 
@@ -325,6 +326,11 @@ associations. By default, key comparison is done with `equal`. However, if
 SYMBOL is non-nil, then `eq` is used instead.
 This method may mutate the original alist, but you still need to use the return
 value of this method instead of the original alist, to ensure correct results.
+
+#### `(+mode-alist-add-ts-modes! MODE-ALIST)` (macro)
+
+Duplicate elements in MODE-ALIST to include Treesit modes.
+For the alist =((some-mode . spec)), this will add =(some-ts-mode . spec).
 
 #### `(+set-standard-value VARIABLE VALUE)`
 
@@ -560,10 +566,6 @@ Examples:
   (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
   (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
-#### `(+binary-setup-modes)`
-
-Setup binary modes (objdump and hexl) for relevant buffers and file types.
-
 #### `(+project-scan-for-projects &optional DIR)`
 
 Scan and remember projects under DIR or `+project-scan-dir-paths`.
@@ -735,7 +737,7 @@ Correct word at point.
 
 #### `(+spellcheck-mode &optional ARG)`
 
-Spell checking mode.
+Spell checking mode, based on `jinx-mode` if available, or based on `spell-fu-mode`.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
@@ -757,6 +759,15 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 #### `(eglot-ltex-disable-handling-client-commands)`
 
 Disable Eglot hack to handle code actions of LTeX-LS.
+
+#### `(flymake-clang-tidy-find-project-root CHECKER)`
+
+Find the project root for CHECKER.
+This uses `project`, `projectile`, `vc` or the ".clang-tidy" file
+
+#### `(flymake-collection-clang-tidy-get-config)`
+
+Find and read .clang-tidy.
 
 #### `(+gdb-set-layout)`
 
@@ -890,38 +901,6 @@ Automatically convert KEYWORDS to lower case on save.
 #### `(+org-extras-setup)`
 
 Enable all Org-mode extra tweaks.
-
-#### `(+realgud:start &optional PATH)`
-
-Start the RealGUD debugger suitable for the current mode.
-
-#### `(+realgud:toggle-breakpoint &optional BANG)`
-
-Toggle break point.
-
-#### `(+realgud:cmd-run ARG)`
-
-Run.
-
-#### `(+realgud:cmd-start ARG)`
-
-start => break main; run.
-
-#### `(+realgud:cmd-reverse-next ARG)`
-
-Reverse next.
-
-#### `(+realgud:cmd-reverse-step ARG)`
-
-Reverse step.
-
-#### `(+realgud:cmd-reverse-continue ARG)`
-
-Reverse continue.
-
-#### `(+realgud:cmd-reverse-finish ARG)`
-
-Reverse finish.
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">
