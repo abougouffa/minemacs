@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: meobs
+# contributor : Abdelhak Bougouffa
+# --
+;;; ${1:`(file-name-base (or buffer-file-name "me-package"))`}.el --- ${2:description} -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-`(concat (format-time-string "%Y") "  " user-full-name)`
+
+;; Author: `(format "%s  (rot13 %S)" user-full-name (rot13 user-mail-address))`
+
+;;; Commentary:
+
+;;; Code:
+
+$0
+
+(provide 'obsolete/$1)
+;;; $1.el ends here
