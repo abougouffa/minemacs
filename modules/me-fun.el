@@ -19,9 +19,6 @@
 (use-package speed-type
   :straight t)
 
-(use-package asm-blox
-  :straight t)
-
 (use-package wordel
   :straight t)
 
