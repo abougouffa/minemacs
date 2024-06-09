@@ -665,6 +665,14 @@ by `+screenshot-delay') before taking the screenshot."
     ;; If the matching thing has multi-lines, join them
     (string-join (string-lines thing))))
 
+;;;###autoload
+(defun +kill-region-or-backward-word ()
+  "Kill selected region if region is active. Otherwise kill a backward word."
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (backward-kill-word 1)))
+
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)

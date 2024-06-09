@@ -144,9 +144,11 @@
   (keymap-global-unset "C-x C-z" 'remove)
 
   ;; Remap some keys/page
-  (keymap-global-set "C-x C-r" #'recentf) ; Instead of `find-file-read-only'
+  (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
+  (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
   (keymap-global-set "C-x k" #'kill-current-buffer) ; Instead of `kill-buffer'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
+  (keymap-global-set "C-w" #'+kill-region-or-backward-word) ; Instead of `kill-region'
 
   ;; Disable previously enabled custom themes before enabling a new one.
   (advice-add
