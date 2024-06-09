@@ -41,7 +41,7 @@
   :when (and (not os/win) (+emacs-features-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :hook (vterm-mode . compilation-shell-minor-mode)
-  :bind (:map vterm-mode-map ("<return>" . vterm-send-return))
+  :bind (:map vterm-mode-map ([return] . vterm-send-return))
   :init
   ;; Hide vterm install window
   (add-to-list 'display-buffer-alist
@@ -57,7 +57,8 @@
 (use-package multi-vterm
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
-  :bind (("<remap> <project-shell>" . multi-vterm-project))
+  :bind (([remap project-shell] . multi-vterm-project)
+         ([f1] . multi-vterm-project))
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
@@ -70,7 +71,8 @@
        (vterm-send-string (format "cd %S\n" dir))))))
 
 (use-package docker
-  :straight t)
+  :straight t
+  :bind (("C-c o d" . docker)))
 
 (use-package docker-compose-mode
   :straight t)

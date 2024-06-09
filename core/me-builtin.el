@@ -150,6 +150,12 @@
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
   (keymap-global-set "C-w" #'+kill-region-or-backward-word) ; Instead of `kill-region'
 
+  (defvar-keymap minemacs-open-thing-map
+    :doc "Open thing, under `C-c o'."
+    :name "Open thing")
+
+  (keymap-global-set "C-c o" minemacs-open-thing-map)
+
   ;; Disable previously enabled custom themes before enabling a new one.
   (advice-add
    'load-theme :before
