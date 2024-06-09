@@ -39,8 +39,7 @@
 (use-package citar-embark
   :straight t
   :after citar embark
-  :demand
-  :config
+  :init
   (citar-embark-mode 1))
 
 (use-package org-re-reveal-citeproc
