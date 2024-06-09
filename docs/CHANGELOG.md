@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.3.2](https://github.com/abougouffa/minemacs/compare/1f605fbad9761740dc397eb07ff3f289a1aab708..v7.3.2) - 2024-06-09
+#### Documentation
+- **(documentation)** regenerate the documentation - ([d0fbf32](https://github.com/abougouffa/minemacs/commit/d0fbf32f39f2bfcc94cb61179f382b659574b7f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update the documentation - ([824ce8e](https://github.com/abougouffa/minemacs/commit/824ce8ee6a0a7b2a073526e92889354a17ab4591)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** fix the `documentation` task - ([44af464](https://github.com/abougouffa/minemacs/commit/44af464f81eb7bf6d2f294ae012046cb76d0664c)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(init)** remove `MINEMACS_IGNORE_VERSION_CHECK` - ([d2e6026](https://github.com/abougouffa/minemacs/commit/d2e6026a30386f2ff96acc7c80abfeb29c68f478)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(mixed-pitch)** don't change the cursor (causes the cursor to hide) - ([1f605fb](https://github.com/abougouffa/minemacs/commit/1f605fbad9761740dc397eb07ff3f289a1aab708)) - [@abougouffa](https://github.com/abougouffa)
+- **(yasnippet)** add snippets in `~/.minemacs.d/snippets/` - ([fbf8480](https://github.com/abougouffa/minemacs/commit/fbf84806efa7dcd42745e58c44a33df089e877cf)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([de94785](https://github.com/abougouffa/minemacs/commit/de947855daebdd3e61fb1de4bf7e39dfde30c6ec)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.3.1](https://github.com/abougouffa/minemacs/compare/328b50cf41592d6aeb98a6ce72e58a1a05fd360a..v7.3.1) - 2024-06-08
 #### Refactoring
 - ensure moving all `+map!` & `+map-local!` blocks to `me-evil` - ([95d9cb3](https://github.com/abougouffa/minemacs/commit/95d9cb364205d0e9b06da1bdbf6dde879886a7ea)) - [@abougouffa](https://github.com/abougouffa)
