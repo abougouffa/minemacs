@@ -282,6 +282,8 @@ it is disabled.
 (fn &optional ARG)" t)
 (autoload '+eglot-help-at-point "me-lib-extra" "\
 Request documentation for the thing at point." t)
+(autoload '+server-restart "me-lib-extra" "\
+Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
 Return whether BUFFER or the current buffer is binary.
 

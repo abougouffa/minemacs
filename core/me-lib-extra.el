@@ -765,6 +765,19 @@ the children of class at point."
 
 
 
+;;; Emacs server
+
+;;;###autoload
+(defun +server-restart ()
+  "Restart the Emacs server."
+  (interactive)
+  (server-force-delete)
+  (while (server-running-p)
+    (sleep-for 1))
+  (server-start))
+
+
+
 ;;; Binary files tweaks
 
 ;; A predicate for detecting binary files. Inspired by:
