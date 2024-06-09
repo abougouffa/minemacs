@@ -30,6 +30,7 @@
   :config
   ;; Hide the annoying index file form recent files
   (+ignore-root elfeed-db-directory elfeed-enclosure-default-dir)
+  (push (concat elfeed-db-directory "index") +first-file-hook-ignore-list)
 
   (defun +elfeed-download-image ()
     "Download the image at point."
