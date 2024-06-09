@@ -73,20 +73,6 @@
    (window-width . 0.5)
    (reusable-frames . visible)))
 
-(setq frame-title-format
-      '("GNU Emacs (" "%b"
-        (:eval
-         (let ((proj (cond
-                      ((featurep 'projectile) (projectile-project-name))
-                      (t (or
-                          (ignore-errors (project-name (project-current)))
-                          (ignore-errors (file-name-nondirectory (string-trim-right (expand-file-name (vc-root-dir)) "/")))
-                          "*no-project*")))))
-          (concat
-           (if (buffer-modified-p) " ○" " ●")
-           (when (and proj (not (string= proj "-"))) (format " %s" proj)))))
-        ")"))
-
 ;; Adapted from: github.com/Phundrak/dotfiles/blob/master/org/config/emacs.org
 (with-eval-after-load 'hydra
   (defhydra +window-adjust-size (:hint nil :foreign-keys warn)
@@ -101,6 +87,8 @@
     ("t" enlarge-window)
     ("s" shrink-window)
     ("r" enlarge-window-horizontally)))
+
+(setq frame-title-format '("GNU Emacs (%b)"))
 
 
 (provide 'me-window)
