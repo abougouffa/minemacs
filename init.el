@@ -51,8 +51,8 @@
 
 ;;; Code:
 
-;; Run a profiling session if `$MINEMACS_PROFILE' is defined.
-(when (getenv "MINEMACS_PROFILE")
+;; Run a profiling session if `$MINEMACS_BENCHMARK' is defined.
+(when (getenv "MINEMACS_BENCHMARK")
   (let ((dir (concat (file-name-directory load-file-name) "elisp/benchmark-init/")))
     (if (not (file-exists-p (concat dir "benchmark-init.el")))
         (error "[MinEmacs:Error] `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory")
