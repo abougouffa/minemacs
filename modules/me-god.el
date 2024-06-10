@@ -7,10 +7,7 @@
 
 (use-package god-mode
   :straight t
-  :bind (("M-<escape>" . god-local-mode)
-         :map god-local-mode-map
-         ("i" . god-local-mode)
-         ("." . repeat))
+  :bind (("M-<escape>" . god-local-mode))
   :custom
   (god-mode-enable-function-key-translation nil)
   :config
@@ -24,7 +21,7 @@
    (satch-defun +god-mode--toggle-on-overwrite ()
      (if overwrite-mode (god-local-mode-pause) (god-local-mode-resume))))
 
-  ;; Integration with `isearch' -- TODO: add some visual indication for it
+  ;; Integration with `isearch' --> TODO: add some visual indication for it
   (with-eval-after-load 'isearch
     (require 'god-mode-isearch)
     (keymap-set-after isearch-mode-map "<escape>" #'god-mode-isearch-activate 'isearch)
@@ -36,6 +33,9 @@
   (keymap-global-set "C-x C-3" #'split-window-right)
   (keymap-global-set "C-x C-0" #'delete-window)
 
+  ;; Use "i" to turn off `god-mode' and "." to repeat last command
+  (keymap-set god-local-mode-map "i" #'god-local-mode)
+  (keymap-set god-local-mode-map "." #'repeat)
   (keymap-set god-local-mode-map "(" #'backward-paragraph)
   (keymap-set god-local-mode-map ")" #'forward-paragraph))
 
