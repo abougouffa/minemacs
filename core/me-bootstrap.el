@@ -44,11 +44,7 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p))
 
-;; Add support for ensuring system dependencies using `:ensure-system-package'
-;; in `use-package'.
-(use-package system-packages
-  :straight t)
-
+;; Extra utilities
 (use-package once
   :straight (:host github :repo "emacs-magus/once"))
 
