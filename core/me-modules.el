@@ -1,6 +1,6 @@
 ;;; me-modules.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022 Abdelhak Bougouffa
+;; Copyright (C) 2022-2024 Abdelhak Bougouffa
 
 ;;; Commentary:
 
@@ -33,6 +33,7 @@
     me-extra
     me-files
     ;; me-fun
+    me-god
     ;; me-gtd
     me-keybindings
     me-latex
@@ -40,6 +41,7 @@
     ;; me-math
     ;; me-media
     ;; me-modeling
+    ;; me-meow
     me-multi-cursors
     ;; me-nano
     me-natural-langs
