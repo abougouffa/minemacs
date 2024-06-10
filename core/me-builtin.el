@@ -314,7 +314,8 @@ or file path may exist now."
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
-  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project")))
+  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
+  :bind (("C-x p a" . +project-add-project)))
 
 (use-package tab-bar
   :hook (minemacs-lazy . tab-bar-mode)
@@ -475,7 +476,7 @@ or file path may exist now."
     (if +hs-toggle-all-show (hs-show-all) (hs-hide-all))
     (setq +hs-toggle-all-show (not +hs-toggle-all-show)))
 
-  ;; Add extra modes support, needs functions defined in `me-code-folding'
+  ;; Add extra modes support
   (unless (assq 't hs-special-modes-alist)
     (cl-callf2 append
         '((vimrc-mode "{{{" "}}}" "\"")
