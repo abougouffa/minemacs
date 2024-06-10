@@ -1078,8 +1078,7 @@ current line.")
      ("Wikipedia"     . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
 
 (use-package time-stamp
-  ;; Update time stamp (if available) before saving a file.
-  :hook (before-save . time-stamp)
+  :hook (before-save . time-stamp) ; Update time stamp (if available) before saving a file.
   :custom
   ;; Do enable time-stamps
   (time-stamp-active t)
@@ -1090,50 +1089,7 @@ current line.")
 
 (use-package whitespace
   :custom
-  ;; Default behavior for `whitespace-cleanup'
-  (whitespace-action '(cleanup auto-cleanup))
-  :commands +whitespace-auto-cleanup-mode
-  :init
-  (defcustom +whitespace-auto-cleanup-modes '(prog-mode conf-mode org-mode markdown-mode latex-mode tex-mode bibtex-mode)
-    "Enable auto white space cleanup before saving for these derived modes."
-    :group 'minemacs-edit
-    :type '(repeat symbol))
-
-  (defcustom +whitespace-auto-cleanup-except-current-line t
-    "Cleanup all white spaces except the current line."
-    :group 'minemacs-edit
-    :type 'boolean)
-  :config
-  (defun +whitespace-delete-trailing ()
-    "Delete trailing whitespace, optionally avoiding the current line.
-
-See `+whitespace-auto-cleanup-except-current-line'."
-    (if +whitespace-auto-cleanup-except-current-line
-        (let ((start (line-beginning-position))
-              (current (point)))
-          (save-excursion
-            (when (< (point-min) start)
-              (save-restriction
-                (narrow-to-region (point-min) (1- start))
-                (delete-trailing-whitespace)))
-            (when (> (point-max) current)
-              (save-restriction
-                (narrow-to-region current (point-max))
-                (delete-trailing-whitespace)))))
-      (delete-trailing-whitespace)))
-
-  ;; Auto-remove trailing white spaces before saving for modes defined in
-  ;; `+whitespace-auto-cleanup-modes'.
-  (defun +whitespace--delete-trailing-h ()
-    (when (cl-some #'derived-mode-p +whitespace-auto-cleanup-modes) (+whitespace-delete-trailing)))
-
-  (define-minor-mode +whitespace-auto-cleanup-mode
-    "Automatically cleanup trailing whitespace."
-    :init-value nil
-    :global t
-    (if +whitespace-auto-cleanup-mode
-        (add-hook 'before-save-hook #'+whitespace--delete-trailing-h)
-      (remove-hook 'before-save-hook #'+whitespace--delete-trailing-h))))
+  (whitespace-action '(cleanup auto-cleanup))) ; Default behavior for `whitespace-cleanup'
 
 (use-package autorevert
   ;; Auto load files changed on disk
