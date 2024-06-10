@@ -1342,7 +1342,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
     (dolist (font (plist-get minemacs-fonts-plist (intern (format ":%s" script-or-face))))
       (let* ((spec (+font--get-valid-args script-or-face font))
              (scale (and (plistp font) (plist-get font :scale)))
-             (prependp (and (plistp font) (plist-get font :family)))
+             (prependp (and (plistp font) (plist-get font :prepend)))
              (family (plist-get spec :family))
              (scriptp (memq script-or-face +known-scripts)))
         (when (or (not family) (+font-installed-p family))
