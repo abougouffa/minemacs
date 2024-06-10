@@ -124,10 +124,6 @@
          ("C-c k"   . consult-kmacro)
          ("C-c h"   . consult-history)
          ("C-c r"   . consult-ripgrep)
-         ("C-c T"   . consult-theme)
-         ("C-c c e" . consult-colors-emacs)
-         ("C-c c w" . consult-colors-web)
-         ("C-c c f" . describe-face)
          ("C-c c t" . consult-theme)
          ("C-c i"   . consult-info)
          ([remap Info-search] . consult-info)
@@ -153,13 +149,13 @@
 
          ;; M-g bindings in `goto-map'
          ("M-g e"   . consult-compile-error)
-         ("M-g f"   . consult-flymake)               ;; Alternative: consult-flycheck
-         ([remap goto-line] . consult-goto-line) ; M-g g or M-g M-g
-         ("M-g o"   . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g f"   . consult-flymake) ; Alternative: consult-flycheck
+         ("M-g o"   . consult-outline) ; Alternative: consult-org-heading
          ("M-g m"   . consult-mark)
          ("M-g k"   . consult-global-mark)
-         ([remap imenu] . consult-imenu)
          ("M-g I"   . consult-imenu-multi)
+         ([remap imenu] . consult-imenu)
+         ([remap goto-line] . consult-goto-line) ; M-g g or M-g M-g
 
          ;; M-s bindings in `search-map'
          ("M-s d"   . consult-find)
@@ -176,10 +172,10 @@
          ("M-s e"   . consult-isearch-history)
 
          :map isearch-mode-map
-         ("M-e"     . consult-isearch-history)       ;; orig. isearch-edit-string
-         ("M-s e"   . consult-isearch-history)       ;; orig. isearch-edit-string
-         ("M-s l"   . consult-line)                  ;; needed by consult-line to detect isearch
-         ("M-s L"   . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ("M-e"     . consult-isearch-history) ; orig. isearch-edit-string
+         ("M-s e"   . consult-isearch-history) ; orig. isearch-edit-string
+         ("M-s l"   . consult-line) ; needed by consult-line to detect isearch
+         ("M-s L"   . consult-line-multi) ; needed by consult-line to detect isearch
 
          ;; Minibuffer history
          :map minibuffer-local-map
@@ -190,8 +186,7 @@
   ;; Use `consult-xref' for `xref-find-references' and `xref-find-definitions'
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref)
-  ;; Better formatting for `view-register'
-  (register-preview-function #'consult-register-format)
+  (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")
   :config
   (defun +consult-insert-thing-at-point ()
