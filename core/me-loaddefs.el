@@ -245,6 +245,8 @@ by `+screenshot-delay') before taking the screenshot.
 Kill the minibuffer when switching to window with mouse." t)
 (autoload '+region-or-thing-at-point "me-lib-extra" "\
 Return the region or the thing at point.")
+(autoload '+kill-region-or-backward-word "me-lib-extra" "\
+Kill selected region if region is active. Otherwise kill a backward word." t)
 (autoload '+webjump "me-lib-extra" "\
 Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
@@ -253,33 +255,6 @@ If DERIVED is non-nil (interactively, with prefix argument), show
 the children of class at point.
 
 (fn &optional DERIVED)" t)
-(defvar +eglot-optimization-mode nil "\
-Non-nil if +Eglot-Optimization mode is enabled.
-See the `+eglot-optimization-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `+eglot-optimization-mode'.")
-(custom-autoload '+eglot-optimization-mode "me-lib-extra" nil)
-(autoload '+eglot-optimization-mode "me-lib-extra" "\
-Deploys universal GC and IPC optimizations for `eglot'.
-
-This is a global minor mode.  If called interactively, toggle the
-`+Eglot-Optimization mode' mode.  If the prefix argument is
-positive, enable the mode, and if it is zero or negative, disable
-the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate `(default-value \\='+eglot-optimization-mode)'.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-(fn &optional ARG)" t)
 (autoload '+eglot-help-at-point "me-lib-extra" "\
 Request documentation for the thing at point." t)
 (autoload '+server-restart "me-lib-extra" "\
@@ -391,7 +366,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+dir-locals--autoreload-" "+eglot--" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+dir-locals--autoreload-" "+eglot--help-buffer" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from me-modules.el
