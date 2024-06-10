@@ -183,7 +183,7 @@
 
          ;; Minibuffer history
          :map minibuffer-local-map
-         ("C-s" . +consult-thing-at-point)
+         ("C-s" . +consult-insert-thing-at-point)
          ([remap next-matching-history-element] . consult-history) ; M-s
          ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
@@ -194,14 +194,11 @@
   (register-preview-function #'consult-register-format)
   (consult-narrow-key "<")
   :config
-  (defun +consult-thing-at-point ()
+  (defun +consult-insert-thing-at-point ()
     "Insert region or symbol in the minibuffer."
     (interactive)
     (insert (with-current-buffer (window-buffer (minibuffer-selected-window))
-              (or (and transient-mark-mode mark-active (/= (point) (mark))
-                       (buffer-substring-no-properties (point) (mark)))
-                  (thing-at-point 'symbol t)
-                  ""))))
+              (or (+region-or-thing-at-point t) ""))))
 
   (setq-default completion-in-region-function #'consult-completion-in-region)
 

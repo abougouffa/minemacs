@@ -244,7 +244,12 @@ by `+screenshot-delay') before taking the screenshot.
 (autoload '+minibuffer-kill-minibuffer "me-lib-extra" "\
 Kill the minibuffer when switching to window with mouse." t)
 (autoload '+region-or-thing-at-point "me-lib-extra" "\
-Return the region or the thing at point.")
+Return the region or the thing at point.
+
+If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
+when a region is selected.
+
+(fn &optional LEAVE-REGION-MARKED)")
 (autoload '+kill-region-or-backward-word "me-lib-extra" "\
 Kill selected region if region is active. Otherwise kill a backward word." t)
 (autoload '+webjump "me-lib-extra" "\

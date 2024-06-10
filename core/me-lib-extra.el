@@ -655,11 +655,14 @@ by `+screenshot-delay') before taking the screenshot."
     (abort-recursive-edit)))
 
 ;;;###autoload
-(defun +region-or-thing-at-point ()
-  "Return the region or the thing at point."
+(defun +region-or-thing-at-point (&optional leave-region-marked)
+  "Return the region or the thing at point.
+
+If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
+when a region is selected."
   (when-let ((thing (ignore-errors
                       (or (prog1 (thing-at-point 'region t)
-                            (deactivate-mark))
+                            (unless leave-region-marked (deactivate-mark)))
                           (cl-some (+apply-partially-right #'thing-at-point t)
                                    '(symbol email number string word))))))
     ;; If the matching thing has multi-lines, join them
