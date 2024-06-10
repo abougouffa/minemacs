@@ -17,7 +17,8 @@
   :straight t)
 
 (use-package rg
-  :straight t)
+  :straight t
+  :bind (("C-c s" . rg-menu)))
 
 (use-package fzf
   :straight t
