@@ -162,10 +162,11 @@
   :straight t
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
-  :init
-  (defvar +xmllint-indent "    ")
   :config
-  (add-hook 'nxml-mode-hook (satch-defun +xmllint--set-indent-h () (setenv "XMLLINT_INDENT" +xmllint-indent)))
+  (add-hook
+   'nxml-mode-hook
+   (satch-defun +xmllint--set-indent-h ()
+     (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist))
 
 (use-package editorconfig
