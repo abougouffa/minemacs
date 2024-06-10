@@ -506,7 +506,10 @@ or file path may exist now."
   :straight t
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
-  (xref-show-definitions-function #'xref-show-definitions-completing-read))
+  (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  ;; NOTE: Usually, this shorcut can be bound to moves the window (set by the OS
+  ;; window manager), so we need to disable it in the WM for this to work.
+  :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse))
 
 (use-package eglot
   :straight t
