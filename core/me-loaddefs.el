@@ -348,6 +348,8 @@ it forget them only when we are sure they don't exist." t)
 Invoke `gdb' in the project's root." t)
 (autoload '+project-list-cleanup "me-lib-extra" "\
 Forget all duplicate known projects (/home/user/proj, ~/proj)." t)
+(autoload '+xref-find-references-at-point "me-lib-extra" "\
+Find references to the identifier at or around point." t)
 (autoload '+systemd-running-p "me-lib-extra" "\
 Check if the systemd SERVICE is running.
 

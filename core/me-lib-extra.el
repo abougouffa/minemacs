@@ -1056,6 +1056,27 @@ it forget them only when we are sure they don't exist."
 
 
 
+;;; Xref
+
+;; HACK: For some reason, when working in C/C++ codebase with `citre-mode', the
+;; `xref--read-identifier' takes forever to load the list of identifiers to
+;; choose from! Consequently, calling `xref-find-references' freezes Emacs and
+;; don't return the references. This command is based on
+;; `xref-find-references-at-mouse' which works fine.
+;;;###autoload
+(defun +xref-find-references-at-point ()
+  "Find references to the identifier at or around point."
+  (interactive)
+  (let ((identifier
+         (save-excursion
+           (xref-backend-identifier-at-point (xref-find-backend)))))
+    (if identifier
+        (let ((xref-prompt-for-identifier nil))
+          (xref-find-references identifier))
+      (user-error "No identifier here"))))
+
+
+
 ;;; Systemd helpers
 
 ;;;###autoload
