@@ -64,6 +64,11 @@
            (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
            highlight-numbers-modelist))
 
+(use-package selection-highlight-mode
+  :straight (:host github :repo "balloneij/selection-highlight-mode")
+  :unless (+package-disabled-p 'meow 'me-meow)
+  :hook (minemacs-lazy . selection-highlight-mode))
+
 (use-package zones
   :straight t)
 
