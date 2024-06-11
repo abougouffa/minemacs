@@ -520,6 +520,9 @@ or file path may exist now."
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  (xref-prompt-for-identifier
+   '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame
+     xref-find-references)) ; Otherwise, it causes problems on big codebases
   ;; NOTE: Usually, this shorcut can be bound to moves the window (set by the OS
   ;; window manager), so we need to disable it in the WM for this to work.
   :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse))
