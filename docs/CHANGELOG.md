@@ -2,6 +2,46 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.5.0](https://github.com/abougouffa/minemacs/compare/8367da53b996a6b7f8b614300e5276d0025e7d8d..v7.5.0) - 2024-06-11
+#### Bug Fixes
+- **(god-mode)** defer mode-specific keybindings - ([161c6be](https://github.com/abougouffa/minemacs/commit/161c6be3928ecda39c901afe9ff40a670b7dfe29)) - [@abougouffa](https://github.com/abougouffa)
+- correct handling of `:prepend` in `+apply-font-or-script` - ([2a8ebe6](https://github.com/abougouffa/minemacs/commit/2a8ebe62f8137d76f10a18000580e106fccb90f2)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** restore `selection-highlight-mode` - ([a87015b](https://github.com/abougouffa/minemacs/commit/a87015b0d6bd895ee1532dc7b09d399061c900fd)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** replace my hack with `whitespace-cleanup-mode` - ([dcfdae7](https://github.com/abougouffa/minemacs/commit/dcfdae7cf1e7b5378c7b6428b0e6fb674499f561)) - [@abougouffa](https://github.com/abougouffa)
+- **(keybindings)** add initial support for `key-chord` - ([6321a04](https://github.com/abougouffa/minemacs/commit/6321a047118b10069091d74463491974794060c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(show-marks)** initial import of `show-marks` and `fm` - ([1d98a5b](https://github.com/abougouffa/minemacs/commit/1d98a5bfe9e34ac8d6c8fe35c616990dc11ffd51)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(god-mode)** follow the hook naming conventions - ([72f80fe](https://github.com/abougouffa/minemacs/commit/72f80fe2be02d2cf86644be26ce4c876deab7307)) - [@abougouffa](https://github.com/abougouffa)
+- **(which-key)** move Evil specific tweaks to `me-evil` - ([e619c6b](https://github.com/abougouffa/minemacs/commit/e619c6b5089ba4493aa989bd00b9cf92d2a3a114)) - [@abougouffa](https://github.com/abougouffa)
+- modernize `show-marks` and `fm` and add some features - ([7ef2c6f](https://github.com/abougouffa/minemacs/commit/7ef2c6f86ec3358731a855255f7cac86907b492d)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- don't apply the early background-color hack - ([f6e826c](https://github.com/abougouffa/minemacs/commit/f6e826cb1af570e40c6365e21a7494c6c0fd9efb)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** set indent for `xmllint` based on `nxml-child-indent` - ([8367da5](https://github.com/abougouffa/minemacs/commit/8367da53b996a6b7f8b614300e5276d0025e7d8d)) - [@abougouffa](https://github.com/abougouffa)
+- **(avy)** bind `M-j` to `avy-goto-char-timer` - ([3824b5c](https://github.com/abougouffa/minemacs/commit/3824b5cf5c7ba4e60d993329e3b1ee0a52f73686)) - [@abougouffa](https://github.com/abougouffa)
+- **(bootstrap)** remove unused `system-packages` - ([c4ea07b](https://github.com/abougouffa/minemacs/commit/c4ea07bb5b2d6337862facc985ccf5daa400d7b0)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** offer to create parent directories if they don't exist - ([e243589](https://github.com/abougouffa/minemacs/commit/e2435896afd45f9ab4c141aca9c3ae91f17c148e)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** cleanup and fix the keybinding - ([3c101cb](https://github.com/abougouffa/minemacs/commit/3c101cba0ea51071f4ce516bcce6e6950ce25a32)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** use the default ELPA recipe - ([3a060a1](https://github.com/abougouffa/minemacs/commit/3a060a11ad4ff1c4d0f99fe7fd5785364654063c)) - [@abougouffa](https://github.com/abougouffa)
+- **(god-mode)** add integration for `which-key` - ([88f6ee2](https://github.com/abougouffa/minemacs/commit/88f6ee2d13fa594c115500f205860f08ad90893c)) - [@abougouffa](https://github.com/abougouffa)
+- **(helpful)** bind `helpful-callable` instead of `helpful-function` - ([e6ebe9b](https://github.com/abougouffa/minemacs/commit/e6ebe9bc48324cfdd552312e6fa2881ca32d5032)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons)** don't try to automatically install the fonts - ([fa62917](https://github.com/abougouffa/minemacs/commit/fa629178c55912e5c490d77318f4b279f4aa0c93)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** bind `C-x p a` to `+project-add-project` - ([8c9db7a](https://github.com/abougouffa/minemacs/commit/8c9db7a80163f2005c8124c51ac73af41a6775b8)) - [@abougouffa](https://github.com/abougouffa)
+- **(rg)** add keybindig - ([3553839](https://github.com/abougouffa/minemacs/commit/3553839d279a4bd3bfa7ad155f83e72f086ce319)) - [@abougouffa](https://github.com/abougouffa)
+- **(show-marks)** delete unneeded code, several tweaks (still WIP) - ([7847a6f](https://github.com/abougouffa/minemacs/commit/7847a6f3944877f2d8e8196269b9e551dd2bf448)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** bump `bootstrap-version` to 7 - ([c704ab7](https://github.com/abougouffa/minemacs/commit/c704ab7da3e2f00ac4a7a0a252d9527e1a21d9d4)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** don't prompt for `xref-find-references` - ([35cc4e7](https://github.com/abougouffa/minemacs/commit/35cc4e76d072311139c7925daa2d0449c2f1fbfc)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** bind `M-<down-mouse-1>` to `xref-find-references-at-mouse` - ([f1ff172](https://github.com/abougouffa/minemacs/commit/f1ff1728c7a933097f70267e9e1e39eec989ec0e)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** add `+xref-find-references-at-point` - ([ac2718d](https://github.com/abougouffa/minemacs/commit/ac2718d7aeef4908385e959d67f1f1482e89e404)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([12890c0](https://github.com/abougouffa/minemacs/commit/12890c00c6899028ee49ba239f0c3bccbdca8294)) - [@abougouffa](https://github.com/abougouffa)
+- smarter kill word commands - ([07065e7](https://github.com/abougouffa/minemacs/commit/07065e74792f5c1aac5c0f45591fceb6bd7cd681)) - [@abougouffa](https://github.com/abougouffa)
+- use `+region-or-thing-at-point` in `+consult-insert-thing-at-point` - ([2005a92](https://github.com/abougouffa/minemacs/commit/2005a92f315b13152544fd8f76e9cc1b62f0bfb7)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([3f87d79](https://github.com/abougouffa/minemacs/commit/3f87d79793c4247b507af3c053beaf672376b32e)) - [@abougouffa](https://github.com/abougouffa)
+- update modules list - ([0349a1d](https://github.com/abougouffa/minemacs/commit/0349a1de9c8ed3208d8b9640f47beda9a286ef9f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.4.0](https://github.com/abougouffa/minemacs/compare/088db1a5b456efbdcb2851cf2c7ac50621dbad55..v7.4.0) - 2024-06-09
 #### Features
 - **(elfeed)** obsolete `yt-dl` commands - ([ac9a5b2](https://github.com/abougouffa/minemacs/commit/ac9a5b2b3ec285cf70a69e9567e7e439198158d8)) - [@abougouffa](https://github.com/abougouffa)
