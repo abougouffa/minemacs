@@ -19,9 +19,7 @@
   (which-key-sort-order #'which-key-key-order-alpha)
   (which-key-min-display-lines 3)
   (which-key-max-display-columns nil)
-  ;; Allow a key binding to be modified by multiple rules in
-  ;; `which-key-replacement-alist'
-  (which-key-allow-multiple-replacements t)
+  (which-key-allow-multiple-replacements t) ; Allow multiple rules in `which-key-replacement-alist'
   :config
   ;; Setup `which-key' integration with the minibuffer
   (which-key-setup-minibuffer))
@@ -29,11 +27,14 @@
 (use-package hydra
   :straight t)
 
+;; TODO: https://karthinks.com/software/avy-can-do-anything
+;; TODO: Maybe move to a new `me-navigation' module
 (use-package avy
   :straight t
   :bind (("C-\"" . avy-goto-char)
          ("C-é" . avy-goto-line) ; French AZERTY
-         ("M-g l" . avy-goto-line)))
+         ("M-g l" . avy-goto-line)
+         ("M-j" . avy-goto-char-timer))) ; Instead of `default-indent-new-line'
 
 (use-package key-chord
   :straight t)
