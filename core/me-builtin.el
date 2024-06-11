@@ -149,6 +149,9 @@
   (keymap-global-set "C-x k" #'kill-current-buffer) ; Instead of `kill-buffer'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
   (keymap-global-set "C-w" #'+kill-region-or-backward-word) ; Instead of `kill-region'
+  (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
+  (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
+  (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
 
   (defvar-keymap minemacs-open-thing-map
     :doc "Open thing, under `C-c o'."

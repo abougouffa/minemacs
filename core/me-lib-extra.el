@@ -676,6 +676,38 @@ when a region is selected."
       (kill-region (region-beginning) (region-end))
     (backward-kill-word 1)))
 
+;;;###autoload
+(defun +kill-whitespace-or-word (arg)
+  "Kill forward whitespace or word.
+With argument ARG, do this that many times.
+Restricts the effect of `kill-word' to the current line."
+  (interactive "p")
+  (if (looking-at-p "[ \t\n]")
+      (let ((pt (point)))
+        (re-search-forward "[^ \t\n]" nil :no-error)
+        (backward-char)
+        (kill-region pt (point)))
+    (save-restriction
+      (narrow-to-region (line-beginning-position) (line-end-position))
+      (kill-word arg)
+      (widen))))
+
+;;;###autoload
+(defun +backward-kill-whitespace-or-word (arg)
+  "Kill backward whitespace or word.
+With argument ARG, do this that many times.
+Restricts the effect of `backward-kill-word' to the current line."
+  (interactive "p")
+  (if (save-excursion (backward-char) (looking-at-p "[ \t\n]"))
+      (let ((pt (point)))
+        (re-search-backward "[^ \t\n]" nil :no-error)
+        (forward-char)
+        (kill-region pt (point)))
+    (save-restriction
+      (narrow-to-region (line-beginning-position) (line-end-position))
+      (backward-kill-word arg)
+      (widen))))
+
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)

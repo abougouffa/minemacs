@@ -252,6 +252,18 @@ when a region is selected.
 (fn &optional LEAVE-REGION-MARKED)")
 (autoload '+kill-region-or-backward-word "me-lib-extra" "\
 Kill selected region if region is active. Otherwise kill a backward word." t)
+(autoload '+kill-whitespace-or-word "me-lib-extra" "\
+Kill forward whitespace or word.
+With argument ARG, do this that many times.
+Restricts the effect of `kill-word' to the current line.
+
+(fn ARG)" t)
+(autoload '+backward-kill-whitespace-or-word "me-lib-extra" "\
+Kill backward whitespace or word.
+With argument ARG, do this that many times.
+Restricts the effect of `backward-kill-word' to the current line.
+
+(fn ARG)" t)
 (autoload '+webjump "me-lib-extra" "\
 Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
