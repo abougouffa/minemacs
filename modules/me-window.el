@@ -44,7 +44,7 @@
 ;; Show dictionary definition and completion buffer on the right side
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "Dictionary" "lexic" "Completions") "*" eol)
+ `(,(rx bol "*" (or "Dictionary" "lexic" "Completions" (seq "show-marks" (* any))) "*" eol)
    (display-buffer-in-side-window)
    (side . right)
    (window-width . 85)))

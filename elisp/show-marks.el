@@ -3,7 +3,7 @@
 ;; Filename: show-marks.el
 ;; Description: Navigate and visualize the mark-ring
 ;; Author: Greg Rowe <emacs@therowes.net>
-;; Maintainer: Joe Bloggs <vapniks@yahoo.com>
+;; Maintainer: Abdelhak Bougouffa
 ;; Copyright (c) 2003 Greg Rowe
 ;; Created: 2003
 ;; Version: 0.4
@@ -94,6 +94,7 @@
 
 ;;; Require
 (require 'fm)
+(require 'xref)
 
 ;;; Code:
 
@@ -192,7 +193,7 @@
 
 ;;;###autoload
 (defun mark-mode-delete nil
-  "Delete mark at current line from mark-ring."
+  "Delete mark at current line from the mark ring."
   (interactive)
   (let ((mark (get-text-property (point) 'marker)))
     (with-current-buffer mark-buffer
@@ -209,55 +210,52 @@
   (if (> (line-number-at-pos) 1)
       (forward-line -1)
     (goto-char (point-max))
-    (forward-line -1)
-    (move-beginning-of-line nil)))
+    (forward-line -1)))
 
 
 ;;;###autoload
 (defun mark-mode-next-mark ()
-  "Move to next mark in *mark* buffer, wrapping if necessary."
+  "Move to next mark in *marks* buffer, wrapping if necessary."
   (interactive)
   (if (< (line-number-at-pos) (count-lines (point-min) (point-max)))
       (forward-line)
-    (goto-char (point-min))
-    (move-beginning-of-line nil)))
+    (goto-char (point-min))))
 
 
 (defun show-mark (mark-list)
   "Recursively print the MARK-LIST."
-  (if mark-list
-      (let ((mymarker (car mark-list))
-            (linenum 0)
-            (mybol 0)
-            (myeol 0)
-            (prop-start 0))
-        (save-current-buffer
-          (set-buffer mark-buffer)
-          (setq linenum (+ (count-lines 1 mymarker) 1))
-          (save-excursion
-            (goto-char  mymarker)
-            (setq mybol (pos-bol))
-            (setq myeol (pos-eol))))
-        (setq prop-start (point))
-        (insert (format "%6d: " linenum))
-        (insert-buffer-substring mark-buffer mybol myeol)
-        (insert "\n")
-        (put-text-property prop-start (point) 'marker mymarker)
-        (show-mark (cdr mark-list)))))
+  (when mark-list
+    (let ((cur-marker (car mark-list))
+          (line-num 0)
+          (line-bol 0)
+          (line-eol 0)
+          (prop-start 0))
+      (save-current-buffer
+        (set-buffer mark-buffer)
+        (setq line-num (+ (count-lines 1 cur-marker) 1))
+        (save-excursion
+          (goto-char cur-marker)
+          (setq line-bol (pos-bol))
+          (setq line-eol (pos-eol))))
+      (setq prop-start (point))
+      (insert (format "%6d:  " line-num))
+      (insert-buffer-substring mark-buffer line-bol line-eol)
+      (insert "\n")
+      (put-text-property prop-start (point) 'marker cur-marker)
+      (show-mark (cdr mark-list)))))
 
 
 (defun show-marks (mark-list buf)
   "Display MARK-LIST, append BUF to the buffer name."
-  (with-output-to-temp-buffer (format "*marks %s*" buf)
-    (let ((old-buffer-mark-ring mark-list))
-      ;; prepend the current mark
-      (setq old-buffer-mark-ring (cons (copy-marker (mark-marker)) mark-list)
-            mark-buffer (current-buffer))
-      (set-buffer standard-output)
-      (show-mark old-buffer-mark-ring)
-      (mark-mode)))
-  (if show-marks-move-point
-      (select-window (get-buffer-window "*marks*"))))
+  (let ((buf-name (format "*marks %s*" buf)))
+    (with-output-to-temp-buffer (format "*marks %s*" buf)
+      (let ((old-buffer-mark-ring (cons (copy-marker (mark-marker)) mark-list)))
+        (setq mark-buffer (current-buffer))
+        (set-buffer standard-output)
+        (show-mark old-buffer-mark-ring)
+        (mark-mode)))
+    (when show-marks-move-point
+      (select-window (get-buffer-window buf-name)))))
 
 ;;;###autoload
 (defun show-mark-ring ()
@@ -279,6 +277,7 @@ mark point with out affecting the `global-mark-ring'."
 
 ;;;###autoload
 (defun show-xref-mark-ring ()
+  "Show the mark ring of `xref' history."
   (interactive)
   (let ((xref-ring (car (xref--get-history))))
     (show-marks xref-ring "xref")))
