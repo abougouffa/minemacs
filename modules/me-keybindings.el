@@ -35,6 +35,9 @@
          ("C-é" . avy-goto-line) ; French AZERTY
          ("M-g l" . avy-goto-line)))
 
+(use-package key-chord
+  :straight t)
+
 
 (provide 'me-keybindings)
 
