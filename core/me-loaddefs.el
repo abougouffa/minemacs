@@ -18,6 +18,11 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
+;;; Generated autoloads from ../elisp/fm.el
+
+(register-definition-prefixes "../elisp/fm" '("fm-"))
+
+
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
@@ -44,11 +49,11 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/extras/me-flymake-extras.el
 
-(autoload 'flymake-collection-nasm "me-flymake-extras")
-(autoload 'flymake-collection-pyre "me-flymake-extras")
-(autoload 'flymake-collection-codespell "me-flymake-extras")
-(autoload 'flymake-collection-bandit "me-flymake-extras")
-(autoload 'flymake-collection-clang-tidy "me-flymake-extras")
+ (autoload 'flymake-collection-nasm "me-flymake-extras")
+ (autoload 'flymake-collection-pyre "me-flymake-extras")
+ (autoload 'flymake-collection-codespell "me-flymake-extras")
+ (autoload 'flymake-collection-bandit "me-flymake-extras")
+ (autoload 'flymake-collection-clang-tidy "me-flymake-extras")
 (register-definition-prefixes "../modules/extras/me-flymake-extras" '("flymake-c"))
 
 
@@ -468,6 +473,37 @@ See `+writing-mode' for more information on +Writing mode.
 ;;; Generated autoloads from minemacs-lazy.el
 
 (register-definition-prefixes "minemacs-lazy" '("minemacs--lazy-"))
+
+
+;;; Generated autoloads from ../elisp/show-marks.el
+
+(autoload 'backward-mark "../elisp/show-marks" "\
+Move the point ARG points backward in the mark ring.
+
+(fn ARG)" t)
+(autoload 'forward-mark "../elisp/show-marks" "\
+Move the point ARG points forward in the mark ring.
+
+(fn ARG)" t)
+(autoload 'mark-mode-goto "../elisp/show-marks" "\
+Go to the occurrence the current line describes." t)
+(autoload 'mark-mode-delete "../elisp/show-marks" "\
+Delete mark at current line from the mark ring." t)
+(autoload 'mark-mode-prev-mark "../elisp/show-marks" "\
+Move to previous mark in *mark* buffer, wrapping if necessary." t)
+(autoload 'mark-mode-next-mark "../elisp/show-marks" "\
+Move to next mark in *marks* buffer, wrapping if necessary." t)
+(autoload 'show-mark-ring "../elisp/show-marks" "\
+Displays all the lines for each point in the mark ring.
+Pressing RET in the result buffer will send you to corresponding
+mark point with out affecting the `mark-ring'." t)
+(autoload 'show-global-mark-ring "../elisp/show-marks" "\
+Displays all the lines for each point in the mark ring.
+Pressing RET in the result buffer will send you to corresponding
+mark point with out affecting the `global-mark-ring'." t)
+(autoload 'show-xref-mark-ring "../elisp/show-marks" "\
+Show the mark ring of `xref' history." t)
+(register-definition-prefixes "../elisp/show-marks" '("goto-nth-mark" "mark-" "show-mark"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
