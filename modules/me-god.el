@@ -21,6 +21,10 @@
    (satch-defun +god-mode--toggle-on-overwrite ()
      (if overwrite-mode (god-local-mode-pause) (god-local-mode-resume))))
 
+  ;; Enable `which-key' integration for `god-mode' (EXPERIMENTAL)
+  (with-eval-after-load 'which-key
+    (which-key-enable-god-mode-support))
+
   ;; Integration with `isearch' --> TODO: add some visual indication for it
   (with-eval-after-load 'isearch
     (require 'god-mode-isearch)
