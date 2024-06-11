@@ -18,7 +18,7 @@
   ;; Pause `god-mode' when entering `overwrite-mode'
   (add-hook
    'overwrite-mode-hook
-   (satch-defun +god-mode--toggle-on-overwrite ()
+   (satch-defun +god-mode--toggle-on-overwrite-h ()
      (if overwrite-mode (god-local-mode-pause) (god-local-mode-resume))))
 
   ;; Enable `which-key' integration for `god-mode' (EXPERIMENTAL)
