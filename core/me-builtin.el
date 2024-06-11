@@ -166,15 +166,6 @@
      "Disable previously enabled themes before enabling the new one."
      (mapc #'disable-theme custom-enabled-themes)))
 
-  (advice-add
-   'load-theme :after
-   (satch-defun +theme--save-current-theme-background-color:after-a (&rest _)
-     "Save the background color."
-     (with-temp-buffer
-       (insert (face-background 'default))
-       (let ((buffer-file-name (concat minemacs-cache-dir "background-color")))
-         (+shutup! (basic-save-buffer-1))))))
-
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
