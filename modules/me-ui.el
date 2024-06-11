@@ -13,9 +13,7 @@
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :config
   ;; Show .m files as Matlab/Octave files (integral icon)
-  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange))
-  (unless (+font-installed-p nerd-icons-font-family)
-    (nerd-icons-install-fonts 'dont-ask)))
+  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
 
 (use-package doom-themes
   :straight t
