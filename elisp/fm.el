@@ -9,7 +9,7 @@
 ;; Keywords: outlines
 ;; location: http://www.anc.ed.ac.uk/~stephen
 ;; RCS: $Id: fm.el,v 1.5 2012/05/15 08:21:31 stephen Exp $
- 
+
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 2, or (at your option)
@@ -39,10 +39,10 @@
 ;; it to the mode hooks, e.g.:
 ;; (add-hook 'occur-mode-hook 'fm-start)
 ;; (add-hook 'compilation-mode-hook 'fm-start)
-;; 
+;;
 
 ;;; Examples:
-;;  
+;;
 ;; Do an occur for the word `package' in the NEWS file:
 ;; C-h n
 ;; M-x occur RTN package RTN
@@ -63,12 +63,12 @@
 ;; we set fm-defun as a local variable to be the defun to use for
 ;; visiting the corresponding line of the source buffer.
 
-(add-hook 'cscope-query-hook 'cscope-run-fm)
+;; (add-hook 'cscope-query-hook 'cscope-run-fm)
 
-(defun cscope-run-fm ()
-  "Run cscope in the fm buffer."
-  (set (make-local-variable 'fm-defun) '(cscope-interpret-output-line))
-  (fm-start))
+;; (defun cscope-run-fm ()
+;;   "Run cscope in the fm buffer."
+;;   (set (make-local-variable 'fm-defun) '(cscope-interpret-output-line))
+;;   (fm-start))
 
 ;; If you are using this in the compile mode, you may find it easier
 ;; to use the key M-p to go to the previous error.  Otherwise, you may
@@ -84,91 +84,66 @@
 ;; fm-highlight is currently used to highlight the regions of both
 ;; the source(0) and output(1) buffers.
 
-(defvar fm-modes 
-  '( (compilation-mode compile-goto-error)
-     (occur-mode  occur-mode-goto-occurrence)
-     (outlines-mode  outlines-goto-line) ;; sje hack
-     ;;(fundamental-mode cscope-interpret-output-line) ;;todo big time
-     )
+(defvar fm-modes
+  '((compilation-mode compile-goto-error)
+    (occur-mode occur-mode-goto-occurrence)
+    (outlines-mode outlines-goto-line)) ;; sje hack
   "Alist of modes and the corresponding defun to visit source buffer.")
 
 ;; toggles...
 (defvar fm-working t)
+(defvar-local fm-defun nil)
 
 (defun fm-start ()
   "Set up `follow-mode' to run on the current buffer.
 This should be added to buffers through hooks, such as
 `occur-mode-hook'."
   (interactive)
-  (let ((l))
-    ;; first check to see if it is worth running fm in this mode.
-    (if (not (boundp 'fm-defun))
-	(progn
-	  (setq f (cdr (assoc major-mode fm-modes)))
-	  (if f 
-	      (set (make-local-variable 'fm-defun) f))))
-    
-    (if (boundp 'fm-defun)
-	(progn
-	  (add-hook 'post-command-hook 'fm-post-command-hook nil 'local)
-	  (add-hook 'pre-command-hook  'fm-pre-command-hook  nil 'local)
-	  (local-set-key "f" 'fm-toggle)
-	  )
-      ;; else 
-      (error "Cannot use fm in this mode."))))
+  ;; first check to see if it is worth running fm in this mode.
+  (unless fm-defun
+    (when-let ((fn (cdr (assoc major-mode fm-modes))))
+      (setq-local fm-defun fn)))
+
+  (if fm-defun
+      (progn
+        (add-hook 'post-command-hook 'fm-post-command-hook nil 'local)
+        (add-hook 'pre-command-hook  'fm-pre-command-hook  nil 'local)
+        (local-set-key "f" 'fm-toggle))
+    (error "Cannot use fm in this mode")))
 
 (defun fm-pre-command-hook ()
   "Remove highlighing in both source and output buffers."
   ;; used as pre command hook in *toc* buffer
   (if fm-working
       (progn
-	(fm-unhighlight 0)
-	(fm-unhighlight 1)
-	)))
+        (fm-unhighlight 0)
+        (fm-unhighlight 1))))
 
 (defun fm-post-command-hook ()
   "Add the highlighting if possible to both source and output buffers."
-  ;;(message (format "run post in %s" (buffer-name)) )
-  (if fm-working
-      (let (ret)
-	(progn
-	  (let ((buf (buffer-name))
-		(f nil))
-	    
-	    
-	    ;; select current line.
-	    (if (not (boundp 'fm-defun))
-		(error "Cannot use fm in this buffer."))
-
-	    (setq ret
-		  (condition-case nil
-		      (eval fm-defun)
-		    (error 'failed)))
-	    ;;(message "ret is %s" ret)
-
-	    (if (not (eq ret 'failed))
-		(progn
-		  ;; make the highlight in the source buffer.
-		  (save-excursion
-		    (fm-highlight 0
-				  (progn (beginning-of-line) (point))
-				  (progn (end-of-line) (point))))
-		
-		
-		  ;; make the highlight in the output buffer.    
-		  (pop-to-buffer buf)
-		  (and (> (point) 1) 
-		       (save-excursion
-			 (fm-highlight 1 
-				       (progn (beginning-of-line) (point))
-				       (progn (end-of-line) (point)))))
-		
-		  )
-	      ;; else there was an error 
-	      (progn
-		;; make sure we stay in output buffer.
-		(pop-to-buffer buf)
-	      (message "couldn't find line..."))))))))
+  (when fm-working
+    (let ((buf (buffer-name))
+          f ret)
+      (unless fm-defun
+        (error "Cannot use fm in this buffer"))
+      (setq ret (condition-case nil
+                    (eval fm-defun)
+                  (error 'failed)))
+      (if (not (eq ret 'failed))
+          (progn
+            ;; make the highlight in the source buffer.
+            (save-excursion
+              (fm-highlight 0 (progn (beginning-of-line) (point)) (progn (end-of-line) (point))))
+            ;; make the highlight in the output buffer.
+            (pop-to-buffer buf)
+            (and (> (point) 1)
+                 (save-excursion
+                   (fm-highlight 1 (progn (beginning-of-line) (point)) (progn (end-of-line) (point))))))
+        ;; else there was an error
+        (progn
+          ;; make sure we stay in output buffer.
+          (pop-to-buffer buf)
+          (message "Couldn't find line..."))))))
 
 (defun fm-toggle ()
   "Toggle the fm behaviour on and off."
@@ -182,8 +157,8 @@ This should be added to buffers through hooks, such as
 (and (not (fboundp 'make-overlay))
      (condition-case nil
          (require 'overlay)
-       ('error 
-        (error "Fm needs overlay emulation (available in XEmacs 19.15)"))))
+       ('error
+        (error "Fm needs overlay emulation"))))
 
 ;; We keep a vector with several different overlays to do our highlighting.
 (defvar fm-highlight-overlays [nil nil])
@@ -199,9 +174,11 @@ This should be added to buffers through hooks, such as
   "Highlight a region with overlay INDEX."
   (move-overlay (aref fm-highlight-overlays index)
                 begin end (or buffer (current-buffer))))
+
 (defun fm-unhighlight (index)
   "Detatch overlay INDEX."
   (delete-overlay (aref fm-highlight-overlays index)))
+
 
 (provide 'fm)
 ;;; fm.el ends here

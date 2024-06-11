@@ -37,21 +37,21 @@
 ;; along with this program; see the file COPYING.
 ;; If not, see <http://www.gnu.org/licenses/>.
 
-;;; Commentary: 
-;; 
+;;; Commentary:
+;;
 ;; * Commentary
 ;; This library provides the commands to navigate and display the mark ring.
 ;; The `show-marks' command displays a buffer listing the marks in the buffer from which it was called.
 ;; You can then press enter on one of the listed marks to jump to it, or press d to delete it from the
 ;; mark ring. You can also use the `forward-mark' and `backward-mark' commands to navigate the marks in
-;; the mark ring. 
+;; the mark ring.
 
 ;;; Installation:
 ;;
 ;; Put show-marks.el in a directory in your load-path, e.g. ~/.emacs.d/
 ;; You can add a directory to your load-path with the following line in ~/.emacs
 ;; (add-to-list 'load-path (expand-file-name "~/elisp"))
-;; where ~/elisp is the directory you want to add 
+;; where ~/elisp is the directory you want to add
 ;; (you don't need to do this for ~/.emacs.d - it's added by default).
 ;;
 ;; Add the following to your ~/.emacs startup file.
@@ -59,11 +59,11 @@
 ;; (require 'show-marks)
 ;;
 ;;  I recommend also binding the commands to global keys, e.g:
-;; 
+;;
 ;;    (global-set-key (kbd "<C-s-right>") 'forward-mark)
 ;;    (global-set-key (kbd "<C-s-left>") 'backward-mark)
 ;;    (global-set-key (kbd "<C-s-down>") 'show-marks)
-;; 
+;;
 ;;;;
 
 
@@ -78,7 +78,7 @@
 ;;
 
 ;;; Change log:
-;;	
+;;
 ;; 2013/05/10 - Joe Bloggs
 ;;      * Added to github
 ;; 2010/02/17 - Joe Bloggs
@@ -92,25 +92,21 @@
 ;; Original author: Greg Rowe
 ;;
 
-;;; TODO
-;;
-;; 
-;;
-
 ;;; Require
 (require 'fm)
 
 ;;; Code:
 
-(defvar mark-ring-pos -1
+(defgroup show-marks nil
+  "Navigate the mark ring."
+  :group 'convenience)
+
+(defvar-local mark-ring-pos -1
   "This tracks the current position in the mark ring for movement.")
 
-(make-variable-buffer-local 'mark-ring-pos)
-
-;; Advise `set-mark-command' 
+;; Advise `set-mark-command'
 (defadvice set-mark-command (after mark-reset-pos (arg))
-  "After set-mark-command is called the mark-ring position will be
-reset."
+  "After `set-mark-command' is called the `mark-ring' position will be reset."
   (setq mark-ring-pos -1))
 
 (ad-activate 'set-mark-command)
@@ -118,7 +114,7 @@ reset."
 ;; use addition to go backwards, and subtraction to go forward
 ;;;###autoload
 (defun backward-mark (arg)
-  "Moves the point arg points backward in the mark ring."
+  "Move the point ARG points backward in the mark ring."
   (interactive "P")
   (if (null arg) (setq arg 1))
   (if (or mark-ring (mark t))
@@ -126,33 +122,30 @@ reset."
         (let ((mark-ring-length (length mark-ring)))
           (setq mark-ring-pos (+ mark-ring-pos (abs arg)))
           (if (> mark-ring-pos mark-ring-length)
-              (setq mark-ring-pos 
+              (setq mark-ring-pos
                     (- (- mark-ring-pos mark-ring-length ) 1)))
           (goto-nth-mark mark-ring-pos)))))
 
-;;;###autoload  
+;;;###autoload
 (defun forward-mark (arg)
-  "Moves the point arg points forward in the mark ring."
+  "Move the point ARG points forward in the mark ring."
   (interactive "P")
-  (if (= -1 mark-ring-pos) (setq mark-ring-pos 0))
-  (if (null arg) (setq arg 1))
-  (if (or mark-ring (mark t))
-      (progn
-        (let ((mark-ring-length (length mark-ring)))
-          (setq mark-ring-pos (- mark-ring-pos (abs arg)))
-          (if (<  mark-ring-pos 0)
-                (setq mark-ring-pos 
-                    (+ (+ mark-ring-length mark-ring-pos) 1)))
-          (goto-nth-mark mark-ring-pos)))))
+  (when (= -1 mark-ring-pos) (setq mark-ring-pos 0))
+  (when (null arg) (setq arg 1))
+  (when (or mark-ring (mark t))
+    (let ((mark-ring-length (length mark-ring)))
+      (setq mark-ring-pos (- mark-ring-pos (abs arg)))
+      (if (<  mark-ring-pos 0)
+          (setq mark-ring-pos (+ (+ mark-ring-length mark-ring-pos) 1)))
+      (goto-nth-mark mark-ring-pos))))
 
 (defun goto-nth-mark (arg)
-  ;; Moves the point to the nth position in the mark ring (starts at 1).
-  (let ((the-place (cond
-                    ((= arg 0) (mark t))
-                    ((= arg 1) (car mark-ring))
-                    (t (car (nthcdr (- arg 1) mark-ring))))))
-    (if the-place
-        (goto-char the-place))))
+  "Move the point to the ARG'th position in the mark ring (start at 1)."
+  (if-let ((the-place (cond
+                       ((= arg 0) (mark t))
+                       ((= arg 1) (car mark-ring))
+                       (t (car (nthcdr (- arg 1) mark-ring))))))
+      (goto-char the-place)))
 
 (defvar mark-mode-map
   (let ((map (make-sparse-keymap)))
@@ -162,17 +155,18 @@ reset."
     (define-key map "q" 'delete-window)
     (define-key map (kbd "<up>") 'mark-mode-prev-mark)
     (define-key map (kbd "<down>") 'mark-mode-next-mark)
-    (define-key map "x" (lambda nil (interactive) (kill-buffer (current-buffer))))    
+    (define-key map "x" (lambda nil (interactive) (kill-buffer (current-buffer))))
     map)
   "Keymap for `mark-mode'.")
 
 
 (defvar mark-buffer nil
-  "Name of buffer for last show-marks.")
+  "Name of buffer for last `show-marks'.")
 
 (defcustom show-marks-move-point t
   "If non-nil then the cursor will be moved to the *marks* buffer when `show-marks' is called."
-  :type 'boolean)
+  :type 'boolean
+  :group 'show-marks)
 
 (put 'mark-mode 'mode-class 'special)
 
@@ -183,8 +177,9 @@ reset."
 \\{mark-mode-map}"
   (make-local-variable 'mark-buffer)
   (add-to-list 'fm-modes '(mark-mode mark-mode-goto))
-  (toggle-read-only 1)
+  (read-only-mode 1)
   (fm-start))
+
 
 ;;;###autoload
 (defun mark-mode-goto ()
@@ -194,6 +189,7 @@ reset."
     (pop-to-buffer mark-buffer)
     (goto-char pos)))
 
+
 ;;;###autoload
 (defun mark-mode-delete nil
   "Delete mark at current line from mark-ring."
@@ -201,30 +197,34 @@ reset."
   (let ((mark (get-text-property (point) 'marker)))
     (with-current-buffer mark-buffer
       (setq mark-ring (delete mark mark-ring)))
-    (toggle-read-only -1)
+    (read-only-mode -1)
     (kill-line 1)
-    (toggle-read-only 1)))
+    (read-only-mode 1)))
+
 
 ;;;###autoload
 (defun mark-mode-prev-mark ()
   "Move to previous mark in *mark* buffer, wrapping if necessary."
   (interactive)
   (if (> (line-number-at-pos) 1)
-      (previous-line)
+      (forward-line -1)
     (goto-char (point-max))
-    (previous-line)
+    (forward-line -1)
     (move-beginning-of-line nil)))
+
 
 ;;;###autoload
 (defun mark-mode-next-mark ()
   "Move to next mark in *mark* buffer, wrapping if necessary."
   (interactive)
   (if (< (line-number-at-pos) (count-lines (point-min) (point-max)))
-      (next-line)
+      (forward-line)
     (goto-char (point-min))
     (move-beginning-of-line nil)))
 
+
 (defun show-mark (mark-list)
+  "Recursively print the MARK-LIST."
   (if mark-list
       (let ((mymarker (car mark-list))
             (linenum 0)
@@ -236,8 +236,8 @@ reset."
           (setq linenum (+ (count-lines 1 mymarker) 1))
           (save-excursion
             (goto-char  mymarker)
-            (setq mybol (point-at-bol))
-            (setq myeol (point-at-eol))))
+            (setq mybol (pos-bol))
+            (setq myeol (pos-eol))))
         (setq prop-start (point))
         (insert (format "%6d: " linenum))
         (insert-buffer-substring mark-buffer mybol myeol)
@@ -245,22 +245,44 @@ reset."
         (put-text-property prop-start (point) 'marker mymarker)
         (show-mark (cdr mark-list)))))
 
-;;;###autoload
-(defun show-marks ()
-  "Displays all the lines for each point in the mark ring.  Pressing
-RET in the result buffer will send you to corresponding mark point
-with out affecting the mark-ring."
-  (interactive)
-  (with-output-to-temp-buffer "*marks*"
-    (let ((old-buffer-mark-ring mark-ring))
+
+(defun show-marks (mark-list buf)
+  "Display MARK-LIST, append BUF to the buffer name."
+  (with-output-to-temp-buffer (format "*marks %s*" buf)
+    (let ((old-buffer-mark-ring mark-list))
       ;; prepend the current mark
-      (setq old-buffer-mark-ring (cons (copy-marker (mark-marker)) mark-ring))
-      (setq mark-buffer (current-buffer))
+      (setq old-buffer-mark-ring (cons (copy-marker (mark-marker)) mark-list)
+            mark-buffer (current-buffer))
       (set-buffer standard-output)
       (show-mark old-buffer-mark-ring)
       (mark-mode)))
   (if show-marks-move-point
       (select-window (get-buffer-window "*marks*"))))
+
+;;;###autoload
+(defun show-mark-ring ()
+  "Displays all the lines for each point in the mark ring.
+Pressing RET in the result buffer will send you to corresponding
+mark point with out affecting the `mark-ring'."
+  (interactive)
+  (show-marks mark-ring "mark-ring"))
+
+
+;;;###autoload
+(defun show-global-mark-ring ()
+  "Displays all the lines for each point in the mark ring.
+Pressing RET in the result buffer will send you to corresponding
+mark point with out affecting the `global-mark-ring'."
+  (interactive)
+  (show-marks global-mark-ring "global-mark-ring"))
+
+
+;;;###autoload
+(defun show-xref-mark-ring ()
+  (interactive)
+  (let ((xref-ring (car (xref--get-history))))
+    (show-marks xref-ring "xref")))
+
 
 (provide 'show-marks)
 
