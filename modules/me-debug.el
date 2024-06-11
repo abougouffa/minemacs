@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package dape
-  :straight (:host github :repo "svaante/dape")
+  :straight t
   :commands +dape-transient
   :custom
   (dape-inline-variables t)
