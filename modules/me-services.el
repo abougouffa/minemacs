@@ -25,8 +25,8 @@
   (defun +jira-get-ticket ()
     "Insert ticket ID, choose from states defined in `+jira-open-status'."
     (interactive)
-    (when-let* ((issues (jiralib-do-jql-search (format "assignee=\"%s\" AND status in (%s)"
-                                                       jiralib2-user-login-name
+    (when-let* ((user (or jiralib-user-login-name jiralib-user))
+                (issues (jiralib-do-jql-search (format "assignee=\"%s\" AND status in (%s)" user
                                                        (string-join (mapcar (apply-partially #'format "%S") +jira-open-status) ", "))))
                 (tickets (mapcar (lambda (ticket) (cons (cdr (assoc 'key ticket)) (cdr (assoc 'summary (cdr (assoc 'fields ticket)))))) issues)))
       (if (length= tickets 1)
@@ -37,7 +37,7 @@
   (defun +jira-insert-ticket-id (with-summary)
     "Insert ticket ID, choose from states defined in `+jira-open-status'."
     (interactive "P")
-    (when-let* ((ticket (car tickets)))
+    (when-let* ((ticket (+jira-get-ticket)))
       (insert (format "%s%s" (car ticket) (if with-summary (concat ": " (cdr ticket)) "")))))
 
   (defun +jira-insert-ticket-link (with-summary)
