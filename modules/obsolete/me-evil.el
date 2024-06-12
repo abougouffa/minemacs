@@ -622,6 +622,15 @@ It is deferred until `general' gets loaded and configured."
   "l" #'bibtex-fill-entry
   "r" #'bibtex-reformat)
 
+(when (and (>= emacs-major-version 29) (+emacs-features-p 'sqlite3))
+  (+evil-conf-for! sqlite-mode me-builtin
+    :config-form
+    (+nvmap! :keymaps 'sqlite-mode-map
+      "X" #'sqlite-mode-delete
+      "d" #'sqlite-mode-list-data
+      "t" #'sqlite-mode-list-tables
+      "c" #'sqlite-mode-list-columns)))
+
 
 
 ;;; For `me-multi-cursors'

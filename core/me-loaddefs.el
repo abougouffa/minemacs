@@ -69,7 +69,7 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+hook-once" "+i" "+known-scripts" "+l" "+m" "+n" "+omap!" "+p" "+quoted-p" "+r" "+s" "+un" "+v" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+hook-once" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -395,7 +395,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from me-modules.el
 
-(register-definition-prefixes "me-modules" '("minemacs-"))
+(register-definition-prefixes "me-modules" '("minemacs-modules"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
