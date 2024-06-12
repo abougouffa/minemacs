@@ -10,13 +10,6 @@
 
 (use-package org-roam
   :straight t
-  :init
-  (+map! :infix "n"
-    "f" #'org-roam-node-find
-    "r" #'org-roam-ref-find
-    "i" #'org-roam-node-insert
-    "R" #'org-roam-node-random
-    "B" #'org-roam-buffer-display-dedicated)
   :custom
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:20}" 'face 'org-tag)))
   :config
@@ -46,18 +39,10 @@
         org-roam-directory))))))
 
 (use-package org-roam-ui
-  :straight t
-  :init
-  (+map! "nu" #'org-roam-ui-open))
+  :straight t)
 
 (use-package consult-org-roam
   :straight t
-  :init
-  (+map! :infix "n"
-    "s" #'consult-org-roam-search
-    "l" #'consult-org-roam-forward-links
-    "b" #'consult-org-roam-backlinks
-    "F" #'consult-org-roam-file-find)
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'

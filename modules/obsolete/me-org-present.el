@@ -10,8 +10,6 @@
 
 (use-package org-present
   :straight t
-  :init
-  (+map! "oP" :keymaps 'org-mode-map #'org-present)
   :hook (org-present-mode . +org-present--on-h)
   :hook (org-present-mode-quit . +org-present--off-h)
   :custom

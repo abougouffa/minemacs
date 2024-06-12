@@ -11,15 +11,6 @@
 (use-package go-translate
   :straight (:host github :repo "lorniu/go-translate")
   :commands +gts-yank-translated-region +gts-translate-with
-  :init
-  (+map-local! :keymaps '(org-mode-map text-mode-map markdown-mode-map tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
-    "t" '(nil :wk "translate")
-    "tb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
-    "td" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "Translate with DeepL")
-    "tg" `(,(+cmdfy! (+gts-translate-with 'google)) :wk "Translate with Google")
-    "tr" #'+gts-yank-translated-region
-    "tt" #'+gts-translate-with
-    "tT" #'gts-do-translate)
   :custom
   ;; Your languages pairs
   (gts-translate-list '(("en" "fr") ("en" "ar") ("fr" "ar") ("fr" "en")))

@@ -10,12 +10,7 @@
 
 (use-package zotxt
   :straight t
-  :when (executable-find "zotero")
-  :init
-  (+map-local! :keymaps 'org-mode-map
-    "z" #'org-zotxt-mode)
-  (+map-local! :keymaps 'markdown-mode-map
-    "z" #'zotxt-citekey-mode))
+  :when (executable-find "zotero"))
 
 
 (provide 'obsolete/me-zotxt)

@@ -21,13 +21,6 @@
   (+after-load! 'eglot
     (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-eglot.el"))
   :config
-  (+map! "tc" #'flycheck-mode)
-  (+map!
-    :keymaps 'flycheck-error-list-mode-map
-    "j"   #'flycheck-error-list-next-error
-    "k"   #'flycheck-error-list-previous-error
-    "RET" #'flycheck-error-list-goto-error)
-
   ;; Use the current session load path when checking
   (setq flycheck-emacs-lisp-load-path 'inherit)
 

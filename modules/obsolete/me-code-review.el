@@ -14,10 +14,7 @@
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-emojis-dir (concat minemacs-cache-dir "emojify/emojis/"))
   (emojify-display-style 'image)
-  (emojify-download-emojis-p t)
-  :init
-  (when (< emacs-major-version 29)
-    (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))))
+  (emojify-download-emojis-p t))
 
 (use-package code-review
   :straight (:host github :repo "phelrine/code-review" :branch "fix/closql-update")

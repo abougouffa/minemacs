@@ -23,41 +23,6 @@
   (projectile-kill-buffers-filter 'kill-only-files)
   :init
   (keymap-global-set "<remap> <find-tag>" 'projectile-find-tag)
-  (with-eval-after-load 'evil
-    (keymap-global-set "<remap> <evil-jump-to-tag>" 'projectile-find-tag))
-  (+map!
-    ;; Project
-    :infix "p"
-    "a"  '(projectile-add-known-project :wk "Add")
-    "D"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
-    "<" #'projectile-switch-open-project
-    ;; Compile/test
-    "c"  '(nil :wk "compile/test")
-    "cc" #'projectile-compile-project
-    "cg" #'projectile-configure-project
-    "ct" #'projectile-test-project
-    "ci" #'projectile-install-project
-    "cp" #'projectile-package-project
-    "r"  '(nil :wk "run")
-    "rr" #'projectile-run-project
-    "rg" #'projectile-run-gdb
-    "rt" #'projectile-run-vterm
-    "re" #'projectile-run-eshell
-    "rs" #'projectile-run-shell
-    "rR" #'projectile-run-command-in-root
-    "rS" #'projectile-run-shell-command-in-root
-    "rA" #'projectile-run-async-shell-command-in-root
-    ;; Forget
-    "F"  '(nil :wk "forget/cleanup")
-    "Fz" '(projectile-cleanup-known-projects :wk "Cleanup zombie projects")
-    "Fp" '(projectile-remove-known-project :wk "Forget project")
-    "FP" '(projectile-remove-current-project-from-known-projects :wk "Forget current project")
-    "Fc" #'projectile-invalidate-cache
-    ;; Search/replace
-    "s"  '(nil :wk "search/replace")
-    "ss" 'projectile-grep
-    "sn" '(fileloop-continue :wk "Next match")
-    "sr" #'projectile-replace-regexp)
   :config
   ;; HACK: Taken from Doom Emacs
   ;; 1. Projectile uses `file-remote-p' to check for remote (tramp) paths in its
@@ -85,18 +50,7 @@
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
 
 (use-package consult-projectile
-  :straight t
-  :init
-  (+map!
-    ":"  '(consult-projectile-find-file :wk "Find file in project")
-    ;; Buffer
-    "bp" #'consult-projectile-switch-to-buffer
-    ;; Project
-    "pp" #'consult-projectile
-    "pP" '(consult-projectile-switch-project :wk "Switch")
-    "pR" #'consult-projectile-recentf
-    "pd" '(consult-projectile-find-dir :wk "Find directory")
-    "pf" '(consult-projectile-find-file :wk "Find file")))
+  :straight t)
 
 (use-package treemacs-projectile
   :straight t

@@ -14,8 +14,6 @@
   :after evil evil-collection
   :demand
   :unless (bound-and-true-p +dashboard-disable)
-  :init
-  (+map! "oD" #'dashboard-open)
   :custom
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
@@ -27,9 +25,6 @@
   (dashboard-projects-backend 'project-el)
   (dashboard-startup-banner (concat minemacs-assets-dir "images/minemacs.png"))
   :config
-  ;; Ensure setting the keybindings before opening the dashboard
-  (with-eval-after-load 'evil (evil-collection-dashboard-setup))
-
   ;; Avoid opening the dashboard when Emacs starts with an open file.
   (unless (cl-some #'buffer-file-name (buffer-list))
     (dashboard-open)))

@@ -10,9 +10,7 @@
 
 (use-package guix
   :straight t
-  :when (executable-find "guix")
-  :init
-  (+map! "og" #'guix))
+  :when (executable-find "guix"))
 
 (use-package nix-update
   :straight t)

@@ -11,7 +11,6 @@
 (use-package writeroom-mode
   :straight t
   :init
-  (+map! "tw" #'writeroom-mode)
   (defcustom +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'."
     :group 'minemacs-ui

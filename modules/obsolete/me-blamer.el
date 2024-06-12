@@ -20,10 +20,6 @@
   (blamer-commit-formatter "“%s”")
   (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
   :config
-  (+nvmap!
-    "gb" #'blamer-show-posframe-commit-info
-    "gB" #'blamer-show-commit-info)
-
   ;; Use 15% smaller font size for blamer's text
   (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 (face-attribute 'default :height))) 1))
 

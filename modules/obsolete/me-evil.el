@@ -8,6 +8,119 @@
 
 ;;; Code:
 
+
+;;; Keybinding macros
+;;; =================
+
+;; TEMP: These macros are specific to `evil' and `general'. MinEmacs moved since
+;; v7.0.0 to a more classic (non Evil-based) keybindings.
+;; PERF+HACK: At some point, MinEmacs startup become too slow, specially when
+;; initializing `general' and `evil'. After trying several configurations, I
+;; figured out that deferring `general' solves the issue. However, deferring
+;; `general' means that we cannot define the keybindings when loading other
+;; packages, i.e. before `general' gets loaded and the MinEmacs definers (i.e.
+;; `+minemacs--internal-map!', `+minemacs--internal-map-local!', ...) are made
+;; available. We overcome this by defining these macros to define the
+;; keybindings by wrapping the actual definition in a `with-eval-after-load'
+;; block to be evaluated only after `general' gets loaded and configured and the
+;; definers are ready (See `me-keybindings').
+(defmacro +map! (&rest args)
+  "A wrapper around `+minemacs--internal-map!'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  (let (pkg mod)
+    (when (eq (car args) :package)
+      (setq pkg (cadr args)
+            args (cddr args))
+      (when (eq (car args) :module)
+        (setq mod (cadr args)
+              args (cddr args))))
+    `(unless ,(when pkg (append (list '+package-disabled-p (list 'quote pkg)) (when mod (list (list 'quote mod)))))
+      (with-eval-after-load 'me-general-ready
+       (+minemacs--internal-map! ,@args)))))
+
+(defmacro +map-local! (&rest args)
+  "A wrapper around `+minemacs--internal-map-local!'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  (let (pkg mod)
+    (when (eq (car args) :package)
+      (setq pkg (cadr args)
+            args (cddr args))
+      (when (eq (car args) :module)
+        (setq mod (cadr args)
+              args (cddr args))))
+    `(unless ,(when pkg (append (list '+package-disabled-p (list 'quote pkg)) (when mod (list (list 'quote mod)))))
+      (with-eval-after-load 'me-general-ready
+       (+minemacs--internal-map-local! ,@args)))))
+
+;; Wrappers around `general's VIM like definers, needs `general-evil-setup' to
+;; be executed (See `me-keybindings')
+(defmacro +nmap! (&rest args)
+  "A wrapper around `general-nmap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-nmap ,@args)))
+
+(defmacro +vmap! (&rest args)
+  "A wrapper around `general-vmap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-vmap ,@args)))
+
+(defmacro +mmap! (&rest args)
+  "A wrapper around `general-mmap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-mmap ,@args)))
+
+(defmacro +imap! (&rest args)
+  "A wrapper around `general-imap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-imap ,@args)))
+
+(defmacro +emap! (&rest args)
+  "A wrapper around `general-emap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-emap ,@args)))
+
+(defmacro +omap! (&rest args)
+  "A wrapper around `general-omap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-omap ,@args)))
+
+(defmacro +rmap! (&rest args)
+  "A wrapper around `general-rmap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-rmap ,@args)))
+
+(defmacro +iemap! (&rest args)
+  "A wrapper around `general-iemap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-iemap ,@args)))
+
+(defmacro +nvmap! (&rest args)
+  "A wrapper around `general-nvmap'.
+It is deferred until `general' gets loaded and configured."
+  (declare (indent defun))
+  `(with-eval-after-load 'me-general-ready
+    (general-nvmap ,@args)))
+
+
+
 (use-package evil
   :straight t
   :hook (minemacs-lazy . evil-mode)
@@ -134,212 +247,212 @@
 
   ;; Global leader
   (general-create-definer +minemacs--internal-map!
-    ;; The order of states matters, the last is prioritized
-    :states '(insert emacs visual normal)
-    :keymaps 'override
-    :prefix minemacs-leader-key
-    :global-prefix minemacs-global-leader-prefix)
+                          ;; The order of states matters, the last is prioritized
+                          :states '(insert emacs visual normal)
+                          :keymaps 'override
+                          :prefix minemacs-leader-key
+                          :global-prefix minemacs-global-leader-prefix)
 
   ;; Local leader
   (general-create-definer +minemacs--internal-map-local!
-    :states '(insert emacs visual normal)
-    :keymaps 'override
-    :prefix minemacs-localleader-key
-    :global-prefix minemacs-global-mode-prefix)
+                          :states '(insert emacs visual normal)
+                          :keymaps 'override
+                          :prefix minemacs-localleader-key
+                          :global-prefix minemacs-global-mode-prefix)
 
   ;; Define the built-in global keybindings
   (+minemacs--internal-map!
-    ;; ====== Top level functions ======
-    "SPC"  '(execute-extended-command :wk "M-x")
-    ">"    '(switch-to-next-buffer :wk "Next buffer")
-    "<"    '(switch-to-prev-buffer :wk "Previous buffer")
-    ";"    '(pp-eval-expression :wk "Eval expression")
-    ":"    #'project-find-file
-    "X"    #'org-capture
-    "u"    '(universal-argument :wk "C-u")
-    "C"    #'universal-coding-system-argument
-    "O"    #'other-window-prefix
+   ;; ====== Top level functions ======
+   "SPC"  '(execute-extended-command :wk "M-x")
+   ">"    '(switch-to-next-buffer :wk "Next buffer")
+   "<"    '(switch-to-prev-buffer :wk "Previous buffer")
+   ";"    '(pp-eval-expression :wk "Eval expression")
+   ":"    #'project-find-file
+   "X"    #'org-capture
+   "u"    '(universal-argument :wk "C-u")
+   "C"    #'universal-coding-system-argument
+   "O"    #'other-window-prefix
 
-    ;; ====== Quit/Session ======
-    "q"    '(nil :wk "quit/session")
-    "qq"   #'save-buffers-kill-terminal
-    "qQ"   #'kill-emacs
-    "qS"   #'server-start
-    "qR"   #'recover-session
-    "qd"   #'desktop-read
-    "qD"   #'desktop-lazy-complete
-    "qs"   #'desktop-save
+   ;; ====== Quit/Session ======
+   "q"    '(nil :wk "quit/session")
+   "qq"   #'save-buffers-kill-terminal
+   "qQ"   #'kill-emacs
+   "qS"   #'server-start
+   "qR"   #'recover-session
+   "qd"   #'desktop-read
+   "qD"   #'desktop-lazy-complete
+   "qs"   #'desktop-save
 
-    ;; ====== Files ======
-    "f"    '(nil :wk "file")
-    "fS"   '(write-file :wk "Save as ...")
-    "fd"   #'+delete-this-file
-    "fD"   #'+delete-this-file-and-buffer
-    "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
-    "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
-    "fR"   #'+move-this-file
-    "ff"   #'find-file
-    "fs"   #'save-buffer
-    "ft"   #'recover-this-file
-    "fT"   #'recover-file
-    "fy"   #'+yank-this-file-name
-    "fE"   `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
-             :wk "User config directory")
+   ;; ====== Files ======
+   "f"    '(nil :wk "file")
+   "fS"   '(write-file :wk "Save as ...")
+   "fd"   #'+delete-this-file
+   "fD"   #'+delete-this-file-and-buffer
+   "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
+   "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
+   "fR"   #'+move-this-file
+   "ff"   #'find-file
+   "fs"   #'save-buffer
+   "ft"   #'recover-this-file
+   "fT"   #'recover-file
+   "fy"   #'+yank-this-file-name
+   "fE"   `(,(+cmdfy! (dired (or minemacs-config-dir minemacs-root-dir)))
+            :wk "User config directory")
 
-    ;; ====== Buffers ======
-    "b"    '(nil :wk "buffer")
-    "bI"   #'ibuffer
-    "bu"   #'+sudo-save-buffer
-    "bx"   #'bury-buffer
-    "bS"   #'save-some-buffers
-    "bs"   #'+scratch-open-project-scratch-buffer
-    "bM"   #'view-echo-area-messages
-    "bA"   #'+kill-some-buffers
-    "bk"   `(,(+cmdfy! (kill-buffer (current-buffer)))
-             :wk "Kill this buffer")
-    "bK"   `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
-             :wk "Kill this buffer and its windows")
-    "br"   '(revert-buffer :wk "Revert")
-    "bR"   '(rename-buffer :wk "Rename")
-    ;; Lines
-    "bl"   '(nil :wk "line")
-    "blk"  #'keep-lines ;; Will be overwritten with `consult-keep-lines'
-    ;; Bookmarks
-    "bm"   '(nil :wk "bookmark")
-    "bmm"  #'bookmark-set
-    "bmd"  #'bookmark-delete
-    ;; Files / Local variables
-    "bv"   '(nil :wk "locals")
-    "bvv"  '(add-file-local-variable :wk "Add")
-    "bvV"  '(delete-file-local-variable :wk "Delete")
-    "bvp"  '(add-file-local-variable-prop-line :wk "Add in prop line")
-    "bvP"  '(delete-file-local-variable-prop-line :wk "Delete from prop line")
-    "bvd"  '(add-dir-local-variable :wk "Add to dir-locals")
-    "bvD"  '(delete-dir-local-variable :wk "Delete from dir-locals")
-    "bvr"  '(nil :wk "reload dir-locals for...")
-    "bvrr" '(+dir-locals-reload-for-this-buffer :wk "This buffer")
-    "bvrd" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "All buffers in this directory")
+   ;; ====== Buffers ======
+   "b"    '(nil :wk "buffer")
+   "bI"   #'ibuffer
+   "bu"   #'+sudo-save-buffer
+   "bx"   #'bury-buffer
+   "bS"   #'save-some-buffers
+   "bs"   #'+scratch-open-project-scratch-buffer
+   "bM"   #'view-echo-area-messages
+   "bA"   #'+kill-some-buffers
+   "bk"   `(,(+cmdfy! (kill-buffer (current-buffer)))
+            :wk "Kill this buffer")
+   "bK"   `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
+            :wk "Kill this buffer and its windows")
+   "br"   '(revert-buffer :wk "Revert")
+   "bR"   '(rename-buffer :wk "Rename")
+   ;; Lines
+   "bl"   '(nil :wk "line")
+   "blk"  #'keep-lines ;; Will be overwritten with `consult-keep-lines'
+   ;; Bookmarks
+   "bm"   '(nil :wk "bookmark")
+   "bmm"  #'bookmark-set
+   "bmd"  #'bookmark-delete
+   ;; Files / Local variables
+   "bv"   '(nil :wk "locals")
+   "bvv"  '(add-file-local-variable :wk "Add")
+   "bvV"  '(delete-file-local-variable :wk "Delete")
+   "bvp"  '(add-file-local-variable-prop-line :wk "Add in prop line")
+   "bvP"  '(delete-file-local-variable-prop-line :wk "Delete from prop line")
+   "bvd"  '(add-dir-local-variable :wk "Add to dir-locals")
+   "bvD"  '(delete-dir-local-variable :wk "Delete from dir-locals")
+   "bvr"  '(nil :wk "reload dir-locals for...")
+   "bvrr" '(+dir-locals-reload-for-this-buffer :wk "This buffer")
+   "bvrd" '(+dir-locals-reload-for-all-buffers-in-this-directory :wk "All buffers in this directory")
 
-    ;; ====== Insert ======
-    "i"    '(nil :wk "insert")
-    "ii"   #'auto-insert
-    "iu"   #'insert-char
-    "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
-    "ie"   (when (>= emacs-major-version 29) #'emoji-search)
+   ;; ====== Insert ======
+   "i"    '(nil :wk "insert")
+   "ii"   #'auto-insert
+   "iu"   #'insert-char
+   "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
+   "ie"   (when (>= emacs-major-version 29) #'emoji-search)
 
-    ;; ====== Window ======
-    "w"    '(nil :wk "window")
-    "wd"   #'delete-window
-    "wD"   #'delete-windows-on
-    "wo"   #'delete-other-windows
-    "wm"   #'maximize-window
-    "wu"   #'winner-undo
-    "wU"   #'winner-redo
+   ;; ====== Window ======
+   "w"    '(nil :wk "window")
+   "wd"   #'delete-window
+   "wD"   #'delete-windows-on
+   "wo"   #'delete-other-windows
+   "wm"   #'maximize-window
+   "wu"   #'winner-undo
+   "wU"   #'winner-redo
 
-    ;; ====== Applications (Open) ======
-    "o"    '(nil :wk "open")
-    "o-"   #'dired-jump ;; Will be overwritten if `dirvish' is used
-    "oa"   #'org-agenda
-    "oe"   #'eshell
-    "o="   #'calc
+   ;; ====== Applications (Open) ======
+   "o"    '(nil :wk "open")
+   "o-"   #'dired-jump ;; Will be overwritten if `dirvish' is used
+   "oa"   #'org-agenda
+   "oe"   #'eshell
+   "o="   #'calc
 
-    ;; ====== Search ======
-    "s"    '(nil :wk "search")
-    "sw"   '+webjump
+   ;; ====== Search ======
+   "s"    '(nil :wk "search")
+   "sw"   '+webjump
 
-    ;; ======  Mode specific a.k.a. "local leader" ======
-    "m"    '(nil :wk "mode-specific")
+   ;; ======  Mode specific a.k.a. "local leader" ======
+   "m"    '(nil :wk "mode-specific")
 
-    ;; ====== VC ======
-    "g"    '(nil :wk "git/vc")
+   ;; ====== VC ======
+   "g"    '(nil :wk "git/vc")
 
-    ;; ====== Workspaces ======
-    "TAB"  '(nil :wk "workspace")
+   ;; ====== Workspaces ======
+   "TAB"  '(nil :wk "workspace")
 
-    ;; ====== Toggle ======
-    "t"    '(nil :wk "toggle")
-    "td"   #'toggle-debug-on-error
-    "tr"   #'read-only-mode
-    "tl"   #'follow-mode
-    "tv"   #'visible-mode
-    "tf"   #'flymake-mode
+   ;; ====== Toggle ======
+   "t"    '(nil :wk "toggle")
+   "td"   #'toggle-debug-on-error
+   "tr"   #'read-only-mode
+   "tl"   #'follow-mode
+   "tv"   #'visible-mode
+   "tf"   #'flymake-mode
 
-    ;; ====== Code ======
-    "c"    '(nil :wk "code")
-    "cf"   '(nil :wk "format buffer")
-    "ce"   '(nil :wk "eglot session")
-    "cee"  #'eglot
-    "ceA"  #'+eglot-auto-enable
+   ;; ====== Code ======
+   "c"    '(nil :wk "code")
+   "cf"   '(nil :wk "format buffer")
+   "ce"   '(nil :wk "eglot session")
+   "cee"  #'eglot
+   "ceA"  #'+eglot-auto-enable
 
-    ;; ====== Debug ======
-    "d"    '(nil :wk "debug")
-    "dG"   #'gdb
+   ;; ====== Debug ======
+   "d"    '(nil :wk "debug")
+   "dG"   #'gdb
 
-    ;; ====== Notes ======
-    "n"    '(nil :wk "notes")
+   ;; ====== Notes ======
+   "n"    '(nil :wk "notes")
 
-    ;; ====== Help ======
-    "h"    '(nil :wk "help")
-    "hi"   #'info
-    "hg"   #'general-describe-keybindings
-    "hs"   #'+screenshot-svg
-    "he"   '(nil :wk "elisp/emacs")
-    "hes"  #'elisp-index-search
-    "hem"  #'info-emacs-manual
-    "hei"  #'Info-search
-    "hd"   '(nil :wk "describe")
-    "hdk"  #'describe-key
-    "hdm"  #'describe-keymap
-    "hdb"  #'describe-bindings
-    "hds"  #'describe-symbol
-    "hdv"  #'describe-variable
-    "hdc"  #'describe-command
-    "hdf"  #'describe-function
-    "hdp"  #'describe-package
+   ;; ====== Help ======
+   "h"    '(nil :wk "help")
+   "hi"   #'info
+   "hg"   #'general-describe-keybindings
+   "hs"   #'+screenshot-svg
+   "he"   '(nil :wk "elisp/emacs")
+   "hes"  #'elisp-index-search
+   "hem"  #'info-emacs-manual
+   "hei"  #'Info-search
+   "hd"   '(nil :wk "describe")
+   "hdk"  #'describe-key
+   "hdm"  #'describe-keymap
+   "hdb"  #'describe-bindings
+   "hds"  #'describe-symbol
+   "hdv"  #'describe-variable
+   "hdc"  #'describe-command
+   "hdf"  #'describe-function
+   "hdp"  #'describe-package
 
-    ;; ====== Extras ======
-    "e"    '(nil :wk "extras")
+   ;; ====== Extras ======
+   "e"    '(nil :wk "extras")
 
-    ;; ====== Project ======
-    "p"    '(nil :wk "project")
-    "pw"  #'project-switch-project
-    "pc"  #'project-compile
-    "pd"  #'project-find-dir
-    "pf"  #'project-find-file
-    "pk"  #'project-kill-buffers
-    "pb"  #'project-switch-to-buffer
-    "pa"  #'+project-add-project
-    "pD"  #'+dir-locals-open-or-create
-    "p-"  #'project-dired
-    "px"  #'project-execute-extended-command
-    ;; compile/test
-    "pc" #'project-compile
-    ;; run
-    "pr"  '(nil :wk "run")
-    "pre" #'project-eshell
-    "prg" #'+project-gdb
-    "prs" #'project-shell
-    "prc" #'project-shell-command
-    "prC" #'project-async-shell-command
-    ;; forget
-    "pF"  '(nil :wk "forget/cleanup")
-    "pFz" #'+project-forget-zombie-projects
-    "pFp" #'project-forget-project
-    "pFu" #'project-forget-projects-under
-    "pFc" #'+project-list-cleanup
-    ;; search/replace
-    "ps"  '(nil :wk "search/replace")
-    "pss" #'project-search
-    "psn" '(fileloop-continue :wk "Next match")
-    "psr" #'project-query-replace-regexp
-    "psf" #'project-find-regexp)
+   ;; ====== Project ======
+   "p"    '(nil :wk "project")
+   "pw"  #'project-switch-project
+   "pc"  #'project-compile
+   "pd"  #'project-find-dir
+   "pf"  #'project-find-file
+   "pk"  #'project-kill-buffers
+   "pb"  #'project-switch-to-buffer
+   "pa"  #'+project-add-project
+   "pD"  #'+dir-locals-open-or-create
+   "p-"  #'project-dired
+   "px"  #'project-execute-extended-command
+   ;; compile/test
+   "pc" #'project-compile
+   ;; run
+   "pr"  '(nil :wk "run")
+   "pre" #'project-eshell
+   "prg" #'+project-gdb
+   "prs" #'project-shell
+   "prc" #'project-shell-command
+   "prC" #'project-async-shell-command
+   ;; forget
+   "pF"  '(nil :wk "forget/cleanup")
+   "pFz" #'+project-forget-zombie-projects
+   "pFp" #'project-forget-project
+   "pFu" #'project-forget-projects-under
+   "pFc" #'+project-list-cleanup
+   ;; search/replace
+   "ps"  '(nil :wk "search/replace")
+   "pss" #'project-search
+   "psn" '(fileloop-continue :wk "Next match")
+   "psr" #'project-query-replace-regexp
+   "psf" #'project-find-regexp)
 
   ;; To handle repeated "SPC u" like repeated "C-u"
   (general-def
-    :keymaps 'universal-argument-map
-    :prefix minemacs-leader-key
-    :global-prefix minemacs-global-mode-prefix
-    "u" #'universal-argument-more)
+   :keymaps 'universal-argument-map
+   :prefix minemacs-leader-key
+   :global-prefix minemacs-global-mode-prefix
+   "u" #'universal-argument-more)
 
   (when (or os/linux os/bsd)
     (when (executable-find "ecryptfs-verify")
@@ -1460,6 +1573,279 @@
   "M" #'macrostep-geiser-expand-all)
 
 
+
+;;; For obsolete modules/packages
+
+(+map-local! :package dap-mode :module obsolete/me-lsp
+  :keymaps '(c-mode-map c++-mode-map python-mode-map
+             rust-mode-map sh-mode-map bash-ts-mode-map
+             js-mode-map js-ts-mode-map ruby-mode-map
+             perl-mode-map)
+  "d" '(nil :wk "dap")
+  "dd" #'dap-debug
+  "dt" #'dap-debug-edit-template
+  "dh" #'dap-hydra/body)
+
+(+map! :package  consult-lsp :module obsolete/me-lsp
+  :keymaps 'lsp-mode-map
+  "cs" '(consult-lsp-file-symbols :wk "Symbols"))
+
+(+map! :package lsp-mode :module obsolete/me-lsp
+  :infix "c"
+  "l"  '(nil :wk "lsp session")
+  "ll" #'lsp
+  "lA" #'+lsp-auto-enable)
+
+(+map! :package lsp-mode :module obsolete/me-lsp
+  :keymaps 'lsp-mode-map
+  :infix "c"
+  "fF" #'lsp-format-buffer
+  "d"  '(lsp-find-declaration :wk "Find declaration")
+  "D"  '(lsp-find-definition :wk "Find definition")
+  "i"  '(lsp-find-implementation :wk "Find implementation")
+  "t"  '(lsp-find-type-definition :wk "Find type definition")
+  "a"  '(lsp-execute-code-action :wk "Code actions")
+  "r"  '(nil :wk "refactor")
+  "rr" '(lsp-rename :wk "Rename")
+  "lq" '(lsp-workspace-shutdown :wk "Shutdown")
+  "lr" '(lsp-workspace-restart :wk "Restart"))
+
+(+map! :package eaf :module obsolete/me-eaf
+  "oo" #'eaf-open)
+
+(+evil-conf-for! eaf obsolete/me-eaf
+  :init-form
+  ;; Evil integration doesn't work, start `eaf-mode' in `emacs-state'.
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'eaf-mode 'emacs)))
+
+(+evil-conf-for! expand-region obsolete/me-expand-region
+  :init-form
+  (+vmap!
+    "v" #'er/expand-region
+    "q" #'er/contract-region))
+
+(+map! :package guix :module obsolete/me-packages-managers
+  "og" #'guix)
+
+(+map! :package makefile-executor :module obsolete/me-makefile-executor
+  "pm" '(nil :wk "makefile-executor")
+  "pmm" #'makefile-executor-execute-project-target
+  "pml" #'makefile-executor-execute-last)
+
+(+map-local! :package makefile-executor :module obsolete/me-makefile-executor
+  :keymaps 'makefile-mode-map
+  "pmt" #'makefile-executor-execute-target
+  "pmb" #'makefile-executor-execute-dedicated-buffer)
+
+(+map! :package project-cmake :module obsolete/me-project-cmake
+  :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map)
+  :infix "p"
+  "m" '(nil :wk "project-cmake")
+  "mb" #'project-cmake-build
+  "mg" #'project-cmake-configure
+  "mt" #'project-cmake-test
+  "mI" #'project-cmake-install
+  "ms" #'project-cmake-scan-kits
+  "mS" #'project-cmake-shell)
+
+(+map-local! :package go-translate :module obsolete/me-go-translate
+  :keymaps '(org-mode-map text-mode-map markdown-mode-map tex-mode-map TeX-mode-map latex-mode-map LaTeX-mode-map)
+  "t" '(nil :wk "translate")
+  "tb" `(,(+cmdfy! (+gts-translate-with 'bing)) :wk "Translate with Bing")
+  "td" `(,(+cmdfy! (+gts-translate-with 'deepl)) :wk "Translate with DeepL")
+  "tg" `(,(+cmdfy! (+gts-translate-with 'google)) :wk "Translate with Google")
+  "tr" #'+gts-yank-translated-region
+  "tt" #'+gts-translate-with
+  "tT" #'gts-do-translate)
+
+(+map! :package org-present :module obsolete/me-org-present
+  "oP" :keymaps 'org-mode-map #'org-present)
+
+(+map! :package elisp-demos :module obsolete/me-elisp-demos
+  :infix "he"
+  "d" #'elisp-demos-find-demo
+  "D" #'elisp-demos-add-demo)
+
+(when (< emacs-major-version 29)
+  (+map! :package emojify :module obsolete/me-code-review
+    "ie" '(emojify-insert-emoji :wk "Emoji")))
+
+(+map! :package projectile :module obsolete/me-projectile
+  ;; Project
+  :infix "p"
+  "a"  '(projectile-add-known-project :wk "Add")
+  "D"  '(projectile-edit-dir-locals :wk "Edit dir-locals")
+  "<" #'projectile-switch-open-project
+  ;; Compile/test
+  "c"  '(nil :wk "compile/test")
+  "cc" #'projectile-compile-project
+  "cg" #'projectile-configure-project
+  "ct" #'projectile-test-project
+  "ci" #'projectile-install-project
+  "cp" #'projectile-package-project
+  "r"  '(nil :wk "run")
+  "rr" #'projectile-run-project
+  "rg" #'projectile-run-gdb
+  "rt" #'projectile-run-vterm
+  "re" #'projectile-run-eshell
+  "rs" #'projectile-run-shell
+  "rR" #'projectile-run-command-in-root
+  "rS" #'projectile-run-shell-command-in-root
+  "rA" #'projectile-run-async-shell-command-in-root
+  ;; Forget
+  "F"  '(nil :wk "forget/cleanup")
+  "Fz" '(projectile-cleanup-known-projects :wk "Cleanup zombie projects")
+  "Fp" '(projectile-remove-known-project :wk "Forget project")
+  "FP" '(projectile-remove-current-project-from-known-projects :wk "Forget current project")
+  "Fc" #'projectile-invalidate-cache
+  ;; Search/replace
+  "s"  '(nil :wk "search/replace")
+  "ss" 'projectile-grep
+  "sn" '(fileloop-continue :wk "Next match")
+  "sr" #'projectile-replace-regexp)
+
+(+map! :package consult-projectile :module obsolete/me-projectile
+  ":"  '(consult-projectile-find-file :wk "Find file in project")
+  ;; Buffer
+  "bp" #'consult-projectile-switch-to-buffer
+  ;; Project
+  "pp" #'consult-projectile
+  "pP" '(consult-projectile-switch-project :wk "Switch")
+  "pR" #'consult-projectile-recentf
+  "pd" '(consult-projectile-find-dir :wk "Find directory")
+  "pf" '(consult-projectile-find-file :wk "Find file"))
+
+(+evil-conf-for! projectile obsolete/me-projectile
+  :init-form
+  (with-eval-after-load 'evil
+    (keymap-global-set "<remap> <evil-jump-to-tag>" 'projectile-find-tag)))
+
+(+map! :package writeroom-mode :module obsolete/me-writeroom
+  "tw" #'writeroom-mode)
+
+(+map! :package tabspaces :module obsolete/me-tabspaces
+  :infix "q"
+  "t" #'tabspaces-save-session
+  "T" #'tabspaces-restore-session
+  "p" #'tabspaces-save-current-project-session)
+
+(+map! :package tabspaces :module obsolete/me-tabspaces
+  :infix "TAB"
+  "TAB" '(tabspaces-switch-or-create-workspace :w "Switch or create")
+  "o" '(tabspaces-open-or-create-project-and-workspace :wk "Open or create project")
+  "f" '(tabspaces-project-switch-project-open-file :wk "Switch project & open file")
+  "d" #'tabspaces-close-workspace
+  "b" #'tabspaces-switch-to-buffer
+  "t" #'tabspaces-switch-buffer-and-tab
+  "C" #'tabspaces-clear-buffers
+  "r" #'tabspaces-remove-current-buffer
+  "R" #'tabspaces-remove-selected-buffer
+  "k" #'(tabspaces-kill-buffers-close-workspace :wk "Kill buffers & close WS"))
+
+(+map! :package dashboard :module obsolete/me-dashboars
+  "oD" #'dashboard-open)
+
+;; Ensure setting the keybindings before opening the dashboard
+(+evil-conf-for! dashboard obsolete/me-dashboard
+  :init-form
+  (with-eval-after-load 'evil (evil-collection-dashboard-setup)))
+
+(+map! :package org-roam :module obsolete/me-org-roam
+  :infix "n"
+  "f" #'org-roam-node-find
+  "r" #'org-roam-ref-find
+  "i" #'org-roam-node-insert
+  "R" #'org-roam-node-random
+  "B" #'org-roam-buffer-display-dedicated)
+
+(+map! :package org-roam-ui :module obsolete/me-org-roam
+  "nu" #'org-roam-ui-open)
+
+(+map! :package consult-org-roam :module obsolete/me-org-roam
+  :infix "n"
+  "s" #'consult-org-roam-search
+  "l" #'consult-org-roam-forward-links
+  "b" #'consult-org-roam-backlinks
+  "F" #'consult-org-roam-file-find)
+
+(+map! :package flycheck :module obsolete/me-flycheck
+  "tc" #'flycheck-mode)
+
+(+map! :package flycheck :module obsolete/me-flycheck
+  :keymaps 'flycheck-error-list-mode-map
+  "j"   #'flycheck-error-list-next-error
+  "k"   #'flycheck-error-list-previous-error
+  "RET" #'flycheck-error-list-goto-error)
+
+(+map-local! :package realgud :module obsolete/me-realgud
+  :keymaps '(c-mode-map c++-mode-map python-mode-map
+             c-ts-mode-map c++-ts-mode-map python-ts-mode-map
+             rust-mode-map rust-ts-mode-map
+             sh-mode-map bash-ts-mode-map)
+  "r" '(nil :wk "realgud")
+  "rd" #'+realgud:start
+  "rh" #'+realgud-hydra/body)
+
+(+map! :package chezmoi-ediff :module obsolete/me-chezmoi
+  "oce" #'chezmoi-ediff)
+
+(+map! :package chezmoi-magit :module obsolete/me-chezmoi
+  "ocg" #'chezmoi-magit-status)
+
+(+map! :package chezmoi :module obsolete/me-chezmoi
+  :infix "o"
+  "c" '(nil :wk "chezmoi")
+  "cf" #'chezmoi-find
+  "cw" #'chezmoi-write
+  "cd" #'chezmoi-diff
+  "co" #'chezmoi-open-other
+  "cs" #'chezmoi-sync-files)
+
+(+evil-conf-for! blamer obsolete/me-blamer
+  :config-form
+  (+nvmap!
+    "gb" #'blamer-show-posframe-commit-info
+    "gB" #'blamer-show-commit-info))
+
+(+map-local! :package zotxt :module obsolete/me-zotxt
+  :keymaps 'org-mode-map
+  "z" #'org-zotxt-mode)
+
+(+map-local! :package zotxt :module obsolete/me-zotxt
+  :keymaps 'markdown-mode-map
+  "z" #'zotxt-citekey-mode)
+
+(+map! :package lexic :module obsolete/me-lexic
+  :infix "s"
+  "l" #'lexic-search-word-at-point
+  "L" #'lexic-search)
+
+(+evil-conf-for! lexic obsolete/me-lexic
+  :config-form
+  (+nvmap! :keymaps 'lexic-mode-map
+    "q" #'lexic-return-from-lexic
+    "RET" #'lexic-search-word-at-point
+    "a" #'outline-show-all
+    "h" `(,(+cmdfy! (outline-hide-sublevels 3)) :wk "Hide sublevels")
+    "o" #'lexic-toggle-entry
+    "n" #'lexic-next-entry
+    "N" `(,(+cmdfy! (lexic-next-entry t)) :wk "Last entry")
+    "p" #'lexic-previous-entry
+    "P" `(,(+cmdfy! (lexic-previous-entry t)) :wk "First entry")
+    "E" `(,(+cmdfy!
+            (lexic-return-from-lexic)
+            (switch-to-buffer (lexic-get-buffer)))
+          :wk "Expand")
+    "M" `(,(+cmdfy!
+            (lexic-return-from-lexic)
+            (lexic-goto-lexic))
+          :wk "Minimise")
+    "C-p" #'lexic-search-history-backwards
+    "C-n" #'lexic-search-history-forwards
+    "/" `(,(+cmdfy! (call-interactively #'lexic-search)) :wk "Search")))
+
+
 
 (provide 'obsolete/me-evil)
 ;;; me-evil.el ends here

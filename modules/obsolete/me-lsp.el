@@ -38,11 +38,6 @@
   (lsp-insert-final-newline nil)
   (lsp-trim-final-newlines nil)
   :init
-  (+map!
-    :infix "c"
-    "l"  '(nil :wk "lsp session")
-    "ll" #'lsp
-    "lA" #'+lsp-auto-enable)
   (defcustom +lsp-auto-enable-modes
     '(c++-mode c++-ts-mode c-mode c-ts-mode python-mode python-ts-mode rust-mode
       rust-ts-mode cmake-mode js-mode js-ts-mode typescript-mode
@@ -58,20 +53,7 @@
     "Auto-enable LSP-mode in configured modes in `+lsp-auto-enable-modes'."
     (interactive)
     (add-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h)
-    (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h))
-  :config
-  (+map! :keymaps 'lsp-mode-map
-    :infix "c"
-    "fF" #'lsp-format-buffer
-    "d"  '(lsp-find-declaration :wk "Find declaration")
-    "D"  '(lsp-find-definition :wk "Find definition")
-    "i"  '(lsp-find-implementation :wk "Find implementation")
-    "t"  '(lsp-find-type-definition :wk "Find type definition")
-    "a"  '(lsp-execute-code-action :wk "Code actions")
-    "r"  '(nil :wk "refactor")
-    "rr" '(lsp-rename :wk "Rename")
-    "lq" '(lsp-workspace-shutdown :wk "Shutdown")
-    "lr" '(lsp-workspace-restart :wk "Restart")))
+    (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)))
 
 (use-package ccls
   :straight t
@@ -111,23 +93,10 @@
 
 (use-package consult-lsp
   :straight t
-  :after consult lsp-mode
-  :init
-  (+map! :keymaps 'lsp-mode-map
-    "cs" '(consult-lsp-file-symbols :wk "Symbols")))
+  :after consult lsp-mode)
 
 (use-package dap-mode
   :straight t
-  :init
-  (+map-local!
-    :keymaps '(c-mode-map c++-mode-map python-mode-map
-               rust-mode-map sh-mode-map bash-ts-mode-map
-               js-mode-map js-ts-mode-map ruby-mode-map
-               perl-mode-map)
-    "d" '(nil :wk "dap")
-    "dd" #'dap-debug
-    "dt" #'dap-debug-edit-template
-    "dh" #'dap-hydra/body)
   :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
   :custom
   (dap-utils-extension-path (concat minemacs-local-dir "dap/extension/"))
