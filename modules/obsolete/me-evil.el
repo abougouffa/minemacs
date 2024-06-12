@@ -1424,7 +1424,7 @@ It is deferred until `general' gets loaded and configured."
 ;;; For `me-god'
 
 (+evil-conf-for! god-mode me-god
-  :init-form
+  :config-form
   (with-eval-after-load 'evil
     (evil-make-intercept-map god-local-mode-map 'normal)
     (add-hook 'god-local-mode-hook #'evil-normalize-keymaps)))
