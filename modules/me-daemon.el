@@ -22,18 +22,6 @@
             (let ((inhibit-message t))
               (mu4e t)))))))))
 
-;; RSS (elfeed)
-(when (and (memq 'me-rss minemacs-modules) (not (+package-disabled-p 'elfeed)))
-  (+lazy!
-   (when (require 'elfeed nil :noerror)
-     (run-at-time
-      (* 60 5) ;; 5min
-      (* 60 60) ;; 1h
-      (lambda ()
-        (+info! "Updating RSS feed.")
-        (let ((inhibit-message t))
-          (elfeed-update)))))))
-
 
 (provide 'me-daemon)
 
