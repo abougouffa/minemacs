@@ -58,7 +58,7 @@ ci:
 	HOME=$(PWD)/.. $(EMACS) -nw --batch --script .github/workflows/scripts/ci-init.el 2>&1
 
 ci-daemon:
-	HOME=$(PWD)/.. $(EMACS) --daemon 2>&1
+	HOME=$(PWD)/.. timeout 180 $(EMACS) --daemon 2>&1
 
 make-readme-markdown.el:
 	wget -q -O $@ https://raw.github.com/mgalgs/make-readme-markdown/master/make-readme-markdown.el
