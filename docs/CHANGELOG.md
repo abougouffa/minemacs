@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.5.2](https://github.com/abougouffa/minemacs/compare/65f67db2055b33d749d2c5718415869eb48f2d0f..v7.5.2) - 2024-06-12
+#### Bug Fixes
+- **(evil)** annoying error related to `god-mode` - ([65f67db](https://github.com/abougouffa/minemacs/commit/65f67db2055b33d749d2c5718415869eb48f2d0f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.5.1](https://github.com/abougouffa/minemacs/compare/36bdc8ddd6258257dffca205ba6b747ccf5ff867..v7.5.1) - 2024-06-12
 #### Bug Fixes
 - **(daemon)** don't launch `elfeed` automatically - ([86774d8](https://github.com/abougouffa/minemacs/commit/86774d8e0c3d67ba9e94b66469167565380f2da1)) - [@abougouffa](https://github.com/abougouffa)
