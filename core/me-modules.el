@@ -6,13 +6,6 @@
 
 ;;; Code:
 
-(defcustom minemacs-core-modules '()
-  "MinEmacs enabled core modules."
-  :group 'minemacs-core
-  :type '(repeat symbol))
-
-(make-obsolete-variable 'minemacs-core-modules 'minemacs-modules "MinEmacs v7.0.0")
-
 (defcustom minemacs-modules
   '(;; me-ai
     ;; me-biblio
@@ -29,7 +22,6 @@
     me-emacs-lisp
     ;; me-email
     ;; me-embedded
-    me-evil
     me-extra
     me-files
     ;; me-fun
@@ -41,7 +33,6 @@
     ;; me-math
     ;; me-media
     ;; me-modeling
-    ;; me-meow
     me-multi-cursors
     ;; me-nano
     me-natural-langs

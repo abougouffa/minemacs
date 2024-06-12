@@ -21,7 +21,6 @@
         me-emacs-lisp     ; Emacs lisp development (parinfer-rust, macrostep, eros, helpful, ...)
         ;; me-email       ; Email (mu4e, mu4e-alert, org-msg, ...)
         ;; me-embedded    ; Embedded systems (embed, arduino-mode, openocd, bitbake, dts-mode, ...)
-        ;; me-evil        ; Emacs as Vim (evil, evil-collection, evil-snipe, evil-numbers, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
         me-files          ; Files and directories (dirvish, vlf, sudo-edit, ztree, ...)
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
@@ -32,9 +31,8 @@
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
         ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
         me-media          ; Multimedia (empv, emms, ...)
-        ;; me-meow        ; Yet another modal editing on Emacs (meow, ...)
         ;; me-modeling    ; Modeling tools (scad-mode, modelica-mode, ...)
-        me-multi-cursors  ; Multi-cursors editing (iedit, evil-mc, evil-iedit-state, ...)
+        me-multi-cursors  ; Multi-cursors editing (iedit, multiple-cursors, ...)
         ;; me-nano        ; N Λ N O Emacs (nano-theme, nano-modeline, nano-vertico, ...)
         me-natural-langs  ; Natural language stuff (jinx, spell-fu, go-translate, eglot-ltex, ...)
         me-notes          ; Notes & Zettelkasten (denote, consult-notes, ...)
@@ -67,9 +65,9 @@
 ;; otherwise it will get installed as a dependency.
 ;;
 ;; You can also `push' (or `add-to-list') multiple packages at once (as a list).
-;; For example, to completely disable `iedit' and its dependencies
-;; `evil-multiedit' and `evil-iedit-state', you can use:
-;; (push '(iedit evil-multiedit evil-iedit-state) minemacs-disabled-packages)
+;; For example, to completely disable all of `magit', `magit-todos' and
+;; `magit-file-icons', you can use:
+;; (push '(magit magit-todos magit-file-icons) minemacs-disabled-packages)
 
 ;;; Using the obsolete modules
 ;; You can use the obsolete packages configurations by adding the
@@ -85,7 +83,8 @@
 ;;          obsolete/me-chezmoi        ; Integrate chezmoi with Emacs
 ;;          obsolete/me-cov            ; Show code coverage results (cov, ...)
 ;;          obsolete/me-eaf            ; EAF apps (browser, jupyter, file-sender, ...)
-;;          obsolete/me-evil-escape    ; Escape without ESC (evil-escape, ...)
+;;          obsolete/me-evil           ; Evil integration (evil, evil-snipe, general, ...)
+;;          obsolete/me-meow           ; Yet another modal editing on Emacs (meow, ...)
 ;;          obsolete/me-expand-region  ; Expand region (included as an alternative for `expreg' in non tree-sitter builds)
 ;;          obsolete/me-flycheck       ; Static checkers (flycheck, ...)
 ;;          obsolete/me-flycheck-cmake ; Flycheck + CMake

@@ -226,13 +226,6 @@ goes idle."
 (when minemacs-load-all-modules-p
   (setq minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))))
 
-(when (bound-and-true-p minemacs-core-modules)
-  (message "[MinEmacs:Warn] The `me-completion', `me-keybindings' and `me-evil' modules have been moved to `minemacs-modules'. The `minemacs-core-modules' variable is now obsolete."))
-
-;; MinEmacs 7.0.0 uses only `minemacs-modules'. The `minemacs-core-modules' is left for now just to ensure compatibility.
-(setq minemacs-modules (cl-delete-if (+apply-partially-right #'memq '(me-splash me-bootstrap me-builtin me-compat me-gc))
-                                     (delete-dups (append (bound-and-true-p minemacs-core-modules) minemacs-modules))))
-
 ;; Load modules
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin me-gc)))
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
