@@ -117,7 +117,9 @@
 
   (defun +meow-activate ()
     (when (bound-and-true-p evil-mode)
-      (warn "Meow isn't supposed to be used with Evil"))
+      (warn "Meow isn't supposed to be used with `evil-mode'."))
+    (when (bound-and-true-p god-local-mode)
+      (warn "Meow isn't supposed to be used with `god-mode'."))
     (+meow-setup/azerty)
     (meow-global-mode 1))
 
@@ -147,5 +149,5 @@
      '("V" . expreg-contract))))
 
 
-(provide 'me-meow)
+(provide 'obsolete/me-meow)
 ;;; me-meow.el ends here
