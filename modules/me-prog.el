@@ -51,13 +51,7 @@
                               :ts-mode 'zig-ts-mode
                               :remap 'zig-mode
                               :url "https://github.com/GrayJack/tree-sitter-zig"
-                              :ext "\\.\\(zig\\|zon\\)\\'")
-                             (make-treesit-auto-recipe
-                              :lang 'elisp
-                              :ts-mode 'emacs-lisp-ts-mode
-                              :remap 'emacs-lisp-mode
-                              :url "https://github.com/Wilfred/tree-sitter-elisp"
-                              :ext "\\.el\\'"))))
+                              :ext "\\.\\(zig\\|zon\\)\\'"))))
     (cl-callf append treesit-auto-langs (mapcar #'treesit-auto-recipe-lang extra-recipes))
     (cl-callf append treesit-auto-recipe-list extra-recipes))
 
