@@ -1461,5 +1461,5 @@
 
 
 
-(provide 'me-evil)
+(provide 'obsolete/me-evil)
 ;;; me-evil.el ends here
