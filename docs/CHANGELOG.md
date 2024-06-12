@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.5.1](https://github.com/abougouffa/minemacs/compare/36bdc8ddd6258257dffca205ba6b747ccf5ff867..v7.5.1) - 2024-06-12
+#### Bug Fixes
+- **(daemon)** don't launch `elfeed` automatically - ([86774d8](https://github.com/abougouffa/minemacs/commit/86774d8e0c3d67ba9e94b66469167565380f2da1)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib)** fix `+jira-insert-ticket-id` and `+jira-get-ticket` - ([abdfee4](https://github.com/abougouffa/minemacs/commit/abdfee4528581693dc39db18c473d4ef3d6d1f74)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer)** initializing `treesit` grammar in Elisp breaks parinfer - ([8e56f17](https://github.com/abougouffa/minemacs/commit/8e56f177e068367bca922e9bed6758771331e385)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- make `me-meow` obsolete - ([00eca24](https://github.com/abougouffa/minemacs/commit/00eca248a9bd8a5f148ee4c8e0806414bfa81f46)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** temporary disable tests for Emacs daemon - ([e4749cf](https://github.com/abougouffa/minemacs/commit/e4749cf111458ce9168048e72945772d1eff1cce)) - [@abougouffa](https://github.com/abougouffa)
+- prevent Emacs daemon from taking forever in CI - ([36bdc8d](https://github.com/abougouffa/minemacs/commit/36bdc8ddd6258257dffca205ba6b747ccf5ff867)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- restore testing for Emacs daemon in the CI - ([1103c98](https://github.com/abougouffa/minemacs/commit/1103c98c2f5dfed72123956aa38a8fd877e40efe)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(early-init)** disable `mode-line` and `tool-bar-setup` initially - ([2d5b40c](https://github.com/abougouffa/minemacs/commit/2d5b40c04fc32a6bca5ac0022d9e13114b9151a3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3bcce58](https://github.com/abougouffa/minemacs/commit/3bcce58bf5cc1cad995413ae04f1196c0c55fb5f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.5.0](https://github.com/abougouffa/minemacs/compare/8367da53b996a6b7f8b614300e5276d0025e7d8d..v7.5.0) - 2024-06-11
 #### Bug Fixes
 - **(god-mode)** defer mode-specific keybindings - ([161c6be](https://github.com/abougouffa/minemacs/commit/161c6be3928ecda39c901afe9ff40a670b7dfe29)) - [@abougouffa](https://github.com/abougouffa)
