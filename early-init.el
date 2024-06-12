@@ -29,7 +29,12 @@
  ;; Explicitly set modes disabled in `default-frame-alist' to nil
  tool-bar-mode nil
  menu-bar-mode nil
- scroll-bar-mode nil)
+ scroll-bar-mode nil
+ ;; Set mode-line format to prevent it from showing at startup
+ mode-line-format nil)
+
+;; It seems like, even when `tool-bar-mode' is nil, `tool-bar-setup' still be called
+(advice-add 'tool-bar-setup :override #'ignore)
 
 ;; NOTE: In Emacs29+, frames can have a transparent background via the
 ;; `alpha-background' parameter. For a better experience, this value should be
