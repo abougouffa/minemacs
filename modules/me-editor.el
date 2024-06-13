@@ -66,7 +66,6 @@
 
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
-  :unless (+package-disabled-p 'meow 'me-meow)
   :hook (minemacs-lazy . selection-highlight-mode))
 
 (use-package zones
