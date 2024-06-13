@@ -10,11 +10,11 @@
 
 (use-package yasnippet
   :straight t
-  :hook (minemacs-first-file . yas-global-mode)
+  :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
   :init
   (defvar yas-verbosity (if minemacs-verbose-p 4 2))
   :custom
-  (yas-triggers-in-field t)
+  (yas-triggers-in-field t) ; Allow nested snippets
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
 
 (use-package whitespace-cleanup-mode
