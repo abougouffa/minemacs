@@ -1326,6 +1326,10 @@ current line.")
        (pulse-momentary-highlight-one-line (point))))))
 
 (use-package isearch
+  :custom
+  (isearch-lazy-count t) ; Show the match count (need a non-nil `isearch-lazy-highlight')
+  (search-ring-max 200) ; 16 is too little
+  (regexp-search-ring-max 200)
   :bind (:map
          isearch-mode-map
          ("<up>" . isearch-ring-retreat)
