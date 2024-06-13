@@ -328,7 +328,9 @@ or file path may exist now."
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
-  :bind (("C-x p a" . +project-add-project)))
+  :bind (("C-x p a" . +project-add-project))
+  :config
+  (add-to-list 'project-switch-commands '(project-shell "Shell") t))
 
 (use-package tab-bar
   :hook (minemacs-lazy . tab-bar-mode)
