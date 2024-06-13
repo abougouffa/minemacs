@@ -15,6 +15,16 @@
   :bind (("<mouse-8>" . better-jumper-jump-backward)
          ("<mouse-9>" . better-jumper-jump-forward)))
 
+(use-package dogears
+  :straight t
+  :hook (minemacs-lazy . dogears-mode)
+  ;; These bindings are optional, of course:
+  :bind (("M-g d" . dogears-go)
+         ("M-g M-b" . dogears-back)
+         ("M-g M-f" . dogears-forward)
+         ("M-g M-d" . dogears-list)
+         ("M-g M-D" . dogears-sidebar)))
+
 (use-package crux
   :straight t
   :bind (("C-c o o" . crux-open-with)
