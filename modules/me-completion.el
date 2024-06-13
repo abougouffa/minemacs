@@ -190,6 +190,7 @@
   (xref-show-definitions-function #'consult-xref)
   (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")
+  :commands +consult-tab
   :config
   (defun +consult-insert-thing-at-point ()
     "Insert region or symbol in the minibuffer."
@@ -198,6 +199,15 @@
               (or (+region-or-thing-at-point t) ""))))
 
   (setq-default completion-in-region-function #'consult-completion-in-region)
+
+  (defun +consult-tab (tab)
+    "Switch to TAB by name."
+    (interactive
+     (list
+      (let ((tabs (or (mapcar (lambda (tab) (cdr (assq 'name tab))) (tab-bar-tabs))
+                      (user-error "No tabs found"))))
+        (consult--read tabs :prompt "Tabs: " :category 'tab))))
+    (tab-bar-select-tab-by-name tab))
 
   ;; Fill the initial query of `consult' commands from region or thing at point.
   (consult-customize
