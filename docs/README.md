@@ -1,10 +1,16 @@
-# MinEmacs
+# MinEmacs (NG)
 
 [![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 [![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 [![CI-Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml)
 
 **MinEmacs** is a lightweight Emacs configuration framework.
+
+> [!CAUTION]
+> Please note that this `minemacs-ng` branch is under an active rewrite. The new
+> generation of this framework will not be compatible with the initial one, it
+> has multiple breaking changes compared to the `main` branch. This includes the
+> removal of Evil and General, among other things.
 
 ![MinEmacs banner](/docs/images/minemacs-cover.svg)
 
