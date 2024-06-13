@@ -214,6 +214,10 @@
   ;; Use `dumb-jump' as `xref' backend
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+(use-package xref-union
+  :straight t
+  :commands xref-union-mode)
+
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
