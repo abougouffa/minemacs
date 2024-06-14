@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.6.0](https://github.com/abougouffa/minemacs/compare/abed2148ea1816ed98987d5e400885a878a5d322..v7.6.0) - 2024-06-14
+#### Documentation
+- **(readme)** add a note about the current status - ([bc24555](https://github.com/abougouffa/minemacs/commit/bc245558df357bd528d854fb07fb0d8d342b2da7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(emacs-lisp)** restore `elisp-demos` - ([e47f581](https://github.com/abougouffa/minemacs/commit/e47f5817a9b1d6dc5ab87ce55fc1662e4e9500ac)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(breadcrumb)** don't show the project crumbs - ([f289d46](https://github.com/abougouffa/minemacs/commit/f289d467c8eb3a31b97c698fc7cbc41ada7eff74)) - [@abougouffa](https://github.com/abougouffa)
+- **(isearch)** better defaults - ([42a0ff7](https://github.com/abougouffa/minemacs/commit/42a0ff7a173b9cbc7e363b627026639da109e6f7)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** better keybindings - ([abed214](https://github.com/abougouffa/minemacs/commit/abed2148ea1816ed98987d5e400885a878a5d322)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** use a separate buffer when showing references - ([1b19879](https://github.com/abougouffa/minemacs/commit/1b198799746aa52468bd0d1652ba6182e692fef7)) - [@abougouffa](https://github.com/abougouffa)
+- **(yasnippet)** enable only on `prog-mode`, `text-mode` and `conf-mode` - ([4a684ef](https://github.com/abougouffa/minemacs/commit/4a684ef38b9591a1a01a3f35be68becb24b42fc9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.5.2](https://github.com/abougouffa/minemacs/compare/65f67db2055b33d749d2c5718415869eb48f2d0f..v7.5.2) - 2024-06-12
 #### Bug Fixes
 - **(evil)** annoying error related to `god-mode` - ([65f67db](https://github.com/abougouffa/minemacs/commit/65f67db2055b33d749d2c5718415869eb48f2d0f)) - [@abougouffa](https://github.com/abougouffa)
