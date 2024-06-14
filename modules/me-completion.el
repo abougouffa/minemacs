@@ -183,8 +183,10 @@
          ([remap next-matching-history-element] . consult-history) ; M-s
          ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
-  ;; Use `consult-xref' for `xref-find-references' and `xref-find-definitions'
-  (xref-show-xrefs-function #'consult-xref)
+  ;; Use `consult-xref' for `xref-find-definitions'
+  ;; NOTE: You can also set `xref-show-xrefs-function' to get the same behavior
+  ;; for `xref-find-references'. However, I prefer listing references in a
+  ;; separate buffer (default `xref-show-definitions-buffer')
   (xref-show-definitions-function #'consult-xref)
   (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")

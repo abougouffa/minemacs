@@ -511,6 +511,8 @@ or file path may exist now."
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  ;; Show references in a separate buffer, this is more convenient especially in big codebases
+  (xref-show-xrefs-function #'xref-show-definitions-buffer)
   (xref-prompt-for-identifier
    '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame
      xref-find-references)) ; Otherwise, it causes problems on big codebases
