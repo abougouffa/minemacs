@@ -169,6 +169,15 @@
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
+  ;; By default, Emacs asks before quitting with "C-x C-c", but when running an
+  ;; Emacs Client session, it won't ask unless a file is not saved. I hit "C-x
+  ;; C-c" a lot by error, so lets make it ask before quitting.
+  (advice-add
+   'save-buffers-kill-terminal :around
+   (satch-defun +emacs--ask-on-emacsclient:around-a (origfn arg)
+     (when (or (not (frame-parameter nil 'client)) (y-or-n-p "Quit Emacs Client? "))
+       (apply origfn arg))))
+
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
   (defun +save--guess-file-mode-h ()
     "Guess major mode when saving a file in `fundamental-mode'.
