@@ -558,6 +558,10 @@ or file path may exist now."
   (unless minemacs-debug-p
     (cl-callf plist-put eglot-events-buffer-config :size 0)))
 
+(use-package imenu
+  :custom
+  (imenu-max-item-length 120)) ; Show longer definitions (def. 60)
+
 (use-package eldoc
   :straight t
   :custom
