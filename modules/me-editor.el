@@ -105,6 +105,13 @@
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
 
+(use-package editorconfig
+  :straight t
+  :hook (minemacs-first-file . editorconfig-mode)
+  :config
+  ;; Exclude compressed files
+  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
+
 
 (provide 'me-editor)
 

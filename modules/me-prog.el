@@ -163,13 +163,6 @@
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist))
 
-(use-package editorconfig
-  :straight t
-  :hook (minemacs-first-file . editorconfig-mode)
-  :config
-  ;; Exclude compressed files
-  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
-
 ;; for bin in $(ls $(dirname $(which clang-13))/clang-*); do ln -s $bin $HOME/.local/bin/$(basename ${bin%-13}); done
 (use-package clang-format
   :straight t)
