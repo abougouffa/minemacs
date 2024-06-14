@@ -271,7 +271,10 @@
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
 (use-package breadcrumb
-  :straight t)
+  :straight t
+  :config
+  ;; Don't show the project/file name in the header, it is already shown in the mode line.
+  (advice-add 'breadcrumb-project-crumbs :override (satch-defun +breadcrumb--project:override-a () " >>")))
 
 (use-package protobuf-mode
   :straight t)
