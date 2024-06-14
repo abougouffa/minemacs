@@ -100,25 +100,6 @@
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
 
-(use-package cc-isearch-menu
-  :straight t
-  :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
-
-(use-package isearch+
-  :straight t)
-
-(use-package isearch-mb
-  :straight t
-  :after isearch
-  :init
-  (isearch-mb-mode 1))
-
-(use-package phi-search
-  :straight t)
-
-(use-package phi-grep
-  :straight t)
-
 
 (provide 'me-editor)
 

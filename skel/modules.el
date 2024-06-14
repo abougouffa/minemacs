@@ -42,6 +42,7 @@
         ;; me-robot       ; Robotics stuff (ros, robot-mode, ...)
         ;; me-rss         ; News feed (elfeed, ...)
         ;; me-scheme      ; Scheme development (racket-mode, geiser, ...)
+        me-search         ; Search and navigation (avy, rg, fzf, isearch+, isearch-mb, phi-search, ...)
         me-services       ; Web services (org-jira, ...)
         ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)

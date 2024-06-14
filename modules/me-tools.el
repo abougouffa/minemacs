@@ -16,20 +16,6 @@
 (use-package emamux
   :straight t)
 
-(use-package rg
-  :straight t
-  :bind (("C-c s" . rg-menu)))
-
-(use-package fzf
-  :straight t
-  :commands fzf-project
-  :config
-  (defalias 'fzf-project 'fzf-projectile)
-  ;; fzf.el relays on `projectile-project-root' to guess the project root
-  (unless (fboundp 'projectile-project-root)
-    (provide 'projectile) ; provide `projectile' because `fzf-projectile' will try to require it
-    (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current)))))))
-
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)

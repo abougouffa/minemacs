@@ -43,6 +43,7 @@
     ;; me-robot
     ;; me-rss
     ;; me-scheme
+    me-search
     ;; me-services
     ;; me-tags
     me-tools
