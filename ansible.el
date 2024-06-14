@@ -392,13 +392,6 @@ Also, automatically encrypts the file before saving the buffer."
       (add-to-list 'ac-user-dictionary-files (f-join dict-dir "ansible") t))))
 
 ;;;###ansible-lint
-; Compile regex for ansible-lint
-(require 'compile)
-(add-to-list 'compilation-error-regexp-alist
-             'ansible)
-(add-to-list 'compilation-error-regexp-alist-alist
-             '(ansible "^\\(.*?\\.yml\\):\\([0-9]+\\)" 1 2)
-             )
 
 ; Replace make -k with ansible-lint, with an UTF-8 locale to avoid crashes
 (defun ansible-lint-errors ()
