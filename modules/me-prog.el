@@ -128,9 +128,6 @@
   (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-yeet-forward)
   (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
 
-(use-package srefactor
-  :straight t)
-
 (use-package consult-eglot
   :straight t
   :after consult eglot
@@ -244,9 +241,6 @@
   :straight (:host github :repo "zeph1e/franca-idl.el"))
 
 (use-package just-mode
-  :straight t)
-
-(use-package justl
   :straight t)
 
 (use-package cmake-mode
