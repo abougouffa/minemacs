@@ -1,5 +1,19 @@
 # MinEmacs
 
+> [!CAUTION]
+> Please note that MinEmacs is under active rewrite. The new generation of this
+> configuration (branch `minemacs-ng`) will not be compatible with this one as
+> it includes multiple breaking changes compared to the `main` branch. Including
+> but not limited to, the removal of Evil and General, among other things.
+>
+> Personally, I'm moving to a more mainstream Emacs experience as I started to
+> hit the limits of `evil-mode`. I think that using Emacs exclusively via Evil
+> hides a lot of Emacs' beauty and creates more problems than it solves
+> [personal opinion/experience].
+>
+> I will cherry pick some relevant commits from `minemacs-ng`, but I won't be
+> able to add new features to this branch.
+
 [![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 [![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 [![CI-Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml)
