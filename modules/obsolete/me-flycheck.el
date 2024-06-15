@@ -16,9 +16,9 @@
   (flycheck-buffer-switch-check-intermediate-buffers nil) ; maybe set it to t
   (flycheck-display-errors-delay 0.5)
   :init
-  (+after-load! '(:any cmake-mode cmake-ts-mode)
+  (with-eval-after-load 'cmake-mode
     (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-cmake.el"))
-  (+after-load! 'eglot
+  (with-eval-after-load 'eglot
     (+load (file-name-directory (or load-file-name buffer-file-name)) "me-flycheck-eglot.el"))
   :config
   ;; Use the current session load path when checking
