@@ -12,6 +12,10 @@
   :straight (:host github :repo "hlissner/ws-butler")
   :hook (minemacs-first-file . ws-butler-global-mode))
 
+(use-package dtrt-indent
+  :straight t
+  :hook (minemacs-first-file . dtrt-indent-global-mode))
+
 (use-package yasnippet
   :straight t
   :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
