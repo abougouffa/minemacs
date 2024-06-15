@@ -42,6 +42,6 @@
   :hook (minemacs-lazy . nano-vertico-mode))
 
 
-(provide 'me-nano)
+(provide 'obsolete/me-nano)
 
 ;;; me-nano.el ends here
