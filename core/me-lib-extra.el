@@ -8,53 +8,7 @@
 
 ;;; Code:
 
-(make-obsolete '+deferred-when! "This macro will be removed, use (when COND (+deferred! BODY)) instead." "2024-05-18")
-(make-obsolete '+deferred-unless! "This macro will be removed, use (unless COND (+deferred! BODY)) instead.." "2024-05-18")
-(make-obsolete '+lazy-when! "This macro will be removed, use (when COND (+lazy! BODY)) instead.." "2024-05-18")
-(make-obsolete '+lazy-unless! "This macro will be removed, use (unless COND (+lazy! BODY)) instead.." "2024-05-18")
-(make-obsolete '+directory-root-containing-file "Use builtin `locate-dominating-file' instead." "2024-05-25")
-
 ;;; Minemacs' core functions and macros
-
-;;;###autoload
-(defmacro +deferred-when! (condition &rest body)
-  "Like `+deferred!', with BODY executed only if CONDITION is non-nil."
-  (declare (indent 1))
-  `(when ,condition (+deferred! ,@body)))
-
-;;;###autoload
-(defmacro +deferred-unless! (condition &rest body)
-  "Like `+deferred!', with BODY executed only if CONDITION is nil."
-  (declare (indent 1))
-  `(unless ,condition (+deferred! ,@body)))
-
-;;;###autoload
-(defmacro +lazy-when! (condition &rest body)
-  "Like `+lazy!', with BODY executed only if CONDITION is non-nil."
-  (declare (indent 1))
-  `(when ,condition (+lazy! ,@body)))
-
-;;;###autoload
-(defmacro +lazy-unless! (condition &rest body)
-  "Like `+lazy!', with BODY executed only if CONDITION is nil."
-  (declare (indent 1))
-  `(unless ,condition (+lazy! ,@body)))
-
-;; Adapted from: github.com/d12frosted/environment
-;;;###autoload
-(defmacro +hook-with-delay! (hook secs function &optional depth local)
-  "Add the FUNCTION to the value of HOOK.
-The FUNCTION is delayed to be evaluated in SECS once HOOK is
-triggered.
-DEPTH and LOCAL are passed as is to `add-hook'."
-  (let* ((f-name (make-symbol (format "+%s-on-%s-delayed-%.2fs-h" (+unquote function) (+unquote hook) secs)))
-         (f-doc (format "Call `%s' in %d seconds" (symbol-name (+unquote function)) secs)))
-    `(eval-when-compile
-       (defun ,f-name () ,f-doc
-        (run-with-idle-timer ,secs nil ,function))
-       (add-hook ,hook #',f-name ,depth ,local))))
-
-
 
 ;;;###autoload
 (defun minemacs-run-build-functions (&optional dont-ask-p)
@@ -72,8 +26,9 @@ Call functions without asking when DONT-ASK-P is non-nil."
       (funcall-interactively fn))))
 
 ;;;###autoload
-(defun minemacs--bump-packages ()
-  "Bump MinEmacs packages to the latest revisions."
+(defun minemacs-bump-packages ()
+  "Update MinEmacs packages to the last revisions (can cause breakages)."
+  (interactive)
   ;; Backup the current installed versions, this file can be restored if version
   ;; upgrade does break some packages.
   (message "[MinEmacs]: Creating backups for the current versions of packages")
@@ -102,8 +57,8 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (minemacs-run-build-functions 'dont-ask))
 
 ;;;###autoload
-(defun minemacs-bump-packages ()
-  "Update MinEmacs packages to the last revisions (can cause breakages)."
+(defun minemacs-bump-packages-async ()
+  "Asynchronous version of `minemacs-bump-packages'."
   (interactive)
   (let ((default-directory minemacs-root-dir)
         (compilation-buffer-name-function (lambda (_) "" "*minemacs-bump-packages*")))
@@ -222,17 +177,6 @@ If \"file.ext\" exists, returns \"file-0.ext\"."
          (last-file-num (and last-file (string-match filename-regex last-file) (match-string 1 last-file)))
          (num (1+ (string-to-number (or last-file-num "-1")))))
     (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
-
-;;;###autoload
-(defun +directory-root-containing-file (files &optional start-path)
-  "Return the path containing a file from FILES starting from START-PATH."
-  (locate-dominating-file ;; locate the root containing the file
-   (or start-path buffer-file-name default-directory)
-   (lambda (dir)
-     (directory-files
-      (file-name-directory dir)
-      nil
-      (rx-to-string `(seq bol (or ,@(ensure-list files)) eol))))))
 
 ;;;###autoload
 (defun +delete-this-file (&optional path force-p)

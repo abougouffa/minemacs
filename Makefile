@@ -46,7 +46,7 @@ check:
 	$(EMACS_BATCH) --eval='(straight-check-all)'
 
 bump:
-	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs--bump-packages)'
+	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs-bump-packages)'
 
 locked:
 	$(EMACS_BATCH) --eval='(minemacs-restore-locked-packages nil)'
