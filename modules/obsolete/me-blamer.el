@@ -25,11 +25,13 @@
 
   (with-eval-after-load 'me-writing-mode
     (defvar-local +blamer-was-active-p blamer-mode)
-    (+add-hook! +writing-mode-enable
-      (setq-local +blamer-was-active-p blamer-mode)
-      (when +blamer-was-active-p (blamer-mode -1)))
-    (+add-hook! +writing-mode-disable
-      (when (bound-and-true-p +blamer-was-active-p) (blamer-mode 1)))))
+    (add-hook '+writing-mode-enable-hook
+              (lambda ()
+                (setq-local +blamer-was-active-p blamer-mode)
+                (when +blamer-was-active-p (blamer-mode -1))))
+    (add-hook '+writing-mode-disable-hook
+              (lambda ()
+                (when (bound-and-true-p +blamer-was-active-p) (blamer-mode 1))))))
 
 
 (provide 'obsolete/me-blamer)

@@ -40,16 +40,19 @@
   (when (< emacs-major-version 29)
     (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
-  (+add-hook! 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
+  (satch-add-hook 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
 
-  (+add-hook! (emacs-lisp-mode git-commit-mode)
-    (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t))
+  (satch-add-hook
+   '(emacs-lisp-mode-hook git-commit-mode-hook)
+   (lambda () (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t)))
 
-  (+add-hook! org-mode
-    (add-hook 'completion-at-point-functions #'cape-elisp-block nil t))
+  (satch-add-hook
+   'org-mode-hook
+   (lambda () (add-hook 'completion-at-point-functions #'cape-elisp-block nil t)))
 
-  (+add-hook! (TeX-mode LaTeX-mode)
-    (add-hook 'completion-at-point-functions #'cape-tex nil t)))
+  (satch-add-hook
+   '(TeX-mode-hook LaTeX-mode-hook)
+   (lambda () (add-hook 'completion-at-point-functions #'cape-tex nil t))))
 
 (use-package corfu
   :straight (:files (:defaults "extensions/*.el"))
@@ -74,7 +77,7 @@
   (corfu-popupinfo-delay 0.1)
   (corfu-popupinfo-max-height 15)
   :init
-  (+hook-once! prog-mode-hook (global-corfu-mode 1))
+  (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."

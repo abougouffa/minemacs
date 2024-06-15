@@ -21,10 +21,10 @@
        (format "Load %s as a Flymake backend in the current buffer." backend))))
 
   (when (executable-find "bandit")
-    (+add-hook! (python-mode python-ts-mode) #'+flymake-bandit-load))
+    (satch-add-hook '(python-mode-hook python-ts-mode-hook) #'+flymake-bandit-load))
 
   (when (executable-find "codespell")
-    (+add-hook! prog-mode #'+flymake-codespell-load))
+    (add-hook 'prog-mode-hook #'+flymake-codespell-load))
 
   ;; Custom variables for `flymake-clang-tidy'
   (defcustom flymake-clang-tidy-build-path "build"

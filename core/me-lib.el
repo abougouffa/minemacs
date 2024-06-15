@@ -298,40 +298,6 @@ This inhebits both the echo area and the `*Messages*' buffer."
             (setq body `((with-eval-after-load ',(+unquote next) ,@body)))))
          (t `(+after-load! '(:all ,@features) ,@body)))))))
 
-(defvar +hook-once-num 0)
-
-(defmacro +hook-once! (hook &rest body)
-  "Hook BODY in HOOK, and make it run only once."
-  (declare (indent 1))
-  (let ((hook (+unquote hook))
-        (fn-name (intern (format "+hook-once--function-%d-h" (cl-incf +hook-once-num)))))
-    `(add-hook ',hook
-      (satch-defun ,fn-name (&rest _)
-       ,(macroexp-progn body)
-       (remove-hook ',hook ',fn-name)))))
-
-(defvar +advice-once-num 0)
-
-(defmacro +advice-once! (fns how &rest body)
-  "Run BODY as a HOW advice for FNS, and make it run only once.
-
-FNS can be one function or a list of functions, quoted or not.
-
-Inside BODY, you will have access to the original args as `orig-args'."
-  (declare (indent 2))
-  (let* ((fns (ensure-list (+unquote fns)))
-         (fn-name (intern (format "+advice-once--function-%d-h" (cl-incf +advice-once-num))))
-         (external-forms)
-         (internal-forms))
-    (dolist (fn fns)
-      (push `(advice-add ',fn ,how ',fn-name) external-forms)
-      (push `(advice-remove ',fn ',fn-name) internal-forms))
-    (macroexp-progn
-     (append
-      (list (append `(defun ,fn-name (&rest orig-args))
-                    internal-forms body))
-      external-forms))))
-
 (defcustom +first-file-hook-ignore-list nil
   "A list of files to ignore in the `minemacs-first-*-file-hook'."
   :group 'minemacs-core
@@ -412,81 +378,6 @@ list is returned as-is."
                     (list var val hook
                           (intern (format "+setq--%s-in-%s-h"
                                           var hook))))))
-
-;; From Doom Emacs
-(defmacro +add-hook! (hooks &rest rest)
-  "A convenience macro for adding N functions to M hooks.
-
-This macro accepts, in order:
-
-  1. The mode(s) or hook(s) to add to. This is either an unquoted mode, an
-     unquoted list of modes, a quoted hook variable or a quoted list of hook
-     variables.
-  2. Optional properties :local, :append, and/or :depth [N], which will make the
-     hook buffer-local or append to the list of hooks (respectively),
-  3. The function(s) to be added: this can be a quoted function, a quoted list
-     thereof, a list of `defun' or `cl-defun' forms, or arbitrary forms (will
-     implicitly be wrapped in a lambda).
-
-If the hook function should receive an argument (like in
-`enable-theme-functions'), the `args' variable can be expanded in the forms
-
-  (+add-hook! \\='enable-theme-functions
-    (message \"Enabled theme: %s\" (car args)))
-
-\(fn HOOKS [:append :local [:depth N]] FUNCTIONS-OR-FORMS...)"
-  (declare (indent (lambda (indent-point state)
-                     (goto-char indent-point)
-                     (when (looking-at-p "\\s-*(")
-                       (lisp-indent-defform state indent-point))))
-           (debug t))
-  (let* ((hook-forms (+resolve-hook-forms hooks))
-         (func-forms ())
-         (defn-forms ())
-         append-p local-p remove-p depth)
-    (while (keywordp (car rest))
-      (pcase (pop rest)
-        (:append (setq append-p t))
-        (:depth  (setq depth (pop rest)))
-        (:local  (setq local-p t))
-        (:remove (setq remove-p t))))
-    (while rest
-      (let* ((next (pop rest))
-             (first (car-safe next)))
-        (push (cond ((memq first '(function nil))
-                     next)
-                    ((eq first 'quote)
-                     (let ((quoted (cadr next)))
-                       (if (atom quoted)
-                           next
-                         (when (cdr quoted)
-                           (setq rest (cons (list first (cdr quoted)) rest)))
-                         (list first (car quoted)))))
-                    ((memq first '(defun cl-defun))
-                     (push next defn-forms)
-                     (list 'function (cadr next)))
-                    ((prog1 `(lambda (&rest args) ,@(cons next rest))
-                       (setq rest nil))))
-              func-forms)))
-    `(progn
-       ,@defn-forms
-       (dolist (hook (nreverse ',hook-forms))
-        (dolist (func (list ,@func-forms))
-         ,(if remove-p
-              `(remove-hook hook func ,local-p)
-            `(add-hook hook func ,(or depth append-p) ,local-p)))))))
-
-;; From Doom Emacs
-(defmacro +remove-hook! (hooks &rest rest)
-  "A convenience macro for removing N functions from M hooks.
-
-Takes the same arguments as `add-hook!'.
-
-If N = 1 and M = 1, there's no benefit to using this macro over `remove-hook'.
-
-\(fn HOOKS [:append :local] FUNCTIONS)"
-  (declare (indent defun) (debug t))
-  `(+add-hook! ,hooks :remove ,@rest))
 
 ;; From Doom Emacs
 (defmacro +setq-hook! (hooks &rest var-vals)
@@ -981,9 +872,9 @@ When provided, set the `default-directory' to DIRECTORY."
           (when (and (eq major-mode 'fundamental-mode) (functionp mode))
             (funcall mode))))
       (cl-pushnew (current-buffer) +scratch-buffers)
-      (+hook-once! 'window-buffer-change-functions (+scratch-persist-buffers-h))
-      (+hook-once! 'server-visit-hook (+scratch-persist-buffers-h))
-      (+hook-once! 'window-selection-change-functions (+scratch-persist-buffers-h))
+      (satch-add-hook 'window-buffer-change-functions #'+scratch-persist-buffers-h nil nil :transient t)
+      (satch-add-hook 'server-visit-hook #'+scratch-persist-buffers-h nil nil :transient t)
+      (satch-add-hook 'window-selection-change-functions #'+scratch-persist-buffers-h nil nil :transient t)
       (add-hook 'kill-buffer-hook #'+scratch-persist-buffer-h nil 'local)
       (run-hooks '+scratch-buffer-created-hook)
       (current-buffer))))
@@ -1257,7 +1148,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
 
-(+add-hook! (window-setup server-after-make-frame) #'+setup-fonts)
+(add-hook 'window-setup-hook #'+setup-fonts)
+(add-hook 'server-after-make-frame-hook #'+setup-fonts)
 
 
 

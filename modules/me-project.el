@@ -34,7 +34,7 @@
   :bind-keymap ("C-x P" . projection-map)
   :init
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
-  (+add-hook! ibuffer (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update))))
+  (add-hook 'ibuffer-hook (lambda () (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update)))))
   ;; Mark compile commands as safe (customized in ".dir-locals.el")
   (dolist (var '(projection-commands-configure-project projection-commands-build-project
                  projection-commands-test-project projection-commands-run-project

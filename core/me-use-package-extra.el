@@ -43,7 +43,7 @@
       (lambda (command)
         (when (symbolp command)
           (unless (plist-get state :demand)
-            `((+advice-once! ,command :before (require ',name))))))
+            `((satch-add-advice ',command :before (lambda () (require ',name)) nil :transient t)))))
       (delete-dups arg))
      (use-package-process-keywords name rest state)))
 
