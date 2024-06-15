@@ -86,6 +86,17 @@
   :straight t
   :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
 
+(use-package pulsar
+  :straight t
+  :hook (minemacs-first-file . pulsar-global-mode)
+  :hook ((next-error xref-after-return) . pulsar-pulse-line) ; only pulse, don't recenter
+  :hook ((consult-after-jump imenu-after-jump xref-after-jump) . pulsar-recenter-center) ; pulse and recenter
+  :hook ((consult-after-jump imenu-after-jump xref-after-jump xref-after-return) . pulsar-reveal-entry) ; reveal if hidden
+  :custom
+  (pulsar-face 'pulsar-red)
+  :config
+  (add-to-list 'pulsar-pulse-functions #'what-cursor-position))
+
 (use-package focus
   :straight t)
 

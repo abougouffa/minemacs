@@ -1328,17 +1328,6 @@ current line.")
     "l" #'windmove-right)
   (keymap-global-set "C-c w" +windmove-keys))
 
-(use-package pulse
-  :init
-  ;; Add visual pulse when changing focus, like beacon but built-in
-  ;; From: https://karthinks.com/software/batteries-included-with-emacs/
-  (dolist (command '(scroll-up-command scroll-down-command recenter-top-bottom other-window))
-    (advice-add
-     command :after
-     (satch-defun +pulse--line:after-a (&rest _)
-       "Pulse the current line."
-       (pulse-momentary-highlight-one-line (point))))))
-
 (use-package isearch
   :custom
   (isearch-lazy-count t) ; Show the match count (need a non-nil `isearch-lazy-highlight')
