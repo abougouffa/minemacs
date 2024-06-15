@@ -25,7 +25,6 @@
 
 (use-package doom-modeline
   :straight t
-  :unless (memq 'me-nano minemacs-modules)
   :hook (minemacs-lazy . doom-modeline-mode)
   :custom
   (doom-modeline-bar-width 1)

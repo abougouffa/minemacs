@@ -26,15 +26,8 @@
               (link ,(nerd-icons-mdicon "nf-md-link" :face 'org-link) . " "))))
 
     ;; Properly setup citar-symbols
-    (if (display-graphic-p)
-        (+citar--set-symbols)
-      (add-hook
-       'server-after-make-frame-hook
-       (satch-defun +citar--set-symbols-once-h ()
-         (when (display-graphic-p)
-           (+citar--set-symbols)
-           (remove-hook 'server-after-make-frame-hook
-                        #'+citar--set-symbols-once-h)))))))
+    (once-x-call '(:check display-graphic-p :hooks server-after-make-frame-hook)
+      #'+citar--set-symbols)))
 
 (use-package citar-embark
   :straight t

@@ -230,12 +230,7 @@ characters."
 
 (defun +mu4e-ui-setup ()
   "Apply UI setup."
-  (if (display-graphic-p)
-      (+mu4e--ui-setup)
-    (satch-add-hook
-     'server-after-make-frame-hook
-     (lambda () (when (display-graphic-p) (+mu4e--ui-setup)))
-     nil nil :transient t)))
+  (once-x-call '(:check display-graphic-p :hook server-after-make-frame-hook) #'+mu4e--ui-setup))
 
 (defun +mu4e-ui-modeline-tweaks ()
   "Apply UI tweaks based on `nerd-icons'."
