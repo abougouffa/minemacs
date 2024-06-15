@@ -64,48 +64,21 @@ This will overwrite the built-in \"gdb-mi\" for this session." t)
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+hook-once" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+res" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
 
-(autoload '+deferred-when! "me-lib-extra" "\
-Like `+deferred!', with BODY executed only if CONDITION is non-nil.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+deferred-when! 'lisp-indent-function 1)
-(autoload '+deferred-unless! "me-lib-extra" "\
-Like `+deferred!', with BODY executed only if CONDITION is nil.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+deferred-unless! 'lisp-indent-function 1)
-(autoload '+lazy-when! "me-lib-extra" "\
-Like `+lazy!', with BODY executed only if CONDITION is non-nil.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+lazy-when! 'lisp-indent-function 1)
-(autoload '+lazy-unless! "me-lib-extra" "\
-Like `+lazy!', with BODY executed only if CONDITION is nil.
-
-(fn CONDITION &rest BODY)" nil t)
-(function-put '+lazy-unless! 'lisp-indent-function 1)
-(autoload '+hook-with-delay! "me-lib-extra" "\
-Add the FUNCTION to the value of HOOK.
-The FUNCTION is delayed to be evaluated in SECS once HOOK is
-triggered.
-DEPTH and LOCAL are passed as is to `add-hook'.
-
-(fn HOOK SECS FUNCTION &optional DEPTH LOCAL)" nil t)
 (autoload 'minemacs-run-build-functions "me-lib-extra" "\
 Run all build functions in `minemacs-build-functions'.
 
 Call functions without asking when DONT-ASK-P is non-nil.
 
 (fn &optional DONT-ASK-P)" t)
-(autoload 'minemacs--bump-packages "me-lib-extra" "\
-Bump MinEmacs packages to the latest revisions.")
 (autoload 'minemacs-bump-packages "me-lib-extra" "\
 Update MinEmacs packages to the last revisions (can cause breakages)." t)
+(autoload 'minemacs-bump-packages-async "me-lib-extra" "\
+Asynchronous version of `minemacs-bump-packages'." t)
 (autoload 'minemacs-restore-locked-packages "me-lib-extra" "\
 Restore lockfile packages list. Takes into account the pinned ones.
 When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
@@ -137,10 +110,6 @@ Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
 
 (fn FILENAME)")
-(autoload '+directory-root-containing-file "me-lib-extra" "\
-Return the path containing a file from FILES starting from START-PATH.
-
-(fn FILES &optional START-PATH)")
 (autoload '+delete-this-file "me-lib-extra" "\
 Delete PATH.
 
