@@ -19,12 +19,15 @@
 (use-package dogears
   :straight t
   :hook (minemacs-lazy . dogears-mode)
-  ;; These bindings are optional, of course:
   :bind (("M-g d" . dogears-go)
          ("M-g M-b" . dogears-back)
          ("M-g M-f" . dogears-forward)
          ("M-g M-d" . dogears-list)
-         ("M-g M-D" . dogears-sidebar)))
+         ("M-g M-D" . dogears-sidebar)
+         ("<mouse-8>" . dogears-back)
+         ("<mouse-9>" . dogears-forward))
+  :custom
+  (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook)))
 
 (use-package cc-isearch-menu
   :straight t
