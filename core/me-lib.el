@@ -377,7 +377,7 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
          (run-hooks ',hook-name)))
        (if (daemonp) ; load immediately after init when in daemon mode
            (add-hook 'after-init-hook (lambda () (provide ',feature-name) (run-hooks ',hook-name)) 90)
-         (advice-add 'find-file-noselect :before #',fn-name '((depth . ,(if filetype -100 -101))))))))
+         (advice-add 'find-file-noselect :before #',fn-name '((depth . ,(if filetype -90 -91))))))))
 
 ;; From Doom Emacs
 (defun +resolve-hook-forms (hooks)

@@ -36,7 +36,7 @@
     (add-hook
      'eldoc-mode-hook
      (satch-defun +flycheck--register-documentation-function-h ()
-       (add-hook 'eldoc-documentation-functions '+flycheck-eldoc-function 100 t)))
+       (add-hook 'eldoc-documentation-functions '+flycheck-eldoc-function 95 t)))
 
     (setopt eldoc-documentation-strategy #'eldoc-documentation-default ; combine docs
             flycheck-display-errors-function #'ignore) ; do not show

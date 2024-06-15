@@ -940,10 +940,12 @@ current line.")
     (setq +ediff--saved-window-config (current-window-configuration)))
 
   ;; Restore the saved window configuration on quit or suspend
-  (+add-hook! (ediff-quit ediff-suspend) :depth 101
-    (satch-defun +ediff--restore-window-config-h ()
-      (when (window-configuration-p +ediff--saved-window-config)
-        (set-window-configuration +ediff--saved-window-config)))))
+  (satch-add-hook
+   '(ediff-quit-hook ediff-suspend-hook)
+   (satch-defun +ediff--restore-window-config-h ()
+     (when (window-configuration-p +ediff--saved-window-config)
+       (set-window-configuration +ediff--saved-window-config)))
+   99))
 
 (use-package smerge-mode
   :commands +smerge-hydra/body

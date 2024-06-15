@@ -23,7 +23,7 @@
   :hook (prog-mode . tempel-abbrev-mode)
   :config
   (defun +tempel-setup-capf-h ()
-    (add-hook 'completion-at-point-functions #'tempel-complete -100 t)))
+    (add-hook 'completion-at-point-functions #'tempel-complete -90 t)))
 
 (use-package tempel-collection
   :straight t)

@@ -83,7 +83,7 @@
 ;; the potential new elements made during startup.
 (defun +mineamcs--restore-file-name-handler-alist-h ()
   (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
-(add-hook 'emacs-startup-hook '+mineamcs--restore-file-name-handler-alist-h 100)
+(add-hook 'emacs-startup-hook '+mineamcs--restore-file-name-handler-alist-h 99)
 
 ;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
 ;; already loaded (in "early-init.el"). However, we double-check here and load
@@ -201,7 +201,7 @@ goes idle."
   (require 'minemacs-loaded))
 
 ;; Add it to the very beginning of `emacs-startup-hook'
-(add-hook 'emacs-startup-hook #'+minemacs--loaded-h -101)
+(add-hook 'emacs-startup-hook #'+minemacs--loaded-h -91)
 
 ;; ========= Make some special hooks =========
 (+make-first-file-hook! 'org "\\.org$")

@@ -86,7 +86,7 @@
   :hook (systemd-mode . +systemd-mode-capf-h)
   :config
   (defun +systemd-mode-capf-h ()
-    (add-hook 'completion-at-point-functions (cape-company-to-capf 'systemd-company-backend) -100)))
+    (add-hook 'completion-at-point-functions (cape-company-to-capf 'systemd-company-backend) -90)))
 
 (use-package pkgbuild-mode
   :straight t)
