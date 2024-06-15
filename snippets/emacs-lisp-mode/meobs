@@ -2,7 +2,7 @@
 # name: meobs
 # contributor : Abdelhak Bougouffa
 # --
-;;; ${1:`(file-name-base (or buffer-file-name "me-package"))`}.el --- ${2:description} -*- lexical-binding: t; -*-
+;;; ${1:`(file-name-base (or buffer-file-name "me-package"))`}.el --- ${2:Description} -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-`(concat (format-time-string "%Y") "  " user-full-name)`
 
