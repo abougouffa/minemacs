@@ -1,6 +1,6 @@
 from_latest_tag = true
 ignore_merge_commits = false
-branch_whitelist = ["main"]
+branch_whitelist = ["main", "minemacs-ng"]
 
 pre_bump_hooks = []
 post_bump_hooks = [
