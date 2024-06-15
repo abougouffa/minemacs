@@ -17,12 +17,6 @@
   (yas-triggers-in-field t) ; Allow nested snippets
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
 
-(use-package whitespace-cleanup-mode
-  :straight t
-  :hook (minemacs-first-file . global-whitespace-cleanup-mode)
-  :custom
-  (whitespace-cleanup-mode-preserve-point t))
-
 (use-package yasnippet-capf
   :straight t
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
