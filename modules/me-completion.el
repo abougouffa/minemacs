@@ -53,33 +53,22 @@
 
 (use-package corfu
   :straight (:files (:defaults "extensions/*.el"))
-  :hook (eshell-mode . +corfu-less-intrusive-h)
+  :hook ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
-  :hook (corfu-mode . corfu-popupinfo-mode)
   :hook (corfu-mode . corfu-history-mode)
-  :bind ( ; Bidn some useful commands
-         :map corfu-map
-         ("M-m" . +corfu-complete-in-minibuffer)
-         ("<tab>" . corfu-next)
-         ("<backtab>" . corfu-previous)
-         ;; For `corfu-popupinfo'
-         ("M-p" . corfu-popupinfo-scroll-down)
-         ("M-n" . corfu-popupinfo-scroll-up)
-         ("M-d" . corfu-popupinfo-toggle))
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-auto-delay 0.2)
-  (corfu-popupinfo-delay 0.1)
-  (corfu-popupinfo-max-height 15)
   :init
   (+hook-once! prog-mode-hook (global-corfu-mode 1))
   :config
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
-    (when (where-is-internal #'completion-at-point (list (current-local-map)))
-      (setq-local corfu-auto nil) ; Enable/disable auto completion
+    (when (local-variable-p 'completion-at-point-functions)
+      (setq-local corfu-auto t ; Enable/disable auto completion
+                  corfu-popupinfo-delay nil)
       (corfu-mode 1)))
 
   (defun +corfu-less-intrusive-h ()
@@ -88,20 +77,28 @@
                 corfu-auto nil)
     (corfu-mode 1))
 
-  ;; Taken from:
-  ;; git.sr.ht/~gagbo/doom-config/tree/master/item/modules/completion/corfu/config.el
-  (defun +corfu-complete-in-minibuffer ()
-    "Move current completions to the minibuffer."
-    (interactive)
-    (let ((completion-extra-properties corfu--extra)
-          completion-cycle-threshold
-          completion-cycling)
-      (apply #'consult-completion-in-region completion-in-region--data)))
-
   ;; Ensure `savehist-mode' is on add `corfu-history' to the saved variables
   (unless (bound-and-true-p savehist-mode)
     (savehist-mode 1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
+
+(use-package corfu-popupinfo
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :bind ( ; Bind these to toggle/scroll documentation
+         :map corfu-map
+         ("M-p" . corfu-popupinfo-scroll-down)
+         ("M-n" . corfu-popupinfo-scroll-up)
+         ("M-d" . corfu-popupinfo-toggle))
+  :custom
+  (corfu-popupinfo-delay nil)
+  (corfu-popupinfo-max-height 15)
+  :config
+  ;; Otherwise, the popupinfo will stay open!
+  (add-hook
+   'completion-in-region-mode-hook
+   (satch-defun +corfu--hide-popupinfo-h ()
+     (when (and (not completion-in-region-mode) (boundp 'corfu-popupinfo--hide))
+       (corfu-popupinfo--hide)))))
 
 (use-package corfu-terminal
   :straight t
