@@ -27,7 +27,7 @@
          ("<mouse-8>" . dogears-back)
          ("<mouse-9>" . dogears-forward))
   :custom
-  (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook)))
+  (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
 (use-package cc-isearch-menu
   :straight t

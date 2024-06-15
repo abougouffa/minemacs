@@ -84,7 +84,15 @@ Fall back to the default `citre--project-root'."
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 
 (use-package rtags
-  :straight t)
+  :straight t
+  :custom
+  (rtags-use-bookmarks nil)
+  (rtags-autostart-diagnostics t)
+  (rtags-jump-to-first-match nil)
+  (rtags-results-buffer-other-window t)
+  ;; Rtags' binaries are renamed on some systems (like Debian)
+  (rtags-rc-binary-name (or (cl-find-if #'executable-find (list rtags-rc-binary-name "rtags-rc")) rtags-rc-binary-name))
+  (rtags-rdm-binary-name (or (cl-find-if #'executable-find (list rtags-rdm-binary-name "rtags-rdm")) rtags-rdm-binary-name)))
 
 (use-package rtags-xref
   :straight t
