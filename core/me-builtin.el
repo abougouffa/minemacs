@@ -938,7 +938,7 @@ current line.")
    (satch-defun +ediff--restore-window-config-h ()
      (when (window-configuration-p +ediff--saved-window-config)
        (set-window-configuration +ediff--saved-window-config)))
-   101))
+   99))
 
 (use-package smerge-mode
   :commands +smerge-hydra/body
