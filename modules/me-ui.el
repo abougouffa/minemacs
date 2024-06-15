@@ -59,11 +59,6 @@
   :straight t
   :bind ([f10] . lacarte-execute-menu-command))
 
-(use-package svg-lib
-  :straight t
-  :custom
-  (svg-lib-icons-dir (concat minemacs-cache-dir "svg-lib/icons/")))
-
 (use-package mixed-pitch
   :straight t
   :custom
