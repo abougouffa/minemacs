@@ -14,7 +14,9 @@
 
 (use-package dtrt-indent
   :straight t
-  :hook (minemacs-first-file . dtrt-indent-global-mode))
+  :hook (minemacs-first-file . dtrt-indent-global-mode)
+  :custom
+  (dtrt-indent-verbosity (if minemacs-verbose-p 3 0)))
 
 (use-package yasnippet
   :straight t
