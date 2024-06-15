@@ -8,6 +8,10 @@
 
 ;;; Code:
 
+(use-package ws-butler
+  :straight (:host github :repo "hlissner/ws-butler")
+  :hook (minemacs-first-file . ws-butler-global-mode))
+
 (use-package yasnippet
   :straight t
   :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
