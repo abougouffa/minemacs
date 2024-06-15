@@ -4,6 +4,7 @@ eln-cache/
 user-config/
 .directory
 test/
+.yas-compiled-snippets.el
 
 # Ignore files in "local/" except the lockfile "local/straight/versions/default.el"
 local/*
