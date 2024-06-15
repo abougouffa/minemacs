@@ -43,16 +43,19 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p))
 
-;; Extra utilities
-(use-package once
-  :straight (:host github :repo "emacs-magus/once"))
-
-(use-package satch
-  :straight (:host github :repo "emacs-magus/satch.el"))
-
 ;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
+
+;; Extra utilities
+;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
+(use-package once
+  :straight (:host github :repo "emacs-magus/once")
+  :pin-ref "a6f950c29c846a50018bc63695f24f611c1a58be")
+
+(use-package satch
+  :straight (:host github :repo "emacs-magus/satch.el")
+  :pin-ref "77993b711cccf16702fdc8d21d8f8ba10d7bd0fb")
 
 
 (provide 'me-bootstrap)
