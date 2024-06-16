@@ -98,6 +98,10 @@
 (use-package golden-ratio
   :straight t)
 
+(use-package casual-isearch
+  :straight (:host github :repo "kickingvegas/casual-isearch")
+  :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
+
 
 (provide 'me-ui)
 
