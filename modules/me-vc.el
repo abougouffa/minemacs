@@ -15,7 +15,10 @@
   (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
   ;; Show in new window
-  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1))
+  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+  :config
+  ;; Automatically refresh Magit after save
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status))
 
 (use-package magit-todos
   :straight t)
