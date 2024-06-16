@@ -8,11 +8,11 @@
 
 ;;; Code:
 
-(defconst +maxima-path-p "/usr/share/emacs/site-lisp/maxima/")
-(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path-p)))
+(defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
+(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
 
 (use-package maxima
-  :load-path +maxima-path-p
+  :load-path +maxima-path
   :when +maxima-available-p
   :mode ("\\.ma[cx]\\'" . maxima-mode)
   :interpreter ("maxima" . maxima-mode)
@@ -21,7 +21,7 @@
   (maxima-display-maxima-buffer nil))
 
 (use-package imaxima
-  :load-path +maxima-path-p
+  :load-path +maxima-path
   :when +maxima-available-p
   :commands imaxima imath-mode
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
