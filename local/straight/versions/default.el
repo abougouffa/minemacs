@@ -130,7 +130,7 @@
  ("f.el" . "1e7020dc0d4c52d3da9bd610d431cab13aa02d8c")
  ("fb-mode" . "2e8a3b2b990cf6a394f5b9c73d27469e13ebcf93")
  ("flymake" . "1ed606cffbae734457e81928212bfddcc8945106")
- ("flymake-collection" . "5d46b52aaac88b53928e8db82f1a2b6dccf25f61")
+ ("flymake-collection" . "4b9cdf485ff26e4cdae80ff0cf5836ca5e214fcd")
  ("flymake-cppcheck" . "a8c87dc99be3e722deed9b779fe0806c5d2456c4")
  ("flymake-guile" . "eb5e2c0f97639a200d6b709601834b304118b4df")
  ("flymake-plantuml" . "9afc6b78e914b31581d6364d81228e8c8b5f4fb8")
