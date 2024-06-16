@@ -104,6 +104,26 @@
 (use-package golden-ratio
   :straight t)
 
+(use-package casual-isearch
+  :straight (:host github :repo "kickingvegas/casual-isearch")
+  :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
+
+(use-package casual-dired
+  :straight (:host github :repo "kickingvegas/casual-dired")
+  :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu)))
+
+(use-package casual-info
+  :straight (:host github :repo "kickingvegas/casual-info")
+  :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu)))
+
+(use-package casual-calc
+  :straight (:host github :repo "kickingvegas/casual-calc")
+  :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu)))
+
+(use-package casual-avy
+  :straight (:host github :repo "kickingvegas/casual-avy")
+  :bind ("M-g a" . casual-avy-tmenu))
+
 
 (provide 'me-ui)
 
