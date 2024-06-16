@@ -137,15 +137,6 @@
   (unless (or (not (+package-disabled-p 'lsp-mode 'obsolete/me-lsp)) (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
-(use-package eldoc-box
-  :straight t
-  :hook (prog-mode . +eldoc-box-hover-at-point-mode-maybe)
-  :hook (eglot-managed-mode . +eldoc-box-hover-at-point-mode-maybe)
-  :init
-  (defun +eldoc-box-hover-at-point-mode-maybe (&optional arg)
-    (when (display-graphic-p)
-      (eldoc-box-hover-at-point-mode arg))))
-
 (use-package reformatter
   :straight t)
 

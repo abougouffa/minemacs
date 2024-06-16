@@ -76,7 +76,6 @@
  ("el-get" . "f220df34333fdb363b84b28f4ed4a5575341bf45")
  ("el-patch" . "92803e7ea6e07cd56667ed7ea0dfacfc1f37f6d9")
  ("eldoc" . "c9f5787b0d2295ecca61067eedbc45039e46da5d")
- ("eldoc-box" . "9658ba7d4616e97f2feeda3abf4aab3e96c91f28")
  ("elfeed" . "5c05a1eab37bc113ecb158a4d57fe05352fa2c6a")
  ("elisa" . "c03baded1e6b1bb6b37f8df83a0d1af4cdbaf860")
  ("elisp-demos" . "1a108d1c5011f9ced58be2ca98bea1fbd4130a2f")
