@@ -39,9 +39,6 @@
   :straight t
   :after magit
   :demand
-  :preface
-  ;; Keybindings will be overriten by `evil-collection'
-  (setq forge-add-default-bindings nil)
   :custom
   (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
 
