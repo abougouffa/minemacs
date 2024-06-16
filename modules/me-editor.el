@@ -67,7 +67,15 @@
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode")
   :unless (+package-disabled-p 'meow 'me-meow)
-  :hook (minemacs-lazy . selection-highlight-mode))
+  :hook (minemacs-lazy . selection-highlight-mode)
+  :init
+  (add-hook
+   'enable-theme-functions
+   (defun +selection-highlight-mode--set-color-h (&rest _)
+     (with-eval-after-load 'selection-highlight-mode
+       (require 'isearch)
+       (copy-face 'isearch 'selection-highlight-mode-match-face)
+       (set-face-bold 'selection-highlight-mode-match-face nil)))))
 
 (use-package zones
   :straight t)
