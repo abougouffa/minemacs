@@ -9,37 +9,11 @@
 ;;; Code:
 
 (use-package flymake-collection
-  :straight t
+  :straight (:host github :repo "abougouffa/flymake-collection" :branch "additional-checkers")
   :init
   (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
   :custom
-  (flymake-collection-hook-inherit-config t)
-  :config
-  ;; Activate more checkers for Python
-  (setf (alist-get '(python-mode python-ts-mode) flymake-collection-hook-config nil nil 'equal)
-        (append (when (executable-find "pycodestyle") '(flymake-collection-pycodestyle))
-                (when (executable-find "mypy") '(flymake-collection-mypy))
-                (when (executable-find "pylint") '(flymake-collection-pylint))
-                (when (executable-find "ruff") '(flymake-collection-ruff))
-                '((flymake-collection-flake8 :disabled t)))))
-
-(use-package flymake-collection-define
-  :straight flymake-collection
-  :autoload flymake-collection-define flymake-collection-define-rx)
-
-(use-package me-flymake-extras
-  :after flymake-collection
-  :init
-  (let ((checkers (assoc '(python-mode python-ts-mode) flymake-collection-hook-config 'equal)))
-    (setcdr checkers (append (cdr checkers)
-                             (when (executable-find "pyre") '(flymake-collection-pyre))
-                             (when (executable-find "bandit") '(flymake-collection-bandit))
-                             (when (executable-find "codespell") '(flymake-collection-codespell)))))
-
-  (let ((checkers (assoc '(c++-mode c++-ts-mode) flymake-collection-hook-config 'equal)))
-    (setcdr checkers (append (cdr checkers)
-                             (when (executable-find "clang-tidy") '(flymake-collection-clang-tidy))
-                             (when (executable-find "codespell") '(flymake-collection-codespell))))))
+  (flymake-collection-hook-inherit-config t))
 
 (use-package flymake-cppcheck
   :straight (:host github :repo "shaohme/flymake-cppcheck")

@@ -42,16 +42,6 @@ restores it after that.
 (register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
 
 
-;;; Generated autoloads from ../modules/extras/me-flymake-extras.el
-
- (autoload 'flymake-collection-nasm "me-flymake-extras")
- (autoload 'flymake-collection-pyre "me-flymake-extras")
- (autoload 'flymake-collection-codespell "me-flymake-extras")
- (autoload 'flymake-collection-bandit "me-flymake-extras")
- (autoload 'flymake-collection-clang-tidy "me-flymake-extras")
-(register-definition-prefixes "../modules/extras/me-flymake-extras" '("flymake-c"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-gdb.el
 
 (autoload '+gdb-set-layout "../modules/extras/me-gdb" "\
