@@ -192,18 +192,6 @@ The MPV command.
 
 Path to save user rules.
 
-#### `flymake-collection-clang-tidy-build-path`
-
-Clang build directory.
-
-#### `flymake-collection-clang-tidy-extra-options`
-
-Extra options to pass to Clang-tidy.
-
-#### `flymake-collection-nasm-format`
-
-The NASM output format.
-
 #### `+mu4e-account-aliases`
 
 Per-account alias list.
@@ -415,20 +403,6 @@ Run BODY after Emacs gets loaded, a.k.a. after `minemacs-loaded`.
 
 Run BODY as a lazy block (see `minemacs-lazy`).
 
-#### `(+after-load! FEATURES &rest BODY)` (macro)
-
-Execute BODY after FEATURES have been loaded.
-
-#### `(+hook-once! HOOK &rest BODY)` (macro)
-
-Hook BODY in HOOK, and make it run only once.
-
-#### `(+advice-once! FNS HOW &rest BODY)` (macro)
-
-Run BODY as a HOW advice for FNS, and make it run only once.
-FNS can be one function or a list of functions, quoted or not.
-Inside BODY, you will have access to the original args as `orig-args`.
-
 #### `(+make-first-file-hook! FILETYPE EXT-REGEXP)` (macro)
 
 Make a hook which run on the first FILETYPE file of a particular extensions.
@@ -445,29 +419,6 @@ Convert a list of modes into a list of hook symbols.
 If a mode is quoted, it is left as is. If the entire HOOKS list is quoted, the
 list is returned as-is.
   This function does not change global state, including the match data.
-
-#### `(+add-hook! HOOKS [:append :local [:depth N]] FUNCTIONS-OR-FORMS...)` (macro)
-
-A convenience macro for adding N functions to M hooks.
-This macro accepts, in order:
-  1. The mode(s) or hook(s) to add to. This is either an unquoted mode, an
-     unquoted list of modes, a quoted hook variable or a quoted list of hook
-     variables.
-  2. Optional properties :local, :append, and/or :depth [N], which will make the
-     hook buffer-local or append to the list of hooks (respectively),
-  3. The function(s) to be added: this can be a quoted function, a quoted list
-     thereof, a list of `defun` or `cl-defun` forms, or arbitrary forms (will
-     implicitly be wrapped in a lambda).
-If the hook function should receive an argument (like in
-`enable-theme-functions`), the `args` variable can be expanded in the forms
-  (+add-hook! 'enable-theme-functions
-    (message "Enabled theme: %s" (car args)))
-
-#### `(+remove-hook! HOOKS [:append :local] FUNCTIONS)` (macro)
-
-A convenience macro for removing N functions from M hooks.
-Takes the same arguments as `add-hook!`.
-If N = 1 and M = 1, there's no benefit to using this macro over `remove-hook`.
 
 #### `(+setq-hook! HOOKS &rest [SYM VAL]...)` (macro)
 
@@ -594,61 +545,6 @@ Execute BODY with proxies enabled from `minemacs-proxies`.
 
 Execute BODY with proxies disabled.
 
-#### `(+map! &rest ARGS)` (macro)
-
-A wrapper around `+minemacs--internal-map!`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+map-local! &rest ARGS)` (macro)
-
-A wrapper around `+minemacs--internal-map-local!`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+nmap! &rest ARGS)` (macro)
-
-A wrapper around `general-nmap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+vmap! &rest ARGS)` (macro)
-
-A wrapper around `general-vmap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+mmap! &rest ARGS)` (macro)
-
-A wrapper around `general-mmap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+imap! &rest ARGS)` (macro)
-
-A wrapper around `general-imap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+emap! &rest ARGS)` (macro)
-
-A wrapper around `general-emap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+omap! &rest ARGS)` (macro)
-
-A wrapper around `general-omap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+rmap! &rest ARGS)` (macro)
-
-A wrapper around `general-rmap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+iemap! &rest ARGS)` (macro)
-
-A wrapper around `general-iemap`.
-It is deferred until `general` gets loaded and configured.
-
-#### `(+nvmap! &rest ARGS)` (macro)
-
-A wrapper around `general-nvmap`.
-It is deferred until `general` gets loaded and configured.
-
 #### `(+serialize-sym SYM &optional DIR FILENAME-FORMAT)`
 
 Serialize SYM to DIR.
@@ -759,15 +655,6 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 #### `(eglot-ltex-disable-handling-client-commands)`
 
 Disable Eglot hack to handle code actions of LTeX-LS.
-
-#### `(flymake-clang-tidy-find-project-root CHECKER)`
-
-Find the project root for CHECKER.
-This uses `project`, `projectile`, `vc` or the ".clang-tidy" file
-
-#### `(flymake-collection-clang-tidy-get-config)`
-
-Find and read .clang-tidy.
 
 #### `(+gdb-set-layout)`
 
