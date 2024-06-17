@@ -68,6 +68,10 @@
   :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
   :commands tributary-mode tributary-push tributary-pull-id tributary-pull-url)
 
+(use-package webpaste
+  :straight t
+  :custom
+  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
 
 (provide 'me-services)
 
