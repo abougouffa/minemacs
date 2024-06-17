@@ -4,7 +4,9 @@
 > Please note that MinEmacs is under active rewrite. The new generation of this
 > configuration (branch `minemacs-ng`) will not be compatible with this one as
 > it includes multiple breaking changes compared to the `main` branch. Including
-> but not limited to, the removal of Evil and General, among other things.
+> but not limited to, dropping the support of Evil and General **(still, you can
+> enable the `obsolete/me-evil` module to have the same experience)**, among
+> other things.
 >
 > Personally, I'm moving to a more mainstream Emacs experience as I started to
 > hit the limits of `evil-mode`. I think that using Emacs exclusively via Evil
@@ -13,12 +15,16 @@
 >
 > I will cherry pick some relevant commits from `minemacs-ng`, but I won't be
 > able to add new features to this branch.
+>
+> **At some point, the new `minemacs-ng` will become the `main` branch, so if
+> you want to stick with this old generation of the framework, we highly
+> recommend you to switch to the `legacy` branch**.
 
 [![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 [![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 [![CI-Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml)
 
-**MinEmacs** is a lightweight Emacs configuration framework.
+**MinEmacs** is a complete and fast Emacs configuration framework.
 
 ![MinEmacs banner](/docs/images/minemacs-cover.svg)
 
