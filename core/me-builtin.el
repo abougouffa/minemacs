@@ -642,6 +642,8 @@ or file path may exist now."
 
 (use-package nxml-mode
   :mode "\\.xmpi\\'"
+  ;; Auto rename matching tags
+  :hook (nxml-mode . sgml-electric-tag-pair-mode)
   :config
   (+eglot-register '(nxml-mode xml-mode) "lemminx"))
 
