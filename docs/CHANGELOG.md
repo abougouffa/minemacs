@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v7.7.0](https://github.com/abougouffa/minemacs/compare/12d02f3702341c12064b9dce72bb3ec1124113aa..v7.7.0) - 2024-06-17
+#### Documentation
+- **(readme)** more clarifications about the `minemacs-ng` - ([12d02f3](https://github.com/abougouffa/minemacs/commit/12d02f3702341c12064b9dce72bb3ec1124113aa)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- make `me-nano` obsolete - ([6ab900d](https://github.com/abougouffa/minemacs/commit/6ab900dd7b1d3e01fcab7240d33bc60ca09130da)) - [@abougouffa](https://github.com/abougouffa)
+- remove `show-marks` and `fm` - ([5c35b0b](https://github.com/abougouffa/minemacs/commit/5c35b0ba052566e8c8ea947de8521501cf6e19a0)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(cocogitto)** add `minemacs-ng` to branch whitelist - ([0dcff5e](https://github.com/abougouffa/minemacs/commit/0dcff5e56bd9c9d186cdccc077830d0e8054afbf)) - [@abougouffa](https://github.com/abougouffa)
+- **(git)** ignore Yasnippet generated files - ([64b4039](https://github.com/abougouffa/minemacs/commit/64b4039f4e06fa05df68e371e821a2aa912d1a14)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- rename a variable - ([e6b6435](https://github.com/abougouffa/minemacs/commit/e6b6435395966850476c7ad0c550c8ea33ac8390)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- correct depth values for hooks - ([cfa3ef4](https://github.com/abougouffa/minemacs/commit/cfa3ef4d58e58e543e54eecd4b77fde643a02438)) - [@abougouffa](https://github.com/abougouffa)
+- make use of `once-x-call` - ([835fb46](https://github.com/abougouffa/minemacs/commit/835fb461498635cf8c031ee72b4f2a87283ef225)) - [@abougouffa](https://github.com/abougouffa)
+- remove some unused packages - ([50e594a](https://github.com/abougouffa/minemacs/commit/50e594a882a5fb12f9deb3c6f12449f3e085233d)) - [@abougouffa](https://github.com/abougouffa)
+- move `editorconfig` from `me-prog` to `me-editor` - ([5a00a01](https://github.com/abougouffa/minemacs/commit/5a00a010331d16eb5c9280cc07ac30988da44c4c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bootstrap)** pin `once` and `satch` for better stability - ([96d0593](https://github.com/abougouffa/minemacs/commit/96d059322e00d14e47e890f01bd4423e22e2720a)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** ask before quitting Emacs client session - ([2169e3f](https://github.com/abougouffa/minemacs/commit/2169e3f51432ab7e51e1b8535858ba338512fc25)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** add `+consult-tab` - ([ccefe0f](https://github.com/abougouffa/minemacs/commit/ccefe0f49f68fcb0545d9ff09c3a27c7ec64ac59)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** don't show documentation unless asked, cleanup old stuff - ([5f12f52](https://github.com/abougouffa/minemacs/commit/5f12f526ec08bf027d62a281d40946f0bb4f72f4)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-collection)** switch to my fork with additional checkers - ([f2e0db5](https://github.com/abougouffa/minemacs/commit/f2e0db5fb5baa70cb765e8c2e0eab990c2cd4304)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** automatically refresh Magit after save - ([67500c1](https://github.com/abougouffa/minemacs/commit/67500c14bde11c6e6f1c2c7368e67178e3c587b3)) - [@abougouffa](https://github.com/abougouffa)
+- **(nxml)** auto rename matching tags - ([f6f43eb](https://github.com/abougouffa/minemacs/commit/f6f43ebff9d79095b0a98bb68a40bfd175496500)) - [@abougouffa](https://github.com/abougouffa)
+- **(rtags)** better defaults - ([8cad0a0](https://github.com/abougouffa/minemacs/commit/8cad0a0969ad36c24d07c1b94a9b46635e7d5bcc)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight-mode)** use the `isearch` face instead of `region` - ([f9df2ce](https://github.com/abougouffa/minemacs/commit/f9df2ce8f1b2cf7772d7ff02c6ad15075298a538)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** add a snippet for Elisp packages - ([4d3efa8](https://github.com/abougouffa/minemacs/commit/4d3efa81825f83943521d13d56dd7a21b861e63c)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** replace `cc-isearch-menu` by `casual-isearch` - ([fd529d4](https://github.com/abougouffa/minemacs/commit/fd529d449bb9befca9f2f652530b57642e577621)) - [@abougouffa](https://github.com/abougouffa)
+- bump `flymake-collection` to use the right fork - ([a441809](https://github.com/abougouffa/minemacs/commit/a44180918c6b8468c42bfca9b8dcda17947aa8e4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v7.6.0](https://github.com/abougouffa/minemacs/compare/abed2148ea1816ed98987d5e400885a878a5d322..v7.6.0) - 2024-06-14
 #### Documentation
 - **(readme)** add a note about the current status - ([bc24555](https://github.com/abougouffa/minemacs/commit/bc245558df357bd528d854fb07fb0d8d342b2da7)) - [@abougouffa](https://github.com/abougouffa)
