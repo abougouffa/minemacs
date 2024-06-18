@@ -4,8 +4,8 @@ branch_whitelist = ["main", "minemacs-ng"]
 
 pre_bump_hooks = []
 post_bump_hooks = [
-  "git push",
-  "git push --tags"
+  # "git push",
+  # "git push --tags"
 ]
 
 pre_package_bump_hooks = []
