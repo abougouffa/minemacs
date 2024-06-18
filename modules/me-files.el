@@ -19,24 +19,19 @@
   (dirvish-use-header-line t) ; 'global make header line span all panes
   (dirvish-use-mode-line t)
   (dirvish-subtree-state-style 'nerd)
-  :bind (("C-x d" . +dirvish-at)) ; Instead of `dired'
   :init
   ;; Load immediately if Emacs is launched in an "open with" fashion
   (when minemacs-started-with-extra-args-p (require 'dirvish))
-  (defun +dirvish-at ()
-    "Like `dirvish', but asks for the directory."
-    (interactive)
-    (let ((current-prefix-arg 1))
-      (call-interactively #'dirvish)))
+  ;; Load before the first call to `dired'
+  (satch-add-advice 'dired :before (lambda (&rest _) (require 'dirvish)) nil :transient t)
   :config
   ;; Cscope generate *.po files which that makes dirvish preview freeze
   (push "po" dirvish-preview-disabled-exts)
-  ;; Use `nerd-icons' for path separators (fromas https://github.com/rainstormstudio/nerd-icons.el)
+  ;; Use `nerd-icons' for path separators (from https://github.com/rainstormstudio/nerd-icons.el)
   (with-eval-after-load 'nerd-icons
-    (setq dirvish-path-separators (list
-                                   (format "  %s " (nerd-icons-codicon "nf-cod-home"))
-                                   (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
-                                   (format " %s " (nerd-icons-faicon "nf-fa-angle_right")))))
+    (setq dirvish-path-separators (list (format "  %s " (nerd-icons-codicon "nf-cod-home"))
+                                        (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
+                                        (format " %s " (nerd-icons-faicon "nf-fa-angle_right")))))
   (dirvish-override-dired-mode 1))
 
 (use-package neotree
