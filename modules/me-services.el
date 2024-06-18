@@ -8,9 +8,6 @@
 
 ;;; Code:
 
-(use-package org-jira
-  :straight (:host github :repo "ahungry/org-jira"))
-
 (use-package jiralib
   :straight org-jira
   :commands +jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login
@@ -63,6 +60,9 @@
                   (user (plist-get auth :user))
                   (pass (funcall (plist-get auth :secret))))
         (jiralib-login user pass)))))
+
+(use-package org-jira
+  :straight (:host github :repo "ahungry/org-jira"))
 
 (use-package tributary
   :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
