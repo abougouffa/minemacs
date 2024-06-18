@@ -21,7 +21,9 @@
 ## Why?
 
 [Long story](/docs/STORY.md) short, I'm relaying on Emacs for my everyday's
-work, so I needed a fast and stable configuration that fits my needs.
+work, so I needed a fast and stable configuration that fits my needs. MinEmacs
+is changing constantly, please refer to the [change log](/docs/CHANGELOG.md)
+for more information.
 
 > [!NOTE]
 > Please note that I have no intent or availability to create an alternative to
