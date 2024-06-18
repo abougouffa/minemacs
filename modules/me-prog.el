@@ -74,7 +74,22 @@
                                     (treesit-parser-create lang))))
               (add-hook hook-name fn-name)))))))
 
-  (+treesit-enable-available-grammars-on-normal-modes))
+  (+treesit-enable-available-grammars-on-normal-modes)
+
+  (defun +treesit-create-parser-in-buffer (buff-name)
+    "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
+    (interactive (list (or (and prefix-arg (read-buffer "Create treesit parser in buffer: ")) (buffer-name))))
+    (with-current-buffer (get-buffer buff-name)
+      (if-let* ((lang-recipe (cl-find-if
+                              (lambda (recipe)
+                                (eq major-mode (or (treesit-auto-recipe-remap recipe)
+                                                   (treesit-auto-recipe-ts-mode recipe))))
+                              treesit-auto-recipe-list))
+                (lang (treesit-auto-recipe-lang lang-recipe))
+                (lang (and (treesit-available-p) (treesit-language-available-p lang) lang)))
+          (treesit-parser-create lang)
+        (when (called-interactively-p)
+          (user-error "No installed tree-sitter grammar for mode `%s'" major-mode))))))
 
 (when (+emacs-features-p 'tree-sitter)
   (push 'treesit straight-built-in-pseudo-packages)) ; ts-movement depends on it
