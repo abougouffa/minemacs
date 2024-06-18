@@ -1,8 +1,8 @@
 # MinEmacs (NG)
 
-[![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
-[![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
-[![CI-Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml)
+[![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg?branch=minemacs-ng)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
+[![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg?branch=minemacs-ng)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
+[![CI-Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml/badge.svg?branch=minemacs-ng)](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml)
 
 **MinEmacs** is a complete and fast Emacs configuration framework.
 
