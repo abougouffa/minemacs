@@ -49,9 +49,10 @@
 
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
-  :after minemacs-loaded
+  :demand
   :config
-  (add-to-list 'so-long-mode-preserved-variables 'vlf-mode))
+  (with-eval-after-load 'so-long
+    (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
 (use-package sudo-edit
   :straight t
