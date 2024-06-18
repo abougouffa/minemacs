@@ -55,9 +55,7 @@
   :hook (vc-dir-mode . diff-hl-dir-mode)
   :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :hook (magit-pre-refresh . diff-hl-magit-pre-refresh)
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :custom
-  (diff-hl-draw-borders nil))
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 
 (use-package git-timemachine
   :straight t
