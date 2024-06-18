@@ -243,7 +243,9 @@
 
 (use-package nerd-icons-completion
   :straight t
-  :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
+  :hook (marginalia-mode . nerd-icons-completion-marginalia-setup)
+  :config
+  (nerd-icons-completion-mode 1))
 
 (use-package orderless
   :straight t
