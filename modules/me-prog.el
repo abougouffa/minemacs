@@ -58,21 +58,22 @@
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
 
-  ;; Make `treesit' parsers even in non-treesit modes, useful for packages like `expreg' and `ts-movement'
+  ;; Create `treesit' parsers when they are available even in non-treesit modes.
+  ;; This is useful for packages like `expreg' and `ts-movement'.
+  ;; BUG: Adding the Elisp grammar and creating it seems to interfere with `parinfer-rust-mode'
   (defun +treesit-enable-available-grammars-on-normal-modes ()
+    "Enable `treesit' parses in non-treesit modes."
     (dolist (recipe treesit-auto-recipe-list)
       (let ((lang (treesit-auto-recipe-lang recipe)))
-        (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ;; When the `xxx-ts-mode' is not available
-          (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe)))
+        (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ; When the `xxx-ts-mode' is not available
+          (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe))) ; Get the basic mode name (non-ts)
             (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
                   (hook-name (intern (format "%s-hook" remap-mode))))
-              (defalias fn-name
-                (lambda ()
-                  (when (and (treesit-available-p) (treesit-language-available-p lang))
-                    (treesit-parser-create lang))))
+              (defalias fn-name (lambda () ; Create the parser if the grammar fot the language is available
+                                  (when (and (treesit-available-p) (treesit-language-available-p lang))
+                                    (treesit-parser-create lang))))
               (add-hook hook-name fn-name)))))))
 
-  ;; Enable `treesit' parses in non-treesit modes
   (+treesit-enable-available-grammars-on-normal-modes))
 
 (when (+emacs-features-p 'tree-sitter)
