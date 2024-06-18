@@ -53,6 +53,9 @@
   (unless (+package-disabled-p 'ein)
     (setq auto-mode-alist (delete (rassoc 'code-cells-convert-ipynb auto-mode-alist) auto-mode-alist))))
 
+(use-package jupyter
+  :straight t)
+
 (use-package julia-mode
   :straight t)
 
