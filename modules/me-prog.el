@@ -105,6 +105,10 @@
       ("m" "node-mark" tsm/node-mark :transient t)]]
     [("Q" "Quit" ignore :transient t)]))
 
+(use-package treesit-fold
+  :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
+  :when (+emacs-features-p 'tree-sitter))
+
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
