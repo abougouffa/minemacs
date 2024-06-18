@@ -63,7 +63,6 @@
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
-  (corfu-auto-delay 0.2)
   :init
   (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
@@ -80,9 +79,8 @@
                 corfu-auto nil)
     (corfu-mode 1))
 
-  ;; Ensure `savehist-mode' is on add `corfu-history' to the saved variables
-  (unless (bound-and-true-p savehist-mode)
-    (savehist-mode 1))
+  ;; Ensure `savehist-mode' is on and add `corfu-history' to the saved variables
+  (unless (bound-and-true-p savehist-mode) (savehist-mode 1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (use-package corfu-popupinfo
@@ -96,7 +94,7 @@
   (corfu-popupinfo-delay nil)
   (corfu-popupinfo-max-height 15)
   :config
-  ;; Otherwise, the popupinfo will stay open!
+  ;; Otherwise, the popupinfo will stay open on ESC or `C-g'!
   (add-hook
    'completion-in-region-mode-hook
    (satch-defun +corfu--hide-popupinfo-h ()
