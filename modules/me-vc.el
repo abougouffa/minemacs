@@ -16,6 +16,13 @@
   (magit-save-repository-buffers nil)
   ;; Show in new window
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+  :init
+  ;; Replace the `project-vc-dir' by `magit-project-status' in project prefix and switch commands
+  (with-eval-after-load 'project
+    (keymap-set project-prefix-map "v" 'magit-project-status)
+    (when-let ((vc (assoc 'project-vc-dir project-switch-commands)))
+      (setcar vc 'magit-project-status)
+      (setcdr vc '("Magit project status"))))
   :config
   ;; Automatically refresh Magit after save
   (add-hook 'after-save-hook 'magit-after-save-refresh-status))
