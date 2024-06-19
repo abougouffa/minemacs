@@ -20,9 +20,12 @@
   (if minemacs-not-lazy-p
       (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
-        (run-hooks 'minemacs-lazy-hook))
+        (run-hooks 'minemacs-lazy-hook)
+        (provide 'minemacs-lazy))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
-    (cl-callf append minemacs--lazy-high-priority-forms (mapcar #'ensure-list minemacs-lazy-hook))))
+    (cl-callf append minemacs--lazy-high-priority-forms
+      (mapcar #'ensure-list minemacs-lazy-hook)
+      '((provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
 
 (defvar minemacs--lazy-high-priority-timer
   (run-with-timer
@@ -43,12 +46,5 @@
            (eval (pop minemacs--lazy-low-priority-forms)))
        (progn
          (cancel-timer minemacs--lazy-low-priority-timer))))))
-
-(provide 'minemacs-lazy)
-
-(+log! "Providing `minemacs-lazy'.")
-
-
-(provide 'minemacs-lazy)
 
 ;;; minemacs-lazy.el ends here
