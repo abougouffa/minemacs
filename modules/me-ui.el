@@ -39,6 +39,19 @@
   (doom-modeline-bar ((t (:inherit mode-line :background unspecified))))
   (doom-modeline-bar-inactive ((t (:inherit mode-line :background unspecified)))))
 
+(use-package keycast
+  :straight t
+  :commands keycast-doom-modeline-mode
+  :config
+  (define-minor-mode keycast-doom-modeline-mode
+    "Show keycast in `doom-modeline'."
+    :global t
+    (if keycast-doom-modeline-mode
+        (progn (add-hook 'pre-command-hook 'keycast--update t)
+               (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
+      (remove-hook 'pre-command-hook 'keycast--update)
+      (cl-callf2 delete '("" keycast-mode-line " ") global-mode-string))))
+
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
   :when (>= emacs-major-version 29) ; TEMP+BUG: There is an issue with Emacs 28
