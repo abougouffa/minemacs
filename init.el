@@ -182,20 +182,21 @@
 (defun +minemacs--loaded-h ()
   "This is MinEmacs' synchronization point.
 
-To achieve fast Emacs startup, we tries to defer loading most of the packages
-until this hook is executed. This is managed by the `minemacs-loaded' and
-`minemacs-lazy' features.
+To achieve fast Emacs startup, we try to defer loading most of
+the packages until this hook is executed. This is managed by the
+`minemacs-loaded' and `minemacs-lazy' features.
 
-After loading Emacs, the `emacs-startup-hook' gets executed, we use this hook to
-profile the startup time, load the theme, and make a persistent scratch buffer.
-Lastly we require the `minemacs-loaded' synchronization module, which runs
-the `minemacs-after-startup-hook' hooks and provide `minemacs-loaded' so the
-packages loaded with `:after minemacs-loaded' can be loaded.
+After loading Emacs, the `emacs-startup-hook' gets executed, we
+use this hook to profile the startup time, and load the theme.
+Lastly we require the `minemacs-loaded' synchronization module,
+which runs the `minemacs-after-startup-hook' hooks and provide
+`minemacs-loaded' so the packages loaded with `:after
+minemacs-loaded' can be loaded.
 
-The `minemacs-loaded' will require `minemacs-lazy' when Emacs goes idle, this
-provides `minemacs-lazy' so the packages loaded with `:after minemacs-lazy' can
-be loaded then it incrementally run the hooks in `minemacs-lazy-hook' when Emacs
-goes idle."
+The `minemacs-loaded' will require `minemacs-lazy', which
+incrementally run the hooks in `minemacs-lazy-hook' after
+startup, and at the end, provide the `minemacs-lazy' feature so
+the packages loaded with `:after minemacs-lazy' can be loaded."
   (+info! "Loaded Emacs%s in %s, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "") (emacs-init-time) gc-elapsed gcs-done)
   (unless (featurep 'me-org-export-async-init) (+load-theme))
   (require 'minemacs-loaded))
