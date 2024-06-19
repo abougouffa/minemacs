@@ -2,6 +2,43 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.0.0-alpha.5](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.3..v8.0.0-alpha.5) - 2024-06-19
+#### Bug Fixes
+- **(vlf)** correctly load `vlf-setup` - ([1915a43](https://github.com/abougouffa/minemacs/commit/1915a43e84d5e85e0d7c16a4d163dad182f5f1fe)) - [@abougouffa](https://github.com/abougouffa)
+- move a `dired` customization to its relevant place - ([eebebdd](https://github.com/abougouffa/minemacs/commit/eebebddf80aaae561736631acd4e0525a995a4cd)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(external-tools)** update the list - ([5ad53cf](https://github.com/abougouffa/minemacs/commit/5ad53cf607560617cc66db282aad97279ee0aea7)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** update the documentation of MinEmacs' synchronization hook - ([985a271](https://github.com/abougouffa/minemacs/commit/985a271bec3186087494bafc2acdd41bcf9634ef)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** update CI badges links to include the right branch - ([f68d14b](https://github.com/abougouffa/minemacs/commit/f68d14b538acbc713ac5b1a69b660076a21c40f3)) - [@abougouffa](https://github.com/abougouffa)
+- **(readme)** mention the change log - ([f15bba7](https://github.com/abougouffa/minemacs/commit/f15bba71fbb83c69e08a87c5dce7aa0e52d952ec)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(embedded)** add `pcap-mode` to display network/sensor capture files - ([cbc99f9](https://github.com/abougouffa/minemacs/commit/cbc99f91ce062096417aaf074dbfeea96f1719dc)) - [@abougouffa](https://github.com/abougouffa)
+- **(embedded)** more assembly flavors (fasm, gas, masm and nasm) - ([87de0d3](https://github.com/abougouffa/minemacs/commit/87de0d331c225a6ede4480420657fb9462c09cbb)) - [@abougouffa](https://github.com/abougouffa)
+- **(math)** initial support for `jupyter` - ([7cbacc2](https://github.com/abougouffa/minemacs/commit/7cbacc20b1244105b99b8fc7f0d77ead92b02700)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** initial support for `treesit-fold` - ([76d7d9c](https://github.com/abougouffa/minemacs/commit/76d7d9c2403c741087fbc2905782ab43675fa95e)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** add `avy-zap` - ([cde8a6d](https://github.com/abougouffa/minemacs/commit/cde8a6de4d57eed2ac996c0d912d302e1f401c9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `keycast` with a hack to display it in `doom-modeline` - ([3e94d67](https://github.com/abougouffa/minemacs/commit/3e94d6730ae2edc15aa7b7ae3b026f1846d40df5)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(cocogitto)** don't auto-push after bumping the version - ([3740e19](https://github.com/abougouffa/minemacs/commit/3740e19cbc6b6c83e4b49cbfcdfa5bf7041644bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(version)** v8.0.0-alpha.4 - ([3cf06f2](https://github.com/abougouffa/minemacs/commit/3cf06f237d8a991e5112e13b75ad27064d106594)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(corfu)** minor cleanups - ([f1d0590](https://github.com/abougouffa/minemacs/commit/f1d05907db1af4ce9981b0f824430083c04de12d)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** better comments, little cleanup - ([94c9f9d](https://github.com/abougouffa/minemacs/commit/94c9f9da224356433f6e35735dfd8c5d9b2aefde)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(git-commit)** minor edit - ([59c82fd](https://github.com/abougouffa/minemacs/commit/59c82fd15856c16b935e0d9884e4ba89777f5311)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** load the `jiralib` dependency before `org-jira` - ([12357df](https://github.com/abougouffa/minemacs/commit/12357df41013d7680081599ff97d6b67423cabbe)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** customize `align` - ([b33fa1c](https://github.com/abougouffa/minemacs/commit/b33fa1cc9566671cbfb11aecb962986eb95424fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** stick to defaults - ([dfe6777](https://github.com/abougouffa/minemacs/commit/dfe6777b25873514c74ccb1d15aee4ec049ee447)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** ensure loading `dirvish` before `dired` gets called - ([1659326](https://github.com/abougouffa/minemacs/commit/1659326be2e5157d0cbac087e35e10a38ac52a21)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** replace project keybindings for `vc` by `magit` - ([2559ca6](https://github.com/abougouffa/minemacs/commit/2559ca62724fdf9b6d23061ec3104bae308a0ca1)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-completion)** enable globally - ([5528884](https://github.com/abougouffa/minemacs/commit/552888452815db42adc03c29e436f820f9428849)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** extra project root markers - ([2ed9498](https://github.com/abougouffa/minemacs/commit/2ed94989cd23ee7ae15dc2f22d53f618a42d6c67)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** add `+treesit-create-parser-in-buffer` - ([1d2f793](https://github.com/abougouffa/minemacs/commit/1d2f793f676c58b8da15d707f7410093f4c3cdec)) - [@abougouffa](https://github.com/abougouffa)
+- provide `minemacs-lazy` at the end of the lazy packages - ([9970096](https://github.com/abougouffa/minemacs/commit/997009680f7214629a601c5bd8d43ec1a40eef0b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.0.0-alpha.4](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.3..v8.0.0-alpha.4) - 2024-06-18
 #### Bug Fixes
 - **(vlf)** correctly load `vlf-setup` - ([1915a43](https://github.com/abougouffa/minemacs/commit/1915a43e84d5e85e0d7c16a4d163dad182f5f1fe)) - [@abougouffa](https://github.com/abougouffa)
