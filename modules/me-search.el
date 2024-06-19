@@ -11,10 +11,13 @@
 ;; TODO: https://karthinks.com/software/avy-can-do-anything
 (use-package avy
   :straight t
-  :bind (("C-\"" . avy-goto-char)
+  :bind (("M-j" . avy-goto-char-timer) ; Instead of `default-indent-new-line'
          ("C-é" . avy-goto-line) ; French AZERTY
-         ("M-g l" . avy-goto-line)
-         ("M-j" . avy-goto-char-timer))) ; Instead of `default-indent-new-line'
+         ("M-g l" . avy-goto-line)))
+
+(use-package avy-zap
+  :straight t
+  :bind ("M-z" . avy-zap-to-char-dwim))
 
 (use-package dogears
   :straight t
