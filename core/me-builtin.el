@@ -458,6 +458,21 @@ or file path may exist now."
   :custom
   (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
+(use-package align
+  :bind (("M-[" . +align-code)
+         ("C-c [" . align-regexp))
+  :config
+  ;; Add more C-like modes to the list
+  (cl-callf append align-c++-modes '(csharp-mode cuda-mode opencl-mode llvm-ts-mode))
+  (defun +align-code (beg end &optional arg)
+    "Like `align', but indents if called with prefix."
+    (interactive "rP")
+    (if arg
+        (let ((end-mark (copy-marker end)))
+          (indent-region beg end-mark nil)
+          (align beg end-mark))
+      (align beg end))))
+
 (use-package hideif
   :custom
   (hide-ifdef-shadow t)
