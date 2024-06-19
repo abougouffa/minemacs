@@ -327,7 +327,12 @@ or file path may exist now."
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-list-file (concat minemacs-local-dir "project-list.el"))
-  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
+  (project-vc-extra-root-markers
+   '(".projectile.el" ".project.el" ".project" ; Emacs
+     "requirements.txt" ; Python
+     "package.json" ; Node.js
+     "pom.xml" ; Apache Maven (Java/Kotlin)
+     "Cargo.toml")) ; Cargo (Rust)
   :bind (("C-x p a" . +project-add-project))
   :config
   (add-to-list 'project-switch-commands '(project-shell "Shell") t))
