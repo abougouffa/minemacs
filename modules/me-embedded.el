@@ -35,6 +35,37 @@
 (use-package riscv-mode
   :straight t)
 
+(use-package fasm-mode
+  :straight t)
+
+(use-package masm-mode
+  :straight t)
+
+(use-package nasm-mode
+  :straight t)
+
+(use-package gas-mode
+  :straight t)
+
+(defun +asm-ask-for-mode (mode)
+  "Ask the MODE to run."
+  (interactive
+   (list (intern (format "%s-mode"
+                         (let ((completion-extra-properties
+                                `(:annotation-function ,(lambda (m) (concat " \t" (cdr (assoc m minibuffer-completion-table)))))))
+                           (completing-read
+                            "Assembly flavor for this file: "
+                            '(("asm"  . "Default (builtin `asm-mode')")
+                              ("fasm" . "Flat Assembler")
+                              ("gas"  . "GNU Assembler")
+                              ("masm" . "Microsoft Macro Assembler")
+                              ("mips" . "MIPS Assembly")
+                              ("nasm" . "Netwide Assembler")
+                              ("riscv" . "RISC-V Assembly"))))))))
+  (if (fboundp mode)
+      (call-interactively mode)
+    (user-error "`%s' is not available" mode)))
+
 (use-package x86-lookup
   :straight t
   :custom
