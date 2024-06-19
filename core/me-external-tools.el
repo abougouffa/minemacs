@@ -218,6 +218,12 @@
     (:tool nasm
      :link "https://github.com/netwide-assembler/nasm"
      :desc "Netwide Assembler (NASM), an assembler for the x86 CPU")
+    (:tool fasm
+     :link "https://flatassembler.net"
+     :desc "Flat Assembler (FASM), supporting x86 and x86-64 instructions sets with several extensions")
+    (:tool tshark
+     :link "https://flatassembler.net"
+     :desc "TShark is a dump and analyze network traffic")
     (:tool cppcheck
      :link "https://github.com/danmar/cppcheck"
      :desc "A tool for static C/C++ code analysis")
