@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.0.0-alpha.6](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.3..v8.0.0-alpha.6) - 2024-06-20
+#### Documentation
+- **(documentation)** regenerate the documentation - ([0de4699](https://github.com/abougouffa/minemacs/commit/0de4699c3ce8dc9f29abd9eff2df1de799ac6c3b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(files)** add initial support for `guard-lf` (better than `so-long`!) - ([1113291](https://github.com/abougouffa/minemacs/commit/111329186cb656789f71c1fb598c29666ad029ea)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** remove `golden-ratio` - ([333758b](https://github.com/abougouffa/minemacs/commit/333758b127f1069c5a763815164e1868bd5beb79)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(guard-lf)** use my fork - ([9acd33d](https://github.com/abougouffa/minemacs/commit/9acd33dec55d1a359a85f7f7cfb29cab5665b1d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** more project markers - ([c3fe2f2](https://github.com/abougouffa/minemacs/commit/c3fe2f20a49049edba2d2eb22c58e49b7d3241ec)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([df64559](https://github.com/abougouffa/minemacs/commit/df64559e85e5d39c484277497737bd1172455a6d)) - [@abougouffa](https://github.com/abougouffa)
+- load `minemacs-lazy` without printing a message - ([0132028](https://github.com/abougouffa/minemacs/commit/0132028776f7d6d837ee7e15e944b41da5a219ac)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.0.0-alpha.5](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.3..v8.0.0-alpha.5) - 2024-06-19
 #### Bug Fixes
 - **(vlf)** correctly load `vlf-setup` - ([1915a43](https://github.com/abougouffa/minemacs/commit/1915a43e84d5e85e0d7c16a4d163dad182f5f1fe)) - [@abougouffa](https://github.com/abougouffa)
