@@ -627,6 +627,10 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 
 Setup fonts.
 
+#### `(+asm-ask-for-mode MODE)`
+
+Ask the MODE to run.
+
 #### `(+spellcheck-correct)`
 
 Correct word at point.
