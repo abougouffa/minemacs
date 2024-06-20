@@ -50,8 +50,9 @@
     (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
 (use-package guard-lf
-  :straight (:host github :repo "jcs-elpa/guard-lf")
-  :hook (minemacs-after-startup . guard-lf-mode))
+  :straight (:host github :repo "abougouffa/guard-lf")
+  :init
+  (guard-lf-mode 1))
 
 (use-package sudo-edit
   :straight t
