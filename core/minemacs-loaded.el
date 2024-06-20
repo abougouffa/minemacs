@@ -18,7 +18,7 @@
          (length minemacs-after-startup-hook))
   (run-hooks 'minemacs-after-startup-hook))
 
-(load "minemacs-lazy")
+(+load minemacs-core-dir "minemacs-lazy.el")
 
 (+log! "Providing `minemacs-loaded'.")
 
