@@ -329,6 +329,8 @@ or file path may exist now."
   (project-list-file (concat minemacs-local-dir "project-list.el"))
   (project-vc-extra-root-markers
    '(".projectile.el" ".project.el" ".project" ; Emacs
+     "autogen.sh" ; Autotools
+     "*.csproj" "*.vbproj" "*.vcxproj" "*.vdproj" ".code-workspace" ; Visual Studio
      "requirements.txt" ; Python
      "package.json" ; Node.js
      "pom.xml" ; Apache Maven (Java/Kotlin)
