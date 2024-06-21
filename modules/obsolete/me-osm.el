@@ -13,5 +13,4 @@
 
 
 (provide 'obsolete/me-osm)
-
 ;;; me-osm.el ends here

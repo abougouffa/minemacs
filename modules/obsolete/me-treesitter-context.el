@@ -29,5 +29,4 @@
 
 
 (provide 'obsolete/me-treesitter-context)
-
 ;;; me-treesitter-context.el ends here

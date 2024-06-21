@@ -93,5 +93,4 @@
 
 
 (provide 'obsolete/me-writeroom)
-
 ;;; me-writeroom.el ends here

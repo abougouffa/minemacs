@@ -17,5 +17,4 @@
 
 
 (provide 'obsolete/me-solaire)
-
 ;;; me-solaire.el ends here

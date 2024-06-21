@@ -98,5 +98,4 @@
 
 
 (provide 'obsolete/me-org-roam)
-
 ;;; me-org-roam.el ends here

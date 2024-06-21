@@ -135,6 +135,4 @@
 
 
 (provide 'obsolete/me-spell-fu)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; me-cov.el ends here
+;;; me-spell-fu.el ends here

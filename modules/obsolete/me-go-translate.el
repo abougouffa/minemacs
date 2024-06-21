@@ -91,3 +91,4 @@
 
 
 (provide 'obsolete/me-go-translate)
+;;; me-go-translate.el ends here

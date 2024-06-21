@@ -27,6 +27,4 @@
 
 
 (provide 'obsolete/me-treemacs)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-treemacs.el ends here

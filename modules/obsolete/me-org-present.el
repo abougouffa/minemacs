@@ -55,6 +55,4 @@
 
 
 (provide 'obsolete/me-org-present)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-org-present.el ends here

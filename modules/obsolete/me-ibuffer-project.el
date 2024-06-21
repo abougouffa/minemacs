@@ -20,5 +20,4 @@
 
 
 (provide 'obsolete/me-ibuffer-project)
-
 ;;; me-ibuffer-project.el ends here

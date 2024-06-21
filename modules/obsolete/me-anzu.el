@@ -30,5 +30,4 @@
 
 
 (provide 'obsolete/me-anzu)
-
 ;;; me-anzu.el ends here

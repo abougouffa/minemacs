@@ -35,6 +35,4 @@
 
 
 (provide 'obsolete/me-ligature)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-ligature.el ends here

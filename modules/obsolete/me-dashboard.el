@@ -36,5 +36,4 @@
 
 
 (provide 'obsolete/me-dashboard)
-
 ;;; me-dashboard.el ends here

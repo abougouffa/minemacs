@@ -20,5 +20,4 @@
 
 
 (provide 'obsolete/me-formal)
-
 ;;; me-formal.el ends here

@@ -82,5 +82,4 @@ When FILENAME is nil, use the file name of the current buffer."
 
 
 (provide 'obsolete/me-flycheck-cmake)
-
 ;;; me-flycheck-cmake.el ends here

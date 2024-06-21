@@ -19,6 +19,4 @@
 
 
 (provide 'obsolete/me-packages-managers)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-packages-managers.el ends here

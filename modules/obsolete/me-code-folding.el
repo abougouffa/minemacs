@@ -256,5 +256,4 @@ begin and end of the block surrounding point."
 
 
 (provide 'obsolete/me-code-folding)
-
-;; me-code-folding.el ends here
+;;; me-code-folding.el ends here

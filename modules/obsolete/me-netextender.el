@@ -108,5 +108,4 @@ echo \"Y\\n\" | %s --auto-reconnect $(gpg -q --for-your-eyes-only --no-tty -d \"
 
 
 (provide 'obsolete/me-netextender)
-
 ;;; me-netextender.el ends here

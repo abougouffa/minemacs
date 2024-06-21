@@ -25,6 +25,4 @@
 
 
 (provide 'obsolete/me-bitwarden)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-bitwarden.el ends here

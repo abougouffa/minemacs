@@ -39,5 +39,4 @@
     "/" `(,(+cmdfy! (call-interactively #'lexic-search)) :wk "Search")))
 
 (provide 'obsolete/me-lexic)
-
 ;;; me-lexic.el ends here

@@ -136,6 +136,4 @@ This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
 
 
 (provide 'obsolete/me-flymake-quickdef)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-flymake-quickdef.el ends here

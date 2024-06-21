@@ -18,5 +18,4 @@
 
 
 (provide 'obsolete/me-highlight-indent-guides)
-
 ;;; me-highlight-indent-guides.el ends here
