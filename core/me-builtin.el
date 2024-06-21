@@ -1317,10 +1317,6 @@ current line.")
   ;; Global SubWord mode
   :hook (minemacs-lazy . global-subword-mode))
 
-(use-package so-long
-  ;; Better handling for files with so long lines
-  :hook (minemacs-after-startup . global-so-long-mode))
-
 (use-package icomplete
   ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
   ;; the `me-completion' (which contains `vertico-mode' configuration) core
