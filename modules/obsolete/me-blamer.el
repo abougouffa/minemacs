@@ -10,7 +10,6 @@
 
 (use-package blamer
   :straight t
-  :hook (minemacs-first-file . global-blamer-mode)
   :custom
   (blamer-min-offset 60)
   (blamer-prettify-time-p t)
