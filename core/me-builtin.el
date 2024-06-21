@@ -545,7 +545,10 @@ or file path may exist now."
      xref-find-references)) ; Otherwise, it causes problems on big codebases
   ;; NOTE: Usually, this shorcut can be bound to moves the window (set by the OS
   ;; window manager), so we need to disable it in the WM for this to work.
-  :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse))
+  :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse)
+  :config
+  ;; Truncate lines in the references buffer
+  (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
   :straight t
