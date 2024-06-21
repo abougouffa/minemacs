@@ -1854,6 +1854,5 @@ It is deferred until `general' gets loaded and configured."
     "/" `(,(+cmdfy! (call-interactively #'lexic-search)) :wk "Search")))
 
 
-
 (provide 'obsolete/me-evil)
 ;;; me-evil.el ends here

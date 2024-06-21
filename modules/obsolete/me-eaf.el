@@ -74,5 +74,4 @@
 
 
 (provide 'obsolete/me-eaf)
-
 ;;; me-eaf.el ends here

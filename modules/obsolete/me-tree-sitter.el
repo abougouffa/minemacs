@@ -34,5 +34,4 @@
 
 
 (provide 'obsolete/me-tree-sitter)
-
 ;;; me-tree-sitter.el ends here

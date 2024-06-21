@@ -35,4 +35,3 @@
 
 (provide 'obsolete/me-elfeed-yt-dl)
 ;;; me-elfeed-yt-dl.el ends here
-

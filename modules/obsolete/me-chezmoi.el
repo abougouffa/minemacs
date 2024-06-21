@@ -23,6 +23,4 @@
 
 
 (provide 'obsolete/me-chezmoi)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-chezmoi.el ends here

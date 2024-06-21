@@ -23,5 +23,4 @@
 
 
 (provide 'obsolete/me-blamer)
-
 ;;; me-blamer.el ends here

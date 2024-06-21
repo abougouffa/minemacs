@@ -14,5 +14,4 @@
 
 
 (provide 'obsolete/me-makefile-executor)
-
 ;;; me-makefile-executor.el ends here

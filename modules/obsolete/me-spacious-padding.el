@@ -8,7 +8,6 @@
 
 ;;; Code:
 
-
 (use-package spacious-padding
   :straight t
   :hook (minemacs-after-startup . spacious-padding-mode)
@@ -25,5 +24,4 @@
 
 
 (provide 'obsolete/me-spacious-padding)
-
 ;;; me-spacious-padding.el ends here

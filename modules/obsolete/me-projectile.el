@@ -59,5 +59,4 @@
 
 
 (provide 'obsolete/me-projectile)
-
 ;;; me-projectile.el ends here

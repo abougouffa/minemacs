@@ -43,5 +43,4 @@
 
 
 (provide 'obsolete/me-nano)
-
 ;;; me-nano.el ends here

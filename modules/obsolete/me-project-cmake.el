@@ -13,5 +13,4 @@
 
 
 (provide 'obsolete/me-project-cmake)
-
 ;;; me-project-cmake.el ends here

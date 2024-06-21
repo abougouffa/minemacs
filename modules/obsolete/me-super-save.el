@@ -23,6 +23,4 @@
 
 
 (provide 'obsolete/me-super-save)
-
 ;;; me-super-save.el ends here
-

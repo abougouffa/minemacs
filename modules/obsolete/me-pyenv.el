@@ -26,5 +26,4 @@
 
 
 (provide 'obsolete/me-pyenv)
-
 ;;; me-pyenv.el ends here

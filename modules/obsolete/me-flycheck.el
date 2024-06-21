@@ -43,5 +43,4 @@
 
 
 (provide 'obsolete/me-flycheck)
-
 ;;; me-flycheck.el ends here

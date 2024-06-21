@@ -41,5 +41,4 @@
        (:default . evil-mc-execute-default-call)))))
 
 (provide 'obsolete/me-evil-escape)
-
 ;;; me-evil-escape.el ends here
