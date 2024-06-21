@@ -50,7 +50,7 @@
     (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
 (use-package guard-lf
-  :straight (:host github :repo "abougouffa/guard-lf") ; TEMP: Use my fork until jcs-elpa/guard-lf#2 gets merged
+  :straight (:host github :repo "jcs-elpa/guard-lf")
   :init
   (guard-lf-mode 1)
   :config
