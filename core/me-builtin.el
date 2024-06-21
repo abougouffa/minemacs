@@ -213,12 +213,10 @@ or file path may exist now."
 (use-package minibuffer
   :hook (minibuffer-setup . cursor-intangible-mode)
   :custom
-  ;; Ignores case when completing files names
-  (read-file-name-completion-ignore-case t)
-  ;; More info on completions
-  (completions-detailed t)
-  ;; Do not allow the cursor in the minibuffer prompt (goes with `cursor-intangible-mode')
-  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)))
+  (read-file-name-completion-ignore-case t) ; Ignores case when completing files names
+  (completions-detailed t) ; More info on completions
+  (minibuffer-prompt-properties ; Do not allow the cursor in the minibuffer prompt (works with `cursor-intangible-mode')
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
 
 (use-package crm
   :config
@@ -232,9 +230,8 @@ or file path may exist now."
 (use-package transient
   :straight t
   :autoload transient-define-prefix transient-define-infix transient-define-suffix
-  ;; Map ESC and q to quit transient
   :bind (:map
-         transient-map
+         transient-map ; Map ESC and q to quit transient
          ("q" . transient-quit-one)
          ("<escape>" . transient-quit-one)))
 
@@ -264,8 +261,7 @@ or file path may exist now."
 
 (use-package epa
   :custom
-  ;; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
-  (epg-pinentry-mode 'loopback))
+  (epg-pinentry-mode 'loopback)) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
 
 (use-package epa-file
   :after minemacs-first-file
@@ -486,8 +482,7 @@ or file path may exist now."
   (hide-ifdef-initially t))
 
 (use-package hl-line
-  ;; Highlight the current line
-  :hook ((prog-mode conf-mode text-mode) . hl-line-mode))
+  :hook ((prog-mode conf-mode text-mode) . hl-line-mode)) ; Highlight the current line
 
 (use-package cc-vars
   :config
@@ -499,8 +494,7 @@ or file path may exist now."
   (c-ts-mode-indent-style 'k&r))
 
 (use-package hideshow
-  ;; Hide/show code blocks, a.k.a. code folding
-  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode)
+  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode) ; Hide/show code blocks, a.k.a. code folding
   :custom
   (hs-hide-comments-when-hiding-all nil)
   :bind (:map hs-minor-mode-map
@@ -605,8 +599,7 @@ or file path may exist now."
 
 (use-package compile
   :commands +toggle-bury-compilation-buffer-if-successful
-  ;; Enable ANSI colors in compilation buffer
-  :hook (compilation-filter . ansi-color-compilation-filter)
+  :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
   :hook (shell-mode . compilation-shell-minor-mode)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
@@ -828,13 +821,12 @@ or file path may exist now."
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
   (org-latex-tables-booktabs t)
-  ;; Default `minted` options, can be overwritten in file/dir locals
-  (org-latex-minted-options
+  (org-latex-minted-options ; Default `minted` options, can be overwritten in file/dir locals
    '(("frame"         "lines")
      ("fontsize"      "\\footnotesize")
      ("tabsize"       "2")
      ("breaklines"    "true")
-     ("breakanywhere" "true") ;; break anywhere, no just on spaces
+     ("breakanywhere" "true") ; break anywhere, not just on spaces
      ("style"         "default")
      ("bgcolor"       "GhostWhite")
      ("linenos"       "true")))
@@ -916,10 +908,8 @@ current line.")
 (use-package ediff
   :hook (ediff-before-setup . +ediff--save-window-config-h)
   :custom
-  ;; Split horizontally
-  (ediff-split-window-function #'split-window-horizontally)
-  ;; Setup all windows in one frame
-  (ediff-window-setup-function #'ediff-setup-windows-plain)
+  (ediff-split-window-function #'split-window-horizontally) ; Split horizontally
+  (ediff-window-setup-function #'ediff-setup-windows-plain) ; Setup all windows in one frame
   :config
   (defvar +ediff--saved-window-config nil)
 
@@ -1016,8 +1006,7 @@ current line.")
 (use-package bookmark
   :custom
   (bookmark-default-file (concat minemacs-local-dir "bookmark.el"))
-  ;; Save the bookmarks every time a bookmark is made
-  (bookmark-save-flag 1)
+  (bookmark-save-flag 1) ; Save the bookmarks every time a bookmark is made
   :config
   (push bookmark-default-file +first-file-hook-ignore-list))
 
@@ -1027,26 +1016,18 @@ current line.")
 
 (use-package desktop
   :custom
-  ;; File name to use when saving desktop
-  (desktop-base-file-name "emacs-session.el")
-  ;; File name to use as a lock
-  (desktop-base-lock-name (concat desktop-base-file-name ".lock"))
-  ;; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
-  (desktop-restore-eager 5)
-  ;; Avoid writing contents unchanged between auto-saves
-  (desktop-file-checksum t)
-  ;; Save buffer status
-  (desktop-save-buffer t))
+  (desktop-base-file-name "emacs-session.el") ; File name to use when saving desktop
+  (desktop-base-lock-name (concat desktop-base-file-name ".lock")) ; File name to use as a lock
+  (desktop-restore-eager 5) ; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
+  (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
+  (desktop-save-buffer t)) ; Save buffer status
 
 (use-package recentf
   :custom
   (recentf-save-file (concat minemacs-local-dir "recentf-save.el"))
-  ;; Increase the maximum number of saved items
-  (recentf-max-saved-items 200)
-  ;; Ignore case when searching recentf files
-  (recentf-case-fold-search t)
-  ;; Exclude some files from being remembered by recentf
-  (recentf-exclude
+  (recentf-max-saved-items 200) ; Increase the maximum number of saved items
+  (recentf-case-fold-search t) ; Ignore case when searching recentf files
+  (recentf-exclude ; Exclude some files from being remembered by recentf
    `(file-remote-p
      ,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
      ,(rx bol "/tmp/")))
@@ -1088,23 +1069,18 @@ current line.")
 (use-package time-stamp
   :hook (before-save . time-stamp) ; Update time stamp (if available) before saving a file.
   :custom
-  ;; Do enable time-stamps
-  (time-stamp-active t)
-  ;; Check the first 12 buffer lines for Time-stamp: <>
-  (time-stamp-line-limit 12)
-  ;; Timestamp format
-  (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S"))
+  (time-stamp-active t) ; Do enable time-stamps
+  (time-stamp-line-limit 12) ; Check the first 12 buffer lines for Time-stamp: <>
+  (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S")) ; Timestamp format
 
 (use-package whitespace
   :custom
   (whitespace-action '(cleanup auto-cleanup))) ; Default behavior for `whitespace-cleanup'
 
 (use-package autorevert
-  ;; Auto load files changed on disk
-  :hook (minemacs-first-file . global-auto-revert-mode)
+  :hook (minemacs-first-file . global-auto-revert-mode) ; Auto load files changed on disk
   :custom
-  ;; Revert non-file buffers like dired
-  (global-auto-revert-non-file-buffers t))
+  (global-auto-revert-non-file-buffers t)) ; Revert non-file buffers like dired
 
 (use-package savehist
   :hook (minemacs-lazy . savehist-mode)
@@ -1112,8 +1088,7 @@ current line.")
   (savehist-file (concat minemacs-local-dir "savehist.el")))
 
 (use-package saveplace
-  ;; Save place in files
-  :hook (minemacs-first-file . save-place-mode)
+  :hook (minemacs-first-file . save-place-mode) ; Save place in files
   :custom
   (save-place-file (concat minemacs-local-dir "save-place.el")))
 
@@ -1135,19 +1110,15 @@ current line.")
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 
 (use-package display-line-numbers
-  ;; Show line numbers
-  :hook ((prog-mode conf-mode text-mode) . display-line-numbers-mode)
+  :hook ((prog-mode conf-mode text-mode) . display-line-numbers-mode) ; Show line numbers
   :custom
-  ;; Width for line numbers
-  (display-line-numbers-width 4)
-  ;; Display absolute line numbers in narrowed regions
-  (display-line-numbers-widen t))
+  (display-line-numbers-width 4) ; Width for line numbers
+  (display-line-numbers-widen t)) ; Display absolute line numbers in narrowed regions
 
 (use-package pixel-scroll
   :hook (minemacs-lazy . +pixel-scroll-mode)
   :custom
-  ;; Better scrolling on Emacs29+, specially on a touchpad
-  (pixel-scroll-precision-use-momentum t)
+  (pixel-scroll-precision-use-momentum t) ; Better scrolling on Emacs29+, specially on a touchpad
   :config
   (defun +pixel-scroll-mode ()
     ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
@@ -1156,20 +1127,16 @@ current line.")
       (pixel-scroll-mode 1))))
 
 (use-package mouse
-  ;; Enable context menu on mouse right click
-  :hook (minemacs-lazy . context-menu-mode)
+  :hook (minemacs-lazy . context-menu-mode) ; Enable context menu on mouse right click
   :custom
-  ;; Enable Drag-and-Drop of regions
-  (mouse-drag-and-drop-region t)
-  ;; Enable Drag-and-Drop of regions from Emacs to external programs
-  (mouse-drag-and-drop-region-cross-program t))
+  (mouse-drag-and-drop-region t) ; Enable Drag-and-Drop of regions
+  (mouse-drag-and-drop-region-cross-program t)) ; Enable Drag-and-Drop of regions from Emacs to external programs
 
 (use-package mwheel
   :custom
-  ;; Make mouse scroll a little faster
-  (mouse-wheel-scroll-amount '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
-  ;; Make mouse scroll a little faster horizontally
-  (mouse-wheel-scroll-amount-horizontal 2))
+  (mouse-wheel-scroll-amount ; Make mouse scroll a little faster
+   '(2 ((shift) . hscroll) ((meta) . nil) ((control meta) . global-text-scale) ((control) . text-scale)))
+  (mouse-wheel-scroll-amount-horizontal 2)) ; Make mouse scroll a little faster horizontally
 
 (use-package gnus
   :custom
@@ -1184,23 +1151,19 @@ current line.")
   (image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")))
 
 (use-package time
-  ;; Display time in mode-line
-  :hook (minemacs-lazy . display-time-mode)
+  :hook (minemacs-lazy . display-time-mode) ; Display time in mode-line
   :custom
-  ;; Enable time in the mode-line
-  (display-time-string-forms '((propertize (concat 24-hours ":" minutes)))))
+  (display-time-string-forms '((propertize (concat 24-hours ":" minutes))))) ; Enable time in the mode-line
 
 (use-package frame
-  ;; Display divider between windows
-  :hook (minemacs-lazy . window-divider-mode)
+  :hook (minemacs-lazy . window-divider-mode) ; Display divider between windows
   :custom
   ;; Set line width for the divider in `window-divider-mode' to 2px
   (window-divider-default-bottom-width 2)
   (window-divider-default-right-width 2))
 
 (use-package repeat
-  ;; Enable repeat mode, "C-x o then C-x o" becomes "C-x o o"
-  :hook (minemacs-lazy . repeat-mode))
+  :hook (minemacs-lazy . repeat-mode)) ; Enable repeat mode, "C-x o then C-x o" becomes "C-x o o"
 
 (use-package server
   :autoload server-running-p
@@ -1251,49 +1214,30 @@ current line.")
 
 (use-package simple
   :init
-  ;; Never mix, use only spaces
-  (setq-default indent-tabs-mode nil)
-  ;; Show line number in mode-line
-  :hook (minemacs-lazy . line-number-mode)
-  ;; Show column numbers (a.k.a. cursor position) in the mode-line
-  :hook (minemacs-lazy . column-number-mode)
-  ;; Display buffer size on mode line
-  :hook (minemacs-lazy . size-indication-mode)
-  ;; Wrap long lines
-  :hook ((prog-mode conf-mode text-mode) . visual-line-mode)
+  (setq-default indent-tabs-mode nil) ; Never mix, use only spaces
+  :hook (minemacs-lazy . line-number-mode) ; Show line number in mode-line
+  :hook (minemacs-lazy . column-number-mode) ; Show column numbers (a.k.a. cursor position) in the mode-line
+  :hook (minemacs-lazy . size-indication-mode) ; Display buffer size on mode line
+  :hook ((prog-mode conf-mode text-mode) . visual-line-mode) ; Wrap long lines
   :custom
-  ;; Filter duplicate entries in kill ring
-  (kill-do-not-save-duplicates t)
-  ;; Save existing clipboard text into the kill ring before replacing it.
-  (save-interprogram-paste-before-kill t))
+  (kill-do-not-save-duplicates t) ; Filter duplicate entries in kill ring
+  (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
 
 (use-package help
   :custom
-  ;; Select help window for faster quit!
-  (help-window-select t))
+  (help-window-select t)) ; Select help window for faster quit!
 
 (use-package winner
-  ;; Window layout undo/redo (`winner-undo' / `winner-redo')
-  :hook (minemacs-lazy . winner-mode))
+  :hook (minemacs-lazy . winner-mode)) ; Window layout undo/redo (`winner-undo' / `winner-redo')
 
 (use-package delsel
-  ;; Replace selection after start typing
-  :hook (minemacs-lazy . delete-selection-mode))
+  :hook (minemacs-lazy . delete-selection-mode)) ; Replace selection after start typing
 
 (use-package mb-depth
-  ;; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
-  :hook (minemacs-lazy . minibuffer-depth-indicate-mode))
+  :hook (minemacs-lazy . minibuffer-depth-indicate-mode)) ; Show recursion depth in minibuffer (see `enable-recursive-minibuffers')
 
 (use-package subword
-  ;; Global SubWord mode
-  :hook (minemacs-lazy . global-subword-mode))
-
-(use-package icomplete
-  ;; Fallback the new `fido-vertical-mode' Emacs28+ builtin completion mode if
-  ;; the `me-completion' (which contains `vertico-mode' configuration) core
-  ;; module is not enabled.
-  :when (+package-disabled-p 'vertico 'me-completion)
-  :hook (minemacs-lazy . fido-vertical-mode))
+  :hook (minemacs-lazy . global-subword-mode)) ; Global SubWord mode
 
 (use-package battery
   :hook (minemacs-lazy . +display-battery-mode-maybe)
@@ -1311,8 +1255,7 @@ current line.")
   :after minemacs-lazy
   :demand
   :config
-  ;; Navigate windows using Shift+Direction
-  (windmove-default-keybindings 'shift)
+  (windmove-default-keybindings 'shift) ; Navigate windows using Shift+Direction
   (defvar-keymap +windmove-keys
     :repeat t ; Make it work with `repeat-mode'
     "k" #'windmove-up
