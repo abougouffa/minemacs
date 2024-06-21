@@ -175,7 +175,12 @@
   (advice-add
    'save-buffers-kill-terminal :around
    (satch-defun +emacs--ask-on-emacsclient:around-a (origfn arg)
-     (when (or (not (frame-parameter nil 'client)) (y-or-n-p "Quit Emacs Client? "))
+     (if (frame-parameter nil 'client)
+         (pcase (read-answer "Quit Emacs? " '(("yes"  ?y "quit Emacs Client")
+                                              ("no"   ?n "don't quit")
+                                              ("quit" ?q "kill Emacs")))
+           ("yes" (apply origfn arg))
+           ("quit" (kill-emacs)))
        (apply origfn arg))))
 
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
