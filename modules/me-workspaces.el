@@ -36,6 +36,12 @@
                                "%s")))
         (format name-template name)))))
 
+(use-package burly
+  :straight t)
+
+(use-package bufler
+  :straight t)
+
 
 (provide 'me-workspaces)
 
