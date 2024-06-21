@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.0.0](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.6..v8.0.0) - 2024-06-21
+#### Features
+- **(builtin)** disable `so-long` (replaced with `guard-lf`) - ([588ae98](https://github.com/abougouffa/minemacs/commit/588ae98172b5a394274bf608aa9eaacc8efc5e9d)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(builtin)** rearrange comments - ([4c55d9c](https://github.com/abougouffa/minemacs/commit/4c55d9cdab36738c298dd50aa9c4273943911da5)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete)** minor formatting changes - ([0a25976](https://github.com/abougouffa/minemacs/commit/0a2597615edc4605fe5dcc5eee80b452ae11d118)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** cleanup some irrelevant configs - ([b9fdcb9](https://github.com/abougouffa/minemacs/commit/b9fdcb94cf57f2f83bf8f393c52eb30ea822810c)) - [@abougouffa](https://github.com/abougouffa)
+- move `blamer`/`+writing-mode` integration to `me-writing-mode` - ([bfb2fd9](https://github.com/abougouffa/minemacs/commit/bfb2fd9768bc7fbd5b99092dcfeffd6dd6c03d54)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(blamer)** don't enable globally - ([231fae7](https://github.com/abougouffa/minemacs/commit/231fae7958de1feed10ef2bc7ca81aed506fd0cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(breadcrumb)** enable in some programming modes - ([bb4655d](https://github.com/abougouffa/minemacs/commit/bb4655d7d675efd0596b13e574d75308b73ba8e2)) - [@abougouffa](https://github.com/abougouffa)
+- **(code-review)** switch to `doomelpa` fork - ([c4560d3](https://github.com/abougouffa/minemacs/commit/c4560d39a5bee83f50a184a85dc080ada38daf3d)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** use my fork until jcs-elpa/guard-lf#2 gets merged - ([d3f6e4d](https://github.com/abougouffa/minemacs/commit/d3f6e4d94340bf717bb7cfb5169f3b57cd23d38f)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** mark some modes as intact - ([d8dc3d6](https://github.com/abougouffa/minemacs/commit/d8dc3d68af8e78bea7cc67dd0dd23dc2874dc4c4)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** switch to upstream (fixes merged) - ([63d94d3](https://github.com/abougouffa/minemacs/commit/63d94d34058cdfaf0937574f9a16c841e948192d)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** truncate long lines in the Xref references buffer - ([5a21611](https://github.com/abougouffa/minemacs/commit/5a21611a53d5578e1e81737ef14f5bc3039a91c3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7c7e33a](https://github.com/abougouffa/minemacs/commit/7c7e33a6a2ad6a563f38085e456b1ecd017cda2c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.0.0-alpha.6](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.3..v8.0.0-alpha.6) - 2024-06-20
 #### Documentation
 - **(documentation)** regenerate the documentation - ([0de4699](https://github.com/abougouffa/minemacs/commit/0de4699c3ce8dc9f29abd9eff2df1de799ac6c3b)) - [@abougouffa](https://github.com/abougouffa)
