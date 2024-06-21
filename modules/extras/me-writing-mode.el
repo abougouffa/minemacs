@@ -116,6 +116,19 @@
 ;;;###autoload
 (define-globalized-minor-mode +writing-global-mode +writing-mode +turn-on-writing-mode)
 
+(with-eval-after-load 'blamer
+  (defvar-local +writing-mode--blamer-was-active-p blamer-mode)
+
+  (defun +writing-mode--disable-h ()
+    (setq-local +writing-blamer-was-active-p blamer-mode)
+    (when +writing-mode--blamer-was-active-p (blamer-mode -1)))
+
+  (defun +writing-mode--restore-h ()
+    (when (bound-and-true-p +writing-mode--blamer-was-active-p) (blamer-mode 1)))
+
+  (add-hook '+writing-mode-enable-hook #'+writing-mode--disable-h)
+  (add-hook '+writing-mode-disable-hook #'+writing-mode--restore-h))
+
 
 (provide 'me-writing-mode)
 
