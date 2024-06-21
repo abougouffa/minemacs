@@ -50,7 +50,7 @@
     (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
 (use-package guard-lf
-  :straight (:host github :repo "abougouffa/guard-lf")
+  :straight (:host github :repo "jcs-elpa/guard-lf")
   :init
   (guard-lf-mode 1))
 

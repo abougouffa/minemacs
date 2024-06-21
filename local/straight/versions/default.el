@@ -154,7 +154,7 @@
  ("god-mode" . "607aff10a7b27a8aa0c1a15c2c39337ab17cfda7")
  ("golden-ratio.el" . "375c9f287dfad68829582c1e0a67d0c18119dab9")
  ("graphviz-dot-mode" . "8ff793b13707cb511875f56e167ff7f980a31136")
- ("guard-lf" . "31503efb37b72bcdb72dba4ce7a8b6996e65bbde")
+ ("guard-lf" . "f547330290f085870a61875b4d26adb2e886f64a")
  ("guile" . "71a6be00433a157de3936f208c7a1bd0192b12cd")
  ("helpful" . "4ba24cac9fb14d5fdc32582cd947572040e82b2c")
  ("highlight-numbers" . "8b4744c7f46c72b1d3d599d4fb75ef8183dee307")
