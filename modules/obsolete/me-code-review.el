@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(use-package emojify ;; Needed by `code-review'
+(use-package emojify ; Needed by `code-review'
   :straight t
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
@@ -20,7 +20,7 @@
     (+map! "ie" '(emojify-insert-emoji :wk "Emoji"))))
 
 (use-package code-review
-  :straight (:host github :repo "phelrine/code-review" :branch "fix/closql-update")
+  :straight (:host github :repo "doomelpa/code-review")
   :after magit
   :custom
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))
@@ -34,6 +34,4 @@
 
 
 (provide 'obsolete/me-code-review)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; me-code-review.el ends here
