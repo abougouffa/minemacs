@@ -547,6 +547,7 @@ or file path may exist now."
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   :config
+  ;; Better (!) parameters for Clangd
   (+eglot-register
     '(c++-mode c++-ts-mode c-mode c-ts-mode)
     '("clangd"
@@ -563,7 +564,11 @@ or file path may exist now."
       "--pch-storage=memory")
     "ccls")
 
+  ;; Register some missing LSP servers
   (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
+  (+eglot-register '(nxml-mode xml-mode) "lemminx")
+  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls") ; vhdl_ls from rust_hdl (AUR: rust_hdl-git)
+  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver")
 
   ;; Optimization from Doom Emacs
   ;; NOTE: This setting disable the `eglot-events-buffer' enabling more
@@ -646,22 +651,10 @@ or file path may exist now."
       (message "Enabled burying compilation buffer.")
       (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
 
-(use-package vhdl-mode
-  :config
-  ;; Setup vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls"))
-
-(use-package verilog-mode
-  :config
-  ;; Setup Verilog/SystemVerilog LSP servers
-  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver"))
-
 (use-package nxml-mode
   :mode "\\.xmpi\\'"
   ;; Auto rename matching tags
-  :hook (nxml-mode . sgml-electric-tag-pair-mode)
-  :config
-  (+eglot-register '(nxml-mode xml-mode) "lemminx"))
+  :hook (nxml-mode . sgml-electric-tag-pair-mode))
 
 (use-package elisp-mode
   :after minemacs-first-elisp-file ; prevent elisp-mode from being loaded too early
@@ -675,15 +668,6 @@ or file path may exist now."
   :init
   (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
-
-(use-package edebug
-  :after elisp-mode
-  :custom
-  (edebug-inhibit-emacs-lisp-mode-bindings t))
-
-(use-package scheme
-  :custom
-  (scheme-program-name "guile"))
 
 (use-package gdb-mi
   :custom
@@ -718,19 +702,6 @@ or file path may exist now."
    (satch-defun +gud--delete-overlay-h ()
      (when (derived-mode-p 'gud-mode)
        (delete-overlay +gud-overlay)))))
-
-(use-package python
-  :init
-  (defcustom +python-enable-pyenv nil
-    "Enable integration for pyenv.
-This variable should be set early, either in \"early-config.el\" or \"init-tweaks.el\"."
-    :group 'minemacs-utils
-    :type 'boolean)
-  (when (and +python-enable-pyenv (executable-find "pyenv") (file-directory-p "~/.pyenv/shims/"))
-    (setenv "WORKON_HOME" "~/.pyenv/versions")
-    (setenv "PIPENV_PYTHON" "~/.pyenv/shims/python")
-    (setenv "VIRTUALENVWRAPPER_PYTHON" "~/.pyenv/shims/python")
-    (setenv "VIRTUALENVWRAPPER_VIRTUALENV" "~/.pyenv/shims/python")))
 
 (use-package org
   :straight (:type built-in)
