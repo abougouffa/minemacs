@@ -260,6 +260,7 @@
 
 (use-package breadcrumb
   :straight t
+  :hook ((c-mode c++-mode c-ts-mode c++-ts-mode python-mode python-ts-mode rust-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
   ;; Don't show the project/file name in the header, it is already shown in the mode line.
   (advice-add 'breadcrumb-project-crumbs :override (satch-defun +breadcrumb--project:override-a () " >>")))
