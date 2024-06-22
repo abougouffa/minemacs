@@ -125,6 +125,11 @@
 ;; (with-eval-after-load 'vterm
 ;;   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
 
+;; Module: `me-tags' -- Package: `citre'
+(with-eval-after-load 'citre
+  ;; In case you get "gtags: Objdir not found." when trying to run `citre-global-update-database' in the *citre-gtags* buffer
+  (cl-callf2 remove "--objdir" citre-gtags-args))
+
 ;; Module: `me-natural-langs' -- Package: `jinx'
 (with-eval-after-load 'jinx
   ;; Check spelling for Arabic, English and French by default.
