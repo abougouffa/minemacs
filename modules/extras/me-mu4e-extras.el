@@ -126,19 +126,20 @@ LETVARS contains the alist of local variables with their values.
 If DEFAULT-P is non-nil, the context is placed first and considered the default
 one. If GMAIL-P is non-nil, addresses are saved to `+mu4e-gmail-accounts' to be
 used later for Gmail specific actions."
-  (when gmail-p
-    (with-eval-after-load 'me-mu4e-gmail
-      (setq
-       +mu4e-gmail-accounts
-       (delete-dups
-        (append
+  (let ((mail-address (alist-get 'user-mail-address letvars))
+        (aliases (alist-get '+mu4e-account-aliases letvars)))
+    (with-eval-after-load 'message
+      ;; When I reply to my own message, don't include me in the "To" field (add all my addresses/aliases)
+      (cl-callf append message-dont-reply-to-names (mapcar #'regexp-quote (append (ensure-list mail-address) (ensure-list aliases)))))
+    (when gmail-p
+      (with-eval-after-load 'me-mu4e-gmail
+        (setq
          +mu4e-gmail-accounts
-         (mapcar (+apply-partially-right
-                  #'cons
-                  (concat (if (string-prefix-p "/" maildir) "" "/") maildir))
-                 (append
-                  (ensure-list (alist-get 'user-mail-address letvars))
-                  (alist-get '+mu4e-account-aliases letvars))))))))
+         (delete-dups
+          (append
+           +mu4e-gmail-accounts
+           (mapcar (lambda (email) (cons email (concat (if (string-prefix-p "/" maildir) "" "/") maildir)))
+                   (append (ensure-list mail-address) (ensure-list aliases)))))))))
   (let ((context
          (make-mu4e-context
           :name label
