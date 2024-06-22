@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.1.0](https://github.com/abougouffa/minemacs/compare/8da9d400761a46c6d7b21ce1b563f7e8f69fbed6..v8.1.0) - 2024-06-22
+#### Documentation
+- **(early-init)** update comments - ([2664493](https://github.com/abougouffa/minemacs/commit/2664493d47b89a22ab91dce8fef18b5abb8b1ba6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `minemacs-apply-performance-tweaks` - ([8f7b3cb](https://github.com/abougouffa/minemacs/commit/8f7b3cb366173333a459595043dabbbaa1a4b1ab)) - [@abougouffa](https://github.com/abougouffa)
+- **(workspace)** add initial support for `burly` and `bufler` - ([db01fea](https://github.com/abougouffa/minemacs/commit/db01fea43968dc6fed575e25dd8cb6e6cd4d8a33)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `which-key` to `me-builtin`, it is builtin in Emacs 30 - ([5d49030](https://github.com/abougouffa/minemacs/commit/5d490307d9625f05ed565ffc80913553de748cdb)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(guard-lf)** restore the upstream repo (fix merged) - ([8da9d40](https://github.com/abougouffa/minemacs/commit/8da9d400761a46c6d7b21ce1b563f7e8f69fbed6)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** remove unneeded tweaks, better defaults - ([dace43e](https://github.com/abougouffa/minemacs/commit/dace43e72b37c82fe83637b5dbbc2a1a1fa1031c)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** prefer default directories if they fall under `.emacs.d/local` - ([4bf6d03](https://github.com/abougouffa/minemacs/commit/4bf6d03b93045e12b6c980649b842d197cb2e7c5)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** set only the directories when necessary - ([2c978be](https://github.com/abougouffa/minemacs/commit/2c978be6d82292cb97440d7ef1a5ff7ac5791279)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** use `.citre-root` instead of `.citre_root` as a root marker - ([43ef63e](https://github.com/abougouffa/minemacs/commit/43ef63e1090482ab565e38d8f0bcda0e178e985e)) - [@abougouffa](https://github.com/abougouffa)
+- **(compile)** remove `+toggle-bury-compilation-buffer-if-successful` - ([783c776](https://github.com/abougouffa/minemacs/commit/783c77620d775a33f4f6430015f415d0094a100c)) - [@abougouffa](https://github.com/abougouffa)
+- **(dirvish)** the right way to load the package - ([f8c7154](https://github.com/abougouffa/minemacs/commit/f8c7154eaad521f6080ab38405a365a72a858f7b)) - [@abougouffa](https://github.com/abougouffa)
+- **(mu4e)** update the don't reply to self config - ([b7b89b1](https://github.com/abougouffa/minemacs/commit/b7b89b1d11f6b1ef761aa0aabdd6872153bd3946)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** pulse line on scroll commands - ([f699764](https://github.com/abougouffa/minemacs/commit/f699764ec8ea2669de699a9be958e9957f68e542)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** suggest a fix to a common issue in `citre` - ([0eab698](https://github.com/abougouffa/minemacs/commit/0eab69874089630e53136a3c9ded6b31a19a3352)) - [@abougouffa](https://github.com/abougouffa)
+- ask a better question on quitting an Emacs client - ([15ee45a](https://github.com/abougouffa/minemacs/commit/15ee45af51115955c8686538460108cea1ff9297)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.0.0](https://github.com/abougouffa/minemacs/compare/v8.0.0-alpha.6..v8.0.0) - 2024-06-21
 #### Features
 - **(builtin)** disable `so-long` (replaced with `guard-lf`) - ([588ae98](https://github.com/abougouffa/minemacs/commit/588ae98172b5a394274bf608aa9eaacc8efc5e9d)) - [@abougouffa](https://github.com/abougouffa)
