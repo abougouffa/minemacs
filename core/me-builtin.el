@@ -561,57 +561,17 @@ or file path may exist now."
     "c" #'sqlite-mode-list-columns))
 
 (use-package compile
-  :commands +toggle-bury-compilation-buffer-if-successful
   :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
   :hook (shell-mode . compilation-shell-minor-mode)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
   (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
-  (compilation-window-height 12) ; Keep it readable
-  :init
-  (defcustom +compilation-auto-bury-msg-level "warning"
-    "Level of messages to consider OK to auto-bury the compilation buffer."
-    :group 'minemacs-prog
-    :type '(choice (const "warning") (const "error") string))
-  (defcustom +compilation-auto-bury-delay 3.0
-    "The delay in seconds after which the compilation buffer is buried."
-    :group 'minemacs-prog
-    :type 'number)
+  (compilation-window-height 12) ; Keep it readable  :init
   :config
   ;; Integration of `compile' with `savehist'
   (with-eval-after-load 'savehist
-    (add-to-list 'savehist-additional-variables 'compile-history))
-
-  ;; Auto-close the compilation buffer if succeeded without warnings.
-  ;; Adapted from: stackoverflow.com/q/11043004/3058915
-  (defun +compilation--bury-if-successful-h (buf str)
-    "Bury the compilation buffer if it succeeds without warnings."
-    (when (and
-           (string-match "compilation" (buffer-name buf))
-           (string-match "finished" str)
-           (not (with-current-buffer buf
-                  (save-excursion
-                    (goto-char (point-min))
-                    (search-forward +compilation-auto-bury-msg-level nil t)))))
-      (run-at-time
-       +compilation-auto-bury-delay nil
-       (lambda (b)
-         (with-selected-window (get-buffer-window b)
-           (kill-buffer-and-window))
-         (unless (current-message)
-           (message "Compilation finished without warnings.")))
-       buf)))
-
-  (defun +toggle-bury-compilation-buffer-if-successful ()
-    "Toggle auto-burying the successful compilation buffer."
-    (interactive)
-    (if (memq '+compilation--bury-if-successful-h compilation-finish-functions)
-        (progn
-          (message "Disabled burying compilation buffer.")
-          (remove-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))
-      (message "Enabled burying compilation buffer.")
-      (add-hook 'compilation-finish-functions #'+compilation--bury-if-successful-h))))
+    (add-to-list 'savehist-additional-variables 'compile-history)))
 
 (use-package nxml-mode
   :mode "\\.xmpi\\'"
