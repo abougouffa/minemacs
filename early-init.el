@@ -9,11 +9,9 @@
 ;;; Code:
 
 (setq
- ;; Do not make installed packages available when Emacs starts
+ ;; Do not make installed packages available when Emacs starts (we use `straight')
  package-enable-at-startup nil
- ;; HACK: Increase the garbage collection (GC) threshold for faster startup.
- ;; This will be overwritten when `gcmh-mode' (a.k.a. the Garbage Collector
- ;; Magic Hack) gets loaded in the `me-gc' module (see "init.el").
+ ;; Avoid garbage collections in the startup phase, this will be overwritten by the `me-gc' core module
  gc-cons-threshold most-positive-fixnum
  ;; Prefer loading newer files
  load-prefer-newer t
