@@ -102,7 +102,7 @@
   :custom
   (pulsar-face 'pulsar-red)
   :config
-  (add-to-list 'pulsar-pulse-functions #'what-cursor-position))
+  (cl-callf append pulsar-pulse-functions '(what-cursor-position scroll-up-command scroll-down-command)))
 
 (use-package focus
   :straight t)
