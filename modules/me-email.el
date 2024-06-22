@@ -45,7 +45,6 @@
   (mu4e-update-interval (* 1 60)) ; Every 1 min
   (mu4e-context-policy 'pick-first) ; Start with the first context
   (mu4e-compose-context-policy 'ask) ; Always ask which context to use when composing a new mail
-  (mu4e-compose-dont-reply-to-self t) ; When I reply to my own message, don't include me in the "To" field
   (mu4e-sent-messages-behavior 'sent) ; Will be overwritten for Gmail accounts
   (mu4e-get-mail-command "mbsync -a") ; Use mbsync to get mails
   (mu4e-index-update-error-warning nil) ; Do not show warning after update
