@@ -116,6 +116,8 @@ Cleanup MinEmacs' root directory.")
 Prune straight.el build directories for old Emacs versions.")
 (autoload '+minemacs-cleanup-emacs-directory "me-lib-extra" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
+(autoload 'minemacs-apply-performance-tweaks "me-lib-extra" "\
+Set some Emacs variables for better (!) performance." t)
 (autoload '+file-mime-type "me-lib-extra" "\
 Get MIME type for FILE based on magic codes provided by the \"file\" command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',

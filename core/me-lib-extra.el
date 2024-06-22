@@ -196,6 +196,16 @@ This calls `minemacs-update-restore-locked' asynchronously."
   (+info! "Trying to clean MinEmacs' root directory")
   (+shutup! (+minemacs-root-dir-cleanup)))
 
+;;;###autoload
+(defun minemacs-apply-performance-tweaks ()
+  "Set some Emacs variables for better (!) performance."
+  (interactive)
+  (setq gc-cons-threshold (* 128 1024 1024) ; Set a big enough threshhold
+        gc-cons-percentage 0.25 ; Set a high enough percentage (see zenodo.org/records/10213384)
+        inhibit-compacting-font-caches t ; Don’t compact font caches during GC
+        read-process-output-max (* 1024 1024) ; Increase single chunk bytes to read from subprocess
+        fast-but-imprecise-scrolling t)) ; Fast scrolling
+
 
 
 ;;; Files, directories and IO helper functions
