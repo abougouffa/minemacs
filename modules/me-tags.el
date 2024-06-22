@@ -20,7 +20,7 @@
   ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
   :init
-  (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre_root")
+  (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
     :group 'minemacs-prog)
