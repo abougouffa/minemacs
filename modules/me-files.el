@@ -10,6 +10,8 @@
 
 (use-package dirvish
   :straight t
+  :after dired
+  :demand
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size))
   (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
@@ -19,11 +21,6 @@
   (dirvish-use-header-line t) ; 'global make header line span all panes
   (dirvish-use-mode-line t)
   (dirvish-subtree-state-style 'nerd)
-  :init
-  ;; Load immediately if Emacs is launched in an "open with" fashion
-  (when minemacs-started-with-extra-args-p (require 'dirvish))
-  ;; Load before the first call to `dired'
-  (satch-add-advice 'dired :before (lambda (&rest _) (require 'dirvish)) nil :transient t)
   :config
   ;; Cscope generate *.po files which that makes dirvish preview freeze
   (push "po" dirvish-preview-disabled-exts)
