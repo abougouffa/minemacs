@@ -17,9 +17,7 @@
   (custom-theme-directory (concat minemacs-config-dir "themes/"))
   (diary-file (concat minemacs-local-dir "diary"))
   (eww-bookmarks-directory (+directory-ensure minemacs-local-dir "eww/bookmarks/"))
-  (remember-data-directory (+directory-ensure minemacs-local-dir "remember/data/"))
-  (remember-data-file (concat minemacs-local-dir "remember/data.el"))
-  (shared-game-score-directory (+directory-ensure minemacs-local-dir "shared-game-score/"))
+  (remember-data-directory (+directory-ensure minemacs-local-dir "remember/"))
 
   ;; ====== Better defaults ======
   (auto-save-default t) ; Enable auto-save (use `recover-file' or `recover-session' to recover)
@@ -224,8 +222,6 @@ or file path may exist now."
   ;; This is faster than the default "scp"
   (unless os/win
     (setq tramp-default-method "ssh"))
-  ;; HACK: Setting `tramp-persistency-file-name' in `:custom' is not working properly!
-  (setq tramp-persistency-file-name (concat minemacs-local-dir "tramp/persistency.el"))
   :custom
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
@@ -305,7 +301,6 @@ or file path may exist now."
   :commands project-remember-projects-under
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
-  (project-list-file (concat minemacs-local-dir "project-list.el"))
   (project-vc-extra-root-markers
    '(".projectile.el" ".project.el" ".project" ; Emacs
      "autogen.sh" ; Autotools
@@ -393,12 +388,6 @@ or file path may exist now."
 
 (use-package eshell
   :custom
-  (eshell-aliases-file (concat minemacs-local-dir "eshell/aliases"))
-  (eshell-directory-name (+directory-ensure minemacs-local-dir "eshell/"))
-  (eshell-history-file-name (concat minemacs-local-dir "eshell/history.el"))
-  (eshell-last-dir-ring-file-name (concat minemacs-local-dir "eshell/last-dir-ring.el"))
-  (eshell-login-script (concat minemacs-local-dir "eshell/login"))
-  (eshell-rc-script (concat minemacs-local-dir "eshell/rc"))
   (eshell-scroll-to-bottom-on-input 'this))
 
 (use-package reftex ;; Inspired by Doom Emacs
@@ -652,7 +641,6 @@ or file path may exist now."
   (gdb-debug-log-max 1024) ; default 128
   (gdb-restore-window-configuration-after-quit t)
   (gdb-thread-buffer-verbose-names nil)
-  (gdb-window-configuration-directory (+directory-ensure minemacs-local-dir "gdb/"))
   (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
   (gdb-display-io-nopopup nil)) ; IDEA: maybe change it!
 
@@ -976,24 +964,15 @@ current line.")
           (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
          (mapconcat 'identity inferior-octave-output-list "\n"))))))
 
-(use-package abbrev
-  :custom
-  (abbrev-file-name (concat minemacs-local-dir "abbrev.el")))
-
 (use-package bookmark
   :custom
-  (bookmark-default-file (concat minemacs-local-dir "bookmark.el"))
   (bookmark-save-flag 1) ; Save the bookmarks every time a bookmark is made
   :config
   (push bookmark-default-file +first-file-hook-ignore-list))
 
-(use-package calc
-  :custom
-  (calc-settings-file (concat minemacs-local-dir "calc-settings.el")))
-
 (use-package desktop
   :custom
-  (desktop-base-file-name "emacs-session.el") ; File name to use when saving desktop
+  (desktop-base-file-name "emacs-desktop") ; File name to use when saving desktop
   (desktop-base-lock-name (concat desktop-base-file-name ".lock")) ; File name to use as a lock
   (desktop-restore-eager 5) ; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
@@ -1001,7 +980,6 @@ current line.")
 
 (use-package recentf
   :custom
-  (recentf-save-file (concat minemacs-local-dir "recentf-save.el"))
   (recentf-max-saved-items 200) ; Increase the maximum number of saved items
   (recentf-case-fold-search t) ; Ignore case when searching recentf files
   (recentf-exclude ; Exclude some files from being remembered by recentf
@@ -1015,8 +993,6 @@ current line.")
 
 (use-package url
   :custom
-  (url-cache-directory (+directory-ensure minemacs-cache-dir "url/"))
-  (url-configuration-directory (+directory-ensure minemacs-local-dir "url/"))
   (url-cookie-file (concat minemacs-local-dir "url/cookie.el"))
   (url-history-file (concat minemacs-local-dir "url/history.el")))
 
@@ -1060,14 +1036,10 @@ current line.")
   (global-auto-revert-non-file-buffers t)) ; Revert non-file buffers like dired
 
 (use-package savehist
-  :hook (minemacs-lazy . savehist-mode)
-  :custom
-  (savehist-file (concat minemacs-local-dir "savehist.el")))
+  :hook (minemacs-lazy . savehist-mode))
 
 (use-package saveplace
-  :hook (minemacs-first-file . save-place-mode) ; Save place in files
-  :custom
-  (save-place-file (concat minemacs-local-dir "save-place.el")))
+  :hook (minemacs-first-file . save-place-mode)) ; Save place in files
 
 (use-package term
   :config
@@ -1120,12 +1092,6 @@ current line.")
   (gnus-dribble-directory (+directory-ensure minemacs-local-dir "gnus/dribble/"))
   (gnus-init-file (concat minemacs-config-dir "gnus/init.el"))
   (gnus-startup-file (concat minemacs-config-dir "gnus/newsrc")))
-
-(use-package image-dired
-  :custom
-  (image-dired-dir (+directory-ensure minemacs-local-dir "image-dired/"))
-  (image-dired-tags-db-file (concat minemacs-local-dir "image-dired/tags-db.el"))
-  (image-dired-temp-rotate-image-file (concat minemacs-cache-dir "image-dired/temp-rotate-image")))
 
 (use-package time
   :hook (minemacs-lazy . display-time-mode) ; Display time in mode-line
