@@ -67,6 +67,10 @@
   :init
   (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
+  ;; HACK: Prevent the annoting completion error when no `ispell' dictionary is set, prefer `cape-dict'
+  (when (eq emacs-major-version 30)
+    (setq text-mode-ispell-word-completion nil))
+
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (local-variable-p 'completion-at-point-functions)
