@@ -8,6 +8,25 @@
 
 ;;; Code:
 
+(defcustom minemacs-leader-key "SPC"
+  "MinEmacs leader key."
+  :group 'minemacs-keybinding
+  :type 'string)
+
+(defcustom minemacs-localleader-key "SPC m"
+  "MinEmacs local leader (a.k.a. mode specific) key sequence."
+  :group 'minemacs-keybinding
+  :type 'string)
+
+(defcustom minemacs-global-leader-prefix "C-SPC"
+  "MinEmacs general leader key."
+  :group 'minemacs-keybinding
+  :type 'string)
+
+(defcustom minemacs-global-mode-prefix "C-SPC m"
+  "MinEmacs general local leader (a.k.a. mode specific) key sequence."
+  :group 'minemacs-keybinding
+  :type 'string)
 
 ;;; Keybinding macros
 ;;; =================
