@@ -63,6 +63,7 @@
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
+  (corfu-preview-current nil) ; Disable previewing the current candidate
   :init
   (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
