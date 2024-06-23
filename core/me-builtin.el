@@ -611,12 +611,6 @@ or file path may exist now."
   :init
   (+setq-hook! emacs-lisp-mode tab-width 8)) ; to view built-in packages correctly
 
-(use-package elisp-demos
-  :straight t
-  :init
-  (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
-  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
-
 (use-package gdb-mi
   :custom
   (gdb-show-main t) ; display source file containing main routine at startup

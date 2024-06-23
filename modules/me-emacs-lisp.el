@@ -14,6 +14,12 @@
   :init
   (elisp-plus-mode 1))
 
+(use-package elisp-demos
+  :straight t
+  :init
+  (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
+
 (use-package parinfer-rust-mode
   :straight t
   :when (+emacs-features-p 'modules)
