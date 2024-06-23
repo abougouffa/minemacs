@@ -20,40 +20,62 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
+  ;; Add extra grammars
   ;; BUG+FIX: Remove the C++ grammar to force using v0.22.0, newer versions
-  ;; cause problems with syntax highlighting in `c++-ts-mode' buffers.
-  ;; See: https://github.com/abougouffa/minemacs/discussions/135
-  (cl-callf2 cl-delete-if
-      (lambda (lang) (eq 'cpp (treesit-auto-recipe-lang lang)))
-      treesit-auto-recipe-list)
-  (let ((extra-recipes (list (make-treesit-auto-recipe
-                              :lang 'xml
-                              :ts-mode 'xml-ts-mode
-                              :remap '(nxml-mode xml-mode)
-                              :url "https://github.com/tree-sitter-grammars/tree-sitter-xml"
-                              :source-dir "xml/src"
-                              :ext "\\.xml\\'")
-                             (make-treesit-auto-recipe
-                              :lang 'cpp
-                              :ts-mode 'c++-ts-mode
-                              :remap 'c++-mode
-                              :url "https://github.com/tree-sitter/tree-sitter-cpp"
-                              :revision "v0.22.0"
-                              :ext "\\.cpp\\'")
-                             (make-treesit-auto-recipe
-                              :lang 'llvm
-                              :ts-mode 'llvm-ts-mode
-                              :remap 'llvm-mode
-                              :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
-                              :ext "\\.ll\\'")
-                             (make-treesit-auto-recipe
-                              :lang 'zig
-                              :ts-mode 'zig-ts-mode
-                              :remap 'zig-mode
-                              :url "https://github.com/GrayJack/tree-sitter-zig"
-                              :ext "\\.\\(zig\\|zon\\)\\'"))))
-    (cl-callf append treesit-auto-langs (mapcar #'treesit-auto-recipe-lang extra-recipes))
-    (cl-callf append treesit-auto-recipe-list extra-recipes))
+  ;; cause problems with syntax highlighting in `c++-ts-mode' buffers (abougouffa/minemacs#135)
+  ;; BUG+FIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
+  (let* ((extra-recipes
+          (list (make-treesit-auto-recipe
+                 :lang 'xml
+                 :ts-mode 'xml-ts-mode
+                 :remap '(nxml-mode xml-mode)
+                 :url "https://github.com/tree-sitter-grammars/tree-sitter-xml"
+                 :source-dir "xml/src"
+                 :ext "\\.xml\\'")
+                (make-treesit-auto-recipe
+                 :lang 'markdown
+                 :ts-mode 'markdown-ts-mode
+                 :remap '(poly-markdown-mode markdown-mode)
+                 :requires 'markdown-inline
+                 :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+                 :revision "split_parser"
+                 :source-dir "tree-sitter-markdown/src"
+                 :ext "\\.md\\'")
+                (make-treesit-auto-recipe
+                 :lang 'markdown-inline
+                 :ts-mode 'markdown-inline-mode ; Fake mode to make `treesit-auto' happy
+                 :remap 'markdown-inline-ts-mode
+                 :requires 'markdown
+                 :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+                 :revision "split_parser"
+                 :source-dir "tree-sitter-markdown-inline/src")
+                (make-treesit-auto-recipe
+                 :lang 'cpp
+                 :ts-mode 'c++-ts-mode
+                 :remap 'c++-mode
+                 :requires 'c
+                 :url "https://github.com/tree-sitter/tree-sitter-cpp"
+                 :revision "v0.22.0"
+                 :ext "\\.cpp\\'")
+                (make-treesit-auto-recipe
+                 :lang 'llvm
+                 :ts-mode 'llvm-ts-mode
+                 :remap 'llvm-mode
+                 :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
+                 :ext "\\.ll\\'")
+                (make-treesit-auto-recipe
+                 :lang 'zig
+                 :ts-mode 'zig-ts-mode
+                 :remap 'zig-mode
+                 :url "https://github.com/GrayJack/tree-sitter-zig"
+                 :ext "\\.\\(zig\\|zon\\)\\'"))))
+    ;; First, delete the duplicate recipes already present in the list, if any
+    (cl-callf2 cl-delete-if
+        (lambda (lang) (memq (treesit-auto-recipe-lang lang) (mapcar #'treesit-auto-recipe-lang extra-recipes)))
+        treesit-auto-recipe-list)
+    ;; Then, add the extra recipes to the list
+    (cl-callf append treesit-auto-recipe-list extra-recipes)
+    (setq treesit-auto-langs (mapcar #'treesit-auto-recipe-lang treesit-auto-recipe-list)))
 
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
