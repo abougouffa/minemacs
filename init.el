@@ -225,7 +225,7 @@ the packages loaded with `:after minemacs-lazy' can be loaded."
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules.
 (when minemacs-load-all-modules-p
-  (setq minemacs-modules (mapcar #'intern (mapcar #'file-name-sans-extension (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))))
+  (setq minemacs-modules (minemacs-modules)))
 
 ;; Load modules
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin me-gc)))
