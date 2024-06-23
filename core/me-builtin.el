@@ -190,7 +190,7 @@ or file path may exist now."
      (cons (format "[CRM%s] %s" (replace-regexp-in-string "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" "" crm-separator) (car args)) (cdr args)))))
 
 (use-package transient
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :autoload transient-define-prefix transient-define-infix transient-define-suffix
   :bind (:map
          transient-map ; Map ESC and q to quit transient
@@ -198,7 +198,7 @@ or file path may exist now."
          ("<escape>" . transient-quit-one)))
 
 (use-package which-key
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :hook (minemacs-lazy . which-key-mode)
   :custom
   (which-key-idle-delay 1.0)
@@ -214,7 +214,7 @@ or file path may exist now."
   (which-key-setup-minibuffer))
 
 (use-package tramp
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :init
   ;; This is faster than the default "scp"
   (unless os/win
@@ -294,7 +294,7 @@ or file path may exist now."
   (doc-view-mupdf-use-svg (+emacs-features-p 'rsvg)))
 
 (use-package project
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :commands project-remember-projects-under
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
@@ -356,7 +356,7 @@ or file path may exist now."
         (tab-bar-tab-name-current-with-count)))))
 
 (use-package flymake
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
@@ -521,7 +521,7 @@ or file path may exist now."
         hs-special-modes-alist '((t)))))
 
 (use-package xref
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
@@ -538,7 +538,7 @@ or file path may exist now."
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :hook (eglot-managed-mode . eglot-inlay-hints-mode)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
@@ -583,7 +583,7 @@ or file path may exist now."
   (imenu-max-item-length 120)) ; Show longer definitions (def. 60)
 
 (use-package eldoc
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
@@ -645,7 +645,7 @@ or file path may exist now."
        (delete-overlay +gud-overlay)))))
 
 (use-package org
-  :straight (:type built-in)
+  :straight (:source gnu-elpa-mirror)
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
