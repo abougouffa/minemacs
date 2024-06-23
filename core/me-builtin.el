@@ -10,7 +10,7 @@
 
 (use-package emacs
   :hook (after-save . +save--guess-file-mode-h)
-  :hook (minibuffer-setup . cursor-intangible-mode) ;
+  :hook (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
   :custom
   ;; ====== Default directories for builtin packages ======
   (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
