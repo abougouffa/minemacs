@@ -56,6 +56,7 @@
   (completion-ignore-case t) ; Ignore case when completing
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t) ; Ignores case when completing files names
+  (read-extended-command-predicate #'command-completion-default-include-p) ; In `M-x', hide commands not relevant for the current mode
   (completions-detailed t) ; More info on completions
   (enable-recursive-minibuffers t) ; Enable recursive calls to minibuffer
   (minibuffer-prompt-properties ; Do not allow the cursor in the minibuffer prompt (works with `cursor-intangible-mode')
