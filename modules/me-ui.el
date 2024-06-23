@@ -95,6 +95,9 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+(use-package casual-lib
+  :straight (:host github :repo "kickingvegas/casual-lib"))
+
 (use-package casual-isearch
   :straight (:host github :repo "kickingvegas/casual-isearch")
   :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
