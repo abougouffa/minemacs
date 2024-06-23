@@ -55,12 +55,17 @@
 
 (use-package markdown-mode
   :straight t
-  :mode ("README\\.md\\'" . gfm-mode)
   :custom
   (markdown-enable-html t)
   (markdown-enable-math t)
   (markdown-fontify-code-blocks-natively t)
   (markdown-enable-highlighting-syntax t))
+
+(use-package markdown-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter)
+  :hook (markdown-ts-mode . display-line-numbers-mode)
+  :mode ("\\.md\\'" . markdown-ts-mode))
 
 (use-package pandoc-mode
   :straight t
