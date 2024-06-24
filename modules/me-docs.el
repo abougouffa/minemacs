@@ -38,9 +38,7 @@
 
 (use-package nov
   :straight t
-  :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode)
-  :custom
-  (nov-save-place-file (concat minemacs-local-dir "nov/save-place.el")))
+  :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 (defconst +tuntox-available-p (and (executable-find "tuntox") t))
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))

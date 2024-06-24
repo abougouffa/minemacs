@@ -11,9 +11,6 @@
 (use-package dape
   :straight t
   :commands +dape-transient
-  :custom
-  (dape-inline-variables t)
-  (dape-adapter-dir (concat minemacs-local-dir "dape/"))
   :config
   (transient-define-prefix +dape-transient ()
     "Transient for dape."

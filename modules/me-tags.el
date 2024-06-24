@@ -91,8 +91,8 @@ Fall back to the default `citre--project-root'."
   (rtags-jump-to-first-match nil)
   (rtags-results-buffer-other-window t)
   ;; Rtags' binaries are renamed on some systems (like Debian)
-  (rtags-rc-binary-name (or (cl-find-if #'executable-find (list rtags-rc-binary-name "rtags-rc")) rtags-rc-binary-name))
-  (rtags-rdm-binary-name (or (cl-find-if #'executable-find (list rtags-rdm-binary-name "rtags-rdm")) rtags-rdm-binary-name)))
+  (rtags-rc-binary-name (cl-find-if #'executable-find (list rtags-rc-binary-name "rtags-rc")))
+  (rtags-rdm-binary-name (cl-find-if #'executable-find (list rtags-rdm-binary-name "rtags-rdm"))))
 
 (use-package rtags-xref
   :straight t

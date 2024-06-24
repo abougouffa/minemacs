@@ -26,7 +26,6 @@
   :hook (vimish-fold-global-mode . global-evil-vimish-fold-mode)
   :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
   :custom
-  (vimish-fold-dir (concat minemacs-cache-dir "vimish-fold/"))
   (vimish-fold-indication-mode 'right-fringe)
   :init
   (with-eval-after-load 'evil

@@ -14,8 +14,7 @@
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
-  ;; Show in new window
-  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+  (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1) ; Show in new window
   :init
   ;; Replace the `project-vc-dir' by `magit-project-status' in project prefix and switch commands
   (with-eval-after-load 'project
@@ -48,9 +47,7 @@
 (use-package forge
   :straight t
   :after magit
-  :demand
-  :custom
-  (forge-database-file (concat minemacs-local-dir "forge/database.sqlite")))
+  :demand)
 
 (use-package diff-hl
   :straight t

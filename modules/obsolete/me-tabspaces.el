@@ -19,7 +19,6 @@
   (tabspaces-default-tab "*default*")
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-session t)
-  (tabspaces-session-file (+directory-ensure minemacs-local-dir "tabspaces/session.el"))
   :config
   ;; Ensure reading project list
   (require 'project)

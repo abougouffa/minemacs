@@ -14,7 +14,6 @@
   :demand
   :custom
   (dirvish-attributes '(subtree-state nerd-icons file-size))
-  (dirvish-cache-dir (+directory-ensure minemacs-cache-dir "dirvish/"))
   (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
   (dirvish-side-width 30)
   (dirvish-fd-default-dir "~/")

@@ -13,7 +13,6 @@
   :when (executable-find "aspell")
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom
-  (spell-fu-directory (+directory-ensure minemacs-local-dir "spell-fu/"))
   (spell-fu-word-delimit-camel-case t)
   :init
   (defmacro +spell-fu-register-dictionaries! (&rest langs)
