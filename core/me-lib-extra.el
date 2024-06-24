@@ -171,13 +171,22 @@ This calls `minemacs-update-restore-locked' asynchronously."
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
 ;;;###autoload
-(defun minemacs-load-module ()
+(defun minemacs-load-module (&rest modules)
   "Interactively install and load a module that isn't enabled in \"modules.el\".
 When called with the universal argument, it prompts for obsolete modules also."
-  (interactive)
-  (let ((modules (completing-read-multiple "Select modules: " (seq-filter (lambda (module) (not (featurep module))) (minemacs-modules current-prefix-arg)))))
-    (dolist (module (mapcar (apply-partially #'format "%s.el") modules))
-      (+load minemacs-modules-dir module))))
+  (interactive (completing-read-multiple "Select modules: " (seq-filter (lambda (module) (not (featurep module))) (minemacs-modules current-prefix-arg))))
+  (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
+         (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+                 minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook))
+        (old-fns minemacs-build-functions-hook))
+    (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) modules))
+    (when-let* ((new-hooks (cl-set-difference
+                            (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+                                    minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook)
+                            old-hooks))
+                (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
+      (mapc #'funcall new-hooks)
+      (minemacs-run-build-functions (not (called-interactively-p))))))
 
 
 
