@@ -641,14 +641,17 @@ or file path may exist now."
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
   :custom
+  (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
+  (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
+  (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
+  (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
+  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
   (org-auto-align-tags nil)
-  (org-clock-persist-file (concat minemacs-cache-dir "org/clock-persist.el"))
   (org-cycle-hide-block-startup t)
   (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
   (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
   (org-ellipsis " ↩")
-  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
   (org-export-in-background t) ; run export processes in external emacs process
   (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
   (org-export-with-smart-quotes t) ; convert "this" to « this »
@@ -657,15 +660,11 @@ or file path may exist now."
   (org-fontify-quote-and-verse-blocks t)
   (org-hide-emphasis-markers t)
   (org-highlight-latex-and-related '(native latex script entities))
-  (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
   (org-insert-heading-respect-content t)
   (org-list-allow-alphabetical t) ; have a. A. a) A) list bullets
   (org-log-done 'time) ; having the time an item is done sounds convenient
-  (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
   (org-pretty-entities t)
   (org-pretty-entities-include-sub-superscripts t)
-  (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
-  (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, (see `me-evil'))
   (org-special-ctrl-a/e t)
   (org-startup-indented nil)

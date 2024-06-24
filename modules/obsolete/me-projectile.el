@@ -13,13 +13,11 @@
   :after minemacs-loaded
   :demand
   :custom
-  (projectile-cache-file (+directory-ensure minemacs-cache-dir "projectile/cache.el"))
-  (projectile-known-projects-file (+directory-ensure minemacs-local-dir "projectile/known-projects.el"))
   (projectile-ignored-projects '("~/"))
   (projectile-auto-discover nil)
   (projectile-enable-caching (not noninteractive))
-  (projectile-globally-ignored-files '("TAGS" ".Trash" ".DS_Store"))
-  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o"))
+  (projectile-globally-ignored-files '("TAGS" "RTAGS" "GRTAGS" "GPATH" ".ccls-cache" ".tags" ".clink.db" ".Trash" ".DS_Store"))
+  (projectile-globally-ignored-file-suffixes '(".elc" ".eln" ".pyc" ".o" ".bak" ".rej"))
   (projectile-kill-buffers-filter 'kill-only-files)
   :init
   (keymap-global-set "<remap> <find-tag>" 'projectile-find-tag)

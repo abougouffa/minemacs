@@ -12,10 +12,7 @@
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")
-  :when +easydraw-available-p
-  :custom
-  (edraw-ui-state-file (+directory-ensure minemacs-local-dir "edraw/ui-state.el"))
-  (edraw-shape-picker-entries-file (concat minemacs-local-dir "edraw/shape-picker-entries.el")))
+  :when +easydraw-available-p)
 
 (use-package edraw-org
   :hook (org-mode . edraw-org-setup-default)
