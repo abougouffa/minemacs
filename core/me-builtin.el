@@ -546,8 +546,21 @@ or file path may exist now."
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   :config
-  ;; Better (!) parameters for Clangd
-  (+eglot-register
+  ;; Register some missing LSP servers
+  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
+  (+eglot-register '(nxml-mode xml-mode) "lemminx")
+  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls") ; vhdl_ls from rust_hdl (AUR: rust_hdl-git)
+  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver")
+  (+eglot-register ; add `pylyzer'
+    '(python-mode python-ts-mode)
+    "pylsp"
+    "pyls"
+    ("pylyzer" "--server")
+    ("basedpyright-langserver" "--stdio")
+    ("pyright-langserver" "--stdio")
+    "jedi-language-server"
+    "ruff-lsp")
+  (+eglot-register ; better (!) parameters for Clangd
     '(c++-mode c++-ts-mode c-mode c-ts-mode)
     '("clangd"
       "--background-index"
@@ -562,12 +575,6 @@ or file path may exist now."
       "--header-insertion=iwyu"
       "--pch-storage=memory")
     "ccls")
-
-  ;; Register some missing LSP servers
-  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
-  (+eglot-register '(nxml-mode xml-mode) "lemminx")
-  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls") ; vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver")
 
   ;; Optimization from Doom Emacs
   ;; NOTE: This setting disable the `eglot-events-buffer' enabling more
