@@ -62,7 +62,7 @@
   (corfu-min-width 25)
   (corfu-preview-current nil) ; Disable previewing the current candidate
   :init
-  (+hook-once! prog-mode-hook (global-corfu-mode 1))
+  (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
   ;; HACK: Prevent the annoting completion error when no `ispell' dictionary is set, prefer `cape-dict'
   (when (eq emacs-major-version 30)

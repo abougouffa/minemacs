@@ -11,7 +11,7 @@
 (use-package flymake-collection
   :straight (:host github :repo "abougouffa/flymake-collection" :branch "additional-checkers")
   :init
-  (+hook-once! 'prog-mode-hook (flymake-collection-hook-setup))
+  (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
   :custom
   (flymake-collection-hook-inherit-config t))
 

@@ -889,7 +889,7 @@
   :after evil minemacs-first-file
   :init
   ;; Require the package on the first `prog-mode' file
-  (+hook-once! prog-mode-hook (require 'evil-textobj-tree-sitter))
+  (satch-add-hook 'prog-mode-hook (lambda () (require 'evil-textobj-tree-sitter)) nil nil :transient t)
   :config
   ;; Goto start of next function
   (define-key evil-normal-state-map (kbd "]f") (+cmdfy! (evil-textobj-tree-sitter-goto-textobj "function.outer")))
