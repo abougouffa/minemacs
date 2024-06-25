@@ -1056,19 +1056,18 @@ the first, fresh scratch buffer you create. This accepts:
   "The name of the project associated with the current scratch buffer.")
 (put '+scratch-current-project 'permanent-local t)
 
-(defvar +scratch-buffer-created-hook ()
+(defvar +scratch-buffer-created-hook nil
   "The hooks to run after a scratch buffer is created.")
 
 (defun +scratch-load-persistent-scratch-buffer (&optional project-name)
   (setq-local +scratch-current-project (or project-name +scratch-default-file))
-  (let ((smart-scratch-file
-         (expand-file-name (concat +scratch-current-project ".el") +scratch-dir)))
+  (let ((scratch-file (expand-file-name (concat +scratch-current-project ".el") +scratch-dir)))
     (make-directory +scratch-dir t)
-    (when (file-readable-p smart-scratch-file)
-      (+log! "Reading persistent scratch from %s" smart-scratch-file)
+    (when (file-readable-p scratch-file)
+      (+log! "Reading persistent scratch from %s" scratch-file)
       (cl-destructuring-bind (content point mode)
           (with-temp-buffer
-            (save-excursion (insert-file-contents smart-scratch-file))
+            (save-excursion (insert-file-contents scratch-file))
             (read (current-buffer)))
         (erase-buffer)
         (funcall mode)
@@ -1114,8 +1113,7 @@ When provided, set the `default-directory' to DIRECTORY."
   "Save all scratch buffers to `+scratch-dir'."
   (setq +scratch-buffers (cl-delete-if-not #'buffer-live-p +scratch-buffers))
   (dolist (buffer +scratch-buffers)
-    (with-current-buffer buffer
-      (+scratch-persist-buffer-h))))
+    (with-current-buffer buffer (+scratch-persist-buffer-h))))
 
 (defun +scratch-persist-buffers-after-switch-h (&rest _)
   "Kill scratch buffers when they are no longer visible, saving them to disk."
