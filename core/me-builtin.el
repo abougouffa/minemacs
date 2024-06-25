@@ -934,7 +934,13 @@ current line.")
 (use-package bookmark
   :custom
   (bookmark-save-flag 1) ; Save the bookmarks every time a bookmark is made
+  :bind (("<left-fringe> <double-mouse-1>" . +bookmark-set-at-mouse)) ; double click on fringe creates a bookmark
   :config
+  (defun +bookmark-set-at-mouse (event)
+    (interactive "e")
+    (save-excursion
+      (mouse-set-point event)
+      (bookmark-set (format "%s: %s" (buffer-name) (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))))
   (push bookmark-default-file +first-file-hook-ignore-list))
 
 (use-package desktop
