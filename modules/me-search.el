@@ -32,6 +32,14 @@
   :custom
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
+(use-package loccur
+  :straight t
+  :bind (("C-S-o" . loccur-current)
+         ("C-M-S-o" . loccur)
+         ("M-s C-o" . loccur-isearch)
+         :map isearch-mode-map
+         ("C-o" . loccur-isearch)))
+
 (use-package isearch+
   :straight t)
 
