@@ -147,6 +147,9 @@
   :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
   :when (+emacs-features-p 'tree-sitter))
 
+(use-package eglot-x
+  :straight (:host github :repo "nemethf/eglot-x"))
+
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
