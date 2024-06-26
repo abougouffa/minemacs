@@ -41,8 +41,6 @@
         (t ; Fallback to builtin `flyspell'
          (flyspell-mode (if (bound-and-true-p flyspell-mode) -1 1)))))
 
-(add-hook #'text-mode-hook #'+spellcheck-mode)
-
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 

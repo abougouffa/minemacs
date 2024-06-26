@@ -1143,7 +1143,7 @@ current line.")
   :hook (minemacs-lazy . line-number-mode) ; Show line number in mode-line
   :hook (minemacs-lazy . column-number-mode) ; Show column numbers (a.k.a. cursor position) in the mode-line
   :hook (minemacs-lazy . size-indication-mode) ; Display buffer size on mode line
-  :hook ((prog-mode conf-mode text-mode) . visual-line-mode) ; Wrap long lines
+  :hook ((prog-mode conf-mode org-mode) . visual-line-mode) ; Wrap long lines
   :custom
   (kill-do-not-save-duplicates t) ; Filter duplicate entries in kill ring
   (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
