@@ -107,8 +107,10 @@ Adapted from `org-plist-delete'."
   "Convert ALIST to a plist, add colon to the keys when ADD-COL."
   (let (res)
     (dolist (x alist)
-      (push (if add-col (intern (format ":%s" (car x))) (car x)) res)
-      (push (cdr x) res))
+      (let ((key (car x)))
+        (cl-assert (or (and (not nil) (atom key)) (stringp key)) t "The alist should have keys that are symbols or strings")
+        (push (if add-col (intern (format ":%s" key)) key) res)
+        (push (cdr x) res)))
     (nreverse res)))
 
 ;; Taken from: emacs.stackexchange.com/q/33892/12534
@@ -146,13 +148,9 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
   "Return the standard value for VARIABLE."
   (eval (car (get variable 'standard-value)) t))
 
-(defun +reset-sym (sym)
-  "Reset SYM to its standard value."
-  (set sym (+standard-value sym)))
-
-(defmacro +reset-var! (var)
-  "Reset VAR to its standard value."
-  `(setq ,var (+standard-value ',var)))
+(defun +reset-standard-value (variable)
+  "Reset VARIABLE to its standard value."
+  (set variable (+standard-value variable)))
 
 ;; Adapted from `evil-unquote', takes functions into account
 (defun +unquote (expr)
@@ -416,12 +414,15 @@ the the function.
 (defun +shell-command-to-string-ignore-stderr (command)
   "Execute shell command COMMAND and return its output as a string.
 
-Works like `shell-command-to-string' with two differences:
+Works like `shell-command-to-string' with three differences:
 1. It uses `+shell-command-switch' instead of `shell-command-switch'.
-2. It returns only stdout and ignore the output of stderr."
+2. It returns only stdout and ignore the output of stderr.
+3. It sets TERM to \"smart\" instead of \"dumb\", to be able to escape from
+Emacs-specific early exit in \".bashrc\"."
   (with-output-to-string
     (with-current-buffer standard-output
-      (let ((process-environment (append (list "TERM=smart") process-environment))) ; do not pretend to be dumb (aka, don't exit early when loading .bashrc)
+      ;; Do not pretend to be dumb (a.k.a. don't exit early when loading .bashrc)
+      (let ((process-environment (append (list "TERM=smart") (remove "TERM=dumb" process-environment))))
         (process-file shell-file-name nil '(t nil) nil +shell-command-switch command)))))
 
 (defun +env-save ()
@@ -488,8 +489,7 @@ Optionally, check also for the containing MODULE."
 (defun +directory-subdirs (dir)
   "Return a list of sub-directories in DIR."
   (when dir
-    (seq-filter #'file-directory-p
-                (mapcar #'abbreviate-file-name (directory-files dir t "[^.][^.]?\\'")))))
+    (seq-filter #'file-directory-p (mapcar #'abbreviate-file-name (directory-files dir t "[^.][^.]?\\'")))))
 
 (defun +directory-ensure (&rest path-parts)
   "Concatenate PATH-PARTS to construct a path and return it.
@@ -635,7 +635,7 @@ be deleted.
 
 (defun +eglot--ensure-maybe-h ()
   "Maybe auto start Eglot if the current mode is in `+eglot-auto-enable-modes'."
-  (when (memq major-mode +eglot-auto-enable-modes)
+  (when (apply #'provided-mode-derived-p (append (list major-mode) +eglot-auto-enable-modes))
     (eglot-ensure)))
 
 (defun +eglot-auto-enable ()
