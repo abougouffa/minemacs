@@ -15,11 +15,11 @@ It's available on [Melpa](http://melpa.milkbox.net/)
 
 ### Enable minor mode
 
-    M-x ansible
+    M-x ansible-mode
 
 or hook
 
-    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+    (add-hook 'yaml-mode-hook '(lambda () (ansible-mode 1)))
 
 ### Snippets for yasnippet
 
