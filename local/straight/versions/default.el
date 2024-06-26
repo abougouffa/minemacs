@@ -153,7 +153,7 @@
  ("gnuplot" . "4c6b18f71ff7604e2640033207f5a882ddce78af")
  ("god-mode" . "607aff10a7b27a8aa0c1a15c2c39337ab17cfda7")
  ("graphviz-dot-mode" . "8ff793b13707cb511875f56e167ff7f980a31136")
- ("guard-lf" . "56f3984e8b2027eeb7f77a045e0a6576c132747e")
+ ("guard-lf" . "70008973411d91a59e2dd3578656c46cf8f57cd5")
  ("guile" . "71a6be00433a157de3936f208c7a1bd0192b12cd")
  ("helpful" . "4ba24cac9fb14d5fdc32582cd947572040e82b2c")
  ("highlight-numbers" . "8b4744c7f46c72b1d3d599d4fb75ef8183dee307")
