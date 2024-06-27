@@ -537,9 +537,9 @@ or file path may exist now."
     '(python-mode python-ts-mode)
     "pylsp"
     "pyls"
-    ("pylyzer" "--server")
-    ("basedpyright-langserver" "--stdio")
-    ("pyright-langserver" "--stdio")
+    '("pylyzer" "--server")
+    '("basedpyright-langserver" "--stdio")
+    '("pyright-langserver" "--stdio")
     "jedi-language-server"
     "ruff-lsp")
   (+eglot-register ; better (!) parameters for Clangd
