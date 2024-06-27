@@ -664,11 +664,11 @@ Examples:
   (with-eval-after-load 'eglot
     (let ((orig-val (assoc modes eglot-server-programs (lambda (s1 s2) (seq-intersection (ensure-list s1) (ensure-list s2)))))
           (contact (if (length> servers 1) (eglot-alternatives (ensure-list servers)) (ensure-list (car servers)))))
-      (unless (equal (car orig-val) modes)
-        (setcar orig-val modes))
-      (if orig-val
-          (setcdr orig-val contact)
-        (add-to-list 'eglot-server-programs (cons modes contact))))))
+      (if (null orig-val) ; not present, add it
+          (add-to-list 'eglot-server-programs (cons modes contact))
+        (unless (equal (car orig-val) modes)
+          (setcar orig-val modes))
+        (setcdr orig-val contact)))))
 
 
 
