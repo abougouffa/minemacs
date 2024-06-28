@@ -44,22 +44,6 @@ Level of printed messages.
 2 - `+info!`
 3 - `+log!`
 
-#### `minemacs-leader-key`
-
-MinEmacs leader key.
-
-#### `minemacs-localleader-key`
-
-MinEmacs local leader (a.k.a. mode specific) key sequence.
-
-#### `minemacs-global-leader-prefix`
-
-MinEmacs general leader key.
-
-#### `minemacs-global-mode-prefix`
-
-MinEmacs general local leader (a.k.a. mode specific) key sequence.
-
 #### `minemacs-theme`
 
 The theme of MinEmacs.
@@ -328,13 +312,9 @@ Set the standard value of VARIABLE to VALUE.
 
 Return the standard value for VARIABLE.
 
-#### `(+reset-sym SYM)`
+#### `(+reset-standard-value VARIABLE)`
 
-Reset SYM to its standard value.
-
-#### `(+reset-var! VAR)` (macro)
-
-Reset VAR to its standard value.
+Reset VARIABLE to its standard value.
 
 #### `(+unquote EXPR)`
 
@@ -440,9 +420,11 @@ Queue FNS to be byte/natively-compiled after a brief delay.
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
 Execute shell command COMMAND and return its output as a string.
-Works like `shell-command-to-string` with two differences:
+Works like `shell-command-to-string` with three differences:
 1. It uses `+shell-command-switch` instead of `shell-command-switch`.
 2. It returns only stdout and ignore the output of stderr.
+3. It sets TERM to "smart" instead of "dumb", to be able to escape from
+Emacs-specific early exit in ".bashrc".
 
 #### `(+env-save)`
 
@@ -460,6 +442,10 @@ Add ROOTS to ignored projects, recentf, etc.
 
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 Optionally, check also for the containing MODULE.
+
+#### `(minemacs-modules &optional INCLUDE-OBSOLETE)`
+
+List all the available modules, with optional INCLUDE-OBSOLETE.
 
 #### `(+file-read-to-string FILENAME)`
 
