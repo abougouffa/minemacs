@@ -207,17 +207,8 @@ This calls `minemacs-update-restore-locked' asynchronously."
         fast-but-imprecise-scrolling t)) ; Fast scrolling
 
 ;;;###autoload
-(defun minemacs-modules (&optional include-obsolete)
-  "List of available modules, with optional INCLUDE-OBSOLETE."
-  (let ((mod-files (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))
-    (when include-obsolete
-      (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
-                                         (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
-    (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
-
-;;;###autoload
 (defun minemacs-load-module (&rest modules)
-  "Interactively install and load a module that isn't enabled in \"modules.el\".
+  "Interactively install and load MODULES that aren't enabled in \"modules.el\".
 When called with the universal argument, it prompts for obsolete modules also."
   (interactive (completing-read-multiple "Select modules: " (seq-filter (lambda (module) (not (featurep module))) (minemacs-modules current-prefix-arg))))
   (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
