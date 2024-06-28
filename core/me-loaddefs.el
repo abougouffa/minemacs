@@ -91,13 +91,11 @@ Prune straight.el build directories for old Emacs versions.")
 Cleanup unwanted files/directories from MinEmacs' directory." t)
 (autoload 'minemacs-apply-performance-tweaks "me-lib-extra" "\
 Set some Emacs variables for better (!) performance." t)
-(autoload 'minemacs-modules "me-lib-extra" "\
-List of available modules, with optional INCLUDE-OBSOLETE.
-
-(fn &optional INCLUDE-OBSOLETE)")
 (autoload 'minemacs-load-module "me-lib-extra" "\
-Interactively install and load a module that isn't enabled in \"modules.el\".
-When called with the universal argument, it prompts for obsolete modules also." t)
+Interactively install and load MODULES that aren't enabled in \"modules.el\".
+When called with the universal argument, it prompts for obsolete modules also.
+
+(fn &rest MODULES)" t)
 (autoload '+file-mime-type "me-lib-extra" "\
 Get MIME type for FILE based on magic codes provided by the \"file\" command.
 Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
@@ -391,19 +389,19 @@ Show the list of declared external dependencies." t)
 (autoload '+writing-mode "../modules/extras/me-writing-mode" "\
 A mode for writing without distraction.
 
-This is a minor mode.  If called interactively, toggle the `+Writing
-mode' mode.  If the prefix argument is positive, enable the mode, and if
-it is zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`+Writing mode' mode.  If the prefix argument is positive, enable
+the mode, and if it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
-mode if ARG is nil, omitted, or is a positive number.  Disable the mode
-if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
 evaluate `+writing-mode'.
 
-The mode's hook is called both when the mode is enabled and when it is
-disabled.
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
 
 (fn &optional ARG)" t)
 (put '+writing-global-mode 'globalized-minor-mode t)
