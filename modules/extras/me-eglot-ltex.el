@@ -53,18 +53,23 @@
 (defvar eglot-ltex-disable-rules
   (+deserialize-sym 'eglot-ltex-disable-rules eglot-ltex-user-rules-path))
 
-(defun eglot-ltex--process-client-commands:before-a (_srv cmd args)
-  "Process LTeX-LS client commands."
-  (cond
-   ((string= cmd "_ltex.addToDictionary")
-    (eglot-ltex--action-add-to-rules args :words 'eglot-ltex-dictionary 'store)
-    (message "Word added to dictionary."))
-   ((string= cmd "_ltex.hideFalsePositives")
-    (eglot-ltex--action-add-to-rules args :falsePositives 'eglot-ltex-hidden-false-positives 'store)
-    (message "Rule added to false positives."))
-   ((string= cmd "_ltex.disableRules")
-    (eglot-ltex--action-add-to-rules args :ruleIds 'eglot-ltex-disable-rules 'store)
-    (message "Rule added to disable rules."))))
+(defun eglot-ltex--process-client-commands:before-a (_server action)
+  "Advice for `eglot-execute' to process LTeX-LS client ACTION."
+  (let* ((action (if (plist-get action :kind) ; unpack if necessary
+                     (plist-get action :command)
+                   action))
+         (cmd (plist-get action :command))
+         (args (plist-get action :arguments)))
+    (cond
+     ((string= cmd "_ltex.addToDictionary")
+      (eglot-ltex--action-add-to-rules args :words 'eglot-ltex-dictionary 'store)
+      (message "Word added to dictionary."))
+     ((string= cmd "_ltex.hideFalsePositives")
+      (eglot-ltex--action-add-to-rules args :falsePositives 'eglot-ltex-hidden-false-positives 'store)
+      (message "Rule added to false positives."))
+     ((string= cmd "_ltex.disableRules")
+      (eglot-ltex--action-add-to-rules args :ruleIds 'eglot-ltex-disable-rules 'store)
+      (message "Rule added to disable rules.")))))
 
 (defun eglot-ltex-workspace-config-fn (&optional _server)
   "A function to use as a value of `eglot-workspace-configuration'.
@@ -103,12 +108,12 @@ When STORE is non-nil, this will also store the new plist in the directory
 (defun eglot-ltex-enable-handling-client-commands ()
   "Enable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
-  (advice-add 'eglot-execute-command :before #'eglot-ltex--process-client-commands:before-a))
+  (advice-add 'eglot-execute :before #'eglot-ltex--process-client-commands:before-a))
 
 (defun eglot-ltex-disable-handling-client-commands ()
   "Disable Eglot hack to handle code actions of LTeX-LS."
   (interactive)
-  (advice-remove 'eglot-execute-command #'eglot-ltex--process-client-commands:before-a))
+  (advice-remove 'eglot-execute #'eglot-ltex--process-client-commands:before-a))
 
 
 (provide 'me-eglot-ltex)
