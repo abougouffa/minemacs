@@ -71,7 +71,9 @@
 It generates the workspace configuration dynamically, taking into account
 changed values of `eglot-ltex-language', `eglot-ltex-dictrionary', and so on."
   `(:ltex
-    (:language ,eglot-ltex-language
+    ;; Add "tex" to the default supported markups
+    (:enabled ["bibtex" "context" "context.tex" "html" "latex" "markdown" "org" "restructuredtext" "rsweave" "tex"]
+     :language ,eglot-ltex-language
      :dictionary ,eglot-ltex-dictionary
      :disabledRules ,eglot-ltex-disable-rules
      :hiddenFalsePositives ,eglot-ltex-hidden-false-positives
