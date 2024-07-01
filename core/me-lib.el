@@ -188,6 +188,12 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
     `(let ((inhibit-message t))
       (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
 
+(defmacro +debug! (msg &rest vars)
+  "Log debug MSG and VARS using `message' when `minemacs-msg-level' is 4."
+  (when (>= minemacs-msg-level 4)
+    `(let ((inhibit-message t))
+      (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
+
 (defun +emacs-features-p (&rest feats)
   "Is features FEATS are enabled in this Emacs build."
   (and (cl-every (lambda (feat) (memq feat emacs/features)) feats) t))
@@ -201,7 +207,7 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
       (satch-defun ,advice-fn (origfn &rest args)
        (let ((message-log-max (unless ,no-message-log message-log-max)))
         (with-temp-message (or (current-message) "")
-         (+log! "Inhibiting messages of %s" ,(symbol-name fn))
+         (+debug! "Inhibiting messages of %s" ,(symbol-name fn))
          (apply origfn args)))))))
 
 (defmacro +shutup! (&rest body)
