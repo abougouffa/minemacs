@@ -119,7 +119,7 @@ This calls `minemacs-update-restore-locked' asynchronously."
     (compile cmd)))
 
 ;;;###autoload
-(defun +minemacs-root-dir-cleanup ()
+(defun minemacs-root-dir-cleanup ()
   "Cleanup MinEmacs' root directory."
   (let ((default-directory minemacs-root-dir))
     (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
@@ -139,7 +139,7 @@ This calls `minemacs-update-restore-locked' asynchronously."
            (directory-files default-directory nil "[^.][^.]?\\'")))))
 
 ;;;###autoload
-(defun +minemacs-cleanup-emacs-directory ()
+(defun minemacs-cleanup-emacs-directory ()
   "Cleanup unwanted files/directories from MinEmacs' directory."
   (interactive)
   (when (featurep 'native-compile)
@@ -149,7 +149,7 @@ This calls `minemacs-update-restore-locked' asynchronously."
   (+info! "Trying to clean outdated straight build cache")
   (+shutup! (+straight-prune-build-cache))
   (+info! "Trying to clean MinEmacs' root directory")
-  (+shutup! (+minemacs-root-dir-cleanup)))
+  (+shutup! (minemacs-root-dir-cleanup)))
 
 ;;;###autoload
 (defun minemacs-apply-performance-tweaks ()
