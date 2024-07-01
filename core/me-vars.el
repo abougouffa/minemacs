@@ -71,7 +71,8 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
   "Level of printed messages.
 1 - `+error!'
 2 - `+info!'
-3 - `+log!'"
+3 - `+log!'
+4 - `+debug!'"
   :group 'minemacs-core
   :type '(choice
           (const :tag "Error" 1)
