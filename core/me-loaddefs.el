@@ -110,11 +110,11 @@ When PULL-MINEMACS is non-nil, run a \"git pull\" in MinEmacs' directory.
 This calls `minemacs-update-restore-locked' asynchronously.
 
 (fn PULL-MINEMACS)" t)
-(autoload '+minemacs-root-dir-cleanup "me-lib-extra" "\
+(autoload 'minemacs-root-dir-cleanup "me-lib-extra" "\
 Cleanup MinEmacs' root directory.")
 (autoload '+straight-prune-build-cache "me-lib-extra" "\
 Prune straight.el build directories for old Emacs versions.")
-(autoload '+minemacs-cleanup-emacs-directory "me-lib-extra" "\
+(autoload 'minemacs-cleanup-emacs-directory "me-lib-extra" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
 (autoload 'minemacs-apply-performance-tweaks "me-lib-extra" "\
 Set some Emacs variables for better (!) performance." t)
