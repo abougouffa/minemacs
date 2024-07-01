@@ -2,6 +2,56 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.2.0](https://github.com/abougouffa/minemacs/compare/82b837a84c87666bf9763dc19ca0fce97555a077..v8.2.0) - 2024-07-01
+#### Bug Fixes
+- **(corfu)** fix the `ispell` issue on Emacs 30 - ([21ae46d](https://github.com/abougouffa/minemacs/commit/21ae46d95df026f85daec52ef92854b7ba049ea7)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** update the handling of client commands for new Eglot API - ([358d7aa](https://github.com/abougouffa/minemacs/commit/358d7aaf5171c42293c161e1bd62aeb49f81e1d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** fix Python LSP registration - ([1b3fb5c](https://github.com/abougouffa/minemacs/commit/1b3fb5c08216e9c8d91765325ad9c85ff4566864)) - [@abougouffa](https://github.com/abougouffa)
+- **(ltex)** correctly enable LTeX-LS in (La)TeX modes - ([018ec1e](https://github.com/abougouffa/minemacs/commit/018ec1ea93d131d964652ff362c25b11e0308298)) - [@abougouffa](https://github.com/abougouffa)
+- `+eglot-register` failing on Windows - ([b380cc3](https://github.com/abougouffa/minemacs/commit/b380cc31722d7d66b0ead59f65ba8cbb22dedfbe)) - [@abougouffa](https://github.com/abougouffa)
+- treat `+with-delayed!` body as one unit - ([21ceb4c](https://github.com/abougouffa/minemacs/commit/21ceb4cf82688a636a4a1cdf836503cccf6c231a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(builtin)** add a comment - ([f463751](https://github.com/abougouffa/minemacs/commit/f46375116ba565a3331099d712f2b3889e566e6d)) - [@abougouffa](https://github.com/abougouffa)
+- **(documentation)** regenerate the documentation - ([4eb59cb](https://github.com/abougouffa/minemacs/commit/4eb59cb0798c9af766dc69c56b22381b246f9f31)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(docs)** add `markdown-ts-mode` - ([367a9e2](https://github.com/abougouffa/minemacs/commit/367a9e2715c13d39e73c8d03a7b94b8ae0d6a6c8)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add initial support fot Eglot protocol extensions `eglot-x` - ([871efb3](https://github.com/abougouffa/minemacs/commit/871efb31e7b6cdafee1f9df06e3b0856ecff6c55)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** add support for `loccur` - ([1f752ba](https://github.com/abougouffa/minemacs/commit/1f752ba557f083f04942e9e51c1add69d475bc8e)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- minor edit - ([db13ee9](https://github.com/abougouffa/minemacs/commit/db13ee98a1d2b02ef8c6a34d558691783cd1f320)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- refactor some core utils - ([7ef10da](https://github.com/abougouffa/minemacs/commit/7ef10da2a633865ee2946ab5c89049d637611d06)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([775e1da](https://github.com/abougouffa/minemacs/commit/775e1dac383012dc315984624091b5f9344a22a8)) - [@abougouffa](https://github.com/abougouffa)
+- don't set directories unless necessary + minor tweaks - ([2689e13](https://github.com/abougouffa/minemacs/commit/2689e13dc08e11409a253fa9519a5efc8e158c91)) - [@abougouffa](https://github.com/abougouffa)
+- move leader key related variables to `obsolete/me-evil` - ([914d4d2](https://github.com/abougouffa/minemacs/commit/914d4d2477a60f8b41dc2cf1b6a364c83b8988d2)) - [@abougouffa](https://github.com/abougouffa)
+- move `elisp-demos` to `me-emacs-lisp` - ([21cdb25](https://github.com/abougouffa/minemacs/commit/21cdb252c56ff71c8e61f933fb21af39e35991da)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bookmark)** set bookmark by double clicking the left fringe - ([54ad314](https://github.com/abougouffa/minemacs/commit/54ad3146299b1669419bfa1b57b468a82389b0aa)) - [@abougouffa](https://github.com/abougouffa)
+- **(breadcrumb)** integrate with `nerd-icons` - ([1f36a5f](https://github.com/abougouffa/minemacs/commit/1f36a5f854c28f333367912b26cb57524bfa662e)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** force using GNU ELPA mirror for installed packages - ([1b4eb14](https://github.com/abougouffa/minemacs/commit/1b4eb14c2fa778643da130d7badbb4c033112203)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** exclude commands irrelevant to the current mode in `M-x` - ([30a96e8](https://github.com/abougouffa/minemacs/commit/30a96e80f23ed9b438e3a2cca57faaa32e2b9a2e)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** don't auto insert the current candidate - ([103b1da](https://github.com/abougouffa/minemacs/commit/103b1da2f4a004672300b6aa9b64d834ceaa4410)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** register `pylyzer` LSP server - ([0b3dc6e](https://github.com/abougouffa/minemacs/commit/0b3dc6e0dbb28244edb4054bc0d55d271f2d9926)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** better implementation of `+eglot-register` - ([6f70f77](https://github.com/abougouffa/minemacs/commit/6f70f77ca55a0ecf37a3b53171c98cf29839cf71)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot-x)** autoload `eglot-x-setup` - ([a242fa2](https://github.com/abougouffa/minemacs/commit/a242fa20a13bd5849a24165bea4450b31436cfc4)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** switch the repo, again! - ([b9956e5](https://github.com/abougouffa/minemacs/commit/b9956e52a03a4ba5f9340fbf69b3a4b73b696cb2)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** switch to my fork - ([3b165f0](https://github.com/abougouffa/minemacs/commit/3b165f09e6a0fc533d9b3f914cb2844be3e2f8b6)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** name tabs after the current project - ([eba0bc4](https://github.com/abougouffa/minemacs/commit/eba0bc4796cc315686e3e46042f77e57049ab80f)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** fix grammars and refactor - ([06cb69d](https://github.com/abougouffa/minemacs/commit/06cb69dc58a52d0b42d57004b5e35bcdc0a68096)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add the missing `casual-lib` dependency - ([de31e49](https://github.com/abougouffa/minemacs/commit/de31e49c67ba46058bda1c2b68c599208d01bd71)) - [@abougouffa](https://github.com/abougouffa)
+- **(yasnippet)** suppress some annoying and unimportant messages - ([36b262b](https://github.com/abougouffa/minemacs/commit/36b262b8457d64780966cc8a296a785902df5fc8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d0440b6](https://github.com/abougouffa/minemacs/commit/d0440b62a14232b838d853cb70d4fd79da54dbe5)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([726dc09](https://github.com/abougouffa/minemacs/commit/726dc095a358584e08f3783e752515cc52e9d3dc)) - [@abougouffa](https://github.com/abougouffa)
+- bump the `guard-lf` version - ([be1ddb4](https://github.com/abougouffa/minemacs/commit/be1ddb4538b0d03d9ccdf5b9cd0bb9ea0094cfe3)) - [@abougouffa](https://github.com/abougouffa)
+- better performance for big `text-mode` files - ([058602e](https://github.com/abougouffa/minemacs/commit/058602ed27c7da3004d185468a568d832519f8c2)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of `minemacs-load-module` - ([abdb445](https://github.com/abougouffa/minemacs/commit/abdb4453d088e8c5b111502d9706c0d501fa27bf)) - [@abougouffa](https://github.com/abougouffa)
+- add a command to interactively install modules - ([acf190a](https://github.com/abougouffa/minemacs/commit/acf190a39f1f0b2100fc94d82208764cfdbfff09)) - [@abougouffa](https://github.com/abougouffa)
+- don't persist any of `MINEMACS_*` environment variables - ([098a558](https://github.com/abougouffa/minemacs/commit/098a5588070f520717fb41d1e0b9392333bee3a3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([632d872](https://github.com/abougouffa/minemacs/commit/632d872d269c0ae004672effda00f08c40c8e1da)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([82b837a](https://github.com/abougouffa/minemacs/commit/82b837a84c87666bf9763dc19ca0fce97555a077)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.1.0](https://github.com/abougouffa/minemacs/compare/8da9d400761a46c6d7b21ce1b563f7e8f69fbed6..v8.1.0) - 2024-06-22
 #### Documentation
 - **(early-init)** update comments - ([2664493](https://github.com/abougouffa/minemacs/commit/2664493d47b89a22ab91dce8fef18b5abb8b1ba6)) - [@abougouffa](https://github.com/abougouffa)
