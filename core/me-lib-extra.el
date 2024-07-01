@@ -171,11 +171,11 @@ When called with the universal argument, it prompts for obsolete modules also."
                  minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook))
         (old-fns minemacs-build-functions-hook))
     (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) modules))
-    (when-let* ((new-hooks (cl-set-difference
-                            (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                                    minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook)
-                            old-hooks))
-                (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
+    (let ((new-hooks (cl-set-difference
+                      (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+                              minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook)
+                      old-hooks))
+          (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
       (minemacs-run-build-functions (not (called-interactively-p))))))
 
