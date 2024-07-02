@@ -229,6 +229,10 @@
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
 
+(use-package consult-web
+  :straight (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el"))
+  :commands consult-web consult-web-multi consult-web-omni consult-web-dynamic consult-web-dynamic-omni consult-web-scholar)
+
 (use-package embark
   :straight t
   :bind (([remap describe-bindings] . embark-bindings)
