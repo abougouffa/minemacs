@@ -565,7 +565,17 @@ or file path may exist now."
   ;; steady performance decrease over time. CPU is spent on pretty priting and
   ;; Emacs GC is put under high pressure.
   (unless minemacs-debug-p
-    (cl-callf plist-put eglot-events-buffer-config :size 0)))
+    (cl-callf plist-put eglot-events-buffer-config :size 0))
+
+  ;; When a sub/super project with a separate Python virtual environment is detected,
+  ;; limit to this one.
+  ;; See: https://lists.gnu.org/archive/html/emacs-devel/2022-11/msg01087.html
+  (defun +project-find-virtualenv-for-eglot (dir)
+    (when (bound-and-true-p eglot-lsp-context)
+      (let ((root (locate-dominating-file dir ".virtualenv")))
+        (when root (cons 'transient root)))))
+
+  (add-hook 'project-find-functions #'+project-find-virtualenv-for-eglot))
 
 (use-package imenu
   :custom
