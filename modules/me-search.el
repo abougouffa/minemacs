@@ -67,7 +67,25 @@
   ;; fzf.el relays on `projectile-project-root' to guess the project root
   (unless (fboundp 'projectile-project-root)
     (provide 'projectile) ; provide `projectile' because `fzf-projectile' will try to require it
-    (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current)))))))
+    (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current))))))
+
+  ;; Run fzf in the workspace (super-project with multiple projects inside)
+  (defvar +fzf-super-project-root-markers '(".super-project" ".super-project.el" ".repo" ".code-workspace" ".workspace")
+    "List of super-projects root markers, order matters.")
+
+  (defun +fzf-super-project (&optional with-preview)
+    "Starts an fzf session at the root of the current super-project (workspace)."
+    (interactive "P")
+    (if-let* ((starting-path (or (when-let ((proj (project-current))) (project-root proj))
+                                 buffer-file-name
+                                 default-directory))
+              (repo-dir (cl-some (apply-partially #'locate-dominating-file starting-path) +fzf-super-project-root-markers)))
+        (let ((fzf/args (if with-preview
+                            (concat fzf/args " " fzf/args-for-preview)
+                          fzf/args))
+              (fzf--target-validator (fzf--use-validator #'fzf--validate-filename)))
+          (fzf--start repo-dir #'fzf--action-find-file))
+      (user-error "It doesn't seem that we are in a super-project"))))
 
 
 (provide 'me-search)
