@@ -45,13 +45,8 @@
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
-    (or (locate-dominating-file ;; locate the root containing the file
-         (or buffer-file-name default-directory)
-         (lambda (dir)
-           (directory-files
-            (file-name-directory dir)
-            nil
-            (rx-to-string `(seq bol (or ,@+citre-recursive-root-project-detection-files) eol)))))
+    (or (cl-some (apply-partially #'locate-dominating-file (or buffer-file-name default-directory))
+                 +citre-recursive-root-project-detection-files) ; locate the root containing the file
         (citre--project-root))) ; Fall back to the default detection!
 
   (defun +citre-gtags-find-files-command (&optional dir)
