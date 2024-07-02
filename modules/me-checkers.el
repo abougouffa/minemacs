@@ -38,7 +38,16 @@
   :hook ((emacs-lisp-mode lisp-interaction-mode) . flymake-relint-setup))
 
 (use-package flymake-pmd
-  :straight (:host github :repo "rody/flymake-pmd"))
+  :straight (:host github :repo "rody/flymake-pmd")
+  :custom
+  (flymake-pmd-use-eglot t) ; Integrate with Eglot results
+  :config
+  ;; Use the PMD 6 format when we have the right version installed
+  (setq flymake-pmd-use-pmd-6
+        (and (executable-find flymake-pmd-executable-name)
+             (when-let* ((ver-out (shell-command-to-string (format "%s --version" flymake-pmd-executable-name)))
+                         (ver (string-match "PMD \\(?1:\\([0-9]*\\.\\)*[0-9]*\\)" ver-out)))
+               (version<= "6.0" (match-string 1 ver-out))))))
 
 
 (provide 'me-checkers)
