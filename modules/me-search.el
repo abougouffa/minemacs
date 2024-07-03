@@ -59,6 +59,17 @@
   :straight t
   :bind (("C-c s" . rg-menu)))
 
+(use-package affe
+  :straight t
+  :custom
+  (affe-regexp-compiler #'+affe-orderless-regexp-compiler)
+  :config
+  ;; Setup orderless regexp compiler, as recommended in the README.md
+  (require 'orderless)
+  (defun +affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (cdr (orderless-compile input)))
+    (cons input (apply-partially #'orderless--highlight input t))))
+
 (use-package fzf
   :straight t
   :commands fzf-project
