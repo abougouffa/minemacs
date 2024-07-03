@@ -32,7 +32,7 @@
     (fmakunbound 'consult-notes-org-roam-find-node-relation))
   (+consult-notes--unbound-org-roam)
   :custom
-  (consult-notes-denote-files-function #'denote-directory-text-only-files) ; Search only for text files in denote dir
+  (consult-notes-denote-files-function #'denote-directory-files) ; Search only for text files in denote dir
   (consult-notes-use-rg (and (executable-find "rg") t))
   :config
   (+consult-notes--unbound-org-roam)
