@@ -41,6 +41,9 @@
         (t ; Fallback to builtin `flyspell'
          (flyspell-mode (if (bound-and-true-p flyspell-mode) -1 1)))))
 
+(with-eval-after-load 'git-commit
+  (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
+
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 
