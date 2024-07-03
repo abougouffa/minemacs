@@ -72,9 +72,9 @@
 
 (use-package fzf
   :straight t
-  :commands fzf-project
+  :commands +fzf-project +fzf-super-project
   :config
-  (defalias 'fzf-project 'fzf-projectile)
+  (defalias '+fzf-project 'fzf-projectile)
   ;; fzf.el relays on `projectile-project-root' to guess the project root
   (unless (fboundp 'projectile-project-root)
     (provide 'projectile) ; provide `projectile' because `fzf-projectile' will try to require it
