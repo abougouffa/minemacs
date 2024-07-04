@@ -1020,7 +1020,8 @@ ARG and PROJECT-P are passed to `+scratch-open-buffer'."
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "Iosevka Fixed Curly Slab" :height 110)
+    ((:family "Martian Mono" :height 100)
+     (:family "Iosevka Fixed Curly Slab" :height 110)
      (:family "Iosevka Comfy Fixed" :height 110)
      (:family "Iosevka Fixed Curly" :height 110)
      (:family "Iosevka Comfy Motion Fixed" :height 110)
