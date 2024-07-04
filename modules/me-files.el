@@ -50,8 +50,7 @@
   :init
   (guard-lf-mode 1)
   :config
-  (cl-callf append guard-lf-intact-major-modes
-    '(archive-mode tar-mode image-mode pcap-mode rosbag-info-mode vlf-mode)))
+  (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode)))
 
 (use-package sudo-edit
   :straight t
