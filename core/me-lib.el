@@ -853,21 +853,22 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
       (cons 'local root)
     (user-error "It doesn't seem that we are in a super-project")))
 
-(defmacro +super-project-define-commands (&rest commands)
-  "Define COMMANDS for super-project context."
-  (let (form)
-    (dolist (command commands)
-      (let* ((arglist (help-function-arglist command t))
-             (new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command))))
-        (push
-         `(defalias ',new-cmd
-            (lambda ,arglist
-              ,(interactive-form command) ; Use the same interactive form as the original command
-              (let ((project-find-functions '(+project-super-project-try-or-fail)))
-               (call-interactively (function ,command))))
-            ,(format "Call `%s' in a super-project context." command))
-         form)))
-    (macroexp-progn form)))
+(defun +super-project-define-commands (package &rest commands)
+  "Define PACKAGE's COMMANDS for super-project context."
+  (declare (indent 1))
+  (with-eval-after-load package
+    (let (form)
+      (dolist (command commands)
+        (let* ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command))))
+          (push
+           `(defalias ',new-cmd
+              (lambda ,(help-function-arglist command t)
+                ,(interactive-form command) ; Use the same interactive form as the original command
+                (let ((project-find-functions '(+project-super-project-try-or-fail)))
+                 (call-interactively (function ,command))))
+              ,(format "Call `%s' in a super-project context." command))
+           form)))
+      (eval (macroexp-progn form)))))
 
 
 
