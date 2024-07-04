@@ -43,6 +43,7 @@ Level of printed messages.
 1 - `+error!`
 2 - `+info!`
 3 - `+log!`
+4 - `+debug!`
 
 #### `minemacs-theme`
 
@@ -134,6 +135,10 @@ Enable or disable opening suitable files in `hexl-mode`.
 
 A list of paths to scan and add to known projects list.
 It can be a list of strings (paths) or a list of (cons "~/path" recursive-p) to scan directories recursively.
+
+#### `+super-project-root-markers`
+
+List of super-project markers.
 
 #### `+serialized-symbols-directory`
 
@@ -341,6 +346,10 @@ Log info MSG and VARS using `message`.
 
 Log MSG and VARS using `message` when `minemacs-verbose-p` is non-nil.
 
+#### `(+debug! MSG &rest VARS)` (macro)
+
+Log debug MSG and VARS using `message` when `minemacs-msg-level` is 4.
+
 #### `(+emacs-features-p &rest FEATS)`
 
 Is features FEATS are enabled in this Emacs build.
@@ -506,6 +515,14 @@ Examples:
 #### `(+project-scan-for-projects &optional DIR)`
 
 Scan and remember projects under DIR or `+project-scan-dir-paths`.
+
+#### `(+project-super-project-try-or-fail DIR)`
+
+Find super-project root starting from DIR.
+
+#### `(+super-project-define-commands PACKAGE &rest COMMANDS)`
+
+Define PACKAGE's COMMANDS for super-project context.
 
 #### `(minemacs-get-enabled-proxies)`
 
