@@ -82,7 +82,7 @@
     (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current))))))
 
   ;; Define a super-project variant of `+fzf-project'
-  (+super-project-define-commands +fzf-project))
+  (+super-project-define-commands 'fzf '+fzf-project))
 
 
 (provide 'me-search)

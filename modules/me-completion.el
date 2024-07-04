@@ -195,7 +195,8 @@
   (consult-narrow-key "<")
   :commands +consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project
   :config
-  (+super-project-define-commands consult-fd consult-find consult-grep consult-ripgrep)
+  (+super-project-define-commands 'consult
+    'consult-fd 'consult-find 'consult-grep 'consult-ripgrep)
   (defun +consult-insert-thing-at-point ()
     "Insert region or symbol in the minibuffer."
     (interactive)
