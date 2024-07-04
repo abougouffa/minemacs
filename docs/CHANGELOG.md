@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.3.0](https://github.com/abougouffa/minemacs/compare/1fd507f1cf1481ba73144a1ec2175d869c906875..v8.3.0) - 2024-07-04
+#### Bug Fixes
+- **(consult-notes)** replace the obsolete `denote` function - ([25c7169](https://github.com/abougouffa/minemacs/commit/25c7169ce30915f25fa0a0f300b610ef7bdac4d5)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** fix `+super-project-define-commands` - ([dcba2a1](https://github.com/abougouffa/minemacs/commit/dcba2a1b2bb74ad0d8209d74b775cee9ffc65dfd)) - [@abougouffa](https://github.com/abougouffa)
+- buggy implementation of running hooks in `minemacs-load-module` - ([85c924d](https://github.com/abougouffa/minemacs/commit/85c924dad759bde9ed5af2ac0bf48a8beada3eaf)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate the documentation - ([6aa3298](https://github.com/abougouffa/minemacs/commit/6aa3298333d72acd605c5fd60c54d8ca4be515a8)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(completeion)** initial support for `consult-web` - ([5a94c6b](https://github.com/abougouffa/minemacs/commit/5a94c6b6b653152f3469e14e3d170164ebd45601)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add a helper to define command that act on super-projects - ([9ffa3ec](https://github.com/abougouffa/minemacs/commit/9ffa3ec2297463595b3227e4e03f4aed0b58d83c)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** add `+fzf-super-project` - ([4cf7fbb](https://github.com/abougouffa/minemacs/commit/4cf7fbb0017efc26a4f49288bcdc4fe4fd8b5a6e)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** add support for `consult-denote` (`consult-notes` replacement) - ([adcc1f6](https://github.com/abougouffa/minemacs/commit/adcc1f6b806292890839397e014f9846c3dc3efe)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** make `consult-notes` obsolete - ([e4c0c90](https://github.com/abougouffa/minemacs/commit/e4c0c9043177df015e70982214b5cda9d731ff20)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** restore back the `affe` support - ([5cc1f79](https://github.com/abougouffa/minemacs/commit/5cc1f7937c7ea28226e49a117fac395158755d02)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** enable test on `release-snapshot` (Emacs 30) - ([3ff8331](https://github.com/abougouffa/minemacs/commit/3ff8331e7374d0106fdf693f701beffee7a9b823)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** disable the always demand mode - ([b46b7b7](https://github.com/abougouffa/minemacs/commit/b46b7b7197d0e0368f7d07f533b8aa638d86cb10)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(citre)** simplify finding the project's root marker - ([6c685f1](https://github.com/abougouffa/minemacs/commit/6c685f1123e3a94d715ba1fb151487f103adba93)) - [@abougouffa](https://github.com/abougouffa)
+- rename some commands to follow the MinEmacs conventions - ([1fd507f](https://github.com/abougouffa/minemacs/commit/1fd507f1cf1481ba73144a1ec2175d869c906875)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult)** define some super-project commands variants - ([98ffb80](https://github.com/abougouffa/minemacs/commit/98ffb800e9b0465ac2aeef1fc1256e3eb4438d15)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** prefer `Martian Mono` font when available - ([1ea823a](https://github.com/abougouffa/minemacs/commit/1ea823a2f33136501dfae7d094796664930d5f5d)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-pmd)** better defaults - ([f2d3e8a](https://github.com/abougouffa/minemacs/commit/f2d3e8aef84a74de00c8b41a09844e536b72188d)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** make use of the new `+super-project-define-commands` - ([28f24f2](https://github.com/abougouffa/minemacs/commit/28f24f2e6e83c71fa8841edc7a43cb6c4e5bdb81)) - [@abougouffa](https://github.com/abougouffa)
+- **(fzf)** consistent naming, autoload custom commands - ([3fb207d](https://github.com/abougouffa/minemacs/commit/3fb207d47669d4410ddfd0cb17be942d4d85d76e)) - [@abougouffa](https://github.com/abougouffa)
+- **(gaurd-lf)** add more modes to ignore - ([f869bbd](https://github.com/abougouffa/minemacs/commit/f869bbdcacbdd2ea8576cae2b62a57925714f7d0)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** enable `+spellcheck-mode` in `git-commit-mode` - ([ebe6f07](https://github.com/abougouffa/minemacs/commit/ebe6f07e95fd8d0a98d35c98058e4126a7f465e8)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** better handling of Python virtual environments in Eglot - ([cf1bc59](https://github.com/abougouffa/minemacs/commit/cf1bc5966662a16faf0abfc8c22a7173802a7a6f)) - [@abougouffa](https://github.com/abougouffa)
+- **(rustic)** don't depend on `flycheck` please! - ([afd8b77](https://github.com/abougouffa/minemacs/commit/afd8b77e45970e7c8a12e945be14dfeee74b6e5a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a6ab417](https://github.com/abougouffa/minemacs/commit/a6ab417c34436a07798f0ffcc9bc159c6f8ee1a3)) - [@abougouffa](https://github.com/abougouffa)
+- don't pollute messages with logs in `+fn-inhibit-messages!` - ([0a92474](https://github.com/abougouffa/minemacs/commit/0a924743be983b608e77bfab66bfcf0cd36e4bd2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.2.0](https://github.com/abougouffa/minemacs/compare/82b837a84c87666bf9763dc19ca0fce97555a077..v8.2.0) - 2024-07-01
 #### Bug Fixes
 - **(corfu)** fix the `ispell` issue on Emacs 30 - ([21ae46d](https://github.com/abougouffa/minemacs/commit/21ae46d95df026f85daec52ef92854b7ba049ea7)) - [@abougouffa](https://github.com/abougouffa)
