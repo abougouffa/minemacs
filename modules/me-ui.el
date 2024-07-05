@@ -116,7 +116,9 @@
 
 (use-package nerd-icons-archive
   :straight (:host github :repo "abougouffa/nerd-icons-archive")
-  :hook (tar-mode . nerd-icons-archive-mode))
+  :after arca-mode ; Should be after `tar-mode' or `arc-mode', but `arc-mode' is enough since it is required by the other
+  :init
+  (nerd-icons-archive-mode 1))
 
 (use-package casual-lib
   :straight (:host github :repo "kickingvegas/casual-lib"))
