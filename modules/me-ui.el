@@ -114,6 +114,10 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+(use-package nerd-icons-archive
+  :straight (:host github :repo "abougouffa/nerd-icons-archive")
+  :hook (tar-mode . nerd-icons-archive-mode))
+
 (use-package casual-lib
   :straight (:host github :repo "kickingvegas/casual-lib"))
 
