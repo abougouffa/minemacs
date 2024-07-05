@@ -320,7 +320,7 @@ or file path may exist now."
   (tab-bar-close-button-show nil)
   (tab-bar-auto-width-max '(150 20))
   (tab-bar-tab-hints t)
-  (tab-bar-show nil)
+  (tab-bar-show t)
   :init
   (defcustom +tab-bar-tab-name-function-ignored-buffers '("\\*Bookmark List\\*")
     "Regexps matching buffers to be ignored."
