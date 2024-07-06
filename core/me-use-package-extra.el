@@ -39,12 +39,8 @@
 
   (defun use-package-handler/:trigger-commands (name _keyword arg rest state)
     (use-package-concat
-     (cl-mapcan
-      (lambda (command)
-        (when (symbolp command)
-          (unless (plist-get state :demand)
-            `((satch-add-advice ',command :before (lambda () (require ',name)) nil :transient t)))))
-      (delete-dups arg))
+     (unless (plist-get state :demand)
+       `((satch-add-advice ',(delete-dups arg) :before (lambda () (require ',name)) nil :transient t)))
      (use-package-process-keywords name rest state)))
 
   ;; :pin-ref
