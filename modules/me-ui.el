@@ -116,7 +116,7 @@
 
 (use-package nerd-icons-archive
   :straight (:host github :repo "abougouffa/nerd-icons-archive")
-  :after arca-mode ; Should be after `tar-mode' or `arc-mode', but `arc-mode' is enough since it is required by the other
+  :after arc-mode ; Should be after `tar-mode' or `arc-mode', but `arc-mode' is enough since it is required by the other
   :init
   (nerd-icons-archive-mode 1))
 
