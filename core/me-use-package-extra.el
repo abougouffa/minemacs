@@ -8,14 +8,17 @@
 
 ;; ## Use-package & straight.el extensions
 
-;; - :pin-ref - allow pinning versions to a specific revision from `use-package'
-;;   using the `:pin-ref' keyword. See:
+;; - `:pin-ref' - allow pinning package version (installed via `straight') to a
+;;   specific commit/revision from `use-package' using the `:pin-ref' keyword.
 ;;   github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
 ;;
-;; - `:trigger-commands' - allow loading a package before executing a specific
-;;   command/function using the `:trigger-commands' keyword
+;; - `:trigger-commands' - allow loading the package before executing a specific
+;;   external command/function using the `:trigger-commands' keyword.
 ;;
-;; - Better handling of conditionally enabled packages.
+;; - Better handling of conditionally enabled packages, when a package is
+;;   disabled, don't install it but register it in the packages list via
+;;   `straight-register-package' so it gets tracked and pinned in the version
+;;   lock.
 
 ;;; Code:
 
@@ -32,7 +35,7 @@
   (add-to-list 'use-package-keywords :pin-ref)
   (add-to-list 'use-package-keywords :trigger-commands)
 
-  ;; :trigger-commands
+  ;; `:trigger-commands' implementation
   (defun use-package-normalize/:trigger-commands (name keyword args)
     (setq args (use-package-normalize-recursive-symlist name keyword args))
     (if (consp args) args (list args)))
@@ -43,12 +46,12 @@
        `((satch-add-advice ',(delete-dups arg) :before (lambda () (require ',name)) nil :transient t)))
      (use-package-process-keywords name rest state)))
 
-  ;; :pin-ref
+  ;; `:pin-ref' implementation
   (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
     (use-package-only-one (symbol-name keyword) args
       (lambda (_label arg)
-        (cond ((stringp arg) arg)
-              ((symbolp arg) (symbol-name arg))
+        (cond ((stringp arg) arg) ; accept strings
+              ((symbolp arg) (symbol-name arg)) ; and symbols
               (t (use-package-error ":pin-ref wants a commit hash or a ref"))))))
 
   (defun use-package-handler/:pin-ref (name-symbol _keyword ref rest state)
