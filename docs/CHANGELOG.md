@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.4.0](https://github.com/abougouffa/minemacs/compare/7fa7e17f67fbe3429f70e6e42ac1530fd149b016..v8.4.0) - 2024-07-07
+#### Bug Fixes
+- **(nerd-icons-archive)** fix a typo - ([1d356e4](https://github.com/abougouffa/minemacs/commit/1d356e40dc3c5aab47929e08a6dcd18b4b075d2a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(use-package)** better comments about the extra MinEmacs features - ([c953329](https://github.com/abougouffa/minemacs/commit/c95332975542156284b0f67a6632b14ada8a44fb)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add some utilities for unique naming based on a directory - ([24dae81](https://github.com/abougouffa/minemacs/commit/24dae81faf76b91d07e87265972f03f145b8989a)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `nerd-icons-archive` - ([0bec9f3](https://github.com/abougouffa/minemacs/commit/0bec9f3f5f25a0d3df666899d386b95d9ec9ee29)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** cleanup - ([65f82d3](https://github.com/abougouffa/minemacs/commit/65f82d307bb31292e24d13e78e3eda34da05fa3d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(guard-lf)** update the intact major modes - ([7fa7e17](https://github.com/abougouffa/minemacs/commit/7fa7e17f67fbe3429f70e6e42ac1530fd149b016)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-archive)** update config to treat it as global mode - ([65e88a3](https://github.com/abougouffa/minemacs/commit/65e88a31dd88a21df9518b5d02baaeb42c87f481)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-tab-groups)** better naming of tabs and tab-groups - ([9a15282](https://github.com/abougouffa/minemacs/commit/9a15282ca9baa9c9e86f01f0eb10f78ddc7df171)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** show the tab bar by default - ([5d803da](https://github.com/abougouffa/minemacs/commit/5d803da9499840521fca6f70e12dcc1439d79997)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** better code generation for `::trigger-commands` - ([2aad9e7](https://github.com/abougouffa/minemacs/commit/2aad9e788e8fd3b701e4fdd7a493d1f720c8f571)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([98f3100](https://github.com/abougouffa/minemacs/commit/98f3100a2ada14e41f1228d8d23cdb80ab76d86a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([5996c22](https://github.com/abougouffa/minemacs/commit/5996c22bbcc0f6c246d492762ff716b7ea900ba1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cc00643](https://github.com/abougouffa/minemacs/commit/cc00643911fad5e70c1a394e215493c5a3afc5c9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.3.0](https://github.com/abougouffa/minemacs/compare/1fd507f1cf1481ba73144a1ec2175d869c906875..v8.3.0) - 2024-07-04
 #### Bug Fixes
 - **(consult-notes)** replace the obsolete `denote` function - ([25c7169](https://github.com/abougouffa/minemacs/commit/25c7169ce30915f25fa0a0f300b610ef7bdac4d5)) - [@abougouffa](https://github.com/abougouffa)
