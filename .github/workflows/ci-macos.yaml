@@ -21,11 +21,11 @@ jobs:
   ci-macos:
     runs-on: macos-latest
     continue-on-error: ${{ matrix.experimental }}
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
         emacs-version:
-          - 28.2
           - 29.2
           - 29.3
           - release-snapshot
