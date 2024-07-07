@@ -315,7 +315,6 @@ or file path may exist now."
   :hook (minemacs-lazy . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
-  (tab-bar-tab-name-function #'+tab-bar-tab-name-by-project)
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
   (tab-bar-close-button-show nil)
   (tab-bar-auto-width-max '(150 20))
@@ -336,24 +335,7 @@ or file path may exist now."
                                  (if current-p 'non-selected 'selected)))
                         tab-bar-close-button)
                    ""))
-       'face (funcall tab-bar-tab-face-function tab))))
-
-  ;; Inspired by github.com/alphapapa/ap.el
-  (defun +tab-bar-tab-name-by-project ()
-    "Return project name or tab bar name."
-    (cl-labels ((buffer-project (buffer)
-                  (if-let ((file-name (buffer-file-name buffer)))
-                      (project-current nil (file-name-directory file-name))
-                    (project-current nil (buffer-local-value 'default-directory buffer))))
-                (window-prev-buffers-last-project (windows)
-                  (cl-loop for (buffer _ _) in windows
-                           unless (cl-loop for regexp in +tab-bar-tab-name-function-ignored-buffers
-                                           thereis (string-match-p regexp (buffer-name buffer)))
-                           when (buffer-project buffer) return it)))
-      (if-let ((project (or (buffer-project (window-buffer (minibuffer-selected-window)))
-                            (window-prev-buffers-last-project (window-prev-buffers (minibuffer-selected-window))))))
-          (concat (unless tab-bar-tab-hints " ") "π " (project-name project))
-        (tab-bar-tab-name-current-with-count)))))
+       'face (funcall tab-bar-tab-face-function tab)))))
 
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
