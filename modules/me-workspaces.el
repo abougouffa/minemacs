@@ -13,6 +13,9 @@
 
 ;;; Code:
 
+(use-package unique-dir-name
+  :straight (:host github :repo "abougouffa/unique-dir-name"))
+
 (use-package project-tab-groups
   :straight t
   :after project
@@ -35,7 +38,7 @@
    #'project-tab-groups--select-or-create-tab-group :after-while
    (satch-defun +project-tab-groups--name-tab-by-group:after-while-a (&rest _)
      (when-let ((group-path (alist-get 'group (tab-bar--current-tab))))
-       (+unique-name-register group-path :map '+project-tab-groups-unique-map)
+       (unique-dir-name-register group-path :map '+project-tab-groups-unique-map)
        ;; Rename all tabs accordingly
        (dolist (frame (frame-list))
          (dolist (tab (frame-parameter frame 'tabs))
