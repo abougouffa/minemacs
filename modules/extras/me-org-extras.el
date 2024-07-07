@@ -180,12 +180,15 @@ Example: \"#+TITLE\" -> \"#+title\"
              (message "Started exporting \"%s\" asynchronously."
                       (abbreviate-file-name
                        (file-name-nondirectory (if main-file main-file (buffer-file-name)))))
-             (when-let ((org-export-process (get-process "org-export-process")))
+             (when-let* ((org-export-process (get-process "org-export-process"))
+                         (org-export-process-buffer (process-buffer org-export-process)))
                (set-process-sentinel
                 org-export-process
                 (lambda (process event)
                   (unless (process-live-p process)
-                    (message "Org async export finished, see *Org Export Process* for more details."))))))
+                    (message "Org async export %s, see `%s' for more details."
+                             (string-trim event)
+                             (buffer-name org-export-process-buffer)))))))
          (message "PDF exported to: %s."
                   (abbreviate-file-name (file-name-nondirectory out-file))))))))
 
