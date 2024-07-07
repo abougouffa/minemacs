@@ -25,7 +25,6 @@
 ;; - `~/.emacs.d/init.el`
 ;;   * `before-init-hook'
 ;;   * `~/.emacs.d/core/me-vars.el`
-;;   * `~/.emacs.d/core/backports/*.el` (when Emacs < 29)
 ;;   * `~/.emacs.d/core/me-loaddefs.el`
 ;;   * `$MINEMACSDIR/init-tweaks.el` (unless disabled)
 ;;   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
@@ -110,18 +109,6 @@
 ;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
 (setq user-emacs-directory minemacs-local-dir)
-
-;; HACK: Load Emacs 29 back ports for earlier Emacs versions. Note that I do
-;; only back port a very small number of the functions/variables that I use at
-;; early stage from Emacs29+ to be compatible with Emacs 28.2. For any Emacs
-;; version less than 29, MinEmacs will enable the `me-compat' module and load it
-;; just after `me-bootstrap'. This module loads the `compat' package which
-;; provide several forward compatibility functions, it is loaded at an early
-;; stage to provide its functionality to the rest of the modules so we can use
-;; some new features when configuring them.
-(when (< emacs-major-version 29)
-  (let ((backports-dir (concat minemacs-core-dir "backports/")))
-    (mapc (apply-partially #'+load backports-dir) (directory-files backports-dir nil "\\.el\\'"))))
 
 (setq
  ;; Enable debugging on error when Emacs is launched with the `--debug-init`

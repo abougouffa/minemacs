@@ -46,12 +46,11 @@ loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
 > [!IMPORTANT]
-> Please note that I'm using a fresh Emacs 29.3.50 *(recommended version)* built
+> Please note that I'm using a fresh Emacs 29.4.50 *(recommended version)* built
 > from the `emacs-29` branch mainly on two machines, one based on Manjaro Linux
 > and the other on (the quite old) Debian 10. However, I have set up some basic
 > [Github CI actions](https://github.com/abougouffa/minemacs/actions) that
-> automatically test running this configuration on Emacs 28, 29 and 30 in
-> [Ubuntu
+> automatically test running this configuration on Emacs 29 and 30 in [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
@@ -60,11 +59,6 @@ etc.)
 > These actions ensure that MinEmacs is "runnable" on these systems; with all
 > its modules enabled. However, more testing should be done to validate the
 > configuration as a whole on systems other than Linux.
->
-> I'm trying to support at least Emacs 28.2, so [I back port some of the new
-> functions/macros I use to Emacs 28](/core/backports/). Furthermore, MinEmacs
-> installs the `compat` package at early stage (just after bootstrapping
-> `straight` and `use-package`).
 
 ## Customization
 

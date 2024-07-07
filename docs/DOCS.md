@@ -9,7 +9,6 @@ Load and hooks order:
 - `~/.emacs.d/init.el`
   * `before-init-hook`
   * `~/.emacs.d/core/me-vars.el`
-  * `~/.emacs.d/core/backports/*.el` (when Emacs < 29)
   * `~/.emacs.d/core/me-loaddefs.el`
   * `$MINEMACSDIR/init-tweaks.el` (unless disabled)
   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
