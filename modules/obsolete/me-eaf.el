@@ -16,7 +16,7 @@
   :custom
   ;; Generic
   (eaf-apps-to-install
-   '(browser mindmap jupyter file-sender video-player markdown-previewer))
+   '(browser mindmap jupyter file-sender video-player music-player markdown-previewer pdf-viwer))
   (eaf-start-python-process-when-require t)
   (eaf-kill-process-after-last-buffer-closed t)
   (eaf-fullscreen-p nil)
