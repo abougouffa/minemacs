@@ -33,20 +33,31 @@
                         (expand-file-name (project-root proj))) ;; Use the full path
                       (expand-file-name dir))))
         root)))
+  (defun +project-tab-groups--unique-rename-all ()
+    (dolist (frame (frame-list))
+      (dolist (tab (frame-parameter frame 'tabs))
+        (when-let* ((group-path (alist-get 'group tab))
+                    (unique (gethash group-path +project-tab-groups-unique-map)))
+          (setcdr (assoc 'name tab) (alist-get 'unique-name unique))
+          (setcdr (assoc 'explicit-name tab) t)))))
   ;; Rename the tab to the tab-group name (project name)
   (advice-add
    #'project-tab-groups--select-or-create-tab-group :after-while
    (satch-defun +project-tab-groups--name-tab-by-group:after-while-a (&rest _)
      (when-let ((group-path (alist-get 'group (tab-bar--current-tab))))
        (unique-dir-name-register group-path :map '+project-tab-groups-unique-map)
-       ;; Rename all tabs accordingly
-       (dolist (frame (frame-list))
-         (dolist (tab (frame-parameter frame 'tabs))
-           (when-let* ((group-path (alist-get 'group tab))
-                       (unique (gethash group-path +project-tab-groups-unique-map)))
-             (setcdr (assoc 'name tab) (alist-get 'unique-name unique))
-             (setcdr (assoc 'explicit-name tab) t)))))
-     t)))
+       (+project-tab-groups--unique-rename-all)) ; Rename all tabs accordingly
+     t))
+  ;; Unregister the path on tab group closing and rename all tabs accordingly
+  (advice-add
+   #'project-tab-groups--project-kill-buffers-advice :around
+   (satch-defun +project-tab-groups--remove-from-map:around-a (fn &rest args)
+     (let ((path (alist-get 'group (tab-bar--current-tab))))
+       (apply fn args)
+       (unless (project-tab-groups--find-tab-by-group-name path) ; Removed?
+         (unique-dir-name-unregister path :map '+project-tab-groups-unique-map)
+         (+project-tab-groups--unique-rename-all))
+       t))))
 
 (use-package burly
   :straight t)
