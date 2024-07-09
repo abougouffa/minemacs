@@ -93,4 +93,5 @@ you might need install some of these tools.
 87. [`yamllint`](https://github.com/adrienverge/yamllint) - A linter for YAML files
 88. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
 89. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
-90. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
+90. [`mpv`](https://github.com/mpv-player/mpv) - Command line video player
+91. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally

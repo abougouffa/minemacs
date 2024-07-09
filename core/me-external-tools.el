@@ -269,6 +269,9 @@
     (:tool jsonlint
      :link "https://github.com/zaach/jsonlint"
      :desc "A JSON parser and validator with a CLI")
+    (:tool mpv
+     :link "https://github.com/mpv-player/mpv"
+     :desc "Command line video player")
     (:tool ollama
      :link "https://github.com/ollama/ollama"
      :desc "Get up and running with Llama 2, Mistral, and other large language models locally")))
