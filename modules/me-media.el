@@ -24,7 +24,7 @@
   ;; Automatically open Youtube links in MPV
   (setq browse-url-browser-function
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
-          ("." . browse-url-default-browser))))
+          ("." . ,browse-url-browser-function))))
 
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
