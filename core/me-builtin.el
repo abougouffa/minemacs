@@ -339,7 +339,12 @@ or file path may exist now."
                                  (if current-p 'non-selected 'selected)))
                         tab-bar-close-button)
                    ""))
-       'face (funcall tab-bar-tab-face-function tab)))))
+       'face (funcall tab-bar-tab-face-function tab))))
+  ;; Rename the first tab to "*default*"
+  (let ((tab (assq 'current-tab (funcall tab-bar-tabs-function))))
+    ;; A softer explicit name flag, so `otpp' can change it if relevant
+    (setcdr (assq 'name tab) "*default*")
+    (setcdr (assq 'explicit-name tab) 'def)))
 
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
