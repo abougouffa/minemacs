@@ -139,6 +139,10 @@
   :straight (:host github :repo "kickingvegas/casual-calc")
   :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu)))
 
+(use-package casual-ibuffer
+  :straight (:host github :repo "kickingvegas/casual-ibuffer")
+  :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu)))
+
 (use-package casual-avy
   :straight (:host github :repo "kickingvegas/casual-avy")
   :bind ("M-g a" . casual-avy-tmenu))
