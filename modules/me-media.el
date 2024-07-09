@@ -81,6 +81,10 @@
 (use-package emms
   :straight t)
 
+(use-package ready-player
+  :straight (:host github :repo "xenodium/ready-player")
+  :hook (minemacs-first-file . ready-player-mode))
+
 
 (provide 'me-media)
 
