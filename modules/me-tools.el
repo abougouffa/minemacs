@@ -96,7 +96,8 @@
   :straight t)
 
 (use-package journalctl-mode
-  :straight t)
+  :straight t
+  :commands journalctl-mode)
 
 (use-package logview
   :straight t
