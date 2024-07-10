@@ -957,7 +957,10 @@ current line.")
     (interactive "e")
     (save-excursion
       (mouse-set-point event)
-      (bookmark-set (format "%s: %s" (buffer-name) (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))))
+      (bookmark-set
+       (truncate-string-to-width
+        (format "%s: %s" (buffer-name) (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
+        60 nil nil t))))
   (push bookmark-default-file +first-file-hook-ignore-list))
 
 (use-package desktop
