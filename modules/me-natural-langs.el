@@ -46,6 +46,10 @@ to built-in `flyspell-mode'."
 (with-eval-after-load 'git-commit
   (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
 
+(use-package lexic
+  :straight t
+  :when (executable-find "sdcv"))
+
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 
