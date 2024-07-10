@@ -889,6 +889,14 @@ current line.")
     (goto-char (point-max))
     (smerge-prev))
 
+  (defun +smerge-vc-next-conflict-recenter ()
+    "Go to next conflict, possibly in another file."
+    (interactive)
+    (smerge-vc-next-conflict)
+    ;; Often, after calling `smerge-vc-next-conflict', the cursor will land at
+    ;; the bottom of the window.
+    (recenter-top-bottom (/ (window-height) 8)))
+
   (with-eval-after-load 'hydra
     (defhydra +smerge-hydra (:hint nil
                                    :pre (if (not smerge-mode) (smerge-mode 1))
@@ -927,9 +935,7 @@ current line.")
       ("C" smerge-combine-with-next)
       ("r" smerge-resolve)
       ("R" smerge-kill-current)
-      ;; Often after calling `smerge-vc-next-conflict', the cursor will land at
-      ;; the bottom of the window
-      ("n" (progn (smerge-vc-next-conflict) (recenter-top-bottom (/ (window-height) 8))))
+      ("n" +smerge-vc-next-conflict-recenter)
       ("q" nil :color blue))))
 
 (use-package octave
