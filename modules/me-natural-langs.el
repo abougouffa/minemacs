@@ -32,14 +32,16 @@
         ((bound-and-true-p spell-fu-mode) (call-interactively #'+spell-fu-correct))))
 
 (defun +spellcheck-mode (&optional arg)
-  "Spell checking mode, based on `jinx-mode' if available, or based on `spell-fu-mode'."
+  "Spell checking mode, with ARG.
+Based on `jinx-mode' if available, `spell-fu-mode' and falls back
+to built-in `flyspell-mode'."
   (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
   (cond ((and (fboundp 'jinx-mode) (+jinx-load-module))
-         (jinx-mode (if (bound-and-true-p jinx-mode) -1 1)))
+         (jinx-mode arg))
         ((and (+load minemacs-obsolete-modules-dir "me-spell-fu.el") (fboundp 'spell-fu-mode))
-         (spell-fu-mode (if (bound-and-true-p spell-fu-mode) -1 1)))
+         (spell-fu-mode arg))
         (t ; Fallback to builtin `flyspell'
-         (flyspell-mode (if (bound-and-true-p flyspell-mode) -1 1)))))
+         (flyspell-mode arg))))
 
 (with-eval-after-load 'git-commit
   (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
