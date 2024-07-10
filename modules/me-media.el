@@ -10,13 +10,14 @@
 
 (defcustom +mpv-command "mpv"
   "The MPV command."
-  :group 'minemacs-utils)
+  :group 'minemacs-utils
+  :type 'string)
 
 (defvar +mpv-buffer-name " *MPV*")
 (defvar +mpv-process-name "mpv")
 
 (when (executable-find +mpv-command)
-  (defun +browse-url-mpv (url &optional args)
+  (defun +browse-url-mpv (url &optional _args)
     "Open URL with MPV."
     (start-process +mpv-process-name +mpv-buffer-name +mpv-command url))
 
