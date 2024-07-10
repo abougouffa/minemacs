@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.5.0](https://github.com/abougouffa/minemacs/compare/5ca0374eda9e75fe0ed1f8c743ca178c34c7a882..v8.5.0) - 2024-07-10
+#### Documentation
+- update external tools - ([b966126](https://github.com/abougouffa/minemacs/commit/b96612627e0be07db072eacae8a86b5b314dd096)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(media)** initial support for `ready-player` - ([334b4c8](https://github.com/abougouffa/minemacs/commit/334b4c8e229d6a6418f7202ab8681a3848fbc671)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** restore `lexic` integration - ([6ea0e69](https://github.com/abougouffa/minemacs/commit/6ea0e69433b1d06f6dcafe7b6fe8a6ecd8f8d21b)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `casual-ibuffer` - ([ec6a345](https://github.com/abougouffa/minemacs/commit/ec6a3454647237e3e8310a96c5da8b27aa15f9f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(workspace)** replace `project-tab-groups` with `one-tab-per-project` - ([cc3a31a](https://github.com/abougouffa/minemacs/commit/cc3a31aff38f9d425a388b6e7d739f3f1657e3a3)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** rebuild pages when the related CI configuration changes - ([1edf96b](https://github.com/abougouffa/minemacs/commit/1edf96ba0c9b947e99f5fbdb10f8d71f4a3b2426)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** change branch and update pages actions - ([bc762cc](https://github.com/abougouffa/minemacs/commit/bc762cc5d49815d191116d4f54f0d21d3b24ef17)) - [@abougouffa](https://github.com/abougouffa)
+- **(ci)** remove testing on Emacs 28.2, add timeout - ([5ca0374](https://github.com/abougouffa/minemacs/commit/5ca0374eda9e75fe0ed1f8c743ca178c34c7a882)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(media)** minor edits - ([7f36f98](https://github.com/abougouffa/minemacs/commit/7f36f981b45298d906694c520ef99e87d5fc2e04)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** better code - ([faca25c](https://github.com/abougouffa/minemacs/commit/faca25ca60fe08de94f73c47a8cbc6c7fbe5a984)) - [@abougouffa](https://github.com/abougouffa)
+- extract unique naming utilities to an external package - ([cfb649c](https://github.com/abougouffa/minemacs/commit/cfb649c2b4ff0a69421d9653d55fc8a53aa8ebb3)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bookmark)** truncate long lines when creating bookmark title - ([b4e7eb1](https://github.com/abougouffa/minemacs/commit/b4e7eb187aba0ba605090285d34c4f2f63d2ef29)) - [@abougouffa](https://github.com/abougouffa)
+- **(browse-url)** don't overwrite the default browser - ([64d7b6b](https://github.com/abougouffa/minemacs/commit/64d7b6b5b24a19c0bc7df04184bcadb17977db87)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** enable `narrow-to-page` and `narrow-to-region` - ([bc01d74](https://github.com/abougouffa/minemacs/commit/bc01d744b14db87841c8f2db5e2c10d58a45b41a)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** drop support for Emacs 28 - ([f1a79dc](https://github.com/abougouffa/minemacs/commit/f1a79dcad6ab721e274000927cf0cf529a12dddf)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** update and correct the transient list - ([9f99d05](https://github.com/abougouffa/minemacs/commit/9f99d053910d52863de157923327f02aa6b2aeb9)) - [@abougouffa](https://github.com/abougouffa)
+- **(journalctl-mode)** autoload `journalctl-mode` to be used with saved logs - ([5479a44](https://github.com/abougouffa/minemacs/commit/5479a4495ae5abeb1a10538f583781625f9176a6)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/eaf)** enable more apps - ([e77ebeb](https://github.com/abougouffa/minemacs/commit/e77ebeb430abc040dc76f5dc17fa478275426b7d)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** better sentinel messages for org async export - ([f881b24](https://github.com/abougouffa/minemacs/commit/f881b2430f43e53b3f5f30e8ea59738b55f14ffc)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-tab-groups)** unregister unique name and rename tabs on closing - ([b8fc926](https://github.com/abougouffa/minemacs/commit/b8fc9269426ff45eb0c1090ed68a47be768435fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(smerge)** extract the custom `+smerge-vc-next-conflict-recenter` - ([31ef19a](https://github.com/abougouffa/minemacs/commit/31ef19ac660fb72db633e7188a64f44226007425)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** rename the first tab to `*default*` - ([0e9d695](https://github.com/abougouffa/minemacs/commit/0e9d6955e42431f1de40d359181f321f87d16094)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([fa340c7](https://github.com/abougouffa/minemacs/commit/fa340c74d68ce78b52baf018de88bd429b86bdfe)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.4.0](https://github.com/abougouffa/minemacs/compare/7fa7e17f67fbe3429f70e6e42ac1530fd149b016..v8.4.0) - 2024-07-07
 #### Bug Fixes
 - **(nerd-icons-archive)** fix a typo - ([1d356e4](https://github.com/abougouffa/minemacs/commit/1d356e40dc3c5aab47929e08a6dcd18b4b075d2a)) - [@abougouffa](https://github.com/abougouffa)
