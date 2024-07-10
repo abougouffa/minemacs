@@ -16,6 +16,9 @@
 (use-package emamux
   :straight t)
 
+(use-package emacs-everywhere
+  :straight t)
+
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)
