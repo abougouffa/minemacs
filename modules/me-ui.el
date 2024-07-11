@@ -120,31 +120,28 @@
   :init
   (nerd-icons-archive-mode 1))
 
-(use-package casual-lib
-  :straight (:host github :repo "kickingvegas/casual-lib"))
-
 (use-package casual-isearch
-  :straight (:host github :repo "kickingvegas/casual-isearch")
+  :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
 
 (use-package casual-dired
-  :straight (:host github :repo "kickingvegas/casual-dired")
+  :straight t
   :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu)))
 
 (use-package casual-info
-  :straight (:host github :repo "kickingvegas/casual-info")
+  :straight t
   :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu)))
 
 (use-package casual-calc
-  :straight (:host github :repo "kickingvegas/casual-calc")
+  :straight t
   :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu)))
 
 (use-package casual-ibuffer
-  :straight (:host github :repo "kickingvegas/casual-ibuffer")
+  :straight t
   :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu)))
 
 (use-package casual-avy
-  :straight (:host github :repo "kickingvegas/casual-avy")
+  :straight t
   :bind ("M-g a" . casual-avy-tmenu))
 
 
