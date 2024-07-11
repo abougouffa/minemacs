@@ -28,10 +28,7 @@
   :when (executable-find +mpv-command)
   :custom
   (empv-invidious-instance "https://invidious.privacydev.net/api/v1") ; Pick from: https://api.invidious.io
-  (empv-audio-dir "~/Music")
-  (empv-video-dir "~/Videos")
-  (empv-max-directory-search-depth 6)
-  (empv-radio-log-file (expand-file-name "logged-radio-songs.org" org-directory))
+  (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
   (defun +empv--dl-playlist (playlist &optional dist)
@@ -43,18 +40,13 @@
                  #'identity ; Filter nils
                  (mapcar
                   (lambda (item)
-                    (when-let
-                        ((vid (when (string-match
-                                     (rx (seq "watch?v=" (group-n 1 (one-or-more (or alnum "_" "-")))))
-                                     item)
-                                (match-string 1 item))))
-                      vid))
+                    (and (string-match (rx (seq "watch?v=" (group-n 1 (* (any alnum "_" "-"))))) item)
+                         (match-string 1 item)))
                   playlist)))
           (proc-name "empv-yt-dlp"))
       (unless (zerop (length vids))
         (message "Downloading %d songs to %s" (length vids) default-directory)
-        (when (get-process proc-name)
-          (kill-process proc-name))
+        (when (get-process proc-name) (kill-process proc-name))
         (make-process :name proc-name
                       :buffer (format "*%s*" proc-name)
                       :command (append
