@@ -10,6 +10,8 @@
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
+  :custom
+  (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/"))
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
