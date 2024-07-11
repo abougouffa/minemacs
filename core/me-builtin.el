@@ -224,7 +224,7 @@ or file path may exist now."
   (unless os/win
     (setq tramp-default-method "ssh"))
   :custom
-  (tramp-auto-save-directory (concat minemacs-local-dir "tramp/auto-save/"))
+  (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
   (tramp-default-remote-shell "/bin/bash"))
 
