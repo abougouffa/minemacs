@@ -68,6 +68,9 @@
   :straight t
   :hook (Info-selection . info-colors-fontify-node))
 
+(use-package inspector
+  :straight t)
+
 (use-package eros
   :straight t
   :hook (minemacs-first-elisp-file . eros-mode)
