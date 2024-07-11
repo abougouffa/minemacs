@@ -27,8 +27,7 @@
   :straight (:host github :repo "isamert/empv.el")
   :when (executable-find +mpv-command)
   :custom
-  ;; See: docs.invidious.io/instances/
-  (empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")
+  (empv-invidious-instance "https://invidious.privacydev.net/api/v1") ; Pick from: https://api.invidious.io
   (empv-audio-dir "~/Music")
   (empv-video-dir "~/Videos")
   (empv-max-directory-search-depth 6)
@@ -41,7 +40,7 @@
                (let ((d (expand-file-name "empv-downloads" empv-audio-dir)))
                  (unless (file-directory-p d) (mkdir d t)) d)))
           (vids (seq-filter
-                 #'identity ;; Filter nils
+                 #'identity ; Filter nils
                  (mapcar
                   (lambda (item)
                     (when-let
