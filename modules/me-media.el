@@ -13,14 +13,11 @@
   :group 'minemacs-utils
   :type 'string)
 
-(defvar +mpv-buffer-name " *MPV*")
-(defvar +mpv-process-name "mpv")
 
 (when (executable-find +mpv-command)
   (defun +browse-url-mpv (url &optional _args)
     "Open URL with MPV."
-    (start-process +mpv-process-name +mpv-buffer-name +mpv-command url))
-
+    (start-process "browse-url:mpv" " *MPV:browse-url*" +mpv-command url))
   ;; Automatically open Youtube links in MPV
   (setq browse-url-browser-function
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
