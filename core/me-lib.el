@@ -345,7 +345,7 @@ list is returned as-is."
                collect (cadr hook)
                else collect (intern (format "%s-hook" (symbol-name hook)))))))
 
-(defun +setq-hook-fns (hooks rest &optional singles)
+(defun +setq-hook-fns (hooks rest &optional singles advice-how)
   (unless (or singles (= 0 (% (length rest) 2)))
     (signal 'wrong-number-of-arguments (list #'evenp (length rest))))
   (cl-loop with vars = (let ((args rest)
@@ -356,13 +356,15 @@ list is returned as-is."
                                    (cons (pop args) (pop args)))
                                  vars))
                          (nreverse vars))
-           for hook in (+resolve-hook-forms hooks)
+           for hook-or-func in (if advice-how (ensure-list (+unquote hooks)) (+resolve-hook-forms hooks))
            append
            (cl-loop for (var . val) in vars
                     collect
-                    (list var val hook
-                          (intern (format "+setq--%s-in-%s-h"
-                                          var hook))))))
+                    (list var val hook-or-func
+                          (intern
+                           (format "+setq--%s%s-%s-%s"
+                                   var (if advice-how advice-how "-in")
+                                   hook-or-func (if advice-how "a" "h")))))))
 
 ;; From Doom Emacs
 (defmacro +setq-hook! (hooks &rest var-vals)
@@ -378,11 +380,30 @@ the the function.
 \(fn HOOKS &rest [SYM VAL]...)"
   (declare (indent 1))
   (macroexp-progn
-   (cl-loop for (var val hook fn) in (+setq-hook-fns hooks var-vals)
-            collect `(defun ,fn (&rest args)
+   (cl-loop for (var val hook hook-fn) in (+setq-hook-fns hooks var-vals)
+            collect `(defun ,hook-fn (&rest args)
                       ,(format "%s = %s" var (pp-to-string val))
                       (setq-local ,var ,val))
-            collect `(add-hook ',hook #',fn -90))))
+            collect `(add-hook ',hook #',hook-fn -90))))
+
+(defmacro +setq-advice! (funcs how &rest var-vals)
+  "Set buffer-local variables as HOW advices for FUNCS.
+
+FUNCS can be expect receiving arguments, the `args' variable can
+be used inside VAR-VALS forms to get the arguments passed the the
+function.
+
+  (+setq-advice! #'revert-buffer :before
+    revert-buffer-function #'ignore)
+
+\(fn FUNCS HOW &rest [SYM VAL]...)"
+  (declare (indent 2))
+  (macroexp-progn
+   (cl-loop for (var val func advice-fn) in (+setq-hook-fns funcs var-vals nil how)
+            collect `(defun ,advice-fn (&rest args)
+                      ,(format "%s = %s" var (pp-to-string val))
+                      (setq-local ,var ,val))
+            collect `(advice-add #',func ,how #',advice-fn))))
 
 ;; From Doom Emacs
 (defmacro +unsetq-hook! (hooks &rest vars)
