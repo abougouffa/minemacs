@@ -9,7 +9,10 @@
 ;;; Code:
 
 (use-package csv-mode
-  :straight t)
+  :straight t
+  :hook (csv-mode . csv-guess-set-separator)
+  :custom
+  (csv-separators '("," ";" "\t")))
 
 (use-package rainbow-csv
   :straight (:host github :repo "emacs-vs/rainbow-csv"))
