@@ -20,7 +20,8 @@
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
   :init
-  (otpp-mode 1))
+  (otpp-mode 1)
+  (otpp-remap-commands-mode 1))
 
 (use-package burly
   :straight t)
