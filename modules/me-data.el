@@ -15,7 +15,13 @@
   (csv-separators '("," ";" "\t")))
 
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv"))
+  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :after csv-mode
+  :init
+  (advice-add
+   'csv-set-separator :after
+   (satch-defun +rainbow-csv--set-separator-from-csv-mode:after-a (sep)
+     (setq-local rainbow-csv-separators `((,major-mode . ,sep))))))
 
 (use-package yaml-mode
   :straight t
