@@ -754,17 +754,13 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
   (with-eval-after-load package
     (let (form)
       (dolist (command commands)
-        (let* ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command)))
-               (arglist (help-function-arglist command t))
-               (args (and arglist (seq-split arglist (or (cl-position '&rest arglist) (length arglist)))))
-               (rest (seq-filter (lambda (sym) (not (string-prefix-p "&" (symbol-name sym)))) (cdr args)))
-               (args (append (seq-filter (lambda (sym) (not (string-prefix-p "&" (symbol-name sym)))) (car args)) rest)))
+        (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command))))
           (push
-           `(defun ,new-cmd ,arglist
+           `(defun ,new-cmd (&rest args)
              ,(format "Call `%s' in a super-project context." command)
              ,(interactive-form command) ; Use the same interactive form as the original command
              (let ((project-find-functions '(+project-super-project-try-or-fail)))
-              (apply (function ,command) (list ,@args))))
+              (apply (function ,command) args)))
            form)))
       (eval (macroexp-progn form)))))
 
