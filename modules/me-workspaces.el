@@ -19,9 +19,18 @@
 (use-package one-tab-per-project
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
+  :hook (otpp-after-define-commands . +one-tab-per-project--tweak-consult-cmds-h)
   :init
   (otpp-mode 1)
-  (otpp-remap-commands-mode 1))
+  (otpp-remap-commands-mode 1)
+  :config
+  (defun +one-tab-per-project--tweak-consult-cmds-h ()
+    (with-eval-after-load 'consult
+      (consult-customize
+       otpp-consult-fd :initial (+region-or-thing-at-point)
+       otpp-consult-find :initial (+region-or-thing-at-point)
+       otpp-consult-grep :initial (+region-or-thing-at-point)
+       otpp-consult-ripgrep :initial (+region-or-thing-at-point)))))
 
 (use-package burly
   :straight t)

@@ -238,7 +238,7 @@
  ("objdump-disassemble" . "54d060212e554ec1381a359629627c8de0bbb7ed")
  ("oer-reveal" . "08c44d4fd212a7433ad2f863299b5c1bdd87e23f")
  ("olivetti" . "800a286862fd7aff2a91726e84606386e295106c")
- ("one-tab-per-project" . "18037dc492d7baada62ee73e1f3af4eb89d9aa8d")
+ ("one-tab-per-project" . "3d1d32cac5680bfc48834924a49e1decdabad551")
  ("opencl-mode" . "10ae7742d57ae79d96cf52753800b3490589b3f6")
  ("orderless" . "4040f67949eab1cfca5bb52dca816f8f65955853")
  ("org" . "8c38d5b2f1bef096b64449c34f5e18405d46168e")
