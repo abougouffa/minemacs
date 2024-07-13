@@ -179,7 +179,7 @@
 
          ;; Minibuffer history
          :map minibuffer-local-map
-         ("C-s" . +consult-insert-thing-at-point)
+         ("M-i" . +consult-insert-thing-at-point)
          ([remap next-matching-history-element] . consult-history) ; M-s
          ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
