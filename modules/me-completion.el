@@ -64,6 +64,7 @@
   (corfu-cycle t) ; Allows cycling through candidates
   (corfu-min-width 25)
   (corfu-preview-current nil) ; Disable previewing the current candidate
+  :bind (:map corfu-map ("RET" . corfu-send)) ; `corfu-insert' + send to process in `eshell' and `comint'
   :init
   (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
