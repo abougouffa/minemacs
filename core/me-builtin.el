@@ -313,7 +313,15 @@ or file path may exist now."
      "Cargo.toml")) ; Cargo (Rust)
   :bind (("C-x p a" . +project-add-project))
   :config
-  (add-to-list 'project-switch-commands '(project-shell "Shell") t))
+  (add-to-list 'project-switch-commands '(project-shell "Shell") t)
+
+  ;; Define some `projectile' commands/functions for `project' (used by some packages, like `fzf' and `neotree')
+  (defun projectile-project-p () (and (project-current) t))
+  (defun projectile-project-root () (when-let ((proj (project-current))) (project-root proj)))
+  (defun projectile-project-name () (when-let ((proj (project-current))) (file-name-nondirectory (directory-file-name (project-root proj)))))
+  (defun projectile-project-files () (when-let ((proj (project-current))) (project-files proj)))
+  (defun projectile-project-buffers () (when-let ((proj (project-current))) (project-buffers proj)))
+  (provide 'projectile))
 
 (use-package tab-bar
   :hook (minemacs-lazy . tab-bar-mode)

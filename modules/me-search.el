@@ -76,11 +76,6 @@
   :init
   (defalias '+fzf-project 'fzf-projectile)
   :config
-  ;; fzf.el relays on `projectile-project-root' to guess the project root
-  (unless (fboundp 'projectile-project-root)
-    (provide 'projectile) ; provide `projectile' because `fzf-projectile' will try to require it
-    (defalias 'projectile-project-root (lambda () (ignore-errors (project-root (project-current))))))
-
   ;; Define a super-project variant of `+fzf-project'
   (+super-project-define-commands 'fzf '+fzf-project))
 
