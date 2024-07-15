@@ -19,7 +19,7 @@
   (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
   :config
   ;; Use 15% smaller font size for blamer's text
-  (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.9 (face-attribute 'default :height))) 1)))
+  (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 (face-attribute 'default :height))) 1)))
 
 
 (provide 'obsolete/me-blamer)
