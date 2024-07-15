@@ -19,6 +19,8 @@
 (use-package one-tab-per-project
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
+  :bind (("C-x t D" . otpp-detach-buffer-to-tab)
+         ("C-x t C" . otpp-change-tab-root-dir))
   :init
   ;; Need to be added *before* `otpp-remap-commands-mode' is called
   (add-hook
