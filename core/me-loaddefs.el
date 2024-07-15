@@ -311,6 +311,8 @@ Replace OLD with NEW in the current buffer.
 (fn OLD NEW)")
 (autoload '+clear-frenchy-ponctuations "me-lib-extra" "\
 Replace french ponctuations (like unsectable space) by regular ones." t)
+(autoload '+save-buffer-preserving-modtime "me-lib-extra" "\
+Call `save-buffer', but keep the visited file's modtime the same." t)
 (autoload '+kill-region-as-paragraph "me-lib-extra" "\
 Kill (copy) region as one paragraph.
 This command removes new line characters between lines." t)
@@ -389,19 +391,19 @@ Show the list of declared external dependencies." t)
 (autoload '+writing-mode "../modules/extras/me-writing-mode" "\
 A mode for writing without distraction.
 
-This is a minor mode.  If called interactively, toggle the `+Writing
-mode' mode.  If the prefix argument is positive, enable the mode, and if
-it is zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the
+`+Writing mode' mode.  If the prefix argument is positive, enable
+the mode, and if it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
-mode if ARG is nil, omitted, or is a positive number.  Disable the mode
-if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate the variable `+writing-mode'.
+evaluate `+writing-mode'.
 
-The mode's hook is called both when the mode is enabled and when it is
-disabled.
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
 
 (fn &optional ARG)" t)
 (put '+writing-global-mode 'globalized-minor-mode t)
