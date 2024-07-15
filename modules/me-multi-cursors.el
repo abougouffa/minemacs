@@ -25,7 +25,30 @@
          ("C-S-c C-S-c"   . mc/edit-lines)
          ("C-S-c C-e"     . mc/edit-ends-of-lines)
          ("C-S-c C-a"     . mc/edit-beginnings-of-lines)
-         ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click))
+  :config
+  (with-eval-after-load 'symbol-overlay
+    ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
+    (defun +mc/mark-all-symbol-overlays ()
+      "Mark all symbol overlays using multiple cursors."
+      (interactive)
+      (mc/remove-fake-cursors)
+      (when-let* ((overlays (symbol-overlay-get-list 0))
+                  (point (point))
+                  (point-overlay (seq-find
+                                  (lambda (overlay)
+                                    (and (<= (overlay-start overlay) point)
+                                         (<= point (overlay-end overlay))))
+                                  overlays))
+                  (offset (- point (overlay-start point-overlay))))
+        (setq deactivate-mark t)
+        (mapc (lambda (overlay)
+                (unless (eq overlay point-overlay)
+                  (mc/save-excursion
+                   (goto-char (+ (overlay-start overlay) offset))
+                   (mc/create-fake-cursor-at-point))))
+              overlays)
+        (mc/maybe-multiple-cursors-mode)))))
 
 
 (provide 'me-multi-cursors)
