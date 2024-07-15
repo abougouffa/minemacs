@@ -986,6 +986,16 @@ If no other window shows its buffer, kill the buffer too."
       (cl-incf matches (+replace-in-buffer (car pair) (cdr pair))))
     (message "Replaced %d match%s." matches (if (> matches 1) "es" ""))))
 
+;; https://emacs.stackexchange.com/a/13549
+;;;###autoload
+(defun +save-buffer-preserving-modtime ()
+  "Call `save-buffer', but keep the visited file's modtime the same."
+  (interactive)
+  (let ((original-time (visited-file-modtime)))
+    (save-buffer)
+    (set-file-times buffer-file-name original-time)
+    (set-visited-file-modtime original-time)))
+
 ;;;###autoload
 (defun +kill-region-as-paragraph ()
   "Kill (copy) region as one paragraph.
