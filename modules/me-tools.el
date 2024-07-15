@@ -73,7 +73,7 @@
   :straight t)
 
 (use-package systemd
-  :straight (:build (:not compile)))
+  :straight (:host github :repo "abougouffa/systemd-mode"))
 
 (use-package pkgbuild-mode
   :straight t)
