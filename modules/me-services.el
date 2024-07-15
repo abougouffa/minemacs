@@ -46,7 +46,7 @@
            (link (format "%s/browse/%s" jiralib-url id)))
       (insert
        (cond ((derived-mode-p 'org-mode) (format "[[%s][%s%s]]" link id (if with-summary (concat ": " summary) "")))
-             ((derived-mode-p 'markdown-mode 'git-commit-mode) (format "[%s%s](%s)" id (if with-summary (concat ": " summary) "") link))
+             ((derived-mode-p 'markdown-mode 'git-commit-mode 'markdown-ts-mode) (format "[%s%s](%s)" id (if with-summary (concat ": " summary) "") link))
              (t link)))))
 
   (defun +jiralib-auto-login ()
