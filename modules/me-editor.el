@@ -57,6 +57,9 @@
   :custom
   (wgrep-auto-save-buffer t))
 
+(use-package symbol-overlay
+  :straight t)
+
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
