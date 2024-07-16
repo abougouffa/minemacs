@@ -140,6 +140,10 @@
   :straight t
   :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu)))
 
+(use-package casual-re-builder
+  :straight (:host github :repo "kickingvegas/casual-re-builder")
+  :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu)))
+
 (use-package casual-avy
   :straight t
   :bind ("M-g a" . casual-avy-tmenu))
