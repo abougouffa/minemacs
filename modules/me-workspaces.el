@@ -20,20 +20,11 @@
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
   :bind (("C-x t D" . otpp-detach-buffer-to-tab)
-         ("C-x t C" . otpp-change-tab-root-dir))
+         ("C-x t C" . otpp-change-tab-root-dir)
+         ("C-x t P" . otpp-prefix))
   :init
-  ;; Need to be added *before* `otpp-remap-commands-mode' is called
-  (add-hook
-   'otpp-after-define-commands-hook
-   (satch-defun +one-tab-per-project--tweak-consult-cmds-h ()
-     (with-eval-after-load 'consult
-       (consult-customize
-        otpp-consult-fd :initial (+region-or-thing-at-point)
-        otpp-consult-find :initial (+region-or-thing-at-point)
-        otpp-consult-grep :initial (+region-or-thing-at-point)
-        otpp-consult-ripgrep :initial (+region-or-thing-at-point)))))
   (otpp-mode 1)
-  (otpp-remap-commands-mode 1))
+  (otpp-override-mode 1))
 
 (use-package burly
   :straight t)
