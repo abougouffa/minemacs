@@ -84,6 +84,9 @@
       (interactive)
       (eros--eval-overlay (+octave-eval-last-sexp) (point)))))
 
+(use-package package-lint
+  :straight t)
+
 
 (provide 'me-emacs-lisp)
 
