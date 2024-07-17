@@ -183,7 +183,7 @@
 
          ;; Minibuffer history
          :map minibuffer-local-map
-         ("M-i" . +consult-insert-thing-at-point)
+         ("M-i" . +insert-thing-at-point)
          ([remap next-matching-history-element] . consult-history) ; M-s
          ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
@@ -196,15 +196,11 @@
   (consult-narrow-key "<")
   :commands +consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project
   :config
+  (setq-default completion-in-region-function #'consult-completion-in-region)
+
+  ;; Define super-project variants of `consult' find/grep commands
   (+super-project-define-commands 'consult
     'consult-fd 'consult-find 'consult-grep 'consult-ripgrep)
-  (defun +consult-insert-thing-at-point ()
-    "Insert region or symbol in the minibuffer."
-    (interactive)
-    (insert (with-current-buffer (window-buffer (minibuffer-selected-window))
-              (or (+region-or-thing-at-point t) ""))))
-
-  (setq-default completion-in-region-function #'consult-completion-in-region)
 
   (defun +consult-tab (tab)
     "Switch to TAB by name."

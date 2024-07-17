@@ -641,6 +641,13 @@ when a region is selected."
     (string-join (string-lines thing))))
 
 ;;;###autoload
+(defun +insert-thing-at-point ()
+  "Insert region or symbol in the minibuffer."
+  (interactive)
+  (insert (with-current-buffer (window-buffer (minibuffer-selected-window))
+            (or (+region-or-thing-at-point t) ""))))
+
+;;;###autoload
 (defun +kill-region-or-backward-word ()
   "Kill selected region if region is active. Otherwise kill a backward word."
   (interactive)

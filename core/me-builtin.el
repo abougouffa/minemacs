@@ -1226,7 +1226,8 @@ current line.")
          ("C-M-r" . isearch-backward)
          :map isearch-mode-map
          ("<up>" . isearch-ring-retreat)
-         ("<down>" . isearch-ring-advance)))
+         ("<down>" . isearch-ring-advance)
+         ("M-i" . +insert-thing-at-point)))
 
 (use-package yaml-ts-mode
   :when (+emacs-features-p 'tree-sitter)

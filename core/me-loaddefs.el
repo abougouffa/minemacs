@@ -216,6 +216,8 @@ If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
 when a region is selected.
 
 (fn &optional LEAVE-REGION-MARKED)")
+(autoload '+insert-thing-at-point "me-lib-extra" "\
+Insert region or symbol in the minibuffer." t)
 (autoload '+kill-region-or-backward-word "me-lib-extra" "\
 Kill selected region if region is active. Otherwise kill a backward word." t)
 (autoload '+kill-whitespace-or-word "me-lib-extra" "\
