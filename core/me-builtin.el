@@ -313,12 +313,25 @@ or file path may exist now."
      "Cargo.toml")) ; Cargo (Rust)
   :bind (("C-x p a" . +project-add-project))
   :config
+  ;; BUG+HACK: Project name should not be inherited from super-projects
+  (cl-defmethod project-name ((project (head vc)))
+    (let ((proj-root (project-root project)))
+      (with-temp-buffer
+        (setq default-directory proj-root)
+        (let (project-vc-name)
+          ;; Apply the `project-vc-name' only if it comes from the ".dir-locals.el" file located in the project's root
+          (when-let* ((dir-locals-root (car (ensure-list (dir-locals-find-file (expand-file-name "dummy-file" proj-root)))))
+                      (_ (equal (expand-file-name proj-root) (expand-file-name dir-locals-root))))
+            (hack-dir-local-variables-non-file-buffer))
+          (or project-vc-name
+              (cl-call-next-method))))))
+
   (add-to-list 'project-switch-commands '(project-shell "Shell") t)
 
   ;; Define some `projectile' commands/functions for `project' (used by some packages, like `fzf' and `neotree')
   (defun projectile-project-p () (and (project-current) t))
   (defun projectile-project-root () (when-let ((proj (project-current))) (project-root proj)))
-  (defun projectile-project-name () (when-let ((proj (project-current))) (file-name-nondirectory (directory-file-name (project-root proj)))))
+  (defun projectile-project-name () (when-let ((proj (project-current))) (project-name proj)))
   (defun projectile-project-files () (when-let ((proj (project-current))) (project-files proj)))
   (defun projectile-project-buffers () (when-let ((proj (project-current))) (project-buffers proj)))
   (provide 'projectile))
