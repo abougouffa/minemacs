@@ -25,7 +25,13 @@
   :straight t
   :after consult
   :init
-  (consult-denote-mode 1))
+  (consult-denote-mode 1)
+  :config
+  ;; Prefer `ripgrep' and `fd' variants when available
+  (when (executable-find "fd")
+    (setopt consult-denote-find-command #'consult-fd))
+  (when (executable-find "rg")
+    (setopt consult-denote-grep-command #'consult-ripgrep)))
 
 
 (provide 'me-notes)
