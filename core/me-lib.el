@@ -1152,7 +1152,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
             (custom-theme-set-faces 'user `(,script-or-face ((t ,spec)))))
           (when (and scale family)
             (add-to-list 'face-font-rescale-alist (cons family scale)))
-          (+log! "Settinng %s `%s' to `%s'" (if scriptp "script" "face") script-or-face spec)
+          (+log! "Setting %s `%s' to `%s'" (if scriptp "script" "face") script-or-face spec)
           (throw 'done spec))))))
 
 ;; Inspired by: github.com/seagle0128/.emacs.d/blob/master/custom-example.el
