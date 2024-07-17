@@ -127,6 +127,9 @@
   :hook (gnuplot-mode . display-line-numbers-mode)
   :hook (gnuplot-mode . visual-line-mode))
 
+(use-package graphql-mode
+  :straight t)
+
 
 (provide 'me-data)
 
