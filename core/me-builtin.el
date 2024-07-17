@@ -348,7 +348,8 @@ or file path may exist now."
   :init
   (defcustom +tab-bar-tab-name-function-ignored-buffers '("\\*Bookmark List\\*")
     "Regexps matching buffers to be ignored."
-    :type '(repeat regexp))
+    :type '(repeat regexp)
+    :group 'minemacs-ui)
   :config
   (defun +tab-bar-tab-spaced-name-format (tab i)
     (let ((current-p (eq (car tab) 'current-tab)))
