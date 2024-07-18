@@ -1,8 +1,7 @@
 ;;; inotify-revert.el --- Auto-revert using inotify -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2019 fmdkdd
-;;
-;; Author: fmdkdd
+;; Copyright 2024 Abdelhak BOUGOUFFA
 
 ;; This file is not part of GNU Emacs.
 

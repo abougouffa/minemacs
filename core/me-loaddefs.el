@@ -18,6 +18,19 @@ Unmount eCryptfs' private directory." t)
 (register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
 
 
+;;; Generated autoloads from ../elisp/goto-last-change.el
+
+(autoload 'goto-last-change "../elisp/goto-last-change" "\
+Set point to the position of the last change.
+Consecutive calls set point to the position of the previous
+change.  With a prefix arg (optional arg MARK-POINT non-nil), set
+mark so `exchange-point-and-mark' will return point to the
+current position.
+
+(fn &optional MARK-POINT)" t)
+(register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-undo"))
+
+
 ;;; Generated autoloads from ../elisp/inotify-revert.el
 
 (autoload 'inotify-revert-mode "../elisp/inotify-revert" "\
