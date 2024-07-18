@@ -31,29 +31,6 @@ current position.
 (register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-undo"))
 
 
-;;; Generated autoloads from ../elisp/inotify-revert.el
-
-(autoload 'inotify-revert-mode "../elisp/inotify-revert" "\
-Like `auto-revert-mode', but faster.
-
-This is a minor mode.  If called interactively, toggle the
-`Inotify-revert mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate `inotify-revert-mode'.
-
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
-
-(fn &optional ARG)" t)
-(register-definition-prefixes "../elisp/inotify-revert" '("inotify-revert-"))
-
-
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
