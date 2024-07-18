@@ -64,6 +64,12 @@
                  :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
                  :ext "\\.ll\\'")
                 (make-treesit-auto-recipe
+                 :lang 'elisp
+                 :ts-mode 'emacs-lisp-ts-mode
+                 :remap 'emacs-lisp-mode
+                 :url "https://github.com/Wilfred/tree-sitter-elisp"
+                 :ext "\\.eld?\\'")
+                (make-treesit-auto-recipe
                  :lang 'zig
                  :ts-mode 'zig-ts-mode
                  :remap 'zig-mode
