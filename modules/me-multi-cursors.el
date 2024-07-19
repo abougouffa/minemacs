@@ -16,6 +16,8 @@
   :straight t
   :bind (("C->"           . mc/mark-next-like-this)
          ("C-<"           . mc/mark-previous-like-this)
+         ("C-M->"         . mc/skip-to-next-like-this)
+         ("C-M-<"         . mc/skip-to-previous-like-this)
          ("C-c C-<"       . mc/mark-all-like-this)
          ("C-S-c x"       . mc/mark-more-like-this-extended)
          ("C-S-c a"       . mc/mark-all-dwim)
