@@ -63,7 +63,13 @@
   :straight t
   :when (+emacs-features-p 'tree-sitter)
   :hook (markdown-ts-mode . display-line-numbers-mode)
-  :mode ("\\.md\\'" . markdown-ts-mode))
+  :commands markdown-ts-mode
+  :init
+  (with-eval-after-load 'minemacs-lazy
+    ;; Turn `markdown-ts-mode' if the buffer is big, otherwise use `markdown-mode'.
+    (+alist-set "\\.md\\'" '+markdown-ts-mode-maybe auto-mode-alist)
+    (defun +markdown-ts-mode-maybe (&rest _args)
+      (if (< (buffer-size) 100000) (markdown-mode) (markdown-ts-mode)))))
 
 (use-package pandoc-mode
   :straight t
