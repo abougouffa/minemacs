@@ -2,6 +2,71 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.6.0](https://github.com/abougouffa/minemacs/compare/0c697be6deb27c0c6bf20e7e5948a2a126918d96..v8.6.0) - 2024-07-19
+#### Bug Fixes
+- **(citre)** don't signal an error when `find-references` fails - ([17438cf](https://github.com/abougouffa/minemacs/commit/17438cfe70bedec8e9c3e0751e981eec43cf4016)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more generic args propagation - ([94364c8](https://github.com/abougouffa/minemacs/commit/94364c85b276809ccbbf1e376a4a7349350a3181)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** correctly propagate args in `+super-project-define-commands` - ([2299224](https://github.com/abougouffa/minemacs/commit/2299224cd9b25f56380671deceab3122e3d92dc4)) - [@abougouffa](https://github.com/abougouffa)
+- **(empv)** change invidious instance - ([3a6ae2d](https://github.com/abougouffa/minemacs/commit/3a6ae2d142691738cd65d36d62c28ef389154001)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-completion)** restore the icons on the new `marginalia` - ([6e05d4a](https://github.com/abougouffa/minemacs/commit/6e05d4a6c8b87a73e935470a5ab33e1cac1119cb)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** load the consult tweaks in the right order - ([18a7315](https://github.com/abougouffa/minemacs/commit/18a73155ce5fa23a456aa0c131e3f03ad693e50e)) - [@abougouffa](https://github.com/abougouffa)
+- **(systemd)** prefer the builtin capf backend over the `company` one - ([4012f63](https://github.com/abougouffa/minemacs/commit/4012f63b8b2c603e065946fb4da5c46f3f378d76)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** fix the tramp auto-save directory - ([21bce01](https://github.com/abougouffa/minemacs/commit/21bce01db1aff5ad6b3ba74e5aab4b1d79802368)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+save-buffer-preserving-modtime` - ([8649350](https://github.com/abougouffa/minemacs/commit/8649350ef792d6f54a9114acf1d0d2ffd75729e8)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+setq-advice!` - ([32ed6e2](https://github.com/abougouffa/minemacs/commit/32ed6e28e633a97a96aecd5818f856ae579c07ee)) - [@abougouffa](https://github.com/abougouffa)
+- **(data)** add support for GraphQL via `graphql-mode` - ([9232fed](https://github.com/abougouffa/minemacs/commit/9232fedc90da54599591b0b0f15e93ee0e62d117)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** add initial support for `symbol-overlay` - ([3a3deea](https://github.com/abougouffa/minemacs/commit/3a3deea1bc0408ce01b8b1405e3596a4f8fc52ea)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-lisp)** add support for `package-lint` - ([828715e](https://github.com/abougouffa/minemacs/commit/828715e2c24338077935d5a6fc23c9f6e9f21f89)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-lisp)** add initial support for `inspector` - ([252abd3](https://github.com/abougouffa/minemacs/commit/252abd3f39436c3621e1079a077147ebd2b741f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add support for `cognitive-complexity` - ([e091d79](https://github.com/abougouffa/minemacs/commit/e091d79a94dab62618551d4459be083aa1fae0ff)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `emacs-everywhere` - ([0c697be](https://github.com/abougouffa/minemacs/commit/0c697be6deb27c0c6bf20e7e5948a2a126918d96)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `casual-re-builder` - ([b672beb](https://github.com/abougouffa/minemacs/commit/b672beb954586bd3673961a0317601ac906cfa49)) - [@abougouffa](https://github.com/abougouffa)
+- add initial support for `goto-last-change` - ([b13a223](https://github.com/abougouffa/minemacs/commit/b13a223c19c52d55b3424757458ff7fdb1105a3b)) - [@abougouffa](https://github.com/abougouffa)
+- add initial support for `inotify-revert` - ([739cce8](https://github.com/abougouffa/minemacs/commit/739cce8261884bc2ee6ed13647aa6d351d69f32b)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- correct a typo - ([4ee7712](https://github.com/abougouffa/minemacs/commit/4ee7712027e5879d18e58a03d29808104a312a8e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** remove unnecessary `+move-this-file` - ([7bed09c](https://github.com/abougouffa/minemacs/commit/7bed09c9d3b2c4ccce4ac96dbbd0caf0dce7fd09)) - [@abougouffa](https://github.com/abougouffa)
+- **(empv)** cleanup and refactor - ([7dad83d](https://github.com/abougouffa/minemacs/commit/7dad83da45b07216b841923cc2b659360ef0e592)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- remove `inotify-revert`, no gain over `auto-revert` - ([db7ad96](https://github.com/abougouffa/minemacs/commit/db7ad9678f91d8afbf73be598dc10ca6bd9f777c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** use default MELPA recipes - ([50efb6c](https://github.com/abougouffa/minemacs/commit/50efb6c4bfc5f7cf63beb6825f1733652e3a846f)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** add initial input for `consult-fd` - ([9933fcc](https://github.com/abougouffa/minemacs/commit/9933fcc4fb482aa901cfe0ccaed8cb8c609cc707)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** bind `+consult-insert-thing-at-point` to `M-i` - ([dc7033d](https://github.com/abougouffa/minemacs/commit/dc7033d85377562203f128700b0184f68b84bf23)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-denote)** prefer `ripgrep` and `fd` - ([0642ba1](https://github.com/abougouffa/minemacs/commit/0642ba1cafdc28615cd5f9b82dd92ced05e9130f)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** bind `corfu-send` to `RET` - ([58e81d5](https://github.com/abougouffa/minemacs/commit/58e81d5a8b784d60c9c94d220128c85d61fc7e51)) - [@abougouffa](https://github.com/abougouffa)
+- **(csv-mode)** correctly guess the separator character - ([1e69dae](https://github.com/abougouffa/minemacs/commit/1e69dae7e5d786b24cfbfcb9ea55b30599064e75)) - [@abougouffa](https://github.com/abougouffa)
+- **(isearch)** use regexp based search by default - ([a8a7b9a](https://github.com/abougouffa/minemacs/commit/a8a7b9a03c8835c94539807c9435c2e1752bf171)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib)** consider `markdown-ts-mode` in `+jira-insert-ticket-link` - ([8a1dad8](https://github.com/abougouffa/minemacs/commit/8a1dad88d1a76dcdba4ab971af78d88c0d977d03)) - [@abougouffa](https://github.com/abougouffa)
+- **(markdown)** use `markdown-mode` unless the file is big - ([778d17b](https://github.com/abougouffa/minemacs/commit/778d17be1de4cc088a7bfda07baad823c9b40bfc)) - [@abougouffa](https://github.com/abougouffa)
+- **(media)** minor changes in MPV `browse-url` integration - ([4f6850e](https://github.com/abougouffa/minemacs/commit/4f6850e82de017d23d79e136dd99ad1c1d8f1253)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** integrate with `symbol-overlay` - ([59e7b0f](https://github.com/abougouffa/minemacs/commit/59e7b0fc9a32e484c2d441afa3865fb5abaf6c9b)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/blamer)** decrease font size for the blame - ([47cd5d1](https://github.com/abougouffa/minemacs/commit/47cd5d19ab97f19e478cf38e617d46cc35ece4eb)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** update the configuration for v2.0.0 - ([08ac3a8](https://github.com/abougouffa/minemacs/commit/08ac3a844a192778a3a5d6a56f155b65ec8bb0cf)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** add some keybindings - ([92e1581](https://github.com/abougouffa/minemacs/commit/92e15812de9fe338b00899d6e170b3fadbc3c791)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** bump package version - ([b008d2a](https://github.com/abougouffa/minemacs/commit/b008d2a01d64cabc74510db97a12463c2552e6ac)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** add initial input for `consult` commands - ([caeb001](https://github.com/abougouffa/minemacs/commit/caeb001cccb415157c3334c54f1bc91579a0f93d)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** enable `otpp-remap-commands-mode` - ([1ea123b](https://github.com/abougouffa/minemacs/commit/1ea123bfe4fc91b2c08d91bf68005efaef491682)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** better implementation of `project-name` - ([c045cb8](https://github.com/abougouffa/minemacs/commit/c045cb8c3364d8b4ced5c302bfdf7994ae85b839)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add some functions/commands for compatibility with `projectile` - ([69e9460](https://github.com/abougouffa/minemacs/commit/69e94603c49631815c7cdb06d93031e3934b986e)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-csv)** make use of `+setq-advice!` - ([b2ac604](https://github.com/abougouffa/minemacs/commit/b2ac604ee9f28debd66e9d2e734a873eb4e6c580)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-csv)** automatically guess the separator - ([39ba664](https://github.com/abougouffa/minemacs/commit/39ba664ebab1b09f91ab82d3a13b6d79a0f0c4c9)) - [@abougouffa](https://github.com/abougouffa)
+- **(ssh-deploy)** change the revisions directory - ([2041506](https://github.com/abougouffa/minemacs/commit/20415069c4265215479e7e9e8a7068c1fe2bf430)) - [@abougouffa](https://github.com/abougouffa)
+- **(systemd)** switch to my fork - ([9a3e668](https://github.com/abougouffa/minemacs/commit/9a3e6686e9f14f63b136c7b20fca780f60960b08)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** add group to a custom variable - ([179b321](https://github.com/abougouffa/minemacs/commit/179b321915211ac21dcd02777e0cbf335f9473ca)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** restore Elisp grammar - ([618f93c](https://github.com/abougouffa/minemacs/commit/618f93c584b57dbca4cf47717f891795e554d594)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3f813b8](https://github.com/abougouffa/minemacs/commit/3f813b8b4f402c4adfd0443c2eda917260e14501)) - [@abougouffa](https://github.com/abougouffa)
+- move & rename `+insert-thing-at-point`, integrate with `isearch` - ([2096426](https://github.com/abougouffa/minemacs/commit/20964266093471e9feb46b6d7c901d94551da478)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([ff998b7](https://github.com/abougouffa/minemacs/commit/ff998b788f6da5993fc4a1243d0990fec120097b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7577005](https://github.com/abougouffa/minemacs/commit/75770053536c8a14ea316fcaa6d3ee3b60decb24)) - [@abougouffa](https://github.com/abougouffa)
+- bump `one-tab-per-project` version - ([e689ff0](https://github.com/abougouffa/minemacs/commit/e689ff0d467c92d57a0471be4ffe2cc8fe0c1451)) - [@abougouffa](https://github.com/abougouffa)
+- bump `one-tab-per-project` version - ([d31fe73](https://github.com/abougouffa/minemacs/commit/d31fe7313f17cb07949e8b24fd21535efc176aa2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0090e94](https://github.com/abougouffa/minemacs/commit/0090e943892acc089aeaa2b7e8347184e50715d2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.5.0](https://github.com/abougouffa/minemacs/compare/5ca0374eda9e75fe0ed1f8c743ca178c34c7a882..v8.5.0) - 2024-07-10
 #### Documentation
 - update external tools - ([b966126](https://github.com/abougouffa/minemacs/commit/b96612627e0be07db072eacae8a86b5b314dd096)) - [@abougouffa](https://github.com/abougouffa)
