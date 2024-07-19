@@ -248,6 +248,21 @@
   :custom
   (dumb-jump-selector 'completing-read)
   :init
+  ;; HACK: Ensure `dumb-jump-xref-activate' is always (!) active
+  (add-hook
+   'prog-mode-hook
+   (satch-defun +dumb-jump--ensure-adding-to-xref ()
+     (run-at-time
+      1.0 nil
+      (lambda ()
+        ;; `xref-backend-functions' have a `t' at the end. Adding anything after
+        ;; `t' gets ignored, so basically we insert `dumb-jump-xref-activate'
+        ;; before `t'
+        (setq xref-backend-functions
+              (delete-dups
+               (append (butlast xref-backend-functions)
+                       '(dumb-jump-xref-activate)
+                       (last xref-backend-functions))))))))
   ;; Use `dumb-jump' as `xref' backend
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
