@@ -359,9 +359,7 @@
     (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
 
 (use-package cognitive-complexity
-  :straight (:host github :repo "abougouffa/cognitive-complexity"))
-
-;; (use-package codemetrics :straight (:host github :repo "emacs-vs/codemetrics"))
+  :straight (:host github :repo "emacs-vs/cognitive-complexity"))
 
 
 (provide 'me-prog)
