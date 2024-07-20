@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.6.2](https://github.com/abougouffa/minemacs/compare/a0303d9c63bbcf6ab7e5c536ecd598ef737b8d44..v8.6.2) - 2024-07-20
+#### Features
+- **(goto-last-change)** rewrite `goto-last-change` based on the original - ([1d9444c](https://github.com/abougouffa/minemacs/commit/1d9444c2f060df91108bc41db6f007f9cb0292d5)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(parinfer-rust)** move the hooks to `:hook` - ([a0303d9](https://github.com/abougouffa/minemacs/commit/a0303d9c63bbcf6ab7e5c536ecd598ef737b8d44)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(goto-last-change)** bind `goto-last-change` to `M-é` - ([c8db33a](https://github.com/abougouffa/minemacs/commit/c8db33a901c367c629e9ed2565606258e2455a92)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-file-icons)** disable temporary, seems broken - ([7ad7363](https://github.com/abougouffa/minemacs/commit/7ad73634caa179e696b029358847ec037deb8a3e)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-csv)** switch back to upstream - ([81bcca4](https://github.com/abougouffa/minemacs/commit/81bcca4c7b3f0112c9525a1bfbfae796f27989c1)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-csv)** switch to my fork until it gets merged - ([b868881](https://github.com/abougouffa/minemacs/commit/b86888187f55ef6fdb24c23e0fd09dd80125f64d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e78427e](https://github.com/abougouffa/minemacs/commit/e78427ec49998f14126bb4264c8222ecfd7cafa3)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.6.1](https://github.com/abougouffa/minemacs/compare/5cf31589065ef0a66f2bac58319aa771c45cd6d2..v8.6.1) - 2024-07-20
 #### Bug Fixes
 - **(org-msg)** use a different fork that fixes `mu` 1.12 issues - ([ed852e8](https://github.com/abougouffa/minemacs/commit/ed852e879c233ec09017b1027a4f51ddeb443cc8)) - [@abougouffa](https://github.com/abougouffa)
