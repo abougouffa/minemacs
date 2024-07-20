@@ -32,6 +32,9 @@
   :custom
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
+(use-package goto-last-change
+  :bind (("M-é" . goto-last-change))) ; For French AZERTY keybords
+
 (use-package loccur
   :straight t
   :bind (("C-S-o" . loccur-current)
