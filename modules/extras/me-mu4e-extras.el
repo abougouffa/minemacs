@@ -157,6 +157,24 @@ used later for Gmail specific actions."
     (add-to-list 'mu4e-contexts context (not default-p))
     context))
 
+(cl-defun +org-msg-signature (firstname lastname &key (closing-phrase nil) (prefix nil) (suffix nil) (extra-lines nil))
+  "Make an Org signature for FIRSTNAME and LASTNAME.
+Possible key arguments are: :CLOSING-PHRASE, :PREFIX, :SUFFIX and a list
+for :EXTRA-LINES."
+  (concat
+   "\n\n"
+   (when closing-phrase (concat closing-phrase "\n\n"))
+   "#+begin_signature"
+   "\n"
+   "-- "
+   (when prefix (concat prefix " "))
+   "*" (capitalize firstname) " " (upcase lastname) "*"
+   (when suffix (concat ", " suffix))
+   "\\\\\n"
+   (string-join (ensure-list extra-lines) "\\\\\n")
+   "\n"
+   "#+end_signature"))
+
 (defun +org-msg-make-signature (closing-phrase firstname lastname &rest lines)
   (concat
    "\n\n" closing-phrase "\n\n"
@@ -166,6 +184,8 @@ used later for Gmail specific actions."
    (string-join lines "\\\\\n")
    "\n"
    "#+end_signature"))
+
+(make-obsolete '+org-msg-make-signature '+org-msg-signature "8.6.1")
 
 ;; I always synchronize Spams with `mbsync' and index them with `mu'. However, I
 ;; don't like to see them all the time, I would rather jump to the spam folder
