@@ -26,12 +26,6 @@
   (otpp-mode 1)
   (otpp-override-mode 1))
 
-(use-package burly
-  :straight t)
-
-(use-package bufler
-  :straight t)
-
 
 (provide 'me-workspaces)
 
