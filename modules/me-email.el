@@ -132,12 +132,10 @@
   ;; Create/destroy lock files on server start/kill
   (+mu4e-extras-locks-setup))
 
-;; TEMP: Disabled until mu 1.12.0 related issues are fixed
-;; https://github.com/jeremy-compostella/org-msg/issues/182
-(push 'org-msg minemacs-disabled-packages)
-
 (use-package org-msg
-  :straight t
+  ;; TEMP+FIX: Switch to this fork until the PR gets merged
+  ;; See: jeremy-compostella/org-msg#182 & jeremy-compostella/org-msg#190
+  :straight (:host github :repo "danielfleischer/org-msg" :branch "1.12")
   :when +mu4e-available-p
   :after mu4e
   :demand
