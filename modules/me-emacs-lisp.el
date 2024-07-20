@@ -39,14 +39,16 @@
   (defun +parinfer-rust--restore (&rest _)
     (when +parinfer-rust--was-enabled-p
       (setq +parinfer-rust--was-enabled-p nil)
-      (parinfer-rust-mode 1)))
+      (parinfer-rust-mode 1)
+      (+info! "Restored `parinfer-rust-mode'")))
 
   (defun +parinfer-rust--disable (&rest _)
     (setq +parinfer-rust--was-enabled-p (bound-and-true-p parinfer-rust-mode))
     (when +parinfer-rust--was-enabled-p
-      (parinfer-rust-mode -1)))
+      (parinfer-rust-mode -1)
+      (+info! "Disabled `parinfer-rust-mode'")))
 
-  ;; Fix the issue of `vundo` (related to `track-changes`) when exploring the undo tree
+  ;; Fix the issue of `vundo' (related to `track-changes') when exploring the undo tree
   (with-eval-after-load 'vundo
     (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
     (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))
