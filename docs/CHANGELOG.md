@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.6.1](https://github.com/abougouffa/minemacs/compare/5cf31589065ef0a66f2bac58319aa771c45cd6d2..v8.6.1) - 2024-07-20
+#### Bug Fixes
+- **(org-msg)** use a different fork that fixes `mu` 1.12 issues - ([ed852e8](https://github.com/abougouffa/minemacs/commit/ed852e879c233ec09017b1027a4f51ddeb443cc8)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** try to fix the mode being not taken into account - ([75f9805](https://github.com/abougouffa/minemacs/commit/75f9805f0b46522edb148b8df96fba23d982fa53)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(workspaces)** remove unused `burly` and `bufler` - ([ca36e9b](https://github.com/abougouffa/minemacs/commit/ca36e9bd9095cb989b3da24dce2552e640414f8b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cognitive-complexity)** update the repo link - ([39e32bf](https://github.com/abougouffa/minemacs/commit/39e32bfe52cb4bb9662f960a89fe86c9b201afa0)) - [@abougouffa](https://github.com/abougouffa)
+- **(dumb-jump)** make sure it is locally added to the xref backends - ([5bf2777](https://github.com/abougouffa/minemacs/commit/5bf2777eeee8020f102ce9b3885c912ae36907f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** add keybindings to skip cursors - ([5cf3158](https://github.com/abougouffa/minemacs/commit/5cf31589065ef0a66f2bac58319aa771c45cd6d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-msg)** replace `+org-msg-make-signature` with `+org-msg-signature` - ([1a30a35](https://github.com/abougouffa/minemacs/commit/1a30a351fedc8a25dee02911b269bfb74c8d2df2)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** display info messages on disable/enable - ([e3152fb](https://github.com/abougouffa/minemacs/commit/e3152fbbae2535f0348863a888bf1d0dfb2040e2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f9222c9](https://github.com/abougouffa/minemacs/commit/f9222c91145788a31156c511fbf47fac331875e7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.6.0](https://github.com/abougouffa/minemacs/compare/0c697be6deb27c0c6bf20e7e5948a2a126918d96..v8.6.0) - 2024-07-19
 #### Bug Fixes
 - **(citre)** don't signal an error when `find-references` fails - ([17438cf](https://github.com/abougouffa/minemacs/commit/17438cfe70bedec8e9c3e0751e981eec43cf4016)) - [@abougouffa](https://github.com/abougouffa)
