@@ -23,15 +23,20 @@
 (use-package parinfer-rust-mode
   :straight t
   :when (+emacs-features-p 'modules)
-  :hook ((lisp-mode emacs-lisp-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . +parinfer-rust-mode-maybe)
+  :autoload +parinfer-rust-mode-maybe
   :custom
   (parinfer-rust-auto-download (eq sys/arch 'x86_64))
+  :init
+  ;; Defer applying `parinfer-rust-mode', this seems to fix some issues like
+  ;; unusable `parinfer-rust-mode' until disabled and enabled again
+  (satch-add-hook '(lisp-mode-hook emacs-lisp-mode-hook
+                    clojure-mode-hook scheme-mode-hook
+                    racket-mode-hook hy-mode-hook janet-mode-hook)
+                  #'+parinfer-rust-mode-maybe)
   :config
-  (setq parinfer-rust-troublesome-modes (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
-
   (defun +parinfer-rust-mode-maybe ()
     (when (or parinfer-rust-auto-download (file-exists-p (expand-file-name parinfer-rust--lib-name parinfer-rust-library-directory)))
-      (parinfer-rust-mode 1)))
+      (run-with-timer 0.1 nil #'parinfer-rust-mode)))
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
   (defvar-local +parinfer-rust--was-enabled-p nil)
