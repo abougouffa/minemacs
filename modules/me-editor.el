@@ -45,12 +45,6 @@
 (use-package doom-snippets
   :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
 
-(use-package license-snippets
-  :straight t
-  :after yasnippet
-  :init
-  (license-snippets-init))
-
 (use-package spdx
   :straight (:host github :repo "condy0919/spdx.el")
   :custom
