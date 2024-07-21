@@ -175,6 +175,11 @@ certs, rather than reject them silently."
 (use-package hurl-mode
   :straight (:host github :repo "JasZhe/hurl-mode"))
 
+(use-package ecryptfs
+  :straight (:host github :repo "abougouffa/emacs-ecryptfs")
+  :when (and (or os/linux os/bsd) (executable-find "ecryptfs-verify"))
+  :bind (("C-c o e" . ecryptfs-toggle-mount-private)))
+
 
 (provide 'me-tools)
 
