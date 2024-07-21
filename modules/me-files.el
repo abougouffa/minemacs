@@ -31,7 +31,7 @@
   (dirvish-override-dired-mode 1))
 
 (use-package neotree
-  :straight (:host github :repo "abougouffa/emacs-neotree" :branch "feat/nerd-icons")
+  :straight t
   :custom
   (neo-theme 'nerd-icons))
 
