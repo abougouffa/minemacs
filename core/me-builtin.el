@@ -128,6 +128,11 @@
 
   (keymap-global-set "C-c o" minemacs-open-thing-map)
 
+  ;; Add a binding for `ecryptfs-toggle-mount-private' when relevant
+  (when (or os/linux os/bsd)
+    (when (executable-find "ecryptfs-verify")
+      (keymap-global-set "C-c o e" #'ecryptfs-toggle-mount-private)))
+
   ;; Disable previously enabled custom themes before enabling a new one.
   (advice-add
    'load-theme :before
