@@ -371,11 +371,6 @@ or file path may exist now."
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
-  :custom
-  (flymake-fringe-indicator-position 'right-fringe)
-  (flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error))
-  (flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning))
-  (flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))
   :config
   (transient-define-prefix +flymake-transient ()
     "Transient for flymake."
@@ -391,25 +386,32 @@ or file path may exist now."
   (with-eval-after-load 'elisp-mode
     (cl-callf append elisp-flymake-byte-compile-load-path load-path))
 
-  ;; Larger right frings
-  (with-eval-after-load 'fringe
-    (set-fringe-style '(8 . 13)))
+  (once-x-call '(:check display-graphic-p :packages flymake)
+    (satch-defun +flymake-fringe-setup ()
+      ;; Larger right frings
+      (with-eval-after-load 'fringe
+        (set-fringe-style '(8 . 13)))
 
-  ;; Better fringe bitmaps
-  (define-fringe-bitmap '+flymake-bitmap-left-arrow-hi-res
-    [#b00000011110
-     #b00000111100
-     #b00001111000
-     #b00011110000
-     #b00111100000
-     #b01111000000
-     #b01111000000
-     #b00111100000
-     #b00011110000
-     #b00001111000
-     #b00000111100
-     #b00000011110]
-    nil 13))
+      ;; Better fringe bitmaps
+      (define-fringe-bitmap '+flymake-bitmap-left-arrow-hi-res
+        [#b00000011110
+         #b00000111100
+         #b00001111000
+         #b00011110000
+         #b00111100000
+         #b01111000000
+         #b01111000000
+         #b00111100000
+         #b00011110000
+         #b00001111000
+         #b00000111100
+         #b00000011110]
+        nil 13)
+
+      (setopt flymake-fringe-indicator-position 'right-fringe
+              flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error)
+              flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning)
+              flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info)))))
 
 (use-package xt-mouse
   :hook (tty-setup . xterm-mouse-mode))
