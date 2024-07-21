@@ -7,8 +7,8 @@
 ;; Created: `(format-time-string "%B %d, %Y")`
 ;; Modified: `(format-time-string "%B %d, %Y")`
 ;; Version: 0.0.1
-;; Keywords: `(mapconcat #'symbol-name (mapcar #'car finder-known-keywords) " ")`
-;; Homepage: https://github.com/`(cl-find-if-not #'string-empty-p (list (cdr (doom-call-process "git" "config" "github.user")) user-login-name))`/`(file-name-base buffer-file-name)`
+;; Keywords: `(progn (require 'finder) (mapconcat #'symbol-name (mapcar #'car finder-known-keywords) " "))`
+;; Homepage: https://github.com/`(cl-find-if-not #'string-empty-p (list (string-trim (shell-command-to-string "git config github.user")) user-login-name))`/`(file-name-base buffer-file-name)`
 ;; Package-Requires: ((emacs "28.1"))
 ;;
 ;; This file is not part of GNU Emacs.
