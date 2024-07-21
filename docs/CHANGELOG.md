@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.6.3](https://github.com/abougouffa/minemacs/compare/a6f7ec61e90e2f1224410c533420717cd45ab72b..v8.6.3) - 2024-07-21
+#### Features
+- **(editor)** restore `spdx` - ([a6f7ec6](https://github.com/abougouffa/minemacs/commit/a6f7ec61e90e2f1224410c533420717cd45ab72b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(autorevert)** auto revert files immediately - ([4933b0c](https://github.com/abougouffa/minemacs/commit/4933b0c0a8cfb030cc4c7652a7a590d8e515ffdc)) - [@abougouffa](https://github.com/abougouffa)
+- **(csv-mode)** add the vertical bar `|` to the separators list - ([82734d5](https://github.com/abougouffa/minemacs/commit/82734d52b266f1f86d8b51e742f63a236e2367c4)) - [@abougouffa](https://github.com/abougouffa)
+- **(neotree)** switch to upstream (`nerd-icons` integration merged) - ([0bc58f8](https://github.com/abougouffa/minemacs/commit/0bc58f85be67ea84cd5c34183f6c206fac3d917c)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** remove `unique-dir-name`, it is currently integrated - ([0f7758c](https://github.com/abougouffa/minemacs/commit/0f7758ce72dfba9a67f55c7e3fdff6661eb30abe)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6f8e5af](https://github.com/abougouffa/minemacs/commit/6f8e5af3038207f02370f698005da3b68b3b0842)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.6.2](https://github.com/abougouffa/minemacs/compare/a0303d9c63bbcf6ab7e5c536ecd598ef737b8d44..v8.6.2) - 2024-07-20
 #### Features
 - **(goto-last-change)** rewrite `goto-last-change` based on the original - ([1d9444c](https://github.com/abougouffa/minemacs/commit/1d9444c2f060df91108bc41db6f007f9cb0292d5)) - [@abougouffa](https://github.com/abougouffa)
