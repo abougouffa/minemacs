@@ -1054,7 +1054,27 @@ current line.")
 (use-package autorevert
   :hook (minemacs-first-file . global-auto-revert-mode) ; Auto load files changed on disk
   :custom
-  (global-auto-revert-non-file-buffers t)) ; Revert non-file buffers like dired
+  (global-auto-revert-non-file-buffers t) ; Revert non-file buffers like dired
+  :config
+  ;; Immediately revert the buffer when switching to it. The idea is to save the
+  ;; modification time of the file on save and on buffer switch.
+  (defvar-local +auto-revert-buffer-time nil)
+  (defun +file-mtime (file)
+    (when-let ((file-attr (and file (file-attributes file))))
+      (file-attribute-modification-time file-attr)))
+  (add-hook
+   'after-save-hook
+   (satch-defun +auto-revert--save-file-mtime-h ()
+     (+log! "Saving modification time for %S" buffer-file-name)
+     (setq-local +auto-revert-buffer-time (+file-mtime buffer-file-name))))
+  (add-hook
+   'window-buffer-change-functions
+   (satch-defun +auto-revert--on-buffer-switch-h (_frame)
+     (unless +auto-revert-buffer-time
+       (setq-local +auto-revert-buffer-time (+file-mtime buffer-file-name)))
+     (unless (equal +auto-revert-buffer-time (+file-mtime buffer-file-name))
+       (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
+       (revert-buffer t t)))))
 
 (use-package savehist
   :hook (minemacs-lazy . savehist-mode))
