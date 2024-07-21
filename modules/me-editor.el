@@ -51,6 +51,12 @@
   :init
   (license-snippets-init))
 
+(use-package spdx
+  :straight (:host github :repo "condy0919/spdx.el")
+  :custom
+  (spdx-copyright-holder 'user)
+  (spdx-project-detection 'auto))
+
 (use-package wgrep
   :straight t
   :commands wgrep-change-to-wgrep-mode
