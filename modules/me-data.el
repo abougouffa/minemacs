@@ -12,7 +12,7 @@
   :straight t
   :hook (csv-mode . csv-guess-set-separator)
   :custom
-  (csv-separators '("," ";" "\t")))
+  (csv-separators '("," ";" "\t" "|")))
 
 (use-package rainbow-csv
   :straight (:host github :repo "emacs-vs/rainbow-csv"))
