@@ -144,6 +144,10 @@
   :straight (:host github :repo "kickingvegas/casual-re-builder")
   :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu)))
 
+(use-package casual-bookmarks
+  :straight (:host github :repo "kickingvegas/casual-bookmarks")
+  :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu)))
+
 (use-package casual-avy
   :straight t
   :bind ("M-g a" . casual-avy-tmenu))
