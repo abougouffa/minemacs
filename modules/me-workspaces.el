@@ -6,15 +6,7 @@
 
 ;;; Commentary:
 
-;; IDEA:
-;; - github.com/fritzgrabo/project-tab-groups
-;; - github.com/florommel/bufferlo
-;; - www.rousette.org.uk/archives/using-the-tab-bar-in-emacs
-
 ;;; Code:
-
-(use-package unique-dir-name
-  :straight (:host github :repo "abougouffa/unique-dir-name"))
 
 (use-package one-tab-per-project
   :straight (:host github :repo "abougouffa/one-tab-per-project")
