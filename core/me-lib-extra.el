@@ -687,6 +687,30 @@ Restricts the effect of `backward-kill-word' to the current line."
       (backward-kill-word arg)
       (widen))))
 
+;; Inspired by Doom Emacs
+;;;###autoload
+(defun +set-indent-width (width)
+  "Change the indentation size to WIDTH of the current buffer.
+
+The effectiveness of this command is significantly improved if
+you have `editorconfig' or `dtrt-indent' installed."
+  (interactive
+   (list (if (integerp current-prefix-arg)
+             current-prefix-arg
+           (read-number "New indent size: "))))
+  (setq tab-width width)
+  (setq-local standard-indent width)
+  (when (boundp 'evil-shift-width)
+    (setq evil-shift-width width))
+  (cond ((and (require 'editorconfig nil t)
+              (editorconfig-find-current-editorconfig))
+         (let (editorconfig-lisp-use-default-indent)
+           (editorconfig-set-indentation nil width)))
+        ((require 'dtrt-indent nil t)
+         (with-demoted-errors "dtrt-indent: %s"
+           (dtrt-indent-set width))))
+  (message "Changed indentation to %d" width))
+
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)
