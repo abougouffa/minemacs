@@ -252,15 +252,16 @@ TONE is `darker' or `brighter'. When the TONE isn't procvided,
 return a darker color on dark themes and return a brighter color
 on light themes.
 
-PERCENTAGE is a number from 0.0 to 1.0 (default 0.95)."
+PERCENTAGE is a number from 0.0 to 1.0 (default 0.05 for 5%)."
   (let* ((tone (or tone (if (eq 'light (frame-parameter nil 'background-mode)) 'brighter 'darker)))
+         (percentage (or percentage 0.05))
          (color (if (consp color-spec) (face-attribute (car color-spec) (cdr color-spec) nil t) color-spec))
          (hsl (apply #'color-rgb-to-hsl (color-name-to-rgb color)))
          (luminance (nth 2 hsl))
          (luminance
           (if (eq tone 'brighter)
-              (min 1.0 (* 1.05 luminance))
-            (* 0.95 luminance)))
+              (min 1.0 (* (+ 1.0 percentage) luminance))
+            (max 1.0 (* (- 1.0 percentage) luminance))))
          (new-rgb (color-hsl-to-rgb (nth 0 hsl) (nth 1 hsl) luminance)))
     (apply #'color-rgb-to-hex (append new-rgb '(2)))))
 
