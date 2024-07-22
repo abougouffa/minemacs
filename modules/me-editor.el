@@ -102,22 +102,25 @@
   :straight (:host github :repo "balloneij/selection-highlight-mode")
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
-  (add-hook
-   'enable-theme-functions
-   (satch-defun +selection-highlight--set-face-h (&rest _)
-     (with-eval-after-load 'selection-highlight-mode
-       (let* ((hsl (apply #'color-rgb-to-hsl (color-name-to-rgb (face-attribute 'region :background nil t))))
-              (luminance (nth 2 hsl))
-              (luminance
-               (if (eq 'light (frame-parameter nil 'background-mode))
-                   ;; On light themes, make it brighter
-                   (min 1.0 (* 1.09 luminance))
-                 ;; On dark themes, make it darker
-                 (* 0.91 luminance)))
-              (new-rgb (color-hsl-to-rgb (nth 0 hsl) (nth 1 hsl) luminance)))
-         (set-face-background
-          'selection-highlight-mode-match-face
-          (apply #'color-rgb-to-hex (append new-rgb '(2)))))))))
+  ;; Automatically set the face for `selection-highlight-mode'
+  (defun +selection-highlight--set-face-h (&rest _)
+    (once '(:check display-graphic-p :packages selection-highlight-mode)
+      (require 'isearch)
+      (let* ((hsl (apply #'color-rgb-to-hsl (color-name-to-rgb (face-attribute 'isearch :background nil t))))
+             (luminance (nth 2 hsl))
+             (luminance
+              (if (eq 'light (frame-parameter nil 'background-mode))
+                  ;; On light themes, make it brighter
+                  (min 1.0 (* 1.05 luminance))
+                ;; On dark themes, make it darker
+                (* 0.95 luminance)))
+             (new-rgb (color-hsl-to-rgb (nth 0 hsl) (nth 1 hsl) luminance)))
+        (set-face-background
+         'selection-highlight-mode-match-face
+         (apply #'color-rgb-to-hex (append new-rgb '(2)))))))
+  (add-hook 'enable-theme-functions #'+selection-highlight--set-face-h)
+  (when (daemonp)
+    (add-hook 'server-after-make-frame-hook #'+selection-highlight--set-face-h)))
 
 (use-package zones
   :straight t)
