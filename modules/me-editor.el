@@ -14,9 +14,33 @@
 
 (use-package dtrt-indent
   :straight t
-  :hook (minemacs-first-file . dtrt-indent-global-mode)
+  :after minemacs-first-file
+  :hook ((change-major-mode-after-body read-only-mode) . +dtrt-indent-mode-maybe)
   :custom
-  (dtrt-indent-verbosity (if minemacs-verbose-p 3 0)))
+  (dtrt-indent-max-lines 2500) ; Faster than the default 5000
+  (dtrt-indent-run-after-smie t)
+  :init
+  ;; Better predicates for enabling `dtrt-indent', inspired by Doom Emacs
+  (defvar +dtrt-indent-excluded-modes
+    '(emacs-lisp-mode
+      lisp-mode
+      pascal-mode
+      so-long-mode
+      ;; Automatic indent detection in Org files is meaningless. Not to mention,
+      ;; a non-standard `tab-width' causes an error in `org-mode.'
+      org-mode
+      ;; Indent detection is slow and inconclusive in coq-mode files, and rarely
+      ;; helpful anyway, so inhibit it (see doomemacs/doomemacs#5823).
+      coq-mode)
+    "A list of major modes where indentation shouldn't be auto-detected.")
+  (defun +dtrt-indent-mode-maybe ()
+    (unless (or (not (featurep 'minemacs-first-file))
+                (memq major-mode '(fundamental-mode guard-lf-large-file-mode so-long-mode))
+                (member (substring (buffer-name) 0 1) '(" " "*"))
+                (apply #'derived-mode-p +dtrt-indent-excluded-modes))
+      ;; Don't display messages in the echo area, but still log them
+      (let ((inhibit-message (not minemacs-debug-p)))
+        (dtrt-indent-mode +1)))))
 
 (use-package yasnippet
   :straight t
