@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.6.4](https://github.com/abougouffa/minemacs/compare/1b82605345a3098a1b690405897e73f0dc16d986..v8.6.4) - 2024-07-22
+#### Bug Fixes
+- **(flymake)** properly defer fringe tweaks - ([1b82605](https://github.com/abougouffa/minemacs/commit/1b82605345a3098a1b690405897e73f0dc16d986)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** fix buggy case on Emacs 30 - ([5a98de3](https://github.com/abougouffa/minemacs/commit/5a98de3b920e449cfde860d56a494f3eb7180dfc)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** server crashing silently due to face setting - ([d7ba61f](https://github.com/abougouffa/minemacs/commit/d7ba61fd88a21e1f7fb5e94b23f87b34be24a30a)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** dynamically set the face color - ([026eee0](https://github.com/abougouffa/minemacs/commit/026eee0a959ef3605436feaca0665bb0a486544d)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** fix the `__elpkg` snippet - ([59e4995](https://github.com/abougouffa/minemacs/commit/59e49958c509e741d511ec287e3da51b403bc827)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref-union)** make sure we disable `etags` in `xref-union` - ([fcc092d](https://github.com/abougouffa/minemacs/commit/fcc092dcb50b85d40063e3fa3641f2c599a171d9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+color-brighter-or-darker` - ([2a5b320](https://github.com/abougouffa/minemacs/commit/2a5b32096f691800acc975f2bf9763793690277f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+set-indent-width` - ([87f7fc0](https://github.com/abougouffa/minemacs/commit/87f7fc0de899100fc2edccca48f5fdec07b45f92)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** remove `license-snippets` (outdated and messy) - ([a45a1b4](https://github.com/abougouffa/minemacs/commit/a45a1b4eda6e1044f8cecbeb0c4a4f5c70b98018)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `casual-bookmarks` - ([34e38ea](https://github.com/abougouffa/minemacs/commit/34e38ea49081b88f84bb2852bb467e8e1867f84b)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- update logo - ([d756545](https://github.com/abougouffa/minemacs/commit/d7565451ac395491bb30eddb90558d6be31e8c15)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(ecryptfs)** move the `ecryptfs` integration to separate package - ([cd8f0d9](https://github.com/abougouffa/minemacs/commit/cd8f0d90a4ed292c00958e9f8e5bf0e5114298fe)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** make use of `+color-brighter-or-darker` - ([33eca80](https://github.com/abougouffa/minemacs/commit/33eca802f08c513f80bcd49f2f179a640929407f)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(dumb-jump)** no need to add `dumb-jump` for `xref-union` to work - ([7fc842d](https://github.com/abougouffa/minemacs/commit/7fc842d751b595a8d404ac3295d12813ff18f26b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** respect the percentage in `+color-brighter-or-darker` - ([b36a71b](https://github.com/abougouffa/minemacs/commit/b36a71baa67cf6b06c88e43f4b3b2bbf863d53ae)) - [@abougouffa](https://github.com/abougouffa)
+- **(dtrt-indent)** better defaults and triggering predicate - ([cf12878](https://github.com/abougouffa/minemacs/commit/cf12878b9f6935c76f16a0f130c6ce60f53a2b78)) - [@abougouffa](https://github.com/abougouffa)
+- **(ecryptfs)** add bindings for `ecryptfs-toggle-mount-private` - ([b0119a9](https://github.com/abougouffa/minemacs/commit/b0119a9cc3183c24b5261e967436938c06558035)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** add a dedicated mode for `guard-lf` files - ([2cfdabc](https://github.com/abougouffa/minemacs/commit/2cfdabcd13390406f00affb957a7349d8bc8dac1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([14f2c33](https://github.com/abougouffa/minemacs/commit/14f2c33e5180030443c12b6b5284a215298eaca9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([bd207b3](https://github.com/abougouffa/minemacs/commit/bd207b3ce2dde812a3103d272358a653bdf3cc45)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.6.3](https://github.com/abougouffa/minemacs/compare/a6f7ec61e90e2f1224410c533420717cd45ab72b..v8.6.3) - 2024-07-21
 #### Features
 - **(editor)** restore `spdx` - ([a6f7ec6](https://github.com/abougouffa/minemacs/commit/a6f7ec61e90e2f1224410c533420717cd45ab72b)) - [@abougouffa](https://github.com/abougouffa)
