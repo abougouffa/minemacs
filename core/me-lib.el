@@ -237,6 +237,33 @@ This inhebits both the echo area and the `*Messages*' buffer."
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
 
+(autoload 'color-rgb-to-hsl "color")
+(autoload 'color-rgb-to-hex "color")
+(autoload 'color-hsl-to-rgb "color")
+
+(defun +color-brighter-or-darker (color-spec &optional tone percentage)
+  "Return a brighter or darker color from COLOR-SPEC.
+
+The COLOR-SPEC can be a color name (like \"DarkRed\"
+or \"#8b0000\") or a \\='(face . attribute), for example,
+\\='(isearch . :background).
+
+TONE is `darker' or `brighter'. When the TONE isn't procvided,
+return a darker color on dark themes and return a brighter color
+on light themes.
+
+PERCENTAGE is a number from 0.0 to 1.0 (default 0.95)."
+  (let* ((tone (or tone (if (eq 'light (frame-parameter nil 'background-mode)) 'brighter 'darker)))
+         (color (if (consp color-spec) (face-attribute (car color-spec) (cdr color-spec) nil t) color-spec))
+         (hsl (apply #'color-rgb-to-hsl (color-name-to-rgb color)))
+         (luminance (nth 2 hsl))
+         (luminance
+          (if (eq tone 'brighter)
+              (min 1.0 (* 1.05 luminance))
+            (* 0.95 luminance)))
+         (new-rgb (color-hsl-to-rgb (nth 0 hsl) (nth 1 hsl) luminance)))
+    (apply #'color-rgb-to-hex (append new-rgb '(2)))))
+
 ;; An internal variable to keep track of the tasks
 (defvar +eval-when-idle--task-num 0)
 (defcustom +eval-when-idle-delay 5.0
