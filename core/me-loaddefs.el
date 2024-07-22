@@ -7,28 +7,18 @@
 
 
 
-;;; Generated autoloads from ../elisp/ecryptfs.el
-
-(autoload 'ecryptfs-toggle-mount-private "../elisp/ecryptfs" "\
-Mount/Unmount eCryptfs' private directory." t)
-(autoload 'ecryptfs-mount-private "../elisp/ecryptfs" "\
-Mount eCryptfs' private directory." t)
-(autoload 'ecryptfs-umount-private "../elisp/ecryptfs" "\
-Unmount eCryptfs' private directory." t)
-(register-definition-prefixes "../elisp/ecryptfs" '("ecryptfs-"))
-
-
 ;;; Generated autoloads from ../elisp/goto-last-change.el
 
 (autoload 'goto-last-change "../elisp/goto-last-change" "\
 Set point to the position of the last change.
-Consecutive calls set point to the position of the previous
-change.  With a prefix arg (optional arg MARK-POINT non-nil), set
-mark so `exchange-point-and-mark' will return point to the
-current position.
+
+Consecutive calls set point to the position of the previous changes.
+With a prefix arg (optional arg MARK-POINT non-nil), this will set mark
+so \\[exchange-point-and-mark] will return point to the current
+position.
 
 (fn &optional MARK-POINT)" t)
-(register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-undo"))
+(register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
@@ -245,6 +235,13 @@ With argument ARG, do this that many times.
 Restricts the effect of `backward-kill-word' to the current line.
 
 (fn ARG)" t)
+(autoload '+set-indent-width "me-lib-extra" "\
+Change the indentation size to WIDTH of the current buffer.
+
+The effectiveness of this command is significantly improved if
+you have `editorconfig' or `dtrt-indent' installed.
+
+(fn WIDTH)" t)
 (autoload '+webjump "me-lib-extra" "\
 Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
