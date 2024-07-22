@@ -104,9 +104,10 @@
   :init
   ;; Automatically set the face for `selection-highlight-mode'
   (defun +selection-highlight--set-face-h (&rest _)
-    (once '(:check display-graphic-p :packages selection-highlight-mode)
-      (require 'isearch)
-      (set-face-background 'selection-highlight-mode-match-face (+color-brighter-or-darker '(isearch . :background)))))
+    (with-eval-after-load 'selection-highlight-mode
+      (with-eval-after-load 'isearch
+        (when (display-graphic-p)
+          (set-face-background 'selection-highlight-mode-match-face (+color-brighter-or-darker '(isearch . :background)))))))
   (add-hook 'enable-theme-functions #'+selection-highlight--set-face-h)
   (when (daemonp)
     (add-hook 'server-after-make-frame-hook #'+selection-highlight--set-face-h)))
