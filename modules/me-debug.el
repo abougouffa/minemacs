@@ -11,7 +11,19 @@
 (use-package dape
   :straight t
   :commands +dape-transient
+  :hook
+  ((kill-emacs . dape-breakpoint-save) ; Save breakpoints on quit
+   (minemacs-lazy . dape-breakpoint-load) ; Load breakpoints on startup, with laziness
+   (dape-compile . kill-buffer) ; Kill compile buffer on build success
+   (dape-display-source . pulse-momentary-highlight-one-line) ; Pulse source line (performance hit)
+   (dape-stopped . dape-info) ; To display info and/or repl buffers on stopped
+   (dape-stopped . dape-repl)
+   (dape-start . (lambda () (save-some-buffers t t)))) ; Save buffers on startup, useful for interpreted languages
+  :custom
+  (dape-buffer-window-arrangement 'gud) ; To use window configuration like `gud' (gdb-mi)
   :config
+  ;; Global bindings for setting breakpoints with mouse
+  (dape-breakpoint-global-mode 1)
   (transient-define-prefix +dape-transient ()
     "Transient for dape."
     [["Stepping"
