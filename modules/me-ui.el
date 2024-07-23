@@ -120,6 +120,9 @@
   :init
   (nerd-icons-archive-mode 1))
 
+(use-package visual-format
+  :straight (:host github :repo "abougouffa/visual-format"))
+
 (use-package casual-isearch
   :straight t
   :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
