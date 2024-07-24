@@ -107,10 +107,14 @@
     (with-eval-after-load 'selection-highlight-mode
       (with-eval-after-load 'isearch
         (when (display-graphic-p)
-          (set-face-background 'selection-highlight-mode-match-face (+color-brighter-or-darker '(isearch . :background)))))))
-  (add-hook 'enable-theme-functions #'+selection-highlight--set-face-h)
-  (when (daemonp)
-    (add-hook 'server-after-make-frame-hook #'+selection-highlight--set-face-h)))
+          (set-face-background
+           'selection-highlight-mode-match-face
+           (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
+                    (face-attribute 'isearch :background nil t)
+                    5))))))
+  (satch-add-hook
+   '(enable-theme-functions disable-theme-functions server-after-make-frame-hook)
+   #'+selection-highlight--set-face-h))
 
 (use-package zones
   :straight t)
