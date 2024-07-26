@@ -221,6 +221,9 @@
   (let ((clang (assq 'clang-format apheleia-formatters)))
     (setcdr clang (append (cdr clang) '((+clang-format--get-style))))))
 
+(use-package format-all
+  :straight t)
+
 ;; for bin in $(ls $(dirname $(which clang-13))/clang-*); do ln -s $bin $HOME/.local/bin/$(basename ${bin%-13}); done
 (use-package clang-format
   :straight t)
