@@ -200,7 +200,26 @@
    'nxml-mode-hook
    (satch-defun +xmllint--set-indent-h ()
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
-  (push '(nxml-mode . xmllint) apheleia-mode-alist))
+  (push '(nxml-mode . xmllint) apheleia-mode-alist)
+
+  (defun +clang-format--get-style ()
+    (if-let ((conf-file ".clang-format")
+             (dir (locate-dominating-file
+                   (let ((proj (project-current)))
+                     (or (and proj (project-root proj))
+                         default-directory))
+                   conf-file)))
+        (format "-style=%s" (expand-file-name conf-file dir))
+      (let ((indent
+             (cond
+              ((memq major-mode '(c-mode c++-mode)) c-basic-offset)
+              ((memq major-mode '(c-ts-mode c++-ts-mode)) c-ts-mode-indent-offset)
+              ((derived-mode-p 'java-ts-mode) java-ts-mode-indent-offset))))
+        (format "-style={IndentWidth: %d, TabWidth: %d}" (or indent standard-indent) (or indent tab-width)))))
+
+  ;; Append the "-style" option to the `clang-format' command
+  (let ((clang (assq 'clang-format apheleia-formatters)))
+    (setcdr clang (append (cdr clang) '((+clang-format--get-style))))))
 
 ;; for bin in $(ls $(dirname $(which clang-13))/clang-*); do ln -s $bin $HOME/.local/bin/$(basename ${bin%-13}); done
 (use-package clang-format
