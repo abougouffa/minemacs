@@ -213,13 +213,11 @@
 
   ;; Fill the initial query of `consult' commands from region or thing at point.
   (consult-customize
-   consult-man :initial (+region-or-thing-at-point)
-   consult-fd :initial (+region-or-thing-at-point)
-   consult-find :initial (+region-or-thing-at-point)
-   consult-grep :initial (+region-or-thing-at-point)
-   consult-line :initial (+region-or-thing-at-point)
-   consult-ripgrep :initial (+region-or-thing-at-point)
-   consult-line-multi :initial (+region-or-thing-at-point)))
+   consult-locate consult-fd consult-find
+   consult-grep consult-git-grep consult-ripgrep
+   consult-line consult-line-multi consult-keep-lines consult-focus-lines
+   consult-man
+   :initial (+region-or-thing-at-point)))
 
 (use-package consult-dir
   :straight t
