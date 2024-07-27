@@ -35,14 +35,6 @@
 (use-package goto-last-change
   :bind (("M-é" . goto-last-change))) ; For French AZERTY keybords
 
-(use-package loccur
-  :straight t
-  :bind (("C-S-o" . loccur-current)
-         ("C-M-S-o" . loccur)
-         ("M-s C-o" . loccur-isearch)
-         :map isearch-mode-map
-         ("C-o" . loccur-isearch)))
-
 (use-package isearch+
   :straight t)
 
