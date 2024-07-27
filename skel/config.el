@@ -107,7 +107,7 @@
   ;; Autoload the package when invoking these commands, note that if the
   ;; commands are already autoloaded (defined with `autoload'), this is not
   ;; needed.
-  :commands devdocs-install
+  :commands (devdocs-install)
   ;; MinEmacs sets the `use-package-always-defer' to t, so by default, packages
   ;; are deferred to save startup time. If you want to load a package
   ;; immediately, you need to explicitly use `:demand'.

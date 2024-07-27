@@ -41,7 +41,7 @@
 
 (use-package keycast
   :straight t
-  :commands keycast-doom-modeline-mode
+  :commands (keycast-doom-modeline-mode)
   :config
   (define-minor-mode keycast-doom-modeline-mode
     "Show keycast in `doom-modeline'."

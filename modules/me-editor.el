@@ -77,7 +77,7 @@
 
 (use-package wgrep
   :straight t
-  :commands wgrep-change-to-wgrep-mode
+  :commands (wgrep-change-to-wgrep-mode)
   :custom
   (wgrep-auto-save-buffer t))
 

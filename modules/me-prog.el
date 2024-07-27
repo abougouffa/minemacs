@@ -155,7 +155,7 @@
 
 (use-package eglot-x
   :straight (:host github :repo "nemethf/eglot-x")
-  :commands eglot-x-setup)
+  :commands (eglot-x-setup))
 
 (use-package awk-ts-mode
   :straight t
@@ -274,7 +274,7 @@
 
 (use-package xref-union
   :straight t
-  :commands xref-union-mode
+  :commands (xref-union-mode)
   :custom
   ;; BUG+HACK: When in `xref-union-mode', the `xref-union--backend' seems to
   ;; access all the backends, including the ones that aren't enabled locally.
@@ -311,7 +311,7 @@
 
 (use-package fb-mode
   :straight (:host github :repo "rversteegen/fb-mode")
-  :commands fb-mode
+  :commands (fb-mode)
   :mode "\\.b\\(i\\|as\\)\\'")
 
 (use-package zig-mode

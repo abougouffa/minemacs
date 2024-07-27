@@ -58,7 +58,7 @@
 (use-package project-x
   :straight (:host github :repo "karthink/project-x")
   :after project
-  :commands project-x-window-state-save project-x-window-state-load
+  :commands (project-x-window-state-save project-x-window-state-load)
   :custom
   (project-x-local-identifier project-vc-extra-root-markers)
   :init

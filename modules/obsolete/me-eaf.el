@@ -12,7 +12,7 @@
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
   :unless (+emacs-features-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
-  :commands eaf-file-sender-qrcode-in-dired +browse-url-eaf eaf-open-browser
+  :commands (eaf-file-sender-qrcode-in-dired +browse-url-eaf eaf-open-browser)
   :custom
   ;; Generic
   (eaf-apps-to-install

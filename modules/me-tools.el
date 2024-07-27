@@ -80,7 +80,7 @@
 
 (use-package journalctl-mode
   :straight t
-  :commands journalctl-mode)
+  :commands (journalctl-mode))
 
 (use-package logview
   :straight t

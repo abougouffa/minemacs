@@ -233,7 +233,7 @@ It is deferred until `general' gets loaded and configured."
 (use-package evil-nerd-commenter
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
-  :commands evilnc-comment-operator evilnc-copy-and-comment-operator
+  :commands (evilnc-comment-operator evilnc-copy-and-comment-operator)
   :init
   (+nvmap!
     "gc" #'evilnc-comment-operator
@@ -681,7 +681,7 @@ It is deferred until `general' gets loaded and configured."
 (use-package evil-iedit-state
   :straight t
   :unless (+package-disabled-p 'iedit 'me-multi-cursors)
-  :commands evil-iedit-state/iedit-mode
+  :commands (evil-iedit-state/iedit-mode)
   :after iedit
   :init
   ;; Use the `iedit' key to trigger `evil-iedit-state/iedit-mode'.

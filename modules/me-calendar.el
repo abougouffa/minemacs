@@ -23,7 +23,7 @@
   (cfw:fchar-top-junction ?┯)
   (cfw:fchar-top-left-corner ?┏)
   (cfw:fchar-top-right-corner ?┓)
-  :commands cfw:open-calendar-buffer
+  :commands (cfw:open-calendar-buffer)
   :init
   (+def-dedicated-tab! cfw:open-calendar-buffer)
   :config
@@ -54,7 +54,7 @@
   :straight t
   :demand
   :after calfw
-  :commands +cfw-open-calendar
+  :commands (+cfw-open-calendar)
   :config
   (defun +cfw-open-calendar ()
     "Open the calendar."

@@ -10,7 +10,7 @@
 
 (use-package jiralib
   :straight org-jira
-  :commands +jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login
+  :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init
   (defvar-local +jira-open-status '("open" "to do" "in progress"))
@@ -66,7 +66,7 @@
 
 (use-package tributary
   :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
-  :commands tributary-mode tributary-push tributary-pull-id tributary-pull-url)
+  :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 (use-package webpaste
   :straight t

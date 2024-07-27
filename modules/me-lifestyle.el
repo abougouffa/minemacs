@@ -10,7 +10,7 @@
 
 (use-package awqat
   :straight (:host github :repo "zkry/awqat")
-  :commands awqat-times-for-day
+  :commands (awqat-times-for-day)
   :custom
   ;; In your "config.el", you need to set `calendar-latitude' and
   ;; `calendar-longitude' (both defined in `solar'). Alongside with the

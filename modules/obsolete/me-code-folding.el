@@ -24,7 +24,7 @@
   :straight t
   :unless (+package-disabled-p 'evil 'me-evil)
   :hook (vimish-fold-global-mode . global-evil-vimish-fold-mode)
-  :commands evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line
+  :commands (evil-vimish-fold/next-fold evil-vimish-fold/previous-fold vimish-fold/delete evil-vimish-fold/delete-all evil-vimish-fold/create evil-vimish-fold/create-line)
   :custom
   (vimish-fold-indication-mode 'right-fringe)
   :init

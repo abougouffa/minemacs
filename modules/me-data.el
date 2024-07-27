@@ -39,7 +39,7 @@
   :straight t
   :custom
   (jq-interactive-font-lock-mode (if (+emacs-features-p 'tree-sitter) #'json-ts-mode #'json-mode))
-  :commands +yq-interactively +xq-interactively
+  :commands (+yq-interactively +xq-interactively)
   :config
   (defun +yq-interactively ()
     "Use `jq-interactively' with \"yq\" for YAML."

@@ -75,7 +75,7 @@
 
 (use-package fzf
   :straight t
-  :commands +fzf-project-super-project
+  :commands (+fzf-project-super-project)
   :init
   (defalias '+fzf-project 'fzf-projectile)
   :config

@@ -14,7 +14,7 @@
 ;; ROS package
 (use-package ros
   :straight (:host github :repo "DerBeutlin/ros.el")
-  :commands +hydra-ros-main/body ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache
+  :commands (+hydra-ros-main/body ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache)
   :config
   (defhydra +hydra-ros-main (:color blue :hint nil :foreign-keys warn)
     "

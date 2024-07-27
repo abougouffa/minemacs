@@ -14,7 +14,7 @@
 
 (use-package denote
   :straight t
-  :commands denote-create-note denote-insert-link denote-show-backlinks-buffer
+  :commands (denote-create-note denote-insert-link denote-show-backlinks-buffer)
   :hook (dired-mode . denote-dired-mode)
   :custom
   (denote-date-prompt-use-org-read-date t) ; And `org-read-date' is an amazing bit of tech

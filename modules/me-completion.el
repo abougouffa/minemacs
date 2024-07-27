@@ -194,7 +194,7 @@
   (xref-show-definitions-function #'consult-xref)
   (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")
-  :commands +consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project
+  :commands (+consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project)
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
@@ -231,7 +231,7 @@
 
 (use-package consult-web
   :straight (:host github :repo "armindarvish/consult-web" :files (:defaults "sources/*.el"))
-  :commands consult-web consult-web-multi consult-web-omni consult-web-dynamic consult-web-dynamic-omni consult-web-scholar)
+  :commands (consult-web consult-web-multi consult-web-omni consult-web-dynamic consult-web-dynamic-omni consult-web-scholar))
 
 (use-package embark
   :straight t

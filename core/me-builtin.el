@@ -299,7 +299,7 @@ or file path may exist now."
 
 (use-package project
   :straight (:source gnu-elpa-mirror)
-  :commands project-remember-projects-under
+  :commands (project-remember-projects-under)
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-vc-extra-root-markers
@@ -899,7 +899,7 @@ current line.")
    99))
 
 (use-package smerge-mode
-  :commands +smerge-hydra/body
+  :commands (+smerge-hydra/body)
   :config
   (defun +smerge-first ()
     "Got to the first occurrence."

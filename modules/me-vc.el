@@ -68,7 +68,7 @@
 
 (use-package git-commit
   :after magit
-  :commands global-git-commit-mode
+  :commands (global-git-commit-mode)
   :custom
   (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
@@ -85,7 +85,7 @@
 ;; https://chromium.googlesource.com/chromiumos/platform/dev-util/+/HEAD/contrib/emacs/gerrit/README.md
 (use-package repo-transient
   :straight (:type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/repo-transient.el"))
-  :commands repo-main-menu)
+  :commands (repo-main-menu))
 
 (use-package diffview
   :straight t)

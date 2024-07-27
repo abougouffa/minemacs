@@ -10,7 +10,7 @@
 
 (use-package dape
   :straight t
-  :commands +dape-transient
+  :commands (+dape-transient)
   :hook
   ((kill-emacs . dape-breakpoint-save) ; Save breakpoints on quit
    (dape-compile . kill-buffer) ; Kill compile buffer on build success

@@ -30,7 +30,7 @@
 
 (use-package pdfgrep
   :straight t
-  :commands pdfgrep-mode pdfgrep
+  :commands (pdfgrep-mode pdfgrep)
   :custom
   (pdfgrep-options " -H -n -r --include \"*.pdf\" ")
   :config
@@ -63,7 +63,7 @@
   :straight t
   :when (+emacs-features-p 'tree-sitter)
   :hook (markdown-ts-mode . display-line-numbers-mode)
-  :commands markdown-ts-mode
+  :commands (markdown-ts-mode)
   :init
   (with-eval-after-load 'minemacs-lazy
     ;; Turn `markdown-ts-mode' if the buffer is big, otherwise use `markdown-mode'.

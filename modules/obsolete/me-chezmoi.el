@@ -11,15 +11,15 @@
 (use-package chezmoi
   :straight (:files (:defaults "extensions/*.el"))
   :when (executable-find "chezmoi")
-  :commands chezmoi-find chezmoi-write chezmoi-diff chezmoi-open-other chezmoi-sync-files chezmoi-magit-status)
+  :commands (chezmoi-find chezmoi-write chezmoi-diff chezmoi-open-other chezmoi-sync-files chezmoi-magit-status))
 
 (use-package chezmoi-ediff
   :when (executable-find "chezmoi")
-  :commands chezmoi-ediff)
+  :commands (chezmoi-ediff))
 
 (use-package chezmoi-magit
   :when (executable-find "chezmoi")
-  :commands chezmoi-magit-status)
+  :commands (chezmoi-magit-status))
 
 
 (provide 'obsolete/me-chezmoi)

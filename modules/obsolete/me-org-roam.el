@@ -56,7 +56,7 @@
   :straight t
   :after citar org-roam
   :demand
-  :commands +org-roam-node-from-cite
+  :commands (+org-roam-node-from-cite)
   :config
   ;; Modified form: jethrokuan.github.io/org-roam-guide/
   (defun +org-roam-node-from-cite (entry-key)
