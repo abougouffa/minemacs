@@ -107,6 +107,7 @@
     (with-eval-after-load 'selection-highlight-mode
       (with-eval-after-load 'isearch
         (when (display-graphic-p)
+          (require 'color)
           (set-face-background
            'selection-highlight-mode-match-face
            (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
