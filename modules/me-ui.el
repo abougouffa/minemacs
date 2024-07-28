@@ -59,7 +59,8 @@
   (enlight-content
    (enlight-menu
     '(("Org Mode"
-       ("Org-Agenda (today)" (org-agenda nil "a") "a"))
+       ("Org-Agenda (today)" (org-agenda nil "a") "a")
+       ("Org directory" (dired org-directory) "o"))
       ("Projects"
        ("Switch to project" project-switch-project "p")))))
   :init
