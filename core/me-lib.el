@@ -1175,6 +1175,14 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (add-hook 'window-setup-hook #'+setup-fonts)
 (add-hook 'server-after-make-frame-hook #'+setup-fonts)
 
+;; Reproduce the look of the subtle mode-line of the `spacious-padding' package
+(defun +subtle-mode-line ()
+  "Subtle look for the mode-line."
+  (set-face-attribute
+   'mode-line-active nil
+   :overline (face-attribute 'default :foreground nil t)
+   :background (face-attribute 'default :background nil t)))
+
 
 
 (provide 'me-lib)
