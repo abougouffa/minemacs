@@ -138,6 +138,19 @@
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
 
+  ;; Lighter color for trailing whitespaces
+  (satch-add-hook
+   '(enable-theme-functions disable-theme-functions server-after-make-frame-hook)
+   (satch-defun +face--lighter-trailing-whitespace-h (&rest _args)
+     (with-eval-after-load 'faces
+       (when (display-graphic-p)
+         (require 'color)
+         (set-face-background
+          'trailing-whitespace
+          (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
+                   (face-attribute 'error :foreground nil t)
+                   50))))))
+
   ;; By default, Emacs asks before quitting with "C-x C-c", but when running an
   ;; Emacs Client session, it won't ask unless a file is not saved. I hit "C-x
   ;; C-c" a lot by error, so lets make it ask before quitting.

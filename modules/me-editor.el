@@ -103,19 +103,18 @@
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
   ;; Automatically set the face for `selection-highlight-mode'
-  (defun +selection-highlight--set-face-h (&rest _)
-    (with-eval-after-load 'selection-highlight-mode
-      (with-eval-after-load 'isearch
-        (when (display-graphic-p)
-          (require 'color)
-          (set-face-background
-           'selection-highlight-mode-match-face
-           (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
-                    (face-attribute 'isearch :background nil t)
-                    5))))))
   (satch-add-hook
    '(enable-theme-functions disable-theme-functions server-after-make-frame-hook)
-   #'+selection-highlight--set-face-h))
+   (satch-defun +selection-highlight--set-face-h (&rest _args)
+     (with-eval-after-load 'selection-highlight-mode
+       (with-eval-after-load 'isearch
+         (when (display-graphic-p)
+           (require 'color)
+           (set-face-background
+            'selection-highlight-mode-match-face
+            (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
+                     (face-attribute 'isearch :background nil t)
+                     5))))))))
 
 (use-package zones
   :straight t)
