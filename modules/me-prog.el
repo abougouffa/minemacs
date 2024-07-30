@@ -269,7 +269,7 @@
   :hook (cuda-mode . display-line-numbers-mode)
   :hook (cuda-mode . hs-minor-mode))
 
-(use-package opencl-mode
+(use-package opencl-c-mode
   :straight t
   :mode "\\.cl\\'")
 
