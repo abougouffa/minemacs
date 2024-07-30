@@ -188,6 +188,25 @@
   (unless (or (not (+package-disabled-p 'lsp-mode 'obsolete/me-lsp)) (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
 
+;; Helper function to get the style for "clang-format"
+(defun +clang-format-get-style ()
+  "Get the \"-style\" argument for clang-format."
+  (if-let ((conf-file ".clang-format")
+           (dir (locate-dominating-file
+                 (let ((proj (project-current)))
+                   (or (and proj (project-root proj))
+                       default-directory))
+                 conf-file)))
+      (expand-file-name conf-file dir)
+    (let ((indent
+           (cond
+            ((derived-mode-p 'c-ts-mode 'c++-ts-mode) c-ts-mode-indent-offset)
+            ((derived-mode-p 'java-ts-mode) java-ts-mode-indent-offset)
+            ((derived-mode-p 'csharp-ts-mode) csharp-ts-mode-indent-offset)
+            ((derived-mode-p 'protobuf-ts-mode) protobuf-ts-mode-indent-offset)
+            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode)) c-basic-offset)))
+      (format "{IndentWidth: %d, TabWidth: %d}" (or indent standard-indent) (or indent tab-width)))))
+
 (use-package reformatter
   :straight t)
 
@@ -201,32 +220,23 @@
    (satch-defun +xmllint--set-indent-h ()
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist)
-
-  (defun +clang-format--get-style ()
-    (if-let ((conf-file ".clang-format")
-             (dir (locate-dominating-file
-                   (let ((proj (project-current)))
-                     (or (and proj (project-root proj))
-                         default-directory))
-                   conf-file)))
-        (format "-style=%s" (expand-file-name conf-file dir))
-      (let ((indent
-             (cond
-              ((memq major-mode '(c-mode c++-mode)) c-basic-offset)
-              ((memq major-mode '(c-ts-mode c++-ts-mode)) c-ts-mode-indent-offset)
-              ((derived-mode-p 'java-ts-mode) java-ts-mode-indent-offset))))
-        (format "-style={IndentWidth: %d, TabWidth: %d}" (or indent standard-indent) (or indent tab-width)))))
-
   ;; Append the "-style" option to the `clang-format' command
   (let ((clang (assq 'clang-format apheleia-formatters)))
-    (setcdr clang (append (cdr clang) '((+clang-format--get-style))))))
+    (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
 
 (use-package format-all
   :straight t)
 
 ;; for bin in $(ls $(dirname $(which clang-13))/clang-*); do ln -s $bin $HOME/.local/bin/$(basename ${bin%-13}); done
 (use-package clang-format
-  :straight t)
+  :straight t
+  :config
+  (advice-add
+   'clang-format-region :before
+   (satch-defun +clang-format--set-style ()
+     "Automatically set the `clang-format' style if not already set."
+     (unless (local-variable-p 'clang-format-style)
+       (setq-local clang-format-style (+clang-format-get-style))))))
 
 (use-package quickrun
   :straight t)
