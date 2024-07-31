@@ -99,7 +99,7 @@
            highlight-numbers-modelist))
 
 (use-package selection-highlight-mode
-  :straight (:host github :repo "abougouffa/selection-highlight-mode")
+  :straight (:host github :repo "balloneij/selection-highlight-mode" :fork (:repo "abougouffa/selection-highlight-mode"))
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
   ;; Automatically set the face for `selection-highlight-mode'

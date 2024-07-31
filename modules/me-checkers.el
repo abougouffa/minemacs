@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package flymake-collection
-  :straight (:host github :repo "abougouffa/flymake-collection" :branch "additional-checkers")
+  :straight (:fork (:repo "abougouffa/flymake-collection" :branch "additional-checkers"))
   :init
   (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
   :custom
