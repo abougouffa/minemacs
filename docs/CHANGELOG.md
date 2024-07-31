@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.7.0](https://github.com/abougouffa/minemacs/compare/18cece308ba6246b8fb632d95fd6df6bc5267896..v8.7.0) - 2024-07-31
+#### Bug Fixes
+- **(jiralib)** use the right host name argument in auto-login - ([ff92e7f](https://github.com/abougouffa/minemacs/commit/ff92e7f92761e92f01480ca44d8d45fe3e835939)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** require `color` before using `color-*-name` - ([33c971a](https://github.com/abougouffa/minemacs/commit/33c971ad60fe67ce716f97797cc1a5cae781e409)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(bitbake)** add some helper commands - ([a2d6892](https://github.com/abougouffa/minemacs/commit/a2d6892fbc30b9f6d879a723d32736f9e404cf90)) - [@abougouffa](https://github.com/abougouffa)
+- **(completion)** remove `consult-web` - ([b1481f6](https://github.com/abougouffa/minemacs/commit/b1481f623695d6795b92f4f103bb6b9425363e7c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add a `spacious-padding` like subtle mode-line look - ([a187ece](https://github.com/abougouffa/minemacs/commit/a187ece7ff5085607ae798295a8871c2c2305d02)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `format-all-the-code` - ([f8b548d](https://github.com/abougouffa/minemacs/commit/f8b548d008f05640c2fa43ffc00fd1b397ca6499)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** make `loccur` obsolete, `consult-focus-lines` does the job! - ([e62767e](https://github.com/abougouffa/minemacs/commit/e62767e2fa3f29cf2796c532ff4c4585d71abd0b)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `visual-format` - ([8f47c7a](https://github.com/abougouffa/minemacs/commit/8f47c7a9ed7531cdf99ba395af49df3a08bf3b5f)) - [@abougouffa](https://github.com/abougouffa)
+- visual format buffer (early WIP) - ([c7483ab](https://github.com/abougouffa/minemacs/commit/c7483ab831a348c65f7946593a06401f1e30b633)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- mark my temporary forks of packages as forks - ([bfd3422](https://github.com/abougouffa/minemacs/commit/bfd3422199436feb45a8e1972e0e1bea661ef5fa)) - [@abougouffa](https://github.com/abougouffa)
+- prefer using the list form for `:commands` - ([c677dfc](https://github.com/abougouffa/minemacs/commit/c677dfc5748c268bc4159fe41ff7c348bc391c87)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** add the `-style` option for the `clang-format` command - ([725ae78](https://github.com/abougouffa/minemacs/commit/725ae78e1f17715722b8d68f924a748f02ecf2b9)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** better handling of the `-style` argument - ([36f0cfe](https://github.com/abougouffa/minemacs/commit/36f0cfea4ce9a3e87365dfff02e9546d6cf0f3bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(combobulate)** don't enable by default (very annoying in Python) - ([18cece3](https://github.com/abougouffa/minemacs/commit/18cece308ba6246b8fb632d95fd6df6bc5267896)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** customize more commands with initial input - ([868842b](https://github.com/abougouffa/minemacs/commit/868842b49a082e0744d62e765e13f13ac4626bea)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** don't load until needed - ([fb4cd11](https://github.com/abougouffa/minemacs/commit/fb4cd1175243e3108a3fa8d0e6e2becd2f1f32e7)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** setup some hooks for better integration - ([52f6a84](https://github.com/abougouffa/minemacs/commit/52f6a844ab070573f3f80d4a804db9300ebdf18e)) - [@abougouffa](https://github.com/abougouffa)
+- **(doom-modeline)** simplify and restore the vertical bar - ([e66b37c](https://github.com/abougouffa/minemacs/commit/e66b37ccc477ff22f7d26d2e89b2376b77555009)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** add a shortcut to browse Org directory in Dired - ([1662fc1](https://github.com/abougouffa/minemacs/commit/1662fc1e9920cc77483e7b13d58e7ed75b7cf465)) - [@abougouffa](https://github.com/abougouffa)
+- **(highlight-selection)** use my fork until it gets merged - ([a3567e3](https://github.com/abougouffa/minemacs/commit/a3567e3ed3ed7e073feb8c2eb9e68455fd95b919)) - [@abougouffa](https://github.com/abougouffa)
+- **(opencl-c-mode)** use the correct package/mode name - ([fc3e53f](https://github.com/abougouffa/minemacs/commit/fc3e53faaa658792402f2ab9f1b1de2c551410c9)) - [@abougouffa](https://github.com/abougouffa)
+- **(reformatter)** define some formatters - ([6dfecd4](https://github.com/abougouffa/minemacs/commit/6dfecd41df93f4c2549c62e49df6987556d0aeff)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** rename `visual-format` the `virtual-format` - ([4beb68d](https://github.com/abougouffa/minemacs/commit/4beb68d25b039a14f547b5fa366f71ec905e9d13)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([fee238e](https://github.com/abougouffa/minemacs/commit/fee238e69815c62817c0a20cc44e4f64c23cf031)) - [@abougouffa](https://github.com/abougouffa)
+- apply a lighter/darker color for trailing whitespace - ([7892c51](https://github.com/abougouffa/minemacs/commit/7892c513481ff38d491ee5ec70fdc2965b89e418)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6e1c330](https://github.com/abougouffa/minemacs/commit/6e1c330d778b05e14ef7cd7125dfbee3da5bd5ff)) - [@abougouffa](https://github.com/abougouffa)
+- don't reinvent the wheel, `color-lighten-name` is a thing! - ([fce9e4e](https://github.com/abougouffa/minemacs/commit/fce9e4ee28ec590862349a9c2de3c723802ae5d7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.6.4](https://github.com/abougouffa/minemacs/compare/1b82605345a3098a1b690405897e73f0dc16d986..v8.6.4) - 2024-07-22
 #### Bug Fixes
 - **(flymake)** properly defer fringe tweaks - ([1b82605](https://github.com/abougouffa/minemacs/commit/1b82605345a3098a1b690405897e73f0dc16d986)) - [@abougouffa](https://github.com/abougouffa)
