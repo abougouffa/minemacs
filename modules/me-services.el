@@ -56,7 +56,7 @@
       (when-let* ((host (if (string= jiralib-host "")
                             (url-host (url-generic-parse-url jiralib-url))
                           jiralib-host))
-                  (auth (car (auth-source-search :host jiralib-url)))
+                  (auth (car (auth-source-search :host host)))
                   (user (plist-get auth :user))
                   (pass (funcall (plist-get auth :secret))))
         (jiralib-login user pass)))))
