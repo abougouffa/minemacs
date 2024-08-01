@@ -28,7 +28,30 @@
          ("C-S-c C-e"     . mc/edit-ends-of-lines)
          ("C-S-c C-a"     . mc/edit-beginnings-of-lines)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click))
+  :custom
+  (mc/list-file (concat minemacs-local-dir "mc-list.el"))
   :config
+  ;; Add some extra commands to be run on all cursors
+  (cl-callf append mc--default-cmds-to-run-for-all
+    '(;; Some extra Emacs commands
+      end-of-visual-line
+      indent-for-tab-command
+      ;; MinEmacs' commands
+      +kill-whitespace-or-word
+      +kill-region-or-backward-word
+      +backward-kill-whitespace-or-word
+      ;; avy
+      avy-goto-char
+      avy-goto-char-timer
+      ;; crux
+      crux-smart-kill-line
+      crux-smart-open-line
+      crux-smart-open-line-above
+      ;; expreg
+      expreg-expand
+      expreg-contract))
+
+  ;; Integrate with `symbol-overlay'
   (with-eval-after-load 'symbol-overlay
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
     (defun +mc/mark-all-symbol-overlays ()
