@@ -21,8 +21,6 @@
   (treesit-auto-install 'prompt)
   :config
   ;; Add extra grammars
-  ;; BUG+FIX: Remove the C++ grammar to force using v0.22.0, newer versions
-  ;; cause problems with syntax highlighting in `c++-ts-mode' buffers (abougouffa/minemacs#135)
   ;; BUG+FIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
   (let* ((extra-recipes
           (list (make-treesit-auto-recipe
@@ -79,8 +77,8 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
 
   ;; Create `treesit' parsers when they are available even in non-treesit modes.
-  ;; This is useful for packages like `expreg' and `ts-movement'.
-  ;; BUG: Adding the Elisp grammar and creating it seems to interfere with `parinfer-rust-mode'
+  ;; This is useful for packages like `virtual-format', `treesit-fold', `expreg'
+  ;; and `ts-movement'.
   (defun +treesit-enable-available-grammars-on-normal-modes ()
     "Enable `treesit' parses in non-treesit modes."
     (dolist (recipe treesit-auto-recipe-list)
