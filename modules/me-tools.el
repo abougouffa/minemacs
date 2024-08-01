@@ -143,7 +143,7 @@
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package restclient
-  :straight (:host github :repo "pashky/restclient.el" :fork (:repo "abougouffa/restclient.el"))
+  :straight (:host github :repo "pashky/restclient.el" :files ("*.el") :fork (:repo "abougouffa/restclient.el"))
   :hook (restclient-mode . display-line-numbers-mode)
   :mode ("\\.http\\'" . restclient-mode)
   :config
