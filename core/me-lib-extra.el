@@ -99,8 +99,8 @@ restore the lockfile from backups, not Git."
     (message "[MinEmacs] Restoring packages from the global lockfile versions")
     (straight-thaw-versions)
     ;; Rebuild the packages
-    (message "[MinEmacs] Rebuilding packages")
-    (straight-rebuild-all)
+    (message "[MinEmacs] Rebuilding modified packages")
+    (straight-check-all)
     ;; Run package-specific build functions (ex: `pdf-tools-install')
     (message "[MinEmacs] Running additional package-specific build functions")
     (minemacs-run-build-functions 'dont-ask)))
