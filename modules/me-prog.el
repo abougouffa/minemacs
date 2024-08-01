@@ -204,7 +204,7 @@
             ((derived-mode-p 'java-ts-mode) java-ts-mode-indent-offset)
             ((derived-mode-p 'csharp-ts-mode) csharp-ts-mode-indent-offset)
             ((derived-mode-p 'protobuf-ts-mode) protobuf-ts-mode-indent-offset)
-            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode)) c-basic-offset)))
+            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) c-basic-offset))))
       (format "{IndentWidth: %d, TabWidth: %d}" (or indent standard-indent) (or indent tab-width)))))
 
 (use-package reformatter
