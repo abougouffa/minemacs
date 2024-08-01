@@ -105,7 +105,8 @@
 
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
-  :when (or os/linux os/bsd))
+  :when (or os/linux os/bsd)
+  :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 (use-package nix-mode
   :straight t)
