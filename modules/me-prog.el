@@ -50,14 +50,6 @@
                  :revision "split_parser"
                  :source-dir "tree-sitter-markdown-inline/src")
                 (make-treesit-auto-recipe
-                 :lang 'cpp
-                 :ts-mode 'c++-ts-mode
-                 :remap 'c++-mode
-                 :requires 'c
-                 :url "https://github.com/tree-sitter/tree-sitter-cpp"
-                 :revision "v0.22.0"
-                 :ext "\\.cpp\\'")
-                (make-treesit-auto-recipe
                  :lang 'llvm
                  :ts-mode 'llvm-ts-mode
                  :remap 'llvm-mode
