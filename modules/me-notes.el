@@ -33,6 +33,9 @@
   (when (executable-find "rg")
     (setopt consult-denote-grep-command #'consult-ripgrep)))
 
+(use-package denote-menu
+  :straight t)
+
 
 (provide 'me-notes)
 
