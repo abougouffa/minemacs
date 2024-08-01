@@ -200,12 +200,14 @@
       (expand-file-name conf-file dir)
     (let ((indent
            (cond
-            ((derived-mode-p 'c-ts-mode 'c++-ts-mode) c-ts-mode-indent-offset)
-            ((derived-mode-p 'java-ts-mode) java-ts-mode-indent-offset)
-            ((derived-mode-p 'csharp-ts-mode) csharp-ts-mode-indent-offset)
-            ((derived-mode-p 'protobuf-ts-mode) protobuf-ts-mode-indent-offset)
-            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) c-basic-offset))))
-      (format "{IndentWidth: %d, TabWidth: %d}" (or indent standard-indent) (or indent tab-width)))))
+            ((derived-mode-p 'c-ts-mode 'c++-ts-mode) 'c-ts-mode-indent-offset)
+            ((derived-mode-p 'java-ts-mode) 'java-ts-mode-indent-offset)
+            ((derived-mode-p 'csharp-ts-mode) 'csharp-ts-mode-indent-offset)
+            ((derived-mode-p 'protobuf-ts-mode) 'protobuf-ts-mode-indent-offset)
+            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) 'c-basic-offset))))
+      (format "{IndentWidth: %d, TabWidth: %d}"
+              (or (and indent (symbol-value indent)) standard-indent)
+              (or (and indent (symbol-value indent)) tab-width)))))
 
 (use-package reformatter
   :straight t
