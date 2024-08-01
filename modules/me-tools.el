@@ -146,7 +146,8 @@
   :straight t)
 
 (use-package hurl-mode
-  :straight (:host github :repo "JasZhe/hurl-mode"))
+  :straight (:host github :repo "JasZhe/hurl-mode")
+  :mode "\\.hurl\\'")
 
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
