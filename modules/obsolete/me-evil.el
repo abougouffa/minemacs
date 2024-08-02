@@ -190,7 +190,7 @@ It is deferred until `general' gets loaded and configured."
 
 (use-package evil-collection
   :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
+  :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :after evil minemacs-loaded
   :demand
   :config
@@ -208,7 +208,7 @@ It is deferred until `general' gets loaded and configured."
 
 (use-package evil-snipe
   :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
+  :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :hook (evil-mode . evil-snipe-mode)
   :hook (evil-mode . evil-snipe-override-mode)
   :custom
@@ -219,7 +219,7 @@ It is deferred until `general' gets loaded and configured."
 
 (use-package evil-numbers
   :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
+  :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :init
   (+nmap!
     "g+" #'evil-numbers/inc-at-pt
@@ -232,7 +232,7 @@ It is deferred until `general' gets loaded and configured."
 
 (use-package evil-nerd-commenter
   :straight t
-  :unless (+package-disabled-p 'evil 'me-evil)
+  :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :commands (evilnc-comment-operator evilnc-copy-and-comment-operator)
   :init
   (+nvmap!
