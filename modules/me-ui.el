@@ -50,7 +50,7 @@
 (use-package mlscroll
   :straight t
   :hook (minemacs-lazy . +mlscroll-right-mode)
-  :init
+  :config
   ;; For `doom-modeline'
   (define-minor-mode +mlscroll-right-mode
     "Minor mode for displaying an interactive scrollbar in the mode line."
