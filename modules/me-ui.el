@@ -47,6 +47,25 @@
       (remove-hook 'pre-command-hook 'keycast--update)
       (cl-callf2 delete '("" keycast-mode-line " ") global-mode-string))))
 
+(use-package mlscroll
+  :straight t
+  :hook (minemacs-lazy . +mlscroll-right-mode)
+  :init
+  ;; For `doom-modeline'
+  (define-minor-mode +mlscroll-right-mode
+    "Minor mode for displaying an interactive scrollbar in the mode line."
+    :global t
+    (if +mlscroll-right-mode
+        (progn
+          (setq mlscroll-right-align nil)
+          (add-to-list 'global-mode-string '("" (:eval (mlscroll-mode-line)) " "))
+          (mlscroll-layout)
+          (add-hook 'enable-theme-functions #'mlscroll-layout)
+          (add-hook 'after-make-frame-functions #'mlscroll--update-size)
+          (when mlscroll-shortfun-min-width (mlscroll-shortfun-setup)))
+      (cl-callf2 delete '("" (:eval (mlscroll-mode-line)) " ") global-mode-string)
+      (remove-hook 'after-make-frame-functions #'mlscroll--update-size))))
+
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
   :when (>= emacs-major-version 29) ; TEMP+BUG: There is an issue with Emacs 28
