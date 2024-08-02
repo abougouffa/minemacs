@@ -8,9 +8,6 @@
 
 ;;; Code:
 
-(use-package hydra
-  :straight t)
-
 (use-package key-chord
   :straight t)
 

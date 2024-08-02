@@ -873,9 +873,9 @@ or file path may exist now."
   ;; Electric indent on delete and enter
   (setq-default electric-indent-chars '(?\n ?\^?))
 
-  (defvar-local +electric-indent-words '()
-    "The list of electric words. Typing these will trigger reindentation of the
-current line.")
+  (defvar-local +electric-indent-words nil
+    "The list of electric words.
+Typing these will trigger reindentation of the current line.")
 
   ;; Electric indent at Bash/Sh keywords, extracted from the grammar
   (+setq-hook! (sh-mode bash-ts-mode)
@@ -932,48 +932,7 @@ current line.")
     (smerge-vc-next-conflict)
     ;; Often, after calling `smerge-vc-next-conflict', the cursor will land at
     ;; the bottom of the window.
-    (recenter-top-bottom (/ (window-height) 8)))
-
-  (with-eval-after-load 'hydra
-    (defhydra +smerge-hydra (:hint nil
-                                   :pre (if (not smerge-mode) (smerge-mode 1))
-                                   ;; Disable `smerge-mode' when quitting hydra if
-                                   ;; no merge conflicts remain.
-                                   :post (smerge-auto-leave))
-      "
-                                                         [smerge]
-  Movement   Keep           Diff              Other         │
-  ╭─────────────────────────────────────────────────────────╯
-  │  ^_g_^       [_b_] base       [_<_] upper/base    [_C_] Combine
-  │  ^_C-p_^     [_u_] upper      [_=_] upper/lower   [_r_] resolve
-  │  ^_p_ ↑^     [_l_] lower      [_>_] base/lower    [_R_] remove
-  │  ^_n_ ↓^     [_a_] all        [_H_] highlight     [_n_] next in project
-  │  ^_C-n_^     [_RET_] current  [_E_] ediff
-  │  ^_G_^                                                 [_q_] quit
-  ╰─────────────────────────────────────────────────────╯
-"
-      ("g" +smerge-first)
-      ("G" +smerge-last)
-      ("C-n" smerge-next)
-      ("C-p" smerge-prev)
-      ("n" next-line)
-      ("p" previous-line)
-      ("b" smerge-keep-base)
-      ("u" smerge-keep-upper)
-      ("l" smerge-keep-lower)
-      ("a" smerge-keep-all)
-      ("RET" smerge-keep-current)
-      ("\C-m" smerge-keep-current)
-      ("<" smerge-diff-base-upper)
-      ("=" smerge-diff-upper-lower)
-      (">" smerge-diff-base-lower)
-      ("H" smerge-refine)
-      ("E" smerge-ediff)
-      ("C" smerge-combine-with-next)
-      ("r" smerge-resolve)
-      ("R" smerge-kill-current)
-      ("n" +smerge-vc-next-conflict-recenter)
-      ("q" nil :color blue))))
+    (recenter-top-bottom (/ (window-height) 8))))
 
 (use-package octave
   :mode ("\\.m\\'" . octave-maybe-mode)

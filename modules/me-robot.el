@@ -14,25 +14,7 @@
 ;; ROS package
 (use-package ros
   :straight (:host github :repo "DerBeutlin/ros.el")
-  :commands (+hydra-ros-main/body ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache)
-  :config
-  (defhydra +hydra-ros-main (:color blue :hint nil :foreign-keys warn)
-    "
-[ROS]                                                  [_q_] quit
-  ├──────────────────────────────────────────────────────────────────────╮
-  │  [_c_] Compile    [_t_] Test       [_w_] Set workspace   [_p_] Packages      │
-  │  [_m_] Messages   [_s_] Services   [_a_] Actions         [_x_] Clean cache   │
-  ╰──────────────────────────────────────────────────────────────────────╯
-"
-    ("c" ros-colcon-build-transient)
-    ("t" ros-colcon-test-transient)
-    ("w" ros-set-workspace)
-    ("p" hydra-ros-packages/body)
-    ("m" hydra-ros-messages/body)
-    ("s" hydra-ros-srvs/body)
-    ("a" hydra-ros-actions/body)
-    ("x" ros-cache-clean)
-    ("q" nil :color blue)))
+  :commands (ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache))
 
 (use-package rosbag-info
   :straight (:host github :repo "abougouffa/rosbag-info"))
