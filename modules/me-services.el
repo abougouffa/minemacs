@@ -62,7 +62,9 @@
         (jiralib-login user pass)))))
 
 (use-package org-jira
-  :straight (:host github :repo "ahungry/org-jira"))
+  :straight (:host github :repo "ahungry/org-jira")
+  :custom
+  (org-jira-working-dir (+directory-ensure org-directory "jira/")))
 
 (use-package tributary
   :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
