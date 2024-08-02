@@ -110,11 +110,14 @@
        (with-eval-after-load 'isearch
          (when (display-graphic-p)
            (require 'color)
-           (set-face-background
-            'selection-highlight-mode-match-face
-            (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
-                     (face-attribute 'isearch :background nil t)
-                     5))))))))
+           (let ((new-color (funcall
+                             (if (eq 'light (frame-parameter nil 'background-mode))
+                                 #'color-lighten-name
+                               #'color-darken-name)
+                             (face-attribute 'isearch :background nil t)
+                             5)))
+             (set-face-background 'selection-highlight-mode-match-face new-color)
+             (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 
 (use-package zones
   :straight t)
