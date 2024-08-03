@@ -668,26 +668,8 @@ or file path may exist now."
 
 (use-package gud
   :config
-  ;; Add an overlay for the current line (mimics dap-mode)
-  (defvar +gud-overlay
-    (let* ((overlay (make-overlay (point-min) (point-min))))
-      (overlay-put overlay 'face 'highlight)
-      overlay)
-    "Overlay variable for GUD highlighting.")
-
-  (advice-add
-   'gud-display-line :after
-   (satch-defun +gud--display-overlay:after-a (true-file _line)
-     (let* ((overlay +gud-overlay)
-            (buffer (gud-find-file true-file)))
-       (with-current-buffer buffer
-         (move-overlay overlay (line-beginning-position) (line-end-position) (current-buffer))))))
-
-  (add-hook
-   'kill-buffer-hook
-   (satch-defun +gud--delete-overlay-h ()
-     (when (derived-mode-p 'gud-mode)
-       (delete-overlay +gud-overlay)))))
+  :custom
+  (gud-highlight-current-line-overlay t))
 
 (use-package org
   :straight (:source gnu-elpa-mirror)
