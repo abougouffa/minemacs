@@ -2,6 +2,47 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.8.0](https://github.com/abougouffa/minemacs/compare/3ca7982a15839426bb53206bbbd209184e493f2d..v8.8.0) - 2024-08-03
+#### Bug Fixes
+- **(hurl-mode)** temporary switch to my fork until PR gets merged - ([9fcd26e](https://github.com/abougouffa/minemacs/commit/9fcd26eb436de392f36d3b9a9a254321c821a7ef)) - [@abougouffa](https://github.com/abougouffa)
+- **(mlscroll)** make sure `mlscroll` is loaded on `+mlscroll-right-mode` - ([3e5c17e](https://github.com/abougouffa/minemacs/commit/3e5c17efee7f76f39ae071888ffcc1872972fec7)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** correct the `+clang-format-get-style` for classic C/C++ modes - ([1acc7fd](https://github.com/abougouffa/minemacs/commit/1acc7fd0b6f8e0745766bc84141e935c0a7fb8cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(restclient)** correct the recipe - ([3ca7982](https://github.com/abougouffa/minemacs/commit/3ca7982a15839426bb53206bbbd209184e493f2d)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** correct interactive `+treesit-create-parser-in-buffer` - ([529b54a](https://github.com/abougouffa/minemacs/commit/529b54a48a3ff338ff3807a95d179e102ab228c4)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(treesit-auto)** update some comments - ([1b3f45f](https://github.com/abougouffa/minemacs/commit/1b3f45f4f44d485b0c9faff114a04c61b72f3346)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(keybindings)** remove unused `hydra` stuff - ([1bb0e7b](https://github.com/abougouffa/minemacs/commit/1bb0e7bce94cca7db2e7783e26f5203345290f45)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** add support for `denote-menu` - ([c379699](https://github.com/abougouffa/minemacs/commit/c37969962e05868e6ee1e2fb5de74a6cc905c397)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `restclient` obsolete (use `hurl-mode` or `verb`) - ([e4945df](https://github.com/abougouffa/minemacs/commit/e4945dfc1317e4c088682c3d3e73ba8e01743c6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `mlscroll` with tweaked mode `+mlscroll-right-mode` - ([50eb555](https://github.com/abougouffa/minemacs/commit/50eb5556448c87d77b779fad94f8e2ad7eb17232)) - [@abougouffa](https://github.com/abougouffa)
+- make `emacs-gdb` obsolete - ([b8a731c](https://github.com/abougouffa/minemacs/commit/b8a731c4c81b131b2ce83f582286b17cc50272c8)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(prog)** minor edit in `+clang-format-get-style` - ([6eb9723](https://github.com/abougouffa/minemacs/commit/6eb9723bc973316562104e9c4b4b62674f8f1dda)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([6445517](https://github.com/abougouffa/minemacs/commit/6445517699e43771665a3e4d3a8600e7469f54d0)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- tweak conditional installation for `obsolete/me-evil` - ([147bb70](https://github.com/abougouffa/minemacs/commit/147bb7001d01ee72bbc3790ac81625daf5154472)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(treesit-auto)** the grammar of C++ seems Ok in Emacs 30 - ([714f4e1](https://github.com/abougouffa/minemacs/commit/714f4e11bbcbd6f19c95bca85c2c47680909f453)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** remove `+mlscroll-right-mode` - ([4224ae7](https://github.com/abougouffa/minemacs/commit/4224ae7f4f2c362cfb19abc0633a45d5bce058ed)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(app-launcher)** bind `C-c o a` to `app-launcher-run-app` - ([5fb4473](https://github.com/abougouffa/minemacs/commit/5fb44739972428786898302c461cbab4e5e0bafa)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** bigger fonts for variable pitch - ([b63c00c](https://github.com/abougouffa/minemacs/commit/b63c00c7fe497abd11793f3fd8e1086364c7bda2)) - [@abougouffa](https://github.com/abougouffa)
+- **(gdb-mi)** better defaults for Emacs 30 - ([f836d5d](https://github.com/abougouffa/minemacs/commit/f836d5dd9e69425a2a743f4294f085eb7a7eeac3)) - [@abougouffa](https://github.com/abougouffa)
+- **(gdb-mi)** remove old unnecessary tweaks - ([b09bb6c](https://github.com/abougouffa/minemacs/commit/b09bb6c6ea6be40cc8d66aab592ce7feff9a3f81)) - [@abougouffa](https://github.com/abougouffa)
+- **(grep)** use Emacs 30 rg-like headings view - ([790d612](https://github.com/abougouffa/minemacs/commit/790d612116d0bfd953d62542dcdfc07a5d1bc96b)) - [@abougouffa](https://github.com/abougouffa)
+- **(gud)** Emacs 30 supports highlighting the current line - ([2e9c6b9](https://github.com/abougouffa/minemacs/commit/2e9c6b9fc64a288ad86b9a2793f998eb4ea7d93a)) - [@abougouffa](https://github.com/abougouffa)
+- **(hurl-mode)** use for the `*.hurl` extension - ([633e5a5](https://github.com/abougouffa/minemacs/commit/633e5a5017a696073ec3163e9ce5c22cb529cfc9)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** warn on Emacs v28 - ([be9415b](https://github.com/abougouffa/minemacs/commit/be9415b7b92c02722918a00640e26687a543f5c3)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** mark some commands to run for all cursors - ([69165dd](https://github.com/abougouffa/minemacs/commit/69165dde2f464fe536c6a00b92126aec9c7f7320)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-jira)** set the default working directory - ([ef5741b](https://github.com/abougouffa/minemacs/commit/ef5741be2b687f11b4a90367d3e2e3377ce55b9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(selection-highlight)** set background for the alternate face also - ([61496e3](https://github.com/abougouffa/minemacs/commit/61496e33ac81b9d401b67f5d1aad5646ee1d9d9d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([737d9ab](https://github.com/abougouffa/minemacs/commit/737d9ab4e7745901efff8459a8d2f4bffe8e6ec2)) - [@abougouffa](https://github.com/abougouffa)
+- remove `gcmh` and simplify GC management - ([a6e6082](https://github.com/abougouffa/minemacs/commit/a6e6082c36c3262666f71973f0483593f072a642)) - [@abougouffa](https://github.com/abougouffa)
+- rebuild only when necessary in `minemacs-restore-locked-packages` - ([51ab896](https://github.com/abougouffa/minemacs/commit/51ab896bd991e9ac07897d3d13f69f3f3076640f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.7.0](https://github.com/abougouffa/minemacs/compare/18cece308ba6246b8fb632d95fd6df6bc5267896..v8.7.0) - 2024-07-31
 #### Bug Fixes
 - **(jiralib)** use the right host name argument in auto-login - ([ff92e7f](https://github.com/abougouffa/minemacs/commit/ff92e7f92761e92f01480ca44d8d45fe3e835939)) - [@abougouffa](https://github.com/abougouffa)
