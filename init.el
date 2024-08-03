@@ -169,6 +169,18 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
+;; The `gc-cons-threshold' has been set in "early-init.el" to a ridiculously
+;; high value (`most-positive-fixnum') to reduce the number of garbage
+;; collections during startup, it will be overwritten by the following hook, so
+;; we place it at the end of `minemacs-lazy-hook' to maximize the benefit.
+(defun +minemacs--gc-tweaks-h ()
+  "Better garbage collection settings, no GCMH required.
+See: https://zenodo.org/records/10213384."
+  (setq gc-cons-threshold (* 128 1024 1024)
+        gc-cons-percentage 0.25))
+
+(add-hook 'minemacs-lazy-hook #'+minemacs--gc-tweaks-h 90)
+
 (defun +minemacs--loaded-h ()
   "This is MinEmacs' synchronization point.
 
@@ -218,7 +230,7 @@ the packages loaded with `:after minemacs-lazy' can be loaded."
   (setq minemacs-modules (minemacs-modules)))
 
 ;; Load modules
-(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin me-gc)))
+(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin)))
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
 
 ;; Run hooks
