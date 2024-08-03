@@ -65,7 +65,6 @@
   (delete-by-moving-to-trash t) ; Move stuff to trash
   (save-some-buffers-default-predicate #'save-some-buffers-root) ; Save files only in sub-directories of current project
   (inhibit-startup-screen t) ; Inhibit startup message
-  (initial-scratch-message nil) ; No initial scratch message
   (initial-major-mode 'fundamental-mode) ; Set initial buffer to fundamental-mode for faster load
   (large-file-warning-threshold (* 20 1024 1024)) ; Increase the large file threshold to 20MiB (10MB)
   (use-dialog-box nil) ; Always prompt in minibuffer (no GUI)
@@ -131,7 +130,7 @@
   ;; Disable previously enabled custom themes before enabling a new one.
   (advice-add
    'load-theme :before
-   (satch-defun +theme--disable-previous-themes:before-a (&rest _)
+   (satch-defun +theme--disable-previous-themes:before-a (&rest _args)
      "Disable previously enabled themes before enabling the new one."
      (mapc #'disable-theme custom-enabled-themes)))
 
