@@ -1205,6 +1205,10 @@ Typing these will trigger reindentation of the current line.")
     "l" #'windmove-right)
   (keymap-global-set "C-c w" +windmove-keys))
 
+(use-package grep
+  :custom
+  (grep-use-headings t)) ; subdivide grep output into sections, one per file like `rg' (Emacs 30)
+
 (use-package isearch
   :custom
   (isearch-lazy-count t) ; Show the match count (need a non-nil `isearch-lazy-highlight')
