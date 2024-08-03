@@ -28,6 +28,7 @@ jobs:
         emacs-version:
           - 29.2
           - 29.3
+          # 29.4 -- no need, it is an Org mode bugfix release
           - release-snapshot
         experimental: [false]
         include:
