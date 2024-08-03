@@ -18,8 +18,6 @@
    (dape-stopped . dape-info) ; To display info and/or repl buffers on stopped
    (dape-stopped . dape-repl)
    (dape-start . (lambda () (save-some-buffers t t)))) ; Save buffers on startup, useful for interpreted languages
-  :custom
-  (dape-buffer-window-arrangement 'gud) ; To use window configuration like `gud' (gdb-mi)
   :config
   (dape-breakpoint-load) ; Load breakpoints on startup, with laziness
   (transient-define-prefix +dape-transient ()
