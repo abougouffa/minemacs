@@ -664,7 +664,8 @@ or file path may exist now."
   (gdb-restore-window-configuration-after-quit t)
   (gdb-thread-buffer-verbose-names nil)
   (gdb-max-source-window-count 1) ; IDEA: maybe increase it!
-  (gdb-display-io-nopopup nil)) ; IDEA: maybe change it!
+  (gdb-display-io-buffer nil) ; don't display a separate IO buffer (Emacs 30.1+)
+  (gdb-display-io-nopopup nil)) ; in case we enabled the IO buffer, we don't want it to popup when hidden
 
 (use-package gud
   :config
