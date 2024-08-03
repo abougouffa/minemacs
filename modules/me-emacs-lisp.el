@@ -90,6 +90,9 @@
 (use-package package-lint
   :straight t)
 
+(use-package relint
+  :straight t)
+
 
 (provide 'me-emacs-lisp)
 
