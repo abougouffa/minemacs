@@ -861,7 +861,7 @@ the first, fresh scratch buffer you create. This accepts:
 (defvar +scratch-buffer-created-hook nil
   "The hooks to run after a scratch buffer is created.")
 
-(defun +scratch-load-persistent-scratch-buffer (&optional project-name)
+(defun +scratch-insert-persistent-scratch (&optional project-name)
   (setq-local +scratch-current-project (or project-name +scratch-default-file))
   (let ((scratch-file (expand-file-name (concat +scratch-current-project ".el") +scratch-dir)))
     (make-directory +scratch-dir t)
@@ -892,20 +892,20 @@ When provided, set the `default-directory' to DIRECTORY."
       (if dont-restore-p
           (erase-buffer)
         (unless pscratch-buff
-          (+scratch-load-persistent-scratch-buffer proj-name)
+          (+scratch-insert-persistent-scratch proj-name)
           (when (and (eq major-mode 'fundamental-mode) (functionp mode))
             (funcall mode))))
       (cl-pushnew (current-buffer) +scratch-buffers)
-      (satch-add-hook 'window-buffer-change-functions #'+scratch-persist-buffers-h nil nil :transient t)
-      (satch-add-hook 'server-visit-hook #'+scratch-persist-buffers-h nil nil :transient t)
-      (satch-add-hook 'window-selection-change-functions #'+scratch-persist-buffers-h nil nil :transient t)
+      (satch-add-hook 'window-buffer-change-functions #'+scratch-persist-all-scratch-buffers-h nil nil :transient t)
+      (satch-add-hook 'server-visit-hook #'+scratch-persist-all-scratch-buffers-h nil nil :transient t)
+      (satch-add-hook 'window-selection-change-functions #'+scratch-persist-all-scratch-buffers-h nil nil :transient t)
       (add-hook 'kill-buffer-hook #'+scratch-persist-buffer-h nil 'local)
       (run-hooks '+scratch-buffer-created-hook)
       (current-buffer))))
 
 ;; Persistent scratch buffer
 
-(defun +scratch-persist-buffer-h (&rest _)
+(defun +scratch-persist-buffer-h (&rest _args)
   "Save the current buffer to `+scratch-dir'."
   (let ((content (buffer-substring-no-properties (point-min) (point-max)))
         (curr-point (point))
@@ -913,20 +913,20 @@ When provided, set the `default-directory' to DIRECTORY."
     (with-temp-file (expand-file-name (concat (or +scratch-current-project +scratch-default-file) ".el") +scratch-dir)
       (prin1 (list content curr-point mode) (current-buffer)))))
 
-(defun +scratch-persist-buffers-h (&rest _)
+(defun +scratch-persist-all-scratch-buffers-h (&rest _args)
   "Save all scratch buffers to `+scratch-dir'."
   (setq +scratch-buffers (cl-delete-if-not #'buffer-live-p +scratch-buffers))
   (dolist (buffer +scratch-buffers)
     (with-current-buffer buffer (+scratch-persist-buffer-h))))
 
-(defun +scratch-persist-buffers-after-switch-h (&rest _)
+(defun +scratch-persist-buffers-after-switch-h (&rest _args)
   "Kill scratch buffers when they are no longer visible, saving them to disk."
   (unless (cl-some #'get-buffer-window +scratch-buffers)
     (mapc #'kill-buffer +scratch-buffers)
     (remove-hook '+switch-buffer-hook #'+scratch-persist-buffers-after-switch-h)))
 
 (unless noninteractive
-  (add-hook 'kill-emacs-hook #'+scratch-persist-buffers-h))
+  (add-hook 'kill-emacs-hook #'+scratch-persist-all-scratch-buffers-h))
 
 ;; Commands
 
@@ -980,7 +980,7 @@ If passed the prefix ARG, do not restore the last scratch buffer."
   (interactive)
   (unless (string-match-p "^\\*pscratch" (buffer-name))
     (user-error "Not in a scratch buffer"))
-  (when (+scratch-load-persistent-scratch-buffer +scratch-current-project)
+  (when (+scratch-insert-persistent-scratch +scratch-current-project)
     (message "Reloaded scratch buffer")))
 
 (defun +scratch-delete-persistent-scratch-file (&optional arg)
