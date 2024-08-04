@@ -31,6 +31,12 @@
                  :source-dir "xml/src"
                  :ext "\\.xml\\'")
                 (make-treesit-auto-recipe
+                 :lang 'hurl
+                 :ts-mode 'hurl-ts-mode
+                 :remap 'hurl-mode
+                 :url "https://github.com/pfeiferj/tree-sitter-hurl"
+                 :ext "\\.hurl\\'")
+                (make-treesit-auto-recipe
                  :lang 'markdown
                  :ts-mode 'markdown-ts-mode
                  :remap '(poly-markdown-mode markdown-mode)
