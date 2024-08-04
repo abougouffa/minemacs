@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.8.1](https://github.com/abougouffa/minemacs/compare/ec56cc07c37b027ef08c38512cde6bac8390ac5e..v8.8.1) - 2024-08-04
+#### Documentation
+- **(documentation)** regenerate the documentation - ([23838fc](https://github.com/abougouffa/minemacs/commit/23838fc43528a4fdcc8492a84ff1aef00fb3412d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(elisp)** make `flymake-relint` obsolete and keep `relint` - ([511481a](https://github.com/abougouffa/minemacs/commit/511481af995c0fdd76dc3ac48803830cdecb56f4)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** add a comment - ([ec56cc0](https://github.com/abougouffa/minemacs/commit/ec56cc07c37b027ef08c38512cde6bac8390ac5e)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** remove `me-gc` from the core modules - ([5cd0d21](https://github.com/abougouffa/minemacs/commit/5cd0d215fc8e9cf30106aa9a73b3d343ff4f2737)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- add a script to generate Cppcheck rules from MISRA PDF - ([0bce095](https://github.com/abougouffa/minemacs/commit/0bce0958916f919f80f58ab6489b2f7cc219a331)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- rename some functions - ([d6e565e](https://github.com/abougouffa/minemacs/commit/d6e565e7e614f02896506aa1797f5a96ea5be2ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dape)** disable buggy GUD-like window arrangement - ([14acc80](https://github.com/abougouffa/minemacs/commit/14acc80f0612bb3cdadc9199bcb362dbb46ae07f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.8.0](https://github.com/abougouffa/minemacs/compare/3ca7982a15839426bb53206bbbd209184e493f2d..v8.8.0) - 2024-08-03
 #### Bug Fixes
 - **(hurl-mode)** temporary switch to my fork until PR gets merged - ([9fcd26e](https://github.com/abougouffa/minemacs/commit/9fcd26eb436de392f36d3b9a9a254321c821a7ef)) - [@abougouffa](https://github.com/abougouffa)
