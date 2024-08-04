@@ -417,6 +417,15 @@ the the function.
   (+setq-hook! 'enable-theme-functions
     current-theme (car args))
 
+#### `(+setq-advice! FUNCS HOW &rest [SYM VAL]...)` (macro)
+
+Set buffer-local variables as HOW advices for FUNCS.
+FUNCS can be expect receiving arguments, the `args` variable can
+be used inside VAR-VALS forms to get the arguments passed the the
+function.
+  (+setq-advice! #'revert-buffer :before
+    revert-buffer-function #'ignore)
+
 #### `(+unsetq-hook! HOOKS &rest VAR1 VAR2...)` (macro)
 
 Unbind setq hooks on HOOKS for VARS.
@@ -567,15 +576,15 @@ When DONT-RESTORE-P, do not load the previously saved persistent buffer. Load
 persistent buffer dedicated to PROJ-NAME when provided.
 When provided, set the `default-directory` to DIRECTORY.
 
-#### `(+scratch-persist-buffer-h &rest _)`
+#### `(+scratch-persist-buffer-h &rest ARGS)`
 
 Save the current buffer to `+scratch-dir`.
 
-#### `(+scratch-persist-buffers-h &rest _)`
+#### `(+scratch-persist-all-scratch-buffers-h &rest ARGS)`
 
 Save all scratch buffers to `+scratch-dir`.
 
-#### `(+scratch-persist-buffers-after-switch-h &rest _)`
+#### `(+scratch-persist-buffers-after-switch-h &rest ARGS)`
 
 Kill scratch buffers when they are no longer visible, saving them to disk.
 
@@ -629,6 +638,10 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 
 Setup fonts.
 
+#### `(+subtle-mode-line)`
+
+Subtle look for the mode-line.
+
 #### `(+asm-ask-for-mode MODE)`
 
 Ask the MODE to run.
@@ -639,7 +652,13 @@ Correct word at point.
 
 #### `(+spellcheck-mode &optional ARG)`
 
-Spell checking mode, based on `jinx-mode` if available, or based on `spell-fu-mode`.
+Spell checking mode, with ARG.
+Based on `jinx-mode` if available, `spell-fu-mode` and falls back
+to built-in `flyspell-mode`.
+
+#### `(+clang-format-get-style)`
+
+Get the "-style" argument for clang-format.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
@@ -661,19 +680,6 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 #### `(eglot-ltex-disable-handling-client-commands)`
 
 Disable Eglot hack to handle code actions of LTeX-LS.
-
-#### `(+gdb-set-layout)`
-
-Enable custom window layout for gdb.
-
-#### `(+gdb-reset-layout)`
-
-Enable custom window layout for gdb.
-
-#### `(+emacs-gdb-enable)`
-
-Load a faster "gdb" command from "emacs-gdb".
-This will overwrite the built-in "gdb-mi" for this session.
 
 #### `(+mu4e-view-select-attachment)`
 
