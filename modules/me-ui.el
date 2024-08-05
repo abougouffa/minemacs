@@ -23,6 +23,9 @@
   ;; Enable blinking modeline on errors (`visible-bell')
   (+with-delayed-1! (doom-themes-visual-bell-config)))
 
+(use-package ef-themes
+  :straight t)
+
 (use-package doom-modeline
   :straight t
   :hook (minemacs-lazy . doom-modeline-mode)
