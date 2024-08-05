@@ -71,9 +71,9 @@
 (let ((min-ver 28)
       (recommended-ver 29))
   (when (< emacs-major-version min-ver)
-    (error "Emacs v%s is not supported, MinEmacs requires v%s or higher" emacs-version min-ver))
+    (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
   (when (< emacs-major-version recommended-ver)
-    (message "Recommended Emacs version for MinEmacs is %s or higher, you have v%s" recommended-ver emacs-version)))
+    (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
