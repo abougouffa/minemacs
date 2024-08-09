@@ -35,10 +35,6 @@
   :init
   (citar-embark-mode 1))
 
-(use-package org-re-reveal-citeproc
-  :straight t
-  :unless (+package-disabled-p 'org-re-reveal 'me-org))
-
 
 (provide 'me-biblio)
 

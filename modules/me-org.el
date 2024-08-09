@@ -83,13 +83,6 @@
   :custom
   (org-fragtog-preview-delay 0.2))
 
-(use-package org-re-reveal
-  :straight t)
-
-(use-package oer-reveal
-  :straight t
-  :hook (minemacs-build-functions . oer-reveal-setup-submodules))
-
 
 (provide 'me-org)
 
