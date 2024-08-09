@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.8.3](https://github.com/abougouffa/minemacs/compare/9ab3077ab61aed18b08f297f0bfe7cfc27c28b20..v8.8.3) - 2024-08-09
+#### Features
+- make `org-re-reveal` obsolete (never used!) - ([9ab3077](https://github.com/abougouffa/minemacs/commit/9ab3077ab61aed18b08f297f0bfe7cfc27c28b20)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([fb7a2ef](https://github.com/abougouffa/minemacs/commit/fb7a2ef0e32613f574cbe067e1552696b75d51a7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.8.2](https://github.com/abougouffa/minemacs/compare/814946e4bf52baa878238fe380f81b94f09d17cc..v8.8.2) - 2024-08-09
 #### Bug Fixes
 - **(init)** fix the format in error messages - ([022244a](https://github.com/abougouffa/minemacs/commit/022244a6f58c5aa134e986187511bc8b839fb77e)) - [@abougouffa](https://github.com/abougouffa)
