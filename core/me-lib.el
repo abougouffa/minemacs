@@ -1044,7 +1044,8 @@ ARG and PROJECT-P are passed to `+scratch-open-buffer'."
     :fixed-pitch-serif
     ((:inherit default))
     :variable-pitch
-    ((:family "Lato" :height 120)
+    ((:family "Iosevka Comfy Motion Duo" :height 110)
+     (:family "Lato" :height 120)
      (:family "Roboto" :height 120)
      (:family "Inter" :height 120)
      "San Francisco"
