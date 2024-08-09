@@ -431,6 +431,24 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
                       url (expand-file-name out-file)))
     (user-error "Please set `+single-file-executable' accordingly")))
 
+(defvar +browse-html-file-browser-priority '(xwidget-webkit-browse-url eww-browse-url)
+  "A list of `browse-url' functions for `+browse-html-file'.
+The list is in priority order.")
+
+;;;###autoload
+(defun +browse-html-file (file)
+  "Browser HTML FILE following `+browse-html-file-browser-priority'.
+
+If no function from `+browse-html-file-browser-priority' is available,
+use `browse-url'.
+
+When called with universal argument, open the current buffer's file."
+  (interactive (list (if current-prefix-arg (buffer-file-name) (read-file-name "HTML file to open: "))))
+  (let ((url (format "file://%s" (expand-file-name file)))
+        (browse-backend (or (cl-find-if #'fboundp +browse-html-file-browser-priority)
+                            #'browse-url)))
+    (funcall browse-backend url)))
+
 
 
 ;;; Serial port
