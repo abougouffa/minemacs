@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v8.8.2](https://github.com/abougouffa/minemacs/compare/814946e4bf52baa878238fe380f81b94f09d17cc..v8.8.2) - 2024-08-09
+#### Bug Fixes
+- **(init)** fix the format in error messages - ([022244a](https://github.com/abougouffa/minemacs/commit/022244a6f58c5aa134e986187511bc8b839fb77e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate documentation - ([eabcf86](https://github.com/abougouffa/minemacs/commit/eabcf862c9b8cce5cfd4c68b7412c1434f004233)) - [@abougouffa](https://github.com/abougouffa)
+- update the logo - ([814946e](https://github.com/abougouffa/minemacs/commit/814946e4bf52baa878238fe380f81b94f09d17cc)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ui)** initial support for `ef-themes` - ([19492e2](https://github.com/abougouffa/minemacs/commit/19492e29ad3d319fd2b36cf1932f9d283242bab1)) - [@abougouffa](https://github.com/abougouffa)
+- add `+browse-html-file` - ([17254c7](https://github.com/abougouffa/minemacs/commit/17254c7c02aecdbf3b3a0e1385c608faf961b95c)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** use `me-lib-extra.el` to generate documentation - ([a254550](https://github.com/abougouffa/minemacs/commit/a254550b8909fcbeb86a5a228ee85be5a00dfa72)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** change fonts priority - ([21209fe](https://github.com/abougouffa/minemacs/commit/21209fe1536ed93a709529c895061207a9cb28aa)) - [@abougouffa](https://github.com/abougouffa)
+- **(hurl-mode)** restore the upstream repo, issue fixed - ([250698b](https://github.com/abougouffa/minemacs/commit/250698bc94384659adeb7c6105fbbf0cb5e0070b)) - [@abougouffa](https://github.com/abougouffa)
+- **(mlscroll)** restore `+mlscroll-right-mode` to the obsolete module - ([8f22cbf](https://github.com/abougouffa/minemacs/commit/8f22cbf9fd2968e91a406134ce72628b28bdfbf9)) - [@abougouffa](https://github.com/abougouffa)
+- **(pet)** minor tweak for Org advice - ([9d963bc](https://github.com/abougouffa/minemacs/commit/9d963bc2aba918c7067648847024029e69ac74d9)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** add Hurl grammar - ([7d2b0db](https://github.com/abougouffa/minemacs/commit/7d2b0db87b8796725c61c910f9ca08dbeba7967b)) - [@abougouffa](https://github.com/abougouffa)
+- prefer `Iosevka Comfy Motion Duo` for `:variable-pitch` - ([de081de](https://github.com/abougouffa/minemacs/commit/de081de074034e8811dfb8d2571cecf6c3f112ed)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([4ddf408](https://github.com/abougouffa/minemacs/commit/4ddf408e68b5e573f822e81ed12ca4930a524457)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.8.1](https://github.com/abougouffa/minemacs/compare/ec56cc07c37b027ef08c38512cde6bac8390ac5e..v8.8.1) - 2024-08-04
 #### Documentation
 - **(documentation)** regenerate the documentation - ([23838fc](https://github.com/abougouffa/minemacs/commit/23838fc43528a4fdcc8492a84ff1aef00fb3412d)) - [@abougouffa](https://github.com/abougouffa)
