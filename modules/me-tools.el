@@ -129,7 +129,8 @@
   (envrc-debug minemacs-debug-p)
   :config
   ;; Ensure loading envrc for babel source blocks
-  (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment))
+  (with-eval-after-load 'ob
+    (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
 
 (use-package pet
   :straight t
