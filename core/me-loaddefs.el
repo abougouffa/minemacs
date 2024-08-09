@@ -45,16 +45,6 @@ restores it after that.
 (register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
 
 
-;;; Generated autoloads from ../modules/extras/me-gdb.el
-
-(autoload '+gdb-set-layout "../modules/extras/me-gdb" "\
-Enable custom window layout for gdb." t)
-(autoload '+emacs-gdb-enable "../modules/extras/me-gdb" "\
-Load a faster \"gdb\" command from \"emacs-gdb\".
-This will overwrite the built-in \"gdb-mi\" for this session." t)
-(register-definition-prefixes "../modules/extras/me-gdb" '("+gdb-"))
-
-
 ;;; Generated autoloads from me-lib.el
 
 (register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+res" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
@@ -169,6 +159,12 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 Save URL into OUT-FILE as a standalone HTML file.
 
 (fn URL OUT-FILE)" t)
+(autoload '+browse-html-file "me-lib-extra" "\
+Browser HTML FILE using `xwidget-webkit', `eww' or the default browser.
+
+When called with universal argument, open the current buffer's file.
+
+(fn FILE)" t)
 (autoload '+serial-running-p "me-lib-extra" "\
 Is there a serial port terminal running?")
 (autoload '+serial-run-commands "me-lib-extra" "\
@@ -403,19 +399,19 @@ Show the list of declared external dependencies." t)
 (autoload '+writing-mode "../modules/extras/me-writing-mode" "\
 A mode for writing without distraction.
 
-This is a minor mode.  If called interactively, toggle the
-`+Writing mode' mode.  If the prefix argument is positive, enable
-the mode, and if it is zero or negative, disable the mode.
+This is a minor mode.  If called interactively, toggle the `+Writing
+mode' mode.  If the prefix argument is positive, enable the mode, and if
+it is zero or negative, disable the mode.
 
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
-the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
 evaluate `+writing-mode'.
 
-The mode's hook is called both when the mode is enabled and when
-it is disabled.
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
 
 (fn &optional ARG)" t)
 (put '+writing-global-mode 'globalized-minor-mode t)
