@@ -14,7 +14,7 @@
 
 ;;;###autoload
 (minemacs-register-extra-mode '$1 '()
-  :mode-alist '())
+  :auto-mode '())
 
 $0
 
