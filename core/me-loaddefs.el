@@ -21,6 +21,11 @@ position.
 (register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-"))
 
 
+;;; Generated autoloads from ../modules/modes/me-alloy.el
+
+(minemacs-register-extra-mode 'me-alloy 'alloy-mode :auto-mode '(("\\.als\\'" . alloy-mode)))
+
+
 ;;; Generated autoloads from ../modules/modes/me-arduino.el
 
 (minemacs-register-extra-mode 'me-arduino 'arduino-mode :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))

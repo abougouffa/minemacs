@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-(use-package alloy-mode
-  :straight (:host github :repo "dwwmmn/alloy-mode")
-  :mode "\\.als\\'")
-
 (use-package proof-general
   :straight t
   :init
