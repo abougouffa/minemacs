@@ -66,9 +66,6 @@
     (interactive "DSave download playlist files to: ")
     (empv--playlist-apply #'+empv--dl-playlist path)))
 
-(use-package emms
-  :straight t)
-
 (use-package ready-player
   :straight (:host github :repo "xenodium/ready-player")
   :hook (minemacs-first-file . ready-player-mode))
