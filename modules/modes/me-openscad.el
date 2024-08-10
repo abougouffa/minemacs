@@ -1,12 +1,16 @@
-;;; me-modeling.el --- Mechanical modeling stuff -*- lexical-binding: t; -*-
+;;; me-openscad.el --- OpenSCAD -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
 ;;; Commentary:
 
 ;;; Code:
+
+;;;###autoload
+(minemacs-register-extra-mode 'me-openscad 'scad-mode
+  :auto-mode '(("\\.scad\\'" . scad-mode)))
 
 (use-package scad-mode
   :straight t
@@ -20,11 +24,6 @@
     (push '(scad-mode . clang-format) apheleia-mode-alist))
   (+eglot-register 'scad-mode '("openscad-lsp" "--stdio")))
 
-(use-package modelica-mode
-  :straight t
-  :mode "\\.mo\\'")
 
-
-(provide 'me-modeling)
-
-;;; me-modeling.el ends here
+(provide 'modes/me-openscad)
+;;; me-openscad.el ends here

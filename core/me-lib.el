@@ -500,12 +500,16 @@ Optionally, check also for the containing MODULE."
    (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
    (and module (not (memq module minemacs-modules)))))
 
-(defun minemacs-modules (&optional include-obsolete)
-  "List all the available modules, with optional INCLUDE-OBSOLETE."
+(defun minemacs-modules (&optional include-obsolete include-on-demand)
+  "List all the available modules.
+With optional INCLUDE-OBSOLETE or INCLUDE-ON-DEMAND."
   (let ((mod-files (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))
     (when include-obsolete
       (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
                                          (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
+    (when include-on-demand
+      (cl-callf append mod-files (mapcar (apply-partially #'concat "modes/")
+                                         (directory-files minemacs-extra-modes-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
 
@@ -1183,6 +1187,107 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
    'mode-line-active nil
    :overline (face-attribute 'default :foreground nil t)
    :background (face-attribute 'default :background nil t)))
+
+
+
+(cl-defun minemacs-register-extra-mode (module packages &optional &key auto-mode magic-mode interpreter-mode companion-packages)
+  "Register extra PACKAGES from MODULE.
+
+:MODE-ALIST add an alist like `auto-mode-alist'.
+:MAGIC-ALIST add an alist like `magic-mode-alist'.
+:COMPANION-PACKAGES-ALIST like '((c-mode . package))."
+  (declare (indent 2))
+  (let ((plist `(:packages ,(ensure-list packages))))
+    (when auto-mode
+      (plist-put plist :auto-mode (ensure-list auto-mode)))
+    (when magic-mode
+      (plist-put plist :magic-mode (ensure-list magic-mode)))
+    (when interpreter-mode
+      (plist-put plist :interpreter-mode (ensure-list interpreter-mode)))
+    (when companion-packages
+      (plist-put plist :companion-packages (ensure-list companion-packages)))
+    (push (cons module plist) minemacs-on-demand-modules-alist)))
+
+(add-to-list 'magic-mode-alist '(minemacs-try-load-extra-mode . fundamental-mode))
+
+(defun minemacs-try-load-extra-mode ()
+  "Load extra mode if available."
+  (prog1 nil ; always return nil to avoid applying the `fundamental-mode'
+    (or (minemacs-extra-modes-try-auto-mode)
+        (minemacs-extra-modes-try-magic-mode))))
+
+(add-hook 'after-change-major-mode-hook #'minemacs-try-load-companion-packages 95)
+
+(defun minemacs-try-load-companion-packages ()
+  "Load companion packages for the current buffer's mode."
+  (when minemacs-on-demand-enable-companion-packages
+    (dolist (spec minemacs-on-demand-modules-alist)
+      (let* ((module (car spec))
+             (plist (cdr spec))
+             (companion-packages (plist-get plist :companion-packages)))
+        (unless (featurep (intern (format "modes/%s" module)))
+          (dolist (companion-assoc companion-packages)
+            (let ((cur-modes (ensure-list (car companion-assoc)))
+                  (modes (ensure-list (cdr companion-assoc))))
+              (when-let (((and (apply #'derived-mode-p cur-modes)
+                               (cl-find-if-not #'fboundp modes)
+                               (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
+                                   (and (not noninteractive)
+                                        (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
+                                                          module (current-buffer))))))))
+                (+load minemacs-extra-modes-dir (format "%s.el" module))
+                (set-auto-mode t)))))))))
+
+(defun minemacs-load-companion-packages ()
+  "Load companion packages applicables to the current's buffer mode."
+  (interactive)
+  (let ((minemacs-on-demand-enable-companion-packages t))
+    (minemacs-try-load-companion-packages)))
+
+(defun minemacs-extra-modes-try-auto-mode ()
+  "Try to automatically enable a mode for the current buffer."
+  (let ((foundp nil))
+    (when minemacs-on-demand-enable-auto-mode
+      (dolist (spec minemacs-on-demand-modules-alist)
+        (let* ((module (car spec))
+               (auto-modes (plist-get (cdr spec) :auto-mode)))
+          (unless (featurep (intern (format "modes/%s" module)))
+            (dolist (auto-mode auto-modes)
+              (let ((regexps (ensure-list (car auto-mode)))
+                    (mode (cdr auto-mode)))
+                (when-let (((and (buffer-file-name)
+                                 (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
+                                 (not (fboundp mode))
+                                 (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
+                                     (and (not noninteractive)
+                                          (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
+                                                            (abbreviate-file-name (buffer-file-name)) mode module)))))))
+                  (+load minemacs-extra-modes-dir (format "%s.el" module))
+                  (set-auto-mode t)
+                  (setq foundp t))))))))
+    foundp))
+
+(defun minemacs-extra-modes-try-magic-mode ()
+  "Try to automatically enable a mode for FILENAME."
+  (let ((foundp nil))
+    (when minemacs-on-demand-enable-magic-mode
+      (dolist (spec minemacs-on-demand-modules-alist)
+        (let* ((module (car spec))
+               (magic-modes (plist-get (cdr spec) :magic-mode)))
+          (unless (featurep (intern (format "modes/%s" module)))
+            (dolist (magic-mode magic-modes)
+              (let ((func (car magic-mode))
+                    (mode (cdr magic-mode)))
+                (when-let (((and (not (fboundp mode))
+                                 (funcall func)
+                                 (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
+                                     (and (not noninteractive)
+                                          (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                            (current-buffer) mode module)))))))
+                  (+load minemacs-extra-modes-dir (format "%s.el" module))
+                  (set-auto-mode t)
+                  (setq foundp t))))))))
+    foundp))
 
 
 

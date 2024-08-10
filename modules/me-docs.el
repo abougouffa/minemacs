@@ -36,10 +36,6 @@
   :config
   (pdfgrep-mode 1))
 
-(use-package nov
-  :straight t
-  :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))
-
 (defconst +tuntox-available-p (and (executable-find "tuntox") t))
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))
 

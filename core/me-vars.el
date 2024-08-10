@@ -88,6 +88,7 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
 (defconst minemacs-obsolete-modules-dir (concat minemacs-modules-dir "obsolete/"))
 (defconst minemacs-extras-dir (concat minemacs-modules-dir "extras/"))
+(defconst minemacs-extra-modes-dir (concat minemacs-modules-dir "modes/"))
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
@@ -222,6 +223,26 @@ Each string is a regexp, matched against variable names to omit from
 `+env-file' when saving evnironment variables in `+env-save'."
   :group 'minemacs-core
   :type '(repeat regexp))
+
+(defcustom minemacs-on-demand-modules-alist nil
+  "Enable extra modes on demand."
+  :group 'minemacs-core
+  :type 'alist)
+
+(defcustom minemacs-on-demand-enable-auto-mode 'no-ask
+  "Enable loading on-demand extra packages when needed based on `:auto-mode'."
+  :group 'minemacs-core
+  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+
+(defcustom minemacs-on-demand-enable-magic-mode 'no-ask
+  "Enable loading on-demand extra packages when needed based on `:magic-mode'."
+  :group 'minemacs-core
+  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+
+(defcustom minemacs-on-demand-enable-companion-packages 'no-ask
+  "Enable loading on-demand companion packages when needed."
+  :group 'minemacs-core
+  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
 
 ;; Functions
 (defun +load-user-configs (&rest configs)

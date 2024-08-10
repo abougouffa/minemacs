@@ -153,14 +153,6 @@
   :straight (:host github :repo "nemethf/eglot-x")
   :commands (eglot-x-setup))
 
-(use-package awk-ts-mode
-  :straight t
-  :when (+emacs-features-p 'tree-sitter))
-
-(use-package html-ts-mode
-  :straight (:host github :repo "mickeynp/html-ts-mode")
-  :when (+emacs-features-p 'tree-sitter))
-
 (use-package combobulate
   :straight (:host github :repo "mickeynp/combobulate" :nonrecursive t) ; Cloning the `html-ts-mode' submodule causes problems
   :when (and (not os/win) (+emacs-features-p 'tree-sitter)) ; TEMP: disable on Windows
@@ -276,12 +268,6 @@
 (use-package quickrun
   :straight t)
 
-(use-package gitlab-ci-mode
-  :straight t)
-
-(use-package vimrc-mode
-  :straight t)
-
 (use-package rust-mode
   :straight t
   :custom
@@ -298,15 +284,6 @@
 
 (use-package cargo
   :straight t)
-
-(use-package cuda-mode
-  :straight t
-  :hook (cuda-mode . display-line-numbers-mode)
-  :hook (cuda-mode . hs-minor-mode))
-
-(use-package opencl-c-mode
-  :straight t
-  :mode "\\.cl\\'")
 
 (use-package dumb-jump
   :straight t
@@ -349,23 +326,7 @@
 (use-package rainbow-mode
   :straight t)
 
-(use-package lua-mode
-  :straight t
-  :custom
-  (lua-indent-level 2))
-
-(use-package fb-mode
-  :straight (:host github :repo "rversteegen/fb-mode")
-  :commands (fb-mode)
-  :mode "\\.b\\(i\\|as\\)\\'")
-
 (use-package zig-mode
-  :straight t)
-
-(use-package franca-idl
-  :straight (:host github :repo "zeph1e/franca-idl.el"))
-
-(use-package just-mode
   :straight t)
 
 (use-package cmake-mode
@@ -375,13 +336,6 @@
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :custom
   (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
-
-(use-package web-mode
-  :straight t)
-
-(use-package python-docstring
-  :straight t
-  :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
@@ -398,17 +352,6 @@
        (concat " " (if-let ((file buffer-file-name))
                        (nerd-icons-icon-for-file file)
                      (nerd-icons-icon-for-mode major-mode)))))))
-
-(use-package protobuf-mode
-  :straight t)
-
-(use-package protobuf-ts-mode
-  :straight (:host github :repo "emacsattic/protobuf-ts-mode")
-  :when (+emacs-features-p 'tree-sitter))
-
-(use-package llvm-ts-mode
-  :straight t
-  :when (+emacs-features-p 'tree-sitter))
 
 (use-package devdocs
   :straight t

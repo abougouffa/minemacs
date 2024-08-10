@@ -145,7 +145,7 @@
   (interactive)
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
   (apply (if (fboundp 'loaddefs-generate) #'loaddefs-generate #'make-directory-autoloads)
-         (list (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir) minemacs-loaddefs-file)))
+         (list (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-extra-modes-dir) minemacs-loaddefs-file)))
 
 ;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
 ;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
@@ -227,7 +227,7 @@ the packages loaded with `:after minemacs-lazy' can be loaded."
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules.
 (when minemacs-load-all-modules-p
-  (setq minemacs-modules (minemacs-modules)))
+  (setq minemacs-modules (minemacs-modules nil t)))
 
 ;; Load modules
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin)))

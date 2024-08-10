@@ -19,9 +19,6 @@
 (use-package rosbag-info
   :straight (:host github :repo "abougouffa/rosbag-info"))
 
-(use-package robot-mode
-  :straight t)
-
 
 (provide 'me-robot)
 

@@ -66,17 +66,8 @@
   :straight t
   :bind (("C-c o d" . docker)))
 
-(use-package docker-compose-mode
-  :straight t)
-
-(use-package dockerfile-mode
-  :straight t)
-
 (use-package systemd
   :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
-
-(use-package pkgbuild-mode
-  :straight t)
 
 (use-package journalctl-mode
   :straight t
@@ -108,19 +99,6 @@
   :when (or os/linux os/bsd)
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
-(use-package nix-mode
-  :straight t)
-
-(use-package nix-ts-mode
-  :straight t
-  :when (+emacs-features-p 'tree-sitter)
-  :mode "\\.nix\\'"
-  :config
-  ;; Register Eglot servers on the `nix-ts-mode' in addition to the already configured `nix-mode'
-  (with-eval-after-load 'eglot
-    (when-let ((server (assoc 'nix-mode eglot-server-programs)))
-      (setcar server '(nix-mode nix-ts-mode)))))
-
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
@@ -146,10 +124,6 @@
 
 (use-package impostman
   :straight t)
-
-(use-package hurl-mode
-  :straight (:host github :repo "JasZhe/hurl-mode")
-  :mode "\\.hurl\\'")
 
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")

@@ -1,14 +1,17 @@
-;;; me-common-lisp.el --- Common Lisp packages       -*- lexical-binding: t; -*-
+;;; me-common-lisp.el --- Common Lisp support -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; Common Lisp
+;;;###autoload
+(minemacs-register-extra-mode 'me-common-lisp '(sly sly-quicklisp sly-asdf sly-repl-ansi-color sly-macrostep)
+  :companion-packages '((lisp-mode . sly)))
+
 (use-package sly
   :straight t
   :custom
@@ -52,5 +55,5 @@
   :demand)
 
 
-(provide 'me-common-lisp)
+(provide 'modes/me-common-lisp)
 ;;; me-common-lisp.el ends here

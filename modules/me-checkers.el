@@ -29,10 +29,6 @@
   :init
   (when (executable-find "guild") (add-hook 'scheme-mode-hook #'flymake-guile)))
 
-(use-package flymake-plantuml
-  :straight (:host github :repo "shaohme/flymake-plantuml")
-  :hook (plantuml-mode . flymake-plantuml-setup))
-
 (use-package flymake-pmd
   :straight (:host github :repo "rody/flymake-pmd")
   :custom

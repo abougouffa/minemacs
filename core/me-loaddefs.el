@@ -21,6 +21,30 @@ position.
 (register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-"))
 
 
+;;; Generated autoloads from ../modules/modes/me-arduino.el
+
+(minemacs-register-extra-mode 'me-arduino 'arduino-mode :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-assembly.el
+
+(minemacs-register-extra-mode 'me-assembly '(mips-mode riscv-mode fasm-mode masm-mode nasm-mode gas-mode) :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)))
+(autoload '+asm-ask-for-mode "../modules/modes/me-assembly" "\
+Ask the MODE to run.
+
+(fn MODE)" t)
+
+
+;;; Generated autoloads from ../modules/modes/me-awk.el
+
+(minemacs-register-extra-mode 'me-awk 'awk-ts-mode :auto-mode '(("\\.awk\\'" . awk-ts-mode)) :companion-packages '((awk-mode . awk-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-clojure.el
+
+(minemacs-register-extra-mode 'me-clojure '(clojure-mode cider) :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
@@ -34,15 +58,95 @@ restores it after that.
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
+;;; Generated autoloads from ../modules/modes/me-common-lisp.el
+
+(minemacs-register-extra-mode 'me-common-lisp '(sly sly-quicklisp sly-asdf sly-repl-ansi-color sly-macrostep) :companion-packages '((lisp-mode . sly)))
+
+
+;;; Generated autoloads from ../modules/modes/me-cuda.el
+
+(minemacs-register-extra-mode 'me-cuda 'cuda-mode :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-d2.el
+
+(minemacs-register-extra-mode 'me-d2 '(d2-mode ob-d2) :auto-mode '(("\\.d2\\'" . d2-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-devicetree.el
+
+(minemacs-register-extra-mode 'me-devicetree '(dts-mode virtual-dts-mode) :auto-mode '(("\\.dtsi?\\'" . dts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-docker.el
+
+(minemacs-register-extra-mode 'me-docker '(dockerfile-mode docker-compose-mode) :auto-mode `((,(concat "[/\\]" "\\(?:Containerfile\\|Dockerfile\\)" "\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("\\.dockerfile\\'" . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
+;;; Generated autoloads from ../modules/modes/me-epub.el
+
+(minemacs-register-extra-mode 'me-epub 'nov-mode :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
+
+
 ;;; Generated autoloads from me-external-tools.el
 
 (register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
+
+
+;;; Generated autoloads from ../modules/modes/me-fpga.el
+
+(minemacs-register-extra-mode 'me-fpga '(vhdl-ts-mode verilog-ts-mode) :auto-mode '(("\\.vhdl?\\'" . vhdl-ts-mode) ("\\.[ds]?va?h?\\'" . verilog-ts-mode)) :companion-packages '((vhdl-mode . vhdl-ts-mode) (verilog-mode . verilog-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-franca-idl.el
+
+(minemacs-register-extra-mode 'me-franca-idl 'franca-idl :auto-mode '(("\\.fidl\\'" . franca-idl-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-freebasic.el
+
+(minemacs-register-extra-mode 'me-freebasic 'fb-mode :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-gitlab-ci.el
+
+(minemacs-register-extra-mode 'me-gitlab-ci 'gitlab-ci-mode :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-gnuplot.el
+
+(minemacs-register-extra-mode 'me-gnuplot 'gnuplot-mode :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-graphql.el
+
+(minemacs-register-extra-mode 'me-graphql 'graphql-mode :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-graphviz.el
+
+(minemacs-register-extra-mode 'me-graphviz 'graphviz-dot-mode :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-hurl.el
+
+(minemacs-register-extra-mode 'me-hurl 'hurl-mode :auto-mode '(("\\.hurl\\'" . hurl-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-julia.el
+
+(minemacs-register-extra-mode 'me-julia '(julia-mode julia-ts-mode julia-repl) :auto-mode '(("\\.jl\\'" . julia-mode)) :companion-packages '((ess-julia-mode . julia-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-just.el
+
+(minemacs-register-extra-mode 'me-just 'just-mode :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)))
 
 
 ;;; Generated autoloads from me-lib.el
@@ -160,7 +264,10 @@ Save URL into OUT-FILE as a standalone HTML file.
 
 (fn URL OUT-FILE)" t)
 (autoload '+browse-html-file "me-lib-extra" "\
-Browser HTML FILE using `xwidget-webkit', `eww' or the default browser.
+Browser HTML FILE following `+browse-html-file-browser-priority'.
+
+If no function from `+browse-html-file-browser-priority' is available,
+use `browse-url'.
 
 When called with universal argument, open the current buffer's file.
 
@@ -361,7 +468,32 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+dir-locals--autoreload-" "+eglot--help-buffer" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+
+
+;;; Generated autoloads from ../modules/modes/me-llvm.el
+
+(minemacs-register-extra-mode 'me-llvm 'llvm-ts-mode :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-lua.el
+
+(minemacs-register-extra-mode 'me-lua 'lua-mode :auto-mode '(("\\.lua\\'" . lua-mode)) :interpreter-mode '(("lua" . lua-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-mermaid.el
+
+(minemacs-register-extra-mode 'me-mermaid '(mermaid-mode ob-mermaid) :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-mode-framework.el
+
+(minemacs-register-extra-mode 'me-mode-framework 'robot-mode :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-modelica.el
+
+(minemacs-register-extra-mode 'me-modelica 'modelica-mode :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
 
 ;;; Generated autoloads from me-modules.el
@@ -384,14 +516,69 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
 
 
+;;; Generated autoloads from ../modules/modes/me-nix.el
+
+(minemacs-register-extra-mode 'me-nix '(nix-mode nix-ts-mode) :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-opencl.el
+
+(minemacs-register-extra-mode 'me-opencl 'opencl-c-mode :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-openscad.el
+
+(minemacs-register-extra-mode 'me-openscad 'scad-mode :auto-mode '(("\\.scad\\'" . scad-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-org-extras.el
 
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
+;;; Generated autoloads from ../modules/modes/me-pcap.el
+
+(minemacs-register-extra-mode 'me-pcap 'pcap-mode :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-pkgbuild.el
+
+(minemacs-register-extra-mode 'me-pkgbuild 'pkgbuild-mode :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode)) :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-plantuml.el
+
+(minemacs-register-extra-mode 'me-plantuml '(plantuml-mode flymake-plantuml) :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-protobuf.el
+
+(minemacs-register-extra-mode 'me-protobuf '(protobuf-mode protobuf-ts-mode) :auto-mode '(("\\.proto\\'" . protobuf-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-python.el
+
+(minemacs-register-extra-mode 'me-python 'python-docstring :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-scheme.el
+
+(minemacs-register-extra-mode 'me-scheme '(racket-mode geiser geiser-chez geiser-guile geiser-mit geiser-racket macrostep-geiser) :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)))
+
+
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+env-" "+load" "emacs/features" "minemacs-" "os/" "sys/arch"))
+
+
+;;; Generated autoloads from ../modules/modes/me-vimrc.el
+
+(minemacs-register-extra-mode 'me-vimrc 'vimrc-mode :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
+
+
+;;; Generated autoloads from ../modules/modes/me-web.el
+
+(minemacs-register-extra-mode 'me-web '(web-mode emmet-mode) :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode) . web-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el

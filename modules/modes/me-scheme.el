@@ -1,12 +1,17 @@
-;;; me-scheme.el --- Scheme packages                 -*- lexical-binding: t; -*-
+;;; me-scheme.el --- Scheme support -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
 ;;; Commentary:
 
 ;;; Code:
+
+;;;###autoload
+(minemacs-register-extra-mode 'me-scheme '(racket-mode geiser geiser-chez geiser-guile geiser-mit geiser-racket macrostep-geiser)
+  :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode))
+  :interpreter-mode '(("racket" . racket-mode)))
 
 (use-package racket-mode
   :straight t)
@@ -34,5 +39,5 @@
   :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup))
 
 
-(provide 'me-scheme)
+(provide 'modes/me-scheme)
 ;;; me-scheme.el ends here
