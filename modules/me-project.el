@@ -55,15 +55,6 @@
 (use-package projection-dape
   :straight t)
 
-(use-package project-x
-  :straight (:host github :repo "karthink/project-x")
-  :after project
-  :commands (project-x-window-state-save project-x-window-state-load)
-  :custom
-  (project-x-local-identifier project-vc-extra-root-markers)
-  :init
-  (project-x-mode 1))
-
 
 (provide 'me-project)
 
