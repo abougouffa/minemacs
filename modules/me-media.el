@@ -32,35 +32,26 @@
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
   (defun +empv--dl-playlist (playlist &optional dist)
-    (let ((default-directory
-           (or dist
-               (let ((d (expand-file-name "empv-downloads" empv-audio-dir)))
-                 (unless (file-directory-p d) (mkdir d t)) d)))
+    (let ((proc-name "empv-yt-dlp")
+          (default-directory (or dist (let ((dir (expand-file-name "empv-downloads" empv-audio-dir)))
+                                        (unless (file-directory-p dir) (mkdir dir t)) dir)))
           (vids (seq-filter
                  #'identity ; Filter nils
                  (mapcar
-                  (lambda (item)
-                    (and (string-match (rx (seq "watch?v=" (group-n 1 (* (any alnum "_" "-"))))) item)
+                  (lambda (item) ; Extract ID from URL patterns youtube.com/watch?v=8x7eUKYhBKg or youtu.be/8x7eUKYhBKg
+                    (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
                          (match-string 1 item)))
-                  playlist)))
-          (proc-name "empv-yt-dlp"))
-      (unless (zerop (length vids))
+                  playlist))))
+      (when (length> vids 0)
         (message "Downloading %d songs to %s" (length vids) default-directory)
         (when (get-process proc-name) (kill-process proc-name))
-        (make-process :name proc-name
-                      :buffer (format "*%s*" proc-name)
-                      :command (append
-                                (list
-                                 (executable-find "yt-dlp")
-                                 "--no-abort-on-error"
-                                 "--no-colors"
-                                 "--extract-audio"
-                                 "--no-progress"
-                                 "-f" "bestaudio")
-                                vids)
-                      :sentinel (lambda (prc event)
-                                  (when (string= event "finished\n")
-                                    (message "Finished downloading playlist files!")))))))
+        (make-process
+         :name proc-name
+         :buffer (format "*%s*" proc-name)
+         :command `("yt-dlp" "--no-abort-on-error" "--no-colors" "--no-progress" "--extract-audio" "-f" "bestaudio" ,@vids)
+         :sentinel (lambda (_proc event)
+                     (when (string= event "finished\n")
+                       (message "Finished downloading playlist files!")))))))
 
   (defun +empv-download-playtlist-files (&optional path)
     (interactive "DSave download playlist files to: ")
