@@ -1234,7 +1234,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
               (when-let (((and (apply #'derived-mode-p cur-modes)
                                (cl-find-if-not #'fboundp modes)
                                (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
-                                   (and (not noninteractive)
+                                   (and (not noninteractive) ; ask only when in an interactive session
+                                        (get-buffer-window) ; and for visible buffers
                                         (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
                                                           module (current-buffer))))))))
                 (+load minemacs-on-demand-modules-dir (format "%s.el" module))
@@ -1261,7 +1262,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                  (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
                                  (not (fboundp mode))
                                  (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
-                                     (and (not noninteractive)
+                                     (and (not noninteractive) ; ask only when in an interactive session
+                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module))
@@ -1283,7 +1285,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                 (when-let (((and (not (fboundp mode))
                                  (funcall func)
                                  (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
-                                     (and (not noninteractive)
+                                     (and (not noninteractive) ; ask only when in an interactive session
+                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
                                                             (current-buffer) mode module)))))))
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module))
