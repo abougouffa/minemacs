@@ -509,7 +509,7 @@ With optional INCLUDE-OBSOLETE or INCLUDE-ON-DEMAND."
                                          (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
     (when include-on-demand
       (cl-callf append mod-files (mapcar (apply-partially #'concat "modes/")
-                                         (directory-files minemacs-extra-modes-dir nil "\\`me-.*\\.el\\'"))))
+                                         (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
 
@@ -1190,6 +1190,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 
 
+;;; Lazy on-demand modules
+
 (cl-defun minemacs-register-extra-mode (module packages &optional &key auto-mode magic-mode interpreter-mode companion-packages)
   "Register extra PACKAGES from MODULE.
 
@@ -1225,7 +1227,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
       (let* ((module (car spec))
              (plist (cdr spec))
              (companion-packages (plist-get plist :companion-packages)))
-        (unless (featurep (intern (format "modes/%s" module)))
+        (unless (featurep (intern (format "on-demand/%s" module)))
           (dolist (companion-assoc companion-packages)
             (let ((cur-modes (ensure-list (car companion-assoc)))
                   (modes (ensure-list (cdr companion-assoc))))
@@ -1235,7 +1237,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                    (and (not noninteractive)
                                         (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
                                                           module (current-buffer))))))))
-                (+load minemacs-extra-modes-dir (format "%s.el" module))
+                (+load minemacs-on-demand-modules-dir (format "%s.el" module))
                 (set-auto-mode t)))))))))
 
 (defun minemacs-load-companion-packages ()
@@ -1251,7 +1253,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
       (dolist (spec minemacs-on-demand-modules-alist)
         (let* ((module (car spec))
                (auto-modes (plist-get (cdr spec) :auto-mode)))
-          (unless (featurep (intern (format "modes/%s" module)))
+          (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (auto-mode auto-modes)
               (let ((regexps (ensure-list (car auto-mode)))
                     (mode (cdr auto-mode)))
@@ -1262,7 +1264,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                      (and (not noninteractive)
                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
-                  (+load minemacs-extra-modes-dir (format "%s.el" module))
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module))
                   (set-auto-mode t)
                   (setq foundp t))))))))
     foundp))
@@ -1274,7 +1276,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
       (dolist (spec minemacs-on-demand-modules-alist)
         (let* ((module (car spec))
                (magic-modes (plist-get (cdr spec) :magic-mode)))
-          (unless (featurep (intern (format "modes/%s" module)))
+          (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (magic-mode magic-modes)
               (let ((func (car magic-mode))
                     (mode (cdr magic-mode)))
@@ -1284,7 +1286,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                      (and (not noninteractive)
                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
                                                             (current-buffer) mode module)))))))
-                  (+load minemacs-extra-modes-dir (format "%s.el" module))
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module))
                   (set-auto-mode t)
                   (setq foundp t))))))))
     foundp))
@@ -1292,5 +1294,4 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 
 (provide 'me-lib)
-
 ;;; me-lib.el ends here

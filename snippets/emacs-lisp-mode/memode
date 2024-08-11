@@ -18,5 +18,5 @@
 
 $0
 
-(provide 'modes/$1)
+(provide 'on-demand/$1)
 ;;; $1.el ends here
