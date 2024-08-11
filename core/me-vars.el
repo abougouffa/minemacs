@@ -229,20 +229,25 @@ Each string is a regexp, matched against variable names to omit from
   :group 'minemacs-core
   :type 'alist)
 
+(defcustom minemacs-on-demand-modules-enable t
+  "Enable on-demand modules."
+  :group 'minemacs-core
+  :type 'boolean)
+
 (defcustom minemacs-on-demand-enable-auto-mode 'no-ask
   "Enable loading on-demand extra packages when needed based on `:auto-mode'."
   :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+  :type '(choice boolean (symbol 'no-ask)))
 
 (defcustom minemacs-on-demand-enable-magic-mode 'no-ask
   "Enable loading on-demand extra packages when needed based on `:magic-mode'."
   :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+  :type '(choice boolean (symbol 'no-ask)))
 
 (defcustom minemacs-on-demand-enable-companion-packages 'no-ask
   "Enable loading on-demand companion packages when needed."
   :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+  :type '(choice boolean (symbol 'no-ask)))
 
 ;; Functions
 (defun +load-user-configs (&rest configs)
