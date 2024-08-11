@@ -110,6 +110,22 @@ Environment variables to omit.
 Each string is a regexp, matched against variable names to omit from
 `+env-file` when saving evnironment variables in `+env-save`.
 
+#### `minemacs-on-demand-modules-alist`
+
+List of extra on-demand modules.
+
+#### `minemacs-on-demand-enable-auto-mode`
+
+Enable loading on-demand extra packages when needed based on `:auto-mode`.
+
+#### `minemacs-on-demand-enable-magic-mode`
+
+Enable loading on-demand extra packages when needed based on `:magic-mode`.
+
+#### `minemacs-on-demand-enable-companion-packages`
+
+Enable loading on-demand companion packages when needed.
+
 #### `+eval-when-idle-delay`
 
 The default delay (in seconds) to consider in `+eval-when-idle!` macro.
@@ -493,9 +509,10 @@ Add ROOTS to ignored projects, recentf, etc.
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 Optionally, check also for the containing MODULE.
 
-#### `(minemacs-modules &optional INCLUDE-OBSOLETE)`
+#### `(minemacs-modules &optional INCLUDE-ON-DEMAND INCLUDE-OBSOLETE)`
 
-List all the available modules, with optional INCLUDE-OBSOLETE.
+List all the available modules.
+With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
 #### `(+file-read-to-string FILENAME)`
 
@@ -675,6 +692,26 @@ Setup fonts.
 
 Subtle look for the mode-line.
 
+#### `(minemacs-try-load-extra-mode)`
+
+Load extra mode if available.
+
+#### `(minemacs-try-load-companion-packages)`
+
+Load companion packages for the current buffer's mode.
+
+#### `(minemacs-load-companion-packages)`
+
+Load companion packages applicables to the current's buffer mode.
+
+#### `(minemacs-extra-modes-try-auto-mode)`
+
+Try to automatically enable a mode for the current buffer.
+
+#### `(minemacs-extra-modes-try-magic-mode)`
+
+Try to automatically enable a mode for FILENAME.
+
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
 Run all build functions in `minemacs-build-functions`.
@@ -719,7 +756,8 @@ Set some Emacs variables for better (!) performance.
 #### `(minemacs-load-module &rest MODULES)`
 
 Interactively install and load MODULES that aren't enabled in "modules.el".
-When called with the universal argument, it prompts for obsolete modules also.
+When called with C-u, it prompts also for on-demand modules.
+When called with C-u C-u, it prompts also for obsolete modules.
 
 #### `(+file-mime-type FILE)`
 
@@ -796,7 +834,9 @@ Save URL into OUT-FILE as a standalone HTML file.
 
 #### `(+browse-html-file FILE)`
 
-Browser HTML FILE using `xwidget-webkit`, `eww` or the default browser.
+Browser HTML FILE following `+browse-html-file-browser-priority`.
+If no function from `+browse-html-file-browser-priority` is available,
+use `browse-url`.
 When called with universal argument, open the current buffer's file.
 
 #### `(+serial-running-p)`
@@ -1028,10 +1068,6 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 #### `(+list-external-dependencies)`
 
 Show the list of declared external dependencies.
-
-#### `(+asm-ask-for-mode MODE)`
-
-Ask the MODE to run.
 
 #### `(+spellcheck-correct)`
 
