@@ -164,17 +164,28 @@ This calls `minemacs-update-restore-locked' asynchronously."
 ;;;###autoload
 (defun minemacs-load-module (&rest modules)
   "Interactively install and load MODULES that aren't enabled in \"modules.el\".
-When called with the universal argument, it prompts for obsolete modules also."
-  (interactive (completing-read-multiple "Select modules: " (seq-filter (lambda (module) (not (featurep module))) (minemacs-modules current-prefix-arg))))
+
+When called with \\[universal-argument], it prompts also for on-demand modules.
+When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules."
+  (interactive (completing-read-multiple
+                "Select modules: "
+                (seq-filter (lambda (module) (not (featurep module)))
+                            (let ((prefix (prefix-numeric-value current-prefix-arg)))
+                              (minemacs-modules (when (>= prefix 16)) (when (>= prefix 4)))))))
   (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
-         (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                 minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook))
+         (append minemacs-after-startup-hook minemacs-lazy-hook
+                 minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+                 minemacs-first-file-hook minemacs-first-elisp-file-hook
+                 minemacs-first-python-file-hook minemacs-first-c/c++-file-hook))
         (old-fns minemacs-build-functions-hook))
     (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) modules))
-    (let ((new-hooks (cl-set-difference
-                      (append minemacs-after-startup-hook minemacs-lazy-hook minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                              minemacs-first-file-hook minemacs-first-elisp-file-hook minemacs-first-python-file-hook minemacs-first-c/c++-file-hook)
-                      old-hooks))
+    (let ((new-hooks
+           (cl-set-difference
+            (append minemacs-after-startup-hook minemacs-lazy-hook
+                    minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+                    minemacs-first-file-hook minemacs-first-elisp-file-hook
+                    minemacs-first-python-file-hook minemacs-first-c/c++-file-hook)
+            old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
       (minemacs-run-build-functions (not (called-interactively-p))))))
