@@ -30,6 +30,3 @@
 
 ;; Compute statistics to use with `use-package-report'
 ;; (setq use-package-compute-statistics t)
-
-;; Disable all on-demand modules (don't even install them)
-;; (setq minemacs-on-demand-modules-enable nil)

@@ -145,9 +145,7 @@
   (interactive)
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
   (apply (if (fboundp 'loaddefs-generate) #'loaddefs-generate #'make-directory-autoloads)
-         (list (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir)
-                       (when minemacs-on-demand-modules-enable (list minemacs-on-demand-modules-dir)))
-               minemacs-loaddefs-file)))
+         (list (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir) minemacs-loaddefs-file)))
 
 ;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
 ;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
