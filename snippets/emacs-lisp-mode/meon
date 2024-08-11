@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: memode
+# name: meon
 # contributor : Abdelhak Bougouffa
 # --
 ;;; ${1:`(file-name-base (or buffer-file-name "me-package"))`}.el --- ${2:Description} -*- lexical-binding: t; -*-
