@@ -326,17 +326,6 @@
 (use-package rainbow-mode
   :straight t)
 
-(use-package zig-mode
-  :straight t)
-
-(use-package cmake-mode
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
-
-(use-package cmake-font-lock
-  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
-  :custom
-  (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
-
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
