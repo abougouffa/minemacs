@@ -50,6 +50,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-clojure :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-cmake.el
+
+(minemacs-register-on-demand-module 'me-cmake :auto-mode '((("CMakeLists\\.txt\\'" "\\.cmake\\'") . cmake-mode)) :companion-packages '((cmake-ts-mode cmake-font-lock cmake-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
@@ -112,6 +117,11 @@ restores it after that.
 ;;; Generated autoloads from me-external-tools.el
 
 (register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-fish.el
+
+(minemacs-register-on-demand-module 'me-fish :auto-mode '((("\\.fish\\'" "/fish_funced\\..*\\'") . fish-mode)) :interpreter-mode '(("fish" . fish-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-fpga.el
@@ -558,9 +568,19 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-nim.el
+
+(minemacs-register-on-demand-module 'me-nim :auto-mode '(("\\.nim\\'" . nim-mode) ("\\.nim\\(ble\\|s\\)\\'" . nimscript-mode-maybe)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-nix.el
 
 (minemacs-register-on-demand-module 'me-nix :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
+
+(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
@@ -593,6 +613,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-plantuml :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-powershell.el
+
+(minemacs-register-on-demand-module 'me-powershell :auto-mode '(("\\.ps[dm]?1\\'" . powershell-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
 
 (minemacs-register-on-demand-module 'me-protobuf :auto-mode '(("\\.proto\\'" . protobuf-mode)))
@@ -603,9 +628,19 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-qt.el
+
+(minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
 
 (minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-sml.el
+
+(minemacs-register-on-demand-module 'me-sml :auto-mode '(("\\.s\\(?:ml\\|ig\\)\\'" . sml-mode) ("\\.cm\\'" . sml-cm-mode) ("\\.grm\\'" . sml-yacc-mode)))
 
 
 ;;; Generated autoloads from me-vars.el
@@ -668,6 +703,11 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-zig.el
+
+(minemacs-register-on-demand-module 'me-zig :auto-mode '(("\\.\\(zig\\|zon\\)\\'" . zig-mode)))
 
 
 ;;; Generated autoloads from minemacs-lazy.el
