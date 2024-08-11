@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-llvm 'llvm-ts-mode
+(minemacs-register-on-demand-module 'me-llvm
   :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
 
 (use-package llvm-ts-mode

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-alloy 'alloy-mode
+(minemacs-register-on-demand-module 'me-alloy
   :auto-mode '(("\\.als\\'" . alloy-mode)))
 
 (use-package alloy-mode

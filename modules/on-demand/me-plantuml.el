@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-plantuml '(plantuml-mode flymake-plantuml)
+(minemacs-register-on-demand-module 'me-plantuml
   :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
 
 (use-package plantuml-mode

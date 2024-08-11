@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-julia '(julia-mode julia-ts-mode julia-repl)
+(minemacs-register-on-demand-module 'me-julia
   :auto-mode '(("\\.jl\\'" . julia-mode))
   :companion-packages '((ess-julia-mode . julia-mode)))
 

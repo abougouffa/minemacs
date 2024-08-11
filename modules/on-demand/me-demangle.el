@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-demangle 'demangle-mode
+(minemacs-register-on-demand-module 'me-demangle
   :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 (use-package demangle-mode

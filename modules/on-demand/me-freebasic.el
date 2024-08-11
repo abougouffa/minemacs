@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-freebasic 'fb-mode
+(minemacs-register-on-demand-module 'me-freebasic
   :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
 
 (use-package fb-mode

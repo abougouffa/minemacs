@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-arduino 'arduino-mode
+(minemacs-register-on-demand-module 'me-arduino
   :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))
 
 (use-package arduino-mode

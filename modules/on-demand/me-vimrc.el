@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-vimrc 'vimrc-mode
+(minemacs-register-on-demand-module 'me-vimrc
   :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 (use-package vimrc-mode

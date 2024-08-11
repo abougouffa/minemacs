@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-mermaid '(mermaid-mode ob-mermaid)
+(minemacs-register-on-demand-module 'me-mermaid
   :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
 
 (use-package mermaid-mode

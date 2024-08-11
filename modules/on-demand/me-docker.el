@@ -9,9 +9,8 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-docker '(dockerfile-mode docker-compose-mode)
-  :auto-mode `((,(concat "[/\\]" "\\(?:Containerfile\\|Dockerfile\\)" "\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode)
-               ("\\.dockerfile\\'" . dockerfile-mode)
+(minemacs-register-on-demand-module 'me-docker
+  :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode)
                ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 (use-package dockerfile-mode

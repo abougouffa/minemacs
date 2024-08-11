@@ -23,17 +23,17 @@ position.
 
 ;;; Generated autoloads from ../modules/on-demand/me-alloy.el
 
-(minemacs-register-extra-mode 'me-alloy 'alloy-mode :auto-mode '(("\\.als\\'" . alloy-mode)))
+(minemacs-register-on-demand-module 'me-alloy :auto-mode '(("\\.als\\'" . alloy-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-arduino.el
 
-(minemacs-register-extra-mode 'me-arduino 'arduino-mode :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))
+(minemacs-register-on-demand-module 'me-arduino :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-assembly.el
 
-(minemacs-register-extra-mode 'me-assembly '(mips-mode riscv-mode fasm-mode masm-mode nasm-mode gas-mode) :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)))
+(minemacs-register-on-demand-module 'me-assembly :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)))
 (autoload '+asm-ask-for-mode "../modules/on-demand/me-assembly" "\
 Ask the MODE to run.
 
@@ -42,12 +42,12 @@ Ask the MODE to run.
 
 ;;; Generated autoloads from ../modules/on-demand/me-awk.el
 
-(minemacs-register-extra-mode 'me-awk 'awk-ts-mode :auto-mode '(("\\.awk\\'" . awk-ts-mode)) :companion-packages '((awk-mode . awk-ts-mode)))
+(minemacs-register-on-demand-module 'me-awk :auto-mode '(("\\.awk\\'" . awk-ts-mode)) :companion-packages '((awk-mode . awk-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-clojure.el
 
-(minemacs-register-extra-mode 'me-clojure '(clojure-mode cider) :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
+(minemacs-register-on-demand-module 'me-clojure :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
@@ -65,32 +65,37 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-common-lisp.el
 
-(minemacs-register-extra-mode 'me-common-lisp '(sly sly-quicklisp sly-asdf sly-repl-ansi-color sly-macrostep) :companion-packages '((lisp-mode . sly)))
+(minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode . sly)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
 
-(minemacs-register-extra-mode 'me-cuda 'cuda-mode :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+(minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-d.el
+
+(minemacs-register-on-demand-module 'me-d :auto-mode '(("\\.d[i]?\\'" . d-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-d2.el
 
-(minemacs-register-extra-mode 'me-d2 '(d2-mode ob-d2) :auto-mode '(("\\.d2\\'" . d2-mode)))
+(minemacs-register-on-demand-module 'me-d2 :auto-mode '(("\\.d2\\'" . d2-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-demangle.el
 
-(minemacs-register-extra-mode 'me-demangle 'demangle-mode :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
+(minemacs-register-on-demand-module 'me-demangle :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-devicetree.el
 
-(minemacs-register-extra-mode 'me-devicetree '(dts-mode virtual-dts-mode) :auto-mode '(("\\.dtsi?\\'" . dts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
+(minemacs-register-on-demand-module 'me-devicetree :auto-mode '(("\\.dtsi?\\'" . dts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-docker.el
 
-(minemacs-register-extra-mode 'me-docker '(dockerfile-mode docker-compose-mode) :auto-mode `((,(concat "[/\\]" "\\(?:Containerfile\\|Dockerfile\\)" "\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("\\.dockerfile\\'" . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
+(minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
@@ -101,7 +106,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-epub.el
 
-(minemacs-register-extra-mode 'me-epub 'nov-mode :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
+(minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
 
 
 ;;; Generated autoloads from me-external-tools.el
@@ -111,52 +116,77 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-fpga.el
 
-(minemacs-register-extra-mode 'me-fpga '(vhdl-ts-mode verilog-ts-mode) :auto-mode '(("\\.vhdl?\\'" . vhdl-ts-mode) ("\\.[ds]?va?h?\\'" . verilog-ts-mode)) :companion-packages '((vhdl-mode . vhdl-ts-mode) (verilog-mode . verilog-ts-mode)))
+(minemacs-register-on-demand-module 'me-fpga :auto-mode '(("\\.vhdl?\\'" . vhdl-ts-mode) ("\\.[ds]?va?h?\\'" . verilog-ts-mode)) :companion-packages '((vhdl-mode . vhdl-ts-mode) (verilog-mode . verilog-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-franca-idl.el
 
-(minemacs-register-extra-mode 'me-franca-idl 'franca-idl :auto-mode '(("\\.fidl\\'" . franca-idl-mode)))
+(minemacs-register-on-demand-module 'me-franca-idl :auto-mode '(("\\.fidl\\'" . franca-idl-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-freebasic.el
 
-(minemacs-register-extra-mode 'me-freebasic 'fb-mode :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
+(minemacs-register-on-demand-module 'me-freebasic :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-fsharp.el
+
+(minemacs-register-on-demand-module 'me-fsharp :auto-mode '(("\\.fs[iylx]?\\'" . fsharp-mode) ("\\.fsproj\\'" . nxml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab-ci.el
 
-(minemacs-register-extra-mode 'me-gitlab-ci 'gitlab-ci-mode :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
+(minemacs-register-on-demand-module 'me-gitlab-ci :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gnuplot.el
 
-(minemacs-register-extra-mode 'me-gnuplot 'gnuplot-mode :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
+(minemacs-register-on-demand-module 'me-gnuplot :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-graphql.el
 
-(minemacs-register-extra-mode 'me-graphql 'graphql-mode :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
+(minemacs-register-on-demand-module 'me-graphql :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-graphviz.el
 
-(minemacs-register-extra-mode 'me-graphviz 'graphviz-dot-mode :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
+(minemacs-register-on-demand-module 'me-graphviz :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-hurl.el
 
-(minemacs-register-extra-mode 'me-hurl 'hurl-mode :auto-mode '(("\\.hurl\\'" . hurl-mode)))
+(minemacs-register-on-demand-module 'me-hurl :auto-mode '(("\\.hurl\\'" . hurl-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-hy.el
+
+(minemacs-register-on-demand-module 'me-hy :auto-mode '(("\\.hy\\'" . hy-mode)) :interpreter-mode '(("hy" . hy-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-idris.el
+
+(minemacs-register-on-demand-module 'me-idris :auto-mode '(("\\.l?idr\\'" . idris-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-java.el
+
+(minemacs-register-on-demand-module 'me-java :auto-mode '((("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" "/Jenkinsfile\\'") . groovy-mode)) :interpreter-mode '(("groovy" . groovy-mode)) :companion-packages '(((java-mode java-ts-mode) groovy-mode android-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-julia.el
 
-(minemacs-register-extra-mode 'me-julia '(julia-mode julia-ts-mode julia-repl) :auto-mode '(("\\.jl\\'" . julia-mode)) :companion-packages '((ess-julia-mode . julia-mode)))
+(minemacs-register-on-demand-module 'me-julia :auto-mode '(("\\.jl\\'" . julia-mode)) :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) julia-repl julia-snail julia-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-just.el
 
-(minemacs-register-extra-mode 'me-just 'just-mode :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)))
+(minemacs-register-on-demand-module 'me-just :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-kotlin.el
+
+(minemacs-register-on-demand-module 'me-kotlin :auto-mode '(("\\.kts?\\'" kotlin-mode kotlin-ts-mode)))
 
 
 ;;; Generated autoloads from me-lib.el
@@ -200,7 +230,9 @@ Cleanup unwanted files/directories from MinEmacs' directory." t)
 Set some Emacs variables for better (!) performance." t)
 (autoload 'minemacs-load-module "me-lib-extra" "\
 Interactively install and load MODULES that aren't enabled in \"modules.el\".
-When called with the universal argument, it prompts for obsolete modules also.
+
+When called with \\[universal-argument], it prompts also for on-demand modules.
+When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules.
 
 (fn &rest MODULES)" t)
 (autoload '+file-mime-type "me-lib-extra" "\
@@ -483,27 +515,27 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
 
-(minemacs-register-extra-mode 'me-llvm 'llvm-ts-mode :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
+(minemacs-register-on-demand-module 'me-llvm :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-lua.el
 
-(minemacs-register-extra-mode 'me-lua 'lua-mode :auto-mode '(("\\.lua\\'" . lua-mode)) :interpreter-mode '(("lua" . lua-mode)))
+(minemacs-register-on-demand-module 'me-lua :auto-mode '(("\\.lua\\'" . lua-mode)) :interpreter-mode '(("lua" . lua-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
 
-(minemacs-register-extra-mode 'me-mermaid '(mermaid-mode ob-mermaid) :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
+(minemacs-register-on-demand-module 'me-mermaid :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mode-framework.el
 
-(minemacs-register-extra-mode 'me-mode-framework 'robot-mode :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
+(minemacs-register-on-demand-module 'me-mode-framework :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-modelica.el
 
-(minemacs-register-extra-mode 'me-modelica 'modelica-mode :auto-mode '(("\\.mo\\'" . modelica-mode)))
+(minemacs-register-on-demand-module 'me-modelica :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
 
 ;;; Generated autoloads from me-modules.el
@@ -528,17 +560,17 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-nix.el
 
-(minemacs-register-extra-mode 'me-nix '(nix-mode nix-ts-mode) :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
+(minemacs-register-on-demand-module 'me-nix :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
 
-(minemacs-register-extra-mode 'me-opencl 'opencl-c-mode :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
+(minemacs-register-on-demand-module 'me-opencl :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-openscad.el
 
-(minemacs-register-extra-mode 'me-openscad 'scad-mode :auto-mode '(("\\.scad\\'" . scad-mode)))
+(minemacs-register-on-demand-module 'me-openscad :auto-mode '(("\\.scad\\'" . scad-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-org-extras.el
@@ -548,32 +580,32 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-pcap.el
 
-(minemacs-register-extra-mode 'me-pcap 'pcap-mode :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
+(minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-pkgbuild.el
 
-(minemacs-register-extra-mode 'me-pkgbuild 'pkgbuild-mode :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode)) :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))
+(minemacs-register-on-demand-module 'me-pkgbuild :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode)) :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-plantuml.el
 
-(minemacs-register-extra-mode 'me-plantuml '(plantuml-mode flymake-plantuml) :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
+(minemacs-register-on-demand-module 'me-plantuml :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
 
-(minemacs-register-extra-mode 'me-protobuf '(protobuf-mode protobuf-ts-mode) :auto-mode '(("\\.proto\\'" . protobuf-mode)))
+(minemacs-register-on-demand-module 'me-protobuf :auto-mode '(("\\.proto\\'" . protobuf-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-python.el
 
-(minemacs-register-extra-mode 'me-python 'python-docstring :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
+(minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
 
-(minemacs-register-extra-mode 'me-scheme '(racket-mode geiser geiser-chez geiser-guile geiser-mit geiser-racket macrostep-geiser) :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)))
+(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)))
 
 
 ;;; Generated autoloads from me-vars.el
@@ -583,12 +615,12 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-vimrc.el
 
-(minemacs-register-extra-mode 'me-vimrc 'vimrc-mode :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
+(minemacs-register-on-demand-module 'me-vimrc :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-extra-mode 'me-web '(web-mode emmet-mode) :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode) . web-mode)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode) . web-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el

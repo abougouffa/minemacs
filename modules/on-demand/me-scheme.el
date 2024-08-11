@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-scheme '(racket-mode geiser geiser-chez geiser-guile geiser-mit geiser-racket macrostep-geiser)
+(minemacs-register-on-demand-module 'me-scheme
   :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode))
   :interpreter-mode '(("racket" . racket-mode)))
 

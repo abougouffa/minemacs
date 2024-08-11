@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-pcap 'pcap-mode
+(minemacs-register-on-demand-module 'me-pcap
   :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
 
 (use-package pcap-mode

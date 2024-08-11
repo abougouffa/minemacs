@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-python 'python-docstring
+(minemacs-register-on-demand-module 'me-python
   :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
 
 (use-package python-docstring

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-modelica 'modelica-mode
+(minemacs-register-on-demand-module 'me-modelica
   :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
 (use-package modelica-mode

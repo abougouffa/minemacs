@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-d2 '(d2-mode ob-d2)
+(minemacs-register-on-demand-module 'me-d2
   :auto-mode '(("\\.d2\\'" . d2-mode)))
 
 (use-package d2-mode

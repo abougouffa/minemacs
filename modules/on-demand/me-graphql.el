@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-graphql 'graphql-mode
+(minemacs-register-on-demand-module 'me-graphql
   :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
 
 (use-package graphql-mode

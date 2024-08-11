@@ -508,7 +508,7 @@ With optional INCLUDE-OBSOLETE or INCLUDE-ON-DEMAND."
       (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
                                          (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
     (when include-on-demand
-      (cl-callf append mod-files (mapcar (apply-partially #'concat "modes/")
+      (cl-callf append mod-files (mapcar (apply-partially #'concat "on-demand/")
                                          (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
@@ -1192,23 +1192,27 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
 ;;; Lazy on-demand modules
 
-(cl-defun minemacs-register-extra-mode (module packages &optional &key auto-mode magic-mode interpreter-mode companion-packages)
-  "Register extra PACKAGES from MODULE.
+(cl-defun minemacs-register-on-demand-module (module &optional &key auto-mode magic-mode interpreter-mode companion-packages)
+  "Register extra MODULE.
 
-:MODE-ALIST add an alist like `auto-mode-alist'.
-:MAGIC-ALIST add an alist like `magic-mode-alist'.
-:COMPANION-PACKAGES-ALIST like '((c-mode . package))."
-  (declare (indent 2))
-  (let ((plist `(:packages ,(ensure-list packages))))
-    (when auto-mode
-      (plist-put plist :auto-mode (ensure-list auto-mode)))
-    (when magic-mode
-      (plist-put plist :magic-mode (ensure-list magic-mode)))
-    (when interpreter-mode
-      (plist-put plist :interpreter-mode (ensure-list interpreter-mode)))
-    (when companion-packages
-      (plist-put plist :companion-packages (ensure-list companion-packages)))
-    (push (cons module plist) minemacs-on-demand-modules-alist)))
+- :AUTO-MODE add an alist like `auto-mode-alist'.
+- :MAGIC-MODE add an alist like `magic-mode-alist'.
+- :INTERPRETER-MODE add add an alist like
+  `interpreter-mode-alist' (reserved for future use).
+- :COMPANION-PACKAGES defines companion packages for some modes like
+  '((some-mode . package))."
+  (declare (indent 1))
+  (unless (assq module minemacs-on-demand-modules-alist)
+    (let ((plist nil))
+      (when auto-mode
+        (setq plist (append plist `(:auto-mode ,(ensure-list auto-mode)))))
+      (when magic-mode
+        (setq plist (append plist `(:magic-mode ,(ensure-list magic-mode)))))
+      (when interpreter-mode
+        (setq plist (append plist `(:interpreter-mode ,(ensure-list interpreter-mode)))))
+      (when companion-packages
+        (setq plist (append plist `(:companion-packages ,(ensure-list companion-packages)))))
+      (push (cons module plist) minemacs-on-demand-modules-alist))))
 
 (add-to-list 'magic-mode-alist '(minemacs-try-load-extra-mode . fundamental-mode))
 

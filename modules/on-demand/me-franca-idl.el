@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-franca-idl 'franca-idl
+(minemacs-register-on-demand-module 'me-franca-idl
   :auto-mode '(("\\.fidl\\'" . franca-idl-mode)))
 
 (use-package franca-idl

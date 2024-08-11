@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-fpga '(vhdl-ts-mode verilog-ts-mode)
+(minemacs-register-on-demand-module 'me-fpga
   :auto-mode '(("\\.vhdl?\\'" . vhdl-ts-mode)
                ("\\.[ds]?va?h?\\'" . verilog-ts-mode))
   :companion-packages '((vhdl-mode . vhdl-ts-mode) (verilog-mode . verilog-ts-mode)))

@@ -13,7 +13,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode '$1 '()
+(minemacs-register-on-demand-module '$1
   :auto-mode '())
 
 $0

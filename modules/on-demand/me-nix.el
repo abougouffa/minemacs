@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-nix '(nix-mode nix-ts-mode)
+(minemacs-register-on-demand-module 'me-nix
   :auto-mode '(("\\.nix\\'" . nix-mode)
                ("\\.nix\\'" . nix-ts-mode)))
 

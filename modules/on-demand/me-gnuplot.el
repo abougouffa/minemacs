@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-gnuplot 'gnuplot-mode
+(minemacs-register-on-demand-module 'me-gnuplot
   :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
 
 (use-package gnuplot

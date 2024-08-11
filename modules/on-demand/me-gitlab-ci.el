@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-gitlab-ci 'gitlab-ci-mode
+(minemacs-register-on-demand-module 'me-gitlab-ci
   :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode))
   :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
 

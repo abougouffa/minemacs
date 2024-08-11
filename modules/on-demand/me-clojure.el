@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-clojure '(clojure-mode cider)
+(minemacs-register-on-demand-module 'me-clojure
   :auto-mode '(("\\.cljs\\'" . clojurescript-mode)
                (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode))
   :interpreter-mode '(("bb" . clojure-mode)

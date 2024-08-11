@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-devicetree '(dts-mode virtual-dts-mode)
+(minemacs-register-on-demand-module 'me-devicetree
   :auto-mode '(("\\.dtsi?\\'" . dts-mode)
                (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
 

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-pkgbuild 'pkgbuild-mode
+(minemacs-register-on-demand-module 'me-pkgbuild
   :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode))
   :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))
 

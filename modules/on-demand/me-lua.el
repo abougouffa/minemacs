@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-lua 'lua-mode
+(minemacs-register-on-demand-module 'me-lua
   :auto-mode '(("\\.lua\\'" . lua-mode))
   :interpreter-mode '(("lua" . lua-mode)))
 

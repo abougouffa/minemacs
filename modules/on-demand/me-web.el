@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-web '(web-mode emmet-mode)
+(minemacs-register-on-demand-module 'me-web
   :auto-mode '((("\\.[px]?html?\\'"
                  "\\.tpl\\.php\\'"
                  "\\.[lh]?eex\\'"

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-cuda 'cuda-mode
+(minemacs-register-on-demand-module 'me-cuda
   :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
 
 (use-package cuda-mode

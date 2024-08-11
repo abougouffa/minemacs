@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-mode-framework 'robot-mode
+(minemacs-register-on-demand-module 'me-mode-framework
   :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
 
 (use-package robot-mode

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-opencl 'opencl-c-mode
+(minemacs-register-on-demand-module 'me-opencl
   :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
 
 (use-package opencl-c-mode

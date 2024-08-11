@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-assembly '(mips-mode riscv-mode fasm-mode masm-mode nasm-mode gas-mode)
+(minemacs-register-on-demand-module 'me-assembly
   :auto-mode '(("\\.S\\'" . gas-mode)
                (("\\.asm\\'" "\\.inc\\'") . masm-mode)
                ("\\.mips\\'" . mips-mode)

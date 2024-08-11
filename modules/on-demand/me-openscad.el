@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-openscad 'scad-mode
+(minemacs-register-on-demand-module 'me-openscad
   :auto-mode '(("\\.scad\\'" . scad-mode)))
 
 (use-package scad-mode

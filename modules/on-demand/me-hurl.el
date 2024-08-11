@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-hurl 'hurl-mode
+(minemacs-register-on-demand-module 'me-hurl
   :auto-mode '(("\\.hurl\\'" . hurl-mode)))
 
 (use-package hurl-mode

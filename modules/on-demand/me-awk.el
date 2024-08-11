@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-awk 'awk-ts-mode
+(minemacs-register-on-demand-module 'me-awk
   :auto-mode '(("\\.awk\\'" . awk-ts-mode))
   :companion-packages '((awk-mode . awk-ts-mode)))
 

@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-protobuf '(protobuf-mode protobuf-ts-mode)
+(minemacs-register-on-demand-module 'me-protobuf
   :auto-mode '(("\\.proto\\'" . protobuf-mode)))
 
 (use-package protobuf-mode

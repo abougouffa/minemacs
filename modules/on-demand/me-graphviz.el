@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-graphviz 'graphviz-dot-mode
+(minemacs-register-on-demand-module 'me-graphviz
   :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
 (use-package graphviz-dot-mode

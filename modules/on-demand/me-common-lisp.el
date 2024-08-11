@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-common-lisp '(sly sly-quicklisp sly-asdf sly-repl-ansi-color sly-macrostep)
+(minemacs-register-on-demand-module 'me-common-lisp
   :companion-packages '((lisp-mode . sly)))
 
 (use-package sly

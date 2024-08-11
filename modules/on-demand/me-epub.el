@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-extra-mode 'me-epub 'nov-mode
+(minemacs-register-on-demand-module 'me-epub
   :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
 
 (use-package nov
