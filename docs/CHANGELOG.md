@@ -2,6 +2,40 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.0.0-rc1](https://github.com/abougouffa/minemacs/compare/c0fca518755420fc6be055b50271364c3285dd2b..v9.0.0-rc1) - 2024-08-11
+#### Bug Fixes
+- **(julia)** restore `julia-mode` in `me-math` - ([8ba7b50](https://github.com/abougouffa/minemacs/commit/8ba7b50275f877c84f2dc9f42d4d7d2789462c76)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(calendar)** make `calfw` obsolete - ([cccfff2](https://github.com/abougouffa/minemacs/commit/cccfff2ce539f62c21f93120eb1898f842c8b8c1)) - [@abougouffa](https://github.com/abougouffa)
+- **(media)** remove `emms` - ([c0fca51](https://github.com/abougouffa/minemacs/commit/c0fca518755420fc6be055b50271364c3285dd2b)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add more on-demand modules - ([6e41226](https://github.com/abougouffa/minemacs/commit/6e412264b27e052d78718528de0fcc11718151c1)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** make `project-x` obsolete - ([dbb7cc9](https://github.com/abougouffa/minemacs/commit/dbb7cc9e5369bce7686515eef64aba8adad99952)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `eopengrok` obsolete - ([a0b7a94](https://github.com/abougouffa/minemacs/commit/a0b7a9438550c3cd7d5b29a861277e8f543f1dce)) - [@abougouffa](https://github.com/abougouffa)
+- add more on-demand modules - ([a4e5d0b](https://github.com/abougouffa/minemacs/commit/a4e5d0b4a7cd90f58035d4d77e2909ac8fbc6428)) - [@abougouffa](https://github.com/abougouffa)
+- add Nim support as on-demand module - ([2138f30](https://github.com/abougouffa/minemacs/commit/2138f308a0b9c7cd1dc22d91d0117551c1203c40)) - [@abougouffa](https://github.com/abougouffa)
+- support OCaml as an on-demand module - ([05d836b](https://github.com/abougouffa/minemacs/commit/05d836b7aac146af60668898fc65f4c0e413246b)) - [@abougouffa](https://github.com/abougouffa)
+- add `demangle-mode` as an on-demand package - ([8718235](https://github.com/abougouffa/minemacs/commit/87182353a1e29411b82cd4012e2c2d3bcee3c52b)) - [@abougouffa](https://github.com/abougouffa)
+- move `alloy-mode` from `obsolete/me-formal` to `modes/me-alloy` - ([f4de723](https://github.com/abougouffa/minemacs/commit/f4de723087108c4272dc66ca53eef8e87412c959)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(snippets)** rename the on-demand module snippet - ([0616038](https://github.com/abougouffa/minemacs/commit/061603892a8e405fb5033a421ea1087d66a9214d)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** fix `memode` snippet - ([edcbd69](https://github.com/abougouffa/minemacs/commit/edcbd6975baf6877cd50ce62400a55466bbd4a5e)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** add a snippet for creating extra modes modules - ([0a280bc](https://github.com/abougouffa/minemacs/commit/0a280bcf64551ed92fbbdd84126371282a2bfcb5)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(empv)** tweak the download playlist command - ([dba318c](https://github.com/abougouffa/minemacs/commit/dba318c94728f639ffef58b89ebe4ced3aa455e5)) - [@abougouffa](https://github.com/abougouffa)
+- make Zig and CMake integration into on-demand modules - ([87fdf43](https://github.com/abougouffa/minemacs/commit/87fdf4355edf321f0f4f1fb5c4adaa36abf7f550)) - [@abougouffa](https://github.com/abougouffa)
+- remove unneeded arguments `minemacs-register-on-demand-module` - ([cbe9afa](https://github.com/abougouffa/minemacs/commit/cbe9afabac45f3d36407bed074991f2117f92c10)) - [@abougouffa](https://github.com/abougouffa)
+- move `modules/modes` to `modules/on-demand` - ([ef39e7c](https://github.com/abougouffa/minemacs/commit/ef39e7c9b029bdc5145f5071b29d47fe7ece71f7)) - [@abougouffa](https://github.com/abougouffa)
+- load less used modes only on-demand when needed - ([5fadc62](https://github.com/abougouffa/minemacs/commit/5fadc6220532bf5abc2eba646b2fc5d99c30d8ca)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- rebuild all packages in `minemacs-restore-locked-packages` - ([e005059](https://github.com/abougouffa/minemacs/commit/e005059494ee5606e14a806f55e61723cb6b5bcc)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** allow loading on-demand modules via `minemacs-load-module` - ([afbc799](https://github.com/abougouffa/minemacs/commit/afbc799ab5aa744be169bbd652f5d5c240641c9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** ask only for visible buffers - ([d69f181](https://github.com/abougouffa/minemacs/commit/d69f181fc835ada5970ace35dd7c586c604ecc31)) - [@abougouffa](https://github.com/abougouffa)
+- add an option to disable all on-demand modules - ([2644605](https://github.com/abougouffa/minemacs/commit/26446055aa4761ba26443f7a065faef537d8a08b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2ed8d2e](https://github.com/abougouffa/minemacs/commit/2ed8d2e925fbc3c952176d2879f334dd9d2749d5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v8.8.3](https://github.com/abougouffa/minemacs/compare/9ab3077ab61aed18b08f297f0bfe7cfc27c28b20..v8.8.3) - 2024-08-09
 #### Features
 - make `org-re-reveal` obsolete (never used!) - ([9ab3077](https://github.com/abougouffa/minemacs/commit/9ab3077ab61aed18b08f297f0bfe7cfc27c28b20)) - [@abougouffa](https://github.com/abougouffa)
