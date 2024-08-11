@@ -171,7 +171,7 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
                 "Select modules: "
                 (seq-filter (lambda (module) (not (featurep module)))
                             (let ((prefix (prefix-numeric-value current-prefix-arg)))
-                              (minemacs-modules (when (>= prefix 16)) (when (>= prefix 4)))))))
+                              (minemacs-modules (when (>= prefix 4)) (when (>= prefix 16)))))))
   (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
          (append minemacs-after-startup-hook minemacs-lazy-hook
                  minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook

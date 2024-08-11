@@ -500,9 +500,9 @@ Optionally, check also for the containing MODULE."
    (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
    (and module (not (memq module minemacs-modules)))))
 
-(defun minemacs-modules (&optional include-obsolete include-on-demand)
+(defun minemacs-modules (&optional include-on-demand include-obsolete)
   "List all the available modules.
-With optional INCLUDE-OBSOLETE or INCLUDE-ON-DEMAND."
+With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
   (let ((mod-files (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))
     (when include-obsolete
       (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
