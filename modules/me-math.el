@@ -56,7 +56,7 @@
 (use-package jupyter
   :straight t)
 
-(use-package julia-repl
+(use-package julia-mode
   :straight t)
 
 (use-package ess

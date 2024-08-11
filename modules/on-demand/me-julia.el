@@ -11,7 +11,7 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-julia
   :auto-mode '(("\\.jl\\'" . julia-mode))
-  :companion-packages '((ess-julia-mode . julia-mode)))
+  :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) . (julia-repl julia-snail julia-ts-mode))))
 
 (use-package julia-mode
   :straight t)
@@ -19,6 +19,12 @@
 (use-package julia-ts-mode
   :straight t
   :when (+emacs-features-p 'tree-sitter))
+
+(use-package julia-repl
+  :straight t)
+
+(use-package julia-snail
+  :straight t)
 
 
 (provide 'on-demand/me-julia)
