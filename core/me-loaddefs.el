@@ -118,6 +118,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-ebuild.el
+
+(minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
@@ -137,6 +142,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-fish.el
 
 (minemacs-register-on-demand-module 'me-fish :auto-mode '((("\\.fish\\'" "/fish_funced\\..*\\'") . fish-mode)) :interpreter-mode '(("fish" . fish-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-forth.el
+
+(minemacs-register-on-demand-module 'me-forth :auto-mode '(("\\.\\(fth\\|4th\\)\\'" . forth-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-fpga.el
@@ -179,6 +189,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-graphviz :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-haskell.el
+
+(minemacs-register-on-demand-module 'me-haskell :auto-mode '((("\\.hsig\\'" "\\.[gh]s\\'" "\\.hsc\\'") . haskell-mode) ("\\.l[gh]s\\'" . haskell-literate-mode)) :interpreter-mode '(("runghc" . haskell-mode) ("runhaskell" . haskell-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-hurl.el
 
 (minemacs-register-on-demand-module 'me-hurl :auto-mode '(("\\.hurl\\'" . hurl-mode)))
@@ -186,7 +201,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-hy.el
 
-(minemacs-register-on-demand-module 'me-hy :auto-mode '(("\\.hy\\'" . hy-mode)) :interpreter-mode '(("hy" . hy-mode)))
+(minemacs-register-on-demand-module 'me-hy :auto-mode '(("\\.hy\\'" . hy-mode)) :interpreter-mode '(("hy" . hy-mode)) :companion-packages '((hy-mode . ob-hy)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-idris.el
@@ -211,7 +226,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-just.el
 
-(minemacs-register-on-demand-module 'me-just :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)))
+(minemacs-register-on-demand-module 'me-just :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)) :companion-packages '(((just-mode just-ts-mode) . justl)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-kotlin.el
@@ -558,6 +573,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-mode . markdown-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-mathematica.el
+
+(minemacs-register-on-demand-module 'me-mathematica)
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
 
 (minemacs-register-on-demand-module 'me-mermaid :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
@@ -678,9 +698,24 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-sql :companion-packages '((sql-mode . sqlup-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-stan.el
+
+(minemacs-register-on-demand-module 'me-stan :auto-mode '(("\\.stan\\'" . stan-mode)) :companion-packages '(((stan-mode stan-ts-mode) eldoc-stan stan-snippets)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-toml.el
 
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-v.el
+
+(minemacs-register-on-demand-module 'me-v :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-vala.el
+
+(minemacs-register-on-demand-module 'me-vala :auto-mode '(("\\.vala\\'" . vala-mode) ("\\.vapi\\'" . vala-mode)) :companion-packages '((vala-mode . vala-snippets)))
 
 
 ;;; Generated autoloads from me-vars.el

@@ -10,9 +10,13 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-just
-  :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)))
+  :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode))
+  :companion-packages '(((just-mode just-ts-mode) . justl)))
 
 (use-package just-mode
+  :straight t)
+
+(use-package justl
   :straight t)
 
 
