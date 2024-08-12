@@ -116,11 +116,15 @@ List of extra on-demand modules.
 
 #### `minemacs-on-demand-enable-auto-mode`
 
-Enable loading on-demand extra packages when needed based on `:auto-mode`.
+Enable loading on-demand packages when needed based on `:auto-mode`.
 
 #### `minemacs-on-demand-enable-magic-mode`
 
-Enable loading on-demand extra packages when needed based on `:magic-mode`.
+Enable loading on-demand packages when needed based on `:magic-mode`.
+
+#### `minemacs-on-demand-enable-interpreter-mode`
+
+Enable loading on-demand packages when needed based on `:interpreter-mode`.
 
 #### `minemacs-on-demand-enable-companion-packages`
 
@@ -696,21 +700,25 @@ Subtle look for the mode-line.
 
 Load extra mode if available.
 
-#### `(minemacs-try-load-companion-packages)`
+#### `(minemacs-on-demand-try-load-companion-packages)`
 
 Load companion packages for the current buffer's mode.
 
-#### `(minemacs-load-companion-packages)`
+#### `(minemacs-load-companion-packages-for-buffer)`
 
 Load companion packages applicables to the current's buffer mode.
 
-#### `(minemacs-extra-modes-try-auto-mode)`
+#### `(minemacs-on-demand-try-auto-mode)`
 
 Try to automatically enable a mode for the current buffer.
 
-#### `(minemacs-extra-modes-try-magic-mode)`
+#### `(minemacs-on-demand-try-magic-mode)`
 
 Try to automatically enable a mode for FILENAME.
+
+#### `(minemacs-on-demand-try-interpreter-mode)`
+
+Try to automatically enable a mode based on the `:interpreter-mode` value.
 
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
