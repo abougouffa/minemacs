@@ -129,9 +129,24 @@ restores it after that.
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-elixir.el
+
+(minemacs-register-on-demand-module 'me-elixir :auto-mode '((("\\.elixir\\'" "\\.exs?\\'" "/mix\\.lock") . elixir-mode)) :companion-packages '((elixir-mode . ob-elixir)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-elm.el
+
+(minemacs-register-on-demand-module 'me-elm :auto-mode '(("\\.elm\\'" . elm-mode)) :companion-packages '((elm-mode . elm-test-runner)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-epub.el
 
 (minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-erlang.el
+
+(minemacs-register-on-demand-module 'me-erlang :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
 
 
 ;;; Generated autoloads from me-external-tools.el
