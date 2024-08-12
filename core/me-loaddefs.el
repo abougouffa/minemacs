@@ -693,6 +693,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-rust.el
+
+(minemacs-register-on-demand-module 'me-rust :auto-mode '(("\\.rs\\'" . rust-mode)) :companion-packages '((rust-ts-mode . rust-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-scala.el
 
 (minemacs-register-on-demand-module 'me-scala :auto-mode '(("\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" . scala-mode)) :companion-packages '(((scala-mode scala-ts-mode) . sbt-mode)))
