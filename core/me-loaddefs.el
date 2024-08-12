@@ -73,6 +73,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode . sly)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-csv.el
+
+(minemacs-register-on-demand-module 'me-csv :auto-mode '(("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.[Tt][Ss][Vv]\\'" . tsv-mode)) :companion-packages '((csv-mode . rainbow-csv)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
 
 (minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
@@ -182,6 +187,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-java.el
 
 (minemacs-register-on-demand-module 'me-java :auto-mode '((("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" "/Jenkinsfile\\'") . groovy-mode)) :interpreter-mode '(("groovy" . groovy-mode)) :companion-packages '(((java-mode java-ts-mode) groovy-mode android-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-json.el
+
+(minemacs-register-on-demand-module 'me-json :auto-mode '((("\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'" "/.babelrc\\'" "/.bowerrc\\'" "/composer.lock\\'") . json-mode)) :companion-packages '((json-ts-mode jq-mode json-mode) ((nxml-mode yaml-mode yaml-ts-mode) . jq-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-julia.el
@@ -635,12 +645,17 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
 
-(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)))
+(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) . geiser-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
 
 (minemacs-register-on-demand-module 'me-sml :auto-mode '(("\\.s\\(?:ml\\|ig\\)\\'" . sml-mode) ("\\.cm\\'" . sml-cm-mode) ("\\.grm\\'" . sml-yacc-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-toml.el
+
+(minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
 ;;; Generated autoloads from me-vars.el
@@ -703,6 +718,11 @@ See `+writing-mode' for more information on +Writing mode.
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-yaml.el
+
+(minemacs-register-on-demand-module 'me-yaml :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode)) :companion-packages '((yaml-ts-mode yaml-mode yaml-pro-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-zig.el

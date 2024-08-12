@@ -11,7 +11,8 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-scheme
   :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode))
-  :interpreter-mode '(("racket" . racket-mode)))
+  :interpreter-mode '(("racket" . racket-mode))
+  :companion-packages '(((racket-mode scheme-mode) . geiser-mode)))
 
 (use-package racket-mode
   :straight t)

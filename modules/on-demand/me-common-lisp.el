@@ -10,7 +10,7 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-common-lisp
-  :companion-packages '((lisp-mode . sly)))
+  :companion-packages '((lisp-mode . (sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep))))
 
 (use-package sly
   :straight t

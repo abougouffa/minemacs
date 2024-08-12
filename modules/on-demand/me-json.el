@@ -1,35 +1,19 @@
-;;; me-data.el --- Data and vizualizaion formats (csv, yaml, xml, graphviz, ...) -*- lexical-binding: t; -*-
+;;; me-json.el --- JSON language -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package csv-mode
-  :straight t
-  :hook (csv-mode . csv-guess-set-separator)
-  :custom
-  (csv-separators '("," ";" "\t" "|")))
-
-(use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv"))
-
-(use-package yaml-mode
-  :straight t
-  :mode "Procfile\\'"
-  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
-
-(use-package yaml-pro
-  :straight t
-  :when (+emacs-features-p 'tree-sitter)
-  :hook (yaml-mode . yaml-pro-mode)
-  :hook (yaml-ts-mode . yaml-pro-ts-mode))
-
-(use-package toml-mode
-  :straight t)
+;;;###autoload
+(minemacs-register-on-demand-module 'me-json
+  :auto-mode '((("\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'" "/.babelrc\\'" "/.bowerrc\\'" "/composer.lock\\'") . json-mode))
+  :companion-packages '((json-ts-mode . (jq-mode json-mode))
+                        ;; To use the custom `+yq-interactively' and `+xq-interactively'
+                        ((nxml-mode yaml-mode yaml-ts-mode) . jq-mode)))
 
 (use-package json-mode
   :straight t
@@ -60,6 +44,5 @@
       (call-interactively #'jq-interactively))))
 
 
-(provide 'me-data)
-
-;;; me-data.el ends here
+(provide 'on-demand/me-json)
+;;; me-json.el ends here
