@@ -70,7 +70,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-common-lisp.el
 
-(minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode . sly)))
+(minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-csv.el
@@ -93,6 +93,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-d2 :auto-mode '(("\\.d2\\'" . d2-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-dart.el
+
+(minemacs-register-on-demand-module 'me-dart :auto-mode '(("\\.dart\\'" . dart-mode)) :companion-packages '((dart-mode . flutter)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-demangle.el
 
 (minemacs-register-on-demand-module 'me-demangle :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
@@ -101,6 +106,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-devicetree.el
 
 (minemacs-register-on-demand-module 'me-devicetree :auto-mode '(("\\.dtsi?\\'" . dts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-dhall.el
+
+(minemacs-register-on-demand-module 'me-dhall :auto-mode '(("\\.dhall\\'" . dhall-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-docker.el
@@ -648,6 +658,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-scala.el
+
+(minemacs-register-on-demand-module 'me-scala :auto-mode '(("\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" . scala-mode)) :companion-packages '(((scala-mode scala-ts-mode) . sbt-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
 
 (minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) . geiser-mode)))
@@ -656,6 +671,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
 
 (minemacs-register-on-demand-module 'me-sml :auto-mode '(("\\.s\\(?:ml\\|ig\\)\\'" . sml-mode) ("\\.cm\\'" . sml-cm-mode) ("\\.grm\\'" . sml-yacc-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-sql.el
+
+(minemacs-register-on-demand-module 'me-sql :companion-packages '((sql-mode . sqlup-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-toml.el
@@ -728,6 +748,11 @@ See `+writing-mode' for more information on +Writing mode.
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
 
 (minemacs-register-on-demand-module 'me-yaml :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode)) :companion-packages '((yaml-ts-mode yaml-mode yaml-pro-ts-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-yang.el
+
+(minemacs-register-on-demand-module 'me-yang :auto-mode '(("\\.[Yy][Aa][Nn][Gg]\\'" . yang-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-zig.el
