@@ -1198,7 +1198,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 - :AUTO-MODE add an alist like `auto-mode-alist'.
 - :MAGIC-MODE add an alist like `magic-mode-alist'.
 - :INTERPRETER-MODE add add an alist like
-  `interpreter-mode-alist' (reserved for future use).
+  `interpreter-mode-alist'.
 - :COMPANION-PACKAGES defines companion packages for some modes like
   '((some-mode . package))."
   (declare (indent 1))
@@ -1219,41 +1219,47 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (defun minemacs-try-load-extra-mode ()
   "Load extra mode if available."
   (prog1 nil ; always return nil to avoid applying the `fundamental-mode'
-    (or (minemacs-extra-modes-try-auto-mode)
-        (minemacs-extra-modes-try-magic-mode))))
+    (or (minemacs-on-demand-try-auto-mode)
+        (minemacs-on-demand-try-interpreter-mode)
+        (minemacs-on-demand-try-magic-mode))))
 
-(add-hook 'after-change-major-mode-hook #'minemacs-try-load-companion-packages 95)
+(add-hook 'after-change-major-mode-hook #'minemacs-on-demand-try-load-companion-packages 95)
 
-(defun minemacs-try-load-companion-packages ()
+(defun minemacs-on-demand-try-load-companion-packages ()
   "Load companion packages for the current buffer's mode."
-  (when minemacs-on-demand-enable-companion-packages
-    (dolist (spec minemacs-on-demand-modules-alist)
-      (let* ((module (car spec))
-             (plist (cdr spec))
-             (companion-packages (plist-get plist :companion-packages)))
-        (unless (featurep (intern (format "on-demand/%s" module)))
-          (dolist (companion-assoc companion-packages)
-            (let ((cur-modes (ensure-list (car companion-assoc)))
-                  (modes (ensure-list (cdr companion-assoc))))
-              (when-let (((and (apply #'derived-mode-p cur-modes)
-                               (cl-find-if-not #'fboundp modes)
-                               (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
-                                   (and (not noninteractive) ; ask only when in an interactive session
-                                        (get-buffer-window) ; and for visible buffers
-                                        (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
-                                                          module (current-buffer))))))))
-                (+load minemacs-on-demand-modules-dir (format "%s.el" module))
-                (set-auto-mode t)))))))))
+  (let ((mods nil))
+    (when minemacs-on-demand-enable-companion-packages
+      (dolist (spec minemacs-on-demand-modules-alist)
+        (let* ((module (car spec))
+               (plist (cdr spec))
+               (companion-packages (plist-get plist :companion-packages)))
+          (unless (featurep (intern (format "on-demand/%s" module)))
+            (dolist (companion-assoc companion-packages)
+              (let ((cur-modes (ensure-list (car companion-assoc)))
+                    (modes (ensure-list (cdr companion-assoc))))
+                (when-let (((and (apply #'derived-mode-p cur-modes)
+                                 (cl-find-if-not #'fboundp modes)
+                                 (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
+                                     (and (not noninteractive) ; ask only when in an interactive session
+                                          (get-buffer-window) ; and for visible buffers
+                                          (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
+                                                            module (current-buffer))))))))
+                  (push module mods)
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+    (when mods (set-auto-mode t))
+    mods))
 
-(defun minemacs-load-companion-packages ()
+(defun minemacs-load-companion-packages-for-buffer ()
   "Load companion packages applicables to the current's buffer mode."
   (interactive)
   (let ((minemacs-on-demand-enable-companion-packages t))
-    (minemacs-try-load-companion-packages)))
+    (if-let* ((mods (minemacs-on-demand-try-load-companion-packages)))
+        (message "Loaded on-demand modules %s." (string-join (mapcar (apply-partially #'format "`%s'") mods) ", "))
+      (message "No suitable on-demand module for the current buffer."))))
 
-(defun minemacs-extra-modes-try-auto-mode ()
+(defun minemacs-on-demand-try-auto-mode ()
   "Try to automatically enable a mode for the current buffer."
-  (let ((foundp nil))
+  (let ((mods nil))
     (when minemacs-on-demand-enable-auto-mode
       (dolist (spec minemacs-on-demand-modules-alist)
         (let* ((module (car spec))
@@ -1270,33 +1276,67 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                           (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
-                  (+load minemacs-on-demand-modules-dir (format "%s.el" module))
-                  (set-auto-mode t)
-                  (setq foundp t))))))))
-    foundp))
+                  (push module mods)
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+    (when mods (set-auto-mode t))
+    mods))
 
-(defun minemacs-extra-modes-try-magic-mode ()
+(defun minemacs-on-demand-try-magic-mode ()
   "Try to automatically enable a mode for FILENAME."
-  (let ((foundp nil))
+  (let ((mods nil))
     (when minemacs-on-demand-enable-magic-mode
       (dolist (spec minemacs-on-demand-modules-alist)
         (let* ((module (car spec))
                (magic-modes (plist-get (cdr spec) :magic-mode)))
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (magic-mode magic-modes)
-              (let ((func (car magic-mode))
+              (let ((func-or-regexp (car magic-mode))
                     (mode (cdr magic-mode)))
                 (when-let (((and (not (fboundp mode))
-                                 (funcall func)
+                                 (cond ((functionp func-or-regexp) (funcall func-or-regexp))
+                                       ((stringp func-or-regexp)
+                                        (save-excursion
+                                          (goto-char (point-min))
+                                          (save-restriction
+                                            (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
+                                            (let ((case-fold-search nil))
+                                              (looking-at func-or-regexp))))))
                                  (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
                                      (and (not noninteractive) ; ask only when in an interactive session
                                           (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
                                                             (current-buffer) mode module)))))))
-                  (+load minemacs-on-demand-modules-dir (format "%s.el" module))
-                  (set-auto-mode t)
-                  (setq foundp t))))))))
-    foundp))
+                  (push module mods)
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+    (when mods (set-auto-mode t))
+    mods))
+
+(defun minemacs-on-demand-try-interpreter-mode ()
+  "Try to automatically enable a mode based on the `:interpreter-mode' value."
+  (let ((mods nil))
+    (when minemacs-on-demand-enable-interpreter-mode
+      (dolist (spec minemacs-on-demand-modules-alist)
+        (let* ((module (car spec))
+               (interpreter-modes (plist-get (cdr spec) :interpreter-mode)))
+          (unless (featurep (intern (format "on-demand/%s" module)))
+            (dolist (interpreter-mode interpreter-modes)
+              (let ((interpreter (car interpreter-mode))
+                    (mode (cdr interpreter-mode)))
+                (when-let (((and (not (fboundp mode))
+                                 (when-let ((interp (save-excursion
+                                                      (goto-char (point-min))
+                                                      (when (looking-at auto-mode-interpreter-regexp)
+                                                        (match-string 2)))))
+                                   (string-match-p (format "\\`%s\\'" interpreter) (file-name-nondirectory interp)))
+                                 (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
+                                     (and (not noninteractive) ; ask only when in an interactive session
+                                          (get-buffer-window) ; and for visible buffers
+                                          (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                            (current-buffer) mode module)))))))
+                  (push module mods)
+                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+    (when mods (set-auto-mode t))
+    mods))
 
 
 

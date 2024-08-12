@@ -230,12 +230,17 @@ Each string is a regexp, matched against variable names to omit from
   :type 'alist)
 
 (defcustom minemacs-on-demand-enable-auto-mode 'no-ask
-  "Enable loading on-demand extra packages when needed based on `:auto-mode'."
+  "Enable loading on-demand packages when needed based on `:auto-mode'."
   :group 'minemacs-core
   :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
 
 (defcustom minemacs-on-demand-enable-magic-mode 'no-ask
-  "Enable loading on-demand extra packages when needed based on `:magic-mode'."
+  "Enable loading on-demand packages when needed based on `:magic-mode'."
+  :group 'minemacs-core
+  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+
+(defcustom minemacs-on-demand-enable-interpreter-mode 'no-ask
+  "Enable loading on-demand packages when needed based on `:interpreter-mode'."
   :group 'minemacs-core
   :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
 
