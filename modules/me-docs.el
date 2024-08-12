@@ -47,26 +47,6 @@
   (crdt-use-tuntox +tuntox-available-p)
   (crdt-use-stunnel +stunnel-available-p))
 
-(use-package markdown-mode
-  :straight t
-  :custom
-  (markdown-enable-html t)
-  (markdown-enable-math t)
-  (markdown-fontify-code-blocks-natively t)
-  (markdown-enable-highlighting-syntax t))
-
-(use-package markdown-ts-mode
-  :straight t
-  :when (+emacs-features-p 'tree-sitter)
-  :hook (markdown-ts-mode . display-line-numbers-mode)
-  :commands (markdown-ts-mode)
-  :init
-  (with-eval-after-load 'minemacs-lazy
-    ;; Turn `markdown-ts-mode' if the buffer is big, otherwise use `markdown-mode'.
-    (+alist-set "\\.md\\'" '+markdown-ts-mode-maybe auto-mode-alist)
-    (defun +markdown-ts-mode-maybe (&rest _args)
-      (if (< (buffer-size) 100000) (markdown-mode) (markdown-ts-mode)))))
-
 (use-package pandoc-mode
   :straight t
   :hook (markdown-mode . conditionally-turn-on-pandoc))

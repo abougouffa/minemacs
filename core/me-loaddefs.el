@@ -543,6 +543,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-lua :auto-mode '(("\\.lua\\'" . lua-mode)) :interpreter-mode '(("lua" . lua-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-markdown.el
+
+(minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-mode . markdown-ts-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
 
 (minemacs-register-on-demand-module 'me-mermaid :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
