@@ -29,8 +29,7 @@
   (imaxima-use-maxima-mode-flag nil))
 
 (use-package matlab-mode
-  :straight (:url "https://git.code.sf.net/p/matlab-emacs/src")
-  :when (executable-find "matlab"))
+  :straight (:url "https://git.code.sf.net/p/matlab-emacs/src" :files (:defaults (:exclude "company-matlab-shell.el"))))
 
 (use-package math-preview ; Needed by ein to render equations
   :straight t)
