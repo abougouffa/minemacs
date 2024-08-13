@@ -15,6 +15,11 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
+(use-package app-launcher
+  :straight (:host github :repo "SebastienWae/app-launcher")
+  :when (or os/linux os/bsd)
+  :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
+
 (use-package emamux
   :straight t)
 
@@ -94,11 +99,6 @@
   :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
-(use-package app-launcher
-  :straight (:host github :repo "SebastienWae/app-launcher")
-  :when (or os/linux os/bsd)
-  :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
-
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
@@ -116,6 +116,13 @@
              (or (+emacs-features-p 'sqlite3) (executable-find "sqlite3")))
   :init
   (add-hook (if (< emacs-major-version 29) 'python-mode-hook 'python-base-mode-hook) #'pet-mode))
+
+(use-package add-node-modules-path
+  :straight t
+  :hook ((js-mode js-ts-mode js2-mode) . add-node-modules-path)
+  :config
+  (when (executable-find "pnpm")
+    (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
 
 (use-package verb
   :straight t

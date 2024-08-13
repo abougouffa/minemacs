@@ -318,13 +318,6 @@
   :straight t
   :when (+emacs-features-p 'libxml2))
 
-(use-package add-node-modules-path
-  :straight t
-  :hook ((js-mode js-ts-mode js2-mode) . add-node-modules-path)
-  :config
-  (when (executable-find "pnpm")
-    (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
-
 (use-package cognitive-complexity
   :straight (:host github :repo "emacs-vs/cognitive-complexity"))
 
