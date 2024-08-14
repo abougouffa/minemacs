@@ -11,11 +11,8 @@
     ;; me-biblio
     ;; me-calendar
     me-checkers
-    ;; me-clojure
-    ;; me-common-lisp
     me-completion
     me-daemon
-    me-data
     me-debug
     me-docs
     me-editor
@@ -32,9 +29,7 @@
     ;; me-lifestyle
     ;; me-math
     ;; me-media
-    ;; me-modeling
     me-multi-cursors
-    ;; me-nano
     me-natural-langs
     me-notes
     me-org
@@ -42,14 +37,12 @@
     me-project
     ;; me-robot
     ;; me-rss
-    ;; me-scheme
     me-search
     ;; me-services
     ;; me-tags
     me-tools
     me-tty
     me-ui
-    me-undo
     me-vc
     me-window
     me-workspaces)
