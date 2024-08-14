@@ -762,6 +762,10 @@ It is deferred until `general' gets loaded and configured."
   (with-eval-after-load 'evil
     (add-hook 'reftex-mode-hook #'evil-normalize-keymaps)))
 
+(+map! :package editorconfig
+  "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
+  "cfe" #'editorconfig-format-buffer)
+
 
 
 ;;; For `me-completion'
@@ -848,6 +852,9 @@ It is deferred until `general' gets loaded and configured."
 
 ;;; For `me-editor'
 
+(+map! :package vundo :module me-editor
+  "ou" #'vundo)
+
 (when (memq 'me-editor minemacs-modules)
   ;; Bind `+yank-region-as-paragraph' (autoloaded from "me-lib.el")
   (+nvmap! "gy" #'+kill-region-as-paragraph))
@@ -860,13 +867,6 @@ It is deferred until `general' gets loaded and configured."
 
 
 ;;; For `me-extra'
-
-(+evil-conf-for! better-jumper me-extra
-  :init-form
-  (progn
-    (keymap-global-set "<remap> <evil-jump-forward>" #'better-jumper-jump-forward)
-    (keymap-global-set "<remap> <evil-jump-backward>" #'better-jumper-jump-backward)
-    (keymap-global-set "<remap> <xref-pop-marker-stack>" #'better-jumper-jump-backward)))
 
 (+map! :package crux :module me-extra
   "fo" #'crux-open-with
@@ -898,19 +898,6 @@ It is deferred until `general' gets loaded and configured."
 (+map! :package ssh-deploy :module me-tools
   "od" '(ssh-deploy-hydra/body :wk "ssh-deploy"))
 
-(+map! :package rg :module me-tools
-  "sr" #'rg-dwim
-  "sR" #'rg)
-
-(+map! :package fzf :module me-tools
-  "/"   #'fzf-project
-  "sz" '(nil :wk "fzf")
-  "szz" #'fzf
-  "szg" #'fzf-grep
-  "szG" #'fzf-grep-dwim
-  "szf" #'fzf-find-file
-  "szF" #'fzf-find-file-in-dir)
-
 (+map! :package tldr :module me-tools
   "ht" #'tldr)
 
@@ -922,19 +909,6 @@ It is deferred until `general' gets loaded and configured."
   "otT" #'multi-vterm
   "ott" #'multi-vterm-dedicated-toggle
   "otp" #'multi-vterm-project)
-
-(+map! :package docker :module me-tools
-  "ok" #'docker)
-
-(+map-local! :package pkgbuild-mode :module me-tools
-  :keymaps 'pkgbuild-mode-map
-  "b" #'pkgbuild-makepkg
-  "a" #'pkgbuild-tar
-  "r" #'pkgbuild-increase-release-tag
-  "u" #'pkgbuild-browse-url
-  "m" #'pkgbuild-update-sums-line
-  "s" #'pkgbuild-update-srcinfo
-  "e" #'pkgbuild-etags)
 
 (+map-local! :package journalctl-mode :module me-tools
   :keymaps 'journalctl-mode-map
@@ -954,15 +928,6 @@ It is deferred until `general' gets loaded and configured."
   "re"    #'verb-export-request-on-point
   "rv"    #'verb-set-var
   "rx"    #'verb-show-vars)
-
-(+map-local! :package restclient :module me-tools
-  :keymaps 'restclient-mode-map
-  "r"     '(nil :wk "restclinet")
-  "r RET" #'restclient-http-send-current-suppress-response-buffer
-  "rs"    #'restclient-http-send-current
-  "rr"    #'restclient-http-send-current-stay-in-window
-  "rf"    #'restclient-http-send-current-raw
-  "re"    #'restclient-copy-curl-command)
 
 
 
@@ -990,10 +955,14 @@ It is deferred until `general' gets loaded and configured."
   "L" #'denote-add-links
   "b" #'denote-show-backlinks-buffer)
 
-(+map! :package consult-notes :module me-notes
+(+map! :package consult-denote :module me-notes
   :infix "n"
-  "f" #'consult-notes
-  "s" #'consult-notes-search-in-all-notes)
+  "f" #'consult-denote
+  "s" #'consult-denote-grep)
+
+
+
+;;; For `me-media'
 
 (+map! :package empv :module me-media
   :infix "o"
@@ -1064,14 +1033,6 @@ It is deferred until `general' gets loaded and configured."
 (+map! :package apheleia :module me-prog
   "cff" #'apheleia-format-buffer)
 
-(+map! :package editorconfig :module me-prog
-  "fc" '(editorconfig-find-current-editorconfig :wk "Find current EditorConfig")
-  "cfe" #'editorconfig-format-buffer)
-
-(+map! :package clang-format :module me-prog
-  :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map cuda-mode-map scad-mode-map)
-  "cfc" #'clang-format-buffer)
-
 (+map! :package quickrun :module me-prog
   "cq"  '(nil :wk "quickrun")
   "cqq" #'quickrun
@@ -1082,19 +1043,6 @@ It is deferred until `general' gets loaded and configured."
   "cqC" #'quickrun-compile-only-select
   "cqd" #'quickrun-select-default)
 
-(+map-local! :package rust-mode :module me-prog
-  :keymaps '(rust-mode-map rust-ts-mode-map)
-  "c" #'rust-compile
-  "C" #'rust-compile-release
-  "k" #'rust-check
-  "t" #'rust-test
-  "r" #'rust-run
-  "R" #'rust-run-release
-  "y" #'rust-run-clippy
-  "f" #'rust-format-buffer
-  "F" #'rust-goto-format-problem
-  "S" #'rust-enable-format-on-save)
-
 (+map! :package rainbow-mode :module me-prog
   :keymaps '(prog-mode-map conf-mode-map text-mode-map)
   "tR" #'rainbow-mode)
@@ -1104,6 +1052,30 @@ It is deferred until `general' gets loaded and configured."
   "hhp" #'devdocs-peruse
   "hhs" #'devdocs-search
   "hhI" #'devdocs-install)
+
+
+
+;;; For `me-search'
+
+(+evil-conf-for! dogears me-search
+  :init-form
+  (progn
+    (keymap-global-set "<remap> <evil-jump-forward>" #'dogears-forward)
+    (keymap-global-set "<remap> <evil-jump-backward>" #'dogears-back)
+    (keymap-global-set "<remap> <xref-pop-marker-stack>" #'dogears-back)))
+
+(+map! :package rg :module me-search
+  "sr" #'rg-dwim
+  "sR" #'rg)
+
+(+map! :package fzf :module me-search
+  "/"   #'fzf-project
+  "sz" '(nil :wk "fzf")
+  "szz" #'fzf
+  "szg" #'fzf-grep
+  "szG" #'fzf-grep-dwim
+  "szf" #'fzf-find-file
+  "szF" #'fzf-find-file-in-dir)
 
 
 
@@ -1213,36 +1185,93 @@ It is deferred until `general' gets loaded and configured."
 
 
 
-;;; For `me-tags'
+;;; For on-demand modules
 
-(+evil-conf-for! eopengrok me-tags
-  :config-form
-  (+nmap!
-    :keymaps 'eopengrok-mode-map
-    "n" #'eopengrok-next-line
-    "p" #'eopengrok-previous-line
-    "q" #'eopengrok-quit
-    "RET" #'eopengrok-jump-to-source))
+(+map-local! :package sly
+  :keymaps '(lisp-mode-map)
+  "s"  #'sly
+  "c"  '(nil :wk "compile")
+  "cc" #'sly-compile-file
+  "cC" #'sly-compile-and-load-file
+  "cd" #'sly-compile-defun
+  "cr" #'sly-compile-region
+  "g"  '(nil :wk "goto/find")
+  "gn" #'sly-goto-first-note
+  "gL" #'sly-load-file
+  "gn" #'sly-next-note
+  "gN" #'sly-previous-note
+  "gs" #'sly-stickers-next-sticker
+  "gS" #'sly-stickers-prev-sticker
+  "gN" #'sly-previous-note
+  "gd" #'sly-edit-definition
+  "gD" #'sly-edit-definition-other-window
+  "gb" #'sly-pop-find-definition-stack
+  "h"  '(nil :wk "help/info")
+  "hs" #'sly-describe-symbol
+  "hf" #'sly-describe-function
+  "hc" #'sly-who-calls
+  "hC" #'sly-calls-who
+  "hs" #'sly-who-calls
+  "hC" #'sly-calls-who
+  "hd" #'sly-disassemble-symbol
+  "hD" #'sly-disassemble-definition
+  "r"  '(nil :wk "repl")
+  "rr" #'sly-restart-inferior-lisp
+  "rc" #'sly-mrepl-clear-repl
+  "rs" #'sly-mrepl-sync
+  "rn" #'sly-mrepl-new
+  "rq" #'sly-quit-lisp)
 
-
+(+map-local! :package sly-macrostep :module me-common-lisp
+  :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
+  "m" '(macrostep-expand :wk "Expand macro"))
 
-;;; For `me-docs'
-
-(+evil-conf-for! nov me-docs
+(+evil-conf-for! nov on-demand/me-epub
   :config-form
   (+nmap! :keymaps 'nov-mode-map "RET" #'nov-scroll-up))
 
-(+map-local! :package markdown-mode :module me-docs
+(+map-local! :package markdown-mode
   :keymaps 'markdown-mode-map
   "l"  '(nil :wk "link")
   "ll" #'markdown-insert-link
   "e"  #'markdown-export)
 
-
+(+map-local! :package macrostep-geiser
+  :keymaps '(geiser-mode-map geiser-repl-mode-map)
+  "m" '(macrostep-expand :wk "Expand macro")
+  "M" #'macrostep-geiser-expand-all)
 
-;;; For `me-data'
+(+map-local! :package rust-mode
+  :keymaps '(rust-mode-map rust-ts-mode-map)
+  "c" #'rust-compile
+  "C" #'rust-compile-release
+  "k" #'rust-check
+  "t" #'rust-test
+  "r" #'rust-run
+  "R" #'rust-run-release
+  "y" #'rust-run-clippy
+  "f" #'rust-format-buffer
+  "F" #'rust-goto-format-problem
+  "S" #'rust-enable-format-on-save)
 
-(+map-local! :package mermaid-mode :module me-data
+(+map! :package docker
+  "ok" #'docker)
+
+(+map-local! :package pkgbuild-mode
+  :keymaps 'pkgbuild-mode-map
+  "b" #'pkgbuild-makepkg
+  "a" #'pkgbuild-tar
+  "r" #'pkgbuild-increase-release-tag
+  "u" #'pkgbuild-browse-url
+  "m" #'pkgbuild-update-sums-line
+  "s" #'pkgbuild-update-srcinfo
+  "e" #'pkgbuild-etags)
+
+(+map-local! :package scad-mode
+  :keymaps 'scad-mode-map
+  "p" #'scad-preview)
+
+(+map-local! :package mermaid-mode
   :keymaps 'mermaid-mode-map
   "c" 'mermaid-compile
   "f" 'mermaid-compile-file
@@ -1251,7 +1280,7 @@ It is deferred until `general' gets loaded and configured."
   "b" 'mermaid-open-browser
   "d" 'mermaid-open-doc)
 
-(+map-local! :package d2-mode :module me-data
+(+map-local! :package d2-mode
   :keymaps 'd2-mode-map
   "cc" #'d2-compile
   "cf" #'d2-compile-file
@@ -1264,7 +1293,7 @@ It is deferred until `general' gets loaded and configured."
   "v"  #'d2-view-current-svg
   "h"  #'d2-open-doc)
 
-(+map-local! :package csv-mode :module me-data
+(+map-local! :package csv-mode
   :keymaps 'csv-mode-map
   "a" #'csv-align-fields
   "u" #'csv-unalign-fields
@@ -1273,12 +1302,12 @@ It is deferred until `general' gets loaded and configured."
   "k" #'csv-kill-fields
   "t" #'csv-transpose)
 
-(+map-local! :package rainbow-csv :module me-data
+(+map-local! :package rainbow-csv
   :keymaps '(csv-mode-map tsv-mode-map)
   "r" #'rainbow-csv-mode
   "R" #'rainbow-csv-highlight)
 
-(+map-local! :package json-mode :module me-data
+(+map-local! :package json-mode
   :keymaps '(json-mode-map json-ts-mode-map)
   "p" #'json-mode-show-path
   "t" #'json-toggle-boolean
@@ -1288,14 +1317,14 @@ It is deferred until `general' gets loaded and configured."
   "-" #'json-decrement-number-at-point
   "f" #'json-mode-beautify)
 
-(+map-local! :package graphviz-dot-mode :module me-data
+(+map-local! :package graphviz-dot-mode
   :keymaps 'graphviz-dot-mode-map
   "p" #'graphviz-dot-preview
   "P" #'graphviz-dot-view
   "l" #'graphviz-turn-on-live-preview
   "L" #'graphviz-turn-off-live-preview)
 
-(+map-local! :package plantuml-mode :module me-data
+(+map-local! :package plantuml-mode
   :keymaps 'plantuml-mode-map
   "p" #'plantuml-preview-buffer
   "P" #'plantuml-preview
@@ -1303,13 +1332,6 @@ It is deferred until `general' gets loaded and configured."
                       (plantuml-disable-debug)
                     (plantuml-enable-debug)))
         :wk "Toggle debug"))
-
-
-
-;;; For `me-undo'
-
-(+map! :package vundo :module me-undo
-  "ou" #'vundo)
 
 
 
@@ -1430,16 +1452,6 @@ It is deferred until `general' gets loaded and configured."
 
 
 
-;;; For `me-workspaces'
-
-(+map! :package project-tab-groups :module me-workspaces
-  :infix "TAB"
-  "TAB" #'tab-bar-switch-to-tab
-  "o" #'project-switch-project
-  "d" #'tab-bar-close-tab)
-
-
-
 ;;; For `me-god'
 
 (+evil-conf-for! god-mode me-god
@@ -1479,57 +1491,6 @@ It is deferred until `general' gets loaded and configured."
     :keymaps 'octave-mode-map
     "e"  '(nil :wk "eval")
     "ee" #'+eros-octave-eval-last-sexp))
-
-
-
-;;; For `me-common-lisp'
-
-(+map-local! :package sly :module me-common-lisp
-  :keymaps '(lisp-mode-map)
-  "s"  #'sly
-  "c"  '(nil :wk "compile")
-  "cc" #'sly-compile-file
-  "cC" #'sly-compile-and-load-file
-  "cd" #'sly-compile-defun
-  "cr" #'sly-compile-region
-  "g"  '(nil :wk "goto/find")
-  "gn" #'sly-goto-first-note
-  "gL" #'sly-load-file
-  "gn" #'sly-next-note
-  "gN" #'sly-previous-note
-  "gs" #'sly-stickers-next-sticker
-  "gS" #'sly-stickers-prev-sticker
-  "gN" #'sly-previous-note
-  "gd" #'sly-edit-definition
-  "gD" #'sly-edit-definition-other-window
-  "gb" #'sly-pop-find-definition-stack
-  "h"  '(nil :wk "help/info")
-  "hs" #'sly-describe-symbol
-  "hf" #'sly-describe-function
-  "hc" #'sly-who-calls
-  "hC" #'sly-calls-who
-  "hs" #'sly-who-calls
-  "hC" #'sly-calls-who
-  "hd" #'sly-disassemble-symbol
-  "hD" #'sly-disassemble-definition
-  "r"  '(nil :wk "repl")
-  "rr" #'sly-restart-inferior-lisp
-  "rc" #'sly-mrepl-clear-repl
-  "rs" #'sly-mrepl-sync
-  "rn" #'sly-mrepl-new
-  "rq" #'sly-quit-lisp)
-
-(+map-local! :package sly-macrostep :module me-common-lisp
-  :keymaps '(sly-mode-map sly-editing-mode-map sly-mrepl-mode-map)
-  "m" '(macrostep-expand :wk "Expand macro"))
-
-
-
-;;; For `me-modeling'
-
-(+map-local! :package scad-mode :module me-modeling
-  :keymaps 'scad-mode-map
-  "p" #'scad-preview)
 
 
 
@@ -1592,16 +1553,36 @@ It is deferred until `general' gets loaded and configured."
 
 
 
-;;; For `me-scheme'
-
-(+map-local! :package macrostep-geiser :module me-scheme
-  :keymaps '(geiser-mode-map geiser-repl-mode-map)
-  "m" '(macrostep-expand :wk "Expand macro")
-  "M" #'macrostep-geiser-expand-all)
-
-
-
 ;;; For obsolete modules/packages
+
+(+evil-conf-for! eopengrok obsolete/me-eopengrok
+  :config-form
+  (+nmap!
+    :keymaps 'eopengrok-mode-map
+    "n" #'eopengrok-next-line
+    "p" #'eopengrok-previous-line
+    "q" #'eopengrok-quit
+    "RET" #'eopengrok-jump-to-source))
+
+(+map! :package clang-format :module obsolete/me-clang-format
+  :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map cuda-mode-map scad-mode-map)
+  "cfc" #'clang-format-buffer)
+
+(+evil-conf-for! better-jumper obsolete/me-better-jumper
+  :init-form
+  (progn
+    (keymap-global-set "<remap> <evil-jump-forward>" #'better-jumper-jump-forward)
+    (keymap-global-set "<remap> <evil-jump-backward>" #'better-jumper-jump-backward)
+    (keymap-global-set "<remap> <xref-pop-marker-stack>" #'better-jumper-jump-backward)))
+
+(+map-local! :package restclient :module obsolete/me-restclient
+  :keymaps 'restclient-mode-map
+  "r"     '(nil :wk "restclinet")
+  "r RET" #'restclient-http-send-current-suppress-response-buffer
+  "rs"    #'restclient-http-send-current
+  "rr"    #'restclient-http-send-current-stay-in-window
+  "rf"    #'restclient-http-send-current-raw
+  "re"    #'restclient-copy-curl-command)
 
 (+map-local! :package dap-mode :module obsolete/me-lsp
   :keymaps '(c-mode-map c++-mode-map python-mode-map
