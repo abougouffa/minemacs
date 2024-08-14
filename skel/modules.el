@@ -46,12 +46,13 @@
         ;; me-workspaces  ; Workspace separation (project-tab-groups, ...)
         me-window))       ; Frame & window tweaks (ace-window, ...)
 
+
 ;;; List of disabled packages
 ;; You can set `minemacs-disabled-packages' to disable some packages. For
 ;; example, if you want to use the `me-ui' module, but you want to disable the
 ;; `focus' package. You can use:
 ;; (push 'focus minemacs-disabled-packages)
-
+;;
 ;; Adding a package to `minemacs-disabled-packages' guarantees disabling its
 ;; corresponding `use-package' section in MinEmacs' modules. However, please
 ;; note that, if you want to completely disable a package, you need to make sure
@@ -62,6 +63,15 @@
 ;; For example, to completely disable all of `magit', `magit-todos' and
 ;; `magit-file-icons', you can use:
 ;; (push '(magit magit-todos magit-file-icons) minemacs-disabled-packages)
+
+
+;;; Immediately load the on-demand modules
+;; MinEmacs includes a set of modules that are loaded on-demand. For instance,
+;; when you open a "*.plantuml" file, the `on-demand/me-plantuml' module gets
+;; automatically loaded. You can force MinEmacs to load the module by adding it
+;; to your `minemacs-modules':
+;; (push 'on-demand/me-plantuml minemacs-modules)
+
 
 ;;; Using the obsolete modules
 ;; You can use the obsolete packages configurations by adding the
