@@ -14,8 +14,10 @@
 
 (use-package pcap-mode
   :straight t
-  :mode (rx "." (or "pcap" "pcapng" "ntar") eol))
-
+  :mode (rx "." (or "pcap" "pcapng" "ntar") eol)
+  :config
+  (+setq-hook! pcap-mode
+    truncate-lines t))
 
 (provide 'on-demand/me-pcap)
 ;;; me-pcap.el ends here
