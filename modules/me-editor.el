@@ -8,6 +8,19 @@
 
 ;;; Code:
 
+(use-package vundo ; visual undo tree
+  :straight t
+  :custom
+  (vundo-compact-display t)
+  (vundo-window-max-height 8)
+  (vundo-glyph-alist vundo-unicode-symbols))
+
+(use-package undo-fu-session ; persist undo sessions
+  :straight t
+  :hook (minemacs-lazy . undo-fu-session-global-mode)
+  :custom
+  (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz)))
+
 (use-package ws-butler
   :straight (:host github :repo "hlissner/ws-butler")
   :hook (minemacs-first-file . ws-butler-global-mode))
