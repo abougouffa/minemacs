@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(use-package one-tab-per-project
+(use-package otpp
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
   :bind (("C-x t D" . otpp-detach-buffer-to-tab)
