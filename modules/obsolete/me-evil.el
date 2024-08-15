@@ -246,10 +246,6 @@ It is deferred until `general' gets loaded and configured."
     ,(when config-form
       `(with-eval-after-load ',package ,config-form))))
 
-
-
-;;; For `me-keybindings'
-
 (use-package general
   :straight t
   ;; PERF: Loading `general' early make Emacs very slow on startup.
@@ -485,7 +481,11 @@ It is deferred until `general' gets loaded and configured."
   ;; are available (See the `+map!' macro definition in "elisp/+minemacs.el").
   (provide 'me-general-ready))
 
-(+evil-conf-for! which-key me-keybindings
+
+
+;;; For `me-builtin'
+
+(+evil-conf-for! which-key me-builtin
   :config-form
   (cl-callf append which-key-replacement-alist
     (list
@@ -495,10 +495,6 @@ It is deferred until `general' gets loaded and configured."
      '(("\\`SPC TAB" . "\\`tabspaces-\\(.*\\)")                  . (nil . "⭾·\\1"))
      '(("\\`SPC p" . "\\`\\+?\\(?:consult-\\)?project-\\(.*\\)") . (nil . "π·\\1"))
      '(("" . "\\`evil[-:]?\\(?:a-\\)?\\(.*\\)")                  . (nil . "ɛ·\\1")))))
-
-
-
-;;; For `me-builtin'
 
 (+map-local! :package edebug
   :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
@@ -862,7 +858,6 @@ It is deferred until `general' gets loaded and configured."
 (+map! :package spdx :module me-editor
   "il" #'spdx-insert-spdx-only
   "ic" #'spdx-insert-spdx-copyright)
-
 
 
 
