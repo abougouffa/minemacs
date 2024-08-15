@@ -249,6 +249,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-kotlin :auto-mode '(("\\.kts?\\'" kotlin-mode kotlin-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-latex.el
+
+(minemacs-register-on-demand-module 'me-latex :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) auctex auctex-latexmk latex-preview-pane)))
+
+
 ;;; Generated autoloads from me-lib.el
 
 (register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+res" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))

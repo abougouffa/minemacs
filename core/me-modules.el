@@ -25,7 +25,6 @@
     me-god
     ;; me-gtd
     me-keybindings
-    me-latex
     ;; me-lifestyle
     ;; me-math
     ;; me-media

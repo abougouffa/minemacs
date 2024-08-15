@@ -1,12 +1,16 @@
-;;; me-latex.el --- LaTeX related stuff -*- lexical-binding: t; -*-
+;;; me-latex.el --- LaTeX extras -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
-;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
 ;;; Commentary:
 
 ;;; Code:
+
+;;;###autoload
+(minemacs-register-on-demand-module 'me-latex
+  :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) . (auctex auctex-latexmk latex-preview-pane))))
 
 ;; Adapted from Doom Emacs and Crafted Emacs
 (use-package tex
@@ -167,6 +171,5 @@
   :straight t)
 
 
-(provide 'me-latex)
-
+(provide 'on-demand/me-latex)
 ;;; me-latex.el ends here

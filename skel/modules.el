@@ -24,7 +24,6 @@
         me-god            ; Enter Emacs commands without modifier keys (god-mode, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)
         me-keybindings    ; Keybinding (general, which-key, hydra, ...)
-        me-latex          ; LaTeX (auctex, auctex-latexmk, LaTeX-preview-pane, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
         ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
         me-media          ; Multimedia (empv, emms, ...)
