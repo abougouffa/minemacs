@@ -24,7 +24,6 @@
     ;; me-fun
     me-god
     ;; me-gtd
-    me-keybindings
     ;; me-lifestyle
     ;; me-math
     ;; me-media

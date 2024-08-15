@@ -23,7 +23,6 @@
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
         me-god            ; Enter Emacs commands without modifier keys (god-mode, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)
-        me-keybindings    ; Keybinding (general, which-key, hydra, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
         ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
         me-media          ; Multimedia (empv, emms, ...)
