@@ -45,6 +45,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-awk :auto-mode '(("\\.awk\\'" . awk-ts-mode)) :companion-packages '((awk-mode . awk-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-cc.el
+
+(minemacs-register-on-demand-module 'me-cc :companion-packages '(((c-mode c++-mode c-ts-mode c++-ts-mode) . flymake-cppcheck)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-clojure.el
 
 (minemacs-register-on-demand-module 'me-clojure :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
@@ -710,7 +715,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
 
-(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) . geiser-mode)))
+(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) geiser-mode flymake-guile)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el

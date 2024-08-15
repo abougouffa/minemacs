@@ -115,8 +115,7 @@
         (when (called-interactively-p)
           (user-error "No installed tree-sitter grammar for mode `%s'" major-mode))))))
 
-(when (+emacs-features-p 'tree-sitter)
-  (push 'treesit straight-built-in-pseudo-packages)) ; ts-movement depends on it
+(push 'treesit straight-built-in-pseudo-packages) ; ts-movement depends on it
 
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")

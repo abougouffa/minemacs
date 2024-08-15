@@ -12,7 +12,7 @@
 (minemacs-register-on-demand-module 'me-scheme
   :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode))
   :interpreter-mode '(("racket" . racket-mode))
-  :companion-packages '(((racket-mode scheme-mode) . geiser-mode)))
+  :companion-packages '(((racket-mode scheme-mode) . (geiser-mode flymake-guile))))
 
 (use-package racket-mode
   :straight t)
@@ -38,6 +38,11 @@
   :straight t
   :after geiser
   :hook ((geiser-mode geiser-repl-mode) . macrostep-geiser-setup))
+
+(use-package flymake-guile
+  :straight (:source emacsmirror-mirror)
+  :init
+  (when (executable-find "guild") (add-hook 'scheme-mode-hook #'flymake-guile)))
 
 
 (provide 'on-demand/me-scheme)

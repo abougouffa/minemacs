@@ -15,19 +15,8 @@
   :custom
   (flymake-collection-hook-inherit-config t))
 
-(use-package flymake-cppcheck
-  :straight (:host github :repo "shaohme/flymake-cppcheck")
-  :init
-  (when (executable-find "cppcheck")
-    (satch-add-hook '(c-mode-hook c-ts-mode-hook c++-mode-hook c++-ts-mode-hook) #'flymake-cppcheck-setup)))
-
 (use-package flymenu
   :straight (:host github :repo "KarimAziev/flymenu"))
-
-(use-package flymake-guile
-  :straight (:source emacsmirror-mirror)
-  :init
-  (when (executable-find "guild") (add-hook 'scheme-mode-hook #'flymake-guile)))
 
 (use-package flymake-pmd
   :straight (:host github :repo "rody/flymake-pmd")
