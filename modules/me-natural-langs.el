@@ -64,7 +64,7 @@ to built-in `flyspell-mode'."
   :config
   (eglot-ltex-enable-handling-client-commands)
   (+eglot-register
-    '(text-mode org-mode markdown-mode rst-mode git-commit-mode)
+    '(text-mode org-mode markdown-mode markdown-ts-mode rst-mode git-commit-mode)
     '("ltex-ls" "--server-type=TcpSocket" "--port" :autoport))
   (+eglot-register
     '(tex-mode context-mode texinfo-mode bibtex-mode)
