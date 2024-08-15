@@ -2,6 +2,44 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.0.0-rc2](https://github.com/abougouffa/minemacs/compare/v9.0.0-rc1..v9.0.0-rc2) - 2024-08-15
+#### Bug Fixes
+- **(obsolete/evil)** fix configurations due to modules changes - ([2e5214d](https://github.com/abougouffa/minemacs/commit/2e5214d9311337553d806b0503338e71687c4089)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate the documentation - ([8eedb7e](https://github.com/abougouffa/minemacs/commit/8eedb7e23b2d05d1055e70406aff298e73b211ca)) - [@abougouffa](https://github.com/abougouffa)
+- **(documentation)** regenerate documentation - ([d231057](https://github.com/abougouffa/minemacs/commit/d2310573e06cfeeb33eb256740a5e3113ee42811)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** document loading `on-demand` modules - ([8d65455](https://github.com/abougouffa/minemacs/commit/8d65455fd0cad7bbc059af29d6d3510bba25a549)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand)** more on-demand packages, remove `me-data` - ([ecefe3b](https://github.com/abougouffa/minemacs/commit/ecefe3b757670b3a86e21350455a2ea1f9cf75a3)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `clang-format` obsolete (use `apheleia` and `format-all`) - ([63a0ca2](https://github.com/abougouffa/minemacs/commit/63a0ca2230e802458e9f1ae1281d607c3c6cbb66)) - [@abougouffa](https://github.com/abougouffa)
+- remove `me-keybindings` (contains only unused `key-chord`) - ([c9fb57f](https://github.com/abougouffa/minemacs/commit/c9fb57fd392003776f3933c92c1268d83b4dc6ca)) - [@abougouffa](https://github.com/abougouffa)
+- support more modes as on-demand modules - ([8093802](https://github.com/abougouffa/minemacs/commit/8093802717beb1a6ab4a0224bbbc644c5d9b6f81)) - [@abougouffa](https://github.com/abougouffa)
+- support more modes as on-demand modules - ([898a10b](https://github.com/abougouffa/minemacs/commit/898a10bcb723d2fc7bcb096ddcf11c8178648ede)) - [@abougouffa](https://github.com/abougouffa)
+- support more modes as on-demand modules - ([35630d2](https://github.com/abougouffa/minemacs/commit/35630d2b1ed3ad6b7d4a821516aeeb335c0127df)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(editor)** minor edit - ([af3691c](https://github.com/abougouffa/minemacs/commit/af3691c4a58d9e24a56a8b1c685145d97010b452)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(obsolete/me-evil)** minor edits - ([e0f5d1f](https://github.com/abougouffa/minemacs/commit/e0f5d1f8870f886f55e579cf2e88d0230b2b120d)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** implement `:interpreter-mode` and refactor the code - ([92052f6](https://github.com/abougouffa/minemacs/commit/92052f62ec03884ddd436bf5d82eb52457469789)) - [@abougouffa](https://github.com/abougouffa)
+- move `otpp` to `me-project`, remove module `me-workspaces` - ([4e27e89](https://github.com/abougouffa/minemacs/commit/4e27e8934ff780e5ed5631367d5b0370fe093fc8)) - [@abougouffa](https://github.com/abougouffa)
+- make `me-latex` an on-demand module - ([6486845](https://github.com/abougouffa/minemacs/commit/6486845b6484f0a04fe7dbb71bc155ee62315a74)) - [@abougouffa](https://github.com/abougouffa)
+- merge `me-undo` into `me-editor` - ([e2a5ad1](https://github.com/abougouffa/minemacs/commit/e2a5ad176ad05c55f9ecfcfe9e3fc8c89ef36fbf)) - [@abougouffa](https://github.com/abougouffa)
+- move `add-node-modules-path` to `me-tools` - ([9a9a712](https://github.com/abougouffa/minemacs/commit/9a9a712bb557c1d695f1922d0d92a1033ad1fbc5)) - [@abougouffa](https://github.com/abougouffa)
+- make Markdown integration an on-demand module - ([ce12126](https://github.com/abougouffa/minemacs/commit/ce1212651333bd80003edeb1a914e8074d1edba0)) - [@abougouffa](https://github.com/abougouffa)
+- change the signature of `minemacs-modules` - ([c80f8d3](https://github.com/abougouffa/minemacs/commit/c80f8d3cfbce7eb74f3053913d9a641e021d5e70)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- add an option to disable all on-demand modules - ([d0d7d7f](https://github.com/abougouffa/minemacs/commit/d0d7d7fb5416d66a3bc6a3ed0e377fe0537710e2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(guard-lf)** don't trigger on IPython notebooks - ([fa7f60f](https://github.com/abougouffa/minemacs/commit/fa7f60fc0495c1c6641201161444bbafc64b18e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(matlab)** install `matlab-mode` unconditionally, exclude `company` backend - ([0e2e0dc](https://github.com/abougouffa/minemacs/commit/0e2e0dcdb83b8ebae6270ef5ee09d52238c50e1b)) - [@abougouffa](https://github.com/abougouffa)
+- **(pcap-mode)** truncate lines by default - ([e05c8d3](https://github.com/abougouffa/minemacs/commit/e05c8d3773b7ebbb37f5d79b44d93ef25ed21f46)) - [@abougouffa](https://github.com/abougouffa)
+- **(rust)** make `rust-mode` an on-demand module, remove `rustic` and `cargo` - ([1ae67d5](https://github.com/abougouffa/minemacs/commit/1ae67d55bc8e24ed427de6e951265d3f3dc708af)) - [@abougouffa](https://github.com/abougouffa)
+- rename `one-tab-per-project` to `otpp` - ([856b054](https://github.com/abougouffa/minemacs/commit/856b054a5d0b49ad7ac65828f3ad2744daafd9ae)) - [@abougouffa](https://github.com/abougouffa)
+- update the modules list - ([0118173](https://github.com/abougouffa/minemacs/commit/0118173c314f82612246d068339c256cfeb62d2f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4e42677](https://github.com/abougouffa/minemacs/commit/4e42677b45061a55d9d61363594f62b67df7b60a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.0.0-rc1](https://github.com/abougouffa/minemacs/compare/c0fca518755420fc6be055b50271364c3285dd2b..v9.0.0-rc1) - 2024-08-11
 #### Bug Fixes
 - **(julia)** restore `julia-mode` in `me-math` - ([8ba7b50](https://github.com/abougouffa/minemacs/commit/8ba7b50275f877c84f2dc9f42d4d7d2789462c76)) - [@abougouffa](https://github.com/abougouffa)
