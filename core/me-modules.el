@@ -42,8 +42,7 @@
     me-tty
     me-ui
     me-vc
-    me-window
-    me-workspaces)
+    me-window)
   "MinEmacs enabled modules."
   :group 'minemacs-core
   :type '(repeat symbol))

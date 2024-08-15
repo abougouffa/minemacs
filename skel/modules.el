@@ -41,7 +41,6 @@
         me-tty            ; Emacs from terminal (xclip, ...)
         me-ui             ; User interface (doom-themes, modus-themes, doom-modeline, svg-lib, page-break-lines, ...)
         me-vc             ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
-        ;; me-workspaces  ; Workspace separation (project-tab-groups, ...)
         me-window))       ; Frame & window tweaks (ace-window, ...)
 
 
