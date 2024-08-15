@@ -38,7 +38,6 @@
     '(emacs-lisp-mode
       lisp-mode
       pascal-mode
-      so-long-mode
       ;; Automatic indent detection in Org files is meaningless. Not to mention,
       ;; a non-standard `tab-width' causes an error in `org-mode.'
       org-mode
