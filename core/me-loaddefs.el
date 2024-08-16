@@ -60,6 +60,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-cmake :auto-mode '((("CMakeLists\\.txt\\'" "\\.cmake\\'") . cmake-mode)) :companion-packages '((cmake-ts-mode cmake-font-lock cmake-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-cobol.el
+
+(minemacs-register-on-demand-module 'me-cobol :auto-mode '(("\\.c\\(ob\\|bl\\|py\\)\\'" . cobol-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
@@ -71,6 +76,11 @@ restores it after that.
 
 (fn LEVEL &optional PRE)" t)
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-coffee.el
+
+(minemacs-register-on-demand-module 'me-coffee :auto-mode '((("\\.coffee\\'" "\\.iced\\'" "Cakefile\\'" "\\.cson\\'") . coffee-mode)) :interpreter-mode '(("coffee" . coffee-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-common-lisp.el
@@ -86,6 +96,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
 
 (minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-cython.el
+
+(minemacs-register-on-demand-module 'me-cython :auto-mode '((("\\.pyx\\'" "\\.px[di]\\'") . cython-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-d.el
@@ -673,6 +688,11 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-p4.el
+
+(minemacs-register-on-demand-module 'me-p4 :auto-mode '(("\\.p4\\(info\\)?\\'" . p4-16-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-pandoc.el
 
 (minemacs-register-on-demand-module 'me-pandoc :companion-packages '(((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . pandoc-mode)))
@@ -716,6 +736,7 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-qt.el
 
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
+(add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rust.el
@@ -768,14 +789,19 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "me-vars" '("+env-" "+load" "emacs/features" "minemacs-" "os/" "sys/arch"))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-vimrc.el
+;;; Generated autoloads from ../modules/on-demand/me-vb.el
 
-(minemacs-register-on-demand-module 'me-vimrc :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
+(minemacs-register-on-demand-module 'me-vb :auto-mode '(("\\.vbs?\\'" . visual-basic-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
+
+(minemacs-register-on-demand-module 'me-vimscript :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode) . web-mode)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el

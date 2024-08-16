@@ -1,4 +1,4 @@
-;;; me-vimrc.el --- Vimrc support -*- lexical-binding: t; -*-
+;;; me-vimscript.el --- VimScript support -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
@@ -9,12 +9,12 @@
 ;;; Code:
 
 ;;;###autoload
-(minemacs-register-on-demand-module 'me-vimrc
+(minemacs-register-on-demand-module 'me-vimscript
   :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 (use-package vimrc-mode
   :straight t)
 
 
-(provide 'on-demand/me-vimrc)
-;;; me-vimrc.el ends here
+(provide 'on-demand/me-vimscript)
+;;; me-vimscript.el ends here

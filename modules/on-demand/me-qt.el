@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-qt
   :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 
+;;;###autoload(add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
+
 (use-package qml-mode
   :straight t)
 

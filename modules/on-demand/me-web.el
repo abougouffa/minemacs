@@ -28,8 +28,10 @@
                  "wp-content/themes/.+/.+\\.php\\'"
                  "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'"
                  "/\\(views\\|html\\|templates\\)/.*\\.php\\'")
-                . web-mode))
-  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode) . web-mode)))
+                . web-mode)
+               ("\\.haml\\'" . haml-mode)
+               ("\\.sass\\'" . sass-mode))
+  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))))
 
 (use-package web-mode
   :straight t
@@ -40,6 +42,12 @@
   (add-to-list 'web-mode-engines-alist '("phoenix" . "\\.[lh]eex\\'")))
 
 (use-package emmet-mode
+  :straight t)
+
+(use-package haml-mode
+  :straight t)
+
+(use-package sass-mode
   :straight t)
 
 
