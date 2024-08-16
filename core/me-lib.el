@@ -748,6 +748,15 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
            form)))
       (eval (macroexp-progn form)))))
 
+(defun +project-safe-root (&optional proj)
+  "Return the root of PROJ using several backends, don't fail."
+  (let ((proj (or proj (project-current))))
+    (or
+     (and proj (project-root proj))
+     (and (fboundp 'ffip-project-root) (ffip-project-root))
+     (and (fboundp 'projectile-project-p) (projectile-project-p) (projectile-project-root))
+     (vc-root-dir))))
+
 
 
 ;;; Proxy
