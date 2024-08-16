@@ -107,9 +107,7 @@
     "Find the project root for CHECKER.
 This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
     (or
-     (and (project-current) (project-root (project-current)))
-     (when (and (featurep 'projectile) (bound-and-true-p projectile-mode)) (projectile-project-root))
-     (vc-root-dir)
+     (+project-safe-root)
      (locate-dominating-file (or buffer-file-name default-directory) ".clang-tidy")
      (progn
        (message "Could not determine project root, trying current directory.")

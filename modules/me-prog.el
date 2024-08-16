@@ -180,9 +180,7 @@
   "Get the \"-style\" argument for clang-format."
   (if-let ((conf-file ".clang-format")
            (dir (locate-dominating-file
-                 (let ((proj (project-current)))
-                   (or (and proj (project-root proj))
-                       default-directory))
+                 (or (+project-safe-root) default-directory)
                  conf-file)))
       (expand-file-name conf-file dir)
     (let ((indent

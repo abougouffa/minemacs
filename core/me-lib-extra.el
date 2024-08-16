@@ -597,11 +597,11 @@ If ENABLE is non-nil, force enabling autoreloading."
   (interactive)
   (let* ((file-name (or buffer-file-name default-directory))
          (base-dir (car (ensure-list (dir-locals-find-file file-name)))))
-    (find-file
-     (cond (base-dir (expand-file-name dir-locals-file base-dir))
-           ((project-current) (expand-file-name dir-locals-file (project-root (project-current))))
-           ((vc-root-dir) (expand-file-name dir-locals-file (vc-root-dir)))
-           (t (expand-file-name dir-locals-file (file-name-directory file-name)))))))
+    (find-file (expand-file-name
+                dir-locals-file
+                (or (expand-file-name dir-locals-file base-dir)
+                    (+project-safe-root)
+                    (file-name-directory file-name))))))
 
 
 

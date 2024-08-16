@@ -30,11 +30,7 @@
 (defun +realgud:start (&optional path)
   "Start the RealGUD debugger suitable for the current mode."
   (interactive (list (when evil-called-from-ex-p (evil-ex-file-arg)))) ;; <=> `evil-define-command' with (interactive "<f>")
-  (let ((default-directory
-         (or (and (project-current) (project-root (project-current)))
-             (and (fboundp 'projectile-project-root) (projectile-project-root))
-             (vc-root-dir)
-             default-directory)))
+  (let ((default-directory (or (+project-safe-root) default-directory)))
     (pcase major-mode
       ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode
            'objc-mode 'fortran-mode 'ada-mode 'modula-2-mode

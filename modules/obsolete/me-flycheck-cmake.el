@@ -23,7 +23,7 @@
   "Get the \"compile_commands.json\" file starting from ROOT path.
 When ROOT is nil, use the project root."
   (catch 'file-found
-    (let ((proj-root (or root (project-root (project-current)))))
+    (let ((proj-root (or root (+project-safe-root))))
       (dolist (file '("compile_commands.json"
                       "build/compile_commands.json"
                       "build/release/compile_commands.json"
@@ -36,11 +36,7 @@ When ROOT is nil, use the project root."
   "Extract compiler arguments for FILENAME.
 When FILENAME is nil, use the file name of the current buffer."
   (when-let* ((file (file-truename (or filename (buffer-file-name))))
-              (proj-root (or (and (fboundp 'projectile-project-root)
-                                  (projectile-project-root))
-                             (project-root (project-current))
-                             (vc-root-dir)
-                             (file-name-directory file))))
+              (proj-root (or (+project-safe-root) (file-name-directory file))))
     ;; In C/C++, headers are not compiled like source files, we need to search if a source
     ;; file with the same name exists in the database, or use options from another file!.
     (when (string-match "\\.\\([Hh]\\|[Hh][Hh]\\|[Hh]\\+\\+\\|[Hh][Pp][Pp]\\|[Hh][Xx][Xx]\\)$" file)
