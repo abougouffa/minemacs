@@ -80,7 +80,10 @@ Fall back to the default `citre--project-root'."
 (use-package xcscope
   :straight t
   :unless os/win
-  :commands (cscope-create-list-of-files-to-index cscope-index-files))
+  :commands (cscope-create-list-of-files-to-index cscope-index-files)
+  :custom
+  (cscope-option-do-not-update-database t)
+  (cscope-display-cscope-buffer nil))
 
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")

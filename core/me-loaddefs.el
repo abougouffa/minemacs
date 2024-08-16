@@ -118,6 +118,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-dhall :auto-mode '(("\\.dhall\\'" . dhall-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-djvu.el
+
+(minemacs-register-on-demand-module 'me-djvu :auto-mode '(("\\.[dD][jJ][vV][uU]?\\'" . djvu-init-mode)) :magic-mode '(("%DJVU" . djvu-read-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-docker.el
 
 (minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
@@ -777,7 +782,7 @@ mode if ARG is nil, omitted, or is a positive number.  Disable the mode
 if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate `+writing-mode'.
+evaluate the variable `+writing-mode'.
 
 The mode's hook is called both when the mode is enabled and when it is
 disabled.
