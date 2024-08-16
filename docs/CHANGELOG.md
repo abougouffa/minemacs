@@ -2,7 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
-## [v9.0.0-rc2](https://github.com/abougouffa/minemacs/compare/v9.0.0-rc1..v9.0.0-rc2) - 2024-08-15
+## [v9.0.0](https://github.com/abougouffa/minemacs/compare/v9.0.0-rc2..v9.0.0) - 2024-08-16
+#### Bug Fixes
+- ensure asking for loading on-demand packages when choosen - ([06c4fda](https://github.com/abougouffa/minemacs/commit/06c4fdac07afbc03c5bd892b57e9bd943d0f91dd)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(documentation)** regenerate the documentation - ([43918a1](https://github.com/abougouffa/minemacs/commit/43918a1c8b2e063976e024ee8c5446e0f412099d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ai)** add initial support for `whisper` - ([9f7fa77](https://github.com/abougouffa/minemacs/commit/9f7fa77142c9078fe8e84717c1fbf65a353734f6)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+project-safe-root` - ([c8f2976](https://github.com/abougouffa/minemacs/commit/c8f297660c60fd4b62bc463cc7d263a7fa64f98c)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for DjVu files - ([cc0ab8f](https://github.com/abougouffa/minemacs/commit/cc0ab8f2089adeedbcdeb0ee4e2f03cbbef18e84)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `pandoc-mode` to an on-demand module - ([1a4e279](https://github.com/abougouffa/minemacs/commit/1a4e2794c5722cc1d0613f77b19ed7bc75af9dc9)) - [@abougouffa](https://github.com/abougouffa)
+- move PDF related packages to on-demand module `me-pdf` - ([1029365](https://github.com/abougouffa/minemacs/commit/102936540b4c16d7070497cf4ec7bac7e8002b35)) - [@abougouffa](https://github.com/abougouffa)
+- make use of `+project-safe-root` - ([d12e0af](https://github.com/abougouffa/minemacs/commit/d12e0af8667dd172c2e6c73a50faaecab0f4e773)) - [@abougouffa](https://github.com/abougouffa)
+- load `flymake-cppcheck` and `flymake-guile` on-demand - ([2ce317d](https://github.com/abougouffa/minemacs/commit/2ce317d17b1f4777fcd4c1a83e96f9d3bd211194)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(ltex-ls)** use for `markdown-ts-mode` - ([9b1d84f](https://github.com/abougouffa/minemacs/commit/9b1d84f3591d6b5e0c1de6f12174195404afc998)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([49230a8](https://github.com/abougouffa/minemacs/commit/49230a804ea6a48f2e50a83772da5a46324cb529)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bced43c](https://github.com/abougouffa/minemacs/commit/bced43cf12aa2aa1ff53074196cec9fc002c21f3)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
+## [v9.0.0-rc2](https://github.com/abougouffa/minemacs/compare/v9.0.0-rc1..v9.0.0-rc2) - 2024-08-16
 #### Bug Fixes
 - **(obsolete/evil)** fix configurations due to modules changes - ([2e5214d](https://github.com/abougouffa/minemacs/commit/2e5214d9311337553d806b0503338e71687c4089)) - [@abougouffa](https://github.com/abougouffa)
 #### Documentation
@@ -16,6 +37,8 @@ All notable changes to this project will be documented in this file. See [conven
 - support more modes as on-demand modules - ([8093802](https://github.com/abougouffa/minemacs/commit/8093802717beb1a6ab4a0224bbbc644c5d9b6f81)) - [@abougouffa](https://github.com/abougouffa)
 - support more modes as on-demand modules - ([898a10b](https://github.com/abougouffa/minemacs/commit/898a10bcb723d2fc7bcb096ddcf11c8178648ede)) - [@abougouffa](https://github.com/abougouffa)
 - support more modes as on-demand modules - ([35630d2](https://github.com/abougouffa/minemacs/commit/35630d2b1ed3ad6b7d4a821516aeeb335c0127df)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(version)** v9.0.0-rc2 - ([8f681cb](https://github.com/abougouffa/minemacs/commit/8f681cb2de7c45ba557e664d2328549457f0934e)) - [@abougouffa](https://github.com/abougouffa)
 #### Nitpicks, changes with no side effect
 - **(editor)** minor edit - ([af3691c](https://github.com/abougouffa/minemacs/commit/af3691c4a58d9e24a56a8b1c685145d97010b452)) - [@abougouffa](https://github.com/abougouffa)
 #### Refactoring
@@ -40,7 +63,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 - - -
 
-## [v9.0.0-rc1](https://github.com/abougouffa/minemacs/compare/c0fca518755420fc6be055b50271364c3285dd2b..v9.0.0-rc1) - 2024-08-11
+## [v9.0.0-rc1](https://github.com/abougouffa/minemacs/compare/c0fca518755420fc6be055b50271364c3285dd2b..v9.0.0-rc1) - 2024-08-16
 #### Bug Fixes
 - **(julia)** restore `julia-mode` in `me-math` - ([8ba7b50](https://github.com/abougouffa/minemacs/commit/8ba7b50275f877c84f2dc9f42d4d7d2789462c76)) - [@abougouffa](https://github.com/abougouffa)
 #### Features
@@ -58,6 +81,7 @@ All notable changes to this project will be documented in this file. See [conven
 - **(snippets)** rename the on-demand module snippet - ([0616038](https://github.com/abougouffa/minemacs/commit/061603892a8e405fb5033a421ea1087d66a9214d)) - [@abougouffa](https://github.com/abougouffa)
 - **(snippets)** fix `memode` snippet - ([edcbd69](https://github.com/abougouffa/minemacs/commit/edcbd6975baf6877cd50ce62400a55466bbd4a5e)) - [@abougouffa](https://github.com/abougouffa)
 - **(snippets)** add a snippet for creating extra modes modules - ([0a280bc](https://github.com/abougouffa/minemacs/commit/0a280bcf64551ed92fbbdd84126371282a2bfcb5)) - [@abougouffa](https://github.com/abougouffa)
+- **(version)** v9.0.0-rc1 - ([27033f4](https://github.com/abougouffa/minemacs/commit/27033f4131f2b45d0e5ecb0929dbb2fb68496f0b)) - [@abougouffa](https://github.com/abougouffa)
 #### Refactoring
 - **(empv)** tweak the download playlist command - ([dba318c](https://github.com/abougouffa/minemacs/commit/dba318c94728f639ffef58b89ebe4ced3aa455e5)) - [@abougouffa](https://github.com/abougouffa)
 - make Zig and CMake integration into on-demand modules - ([87fdf43](https://github.com/abougouffa/minemacs/commit/87fdf4355edf321f0f4f1fb5c4adaa36abf7f550)) - [@abougouffa](https://github.com/abougouffa)
