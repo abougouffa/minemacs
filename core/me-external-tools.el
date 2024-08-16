@@ -274,7 +274,10 @@
      :desc "Command line video player")
     (:tool ollama
      :link "https://github.com/ollama/ollama"
-     :desc "Get up and running with Llama 2, Mistral, and other large language models locally")))
+     :desc "Get up and running with Llama 2, Mistral, and other large language models locally")
+    (:tool whisper.cpp
+     :link "https://github.com/ggerganov/whisper.cpp"
+     :desc "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model")))
 
 
 (provide 'me-external-tools)

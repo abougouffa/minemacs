@@ -60,6 +60,12 @@
 (use-package elisa
   :straight t)
 
+(use-package whisper
+  :straight (:host github :repo "natrys/whisper.el")
+  :custom
+  (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
+  (whisper-use-threads (/ (num-processors) 2)))
+
 
 (provide 'me-ai)
 
