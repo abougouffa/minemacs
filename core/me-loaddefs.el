@@ -678,6 +678,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-pdf.el
+
+(minemacs-register-on-demand-module 'me-pdf :auto-mode '(("\\.[pP][dD][fF]\\'" . pdf-view-mode)) :magic-mode '(("%PDF" . pdf-view-mode)) :companion-packages '((doc-view-mode pdf-view-mode pdf-isearch-minor-mode pdf-view-restore-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-pkgbuild.el
 
 (minemacs-register-on-demand-module 'me-pkgbuild :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode)) :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))

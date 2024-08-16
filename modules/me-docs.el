@@ -8,26 +8,6 @@
 
 ;;; Code:
 
-(use-package pdf-tools
-  :straight t
-  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :magic ("%PDF" . pdf-view-mode)
-  :hook (minemacs-build-functions . pdf-tools-install)
-  :custom
-  (pdf-view-display-size 'fit-page)
-  (pdf-view-image-relief 2)
-  (pdf-view-use-scaling t))
-
-(use-package pdf-isearch
-  :hook (pdf-view-mode . pdf-isearch-minor-mode))
-
-(use-package pdf-view-restore
-  :straight t
-  :hook (pdf-view-mode . pdf-view-restore-mode)
-  :custom
-  (use-file-base-name-flag nil)
-  (pdf-view-restore-filename (concat minemacs-local-dir "pdf-view-restore.el")))
-
 (use-package pdfgrep
   :straight t
   :commands (pdfgrep-mode pdfgrep)
