@@ -673,6 +673,11 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-pandoc.el
+
+(minemacs-register-on-demand-module 'me-pandoc :companion-packages '(((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . pandoc-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-pcap.el
 
 (minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))

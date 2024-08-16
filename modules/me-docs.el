@@ -27,10 +27,6 @@
   (crdt-use-tuntox +tuntox-available-p)
   (crdt-use-stunnel +stunnel-available-p))
 
-(use-package pandoc-mode
-  :straight t
-  :hook (markdown-mode . conditionally-turn-on-pandoc))
-
 (use-package rfc-mode
   :straight t
   :custom
