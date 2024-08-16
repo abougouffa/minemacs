@@ -586,6 +586,10 @@ Find super-project root starting from DIR.
 
 Define PACKAGE's COMMANDS for super-project context.
 
+#### `(+project-safe-root &optional PROJ)`
+
+Return the root of PROJ using several backends, don't fail.
+
 #### `(minemacs-get-enabled-proxies)`
 
 Get a list of enabled proxies.
