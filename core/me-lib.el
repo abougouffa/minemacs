@@ -1250,7 +1250,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                  (cl-find-if-not #'fboundp modes)
                                  (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
                                      (and (not noninteractive) ; ask only when in an interactive session
-                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
                                                             module (current-buffer))))))))
                   (push module mods)
@@ -1282,7 +1281,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                  (not (fboundp mode))
                                  (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
                                      (and (not noninteractive) ; ask only when in an interactive session
-                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
                   (push module mods)
@@ -1312,7 +1310,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                               (looking-at func-or-regexp))))))
                                  (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
                                      (and (not noninteractive) ; ask only when in an interactive session
-                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
                                                             (current-buffer) mode module)))))))
                   (push module mods)
@@ -1339,7 +1336,6 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                                    (string-match-p (format "\\`%s\\'" interpreter) (file-name-nondirectory interp)))
                                  (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
                                      (and (not noninteractive) ; ask only when in an interactive session
-                                          (get-buffer-window) ; and for visible buffers
                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
                                                             (current-buffer) mode module)))))))
                   (push module mods)
