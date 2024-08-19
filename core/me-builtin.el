@@ -480,7 +480,7 @@ or file path may exist now."
          ("C-c [" . align-regexp))
   :config
   ;; Add more C-like modes to the list
-  (cl-callf append align-c++-modes '(csharp-mode cuda-mode opencl-mode llvm-ts-mode))
+  (cl-callf append align-c++-modes '(csharp-mode cuda-mode opencl-c-mode llvm-ts-mode))
   (defun +align-code (beg end &optional arg)
     "Like `align', but indents if called with prefix."
     (interactive "rP")

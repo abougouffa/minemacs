@@ -34,7 +34,7 @@
     (pcase major-mode
       ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode
            'objc-mode 'fortran-mode 'ada-mode 'modula-2-mode
-           'd-mode 'opencl-mode 'go-mode 'go-ts-mode)
+           'd-mode 'opencl-c-mode 'go-mode 'go-ts-mode)
        (realgud:gdb (if path (concat "gdb " path))))
       ((or 'rust-mode 'rust-ts-mode)
        (lldb (if path (concat "lldb " path))))
