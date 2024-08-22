@@ -26,68 +26,66 @@
   :commands (ipdb realgud:ipdb))
 
 
-;;;###autoload
-(defun +realgud:start (&optional path)
-  "Start the RealGUD debugger suitable for the current mode."
-  (interactive (list (when evil-called-from-ex-p (evil-ex-file-arg)))) ;; <=> `evil-define-command' with (interactive "<f>")
-  (let ((default-directory (or (+project-safe-root) default-directory)))
-    (pcase major-mode
-      ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode
-           'objc-mode 'fortran-mode 'ada-mode 'modula-2-mode
-           'd-mode 'opencl-c-mode 'go-mode 'go-ts-mode)
-       (realgud:gdb (if path (concat "gdb " path))))
-      ((or 'rust-mode 'rust-ts-mode)
-       (lldb (if path (concat "lldb " path))))
-      ((or 'js-mode 'js2-mode 'js3-mode 'typescript-mode 'js-ts-mode 'typescript-ts-mode)
-       (realgud:trepanjs))
-      ((or 'sh-mode 'bash-ts-mode)
-       (pcase sh-shell
-         ((or "bash" "sh")
-          (realgud:bashdb (if path (concat "bashdb " path))))
-         ("zsh"
-          (realgud:zshdb (if path (concat "zshdb " path))))
-         (_ (user-error "No shell debugger for %s" sh-shell))))
-      (_ (user-error "No debugger for %s" major-mode)))))
-
-;;;###autoload
-(defun +realgud:toggle-breakpoint (&optional bang)
-  "Toggle break point."
-  (interactive (list evil-ex-bang)) ;; <=> `evil-define-command' with (interactive "<!>")
-  (call-interactively (if bang #'realgud:cmd-clear #'realgud:cmd-break)))
-
 (with-eval-after-load 'evil
+  (defun +realgud:start (&optional path)
+    "Start the RealGUD debugger suitable for the current mode."
+    (interactive (list (when evil-called-from-ex-p (evil-ex-file-arg)))) ;; <=> `evil-define-command' with (interactive "<f>")
+    (let ((default-directory (or (+project-safe-root) default-directory)))
+      (pcase major-mode
+        ((or 'c-mode 'c++-mode 'c-ts-mode 'c++-ts-mode
+             'objc-mode 'fortran-mode 'ada-mode 'modula-2-mode
+             'd-mode 'opencl-c-mode 'go-mode 'go-ts-mode)
+         (realgud:gdb (if path (concat "gdb " path))))
+        ((or 'rust-mode 'rust-ts-mode)
+         (lldb (if path (concat "lldb " path))))
+        ((or 'js-mode 'js2-mode 'js3-mode 'typescript-mode 'js-ts-mode 'typescript-ts-mode)
+         (realgud:trepanjs))
+        ((or 'sh-mode 'bash-ts-mode)
+         (pcase sh-shell
+           ((or "bash" "sh")
+            (realgud:bashdb (if path (concat "bashdb " path))))
+           ("zsh"
+            (realgud:zshdb (if path (concat "zshdb " path))))
+           (_ (user-error "No shell debugger for %s" sh-shell))))
+        (_ (user-error "No debugger for %s" major-mode)))))
+
+  (defun +realgud:toggle-breakpoint (&optional bang)
+    "Toggle break point."
+    (interactive (list evil-ex-bang)) ;; <=> `evil-define-command' with (interactive "<!>")
+    (call-interactively (if bang #'realgud:cmd-clear #'realgud:cmd-break)))
+
   (evil-set-command-properties +realgud:start '(:ex-arg file))
   (evil-set-command-properties +realgud:toggle-breakpoint '(:ex-arg t)))
 
 ;; Add some missing gdb/rr commands
-(defun +realgud:cmd-run (arg)
+(defun +realgud:cmd-run ()
   "Run."
-  (interactive "p")
+  (interactive)
   (realgud-command "run"))
 
-(defun +realgud:cmd-start (arg)
+(defun +realgud:cmd-start ()
   "start => break main; run."
-  (interactive "p")
+  (interactive)
   (realgud-command "start"))
 
-(defun +realgud:cmd-reverse-next (arg)
+(defun +realgud:cmd-reverse-next ()
   "Reverse next."
-  (interactive "p")
+  (interactive)
   (realgud-command "reverse-next"))
 
-(defun +realgud:cmd-reverse-step (arg)
+(defun +realgud:cmd-reverse-step ()
   "Reverse step."
-  (interactive "p")
+  (interactive)
   (realgud-command "reverse-step"))
 
-(defun +realgud:cmd-reverse-continue (arg)
+(defun +realgud:cmd-reverse-continue ()
   "Reverse continue."
-  (interactive "p")
+  (interactive)
   (realgud-command "reverse-continue"))
 
-(defun +realgud:cmd-reverse-finish (arg)
+(defun +realgud:cmd-reverse-finish ()
   "Reverse finish."
-  (interactive "p")
+  (interactive)
   (realgud-command "reverse-finish"))
 
 
