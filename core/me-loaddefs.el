@@ -219,6 +219,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-gnuplot :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-godot.el
+
+(minemacs-register-on-demand-module 'me-godot :auto-mode '(("\\.gd\\'" . gdscript-mode) ("\\.tres\\'" . conf-toml-mode) ("\\.tscn\\'" . conf-toml-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-graphql.el
 
 (minemacs-register-on-demand-module 'me-graphql :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
@@ -232,6 +237,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-haskell.el
 
 (minemacs-register-on-demand-module 'me-haskell :auto-mode '((("\\.hsig\\'" "\\.[gh]s\\'" "\\.hsc\\'") . haskell-mode) ("\\.l[gh]s\\'" . haskell-literate-mode)) :interpreter-mode '(("runghc" . haskell-mode) ("runhaskell" . haskell-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-haxe.el
+
+(minemacs-register-on-demand-module 'me-haxe :auto-mode '(("\\.hx\\'" . haxe-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-hurl.el
@@ -252,6 +262,11 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-java.el
 
 (minemacs-register-on-demand-module 'me-java :auto-mode '((("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" "/Jenkinsfile\\'") . groovy-mode)) :interpreter-mode '(("groovy" . groovy-mode)) :companion-packages '(((java-mode java-ts-mode) groovy-mode android-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-jenkins.el
+
+(minemacs-register-on-demand-module 'me-jenkins :auto-mode '(("Jenkinsfile\\'" . jenkinsfile-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-json.el
@@ -726,6 +741,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
 
 (minemacs-register-on-demand-module 'me-protobuf :auto-mode '(("\\.proto\\'" . protobuf-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-purescript.el
+
+(minemacs-register-on-demand-module 'me-purescript :auto-mode '(("\\.purs\\'" . purescript-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-python.el
