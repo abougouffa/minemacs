@@ -248,14 +248,6 @@
   :straight t
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
-  ;; BUG+FIX: Fix `nerd-icons-completion-mode' integration with the new `marginalia'
-  ;; See: minad/marginalia#175 and rainstormstudio/nerd-icons-completion#12
-  (advice-add
-   'nerd-icons-completion-mode :after
-   (satch-defun +nerd-icons-completion--compat-function:after-a (&rest _args)
-     (if nerd-icons-completion-mode
-         (advice-add (compat-function completion-metadata-get) :around #'nerd-icons-completion-completion-metadata-get)
-       (advice-remove (compat-function completion-metadata-get) #'nerd-icons-completion-completion-metadata-get))))
   (nerd-icons-completion-mode 1))
 
 (use-package orderless
