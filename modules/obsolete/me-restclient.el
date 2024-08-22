@@ -11,7 +11,7 @@
 
 (use-package restclient
   :straight (:host github :repo "pashky/restclient.el" :files ("*.el") :fork (:repo "abougouffa/restclient.el"))
-  :hook (restclient-mode . display-line-numbers-mode)
+  :hook (restclient-mode . +prog-mode-run-hooks)
   :mode ("\\.http\\'" . restclient-mode)
   :config
   (require 'restclient-jq)

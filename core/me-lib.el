@@ -1343,6 +1343,9 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
     (when mods (set-auto-mode t))
     mods))
 
+(defun +prog-mode-run-hooks ()
+  (run-hooks 'prog-mode-hook))
+
 
 
 (provide 'me-lib)

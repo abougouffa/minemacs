@@ -14,8 +14,7 @@
 
 (use-package arduino-mode
   :straight (:host github :repo "bookest/arduino-mode")
-  :hook (arduino-mode . display-line-numbers-mode)
-  :hook (arduino-mode . hs-minor-mode))
+  :hook (arduino-mode . +prog-mode-run-hooks))
 
 
 (provide 'on-demand/me-arduino)

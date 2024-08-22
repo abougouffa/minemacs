@@ -19,7 +19,7 @@
   :mode ("\\.gplt\\'" . gnuplot-mode)
   :mode ("\\.gpi\\'" . gnuplot-mode)
   :mode ("\\.plot\\'" . gnuplot-mode)
-  :hook (gnuplot-mode . display-line-numbers-mode)
+  :hook (gnuplot-mode . +prog-mode-run-hooks)
   :hook (gnuplot-mode . visual-line-mode))
 
 

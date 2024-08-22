@@ -14,8 +14,7 @@
 
 (use-package cuda-mode
   :straight t
-  :hook (cuda-mode . display-line-numbers-mode)
-  :hook (cuda-mode . hs-minor-mode))
+  :hook (cuda-mode . +prog-mode-run-hooks))
 
 
 (provide 'on-demand/me-cuda)

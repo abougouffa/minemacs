@@ -15,7 +15,7 @@
 (use-package visual-basic-mode
   :straight t
   :mode "\\.vbs?\\'"
-  :hook (visual-basic-mode . display-line-numbers-mode))
+  :hook (visual-basic-mode . +prog-mode-run-hooks))
 
 
 (provide 'on-demand/me-vb)
