@@ -30,7 +30,8 @@
                  "/\\(views\\|html\\|templates\\)/.*\\.php\\'")
                 . web-mode)
                ("\\.haml\\'" . haml-mode)
-               ("\\.sass\\'" . sass-mode))
+               ("\\.sass\\'" . sass-mode)
+               ("\\.was?t\\'" . wat-mode))
   :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))))
 
 (use-package web-mode
@@ -49,6 +50,10 @@
 
 (use-package sass-mode
   :straight t)
+
+(use-package wat-mode
+  :straight (:host github :repo "devonsparks/wat-mode")
+  :commands (wat-mode))
 
 
 (provide 'obsolete/me-web)

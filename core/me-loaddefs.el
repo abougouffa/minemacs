@@ -55,9 +55,24 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-awk :auto-mode '(("\\.awk\\'" . awk-ts-mode)) :companion-packages '((awk-mode . awk-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-ballerina.el
+
+(minemacs-register-on-demand-module 'me-ballerina :auto-mode '(("\\.bal\\'" . ballerina-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-bqn.el
+
+(minemacs-register-on-demand-module 'me-bqn :auto-mode '(("\\.bqn\\'" . bqn-mode)) :interpreter-mode '(("bqn" . bqn-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-cc.el
 
 (minemacs-register-on-demand-module 'me-cc :companion-packages '(((c-mode c++-mode c-ts-mode c++-ts-mode) . flymake-cppcheck)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-chapel.el
+
+(minemacs-register-on-demand-module 'me-chapel :auto-mode '(("\\.chpl\\'" . chapel-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-clojure.el
@@ -98,6 +113,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-crystal.el
+
+(minemacs-register-on-demand-module 'me-crystal :auto-mode '(("\\(?:\\.cr\\)\\'" . crystal-mode)) :interpreter-mode '(("crystal" . crystal-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-csv.el
 
 (minemacs-register-on-demand-module 'me-csv :auto-mode '(("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.[Tt][Ss][Vv]\\'" . tsv-mode)) :companion-packages '((csv-mode . rainbow-csv)))
@@ -106,6 +126,16 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
 
 (minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-cue.el
+
+(minemacs-register-on-demand-module 'me-cue :auto-mode '(("\\.cue\\'" . cue-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-cypher.el
+
+(minemacs-register-on-demand-module 'me-cypher :auto-mode '(("\\.cyp\\(?:her\\)?\\'" . cypher-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-cython.el
@@ -648,6 +678,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-mathematica)
 
 
+;;; Generated autoloads from ../modules/on-demand/me-mercury.el
+
+(minemacs-register-on-demand-module 'me-mercury :companion-packages '((mercury-mode . metal-mercury-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
 
 (minemacs-register-on-demand-module 'me-mermaid :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
@@ -836,7 +871,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el
