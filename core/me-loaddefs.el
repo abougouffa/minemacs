@@ -21,9 +21,19 @@ position.
 (register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-agda.el
+
+(minemacs-register-on-demand-module 'me-agda :auto-mode '(("\\.l?agda\\'" . agda2-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-alloy.el
 
 (minemacs-register-on-demand-module 'me-alloy :auto-mode '(("\\.als\\'" . alloy-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-apl.el
+
+(minemacs-register-on-demand-module 'me-apl :auto-mode '(("\\.apl\\'" . gnu-apl-mode)) :interpreter-mode '(("apl" . gnu-apl-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-arduino.el
@@ -686,6 +696,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
 (minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-odin.el
+
+(minemacs-register-on-demand-module 'me-odin :auto-mode '(("\\.odin\\'" . odin-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
