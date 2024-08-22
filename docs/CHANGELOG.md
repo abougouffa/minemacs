@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.1.0](https://github.com/abougouffa/minemacs/compare/476ae1011076d380f10c32b3d9c0b870f4196594..v9.1.0) - 2024-08-22
+#### Features
+- more on-demand modes - ([fb8bcd5](https://github.com/abougouffa/minemacs/commit/fb8bcd5ecea740a966133a783cb204df0e809aea)) - [@abougouffa](https://github.com/abougouffa)
+- more on-demand modes - ([7c9daa3](https://github.com/abougouffa/minemacs/commit/7c9daa37a6c04e9017a067e8fc3af88b9cdcd9cf)) - [@abougouffa](https://github.com/abougouffa)
+- more on-demand packages - ([476ae10](https://github.com/abougouffa/minemacs/commit/476ae1011076d380f10c32b3d9c0b870f4196594)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- change the mail address in some files - ([61f6970](https://github.com/abougouffa/minemacs/commit/61f69702bd3b5a6dfbd63629fc560d5ca4af120e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(obsolete/realgud)** avoid using Evil stuff unless used, simplify code - ([9706d4e](https://github.com/abougouffa/minemacs/commit/9706d4e7884688f8892f821bfab9c30b52aef31c)) - [@abougouffa](https://github.com/abougouffa)
+- add `+prog-mode-run-hooks` - ([50bf659](https://github.com/abougouffa/minemacs/commit/50bf659a126abf427e179a9d854dce149579686b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(align)** fix OpenCL integration - ([2c36085](https://github.com/abougouffa/minemacs/commit/2c36085a476c50cac472e2e9fcfb8c9a09706fc9)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-completion)** remove a fix, merged upstream - ([b294ace](https://github.com/abougouffa/minemacs/commit/b294acee6ff3802888dc512c3daf6c9621727318)) - [@abougouffa](https://github.com/abougouffa)
+- **(visual-basic)** enable line numbers in `visual-basic-mode` - ([10126ae](https://github.com/abougouffa/minemacs/commit/10126ae795bc107c36a0d9d84b01c58b6ac364ef)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ae97767](https://github.com/abougouffa/minemacs/commit/ae97767289b724868567d3a00b104e6273d41c84)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.0.0](https://github.com/abougouffa/minemacs/compare/v9.0.0-rc2..v9.0.0) - 2024-08-16
 #### Bug Fixes
 - ensure asking for loading on-demand packages when choosen - ([06c4fda](https://github.com/abougouffa/minemacs/commit/06c4fdac07afbc03c5bd892b57e9bd943d0f91dd)) - [@abougouffa](https://github.com/abougouffa)
