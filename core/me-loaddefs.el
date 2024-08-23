@@ -284,6 +284,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-haxe :auto-mode '(("\\.hx\\'" . haxe-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-hcl.el
+
+(minemacs-register-on-demand-module 'me-hcl :auto-mode '(("\\.hcl\\'" . hcl-mode) ("\\.nomad\\'" . hcl-mode) ("\\.t\\(f\\(vars\\)?\\|ofu\\)\\'" . terraform-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-hurl.el
 
 (minemacs-register-on-demand-module 'me-hurl :auto-mode '(("\\.hurl\\'" . hurl-mode)))
@@ -803,6 +808,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-qsharp.el
+
+(minemacs-register-on-demand-module 'me-qsharp :auto-mode '(("\\.qs\\'" . qsharp-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-qt.el
 
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
@@ -839,6 +849,16 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-stan :auto-mode '(("\\.stan\\'" . stan-mode)) :companion-packages '(((stan-mode stan-ts-mode) eldoc-stan stan-snippets)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-swift.el
+
+(minemacs-register-on-demand-module 'me-swift :auto-mode '(("\\.swift\\(interface\\)?\\'" . swift-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-textile.el
+
+(minemacs-register-on-demand-module 'me-textile :auto-mode '(("\\.textile\\'" . textile-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-toml.el
 
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
@@ -872,6 +892,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
 (minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-wiki.el
+
+(minemacs-register-on-demand-module 'me-wiki :auto-mode '(("\\.wiki\\'" . wikitext-mode)))
 
 
 ;;; Generated autoloads from ../modules/extras/me-writing-mode.el
