@@ -34,22 +34,20 @@
   ;; Add some extra commands to be run on all cursors
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
-      end-of-visual-line
-      indent-for-tab-command
+      beginning-of-visual-line end-of-visual-line indent-for-tab-command
       ;; MinEmacs' commands
-      +kill-whitespace-or-word
-      +kill-region-or-backward-word
-      +backward-kill-whitespace-or-word
-      ;; avy
-      avy-goto-char
-      avy-goto-char-timer
-      ;; crux
-      crux-smart-kill-line
-      crux-smart-open-line
-      crux-smart-open-line-above
-      ;; expreg
-      expreg-expand
-      expreg-contract))
+      +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
+      ;; `avy'
+      avy-goto-char avy-goto-char-timer
+      ;; `crux'
+      crux-smart-kill-line crux-smart-open-line crux-smart-open-line-above
+      ;; `expreg'
+      expreg-expand expreg-contract
+      ;; Org specific commands
+      org-delete-char org-self-insert-command))
+
+  (cl-callf append mc--default-cmds-to-run-once
+    '(pixel-scroll-precision))
 
   ;; Integrate with `symbol-overlay'
   (with-eval-after-load 'symbol-overlay
