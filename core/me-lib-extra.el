@@ -455,9 +455,17 @@ use `browse-url'.
 
 When called with universal argument, open the current buffer's file."
   (interactive (list (if current-prefix-arg (buffer-file-name) (read-file-name "HTML file to open: "))))
-  (let ((url (format "file://%s" (expand-file-name file)))
-        (browse-backend (or (cl-find-if #'fboundp +browse-html-file-browser-priority)
-                            #'browse-url)))
+  (let* ((file (or file
+                   ;; Non file-visiging buffer, make a temporary file
+                   (let ((buf-content (buffer-substring-no-properties (point-min) (point-max))))
+                     (with-temp-buffer
+                       (set-visited-file-name (make-temp-file "browse-html-" nil ".html"))
+                       (insert buf-content)
+                       (save-buffer)
+                       (buffer-file-name)))))
+         (url (format "file://%s" (expand-file-name file)))
+         (browse-backend (or (cl-find-if #'fboundp +browse-html-file-browser-priority)
+                             #'browse-url)))
     (funcall browse-backend url)))
 
 
