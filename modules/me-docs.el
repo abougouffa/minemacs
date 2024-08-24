@@ -8,6 +8,16 @@
 
 ;;; Code:
 
+(use-package pdf-tools
+  :straight t
+  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
+  :magic ("%PDF" . pdf-view-mode)
+  :hook (minemacs-build-functions . pdf-tools-install)
+  :custom
+  (pdf-view-display-size 'fit-page)
+  (pdf-view-image-relief 2)
+  (pdf-view-use-scaling t))
+
 (use-package pdfgrep
   :straight t
   :commands (pdfgrep-mode pdfgrep)
