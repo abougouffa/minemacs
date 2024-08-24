@@ -119,6 +119,10 @@
   :init
   (nerd-icons-archive-mode 1))
 
+(use-package info-colors
+  :straight t
+  :hook (Info-selection . info-colors-fontify-node))
+
 (use-package virtual-format
   :straight (:host github :repo "abougouffa/virtual-format"))
 

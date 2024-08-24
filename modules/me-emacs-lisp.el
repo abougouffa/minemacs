@@ -61,10 +61,6 @@
          ("<remap> <describe-key>" . helpful-key)
          ("C-h h" . helpful-at-point))) ; orig. `view-hello-file'
 
-(use-package info-colors
-  :straight t
-  :hook (Info-selection . info-colors-fontify-node))
-
 (use-package inspector
   :straight t)
 
