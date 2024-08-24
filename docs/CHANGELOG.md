@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.2.0](https://github.com/abougouffa/minemacs/compare/0438bb980bf9e860eb4c4d24128b8074d849f1be..v9.2.0) - 2024-08-24
+#### Features
+- **(emacs-lisp)** make `elisp-demos` obsolete - ([7835185](https://github.com/abougouffa/minemacs/commit/7835185690f25dd34ae6728d4183735f7853a58e)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `casual-agenda` - ([410519c](https://github.com/abougouffa/minemacs/commit/410519c80015c079007a7008a59461ce40abb97d)) - [@abougouffa](https://github.com/abougouffa)
+- more on-demand modes - ([bb8f43d](https://github.com/abougouffa/minemacs/commit/bb8f43daca52101216d7562d93d5b2d579f15e67)) - [@abougouffa](https://github.com/abougouffa)
+- more on-demand modes - ([0438bb9](https://github.com/abougouffa/minemacs/commit/0438bb980bf9e860eb4c4d24128b8074d849f1be)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(ui)** move `info-colors` from `me-emacs-lisp` to `me-ui` - ([874a32b](https://github.com/abougouffa/minemacs/commit/874a32b7a390666b38d70efa23f210fc5e3a3532)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(docs)** restore `pdf-tools` to `me-docs` - ([2bf2baa](https://github.com/abougouffa/minemacs/commit/2bf2baae462f725769d957503b56a62e580dc2ed)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(multiple-cursors)** add some commands to run once or on all cursors - ([f4ab2e3](https://github.com/abougouffa/minemacs/commit/f4ab2e3943d6f2d56bb0ed540104e7b2cfdaca47)) - [@abougouffa](https://github.com/abougouffa)
+- **(x86-lookup)** use the available PDF reader, set the cache directory - ([a11ab2b](https://github.com/abougouffa/minemacs/commit/a11ab2b5b1866aa9169a11130c2d368576e0c6e6)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.1.0](https://github.com/abougouffa/minemacs/compare/476ae1011076d380f10c32b3d9c0b870f4196594..v9.1.0) - 2024-08-22
 #### Features
 - more on-demand modes - ([fb8bcd5](https://github.com/abougouffa/minemacs/commit/fb8bcd5ecea740a966133a783cb204df0e809aea)) - [@abougouffa](https://github.com/abougouffa)
