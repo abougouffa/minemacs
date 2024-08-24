@@ -143,16 +143,20 @@
   :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu)))
 
 (use-package casual-re-builder
-  :straight (:host github :repo "kickingvegas/casual-re-builder")
+  :straight t
   :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu)))
 
 (use-package casual-bookmarks
-  :straight (:host github :repo "kickingvegas/casual-bookmarks")
+  :straight t
   :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu)))
 
 (use-package casual-avy
   :straight t
   :bind ("M-g a" . casual-avy-tmenu))
+
+(use-package casual-agenda
+  :straight (:host github :repo "kickingvegas/casual-agenda")
+  :bind (:map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
 
 
 (provide 'me-ui)
