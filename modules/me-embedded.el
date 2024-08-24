@@ -50,9 +50,9 @@
 (use-package x86-lookup
   :straight t
   :custom
-  (x86-lookup-browse-pdf-function 'x86-lookup-browse-pdf-pdf-tools)
   ;; Get manual from intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
   (x86-lookup-pdf (concat minemacs-local-dir "intel-64-and-ia32-volumes-1234.pdf"))
+  (x86-lookup-cache-directory (concat minemacs-cache-dir "x86-lookup/"))
   :config
   (unless (file-exists-p x86-lookup-pdf)
     (url-copy-file "https://cdrdv2.intel.com/v1/dl/getContent/671200" x86-lookup-pdf t)))
