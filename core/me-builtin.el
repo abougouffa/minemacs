@@ -196,6 +196,10 @@ or file path may exist now."
 
   (add-to-list 'find-file-not-found-functions #'+create-non-existent-directory))
 
+(use-package compat
+  :straight t
+  :demand)
+
 (use-package crm
   :config
   ;; From: github.com/a-schaefers/spartan-emacs/blob/main/spartan-layers/spartan-vertico.el

@@ -230,7 +230,7 @@ the packages loaded with `:after minemacs-lazy' can be loaded."
   (setq minemacs-modules (minemacs-modules t)))
 
 ;; Load modules
-(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-compat me-builtin)))
+(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-builtin)))
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
 
 ;; Run hooks
