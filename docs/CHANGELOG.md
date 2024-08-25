@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.2.1](https://github.com/abougouffa/minemacs/compare/678f6a884981de12ef4292c1f9508dc8c2b422f9..v9.2.1) - 2024-08-25
+#### Bug Fixes
+- **(git-timemachine)** add a hack to fix the font lock issue - ([95eef36](https://github.com/abougouffa/minemacs/commit/95eef36cd1fdbdfe245ef3a7cf204d65b04f1d90)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `compat` to `me-builtin` - ([709e28c](https://github.com/abougouffa/minemacs/commit/709e28cf168483e7140abc4e1db4e92ba9fd745e)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(+browse-html-file)** create a temporary file for non-file visiting buffers - ([df66315](https://github.com/abougouffa/minemacs/commit/df663150f45d97fa7f5b49620a9fa33d5e246951)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([678f6a8](https://github.com/abougouffa/minemacs/commit/678f6a884981de12ef4292c1f9508dc8c2b422f9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.2.0](https://github.com/abougouffa/minemacs/compare/0438bb980bf9e860eb4c4d24128b8074d849f1be..v9.2.0) - 2024-08-24
 #### Features
 - **(emacs-lisp)** make `elisp-demos` obsolete - ([7835185](https://github.com/abougouffa/minemacs/commit/7835185690f25dd34ae6728d4183735f7853a58e)) - [@abougouffa](https://github.com/abougouffa)
