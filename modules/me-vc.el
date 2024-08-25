@@ -63,8 +63,14 @@
 
 (use-package git-timemachine
   :straight t
-  :custom
-  (git-timemachine-show-minibuffer-details t))
+  :hook (git-timemachine-mode . +git-timemachine--run-delayed-mode-hooks-h)
+  :config
+  ;; BUG+FIX: `git-timemachine' applies the mode with `delay-mode-hooks'. For
+  ;; some reason, this makes the buffer losing it's font lock. Hence, we
+  ;; explicitly run the delayed hooks after applying the `git-timemachine-mode'
+  ;; (see the implementation of `git-timemachine--start').
+  (defun +git-timemachine--run-delayed-mode-hooks-h ()
+    (run-mode-hooks 'delayed-mode-hooks)))
 
 (use-package git-commit
   :after magit
