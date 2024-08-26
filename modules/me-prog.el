@@ -82,27 +82,32 @@
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
 
+  (defvar +treesit-auto-enable-in-normal-modes-deny '(org-mode))
+
   ;; Create `treesit' parsers when they are available even in non-treesit modes.
   ;; This is useful for packages like `virtual-format', `treesit-fold', `expreg'
   ;; and `ts-movement'.
   (defun +treesit-enable-available-grammars-on-normal-modes ()
     "Enable `treesit' parses in non-treesit modes."
-    (dolist (recipe treesit-auto-recipe-list)
-      (let ((lang (treesit-auto-recipe-lang recipe)))
-        (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ; When the `xxx-ts-mode' is not available
-          (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe))) ; Get the basic mode name (non-ts)
-            (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
-                  (hook-name (intern (format "%s-hook" remap-mode))))
-              (defalias fn-name (lambda () ; Create the parser if the grammar fot the language is available
-                                  (when (and (treesit-available-p) (treesit-language-available-p lang))
-                                    (treesit-parser-create lang))))
-              (add-hook hook-name fn-name)))))))
+    (when (treesit-available-p)
+      (dolist (recipe treesit-auto-recipe-list)
+        (let ((lang (treesit-auto-recipe-lang recipe)))
+          (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ; When the `xxx-ts-mode' is not available
+            (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe))) ; Get the basic mode name (non-ts)
+              (unless (memq remap-mode +treesit-auto-enable-in-normal-modes-deny) ; Unless this mode is explicitly disabled
+                (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
+                      (hook-name (intern (format "%s-hook" remap-mode))))
+                  (defalias fn-name (lambda () ; Create the parser if the grammar fot the language is available
+                                      (when (treesit-language-available-p lang)
+                                        (treesit-parser-create lang))))
+                  (add-hook hook-name fn-name)))))))))
 
   (+treesit-enable-available-grammars-on-normal-modes)
 
   (defun +treesit-create-parser-in-buffer (buff-name)
     "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
     (interactive (list (if current-prefix-arg (read-buffer "Create treesit parser in buffer: ") (buffer-name))))
+    (unless (treesit-available-p) (user-error "Tree-sitter isn't available in this Emacs build"))
     (with-current-buffer (get-buffer buff-name)
       (if-let* ((lang-recipe (cl-find-if
                               (lambda (recipe)
@@ -110,7 +115,7 @@
                                                    (treesit-auto-recipe-ts-mode recipe))))
                               treesit-auto-recipe-list))
                 (lang (treesit-auto-recipe-lang lang-recipe))
-                (lang (and (treesit-available-p) (treesit-language-available-p lang) lang)))
+                (lang (and (treesit-language-available-p lang) lang)))
           (treesit-parser-create lang)
         (when (called-interactively-p)
           (user-error "No installed tree-sitter grammar for mode `%s'" major-mode))))))
