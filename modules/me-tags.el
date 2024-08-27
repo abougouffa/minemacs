@@ -112,6 +112,17 @@ Fall back to the default `citre--project-root'."
   :straight (:host github :repo "rjarzmik/rscope")
   :commands (rscope-init rscope-regenerate-database))
 
+(use-package irony-mode
+  :straight t
+  :config
+  (when os/win ; Windows performance tweaks
+    (when (boundp 'w32-pipe-read-delay) (setq w32-pipe-read-delay 0))
+    ;; Set the buffer size to 64K on Windows (from the original 4K)
+    (when (boundp 'w32-pipe-buffer-size) (setq irony-server-w32-pipe-buffer-size (* 64 1024)))))
+
+(use-package irony-eldoc
+  :straight t)
+
 
 (provide 'me-tags)
 
