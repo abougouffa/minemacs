@@ -344,12 +344,15 @@ or file path may exist now."
 
   (add-to-list 'project-switch-commands '(project-shell "Shell") t)
 
-  ;; Define some `projectile' commands/functions for `project' (used by some packages, like `fzf' and `neotree')
-  (defun projectile-project-p () (and (project-current) t))
-  (defun projectile-project-root () (when-let ((proj (project-current))) (project-root proj)))
-  (defun projectile-project-name () (when-let ((proj (project-current))) (project-name proj)))
-  (defun projectile-project-files () (when-let ((proj (project-current))) (project-files proj)))
-  (defun projectile-project-buffers () (when-let ((proj (project-current))) (project-buffers proj)))
+  ;; Define some `projectile' commands/functions for `project' (used by some packages, like `fzf', `neotree' and `platformio-mode')
+  (defun projectile-project-p (&optional dir) (let ((default-directory (or dir default-directory))) (and (project-current) t)))
+  (defun projectile-project-root (&optional dir) (let ((default-directory (or dir default-directory))) (when-let* ((proj (project-current))) (project-root proj))))
+  (defun projectile-project-name (&optional proj) (when-let ((proj (or proj (project-current)))) (project-name proj)))
+  (defun projectile-project-files (&optional proj-root) (when-let* ((default-directory (or proj-root default-directory)) (proj (project-current))) (project-files proj)))
+  (defun projectile-project-buffers (&optional proj) (when-let ((proj (or proj (project-current)))) (project-buffers proj)))
+  (defun projectile-expand-root (name &optional dir) (and (projectile-project-p dir) (expand-file-name name (projectile-project-root dir))))
+  (defun projectile-verify-file (file &optional dir) (when-let ((file (projectile-expand-root file dir))) (file-exists-p file)))
+  (defun projectile-project-buffer-p (buffer proj-root) (and (let ((default-directory proj-root)) (member buffer (projectile-project-buffers))) t))
   (provide 'projectile))
 
 (use-package tab-bar
