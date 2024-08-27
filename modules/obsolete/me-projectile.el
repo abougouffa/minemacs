@@ -8,6 +8,10 @@
 
 ;;; Code:
 
+;; Remove `projectile' form the `straight-built-in-pseudo-packages' in case it
+;; has been added
+(cl-callf2 remq 'projectile straight-built-in-pseudo-packages)
+
 (use-package projectile
   :straight t
   :after minemacs-loaded
