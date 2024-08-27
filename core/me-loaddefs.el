@@ -708,6 +708,11 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "me-modules" '("minemacs-modules"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-mojo.el
+
+(minemacs-register-on-demand-module 'me-mojo :auto-mode '(("\\.mojo\\'" . mojo-mode) ("\\.🔥\\'" . mojo-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
 (register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-" "+org-msg-make-signature"))

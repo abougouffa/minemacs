@@ -15,7 +15,7 @@
 (use-package mojo
   :straight (:host github :repo "andcarnivorous/mojo-hl")
   :commands (mojo-mode mojo-compile)
-  :mode "\\.🔥\\'")
+  :mode ("\\.🔥\\'" . mojo-mode))
 
 
 (provide 'on-demand/me-mojo)
