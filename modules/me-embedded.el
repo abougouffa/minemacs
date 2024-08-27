@@ -47,6 +47,13 @@
     (interactive "D")
     (insert (string-join (+bitbake-poky-sources build-dir) "\n"))))
 
+(push 'projectile straight-built-in-pseudo-packages)
+
+(use-package platformio-mode
+  :straight t)
+
+(push 'projectile straight-built-in-pseudo-packages)
+
 (use-package x86-lookup
   :straight t
   :custom
