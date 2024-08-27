@@ -85,6 +85,9 @@ Fall back to the default `citre--project-root'."
   (cscope-option-do-not-update-database t)
   (cscope-display-cscope-buffer nil))
 
+(use-package consult-cscope
+  :straight (:host github :repo "blorbx/consult-cscope"))
+
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
   :when (+emacs-features-p 'sqlite3)
