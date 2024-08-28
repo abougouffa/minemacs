@@ -1095,14 +1095,14 @@ It is deferred until `general' gets loaded and configured."
 
 ;;; For `me-files'
 
-(+evil-conf-for! dirvish me-files
+(+evil-conf-for! dirvish obsolete/me-dirvish
   :config-form
   (+nvmap! :keymaps 'dirvish-mode-map
     "q" #'dirvish-quit
     "s" #'dirvish-subtree-toggle
     "y" #'dirvish-yank-menu))
 
-(+map! :package dirvish :module me-files
+(+map! :package dirvish :module obsolete/me-dirvish
   ;; Open
   "o-" #'dirvish
   "oq" #'dirvish-quick-access

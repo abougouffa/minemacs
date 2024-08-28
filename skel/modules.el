@@ -19,7 +19,7 @@
         ;; me-email       ; Email (mu4e, mu4e-alert, org-msg, ...)
         ;; me-embedded    ; Embedded systems (embed, arduino-mode, openocd, bitbake, dts-mode, ...)
         me-extra          ; Extra features (better-jumper, crux, ...)
-        me-files          ; Files and directories (dirvish, vlf, sudo-edit, ztree, ...)
+        me-files          ; Files and directories (dired+, vlf, guard-lf, sudo-edit, ztree, ...)
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
         me-god            ; Enter Emacs commands without modifier keys (god-mode, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)

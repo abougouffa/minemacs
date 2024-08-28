@@ -8,28 +8,6 @@
 
 ;;; Code:
 
-(use-package dirvish
-  :straight t
-  :after dired
-  :demand
-  :custom
-  (dirvish-attributes '(subtree-state nerd-icons file-size))
-  (dirvish-mode-line-format '(:left (sort file-time symlink) :right (omit yank index)))
-  (dirvish-side-width 30)
-  (dirvish-fd-default-dir "~/")
-  (dirvish-use-header-line t) ; 'global make header line span all panes
-  (dirvish-use-mode-line t)
-  (dirvish-subtree-state-style 'nerd)
-  :config
-  ;; Cscope generate *.po files which that makes dirvish preview freeze
-  (push "po" dirvish-preview-disabled-exts)
-  ;; Use `nerd-icons' for path separators (from https://github.com/rainstormstudio/nerd-icons.el)
-  (with-eval-after-load 'nerd-icons
-    (setq dirvish-path-separators (list (format "  %s " (nerd-icons-codicon "nf-cod-home"))
-                                        (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
-                                        (format " %s " (nerd-icons-faicon "nf-fa-angle_right")))))
-  (dirvish-override-dired-mode 1))
-
 (use-package neotree
   :straight t
   :custom
