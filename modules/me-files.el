@@ -8,6 +8,11 @@
 
 ;;; Code:
 
+(use-package dired+
+  :straight t
+  :after dired
+  :demand)
+
 (use-package neotree
   :straight t
   :custom
