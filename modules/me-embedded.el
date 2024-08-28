@@ -65,7 +65,7 @@
 (use-package platformio-mode
   :straight t)
 
-(push 'projectile straight-built-in-pseudo-packages)
+(cl-callf2 remove 'projectile straight-built-in-pseudo-packages)
 
 (use-package x86-lookup
   :straight t
