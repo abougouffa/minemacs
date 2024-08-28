@@ -113,6 +113,12 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+;; To be replaced
+(use-package nerd-icons-dired
+  :straight t
+  :when (+package-disabled-p 'dirvish 'obsolete/me-dirvish) ; Don't enable when using `dirvish'
+  :hook (dired-mode . nerd-icons-dired-mode))
+
 (use-package nerd-icons-archive
   :straight (:host github :repo "abougouffa/nerd-icons-archive")
   :after arc-mode ; Should be after `tar-mode' or `arc-mode', but `arc-mode' is enough since it is required by the other
