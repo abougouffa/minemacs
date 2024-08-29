@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.0](https://github.com/abougouffa/minemacs/compare/19c83ef67ad86490d172beeb93f5258a6387e772..v9.3.0) - 2024-08-29
+#### Bug Fixes
+- **(mojo)** fix the extension binding and the autoloads - ([7e46bc2](https://github.com/abougouffa/minemacs/commit/7e46bc2c40d210a8a3a4661680a0c005db7a3505)) - [@abougouffa](https://github.com/abougouffa)
+- **(platformio-mode)** avoid permanently disabling `projectile` - ([ed3177e](https://github.com/abougouffa/minemacs/commit/ed3177ec36d66ed71326d1ce65f6083c101a4df3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(embedded)** initial support for `platformio-mode` - ([0241abd](https://github.com/abougouffa/minemacs/commit/0241abd0970e1b3833c86a2da3e9f08b94f65a84)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add `dired-hacks` - ([a3ec35b](https://github.com/abougouffa/minemacs/commit/a3ec35b455df4d0b92a2e79a2c4a232ee3cde5af)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add `dired+` - ([63045ec](https://github.com/abougouffa/minemacs/commit/63045ec30a54966e52ae7786087347741db2b6f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `dirvish` obsolete, too much problems! - ([e18ff4d](https://github.com/abougouffa/minemacs/commit/e18ff4df8f3df8637f2b53e35b1e228784f3f5d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(math)** make `matlab-mode` obsolete - ([8047d47](https://github.com/abougouffa/minemacs/commit/8047d477b790ba94503ad23a9e80f9611b7646fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for the Mojo language - ([b237a9c](https://github.com/abougouffa/minemacs/commit/b237a9c42517209addbefe99805aa1dbfea9c74b)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** add initial support for `irony-mode` and `irony-eldoc` - ([6a53610](https://github.com/abougouffa/minemacs/commit/6a536101548ea0269d1b187b4dbb5350bbc00d82)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** add support for `consult-cscope` - ([7b9dc33](https://github.com/abougouffa/minemacs/commit/7b9dc3387e827bb7c1b75633939215a7a23e5cc2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `diredfl` - ([d07c103](https://github.com/abougouffa/minemacs/commit/d07c103d88b0a1d6847219c230674c80ab43c47f)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** replace `nerd-icons-archive` with `nerd-icons-multimodal` - ([41d7f30](https://github.com/abougouffa/minemacs/commit/41d7f30ec0533f457343021139e55e0624b42dbf)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `nerd-icons-dired` - ([9ec9f12](https://github.com/abougouffa/minemacs/commit/9ec9f12024086420b8b89fd4dd755eef62d8c14f)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- remove `me-biblio`, move `citar` & `citar-embark` to `me-org` - ([02f433e](https://github.com/abougouffa/minemacs/commit/02f433e2403f7420858d485456d3c45f7a45e1dc)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(files)** remove `dired+`, too much opinionated - ([7a7d2fa](https://github.com/abougouffa/minemacs/commit/7a7d2fa1e789dd259c523a28da76ac949ab7f4ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** remove `nerd-icons-dired` - ([864119f](https://github.com/abougouffa/minemacs/commit/864119f8422e26de0afdca5863f1fee5a40373ad)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake)** use `completing-read` instead of `widget-choose` - ([a993a20](https://github.com/abougouffa/minemacs/commit/a993a202d0ca8dd36978d38a8124c7e5fe174db2)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/projectile)** check if the package hasn't been disabled - ([0f544c2](https://github.com/abougouffa/minemacs/commit/0f544c2b003ebea034e7cc1041e78f625162a510)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** better fake functions for `projectile` - ([d342a70](https://github.com/abougouffa/minemacs/commit/d342a70f9e5bfe717e48433802813e3561aa090b)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** don't auto-create parser for Org buffers - ([19c83ef](https://github.com/abougouffa/minemacs/commit/19c83ef67ad86490d172beeb93f5258a6387e772)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([40e6237](https://github.com/abougouffa/minemacs/commit/40e6237835be85e14db5bd78c8eec57739c0de00)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.2.1](https://github.com/abougouffa/minemacs/compare/678f6a884981de12ef4292c1f9508dc8c2b422f9..v9.2.1) - 2024-08-25
 #### Bug Fixes
 - **(git-timemachine)** add a hack to fix the font lock issue - ([95eef36](https://github.com/abougouffa/minemacs/commit/95eef36cd1fdbdfe245ef3a7cf204d65b04f1d90)) - [@abougouffa](https://github.com/abougouffa)
