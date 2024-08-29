@@ -113,11 +113,9 @@
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
-(use-package nerd-icons-archive
-  :straight (:host github :repo "abougouffa/nerd-icons-archive")
-  :after arc-mode ; Should be after `tar-mode' or `arc-mode', but `arc-mode' is enough since it is required by the other
-  :init
-  (nerd-icons-archive-mode 1))
+(use-package nerd-icons-multimodal
+  :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
+  :hook ((archive-mode tar-mode dired-mode) . nerd-icons-multimodal-mode))
 
 (use-package info-colors
   :straight t
