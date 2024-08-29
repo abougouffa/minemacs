@@ -117,6 +117,10 @@
   :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
   :hook ((archive-mode tar-mode dired-mode) . nerd-icons-multimodal-mode))
 
+(use-package diredfl
+  :straight t
+  :hook (dired-mode . diredfl-mode))
+
 (use-package info-colors
   :straight t
   :hook (Info-selection . info-colors-fontify-node))
