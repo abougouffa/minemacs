@@ -8,6 +8,9 @@
 
 ;;; Code:
 
+(use-package dired-hacks
+  :straight t)
+
 (use-package neotree
   :straight t
   :custom
