@@ -101,7 +101,8 @@
   :custom
   (pulsar-face 'pulsar-red)
   :config
-  (cl-callf append pulsar-pulse-functions '(what-cursor-position scroll-up-command scroll-down-command)))
+  (cl-callf append pulsar-pulse-functions
+    '(what-cursor-position scroll-up-command scroll-down-command kill-whole-line yank-from-kill-ring yank yank-pop)))
 
 (use-package focus
   :straight t)
