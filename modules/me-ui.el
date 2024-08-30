@@ -120,7 +120,9 @@
 
 (use-package diredfl
   :straight t
-  :hook (dired-mode . diredfl-mode))
+  :hook (dired-mode . diredfl-mode)
+  :config
+  (cl-callf append diredfl-compressed-extensions '(".zst" ".rar" ".7z" ".cab" ".arc" ".zoo")))
 
 (use-package info-colors
   :straight t
