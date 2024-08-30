@@ -13,7 +13,8 @@
   :hook (tty-setup . +xclip--enable-in-tty-h)
   :config
   (defun +xclip--enable-in-tty-h ()
-    (with-demoted-errors "%s" (xclip-mode 1))))
+    (let ((inhibit-message t))
+      (with-demoted-errors "%s" (xclip-mode 1)))))
 
 
 (provide 'me-tty)
