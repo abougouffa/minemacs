@@ -47,7 +47,7 @@
       org-delete-char org-self-insert-command))
 
   (cl-callf append mc--default-cmds-to-run-once
-    '(pixel-scroll-precision))
+    '(pixel-scroll-precision +mc/mark-all-symbol-overlays))
 
   ;; Integrate with `symbol-overlay'
   (with-eval-after-load 'symbol-overlay
