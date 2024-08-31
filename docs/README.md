@@ -6,14 +6,6 @@
 
 **MinEmacs** is a complete and fast Emacs configuration framework.
 
-> [!CAUTION]
-> Please note that this `minemacs-ng` branch is under an active rewrite. The new
-> generation of this framework will not be fully compatible with the initial one
-> since it has multiple breaking changes compared to the `legacy` branch. This
-> includes dropping the support of Evil and General (still, enabling the
-> `obsolete/me-evil` should restore the previous Evil/General based experience),
-> among other things.
-
 ![MinEmacs banner](/docs/images/minemacs-cover.svg)
 
 ![MinEmacs screenshot](/docs/images/minemacs-screenshot.png)
