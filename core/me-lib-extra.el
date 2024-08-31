@@ -748,6 +748,25 @@ you have `editorconfig' or `dtrt-indent' installed."
            (dtrt-indent-set width))))
   (message "Changed indentation to %d" width))
 
+(defun +goto-line (n)
+  "Go to line N, like `goto-line' but for Lisp code."
+  (goto-char (point-min))
+  (forward-line (1- n)))
+
+;;;###autoload
+(defun +autoload-region (beg end)
+  "Add the ;;;###autoload to region (BEG . END)."
+  (interactive "r")
+  (let* ((beg-line (line-number-at-pos beg))
+         (end-line (line-number-at-pos end))
+         (line beg-line))
+    (save-excursion
+      (while (<= line end-line)
+        (+goto-line line)
+        (beginning-of-line)
+        (cl-incf line)
+        (insert ";;;###autoload")))))
+
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)

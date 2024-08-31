@@ -542,6 +542,10 @@ The effectiveness of this command is significantly improved if
 you have `editorconfig' or `dtrt-indent' installed.
 
 (fn WIDTH)" t)
+(autoload '+autoload-region "me-lib-extra" "\
+Add the ;;;###autoload to region (BEG . END).
+
+(fn BEG END)" t)
 (autoload '+webjump "me-lib-extra" "\
 Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
@@ -665,7 +669,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
