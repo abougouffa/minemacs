@@ -249,6 +249,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-fsharp :auto-mode '(("\\.fs[iylx]?\\'" . fsharp-mode) ("\\.fsproj\\'" . nxml-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-gecode.el
+
+(minemacs-register-on-demand-module 'me-gecode :auto-mode '((("\\.gco\\(?:de\\)?\\'" "\\.GCO\\(?:DE\\)?\\'" "\\.[nN][gG]?[cC]\\'" "\\.mp[tf]\\'") . gcode-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab-ci.el
 
 (minemacs-register-on-demand-module 'me-gitlab-ci :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
