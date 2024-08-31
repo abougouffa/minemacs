@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.1](https://github.com/abougouffa/minemacs/compare/61296654b1fd1830d4fb907858b88c890106a6a5..v9.3.1) - 2024-08-31
+#### Features
+- **(core)** add `+autoload-region` - ([89b95c6](https://github.com/abougouffa/minemacs/commit/89b95c6b183342fb372098e0b820deac97f943af)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add `gcode-mode` - ([c98d9bc](https://github.com/abougouffa/minemacs/commit/c98d9bc89fd5ad9d111cd7bef6b1d506074ce31a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dired)** better file listing - ([4fd0421](https://github.com/abougouffa/minemacs/commit/4fd04212196fbdf0a8923b6600788f50c76acaa6)) - [@abougouffa](https://github.com/abougouffa)
+- **(diredfl)** add more compressed files extensions - ([d0b8523](https://github.com/abougouffa/minemacs/commit/d0b85237c436b28e0b73f922d0ec5a20856ad447)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** run `+mc/mark-all-symbol-overlays` only once - ([dd9998c](https://github.com/abougouffa/minemacs/commit/dd9998c35304a3f355a369e1c179203af90f11de)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** add more pulsing commands - ([6129665](https://github.com/abougouffa/minemacs/commit/61296654b1fd1830d4fb907858b88c890106a6a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(xclip)** log errors to `*Messages*` but don't display them - ([33b05ff](https://github.com/abougouffa/minemacs/commit/33b05ff8524295537e1f3c47e6093e12abaeafab)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8b4e0e2](https://github.com/abougouffa/minemacs/commit/8b4e0e2ae23fa0e14843237303973bb4b536cfc3)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.0](https://github.com/abougouffa/minemacs/compare/19c83ef67ad86490d172beeb93f5258a6387e772..v9.3.0) - 2024-08-29
 #### Bug Fixes
 - **(mojo)** fix the extension binding and the autoloads - ([7e46bc2](https://github.com/abougouffa/minemacs/commit/7e46bc2c40d210a8a3a4661680a0c005db7a3505)) - [@abougouffa](https://github.com/abougouffa)
