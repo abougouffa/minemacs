@@ -57,7 +57,7 @@
 
   (defun +bitbake-insert-poky-sources (build-dir)
     "Insert poky source directories for BUILD-DIR."
-    (interactive "D")
+    (interactive "DSelect the build directory: ")
     (insert (string-join (+bitbake-poky-sources build-dir) "\n"))))
 
 (push 'projectile straight-built-in-pseudo-packages)
