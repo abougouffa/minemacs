@@ -1223,7 +1223,8 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
         (setq plist (append plist `(:companion-packages ,(ensure-list companion-packages)))))
       (push (cons module plist) minemacs-on-demand-modules-alist))))
 
-(add-to-list 'magic-mode-alist '(minemacs-try-load-extra-mode . fundamental-mode))
+;; Ensure `minemacs-try-load-extra-mode' is the last to be evaluated
+(add-hook 'magic-mode-alist '(minemacs-try-load-extra-mode . fundamental-mode) 100)
 
 (defun minemacs-try-load-extra-mode ()
   "Load extra mode if available."
