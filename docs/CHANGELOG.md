@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.2](https://github.com/abougouffa/minemacs/compare/5b40821c703cf01b59869738b8eb6a566cf36a12..v9.3.2) - 2024-09-15
+#### Documentation
+- **(readme)** remove note about new/legacy MinEmacs - ([5b40821](https://github.com/abougouffa/minemacs/commit/5b40821c703cf01b59869738b8eb6a566cf36a12)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** ensure `minemacs-try-load-extra-mode` is called the called - ([161cfd0](https://github.com/abougouffa/minemacs/commit/161cfd09205cf0e7b965b6579137248660f2b296)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f36751e](https://github.com/abougouffa/minemacs/commit/f36751eafab17f896fec9b8d00f64397973d7d92)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.1](https://github.com/abougouffa/minemacs/compare/61296654b1fd1830d4fb907858b88c890106a6a5..v9.3.1) - 2024-08-31
 #### Features
 - **(core)** add `+autoload-region` - ([89b95c6](https://github.com/abougouffa/minemacs/commit/89b95c6b183342fb372098e0b820deac97f943af)) - [@abougouffa](https://github.com/abougouffa)
