@@ -432,8 +432,8 @@ Open FILE as root.
 Open the current file as root." t)
 (autoload '+sudo-save-buffer "me-lib-extra" "\
 Save this buffer as root. Save as new file name if called with prefix." t)
-(autoload '+yank-this-file-name "me-lib-extra" "\
-Yank the file name of this buffer." t)
+(autoload '+copy-this-file-name "me-lib-extra" "\
+Save (copy) the file name of this buffer to the kill ring." t)
 (autoload '+clean-file-name "me-lib-extra" "\
 Clean FILENAME, optionally convert to DOWNCASE-P.
 
@@ -927,7 +927,7 @@ mode if ARG is nil, omitted, or is a positive number.  Disable the mode
 if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate the variable `+writing-mode'.
+evaluate `+writing-mode'.
 
 The mode's hook is called both when the mode is enabled and when it is
 disabled.

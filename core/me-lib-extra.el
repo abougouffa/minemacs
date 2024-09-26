@@ -306,8 +306,8 @@ RECURSIVE is non-nil."
     (user-error "Unable to open %S" (abbreviate-file-name file))))
 
 ;;;###autoload
-(defun +yank-this-file-name ()
-  "Yank the file name of this buffer."
+(defun +copy-this-file-name ()
+  "Save (copy) the file name of this buffer to the kill ring."
   (interactive)
   (if-let ((file (buffer-file-name)))
       (with-temp-buffer
