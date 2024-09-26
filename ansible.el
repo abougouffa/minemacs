@@ -445,7 +445,8 @@ MODE should be one of `decrypt' or `encrypt'."
 
       ;; Clean up any temp password file ansible-vault-get-password may have
       ;; produced.
-      (when (file-exists-p ansible-vault-store-cleanup-file)
+      (when (and (stringp ansible-vault-store-cleanup-file)
+                 (file-exists-p ansible-vault-store-cleanup-file))
         (delete-file ansible-vault-store-cleanup-file)
         (setq ansible-vault-store-cleanup-file nil))
 
