@@ -1,4 +1,4 @@
-# name : Manage A10 Networks AX/SoftAX/Thunder/vThunder devices
+# name : Manage A10 Networks AX/SoftAX/Thunder/vThunder (service group)
 # key : a10_service_group
 # condition: ansible
 # --

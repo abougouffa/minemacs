@@ -1,4 +1,4 @@
-# name : Manage A10 Networks AX/SoftAX/Thunder/vThunder devices
+# name : Manage A10 Networks AX/SoftAX/Thunder/vThunder (server)
 # key : a10_server
 # condition: ansible
 # --
