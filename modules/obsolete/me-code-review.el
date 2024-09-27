@@ -24,7 +24,9 @@
   :init
   (transient-append-suffix 'magit-merge "i" '("y" "Review pull-request" code-review-forge-pr-at-point))
   (with-eval-after-load 'forge
-    (transient-append-suffix 'forge-dispatch "c u" '("c r" "review pull-request" code-review-forge-pr-at-point))))
+    (transient-append-suffix 'forge-dispatch "c u" '("c r" "review pull-request" code-review-forge-pr-at-point)))
+  :config
+  (require 'on-demand/me-markdown))
 
 
 (provide 'obsolete/me-code-review)
