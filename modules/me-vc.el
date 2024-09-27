@@ -50,7 +50,9 @@
 (use-package forge
   :straight t
   :after magit
-  :demand)
+  :demand
+  :config
+  (require 'on-demand/me-markdown))
 
 (use-package diff-hl
   :straight t
