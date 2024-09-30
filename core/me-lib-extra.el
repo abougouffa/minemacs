@@ -317,40 +317,68 @@ RECURSIVE is non-nil."
 
 (defvar +apply-patch-dwim-proj-dir nil)
 
+(defun +patch-get-patched-files (patch-buff)
+  (with-current-buffer (get-buffer patch-buff)
+    (save-excursion
+      (goto-char (point-min))
+      (let ((last-pos (point))
+            patched-files)
+        (while (prog2 (ignore-errors (diff-hunk-next))
+                   ;; To detect the last hunk
+                   (not (= last-pos (point)))
+                 (setq last-pos (point)))
+          (setq patched-files (append patched-files (diff-hunk-file-names))))
+        (mapcar #'substring-no-properties (delete-dups patched-files))))))
+
 ;;;###autoload
-(defun +apply-patch-dwim (patch &optional proj-dir)
-  "Apply PATCH to the relevant file in PROJ-DIR."
-  (interactive (list (buffer-file-name)))
+(defun +apply-patch-dwim (patch-buf &optional proj-dir)
+  "Apply PATCH-BUF to the relevant file in PROJ-DIR.
+When a region is active, propose to use it as the patch buffer."
+  (interactive (list (current-buffer)))
   (when-let* ((default-directory (or proj-dir (if (or current-prefix-arg (not +apply-patch-dwim-proj-dir))
                                                   (read-directory-name "Apply patch in directory: ")
                                                 +apply-patch-dwim-proj-dir)))
-              (proj (project-current)))
+              (proj (project-current))
+              (patch-buf
+               (or (cond ((use-region-p) ; When a region is selected, use it as a patch
+                          (let ((patch-region (buffer-substring-no-properties (region-beginning) (region-end))))
+                            (with-current-buffer (get-buffer-create (format " *%s:region-%d-%d-patch*" (buffer-file-name patch-buf) (region-beginning) (region-end)))
+                              (delete-region (point-min) (point-max))
+                              (insert patch-region)
+                              (current-buffer))))
+                         ((member (file-name-extension (buffer-file-name patch-buf)) '("diff" "DIFF" "patch" "PATCH"))
+                          (get-buffer patch-buf))
+                         ((y-or-n-p (format "The buffer %s doesn't seem to be a patch, select another buffer? " patch-buf))
+                          (get-buffer (read-buffer "Select the buffer containing the patch: ")))
+                         (t (get-buffer patch-buf))))))
     (setq +apply-patch-dwim-proj-dir default-directory) ; To remember it!
-    (let ((candidates nil)
-          (patched-files
-           (with-temp-buffer
-             (let (files)
-               (insert-file-contents patch)
-               (goto-char (point-min))
-               (while (progn (ignore-errors (diff-hunk-next)) (not (eobp)))
-                 (setq files (append files (diff-hunk-file-names))))
-               (delete-dups
-                (mapcar #'substring-no-properties
-                        (mapcar (lambda (str) (substring str 2)) ; Remove the "a/" prefix
-                                (seq-filter ; Keep only files that already exist ("a/*") in the file tree (new files are tricky)
-                                 (apply-partially #'string-prefix-p "a/") files)))))))
-          (proj-files (project-files proj)))
-      (dolist (patched-file patched-files)
-        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p patched-file) proj-files)))
-          (push (cons patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length patched-file)))) cand-files)) candidates)))
+    (let* (candidates
+           (patch-files (+patch-get-patched-files patch-buf))
+           (existing-patched-files
+            (delete-dups
+             (mapcar (lambda (str) (substring str 2)) ; Remove the "a/" prefix
+                     (seq-filter ; Keep only patch-files that already exist ("a/*") in the file tree (new files are tricky)
+                      (apply-partially #'string-prefix-p "a/") patch-files))))
+           (proj-files (project-files proj)))
+      (dolist (existing-patched-file existing-patched-files)
+        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p existing-patched-file) proj-files)))
+          (push (cons existing-patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length existing-patched-file)))) cand-files)) candidates)))
       ;; Accurate strategy, the directory that applies to all files
       (let ((results (cdr (car candidates))))
         (dolist (candidate (cdr candidates))
           (setq results (seq-intersection candidate results #'equal)))
-        (message "Matching directories:\n%s" (string-join results "\n"))
         ;; TODO: Frequency strategy, merge all directories and sort them by frequencies (maybe use dash's `-frequencies')
-        (let ((target-dir (if (length= results 1) (car results) (completing-read "Select a target directory: " results))))
-          (message "Apply patch %S in directory %S?" (file-name-nondirectory patch) target-dir))))))
+        (let ((target-dir (cond ((length= results 1) (car results))
+                                ((length> results 1) (completing-read "Select a target directory: " results))
+                                (t (read-directory-name "Cannot deduce the target directory, select one: ")))))
+          (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
+            ;; Hakish way of forcing `ediff-patch-file' to use the `target-file-or-dir' without asking
+            (cl-letf (((symbol-function 'read-file-name)
+                       (lambda (&rest args)
+                         (if (length= patch-files 2)
+                             (expand-file-name (caar candidates) target-dir)
+                           target-dir))))
+              (ediff-patch-file nil patch-buf))))))))
 
 ;;;###autoload
 (defun +clean-file-name (filename &optional downcase-p)
