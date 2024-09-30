@@ -315,6 +315,43 @@ RECURSIVE is non-nil."
         (kill-ring-save (point-min) (point-max)))
     (user-error "This buffer isn't bound to a file")))
 
+(defvar +apply-patch-dwim-proj-dir nil)
+
+;;;###autoload
+(defun +apply-patch-dwim (patch &optional proj-dir)
+  "Apply PATCH to the relevant file in PROJ-DIR."
+  (interactive (list (buffer-file-name)))
+  (when-let* ((default-directory (or proj-dir (if (or current-prefix-arg (not +apply-patch-dwim-proj-dir))
+                                                  (read-directory-name "Apply patch in directory: ")
+                                                +apply-patch-dwim-proj-dir)))
+              (proj (project-current)))
+    (setq +apply-patch-dwim-proj-dir default-directory) ; To remember it!
+    (let ((candidates nil)
+          (patched-files
+           (with-temp-buffer
+             (let (files)
+               (insert-file-contents patch)
+               (goto-char (point-min))
+               (while (progn (ignore-errors (diff-hunk-next)) (not (eobp)))
+                 (setq files (append files (diff-hunk-file-names))))
+               (delete-dups
+                (mapcar #'substring-no-properties
+                        (mapcar (lambda (str) (substring str 2)) ; Remove the "a/" prefix
+                                (seq-filter ; Keep only files that already exist ("a/*") in the file tree (new files are tricky)
+                                 (apply-partially #'string-prefix-p "a/") files)))))))
+          (proj-files (project-files proj)))
+      (dolist (patched-file patched-files)
+        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p patched-file) proj-files)))
+          (push (cons patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length patched-file)))) cand-files)) candidates)))
+      ;; Accurate strategy, the directory that applies to all files
+      (let ((results (cdr (car candidates))))
+        (dolist (candidate (cdr candidates))
+          (setq results (seq-intersection candidate results #'equal)))
+        (message "Matching directories:\n%s" (string-join results "\n"))
+        ;; TODO: Frequency strategy, merge all directories and sort them by frequencies (maybe use dash's `-frequencies')
+        (let ((target-dir (if (length= results 1) (car results) (completing-read "Select a target directory: " results))))
+          (message "Apply patch %S in directory %S?" (file-name-nondirectory patch) target-dir))))))
+
 ;;;###autoload
 (defun +clean-file-name (filename &optional downcase-p)
   "Clean FILENAME, optionally convert to DOWNCASE-P."
