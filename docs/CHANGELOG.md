@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.3](https://github.com/abougouffa/minemacs/compare/9ece6787b9c365bfcbebb9da5a935cc3773e5fd7..v9.3.3) - 2024-09-30
+#### Bug Fixes
+- **(forge)** ensure `markdown-mode` is available - ([4733196](https://github.com/abougouffa/minemacs/commit/47331968b4cf0d9a01d985a62a0edd5d5c6c28a6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** complete the implementation of `+apply-patch-dwim` - ([2e810ec](https://github.com/abougouffa/minemacs/commit/2e810ec5ff6e306f56a81e09a1cbb3ed3bcfc687)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+apply-patch-dwim` - ([a975f88](https://github.com/abougouffa/minemacs/commit/a975f88dd319c6bad18dcdf3e06620e68ba75af7)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** initial support for `causal-editkit` and `casual-symbol-overlay` - ([6b92988](https://github.com/abougouffa/minemacs/commit/6b92988690616d901263cc046eea4243186cc63f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake)** add a meaningful prompt to `+bitbake-insert-poky-sources` - ([9ece678](https://github.com/abougouffa/minemacs/commit/9ece6787b9c365bfcbebb9da5a935cc3773e5fd7)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** regenerate loaddefs - ([fe555c0](https://github.com/abougouffa/minemacs/commit/fe555c00d640446acbadf7aace9b9f088696ca2b)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/code-review)** require `on-demand/markdown` when used - ([1b316fc](https://github.com/abougouffa/minemacs/commit/1b316fc5d372a57f997b5744b4b8dd17b359ae0b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([88c531b](https://github.com/abougouffa/minemacs/commit/88c531b1ee2b7569c88244212ef6d957d5d2e361)) - [@abougouffa](https://github.com/abougouffa)
+- rename `+yank-this-file-name` to `+copy-this-file-name` - ([b0dcadc](https://github.com/abougouffa/minemacs/commit/b0dcadc4aad8610b7237d346156e8e81720f4c8d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.2](https://github.com/abougouffa/minemacs/compare/5b40821c703cf01b59869738b8eb6a566cf36a12..v9.3.2) - 2024-09-15
 #### Documentation
 - **(readme)** remove note about new/legacy MinEmacs - ([5b40821](https://github.com/abougouffa/minemacs/commit/5b40821c703cf01b59869738b8eb6a566cf36a12)) - [@abougouffa](https://github.com/abougouffa)
