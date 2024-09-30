@@ -434,6 +434,11 @@ Open the current file as root." t)
 Save this buffer as root. Save as new file name if called with prefix." t)
 (autoload '+copy-this-file-name "me-lib-extra" "\
 Save (copy) the file name of this buffer to the kill ring." t)
+(autoload '+apply-patch-dwim "me-lib-extra" "\
+Apply PATCH-BUF to the relevant file in PROJ-DIR.
+When a region is active, propose to use it as the patch buffer.
+
+(fn PATCH-BUF &optional PROJ-DIR)" t)
 (autoload '+clean-file-name "me-lib-extra" "\
 Clean FILENAME, optionally convert to DOWNCASE-P.
 
@@ -669,7 +674,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-proj-dir" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
