@@ -165,7 +165,14 @@
 
 (use-package casual-agenda
   :straight (:host github :repo "kickingvegas/casual-agenda")
-  :bind (:map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
+  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
+
+(use-package casual-editkit
+  :straight (:host github :repo "kickingvegas/casual-editkit"))
+
+(use-package casual-symbol-overlay
+  :straight t
+  :bind (:package symbol-overlay :map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
 
 
 (provide 'me-ui)
