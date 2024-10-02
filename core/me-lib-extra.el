@@ -316,8 +316,13 @@ RECURSIVE is non-nil."
     (user-error "This buffer isn't bound to a file")))
 
 (defvar +apply-patch-dwim-proj-dir nil)
+(defvar +apply-patch-dwim-extra-options "--ignore-whitespace")
+(autoload 'project-files "project")
+(autoload 'diff-hunk-next "diff-mode")
+(autoload 'diff-hunk-file-names "diff-mode")
 
 (defun +patch-get-patched-files (patch-buff)
+  "Get the list of the patches A/B files mentioned in PATCH-BUFF."
   (with-current-buffer (get-buffer patch-buff)
     (save-excursion
       (goto-char (point-min))
@@ -372,13 +377,16 @@ When a region is active, propose to use it as the patch buffer."
                                 ((length> results 1) (completing-read "Select a target directory: " results))
                                 (t (read-directory-name "Cannot deduce the target directory, select one: ")))))
           (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
-            ;; Hakish way of forcing `ediff-patch-file' to use the `target-file-or-dir' without asking
-            (cl-letf (((symbol-function 'read-file-name)
-                       (lambda (&rest args)
-                         (if (length= patch-files 2)
-                             (expand-file-name (caar candidates) target-dir)
-                           target-dir))))
-              (ediff-patch-file nil patch-buf))))))))
+            ;; Add the `+apply-patch-dwim-extra-options' to `ediff-patch-options'
+            (require 'ediff-ptch) ; for `ediff-patch-options'
+            (let ((ediff-patch-options (format "%s %s" ediff-patch-options +apply-patch-dwim-extra-options)))
+              ;; Hackish way of forcing `ediff-patch-file' to use the `target-file-or-dir' without asking
+              (cl-letf (((symbol-function 'read-file-name)
+                         (lambda (&rest args)
+                           (if (length= patch-files 2)
+                               (expand-file-name (caar candidates) target-dir)
+                             target-dir))))
+                (ediff-patch-file nil patch-buf)))))))))
 
 ;;;###autoload
 (defun +clean-file-name (filename &optional downcase-p)
