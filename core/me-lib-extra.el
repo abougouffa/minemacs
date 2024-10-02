@@ -335,6 +335,9 @@ RECURSIVE is non-nil."
           (setq patched-files (append patched-files (diff-hunk-file-names))))
         (mapcar #'substring-no-properties (delete-dups patched-files))))))
 
+(defvar +apply-patch-dwim-pre-patch-functions nil)
+(defvar +apply-patch-dwim-post-patch-functions nil)
+
 ;;;###autoload
 (defun +apply-patch-dwim (patch-buf &optional proj-dir)
   "Apply PATCH-BUF to the relevant file in PROJ-DIR.
@@ -380,13 +383,15 @@ When a region is active, propose to use it as the patch buffer."
             ;; Add the `+apply-patch-dwim-extra-options' to `ediff-patch-options'
             (require 'ediff-ptch) ; for `ediff-patch-options'
             (let ((ediff-patch-options (format "%s %s" ediff-patch-options +apply-patch-dwim-extra-options)))
+              (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
               ;; Hackish way of forcing `ediff-patch-file' to use the `target-file-or-dir' without asking
               (cl-letf (((symbol-function 'read-file-name)
                          (lambda (&rest args)
                            (if (length= patch-files 2)
                                (expand-file-name (caar candidates) target-dir)
                              target-dir))))
-                (ediff-patch-file nil patch-buf)))))))))
+                (ediff-patch-file nil patch-buf))
+              (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
 ;;;###autoload
 (defun +clean-file-name (filename &optional downcase-p)
