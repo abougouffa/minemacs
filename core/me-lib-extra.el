@@ -369,7 +369,7 @@ When a region is active, propose to use it as the patch buffer."
                       (apply-partially #'string-prefix-p "a/") patch-files))))
            (proj-files (project-files proj)))
       (dolist (existing-patched-file existing-patched-files)
-        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p existing-patched-file) proj-files)))
+        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p (concat "/" existing-patched-file)) proj-files)))
           (push (cons existing-patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length existing-patched-file)))) cand-files)) candidates)))
       ;; Accurate strategy, the directory that applies to all files
       (let ((results (cdr (car candidates))))
