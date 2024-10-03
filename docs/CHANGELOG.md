@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.4](https://github.com/abougouffa/minemacs/compare/43659edb28f9db2d7cab1d2628f53bf131d0a98b..v9.3.4) - 2024-10-03
+#### Bug Fixes
+- **(core)** edge case in `+apply-patch-dwim` - ([40922d8](https://github.com/abougouffa/minemacs/commit/40922d8f6fb770416de3d07f8605a3ed21370bcd)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add pre/post functions for `+apply-patch-dwim` - ([b7d64e5](https://github.com/abougouffa/minemacs/commit/b7d64e598749ee45758c802f18c8d8c327239061)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** enable `--ignore-whitespace` for `+apply-patch-dwim` - ([43659ed](https://github.com/abougouffa/minemacs/commit/43659edb28f9db2d7cab1d2628f53bf131d0a98b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.3](https://github.com/abougouffa/minemacs/compare/9ece6787b9c365bfcbebb9da5a935cc3773e5fd7..v9.3.3) - 2024-09-30
 #### Bug Fixes
 - **(forge)** ensure `markdown-mode` is available - ([4733196](https://github.com/abougouffa/minemacs/commit/47331968b4cf0d9a01d985a62a0edd5d5c6c28a6)) - [@abougouffa](https://github.com/abougouffa)
