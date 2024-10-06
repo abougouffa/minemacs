@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.5](https://github.com/abougouffa/minemacs/compare/aead8e0ab54b34abd816252fa84f778f60497d31..v9.3.5) - 2024-10-06
+#### Documentation
+- **(readme)** update the branch on CI badges - ([aead8e0](https://github.com/abougouffa/minemacs/commit/aead8e0ab54b34abd816252fa84f778f60497d31)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([256c145](https://github.com/abougouffa/minemacs/commit/256c1453d2e3166954032bce7762de9317f53701)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.4](https://github.com/abougouffa/minemacs/compare/43659edb28f9db2d7cab1d2628f53bf131d0a98b..v9.3.4) - 2024-10-03
 #### Bug Fixes
 - **(core)** edge case in `+apply-patch-dwim` - ([40922d8](https://github.com/abougouffa/minemacs/commit/40922d8f6fb770416de3d07f8605a3ed21370bcd)) - [@abougouffa](https://github.com/abougouffa)
