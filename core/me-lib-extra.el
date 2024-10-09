@@ -380,17 +380,13 @@ When a region is active, propose to use it as the patch buffer."
                                 ((length> results 1) (completing-read "Select a target directory: " results))
                                 (t (read-directory-name "Cannot deduce the target directory, select one: ")))))
           (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
-            ;; Add the `+apply-patch-dwim-extra-options' to `ediff-patch-options'
-            (require 'ediff-ptch) ; for `ediff-patch-options'
-            (let ((ediff-patch-options (format "%s %s" ediff-patch-options +apply-patch-dwim-extra-options)))
-              (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
-              ;; Hackish way of forcing `ediff-patch-file' to use the `target-file-or-dir' without asking
-              (cl-letf (((symbol-function 'read-file-name)
-                         (lambda (&rest args)
-                           (if (length= patch-files 2)
-                               (expand-file-name (caar candidates) target-dir)
-                             target-dir))))
-                (ediff-patch-file nil patch-buf))
+            (let ((default-directory target-dir)
+                  (out-buf (get-buffer-create " *apply-patch-dwim*"))
+                  (patch-file (with-current-buffer patch-buf
+                                (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
+                                  (write-file temp-filename)
+                                  temp-filename))))
+              (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf)
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
 ;;;###autoload
