@@ -386,6 +386,7 @@ When a region is active, propose to use it as the patch buffer."
                                 (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
                                   (write-file temp-filename)
                                   temp-filename))))
+              (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
               (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf)
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
