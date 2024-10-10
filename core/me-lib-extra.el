@@ -380,14 +380,22 @@ When a region is active, propose to use it as the patch buffer."
                                 ((length> results 1) (completing-read "Select a target directory: " results))
                                 (t (read-directory-name "Cannot deduce the target directory, select one: ")))))
           (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
-            (let ((default-directory target-dir)
-                  (out-buf (get-buffer-create " *apply-patch-dwim*"))
-                  (patch-file (with-current-buffer patch-buf
-                                (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
-                                  (write-file temp-filename)
-                                  temp-filename))))
+            (let* ((default-directory target-dir)
+                   (patch-file
+                    (with-current-buffer patch-buf
+                      (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
+                        (write-region (point-min) (point-max) temp-filename)
+                        temp-filename)))
+                   (out-buf (get-buffer-create (format " *apply-patch-dwim:%s*" (file-name-nondirectory (or (buffer-name patch-buf) patch-file))))))
               (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
-              (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf)
+              (let ((inhibit-message t))
+                (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf))
+              (with-current-buffer out-buf
+                (setq default-directory target-dir)
+                (goto-char (point-min))
+                (let ((case-fold-search nil))
+                  (when (re-search-forward "^Hunk .* FAILED" nil 'no-error)
+                    (pop-to-buffer out-buf))))
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
 ;;;###autoload
