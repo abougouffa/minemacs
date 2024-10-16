@@ -382,11 +382,12 @@ When a region is active, propose to use it as the patch buffer."
           (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
             (let* ((default-directory target-dir)
                    (patch-file
-                    (with-current-buffer patch-buf
-                      (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
-                        (write-region (point-min) (point-max) temp-filename)
-                        temp-filename)))
-                   (out-buf (get-buffer-create (format " *apply-patch-dwim:%s*" (file-name-nondirectory (or (buffer-name patch-buf) patch-file))))))
+                    (or (buffer-file-name patch-buf)
+                        (with-current-buffer patch-buf
+                          (let ((temp-filename (make-temp-file "apply-patch-dwim-" nil ".patch")))
+                            (write-region (point-min) (point-max) temp-filename)
+                            temp-filename))))
+                   (out-buf (get-buffer-create (format " *apply-patch-dwim:%s*" (file-name-nondirectory patch-file)))))
               (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
               (let ((inhibit-message t))
                 (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf))
@@ -394,8 +395,12 @@ When a region is active, propose to use it as the patch buffer."
                 (setq default-directory target-dir)
                 (goto-char (point-min))
                 (let ((case-fold-search nil))
-                  (when (re-search-forward "^Hunk .* FAILED" nil 'no-error)
+                  (when (or (re-search-forward "^Hunk [[:digit:]]* FAILED" nil t)
+                            (re-search-forward "^Skipping patch" nil t)
+                            (re-search-forward "^[[:digit:]]* out of [[:digit:]]* hunk ignored" nil t))
                     (pop-to-buffer out-buf))))
+              (when (y-or-n-p (format "Open target directory %S?" target-dir))
+                (dired target-dir))
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
 ;;;###autoload
