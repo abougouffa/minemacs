@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.3.6](https://github.com/abougouffa/minemacs/compare/993d21efbd24829226c4cd19276906f5bbfc3ce9..v9.3.6) - 2024-10-18
+#### Bug Fixes
+- **(core)** fix the regexp for failed patches in `+apply-patch-dwim` - ([8e2b367](https://github.com/abougouffa/minemacs/commit/8e2b3674a733428664945f0c69f6c3bbb05ef388)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** restore accidentally removed hook - ([103a556](https://github.com/abougouffa/minemacs/commit/103a55609dbd30ae08debe62a5d7a705abb1e7e0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult)** don't preview GPG files - ([9f193f2](https://github.com/abougouffa/minemacs/commit/9f193f2a15d547e3a5de01457cf78f13bdf5db31)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** enable view mode in patch output - ([135d269](https://github.com/abougouffa/minemacs/commit/135d2692f15eda3e845610ae92f54b97a0d47376)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better UX for `+apply-patch-dwim` - ([6b7414c](https://github.com/abougouffa/minemacs/commit/6b7414cebe735f15170441361cb33888c78a3546)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better user experience in `+apply-patch-dwim` - ([361eba1](https://github.com/abougouffa/minemacs/commit/361eba1137f4d5f2ef81564fb5b6fdb61f413fd2)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** simple and efficient implementation of `+apply-patch-dwim` - ([993d21e](https://github.com/abougouffa/minemacs/commit/993d21efbd24829226c4cd19276906f5bbfc3ce9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8dcf56c](https://github.com/abougouffa/minemacs/commit/8dcf56c6e91757cf67c7acba3001cbc7016df89b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.5](https://github.com/abougouffa/minemacs/compare/aead8e0ab54b34abd816252fa84f778f60497d31..v9.3.5) - 2024-10-06
 #### Documentation
 - **(readme)** update the branch on CI badges - ([aead8e0](https://github.com/abougouffa/minemacs/commit/aead8e0ab54b34abd816252fa84f778f60497d31)) - [@abougouffa](https://github.com/abougouffa)
