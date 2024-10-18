@@ -29,9 +29,6 @@
 (use-package magit-todos
   :straight t)
 
-;; BUG+TEMP: It seems like `nerd-file-icons' is causing issues with the latest
-;; `magit' update
-(push 'magit-file-icons minemacs-disabled-packages)
 (use-package magit-file-icons
   :straight t
   :after magit
