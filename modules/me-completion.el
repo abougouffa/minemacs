@@ -196,6 +196,9 @@
   (consult-narrow-key "<")
   :commands (+consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project)
   :config
+  ;; Don't preview GPG encrypted files to avoid asking about the decryption password
+  (push "\\.gpg$" consult-preview-excluded-files)
+
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
   ;; Define super-project variants of `consult' find/grep commands
