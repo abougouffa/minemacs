@@ -389,10 +389,12 @@ When a region is active, propose to use it as the patch buffer."
                             temp-filename))))
                    (out-buf (get-buffer-create (format " *apply-patch-dwim:%s*" (file-name-nondirectory patch-file)))))
               (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
+              (with-current-buffer out-buf (view-mode -1))
               (let ((inhibit-message t))
                 (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf))
               (with-current-buffer out-buf
                 (setq default-directory target-dir)
+                (view-mode 1)
                 (goto-char (point-min))
                 (let ((case-fold-search nil))
                   (when (or (re-search-forward "^Hunk #?[[:digit:]]* FAILED" nil t)
