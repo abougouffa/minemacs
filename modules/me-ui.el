@@ -131,44 +131,20 @@
 (use-package virtual-format
   :straight (:host github :repo "abougouffa/virtual-format"))
 
-(use-package casual-isearch
-  :straight t
-  :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu)))
-
-(use-package casual-dired
-  :straight t
-  :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu)))
-
-(use-package casual-info
-  :straight t
-  :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu)))
-
-(use-package casual-calc
-  :straight t
-  :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu)))
-
-(use-package casual-ibuffer
-  :straight t
-  :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu)))
-
-(use-package casual-re-builder
-  :straight t
-  :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu)))
-
-(use-package casual-bookmarks
-  :straight t
-  :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu)))
+(use-package casual
+  :straight (:host github :repo "kickingvegas/casual")
+  :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu))
+  :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu))
+  :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu))
+  :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu))
+  :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu))
+  :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu))
+  :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu))
+  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
 
 (use-package casual-avy
   :straight t
   :bind ("M-g a" . casual-avy-tmenu))
-
-(use-package casual-agenda
-  :straight (:host github :repo "kickingvegas/casual-agenda")
-  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
-
-(use-package casual-editkit
-  :straight (:host github :repo "kickingvegas/casual-editkit"))
 
 (use-package casual-symbol-overlay
   :straight t
