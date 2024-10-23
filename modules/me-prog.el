@@ -157,6 +157,26 @@
   :straight (:host github :repo "nemethf/eglot-x")
   :commands (eglot-x-setup))
 
+(use-package cmake-build
+  :straight (:host github :repo "ultronozm/cmake-build.el")
+  :commands (cmake-build-clean
+             cmake-build-clear-cache-and-configure
+             cmake-build-current
+             cmake-build-debug
+             cmake-build-delete-current-windows
+             cmake-build-other-target
+             cmake-build-run
+             cmake-build-run-cmake
+             cmake-build-set-buffer-local-config
+             cmake-build-set-cmake-profile
+             cmake-build-set-config
+             cmake-build-set-options
+             cmake-build-set-project-build-root
+             cmake-build-set-project-root))
+
+(use-package czm-cpp
+  :straight (:host github :repo "ultronozm/czm-cpp.el"))
+
 (use-package combobulate
   :straight (:host github :repo "mickeynp/combobulate" :nonrecursive t) ; Cloning the `html-ts-mode' submodule causes problems
   :when (and (not os/win) (+emacs-features-p 'tree-sitter)) ; TEMP: disable on Windows
