@@ -866,7 +866,7 @@ you have `editorconfig' or `dtrt-indent' installed."
 
 ;;;###autoload
 (defun +webjump ()
-  "Like `webjump', with initial query filled from `+region-org-thing-at-point'."
+  "Like `webjump', with initial query filled from `+region-or-thing-at-point'."
   (interactive)
   (require 'webjump)
   (let ((+webjump-read-string-initial-query (+region-or-thing-at-point)))

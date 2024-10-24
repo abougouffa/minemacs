@@ -12,6 +12,8 @@
   ;; Use the external `tree-sitter' module
   (+load minemacs-obsolete-modules-dir "me-tree-sitter.el"))
 
+
+;; Automatically manage `treesit' grammars
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
   :when (+emacs-features-p 'tree-sitter)
@@ -122,6 +124,8 @@
 
 (push 'treesit straight-built-in-pseudo-packages) ; ts-movement depends on it
 
+
+;; Move and edit code blocks based on tree-sitter AST
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")
   :when (+emacs-features-p 'tree-sitter)
@@ -149,14 +153,20 @@
       ("m" "node-mark" tsm/node-mark :transient t)]]
     [("Q" "Quit" ignore :transient t)]))
 
+
+;; Tree-sitter based code folding
 (use-package treesit-fold
   :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
   :when (+emacs-features-p 'tree-sitter))
 
+
+;; Extra non-standard functionalities for Eglot
 (use-package eglot-x
   :straight (:host github :repo "nemethf/eglot-x")
   :commands (eglot-x-setup))
 
+
+;; CMake building with multiple targets, run configurations and interactive menu
 (use-package cmake-build
   :straight (:host github :repo "ultronozm/cmake-build.el")
   :commands (cmake-build-clean
@@ -174,9 +184,13 @@
              cmake-build-set-project-build-root
              cmake-build-set-project-root))
 
+
+;; Helper commands and functions for working with C++ projects
 (use-package czm-cpp
   :straight (:host github :repo "ultronozm/czm-cpp.el"))
 
+
+;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate
   :straight (:host github :repo "mickeynp/combobulate" :nonrecursive t) ; Cloning the `html-ts-mode' submodule causes problems
   :when (and (not os/win) (+emacs-features-p 'tree-sitter)) ; TEMP: disable on Windows
@@ -191,6 +205,8 @@
   (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-yeet-forward)
   (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
 
+
+;; Consult integration with Eglot
 (use-package consult-eglot
   :straight t
   :after consult eglot
@@ -199,6 +215,7 @@
   ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
   (unless (or (not (+package-disabled-p 'lsp-mode 'obsolete/me-lsp)) (fboundp 'consult-lsp-file-symbols))
     (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
+
 
 ;; Helper function to get the style for "clang-format"
 (defun +clang-format-get-style ()
@@ -219,6 +236,8 @@
               (or (and indent (symbol-value indent)) standard-indent)
               (or (and indent (symbol-value indent)) tab-width)))))
 
+
+;; Define commands which run reformatters on the current Emacs buffer
 (use-package reformatter
   :straight t
   :config
@@ -259,6 +278,8 @@
                           (lambda (lst elt) (memq elt lst)))))
     :lighter "ClangFmt "))
 
+
+;; Run code formatter on buffer contents without moving point
 (use-package apheleia
   :straight t
   :custom
@@ -273,12 +294,18 @@
   (let ((clang (assq 'clang-format apheleia-formatters)))
     (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
 
+
+;; Auto-format source code in many languages with one command
 (use-package format-all
   :straight t)
 
+
+;; Out of the box code execution from editing buffer
 (use-package quickrun
   :straight t)
 
+
+;; An Emacs "jump to definition" package for 50+ languages
 (use-package dumb-jump
   :straight t
   :after xref
@@ -288,6 +315,8 @@
   ;; Use `dumb-jump' as `xref' backend
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+
+;; Combine multiple Xref backends
 (use-package xref-union
   :straight t
   :commands (xref-union-mode)
@@ -304,6 +333,8 @@
   (defun +xref-union--exclude-backends-predicate (backend)
     (memq backend '(etags--xref-backend))))
 
+
+;; Highlight TODO keywords
 (use-package hl-todo
   :straight (:host github :repo "tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
@@ -317,12 +348,18 @@
       ("TWEAK" . "#fe9030")
       ("PERF"  . "#e09030"))))
 
+
+;; Colorize color names in buffers
 (use-package rainbow-mode
   :straight t)
 
+
+;; Boost eglot using `lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
+
+;; Emacs headerline indication of where you are in a large project
 (use-package breadcrumb
   :straight t
   :hook ((c-mode c++-mode c-ts-mode c++-ts-mode python-mode python-ts-mode rust-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
@@ -336,10 +373,14 @@
                        (nerd-icons-icon-for-file file)
                      (nerd-icons-icon-for-mode major-mode)))))))
 
+
+;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
   :straight t
   :when (+emacs-features-p 'libxml2))
 
+
+;; Show cognitive complexity of code in Emacs 29+ (treesit-based)
 (use-package cognitive-complexity
   :straight (:host github :repo "emacs-vs/cognitive-complexity"))
 
