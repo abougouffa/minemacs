@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Completion at point extensions which can be used in combination with Corfu, Company or the default completion UI
 (use-package cape
   :straight t
   :after minemacs-first-file
@@ -54,6 +55,8 @@
    '(TeX-mode-hook LaTeX-mode-hook)
    (lambda () (add-hook 'completion-at-point-functions #'cape-tex nil t))))
 
+
+;; Corfu enhances in-buffer completion with a small completion popup
 (use-package corfu
   :straight (:files (:defaults "extensions/*.el"))
   :hook ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
@@ -89,6 +92,8 @@
   (unless (bound-and-true-p savehist-mode) (savehist-mode 1))
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
+
+;; Candidate information popup for Corfu
 (use-package corfu-popupinfo
   :hook (corfu-mode . corfu-popupinfo-mode)
   :bind ( ; Bind these to toggle/scroll documentation
@@ -107,16 +112,22 @@
      (when (and (not completion-in-region-mode) (boundp 'corfu-popupinfo--hide))
        (corfu-popupinfo--hide)))))
 
+
+;; Corfu popup on terminal
 (use-package corfu-terminal
   :straight t
   :hook (corfu-mode . corfu-terminal-mode))
 
+
+;; Icons for Corfu using `nerd-icons'
 (use-package nerd-icons-corfu
   :straight t
   :after corfu
   :init
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
+
+;; Consult provides search and navigation commands based on the Emacs completion function `completing-read'
 (use-package consult
   :straight t
   :hook (embark-collect-mode . consult-preview-at-point-mode)
@@ -222,6 +233,8 @@
    consult-man
    :initial (+region-or-thing-at-point)))
 
+
+;; Insert paths into the minibuffer prompt
 (use-package consult-dir
   :straight t
   :bind (("C-x C-d" . consult-dir)
@@ -230,6 +243,8 @@
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
 
+
+;; Choose a command to run based on what is near point, both in minibuffer and in normal buffers
 (use-package embark
   :straight t
   :bind (([remap describe-bindings] . embark-bindings)
@@ -240,25 +255,35 @@
   ;; Use Embark to show bindings in a key prefix with `C-h`
   (setq prefix-help-command #'embark-prefix-help-command))
 
+
+;; Consult integration for Embark
 (use-package embark-consult
   :straight t)
 
+
+;; Marginalia (i.e., description) in the minibuffer
 (use-package marginalia
   :straight t
   :hook (minemacs-lazy . marginalia-mode))
 
+
+;; Use nerd-icons for completion
 (use-package nerd-icons-completion
   :straight t
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
   (nerd-icons-completion-mode 1))
 
+
+;; Emacs completion style that matches multiple regexps in any order
 (use-package orderless
   :straight t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+
+;; Vertico provides a performant and minimalistic vertical completion UI based on the default completion system
 (use-package vertico
   :straight (:files (:defaults "extensions/*.el"))
   :hook (minemacs-lazy . vertico-mode)
