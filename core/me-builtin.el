@@ -388,6 +388,13 @@ or file path may exist now."
     (setcdr (assq 'name tab) "*default*")
     (setcdr (assq 'explicit-name tab) 'def)))
 
+(use-package editorconfig
+  :straight t
+  :hook (minemacs-first-file . editorconfig-mode)
+  :config
+  ;; Exclude compressed files
+  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
+
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)

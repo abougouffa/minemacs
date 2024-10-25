@@ -163,13 +163,6 @@
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
 
-(use-package editorconfig
-  :straight t
-  :hook (minemacs-first-file . editorconfig-mode)
-  :config
-  ;; Exclude compressed files
-  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
-
 
 (provide 'me-editor)
 
