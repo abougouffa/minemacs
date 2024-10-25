@@ -8,17 +8,21 @@
 
 ;;; Code:
 
-;; TODO: https://karthinks.com/software/avy-can-do-anything
+;; Jump to things in Emacs tree-style
 (use-package avy
   :straight t
   :bind (("M-j" . avy-goto-char-timer) ; Instead of `default-indent-new-line'
          ("C-é" . avy-goto-line) ; French AZERTY
          ("M-g l" . avy-goto-line)))
 
+
+;; Zap to char using `avy'
 (use-package avy-zap
   :straight t
   :bind ("M-z" . avy-zap-to-char-dwim))
 
+
+;; Never lose your place in Emacs again
 (use-package dogears
   :straight t
   :hook (minemacs-lazy . dogears-mode)
@@ -32,28 +36,42 @@
   :custom
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
+
+;; An Emacs package to move point through `buffer-undo-list' positions
 (use-package goto-last-change
   :bind (("M-é" . goto-last-change))) ; For French AZERTY keybords
 
+
+;; Extensions to `isearch'
 (use-package isearch+
   :straight t)
 
+
+;; Control `isearch' from the minibuffer
 (use-package isearch-mb
   :straight t
   :after isearch
   :init
   (isearch-mb-mode 1))
 
+
+;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
   :straight t)
 
+
+;; Interactively-editable recursive "grep" implementation in Elisp
 (use-package phi-grep
   :straight t)
 
+
+;; Emacs search tool based on "ripgrep"
 (use-package rg
   :straight t
   :bind (("C-c s" . rg-menu)))
 
+
+;; Asynchronous fuzzy finder for Emacs
 (use-package affe
   :straight t
   :custom
@@ -65,6 +83,8 @@
     (setq input (cdr (orderless-compile input)))
     (cons input (apply-partially #'orderless--highlight input t))))
 
+
+;; An Emacs front-end for "fzf"
 (use-package fzf
   :straight t
   :commands (+fzf-project-super-project)

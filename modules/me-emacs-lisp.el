@@ -8,12 +8,15 @@
 
 ;;; Code:
 
+;; Better Emacs Lisp code viewing
 (use-package elisp-plus
   :straight (:host github :repo "abougouffa/elisp-plus")
   :after minemacs-first-elisp-file
   :init
   (elisp-plus-mode 1))
 
+
+;; Simplifying how you write Lisp
 (use-package parinfer-rust-mode
   :straight t
   :when (+emacs-features-p 'modules)
@@ -48,10 +51,14 @@
     (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
     (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))
 
+
+;; Interactive macro-expander for Emacs
 (use-package macrostep
   :straight t
   :bind (:map emacs-lisp-mode-map ("C-c m" . macrostep-expand)))
 
+
+;; A better Emacs *help* buffer
 (use-package helpful
   :straight t
   :bind (("<remap> <describe-variable>" . helpful-variable)
@@ -61,9 +68,12 @@
          ("<remap> <describe-key>" . helpful-key)
          ("C-h h" . helpful-at-point))) ; orig. `view-hello-file'
 
+;; Inspection tool for Emacs Lisp objects
 (use-package inspector
   :straight t)
 
+
+;; Evaluation Result OverlayS for Emacs Lisp
 (use-package eros
   :straight t
   :hook (minemacs-first-elisp-file . eros-mode)
@@ -77,9 +87,13 @@
       (interactive)
       (eros--eval-overlay (+octave-eval-last-sexp) (point)))))
 
+
+;; A linting library for Elisp package metadata
 (use-package package-lint
   :straight t)
 
+
+;; Elisp regexp mistake finder
 (use-package relint
   :straight t)
 

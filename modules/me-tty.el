@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Copy&paste GUI clipboard from text terminal
 (use-package xclip
   :straight t
   :hook (tty-setup . +xclip--enable-in-tty-h)

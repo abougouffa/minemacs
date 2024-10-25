@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Schedule your day visually, using timeblocking technique inside Emacs
 (use-package org-timeblock
   :straight t)
 

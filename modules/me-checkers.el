@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Collection of checkers for Flymake
 (use-package flymake-collection
   :straight (:fork (:repo "abougouffa/flymake-collection" :branch "additional-checkers"))
   :init
@@ -15,9 +16,13 @@
   :custom
   (flymake-collection-hook-inherit-config t))
 
+
+;; Transient menu for Flymake
 (use-package flymenu
   :straight (:host github :repo "KarimAziev/flymenu"))
 
+
+;; Flymake backend for PMD, the extensible cross-language static code analyzer
 (use-package flymake-pmd
   :straight (:host github :repo "rody/flymake-pmd")
   :custom

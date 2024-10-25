@@ -8,10 +8,13 @@
 
 ;;; Code:
 
+;; Modify multiple occurrences simultaneously
 (use-package iedit
   :straight t
   :bind ("C-;" . iedit-mode))
 
+
+;; Multiple cursors implementation for Emacs
 (use-package multiple-cursors
   :straight t
   :bind (("C->"           . mc/mark-next-like-this)

@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Debug Adapter Protocol for Emacs
 (use-package dape
   :straight t
   :commands (+dape-transient)
@@ -48,20 +49,28 @@
       ("qk" "Kill"         dape-kill                       :transient nil)
       ("qd" "Disconnect"   dape-disconnect-quit            :transient nil)]]))
 
+
+;; Disassemble C, C++ or Fortran code under cursor
 (use-package disaster
   :straight t)
 
+
+;; A compiler output viewer
 (use-package rmsbolt
   :straight t
   :config
   (+mode-alist-add-ts-modes! rmsbolt-languages))
 
+
+;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
 (use-package beardbolt
   :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   (+mode-alist-add-ts-modes! beardbolt-languages))
 
+
+;; Use "objdump" to display disassembled executable and object files
 (use-package objdump-disassemble
   :straight (:host github :repo "abougouffa/objdump-disassemble"))
 

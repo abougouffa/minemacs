@@ -23,6 +23,8 @@
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
           ("." . ,browse-url-browser-function))))
 
+
+;; An Emacs media player, media library manager, radio player, YouTube frontend
 (use-package empv
   :straight (:host github :repo "isamert/empv.el")
   :when (executable-find +mpv-command)
@@ -57,6 +59,8 @@
     (interactive "DSave download playlist files to: ")
     (empv--playlist-apply #'+empv--dl-playlist path)))
 
+
+;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
 (use-package ready-player
   :straight (:host github :repo "xenodium/ready-player")
   :hook (minemacs-first-file . ready-player-mode))

@@ -8,17 +8,24 @@
 
 ;;; Code:
 
+;; Collection of useful dired additions
 (use-package dired-hacks
   :straight t)
 
+
+;; A Emacs tree plugin like NerdTree for Vim
 (use-package neotree
   :straight t
   :custom
   (neo-theme 'nerd-icons))
 
+
+;; Same frame speedbar
 (use-package sr-speedbar
   :straight t)
 
+
+;; View, edit, search and compare very large files in batches, trading memory for processor time
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
   :demand
@@ -26,6 +33,8 @@
   (with-eval-after-load 'so-long
     (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
+
+;; Fast opening of large files
 (use-package guard-lf
   :straight (:host github :repo "jcs-elpa/guard-lf")
   :custom
@@ -36,10 +45,14 @@
   :config
   (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode ein:ipynb-mode)))
 
+
+;; Utilities for opening files with "sudo"
 (use-package sudo-edit
   :straight t
   :hook (minemacs-first-file . sudo-edit-indicator-mode))
 
+
+;; Asynchronous "rsync" from `dired'
 (use-package dired-rsync
   :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
   :bind (:map
@@ -47,6 +60,8 @@
          ("C-c C-r" . dired-rsync)
          ("C-c C-x" . dired-rsync-transient)))
 
+
+;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 (use-package ztree
   :straight (:source gnu-elpa-mirror))
 

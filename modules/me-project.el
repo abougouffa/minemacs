@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; One tab per project, with unique names - simple implementation of workspaces
 (use-package otpp
   :straight (:host github :repo "abougouffa/one-tab-per-project")
   :after project
@@ -18,24 +19,34 @@
   (otpp-mode 1)
   (otpp-override-mode 1))
 
+
+;; Consult extension for `project'
 (use-package consult-project-extra
   :straight t)
 
+
+;; Multi target interface to compile
 (use-package compile-multi
   :straight t)
 
+
+;; Integration for `compile-multi' and `embark'
 (use-package compile-multi-embark
   :straight t
   :after embark
   :init
   (compile-multi-embark-mode 1))
 
+
+;; Consulting read support for `compile-multi'
 (use-package consult-compile-multi
   :straight t
   :after consult
   :init
   (consult-compile-multi-mode 1))
 
+
+;; Projectile like project management library built on Emacs' `project'
 (use-package projection
   :straight t
   :hook (ibuffer . ibuffer-projection-set-filter-groups)
@@ -53,15 +64,21 @@
   ;; Enable `projection-hook', adds the possibility to run functions in per-project basis
   (global-projection-hook-mode 1))
 
+
+;; Projection integration for `compile-multi'
 (use-package projection-multi
   :straight t)
 
+
+;; Integration for `projection-multi' and `embark'
 (use-package projection-multi-embark
   :straight t
   :after embark
   :init
   (projection-multi-embark-setup-command-map))
 
+
+;; Projection integration for `dape'
 (use-package projection-dape
   :straight t)
 

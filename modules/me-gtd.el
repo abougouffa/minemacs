@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; GTD workflow with Org mode
 (use-package org-gtd
   :straight t
   :custom

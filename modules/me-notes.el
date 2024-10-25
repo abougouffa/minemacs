@@ -12,6 +12,7 @@
 ;; https://takeonrules.com/2022/10/01/exploring-the-denote-emacs-package/
 ;; https://www.thesing-online.de/blog/20230302T215700--denote-as-a-zettelkasten.html
 
+;; Simple notes for Emacs with an efficient file-naming scheme
 (use-package denote
   :straight t
   :commands (denote-create-note denote-insert-link denote-show-backlinks-buffer)
@@ -21,6 +22,8 @@
   :config
   (denote-rename-buffer-mode 1))
 
+
+;; Use Consult in tandem with Denote
 (use-package consult-denote
   :straight t
   :after consult
@@ -33,6 +36,8 @@
   (when (executable-find "rg")
     (setopt consult-denote-grep-command #'consult-ripgrep)))
 
+
+;; View and filter Denote files in a tabulated list
 (use-package denote-menu
   :straight t)
 

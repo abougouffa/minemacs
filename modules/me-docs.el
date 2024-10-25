@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Emacs support library for PDF files
 (use-package pdf-tools
   :straight t
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
@@ -18,6 +19,8 @@
   (pdf-view-image-relief 2)
   (pdf-view-use-scaling t))
 
+
+;; PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 (use-package pdfgrep
   :straight t
   :commands (pdfgrep-mode pdfgrep)
@@ -29,6 +32,8 @@
 (defconst +tuntox-available-p (and (executable-find "tuntox") t))
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))
 
+
+;; Collaborative editing using Conflict-free Replicated Data Types
 (use-package crdt
   :straight t
   :when (or +tuntox-available-p +stunnel-available-p)
@@ -37,6 +42,8 @@
   (crdt-use-tuntox +tuntox-available-p)
   (crdt-use-stunnel +stunnel-available-p))
 
+
+;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
   :straight t
   :custom

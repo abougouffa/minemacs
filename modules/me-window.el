@@ -12,14 +12,18 @@
 
 ;;; Code:
 
+;; Quickly switch windows in Emacs
 (use-package ace-window
   :straight t
   :bind (("M-o" . ace-window))
   :custom
   (aw-dispatch-always t))
 
+
+;; Manage windows and buffers according to purposes
 (use-package window-purpose
   :straight t)
+
 
 ;; Help/info buffers
 (add-to-list

@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; A deployment plugin via Tramp for Emacs
 ;; Should be configured in per-project basis, good documentation at:
 ;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
@@ -15,17 +16,25 @@
   :config
   (ssh-deploy-hydra "C-c C-z"))
 
+
+;; Launch system applications from Emacs
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
   :when (or os/linux os/bsd)
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
+
+;; Manipulate "tmux" from Emacs
 (use-package emamux
   :straight t)
 
+
+;; System-wide popup Emacs windows for quick edits
 (use-package emacs-everywhere
   :straight t)
 
+
+;; Browse "tldr" pages from Emacs
 (use-package tldr
   :straight t
   :hook (minemacs-build-functions . tldr-update-docs)
@@ -33,6 +42,8 @@
   :custom
   (tldr-enabled-categories '("common" "linux" "osx")))
 
+
+;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
 (use-package vterm
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
@@ -51,6 +62,8 @@
   (vterm-max-scrollback 5000)
   (vterm-tramp-shells '(("docker" "/bin/bash"))))
 
+
+;; Managing multiple vterm buffers in Emacs
 (use-package multi-vterm
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
@@ -67,17 +80,25 @@
      (when-let ((dir (file-remote-p default-directory 'localname)))
        (vterm-send-string (format "cd %S\n" dir))))))
 
+
+;; Manage docker from Emacs
 (use-package docker
   :straight t
   :bind (("C-c o d" . docker)))
 
+
+;; Major mode for editing systemd units
 (use-package systemd
   :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
 
+
+;; Major mode to view journalctl's output in Emacs
 (use-package journalctl-mode
   :straight t
   :commands (journalctl-mode))
 
+
+;; Emacs mode for viewing log files
 (use-package logview
   :straight t
   :custom
@@ -85,6 +106,8 @@
   (logview-additional-submodes '(("RDK-CCSP" (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]") (levels . "RDK-CCSP"))))
   (logview-additional-level-mappings '(("RDK-CCSP" (error "ERROR") (warning "WARN") (information "INFO") (debug "DEBUG") (trace "NOTICE")))))
 
+
+;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
   :straight t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
@@ -99,6 +122,8 @@
   :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
          ("<remap> <shell-command>" . with-editor-shell-command)))
 
+
+;; Buffer-local "direnv" integration for Emacs
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
@@ -110,6 +135,8 @@
   (with-eval-after-load 'ob
     (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
 
+
+;; Python Executable Tracker
 (use-package pet
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
@@ -117,6 +144,8 @@
   :init
   (add-hook (if (< emacs-major-version 29) 'python-mode-hook 'python-base-mode-hook) #'pet-mode))
 
+
+;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
 (use-package add-node-modules-path
   :straight t
   :hook ((js-mode js-ts-mode js2-mode) . add-node-modules-path)
@@ -124,14 +153,20 @@
   (when (executable-find "pnpm")
     (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
 
+
+;; Organize and send HTTP requests from Emacs' Org mode files
 (use-package verb
   :straight t
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
+
+;; Import of Postman collections in Emacs (for `verb' and `restclient')
 (use-package impostman
   :straight t)
 
+
+;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
   :when (and (or os/linux os/bsd) (executable-find "ecryptfs-verify"))

@@ -8,9 +8,12 @@
 
 ;;; Code:
 
+;; A library abstracting LLM capabilities for Emacs
 (use-package llm
   :straight t)
 
+
+;; `llm' module for integrating with Ollama
 (use-package llm-ollama
   :straight llm
   :autoload make-llm-ollama +ollama-serve +ollama-kill-server +ollama-list-installed-models
@@ -48,6 +51,8 @@
           (mapcar (lambda (m) (car (string-split m))) models)
         (user-error "Cannot detect installed models, please make sure Ollama server is started")))))
 
+
+;; A package for interacting with LLMs from Emacs
 (use-package ellama
   :straight t
   :config
@@ -57,9 +62,13 @@
                      collect (cons model (make-llm-ollama :chat-model model :embedding-model model)))
             ellama-provider (cdr (car ellama-providers)))))
 
+
+;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 (use-package elisa
   :straight t)
 
+
+;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
   :straight (:host github :repo "natrys/whisper.el")
   :custom

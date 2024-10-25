@@ -8,14 +8,19 @@
 
 ;;; Code:
 
+;; Implementation of an xkcd reader for Emacs
 (use-package xkcd
   :straight t
   :config
   (+ignore-root xkcd-cache-dir))
 
+
+;; Practice touch/speed typing in Emacs
 (use-package speed-type
   :straight t)
 
+
+;; Play Wordle (a.k.a. Lingo) in Emacs
 (use-package wordel
   :straight t)
 

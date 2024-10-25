@@ -19,6 +19,8 @@
 (defconst +mu4e-available-p
   (and (executable-find "mu") (executable-find "msmtp") (executable-find "mbsync") (file-directory-p +mu4e-load-path)))
 
+
+;; Emacs Email agent based on the "mu" indexer
 (use-package mu4e
   :when +mu4e-available-p
   :load-path +mu4e-load-path
@@ -86,6 +88,7 @@
      (+info! "Getting new emails")
      (apply origfn '(t)))))
 
+
 ;; Reply to iCalendar meeting requests
 (use-package mu4e-icalendar
   :when +mu4e-available-p
@@ -97,6 +100,8 @@
   :config
   (gnus-icalendar-setup))
 
+
+;; My UI tweaks for `mu4e'
 (use-package me-mu4e-ui
   :when +mu4e-available-p
   :after mu4e
@@ -132,10 +137,10 @@
   ;; Create/destroy lock files on server start/kill
   (+mu4e-extras-locks-setup))
 
+
+;; Global minor mode mixing up `org-mode' and `message-mode' to compose and reply to emails in a Outlook HTML friendly style
 (use-package org-msg
-  ;; TEMP+FIX: Switch to this fork until the PR gets merged
-  ;; See: jeremy-compostella/org-msg#182 & jeremy-compostella/org-msg#190
-  :straight (:host github :repo "danielfleischer/org-msg" :branch "1.12")
+  :straight t
   :when +mu4e-available-p
   :after mu4e
   :demand
@@ -164,6 +169,8 @@
      (when-let ((dir (file-name-directory file)))
        (setq-local default-directory dir)))))
 
+
+;; Send HTML email using Org-mode HTML export (alternative to `org-msg')
 (use-package org-mime
   :straight t
   :when +mu4e-available-p
@@ -173,6 +180,8 @@
   ;; Do not export table of contents nor author name
   (setq org-mime-export-options '(:with-latex dvipng :section-numbers t :with-author nil :with-toc nil)))
 
+
+;; Desktop notifications and modeline display for `mu4e'
 (use-package mu4e-alert
   :straight t
   :when +mu4e-available-p
@@ -226,6 +235,8 @@
 
   (setq mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notif-formatter))
 
+
+;; Encrypt and decrypt mails in `mu4e'
 (use-package mu4e-crypto
   :straight t
   :when +mu4e-available-p

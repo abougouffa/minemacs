@@ -20,25 +20,33 @@
   (+org-extras-pretty-latex-fragments-setup)
   (+org-extras-lower-case-keywords-and-properties-setup))
 
+
+;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
   :straight (:host github :repo "abougouffa/org-contrib" :branch "master"))
 
+
+;; Convert font-lock faces to other formats
 (use-package engrave-faces
   :straight t)
 
-;; Org export
+
+;; A carefully crafted Org exporter back-end for Hugo
 (use-package ox-hugo
   :straight t
   :after ox
   :demand)
 
+
+;; Convenience functions for Org export
 (use-package ox-extra
   :after ox
   :demand
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
-;; Other Org features
+
+;; Auto-toggle Org elements
 (use-package org-appear
   :straight t
   :hook (org-mode . org-appear-mode)
@@ -53,6 +61,8 @@
   ;; For proper first-time setup, `org-appear--set-elements' needs to be run after other hooks have acted.
   (run-at-time nil nil #'org-appear--set-elements))
 
+
+;; Modern Org style
 (use-package org-modern
   :straight t
   :hook (org-mode . org-modern-mode)
@@ -76,13 +86,16 @@
      ("HOLD" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "orange"))
      ("DONE" . (:inherit org-verbatim :weight semi-bold :foreground "black" :background "LightGray")))))
 
-;; For latex fragments
+
+;; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 (use-package org-fragtog
   :straight t
   :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.2))
 
+
+;; Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 (use-package citar
   :straight t
   :after minemacs-first-org-file oc
@@ -104,6 +117,8 @@
     (once-x-call '(:check display-graphic-p :hooks server-after-make-frame-hook)
       #'+citar--set-symbols)))
 
+
+;; Citar integration with Embark
 (use-package citar-embark
   :straight t
   :after citar embark

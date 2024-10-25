@@ -8,9 +8,12 @@
 
 ;;; Code:
 
+;; Emacs package with utilities for embedded development with OpenOCD
 (use-package embed
   :straight (:host github :repo "xal-0/embed-el"))
 
+
+;; A set of Emacs modes for various Yocto/Bitbake file formats
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode)
@@ -60,6 +63,8 @@
     (interactive "DSelect the build directory: ")
     (insert (string-join (+bitbake-poky-sources build-dir) "\n"))))
 
+
+;; PlatformIO integration for Emacs
 (push 'projectile straight-built-in-pseudo-packages)
 
 (use-package platformio-mode
@@ -67,6 +72,8 @@
 
 (cl-callf2 remove 'projectile straight-built-in-pseudo-packages)
 
+
+;; Quickly jump to Intel's x86 documentation from Emacs
 (use-package x86-lookup
   :straight t
   :custom

@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Islamic prayer times for Emacs
 (use-package awqat
   :straight (:host github :repo "zkry/awqat")
   :commands (awqat-times-for-day)

@@ -8,23 +8,30 @@
 
 ;;; Code:
 
-(use-package vundo ; visual undo tree
+;; Visualize the undo tree
+(use-package vundo
   :straight t
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)
   (vundo-glyph-alist vundo-unicode-symbols))
 
-(use-package undo-fu-session ; persist undo sessions
+
+;; Persistent undo, available between sessions
+(use-package undo-fu-session
   :straight t
   :hook (minemacs-lazy . undo-fu-session-global-mode)
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz)))
 
+
+;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
 (use-package ws-butler
   :straight (:host github :repo "hlissner/ws-butler")
   :hook (minemacs-first-file . ws-butler-global-mode))
 
+
+;; Smart guessing the indentation offset originally used in the opened source files
 (use-package dtrt-indent
   :straight t
   :after minemacs-first-file
@@ -54,6 +61,8 @@
       (let ((inhibit-message (not minemacs-debug-p)))
         (dtrt-indent-mode +1)))))
 
+
+;; A template system for Emacs
 (use-package yasnippet
   :straight t
   :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
@@ -66,6 +75,8 @@
   (yas-triggers-in-field t) ; Allow nested snippets
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
 
+
+;; Completion-At-Point Extension for YASnippet
 (use-package yasnippet-capf
   :straight t
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
@@ -75,31 +86,45 @@
     (when (bound-and-true-p yas-minor-mode)
       (add-to-list 'completion-at-point-functions #'yasnippet-capf))))
 
+
+;; A collection of yasnippet snippets for many languages
 (use-package yasnippet-snippets
   :straight t)
 
+
+;; The Doom Emacs snippets library
 (use-package doom-snippets
   :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
 
+
+;; Insert SPDX license header
 (use-package spdx
   :straight (:host github :repo "condy0919/spdx.el")
   :custom
   (spdx-copyright-holder 'user)
   (spdx-project-detection 'auto))
 
+
+;; Writable grep buffer and apply the changes to files
 (use-package wgrep
   :straight t
   :commands (wgrep-change-to-wgrep-mode)
   :custom
   (wgrep-auto-save-buffer t))
 
+
+;; Highlight symbols with keymap-enabled overlays
 (use-package symbol-overlay
   :straight t)
 
+
+;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
   :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+
+;; Highlight numbers in source code
 (use-package highlight-numbers
   :straight t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
@@ -110,6 +135,8 @@
            (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
            highlight-numbers-modelist))
 
+
+;; An Emacs minor mode for highlighting matches to the selection
 (use-package selection-highlight-mode
   :straight (:host github :repo "balloneij/selection-highlight-mode" :fork (:repo "abougouffa/selection-highlight-mode"))
   :hook (minemacs-lazy . selection-highlight-mode)
@@ -131,9 +158,13 @@
              (set-face-background 'selection-highlight-mode-match-face new-color)
              (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 
+
+;; Zones of text - like multiple regions
 (use-package zones
   :straight t)
 
+
+;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
   :straight t
   :hook (minemacs-lazy . smartparens-global-mode)
@@ -141,6 +172,8 @@
   (sp-local-pair 'org-mode "$" "$" :unless '(sp-point-after-word-p))
   (require 'smartparens-config))
 
+
+;; Your friendly neighborhood expand-region clone
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
   :when (+emacs-features-p 'tree-sitter)
@@ -151,6 +184,8 @@
 (unless (+emacs-features-p 'tree-sitter)
   (+load minemacs-obsolete-modules-dir "me-expand-region.el"))
 
+
+;; Drag stuff around in Emacs
 (use-package drag-stuff
   :straight t
   :init
@@ -159,6 +194,8 @@
          ("M-<left>" . drag-stuff-left)
          ("M-<right>" . drag-stuff-right)))
 
+
+;; Perform a backup on each file save, real backup for Emacs!
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))

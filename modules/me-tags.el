@@ -8,10 +8,12 @@
 
 ;;; Code:
 
-
+;; Emacs frontend to GNU Global source code tagging system
 (use-package ggtags
   :straight t)
 
+
+;; A superior code reading & auto-completion tool with pluggable backends
 (use-package citre
   :straight t
   :after minemacs-first-c/c++-file
@@ -77,6 +79,8 @@ Fall back to the default `citre--project-root'."
     (let* ((default-directory top-directory))
       (start-process-shell-command "+citre-gtags-files-list" "*+citre-gtags-files-list*" (+citre-gtags-find-files-command)))))
 
+
+;; Cscope interface for Emacs
 (use-package xcscope
   :straight t
   :unless os/win
@@ -85,14 +89,20 @@ Fall back to the default `citre--project-root'."
   (cscope-option-do-not-update-database t)
   (cscope-display-cscope-buffer nil))
 
+
+;; Cscope integration for Emacs' Consult
 (use-package consult-cscope
   :straight (:host github :repo "blorbx/consult-cscope"))
 
+
+;; Clink integration to Emacs
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
   :when (+emacs-features-p 'sqlite3)
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 
+
+;; A client/server indexer for C/C++/Objc[++] with integration for Emacs based on Clang
 (use-package rtags
   :straight t
   :custom
@@ -104,14 +114,20 @@ Fall back to the default `citre--project-root'."
   (rtags-rc-binary-name (cl-find-if #'executable-find (list rtags-rc-binary-name "rtags-rc")))
   (rtags-rdm-binary-name (cl-find-if #'executable-find (list rtags-rdm-binary-name "rtags-rdm"))))
 
+
+;; RTags backend for `xref'
 (use-package rtags-xref
   :straight t
   :commands (rtags-xref-enable))
 
+
+;; Reborn Cscope extension for Emacs
 (use-package rscope
   :straight (:host github :repo "rjarzmik/rscope")
   :commands (rscope-init rscope-regenerate-database))
 
+
+;; A C/C++ minor mode for Emacs powered by "libclang"
 (use-package irony-mode
   :straight t
   :config
@@ -120,6 +136,8 @@ Fall back to the default `citre--project-root'."
     ;; Set the buffer size to 64K on Windows (from the original 4K)
     (when (boundp 'w32-pipe-buffer-size) (setq irony-server-w32-pipe-buffer-size (* 64 1024)))))
 
+
+;; Integration of `irony-mode' with `eldoc'
 (use-package irony-eldoc
   :straight t)
 

@@ -12,6 +12,8 @@
   "MinEmacs elfeed tweaks."
   :group 'minemacs-apps)
 
+
+;; An Emacs RSS web feeds client
 (use-package elfeed
   :straight t
   :init

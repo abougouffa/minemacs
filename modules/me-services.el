@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
   :straight org-jira
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
@@ -61,19 +62,26 @@
                   (pass (funcall (plist-get auth :secret))))
         (jiralib-login user pass)))))
 
+
+;; Bring Jira and Org mode together
 (use-package org-jira
   :straight (:host github :repo "ahungry/org-jira")
   :custom
   (org-jira-working-dir (+directory-ensure org-directory "jira/")))
 
+
+;; Edit Confluence wiki pages in Emacs
 (use-package tributary
   :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
   :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
+
+;; Paste text to pastebin-like services
 (use-package webpaste
   :straight t
   :custom
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
+
 
 (provide 'me-services)
 

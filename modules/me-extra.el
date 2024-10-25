@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; A Collection of Ridiculously Useful eXtensions for Emacs
 (use-package crux
   :straight t
   :bind (("C-c o o" . crux-open-with)

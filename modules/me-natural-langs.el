@@ -8,6 +8,7 @@
 
 ;;; Code:
 
+;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
   :straight t
   :when (+emacs-features-p 'modules)
@@ -46,12 +47,17 @@ to built-in `flyspell-mode'."
 (with-eval-after-load 'git-commit
   (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
 
+
+;; Fancy Emacs integration with the console version of StarDict
 (use-package lexic
   :straight t
   :when (executable-find "sdcv"))
 
+
+;; Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
+
 
 ;; Add this to .dir-locals.el
 ;; ((nil (eglot-workspace-configuration

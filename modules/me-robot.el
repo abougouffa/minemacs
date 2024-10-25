@@ -11,11 +11,14 @@
 ;; Needed by `ros', but provided by `tramp'
 (push 'docker-tramp straight-built-in-pseudo-packages)
 
-;; ROS package
+
+;; A package to ease the interaction ROS nodes and the development of ROS software
 (use-package ros
-  :straight (:host github :repo "DerBeutlin/ros.el")
+  :straight (:host github :repo "mbeutelspacher/ros.el")
   :commands (ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache))
 
+
+;; Show information about ROS bag files in Emacs
 (use-package rosbag-info
   :straight (:host github :repo "abougouffa/rosbag-info"))
 
