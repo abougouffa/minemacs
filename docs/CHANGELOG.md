@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.4.0](https://github.com/abougouffa/minemacs/compare/90ee195695f9f77639830b092d2f106abb86f3b8..v9.4.0) - 2024-10-26
+#### Bug Fixes
+- **(ui)** upgrade the Casual suite, merged into one package - ([02e3845](https://github.com/abougouffa/minemacs/commit/02e38458840addf67d30f249265a49db9c9e7083)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(completion)** add descriptions for each package - ([7c6e0be](https://github.com/abougouffa/minemacs/commit/7c6e0bec9a98979ac925eb40c7260ca94de64343)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add descriptions for each package - ([0fcebe6](https://github.com/abougouffa/minemacs/commit/0fcebe6f1f33bb4e605a03cb2358fdf1afebf92f)) - [@abougouffa](https://github.com/abougouffa)
+- add descriptions for included packages - ([4dd8e63](https://github.com/abougouffa/minemacs/commit/4dd8e633471718d7e60c61f558412fb9cb15a981)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** better support for CMake via `cmake-build` & `czm-cpp` - ([c540e73](https://github.com/abougouffa/minemacs/commit/c540e7384e1ec9dff7b7af4bbab9f0643fe6bf34)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** restore `magit-file-icons` - ([90ee195](https://github.com/abougouffa/minemacs/commit/90ee195695f9f77639830b092d2f106abb86f3b8)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `editorconfig` to `me-builtin` - ([93be81d](https://github.com/abougouffa/minemacs/commit/93be81d171585548ec4436527234d574acc5ac59)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cmake-build)** set the file path - ([b0e583d](https://github.com/abougouffa/minemacs/commit/b0e583d206cd63d25a9c23e30c855da93e3f23e2)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cbc5068](https://github.com/abougouffa/minemacs/commit/cbc506844ed6268c56a7b4dfdd57e81432d19266)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d89b7b2](https://github.com/abougouffa/minemacs/commit/d89b7b291401175e47e888de3591b8dde945cd47)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.3.6](https://github.com/abougouffa/minemacs/compare/993d21efbd24829226c4cd19276906f5bbfc3ce9..v9.3.6) - 2024-10-18
 #### Bug Fixes
 - **(core)** fix the regexp for failed patches in `+apply-patch-dwim` - ([8e2b367](https://github.com/abougouffa/minemacs/commit/8e2b3674a733428664945f0c69f6c3bbb05ef388)) - [@abougouffa](https://github.com/abougouffa)
