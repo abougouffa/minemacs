@@ -814,9 +814,18 @@ Open the current file as root.
 
 Save this buffer as root. Save as new file name if called with prefix.
 
-#### `(+yank-this-file-name)`
+#### `(+copy-this-file-name)`
 
-Yank the file name of this buffer.
+Save (copy) the file name of this buffer to the kill ring.
+
+#### `(+patch-get-patched-files PATCH-BUFF)`
+
+Get the list of the patches A/B files mentioned in PATCH-BUFF.
+
+#### `(+apply-patch-dwim PATCH-BUF &optional PROJ-DIR)`
+
+Apply PATCH-BUF to the relevant file in PROJ-DIR.
+When a region is active, propose to use it as the patch buffer.
 
 #### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
 
@@ -932,9 +941,17 @@ Change the indentation size to WIDTH of the current buffer.
 The effectiveness of this command is significantly improved if
 you have `editorconfig` or `dtrt-indent` installed.
 
+#### `(+goto-line N)`
+
+Go to line N, like `goto-line` but for Lisp code.
+
+#### `(+autoload-region BEG END)`
+
+Add the ;;;###autoload to region (BEG . END).
+
 #### `(+webjump)`
 
-Like `webjump`, with initial query filled from `+region-org-thing-at-point`.
+Like `webjump`, with initial query filled from `+region-or-thing-at-point`.
 
 #### `(+eglot-ccls-inheritance-hierarchy &optional DERIVED)`
 
