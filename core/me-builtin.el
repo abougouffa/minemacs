@@ -197,7 +197,7 @@ or file path may exist now."
   (add-to-list 'find-file-not-found-functions #'+create-non-existent-directory))
 
 (use-package compat
-  :straight t
+  :straight (:source gnu-elpa-mirror)
   :demand)
 
 (use-package crm
