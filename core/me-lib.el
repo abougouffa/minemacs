@@ -288,6 +288,11 @@ This inhebits both the echo area and the `*Messages*' buffer."
   :group 'minemacs-core
   :type '(repeat file))
 
+(defcustom +first-file-hooks nil
+  "A list of defined hooks using `+make-first-file-hook!'."
+  :group 'minemacs-core
+  :type '(repeat symbol))
+
 (defmacro +make-first-file-hook! (filetype ext-regexp)
   "Make a hook which run on the first FILETYPE file of a particular extensions.
 The extension should matches EXT-REGEXP.
@@ -308,6 +313,7 @@ Applies to files that matches %S.
 Executed before `find-file-noselect', it runs all hooks in `%s' and provide the `%s' feature."
                             (or filetype "") (eval ext-regexp) hook-name feature-name)))
     `(progn
+       (push ',hook-name +first-file-hooks)
        (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'." ',hook-name ',fn-name ',feature-name)
        (defcustom ,hook-name nil ,hook-docs :group 'minemacs-core :type 'hook)
        (defun ,fn-name (&optional filename &rest _)
