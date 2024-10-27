@@ -134,6 +134,9 @@
     (:tool git
      :link "https://github.com/git/git"
      :desc "The stupid content tracker")
+    (:tool git-imerge
+     :link "https://github.com/mhagger/git-imerge"
+     :desc "Incremental merge and rebase for Git")
     (:tool python
      :link "https://python.org"
      :desc "The Python interpreter")
