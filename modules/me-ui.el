@@ -168,6 +168,7 @@
 ;; A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 (use-package casual
   :straight (:host github :repo "kickingvegas/casual")
+  :bind ("C-o" . casual-editkit-main-tmenu)
   :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu))
   :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu))
   :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu))
