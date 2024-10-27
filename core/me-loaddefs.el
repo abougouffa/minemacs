@@ -396,6 +396,11 @@ Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
 `application/x-object', `application/octet-stream', etc.
 
 (fn FILE)")
+(autoload '+file-type "me-lib-extra" "\
+Get file type for FILE based on magic codes provided by the \"file\" command.
+Return a cons (file-type . extended-description).
+
+(fn FILE)")
 (autoload '+file-name-incremental "me-lib-extra" "\
 Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
@@ -552,7 +557,7 @@ Add the ;;;###autoload to region (BEG . END).
 
 (fn BEG END)" t)
 (autoload '+webjump "me-lib-extra" "\
-Like `webjump', with initial query filled from `+region-org-thing-at-point'." t)
+Like `webjump', with initial query filled from `+region-or-thing-at-point'." t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
 Show inheritance hierarchy for the thing at point.
 If DERIVED is non-nil (interactively, with prefix argument), show
@@ -674,7 +679,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-proj-dir" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -932,7 +937,7 @@ mode if ARG is nil, omitted, or is a positive number.  Disable the mode
 if ARG is a negative number.
 
 To check whether the minor mode is enabled in the current buffer,
-evaluate `+writing-mode'.
+evaluate the variable `+writing-mode'.
 
 The mode's hook is called both when the mode is enabled and when it is
 disabled.
