@@ -191,6 +191,15 @@ Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
     (error "The \"file\" command isn't installed")))
 
 ;;;###autoload
+(defun +file-type (file)
+  "Get file type for FILE based on magic codes provided by the \"file\" command.
+Return a cons (file-type . extended-description)."
+  (if-let ((file-cmd (executable-find "file"))
+           (file-type (shell-command-to-string (format "%s --brief %s" file-cmd file))))
+      (cons (car (string-split file-type ",")) (string-trim file-type))
+    (error "The \"file\" command isn't installed")))
+
+;;;###autoload
 (defun +file-name-incremental (filename)
   "Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\"."
