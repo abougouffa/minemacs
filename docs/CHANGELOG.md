@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v9.4.1](https://github.com/abougouffa/minemacs/compare/c72e9292214f9f2e305b27cb1c34d78a124d1fc7..v9.4.1) - 2024-10-27
+#### Documentation
+- **(documentation)** regenerate the documentation - ([c72e929](https://github.com/abougouffa/minemacs/commit/c72e9292214f9f2e305b27cb1c34d78a124d1fc7)) - [@abougouffa](https://github.com/abougouffa)
+- update external dependencies - ([34722b1](https://github.com/abougouffa/minemacs/commit/34722b1b3ce3412f72ecaff93825467f455b3291)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(cape)** use `satch-advice-add` when possible - ([44847d9](https://github.com/abougouffa/minemacs/commit/44847d93da544725b0d5c9ef40f671775c057196)) - [@abougouffa](https://github.com/abougouffa)
+- move pseudo-packages declaration to `me-bootstrap` - ([c682141](https://github.com/abougouffa/minemacs/commit/c6821416f64d40c921f7c4ee9d82b421890517af)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cape)** remove a tweak for the unsupported Emacs 28 - ([6bce8b3](https://github.com/abougouffa/minemacs/commit/6bce8b30c3de13ddfb28845587f3e4206e17974d)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** bind `casual-editkit-main-tmenu` to `C-o` - ([d05429a](https://github.com/abougouffa/minemacs/commit/d05429a76fe0aced5fb99f6f977898a3e131ac7f)) - [@abougouffa](https://github.com/abougouffa)
+- **(compat)** force using the latest version from GNU ELPA mirror - ([ae6cb1e](https://github.com/abougouffa/minemacs/commit/ae6cb1eb86657eb65c30015b2958e97f1fc9e07b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3d3b95b](https://github.com/abougouffa/minemacs/commit/3d3b95b691c9db92491114a682101cbd4426c3d0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.4.0](https://github.com/abougouffa/minemacs/compare/90ee195695f9f77639830b092d2f106abb86f3b8..v9.4.0) - 2024-10-26
 #### Bug Fixes
 - **(ui)** upgrade the Casual suite, merged into one package - ([02e3845](https://github.com/abougouffa/minemacs/commit/02e38458840addf67d30f249265a49db9c9e7083)) - [@abougouffa](https://github.com/abougouffa)
