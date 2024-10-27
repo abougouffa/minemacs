@@ -34,10 +34,9 @@
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
 
   ;; Make these capfs composable
-  (advice-add 'comint-completion-at-point :around #'cape-wrap-nonexclusive)
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-nonexclusive)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-nonexclusive)
-
+  (satch-advice-add
+   '(comint-completion-at-point eglot-completion-at-point pcomplete-completions-at-point)
+   :around #'cape-wrap-nonexclusive)
 
   (satch-add-hook 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
 
