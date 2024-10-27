@@ -122,9 +122,6 @@
         (when (called-interactively-p)
           (user-error "No installed tree-sitter grammar for mode `%s'" major-mode))))))
 
-(push 'treesit straight-built-in-pseudo-packages) ; ts-movement depends on it
-
-
 ;; Move and edit code blocks based on tree-sitter AST
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")

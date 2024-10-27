@@ -8,10 +8,6 @@
 
 ;;; Code:
 
-;; Needed by `ros', but provided by `tramp'
-(push 'docker-tramp straight-built-in-pseudo-packages)
-
-
 ;; A package to ease the interaction ROS nodes and the development of ROS software
 (use-package ros
   :straight (:host github :repo "mbeutelspacher/ros.el")

@@ -34,6 +34,10 @@
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
 
+(cl-callf append straight-built-in-pseudo-packages
+  '(treesit ; Some packages like `ts-movement' depends on it
+    docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
+
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
  use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
