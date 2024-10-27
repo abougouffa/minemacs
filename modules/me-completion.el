@@ -38,8 +38,6 @@
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-nonexclusive)
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-nonexclusive)
 
-  (when (< emacs-major-version 29)
-    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
   (satch-add-hook 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
 
