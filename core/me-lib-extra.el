@@ -29,22 +29,10 @@ Call functions without asking when DONT-ASK-P is non-nil."
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
-  ;; Backup the current installed versions, this file can be restored if version
-  ;; upgrade does break some packages.
-  (message "[MinEmacs]: Creating backups for the current versions of packages")
-  (let* ((backup-dir (concat minemacs-local-dir "minemacs/versions/"))
-         (dest-file (concat backup-dir (format-time-string "default-%Y%m%d%H%M%S.el")))
-         (src-file (concat straight-base-dir "straight/versions/default.el")))
-    (unless (file-directory-p backup-dir) (mkdir backup-dir 'parents))
-    (when (file-exists-p src-file)
-      (message "[MinEmacs]: Creating backup from \"%s\" to \"%s\"" src-file dest-file)
-      (copy-file src-file dest-file)))
-
   ;; Update straight recipe repositories
   (straight-pull-recipe-repositories)
 
-  ;; Run `straight's update cycle, taking into account the explicitly pinned
-  ;; packages versions.
+  ;; Run `straight's update cycle, taking into account the explicitly pinned versions
   (message "[MinEmacs]: Pulling packages")
   (straight-x-pull-all)
   (message "[MinEmacs]: Freezing packages")
