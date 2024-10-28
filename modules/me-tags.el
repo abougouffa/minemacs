@@ -44,15 +44,6 @@
   :config
   (require 'citre-config) ; default configuration
 
-  ;; FIX: Redefine Citre's `xref-backend-references' to not emit an error,
-  ;; making `xref-union' try the next backend (universal-ctags/citre#176)
-  (cl-defmethod xref-backend-references ((_backend (eql 'citre)) symbol)
-    "Method for xref to find references of SYMBOL."
-    (if-let ((buf (citre-get-property 'xref-symbol-buffer symbol)))
-        (with-current-buffer buf
-          (citre-xref--make-collection (citre-get-references)))
-      (prog1 nil (message "Finding references of completed symbol is not supported by Citre"))))
-
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
