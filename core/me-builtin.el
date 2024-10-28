@@ -1077,15 +1077,9 @@ Typing these will trigger reindentation of the current line.")
   (display-line-numbers-widen t)) ; Display absolute line numbers in narrowed regions
 
 (use-package pixel-scroll
-  :hook (minemacs-lazy . +pixel-scroll-mode)
+  :hook (minemacs-lazy . pixel-scroll-precision-mode)
   :custom
-  (pixel-scroll-precision-use-momentum t) ; Better scrolling on Emacs29+, specially on a touchpad
-  :config
-  (defun +pixel-scroll-mode ()
-    ;; Scroll pixel by pixel, in Emacs29+ there is a more pricise mode way to scroll
-    (if (>= emacs-major-version 29)
-        (pixel-scroll-precision-mode 1)
-      (pixel-scroll-mode 1))))
+  (pixel-scroll-precision-use-momentum t)) ; Better scrolling on Emacs29+, specially on a touchpad
 
 (use-package mouse
   :hook (minemacs-lazy . context-menu-mode) ; Enable context menu on mouse right click

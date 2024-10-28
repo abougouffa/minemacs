@@ -68,7 +68,7 @@
         (add-hook 'minemacs-lazy-hook #'+benchmark-init--desactivate-and-show-h 99)))))
 
 ;; Check if Emacs version is supported.
-(let ((min-ver 28)
+(let ((min-ver 29)
       (recommended-ver 29))
   (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
@@ -99,24 +99,15 @@
 ;; Add some of MinEmacs' directories to `load-path'.
 (setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-modules-dir) load-path))
 
-;; Load MinEmacs' library
+;; Load MinEmacs' core library
 (require 'me-lib)
 
-;; HACK: Most Emacs' builtin and third-party packages depends on the
-;; `user-emacs-directory' variable to store cache information, generated
-;; configuration files and downloaded utilities. However, this will mess with
-;; MinEmacs' directory (which defaults to `user-emacs-directory'). To keep the
-;; "~/.emacs.d/" directory clean, we overwrite the `user-emacs-directory' at
-;; early stage with `minemacs-local-dir' so all generated files gets stored in
-;; "~/.emacs.d/local/".
 ;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
 (setq user-emacs-directory minemacs-local-dir)
 
 (setq
- ;; Enable debugging on error when Emacs is launched with the `--debug-init`
- ;; option or when the environment variable `$MINEMACS_DEBUG` is defined (see
- ;; `me-vars').
+ ;; Enable debugging on error when Emacs if needed
  debug-on-error minemacs-debug-p
  ;; Decrease the warning type to `:error', unless we are running in verbose mode
  warning-minimum-level (if minemacs-verbose-p :warning :error)
@@ -128,16 +119,15 @@
 ;; Native compilation settings
 (when (featurep 'native-compile)
   (setq
-   ;; Silence compiler warnings as they can be pretty disruptive, unless we are
-   ;; running in `minemacs-verbose-p' mode.
+   ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
    native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
-   native-comp-verbose (if minemacs-verbose-p 1 0) ; do not be too verbose
+   ;; Do not be too verbose
+   native-comp-verbose (if minemacs-verbose-p 1 0)
    native-comp-debug (if minemacs-debug-p 1 0)
-   ;; Make native compilation happens asynchronously.
+   ;; Make native compilation happens asynchronously
    native-comp-jit-compilation t)
 
-  ;; Set the right directory to store the native compilation cache to avoid
-  ;; messing with "~/.emacs.d/".
+  ;; Set the directory for storing the native compilation cache
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 (defun minemacs-generate-loaddefs ()
@@ -147,11 +137,7 @@
   (apply (if (fboundp 'loaddefs-generate) #'loaddefs-generate #'make-directory-autoloads)
          (list (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir) minemacs-loaddefs-file)))
 
-;; Some of MinEmacs commands and libraries are defined to be auto-loaded. In
-;; particular, these in the `minemacs-core-dir', `minemacs-elisp-dir', and
-;; `minemacs-extras-dir' directories. The generated loaddefs file will be stored
-;; in `minemacs-loaddefs-file'. We first regenerate the loaddefs file if it
-;; doesn't exist.
+;; Generate the loaddefs file if needed
 (unless (file-exists-p minemacs-loaddefs-file) (minemacs-generate-loaddefs))
 
 ;; Then we load the loaddefs file

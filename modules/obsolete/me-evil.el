@@ -352,7 +352,7 @@ It is deferred until `general' gets loaded and configured."
    "ii"   #'auto-insert
    "iu"   #'insert-char
    "ip"   #'yank-pop ;; Will be overwritten with `consult-yank-pop'
-   "ie"   (when (>= emacs-major-version 29) #'emoji-search)
+   "ie"   #'emoji-search
 
    ;; ====== Window ======
    "w"    '(nil :wk "window")
@@ -637,7 +637,7 @@ It is deferred until `general' gets loaded and configured."
   "l" #'bibtex-fill-entry
   "r" #'bibtex-reformat)
 
-(when (and (>= emacs-major-version 29) (+emacs-features-p 'sqlite3))
+(when (+emacs-features-p 'sqlite3)
   (+evil-conf-for! sqlite-mode me-builtin
     :config-form
     (+nvmap! :keymaps 'sqlite-mode-map
