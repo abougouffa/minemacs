@@ -865,6 +865,11 @@ or file path may exist now."
   :config
   (mapc #'require '(oc-csl oc-natbib oc-biblatex)))
 
+(use-package ob-ditaa
+  :custom
+  (org-ditaa-jar-path (concat minemacs-assets-dir "bin/ditaa-0.10.jar"))
+  (org-ditaa-eps-jar-path (concat minemacs-assets-dir "bin/DitaaEps-0.2.jar")))
+
 (use-package electric
   :config
   ;; Electric indent on delete and enter
