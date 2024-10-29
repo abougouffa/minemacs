@@ -13,7 +13,7 @@
   :straight t)
 
 
-;; A superior code reading & auto-completion tool with pluggable backends
+;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
   :straight t
   :after minemacs-first-c/c++-file

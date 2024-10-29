@@ -345,7 +345,7 @@ or file path may exist now."
 
   (add-to-list 'project-switch-commands '(project-shell "Shell") t)
 
-  ;; Define some `projectile' commands/functions for `project' (used by some packages, like `fzf', `neotree' and `platformio-mode')
+  ;; Define some `projectile' commands/functions on top of `project' (required by `fzf', `neotree', `platformio-mode', etc.)
   (defun projectile-project-p (&optional dir) (let ((default-directory (or dir default-directory))) (and (project-current) t)))
   (defun projectile-project-root (&optional dir) (let ((default-directory (or dir default-directory))) (when-let* ((proj (project-current))) (project-root proj))))
   (defun projectile-project-name (&optional proj) (when-let ((proj (or proj (project-current)))) (project-name proj)))
@@ -570,8 +570,8 @@ or file path may exist now."
   ;; Show references in a separate buffer, this is more convenient especially in big codebases
   (xref-show-xrefs-function #'xref-show-definitions-buffer)
   (xref-prompt-for-identifier
-   '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame
-     xref-find-references)) ; Otherwise, it causes problems on big codebases
+   '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame ; The default value
+     xref-find-references)) ; We add `xref-find-references', which causes problems on big codebases
   ;; NOTE: Usually, this shorcut can be bound to moves the window (set by the OS
   ;; window manager), so we need to disable it in the WM for this to work.
   :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse)
@@ -604,22 +604,14 @@ or file path may exist now."
     "ruff-lsp")
   (+eglot-register ; better (!) parameters for Clangd
     '(c++-mode c++-ts-mode c-mode c-ts-mode)
-    '("clangd"
-      "--background-index"
-      "-j=12"
+    '("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
       "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-      "--clang-tidy"
-      ;; "--clang-tidy-checks=*"
-      "--all-scopes-completion"
-      "--cross-file-rename"
-      "--completion-style=detailed"
-      "--header-insertion-decorators"
-      "--header-insertion=iwyu"
-      "--pch-storage=memory")
+      "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
+      "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")
     "ccls")
 
   ;; Optimization from Doom Emacs
-  ;; NOTE: This setting disable the `eglot-events-buffer' enabling more
+  ;; PERF: This setting disable the `eglot-events-buffer' enabling more
   ;; consistent performance on long running Emacs instance. Default is 2000000
   ;; lines. After each new event the whole buffer is pretty printed which causes
   ;; steady performance decrease over time. CPU is spent on pretty priting and
@@ -842,15 +834,13 @@ or file path may exist now."
 
   (cond
    ((executable-find "latexmk")
-    (setq
-     org-latex-pdf-process
-     '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
-       "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
+    (setq org-latex-pdf-process
+          '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
+            "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
    ;; NOTE: Tectonic might have some issues with some documents (sagej + natbib)
    ((executable-find "tectonic")
-    (setq
-     org-latex-pdf-process
-     '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
+    (setq org-latex-pdf-process
+          '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
 
 (use-package ox
   :config
@@ -1032,7 +1022,7 @@ Typing these will trigger reindentation of the current line.")
   :custom
   (global-auto-revert-non-file-buffers t) ; Revert non-file buffers like dired
   :config
-  ;; Immediately revert the buffer when switching to it. The idea is to save the
+  ;; HACK: Avoid delays when auto reverting buffers. This is based on saving the
   ;; modification time of the file on save and on buffer switch.
   (defvar-local +auto-revert-buffer-time nil)
   (defun +file-mtime (file)
@@ -1053,7 +1043,7 @@ Typing these will trigger reindentation of the current line.")
        (revert-buffer t t)))))
 
 (use-package savehist
-  :hook (minemacs-lazy . savehist-mode))
+  :hook (minemacs-lazy . savehist-mode)) ; Save history
 
 (use-package saveplace
   :hook (minemacs-first-file . save-place-mode)) ; Save place in files
