@@ -115,6 +115,15 @@
   :commands (repo-main-menu))
 
 
+;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
+(use-package jujutsushi
+  :straight (:host sourcehut :repo "puercopop/jujutsushi")
+  :init
+  (with-eval-after-load 'project
+    (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))
+    (add-to-list 'project-vc-extra-root-markers ".jj")))
+
+
 ;; View diffs side-by-side in Emacs
 (use-package diffview
   :straight t)

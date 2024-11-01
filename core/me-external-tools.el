@@ -137,6 +137,9 @@
     (:tool git-imerge
      :link "https://github.com/mhagger/git-imerge"
      :desc "Incremental merge and rebase for Git")
+    (:tool jujutsu
+     :link "https://github.com/martinvonz/jj"
+     :desc "A Git-compatible VCS that is both simple and powerful")
     (:tool python
      :link "https://python.org"
      :desc "The Python interpreter")
