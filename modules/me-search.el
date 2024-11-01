@@ -66,9 +66,14 @@
 
 
 ;; Emacs search tool based on "ripgrep"
-(use-package rg
+(use-package rg ;; TODO: Maybe deprecate this in favor of `deadgrep'
   :straight t
   :bind (("C-c s" . rg-menu)))
+
+
+;; Fast, friendly searching with ripgrep and Emacs
+(use-package deadgrep
+  :straight t)
 
 
 ;; Asynchronous fuzzy finder for Emacs
