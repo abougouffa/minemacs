@@ -126,7 +126,7 @@ Compiled from the `system-configuration-features'.")
 This can be useful if you want to enable a module but you don't want a package
 of being enabled."
   :group 'minemacs-core
-  :type '(list symbol))
+  :type '(repeat symbol))
 
 (defvar minemacs-configured-packages nil
   "List of packages installed and configured by MinEmacs during startup.")
