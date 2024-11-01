@@ -116,11 +116,14 @@
   (defvar +with-editor-ignore-matching-buffers '("\\*julia\\*"))
   (defun +with-editor-export-all ()
     (unless (seq-some (+apply-partially-right #'string-match-p (buffer-name)) +with-editor-ignore-matching-buffers)
-      (with-editor-export-editor)
-      (with-editor-export-hg-editor)
-      (with-editor-export-git-editor)))
+      (+shutup! (with-editor-export-editor)) ; Export EDITOR
+      (+shutup! (with-editor-export-hg-editor)) ; Export HG_EDITOR
+      (+shutup! (with-editor-export-git-editor)) ; Export GIT_EDITOR
+      (+shutup! (with-editor-export-editor "JJ_EDITOR")))) ; Export JJ_EDITOR
   :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
-         ("<remap> <shell-command>" . with-editor-shell-command)))
+         ("<remap> <shell-command>" . with-editor-shell-command))
+  :config
+  (add-to-list 'with-editor-envvars "JJ_EDITOR")) ; Add support for Jujutsu (`jj')
 
 
 ;; Buffer-local "direnv" integration for Emacs
