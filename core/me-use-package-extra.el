@@ -43,7 +43,7 @@
   (defun use-package-handler/:trigger-commands (name _keyword arg rest state)
     (use-package-concat
      (unless (plist-get state :demand)
-       `((satch-add-advice ',(delete-dups arg) :before (lambda () (require ',name)) nil :transient t)))
+       `((satch-add-advice ',(delete-dups arg) :before (lambda (&rest _args) (require ',name)) nil :transient t)))
      (use-package-process-keywords name rest state)))
 
   ;; `:pin-ref' implementation
