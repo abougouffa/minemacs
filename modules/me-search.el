@@ -37,6 +37,12 @@
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
 
+;; A smart point tracker
+(use-package gumshoe
+  :straight t
+  :hook (minemacs-lazy . global-gumshoe-mode))
+
+
 ;; An Emacs package to move point through `buffer-undo-list' positions
 (use-package goto-last-change
   :bind (("M-é" . goto-last-change))) ; For French AZERTY keybords
