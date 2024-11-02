@@ -144,7 +144,8 @@
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (+emacs-features-p 'sqlite3) (executable-find "sqlite3")))
-  :hook (python-base-mode . pet-mode))
+  :init
+  (add-hook 'python-base-mode-hook 'pet-mode -10))
 
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
