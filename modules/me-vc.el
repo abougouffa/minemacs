@@ -117,7 +117,7 @@
 
 ;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
 (use-package jujutsushi
-  :straight (:host sourcehut :repo "puercopop/jujutsushi")
+  :straight (:host github :repo "abougouffa/jujutsushi" :branch "default")
   :init
   (with-eval-after-load 'project
     (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))
