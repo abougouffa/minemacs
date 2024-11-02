@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.0.0](https://github.com/abougouffa/minemacs/compare/da0728d179d6d4b5d6cdb46d652998d4e97f2a2f..v10.0.0) - 2024-11-02
+#### Bug Fixes
+- **(core)** fix the `:trigger-commands` argument of `use-package` - ([3aed505](https://github.com/abougouffa/minemacs/commit/3aed505de5d7a6085cbb227562aa53fa436c4e90)) - [@abougouffa](https://github.com/abougouffa)
+- **(jujutsushi)** use my mirror (sourcehut is often offline) - ([60dd738](https://github.com/abougouffa/minemacs/commit/60dd738aa27383299bc0946fe8e77820b8a39ad9)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-file-icons)** load before `magit`, but not too early - ([543724c](https://github.com/abougouffa/minemacs/commit/543724c37ae423d27ce995a58ed93afdfb4eacf8)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- minor edits - ([9442493](https://github.com/abougouffa/minemacs/commit/944249306386417d4033156fd8619a4849642a2f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** officially drop support for Emacs 28 - ([6572063](https://github.com/abougouffa/minemacs/commit/65720630d9735c1e6d320f0a50ff1bc2b1a00183)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+file-type` - ([71afd8e](https://github.com/abougouffa/minemacs/commit/71afd8e9dad77915badb90beb3892b8e363c7dce)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** add initial support for `gumshoe` - ([fbf36fd](https://github.com/abougouffa/minemacs/commit/fbf36fdebae3f552f78d2cb487fe1bc4698edbd2)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** add initial support for `deadgrep` - ([38b7eec](https://github.com/abougouffa/minemacs/commit/38b7eeca2dcbfddee9b78083a15d055713f4e5d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add Jujutsu (`jj`) support - ([f96e481](https://github.com/abougouffa/minemacs/commit/f96e481c8306ae004016ff0fb9f5ff7295638f4d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** remove unneeded code - ([9f89b99](https://github.com/abougouffa/minemacs/commit/9f89b99c3ddae0e63b5f8737ee3815d1523a2d9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** make `minemacs-load-module` more generic - ([da0728d](https://github.com/abougouffa/minemacs/commit/da0728d179d6d4b5d6cdb46d652998d4e97f2a2f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(awqat)** change the icon - ([30e8a9c](https://github.com/abougouffa/minemacs/commit/30e8a9c38317ee8206f725dab0b3b2fac5c6d85f)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** remove hack, the change has been merged upstream - ([4654975](https://github.com/abougouffa/minemacs/commit/46549754557fafb8692cb9d014f6a4e6bd9df8c8)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor tweaks - ([7f0c960](https://github.com/abougouffa/minemacs/commit/7f0c960fbed7b4854a8d4eb11fca5a134db6e725)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `os/android` variable - ([ad951d5](https://github.com/abougouffa/minemacs/commit/ad951d5d4d914b27c47d1d6068058dc31c225c26)) - [@abougouffa](https://github.com/abougouffa)
+- **(ob-ditaa)** include JAR files for Ditaa - ([901d93d](https://github.com/abougouffa/minemacs/commit/901d93de435a984a6d5c9273f1b9be1312da8271)) - [@abougouffa](https://github.com/abougouffa)
+- **(with-editor)** add support for `JJ_EDITOR` - ([d701a39](https://github.com/abougouffa/minemacs/commit/d701a39f6fb3e190bb866e91932987023e9eacfa)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([be77906](https://github.com/abougouffa/minemacs/commit/be779066812ff1849cf795bc0a8835db224bcbf3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c84e461](https://github.com/abougouffa/minemacs/commit/c84e4611dc77308fd243687b828371a1b3c86013)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0162893](https://github.com/abougouffa/minemacs/commit/016289373b9efcb4257d4141e5989bc5e5fba8d5)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([f37723d](https://github.com/abougouffa/minemacs/commit/f37723ddd9d857033acf00e354e8558996731106)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v9.4.1](https://github.com/abougouffa/minemacs/compare/c72e9292214f9f2e305b27cb1c34d78a124d1fc7..v9.4.1) - 2024-10-27
 #### Documentation
 - **(documentation)** regenerate the documentation - ([c72e929](https://github.com/abougouffa/minemacs/commit/c72e9292214f9f2e305b27cb1c34d78a124d1fc7)) - [@abougouffa](https://github.com/abougouffa)
