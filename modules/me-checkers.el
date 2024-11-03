@@ -26,14 +26,14 @@
 (use-package flymake-pmd
   :straight (:host github :repo "rody/flymake-pmd")
   :custom
-  (flymake-pmd-use-eglot t) ; Integrate with Eglot results
+  (flymake-pmd-pmd-6-app-name "pmd")
   :config
   ;; Use the PMD 6 format when we have the right version installed
   (setq flymake-pmd-use-pmd-6
         (and (executable-find flymake-pmd-executable-name)
              (when-let* ((ver-out (shell-command-to-string (format "%s --version" flymake-pmd-executable-name)))
                          (ver (string-match "PMD \\(?1:\\([0-9]*\\.\\)*[0-9]*\\)" ver-out)))
-               (version<= "6.0" (match-string 1 ver-out))))))
+               (version<= (match-string 1 ver-out) "6.0")))))
 
 
 (provide 'me-checkers)
