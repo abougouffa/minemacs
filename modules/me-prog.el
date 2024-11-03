@@ -163,6 +163,29 @@
   :commands (eglot-x-setup))
 
 
+;; Emacs text actions using LSP symbol information
+(use-package gambol
+  :straight (:host codeberg :repo "woolsweater/gambol.el")
+  :hook (eglot-managed-mode . gambol-mode)
+  :bind
+  (("M-g ," . gambol:go-to-previous)
+   ("M-g ." . gambol:go-to-next)
+   ([remap mc/mark-all-dwim] . gambol:edit-all)
+   ([remap occur] . +gambol:occur-dwim)
+   :map gambol-repeat-map
+   ("," . gambol:go-to-previous)
+   ("." . gambol:go-to-next)
+   ("e" . gambol:edit-all)
+   ("o" . gambol:occur))
+  :commands (+gambol:occur-dwim)
+  :config
+  (defun +gambol:occur-dwim ()
+    "Call `gambol:occur', fallback to `occur'."
+    (interactive)
+    (unless (and eglot--managed-mode (ignore-errors (gambol:occur)))
+      (call-interactively #'occur))))
+
+
 ;; CMake building with multiple targets, run configurations and interactive menu
 (use-package cmake-build
   :straight (:host github :repo "ultronozm/cmake-build.el")
