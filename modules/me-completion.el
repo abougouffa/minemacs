@@ -202,7 +202,7 @@
   (xref-show-definitions-function #'consult-xref)
   (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")
-  :commands (+consult-tab +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project)
+  :commands (+consult-tab +consult-xref-history +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project)
   :config
   ;; Don't preview GPG encrypted files to avoid asking about the decryption password
   (push "\\.gpg$" consult-preview-excluded-files)
@@ -216,11 +216,16 @@
   (defun +consult-tab (tab)
     "Switch to TAB by name."
     (interactive
-     (list
-      (let ((tabs (or (mapcar (lambda (tab) (cdr (assq 'name tab))) (tab-bar-tabs))
-                      (user-error "No tabs found"))))
-        (consult--read tabs :prompt "Tabs: " :category 'tab))))
+     (if-let ((tabs (mapcar (lambda (tab) (cdr (assq 'name tab))) (tab-bar-tabs))))
+         (list (consult--read tabs :prompt "Tabs: " :category 'tab))
+       (user-error "No tabs found")))
     (tab-bar-select-tab-by-name tab))
+
+  ;; Add a `consult' command to visualize `xref' history, adaptation of `consult-mark'
+  (defun +consult-xref-history ()
+    "Jump to Xref history elements (using `xref--history')."
+    (interactive)
+    (consult-global-mark (flatten-list xref--history)))
 
   ;; Fill the initial query of `consult' commands from region or thing at point.
   (consult-customize
