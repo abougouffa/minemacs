@@ -858,6 +858,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) geiser-mode flymake-guile)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-selinux-policy.el
+
+(minemacs-register-on-demand-module 'me-selinux-policy :auto-mode '(("\\.te\\'" . selinuxpolicy-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
 
 (minemacs-register-on-demand-module 'me-sml :auto-mode '(("\\.s\\(?:ml\\|ig\\)\\'" . sml-mode) ("\\.cm\\'" . sml-cm-mode) ("\\.grm\\'" . sml-yacc-mode)))
