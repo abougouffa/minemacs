@@ -16,6 +16,9 @@
   :straight t
   :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
+(use-package python-pytest
+  :straight t)
+
 
 (provide 'on-demand/me-python)
 ;;; me-python.el ends here
