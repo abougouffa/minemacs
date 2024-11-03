@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.1.0](https://github.com/abougouffa/minemacs/compare/616765da01c698ecebeb6ab27db7cb7a301999fc..v10.1.0) - 2024-11-03
+#### Features
+- **(on-demand/python)** add support for `python-pytest` - ([9c56a6f](https://github.com/abougouffa/minemacs/commit/9c56a6f8f56e9f6497f7597ac4b6398dd167e8d0)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- make use of new (29+) base modes - ([2d2ffb2](https://github.com/abougouffa/minemacs/commit/2d2ffb2403229cb96ab19b75ef4cf7dbb2149e22)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(pet)** add integration for `quickrun` - ([4345fcf](https://github.com/abougouffa/minemacs/commit/4345fcf8003624bfa937b46a81f73c6c45170f05)) - [@abougouffa](https://github.com/abougouffa)
+- **(pet)** make sure the `pet-mode` hook is executed before other hooks - ([616765d](https://github.com/abougouffa/minemacs/commit/616765da01c698ecebeb6ab27db7cb7a301999fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(quickrun)** bind `quickrun` to F5 - ([516ad41](https://github.com/abougouffa/minemacs/commit/516ad4102f83c910e8588e6e4124fd7a80e01775)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.0.0](https://github.com/abougouffa/minemacs/compare/da0728d179d6d4b5d6cdb46d652998d4e97f2a2f..v10.0.0) - 2024-11-02
 #### Bug Fixes
 - **(core)** fix the `:trigger-commands` argument of `use-package` - ([3aed505](https://github.com/abougouffa/minemacs/commit/3aed505de5d7a6085cbb227562aa53fa436c4e90)) - [@abougouffa](https://github.com/abougouffa)
