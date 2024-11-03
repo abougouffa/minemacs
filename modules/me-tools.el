@@ -144,8 +144,15 @@
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (+emacs-features-p 'sqlite3) (executable-find "sqlite3")))
+  :hook (pet-mode . +pet-quickrun-setup)
   :init
-  (add-hook 'python-base-mode-hook 'pet-mode -10))
+  (add-hook 'python-base-mode-hook 'pet-mode -10)
+  :config
+  (defun +pet-quickrun-setup ()
+    (with-eval-after-load 'quickrun
+      (let* ((cmd-alist (copy-alist (alist-get "python" quickrun--language-alist nil nil #'equal))))
+        (setcar (assq :command cmd-alist) (pet-executable-find "python"))
+        (setq-local quickrun-option-cmd-alist cmd-alist)))))
 
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
