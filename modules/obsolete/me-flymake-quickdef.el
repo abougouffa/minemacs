@@ -21,7 +21,7 @@
        (format "Load %s as a Flymake backend in the current buffer." backend))))
 
   (when (executable-find "bandit")
-    (satch-add-hook '(python-mode-hook python-ts-mode-hook) #'+flymake-bandit-load))
+    (add-hook 'python-base-mode-hook #'+flymake-bandit-load))
 
   (when (executable-find "codespell")
     (add-hook 'prog-mode-hook #'+flymake-codespell-load))

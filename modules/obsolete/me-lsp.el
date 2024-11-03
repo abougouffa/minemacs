@@ -39,9 +39,9 @@
   (lsp-trim-final-newlines nil)
   :init
   (defcustom +lsp-auto-enable-modes
-    '(c++-mode c++-ts-mode c-mode c-ts-mode python-mode python-ts-mode rust-mode
-      rust-ts-mode cmake-mode js-mode js-ts-mode typescript-mode
-      typescript-ts-mode json-mode json-ts-mode js-json-mode)
+    '(c-mode c++-mode c-ts-base-mode python-base-mode rust-mode
+      rust-ts-mode cmake-mode js-base-mode typescript-mode
+      typescript-ts-base-mode json-mode json-ts-mode js-json-mode)
     "Modes for which LSP-mode can be automatically enabled by `+lsp-auto-enable'."
     :group 'minemacs-prog
     :type '(repeat symbol))

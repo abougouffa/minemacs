@@ -361,7 +361,7 @@
 ;; Emacs headerline indication of where you are in a large project
 (use-package breadcrumb
   :straight t
-  :hook ((c-mode c++-mode c-ts-mode c++-ts-mode python-mode python-ts-mode rust-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
+  :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
   ;; Don't show the project/file name in the header by just a file icon
   (with-eval-after-load 'nerd-icons

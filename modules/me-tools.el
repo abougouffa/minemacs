@@ -151,7 +151,7 @@
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
 (use-package add-node-modules-path
   :straight t
-  :hook ((js-mode js-ts-mode js2-mode) . add-node-modules-path)
+  :hook ((js-base-mode js2-mode) . add-node-modules-path)
   :config
   (when (executable-find "pnpm")
     (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))

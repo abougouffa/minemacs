@@ -649,9 +649,9 @@ be deleted.
 ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
 ;; to fill `+eglot-auto-enable-modes' with all supported modes.
 (defcustom +eglot-auto-enable-modes
-  '(c++-mode c++-ts-mode c-mode c-ts-mode python-mode python-ts-mode rust-mode
-    rust-ts-mode cmake-mode js-mode js-ts-mode typescript-mode
-    typescript-ts-mode json-mode json-ts-mode js-json-mode)
+  '(c-mode c++-mode c-ts-base-mode python-base-mode rust-mode
+    rust-ts-mode cmake-mode cmake-ts-mode js-base-mode typescript-mode
+    typescript-ts-base-mode json-mode json-ts-mode js-json-mode)
   "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
   :group 'minemacs-prog
   :type '(repeat symbol))

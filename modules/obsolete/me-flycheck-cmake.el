@@ -68,7 +68,7 @@ When FILENAME is nil, use the file name of the current buffer."
 (defun +flycheck-cmake-setup (&rest _)
   "Setup GCC and Clang checkers with the right arguments."
   (interactive)
-  (when (cl-some #'derived-mode-p '(c-mode c-ts-mode c++-mode c++-ts-mode))
+  (when (cl-some #'derived-mode-p '(c-mode c++-mode c-ts-base-mode))
     (ignore-errors
       (let ((args (+flycheck-cmake-extract-args)))
         (setq-local flycheck-gcc-args args

@@ -1580,10 +1580,9 @@ It is deferred until `general' gets loaded and configured."
   "re"    #'restclient-copy-curl-command)
 
 (+map-local! :package dap-mode :module obsolete/me-lsp
-  :keymaps '(c-mode-map c++-mode-map python-mode-map
+  :keymaps '(c-mode-map c++-mode-map python-base-mode-map
              rust-mode-map sh-mode-map bash-ts-mode-map
-             js-mode-map js-ts-mode-map ruby-mode-map
-             perl-mode-map)
+             js-base-mode-map ruby-mode-map perl-mode-map)
   "d" '(nil :wk "dap")
   "dd" #'dap-debug
   "dt" #'dap-debug-edit-template
@@ -1782,10 +1781,8 @@ It is deferred until `general' gets loaded and configured."
   "RET" #'flycheck-error-list-goto-error)
 
 (+map-local! :package realgud :module obsolete/me-realgud
-  :keymaps '(c-mode-map c++-mode-map python-mode-map
-             c-ts-mode-map c++-ts-mode-map python-ts-mode-map
-             rust-mode-map rust-ts-mode-map
-             sh-mode-map bash-ts-mode-map)
+  :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map python-base-mode-map
+             rust-mode-map rust-ts-mode-map sh-mode-map bash-ts-mode-map)
   "r" '(nil :wk "realgud")
   "rd" #'+realgud:start
   "rh" #'+realgud-hydra/body)
