@@ -301,7 +301,8 @@
 
 ;; Out of the box code execution from editing buffer
 (use-package quickrun
-  :straight t)
+  :straight t
+  :bind (([f5] . quickrun)))
 
 
 ;; An Emacs "jump to definition" package for 50+ languages
