@@ -194,14 +194,14 @@
    ("." . gambol:go-to-next)
    ("e" . gambol:edit-all)
    ("o" . gambol:occur))
-  :commands (+gambol:occur-dwim)
-  :config
+  :init
   (defun +gambol:occur-dwim ()
     "Call `gambol:occur', fallback to `occur'."
     (interactive)
-    (unless (and eglot--managed-mode (ignore-errors (gambol:occur)))
-      (call-interactively #'occur))))
-
+    (if (and (featurep 'eglot) (eglot-managed-p))
+        (condition-case nil
+            (gambol:occur)
+          (error (call-interactively #'occur))))))
 
 ;; CMake building with multiple targets, run configurations and interactive menu
 (use-package cmake-build
