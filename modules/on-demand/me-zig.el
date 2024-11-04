@@ -15,6 +15,9 @@
 (use-package zig-mode
   :straight t)
 
+(use-package zig-ts-mode
+  :straight t)
+
 
 (provide 'on-demand/me-zig)
 ;;; me-zig.el ends here
