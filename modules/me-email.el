@@ -101,6 +101,12 @@
   (gnus-icalendar-setup))
 
 
+;; Send ical calendar invites by email
+(use-package varuga
+  :straight t
+  :commands (varuga-invite))
+
+
 ;; My UI tweaks for `mu4e'
 (use-package me-mu4e-ui
   :when +mu4e-available-p
