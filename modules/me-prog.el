@@ -68,6 +68,12 @@
                  :url "https://github.com/Wilfred/tree-sitter-elisp"
                  :ext "\\.eld?\\'")
                 (make-treesit-auto-recipe
+                 :lang 'bitbake
+                 :ts-mode 'bitbake-ts-mode
+                 :remap 'bitbake-mode
+                 :url "https://github.com/tree-sitter-grammars/tree-sitter-bitbake"
+                 :ext "\\.bb\\(append\\)?\\'")
+                (make-treesit-auto-recipe
                  :lang 'zig
                  :ts-mode 'zig-ts-mode
                  :remap 'zig-mode

@@ -64,6 +64,12 @@
     (insert (string-join (+bitbake-poky-sources build-dir) "\n"))))
 
 
+;; A `treesit'-based Bitbake major mode
+(use-package bitbake-ts-mode
+  :straight t
+  :when (+emacs-features-p 'tree-sitter))
+
+
 ;; PlatformIO integration for Emacs
 (push 'projectile straight-built-in-pseudo-packages)
 
