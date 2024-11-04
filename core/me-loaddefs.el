@@ -928,7 +928,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-wiki.el

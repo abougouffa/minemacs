@@ -32,7 +32,8 @@
                ("\\.haml\\'" . haml-mode)
                ("\\.sass\\'" . sass-mode)
                ("\\.was?t\\'" . wat-mode))
-  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))))
+  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))
+                        ((js-mode js-ts-mode) . flymake-biome)))
 
 (use-package web-mode
   :straight t
@@ -54,6 +55,9 @@
 (use-package wat-mode
   :straight (:host github :repo "devonsparks/wat-mode")
   :commands (wat-mode))
+
+(use-package flymake-biome
+  :straight t)
 
 
 (provide 'obsolete/me-web)
