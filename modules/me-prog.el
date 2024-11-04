@@ -189,8 +189,9 @@
 ;; CMake building with multiple targets, run configurations and interactive menu
 (use-package cmake-build
   :straight (:host github :repo "ultronozm/cmake-build.el")
-  :custom
-  (cmake-build-local-options-file (concat minemacs-local-dir "cmake-build-options.el"))
+  :preface
+  ;; For some reason, Emacs keeps creating a copy of the file under "~/.emacs.d/" even when the package isn't loaded!
+  (setq cmake-build-local-options-file (concat minemacs-local-dir "cmake-build-options.el"))
   :commands (cmake-build-clean
              cmake-build-clear-cache-and-configure
              cmake-build-current
@@ -385,7 +386,7 @@
 ;; Emacs headerline indication of where you are in a large project
 (use-package breadcrumb
   :straight t
-  :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
+  :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
   ;; Don't show the project/file name in the header by just a file icon
   (with-eval-after-load 'nerd-icons
