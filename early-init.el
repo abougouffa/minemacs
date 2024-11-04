@@ -34,6 +34,9 @@
 ;; It seems like, even when `tool-bar-mode' is nil, `tool-bar-setup' still be called
 (advice-add 'tool-bar-setup :override #'ignore)
 
+;; We restore it after starting Emacs so the user can manually enable the `tool-bar'
+(add-hook 'emacs-startup-hook (lambda () (advice-remove 'tool-bar-setup #'ignore)))
+
 ;; Frames can have a transparent background via the `alpha-background'
 ;; parameter. For better experience, this value should be set early before any
 ;; frame gets created (i.e. in "early-init.el"). MinEmacs uses the
