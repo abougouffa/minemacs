@@ -1244,6 +1244,28 @@ it forget them only when we are sure they don't exist."
           (project-forget-project proj)
           (project-remember-projects-under proj-abbrev))))))
 
+;;;###autoload
+(defvar +project-root-wildcards '("~/Projects/*/*"))
+
+;; Inspired by: https://mastodon.catgirl.cloud/@mekeor/113251381004866734
+;;;###autoload
+(defun +project-root-initialize ()
+  "Initialize project list from `+project-root-wildcards'."
+  (interactive)
+  ;; Forget non-existent projects
+  (mapc
+   (lambda (pr)
+     (or (file-remote-p pr) ; Don't forget remote projects
+         (file-directory-p pr)
+         (project-forget-project pr)))
+   (project-known-project-roots))
+  ;; Remember some Git repositories as projects by path
+  (mapc
+   (lambda (dir)
+     (when-let ((project (project--find-in-directory dir)))
+       (project-remember-project project)))
+   (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
+
 
 
 ;;; Xref
