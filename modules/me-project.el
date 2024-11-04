@@ -46,6 +46,13 @@
   (consult-compile-multi-mode 1))
 
 
+;; Integration of `compile-multi' with `nerd-icons'
+(use-package compile-multi-nerd-icons
+  :straight t
+  :after compile-multi
+  :demand t)
+
+
 ;; Projectile like project management library built on Emacs' `project'
 (use-package projection
   :straight t
