@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.2.0](https://github.com/abougouffa/minemacs/compare/51d3158d67f915105eb3a0dee18630b3d8c89e02..v10.2.0) - 2024-11-05
+#### Bug Fixes
+- **(cmake-build)** set `cmake-build-local-options-file` very early - ([6e6893e](https://github.com/abougouffa/minemacs/commit/6e6893e52705b8965c03ae523fdd5fab3cbe9a9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** restore `tool-bar-setup` after startup - ([7bd7693](https://github.com/abougouffa/minemacs/commit/7bd769330a746c81c001f772a7ca1a159251fb35)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake-pmd)** correct the version detection - ([a4908ec](https://github.com/abougouffa/minemacs/commit/a4908ecad2a3cde14ecfc5a2a5d83fb999d09583)) - [@abougouffa](https://github.com/abougouffa)
+- **(gambol)** fix implementation of `+gambol:occur-dwim` - ([3ba07fb](https://github.com/abougouffa/minemacs/commit/3ba07fb8b11ba90e86484260195da028db8bd80c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(bitbake-ts-mode)** add initial support - ([95b0d44](https://github.com/abougouffa/minemacs/commit/95b0d44ef18c0e38872643ac8f8b525c1412c54c)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** enable `visual-wrap-prefix-mode` in Emacs 30+ - ([c96e25a](https://github.com/abougouffa/minemacs/commit/c96e25a438169d2f4bd785cc57ee7c3c7f2d3c71)) - [@abougouffa](https://github.com/abougouffa)
+- **(compile-multi)** add `nerd-icons` support - ([1cc372d](https://github.com/abougouffa/minemacs/commit/1cc372d157b0673c13b95a20d1be6480f5cd11aa)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** add `+consult-xref-history` - ([51d3158](https://github.com/abougouffa/minemacs/commit/51d3158d67f915105eb3a0dee18630b3d8c89e02)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+project-root-initialize` - ([e7f1ca8](https://github.com/abougouffa/minemacs/commit/e7f1ca842ebf03b1e3337fc3201b8b786ca60723)) - [@abougouffa](https://github.com/abougouffa)
+- **(email)** add support for sending invitations via `varuga` - ([5bb1ff0](https://github.com/abougouffa/minemacs/commit/5bb1ff0da9454dac1474cb443ef5479e7ffcbcec)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for GenExpr files - ([3fee077](https://github.com/abougouffa/minemacs/commit/3fee07704578630265efa3e4be6c5921ba179dce)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for `selinuxpolicy-mode` - ([72c082a](https://github.com/abougouffa/minemacs/commit/72c082a5e12f04d484f4bc3b242063b1f33fa3dc)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/web)** add support for `flymake-biome` - ([a4aca87](https://github.com/abougouffa/minemacs/commit/a4aca8719e7ea19cb8751a5398486895b8d6a584)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/zig)** add support for `zig-ts-mode` - ([4cac851](https://github.com/abougouffa/minemacs/commit/4cac8510683f4c9242b41209f3c22625f1c4bd47)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** restore `treesitter-context` with better UI integration - ([f6aca22](https://github.com/abougouffa/minemacs/commit/f6aca22d6f767acbf7835083c47bb80446533a1d)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `gambol` support - ([9f469ae](https://github.com/abougouffa/minemacs/commit/9f469ae1664845b08f169be8a9697bf4d7edc5de)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add TRAMP support for Incus containers - ([212838c](https://github.com/abougouffa/minemacs/commit/212838c8a632774ae01d392e5598abb3b7f9a53f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([ed49e73](https://github.com/abougouffa/minemacs/commit/ed49e730041e25500c30f7db9dc16f4eff5c09b4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([da603cd](https://github.com/abougouffa/minemacs/commit/da603cd7df1934e33fbf84c5cac73b3dc0ff4b73)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.1.0](https://github.com/abougouffa/minemacs/compare/616765da01c698ecebeb6ab27db7cb7a301999fc..v10.1.0) - 2024-11-03
 #### Features
 - **(on-demand/python)** add support for `python-pytest` - ([9c56a6f](https://github.com/abougouffa/minemacs/commit/9c56a6f8f56e9f6497f7597ac4b6398dd167e8d0)) - [@abougouffa](https://github.com/abougouffa)
