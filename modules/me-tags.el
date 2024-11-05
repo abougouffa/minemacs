@@ -95,7 +95,14 @@ Fallback to the default function if none is found."
 
   ;; Use my modified database finder, particularly useful in "workspaces with
   ;; multiple-projects" (super-projects)
-  (setq consult--cscope-database-finder #'+consult--cscope-find-database-file))
+  (setq consult--cscope-database-finder #'+consult--cscope-find-database-file)
+
+  ;; Use `+region-or-thing-at-point' for initial input
+  (consult-customize
+   consult-cscope-file consult-cscope-calling consult-cscope-called-by
+   consult-cscope-text consult-cscope-egrep consult-cscope-symbol
+   consult-cscope-including consult-cscope-assignment consult-cscope-definition
+   :initial (+region-or-thing-at-point)))
 
 
 ;; Clink integration to Emacs
