@@ -83,7 +83,19 @@ Fall back to the default `citre--project-root'."
 
 ;; Cscope integration for Emacs' Consult
 (use-package consult-cscope
-  :straight (:host github :repo "blorbx/consult-cscope"))
+  :straight (:host github :repo "blorbx/consult-cscope")
+  :config
+  (defun +consult--cscope-find-database-file (start-dir)
+    "Looks first for the dominating directory that includes the database file.
+Fallback to the default function if none is found."
+    (if-let ((dir (locate-dominating-file start-dir consult-cscope-database-file))
+             (not-abs-path (not (file-name-absolute-p consult-cscope-database-file))))
+        (expand-file-name consult-cscope-database-file dir)
+      (consult--cscope-find-database-file start-dir)))
+
+  ;; Use my modified database finder, particularly useful in "workspaces with
+  ;; multiple-projects" (super-projects)
+  (setq consult--cscope-database-finder #'+consult--cscope-find-database-file))
 
 
 ;; Clink integration to Emacs
