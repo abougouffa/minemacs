@@ -17,6 +17,14 @@
   (ssh-deploy-hydra "C-c C-z"))
 
 
+;; TRAMP integration for Incus containers
+(use-package incus-tramp
+  :straight t
+  :after tramp
+  :init
+  (incus-tramp-add-method))
+
+
 ;; Launch system applications from Emacs
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
