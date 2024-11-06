@@ -17,6 +17,8 @@
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode)
+  :autoload (+bitbake-poky-sources)
+  :commands (+bitbake-insert-poky-sources)
   :config
   (require 'bitbake-insert)
   (require 'bitbake-electric)
