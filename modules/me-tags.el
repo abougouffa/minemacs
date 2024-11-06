@@ -19,8 +19,7 @@
   :hook (minemacs-first-c/c++-file . +citre--load-default-config-h)
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
-  ;; Better (!) project root detection function
-  (citre-project-root-function #'+citre-recursive-project-root)
+  (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
   :init
   (defun +citre--load-default-config-h () (require 'citre-config))
 
@@ -81,7 +80,7 @@ Fall back to the default `citre--project-root'."
   (defun +citre-gtags-create-list-of-files-to-index-bitbake-aware (top-dir build-dir)
     "Create a list of files to index in TOP-DIR and under Bitbake's BUILD-DIR."
     (interactive (list (read-directory-name "Create file list in directory: ")
-                       (read-directory-name "Build directory: ")))
+                       (read-directory-name "Bitbake build directory: ")))
     (let* ((default-directory top-dir)
            (+citre-gtags-files-list-ignored-directories
             (append +citre-gtags-files-list-ignored-directories
@@ -159,21 +158,6 @@ Fallback to the default function if none is found."
 (use-package rtags-xref
   :straight t
   :commands (rtags-xref-enable))
-
-
-;; A C/C++ minor mode for Emacs powered by "libclang"
-(use-package irony-mode
-  :straight t
-  :config
-  (when os/win ; Windows performance tweaks
-    (when (boundp 'w32-pipe-read-delay) (setq w32-pipe-read-delay 0))
-    ;; Set the buffer size to 64K on Windows (from the original 4K)
-    (when (boundp 'w32-pipe-buffer-size) (setq irony-server-w32-pipe-buffer-size (* 64 1024)))))
-
-
-;; Integration of `irony-mode' with `eldoc'
-(use-package irony-eldoc
-  :straight t)
 
 
 (provide 'me-tags)
