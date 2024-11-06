@@ -16,12 +16,14 @@
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
   :straight t
-  :after minemacs-first-c/c++-file
-  :demand
+  :hook (minemacs-first-c/c++-file . +citre--load-default-config-h)
+  :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   ;; Better (!) project root detection function
   (citre-project-root-function #'+citre-recursive-project-root)
   :init
+  (defun +citre--load-default-config-h () (require 'citre-config))
+
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
@@ -29,6 +31,11 @@
 
   (defcustom +citre-gtags-recursive-files-list t
     "Find files to index recursively."
+    :type 'boolean
+    :group 'minemacs-prog)
+
+  (defcustom +citre-gtags-absolete-files-list nil
+    "Output absolete pathes in the created files list."
     :type 'boolean
     :group 'minemacs-prog)
 
@@ -42,8 +49,6 @@
     :type '(repeat string)
     :group 'minemacs-prog)
   :config
-  (require 'citre-config) ; default configuration
-
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
@@ -51,24 +56,43 @@ Fall back to the default `citre--project-root'."
                  +citre-recursive-root-project-detection-files) ; locate the root containing the file
         (citre--project-root))) ; Fall back to the default detection!
 
-  (defun +citre-gtags-find-files-command (&optional dir)
-    (let* ((default-directory (or dir default-directory)))
+  (defun +citre-gtags-find-files-command (&optional dir top-dir appendp)
+    (let* ((dir (or dir default-directory))
+           (top-dir (or top-dir dir))
+           (default-directory dir))
       (concat
-       "echo 'Creating list of files to index ...'\n"
+       (format "echo 'Creating list of files to index in %S ...'\n" dir)
        (find-cmd
         (unless +citre-gtags-recursive-files-list '(maxdepth "1"))
         `(prune (and (type "d") (name ,@+citre-gtags-files-list-ignored-directories)))
         `(iname ,@+citre-gtags-files-list-suffixes)
         '(type "f" "l")
         '(print))
-       " > gtags.files\n"
-       "echo 'Creating list of files to index ... done'\n")))
+       (unless +citre-gtags-absolete-files-list
+         (format " | sed 's|^%s||'" (file-name-as-directory top-dir)))
+       (format " %s gtags.files\n" (if appendp ">>" ">")))))
 
-  (defun +citre-gtags-create-list-of-files-to-index (top-directory)
-    "Create a list of files to index in TOP-DIRECTORY."
+  (defun +citre-gtags-create-list-of-files-to-index (top-dir)
+    "Create a list of files to index in TOP-DIR."
     (interactive "DCreate file list in directory: ")
-    (let* ((default-directory top-directory))
-      (start-process-shell-command "+citre-gtags-files-list" "*+citre-gtags-files-list*" (+citre-gtags-find-files-command)))))
+    (let* ((default-directory top-dir))
+      (start-process-shell-command "+citre-gtags-files-list" "*+citre-gtags-files-list*" (+citre-gtags-find-files-command))))
+
+  (defun +citre-gtags-create-list-of-files-to-index-bitbake-aware (top-dir build-dir)
+    "Create a list of files to index in TOP-DIR and under Bitbake's BUILD-DIR."
+    (interactive (list (read-directory-name "Create file list in directory: ")
+                       (read-directory-name "Build directory: ")))
+    (let* ((default-directory top-dir)
+           (+citre-gtags-files-list-ignored-directories
+            (append +citre-gtags-files-list-ignored-directories
+                    ;; Ignore searching the build directory, the right paths will used from `+bitbake-poky-sources' below
+                    (list (file-name-nondirectory (directory-file-name build-dir)) "downloads"))))
+      (unless (fboundp '+bitbake-poky-sources)
+        (user-error "Make sure you've enabled the `me-embedded' module"))
+      (shell-command (+citre-gtags-find-files-command top-dir) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*")
+      (dolist (dir (+bitbake-poky-sources build-dir))
+        (shell-command (+citre-gtags-find-files-command dir top-dir 'append) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*"))
+      (message "Done creating list of files to index."))))
 
 
 ;; Cscope interface for Emacs
