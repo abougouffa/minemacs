@@ -856,9 +856,15 @@ or file path may exist now."
   (mapc #'require '(oc-csl oc-natbib oc-biblatex)))
 
 (use-package ob-ditaa
-  :custom
-  (org-ditaa-jar-path (concat minemacs-assets-dir "bin/ditaa-0.10.jar"))
-  (org-ditaa-eps-jar-path (concat minemacs-assets-dir "bin/DitaaEps-0.2.jar")))
+  :config
+  ;; Download the latest maintained Ditaa version automatically
+  (let* ((ditaa-ver (+github-latest-release "stathissideris/ditaa" "0.11.0"))
+         (ditaa-jar (format "%s/ditaa-%s-standalone.jar" (directory-file-name minemacs-local-dir) ditaa-ver)))
+    (unless (file-exists-p ditaa-jar)
+      (url-copy-file
+       (format "https://github.com/stathissideris/ditaa/releases/download/v%s/ditaa-%s-standalone.jar" ditaa-ver ditaa-ver)
+       ditaa-jar))
+    (setopt org-ditaa-jar-path ditaa-jar)))
 
 (use-package ol-man
   :after ol
