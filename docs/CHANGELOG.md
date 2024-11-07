@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.3.0](https://github.com/abougouffa/minemacs/compare/eb0fe53b9c9f2ac9ab3e1dc52a48b167dff16719..v10.3.0) - 2024-11-07
+#### Bug Fixes
+- **(citre)** simplify loading the default configuration - ([6e0abca](https://github.com/abougouffa/minemacs/commit/6e0abca830db85e26c3338b3f092937a521b3805)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(citre)** more customization, add Bitbake aware list of files - ([b10db3c](https://github.com/abougouffa/minemacs/commit/b10db3cb7ef56a90b9578d9225345df8d3278710)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+github-download-release` and tweak `+github-latest-release` - ([8079515](https://github.com/abougouffa/minemacs/commit/8079515f4eca8f613f5199e7ffa6ed6c4e876d9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `cmake-build` `czm-cpp` obsoletes - ([c4d6e51](https://github.com/abougouffa/minemacs/commit/c4d6e515738a69a47e868aafff70e63c43321efd)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `irony-mode` obsolete - ([6e0aff7](https://github.com/abougouffa/minemacs/commit/6e0aff7c645be6b76fc6abfc7526097c14a20db5)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- minor edit - ([eaea01c](https://github.com/abougouffa/minemacs/commit/eaea01ccffb0e9e52e2053cd92f267551577dd54)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake)** autoload my custom commands - ([d436db9](https://github.com/abougouffa/minemacs/commit/d436db9579b95d7c5aebf04541af3b7f56bd132b)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-cscope)** use `+region-or-thing-at-point` for initial input - ([d6b665c](https://github.com/abougouffa/minemacs/commit/d6b665c45b89d7aeaac164dc7e7a0aaf0afeb32c)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-cscope)** better integration with super-projects - ([eb0fe53](https://github.com/abougouffa/minemacs/commit/eb0fe53b9c9f2ac9ab3e1dc52a48b167dff16719)) - [@abougouffa](https://github.com/abougouffa)
+- **(ditaa)** auto download using `+github-download-release` - ([25efe9f](https://github.com/abougouffa/minemacs/commit/25efe9fa1d037c8ca93dca49f0765e282ae237ab)) - [@abougouffa](https://github.com/abougouffa)
+- **(ditaa)** automatically download the latest version from GitHub - ([b1b56ac](https://github.com/abougouffa/minemacs/commit/b1b56aca89a2a5cc8e0b50e101b9b3bf36b05236)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/plantuml)** auto download PlantUML JAR file - ([ec16177](https://github.com/abougouffa/minemacs/commit/ec161774226a193df7d1180a34b2b1d461a728ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** auto load `ol-man` (Org link to man pages) - ([9b4c27b](https://github.com/abougouffa/minemacs/commit/9b4c27b44481da85062e74c7792a4ea17724fd89)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.2.0](https://github.com/abougouffa/minemacs/compare/51d3158d67f915105eb3a0dee18630b3d8c89e02..v10.2.0) - 2024-11-05
 #### Bug Fixes
 - **(cmake-build)** set `cmake-build-local-options-file` very early - ([6e6893e](https://github.com/abougouffa/minemacs/commit/6e6893e52705b8965c03ae523fdd5fab3cbe9a9e)) - [@abougouffa](https://github.com/abougouffa)
