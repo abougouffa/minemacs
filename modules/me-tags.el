@@ -16,13 +16,10 @@
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
   :straight t
-  :hook (minemacs-first-c/c++-file . +citre--load-default-config-h)
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
   :init
-  (defun +citre--load-default-config-h () (require 'citre-config))
-
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
@@ -92,6 +89,12 @@ Fall back to the default `citre--project-root'."
       (dolist (dir (+bitbake-poky-sources build-dir))
         (shell-command (+citre-gtags-find-files-command dir top-dir 'append) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*"))
       (message "Done creating list of files to index."))))
+
+
+;; Apply the default configuration (part of `citre')
+(use-package citre-config
+  :after minemacs-lazy
+  :demand)
 
 
 ;; Cscope interface for Emacs
