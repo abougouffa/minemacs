@@ -501,7 +501,21 @@ Get the latest release of REPO. Strips the \"v\" at left.
 
 Fallback to FALLBACK-RELEASE when it can't get the last one.
 
-(fn REPO &optional FALLBACK-RELEASE)")
+(fn REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)")
+(autoload '+github-download-release "me-lib-extra" "\
+Download release from REPO.
+
+FILENAME-FMT is a string representing the file name, it can include the
+special format {{ver}} which gets replaced with the release version.
+When OK-IF-ALREADY-EXISTS is non-nil, the file gets overwritten if it
+already exists.
+
+Keyword argument :VER can be used to pass the version to download, when
+no version is passed, the latest release is downloaded. The :OUT-FILE
+can be used to choose the output file name, otherwise, the file will be
+downloaded with it's original file name to `+github-download-dir'
+
+(fn REPO FILENAME-FMT &optional OK-IF-ALREADY-EXISTS &key VER OUT-FILE)")
 (autoload '+dir-locals-reload-for-this-buffer "me-lib-extra" "\
 Reload directory-local for the current buffer." t)
 (autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-extra" "\
@@ -687,7 +701,7 @@ Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 (fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+goto-line" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+g" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el

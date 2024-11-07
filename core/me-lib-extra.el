@@ -623,7 +623,7 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
 ;;; Github
 
 ;;;###autoload
-(defun +github-latest-release (repo &optional fallback-release)
+(defun +github-latest-release (repo &optional fallback-release trim-v-prefix)
   "Get the latest release of REPO. Strips the \"v\" at left.
 
 Fallback to FALLBACK-RELEASE when it can't get the last one."
@@ -633,10 +633,35 @@ Fallback to FALLBACK-RELEASE when it can't get the last one."
                 (url-insert-file-contents
                  (format "https://api.github.com/repos/%s/releases/latest" repo))
                 (json-parse-buffer :object-type 'plist)))))
-      (string-trim-left
-       (car (last (split-string (plist-get latest :html_url) "/")))
-       "v")
+      (let ((ver (car (last (split-string (plist-get latest :html_url) "/")))))
+        (if trim-v-prefix
+            (string-trim-left ver "v")
+          ver))
     fallback-release))
+
+(defvar +github-download-dir minemacs-local-dir)
+
+;;;###autoload
+(cl-defun +github-download-release (repo filename-fmt &optional ok-if-already-exists &key ver out-file)
+  "Download release from REPO.
+
+FILENAME-FMT is a string representing the file name, it can include the
+special format {{ver}} which gets replaced with the release version.
+When OK-IF-ALREADY-EXISTS is non-nil, the file gets overwritten if it
+already exists.
+
+Keyword argument :VER can be used to pass the version to download, when
+no version is passed, the latest release is downloaded. The :OUT-FILE
+can be used to choose the output file name, otherwise, the file will be
+downloaded with it's original file name to `+github-download-dir'"
+  (when-let ((ver (or ver (+github-latest-release repo ver t))))
+    (let* ((url (format "https://github.com/%s/releases/download/v%s/%s" repo ver (string-replace "{{ver}}" ver filename-fmt)))
+           (out-file (or out-file (expand-file-name (url-file-nondirectory url) +github-download-dir))))
+      (if (and (not ok-if-already-exists) (file-exists-p out-file))
+          (+log! "File %S already exist" out-file)
+        (mkdir (file-name-directory out-file) t)
+        (url-copy-file url out-file ok-if-already-exists))
+      out-file)))
 
 
 
