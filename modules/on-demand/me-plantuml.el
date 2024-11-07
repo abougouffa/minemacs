@@ -16,7 +16,7 @@
   :straight t
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
-  (plantuml-jar-path (concat minemacs-local-dir "plantuml/plantuml.jar"))
+  (plantuml-jar-path (concat minemacs-local-dir "plantuml.jar"))
   (plantuml-indent-level 2)
   :config
   ;; Define `capf' function, based on `plantuml-complete-symbol'
@@ -32,6 +32,9 @@
                 (if (eq max-match t)
                     (list keyword)
                   (all-completions sym-at-pt plantuml-kwdList)))))))
+
+  ;; Automatically download the latest version of PlantUML
+  (setopt plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar"))
 
   ;; Add support for `capf'
   (defun +plantuml-mode-setup ()
