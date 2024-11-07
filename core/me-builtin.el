@@ -860,6 +860,10 @@ or file path may exist now."
   (org-ditaa-jar-path (concat minemacs-assets-dir "bin/ditaa-0.10.jar"))
   (org-ditaa-eps-jar-path (concat minemacs-assets-dir "bin/DitaaEps-0.2.jar")))
 
+(use-package ol-man
+  :after ol
+  :demand)
+
 (use-package electric
   :config
   ;; Electric indent on delete and enter
