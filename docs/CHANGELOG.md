@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.4.0](https://github.com/abougouffa/minemacs/compare/3d038df4b4a7e5ca9847753e77cc253c5fd9989f..v10.4.0) - 2024-11-08
+#### Features
+- **(core)** bind `M-:` to `pp-eval-expression` - ([b3abd1b](https://github.com/abougouffa/minemacs/commit/b3abd1b71b8c0eb78018fa4e714e462810c1c47a)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add `disk-usage` - ([d99f1f0](https://github.com/abougouffa/minemacs/commit/d99f1f08555b708cee297afe6caebb2158bbc858)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `rscope` obsolete - ([d46370a](https://github.com/abougouffa/minemacs/commit/d46370a279cacdc32fc58d37b61805133336a909)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `package-lint` to `me-checkers` - ([4f58497](https://github.com/abougouffa/minemacs/commit/4f58497f9a1fd26ce64ba369b19afca27870bd3b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(elfeed)** temporary disable `elfeed` since it is unusable - ([189d18d](https://github.com/abougouffa/minemacs/commit/189d18ddf5b25e45fd8ff6c9d94d1e9972605b7b)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit)** enable `show-paren-local-mode` in tree explorer - ([65d69e2](https://github.com/abougouffa/minemacs/commit/65d69e2a247d14bc95236693b4d005829c75b8ee)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([410f4d7](https://github.com/abougouffa/minemacs/commit/410f4d78571d82fa81ec7a036f1321132039353f)) - [@abougouffa](https://github.com/abougouffa)
+- restore default `C-x k` - ([0cb409e](https://github.com/abougouffa/minemacs/commit/0cb409ec330d022687e6e55187dced57da78f2e7)) - [@abougouffa](https://github.com/abougouffa)
+- bump `parinfer-rust-mode` - ([1365843](https://github.com/abougouffa/minemacs/commit/136584389e957fc19069a0b12b6bd714e7308f09)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3d038df](https://github.com/abougouffa/minemacs/commit/3d038df4b4a7e5ca9847753e77cc253c5fd9989f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.3.0](https://github.com/abougouffa/minemacs/compare/eb0fe53b9c9f2ac9ab3e1dc52a48b167dff16719..v10.3.0) - 2024-11-07
 #### Bug Fixes
 - **(citre)** simplify loading the default configuration - ([6e0abca](https://github.com/abougouffa/minemacs/commit/6e0abca830db85e26c3338b3f092937a521b3805)) - [@abougouffa](https://github.com/abougouffa)
