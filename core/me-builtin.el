@@ -110,7 +110,6 @@
   ;; Remap some keys/page
   (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
   (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
-  (keymap-global-set "C-x k" #'kill-current-buffer) ; Instead of `kill-buffer'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
   (keymap-global-set "C-w" #'+kill-region-or-backward-word) ; Instead of `kill-region'
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w

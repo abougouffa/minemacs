@@ -209,6 +209,7 @@
             (gambol:occur)
           (error (call-interactively #'occur))))))
 
+
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate
   :straight (:host github :repo "mickeynp/combobulate" :nonrecursive t) ; Cloning the `html-ts-mode' submodule causes problems
