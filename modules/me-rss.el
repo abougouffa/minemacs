@@ -16,6 +16,8 @@
 ;; An Emacs RSS web feeds client
 (use-package elfeed
   :straight t
+  ;; BUG+TEMP: Disable `elfeed' as it is broken for now. See https://github.com/skeeto/elfeed/issues/530
+  :disabled
   :init
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."
