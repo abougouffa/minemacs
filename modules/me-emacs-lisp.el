@@ -89,11 +89,6 @@
       (eros--eval-overlay (+octave-eval-last-sexp) (point)))))
 
 
-;; A linting library for Elisp package metadata
-(use-package package-lint
-  :straight t)
-
-
 ;; Elisp regexp mistake finder
 (use-package relint
   :straight t)

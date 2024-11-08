@@ -36,6 +36,12 @@
                (version<= (match-string 1 ver-out) "6.0")))))
 
 
+;; A `flymake' integration with the linting library (`package-lint') for Elisp package metadata
+(use-package package-lint-flymake
+  :straight t
+  :hook (emacs-lisp-mode . package-lint-flymake-setup))
+
+
 (provide 'me-checkers)
 
 ;;; me-checkers.el ends here
