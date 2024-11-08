@@ -131,12 +131,6 @@ Fallback to the default function if none is found."
    :initial (+region-or-thing-at-point)))
 
 
-;; Reborn Cscope extension for Emacs
-(use-package rscope
-  :straight (:host github :repo "rjarzmik/rscope")
-  :commands (rscope-init rscope-regenerate-database))
-
-
 ;; Clink integration to Emacs
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
