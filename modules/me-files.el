@@ -13,6 +13,11 @@
   :straight t)
 
 
+;; Sort and browse disk usage listings
+(use-package disk-usage
+  :straight t)
+
+
 ;; A Emacs tree plugin like NerdTree for Vim
 (use-package neotree
   :straight t
