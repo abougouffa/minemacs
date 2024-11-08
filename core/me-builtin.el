@@ -473,6 +473,7 @@ or file path may exist now."
 
 (use-package treesit
   :when (+emacs-features-p 'tree-sitter)
+  :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
   (treesit-font-lock-level 4))
 
