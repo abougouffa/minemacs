@@ -108,6 +108,7 @@
   (keymap-global-unset "C-x C-z" 'remove)
 
   ;; Remap some keys/page
+  (keymap-global-set "M-:" #'pp-eval-expression) ; Instead of `eval-expression'
   (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
   (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
