@@ -314,7 +314,7 @@
  ("page-break-lines" . "247854f6a82b5c7ab5ae493eb5390c5079cd032d")
  ("pandoc-mode" . "3068a544fc2d1e2cdfd681f931e73f74d15be9ba")
  ("parent-mode" . "fbd49857ab2e4cd0c5611c0cc83f93711657b298")
- ("parinfer-rust-mode" . "34836e33cc7ff08e66443c6bc10a142c950f35b4")
+ ("parinfer-rust-mode" . "74bb99edb3de4c0c18341e855d6c7620d6a9a9d3")
  ("parsebib" . "05fff935749e6ca29ec81fdf0163e95ad2aa6bc3")
  ("parseclj" . "6af22372e0fe14df882dd300b22b12ba2d7e00b0")
  ("parseedn" . "3407e4530a367b6c2b857dae261cdbb67a440aaa")
