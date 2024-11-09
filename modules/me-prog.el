@@ -105,7 +105,7 @@
               (unless (memq remap-mode +treesit-auto-enable-in-normal-modes-deny) ; Unless this mode is explicitly disabled
                 (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
                       (hook-name (intern (format "%s-hook" remap-mode))))
-                  (defalias fn-name (lambda () ; Create the parser if the grammar fot the language is available
+                  (defalias fn-name (lambda () ; Create the parser if the grammar for the language is available
                                       (when (treesit-language-available-p lang)
                                         (treesit-parser-create lang))))
                   (add-hook hook-name fn-name)))))))))
@@ -240,13 +240,7 @@
 
 ;; Consult integration with Eglot
 (use-package consult-eglot
-  :straight t
-  :after consult eglot
-  :config
-  ;; Provide `consult-lsp' functionality from `consult-eglot', useful for
-  ;; packages that relays on `consult-lsp' (like `dirvish-subtree').
-  (unless (or (not (+package-disabled-p 'lsp-mode 'obsolete/me-lsp)) (fboundp 'consult-lsp-file-symbols))
-    (defalias 'consult-lsp-file-symbols #'consult-eglot-symbols)))
+  :straight t)
 
 
 ;; Helper function to get the style for "clang-format"
