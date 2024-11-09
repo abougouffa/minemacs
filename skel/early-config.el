@@ -30,3 +30,8 @@
 
 ;; Compute statistics to use with `use-package-report'
 ;; (setq use-package-compute-statistics t)
+
+;; Sometimes, a packge gets loaded early at startup. This can be useful:
+;; (defun +debug-on-require (feature)
+;;   (advice-add 'require :before (lambda (f &rest _) (when (eq f feature) (debug)))))
+;; (+debug-on-require 'parinfer-rust-flymake)
