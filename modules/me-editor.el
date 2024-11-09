@@ -8,16 +8,17 @@
 
 ;;; Code:
 
-;; Visualize the undo tree
+;; Visualize and navigate the undo tree
 (use-package vundo
   :straight t
+  :bind (:map minemacs-open-thing-map ("u" . vundo))
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)
   (vundo-glyph-alist vundo-unicode-symbols))
 
 
-;; Persistent undo, available between sessions
+;; Persistent undo tree between sessions
 (use-package undo-fu-session
   :straight t
   :hook (minemacs-lazy . undo-fu-session-global-mode)
