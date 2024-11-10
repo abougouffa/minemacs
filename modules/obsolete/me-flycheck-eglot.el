@@ -60,11 +60,11 @@ on all the errors."
   (bound-and-true-p eglot--managed-mode))
 
 (flycheck-define-generic-checker
-    'eglot
-  "Report `eglot' diagnostics using `flycheck'."
-  :start #'+flycheck-eglot--init
-  :predicate #'+flycheck-eglot--available-p
-  :modes '(prog-mode text-mode))
+ 'eglot
+ "Report `eglot' diagnostics using `flycheck'."
+ :start #'+flycheck-eglot--init
+ :predicate #'+flycheck-eglot--available-p
+ :modes '(prog-mode text-mode))
 
 (push 'eglot flycheck-checkers)
 
@@ -74,7 +74,7 @@ on all the errors."
   (interactive)
   (when eglot--managed-mode
     (flymake-mode -1)
-    (when-let ((current-checker (flycheck-get-checker-for-buffer)))
+    (when-let* ((current-checker (flycheck-get-checker-for-buffer)))
       (unless (equal current-checker 'eglot)
         (flycheck-add-next-checker 'eglot current-checker)
         (flycheck-add-mode 'eglot major-mode)))

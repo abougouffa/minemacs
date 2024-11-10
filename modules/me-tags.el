@@ -114,8 +114,8 @@ Fall back to the default `citre--project-root'."
   (defun +consult--cscope-find-database-file (start-dir)
     "Looks first for the dominating directory that includes the database file.
 Fallback to the default function if none is found."
-    (if-let ((dir (locate-dominating-file start-dir consult-cscope-database-file))
-             (not-abs-path (not (file-name-absolute-p consult-cscope-database-file))))
+    (if-let* ((dir (locate-dominating-file start-dir consult-cscope-database-file))
+              (not-abs-path (not (file-name-absolute-p consult-cscope-database-file))))
         (expand-file-name consult-cscope-database-file dir)
       (consult--cscope-find-database-file start-dir)))
 

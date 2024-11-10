@@ -71,13 +71,13 @@
   (defun +mu4e-open-mail-as-html ()
     "Open the HTML mail in EAF Browser."
     (interactive)
-    (if-let ((msg (mu4e-message-at-point t))
-             ;; Bind browse-url-browser-function locally, so it works
-             ;; even if EAF Browser is not set as a default browser.
-             (browse-url-browser-function
-              (cond
-               ((featurep 'me-eaf) #'eaf-open-browser)
-               (t #'browse-url-xdg-open))))
+    (if-let* ((msg (mu4e-message-at-point t))
+              ;; Bind browse-url-browser-function locally, so it works
+              ;; even if EAF Browser is not set as a default browser.
+              (browse-url-browser-function
+               (cond
+                ((featurep 'me-eaf) #'eaf-open-browser)
+                (t #'browse-url-xdg-open))))
         (mu4e-action-view-in-browser msg)
       (message "No message at point.")))
 
@@ -172,7 +172,7 @@
   (advice-add
    'org-msg-attach-attach :after
    (satch-defun +org-msg-attach-attach--save-default-directory:after-a (file &rest _)
-     (when-let ((dir (file-name-directory file)))
+     (when-let* ((dir (file-name-directory file)))
        (setq-local default-directory dir)))))
 
 

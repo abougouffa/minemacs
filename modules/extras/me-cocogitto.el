@@ -23,7 +23,7 @@ restores it after that."
            (completing-read "Increment the version: " '(auto major minor patch)))
          (when (yes-or-no-p "Is this version a pre-release? ")
            (read-string "Pre-release version: "))))
-  (if-let ((default-directory (vc-root-dir)))
+  (if-let* ((default-directory (vc-root-dir)))
       (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
         (conf-colon-mode)
         (insert (format "############ Cocogitto bump (%s) ############\n" level))

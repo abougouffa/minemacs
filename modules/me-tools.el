@@ -85,7 +85,7 @@
   (advice-add
    'multi-vterm-dedicated-open :after
    (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
-     (when-let ((dir (file-remote-p default-directory 'localname)))
+     (when-let* ((dir (file-remote-p default-directory 'localname)))
        (vterm-send-string (format "cd %S\n" dir))))))
 
 

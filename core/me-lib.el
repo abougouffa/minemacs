@@ -121,7 +121,7 @@ SYMBOL is non-nil, then `eq' is used instead.
 
 This method may mutate the original alist, but you still need to use the return
 value of this method instead of the original alist, to ensure correct results."
-  (if-let ((pair (if symbol (assq key alist) (assoc key alist))))
+  (if-let* ((pair (if symbol (assq key alist) (assoc key alist))))
       (setcdr pair val)
     (push (cons key val) alist))
   alist)
@@ -257,7 +257,7 @@ This inhebits both the echo area and the `*Messages*' buffer."
       (run-with-idle-timer
        delay t
        (lambda ()
-         (when-let (fn (pop fns))
+         (when-let* (fn (pop fns))
            (+log! "Running task %d, calling function `%s'" task-num (truncate-string-to-width (format "%s" fn) 40 nil nil "…"))
            (funcall fn))
          (unless fns
@@ -322,7 +322,7 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
                filename ; for named files
                (or
                 (featurep 'minemacs-loaded) ; after MinEmacs is loaded
-                (when-let ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
+                (when-let* ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
                  (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
                (not ; not an ignored file
                 (member (expand-file-name filename) (mapcar #'expand-file-name +first-file-hook-ignore-list)))
@@ -468,7 +468,7 @@ Emacs-specific early exit in \".bashrc\"."
               ;; "env --null" ends lines with null byte instead of newline
               (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0"))))
         ;; Special treatment for the "PATH" variable, save it to `exec-path'
-        (when-let ((path (alist-get "PATH" env-vars nil nil #'string=)))
+        (when-let* ((path (alist-get "PATH" env-vars nil nil #'string=)))
           (insert "\n;; Adding PATH content to `exec-path'\n"
                   (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
                           (mapcar (apply-partially #'format "\"%s\"") (parse-colon-path path)))))
@@ -563,7 +563,7 @@ that directory."
 
 (defun +lockedp (name)
   "Return non-nil if the resource NAME is locked."
-  (when-let ((pid (+lock--locker-pid name)))
+  (when-let* ((pid (+lock--locker-pid name)))
     (and (process-attributes pid) t)))
 
 (defun +locked-by-this-process-p (name)
@@ -619,10 +619,10 @@ be deleted.
        `((defun ,exit-fn-name (&rest _)
           (if (fboundp 'tabspaces-mode)
               ;; When `tabspaces' is available, use it.
-              (when-let ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
+              (when-let* ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
                (tabspaces-close-workspace (1+ tab-num)))
             ;; Or default to the built-in `tab-bar'.
-            (when-let ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
+            (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
              (tab-close (1+ tab-num)))))))
       (when exit-func
         (setq fn-body (append fn-body `((advice-add ',exit-func :after #',exit-fn-name)))))
@@ -734,7 +734,7 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
 
 (defun +project-super-project-try-or-fail (dir)
   "Find super-project root starting from DIR."
-  (if-let ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
+  (if-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
       (cons 'local root)
     (user-error "It doesn't seem that we are in a super-project")))
 
@@ -1023,8 +1023,8 @@ If prefix ARG, delete all persistent scratches."
 
 ARG and PROJECT-P are passed to `+scratch-open-buffer'."
   (interactive "P")
-  (when-let ((buf (current-buffer))
-             (s (get-buffer "*scratch*")))
+  (when-let* ((buf (current-buffer))
+              (s (get-buffer "*scratch*")))
     ;; Load the default persistent scratch buffer
     (+scratch-open-buffer arg project-p 'same-window)
     ;; Kill the Emacs' default scratch buffer
@@ -1186,7 +1186,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
                    (+plist-keys minemacs-fonts-plist))))
 
     ;; Set the tooltip font accordingly
-    (when-let ((font (car (and (fboundp 'fontset-list) (fontset-list)))))
+    (when-let* ((font (car (and (fboundp 'fontset-list) (fontset-list)))))
       (setq tooltip-frame-parameters (+alist-set 'font font tooltip-frame-parameters))))
 
   ;; Run hooks
@@ -1253,12 +1253,12 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
             (dolist (companion-assoc companion-packages)
               (let ((cur-modes (ensure-list (car companion-assoc)))
                     (modes (ensure-list (cdr companion-assoc))))
-                (when-let (((and (apply #'derived-mode-p cur-modes)
-                                 (cl-find-if-not #'fboundp modes)
-                                 (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
-                                     (and (not noninteractive) ; ask only when in an interactive session
-                                          (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
-                                                            module (current-buffer))))))))
+                (when-let* (((and (apply #'derived-mode-p cur-modes)
+                                  (cl-find-if-not #'fboundp modes)
+                                  (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
+                                      (and (not noninteractive) ; ask only when in an interactive session
+                                           (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
+                                                             module (current-buffer))))))))
                   (push module mods)
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
     (when mods (set-auto-mode t))
@@ -1283,13 +1283,13 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
             (dolist (auto-mode auto-modes)
               (let ((regexps (ensure-list (car auto-mode)))
                     (mode (cdr auto-mode)))
-                (when-let (((and (buffer-file-name)
-                                 (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
-                                 (not (fboundp mode))
-                                 (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
-                                     (and (not noninteractive) ; ask only when in an interactive session
-                                          (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
-                                                            (abbreviate-file-name (buffer-file-name)) mode module)))))))
+                (when-let* (((and (buffer-file-name)
+                                  (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
+                                  (not (fboundp mode))
+                                  (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
+                                      (and (not noninteractive) ; ask only when in an interactive session
+                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
+                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
                   (push module mods)
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
     (when mods (set-auto-mode t))
@@ -1306,19 +1306,19 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
             (dolist (magic-mode magic-modes)
               (let ((func-or-regexp (car magic-mode))
                     (mode (cdr magic-mode)))
-                (when-let (((and (not (fboundp mode))
-                                 (cond ((functionp func-or-regexp) (funcall func-or-regexp))
-                                       ((stringp func-or-regexp)
-                                        (save-excursion
-                                          (goto-char (point-min))
-                                          (save-restriction
-                                            (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
-                                            (let ((case-fold-search nil))
-                                              (looking-at func-or-regexp))))))
-                                 (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
-                                     (and (not noninteractive) ; ask only when in an interactive session
-                                          (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
-                                                            (current-buffer) mode module)))))))
+                (when-let* (((and (not (fboundp mode))
+                                  (cond ((functionp func-or-regexp) (funcall func-or-regexp))
+                                        ((stringp func-or-regexp)
+                                         (save-excursion
+                                           (goto-char (point-min))
+                                           (save-restriction
+                                             (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
+                                             (let ((case-fold-search nil))
+                                               (looking-at func-or-regexp))))))
+                                  (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
+                                      (and (not noninteractive) ; ask only when in an interactive session
+                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                             (current-buffer) mode module)))))))
                   (push module mods)
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
     (when mods (set-auto-mode t))
@@ -1335,16 +1335,16 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
             (dolist (interpreter-mode interpreter-modes)
               (let ((interpreter (car interpreter-mode))
                     (mode (cdr interpreter-mode)))
-                (when-let (((and (not (fboundp mode))
-                                 (when-let ((interp (save-excursion
-                                                      (goto-char (point-min))
-                                                      (when (looking-at auto-mode-interpreter-regexp)
-                                                        (match-string 2)))))
-                                   (string-match-p (format "\\`%s\\'" interpreter) (file-name-nondirectory interp)))
-                                 (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
-                                     (and (not noninteractive) ; ask only when in an interactive session
-                                          (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
-                                                            (current-buffer) mode module)))))))
+                (when-let* (((and (not (fboundp mode))
+                                  (when-let* ((interp (save-excursion
+                                                        (goto-char (point-min))
+                                                        (when (looking-at auto-mode-interpreter-regexp)
+                                                          (match-string 2)))))
+                                    (string-match-p (format "\\`%s\\'" interpreter) (file-name-nondirectory interp)))
+                                  (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
+                                      (and (not noninteractive) ; ask only when in an interactive session
+                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                             (current-buffer) mode module)))))))
                   (push module mods)
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
     (when mods (set-auto-mode t))

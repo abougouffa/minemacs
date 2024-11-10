@@ -20,7 +20,7 @@
   ;; Replace the `project-vc-dir' by `magit-project-status' in project prefix and switch commands
   (with-eval-after-load 'project
     (keymap-set project-prefix-map "v" 'magit-project-status)
-    (when-let ((vc (assoc 'project-vc-dir project-switch-commands)))
+    (when-let* ((vc (assoc 'project-vc-dir project-switch-commands)))
       (setcar vc 'magit-project-status)
       (setcdr vc '("Magit project status"))))
   :config

@@ -23,7 +23,7 @@
   :config
   ;; Register Eglot servers on the `nix-ts-mode' in addition to the already configured `nix-mode'
   (with-eval-after-load 'eglot
-    (when-let ((server (assoc 'nix-mode eglot-server-programs)))
+    (when-let* ((server (assoc 'nix-mode eglot-server-programs)))
       (setcar server '(nix-mode nix-ts-mode)))))
 
 

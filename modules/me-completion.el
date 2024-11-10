@@ -216,7 +216,7 @@
   (defun +consult-tab (tab)
     "Switch to TAB by name."
     (interactive
-     (if-let ((tabs (mapcar (lambda (tab) (cdr (assq 'name tab))) (tab-bar-tabs))))
+     (if-let* ((tabs (mapcar (lambda (tab) (cdr (assq 'name tab))) (tab-bar-tabs))))
          (list (consult--read tabs :prompt "Tabs: " :category 'tab))
        (user-error "No tabs found")))
     (tab-bar-select-tab-by-name tab))

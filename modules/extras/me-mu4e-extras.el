@@ -23,12 +23,12 @@
 (defun +mu4e-view-select-attachment ()
   "Use `completing-read' to select a single attachment.
 Acts like a singular `mu4e-view-save-attachments', without the saving."
-  (if-let ((parts (delq nil (mapcar
-                             (lambda (part)
-                               (when (assoc "attachment" (cdr part))
-                                 part))
-                             (mu4e--view-gather-mime-parts))))
-           (files (+mu4e-part-selectors parts)))
+  (if-let* ((parts (delq nil (mapcar
+                              (lambda (part)
+                                (when (assoc "attachment" (cdr part))
+                                  part))
+                              (mu4e--view-gather-mime-parts))))
+            (files (+mu4e-part-selectors parts)))
       (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
     (user-error (mu4e-format "No attached files found"))))
 
@@ -213,10 +213,10 @@ for :EXTRA-LINES."
 within a context, set `user-mail-address' to an alias found in the 'To' or
 'From' headers of the parent message if present, or prompt the user for a
 preferred alias"
-  (when-let ((addresses (if (or mu4e-contexts +mu4e-account-aliases)
-                            (cons user-mail-address ;; the main address
-                                  +mu4e-account-aliases) ;; the aliases
-                          (mu4e-personal-addresses))))
+  (when-let* ((addresses (if (or mu4e-contexts +mu4e-account-aliases)
+                             (cons user-mail-address ;; the main address
+                                   +mu4e-account-aliases) ;; the aliases
+                           (mu4e-personal-addresses))))
     (setq user-mail-address
           (if mu4e-compose-parent-message
               (let ((to (mapcar (lambda (a) (plist-get a :email))
@@ -260,7 +260,7 @@ preferred alias"
   "Save current MSG as PDF.
 If SKIP-HEADERS is set, do not show include message headers."
   (interactive)
-  (when-let ((msg (or msg (mu4e-message-at-point))))
+  (when-let* ((msg (or msg (mu4e-message-at-point))))
     (with-temp-buffer
       (insert-file-contents-literally
        (mu4e-message-readable-path msg) nil nil nil t)

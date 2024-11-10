@@ -246,10 +246,10 @@
 ;; Helper function to get the style for "clang-format"
 (defun +clang-format-get-style ()
   "Get the \"-style\" argument for clang-format."
-  (if-let ((conf-file ".clang-format")
-           (dir (locate-dominating-file
-                 (or (+project-safe-root) default-directory)
-                 conf-file)))
+  (if-let* ((conf-file ".clang-format")
+            (dir (locate-dominating-file
+                  (or (+project-safe-root) default-directory)
+                  conf-file)))
       (expand-file-name conf-file dir)
     (let ((indent
            (cond
@@ -278,8 +278,8 @@
   (reformatter-define ref-lua-format
     :program "lua-format"
     :args (append
-           (when-let ((indent (cond ((derived-mode-p 'lua-ts-mode) lua-ts-indent-offset)
-                                    ((derived-mode-p 'lua-mode) lua-indent-level))))
+           (when-let* ((indent (cond ((derived-mode-p 'lua-ts-mode) lua-ts-indent-offset)
+                                     ((derived-mode-p 'lua-mode) lua-indent-level))))
              (list (format "--indent-width=%d")))
            (unless indent-tabs-mode
              '("--no-use-tab")))
@@ -396,7 +396,7 @@
     (advice-add
      'breadcrumb-project-crumbs :override
      (satch-defun +breadcrumb--project:override-a ()
-       (concat " " (if-let ((file buffer-file-name))
+       (concat " " (if-let* ((file buffer-file-name))
                        (nerd-icons-icon-for-file file)
                      (nerd-icons-icon-for-mode major-mode)))))))
 

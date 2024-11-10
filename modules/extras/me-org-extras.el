@@ -91,7 +91,7 @@ Return an AST with newlines counts in each level."
                        (cl-incf counter (- (or (plist-get p :newline) 0) (or (plist-get p :nonumber) 0))))
                      (cons begin counter))
                     (t (cons begin nil)))))
-    (when-let ((number (cdr (assoc (point) results))))
+    (when-let* ((number (cdr (assoc (point) results))))
       (setf (car args) (concat (format "\\setcounter{equation}{%s}\n" number) (car args)))))
   (apply orig-func args))
 

@@ -40,17 +40,17 @@ When FILENAME is nil, use the file name of the current buffer."
     ;; In C/C++, headers are not compiled like source files, we need to search if a source
     ;; file with the same name exists in the database, or use options from another file!.
     (when (string-match "\\.\\([Hh]\\|[Hh][Hh]\\|[Hh]\\+\\+\\|[Hh][Pp][Pp]\\|[Hh][Xx][Xx]\\)$" file)
-      (when-let ((src-files (directory-files-recursively
-                             proj-root
-                             (concat
-                              (file-name-base file)
-                              "\\.\\([Cc]\\|[Cc][Cc]\\|[Cc]\\+\\+\\|[Cc][Pp][Pp]\\|[Cc][Xx][Xx]\\)$")
-                             nil)))
+      (when-let* ((src-files (directory-files-recursively
+                              proj-root
+                              (concat
+                               (file-name-base file)
+                               "\\.\\([Cc]\\|[Cc][Cc]\\|[Cc]\\+\\+\\|[Cc][Pp][Pp]\\|[Cc][Xx][Xx]\\)$")
+                              nil)))
         (setq file (car src-files))))
     (when (and (cl-some #'derived-mode-p '(c-mode c++-mode c-ts-mode c++-ts-mode))
                (string-match (file-truename proj-root) file))
       (unless +flycheck-cmake-json
-        (when-let ((db-file (+flycheck-cmake-get-compile-db-file)))
+        (when-let* ((db-file (+flycheck-cmake-get-compile-db-file)))
           (setq-local +flycheck-cmake-json (json-read-file db-file))))
       (let* ((matched-entry (cl-find-if
                              (lambda (entry)

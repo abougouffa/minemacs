@@ -63,7 +63,7 @@
      (let ((before-list (tabspaces--list-tabspaces)))
        (apply origfn workspace)
        ;; Created a new empty workspace
-       (when-let ((new-ws (cl-set-difference (tabspaces--list-tabspaces) before-list :test #'string=)))
+       (when-let* ((new-ws (cl-set-difference (tabspaces--list-tabspaces) before-list :test #'string=)))
          (+scratch-open-buffer nil nil 'same-window)))))
 
   (tabspaces-mode 1)

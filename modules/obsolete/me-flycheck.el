@@ -36,7 +36,7 @@
 
     (defun +flycheck-eldoc-function (report-doc &rest _)
       "Document diagnostics at point, intended for `eldoc-documentation-functions'."
-      (when-let ((diags (flycheck-overlay-errors-at (point))))
+      (when-let* ((diags (flycheck-overlay-errors-at (point))))
         (propertize
          (funcall flycheck-help-echo-function diags)
          'help-echo-inhibit-substitution t)))))

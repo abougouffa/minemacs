@@ -197,8 +197,8 @@ RECURSIVE is non-nil."
 (defun +delete-this-file-and-buffer (&optional filename)
   "Delete FILENAME and its associated visiting buffer."
   (interactive)
-  (when-let ((filename (or filename (buffer-file-name)))
-             (short-path (abbreviate-file-name filename)))
+  (when-let* ((filename (or filename (buffer-file-name)))
+              (short-path (abbreviate-file-name filename)))
     (if (vc-backend filename)
         (or (ignore-errors (vc-delete-file (buffer-file-name)))
             (+delete-this-file filename)
@@ -223,9 +223,9 @@ RECURSIVE is non-nil."
 (defun +sudo-this-file ()
   "Open the current file as root."
   (interactive)
-  (if-let ((this-file (or buffer-file-name
-                          (when (derived-mode-p 'dired-mode 'wdired-mode)
-                            default-directory))))
+  (if-let* ((this-file (or buffer-file-name
+                           (when (derived-mode-p 'dired-mode 'wdired-mode)
+                             default-directory))))
       (find-file (+tramp-sudo-file-path this-file))
     (user-error "Current buffer not bound to a file")))
 
@@ -233,12 +233,12 @@ RECURSIVE is non-nil."
 (defun +sudo-save-buffer ()
   "Save this buffer as root. Save as new file name if called with prefix."
   (interactive)
-  (if-let ((file (or (and (or (not buffer-file-name) current-prefix-arg)
-                          (read-file-name "Save as root to: "))
-                     buffer-file-name))
-           (file (+tramp-sudo-file-path (expand-file-name file)))
-           (dest-buffer (find-file-noselect file))
-           (src-buffer (current-buffer)))
+  (if-let* ((file (or (and (or (not buffer-file-name) current-prefix-arg)
+                           (read-file-name "Save as root to: "))
+                      buffer-file-name))
+            (file (+tramp-sudo-file-path (expand-file-name file)))
+            (dest-buffer (find-file-noselect file))
+            (src-buffer (current-buffer)))
       (progn
         (copy-to-buffer dest-buffer (point-min) (point-max))
         (unwind-protect (with-current-buffer dest-buffer (save-buffer))
@@ -250,7 +250,7 @@ RECURSIVE is non-nil."
 (defun +copy-this-file-name ()
   "Save (copy) the file name of this buffer to the kill ring."
   (interactive)
-  (if-let ((file (buffer-file-name)))
+  (if-let* ((file (buffer-file-name)))
       (with-temp-buffer
         (insert file)
         (kill-ring-save (point-min) (point-max)))
@@ -310,7 +310,7 @@ When a region is active, propose to use it as the patch buffer."
                       (apply-partially #'string-prefix-p "a/") patch-files))))
            (proj-files (project-files proj)))
       (dolist (existing-patched-file existing-patched-files)
-        (when-let ((cand-files (seq-filter (apply-partially #'string-suffix-p (concat "/" existing-patched-file)) proj-files)))
+        (when-let* ((cand-files (seq-filter (apply-partially #'string-suffix-p (concat "/" existing-patched-file)) proj-files)))
           (push (cons existing-patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length existing-patched-file)))) cand-files)) candidates)))
       ;; Accurate strategy, the directory that applies to all files
       (let ((results (cdr (car candidates))))
@@ -381,41 +381,41 @@ When a region is active, propose to use it as the patch buffer."
   "Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
 value of `+html2pdf-default-backend' is used."
-  (if-let ((default-directory (file-name-directory infile))
-           (backend (or backend +html2pdf-default-backend))
-           (backend-command
-            (pcase backend
-              ('wkhtmltopdf
-               (list "wkhtmltopdf"
-                     "--images" "--disable-javascript" "--enable-local-file-access"
-                     "--encoding" "utf-8"
-                     infile outfile))
-              ('htmldoc
-               (list "htmldoc"
-                     "--charset" "utf-8"
-                     "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
-                     "--top" "50#mm" "--bottom" "50#mm" "--right" "50#mm" "--left" "50#mm"
-                     "--fontsize" "10"
-                     "--size" "a4"
-                     "--continuous"
-                     "--outfile" outfile infile))
-              ('weasyprint
-               (list "weasyprint"
-                     "--encoding" "utf-8"
-                     "--stylesheet" (or +html2pdf-backend-config-file
-                                        (expand-file-name "templates/+html2pdf/weasyprint-pdf.css" minemacs-assets-dir))
-                     infile outfile))
-              ('pandoc+context
-               (list "pandoc"
-                     "--pdf-engine=context"
-                     "--variable" "fontsize=10pt"
-                     "--variable" "linkstyle=slanted"
-                     "-o" outfile infile))
-              ('pandoc
-               (list "pandoc"
-                     "--defaults" (or +html2pdf-backend-config-file
-                                      (expand-file-name "templates/+html2pdf/pandoc.yaml" minemacs-assets-dir))
-                     "-o" outfile infile)))))
+  (if-let* ((default-directory (file-name-directory infile))
+            (backend (or backend +html2pdf-default-backend))
+            (backend-command
+             (pcase backend
+               ('wkhtmltopdf
+                (list "wkhtmltopdf"
+                      "--images" "--disable-javascript" "--enable-local-file-access"
+                      "--encoding" "utf-8"
+                      infile outfile))
+               ('htmldoc
+                (list "htmldoc"
+                      "--charset" "utf-8"
+                      "--bodyfont" "sans" "--textfont" "sans" "--headfootfont" "sans"
+                      "--top" "50#mm" "--bottom" "50#mm" "--right" "50#mm" "--left" "50#mm"
+                      "--fontsize" "10"
+                      "--size" "a4"
+                      "--continuous"
+                      "--outfile" outfile infile))
+               ('weasyprint
+                (list "weasyprint"
+                      "--encoding" "utf-8"
+                      "--stylesheet" (or +html2pdf-backend-config-file
+                                         (expand-file-name "templates/+html2pdf/weasyprint-pdf.css" minemacs-assets-dir))
+                      infile outfile))
+               ('pandoc+context
+                (list "pandoc"
+                      "--pdf-engine=context"
+                      "--variable" "fontsize=10pt"
+                      "--variable" "linkstyle=slanted"
+                      "-o" outfile infile))
+               ('pandoc
+                (list "pandoc"
+                      "--defaults" (or +html2pdf-backend-config-file
+                                       (expand-file-name "templates/+html2pdf/pandoc.yaml" minemacs-assets-dir))
+                      "-o" outfile infile)))))
       (apply #'call-process (append (list (car backend-command) nil nil nil) (cdr backend-command)))
     (user-error "Backend \"%s\" not available" backend)))
 
@@ -573,12 +573,12 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
   "Get the latest release of REPO. Strips the \"v\" at left.
 
 Fallback to FALLBACK-RELEASE when it can't get the last one."
-  (if-let ((latest
-            (ignore-errors
-              (with-temp-buffer
-                (url-insert-file-contents
-                 (format "https://api.github.com/repos/%s/releases/latest" repo))
-                (json-parse-buffer :object-type 'plist)))))
+  (if-let* ((latest
+             (ignore-errors
+               (with-temp-buffer
+                 (url-insert-file-contents
+                  (format "https://api.github.com/repos/%s/releases/latest" repo))
+                 (json-parse-buffer :object-type 'plist)))))
       (let ((ver (car (last (split-string (plist-get latest :html_url) "/")))))
         (if trim-v-prefix
             (string-trim-left ver "v")
@@ -600,7 +600,7 @@ Keyword argument :VER can be used to pass the version to download, when
 no version is passed, the latest release is downloaded. The :OUT-FILE
 can be used to choose the output file name, otherwise, the file will be
 downloaded with it's original file name to `+github-download-dir'"
-  (when-let ((ver (or ver (+github-latest-release repo ver t))))
+  (when-let* ((ver (or ver (+github-latest-release repo ver t))))
     (let* ((url (format "https://github.com/%s/releases/download/v%s/%s" repo ver (string-replace "{{ver}}" ver filename-fmt)))
            (out-file (or out-file (expand-file-name (url-file-nondirectory url) +github-download-dir))))
       (if (and (not ok-if-already-exists) (file-exists-p out-file))
@@ -726,11 +726,11 @@ by `+screenshot-delay') before taking the screenshot."
 
 If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
 when a region is selected."
-  (when-let ((thing (ignore-errors
-                      (or (prog1 (thing-at-point 'region t)
-                            (unless leave-region-marked (deactivate-mark)))
-                          (cl-some (+apply-partially-right #'thing-at-point t)
-                                   '(symbol email number string word))))))
+  (when-let* ((thing (ignore-errors
+                       (or (prog1 (thing-at-point 'region t)
+                             (unless leave-region-marked (deactivate-mark)))
+                           (cl-some (+apply-partially-right #'thing-at-point t)
+                                    '(symbol email number string word))))))
     ;; If the matching thing has multi-lines, join them
     (string-join (string-lines thing))))
 
@@ -1233,7 +1233,7 @@ it forget them only when we are sure they don't exist."
   ;; Remember some Git repositories as projects by path
   (mapc
    (lambda (dir)
-     (when-let ((project (project--find-in-directory dir)))
+     (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
    (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
 
@@ -1250,8 +1250,8 @@ it forget them only when we are sure they don't exist."
 (defun +xref-find-references-at-point ()
   "Find references to the identifier at or around point."
   (interactive)
-  (if-let ((identifier (save-excursion (xref-backend-identifier-at-point (xref-find-backend))))
-           (xref-prompt-for-identifier '(not xref-find-references)))
+  (if-let* ((identifier (save-excursion (xref-backend-identifier-at-point (xref-find-backend))))
+            (xref-prompt-for-identifier '(not xref-find-references)))
       (xref-find-references identifier)
     (user-error "No identifier here")))
 

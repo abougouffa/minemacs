@@ -18,7 +18,7 @@
 ;;         ("https" . "http://myproxy.local:8080/")))
 
 ;; Enable full screen at startup
-;; (if-let ((fullscreen (assq 'fullscreen default-frame-alist)))
+;; (if-let* ((fullscreen (assq 'fullscreen default-frame-alist)))
 ;;     (setcdr fullscreen 'fullboth)
 ;;   (push '(fullscreen . fullboth) default-frame-alist))
 
