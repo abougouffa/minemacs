@@ -33,8 +33,12 @@
                     (list keyword)
                   (all-completions sym-at-pt plantuml-kwdList)))))))
 
-  ;; Automatically download the latest version of PlantUML
-  (setopt plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar"))
+  (if (executable-find "plantuml")
+      ;; Use the executable
+      (setopt plantuml-default-exec-mode 'executable)
+    ;; Automatically download the latest version of PlantUML
+    (setopt plantuml-default-exec-mode 'jar
+            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar")))
 
   ;; Add support for `capf'
   (defun +plantuml-mode-setup ()
