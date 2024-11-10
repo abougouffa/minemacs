@@ -364,20 +364,11 @@ Call functions without asking when DONT-ASK-P is non-nil.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-bump-packages "me-lib-extra" "\
 Update MinEmacs packages to the last revisions (can cause breakages)." t)
-(autoload 'minemacs-bump-packages-async "me-lib-extra" "\
-Asynchronous version of `minemacs-bump-packages'." t)
-(autoload 'minemacs-restore-locked-packages "me-lib-extra" "\
-Restore lockfile packages list. Takes into account the pinned ones.
-When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
-restore the lockfile from backups, not Git.
-
-(fn RESTORE-FROM-BACKUP)" t)
 (autoload 'minemacs-upgrade "me-lib-extra" "\
-Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
-
-When PULL-MINEMACS is non-nil, run a \"git pull\" in MinEmacs' directory.
-
-This calls `minemacs-update-restore-locked' asynchronously.
+Upgrade the packages list to the locked revisions.
+This takes into account the explicitly pinned packages. When called with
+\\[universal-argument] or with PULL-MINEMACS, it will run \"git pull\"
+in MinEmacs directory before upgrading.
 
 (fn PULL-MINEMACS)" t)
 (autoload 'minemacs-root-dir-cleanup "me-lib-extra" "\
@@ -395,17 +386,6 @@ When called with \\[universal-argument], it prompts also for on-demand modules.
 When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules.
 
 (fn &rest MODULES)" t)
-(autoload '+file-mime-type "me-lib-extra" "\
-Get MIME type for FILE based on magic codes provided by the \"file\" command.
-Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
-`application/x-object', `application/octet-stream', etc.
-
-(fn FILE)")
-(autoload '+file-type "me-lib-extra" "\
-Get file type for FILE based on magic codes provided by the \"file\" command.
-Return a cons (file-type . extended-description).
-
-(fn FILE)")
 (autoload '+file-name-incremental "me-lib-extra" "\
 Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
@@ -683,22 +663,6 @@ Forget all duplicate known projects (/home/user/proj, ~/proj)." t)
 Initialize project list from `+project-root-wildcards'." t)
 (autoload '+xref-find-references-at-point "me-lib-extra" "\
 Find references to the identifier at or around point." t)
-(autoload '+systemd-running-p "me-lib-extra" "\
-Check if the systemd SERVICE is running.
-
-(fn SERVICE)")
-(autoload '+systemd-command "me-lib-extra" "\
-Call systemd with COMMAND and SERVICE.
-
-(fn SERVICE COMMAND &optional PRE-FN POST-FN)")
-(autoload '+systemd-start "me-lib-extra" "\
-Start systemd SERVICE. Optionally run PRE-FN and POST-FN.
-
-(fn SERVICE &optional PRE-FN POST-FN)")
-(autoload '+systemd-stop "me-lib-extra" "\
-Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
-
-(fn SERVICE &optional PRE-FN POST-FN)")
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
 (register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+g" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))

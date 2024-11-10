@@ -45,66 +45,31 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (minemacs-run-build-functions 'dont-ask))
 
 ;;;###autoload
-(defun minemacs-bump-packages-async ()
-  "Asynchronous version of `minemacs-bump-packages'."
-  (interactive)
-  (let ((default-directory minemacs-root-dir)
-        (compilation-buffer-name-function (lambda (_) "" "*minemacs-bump-packages*")))
-    (compile "make bump")))
-
-;;;###autoload
-(defun minemacs-restore-locked-packages (restore-from-backup)
-  "Restore lockfile packages list. Takes into account the pinned ones.
-When called with \\[universal-argument] or with RESTORE-FROM-BACKUP, it will
-restore the lockfile from backups, not Git."
-  (interactive "P")
-  (let* ((lockfile (concat straight-base-dir "straight/versions/default.el"))
-         (default-directory (vc-git-root lockfile))
-         (backup-dir (concat minemacs-local-dir "minemacs/versions/")))
-    ;; Update straight recipe repositories
-    (straight-pull-recipe-repositories)
-    (if (not restore-from-backup)
-        (progn
-          (message "[MinEmacs] Reverting file \"%s\" to the original" lockfile)
-          (unless (zerop (vc-git-revert lockfile))
-            ;; Signal an error when the `vc-git-revert' returns non-zero
-            (user-error "[MinEmacs] An error occurred when trying to revert \"%s\"" lockfile)))
-      (message "[MinEmacs] Trying to restore the lockfile from backups.")
-      (if-let* ((_ (file-exists-p backup-dir))
-                (backups (directory-files backup-dir nil "[^.][^.]?\\'"))
-                (restore-backup-file (completing-read "Select which backup to restore: " backups))
-                (last-backup (expand-file-name restore-backup-file backup-dir)))
-          (if (not (file-exists-p last-backup))
-              (user-error "[MinEmacs] No backup file")
-            (copy-file last-backup lockfile 'overwrite-existing)
-            (message "[MinEmacs] Restored the last backup from \"%s\"" restore-backup-file))))
-    ;; This will ensure that the pinned lockfile is up-to-date
-    (straight-x-freeze-pinned-versions)
-    ;; Restore packages to the versions pinned in the lockfiles
-    (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
-      (message "[MinEmacs] Restoring pinned versions of packages")
-      (straight-x-thaw-pinned-versions))
-    (message "[MinEmacs] Restoring packages from the global lockfile versions")
-    (straight-thaw-versions)
-    ;; Rebuild the packages
-    (message "[MinEmacs] Rebuilding packages")
-    (straight-rebuild-all)
-    ;; Run package-specific build functions (ex: `pdf-tools-install')
-    (message "[MinEmacs] Running additional package-specific build functions")
-    (minemacs-run-build-functions 'dont-ask)))
-
-;;;###autoload
 (defun minemacs-upgrade (pull-minemacs)
-  "Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
-
-When PULL-MINEMACS is non-nil, run a \"git pull\" in MinEmacs' directory.
-
-This calls `minemacs-update-restore-locked' asynchronously."
+  "Upgrade the packages list to the locked revisions.
+This takes into account the explicitly pinned packages. When called with
+\\[universal-argument] or with PULL-MINEMACS, it will run \"git pull\"
+in MinEmacs directory before upgrading."
   (interactive "P")
-  (let ((default-directory minemacs-root-dir)
-        (compilation-buffer-name-function (lambda (_) "" "*minemacs-upgrade*"))
-        (cmd (format "sh -c '%smake locked'" (if pull-minemacs "git pull && " ""))))
-    (compile cmd)))
+  (when pull-minemacs
+    (let ((default-directory minemacs-root-dir))
+      (vc-pull)))
+  ;; Update straight recipe repositories
+  (straight-pull-recipe-repositories)
+  ;; This will ensure that the pinned lockfile is up-to-date
+  (straight-x-freeze-pinned-versions)
+  ;; Restore packages to the versions pinned in the lockfiles
+  (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
+    (message "[MinEmacs] Restoring pinned versions of packages")
+    (straight-x-thaw-pinned-versions))
+  (message "[MinEmacs] Restoring packages from the global lockfile versions")
+  (straight-thaw-versions)
+  ;; Rebuild the packages
+  (message "[MinEmacs] Rebuilding packages")
+  (straight-rebuild-all)
+  ;; Run package-specific build functions (ex: `pdf-tools-install')
+  (message "[MinEmacs] Running additional package-specific build functions")
+  (minemacs-run-build-functions 'dont-ask))
 
 ;;;###autoload
 (defun minemacs-root-dir-cleanup ()
@@ -181,25 +146,6 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
 ;;; Files, directories and IO helper functions
 
 ;;;###autoload
-(defun +file-mime-type (file)
-  "Get MIME type for FILE based on magic codes provided by the \"file\" command.
-Return a symbol of the MIME type, ex: `text/x-lisp', `text/plain',
-`application/x-object', `application/octet-stream', etc."
-  (if-let ((file-cmd (executable-find "file"))
-           (mime-type (shell-command-to-string (format "%s --brief --mime-type %s" file-cmd file))))
-      (intern (string-trim-right mime-type))
-    (error "The \"file\" command isn't installed")))
-
-;;;###autoload
-(defun +file-type (file)
-  "Get file type for FILE based on magic codes provided by the \"file\" command.
-Return a cons (file-type . extended-description)."
-  (if-let ((file-cmd (executable-find "file"))
-           (file-type (shell-command-to-string (format "%s --brief %s" file-cmd file))))
-      (cons (car (string-split file-type ",")) (string-trim file-type))
-    (error "The \"file\" command isn't installed")))
-
-;;;###autoload
 (defun +file-name-incremental (filename)
   "Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\"."
@@ -245,7 +191,7 @@ RECURSIVE is non-nil."
       (delete-directory file-or-directory recursive trash)
     (delete-file file-or-directory trash)))
 
-;; Rewrite of: crux-delete-file-and-buffer, proposes also to delete VC
+;; Rewrite of: `crux-delete-file-and-buffer', proposes also to delete VC
 ;; controlled files even when `vc-delete-file' fails (edited, conflict, ...).
 ;;;###autoload
 (defun +delete-this-file-and-buffer (&optional filename)
@@ -1308,35 +1254,6 @@ it forget them only when we are sure they don't exist."
            (xref-prompt-for-identifier '(not xref-find-references)))
       (xref-find-references identifier)
     (user-error "No identifier here")))
-
-
-
-;;; Systemd helpers
-
-;;;###autoload
-(defun +systemd-running-p (service)
-  "Check if the systemd SERVICE is running."
-  (zerop (call-process "systemctl" nil nil nil "--user" "is-active" "--quiet" service ".service")))
-
-;;;###autoload
-(defun +systemd-command (service command &optional pre-fn post-fn)
-  "Call systemd with COMMAND and SERVICE."
-  (when pre-fn (funcall pre-fn))
-  (let ((success (zerop (call-process "systemctl" nil nil nil "--user" command service ".service"))))
-    (unless success
-      (user-error "[systemd]: Failed on calling '%s' on service %s.service" command service))
-    (when post-fn (funcall post-fn success))
-    success))
-
-;;;###autoload
-(defun +systemd-start (service &optional pre-fn post-fn)
-  "Start systemd SERVICE. Optionally run PRE-FN and POST-FN."
-  (+systemd-command service "start" pre-fn post-fn))
-
-;;;###autoload
-(defun +systemd-stop (service &optional pre-fn post-fn)
-  "Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN."
-  (+systemd-command service "stop" pre-fn post-fn))
 
 
 

@@ -142,6 +142,10 @@ The default delay (in seconds) to consider in `+lazy!` macro.
 
 A list of files to ignore in the `minemacs-first-*-file-hook`.
 
+#### `+first-file-hooks`
+
+A list of defined hooks using `+make-first-file-hook!`.
+
 #### `+eglot-auto-enable-modes`
 
 Modes for which Eglot can be automatically enabled by `+eglot-auto-enable`.
@@ -733,21 +737,12 @@ Call functions without asking when DONT-ASK-P is non-nil.
 
 Update MinEmacs packages to the last revisions (can cause breakages).
 
-#### `(minemacs-bump-packages-async)`
-
-Asynchronous version of `minemacs-bump-packages`.
-
-#### `(minemacs-restore-locked-packages RESTORE-FROM-BACKUP)`
-
-Restore lockfile packages list. Takes into account the pinned ones.
-When called with C-u or with RESTORE-FROM-BACKUP, it will
-restore the lockfile from backups, not Git.
-
 #### `(minemacs-upgrade PULL-MINEMACS)`
 
-Upgrade MinEmacs and its packages to the latest pinned versions (recommended).
-When PULL-MINEMACS is non-nil, run a "git pull" in MinEmacs' directory.
-This calls `minemacs-update-restore-locked` asynchronously.
+Upgrade the packages list to the locked revisions.
+This takes into account the explicitly pinned packages. When called with
+C-u or with PULL-MINEMACS, it will run "git pull"
+in MinEmacs directory before upgrading.
 
 #### `(minemacs-root-dir-cleanup)`
 
@@ -770,12 +765,6 @@ Set some Emacs variables for better (!) performance.
 Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
-
-#### `(+file-mime-type FILE)`
-
-Get MIME type for FILE based on magic codes provided by the "file" command.
-Return a symbol of the MIME type, ex: `text/x-lisp`, `text/plain`,
-`application/x-object`, `application/octet-stream`, etc.
 
 #### `(+file-name-incremental FILENAME)`
 
@@ -873,7 +862,7 @@ If PORT or BAUD are nil, use values from `+serial-port` and `+serial-baudrate`.
 
 Get the IP-address for device DEV (default: eth0) of the current machine.
 
-#### `(+github-latest-release REPO &optional FALLBACK-RELEASE)`
+#### `(+github-latest-release REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)`
 
 Get the latest release of REPO. Strips the "v" at left.
 Fallback to FALLBACK-RELEASE when it can't get the last one.
@@ -1074,25 +1063,13 @@ Invoke `gdb` in the project's root.
 
 Forget all duplicate known projects (/home/user/proj, ~/proj).
 
+#### `(+project-root-initialize)`
+
+Initialize project list from `+project-root-wildcards`.
+
 #### `(+xref-find-references-at-point)`
 
 Find references to the identifier at or around point.
-
-#### `(+systemd-running-p SERVICE)`
-
-Check if the systemd SERVICE is running.
-
-#### `(+systemd-command SERVICE COMMAND &optional PRE-FN POST-FN)`
-
-Call systemd with COMMAND and SERVICE.
-
-#### `(+systemd-start SERVICE &optional PRE-FN POST-FN)`
-
-Start systemd SERVICE. Optionally run PRE-FN and POST-FN.
-
-#### `(+systemd-stop SERVICE &optional PRE-FN POST-FN)`
-
-Stops the systemd SERVICE. Optionally run PRE-FN and POST-FN.
 
 #### `(+list-external-dependencies)`
 
