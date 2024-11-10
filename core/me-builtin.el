@@ -196,6 +196,14 @@ or file path may exist now."
   (advice-add 'rename-file :before #'+create-non-existent-directory)
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory))
 
+(use-package newcomment
+  :custom
+  (comment-multi-line t)
+  :init
+  ;; Inline comments have to be preceded by at least this many spaces. Python's
+  ;; PEP8 recommends two spaces
+  (+setq-hook! python-mode comment-inline-offset 2))
+
 (use-package compat
   :straight (:source gnu-elpa-mirror)
   :demand)
