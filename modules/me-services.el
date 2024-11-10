@@ -76,6 +76,11 @@
   :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 
+;; Stack Exchange for Emacs
+(use-package sx
+  :straight t)
+
+
 ;; Paste text to pastebin-like services
 (use-package webpaste
   :straight t
