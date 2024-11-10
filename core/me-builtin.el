@@ -985,7 +985,7 @@ Typing these will trigger reindentation of the current line.")
 
 (use-package recentf
   :custom
-  (recentf-max-saved-items 200) ; Increase the maximum number of saved items
+  (recentf-max-saved-items 500) ; Increase the maximum number of saved items (def. 20)
   (recentf-case-fold-search t) ; Ignore case when searching recentf files
   (recentf-exclude ; Exclude some files from being remembered by recentf
    `(file-remote-p
