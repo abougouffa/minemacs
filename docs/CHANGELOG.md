@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.5.0](https://github.com/abougouffa/minemacs/compare/6e012e942590997eb8dcfa6fecb0abb43c77007e..v10.5.0) - 2024-11-10
+#### Bug Fixes
+- **(combobulate)** hack to prevent `combobulate` from loading at startup - ([67b9fb2](https://github.com/abougouffa/minemacs/commit/67b9fb27968a0f295d7ce07bc9f503788f2c5008)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** fix `(error "Selecting deleted buffer")` - ([69cfc7c](https://github.com/abougouffa/minemacs/commit/69cfc7c33044267e20f7b0646f864c09b8424b9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** ensure enabling the mode in the right buffer - ([5d097d3](https://github.com/abougouffa/minemacs/commit/5d097d3f4fc9706049ce54df11af38f968582412)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** add a sample debug trick to `early-config.el` - ([bf59ef2](https://github.com/abougouffa/minemacs/commit/bf59ef2f99c13f94cf195cb33616082e9f5791c3)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([469a5f8](https://github.com/abougouffa/minemacs/commit/469a5f84d95fd7592e126132355dd70062d27a6d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(calendar)** add initial support for `org-caldav` - ([ffa68bc](https://github.com/abougouffa/minemacs/commit/ffa68bcce13ed7664237e902aa161d67a564fa9c)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** add support for StackExchange via `sx` - ([8ce9313](https://github.com/abougouffa/minemacs/commit/8ce9313eb94d56fcfaadb823f86f68e4e51792d0)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** replace `magit-file-icons` with `magit-iconify` - ([392dcb4](https://github.com/abougouffa/minemacs/commit/392dcb4a1a1c4878f50f137e993494c934c93194)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(calendar)** set the week starting day - ([e5d4dd2](https://github.com/abougouffa/minemacs/commit/e5d4dd2066880021e895ede599f5440d15bd7cd0)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-eglot)** cleanup old `lsp-mode` related code - ([1c5a603](https://github.com/abougouffa/minemacs/commit/1c5a603998bf0cebf7b37af12f2fb387da91afcf)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove unused/useless commands and functions - ([128a211](https://github.com/abougouffa/minemacs/commit/128a211be6f7b0c83b7de1c5d52f7b3fa409d89c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** propose to create existent paths when renaming files - ([f3dbd99](https://github.com/abougouffa/minemacs/commit/f3dbd9954fa14839836445766ae11640949722d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** use UTF-8 for language environment - ([f6380c3](https://github.com/abougouffa/minemacs/commit/f6380c3df1ebf9a09a44178b3ad53fe5e5450d13)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** enhance the `tool-bar-setup` hack - ([7c2a7f7](https://github.com/abougouffa/minemacs/commit/7c2a7f73e4ddbf3fc85b9c4a18aaba79061a74a7)) - [@abougouffa](https://github.com/abougouffa)
+- **(newcomment)** minor tweaks - ([f3e63e0](https://github.com/abougouffa/minemacs/commit/f3e63e0e30795b1b3ae980d0007bc15bd6c09ff9)) - [@abougouffa](https://github.com/abougouffa)
+- **(paren)** better defaults for `show-paren-mode` - ([e44a98a](https://github.com/abougouffa/minemacs/commit/e44a98aca417a69836b6cda5ce7d702d7ac58194)) - [@abougouffa](https://github.com/abougouffa)
+- **(plantuml)** prefer executable, correctly use the JAR file - ([7df0234](https://github.com/abougouffa/minemacs/commit/7df0234a4f14dc7b7be4654a23336f01bc4dd88c)) - [@abougouffa](https://github.com/abougouffa)
+- **(recentf)** increase the maximum number of saved items - ([45c0703](https://github.com/abougouffa/minemacs/commit/45c07037669c14f40b7a758a99c277f6cb5b5834)) - [@abougouffa](https://github.com/abougouffa)
+- **(smartparens)** enable in the minibuffer - ([65c7131](https://github.com/abougouffa/minemacs/commit/65c7131d497a7cfecb938ad19035c399f23c2380)) - [@abougouffa](https://github.com/abougouffa)
+- **(vundo)** bind `vundo` to `C-c o u` - ([6e012e9](https://github.com/abougouffa/minemacs/commit/6e012e942590997eb8dcfa6fecb0abb43c77007e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([efe0022](https://github.com/abougouffa/minemacs/commit/efe0022bb0aa82ef8f890567904fc97023b37617)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7c3a535](https://github.com/abougouffa/minemacs/commit/7c3a535f3847cc1ff9a506986b6593bf7850e26d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.4.0](https://github.com/abougouffa/minemacs/compare/3d038df4b4a7e5ca9847753e77cc253c5fd9989f..v10.4.0) - 2024-11-08
 #### Features
 - **(core)** bind `M-:` to `pp-eval-expression` - ([b3abd1b](https://github.com/abougouffa/minemacs/commit/b3abd1b71b8c0eb78018fa4e714e462810c1c47a)) - [@abougouffa](https://github.com/abougouffa)
