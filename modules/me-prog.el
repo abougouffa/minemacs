@@ -381,7 +381,7 @@
   :straight t)
 
 
-;; Boost eglot using `lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
+;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
 
