@@ -1117,6 +1117,10 @@ Typing these will trigger reindentation of the current line.")
   :custom
   (display-time-string-forms '((propertize (concat 24-hours ":" minutes))))) ; Enable time in the mode-line
 
+(use-package calendar
+  :custom
+  (calendar-week-start-day 1)) ; Week starts on Monday
+
 (use-package frame
   :hook (minemacs-lazy . window-divider-mode) ; Display divider between windows
   :custom
