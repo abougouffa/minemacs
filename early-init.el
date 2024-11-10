@@ -35,7 +35,11 @@
 (advice-add 'tool-bar-setup :override #'ignore)
 
 ;; We restore it after starting Emacs so the user can manually enable the `tool-bar'
-(add-hook 'emacs-startup-hook (lambda () (advice-remove 'tool-bar-setup #'ignore)))
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (advice-remove 'tool-bar-setup #'ignore) ; Remove the advice so the toolbar can be enabled
+   (when tool-bar-mode (tool-bar-setup)))) ; Ensure running it if toolbar is enabled
 
 ;; Frames can have a transparent background via the `alpha-background'
 ;; parameter. For better experience, this value should be set early before any
