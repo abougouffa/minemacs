@@ -13,6 +13,12 @@
   :straight t)
 
 
+(use-package org-caldav
+  :straight (:host github :repo "dengste/org-caldav")
+  :custom
+  (org-caldav-files (list (concat org-directory "appointements.org"))))
+
+
 (provide 'me-calendar)
 
 ;;; me-calendar.el ends here
