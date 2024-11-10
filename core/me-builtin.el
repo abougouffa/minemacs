@@ -94,8 +94,7 @@
   (prefer-coding-system 'utf-8)
   (set-charset-priority 'unicode)
   (set-default-coding-systems 'utf-8)
-  ;; I mainly write in English and French. "Latin-1" is suitable for major Western Europe languages
-  (set-language-environment "Latin-1")
+  (set-language-environment "UTF-8")
   (set-locale-environment "en_US.UTF-8")
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
   (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
