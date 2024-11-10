@@ -29,11 +29,12 @@
     (when (or parinfer-rust-auto-download (file-exists-p (expand-file-name parinfer-rust--lib-name parinfer-rust-library-directory)))
       ;; BUG+HACK: Defer applying `parinfer-rust-mode', this should fix the
       ;; issue of unusable `parinfer-rust-mode' until disabled and enabled again
-      (let ((buffer (current-buffer)))
-        (run-with-timer
-         0.1 nil
-         (lambda () ; Ensure the `parinfer-rust-mode' is called in the right buffer
-           (with-current-buffer buffer (when (buffer-live-p buffer) (parinfer-rust-mode 1))))))))
+      (run-with-timer
+       0.1 nil
+       (lambda (buffer)
+         (when (and (buffer-live-p buffer) (get-buffer-window buffer)) ; The buffer still alive and it is visible
+           (with-current-buffer buffer (parinfer-rust-mode 1))))
+       (current-buffer))))
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
   (defvar-local +parinfer-rust--was-enabled-p nil)
