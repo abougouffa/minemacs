@@ -490,6 +490,11 @@ or file path may exist now."
   :custom
   (auto-insert-directory (+directory-ensure minemacs-local-dir "auto-insert/")))
 
+(use-package paren
+  :custom
+  (show-paren-when-point-inside-paren t) ; Highlight when the point is inside the parentheses
+  (show-paren-when-point-in-periphery t)) ; Highlight when the point in the periphery of the parentheses
+
 (use-package align
   :bind (("M-[" . +align-code)
          ("C-c [" . align-regexp))
