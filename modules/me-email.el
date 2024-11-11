@@ -72,11 +72,9 @@
     "Open the HTML mail in EAF Browser."
     (interactive)
     (if-let* ((msg (mu4e-message-at-point t))
-              ;; Bind browse-url-browser-function locally, so it works
-              ;; even if EAF Browser is not set as a default browser.
               (browse-url-browser-function
                (cond
-                ((featurep 'me-eaf) #'eaf-open-browser)
+                ((featurep 'xwidget-webkit) #'xwidget-webkit-browse-url)
                 (t #'browse-url-xdg-open))))
         (mu4e-action-view-in-browser msg)
       (message "No message at point.")))
@@ -84,7 +82,7 @@
   ;; Force running update and index in background
   (advice-add
    'mu4e-update-mail-and-index :around
-   (satch-defun +mu4e--update-mail-quitely:around-a (origfn run-in-background)
+   (satch-defun +mu4e--update-mail-quitely:around-a (origfn _run-in-background)
      (+info! "Getting new emails")
      (apply origfn '(t)))))
 
@@ -149,7 +147,6 @@
   :straight t
   :when +mu4e-available-p
   :after mu4e
-  :demand
   :custom
   (org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng")
   (org-msg-startup "hidestars indent inlineimages")
@@ -165,7 +162,7 @@
            (seq "ci" (or " " "-") "joint" (? "e")) ;; ci-joint
            (seq (or (seq "pi" (any ?è ?e) "ce") "fichier" "document") (? "s") (+ (or " " eol)) "joint" (? "e") (? "s")) ;; pièce jointe
            (seq (or (seq space "p" (zero-or-one (any ?- ?.)) "j" (any space ?: ?\; ?, ?.))))))) ;; p.j
-  :config
+  :init
   (org-msg-mode 1)
 
   ;; HACK: When adding multiple attachments, I likely need it to remember the directory of the last added attachment.
