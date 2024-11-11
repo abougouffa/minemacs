@@ -38,7 +38,10 @@
    '(comint-completion-at-point eglot-completion-at-point pcomplete-completions-at-point)
    :around #'cape-wrap-nonexclusive)
 
-  (satch-add-hook 'completion-at-point-functions '(cape-file cape-keyword cape-dict))
+  (satch-add-hook
+   'completion-at-point-functions
+   ;; BUG+TEMP: `cape-dict' is causing problems on Emacs 31
+   (append '(cape-file cape-keyword) (when (< emacs-major-version 31) '(cape-dict))))
 
   (satch-add-hook
    '(emacs-lisp-mode-hook git-commit-mode-hook)
@@ -69,7 +72,7 @@
   (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
   :config
   ;; HACK: Prevent the annoting completion error when no `ispell' dictionary is set, prefer `cape-dict'
-  (when (eq emacs-major-version 30)
+  (when (>= emacs-major-version 30)
     (setq text-mode-ispell-word-completion nil))
 
   (defun +corfu-enable-in-minibuffer-h ()
