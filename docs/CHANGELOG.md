@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.5.1](https://github.com/abougouffa/minemacs/compare/d0259dcf5297053fe4be7fc381b3075d9dbf9155..v10.5.1) - 2024-11-11
+#### Bug Fixes
+- **(cape/corfu)** fixes for Emacs 31 - ([ef72ffa](https://github.com/abougouffa/minemacs/commit/ef72ffa60ee8dd231261fb05de35fe43b3729f4c)) - [@abougouffa](https://github.com/abougouffa)
+- fix several bugs (detected on Emacs 31) - ([c396c63](https://github.com/abougouffa/minemacs/commit/c396c632ed73a184a62c92a066a9723dace80d6f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- stick to recommended version of Ditaa & PlantUML - ([bd9802d](https://github.com/abougouffa/minemacs/commit/bd9802d191c9f92d0d0d089a0e52bf36e2e62203)) - [@abougouffa](https://github.com/abougouffa)
+- replace `when/if-let` with `when/if-let*` (deprecated in v31) - ([d0259dc](https://github.com/abougouffa/minemacs/commit/d0259dcf5297053fe4be7fc381b3075d9dbf9155)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.5.0](https://github.com/abougouffa/minemacs/compare/6e012e942590997eb8dcfa6fecb0abb43c77007e..v10.5.0) - 2024-11-10
 #### Bug Fixes
 - **(combobulate)** hack to prevent `combobulate` from loading at startup - ([67b9fb2](https://github.com/abougouffa/minemacs/commit/67b9fb27968a0f295d7ce07bc9f503788f2c5008)) - [@abougouffa](https://github.com/abougouffa)
