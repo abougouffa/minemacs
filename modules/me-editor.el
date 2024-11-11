@@ -170,10 +170,17 @@
   :straight t
   :hook (minemacs-lazy . smartparens-global-mode)
   :custom
-  (sp-ignore-modes-list '(minibuffer-inactive-mode)) ; Enable in `minibuffer-mode'
+  (sp-ignore-modes-list nil) ; Enable in `minibuffer-mode'
   :config
+  (require 'smartparens-config)
+
+  ;; In minibuffer, don't complete ' and `
+  (sp-local-pair '(minibuffer-mode minibuffer-inactive-mode) "'" nil :actions nil)
+  (sp-local-pair '(minibuffer-mode minibuffer-inactive-mode) "`" nil :actions nil)
   (sp-local-pair 'org-mode "$" "$" :unless '(sp-point-after-word-p))
-  (require 'smartparens-config))
+
+  ;; Silence some harmless but annoying echo-area spam
+  (dolist (key '(:unmatched-expression :no-matching-tag)) (setf (alist-get key sp-message-alist) nil)))
 
 
 ;; Your friendly neighborhood expand-region clone
