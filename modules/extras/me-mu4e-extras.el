@@ -85,40 +85,16 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                 labeledparts))
         labeledparts)))
 
-(defun +mu4e-view-save-all-attachments (&optional msg)
-  "Save all MIME parts from current mu4e gnus view buffer."
-  ;; Copied from mu4e-view-save-attachments
+(defun +mu4e-view-save-all-attachments (&optional ask-dir)
+  "Save all files from the current view buffer.
+
+With ASK-DIR is non-nil, user can specify the target-directory; otherwise
+one is determined using `mu4e-attachment-dir'."
   (interactive "P")
-  (if (and (eq major-mode 'mu4e-view-mode)
-           (derived-mode-p 'gnus-article-mode))
-      (let* ((msg (or msg (mu4e-message-at-point)))
-             (id (+clean-file-name (mu4e-message-field msg :subject) :downcase))
-             (attachdir (expand-file-name id mu4e-attachment-dir))
-             (parts (mu4e--view-gather-mime-parts))
-             (handles '())
-             (files '())
-             dir)
-        (mkdir attachdir t)
-        (dolist (part parts)
-          (let ((fname (or (cdr (assoc 'filename (assoc "attachment" (cdr part))))
-                           (seq-find #'stringp
-                                     (mapcar (lambda (item) (cdr (assoc 'name item)))
-                                             (seq-filter 'listp (cdr part)))))))
-            (when fname
-              (push `(,fname . ,(cdr part)) handles)
-              (push fname files))))
-        (if files
-            (progn
-              (setq dir
-                    (if current-prefix-arg (read-directory-name "Save to directory: ")
-                      attachdir))
-              (cl-loop for (f . h) in handles
-                       when (member f files)
-                       do (mm-save-part-to-file h
-                                                (+file-name-incremental
-                                                 (expand-file-name f dir)))))
-          (mu4e-message "No attached files found")))
-    (mu4e-error "Not in `mu4e-view-mode' nor in `gnus-article-mode'.")))
+  (cl-letf (((symbol-function 'mu4e--completing-read)
+             (lambda (_prompt candidates &rest _args)
+               (mapcar (lambda (cand) (plist-get (cdr cand) :filename)) candidates))))
+    (mu4e-view-save-attachments ask-dir)))
 
 (defun +mu4e-register-account (label maildir letvars &optional default-p gmail-p)
   "Register a mu4e context named LABEL, located in MAILDIR.
@@ -310,7 +286,6 @@ If SKIP-HEADERS is set, do not show include message headers."
 
   ;; Register actions
   (add-to-list 'mu4e-view-actions '("pdf" . +mu4e-view-save-mail-as-pdf))
-  (add-to-list 'mu4e-view-actions '("all attachments save" . +mu4e-view-save-all-attachments))
   (add-to-list 'mu4e-view-actions '("Save message" . +mu4e-save-message-at-point)))
 
 
