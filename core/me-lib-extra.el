@@ -571,13 +571,14 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
 ;;;###autoload
 (defun +github-latest-release (repo &optional fallback-release trim-v-prefix)
   "Get the latest release of REPO. Strips the \"v\" at left.
-
-Fallback to FALLBACK-RELEASE when it can't get the last one."
+Fallback to FALLBACK-RELEASE when it can't get the last one.
+When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version."
   (if-let* ((latest
              (ignore-errors
                (with-temp-buffer
-                 (url-insert-file-contents
-                  (format "https://api.github.com/repos/%s/releases/latest" repo))
+                 (+shutup!
+                  (url-insert-file-contents
+                   (format "https://api.github.com/repos/%s/releases/latest" repo)))
                  (json-parse-buffer :object-type 'plist)))))
       (let ((ver (car (last (split-string (plist-get latest :html_url) "/")))))
         (if trim-v-prefix
@@ -606,7 +607,7 @@ downloaded with it's original file name to `+github-download-dir'"
       (if (and (not ok-if-already-exists) (file-exists-p out-file))
           (+log! "File %S already exist" out-file)
         (mkdir (file-name-directory out-file) t)
-        (url-copy-file url out-file ok-if-already-exists))
+        (+shutup! (url-copy-file url out-file ok-if-already-exists)))
       out-file)))
 
 

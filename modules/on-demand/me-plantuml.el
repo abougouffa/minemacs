@@ -38,7 +38,7 @@
       (setopt plantuml-default-exec-mode 'executable)
     ;; Automatically download the latest version of PlantUML
     (setopt plantuml-default-exec-mode 'jar
-            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar")))
+            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar" nil :ver "1.2024.7")))
 
   ;; Add support for `capf'
   (defun +plantuml-mode-setup ()

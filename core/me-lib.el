@@ -214,7 +214,8 @@ If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
   "Suppress new messages temporarily while evaluating BODY.
 This inhebits both the echo area and the `*Messages*' buffer."
   (if (not minemacs-verbose-p)
-      `(let ((message-log-max nil))
+      `(let ((message-log-max nil)
+             (inhibit-message t))
         (with-temp-message (or (current-message) "") ,@body))
     `(progn ,@body)))
 
