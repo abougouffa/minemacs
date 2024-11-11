@@ -90,7 +90,7 @@ changed values of `eglot-ltex-language', `eglot-ltex-dictrionary', and so on."
     (set rules-plist (list lang [])))
   (plist-put (eval rules-plist) lang
              (vconcat (list rule) (plist-get (eval rules-plist) lang)))
-  (when-let* (out-file (+serialize-sym rules-plist eglot-ltex-user-rules-path))
+  (when-let* ((out-file (+serialize-sym rules-plist eglot-ltex-user-rules-path)))
     (+log! "[eglot-ltex] Rule for language %s saved to file \"%s\"" (symbol-name lang) out-file)))
 
 (defun eglot-ltex--action-add-to-rules (action key rules-plist &optional store)

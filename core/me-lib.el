@@ -257,9 +257,8 @@ This inhebits both the echo area and the `*Messages*' buffer."
       (run-with-idle-timer
        delay t
        (lambda ()
-         (when-let* (fn (pop fns))
-           (+log! "Running task %d, calling function `%s'" task-num (truncate-string-to-width (format "%s" fn) 40 nil nil "…"))
-           (funcall fn))
+         (+log! "Running task %d, calling function `%s'" task-num (truncate-string-to-width (format "%s" (car fns)) 40 nil nil "…"))
+         (funcall (pop fns))
          (unless fns
            (cancel-timer (get task-name 'timer))
            (put task-name 'timer nil)))))))

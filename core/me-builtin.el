@@ -286,7 +286,7 @@ or file path may exist now."
   (dired-clean-confirm-killing-deleted-buffers nil)
   :config
   ;; Open some files with OS' default application
-  (when-let* (cmd (cond ((or os/linux os/bsd) "xdg-open") (os/mac "open") (os/win "start")))
+  (when-let* ((cmd (cond ((or os/linux os/bsd) "xdg-open") (os/mac "open") (os/win "start"))))
     (setq dired-guess-shell-alist-user
           `(("\\.\\(?:docx?\\|pdf\\|djvu\\|eps\\)\\'" ,cmd)
             ("\\.\\(?:jpe?g\\|png\\|gif\\|xpm\\|webp\\|svg\\)\\'" ,cmd)
