@@ -72,7 +72,8 @@
       ("Projects"
        ("Switch to project" project-switch-project "p"))
       ("Desktop / Session"
-       ("Restore session" desktop-read "r")))))
+       ("Restore session" desktop-read "r")
+       ("Restore session from file" +desktop-read-session "R")))))
   :init
   (if minemacs-started-with-extra-args-p
       (enlight-open)
