@@ -406,22 +406,8 @@ or file path may exist now."
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
-  :config
-  (transient-define-prefix +flymake-transient ()
-    "Transient for flymake."
-    [[("n" "Next error" flymake-goto-next-error :transient t)
-      ("N" "Prev error" flymake-goto-prev-error :transient t)]
-     [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
-      ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
-      ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
-     [("S" "Start" flymake-start :transient t)
-      ("Q" "Quit" ignore :transient t)]])
-
-  ;; Use the session's `load-path' with flymake
-  (with-eval-after-load 'elisp-mode
-    (cl-callf append elisp-flymake-byte-compile-load-path load-path))
-
-  (once-x-call '(:check display-graphic-p :packages flymake)
+  :init
+  (once-x-call '(:hooks server-after-make-frame-hook :check display-graphic-p :packages (flymake))
     (satch-defun +flymake-fringe-setup ()
       ;; Larger right frings
       (with-eval-after-load 'fringe
@@ -446,7 +432,21 @@ or file path may exist now."
       (setopt flymake-fringe-indicator-position 'right-fringe
               flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error)
               flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning)
-              flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info)))))
+              flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))))
+  :config
+  (transient-define-prefix +flymake-transient ()
+    "Transient for flymake."
+    [[("n" "Next error" flymake-goto-next-error :transient t)
+      ("N" "Prev error" flymake-goto-prev-error :transient t)]
+     [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
+      ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
+      ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
+     [("S" "Start" flymake-start :transient t)
+      ("Q" "Quit" ignore :transient t)]])
+
+  ;; Use the session's `load-path' with flymake
+  (with-eval-after-load 'elisp-mode
+    (cl-callf append elisp-flymake-byte-compile-load-path load-path)))
 
 (use-package xt-mouse
   :hook (tty-setup . xterm-mouse-mode))
