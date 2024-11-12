@@ -76,7 +76,8 @@
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :bind (([remap project-shell] . multi-vterm-project)
-         ([f1] . multi-vterm-project))
+         ([f1] . +multi-vterm-project-toggle)
+         :map vterm-mode-map ([f1] . +multi-vterm-project-toggle))
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
@@ -86,8 +87,23 @@
    'multi-vterm-dedicated-open :after
    (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
      (when-let* ((dir (file-remote-p default-directory 'localname)))
-       (vterm-send-string (format "cd %S\n" dir))))))
+       (vterm-send-string (format "cd %S\n" dir)))))
 
+  (defun +multi-vterm-project-toggle ()
+    "Toggle the project's vterm window."
+    (interactive)
+    (let* ((buf-name (multi-vterm-project-get-buffer-name))
+           (display-buffer-alist (cons `(,(regexp-quote buf-name)
+                                         (display-buffer-reuse-window display-buffer-at-bottom)
+                                         (dedicated . t) ;; Close when finished
+                                         (window-height . 0.3))
+                                       display-buffer-alist)))
+      (if-let* ((buf (get-buffer buf-name))
+                ((buffer-live-p buf)))
+          (if-let ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
+              (delete-window win)
+            (pop-to-buffer buf))
+        (multi-vterm-project)))))
 
 ;; Manage docker from Emacs
 (use-package docker
