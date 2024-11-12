@@ -976,12 +976,16 @@ Typing these will trigger reindentation of the current line.")
   (push bookmark-default-file +first-file-hook-ignore-list))
 
 (use-package desktop
+  :hook (minemacs-lazy . desktop-save-mode)
   :custom
   (desktop-base-file-name "emacs-desktop") ; File name to use when saving desktop
   (desktop-base-lock-name (concat desktop-base-file-name ".lock")) ; File name to use as a lock
-  (desktop-restore-eager 5) ; Load only 5 buffers immediately, the remaining buffers will be loaded lazily
+  (desktop-restore-eager 50) ; Load 50 buffers immediately, and the remaining buffers lazily
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
-  (desktop-save-buffer t)) ; Save buffer status
+  (desktop-save-buffer t) ; Save buffer status
+  :init
+  ;; TODO: Make a copy (when necessary) of the desktop file at startup
+  (setq desktop-dirname (+directory-ensure minemacs-local-dir "desktop-session/")))
 
 (use-package recentf
   :custom
