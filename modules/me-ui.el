@@ -70,7 +70,9 @@
        ("Org-Agenda (today)" (org-agenda nil "a") "a")
        ("Org directory" (dired org-directory) "o"))
       ("Projects"
-       ("Switch to project" project-switch-project "p")))))
+       ("Switch to project" project-switch-project "p"))
+      ("Desktop / Session"
+       ("Restore session" desktop-read "r")))))
   :init
   (if minemacs-started-with-extra-args-p
       (enlight-open)
