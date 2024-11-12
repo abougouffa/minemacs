@@ -120,7 +120,7 @@
               (link ,(nerd-icons-mdicon "nf-md-link" :face 'org-link) . " "))))
 
     ;; Properly setup citar-symbols
-    (once-x-call '(:check display-graphic-p :hooks server-after-make-frame-hook)
+    (once-x-call '(:check display-graphic-p :hooks server-after-make-frame-hook :packages (citar))
       #'+citar--set-symbols)))
 
 
