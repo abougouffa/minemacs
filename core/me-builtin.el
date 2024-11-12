@@ -406,6 +406,9 @@ or file path may exist now."
 (use-package flymake
   :straight (:source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
+  :custom
+  (flymake-fringe-indicator-position 'right-fringe)
+  (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30
   :init
   (once-x-call '(:hooks server-after-make-frame-hook :check display-graphic-p :packages (flymake))
     (satch-defun +flymake-fringe-setup ()
@@ -429,7 +432,7 @@ or file path may exist now."
          #b00000011110]
         nil 13)
 
-      (setopt flymake-fringe-indicator-position 'right-fringe
+      (setopt flymake-indicator-type 'fringes
               flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error)
               flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning)
               flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info))))
