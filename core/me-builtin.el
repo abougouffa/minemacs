@@ -978,14 +978,36 @@ Typing these will trigger reindentation of the current line.")
 (use-package desktop
   :hook (minemacs-lazy . desktop-save-mode)
   :custom
-  (desktop-base-file-name "emacs-desktop") ; File name to use when saving desktop
+  (desktop-base-file-name "last-session") ; File name to use when saving desktop
   (desktop-base-lock-name (concat desktop-base-file-name ".lock")) ; File name to use as a lock
   (desktop-restore-eager 50) ; Load 50 buffers immediately, and the remaining buffers lazily
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
   (desktop-save-buffer t) ; Save buffer status
   :init
-  ;; TODO: Make a copy (when necessary) of the desktop file at startup
-  (setq desktop-dirname (+directory-ensure minemacs-local-dir "desktop-session/")))
+  (setq desktop-dirname (expand-file-name (+directory-ensure minemacs-local-dir "desktop-session/")))
+  :config
+  ;; HACK: When saving the session, we set the file name to the timestamp. Then
+  ;; we copy it back to `desktop-base-file-name'. This ensures `desktop-read'
+  ;; will read the last session when called while keeping the previous one.
+  (advice-add
+   'desktop-save :around
+   (satch-defun +desktop-save--timestamp-file:around-a (origfn &rest args)
+     (let ((new-base-name (format-time-string "%F--%H-%m-%S")))
+       (let ((desktop-base-file-name new-base-name))
+         (apply origfn args))
+       (copy-file (expand-file-name new-base-name desktop-dirname)
+                  (expand-file-name desktop-base-file-name desktop-dirname)
+                  'overwrite))))
+
+  ;; A wrapper around `desktop-read' to select from the list of savec files
+  (defun +desktop-read-session (base-name)
+    (interactive
+     (list (completing-read
+            "Select a session file to read: "
+            (seq-filter (lambda (s) (not (string-match-p "^[.][.]?$" s)))
+                        (directory-files desktop-dirname nil)))))
+    (let ((desktop-base-file-name base-name))
+      (call-interactively #'desktop-read))))
 
 (use-package recentf
   :custom
