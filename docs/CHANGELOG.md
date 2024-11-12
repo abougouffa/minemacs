@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v10.6.0](https://github.com/abougouffa/minemacs/compare/a27c957437533c3dad8e3c43d719a9aa4c55c051..v10.6.0) - 2024-11-12
+#### Bug Fixes
+- **(flymake)** properly setup the custom fringe symbols - ([fc2abde](https://github.com/abougouffa/minemacs/commit/fc2abdecbc9fe4b3396a290764cec6303bd7cb86)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(desktop)** automatically make timestamped copies of saved sessions - ([b2e20e5](https://github.com/abougouffa/minemacs/commit/b2e20e5d7c32c51e5e47b16a20434fb04c81d8f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** add initial support for `org-rich-yank` - ([2616f99](https://github.com/abougouffa/minemacs/commit/2616f99daf0416f6aa7202aa1a9965552a4682f1)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add support for `git-undo` - ([3484d08](https://github.com/abougouffa/minemacs/commit/3484d0875707bfb8015d2bac66244d0f3f0b4f95)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(dogears)** minor edit - ([af2f678](https://github.com/abougouffa/minemacs/commit/af2f678f602f3b26c174d9e843a8eccf2be5cfd2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(desktop)** automatically save the session - ([3558643](https://github.com/abougouffa/minemacs/commit/35586435a013959cb65f978630d4a45c6990ce96)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** add an option for `+desktop-read-session` - ([901d9c1](https://github.com/abougouffa/minemacs/commit/901d9c1c8d5d18b2c9b9423801e7c0a0cfa04148)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** provide an option to restore the session - ([7ba12d5](https://github.com/abougouffa/minemacs/commit/7ba12d5c76ed9551120c8ee3d8caeeb590416414)) - [@abougouffa](https://github.com/abougouffa)
+- **(mu4e)** simpler implementation of `+mu4e-view-save-all-attachments` - ([2abbec4](https://github.com/abougouffa/minemacs/commit/2abbec481865ab15a1c44d28e82edf9e1da3e377)) - [@abougouffa](https://github.com/abougouffa)
+- **(mu4e)** minor tweaks - ([d9da42b](https://github.com/abougouffa/minemacs/commit/d9da42bcd013bc98fbb417c144f56afb7e5e50ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-vterm)** add `+multi-vterm-project-toggle` - ([718c0c7](https://github.com/abougouffa/minemacs/commit/718c0c7152596558ccf2fb08104f19e3eb1b9b05)) - [@abougouffa](https://github.com/abougouffa)
+- **(smartparens)** disable on `minibuffer-inactive-mode`, add a rule - ([c8ad7c5](https://github.com/abougouffa/minemacs/commit/c8ad7c511f23155110ac7cadfa565874683d583a)) - [@abougouffa](https://github.com/abougouffa)
+- **(smartparens)** several tweaks - ([a27c957](https://github.com/abougouffa/minemacs/commit/a27c957437533c3dad8e3c43d719a9aa4c55c051)) - [@abougouffa](https://github.com/abougouffa)
+- **(ssh-deploy)** bind `C-c C-z` to prefix map instead of hydra - ([0281946](https://github.com/abougouffa/minemacs/commit/028194664a24a9161fb2a4b07a56a922447089cc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([063e336](https://github.com/abougouffa/minemacs/commit/063e336e6a5869bfd1b2056736b00deb54f8d379)) - [@abougouffa](https://github.com/abougouffa)
+- better use of `once-x-call` - ([2656553](https://github.com/abougouffa/minemacs/commit/26565534ccc3468cf8160eef2aa406f024afcdd4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4994361](https://github.com/abougouffa/minemacs/commit/4994361b3fe0dbf54f40f25fb230947e22bfb35c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.5.1](https://github.com/abougouffa/minemacs/compare/d0259dcf5297053fe4be7fc381b3075d9dbf9155..v10.5.1) - 2024-11-11
 #### Bug Fixes
 - **(cape/corfu)** fixes for Emacs 31 - ([ef72ffa](https://github.com/abougouffa/minemacs/commit/ef72ffa60ee8dd231261fb05de35fe43b3729f4c)) - [@abougouffa](https://github.com/abougouffa)
