@@ -63,6 +63,11 @@
          ("C-c C-x" . dired-rsync-transient)))
 
 
+;; Same functionality as `find-dired' and `find-grep-dired', using fd/rg instead
+(use-package fd-dired
+  :straight t)
+
+
 ;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 (use-package ztree
   :straight (:source gnu-elpa-mirror)
