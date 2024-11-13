@@ -65,7 +65,12 @@
 
 ;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 (use-package ztree
-  :straight (:source gnu-elpa-mirror))
+  :straight (:source gnu-elpa-mirror)
+  :bind ( ; Define some keybindings
+         :map minemacs-open-thing-map ("z" . ztree-diff)
+         :map ztree-mode-map
+         ("n" . ztree-next-line)
+         ("p" . ztree-previous-line)))
 
 
 (provide 'me-files)
