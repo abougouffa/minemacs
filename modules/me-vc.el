@@ -106,11 +106,6 @@
     (run-mode-hooks 'delayed-mode-hooks)))
 
 
-;; A command for Emacs to regress or "undo" a region back through its Git history
-(use-package git-undo
-  :straight (:host github :repo "jwiegley/git-undo-el"))
-
-
 ;; Emacs major modes for Git configuration files
 (use-package git-modes
   :straight t
