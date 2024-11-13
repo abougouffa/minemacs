@@ -11,8 +11,7 @@
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
-  :init
-  (keymap-global-set "C-c C-z" `("ssh-deploy" . ,ssh-deploy-prefix-map))
+  :bind (("C-c C-z" . ssh-deploy-prefix-map))
   :custom
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
 
