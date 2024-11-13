@@ -74,8 +74,8 @@
   :straight t
   :when (and (not os/win) (+emacs-features-p 'modules))
   :bind (([remap project-shell] . multi-vterm-project)
-         ([f1] . +multi-vterm-project-toggle)
-         :map vterm-mode-map ([f1] . +multi-vterm-project-toggle))
+         ([f1] . +multi-vterm-dedicated-toggle-dwim)
+         :map vterm-mode-map ([f1] . +multi-vterm-dedicated-toggle-dwim))
   :custom
   (multi-vterm-dedicated-window-height-percent 30)
   :config
@@ -87,21 +87,24 @@
      (when-let* ((dir (file-remote-p default-directory 'localname)))
        (vterm-send-string (format "cd %S\n" dir)))))
 
-  (defun +multi-vterm-project-toggle ()
-    "Toggle the project's vterm window."
+  (defun +multi-vterm-dedicated-toggle-dwim ()
+    "Toggle the vterm window.
+When in a project, toggle a `multi-vterm-project' terminal. When outside
+a project, call `multi-vterm-dedicated-toggle'."
     (interactive)
-    (let* ((buf-name (multi-vterm-project-get-buffer-name))
-           (display-buffer-alist (cons `(,(regexp-quote buf-name)
-                                         (display-buffer-reuse-window display-buffer-at-bottom)
-                                         (dedicated . t) ;; Close when finished
-                                         (window-height . 0.3))
-                                       display-buffer-alist)))
-      (if-let* ((buf (get-buffer buf-name))
-                ((buffer-live-p buf)))
-          (if-let ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
-              (delete-window win)
-            (pop-to-buffer buf))
-        (multi-vterm-project)))))
+    (if-let* ((buf-name (and (multi-vterm-project-root) (multi-vterm-project-get-buffer-name)))
+              (display-buffer-alist (cons `(,(regexp-quote buf-name)
+                                            (display-buffer-reuse-window display-buffer-at-bottom)
+                                            (dedicated . t) ;; Close when finished
+                                            (window-height . 0.3))
+                                          display-buffer-alist)))
+        (if-let* ((buf (get-buffer buf-name))
+                  ((buffer-live-p buf)))
+            (if-let ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
+                (delete-window win)
+              (pop-to-buffer buf))
+          (multi-vterm-project))
+      (multi-vterm-dedicated-toggle))))
 
 ;; Manage docker from Emacs
 (use-package docker
