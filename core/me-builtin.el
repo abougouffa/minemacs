@@ -109,21 +109,17 @@
   ;; Remap some keys/page
   (keymap-global-set "M-:" #'pp-eval-expression) ; Instead of `eval-expression'
   (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
-  (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
-  (keymap-global-set "C-w" #'+kill-region-or-backward-word) ; Instead of `kill-region'
-  (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
+  (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
   (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
+  (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
 
   ;; Enable some useful Emacs commands by default
   (put 'narrow-to-region 'disabled nil)
   (put 'narrow-to-page 'disabled nil)
 
-  (defvar-keymap minemacs-open-thing-map
-    :doc "Open/toggle thing, under `C-c o'."
-    :name "Open/toggle thing")
-
+  (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
   (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
 
   ;; Disable previously enabled custom themes before enabling a new one.
@@ -171,7 +167,7 @@ or file path may exist now."
     (when (eq major-mode 'fundamental-mode)
       (let ((buffer (or (buffer-base-buffer) (current-buffer))))
         (and (buffer-file-name buffer)
-             (eq buffer (window-buffer (selected-window))) ;; Only visible buffers
+             (eq buffer (window-buffer (selected-window))) ; Only when the buffer is in the current window
              (set-auto-mode)))))
 
   ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
