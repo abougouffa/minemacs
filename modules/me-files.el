@@ -42,11 +42,8 @@
 ;; Fast opening of large files
 (use-package guard-lf
   :straight (:host github :repo "jcs-elpa/guard-lf")
-  :custom
-  (guard-lf-major-mode #'guard-lf-large-file-mode)
   :init
   (guard-lf-mode 1)
-  (define-derived-mode guard-lf-large-file-mode fundamental-mode "guard-lf")
   :config
   (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode ein:ipynb-mode)))
 
