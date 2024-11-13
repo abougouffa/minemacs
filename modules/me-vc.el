@@ -63,6 +63,11 @@
   (transient-append-suffix 'magit-merge "m" '("M" "magit-imerge" magit-imerge)))
 
 
+;; A set of extensions for `magit' to handle multiple repositories simultaneously
+(use-package multi-magit
+  :straight (:host github :repo "luismbo/multi-magit"))
+
+
 ;; Store EIEIO objects using EmacSQL
 (use-package closql
   :straight t)
