@@ -11,7 +11,8 @@
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
-  :bind (("C-c C-z" . ssh-deploy-prefix-map))
+  :init
+  (keymap-global-set "C-c C-z" `("ssh-deploy" . ,ssh-deploy-prefix-map))
   :custom
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
 
@@ -109,7 +110,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 ;; Manage docker from Emacs
 (use-package docker
   :straight t
-  :bind (("C-c o d" . docker)))
+  :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
 ;; Major mode for editing systemd units
@@ -193,7 +194,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 (use-package verb
   :straight t
   :config
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+  (keymap-set org-mode-map "C-c C-r" `("verb" . ,verb-command-map)))
 
 
 ;; Import of Postman collections in Emacs (for `verb' and `restclient')
@@ -205,7 +206,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
   :when (and (or os/linux os/bsd) (executable-find "ecryptfs-verify"))
-  :bind (("C-c o e" . ecryptfs-toggle-mount-private)))
+  :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
 
 
 (provide 'me-tools)

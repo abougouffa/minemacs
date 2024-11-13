@@ -67,7 +67,8 @@
 (use-package ztree
   :straight (:source gnu-elpa-mirror)
   :bind ( ; Define some keybindings
-         :map minemacs-open-thing-map ("z" . ztree-diff)
+         :map minemacs-open-thing-map
+         ("z" . ztree-diff)
          :map ztree-mode-map
          ("n" . ztree-next-line)
          ("p" . ztree-previous-line)))

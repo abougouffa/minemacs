@@ -219,9 +219,9 @@
              :files (:defaults (:exclude "combobulate.el"))) ; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading
   :when (and (not os/win) (+emacs-features-p 'tree-sitter)) ; TEMP: disable on Windows
   :custom
-  (combobulate-key-prefix "C-c o")
+  (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
-  ;; Basically, load the same features that would be loaded by "combobulate.el"
+  ;; TEMP+FIX: Basically, load the same features that would be loaded by "combobulate.el"
   (dolist (feature '(combobulate-rules combobulate-procedure combobulate-navigation
                      combobulate-manipulation combobulate-envelope combobulate-display
                      combobulate-ui combobulate-misc combobulate-query combobulate-cursor

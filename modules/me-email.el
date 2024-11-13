@@ -29,7 +29,7 @@
   :hook (mu4e-headers-mode . (lambda ()
                                (visual-line-mode -1)
                                (display-line-numbers-mode -1)))
-  :bind (("C-c o m" . +mu4e))
+  :bind (:map minemacs-open-thing-map ("m" . +mu4e))
   :custom-face
   (mu4e-thread-fold-face ((t (:inherit default))))
   :init

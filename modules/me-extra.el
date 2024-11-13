@@ -11,13 +11,14 @@
 ;; A Collection of Ridiculously Useful eXtensions for Emacs
 (use-package crux
   :straight t
-  :bind (("C-c o o" . crux-open-with)
-         ("C-k" . crux-smart-kill-line)
+  :bind (("C-k" . crux-smart-kill-line)
          ("C-<return>" . crux-smart-open-line)
          ("C-S-<return>" . crux-smart-open-line-above)
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c u" . crux-view-url)
-         ("C-c 4 t" . crux-transpose-windows)))
+         ("C-c 4 t" . crux-transpose-windows)
+         :map minemacs-open-thing-map
+         ("o" . crux-open-with)))
 
 
 (provide 'me-extra)

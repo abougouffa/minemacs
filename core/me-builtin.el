@@ -124,7 +124,7 @@
     :doc "Open/toggle thing, under `C-c o'."
     :name "Open/toggle thing")
 
-  (keymap-global-set "C-c o" minemacs-open-thing-map)
+  (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
 
   ;; Disable previously enabled custom themes before enabling a new one.
   (advice-add
