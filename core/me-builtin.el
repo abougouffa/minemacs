@@ -986,6 +986,7 @@ Typing these will trigger reindentation of the current line.")
   (desktop-restore-eager 50) ; Load 50 buffers immediately, and the remaining buffers lazily
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
   (desktop-save-buffer t) ; Save buffer status
+  :commands (+desktop-read-session)
   :init
   (setq desktop-dirname (expand-file-name (+directory-ensure minemacs-local-dir "desktop-session/")))
   :config
