@@ -986,9 +986,11 @@ Typing these will trigger reindentation of the current line.")
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
   (desktop-save-buffer t) ; Save buffer status
   (desktop-save t) ; Always save, the hack below will take care of file names
+  (desktop-path (list (+directory-ensure minemacs-local-dir "desktop-session/")))
   :commands (+desktop-read-session)
   :init
   (setq desktop-dirname (expand-file-name (+directory-ensure minemacs-local-dir "desktop-session/")))
+  (defvar +desktop-session-base-file-name (format-time-string "%F--%H-%m-%S"))
   :config
   ;; HACK: When saving the session, we set the file name to the timestamp. Then
   ;; we copy it back to `desktop-base-file-name'. This ensures `desktop-read'
@@ -996,11 +998,12 @@ Typing these will trigger reindentation of the current line.")
   (advice-add
    'desktop-save :around
    (satch-defun +desktop-save--timestamp-file:around-a (origfn &rest args)
-     (let ((new-base-name (format-time-string "%F--%H-%m-%S")))
-       (let ((desktop-base-file-name new-base-name))
+     (let ((dirname (car desktop-path)))
+       (let ((desktop-base-file-name +desktop-session-base-file-name)
+             (desktop-dirname dirname))
          (apply origfn args))
-       (copy-file (expand-file-name new-base-name desktop-dirname)
-                  (expand-file-name desktop-base-file-name desktop-dirname)
+       (copy-file (expand-file-name +desktop-session-base-file-name dirname)
+                  (expand-file-name desktop-base-file-name dirname)
                   'overwrite))))
 
   ;; A wrapper around `desktop-read' to select from the list of savec files
@@ -1008,8 +1011,12 @@ Typing these will trigger reindentation of the current line.")
     (interactive
      (list (completing-read
             "Select a session file to read: "
-            (directory-files desktop-dirname nil directory-files-no-dot-files-regexp))))
-    (let ((desktop-base-file-name base-name))
+            (seq-filter (lambda (file)
+                          (and (file-regular-p (expand-file-name file (car desktop-path)))
+                               (not (equal "lock" (file-name-extension file)))))
+                        (directory-files (car desktop-path) nil directory-files-no-dot-files-regexp)))))
+    (let ((desktop-base-file-name base-name)
+          (desktop-dirname (car desktop-path)))
       (call-interactively #'desktop-read))))
 
 (use-package recentf
