@@ -30,10 +30,16 @@
       ;; BUG+HACK: Defer applying `parinfer-rust-mode', this should fix the
       ;; issue of unusable `parinfer-rust-mode' until disabled and enabled again
       (run-with-timer
-       0.1 nil
+       0.5 nil
        (lambda (buffer)
          (when (and (buffer-live-p buffer) (get-buffer-window buffer)) ; The buffer still alive and it is visible
-           (with-current-buffer buffer (parinfer-rust-mode 1))))
+           (with-current-buffer buffer
+             ;; When calling `parinfer-rust-mode' in a non-visible buffer, don't
+             ;; ask about modifying indentation, assume we said no.
+             (if (get-buffer-window)
+                 (parinfer-rust-mode 1)
+               (cl-letf (((symbol-function 'y-or-n-p) #'ignore))
+                 (parinfer-rust-mode 1))))))
        (current-buffer))))
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
