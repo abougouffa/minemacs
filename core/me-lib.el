@@ -532,7 +532,7 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
 (defun +directory-subdirs (dir)
   "Return a list of sub-directories in DIR."
   (when dir
-    (seq-filter #'file-directory-p (mapcar #'abbreviate-file-name (directory-files dir t "[^.][^.]?\\'")))))
+    (seq-filter #'file-directory-p (mapcar #'abbreviate-file-name (directory-files dir t directory-files-no-dot-files-regexp)))))
 
 (defun +directory-ensure (&rest path-parts)
   "Concatenate PATH-PARTS to construct a path and return it.

@@ -31,12 +31,12 @@
     ;; yocto-ws/build-MACHINE/tmp/work/aarch64-rdk-linux/ppp/2.4.7-r0/ppp-2.4.7/
     (let* (result
            (base-dir (expand-file-name "tmp/work/" build-dir))
-           (arch-dirs (seq-filter #'file-directory-p (directory-files base-dir t "[^.][^.]?\\'"))))
+           (arch-dirs (seq-filter #'file-directory-p (directory-files base-dir t directory-files-no-dot-files-regexp))))
       (dolist (arch-dir arch-dirs)
-        (let* ((package-dirs (directory-files arch-dir t "[^.][^.]?\\'"))
+        (let* ((package-dirs (directory-files arch-dir t directory-files-no-dot-files-regexp))
                (package-dirs (if include-native package-dirs (seq-filter (lambda (dir) (not (string-suffix-p "-native" dir))) package-dirs))))
           (dolist (package-dir package-dirs)
-            (let ((ver-dirs (directory-files package-dir t "[^.][^.]?\\'")))
+            (let ((ver-dirs (directory-files package-dir t directory-files-no-dot-files-regexp)))
               (dolist (ver-dir ver-dirs)
                 (let* ((ver (string-trim-right (file-name-nondirectory (directory-file-name ver-dir)) "-r[[:digit:]]*$"))
                        (dir-git (expand-file-name "git/" ver-dir))

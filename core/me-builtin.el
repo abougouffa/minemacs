@@ -1004,8 +1004,7 @@ Typing these will trigger reindentation of the current line.")
     (interactive
      (list (completing-read
             "Select a session file to read: "
-            (seq-filter (lambda (s) (not (string-match-p "^[.][.]?$" s)))
-                        (directory-files desktop-dirname nil)))))
+            (directory-files desktop-dirname nil directory-files-no-dot-files-regexp))))
     (let ((desktop-base-file-name base-name))
       (call-interactively #'desktop-read))))
 

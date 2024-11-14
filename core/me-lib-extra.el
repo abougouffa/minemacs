@@ -89,7 +89,7 @@ in MinEmacs directory before upgrading."
           (seq-filter
            (lambda (name)
              (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-           (directory-files default-directory nil "[^.][^.]?\\'")))))
+           (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
 
 ;;;###autoload
 (defun minemacs-cleanup-emacs-directory ()
