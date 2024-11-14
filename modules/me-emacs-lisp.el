@@ -51,7 +51,16 @@
       (parinfer-rust-mode -1)
       (+info! "Disabled `parinfer-rust-mode'")))
 
-  ;; Fix the issue of `vundo' (related to `track-changes') when exploring the undo tree
+  ;; HACK: When we insert a space at the end on an s-expression in
+  ;; `multiple-cursors', it gets added only at the real cursor.
+  ;; `parinfer-rust-mode' prevents the others from being added. Lets fix this by
+  ;; disabling `parinfer-rust-mode' when working with `multiple-cursors'
+  (with-eval-after-load 'multiple-cursors
+    (add-hook 'multiple-cursors-mode-enabled-hook #'+parinfer-rust--disable)
+    (add-hook 'multiple-cursors-mode-disabled-hook #'+parinfer-rust--restore))
+
+  ;; HACK: Fix the issue of `vundo' (related to `track-changes') when exploring
+  ;; the undo tree
   (with-eval-after-load 'vundo
     (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
     (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))
