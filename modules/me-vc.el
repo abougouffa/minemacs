@@ -65,7 +65,27 @@
 
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously
 (use-package multi-magit
-  :straight (:host github :repo "luismbo/multi-magit"))
+  :straight (:host github :repo "luismbo/multi-magit")
+  :init
+  (defvar +multi-magit-select-repos-under-directory-max-depth 6)
+  :config
+  (defun +multi-magit-select-repos-under-directory (dir)
+    "Recursively select Git repositories under DIR."
+    (interactive "DSelect the base directory: ")
+    (let* ((dir (expand-file-name dir))
+           (directories
+            (mapcar #'abbreviate-file-name
+                    (seq-filter #'file-directory-p
+                                (directory-files-recursively
+                                 dir
+                                 "[^.][^.]?\\'"
+                                 t
+                                 (lambda (path) ; Use a predicate for the maximum depth
+                                   (length< (file-name-split (string-remove-prefix dir (expand-file-name path)))
+                                            +multi-magit-select-repos-under-directory-max-depth)))))))
+      (dolist (dir directories)
+        (when-let* ((dir (vc-git-root dir)))
+          (add-to-list 'multi-magit-selected-repositories dir))))))
 
 
 ;; Store EIEIO objects using EmacSQL
