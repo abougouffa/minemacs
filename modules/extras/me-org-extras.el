@@ -304,7 +304,7 @@ Example: \"#+TITLE\" -> \"#+title\"
 
   (setq org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
 
-  (unless (+emacs-features-p 'pgtk) ;; PGTK not need extra up-scaling
+  (unless (+emacs-options-p 'pgtk) ;; PGTK not need extra up-scaling
     (add-hook
      'org-mode-hook
      (satch-defun +org--set-format-latex-scale-h ()

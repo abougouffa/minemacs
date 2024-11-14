@@ -199,7 +199,7 @@
   (mu4e-alert-email-notification-types '(subjects))
   :init
   (defcustom +mu4e-alert-bell-command
-    (when (or os/linux os/bsd)
+    (when (+emacs-options-p :any 'os/linux 'os/bsd)
       '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
     "A cons list of the command and arguments to play the notification bell."
     :group 'minemacs-mu4e

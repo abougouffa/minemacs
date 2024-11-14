@@ -17,7 +17,7 @@
 
 (use-package kotlin-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :mode "\\.kts?\\'")
 
 

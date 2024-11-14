@@ -187,12 +187,12 @@
 ;; Your friendly neighborhood expand-region clone
 (use-package expreg
   :straight (:host github :repo "casouri/expreg")
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
 
 ;; Fallback to `expand-region' if `expreg' cannot be used
-(unless (+emacs-features-p 'tree-sitter)
+(unless (+emacs-options-p 'tree-sitter)
   (+load minemacs-obsolete-modules-dir "me-expand-region.el"))
 
 

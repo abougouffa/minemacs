@@ -18,7 +18,7 @@
 
 (use-package nix-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :mode "\\.nix\\'"
   :config
   ;; Register Eglot servers on the `nix-ts-mode' in addition to the already configured `nix-mode'

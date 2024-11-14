@@ -100,7 +100,7 @@ Fall back to the default `citre--project-root'."
 ;; Cscope interface for Emacs
 (use-package xcscope
   :straight t
-  :unless os/win
+  :unless (+emacs-options-p 'os/win)
   :commands (cscope-create-list-of-files-to-index cscope-index-files)
   :custom
   (cscope-option-do-not-update-database t)
@@ -134,7 +134,7 @@ Fallback to the default function if none is found."
 ;; Clink integration to Emacs
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
-  :when (+emacs-features-p 'sqlite3)
+  :when (+emacs-options-p 'sqlite3)
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 
 

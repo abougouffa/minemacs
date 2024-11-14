@@ -80,7 +80,7 @@
          (* ;; The scale from current font
           (/ (float (or (face-attribute 'default :height) 100)) 100.0)
           ;; Proportional upscaling
-          (/ +writeroom-text-scale (if (+emacs-features-p 'pgtk) 1.8 1.4)))))))
+          (/ +writeroom-text-scale (if (+emacs-options-p 'pgtk) 1.8 1.4)))))))
 
     (add-hook
      'writeroom-mode-disable-hook

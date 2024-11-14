@@ -18,7 +18,7 @@
 
 (use-package julia-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 (use-package julia-repl
   :straight t)

@@ -22,7 +22,7 @@
 (use-package jq-mode
   :straight t
   :custom
-  (jq-interactive-font-lock-mode (if (+emacs-features-p 'tree-sitter) #'json-ts-mode #'json-mode))
+  (jq-interactive-font-lock-mode (if (+emacs-options-p 'tree-sitter) #'json-ts-mode #'json-mode))
   :commands (+yq-interactively +xq-interactively)
   :config
   (defun +yq-interactively ()
@@ -30,7 +30,7 @@
     (interactive)
     (let ((jq-interactive-command "yq")
           (jq-interactive-default-prompt "yq: ")
-          (jq-interactive-font-lock-mode (if (+emacs-features-p 'tree-sitter) #'yaml-ts-mode #'yaml-mode))
+          (jq-interactive-font-lock-mode (if (+emacs-options-p 'tree-sitter) #'yaml-ts-mode #'yaml-mode))
           (jq-interactive-default-options "")) ;; "--yaml-roundtrip"
       (call-interactively #'jq-interactively)))
 

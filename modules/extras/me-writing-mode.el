@@ -70,7 +70,7 @@
     (* ;; The scale from current font
      (/ (float (or (face-attribute 'default :height) 100)) 100.0)
      ;; Proportional upscaling
-     (/ +writing-text-scale (if (+emacs-features-p 'pgtk) 1.8 1.4))))))
+     (/ +writing-text-scale (if (+emacs-options-p 'pgtk) 1.8 1.4))))))
 
 (defun +writing--scale-down-org-latex ()
   (setq-local

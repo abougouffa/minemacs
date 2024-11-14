@@ -15,7 +15,7 @@
 
 ;; (setq default-frame-alist (+alist-set 'internal-border-width 20 default-frame-alist))
 
-(when os/mac
+(when (+emacs-options-p 'os/mac)
   (+setq-hook! term-mode buffer-display-table (make-display-table)))
 
 (use-package nano-theme

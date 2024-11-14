@@ -26,7 +26,7 @@
 ;; Launch system applications from Emacs
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
-  :when (or os/linux os/bsd)
+  :when (+emacs-options-p :any 'os/linux 'os/bsd)
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 
@@ -52,7 +52,7 @@
 ;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
 (use-package vterm
   :straight t
-  :when (and (not os/win) (+emacs-features-p 'modules))
+  :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :hook (vterm-mode . compilation-shell-minor-mode)
   :bind (:map vterm-mode-map ([return] . vterm-send-return))
@@ -72,7 +72,7 @@
 ;; Managing multiple vterm buffers in Emacs
 (use-package multi-vterm
   :straight t
-  :when (and (not os/win) (+emacs-features-p 'modules))
+  :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :bind (([remap project-shell] . multi-vterm-project)
          ([f1] . +multi-vterm-dedicated-toggle-dwim)
          :map vterm-mode-map ([f1] . +multi-vterm-dedicated-toggle-dwim))
@@ -155,7 +155,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 (use-package envrc
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
-  :when (and (not os/win) (executable-find "direnv"))
+  :when (and (not (+emacs-options-p 'os/win)) (executable-find "direnv"))
   :custom
   (envrc-debug minemacs-debug-p)
   :config
@@ -168,7 +168,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 (use-package pet
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
-             (or (+emacs-features-p 'sqlite3) (executable-find "sqlite3")))
+             (or (+emacs-options-p 'sqlite3) (executable-find "sqlite3")))
   :hook (pet-mode . +pet-quickrun-setup)
   :init
   (add-hook 'python-base-mode-hook 'pet-mode -10)
@@ -204,7 +204,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 ;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
-  :when (and (or os/linux os/bsd) (executable-find "ecryptfs-verify"))
+  :when (and (+emacs-options-p :any 'os/linux 'os/bsd) (executable-find "ecryptfs-verify"))
   :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
 
 

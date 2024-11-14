@@ -27,12 +27,11 @@
 ;;; MinEmacs directories
 
 (defconst minemacs-ignore-user-config
-  (let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))
-         (ignores (and ignores (downcase ignores))))
-    (when ignores
-      (if (string= ignores "all")
-          '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
-        (mapcar #'intern (split-string ignores)))))
+  (when-let* ((ignores (getenv "MINEMACS_IGNORE_USER_CONFIG"))
+              (ignores (and ignores (downcase ignores))))
+    (if (equal ignores "all")
+        '(early-config init-tweaks modules config local/early-config local/init-tweaks local/modules local/config)
+      (mapcar #'intern (split-string ignores))))
   "Ignore loading these user configuration files.
 Accepted values are: early-config, init-tweaks, modules, config,
 local/early-config, local/init-tweaks, local/modules and local/config.
@@ -94,11 +93,14 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 (defconst minemacs-extra-packages-dir (concat minemacs-local-dir "extra-packages/"))
 (defconst minemacs-config-dir (file-name-as-directory
-                               (or (getenv "MINEMACS_DIR") (getenv "MINEMACSDIR")
-                                   (if (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/" (concat minemacs-root-dir "user-config/"))))
+                               (or (getenv "MINEMACS_DIR")
+                                   (getenv "MINEMACSDIR")
+                                   (and (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/")
+                                   (concat minemacs-root-dir "user-config/")))
   "MinEmacs user customization directory.")
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
+
 (defconst os/android (eq system-type 'android) "Non-nil on Android systems.")
 (defconst os/linux (eq system-type 'gnu/linux) "Non-nil on GNU/Linux systems.")
 (defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) "Non-nil on BSD systems.")
@@ -109,12 +111,29 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
   "The system's architecture read from `system-configuration'.
 It return a symbol like `x86_64', `aarch64', `armhf', ...")
 
-(defconst emacs/features
-  (mapcar #'intern
-          (mapcar (apply-partially #'string-replace "_" "-")
-                  (mapcar #'downcase (split-string system-configuration-features))))
+(make-obsolete-variable 'os/android '+emacs-options-p "v11.0.0")
+(make-obsolete-variable 'os/linux '+emacs-options-p "v11.0.0")
+(make-obsolete-variable 'os/bsd '+emacs-options-p "v11.0.0")
+(make-obsolete-variable 'os/win '+emacs-options-p "v11.0.0")
+(make-obsolete-variable 'os/mac '+emacs-options-p "v11.0.0")
+(make-obsolete-variable 'sys/arch '+emacs-options-p "v11.0.0")
+
+(defconst minemacs--extra-features
+  (append
+   (list
+    (intern (concat "arch/" (car (split-string system-configuration "-"))))
+    (cond ((eq system-type 'android) 'os/android)
+          ((eq system-type 'gnu/linux) 'os/linux)
+          ((and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) 'os/bsd)
+          ((and (memq system-type '(cygwin windows-nt ms-dos)) t) 'os/win)
+          ((eq system-type 'darwin) 'os/mac)
+          (t 'os/unknown)))
+   (mapcar #'intern
+           (mapcar (apply-partially #'string-replace "_" "-")
+                   (mapcar #'downcase (split-string system-configuration-features)))))
   "List of symbols representing Emacs' enabled features.
-Compiled from the `system-configuration-features'.")
+Compiled from the `system-configuration-features',
+`system-configuration' and `system-type'.")
 
 (defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs."
@@ -265,6 +284,15 @@ Each string is a regexp, matched against variable names to omit from
         (with-demoted-errors "[MinEmacs:LoadError] %s"
           (load filename nil (not minemacs-verbose-p)))
       (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
+
+(defun +emacs-options-p (&rest feats)
+  "Is features FEATS are enabled in this Emacs build.
+When the first argument is `:any', this returns t if at least one of the
+FEATS is available."
+  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
+    (and (funcall fn (lambda (feat) (memq feat minemacs--extra-features)) feats) t)))
+
+(define-obsolete-function-alias '+emacs-features-p '+emacs-options-p "v11.0.0")
 
 
 (provide 'me-vars)

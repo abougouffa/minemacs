@@ -16,7 +16,7 @@
 (use-package rust-mode
   :straight t
   :custom
-  (rust-mode-treesitter-derive (+emacs-features-p 'tree-sitter)))
+  (rust-mode-treesitter-derive (+emacs-options-p 'tree-sitter)))
 
 
 (provide 'on-demand/me-rust)

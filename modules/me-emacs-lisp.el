@@ -19,10 +19,10 @@
 ;; Simplifying how you write Lisp
 (use-package parinfer-rust-mode
   :straight t
-  :when (+emacs-features-p 'modules)
+  :when (+emacs-options-p 'modules)
   :autoload +parinfer-rust-mode-maybe
   :custom
-  (parinfer-rust-auto-download (eq sys/arch 'x86_64))
+  (parinfer-rust-auto-download (+emacs-options-p 'arch/x86_64))
   :hook ((lisp-mode emacs-lisp-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . +parinfer-rust-mode-maybe)
   :config
   (defun +parinfer-rust-mode-maybe ()

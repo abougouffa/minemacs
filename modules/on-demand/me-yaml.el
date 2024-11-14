@@ -21,7 +21,7 @@
 
 (use-package yaml-pro
   :straight t
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :hook (yaml-mode . yaml-pro-mode)
   :hook (yaml-ts-mode . yaml-pro-ts-mode))
 

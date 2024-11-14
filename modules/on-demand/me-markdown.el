@@ -23,7 +23,7 @@
 
 (use-package markdown-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :hook (markdown-ts-mode . display-line-numbers-mode)
   :commands (markdown-ts-mode)
   :init

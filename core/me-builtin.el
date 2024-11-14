@@ -47,11 +47,12 @@
   (x-stretch-cursor t) ; Stretch cursor to the glyph width
   (frame-resize-pixelwise t) ; Do force frame size to be a multiple of char size
   (read-process-output-max ; Increase single chunk bytes to read from subprocess (def. 4096)
-   (if os/linux (condition-case nil ; Android may raise permission-denied error
-                    (with-temp-buffer ; On GNU/Linux systems, the value should not exceed `pipe-max-size'
-                      (insert-file-contents "/proc/sys/fs/pipe-max-size")
-                      (string-to-number (buffer-string)))
-                  (error read-process-output-max)) ; Fallback to the default value in case of an error
+   (if (+emacs-options-p 'os/linux)
+       (condition-case nil ; Android may raise permission-denied error
+           (with-temp-buffer ; On GNU/Linux systems, the value should not exceed `pipe-max-size'
+             (insert-file-contents "/proc/sys/fs/pipe-max-size")
+             (string-to-number (buffer-string)))
+         (error read-process-output-max)) ; Fallback to the default value in case of an error
      (* 1024 1024)))
   (completion-ignore-case t) ; Ignore case when completing
   (read-buffer-completion-ignore-case t)
@@ -97,7 +98,7 @@
   (set-language-environment "UTF-8")
   (set-locale-environment "en_US.UTF-8")
   ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
-  (set-selection-coding-system (if os/win 'utf-16-le 'utf-8))
+  (set-selection-coding-system (if (+emacs-options-p 'os/win) 'utf-16-le 'utf-8))
   :config
   ;; Make `ESC' behave like `C-g'
   (keymap-global-set "<escape>" #'keyboard-escape-quit)
@@ -241,7 +242,7 @@ or file path may exist now."
   :straight (:source gnu-elpa-mirror)
   :init
   ;; This is faster than the default "scp"
-  (unless os/win
+  (unless (+emacs-options-p 'os/win)
     (setq tramp-default-method "ssh"))
   :custom
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
@@ -282,7 +283,9 @@ or file path may exist now."
   (dired-clean-confirm-killing-deleted-buffers nil)
   :config
   ;; Open some files with OS' default application
-  (when-let* ((cmd (cond ((or os/linux os/bsd) "xdg-open") (os/mac "open") (os/win "start"))))
+  (when-let* ((cmd (cond ((+emacs-options-p :any 'os/linux 'os/bsd) "xdg-open")
+                         ((+emacs-options-p 'os/mac) "open")
+                         ((+emacs-options-p 'os/win) "start"))))
     (setq dired-guess-shell-alist-user
           `(("\\.\\(?:docx?\\|pdf\\|djvu\\|eps\\)\\'" ,cmd)
             ("\\.\\(?:jpe?g\\|png\\|gif\\|xpm\\|webp\\|svg\\)\\'" ,cmd)
@@ -316,7 +319,7 @@ or file path may exist now."
 (use-package doc-view
   :custom
   (doc-view-continuous t)
-  (doc-view-mupdf-use-svg (+emacs-features-p 'rsvg)))
+  (doc-view-mupdf-use-svg (+emacs-options-p 'rsvg)))
 
 (use-package project
   :straight (:source gnu-elpa-mirror)
@@ -480,17 +483,17 @@ or file path may exist now."
   (bibtex-text-indentation 20))
 
 (use-package treesit
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
   (treesit-font-lock-level 4))
 
 (use-package dockerfile-ts-mode
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :mode "/Dockerfile\\'")
 
 (use-package cmake-ts-mode
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'")
 
@@ -982,6 +985,7 @@ Typing these will trigger reindentation of the current line.")
   (desktop-restore-eager 50) ; Load 50 buffers immediately, and the remaining buffers lazily
   (desktop-file-checksum t) ; Avoid writing contents unchanged between auto-saves
   (desktop-save-buffer t) ; Save buffer status
+  (desktop-save t) ; Always save, the hack below will take care of file names
   :commands (+desktop-read-session)
   :init
   (setq desktop-dirname (expand-file-name (+directory-ensure minemacs-local-dir "desktop-session/")))
@@ -1279,7 +1283,7 @@ Typing these will trigger reindentation of the current line.")
          ("M-i" . +insert-thing-at-point)))
 
 (use-package yaml-ts-mode
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
 
 

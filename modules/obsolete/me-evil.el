@@ -468,7 +468,7 @@ It is deferred until `general' gets loaded and configured."
    :global-prefix minemacs-global-mode-prefix
    "u" #'universal-argument-more)
 
-  (when (or os/linux os/bsd)
+  (when (+emacs-options-p :any 'os/linux 'os/bsd)
     (when (executable-find "ecryptfs-verify")
       (+map! "te" #'ecryptfs-toggle-mount-private)))
 
@@ -637,7 +637,7 @@ It is deferred until `general' gets loaded and configured."
   "l" #'bibtex-fill-entry
   "r" #'bibtex-reformat)
 
-(when (+emacs-features-p 'sqlite3)
+(when (+emacs-options-p 'sqlite3)
   (+evil-conf-for! sqlite-mode me-builtin
     :config-form
     (+nvmap! :keymaps 'sqlite-mode-map

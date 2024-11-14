@@ -194,10 +194,6 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
     `(let ((inhibit-message t))
       (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
 
-(defun +emacs-features-p (&rest feats)
-  "Is features FEATS are enabled in this Emacs build."
-  (and (cl-every (lambda (feat) (memq feat emacs/features)) feats) t))
-
 (defmacro +fn-inhibit-messages! (fn &optional no-message-log)
   "Add an advice around the function FN to suppress messages in echo area.
 If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
@@ -459,7 +455,7 @@ Emacs-specific early exit in \".bashrc\"."
 (defun +env-save ()
   "Load environment variables from shell and save them to `+env-file'."
   (interactive)
-  (unless os/win
+  (unless (+emacs-options-p 'os/win)
     (with-temp-buffer
       (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
       (let ((env-vars
@@ -488,7 +484,7 @@ Emacs-specific early exit in \".bashrc\"."
 (defun +env-load ()
   "Load environment variables from `+env-file'."
   (interactive)
-  (unless os/win
+  (unless (+emacs-options-p 'os/win)
     (unless (file-exists-p +env-file) (+env-save))
     (+load +env-file)))
 

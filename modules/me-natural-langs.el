@@ -11,7 +11,7 @@
 ;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
   :straight t
-  :when (+emacs-features-p 'modules)
+  :when (+emacs-options-p 'modules)
   :autoload jinx--load-module
   :init
   (defun +jinx-load-module ()

@@ -55,7 +55,7 @@
 (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
 
 ;; Better titlebar on MacOS!
-(when (and os/mac (featurep 'ns))
+(when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 
 ;; Load the user early configuration files

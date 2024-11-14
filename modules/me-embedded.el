@@ -69,7 +69,7 @@
 ;; A `treesit'-based Bitbake major mode
 (use-package bitbake-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 
 ;; PlatformIO integration for Emacs

@@ -10,7 +10,7 @@
 
 (use-package ligature
   :straight t
-  :when (+emacs-features-p 'harfbuzz 'cairo)
+  :when (+emacs-options-p 'harfbuzz 'cairo)
   :after minemacs-loaded
   :hook (prog-mode . ligature-mode)
   :config

@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(defconst +easydraw-available-p (+emacs-features-p 'rsvg 'zlib 'libxml2))
+(defconst +easydraw-available-p (+emacs-options-p 'rsvg 'zlib 'libxml2))
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")

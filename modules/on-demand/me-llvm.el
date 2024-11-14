@@ -14,7 +14,7 @@
 
 (use-package llvm-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 
 (provide 'on-demand/me-llvm)

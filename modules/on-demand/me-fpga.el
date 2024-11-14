@@ -16,11 +16,11 @@
 
 (use-package vhdl-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 (use-package verilog-ts-mode
   :straight t
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 
 (provide 'on-demand/me-fpga)

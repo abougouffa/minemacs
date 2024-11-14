@@ -17,7 +17,7 @@
 
 (use-package protobuf-ts-mode
   :straight (:host github :repo "emacsattic/protobuf-ts-mode")
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 
 (provide 'on-demand/me-protobuf)

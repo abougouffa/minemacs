@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(unless (+emacs-features-p 'tree-sitter)
+(unless (+emacs-options-p 'tree-sitter)
   ;; Use the external `tree-sitter' module
   (+load minemacs-obsolete-modules-dir "me-tree-sitter.el"))
 
@@ -16,7 +16,7 @@
 ;; Automatically manage `treesit' grammars
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :hook (minemacs-build-functions . treesit-auto-install-all)
   :hook (minemacs-lazy . global-treesit-auto-mode)
   :custom
@@ -132,7 +132,7 @@
 ;; Move and edit code blocks based on tree-sitter AST
 (use-package ts-movement
   :straight (:host github :repo "haritkapadia/ts-movement")
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
   :init
   (defun +ts-movement-maybe ()
@@ -161,13 +161,13 @@
 ;; Tree-sitter based code folding
 (use-package treesit-fold
   :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
-  :when (+emacs-features-p 'tree-sitter))
+  :when (+emacs-options-p 'tree-sitter))
 
 
 ;; A `treesit'-based package to show code context, dim surrouding text, and fold code
 (use-package treesitter-context
   :straight (:host github :repo "zbelial/treesitter-context.el")
-  :when (+emacs-features-p 'tree-sitter)
+  :when (+emacs-options-p 'tree-sitter)
   :custom
   (treesitter-context-idle-time 0.5)
   (treesitter-context-show-context-always nil)
@@ -217,7 +217,7 @@
              :repo "mickeynp/combobulate"
              :nonrecursive t ; Cloning the `html-ts-mode' submodule causes problems
              :files (:defaults (:exclude "combobulate.el"))) ; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading
-  :when (and (not os/win) (+emacs-features-p 'tree-sitter)) ; TEMP: disable on Windows
+  :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'tree-sitter)) ; TEMP: disable on Windows
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
@@ -404,7 +404,7 @@
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
   :straight t
-  :when (+emacs-features-p 'libxml2))
+  :when (+emacs-options-p 'libxml2))
 
 
 ;; Show cognitive complexity of code in Emacs 29+ (treesit-based)
