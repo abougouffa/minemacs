@@ -990,7 +990,7 @@ Typing these will trigger reindentation of the current line.")
   :commands (+desktop-read-session)
   :init
   (setq desktop-dirname (expand-file-name (+directory-ensure minemacs-local-dir "desktop-session/")))
-  (defvar +desktop-session-base-file-name (format-time-string "%F--%H-%m-%S"))
+  (defvar +desktop-this-session-base-file-name (format-time-string "%F--%H-%m-%S"))
   :config
   ;; HACK: When saving the session, we set the file name to the timestamp. Then
   ;; we copy it back to `desktop-base-file-name'. This ensures `desktop-read'
@@ -999,14 +999,14 @@ Typing these will trigger reindentation of the current line.")
    'desktop-save :around
    (satch-defun +desktop-save--timestamp-file:around-a (origfn &rest args)
      (let ((dirname (car desktop-path)))
-       (let ((desktop-base-file-name +desktop-session-base-file-name)
+       (let ((desktop-base-file-name +desktop-this-session-base-file-name)
              (desktop-dirname dirname))
          (apply origfn args))
-       (copy-file (expand-file-name +desktop-session-base-file-name dirname)
+       (copy-file (expand-file-name +desktop-this-session-base-file-name dirname)
                   (expand-file-name desktop-base-file-name dirname)
                   'overwrite))))
 
-  ;; A wrapper around `desktop-read' to select from the list of savec files
+  ;; A wrapper around `desktop-read' to select from the list of saved files
   (defun +desktop-read-session (base-name)
     (interactive
      (list (completing-read
