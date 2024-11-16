@@ -278,6 +278,7 @@ or file path may exist now."
   (dired-dwim-target t)
   (dired-listing-switches "-alFh") ; show files linkes by symlinks (F) and human readable sizes (h)
   (dired-auto-revert-buffer t)
+  (dired-movement-style 'cycle)
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'top)
   (dired-clean-confirm-killing-deleted-buffers nil))
