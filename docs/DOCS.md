@@ -310,6 +310,12 @@ Load user configurations CONFIGS.
 
 Load a file, the FILENAME-PARTS are concatenated to form the file name.
 
+#### `(+emacs-options-p &rest FEATS)`
+
+Is features FEATS are enabled in this Emacs build.
+When the first argument is `:any`, this returns t if at least one of the
+FEATS is available.
+
 #### `(+with-delayed! &rest BODY)` (macro)
 
 Delay evaluating BODY with priority 0 (high priority).
@@ -405,10 +411,6 @@ Log MSG and VARS using `message` when `minemacs-verbose-p` is non-nil.
 #### `(+debug! MSG &rest VARS)` (macro)
 
 Log debug MSG and VARS using `message` when `minemacs-msg-level` is 4.
-
-#### `(+emacs-features-p &rest FEATS)`
-
-Is features FEATS are enabled in this Emacs build.
 
 #### `(+fn-inhibit-messages! FN &optional NO-MESSAGE-LOG)` (macro)
 
@@ -866,6 +868,7 @@ Get the IP-address for device DEV (default: eth0) of the current machine.
 
 Get the latest release of REPO. Strips the "v" at left.
 Fallback to FALLBACK-RELEASE when it can't get the last one.
+When TRIM-V-PREFIX is non-nil, trim the "v" prefix from the version.
 
 #### `(+dir-locals-reload-for-this-buffer)`
 
@@ -1127,9 +1130,11 @@ Select a MIME part, and perform an action on it.
 
 Generate selection strings for PARTS.
 
-#### `(+mu4e-view-save-all-attachments &optional MSG)`
+#### `(+mu4e-view-save-all-attachments &optional ASK-DIR)`
 
-Save all MIME parts from current mu4e gnus view buffer.
+Save all files from the current view buffer.
+With ASK-DIR is non-nil, user can specify the target-directory; otherwise
+one is determined using `mu4e-attachment-dir`.
 
 #### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
 
