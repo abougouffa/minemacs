@@ -21,6 +21,12 @@
          ("o" . crux-open-with)))
 
 
+;; Override the `default-directory' in the next command
+(use-package run-in-dir
+  :straight (:host github :repo "abougouffa/run-in-dir")
+  :bind (("C-c C-i" . run-in-dir-prefix)))
+
+
 (provide 'me-extra)
 
 ;;; me-extra.el ends here
