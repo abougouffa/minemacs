@@ -280,22 +280,7 @@ or file path may exist now."
   (dired-auto-revert-buffer t)
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'top)
-  (dired-clean-confirm-killing-deleted-buffers nil)
-  :config
-  ;; Open some files with OS' default application
-  (when-let* ((cmd (cond ((+emacs-options-p :any 'os/linux 'os/bsd) "xdg-open")
-                         ((+emacs-options-p 'os/mac) "open")
-                         ((+emacs-options-p 'os/win) "start"))))
-    (setq dired-guess-shell-alist-user
-          `(("\\.\\(?:docx?\\|pdf\\|djvu\\|eps\\)\\'" ,cmd)
-            ("\\.\\(?:jpe?g\\|png\\|gif\\|xpm\\|webp\\|svg\\)\\'" ,cmd)
-            ("\\.\\(?:xcf\\)\\'" ,cmd)
-            ("\\.\\(csv\\|xlsx?\\)\\'" ,cmd)
-            ("\\.\\(tex\\|bib\\)\\'" ,cmd)
-            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|mpg\\|webm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
-            ("\\.\\(?:mp3\\|flac\\|wav\\|ogg\\|m4a\\)\\'" ,cmd)
-            ("\\.html?\\'" ,cmd)
-            ("\\.md\\'" ,cmd)))))
+  (dired-clean-confirm-killing-deleted-buffers nil))
 
 (use-package dired-aux
   :custom
