@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.0.0](https://github.com/abougouffa/minemacs/compare/3b688e146b3929a9cdb60c31d694861bcbfbeffb..v11.0.0) - 2024-11-16
+#### Bug Fixes
+- **(desktop)** fix saving/reading desktop session files - ([e683b05](https://github.com/abougouffa/minemacs/commit/e683b05f55a86259e01a8ffbc6611d42886b8cd5)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** correctly configure the new `flymake-indicator-type` - ([7f2fd4a](https://github.com/abougouffa/minemacs/commit/7f2fd4ab5f79f3c8b24cb240045a1b28fdaf6238)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** better implementation of `+parinfer-rust-mode-maybe` - ([2f7d842](https://github.com/abougouffa/minemacs/commit/2f7d842e6b078cbdbd01c1ccd8df861879e22877)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** temporary disable for `multiple-cursors` - ([dbe43d8](https://github.com/abougouffa/minemacs/commit/dbe43d818922487c1438e1e9ace56e10193af8d8)) - [@abougouffa](https://github.com/abougouffa)
+- fix some keymap bindings - ([33074f0](https://github.com/abougouffa/minemacs/commit/33074f0f412be2bb996185f21a3fe7e08328a270)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(extra)** add support for my new package `run-in-dir` - ([8d6adb9](https://github.com/abougouffa/minemacs/commit/8d6adb958cd0b603fcd9ab5fc1457aa39a437e58)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** add initial support for `fd-dired` - ([fc57ef1](https://github.com/abougouffa/minemacs/commit/fc57ef13cd4fc126e1c42d82b26a5d8c23e403da)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-magit)** better implementation of `+multi-magit-discover-repos` - ([a765730](https://github.com/abougouffa/minemacs/commit/a76573037561cfcbe7a5f22c6c069354a9e594e7)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-magit)** add `+multi-magit-select-repos-under-directory` - ([8644ccf](https://github.com/abougouffa/minemacs/commit/8644ccff88179aa3080406c5997c85917799af71)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** remove `git-undo`, not stable - ([b0e1b10](https://github.com/abougouffa/minemacs/commit/b0e1b10ce1335046bd985944f0ada47df30a53d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** additional support for `multi-magit` - ([b5cd6c2](https://github.com/abougouffa/minemacs/commit/b5cd6c2de2fe06c6b36fa8c392978f2d5899a4ed)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(pages)** fix the branch - ([3b688e1](https://github.com/abougouffa/minemacs/commit/3b688e146b3929a9cdb60c31d694861bcbfbeffb)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(desktop)** rename a variable - ([9e69fe7](https://github.com/abougouffa/minemacs/commit/9e69fe76ddd634c0e1108d9d925f73b8f034d377)) - [@abougouffa](https://github.com/abougouffa)
+- use `+emacs-options-p` to detect all options - ([eab3369](https://github.com/abougouffa/minemacs/commit/eab336916406292c52f6d7d841f5e4ee39d7ea67)) - [@abougouffa](https://github.com/abougouffa)
+- make use of `directory-files-no-dot-files-regexp` - ([9f3c060](https://github.com/abougouffa/minemacs/commit/9f3c0603f149fe34e200038c7866ce3d761b001c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(desktop)** autoload `+desktop-read-session` - ([34aa1e8](https://github.com/abougouffa/minemacs/commit/34aa1e8719fa5217ed21096229200c491a640b90)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** remove old hack, merged upstream - ([8fe6c67](https://github.com/abougouffa/minemacs/commit/8fe6c673d042b0d4cf88a76e828018b711354e65)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-vterm)** implement `+multi-vterm-toggle-dedicated-dwim` - ([a62216d](https://github.com/abougouffa/minemacs/commit/a62216db8efaada0914e49ac51d901842f5a09f5)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** whitelist extra commands, add transient menu - ([eec057f](https://github.com/abougouffa/minemacs/commit/eec057f6791da599d8ab4cf5df5adf9312cbac55)) - [@abougouffa](https://github.com/abougouffa)
+- **(ztree)** add some keybindings - ([cdd0620](https://github.com/abougouffa/minemacs/commit/cdd062028bcc1a7e26ec00d67e7b0c6cbc44a23b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2d81f58](https://github.com/abougouffa/minemacs/commit/2d81f584f3102258f6a24192ca8ce73bf2fc5a4f)) - [@abougouffa](https://github.com/abougouffa)
+- minor keymap edits - ([6b5398e](https://github.com/abougouffa/minemacs/commit/6b5398e82b27e2ceb78b86f66662e822c47a75a4)) - [@abougouffa](https://github.com/abougouffa)
+- better setup of custom keybindings - ([7feb5a9](https://github.com/abougouffa/minemacs/commit/7feb5a9261d8f001d97f65749ce9a96557b5a70c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v10.6.0](https://github.com/abougouffa/minemacs/compare/a27c957437533c3dad8e3c43d719a9aa4c55c051..v10.6.0) - 2024-11-12
 #### Bug Fixes
 - **(flymake)** properly setup the custom fringe symbols - ([fc2abde](https://github.com/abougouffa/minemacs/commit/fc2abdecbc9fe4b3396a290764cec6303bd7cb86)) - [@abougouffa](https://github.com/abougouffa)
