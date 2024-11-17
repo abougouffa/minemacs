@@ -305,3 +305,387 @@
 * `ace-window`: Quickly switch windows in Emacs
 * `window-purpose`: Manage windows and buffers according to purposes
 
+
+# MinEmacs on-demand modules and packages
+## `on-demand/me-agda`
+* `agda2-mode`: Major mode for the Agda programming language
+
+## `on-demand/me-alloy`
+* `alloy-mode`: Emacs major mode for Alloy language
+
+## `on-demand/me-apl`
+* `gnu-apl-mode`: Major mode for GNU APL
+
+## `on-demand/me-arduino`
+* `arduino-mode`: Major mode for the Arduino language
+
+## `on-demand/me-assembly`
+* `mips-mode`: Major mode for MIPS assembly
+* `riscv-mode`: Major mode for RISC V assembly
+* `fasm-mode`: Major mode for Flat Assembler
+* `masm-mode`: Major mode for Microsoft Macro Assembler
+* `nasm-mode`: Major mode for Netwide Assembler
+* `gas-mode`: Major mode for GNU Assembler
+
+## `on-demand/me-awk`
+* `awk-ts-mode`: Major mode for AWK using Tree-sitter
+
+## `on-demand/me-ballerina`
+* `ballerina-mode`: A major mode for editing ballerina source code
+
+## `on-demand/me-bqn`
+* `bqn-mode`: Major mode for editing BQN grammar files
+
+## `on-demand/me-cc`
+* `flymake-cppcheck`: Flymake backend for CppCheck
+
+## `on-demand/me-chapel`
+* `chapel-mode`: A major mode for the Chapel programming language
+
+## `on-demand/me-clojure`
+* `clojure-mode`: Major mode for Clojure code
+* `cider`: Clojure Interactive Development Environment that Rocks
+
+## `on-demand/me-cmake`
+* `cmake-mode`: Major mode for editing CMake sources
+* `cmake-font-lock`: Advanced, type aware, highlight support for CMake
+
+## `on-demand/me-cobol`
+* `cobol-mode`: Major mode for editing COBOL code
+
+## `on-demand/me-coffee`
+* `coffee-mode`: Major mode for CoffeeScript code
+
+## `on-demand/me-common-lisp`
+* `sly`: Sylvester the Cat's Common Lisp IDE
+* `sly-quicklisp`: Quicklisp support for SLY
+* `sly-asdf`: ASDF system support for SLY
+* `sly-repl-ansi-color`: Add ANSI colors support to the `sly-mrepl`
+* `sly-macrostep`: Fancy macro-expansion via `macrostep`
+
+## `on-demand/me-crystal`
+* `crystal-mode`: Major mode for editing Crystal files
+
+## `on-demand/me-csv`
+* `csv-mode`: Major mode for editing comma/char separated values
+* `rainbow-csv`: Highlight CSV and TSV files in different rainbow colors
+
+## `on-demand/me-cuda`
+* `cuda-mode`: Major mode for editing Nvidia CUDA C++ files
+
+## `on-demand/me-cue`
+* `cue-mode`: Major mode for CUE language files
+
+## `on-demand/me-cypher`
+* `cypher-mode`: Major mode for editing Cypher scripts
+
+## `on-demand/me-cython`
+* `cython-mode`: Major mode for editing Cython files
+
+## `on-demand/me-d`
+* `d-mode`: Major mode for the D programming language
+
+## `on-demand/me-d2`
+* `d2-mode`: Major mode for working with D2 graphs
+* `ob-d2`: Org Babel code evaluation for the D2 graph lanugage
+
+## `on-demand/me-dart`
+* `dart-mode`: Major mode for editing Dart files
+* `flutter`: Tools for working with Flutter SDK
+
+## `on-demand/me-demangle`
+* `demangle-mode`: Automatically demangle C++, D, and Rust symbols in LLVM code
+
+## `on-demand/me-devicetree`
+* `dts-mode`: Major mode for DeviceTree source code
+* `virtual-dts-mode`: Major mode for Device Tree Binary (`*.dtb`) files
+
+## `on-demand/me-dhall`
+* `dhall-mode`: Major mode for the Dhall configuration language
+
+## `on-demand/me-djvu`
+* `djvu`: Edit and view Djvu files via `djvused`
+* `djvu3`: Extend `djvu` to display annotations and more
+
+## `on-demand/me-docker`
+* `dockerfile-mode`: Major mode for editing Docker's Dockerfiles
+* `docker-compose-mode`: Major mode for editing docker-compose files
+
+## `on-demand/me-ebuild`
+* `ebuild-mode`: Major mode for editing Gentoo's ebuild and eclass files
+
+## `on-demand/me-elixir`
+* `elixir-mode`: Major mode for editing Elixir files
+* `ob-elixir`: Org Babel code evaluation for Elixir
+
+## `on-demand/me-elm`
+* `elm-mode`: Major mode for Elm
+* `elm-test-runner`: Enhanced support for running `elm-test`
+
+## `on-demand/me-epub`
+* `nov`: Featureful EPUB reader mode
+
+## `on-demand/me-erlang`
+* `erlang`: Major modes for editing and running Erlang files
+
+## `on-demand/me-fish`
+* `fish-mode`: Major mode for Fish shell scripts
+
+## `on-demand/me-forth`
+* `forth-mode`: Major mode for the Forth programming language
+
+## `on-demand/me-fpga`
+* `vhdl-ts-mode`: VHDL Tree-sitter major mode
+* `verilog-ts-mode`: Verilog Tree-sitter major mode
+
+## `on-demand/me-franca-idl`
+* `franca-idl`: A major mode to edit Franca IDL code
+
+## `on-demand/me-freebasic`
+* `fb-mode`: A major mode for the FreeBASIC programming language
+
+## `on-demand/me-fsharp`
+* `fsharp-mode`: Support for the F# programming language
+
+## `on-demand/me-gecode`
+* `gcode-mode`: Simple G-Code major mode
+
+## `on-demand/me-genexpr`
+* `genexpr-mode`: Major mode for editing GenExpr files
+
+## `on-demand/me-gitlab-ci`
+* `gitlab-ci-mode`: Mode for editing GitLab CI files
+
+## `on-demand/me-gnuplot`
+* `gnuplot`: Major mode and interactive frontend for GNUPlot
+
+## `on-demand/me-godot`
+* `gdscript-mode`: Major mode for Godot's GDScript language
+
+## `on-demand/me-graphql`
+* `graphql-mode`: Major mode for editing GraphQL schemas
+
+## `on-demand/me-graphviz`
+* `graphviz-dot-mode`: Mode for the dot-language used by GraphViz
+
+## `on-demand/me-haskell`
+* `haskell-mode`: Major mode for editing Haskell code
+
+## `on-demand/me-haxe`
+* `haxe-mode`: Major mode for editing Haxe files
+
+## `on-demand/me-hcl`
+* `hcl-mode`: Major mode for Hashicorp Configuration Language (HCL)
+* `terraform-mode`: Major mode for Terraform configuration files
+
+## `on-demand/me-hurl`
+* `hurl-mode`: Major mode to edit, run and test HTTP requests using Hurl
+
+## `on-demand/me-hy`
+* `hy-mode`: Major mode for the Hy programming language
+* `ob-hy`: Org Babel code evaluation for the Hy language
+
+## `on-demand/me-idris`
+* `idris-mode`: Major mode for the Idris programming language
+
+## `on-demand/me-java`
+* `groovy-mode`: Major mode for Groovy source files
+* `android-mode`: Minor mode for Android application development
+
+## `on-demand/me-jenkins`
+* `jenkinsfile-mode`: Major mode for editing Jenkins declarative pipeline syntax
+
+## `on-demand/me-json`
+* `json-mode`: Major mode for editing JSON files
+* `jq-mode`: Major mode for interactively editing jq queries
+
+## `on-demand/me-julia`
+* `julia-mode`: Major mode for editing Julia source code
+* `julia-ts-mode`: Major mode for Julia source code using Tree-sitter
+* `julia-repl`: A minor mode for a Julia REPL
+* `julia-snail`: An Emacs development environment for Julia
+
+## `on-demand/me-just`
+* `just-mode`: Major mode for editing Justfile
+* `justl`: Major mode for driving just files
+
+## `on-demand/me-kotlin`
+* `kotlin-mode`: Major mode for the Kotlin programming language
+* `kotlin-ts-mode`: Tree-sitter based major mode for the Kotlin programming language
+
+## `on-demand/me-latex`
+* `tex`: Integrated environment for TeX
+* `latex`: Integrated environment for LaTeX
+* `auctex-latexmk`: Add LatexMk support to AUCTeX
+* `latex-preview-pane`: Makes LaTeX editing less painful by providing a updatable preview pane
+
+## `on-demand/me-llvm`
+* `llvm-ts-mode`: LLVM major mode using Tree-sitter
+
+## `on-demand/me-lua`
+* `lua-mode`: Major mode for editing Lua scripts
+
+## `on-demand/me-markdown`
+* `markdown-mode`: Major mode for Markdown-formatted text
+* `markdown-ts-mode`: Major mode for Markdown using Treesitter
+
+## `on-demand/me-mathematica`
+* `wolfram-mode`: Mathematica editing and inferior mode
+
+## `on-demand/me-mercury`
+* `metal-mercury-mode`: Concise mercury major mode
+
+## `on-demand/me-mermaid`
+* `mermaid-mode`: Major mode for working with Mermaid graphs
+* `ob-mermaid`: Org Babel support for Mermaid evaluation
+
+## `on-demand/me-mode-framework`
+* `robot-mode`: Major mode for Robot Framework files
+
+## `on-demand/me-modelica`
+* `modelica-mode`: Major mode for editing Modelica files
+
+## `on-demand/me-mojo`
+* `mojo`: Major mode for the Mojo programming lanugage
+
+## `on-demand/me-nim`
+* `nim-mode`: A major mode for the Nim programming language
+
+## `on-demand/me-nix`
+* `nix-mode`: Major mode for editing Nix files
+* `nix-ts-mode`: Tree-sitter based major mode for editing Nix files
+
+## `on-demand/me-ocaml`
+* `tuareg`: Major mode and REPL for the OCaml programming language
+* `opam-switch-mode`: Select OCaml opam switches via a menu
+* `dune`: Integration with the dune build system
+* `utop`: Universal toplevel for OCaml
+
+## `on-demand/me-odin`
+* `odin-mode`: Major mode for Odin
+
+## `on-demand/me-opencl`
+* `opencl-c-mode`: Major mode with for OpenCL kernels
+
+## `on-demand/me-openscad`
+* `scad-mode`: A major mode for editing OpenSCAD code
+
+## `on-demand/me-p4`
+* `p4-16-mode`: Support for the P4_16 programming language
+
+## `on-demand/me-pandoc`
+* `pandoc-mode`: Minor mode for interacting with Pandoc
+
+## `on-demand/me-pcap`
+* `pcap-mode`: Major mode for working with PCAP files via Wireshark's `tshark` tool
+
+## `on-demand/me-pdf`
+* `pdf-tools`: View and annotate PDF files
+* `pdf-isearch`: Isearch support in PDF buffers
+* `pdf-view-restore`: Support for opening last known pdf position in `pdf-view-mode`
+
+## `on-demand/me-pkgbuild`
+* `pkgbuild-mode`: Edit and run Arch Linux's PKGBUILD recipes
+
+## `on-demand/me-plantuml`
+* `plantuml-mode`: Major mode for PlantUML
+* `flymake-plantuml`: Add `flymake` support for editing PlantUML files
+
+## `on-demand/me-powershell`
+* `powershell`: Mode for editing PowerShell scripts
+
+## `on-demand/me-protobuf`
+* `protobuf-mode`: Major mode for editing Protocol Buffers
+* `protobuf-ts-mode`: Tree-sitter based major mode for editing Protocol Buffers files
+
+## `on-demand/me-purescript`
+* `purescript-mode`: A PureScript editing mode
+
+## `on-demand/me-python`
+* `python-docstring`: Smart Python docstring formatting
+* `python-pytest`: Helpers to run Python's pytest
+
+## `on-demand/me-qsharp`
+* `qsharp-mode`: Major mode for the Q# programming language
+
+## `on-demand/me-qt`
+* `qml-mode`: Major mode for editing QT Declarative (QML) code
+* `qt-pro-mode`: Major mode for Qt's Pro/Pri files
+
+## `on-demand/me-rust`
+* `rust-mode`: Major mode for editing Rust source code
+
+## `on-demand/me-scala`
+* `scala-mode`: Major mode for editing Scala
+* `sbt-mode`: An Emacs mode for interacting with Scala sbt (Simple build tool) and projects
+
+## `on-demand/me-scheme`
+* `racket-mode`: Racket editing, REPL, and more
+* `geiser`: Generic Scheme interaction mode with an enhanced REPL and a set of minor modes
+* `geiser-chez`: Chez Scheme and Geiser talk to each other
+* `geiser-guile`: Guile Scheme and Geiser talk to each other
+* `geiser-mit`: MIT Scheme and Geiser talk to each other
+* `geiser-racket`: Racket Scheme and Geiser talk to each other
+* `macrostep-geiser`: Macrostep for `geiser`
+* `flymake-guile`: Guile `flymake` backend
+
+## `on-demand/me-selinux-policy`
+* `selinux-policy`: Major mode for editing SELinux TE-RBAC
+
+## `on-demand/me-sml`
+* `sml-mode`: Major mode for editing (Standard) ML
+
+## `on-demand/me-sql`
+* `sqlup-mode`: Upcase SQL words for you
+
+## `on-demand/me-stan`
+* `stan-mode`: Major mode for editing Stan files
+* `eldoc-stan`: Eldoc Eldoc support for Stan functions
+* `stan-snippets`: Yasnippets for Stan
+
+## `on-demand/me-swift`
+* `swift-mode`: Major-mode for Apple's Swift programming language
+* `swift-ts-mode`: Major mode for Swift based on Tree-sitter
+
+## `on-demand/me-textile`
+* `textile-mode`: Textile markup editing major mode
+
+## `on-demand/me-toml`
+* `toml-mode`: Major mode for editing TOML files
+
+## `on-demand/me-v`
+* `v-mode`: Major mode for the V programming language
+
+## `on-demand/me-vala`
+* `vala-mode`: Major mode for the Vala programming language
+* `vala-snippets`: Yasnippets for Vala
+
+## `on-demand/me-vb`
+* `visual-basic-mode`: A mode for editing Visual Basic programs
+
+## `on-demand/me-vimscript`
+* `vimrc-mode`: Major mode for vimrc files
+
+## `on-demand/me-web`
+* `web-mode`: Major mode for editing web templates
+* `emmet-mode`: Support for Emmet, the essential toolkit for web-developers
+* `haml-mode`: Major mode for editing Haml files
+* `sass-mode`: Major mode for editing Sass files
+* `wat-mode`: Major mode for WebAssembly
+* `flymake-biome`: Flymake integration for checking JavaScript files using `biome`
+
+## `on-demand/me-wiki`
+* `wikitext-mode`: Major mode for editing Wikitexts
+* `mediawiki`: MediaWiki frontend
+
+## `on-demand/me-yaml`
+* `yaml-mode`: Major mode for editing YAML files
+* `yaml-pro`: Parser-aided YAML editing features
+
+## `on-demand/me-yang`
+* `yang-mode`: Major mode for editing YANG files
+
+## `on-demand/me-zig`
+* `zig-mode`: Major mode for the Zig programming language
+* `zig-ts-mode`: Tree-sitter based major mode for the Zig programming language
+
