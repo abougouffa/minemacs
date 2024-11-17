@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.0.1](https://github.com/abougouffa/minemacs/compare/bc3690bef6b525eab1564ea33dedefd442afdf4b..v11.0.1) - 2024-11-17
+#### Bug Fixes
+- **(ztree)** fix the keybindings for `n` and `p` - ([c540c80](https://github.com/abougouffa/minemacs/commit/c540c8083d0228a96efc3d4bc3d872b65acda756)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([bc3690b](https://github.com/abougouffa/minemacs/commit/bc3690bef6b525eab1564ea33dedefd442afdf4b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dired)** enable wrapping next-line at top/bottom - ([b8d5df5](https://github.com/abougouffa/minemacs/commit/b8d5df5e3fbd9eda3de05807f56916da9307e915)) - [@abougouffa](https://github.com/abougouffa)
+- **(dired)** remove unneeded hack - ([07b85b1](https://github.com/abougouffa/minemacs/commit/07b85b1e2674c4908732d4b92d2df54ce5f182b0)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-multimodal)** enable in `ztree-mode` - ([e01aa0b](https://github.com/abougouffa/minemacs/commit/e01aa0bd2da2c1e2674f7aa6dddd680815821e3b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.0.0](https://github.com/abougouffa/minemacs/compare/3b688e146b3929a9cdb60c31d694861bcbfbeffb..v11.0.0) - 2024-11-16
 #### Bug Fixes
 - **(desktop)** fix saving/reading desktop session files - ([e683b05](https://github.com/abougouffa/minemacs/commit/e683b05f55a86259e01a8ffbc6611d42886b8cd5)) - [@abougouffa](https://github.com/abougouffa)
