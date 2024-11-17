@@ -42,6 +42,7 @@
 (use-package elfeed-protocol
   :straight t
   :after elfeed
+  :init
   (elfeed-protocol-enable))
 
 
