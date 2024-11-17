@@ -478,8 +478,8 @@ Get the IP-address for device DEV (default: eth0) of the current machine.
 (fn &optional DEV)")
 (autoload '+github-latest-release "me-lib-extra" "\
 Get the latest release of REPO. Strips the \"v\" at left.
-
 Fallback to FALLBACK-RELEASE when it can't get the last one.
+When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version.
 
 (fn REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)")
 (autoload '+github-download-release "me-lib-extra" "\
@@ -663,6 +663,8 @@ Forget all duplicate known projects (/home/user/proj, ~/proj)." t)
 Initialize project list from `+project-root-wildcards'." t)
 (autoload '+xref-find-references-at-point "me-lib-extra" "\
 Find references to the identifier at or around point." t)
+(autoload 'minemacs-extract-packages-descriptions "me-lib-extra" "\
+Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
 (register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+g" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
@@ -891,7 +893,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-" "+load" "emacs/features" "minemacs-" "os/" "sys/arch"))
+(register-definition-prefixes "me-vars" '("+e" "+load" "minemacs-" "os/" "sys/arch"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vb.el
