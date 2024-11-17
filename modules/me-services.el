@@ -78,7 +78,9 @@
 
 ;; Stack Exchange for Emacs
 (use-package sx
-  :straight t)
+  :straight t
+  :custom
+  (sx-cache-directory (concat minemacs-cache-dir "sx/")))
 
 
 ;; Paste text to pastebin-like services
