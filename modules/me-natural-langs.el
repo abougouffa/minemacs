@@ -59,11 +59,7 @@ to built-in `flyspell-mode'."
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 
 
-;; Add this to .dir-locals.el
-;; ((nil (eglot-workspace-configuration
-;;        . ((ltex . ((language . "fr")
-;;                    (disabledRules . ((fr . ["FRENCH_WHITESPACE"])))
-;;                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
+;; Internal package to add support for LTeX-LS specific commands to `eglot'
 (use-package me-eglot-ltex
   :after eglot
   :demand

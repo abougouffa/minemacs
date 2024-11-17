@@ -139,7 +139,7 @@
 * `jinx`: Just-in-time spell checker based on the Enchanted library
 * `lexic`: Fancy Emacs integration with the console version of StarDict
 * `reverso`: Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
-* `me-eglot-ltex`:                    (additionalRules . ((languageModel . "/usr/share/ngrams/")))))))))
+* `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
 
 ## `me-notes`
 * `denote`: Simple notes for Emacs with an efficient file-naming scheme
