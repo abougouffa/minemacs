@@ -13,7 +13,7 @@
   :auto-mode '(("\\.te\\'" . selinuxpolicy-mode)))
 
 
-(use-package selinuxpolicy-mode
+(use-package selinux-policy
   :straight (:host github :repo "pierre-rouleau/selinux-policy")
   :commands (selinuxpolicy-mode)
   :mode "\\.te\\'")
