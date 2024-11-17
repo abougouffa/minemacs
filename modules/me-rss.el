@@ -33,10 +33,9 @@
   (defun +elfeed-download-image ()
     "Download the image at point."
     (interactive)
-    (let ((url (get-text-property (point) 'image-url)))
-      (if (not url)
-          (message "No image at point!")
-        (url-copy-file url (expand-file-name (url-file-nondirectory url) (+directory-ensure +elfeed-images-dir)))))))
+    (if-let* ((url (get-text-property (point) 'image-url)))
+        (url-copy-file url (expand-file-name (url-file-nondirectory url) (+directory-ensure +elfeed-images-dir)))
+      (user-error "No image at point!"))))
 
 
 ;; Extra `elfeed' protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
