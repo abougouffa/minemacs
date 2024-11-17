@@ -37,6 +37,7 @@
     ;; me-rss
     me-search
     ;; me-services
+    me-snippets
     ;; me-tags
     me-tools
     me-tty

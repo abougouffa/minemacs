@@ -36,6 +36,7 @@
         ;; me-rss         ; News feed (elfeed, ...)
         me-search         ; Search and navigation (avy, rg, fzf, isearch+, isearch-mb, phi-search, ...)
         me-services       ; Web services (org-jira, ...)
+        me-snippets       ; Snippets (yasnippet, yasnippet-capf, doom-snippets, spdx, ...)
         ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
         me-tty            ; Emacs from terminal (xclip, ...)
