@@ -142,10 +142,10 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 
-;; Integrate `nerd-icons' with `archive-mode', `tar-mode' and `dired-mode'
+;; Integrate `nerd-icons' with `archive-mode', `tar-mode', `dired-mode', and `ztree'
 (use-package nerd-icons-multimodal
   :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
-  :hook ((archive-mode tar-mode dired-mode) . nerd-icons-multimodal-mode))
+  :hook ((archive-mode tar-mode dired-mode ztree-mode) . nerd-icons-multimodal-mode))
 
 
 ;; Extra font lock rules for a more colourful `dired'
