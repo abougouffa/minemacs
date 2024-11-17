@@ -493,10 +493,6 @@ Unbind setq hooks on HOOKS for VARS.
 
 Queue FNS to be byte/natively-compiled after a brief delay.
 
-#### `(minemacs-extract-packages-descriptions)`
-
-Extract the descriptions of MinEmacs packages.
-
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
 Execute shell command COMMAND and return its output as a string.
@@ -1077,6 +1073,10 @@ Initialize project list from `+project-root-wildcards`.
 #### `(+xref-find-references-at-point)`
 
 Find references to the identifier at or around point.
+
+#### `(minemacs-extract-packages-descriptions)`
+
+Extract the descriptions of MinEmacs packages.
 
 #### `(+list-external-dependencies)`
 
