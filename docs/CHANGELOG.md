@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.1.0](https://github.com/abougouffa/minemacs/compare/724cdefd3e12d3615cadca0f01780aed4076649c..v11.1.0) - 2024-11-17
+#### Bug Fixes
+- **(combobulate)** fix bindings for obsolete commands - ([ed70d24](https://github.com/abougouffa/minemacs/commit/ed70d24f9c46e5e7d07448a242f735b5a1094349)) - [@abougouffa](https://github.com/abougouffa)
+- **(elfeed-protocol)** properly initialize after loading `elfeed` - ([780cc62](https://github.com/abougouffa/minemacs/commit/780cc62b8a2c2d6809d1d5e3618b76f10bf9f9b4)) - [@abougouffa](https://github.com/abougouffa)
+- **(selinux-policy)** fix the recipe - ([c6858b4](https://github.com/abougouffa/minemacs/commit/c6858b4c0b758f03b2e0637fe8e70ef802f2512a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(natural-langs)** update the description of `me-eglot-ltex` - ([60361c8](https://github.com/abougouffa/minemacs/commit/60361c8c217afb23ed2194c0002cdd4f6fca353a)) - [@abougouffa](https://github.com/abougouffa)
+- update the documentation - ([0407a87](https://github.com/abougouffa/minemacs/commit/0407a87d8b2fb45dd393f526d48dafe6506cbbd0)) - [@abougouffa](https://github.com/abougouffa)
+- generate the modules list - ([391205a](https://github.com/abougouffa/minemacs/commit/391205aabf170f4e5f4bb8d9c76eb853d6b88f6f)) - [@abougouffa](https://github.com/abougouffa)
+- add descriptions for on-demand packages - ([d42fb84](https://github.com/abougouffa/minemacs/commit/d42fb84e8fed39dc0c96ac71642b68a7811f2371)) - [@abougouffa](https://github.com/abougouffa)
+- add a list of modules/packages - ([4aa707d](https://github.com/abougouffa/minemacs/commit/4aa707dcc9856c1083d7557534bbe43cd684af02)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(elfeed)** enable again + bind `+elfeed` to `C-c C-o f` - ([e14faa4](https://github.com/abougouffa/minemacs/commit/e14faa4f2db3703d7dc412ea19754f8b7de78dee)) - [@abougouffa](https://github.com/abougouffa)
+- **(rss)** add support for extra protocols via `elfeed-protocol` - ([138d889](https://github.com/abougouffa/minemacs/commit/138d8898bb9464b51d63518383285e1fd125b066)) - [@abougouffa](https://github.com/abougouffa)
+- add `minemacs-extract-packages-descriptions` - ([be95e29](https://github.com/abougouffa/minemacs/commit/be95e290338124b0fefb875c5c2b04139685a011)) - [@abougouffa](https://github.com/abougouffa)
+- move `yasnippet` and the like to the new module `me-snippets` - ([3eb87ad](https://github.com/abougouffa/minemacs/commit/3eb87ad49bc840065fa3ddd032388b561e7e4d74)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** automatically generate all the docs - ([39b7ec1](https://github.com/abougouffa/minemacs/commit/39b7ec1123b4aac8129e4e3791c18e69ac0b07f8)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(elfeed)** minor edits - ([1edcb85](https://github.com/abougouffa/minemacs/commit/1edcb85bea1db829ec95d33879b3a3178c85af2e)) - [@abougouffa](https://github.com/abougouffa)
+- move a command to `me-lib-extra` - ([9c787ea](https://github.com/abougouffa/minemacs/commit/9c787ea567ebb550400789b33ea2710f8a8cab51)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(jiralib)** better documentation for my custom commands - ([c9a3235](https://github.com/abougouffa/minemacs/commit/c9a323582a432fa9e553a04bfd08e5714c86ad0d)) - [@abougouffa](https://github.com/abougouffa)
+- **(sx)** correctly set the cache directory - ([2f4dfc3](https://github.com/abougouffa/minemacs/commit/2f4dfc352783311f8d00b9feeddc6c4b00147909)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** add display rule for `envrc` warnings buffer - ([13c1b79](https://github.com/abougouffa/minemacs/commit/13c1b79009a51a236792cc34ac5d2c7afbd2c96a)) - [@abougouffa](https://github.com/abougouffa)
+- add on-demands mods in `minemacs-extract-packages-descriptions` - ([1c19e11](https://github.com/abougouffa/minemacs/commit/1c19e115e5239e020f8533919581a6714180c2b6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([724cdef](https://github.com/abougouffa/minemacs/commit/724cdefd3e12d3615cadca0f01780aed4076649c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.0.1](https://github.com/abougouffa/minemacs/compare/bc3690bef6b525eab1564ea33dedefd442afdf4b..v11.0.1) - 2024-11-17
 #### Bug Fixes
 - **(ztree)** fix the keybindings for `n` and `p` - ([c540c80](https://github.com/abougouffa/minemacs/commit/c540c8083d0228a96efc3d4bc3d872b65acda756)) - [@abougouffa](https://github.com/abougouffa)
