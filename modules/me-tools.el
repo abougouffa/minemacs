@@ -15,6 +15,7 @@
   :custom
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
 
+
 ;; TRAMP integration for Incus containers
 (use-package incus-tramp
   :straight t
@@ -28,11 +29,6 @@
   :straight (:host github :repo "SebastienWae/app-launcher")
   :when (+emacs-options-p :any 'os/linux 'os/bsd)
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
-
-
-;; Manipulate "tmux" from Emacs
-(use-package emamux
-  :straight t)
 
 
 ;; System-wide popup Emacs windows for quick edits
