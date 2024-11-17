@@ -16,13 +16,12 @@
 ;; An Emacs RSS web feeds client
 (use-package elfeed
   :straight t
-  ;; BUG+TEMP: Disable `elfeed' as it is broken for now. See https://github.com/skeeto/elfeed/issues/530
-  :disabled
   :init
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."
     :group 'minemacs-elfeed)
   (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window)
+  :bind (:map minemacs-open-thing-map ("f" . +elfeed))
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))
