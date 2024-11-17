@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-pcap
   :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
 
+
+;; Major mode for working with PCAP files via Wireshark's `tshark' tool
 (use-package pcap-mode
   :straight t
   :mode (rx "." (or "pcap" "pcapng" "ntar") eol)

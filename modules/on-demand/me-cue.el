@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cue
   :auto-mode '(("\\.cue\\'" . cue-mode)))
 
+
+;; Major mode for CUE language files
 (use-package cue-mode
   :straight t)
 

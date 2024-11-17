@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-graphviz
   :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
+
+;; Mode for the dot-language used by GraphViz
 (use-package graphviz-dot-mode
   :straight (:files ("graphviz-dot-mode.el" "texinfo"))
   :custom

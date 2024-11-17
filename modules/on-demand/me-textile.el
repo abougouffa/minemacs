@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-textile
   :auto-mode '(("\\.textile\\'" . textile-mode)))
 
+
+;; Textile markup editing major mode
 (use-package textile-mode
   :straight t
   :mode "\\.textile\\'")

@@ -13,9 +13,13 @@
   :auto-mode '(("\\.dtsi?\\'" . dts-mode)
                (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
 
+
+;; Major mode for DeviceTree source code
 (use-package dts-mode
   :straight t)
 
+
+;; Major mode for Device Tree Binary (`*.dtb') files
 (use-package virtual-dts-mode
   :straight (:host github :repo "connorfeeley/virtual-dts-mode"))
 

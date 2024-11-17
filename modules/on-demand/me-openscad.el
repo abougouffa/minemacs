@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-openscad
   :auto-mode '(("\\.scad\\'" . scad-mode)))
 
+
+;; A major mode for editing OpenSCAD code
 (use-package scad-mode
   :straight t
   :init

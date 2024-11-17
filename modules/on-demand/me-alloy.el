@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-alloy
   :auto-mode '(("\\.als\\'" . alloy-mode)))
 
+
+;; Emacs major mode for Alloy language
 (use-package alloy-mode
   :straight (:host github :repo "dwwmmn/alloy-mode")
   :mode "\\.als\\'")

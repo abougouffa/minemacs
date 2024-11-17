@@ -13,12 +13,18 @@
   :auto-mode '(("\\.stan\\'" . stan-mode))
   :companion-packages '(((stan-mode stan-ts-mode) . (eldoc-stan stan-snippets))))
 
+
+;; Major mode for editing Stan files
 (use-package stan-mode
   :straight t)
 
+
+;; Eldoc Eldoc support for Stan functions
 (use-package eldoc-stan
   :straight t)
 
+
+;; Yasnippets for Stan
 (use-package stan-snippets
   :straight t)
 

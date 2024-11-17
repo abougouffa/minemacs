@@ -13,6 +13,8 @@
   :auto-mode '(("\\.apl\\'" . gnu-apl-mode))
   :interpreter-mode '(("apl" . gnu-apl-mode)))
 
+
+;; Major mode for GNU APL
 (use-package gnu-apl-mode
   :straight t)
 

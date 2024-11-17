@@ -13,6 +13,8 @@
   :auto-mode '(("\\.lua\\'" . lua-mode))
   :interpreter-mode '(("lua" . lua-mode)))
 
+
+;; Major mode for editing Lua scripts
 (use-package lua-mode
   :straight t
   :custom

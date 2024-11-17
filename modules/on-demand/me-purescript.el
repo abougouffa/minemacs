@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-purescript
   :auto-mode '(("\\.purs\\'" . purescript-mode)))
 
+
+;; A PureScript editing mode
 (use-package purescript-mode
   :straight t)
 

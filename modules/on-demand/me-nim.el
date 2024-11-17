@@ -12,8 +12,10 @@
 (minemacs-register-on-demand-module 'me-nim
   :auto-mode '(("\\.nim\\'" . nim-mode) ("\\.nim\\(ble\\|s\\)\\'" . nimscript-mode-maybe)))
 
+
 (push 'flycheck-nimsuggest straight-built-in-pseudo-packages)
 
+;; A major mode for the Nim programming language
 (use-package nim-mode
   :straight t)
 

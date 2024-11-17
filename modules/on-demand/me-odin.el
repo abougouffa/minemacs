@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-odin
   :auto-mode '(("\\.odin\\'" . odin-mode)))
 
+
+;; Major mode for Odin
 (use-package odin-mode
   :straight (:host github :repo "mattt-b/odin-mode"))
 

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-mojo
   :auto-mode '(("\\.mojo\\'" . mojo-mode) ("\\.🔥\\'" . mojo-mode)))
 
+
+;; Major mode for the Mojo programming lanugage
 (use-package mojo
   :straight (:host github :repo "andcarnivorous/mojo-hl")
   :commands (mojo-mode mojo-compile)

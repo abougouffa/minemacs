@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-gecode
   :auto-mode '((("\\.gco\\(?:de\\)?\\'" "\\.GCO\\(?:DE\\)?\\'" "\\.[nN][gG]?[cC]\\'" "\\.mp[tf]\\'") . gcode-mode)))
 
+
+;; Simple G-Code major mode
 (use-package gcode-mode
   :straight t
   :hook (gcode-mode . eldoc-mode))

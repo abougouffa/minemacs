@@ -14,6 +14,8 @@
                ("\\.cm\\'" . sml-cm-mode)
                ("\\.grm\\'" . sml-yacc-mode)))
 
+
+;; Major mode for editing (Standard) ML
 (use-package sml-mode
   :straight t
   :mode "\\.s\\(?:ml\\|ig\\)\\'"

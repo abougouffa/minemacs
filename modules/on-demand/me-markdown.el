@@ -13,6 +13,8 @@
   :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
   :companion-packages '((markdown-mode . markdown-ts-mode)))
 
+
+;; Major mode for Markdown-formatted text
 (use-package markdown-mode
   :straight t
   :custom
@@ -21,6 +23,8 @@
   (markdown-fontify-code-blocks-natively t)
   (markdown-enable-highlighting-syntax t))
 
+
+;; Major mode for Markdown using Treesitter
 (use-package markdown-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter)

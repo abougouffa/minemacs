@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-p4
   :auto-mode '(("\\.p4\\(info\\)?\\'" . p4-16-mode)))
 
+
+;; Support for the P4_16 programming language
 (use-package p4-16-mode
   :straight t
   :mode "\\.p4\\'")

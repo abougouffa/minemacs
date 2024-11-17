@@ -13,9 +13,13 @@
   :auto-mode '(("\\.nix\\'" . nix-mode)
                ("\\.nix\\'" . nix-ts-mode)))
 
+
+;; Major mode for editing Nix files
 (use-package nix-mode
   :straight t)
 
+
+;; Tree-sitter based major mode for editing Nix files
 (use-package nix-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter)

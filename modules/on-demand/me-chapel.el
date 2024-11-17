@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-chapel
   :auto-mode '(("\\.chpl\\'" . chapel-mode)))
 
+
+;; A major mode for the Chapel programming language
 (use-package chapel-mode
   :straight t)
 

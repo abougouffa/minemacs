@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cuda
   :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
 
+
+;; Major mode for editing Nvidia CUDA C++ files
 (use-package cuda-mode
   :straight t
   :hook (cuda-mode . +prog-mode-run-hooks))

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-vb
   :auto-mode '(("\\.vbs?\\'" . visual-basic-mode)))
 
+
+;; A mode for editing Visual Basic programs
 (use-package visual-basic-mode
   :straight t
   :mode "\\.vbs?\\'"

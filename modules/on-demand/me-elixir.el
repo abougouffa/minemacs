@@ -13,9 +13,13 @@
   :auto-mode '((("\\.elixir\\'" "\\.exs?\\'" "/mix\\.lock") . elixir-mode))
   :companion-packages '((elixir-mode . ob-elixir)))
 
+
+;; Major mode for editing Elixir files
 (use-package elixir-mode
   :straight t)
 
+
+;; Org Babel code evaluation for Elixir
 (use-package ob-elixir
   :straight t)
 

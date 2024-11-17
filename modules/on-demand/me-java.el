@@ -14,9 +14,13 @@
   :interpreter-mode '(("groovy" . groovy-mode))
   :companion-packages '(((java-mode java-ts-mode) . (groovy-mode android-mode))))
 
+
+;; Major mode for Groovy source files
 (use-package groovy-mode
   :straight t)
 
+
+;; Minor mode for Android application development
 (use-package android-mode
   :straight t)
 

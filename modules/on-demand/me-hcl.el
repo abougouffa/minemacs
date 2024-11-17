@@ -12,9 +12,13 @@
 (minemacs-register-on-demand-module 'me-hcl
   :auto-mode '(("\\.hcl\\'" . hcl-mode) ("\\.nomad\\'" . hcl-mode) ("\\.t\\(f\\(vars\\)?\\|ofu\\)\\'" . terraform-mode)))
 
+
+;; Major mode for Hashicorp Configuration Language (HCL)
 (use-package hcl-mode
   :straight t)
 
+
+;; Major mode for Terraform configuration files
 (use-package terraform-mode
   :straight t)
 

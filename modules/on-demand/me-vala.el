@@ -13,9 +13,13 @@
   :auto-mode '(("\\.vala\\'" . vala-mode) ("\\.vapi\\'" . vala-mode))
   :companion-packages '((vala-mode . vala-snippets)))
 
+
+;; Major mode for the Vala programming language
 (use-package vala-mode
   :straight t)
 
+
+;; Yasnippets for Vala
 (use-package vala-snippets
   :straight t)
 

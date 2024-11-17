@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-ballerina
   :auto-mode '(("\\.bal\\'" . ballerina-mode)))
 
+
+;; A major mode for editing ballerina source code
 (use-package ballerina-mode
   :straight (:host github :repo "heshanpadmasiri/ballerina-mode")
   :config

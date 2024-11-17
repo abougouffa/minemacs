@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cc
   :companion-packages '(((c-mode c++-mode c-ts-mode c++-ts-mode) . flymake-cppcheck)))
 
+
+;; Flymake backend for CppCheck
 (use-package flymake-cppcheck
   :straight (:host github :repo "shaohme/flymake-cppcheck")
   :init

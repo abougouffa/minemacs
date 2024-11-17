@@ -15,9 +15,13 @@
   :interpreter-mode '(("bb" . clojure-mode)
                       ("nbb" . clojurescript-mode)))
 
+
+;; Major mode for Clojure code
 (use-package clojure-mode
   :straight t)
 
+
+;; Clojure Interactive Development Environment that Rocks
 (use-package cider
   :straight t)
 

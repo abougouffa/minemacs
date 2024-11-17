@@ -13,6 +13,8 @@
   :auto-mode '(("\\(?:\\.cr\\)\\'" . crystal-mode))
   :interpreter-mode '(("crystal" . crystal-mode)))
 
+
+;; Major mode for editing Crystal files
 (use-package crystal-mode
   :straight t)
 

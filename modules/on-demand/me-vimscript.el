@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-vimscript
   :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
+
+;; Major mode for vimrc files
 (use-package vimrc-mode
   :straight t)
 

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-erlang
   :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
 
+
+;; Major modes for editing and running Erlang files
 (use-package erlang
   :straight t)
 

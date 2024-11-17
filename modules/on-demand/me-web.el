@@ -35,6 +35,8 @@
   :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))
                         ((js-mode js-ts-mode) . flymake-biome)))
 
+
+;; Major mode for editing web templates
 (use-package web-mode
   :straight t
   :custom
@@ -43,19 +45,29 @@
   (add-to-list 'web-mode-engines-alist '("elixir" . "\\.eex\\'"))
   (add-to-list 'web-mode-engines-alist '("phoenix" . "\\.[lh]eex\\'")))
 
+
+;; Support for Emmet, the essential toolkit for web-developers
 (use-package emmet-mode
   :straight t)
 
+
+;; Major mode for editing Haml files
 (use-package haml-mode
   :straight t)
 
+
+;; Major mode for editing Sass files
 (use-package sass-mode
   :straight t)
 
+
+;; Major mode for WebAssembly
 (use-package wat-mode
   :straight (:host github :repo "devonsparks/wat-mode")
   :commands (wat-mode))
 
+
+;; Flymake integration for checking JavaScript files using `biome'
 (use-package flymake-biome
   :straight t)
 

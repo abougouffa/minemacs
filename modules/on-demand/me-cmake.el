@@ -13,9 +13,13 @@
   :auto-mode '((("CMakeLists\\.txt\\'" "\\.cmake\\'") . cmake-mode))
   :companion-packages '((cmake-ts-mode . (cmake-font-lock cmake-mode))))
 
+
+;; Major mode for editing CMake sources
 (use-package cmake-mode
   :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
 
+
+;; Advanced, type aware, highlight support for CMake
 (use-package cmake-font-lock
   :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
   :custom

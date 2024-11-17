@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-hurl
   :auto-mode '(("\\.hurl\\'" . hurl-mode)))
 
+
+;; Major mode to edit, run and test HTTP requests using Hurl
 (use-package hurl-mode
   :straight (:host github :repo "JasZhe/hurl-mode")
   :mode "\\.hurl\\'")

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-gnuplot
   :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
 
+
+;; Major mode and interactive frontend for GNUPlot
 (use-package gnuplot
   :straight t
   :mode ("\\.gnuplot\\'" . gnuplot-mode)

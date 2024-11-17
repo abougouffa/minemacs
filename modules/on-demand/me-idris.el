@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-idris
   :auto-mode '(("\\.l?idr\\'" . idris-mode)))
 
+
+;; Major mode for the Idris programming language
 (use-package idris-mode
   :straight t)
 

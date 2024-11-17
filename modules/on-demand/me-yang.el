@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-yang
   :auto-mode '(("\\.[Yy][Aa][Nn][Gg]\\'" . yang-mode)))
 
+
+;; Major mode for editing YANG files
 (use-package yang-mode
   :straight t)
 

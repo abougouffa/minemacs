@@ -13,6 +13,8 @@
   :auto-mode '(("\\.bqn\\'" . bqn-mode))
   :interpreter-mode '(("bqn" . bqn-mode)))
 
+
+;; Major mode for editing BQN grammar files
 (use-package bqn-mode
   :straight t)
 

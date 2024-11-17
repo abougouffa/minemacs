@@ -14,9 +14,13 @@
 
 ;;;###autoload(add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 
+
+;; Major mode for editing QT Declarative (QML) code
 (use-package qml-mode
   :straight t)
 
+
+;; Major mode for Qt's Pro/Pri files
 (use-package qt-pro-mode
   :straight t
   :mode "\\.pr[io]\\'")

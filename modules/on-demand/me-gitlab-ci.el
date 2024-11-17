@@ -13,6 +13,8 @@
   :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode))
   :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
 
+
+;; Mode for editing GitLab CI files
 (use-package gitlab-ci-mode
   :straight t)
 

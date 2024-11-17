@@ -12,7 +12,8 @@
 (minemacs-register-on-demand-module 'me-latex
   :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) . (auctex auctex-latexmk latex-preview-pane))))
 
-;; Adapted from Doom Emacs and Crafted Emacs
+
+;; Integrated environment for TeX
 (use-package tex
   :straight auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
@@ -29,6 +30,7 @@
   (TeX-save-query nil) ; just save, don't ask before each compilation.
   (TeX-engine 'xetex) ; use XeLaTeX by default
   :config
+  ;; Adapted from Doom Emacs and Crafted Emacs
   (when (functionp 'pdf-tools-install)
     (add-to-list 'TeX-view-program-selection '(output-pdf "PDF Tools")))
 
@@ -38,7 +40,8 @@
   ;; Compile to PDF by default
   (TeX-PDF-mode 1))
 
-;; Adapted from Doom Emacs and Crafted Emacs
+
+;; Integrated environment for LaTeX
 (use-package latex
   :straight auctex
   :hook (LaTeX-mode . latex-math-mode)
@@ -50,6 +53,7 @@
   (LaTeX-electric-left-right-brace t)
   (LaTeX-reftex-cite-format-auto-activate nil)
   :config
+  ;; Adapted from Doom Emacs and Crafted Emacs
   ;; Set a correct indentation in a few additional environments
   (add-to-list 'LaTeX-indent-environment-list '("lstlisting" current-indentation))
   (add-to-list 'LaTeX-indent-environment-list '("tikzcd" LaTeX-indent-tabular))
@@ -146,7 +150,8 @@
           ("restartlist" "{")
           ("crefname" "{"))))
 
-;; Adapted from Doom Emacs
+
+;; Add LatexMk support to AUCTeX
 (use-package auctex-latexmk
   :straight t
   :after latex
@@ -154,6 +159,7 @@
   :custom
   (auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
+  ;; Adapted from Doom Emacs
   ;; Enable only if Latexmk is available
   (when (executable-find "latexmk")
     (setq-default
@@ -167,6 +173,8 @@
     ;; Add LatexMk as a TeX target.
     (auctex-latexmk-setup)))
 
+
+;; Makes LaTeX editing less painful by providing a updatable preview pane
 (use-package latex-preview-pane
   :straight t)
 

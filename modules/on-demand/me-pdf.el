@@ -14,6 +14,8 @@
   :magic-mode '(("%PDF" . pdf-view-mode))
   :companion-packages '((doc-view-mode . (pdf-view-mode pdf-isearch-minor-mode pdf-view-restore-mode))))
 
+
+;; View and annotate PDF files
 (use-package pdf-tools
   :straight t
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
@@ -24,9 +26,13 @@
   (pdf-view-image-relief 2)
   (pdf-view-use-scaling t))
 
+
+;; Isearch support in PDF buffers
 (use-package pdf-isearch
   :hook (pdf-view-mode . pdf-isearch-minor-mode))
 
+
+;; Support for opening last known pdf position in `pdf-view-mode'
 (use-package pdf-view-restore
   :straight t
   :hook (pdf-view-mode . pdf-view-restore-mode)

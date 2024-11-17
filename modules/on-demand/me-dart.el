@@ -13,9 +13,13 @@
   :auto-mode '(("\\.dart\\'" . dart-mode))
   :companion-packages '((dart-mode . flutter)))
 
+
+;; Major mode for editing Dart files
 (use-package dart-mode
   :straight t)
 
+
+;; Tools for working with Flutter SDK
 (use-package flutter
   :straight t)
 

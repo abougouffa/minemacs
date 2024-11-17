@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-epub
   :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
 
+
+;; Featureful EPUB reader mode
 (use-package nov
   :straight t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))

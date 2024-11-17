@@ -14,11 +14,15 @@
   :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode))
   :companion-packages '((yaml-ts-mode . (yaml-mode yaml-pro-ts-mode))))
 
+
+;; Major mode for editing YAML files
 (use-package yaml-mode
   :straight t
   :mode "Procfile\\'"
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
 
+
+;; Parser-aided YAML editing features
 (use-package yaml-pro
   :straight t
   :when (+emacs-options-p 'tree-sitter)

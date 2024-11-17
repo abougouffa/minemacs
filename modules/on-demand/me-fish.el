@@ -13,6 +13,8 @@
   :auto-mode '((("\\.fish\\'" "/fish_funced\\..*\\'") . fish-mode))
   :interpreter-mode '(("fish" . fish-mode)))
 
+
+;; Major mode for Fish shell scripts
 (use-package fish-mode
   :straight t)
 

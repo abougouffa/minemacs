@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cython
   :auto-mode '((("\\.pyx\\'" "\\.px[di]\\'") . cython-mode)))
 
+
+;; Major mode for editing Cython files
 (use-package cython-mode
   :straight t)
 

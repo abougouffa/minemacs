@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-common-lisp
   :companion-packages '((lisp-mode . (sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep))))
 
+
+;; Sylvester the Cat's Common Lisp IDE
 (use-package sly
   :straight t
   :custom
@@ -34,21 +36,29 @@
   (setq inferior-lisp-program (caar (cdar sly-lisp-implementations))
         sly-default-lisp (caar sly-lisp-implementations)))
 
+
+;; Quicklisp support for SLY
 (use-package sly-quicklisp
   :straight t
   :after sly
   :demand)
 
+
+;; ASDF system support for SLY
 (use-package sly-asdf
   :straight t
   :after sly
   :demand)
 
+
+;; Add ANSI colors support to the `sly-mrepl'
 (use-package sly-repl-ansi-color
   :straight t
   :after sly
   :demand)
 
+
+;; Fancy macro-expansion via `macrostep'
 (use-package sly-macrostep
   :straight t
   :after sly

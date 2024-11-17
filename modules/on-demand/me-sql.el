@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-sql
   :companion-packages '((sql-mode . sqlup-mode)))
 
+
+;; Upcase SQL words for you
 (use-package sqlup-mode
   :straight t)
 

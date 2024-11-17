@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-jenkins
   :auto-mode '(("Jenkinsfile\\'" . jenkinsfile-mode)))
 
+
+;; Major mode for editing Jenkins declarative pipeline syntax
 (use-package jenkinsfile-mode
   :straight t)
 

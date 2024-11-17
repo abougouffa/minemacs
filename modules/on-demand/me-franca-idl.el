@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-franca-idl
   :auto-mode '(("\\.fidl\\'" . franca-idl-mode)))
 
+
+;; A major mode to edit Franca IDL code
 (use-package franca-idl
   :straight (:host github :repo "zeph1e/franca-idl.el"))
 

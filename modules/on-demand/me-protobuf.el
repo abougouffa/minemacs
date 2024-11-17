@@ -12,9 +12,13 @@
 (minemacs-register-on-demand-module 'me-protobuf
   :auto-mode '(("\\.proto\\'" . protobuf-mode)))
 
+
+;; Major mode for editing Protocol Buffers
 (use-package protobuf-mode
   :straight t)
 
+
+;; Tree-sitter based major mode for editing Protocol Buffers files
 (use-package protobuf-ts-mode
   :straight (:host github :repo "emacsattic/protobuf-ts-mode")
   :when (+emacs-options-p 'tree-sitter))

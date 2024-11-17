@@ -12,10 +12,14 @@
 (minemacs-register-on-demand-module 'me-wiki
   :auto-mode '(("\\.wiki\\'" . wikitext-mode)))
 
+
+;; Major mode for editing Wikitexts
 (use-package wikitext-mode
   :straight t
   :mode "\\.wiki\\'")
 
+
+;; MediaWiki frontend
 (use-package mediawiki
   :straight t
   :commands (mediawiki-mode))

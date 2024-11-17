@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-godot
   :auto-mode '(("\\.gd\\'" . gdscript-mode) ("\\.tres\\'" . conf-toml-mode) ("\\.tscn\\'" . conf-toml-mode)))
 
+
+;; Major mode for Godot's GDScript language
 (use-package gdscript-mode
   :straight t)
 

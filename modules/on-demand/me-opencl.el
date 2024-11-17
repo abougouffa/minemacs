@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-opencl
   :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
 
+
+;; Major mode with for OpenCL kernels
 (use-package opencl-c-mode
   :straight t
   :mode "\\.cl\\'")

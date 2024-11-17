@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cobol
   :auto-mode '(("\\.c\\(ob\\|bl\\|py\\)\\'" . cobol-mode)))
 
+
+;; Major mode for editing COBOL code
 (use-package cobol-mode
   :straight t)
 

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-llvm
   :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
 
+
+;; LLVM major mode using Tree-sitter
 (use-package llvm-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter))

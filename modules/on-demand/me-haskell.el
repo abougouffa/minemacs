@@ -13,6 +13,8 @@
   :auto-mode '((("\\.hsig\\'" "\\.[gh]s\\'" "\\.hsc\\'") . haskell-mode) ("\\.l[gh]s\\'" . haskell-literate-mode))
   :interpreter-mode '(("runghc" . haskell-mode) ("runhaskell" . haskell-mode)))
 
+
+;; Major mode for editing Haskell code
 (use-package haskell-mode
   :straight t)
 

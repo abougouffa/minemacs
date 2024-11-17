@@ -13,6 +13,8 @@
   :auto-mode '(("\\.awk\\'" . awk-ts-mode))
   :companion-packages '((awk-mode . awk-ts-mode)))
 
+
+;; Major mode for AWK using Tree-sitter
 (use-package awk-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter))

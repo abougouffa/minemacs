@@ -12,10 +12,14 @@
 (minemacs-register-on-demand-module 'me-python
   :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
 
+
+;; Smart Python docstring formatting
 (use-package python-docstring
   :straight t
   :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
+
+;; Helpers to run Python's pytest
 (use-package python-pytest
   :straight t)
 

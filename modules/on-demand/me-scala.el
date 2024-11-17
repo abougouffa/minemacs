@@ -13,9 +13,13 @@
   :auto-mode '(("\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" . scala-mode))
   :companion-packages '(((scala-mode scala-ts-mode) . sbt-mode)))
 
+
+;; Major mode for editing Scala
 (use-package scala-mode
   :straight t)
 
+
+;; An Emacs mode for interacting with Scala sbt (Simple build tool) and projects
 (use-package sbt-mode
   :straight t)
 

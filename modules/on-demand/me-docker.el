@@ -13,9 +13,13 @@
   :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode)
                ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
+
+;; Major mode for editing Docker's Dockerfiles
 (use-package dockerfile-mode
   :straight t)
 
+
+;; Major mode for editing docker-compose files
 (use-package docker-compose-mode
   :straight t)
 

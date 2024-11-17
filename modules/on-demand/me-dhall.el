@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-dhall
   :auto-mode '(("\\.dhall\\'" . dhall-mode)))
 
+
+;; Major mode for the Dhall configuration language
 (use-package dhall-mode
   :straight t)
 

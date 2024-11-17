@@ -13,6 +13,8 @@
   :auto-mode '(("\\.rs\\'" . rust-mode))
   :companion-packages '((rust-ts-mode . rust-mode)))
 
+
+;; Major mode for editing Rust source code
 (use-package rust-mode
   :straight t
   :custom

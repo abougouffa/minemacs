@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-powershell
   :auto-mode '(("\\.ps[dm]?1\\'" . powershell-mode)))
 
+
+;; Mode for editing PowerShell scripts
 (use-package powershell
   :straight t)
 

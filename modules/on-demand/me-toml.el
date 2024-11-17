@@ -13,6 +13,8 @@
   :auto-mode '(("\\.toml\\'" . toml-mode))
   :companion-packages '((toml-ts-mode . toml-mode)))
 
+
+;; Major mode for editing TOML files
 (use-package toml-mode
   :straight t)
 

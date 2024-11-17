@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-demangle
   :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
+
+;; Automatically demangle C++, D, and Rust symbols in LLVM code
 (use-package demangle-mode
   :straight t)
 

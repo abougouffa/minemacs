@@ -13,6 +13,7 @@
   :auto-mode '(("\\.te\\'" . selinuxpolicy-mode)))
 
 
+;; Major mode for editing SELinux TE-RBAC
 (use-package selinux-policy
   :straight (:host github :repo "pierre-rouleau/selinux-policy")
   :commands (selinuxpolicy-mode)

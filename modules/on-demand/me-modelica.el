@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-modelica
   :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
+
+;; Major mode for editing Modelica files
 (use-package modelica-mode
   :straight t
   :mode "\\.mo\\'")

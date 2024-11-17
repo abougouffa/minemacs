@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-qsharp
   :auto-mode '(("\\.qs\\'" . qsharp-mode)))
 
+
+;; Major mode for the Q# programming language
 (use-package qsharp-mode
   :straight (:host github :repo "forked-from-1kasper/emacs-qsharp-mode"))
 

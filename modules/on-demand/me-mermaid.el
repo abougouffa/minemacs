@@ -12,9 +12,13 @@
 (minemacs-register-on-demand-module 'me-mermaid
   :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
 
+
+;; Major mode for working with Mermaid graphs
 (use-package mermaid-mode
   :straight t)
 
+
+;; Org Babel support for Mermaid evaluation
 (use-package ob-mermaid
   :straight (:host github :repo "arnm/ob-mermaid")
   :after minemacs-first-org-file ob

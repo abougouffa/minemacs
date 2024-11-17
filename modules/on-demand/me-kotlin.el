@@ -12,9 +12,13 @@
 (minemacs-register-on-demand-module 'me-kotlin
   :auto-mode '(("\\.kts?\\'" . (kotlin-mode kotlin-ts-mode))))
 
+
+;; Major mode for the Kotlin programming language
 (use-package kotlin-mode
   :straight t)
 
+
+;; Tree-sitter based major mode for the Kotlin programming language
 (use-package kotlin-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter)

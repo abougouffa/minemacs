@@ -13,6 +13,8 @@
   :auto-mode '((("\\.coffee\\'" "\\.iced\\'" "Cakefile\\'" "\\.cson\\'") . coffee-mode))
   :interpreter-mode '(("coffee" . coffee-mode)))
 
+
+;; Major mode for CoffeeScript code
 (use-package coffee-mode
   :straight t)
 

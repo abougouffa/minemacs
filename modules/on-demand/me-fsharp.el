@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-fsharp
   :auto-mode '(("\\.fs[iylx]?\\'" . fsharp-mode) ("\\.fsproj\\'" . nxml-mode)))
 
+
+;; Support for the F# programming language
 (use-package fsharp-mode
   :straight t)
 

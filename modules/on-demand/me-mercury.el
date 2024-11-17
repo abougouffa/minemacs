@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-mercury
   :companion-packages '((mercury-mode . metal-mercury-mode)))
 
+
+;; Concise mercury major mode
 (use-package metal-mercury-mode
   :straight (:host github :repo "ahungry/metal-mercury-mode"))
 

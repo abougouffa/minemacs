@@ -15,10 +15,14 @@
                         ;; To use the custom `+yq-interactively' and `+xq-interactively'
                         ((nxml-mode yaml-mode yaml-ts-mode) . jq-mode)))
 
+
+;; Major mode for editing JSON files
 (use-package json-mode
   :straight t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'")
 
+
+;; Major mode for interactively editing jq queries
 (use-package jq-mode
   :straight t
   :custom

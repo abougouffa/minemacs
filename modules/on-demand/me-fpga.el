@@ -14,10 +14,14 @@
                ("\\.[ds]?va?h?\\'" . verilog-ts-mode))
   :companion-packages '((vhdl-mode . vhdl-ts-mode) (verilog-mode . verilog-ts-mode)))
 
+
+;; VHDL Tree-sitter major mode
 (use-package vhdl-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter))
 
+
+;; Verilog Tree-sitter major mode
 (use-package verilog-ts-mode
   :straight t
   :when (+emacs-options-p 'tree-sitter))

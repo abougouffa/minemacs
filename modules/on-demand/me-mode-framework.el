@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-mode-framework
   :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
 
+
+;; Major mode for Robot Framework files
 (use-package robot-mode
   :straight t)
 

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-freebasic
   :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
 
+
+;; A major mode for the FreeBASIC programming language
 (use-package fb-mode
   :straight (:host github :repo "rversteegen/fb-mode")
   :commands (fb-mode)

@@ -14,9 +14,13 @@
   :interpreter-mode '(("hy" . hy-mode))
   :companion-packages '((hy-mode . ob-hy)))
 
+
+;; Major mode for the Hy programming language
 (use-package hy-mode
   :straight t)
 
+
+;; Org Babel code evaluation for the Hy language
 (use-package ob-hy
   :straight t)
 

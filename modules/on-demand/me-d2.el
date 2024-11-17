@@ -12,10 +12,14 @@
 (minemacs-register-on-demand-module 'me-d2
   :auto-mode '(("\\.d2\\'" . d2-mode)))
 
+
+;; Major mode for working with D2 graphs
 (use-package d2-mode
   :straight t
   :mode "\\.d2\\'")
 
+
+;; Org Babel code evaluation for the D2 graph lanugage
 (use-package ob-d2
   :straight t
   :after minemacs-first-org-file ob

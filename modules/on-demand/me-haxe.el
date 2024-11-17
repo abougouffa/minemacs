@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-haxe
   :auto-mode '(("\\.hx\\'" . haxe-mode)))
 
+
+;; Major mode for editing Haxe files
 (use-package haxe-mode
   :straight t
   :hook (haxe-mode . +prog-mode-run-hooks))

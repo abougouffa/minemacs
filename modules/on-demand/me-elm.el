@@ -13,9 +13,13 @@
   :auto-mode '(("\\.elm\\'" . elm-mode))
   :companion-packages '((elm-mode . elm-test-runner)))
 
+
+;; Major mode for Elm
 (use-package elm-mode
   :straight t)
 
+
+;; Enhanced support for running `elm-test'
 (use-package elm-test-runner
   :straight t)
 

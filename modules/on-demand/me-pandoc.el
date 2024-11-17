@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-pandoc
   :companion-packages '(((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . pandoc-mode)))
 
+
+;; Minor mode for interacting with Pandoc
 (use-package pandoc-mode
   :straight t
   :hook ((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . conditionally-turn-on-pandoc))

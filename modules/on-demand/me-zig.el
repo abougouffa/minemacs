@@ -12,9 +12,13 @@
 (minemacs-register-on-demand-module 'me-zig
   :auto-mode '(("\\.\\(zig\\|zon\\)\\'" . zig-mode)))
 
+
+;; Major mode for the Zig programming language
 (use-package zig-mode
   :straight t)
 
+
+;; Tree-sitter based major mode for the Zig programming language
 (use-package zig-ts-mode
   :straight t)
 

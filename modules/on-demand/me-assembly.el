@@ -15,6 +15,7 @@
                ("\\.mips\\'" . mips-mode)
                ("\\.riscv\\'" . riscv-mode)))
 
+
 ;;;###autoload
 (defun +asm-ask-for-mode (mode)
   "Ask the MODE to run."
@@ -35,21 +36,33 @@
       (call-interactively mode)
     (user-error "`%s' is not available" mode)))
 
+
+;; Major mode for MIPS assembly
 (use-package mips-mode
   :straight t)
 
+
+;; Major mode for RISC V assembly
 (use-package riscv-mode
   :straight t)
 
+
+;; Major mode for Flat Assembler
 (use-package fasm-mode
   :straight t)
 
+
+;; Major mode for Microsoft Macro Assembler
 (use-package masm-mode
   :straight t)
 
+
+;; Major mode for Netwide Assembler
 (use-package nasm-mode
   :straight t)
 
+
+;; Major mode for GNU Assembler
 (use-package gas-mode
   :straight t)
 

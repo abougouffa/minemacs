@@ -13,6 +13,8 @@
   :auto-mode '(("\\.[dD][jJ][vV][uU]?\\'" . djvu-init-mode))
   :magic-mode '(("%DJVU" . djvu-read-mode)))
 
+
+;; Edit and view Djvu files via `djvused'
 (use-package djvu
   :straight t
   :magic ("%DJVU" . djvu-read-mode)
@@ -22,6 +24,8 @@
     (setq djvu-continuous (not djvu-continuous))
     (message "Djvu alternative scrolling %s" (if djvu-continuous "enabled" "disabled"))))
 
+
+;; Extend `djvu' to display annotations and more
 (use-package djvu3
   :straight (:host github :repo "dalanicolai/djvu3")
   :after djvu

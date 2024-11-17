@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-ebuild
   :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
+
+;; Major mode for editing Gentoo's ebuild and eclass files
 (use-package ebuild-mode
   :straight t)
 

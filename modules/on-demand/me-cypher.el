@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-cypher
   :auto-mode '(("\\.cyp\\(?:her\\)?\\'" . cypher-mode)))
 
+
+;; Major mode for editing Cypher scripts
 (use-package cypher-mode
   :straight t)
 

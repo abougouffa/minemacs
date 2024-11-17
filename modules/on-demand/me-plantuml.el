@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-plantuml
   :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
 
+
+;; Major mode for PlantUML
 (use-package plantuml-mode
   :straight t
   :hook (plantuml-mode . +plantuml-mode-setup)
@@ -44,6 +46,8 @@
   (defun +plantuml-mode-setup ()
     (add-to-list 'completion-at-point-functions #'+plantuml-completion-at-point)))
 
+
+;; Add `flymake' support for editing PlantUML files
 (use-package flymake-plantuml
   :straight (:host github :repo "shaohme/flymake-plantuml")
   :hook (plantuml-mode . flymake-plantuml-setup))

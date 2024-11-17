@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-graphql
   :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
 
+
+;; Major mode for editing GraphQL schemas
 (use-package graphql-mode
   :straight t)
 

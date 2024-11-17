@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-agda
   :auto-mode '(("\\.l?agda\\'" . agda2-mode)))
 
+
+;; Major mode for the Agda programming language
 (use-package agda2-mode
   :straight t)
 

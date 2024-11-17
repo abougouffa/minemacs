@@ -13,6 +13,8 @@
   :auto-mode '(("/PKGBUILD\\'" . pkgbuild-mode))
   :companion-packages '(((sh-mode bash-ts-mode) . pkgbuild-mode)))
 
+
+;; Edit and run Arch Linux's PKGBUILD recipes
 (use-package pkgbuild-mode
   :straight t)
 

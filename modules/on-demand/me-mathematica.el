@@ -11,6 +11,8 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-mathematica) ; I prefer using Octave for ".m" files
 
+
+;; Mathematica editing and inferior mode
 (use-package wolfram-mode
   :straight (:host github :repo "kawabata/wolfram-mode"))
 

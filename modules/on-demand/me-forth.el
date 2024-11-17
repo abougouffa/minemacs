@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-forth
   :auto-mode '(("\\.\\(fth\\|4th\\)\\'" . forth-mode)))
 
+
+;; Major mode for the Forth programming language
 (use-package forth-mode
   :straight t)
 

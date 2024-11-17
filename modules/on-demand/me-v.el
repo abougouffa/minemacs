@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-v
   :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
 
+
+;; Major mode for the V programming language
 (use-package v-mode
   :straight t)
 

@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-genexpr
   :auto-mode '(("\\.genexpr\\'" . genexpr-mode)))
 
+
+;; Major mode for editing GenExpr files
 (use-package genexpr-mode
   :straight t)
 

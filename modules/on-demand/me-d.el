@@ -12,6 +12,8 @@
 (minemacs-register-on-demand-module 'me-d
   :auto-mode '(("\\.d[i]?\\'" . d-mode)))
 
+
+;; Major mode for the D programming language
 (use-package d-mode
   :straight t)
 
