@@ -28,7 +28,7 @@
   :config
   ;; Hide the annoying index file form recent files
   (+ignore-root elfeed-db-directory elfeed-enclosure-default-dir)
-  (push (concat elfeed-db-directory "index") +first-file-hook-ignore-list)
+  (add-to-list '+first-file-hook-ignore-list (concat elfeed-db-directory "index"))
 
   (defun +elfeed-download-image ()
     "Download the image at point."
@@ -37,6 +37,13 @@
       (if (not url)
           (message "No image at point!")
         (url-copy-file url (expand-file-name (url-file-nondirectory url) (+directory-ensure +elfeed-images-dir)))))))
+
+
+;; Extra `elfeed' protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
+(use-package elfeed-protocol
+  :straight t
+  :after elfeed
+  (elfeed-protocol-enable))
 
 
 (provide 'me-rss)
