@@ -234,8 +234,8 @@
   (mapc (lambda (k) (keymap-unset combobulate-key-map k 'remove)) '("M-<up>" "M-<down>" "M-<left>" "M-<right>"))
   (keymap-set combobulate-key-map "M-S-<up>" #'combobulate-splice-up)
   (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-splice-down)
-  (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-yeet-forward)
-  (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-yoink-forward))
+  (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-splice-self)
+  (keymap-set combobulate-key-map "M-S-<right>" #'combobulate-splice-parent))
 
 
 ;; Consult integration with Eglot
