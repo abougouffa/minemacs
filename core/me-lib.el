@@ -431,6 +431,30 @@ function.
           (let (byte-compile-warnings)
             (+shutup! (byte-compile fn))))))))
 
+(defun minemacs-extract-packages-descriptions ()
+  "Extract the descriptions of MinEmacs packages."
+  (interactive)
+  (when-let* ((buff (get-buffer "*minemacs-modules-pkg-desc*")))
+    (kill-buffer buff))
+  (let ((doc-buff (get-buffer-create "*minemacs-modules-pkg-desc*")))
+    (with-current-buffer doc-buff (insert "# MinEmacs modules and packages\n"))
+    (dolist (module (minemacs-modules))
+      (with-current-buffer doc-buff (insert (format "## `%s`\n" module)))
+      (with-temp-buffer
+        (delete-region (point-min) (point-max))
+        (insert-file-contents (format "%s%s.el" minemacs-modules-dir module))
+        (goto-char (point-min))
+        (while (search-forward-regexp "^;; \\(.*\\)\n(use-package[[:space:]]*\\([^[:space:]]*\\)$" nil :no-error)
+          (let ((desc (match-string 1))
+                (pkg (match-string 2)))
+            (setq desc (replace-regexp-in-string "`\\([^']*\\)'" "`\\1`" desc))
+            (with-current-buffer doc-buff (insert (format "* `%s`: %s\n" pkg desc))))))
+      (with-current-buffer doc-buff (insert "\n")))
+    (with-current-buffer doc-buff
+      (markdown-mode)
+      (view-mode)
+      (pop-to-buffer (current-buffer)))))
+
 (defvar +shell-command-switch
   (pcase shell-file-name
     ((rx bol "fish" eol) "-lc")
