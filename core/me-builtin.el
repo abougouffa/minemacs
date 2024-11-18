@@ -241,9 +241,10 @@ or file path may exist now."
 (use-package tramp
   :straight (:source gnu-elpa-mirror)
   :init
-  ;; This is faster than the default "scp"
-  (unless (+emacs-options-p 'os/win)
-    (setq tramp-default-method "ssh"))
+  (if (+emacs-options-p 'os/win)
+      (when (executable-find "plink")
+        (setopt tramp-default-method "plink")) ; When available, use "plink", the PuTTY Link SSH
+    (setopt tramp-default-method "ssh")) ; This is faster than the default "scp"
   :custom
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
