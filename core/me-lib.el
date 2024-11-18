@@ -418,18 +418,35 @@ function.
             in (+setq-hook-fns hooks vars 'singles)
             collect `(remove-hook ',hook #',fn))))
 
-;; Adapted from: Doom Emacs
-(defun +compile-functions (&rest fns)
-  "Queue FNS to be byte/natively-compiled after a brief delay."
-  (dolist (fn fns)
-    (+eval-when-idle!
-      (if (featurep 'native-compile)
-          (unless (subr-native-elisp-p (indirect-function fn))
-            (cl-letf (((symbol-function 'comp-log-to-buffer) #'ignore)) ; do not log to `comp-log-buffer-name'
-              (+shutup! (ignore-errors (native-compile fn)))))
-        (unless (byte-code-function-p fn)
-          (let (byte-compile-warnings)
-            (+shutup! (byte-compile fn))))))))
+(defun +ignore-root (&rest roots)
+  "Add ROOTS to ignored projects, recentf, etc."
+  (dolist (root roots)
+    (with-eval-after-load 'recentf
+      (add-to-list 'recentf-exclude (rx-to-string `(or ,root ,(expand-file-name root)))))))
+
+(defun +package-disabled-p (package &optional module)
+  "Is package PACKAGE disabled in `minemacs-disabled-packages'.
+
+Optionally, check also for the containing MODULE."
+  (or
+   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
+   (and module (not (memq module minemacs-modules)))))
+
+(defun minemacs-modules (&optional include-on-demand include-obsolete)
+  "List all the available modules.
+With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
+  (let ((mod-files (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))
+    (when include-obsolete
+      (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
+                                         (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
+    (when include-on-demand
+      (cl-callf append mod-files (mapcar (apply-partially #'concat "on-demand/")
+                                         (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
+    (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
+
+
+
+;;; Environment variables
 
 (defvar +shell-command-switch
   (pcase shell-file-name
@@ -487,32 +504,6 @@ Emacs-specific early exit in \".bashrc\"."
   (unless (+emacs-options-p 'os/win)
     (unless (file-exists-p +env-file) (+env-save))
     (+load +env-file)))
-
-(defun +ignore-root (&rest roots)
-  "Add ROOTS to ignored projects, recentf, etc."
-  (dolist (root roots)
-    (with-eval-after-load 'recentf
-      (add-to-list 'recentf-exclude (rx-to-string `(or ,root ,(expand-file-name root)))))))
-
-(defun +package-disabled-p (package &optional module)
-  "Is package PACKAGE disabled in `minemacs-disabled-packages'.
-
-Optionally, check also for the containing MODULE."
-  (or
-   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
-   (and module (not (memq module minemacs-modules)))))
-
-(defun minemacs-modules (&optional include-on-demand include-obsolete)
-  "List all the available modules.
-With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
-  (let ((mod-files (directory-files minemacs-modules-dir nil "\\`me-.*\\.el\\'")))
-    (when include-obsolete
-      (cl-callf append mod-files (mapcar (apply-partially #'concat "obsolete/")
-                                         (directory-files minemacs-obsolete-modules-dir nil "\\`me-.*\\.el\\'"))))
-    (when include-on-demand
-      (cl-callf append mod-files (mapcar (apply-partially #'concat "on-demand/")
-                                         (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
-    (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
 
 
