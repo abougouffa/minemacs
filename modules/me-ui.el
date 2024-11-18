@@ -114,16 +114,26 @@
 
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
-  :straight t
+  :straight (:host github :repo "protesilaos/pulsar")
   :hook (minemacs-first-file . pulsar-global-mode)
-  :hook ((next-error xref-after-return) . pulsar-pulse-line) ; only pulse, don't recenter
-  :hook ((consult-after-jump imenu-after-jump xref-after-jump) . pulsar-recenter-center) ; pulse and recenter
-  :hook ((consult-after-jump imenu-after-jump xref-after-jump xref-after-return) . pulsar-reveal-entry) ; reveal if hidden
   :custom
   (pulsar-face 'pulsar-red)
+  ;; BUG+TEMP: This new feature is buggy, disable it until it gets fixed. See protesilaos/pulsar#22
+  (pulsar-pulse-region-functions nil)
   :config
   (cl-callf append pulsar-pulse-functions
-    '(what-cursor-position scroll-up-command scroll-down-command kill-whole-line yank-from-kill-ring yank yank-pop)))
+    '(what-cursor-position scroll-up-command scroll-down-command kill-whole-line yank-from-kill-ring yank yank-pop))
+
+  ;; BUG+TEMP: Avoid too much pulsing on window change
+  (advice-add
+   'pulsar-mode :after
+   (satch-defun +pulsar--fix-pulse-on-window-change:after-a (&rest _args)
+     (if pulsar-mode
+         (progn
+           (remove-hook 'window-state-change-functions #'pulsar--pulse-on-window-change 'local)
+           (when pulsar-pulse-on-window-change
+             (add-hook 'window-selection-change-functions #'pulsar--pulse-on-window-change nil 'local)))
+       (remove-hook 'window-selection-change-functions #'pulsar--pulse-on-window-change 'local)))))
 
 
 ;; Dim the font color of text in surrounding sections
