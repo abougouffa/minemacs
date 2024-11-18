@@ -45,14 +45,11 @@
 
 
 ;; File icons for Magit based on `nerd-icons'
-(use-package magit-iconify
-  :straight (:host github :repo "justinbarclay/magit-iconify")
-  :after magit
-  :demand
-  :config
-  ;; HACK: By default, `magit-iconify' the icons are shown after running
-  ;; `magit-refresh', this ensures displaying them at startup
-  (advice-add 'magit-status-setup-buffer :after (lambda (&rest _args) (magit-iconify-status-buffer))))
+(use-package magit-file-icons
+  :straight t
+  :trigger-commands magit magit-status magit-status-here magit-log magit-log-all
+  :init
+  (magit-file-icons-mode 1))
 
 
 ;; Magit extension for "git-imerge"
