@@ -202,12 +202,10 @@
    ("o" . gambol:occur))
   :init
   (defun +gambol:occur-dwim ()
-    "Call `gambol:occur', fallback to `occur'."
+    "Call `gambol:occur' if in an Eglot managed buffer, fallback to `occur'."
     (interactive)
-    (if (and (featurep 'eglot) (eglot-managed-p))
-        (condition-case nil
-            (gambol:occur)
-          (error (call-interactively #'occur))))))
+    (unless (and (featurep 'eglot) (eglot-managed-p) (ignore-errors (gambol:occur) t))
+      (call-interactively #'occur))))
 
 
 ;; Structured editing and navigation in Emacs with Tree-Sitter
