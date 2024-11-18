@@ -444,6 +444,20 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
                                          (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
+;; Taken from: https://sachachua.com/dotemacs/index.html#building-a-today-i-learned-habit-and-displaying-the-documentation-for-random-emacs-commands
+(defun +describe-random-command ()
+  "Show the documentation for a random command.
+Consider only documented, non-obsolete interactive functions."
+  (interactive)
+  (let (result)
+    (mapatoms
+     (lambda (s)
+       (when (and (commandp s)
+                  (documentation s t)
+                  (not (get s 'byte-obsolete-info)))
+         (setq result (cons s result)))))
+    (describe-function (elt result (random (length result))))))
+
 
 
 ;;; Environment variables
