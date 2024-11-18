@@ -18,6 +18,11 @@
   :straight t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
+  ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
+  ;; sshfs), causing `citre' to trigger an error when calling
+  ;; `citre--tags-file-in-global-cache'. I'm not using global cache directory so
+  ;; I prefer disabling this.
+  (citre-tags-file-global-cache-dir nil)
   (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
   :init
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
