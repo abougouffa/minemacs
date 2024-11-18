@@ -99,6 +99,7 @@ write to a new file name."
   :bind (:map minemacs-open-thing-map ("z" . ztree-diff))
   :init
   (with-eval-after-load 'ztree-view
+    (setq ztree-draw-unicode-lines t)
     (keymap-set ztree-mode-map "n" #'ztree-next-line)
     (keymap-set ztree-mode-map "p" #'ztree-previous-line)))
 
