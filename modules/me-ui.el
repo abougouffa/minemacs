@@ -171,14 +171,14 @@
 (use-package casual
   :straight (:host github :repo "kickingvegas/casual")
   :bind ("C-o" . casual-editkit-main-tmenu)
-  :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu))
-  :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu))
-  :bind (:package info :map Info-mode-map ([f2] . casual-info-tmenu))
-  :bind (:package calc :map calc-mode-map ([f2] . casual-calc-tmenu))
-  :bind (:package ibuffer :map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu))
-  :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu))
-  :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu))
-  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
+  :bind (:map isearch-mode-map ([f2] . casual-isearch-tmenu))
+  :bind (:map dired-mode-map ([f2] . casual-dired-tmenu))
+  :bind (:map Info-mode-map ([f2] . casual-info-tmenu))
+  :bind (:map calc-mode-map ([f2] . casual-calc-tmenu))
+  :bind (:map ibuffer-mode-map ([f2] . casual-ibuffer-tmenu))
+  :bind (:map reb-mode-map ([f2] . casual-re-builder-tmenu))
+  :bind (:map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu))
+  :bind (:map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
 
 
 ;; An opinionated `transient' menu for `avy'
@@ -190,7 +190,7 @@
 ;; An opinionated `transient' menu for `symbol-overlay'
 (use-package casual-symbol-overlay
   :straight t
-  :bind (:package symbol-overlay :map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
+  :bind (:map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
 
 
 (provide 'me-ui)
