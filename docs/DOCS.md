@@ -489,9 +489,19 @@ function.
 
 Unbind setq hooks on HOOKS for VARS.
 
-#### `(+compile-functions &rest FNS)`
+#### `(+ignore-root &rest ROOTS)`
 
-Queue FNS to be byte/natively-compiled after a brief delay.
+Add ROOTS to ignored projects, recentf, etc.
+
+#### `(+package-disabled-p PACKAGE &optional MODULE)`
+
+Is package PACKAGE disabled in `minemacs-disabled-packages`.
+Optionally, check also for the containing MODULE.
+
+#### `(minemacs-modules &optional INCLUDE-ON-DEMAND INCLUDE-OBSOLETE)`
+
+List all the available modules.
+With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
@@ -509,20 +519,6 @@ Load environment variables from shell and save them to `+env-file`.
 #### `(+env-load)`
 
 Load environment variables from `+env-file`.
-
-#### `(+ignore-root &rest ROOTS)`
-
-Add ROOTS to ignored projects, recentf, etc.
-
-#### `(+package-disabled-p PACKAGE &optional MODULE)`
-
-Is package PACKAGE disabled in `minemacs-disabled-packages`.
-Optionally, check also for the containing MODULE.
-
-#### `(minemacs-modules &optional INCLUDE-ON-DEMAND INCLUDE-OBSOLETE)`
-
-List all the available modules.
-With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
 #### `(+file-read-to-string FILENAME)`
 
@@ -788,22 +784,6 @@ RECURSIVE is non-nil.
 #### `(+delete-this-file-and-buffer &optional FILENAME)`
 
 Delete FILENAME and its associated visiting buffer.
-
-#### `(+tramp-sudo-file-path FILE)`
-
-Construct a Tramp sudo path to FILE. Works for both local and remote files.
-
-#### `(+sudo-find-file FILE)`
-
-Open FILE as root.
-
-#### `(+sudo-this-file)`
-
-Open the current file as root.
-
-#### `(+sudo-save-buffer)`
-
-Save this buffer as root. Save as new file name if called with prefix.
 
 #### `(+copy-this-file-name)`
 
@@ -1081,16 +1061,6 @@ Extract the descriptions of MinEmacs packages.
 #### `(+list-external-dependencies)`
 
 Show the list of declared external dependencies.
-
-#### `(+spellcheck-correct)`
-
-Correct word at point.
-
-#### `(+spellcheck-mode &optional ARG)`
-
-Spell checking mode, with ARG.
-Based on `jinx-mode` if available, `spell-fu-mode` and falls back
-to built-in `flyspell-mode`.
 
 #### `(+clang-format-get-style)`
 

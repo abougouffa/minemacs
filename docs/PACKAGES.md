@@ -137,6 +137,7 @@
 
 ## `me-natural-langs`
 * `jinx`: Just-in-time spell checker based on the Enchanted library
+* `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
 * `lexic`: Fancy Emacs integration with the console version of StarDict
 * `reverso`: Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
 * `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
@@ -165,7 +166,7 @@
 * `treesitter-context`: A `treesit`-based package to show code context, dim surrouding text, and fold code
 * `eglot-x`: Extra non-standard functionalities for Eglot
 * `gambol`: Emacs text actions using LSP symbol information
-* `combobulate`: Structured editing and navigation in Emacs with Tree-Sitter
+* `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
 * `consult-eglot`: Consult integration with Eglot
 * `reformatter`: Define commands which run reformatters on the current Emacs buffer
 * `apheleia`: Run code formatter on buffer contents without moving point
@@ -242,7 +243,6 @@
 * `ssh-deploy`: github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 * `incus-tramp`: TRAMP integration for Incus containers
 * `app-launcher`: Launch system applications from Emacs
-* `emamux`: Manipulate "tmux" from Emacs
 * `emacs-everywhere`: System-wide popup Emacs windows for quick edits
 * `tldr`: Browse "tldr" pages from Emacs
 * `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
