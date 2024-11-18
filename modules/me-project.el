@@ -74,7 +74,8 @@
 
 ;; Projection integration for `compile-multi'
 (use-package projection-multi
-  :straight t)
+  :straight t
+  :bind (:map projection-map ("C" . #'projection-multi-compile)))
 
 
 ;; Integration for `projection-multi' and `embark'
@@ -87,7 +88,8 @@
 
 ;; Projection integration for `dape'
 (use-package projection-dape
-  :straight t)
+  :straight t
+  :bind (:map projection-map ("D" . #'projection-dape)))
 
 
 (provide 'me-project)
