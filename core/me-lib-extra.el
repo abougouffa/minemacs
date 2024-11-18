@@ -323,7 +323,12 @@ When a region is active, propose to use it as the patch buffer."
 
 ;;; Exporter and converters
 
-(defcustom +html2pdf-default-backend 'wkhtmltopdf
+(defcustom +html2pdf-default-backend
+  (cond ((executable-find "wkhtmltopdf") 'wkhtmltopdf)
+        ((executable-find "htmldoc") 'htmldoc)
+        ((executable-find "weasyprint") 'weasyprint)
+        ((and (executable-find "pandoc") (executable-find "context")) 'pandoc+context)
+        ((executable-find "pandoc") 'pandoc))
   "The default backend to convert HTML files to PDFs in `+html2pdf'."
   :group 'minemacs-utils
   :type '(choice
