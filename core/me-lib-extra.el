@@ -209,44 +209,6 @@ RECURSIVE is non-nil."
         (kill-buffer)))))
 
 ;;;###autoload
-(defun +tramp-sudo-file-path (file)
-  "Construct a Tramp sudo path to FILE. Works for both local and remote files."
-  (tramp-make-tramp-file-name "sudo" tramp-root-id-string nil (or (file-remote-p file 'host) "localhost") nil file))
-
-;;;###autoload
-(defun +sudo-find-file (file)
-  "Open FILE as root."
-  (interactive "FOpen file as root: ")
-  (find-file (+tramp-sudo-file-path file)))
-
-;;;###autoload
-(defun +sudo-this-file ()
-  "Open the current file as root."
-  (interactive)
-  (if-let* ((this-file (or buffer-file-name
-                           (when (derived-mode-p 'dired-mode 'wdired-mode)
-                             default-directory))))
-      (find-file (+tramp-sudo-file-path this-file))
-    (user-error "Current buffer not bound to a file")))
-
-;;;###autoload
-(defun +sudo-save-buffer ()
-  "Save this buffer as root. Save as new file name if called with prefix."
-  (interactive)
-  (if-let* ((file (or (and (or (not buffer-file-name) current-prefix-arg)
-                           (read-file-name "Save as root to: "))
-                      buffer-file-name))
-            (file (+tramp-sudo-file-path (expand-file-name file)))
-            (dest-buffer (find-file-noselect file))
-            (src-buffer (current-buffer)))
-      (progn
-        (copy-to-buffer dest-buffer (point-min) (point-max))
-        (unwind-protect (with-current-buffer dest-buffer (save-buffer))
-          (unless (eq src-buffer dest-buffer) (kill-buffer dest-buffer))
-          (with-current-buffer src-buffer (revert-buffer t t))))
-    (user-error "Unable to open %S" (abbreviate-file-name file))))
-
-;;;###autoload
 (defun +copy-this-file-name ()
   "Save (copy) the file name of this buffer to the kill ring."
   (interactive)

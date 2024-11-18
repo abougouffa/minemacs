@@ -410,18 +410,6 @@ RECURSIVE is non-nil.
 Delete FILENAME and its associated visiting buffer.
 
 (fn &optional FILENAME)" t)
-(autoload '+tramp-sudo-file-path "me-lib-extra" "\
-Construct a Tramp sudo path to FILE. Works for both local and remote files.
-
-(fn FILE)")
-(autoload '+sudo-find-file "me-lib-extra" "\
-Open FILE as root.
-
-(fn FILE)" t)
-(autoload '+sudo-this-file "me-lib-extra" "\
-Open the current file as root." t)
-(autoload '+sudo-save-buffer "me-lib-extra" "\
-Save this buffer as root. Save as new file name if called with prefix." t)
 (autoload '+copy-this-file-name "me-lib-extra" "\
 Save (copy) the file name of this buffer to the kill ring." t)
 (autoload '+apply-patch-dwim "me-lib-extra" "\

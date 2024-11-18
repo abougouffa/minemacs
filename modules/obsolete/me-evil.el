@@ -302,9 +302,7 @@ It is deferred until `general' gets loaded and configured."
    "fS"   '(write-file :wk "Save as ...")
    "fd"   #'+delete-this-file
    "fD"   #'+delete-this-file-and-buffer
-   "fF"   #'+sudo-find-file ; will be overriten with `sudo-edit-find-file'
-   "fu"   #'+sudo-this-file ; will be overriten with `sudo-edit'
-   "fR"   #'+move-this-file
+   "fR"   #'rename-visited-file
    "ff"   #'find-file
    "fs"   #'save-buffer
    "ft"   #'recover-this-file
