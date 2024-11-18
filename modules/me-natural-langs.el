@@ -13,6 +13,30 @@
   :straight t
   :when (+emacs-options-p 'modules)
   :autoload jinx--load-module
+  :preface
+  (defvar-local +spellcheck-mode nil)
+  (defun +spellcheck-mode (&optional arg)
+    "Spell checking mode, with ARG.
+Based on `jinx-mode' if available. Falls back to the built-in
+`flyspell-mode'."
+    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
+    (if (and (fboundp 'jinx-mode) (+jinx-load-module))
+        (progn
+          (jinx-mode arg)
+          (setq +spellcheck-mode jinx-mode))
+      (flyspell-mode arg)
+      (setq +spellcheck-mode flyspell-mode)))
+
+  (defun +spellcheck-correct ()
+    "Correct word at point."
+    (interactive)
+    (cond ((bound-and-true-p jinx-mode)
+           (call-interactively 'jinx-correct))
+          ((and (bound-and-true-p flyspell-mode))
+           (call-interactively 'flyspell-correct-wrapper))
+          (t (user-error "No usable `jinx' nor `flyspell-correct'"))))
+
+  (with-eval-after-load 'git-commit (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
   :init
   (defun +jinx-load-module ()
     "Try to compile and load the jinx module and fail silently."
@@ -26,26 +50,10 @@
       (error (+log! (error-message-string err)) nil)
       (:success t))))
 
-(defun +spellcheck-correct ()
-  "Correct word at point."
-  (interactive)
-  (cond ((bound-and-true-p jinx-mode) (call-interactively #'jinx-correct))
-        ((bound-and-true-p spell-fu-mode) (call-interactively #'+spell-fu-correct))))
 
-(defun +spellcheck-mode (&optional arg)
-  "Spell checking mode, with ARG.
-Based on `jinx-mode' if available, `spell-fu-mode' and falls back
-to built-in `flyspell-mode'."
-  (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
-  (cond ((and (fboundp 'jinx-mode) (+jinx-load-module))
-         (jinx-mode arg))
-        ((and (+load minemacs-obsolete-modules-dir "me-spell-fu.el") (fboundp 'spell-fu-mode))
-         (spell-fu-mode arg))
-        (t ; Fallback to builtin `flyspell'
-         (flyspell-mode arg))))
-
-(with-eval-after-load 'git-commit
-  (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
+;; Distraction-free words correction with `flyspell' via `completing-read'
+(use-package flyspell-correct
+  :straight t)
 
 
 ;; Fancy Emacs integration with the console version of StarDict
