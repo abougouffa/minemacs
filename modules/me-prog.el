@@ -211,7 +211,7 @@
 
 
 ;; Structured editing and navigation in Emacs with Tree-Sitter
-(use-package combobulate
+(use-package combobulate-setup
   :straight (combobulate
              :host github
              :repo "mickeynp/combobulate"
