@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.2.0](https://github.com/abougouffa/minemacs/compare/59776f36e39064734719127b8b30c67001dcc119..v11.2.0) - 2024-11-19
+#### Bug Fixes
+- **(citre)** don't use global cache directory - ([ed5a5d8](https://github.com/abougouffa/minemacs/commit/ed5a5d870df8c515e92fcadaade4b66c432c0193)) - [@abougouffa](https://github.com/abougouffa)
+- **(combobulate)** fix problematic combobulate loading - ([2b75eda](https://github.com/abougouffa/minemacs/commit/2b75edae22ebb9a660bf5f0e4626a011487d2d3e)) - [@abougouffa](https://github.com/abougouffa)
+- **(gambol)** fix the implementation `+gambol:occur-dwim` - ([22e18af](https://github.com/abougouffa/minemacs/commit/22e18afe9c8873612d1a722635360739738a72eb)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** temporary fixes for problematic pulsing - ([35c7803](https://github.com/abougouffa/minemacs/commit/35c780317f75b7fd2b421ac84b8e86623a9d668c)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- update the documentation - ([580731e](https://github.com/abougouffa/minemacs/commit/580731e357f9025dba1801574198988eb7549dfe)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+describe-random-command` - ([2bd4e05](https://github.com/abougouffa/minemacs/commit/2bd4e05d139c85b06e5173d822e2fab86c4822af)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** add `flyspell-correct`, remove usage of `spell-fu` - ([5af36df](https://github.com/abougouffa/minemacs/commit/5af36dfee1441525b115d75c76f10736314ddbf3)) - [@abougouffa](https://github.com/abougouffa)
+- **(sudo-edit)** add the missing `+sudo-edit-save` - ([ac27c2e](https://github.com/abougouffa/minemacs/commit/ac27c2e72fbfaafc2dd1577294772a8658930fdd)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `emamux` obsolete - ([59776f3](https://github.com/abougouffa/minemacs/commit/59776f36e39064734719127b8b30c67001dcc119)) - [@abougouffa](https://github.com/abougouffa)
+- remove some commands, alternatives in `crux` and `sudo-edit` - ([7bd5239](https://github.com/abougouffa/minemacs/commit/7bd5239c099a59b0945dc41af79a51c5e6cc0d5c)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** simplify the implementation of `+autoload-region` - ([c3175ec](https://github.com/abougouffa/minemacs/commit/c3175ecc46ae0faeb3e4a382036f0f7202cdbeb0)) - [@abougouffa](https://github.com/abougouffa)
+- remove confusing `:package` keyword from `:bind` blocks - ([3c089c5](https://github.com/abougouffa/minemacs/commit/3c089c5ea5f55b2c65c8f0657479228bd3867809)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(vc)** replace `magit-file-icons` with `magit-iconify` - ([386c2c4](https://github.com/abougouffa/minemacs/commit/386c2c4b175113106d88d0b532828ba37435dbc5)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** better initial value for `+html2pdf-default-backend` - ([e31e147](https://github.com/abougouffa/minemacs/commit/e31e14778f4251458afc47af663ba5b2da2c427b)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** bind `projection-dape` & `projection-multi-compile` - ([adc199b](https://github.com/abougouffa/minemacs/commit/adc199b000d4f3f2d9f4d3d107f12b9d94a3d2e6)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** use `plink` on Windows when available - ([479e425](https://github.com/abougouffa/minemacs/commit/479e4257c41dd7bba55e84315960b8b4fd6868df)) - [@abougouffa](https://github.com/abougouffa)
+- **(ztree)** draw Unicode lines - ([c7ec30e](https://github.com/abougouffa/minemacs/commit/c7ec30e43fb5ef00c23898f712b56d466245d438)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d587fb5](https://github.com/abougouffa/minemacs/commit/d587fb5210211c67f43a775407be807307169fc1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([60ce18b](https://github.com/abougouffa/minemacs/commit/60ce18bb6a7e9f8b2ab4983d6ba48b9e09505837)) - [@abougouffa](https://github.com/abougouffa)
+- remove unused `+compile-functions` - ([77200fd](https://github.com/abougouffa/minemacs/commit/77200fd3577fcd29f4caf9c4374462b775354035)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.1.0](https://github.com/abougouffa/minemacs/compare/724cdefd3e12d3615cadca0f01780aed4076649c..v11.1.0) - 2024-11-17
 #### Bug Fixes
 - **(combobulate)** fix bindings for obsolete commands - ([ed70d24](https://github.com/abougouffa/minemacs/commit/ed70d24f9c46e5e7d07448a242f735b5a1094349)) - [@abougouffa](https://github.com/abougouffa)
