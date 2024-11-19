@@ -13,7 +13,7 @@
   :defer 5
   :when (+emacs-options-p 'arch/x86_64)
   :preface
-  (+fn-inhibit-messages! tsc-dyn-get-ensure)
+  (advice-add 'tsc-dyn-get-ensure :around '+apply-inhibit-messages)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :config
   (global-tree-sitter-mode 1))
@@ -22,7 +22,7 @@
   :straight t
   :hook (minemacs-build-functions . tree-sitter-langs-install-grammars)
   :preface
-  (+fn-inhibit-messages! tree-sitter-langs-install-grammars)
+  (advice-add 'tree-sitter-langs-install-grammars :around '+apply-inhibit-messages)
   :after tree-sitter
   :demand)
 

@@ -21,8 +21,7 @@
 (use-package nano-theme
   :straight (:host github :repo "rougier/nano-theme")
   :init
-  ;; Set `nano-light' as the default MinEmacs theme
-  (+set-standard-value 'minemacs-theme 'nano-light))
+  (setq minemacs-theme 'nano-light))
 
 (use-package nano-modeline
   :straight (:host github :repo "rougier/nano-modeline")

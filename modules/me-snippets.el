@@ -16,8 +16,8 @@
   :init
   (defvar yas-verbosity (if minemacs-verbose-p 4 2))
   (unless minemacs-verbose-p
-    (+fn-inhibit-messages! yas-define-snippets) ; suppress "Multiple snippets with same identity: ..."
-    (+fn-inhibit-messages! yas--parse-template)) ; suppress "Ignoring unknown directive ..."
+    ;; Suppress some annoying messages like: "Multiple snippets with same identity: ...", "Ignoring unknown directive ..."
+    (satch-advice-add '(yas-define-snippets yas--parse-template) :around '+apply-inhibit-messages))
   :custom
   (yas-triggers-in-field t) ; Allow nested snippets
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))

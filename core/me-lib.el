@@ -138,18 +138,6 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
 
 ;;; Missing primitive utilities
 
-(defun +set-standard-value (variable value)
-  "Set the standard value of VARIABLE to VALUE."
-  (put variable 'standard-value `((funcall (function ,(lambda nil "" value))))))
-
-(defun +standard-value (variable)
-  "Return the standard value for VARIABLE."
-  (eval (car (get variable 'standard-value)) t))
-
-(defun +reset-standard-value (variable)
-  "Reset VARIABLE to its standard value."
-  (set variable (+standard-value variable)))
-
 ;; Adapted from `evil-unquote', takes functions into account
 (defun +unquote (expr)
   "Return EXPR unquoted."
@@ -166,6 +154,17 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
   "Like `apply-partially', but apply the ARGS to the right of FUN."
   (lambda (&rest args2)
     (apply fun (append args2 args))))
+
+;; Helper functions to be used as advises
+
+(defun +apply-inhibit-messages (fn &rest args)
+  "Call FN with ARGS while to suppressing the messages in echo area.
+If `minemacs-verbose-p' is non-nil, do not print any message to
+*Messages* buffer."
+  (let ((message-log-max (and minemacs-verbose-p message-log-max)))
+    (with-temp-message (or (current-message) "")
+      (+debug! "Inhibiting messages of %s" (symbol-name fn))
+      (apply fn args))))
 
 
 
@@ -194,18 +193,6 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
     `(let ((inhibit-message t))
       (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
 
-(defmacro +fn-inhibit-messages! (fn &optional no-message-log)
-  "Add an advice around the function FN to suppress messages in echo area.
-If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer."
-  (let ((advice-fn (make-symbol (format "+%s--inhibit-messages:around-a" fn))))
-    `(advice-add
-      ',fn :around
-      (satch-defun ,advice-fn (origfn &rest args)
-       (let ((message-log-max (unless ,no-message-log message-log-max)))
-        (with-temp-message (or (current-message) "")
-         (+debug! "Inhibiting messages of %s" ,(symbol-name fn))
-         (apply origfn args)))))))
-
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily while evaluating BODY.
 This inhebits both the echo area and the `*Messages*' buffer."
@@ -215,10 +202,6 @@ This inhebits both the echo area and the `*Messages*' buffer."
         (with-temp-message (or (current-message) "") ,@body))
     `(progn ,@body)))
 
-(defmacro +cmdfy! (&rest body)
-  "Convert BODY to an interactive command."
-  `(lambda () (interactive) ,@body))
-
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
   (interactive)
@@ -226,7 +209,7 @@ This inhebits both the echo area and the `*Messages*' buffer."
     (+log! "Loading user theme: %s" minemacs-theme)
     ;; Fallback to built-in `tsdh-light' when `minemacs-theme' is not available.
     (unless (ignore-errors (load-theme minemacs-theme t))
-      (let ((default-theme (+standard-value 'minemacs-theme)))
+      (let ((default-theme (eval (car (get 'minemacs-theme 'standard-value)))))
         (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
         (unless (ignore-errors (load-theme default-theme t))
           (+error! "Cannot load default theme %S, falling back to the builtin tsdh-light theme" default-theme)
@@ -429,7 +412,7 @@ function.
 
 Optionally, check also for the containing MODULE."
   (or
-   (and (memq package (apply #'append (mapcar #'ensure-list minemacs-disabled-packages))) t)
+   (and (memq package (flatten-list minemacs-disabled-packages)))
    (and module (not (memq module minemacs-modules)))))
 
 (defun minemacs-modules (&optional include-on-demand include-obsolete)
@@ -456,7 +439,8 @@ Consider only documented, non-obsolete interactive functions."
                   (documentation s t)
                   (not (get s 'byte-obsolete-info)))
          (setq result (cons s result)))))
-    (describe-function (elt result (random (length result))))))
+    (funcall-interactively (if (fboundp 'helpful-command) 'helpful-command 'describe-command)
+                           (elt result (random (length result))))))
 
 
 
@@ -491,9 +475,11 @@ Emacs-specific early exit in \".bashrc\"."
       (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
       (let ((env-vars
              (mapcar ; Get environment variables from shell into an alist
-              (lambda (line) (let ((var-val (string-split line "="))) (cons (car var-val) (string-join (cdr var-val) "="))))
+              (lambda (line)
+                (when-let* ((idx (string-search "=" line)))
+                  (cons (substring line nil idx) (substring line (1+ idx)))))
               ;; "env --null" ends lines with null byte instead of newline
-              (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0"))))
+              (string-split (+shell-command-to-string-ignore-stderr "env --null") "\0" :omit-nulls))))
         ;; Special treatment for the "PATH" variable, save it to `exec-path'
         (when-let* ((path (alist-get "PATH" env-vars nil nil #'string=)))
           (insert "\n;; Adding PATH content to `exec-path'\n"
@@ -509,7 +495,7 @@ Emacs-specific early exit in \".bashrc\"."
                               ("\n" . "\\n") ("\r" . "\\r") ("\t" . "\\t")
                               ("\v" . "\\v") ("\"" . "\\\"")))
                 (setq value (string-replace (car pair) (cdr pair) value)))
-              (insert (format "(setenv \"%s\" \"%s\")\n" (car env-var) value))))))
+              (insert (format "(setenv %S %S)\n" (car env-var) value))))))
       (write-file +env-file))))
 
 (defun +env-load ()
@@ -528,12 +514,12 @@ Emacs-specific early exit in \".bashrc\"."
   (when (and (file-exists-p filename) (not (file-directory-p filename)))
     (with-temp-buffer
       (insert-file-contents filename)
-      (buffer-string))))
+      (buffer-substring-no-properties (point-min) (point-max)))))
 
 (defun +directory-subdirs (dir)
   "Return a list of sub-directories in DIR."
-  (when dir
-    (seq-filter #'file-directory-p (mapcar #'abbreviate-file-name (directory-files dir t directory-files-no-dot-files-regexp)))))
+  (when (and dir (file-directory-p dir))
+    (mapcar #'abbreviate-file-name (seq-filter #'file-directory-p (directory-files dir t directory-files-no-dot-files-regexp)))))
 
 (defun +directory-ensure (&rest path-parts)
   "Concatenate PATH-PARTS to construct a path and return it.
@@ -567,8 +553,8 @@ that directory."
   (when-let* ((pid (+lock--locker-pid name)))
     (and (process-attributes pid) t)))
 
-(defun +locked-by-this-process-p (name)
-  "Return non-nil if the resource NAME locked by this Emacs instance."
+(defun +locked-by-current-process-p (name)
+  "Return non-nil if the resource NAME locked by the current Emacs instance."
   (and (+lockedp name) (equal (emacs-pid) (+lock--locker-pid name))))
 
 (defun +lock (name)
@@ -586,7 +572,7 @@ that directory."
   "Unlock the resource named NAME if locked by this process.
 If FORCE-P is non-nil, force unlocking even if the resource is not locked by the
 current process."
-  (when (or force-p (+locked-by-this-process-p name))
+  (when (or force-p (+locked-by-current-process-p name))
     (+info! "Resource `%s' unlocked" name)
     (delete-file (+lock--file name))
     t))
@@ -659,33 +645,28 @@ be deleted.
 
 (defun +eglot--ensure-maybe-h ()
   "Maybe auto start Eglot if the current mode is in `+eglot-auto-enable-modes'."
-  (when (apply #'provided-mode-derived-p (append (list major-mode) +eglot-auto-enable-modes))
-    (eglot-ensure)))
+  (when (derived-mode-p +eglot-auto-enable-modes) (eglot-ensure)))
 
 (defun +eglot-auto-enable ()
   "Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes'."
   (interactive)
-  (add-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)
-  (remove-hook 'after-change-major-mode-hook #'+lsp--ensure-maybe-h))
+  (add-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h))
 
-(defun +eglot-use-on-all-supported-modes (mode-list)
+(defun +eglot-use-on-all-supported-modes (&optional mode-list)
   "Add all modes in MODE-LIST to `+eglot-auto-enable-modes'."
-  (dolist (mode-def mode-list)
-    (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
+  (dolist (mode-def (or mode-list (bound-and-true-p eglot-server-programs)))
+    (let ((mode (if (consp mode-def) (car mode-def) mode-def)))
       (cond
-       ((listp mode) (+eglot-use-on-all-supported-modes mode))
-       (t
-        (when (and (not (eq 'clojure-mode mode)) ; prefer cider
-                   (not (eq 'lisp-mode mode))    ; prefer sly
-                   (not (eq 'scheme-mode mode))) ; prefer geiser
-          (add-to-list '+eglot-auto-enable-modes mode)))))))
+       ((consp mode) (+eglot-use-on-all-supported-modes mode))
+       (t (unless (memq mode '(clojure-mode lisp-mode scheme-mode)) ; prefer cider, sly and geiser, respectively
+            (add-to-list '+eglot-auto-enable-modes mode)))))))
 
 (defun +eglot-register (modes &rest servers)
   "Register MODES with LSP SERVERS.
 Examples:
-  (+eglot-register 'vhdl-mode \"vhdl_ls\")
-  (+eglot-register 'lua-mode \"lua-language-server\" \"lua-lsp\")
-  (+eglot-register '(c-mode c++-mode) '(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")"
+  (+eglot-register \\='vhdl-mode \"vhdl_ls\")
+  (+eglot-register \\='lua-mode \"lua-language-server\" \"lua-lsp\")
+  (+eglot-register \\='(c-mode c++-mode) \\='(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")"
   (declare (indent 0))
   (with-eval-after-load 'eglot
     (let ((orig-val (assoc modes eglot-server-programs (lambda (s1 s2) (seq-intersection (ensure-list s1) (ensure-list s2)))))
@@ -700,7 +681,7 @@ Examples:
 
 ;;; Binary files tweaks
 
-;; (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t))
+;; (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t)
 
 (defcustom +binary-hexl-enable t
   "Enable or disable opening suitable files in `hexl-mode'."
@@ -793,20 +774,6 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
   "Unset *_proxy Linux environment variables."
   (interactive)
   (minemacs-set-enabled-proxies (mapcar (lambda (a) (list (car a))) (minemacs-get-enabled-proxies))))
-
-(defmacro +with-proxies (&rest body)
-  "Execute BODY with proxies enabled from `minemacs-proxies'."
-  `(let ((old-proxies (minemacs-get-enabled-proxies)))
-    (minemacs-enable-proxy minemacs-proxies)
-    ,@body
-    (minemacs-enable-proxy old-proxies)))
-
-(defmacro +with-no-proxies (&rest body)
-  "Execute BODY with proxies disabled."
-  `(let ((old-proxies (minemacs-get-enabled-proxies)))
-    (minemacs-disable-proxy)
-    ,@body
-    (minemacs-enable-proxy old-proxies)))
 
 
 

@@ -138,6 +138,10 @@ It is deferred until `general' gets loaded and configured."
   `(with-eval-after-load 'me-general-ready
     (general-nvmap ,@args)))
 
+(defmacro +cmdfy! (&rest body)
+  "Convert BODY to an interactive command."
+  `(lambda () (interactive) ,@body))
+
 
 
 (use-package evil
