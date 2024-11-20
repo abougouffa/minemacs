@@ -613,14 +613,12 @@ or file path may exist now."
       "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")
     "ccls")
 
-  ;; Optimization from Doom Emacs
-  ;; PERF: This setting disable the `eglot-events-buffer' enabling more
-  ;; consistent performance on long running Emacs instance. Default is 2000000
-  ;; lines. After each new event the whole buffer is pretty printed which causes
-  ;; steady performance decrease over time. CPU is spent on pretty priting and
-  ;; Emacs GC is put under high pressure.
+  ;; PERF: Optimization, inspired by: reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
-    (cl-callf plist-put eglot-events-buffer-config :size 0))
+    (cl-callf plist-put eglot-events-buffer-config :size 0) ; Disable logs in `eglot-events-buffer' (def. 2000000)
+    (with-eval-after-load 'jsonrpc ; Disable logging in `jsonrpc'
+      (fset 'jsonrpc--log-event #'ignore)
+      (remove-hook 'jsonrpc-event-hook 'jsonrpc--log-event)))
 
   ;; When a sub/super project with a separate Python virtual environment is detected,
   ;; limit to this one.
