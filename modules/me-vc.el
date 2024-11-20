@@ -108,20 +108,20 @@ When RESET is non-nil, reset the `multi-magit-selected-repositories' and
 
       (dolist (dir directories)
         (message "Scanning repositories under: %S" (abbreviate-file-name dir))
-        (when-let* ((dir (let ((default-directory dir)) (vc-root-dir))))
+        (when-let* ((dir (vc-git-root dir)))
           (add-to-list 'multi-magit-selected-repositories dir)))
 
       (message "Scanning repositories under: done.")
 
-      (with-eval-after-load 'desktop
-        ;; Save these variables between sessions
-        (add-to-list 'desktop-globals-to-save 'magit-repository-directories)
-        (add-to-list 'desktop-globals-to-save 'multi-magit-selected-repositories))
-
       ;; Set `magit-repository-directories' if not already there
       (dolist (dir multi-magit-selected-repositories)
         (unless (seq-find (lambda (e) (equal (expand-file-name (car e)) dir)) magit-repository-directories)
-          (add-to-list 'magit-repository-directories (cons dir 0)))))))
+          (add-to-list 'magit-repository-directories (cons dir 0)))))
+
+    (with-eval-after-load 'desktop
+      ;; Save these variables between sessions
+      (add-to-list 'desktop-globals-to-save 'magit-repository-directories)
+      (add-to-list 'desktop-globals-to-save 'multi-magit-selected-repositories))))
 
 
 ;; Store EIEIO objects using EmacSQL
