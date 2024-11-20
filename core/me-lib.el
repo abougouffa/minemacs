@@ -195,12 +195,16 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
 
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily while evaluating BODY.
-This inhebits both the echo area and the `*Messages*' buffer."
-  (if (not minemacs-verbose-p)
-      `(let ((message-log-max nil)
-             (inhibit-message t))
-        (with-temp-message (or (current-message) "") ,@body))
-    `(progn ,@body)))
+This inhebits both the echo area and the `*Messages*' buffer. If `:log' is
+provided as the first argument, inhibit messages but keep writing them to the
+`*Messages*' buffer."
+  (let* ((logp (eq :log (car body)))
+         (body (if logp (cdr body) body)))
+    (if (not minemacs-verbose-p)
+        `(let ((message-log-max ,(when logp message-log-max))
+               (inhibit-message t))
+          (with-temp-message (or (current-message) "") ,@body))
+      `(progn ,@body))))
 
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
