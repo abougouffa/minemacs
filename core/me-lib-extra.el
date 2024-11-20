@@ -1155,17 +1155,18 @@ it forget them only when we are sure they don't exist."
 
 ;;;###autoload
 (defun +project-list-cleanup ()
-  "Forget all duplicate known projects (/home/user/proj, ~/proj)."
+  "Forget all duplicate known projects (like /home/user/proj and ~/proj)."
   (interactive)
   (let* ((projs (mapcar #'expand-file-name (project-known-project-roots)))
          (projs-dups (cl-set-difference projs (cl-remove-duplicates projs :test #'string=))))
     (mapc #'project-forget-project projs-dups)
-    (project-forget-zombie-projects)
-    (dolist (proj projs)
+    (+project-forget-zombie-projects)
+    (dolist (proj (reverse projs))
       (let ((proj-abbrev (abbreviate-file-name proj)))
         (unless (string= proj proj-abbrev)
-          (project-forget-project proj)
-          (project-remember-projects-under proj-abbrev))))))
+          (+shutup!
+           (project-forget-project proj)
+           (project-remember-project (project-current nil proj-abbrev))))))))
 
 ;;;###autoload
 (defvar +project-root-wildcards '("~/Projects/*/*"))
