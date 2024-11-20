@@ -243,6 +243,7 @@
 (use-package consult-dir
   :straight t
   :bind (("C-x C-d" . consult-dir)
+         :package vertico
          :map minibuffer-local-completion-map
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
