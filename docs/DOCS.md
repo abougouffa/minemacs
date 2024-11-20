@@ -371,18 +371,6 @@ value of this method instead of the original alist, to ensure correct results.
 Duplicate elements in MODE-ALIST to include Treesit modes.
 For the alist =((some-mode . spec)), this will add =(some-ts-mode . spec).
 
-#### `(+set-standard-value VARIABLE VALUE)`
-
-Set the standard value of VARIABLE to VALUE.
-
-#### `(+standard-value VARIABLE)`
-
-Return the standard value for VARIABLE.
-
-#### `(+reset-standard-value VARIABLE)`
-
-Reset VARIABLE to its standard value.
-
 #### `(+unquote EXPR)`
 
 Return EXPR unquoted.
@@ -395,6 +383,12 @@ Return t when EXPR is quoted.
 #### `(+apply-partially-right FUN &rest ARGS)`
 
 Like `apply-partially`, but apply the ARGS to the right of FUN.
+
+#### `(+apply-inhibit-messages FN &rest ARGS)`
+
+Call FN with ARGS while to suppressing the messages in echo area.
+If `minemacs-verbose-p` is non-nil, do not print any message to
+*Messages* buffer.
 
 #### `(+error! MSG &rest VARS)` (macro)
 
@@ -412,19 +406,10 @@ Log MSG and VARS using `message` when `minemacs-verbose-p` is non-nil.
 
 Log debug MSG and VARS using `message` when `minemacs-msg-level` is 4.
 
-#### `(+fn-inhibit-messages! FN &optional NO-MESSAGE-LOG)` (macro)
-
-Add an advice around the function FN to suppress messages in echo area.
-If NO-MESSAGE-LOG is non-nil, do not print any message to *Messages* buffer.
-
 #### `(+shutup! &rest BODY)` (macro)
 
 Suppress new messages temporarily while evaluating BODY.
 This inhebits both the echo area and the `*Messages*` buffer.
-
-#### `(+cmdfy! &rest BODY)` (macro)
-
-Convert BODY to an interactive command.
 
 #### `(+load-theme)`
 
@@ -503,6 +488,11 @@ Optionally, check also for the containing MODULE.
 List all the available modules.
 With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
+#### `(+describe-random-command)`
+
+Show the documentation for a random command.
+Consider only documented, non-obsolete interactive functions.
+
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
 Execute shell command COMMAND and return its output as a string.
@@ -539,9 +529,9 @@ that directory.
 
 Return non-nil if the resource NAME is locked.
 
-#### `(+locked-by-this-process-p NAME)`
+#### `(+locked-by-current-process-p NAME)`
 
-Return non-nil if the resource NAME locked by this Emacs instance.
+Return non-nil if the resource NAME locked by the current Emacs instance.
 
 #### `(+lock NAME)`
 
@@ -564,7 +554,7 @@ be deleted.
 
 Auto-enable Eglot in configured modes in `+eglot-auto-enable-modes`.
 
-#### `(+eglot-use-on-all-supported-modes MODE-LIST)`
+#### `(+eglot-use-on-all-supported-modes &optional MODE-LIST)`
 
 Add all modes in MODE-LIST to `+eglot-auto-enable-modes`.
 
@@ -607,14 +597,6 @@ Set *_proxy Linux environment variables from PROXIES.
 #### `(minemacs-disable-proxy)`
 
 Unset *_proxy Linux environment variables.
-
-#### `(+with-proxies &rest BODY)` (macro)
-
-Execute BODY with proxies enabled from `minemacs-proxies`.
-
-#### `(+with-no-proxies &rest BODY)` (macro)
-
-Execute BODY with proxies disabled.
 
 #### `(+serialize-sym SYM &optional DIR FILENAME-FORMAT)`
 

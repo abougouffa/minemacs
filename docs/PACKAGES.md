@@ -288,7 +288,7 @@
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
 * `git-commit`: Edit Git commit messages - part of `magit`
 * `magit-todos`: Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
-* `magit-iconify`: File icons for Magit based on `nerd-icons`
+* `magit-file-icons`: File icons for Magit based on `nerd-icons`
 * `magit-imerge`: Magit extension for "git-imerge"
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `closql`: Store EIEIO objects using EmacSQL
