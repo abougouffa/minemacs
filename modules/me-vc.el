@@ -72,12 +72,18 @@ match the full path, use the \(cons \"path/to/ignore[0-9]*\" full) syntax."
     :type '(repeat (choice regexp (cons regexp (const full)))))
   :commands (+multi-magit-discover-repos)
   :config
-  (defun +multi-magit-discover-repos (dir &optional reset)
+  (defun +multi-magit-discover-repos (dir &optional reset remember-projects)
     "Recursively discover and select Git repositories under DIR.
-When RESET is non-nil, reset the `multi-magit-selected-repositories' and
-`magit-repository-directories' variables."
+
+When RESET is non-nil (\\[universal-argument]), reset the
+`multi-magit-selected-repositories' and `magit-repository-directories'
+variables.
+
+When REMEMBER-PROJECTS (\\[universal-argument] \\[universal-argument]),
+use `project-remember-project' with each detected repo."
     (interactive "DSelect the base directory: ")
-    (let* ((reset (or reset current-prefix-arg))
+    (let* ((reset (or reset (= (prefix-numeric-value current-prefix-arg) 4)))
+           (remember-projects (or remember-projects (= (prefix-numeric-value current-prefix-arg) 16)))
            (dir (expand-file-name dir))
            (regexps (append +multi-magit-discover-ignore-directories
                             (mapcar #'regexp-quote (append project-vc-extra-root-markers
@@ -109,6 +115,7 @@ When RESET is non-nil, reset the `multi-magit-selected-repositories' and
       (dolist (dir directories)
         (message "Scanning repositories under: %S" (abbreviate-file-name dir))
         (when-let* ((dir (vc-git-root dir)))
+          (when remember-projects (project-remember-project (project-current nil dir)))
           (add-to-list 'multi-magit-selected-repositories dir)))
 
       (message "Scanning repositories under: done.")
