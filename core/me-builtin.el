@@ -323,7 +323,6 @@ or file path may exist now."
      "package.json" ; Node.js
      "pom.xml" ; Apache Maven (Java/Kotlin)
      "Cargo.toml")) ; Cargo (Rust)
-  :bind (("C-x p a" . +project-add-project))
   :config
   ;; BUG+HACK: Project name should not be inherited from super-projects
   (cl-defmethod project-name ((project (head vc)))

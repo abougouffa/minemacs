@@ -1134,19 +1134,6 @@ This command removes new line characters between lines."
 ;;; Project tweaks
 
 ;;;###autoload
-(defun +project-add-project (dir &optional dont-ask)
-  "Switch to another project at DIR.
-When DIR is not detected as a project, ask to force it to be by adding a
-\".project.el\" file. When DONT-ASK is non-nil, create the file without asking."
-  (interactive (list (funcall project-prompter)))
-  (project-switch-project dir)
-  (let ((proj-file ".project.el"))
-    (when (and (not (project-current))
-               (or dont-ask (y-or-n-p (format "Directory not detected as a project, add %S? " proj-file))))
-      (with-temp-buffer
-        (write-file (expand-file-name proj-file dir))))))
-
-;;;###autoload
 (defun +project-forget-zombie-projects ()
   "Forget all known projects that don't exist any more.
 
