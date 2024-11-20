@@ -1,16 +1,19 @@
 ;;; goto-last-change.el --- Move point through buffer-undo-list positions  -*- lexical-binding: t; -*-
 
-;; Copyright © 2003 Kevin Rodgers
+;; Copyright (C) 2003 Kevin Rodgers
+;; Copyright (C) 2024 Abdelhak Bougouffa
 
-;; Author: Kevin Rodgers <ihs_4664@yahoo.com>
+;; Original Author: Kevin Rodgers <ihs_4664@yahoo.com>
 ;; Created: 17 Jun 2003
 ;; Modified: 21 Jul 2024
 ;; Version: 1.2.2
 ;; Keywords: convenience
+;; Package-Requires: ((emacs "28.1"))
+;; URL: https://github.com/abougouffa/minemacs/elisp/goto-last-change.el
 
 ;; Contributors:
-;;   Attila Lendvai <attila.lendvai@gmail.com> (line distance and auto marks)
-;;   Abdelhak Bougouffa (modernization)
+;; - Attila Lendvai <attila.lendvai@gmail.com> (line distance and auto marks)
+;; - Abdelhak Bougouffa (modernization)
 
 ;;; License:
 
@@ -32,7 +35,7 @@
 ;;; Commentary:
 
 ;; You may want to bind a key to `M-x goto-last-change', e.g.
-;;   (global-set-key "\C-x\C-\\" 'goto-last-change)
+;; (keymap-global-set "C-x C-\\" #'goto-last-change)
 
 ;; goto-last-change.el was written in response to the following:
 ;;
