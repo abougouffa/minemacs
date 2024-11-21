@@ -72,15 +72,6 @@
   :when (+emacs-options-p 'tree-sitter))
 
 
-;; PlatformIO integration for Emacs
-(push 'projectile straight-built-in-pseudo-packages)
-
-(use-package platformio-mode
-  :straight t)
-
-(cl-callf2 remove 'projectile straight-built-in-pseudo-packages)
-
-
 ;; Quickly jump to Intel's x86 documentation from Emacs
 (use-package x86-lookup
   :straight t
