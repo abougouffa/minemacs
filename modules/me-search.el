@@ -77,11 +77,6 @@
   :bind (("C-c s" . rg-menu)))
 
 
-;; Fast, friendly searching with ripgrep and Emacs
-(use-package deadgrep
-  :straight t)
-
-
 ;; Asynchronous fuzzy finder for Emacs
 (use-package affe
   :straight t
