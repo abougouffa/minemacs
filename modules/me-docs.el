@@ -29,6 +29,7 @@
   :config
   (pdfgrep-mode 1))
 
+
 (defconst +tuntox-available-p (and (executable-find "tuntox") t))
 (defconst +stunnel-available-p (and (executable-find "stunnel") t))
 

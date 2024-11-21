@@ -115,6 +115,8 @@
   (+mu4e-ui-setup)
   (+mu4e-ui-modeline-tweaks))
 
+
+;; My tweaks to use Gmail accounts via `mu4e'
 (use-package me-mu4e-gmail
   :when +mu4e-available-p
   :after mu4e
@@ -123,6 +125,8 @@
   ;; Setup Gmail specific hacks (adapted from Doom Emacs, with a lot of improvements)
   (+mu4e-gmail-setup))
 
+
+;; My extra `mu4e' customizations
 (use-package me-mu4e-extras
   :when +mu4e-available-p
   :after mu4e
