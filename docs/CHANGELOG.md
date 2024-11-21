@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.3.1](https://github.com/abougouffa/minemacs/compare/c774165b58cd736073c337ba95959b9cd4dccbf7..v11.3.1) - 2024-11-21
+#### Bug Fixes
+- **(flymake-collection)** use the upstream repo, new checkers merged - ([c774165](https://github.com/abougouffa/minemacs/commit/c774165b58cd736073c337ba95959b9cd4dccbf7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.3.0](https://github.com/abougouffa/minemacs/compare/dc2eca529b07d87afd5d0f4d668b664dd10db7ce..v11.3.0) - 2024-11-21
 #### Bug Fixes
 - **(multi-magit)** fix `+multi-magit-discover-repos` - ([b2ac632](https://github.com/abougouffa/minemacs/commit/b2ac63294ae578175dc180ef421c58368312d885)) - [@abougouffa](https://github.com/abougouffa)
