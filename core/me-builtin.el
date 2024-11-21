@@ -1214,7 +1214,13 @@ Typing these will trigger reindentation of the current line.")
   (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
 
 (use-package goto-addr
-  :hook ((prog-mode conf-mode) . goto-address-prog-mode))
+  :hook ((prog-mode conf-mode) . goto-address-prog-mode)
+  :custom
+  (goto-address-url-face '+goto-addr-url-face)
+  :config
+  (defface +goto-addr-url-face '((t :italic t :underline t))
+    "Face for URLs, I prefer keeping the original face and add underline and italic."
+    :group 'goto-addr))
 
 (use-package visual-wrap
   :when (>= emacs-major-version 30)
