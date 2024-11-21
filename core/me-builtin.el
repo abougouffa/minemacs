@@ -1143,6 +1143,7 @@ Typing these will trigger reindentation of the current line.")
 
 (use-package calendar
   :custom
+  (calendar-date-style 'iso) ; year/month/day
   (calendar-week-start-day 1)) ; Week starts on Monday
 
 (use-package frame
