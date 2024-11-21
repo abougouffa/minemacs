@@ -58,13 +58,8 @@
   :straight t)
 
 
-;; Interactively-editable recursive "grep" implementation in Elisp
-(use-package phi-grep
-  :straight t)
-
-
 ;; Emacs search tool based on "ripgrep"
-(use-package rg ;; TODO: Maybe deprecate this in favor of `deadgrep'
+(use-package rg
   :straight t
   :bind (("C-c s" . rg-menu)))
 
