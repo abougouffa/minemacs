@@ -180,12 +180,6 @@ use `project-remember-project' with each detected repo."
   :straight t)
 
 
-;; Transient menus to use some "repo" commands within Magit
-(use-package repo-transient
-  :straight (:type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/repo-transient.el"))
-  :commands (repo-main-menu))
-
-
 ;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
 (use-package jujutsushi
   :straight (:host github :repo "abougouffa/jujutsushi" :branch "default")
