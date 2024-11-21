@@ -1281,6 +1281,46 @@ Typing these will trigger reindentation of the current line.")
          ("<down>" . isearch-ring-advance)
          ("M-i" . +insert-thing-at-point)))
 
+(use-package re-builder
+  :commands (+reb-replace-regexp)
+  :config
+  (defvar-local +reb--points nil "Store point and region bounds before calling `re-builder'.")
+
+  (advice-add
+   're-builder :before
+   (satch-defun +re-builder-save-state:before-a (&rest _args)
+     (setq +reb--points (cons (point) (when (region-active-p) (list (region-beginning) (region-end)))))))
+
+  ;; Adapted from: https://karthinks.com/software/bridging-islands-in-emacs-1
+  (defun +reb-replace-regexp (&optional delimited backward)
+    "Run `query-replace-regexp' with the contents of `re-builder'.
+With non-nil optional argument DELIMITED, only replace matches
+surrounded by word boundaries."
+    (interactive "P")
+    (reb-update-regexp)
+    (let* ((re (reb-target-value 'reb-regexp))
+           (replacement
+            (query-replace-read-to
+             re
+             (concat "Query replace"
+                     (if current-prefix-arg
+                         (if (eq current-prefix-arg '-) " backward" " word")
+                       "")
+                     " regexp"
+                     (if (with-selected-window reb-target-window (region-active-p)) " in region" ""))
+             t)))
+      (with-selected-window reb-target-window
+        (let ((pnt (car +reb--points))
+              (beg (cadr +reb--points))
+              (end (caddr +reb--points)))
+          ;; replace with (goto-char (match-beginning 0)) if you want
+          ;; to control where in the buffer the replacement starts
+          ;; with re-builder
+          (goto-char pnt)
+          (setq +reb--points nil)
+          (reb-quit)
+          (query-replace-regexp re replacement delimited beg end backward))))))
+
 (use-package yaml-ts-mode
   :when (+emacs-options-p 'tree-sitter)
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
