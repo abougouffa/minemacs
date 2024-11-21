@@ -156,17 +156,27 @@ use `project-remember-project' with each detected repo."
   :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 
 
-;; Walk through git revisions of a file
+;; Walk through Git revisions of a file
 (use-package git-timemachine
   :straight t
-  :hook (git-timemachine-mode . +git-timemachine--run-delayed-mode-hooks-h)
+  ;; HACK: `git-timemachine' applies the mode with `delay-mode-hooks', resulting
+  ;; in an unfontified buffer.
+  :hook (git-timemachine-mode . font-lock-mode)
+  :hook (git-timemachine-mode . display-line-numbers-mode)
   :config
-  ;; BUG+FIX: `git-timemachine' applies the mode with `delay-mode-hooks'. For
-  ;; some reason, this makes the buffer losing it's font lock. Hence, we
-  ;; explicitly run the delayed hooks after applying the `git-timemachine-mode'
-  ;; (see the implementation of `git-timemachine--start').
-  (defun +git-timemachine--run-delayed-mode-hooks-h ()
-    (run-mode-hooks 'delayed-mode-hooks)))
+  (advice-add
+   'git-timemachine--show-minibuffer-details :override
+   (satch-defun +git-timemachine--show-revision-in-header-line:override-a (revision)
+     "Show the current revision in the header-line instead of the echo area."
+     (let* ((date-relative (nth 3 revision))
+            (date-full (nth 4 revision))
+            (author (if git-timemachine-show-author (concat (nth 6 revision) ": ") ""))
+            (sha-or-subject (if (eq git-timemachine-minibuffer-detail 'commit) (car revision) (nth 5 revision))))
+       (setq header-line-format
+             (format "%s%s [%s (%s)]"
+                     (propertize author 'face 'git-timemachine-minibuffer-author-face)
+                     (propertize sha-or-subject 'face 'git-timemachine-minibuffer-detail-face)
+                     date-full date-relative))))))
 
 
 ;; Emacs major modes for Git configuration files
