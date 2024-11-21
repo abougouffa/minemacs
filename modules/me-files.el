@@ -25,11 +25,6 @@
   (neo-theme 'nerd-icons))
 
 
-;; Same frame speedbar
-(use-package sr-speedbar
-  :straight t)
-
-
 ;; View, edit, search and compare very large files in batches, trading memory for processor time
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
