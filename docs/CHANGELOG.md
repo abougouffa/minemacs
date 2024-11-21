@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.3.0](https://github.com/abougouffa/minemacs/compare/dc2eca529b07d87afd5d0f4d668b664dd10db7ce..v11.3.0) - 2024-11-21
+#### Bug Fixes
+- **(multi-magit)** fix `+multi-magit-discover-repos` - ([b2ac632](https://github.com/abougouffa/minemacs/commit/b2ac63294ae578175dc180ef421c58368312d885)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** declare it as unsupported for `multiple-cursors` - ([569dccc](https://github.com/abougouffa/minemacs/commit/569dccc3956916326767bfb4d1bada701af7bb00)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** respect the projects list in `+project-list-cleanup` - ([7ca7d5d](https://github.com/abougouffa/minemacs/commit/7ca7d5db78471bde9a84a20a5df02491804ce4a0)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([292a5ac](https://github.com/abougouffa/minemacs/commit/292a5ac342b62b2042cb6737636dd6168d15c6d0)) - [@abougouffa](https://github.com/abougouffa)
+- more comments - ([fc39ddd](https://github.com/abougouffa/minemacs/commit/fc39ddd78ac9f460185fbd80440d4d88e04a510e)) - [@abougouffa](https://github.com/abougouffa)
+- generate the documentation - ([9bf607c](https://github.com/abougouffa/minemacs/commit/9bf607c85ed4e33dcfa883a6dfb8d1fa4496d845)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** make `zones` obsolete - ([fc92c66](https://github.com/abougouffa/minemacs/commit/fc92c66fd1e0ad279d28bd3d08f28fa4d3c6e02c)) - [@abougouffa](https://github.com/abougouffa)
+- **(embedded)** make `platformio` obsolete - ([bc8763c](https://github.com/abougouffa/minemacs/commit/bc8763c29cf107e5d3677eef27bca3b501693995)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `sr-speedbar` obsolete - ([abdbe82](https://github.com/abougouffa/minemacs/commit/abdbe82befb3be6279027b88c45e0116fcdcaabf)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** make `phi-grep` obsolete - ([9a1bed3](https://github.com/abougouffa/minemacs/commit/9a1bed34e6525d3cf0fb2a9415d31abb57167925)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** make `isearch-mb` obsolete - ([fd3c63d](https://github.com/abougouffa/minemacs/commit/fd3c63d3e3c0aee6b3fb0711ecdb008eaa828cb1)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** make `deadgrep` obsolete - ([0eef649](https://github.com/abougouffa/minemacs/commit/0eef64933d826b00706f5022e7dbf831cac59df8)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `rtags` obsolete - ([73a3e39](https://github.com/abougouffa/minemacs/commit/73a3e39119b6f4e09386b0224cfa5c9a7e9cb978)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `mixed-pitch` obsolete - ([60624cb](https://github.com/abougouffa/minemacs/commit/60624cbe9c29169eb5feb30e68045822b97b9222)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** make `repo-transient` obsolete - ([aa0cc80](https://github.com/abougouffa/minemacs/commit/aa0cc80903ab24d7828f514f6e78cab86b5c5fb7)) - [@abougouffa](https://github.com/abougouffa)
+- make `me-writing-mode` obsolete - ([6fe9d42](https://github.com/abougouffa/minemacs/commit/6fe9d422ccc3de4ca3adf171dfbf46040168e82d)) - [@abougouffa](https://github.com/abougouffa)
+- remove useless `+project-add-project` - ([d8246ac](https://github.com/abougouffa/minemacs/commit/d8246ac2f70ae3688e24252d41d8b4c6ac8d4944)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- several performance improvements, remove unused functions - ([dc2eca5](https://github.com/abougouffa/minemacs/commit/dc2eca529b07d87afd5d0f4d668b664dd10db7ce)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- restore the `:package` keyword in `:bind` blocks - ([6680fa5](https://github.com/abougouffa/minemacs/commit/6680fa5ab0d3c9bb7fff42078e127652945ab57c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** optionally print logs in `+shutup!` - ([7a0a468](https://github.com/abougouffa/minemacs/commit/7a0a4684e2d7c1f6ae0288f2d483e7ac26cdf83f)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** performance tweaks - ([d6ce5e0](https://github.com/abougouffa/minemacs/commit/d6ce5e01da976a707ab2efd2fe20650933fabb34)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-magit)** remember projects in `+multi-magit-discover-repos` - ([e072c33](https://github.com/abougouffa/minemacs/commit/e072c330d66f7c5127787ed67e97e17bd09ddd34)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([de24b16](https://github.com/abougouffa/minemacs/commit/de24b16c38cf4fd95c50947a09ea6fc5ab4dc4cf)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([a0b6be4](https://github.com/abougouffa/minemacs/commit/a0b6be4884a67a182ccc3f990f5b5ec37912a901)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits in `goto-last-change` - ([c5bd045](https://github.com/abougouffa/minemacs/commit/c5bd045a640dd97933195b019e80534081e53498)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.2.0](https://github.com/abougouffa/minemacs/compare/59776f36e39064734719127b8b30c67001dcc119..v11.2.0) - 2024-11-19
 #### Bug Fixes
 - **(citre)** don't use global cache directory - ([ed5a5d8](https://github.com/abougouffa/minemacs/commit/ed5a5d870df8c515e92fcadaade4b66c432c0193)) - [@abougouffa](https://github.com/abougouffa)
