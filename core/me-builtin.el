@@ -1213,6 +1213,9 @@ Typing these will trigger reindentation of the current line.")
   (kill-do-not-save-duplicates t) ; Filter duplicate entries in kill ring
   (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
 
+(use-package goto-addr
+  :hook ((prog-mode conf-mode) . goto-address-prog-mode))
+
 (use-package visual-wrap
   :when (>= emacs-major-version 30)
   :hook ((prog-mode conf-mode org-mode) . visual-wrap-prefix-mode)) ; Respect indentation whein wrapping long lines
