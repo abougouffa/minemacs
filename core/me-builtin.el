@@ -1271,11 +1271,9 @@ Typing these will trigger reindentation of the current line.")
   (isearch-lazy-count t) ; Show the match count (need a non-nil `isearch-lazy-highlight')
   (search-ring-max 200) ; 16 is too little
   (regexp-search-ring-max 200)
-  :bind (;; Swap `isearch-*' with `isearch-*-regexp' to use regexp based search by default
-         ("C-s" . isearch-forward-regexp)
-         ("C-r" . isearch-backward-regexp)
-         ("C-M-s" . isearch-forward)
-         ("C-M-r" . isearch-backward)
+  :bind (;; In AZERTY keyboards, the "%" is inserted as "S-ù", so lets bing "ù" to save pressing the shift key
+         ("M-ù" . query-replace)
+         ("C-M-ù" . query-replace-regexp)
          :map isearch-mode-map
          ("<up>" . isearch-ring-retreat)
          ("<down>" . isearch-ring-advance)
