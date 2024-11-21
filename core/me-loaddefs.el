@@ -351,7 +351,7 @@ restores it after that.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+c" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+res" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-delayed" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -631,12 +631,6 @@ Kill (copy) region as one paragraph.
 This command removes new line characters between lines." t)
 (autoload '+first-line-empty-p "me-lib-extra" "\
 Return t when the first line of the buffer is empty.")
-(autoload '+project-add-project "me-lib-extra" "\
-Switch to another project at DIR.
-When DIR is not detected as a project, ask to force it to be by adding a
-\".project.el\" file. When DONT-ASK is non-nil, create the file without asking.
-
-(fn DIR &optional DONT-ASK)" t)
 (autoload '+project-forget-zombie-projects "me-lib-extra" "\
 Forget all known projects that don't exist any more.
 
@@ -645,7 +639,7 @@ it forget them only when we are sure they don't exist." t)
 (autoload '+project-gdb "me-lib-extra" "\
 Invoke `gdb' in the project's root." t)
 (autoload '+project-list-cleanup "me-lib-extra" "\
-Forget all duplicate known projects (/home/user/proj, ~/proj)." t)
+Forget all duplicate known projects (like /home/user/proj and ~/proj)." t)
 (defvar +project-root-wildcards '("~/Projects/*/*"))
 (autoload '+project-root-initialize "me-lib-extra" "\
 Initialize project list from `+project-root-wildcards'." t)
@@ -902,53 +896,6 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-wiki.el
 
 (minemacs-register-on-demand-module 'me-wiki :auto-mode '(("\\.wiki\\'" . wikitext-mode)))
-
-
-;;; Generated autoloads from ../modules/extras/me-writing-mode.el
-
-(autoload '+writing-mode "../modules/extras/me-writing-mode" "\
-A mode for writing without distraction.
-
-This is a minor mode.  If called interactively, toggle the `+Writing
-mode' mode.  If the prefix argument is positive, enable the mode, and if
-it is zero or negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
-mode if ARG is nil, omitted, or is a positive number.  Disable the mode
-if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate the variable `+writing-mode'.
-
-The mode's hook is called both when the mode is enabled and when it is
-disabled.
-
-(fn &optional ARG)" t)
-(put '+writing-global-mode 'globalized-minor-mode t)
-(defvar +writing-global-mode nil "\
-Non-nil if +Writing-Global mode is enabled.
-See the `+writing-global-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `+writing-global-mode'.")
-(custom-autoload '+writing-global-mode "../modules/extras/me-writing-mode" nil)
-(autoload '+writing-global-mode "../modules/extras/me-writing-mode" "\
-Toggle +Writing mode in all buffers.
-With prefix ARG, enable +Writing-Global mode if ARG is positive; otherwise,
-disable it.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.
-Enable the mode if ARG is nil, omitted, or is a positive number.
-Disable the mode if ARG is a negative number.
-
-+Writing mode is enabled in all buffers where `+turn-on-writing-mode' would do
-it.
-
-See `+writing-mode' for more information on +Writing mode.
-
-(fn &optional ARG)" t)
-(register-definition-prefixes "../modules/extras/me-writing-mode" '("+turn-on-writing-mode" "+writing-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
