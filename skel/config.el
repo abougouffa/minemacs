@@ -234,8 +234,7 @@
           ("FIP" . "http://icecast.radiofrance.fr/fip-hifi.aac")
           ("Beur FM" . "http://broadcast.infomaniak.ch/beurfm-high.aac")
           ("Skyrock" . "http://icecast.skyrock.net/s/natio_mp3_128k"))
-        ;; See: docs.invidious.io/instances/
-        empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1"))
+        empv-invidious-instance "https://invidious.projectsegfau.lt/api/v1")) ; See: https://docs.invidious.io/instances
 
 ;; Module: `me-ros' -- Package: `ros'
 (with-eval-after-load 'ros

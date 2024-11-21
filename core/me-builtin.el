@@ -88,7 +88,7 @@
 
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
-  ;; See: reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
+  ;; See: https://reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
   (fset 'display-startup-echo-area-message #'ignore)
   (fset 'display-startup-screen #'ignore)
 
@@ -98,7 +98,7 @@
   (set-default-coding-systems 'utf-8)
   (set-language-environment "UTF-8")
   (set-locale-environment "en_US.UTF-8")
-  ;; Use UTF-16-LE in Windows, see: rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+  ;; Use UTF-16-LE in Windows, see: https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
   (set-selection-coding-system (if (+emacs-options-p 'os/win) 'utf-16-le 'utf-8))
   :config
   ;; Make `ESC' behave like `C-g'
@@ -208,7 +208,7 @@ or file path may exist now."
 
 (use-package crm
   :config
-  ;; From: github.com/a-schaefers/spartan-emacs/blob/main/spartan-layers/spartan-vertico.el
+  ;; From: https://github.com/a-schaefers/spartan-emacs/blob/main/spartan-layers/spartan-vertico.el
   ;; Add prompt indicator to `completing-read-multiple'. We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
   (advice-add
    #'completing-read-multiple :filter-args
@@ -447,7 +447,7 @@ or file path may exist now."
 (use-package reftex ;; Inspired by Doom Emacs
   :hook (reftex-toc-mode . reftex-toc-rescan)
   :custom
-  ;; Get RefTeX working with BibLaTeX. See: tex.stackexchange.com/a/31992/43165
+  ;; Get RefTeX working with BibLaTeX. See: https://tex.stackexchange.com/a/31992/43165
   (reftex-cite-format
    '((?a . "\\autocite[]{%l}")
      (?b . "\\blockcquote[]{%l}{}")
@@ -457,8 +457,7 @@ or file path may exist now."
      (?p . "\\parencite[]{%l}")
      (?s . "\\smartcite[]{%l}")
      (?t . "\\textcite[]{%l}"))
-   ;; This is needed when `reftex-cite-format' is set. See:
-   ;; superuser.com/a/1386206
+   ;; This is needed when `reftex-cite-format' is set. See: https://superuser.com/a/1386206
    (reftex-plug-into-AUCTeX t)
    (reftex-toc-split-windows-fraction 0.3)))
 

@@ -111,7 +111,7 @@ Adapted from `org-plist-delete'."
         (push (cdr x) res)))
     (nreverse res)))
 
-;; Taken from: emacs.stackexchange.com/q/33892/12534
+;; Taken from: https://emacs.stackexchange.com/q/33892/12534
 (defun +alist-set (key val alist &optional symbol)
   "Set property KEY to VAL in ALIST. Return new alist.
 This creates the association if it is missing, and otherwise sets the cdr of the

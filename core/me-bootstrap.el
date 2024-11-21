@@ -19,7 +19,7 @@
  straight-check-for-modifications '(check-on-save find-when-checking))
 
 ;; Bootstrapping straight.el
-;; See: github.com/radian-software/straight.el#bootstrapping-straightel
+;; See: https://github.com/radian-software/straight.el#bootstrapping-straightel
 (defvar bootstrap-version)
 (let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
       (install-url "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el")

@@ -640,7 +640,7 @@ If ENABLE is non-nil, force enabling autoreloading."
 
 ;;; Misc Emacs tweaks
 
-;; Adapted from: rougier/nano-emacs
+;; Adapted from: https://github.com/rougier/nano-emacs
 ;;;###autoload
 (defun +what-faces (pos)
   "Get the font faces at POS."
@@ -680,7 +680,7 @@ by `+screenshot-delay') before taking the screenshot."
     (message "Screenshot saved to %s" (or outfile tmp-file))))
 
 ;; Kill the minibuffer even when in another windown.
-;; Adapted from: trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+;; Adapted from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 ;;;###autoload
 (defun +minibuffer-kill-minibuffer ()
   "Kill the minibuffer when switching to window with mouse."
@@ -808,7 +808,7 @@ you have `editorconfig' or `dtrt-indent' installed."
 
 ;;; Eglot extras
 
-;; From: github.com/MaskRay/ccls/wiki/eglot#misc
+;; From: https://github.com/MaskRay/ccls/wiki/eglot#misc
 ;;;###autoload
 (defun +eglot-ccls-inheritance-hierarchy (&optional derived)
   "Show inheritance hierarchy for the thing at point.
@@ -839,7 +839,7 @@ the children of class at point."
     (eglot--error "Hierarchy unavailable")))
 
 ;; Adapted from: Doom Emacs
-;; github.com/doomemacs/doomemacs/blob/master/modules/tools/lsp/autoload/eglot.el
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/tools/lsp/autoload/eglot.el
 ;;
 ;; HACK: Eglot removed `eglot-help-at-point' in joaotavora/eglot@a044dec for a
 ;; more problematic approach of deferred to eldoc. Here, I've restored it.
@@ -926,7 +926,7 @@ This checks the first CHUNK of bytes, defaults to 1024."
 
 ;;; Buffer related tweaks
 
-;; From: emacswiki.org/emacs/download/misc-cmds.el
+;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;; Candidate as a replacement for `kill-buffer', at least when used interactively.
 ;; For example: (define-key global-map [remap kill-buffer] 'kill-buffer-and-its-windows)
 ;; We cannot just redefine `kill-buffer', because some programs count on a
@@ -947,7 +947,7 @@ BUFFER may be either a buffer or its name (a string)."
               (condition-case nil (delete-window win) (error nil))))))
     (when msgp (user-error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
 
-;; From: emacswiki.org/emacs/download/misc-cmds.el
+;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +region-to-buffer (start end buffer arg)
   "Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
@@ -984,7 +984,7 @@ With no prefix ARG (nil): `copy-to-buffer'.
          (prepend-to-buffer buffer start end))
         (t (copy-to-buffer buffer start end))))
 
-;; From: emacswiki.org/emacs/download/misc-cmds.el
+;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +region-to-file (start end filename arg)
   "With prefix arg, this is `append-to-file'.  Without, it is `write-region'.
@@ -1043,7 +1043,7 @@ Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
                                  (buffer-name buffer))))
     (kill-buffer buffer)))
 
-;; From: emacswiki.org/emacs/download/misc-cmds.el
+;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +delete-extra-windows-for-buffer ()
   "Delete all other windows showing the selected window's buffer."
@@ -1057,7 +1057,7 @@ Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
            (delete-window ww))))
      'NO-MINI 'THIS-FRAME)))
 
-;; From: emacswiki.org/emacs/download/misc-cmds.el
+;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +delete-window-maybe-kill-buffer ()
   "Delete selected window.

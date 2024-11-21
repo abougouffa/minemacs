@@ -65,7 +65,7 @@
   (add-to-list 'LaTeX-verbatim-macros-with-braces "lstinline")
   (add-to-list 'LaTeX-verbatim-macros-with-delims "lstinline")
 
-  ;; Fontification taken from: tex.stackexchange.com/a/86119/81279
+  ;; Fontification taken from: https://tex.stackexchange.com/a/86119/81279
   (setq font-latex-match-reference-keywords
         '(;; BibLaTeX.
           ("printbibliography" "[{")

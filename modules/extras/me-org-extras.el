@@ -133,7 +133,7 @@ it is made into an image."
     (put '+org-extras-inject-latex-fragment:around-a 'enabled nil)
     (message "Inject latex disabled")))
 
-;; Adapted from: github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
+;; Adapted from: https://github.com/kaushalmodi/.emacs.d/blob/master/setup-files/setup-org.el
 (defun +org-lower-case-keywords-and-properties ()
   "Lower case Org keywords and properties and block identifiers.
 Example: \"#+TITLE\" -> \"#+title\"
