@@ -117,11 +117,6 @@
              (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 
 
-;; Zones of text - like multiple regions
-(use-package zones
-  :straight t)
-
-
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
   :straight t
