@@ -10,7 +10,7 @@
 
 ;; Collection of checkers for Flymake
 (use-package flymake-collection
-  :straight (:fork (:repo "abougouffa/flymake-collection" :branch "additional-checkers"))
+  :straight t
   :init
   (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
   :custom
