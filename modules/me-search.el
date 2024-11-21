@@ -53,14 +53,6 @@
   :straight t)
 
 
-;; Control `isearch' from the minibuffer
-(use-package isearch-mb
-  :straight t
-  :after isearch
-  :init
-  (isearch-mb-mode 1))
-
-
 ;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
   :straight t)
