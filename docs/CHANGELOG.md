@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.3.2](https://github.com/abougouffa/minemacs/compare/3ecee921fe08a70e58425ca59e4bfc8cf13679f5..v11.3.2) - 2024-11-21
+#### Bug Fixes
+- **(autorevert)** make sure to save the initial mtime on opening the file - ([94d02d9](https://github.com/abougouffa/minemacs/commit/94d02d90498d29e37c44760ecbf7638fee99e71b)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- use full links in comments to play well with `goto-addr` - ([0566438](https://github.com/abougouffa/minemacs/commit/056643887bd50563a7cfbf1f3d1202e65ee24483)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(auctex)** remove unneeded/outdated customization - ([dba5527](https://github.com/abougouffa/minemacs/commit/dba55270109f4975bf6ba564ad162b6ae39b1606)) - [@abougouffa](https://github.com/abougouffa)
+- **(calendar)** set the default date style to ISO - ([535db5d](https://github.com/abougouffa/minemacs/commit/535db5d6b168dc223b045c8d79c9916460397153)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-timemachine)** show revision in header line, only do font lock - ([3ecee92](https://github.com/abougouffa/minemacs/commit/3ecee921fe08a70e58425ca59e4bfc8cf13679f5)) - [@abougouffa](https://github.com/abougouffa)
+- **(goto-addr)** customize the URL face - ([5e9b8f5](https://github.com/abougouffa/minemacs/commit/5e9b8f50912b9e1dffec9e8383914ee04c7161d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(isearch)** restore the default `C-[M]-s` binding, bind `C-[M]-ù` - ([1d878e9](https://github.com/abougouffa/minemacs/commit/1d878e92ae3a373d0a789d937d94acc1179a4820)) - [@abougouffa](https://github.com/abougouffa)
+- **(re-builder)** add `+reb-replace-regexp` - ([db9c6c2](https://github.com/abougouffa/minemacs/commit/db9c6c24605d71decc4cdcec0e21cbb31475e5e7)) - [@abougouffa](https://github.com/abougouffa)
+- enable `goto-address-prog-mode` in `prog-mode` & `conf-mode` - ([e88f508](https://github.com/abougouffa/minemacs/commit/e88f50881e79674249123e0d26fdd18709b970bb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.3.1](https://github.com/abougouffa/minemacs/compare/c774165b58cd736073c337ba95959b9cd4dccbf7..v11.3.1) - 2024-11-21
 #### Bug Fixes
 - **(flymake-collection)** use the upstream repo, new checkers merged - ([c774165](https://github.com/abougouffa/minemacs/commit/c774165b58cd736073c337ba95959b9cd4dccbf7)) - [@abougouffa](https://github.com/abougouffa)
