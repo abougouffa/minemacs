@@ -1067,16 +1067,19 @@ Typing these will trigger reindentation of the current line.")
   (defun +file-mtime (file)
     (when-let* ((file-attr (and file (file-attributes file))))
       (file-attribute-modification-time file-attr)))
-  (add-hook
-   'after-save-hook
-   (satch-defun +auto-revert--save-file-mtime-h ()
-     (+log! "Saving modification time for %S" buffer-file-name)
-     (setq-local +auto-revert-buffer-time (+file-mtime buffer-file-name))))
+
+  (defun +auto-revert--save-file-mtime (&rest _args)
+    (+log! "Saving modification time for %S" buffer-file-name)
+    (setq +auto-revert-buffer-time (+file-mtime buffer-file-name)))
+
+  (add-hook 'after-save-hook #'+auto-revert--save-file-mtime)
+  (advice-add 'after-find-file :after #'+auto-revert--save-file-mtime)
+
   (add-hook
    'window-buffer-change-functions
    (satch-defun +auto-revert--on-buffer-switch-h (_frame)
      (unless +auto-revert-buffer-time
-       (setq-local +auto-revert-buffer-time (+file-mtime buffer-file-name)))
+       (setq +auto-revert-buffer-time (+file-mtime buffer-file-name)))
      (unless (equal +auto-revert-buffer-time (+file-mtime buffer-file-name))
        (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
        (revert-buffer t t)))))
