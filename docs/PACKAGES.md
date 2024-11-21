@@ -55,7 +55,6 @@
 * `rainbow-delimiters`: Emacs rainbow delimiters mode
 * `highlight-numbers`: Highlight numbers in source code
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
-* `zones`: Zones of text - like multiple regions
 * `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 * `expreg`: Your friendly neighborhood expand-region clone
 * `drag-stuff`: Drag stuff around in Emacs
@@ -75,6 +74,8 @@
 * `mu4e-icalendar`: Reply to iCalendar meeting requests
 * `varuga`: Send ical calendar invites by email
 * `me-mu4e-ui`: My UI tweaks for `mu4e`
+* `me-mu4e-gmail`: My tweaks to use Gmail accounts via `mu4e`
+* `me-mu4e-extras`: My extra `mu4e` customizations
 * `org-msg`: Global minor mode mixing up `org-mode` and `message-mode` to compose and reply to emails in a Outlook HTML friendly style
 * `org-mime`: Send HTML email using Org-mode HTML export (alternative to `org-msg`)
 * `mu4e-alert`: Desktop notifications and modeline display for `mu4e`
@@ -94,7 +95,6 @@
 * `dired-hacks`: Collection of useful dired additions
 * `disk-usage`: Sort and browse disk usage listings
 * `neotree`: A Emacs tree plugin like NerdTree for Vim
-* `sr-speedbar`: Same frame speedbar
 * `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
 * `sudo-edit`: Utilities for opening files with "sudo"
@@ -208,10 +208,8 @@
 * `gumshoe`: A smart point tracker
 * `goto-last-change`: An Emacs package to move point through `buffer-undo-list` positions
 * `isearch+`: Extensions to `isearch`
-* `isearch-mb`: Control `isearch` from the minibuffer
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
-* `phi-grep`: Interactively-editable recursive "grep" implementation in Elisp
-* `deadgrep`: Fast, friendly searching with ripgrep and Emacs
+* `rg`: Emacs search tool based on "ripgrep"
 * `affe`: Asynchronous fuzzy finder for Emacs
 * `fzf`: An Emacs front-end for "fzf"
 
@@ -236,8 +234,6 @@
 * `xcscope`: Cscope interface for Emacs
 * `consult-cscope`: Cscope integration for Emacs' Consult
 * `clink`: Clink integration to Emacs
-* `rtags`: A client/server indexer for C/C++/Objc[++] with integration for Emacs based on Clang
-* `rtags-xref`: RTags backend for `xref`
 
 ## `me-tools`
 * `ssh-deploy`: github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
@@ -270,7 +266,6 @@
 * `keycast`: Show current command and its key in the mode line
 * `enlight`: Highly customizable startup screen for Emacs
 * `lacarte`: Execute menu items as commands, with completion
-* `mixed-pitch`: Use a variable pitch, keeping fixed pitch where it's sensible
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
 * `focus`: Dim the font color of text in surrounding sections
@@ -297,7 +292,6 @@
 * `git-timemachine`: Walk through git revisions of a file
 * `git-modes`: Emacs major modes for Git configuration files
 * `repo`: Running "repo" from Emacs
-* `repo-transient`: Transient menus to use some "repo" commands within Magit
 * `jujutsushi`: Integrate `vc` and `project` with Jujutsu, a Git-compatible VCS that is both simple and powerful
 * `diffview`: View diffs side-by-side in Emacs
 

@@ -264,38 +264,6 @@ The minimum and maximum width of a displayed image.
 
 Automatically convert Org keywords and properties to lowercase on save.
 
-#### `+writing-mode-enable-hook`
-
-Execute hooks on enable.
-
-#### `+writing-mode-disable-hook`
-
-Execute hooks on disable.
-
-#### `+writing-text-scale`
-
-The text-scaling level for `+writing-mode`.
-
-#### `+writing-text-width`
-
-Like `olivetti-body-width`.
-
-#### `+writing-mixed-pitch-enable`
-
-Enable `mixed-pitch-mode` with `+writing-mode` for some modes defined in `+writing-mixed-pitch-modes`.
-
-#### `+writing-mixed-pitch-modes`
-
-Enable `mixed-pitch-mode` with `+writing-mode` for these modes.
-
-#### `+writing-major-modes`
-
-Enable `+writing-global-mode` for these exact modes.
-
-#### `+writing-derived-major-modes`
-
-Enable `+writing-global-mode` for modes derived these modes.
-
 ### Function and Macro Documentation
 
 #### `(minemacs-generate-loaddefs)`
@@ -409,7 +377,9 @@ Log debug MSG and VARS using `message` when `minemacs-msg-level` is 4.
 #### `(+shutup! &rest BODY)` (macro)
 
 Suppress new messages temporarily while evaluating BODY.
-This inhebits both the echo area and the `*Messages*` buffer.
+This inhebits both the echo area and the `*Messages*` buffer. If `:log` is
+provided as the first argument, inhibit messages but keep writing them to the
+`*Messages*` buffer.
 
 #### `(+load-theme)`
 
@@ -1008,12 +978,6 @@ This command removes new line characters between lines.
 
 Return t when the first line of the buffer is empty.
 
-#### `(+project-add-project DIR &optional DONT-ASK)`
-
-Switch to another project at DIR.
-When DIR is not detected as a project, ask to force it to be by adding a
-".project.el" file. When DONT-ASK is non-nil, create the file without asking.
-
 #### `(+project-forget-zombie-projects)`
 
 Forget all known projects that don't exist any more.
@@ -1026,7 +990,7 @@ Invoke `gdb` in the project's root.
 
 #### `(+project-list-cleanup)`
 
-Forget all duplicate known projects (/home/user/proj, ~/proj).
+Forget all duplicate known projects (like /home/user/proj and ~/proj).
 
 #### `(+project-root-initialize)`
 
