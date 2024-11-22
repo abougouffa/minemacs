@@ -94,26 +94,18 @@
 
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
-  :straight (:host github :repo "protesilaos/pulsar")
+  :straight (:host github :repo "protesilaos/pulsar" :fork (:host github :repo "abougouffa/pulsar" :branch "refined-pulse-region"))
   :hook (minemacs-first-file . pulsar-global-mode)
   :custom
   (pulsar-face 'pulsar-red)
-  ;; BUG+TEMP: This new feature is buggy, disable it until it gets fixed. See protesilaos/pulsar#22
-  (pulsar-pulse-region-functions nil)
+  (pulsar-pulse-on-region t)
   :config
-  (cl-callf append pulsar-pulse-functions
-    '(what-cursor-position scroll-up-command scroll-down-command kill-whole-line yank-from-kill-ring yank yank-pop))
-
-  ;; BUG+TEMP: Avoid too much pulsing on window change
-  (advice-add
-   'pulsar-mode :after
-   (satch-defun +pulsar--fix-pulse-on-window-change:after-a (&rest _args)
-     (if pulsar-mode
-         (progn
-           (remove-hook 'window-state-change-functions #'pulsar--pulse-on-window-change 'local)
-           (when pulsar-pulse-on-window-change
-             (add-hook 'window-selection-change-functions #'pulsar--pulse-on-window-change nil 'local)))
-       (remove-hook 'window-selection-change-functions #'pulsar--pulse-on-window-change 'local)))))
+  (cl-callf append pulsar-pulse-region-functions
+    '(kill-whole-line crux-smart-kill-line
+      +kill-whitespace-or-word +kill-whitespace-or-word
+      +kill-region-as-paragraph +kill-region-or-backward-word
+      +backward-kill-whitespace-or-word))
+  (cl-callf append pulsar-pulse-functions '(what-cursor-position)))
 
 
 ;; Dim the font color of text in surrounding sections
