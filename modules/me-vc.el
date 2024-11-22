@@ -195,8 +195,7 @@ use `project-remember-project' with each detected repo."
   :straight (:host github :repo "abougouffa/jujutsushi" :branch "default")
   :init
   (with-eval-after-load 'project
-    (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))
-    (add-to-list 'project-vc-extra-root-markers ".jj")))
+    (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))))
 
 
 ;; View diffs side-by-side in Emacs
