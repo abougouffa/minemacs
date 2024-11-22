@@ -45,7 +45,7 @@
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
       beginning-of-visual-line end-of-visual-line kill-region forward-sexp backward-sexp
-      tab-to-tab-stop indent-for-tab-command transient-noop
+      tab-to-tab-stop indent-for-tab-command transient-noop comment-line comment-dwim
       ;; MinEmacs' commands
       +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
       ;; `avy'
