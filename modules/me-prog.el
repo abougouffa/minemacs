@@ -383,11 +383,6 @@
   :when (+emacs-options-p 'libxml2))
 
 
-;; Show cognitive complexity of code in Emacs 29+ (treesit-based)
-(use-package cognitive-complexity
-  :straight (:host github :repo "emacs-vs/cognitive-complexity"))
-
-
 (provide 'me-prog)
 
 ;;; me-prog.el ends here
