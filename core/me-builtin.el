@@ -46,6 +46,8 @@
   (window-combination-resize t) ; Resize window combinations proportionally
   (x-stretch-cursor t) ; Stretch cursor to the glyph width
   (frame-resize-pixelwise t) ; Do force frame size to be a multiple of char size
+  (help-window-select t) ; Select help window for faster quit!
+  (Man-notify-method 'aggressive) ; Same thing with `man'
   (read-process-output-max ; Increase single chunk bytes to read from subprocess (def. 4096)
    (if (+emacs-options-p 'os/linux)
        (condition-case nil ; Android may raise permission-denied error
@@ -1228,10 +1230,6 @@ Typing these will trigger reindentation of the current line.")
 (use-package visual-wrap
   :when (>= emacs-major-version 30)
   :hook ((prog-mode conf-mode org-mode) . visual-wrap-prefix-mode)) ; Respect indentation whein wrapping long lines
-
-(use-package help
-  :custom
-  (help-window-select t)) ; Select help window for faster quit!
 
 (use-package winner
   :hook (minemacs-lazy . winner-mode)) ; Window layout undo/redo (`winner-undo' / `winner-redo')
