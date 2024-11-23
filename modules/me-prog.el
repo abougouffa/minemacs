@@ -158,12 +158,6 @@
     [("Q" "Quit" ignore :transient t)]))
 
 
-;; Extra non-standard functionalities for Eglot
-(use-package eglot-x
-  :straight (:host github :repo "nemethf/eglot-x")
-  :commands (eglot-x-setup))
-
-
 ;; Emacs text actions using LSP symbol information
 (use-package gambol
   :straight (:host codeberg :repo "woolsweater/gambol.el")
