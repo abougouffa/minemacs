@@ -86,6 +86,9 @@
                 tab-width 4 ; Default (8) is too big!
                 cursor-type 'bar) ; Use a bar by default, this can be changed by other modes (`evil', `god-mode', etc.)
 
+  ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
+  (when (+package-disabled-p 'vertico 'me-completion) (fido-vertical-mode 1))
+
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
   ;; See: https://reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
