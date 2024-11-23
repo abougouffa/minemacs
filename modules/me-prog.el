@@ -8,11 +8,6 @@
 
 ;;; Code:
 
-(unless (+emacs-options-p 'tree-sitter)
-  ;; Use the external `tree-sitter' module
-  (+load minemacs-obsolete-modules-dir "me-tree-sitter.el"))
-
-
 ;; Automatically manage `treesit' grammars
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
@@ -158,6 +153,11 @@
     [("Q" "Quit" ignore :transient t)]))
 
 
+;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
+(use-package eglot-booster
+  :straight (:host github :repo "jdtsmith/eglot-booster"))
+
+
 ;; Emacs text actions using LSP symbol information
 (use-package gambol
   :straight (:host codeberg :repo "woolsweater/gambol.el")
@@ -213,26 +213,6 @@
   :straight t)
 
 
-;; Helper function to get the style for "clang-format"
-(defun +clang-format-get-style ()
-  "Get the \"-style\" argument for clang-format."
-  (if-let* ((conf-file ".clang-format")
-            (dir (locate-dominating-file
-                  (or (+project-safe-root) default-directory)
-                  conf-file)))
-      (expand-file-name conf-file dir)
-    (let ((indent
-           (cond
-            ((derived-mode-p 'c-ts-mode 'c++-ts-mode) 'c-ts-mode-indent-offset)
-            ((derived-mode-p 'java-ts-mode) 'java-ts-mode-indent-offset)
-            ((derived-mode-p 'csharp-ts-mode) 'csharp-ts-mode-indent-offset)
-            ((derived-mode-p 'protobuf-ts-mode) 'protobuf-ts-mode-indent-offset)
-            ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) 'c-basic-offset))))
-      (format "{IndentWidth: %d, TabWidth: %d}"
-              (or (and indent (symbol-value indent)) standard-indent)
-              (or (and indent (symbol-value indent)) tab-width)))))
-
-
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia
   :straight t
@@ -244,6 +224,26 @@
    (satch-defun +xmllint--set-indent-h ()
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist)
+
+  ;; Helper function to get the style for "clang-format"
+  (defun +clang-format-get-style ()
+    "Get the \"-style\" argument for clang-format."
+    (if-let* ((conf-file ".clang-format")
+              (dir (locate-dominating-file
+                    (or (+project-safe-root) default-directory)
+                    conf-file)))
+        (expand-file-name conf-file dir)
+      (let ((indent
+             (cond
+              ((derived-mode-p 'c-ts-mode 'c++-ts-mode) 'c-ts-mode-indent-offset)
+              ((derived-mode-p 'java-ts-mode) 'java-ts-mode-indent-offset)
+              ((derived-mode-p 'csharp-ts-mode) 'csharp-ts-mode-indent-offset)
+              ((derived-mode-p 'protobuf-ts-mode) 'protobuf-ts-mode-indent-offset)
+              ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) 'c-basic-offset))))
+        (format "{IndentWidth: %d, TabWidth: %d}"
+                (or (and indent (symbol-value indent)) standard-indent)
+                (or (and indent (symbol-value indent)) tab-width)))))
+
   ;; Append the "-style" option to the `clang-format' command
   (let ((clang (assq 'clang-format apheleia-formatters)))
     (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
@@ -302,11 +302,6 @@
       ("INFO"  . "#0e9030")
       ("TWEAK" . "#fe9030")
       ("PERF"  . "#e09030"))))
-
-
-;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
-(use-package eglot-booster
-  :straight (:host github :repo "jdtsmith/eglot-booster"))
 
 
 ;; Emacs headerline indication of where you are in a large project

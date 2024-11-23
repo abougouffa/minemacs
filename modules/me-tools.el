@@ -6,7 +6,7 @@
 
 ;; A deployment plugin via Tramp for Emacs
 ;; Should be configured in per-project basis, good documentation at:
-;; github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
   :straight t
   :hook ((after-save . ssh-deploy-after-save)
@@ -102,6 +102,7 @@ a project, call `multi-vterm-dedicated-toggle'."
           (multi-vterm-project))
       (multi-vterm-dedicated-toggle))))
 
+
 ;; Manage docker from Emacs
 (use-package docker
   :straight t
@@ -179,7 +180,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
 (use-package add-node-modules-path
   :straight t
-  :hook ((js-base-mode js2-mode) . add-node-modules-path)
+  :hook (js-base-mode . add-node-modules-path)
   :config
   (when (executable-find "pnpm")
     (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))

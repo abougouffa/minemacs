@@ -59,7 +59,7 @@
                 (member (substring (buffer-name) 0 1) '(" " "*"))
                 (apply #'derived-mode-p +dtrt-indent-excluded-modes))
       ;; Don't display messages in the echo area, but still log them
-      (let ((inhibit-message (not minemacs-debug-p)))
+      (let ((inhibit-message (not minemacs-verbose-p)))
         (dtrt-indent-mode +1)))))
 
 
@@ -142,10 +142,6 @@
   :when (+emacs-options-p 'tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
-
-;; Fallback to `expand-region' if `expreg' cannot be used
-(unless (+emacs-options-p 'tree-sitter)
-  (+load minemacs-obsolete-modules-dir "me-expand-region.el"))
 
 
 ;; Drag stuff around in Emacs
