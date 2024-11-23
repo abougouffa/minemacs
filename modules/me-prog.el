@@ -352,11 +352,6 @@
       ("PERF"  . "#e09030"))))
 
 
-;; Colorize color names in buffers
-(use-package rainbow-mode
-  :straight t)
-
-
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
