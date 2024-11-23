@@ -158,12 +158,6 @@
     [("Q" "Quit" ignore :transient t)]))
 
 
-;; Tree-sitter based code folding
-(use-package treesit-fold
-  :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
-  :when (+emacs-options-p 'tree-sitter))
-
-
 ;; A `treesit'-based package to show code context, dim surrouding text, and fold code
 (use-package treesitter-context
   :straight (:host github :repo "zbelial/treesitter-context.el")
