@@ -29,6 +29,10 @@ Call functions without asking when DONT-ASK-P is non-nil."
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
+  ;; Load all modules
+  (message "[MinEmacs]: Loading all modules and on-demand modules")
+  (apply #'minemacs-load-module (minemacs-modules t))
+
   ;; Update straight recipe repositories
   (straight-pull-recipe-repositories)
 
