@@ -13,6 +13,9 @@
   :auto-mode '(("\\.hurl\\'" . hurl-mode)))
 
 
+(minemacs-load-module 'on-demand/me-json)
+
+
 ;; Major mode to edit, run and test HTTP requests using Hurl
 (use-package hurl-mode
   :straight (:host github :repo "JasZhe/hurl-mode")
