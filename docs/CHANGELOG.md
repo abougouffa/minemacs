@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.4.0](https://github.com/abougouffa/minemacs/compare/76ee765a119d40b852afb5977191a4e9e4efa96f..v11.4.0) - 2024-11-23
+#### Bug Fixes
+- **(on-demand/hurl)** ensure loading dependencies - ([dcf07fd](https://github.com/abougouffa/minemacs/commit/dcf07fd330955b542210478a82cd0a3e2734b344)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** make `eglot-x` obsolete - ([0d7fc67](https://github.com/abougouffa/minemacs/commit/0d7fc6759050f729095cb6fb0d330f9a58b3f445)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `reformatter` obsolete - ([01b62dc](https://github.com/abougouffa/minemacs/commit/01b62dcf3a2a186a3ee220530aa4e99a1ae47082)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `rainbow-mode` obsolete - ([329490f](https://github.com/abougouffa/minemacs/commit/329490ff7ecbb9e2294922812fb8147532989221)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `cognitive-complexity` obsolete - ([4194f03](https://github.com/abougouffa/minemacs/commit/4194f035e5aba7d7b49cd75783aa41b39194ea9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `treesitter-context` obsolete - ([79f0cf2](https://github.com/abougouffa/minemacs/commit/79f0cf21b53c0e30e008d1d3c47cb14be5471d25)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `treesit-fold` obsolete - ([50b160c](https://github.com/abougouffa/minemacs/commit/50b160c1bd13478e17ff718c5df795c2ccd5d7df)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- cleanup some parts - ([f8c8a1e](https://github.com/abougouffa/minemacs/commit/f8c8a1e2aec11984a70edbe2649f42e9f5f9b149)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(awqat)** colorize the icon in modeline - ([76ee765](https://github.com/abougouffa/minemacs/commit/76ee765a119d40b852afb5977191a4e9e4efa96f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** load all modules before bumping packages - ([56ab415](https://github.com/abougouffa/minemacs/commit/56ab4153d7d226394a1f6d0f3b1ed34b80fd3b24)) - [@abougouffa](https://github.com/abougouffa)
+- **(jujutsushi)** remove unneeded customization - ([9d730c1](https://github.com/abougouffa/minemacs/commit/9d730c1cc32667a4954c1c1603f7a1b8f728c818)) - [@abougouffa](https://github.com/abougouffa)
+- **(man)** select the `*man*` buffer when opened - ([74df4d7](https://github.com/abougouffa/minemacs/commit/74df4d7c0076437cdf75921e938eb1c5f81f993c)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** run comment commands for all cursors - ([4b71512](https://github.com/abougouffa/minemacs/commit/4b71512e203a91bf0472956191f686217f776db0)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** temporary use my fork - ([afe7fc0](https://github.com/abougouffa/minemacs/commit/afe7fc0d3709f0777eea306ca679e726aeb33ae7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([894cb84](https://github.com/abougouffa/minemacs/commit/894cb8477f6aa4c364f92716b2871778a5b0eb2e)) - [@abougouffa](https://github.com/abougouffa)
+- enable `fido-vertical-mode` when `vertico` isn't available - ([c5195ff](https://github.com/abougouffa/minemacs/commit/c5195ff46316f16e1485c85913517caa74984713)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cd5c5c4](https://github.com/abougouffa/minemacs/commit/cd5c5c44ec22672bbfd18a0beef9725cc4da5a24)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.3.2](https://github.com/abougouffa/minemacs/compare/3ecee921fe08a70e58425ca59e4bfc8cf13679f5..v11.3.2) - 2024-11-21
 #### Bug Fixes
 - **(autorevert)** make sure to save the initial mtime on opening the file - ([94d02d9](https://github.com/abougouffa/minemacs/commit/94d02d90498d29e37c44760ecbf7638fee99e71b)) - [@abougouffa](https://github.com/abougouffa)
