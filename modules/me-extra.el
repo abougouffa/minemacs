@@ -27,6 +27,13 @@
   :bind (("C-c C-i" . run-in-dir-prefix)))
 
 
+;; Persistent per-project scratch buffers for Emacs
+(use-package pscratch
+  :straight (:host github :repo "abougouffa/persistent-scratch")
+  :init
+  (pscratch-mode 1))
+
+
 (provide 'me-extra)
 
 ;;; me-extra.el ends here
