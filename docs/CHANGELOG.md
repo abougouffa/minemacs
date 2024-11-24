@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.5.0](https://github.com/abougouffa/minemacs/compare/c964e6ef85a5714ec222db8d4532a7d528b8c54c..v11.5.0) - 2024-11-24
+#### Documentation
+- regenerate the documentation - ([d941b72](https://github.com/abougouffa/minemacs/commit/d941b727e34c693be3cf41dc625201d313eae756)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(debug)** make `disaster` obsolete - ([8248eef](https://github.com/abougouffa/minemacs/commit/8248eef17dd52c3959acae29f234b7d1a8a2ee47)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `neotree` obsolete - ([079d60c](https://github.com/abougouffa/minemacs/commit/079d60c55aaa5d5332dcd229c3cca9db0a1ccf47)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** make `consult-project-extra` obsolete - ([27a7d91](https://github.com/abougouffa/minemacs/commit/27a7d91fa630732acd2d11f5924f5f7dbbaef3cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(search)** make `gumshoe` obsolete - ([2ef76ca](https://github.com/abougouffa/minemacs/commit/2ef76cadd738579c8eae27471efd9a3fe544b20e)) - [@abougouffa](https://github.com/abougouffa)
+- spin off persistent scratch buffers as a new package `pscratch` - ([a251ba2](https://github.com/abougouffa/minemacs/commit/a251ba2370a047506290d17dd3e29a5d9ddf2f1f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(ace-window)** restore the default for `aw-dispatch-always` - ([92d14bd](https://github.com/abougouffa/minemacs/commit/92d14bd61698739e106e813a71e4f56b995b1054)) - [@abougouffa](https://github.com/abougouffa)
+- **(forge)** lazier loading - ([c964e6e](https://github.com/abougouffa/minemacs/commit/c964e6ef85a5714ec222db8d4532a7d528b8c54c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.4.0](https://github.com/abougouffa/minemacs/compare/76ee765a119d40b852afb5977191a4e9e4efa96f..v11.4.0) - 2024-11-23
 #### Bug Fixes
 - **(on-demand/hurl)** ensure loading dependencies - ([dcf07fd](https://github.com/abougouffa/minemacs/commit/dcf07fd330955b542210478a82cd0a3e2734b344)) - [@abougouffa](https://github.com/abougouffa)
