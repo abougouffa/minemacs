@@ -139,8 +139,6 @@ use `project-remember-project' with each detected repo."
 ;; Work with Git forges from the comfort of Magit
 (use-package forge
   :straight t
-  :after magit
-  :demand
   :config
   (require 'on-demand/me-markdown))
 
