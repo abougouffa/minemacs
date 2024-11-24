@@ -15,9 +15,7 @@
 ;; Quickly switch windows in Emacs
 (use-package ace-window
   :straight t
-  :bind (("M-o" . ace-window))
-  :custom
-  (aw-dispatch-always t))
+  :bind (("M-o" . ace-window)))
 
 
 ;; Manage windows and buffers according to purposes
