@@ -50,11 +50,6 @@
       ("qd" "Disconnect"   dape-disconnect-quit            :transient nil)]]))
 
 
-;; Disassemble C, C++ or Fortran code under cursor
-(use-package disaster
-  :straight t)
-
-
 ;; A compiler output viewer
 (use-package rmsbolt
   :straight t
