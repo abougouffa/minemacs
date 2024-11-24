@@ -581,63 +581,6 @@ If FILENAME-FORMAT is non-nil, use it to as a format (ex. "file-%s.el").
 Return the deserialized object, or nil if the SYM.el
 file dont exist.
 
-#### `(+scratch-buffer &optional DONT-RESTORE-P MODE DIRECTORY PROJ-NAME)`
-
-Return a scratchpad buffer in major MODE.
-When DONT-RESTORE-P, do not load the previously saved persistent buffer. Load
-persistent buffer dedicated to PROJ-NAME when provided.
-When provided, set the `default-directory` to DIRECTORY.
-
-#### `(+scratch-persist-buffer-h &rest ARGS)`
-
-Save the current buffer to `+scratch-dir`.
-
-#### `(+scratch-persist-all-scratch-buffers-h &rest ARGS)`
-
-Save all scratch buffers to `+scratch-dir`.
-
-#### `(+scratch-persist-buffers-after-switch-h &rest ARGS)`
-
-Kill scratch buffers when they are no longer visible, saving them to disk.
-
-#### `(+scratch-open-buffer &optional ARG PROJECT-P SAME-WINDOW-P)`
-
-Pop up a persistent scratch buffer.
-If passed the prefix ARG, do not restore the last scratch buffer.
-If PROJECT-P is non-nil, open a persistent scratch buffer associated with the
-current project. When SAME-WINDOW-P is non-nil, open in the current window.
-
-#### `(+switch-to-scratch-buffer &optional ARG PROJECT-P)`
-
-Like `+scratch-open-buffer`, but switch to it in the current window.
-If passed the prefix ARG, do not restore the last scratch buffer. If PROJECT-P,
-open the persistent buffer dedicated to the current project.
-
-#### `(+scratch-open-project-scratch-buffer &optional ARG SAME-WINDOW-P)`
-
-Opens the (persistent) project scratch buffer in a popup.
-If passed the prefix ARG, do not restore the last scratch buffer. When
-SAME-WINDOW-P is non-nil, open in the same window.
-
-#### `(+scratch-switch-to-project-scratch-buffer &optional ARG)`
-
-Like `+scratch-open-project-scratch-buffer`, but switch in the current window.
-If passed the prefix ARG, do not restore the last scratch buffer.
-
-#### `(+scratch-revert-scratch-buffer)`
-
-Revert scratch buffer to last persistent state.
-
-#### `(+scratch-delete-persistent-scratch-file &optional ARG)`
-
-Deletes a scratch buffer file in `+scratch-dir`.
-If prefix ARG, delete all persistent scratches.
-
-#### `(+scratch-replace-with-persistent-scratch &optional ARG PROJECT-P)`
-
-Replace the *scratch* buffer with a persistent one.
-ARG and PROJECT-P are passed to `+scratch-open-buffer`.
-
 #### `(+font-installed-p FONT-FAMILY)`
 
 Check if FONT-FAMILY is installed on the system.
@@ -1007,10 +950,6 @@ Extract the descriptions of MinEmacs packages.
 #### `(+list-external-dependencies)`
 
 Show the list of declared external dependencies.
-
-#### `(+clang-format-get-style)`
-
-Get the "-style" argument for clang-format.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 

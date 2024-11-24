@@ -90,6 +90,7 @@
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
 * `run-in-dir`: Override the `default-directory` in the next command
+* `pscratch`: Persistent per-project scratch buffers for Emacs
 
 ## `me-files`
 * `dired-hacks`: Collection of useful dired additions
@@ -162,28 +163,21 @@
 ## `me-prog`
 * `treesit-auto`: Automatically manage `treesit` grammars
 * `ts-movement`: Move and edit code blocks based on tree-sitter AST
-* `treesit-fold`: Tree-sitter based code folding
-* `treesitter-context`: A `treesit`-based package to show code context, dim surrouding text, and fold code
-* `eglot-x`: Extra non-standard functionalities for Eglot
+* `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `gambol`: Emacs text actions using LSP symbol information
 * `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
 * `consult-eglot`: Consult integration with Eglot
-* `reformatter`: Define commands which run reformatters on the current Emacs buffer
 * `apheleia`: Run code formatter on buffer contents without moving point
 * `format-all`: Auto-format source code in many languages with one command
 * `quickrun`: Out of the box code execution from editing buffer
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `xref-union`: Combine multiple Xref backends
 * `hl-todo`: Highlight TODO keywords
-* `rainbow-mode`: Colorize color names in buffers
-* `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
-* `cognitive-complexity`: Show cognitive complexity of code in Emacs 29+ (treesit-based)
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
-* `consult-project-extra`: Consult extension for `project`
 * `compile-multi`: Multi target interface to compile
 * `compile-multi-embark`: Integration for `compile-multi` and `embark`
 * `consult-compile-multi`: Consulting read support for `compile-multi`
@@ -205,7 +199,6 @@
 * `avy`: Jump to things in Emacs tree-style
 * `avy-zap`: Zap to char using `avy`
 * `dogears`: Never lose your place in Emacs again
-* `gumshoe`: A smart point tracker
 * `goto-last-change`: An Emacs package to move point through `buffer-undo-list` positions
 * `isearch+`: Extensions to `isearch`
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
@@ -236,7 +229,7 @@
 * `clink`: Clink integration to Emacs
 
 ## `me-tools`
-* `ssh-deploy`: github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+* `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `incus-tramp`: TRAMP integration for Incus containers
 * `app-launcher`: Launch system applications from Emacs
 * `emacs-everywhere`: System-wide popup Emacs windows for quick edits
@@ -289,7 +282,7 @@
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
-* `git-timemachine`: Walk through git revisions of a file
+* `git-timemachine`: Walk through Git revisions of a file
 * `git-modes`: Emacs major modes for Git configuration files
 * `repo`: Running "repo" from Emacs
 * `jujutsushi`: Integrate `vc` and `project` with Jujutsu, a Git-compatible VCS that is both simple and powerful

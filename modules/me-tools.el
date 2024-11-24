@@ -5,10 +5,10 @@
 ;;; Code:
 
 ;; A deployment plugin via Tramp for Emacs
-;; Should be configured in per-project basis, good documentation at:
-;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
 (use-package ssh-deploy
   :straight t
+  ;; Should be configured in per-project basis, good documentation at:
+  ;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
   :bind (("C-c C-z" . ssh-deploy-prefix-map))
