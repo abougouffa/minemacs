@@ -20,11 +20,6 @@
   (otpp-override-mode 1))
 
 
-;; Consult extension for `project'
-(use-package consult-project-extra
-  :straight t)
-
-
 ;; Multi target interface to compile
 (use-package compile-multi
   :straight t)
