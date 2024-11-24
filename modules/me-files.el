@@ -18,13 +18,6 @@
   :straight t)
 
 
-;; A Emacs tree plugin like NerdTree for Vim
-(use-package neotree
-  :straight t
-  :custom
-  (neo-theme 'nerd-icons))
-
-
 ;; View, edit, search and compare very large files in batches, trading memory for processor time
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
