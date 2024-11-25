@@ -263,8 +263,8 @@
   (add-to-list 'forge-alist '("gitlab.private.com" "gitlab.private.com/api/v4" "gitlab.private.com" forge-gitlab-repository)))
 
 ;; Module: `me-services' -- Package: `jiralib' / `org-jira'
-;; When `jiralib2' is enabled, do some extra stuff
-(when (+package-configured-p 'jiralib)
+;; When `jiralib' is enabled, do some extra stuff
+(when (or (+package-configured-p 'jiralib) (+package-configured-p 'org-jira))
   ;; You only need to set `jiralib-url'. The `jiralib-host' and `jiralib-user' are optional
   (setq jiralib-url "https://my-jira-server.tld/"
         jiralib-host "my-jira-server.tld"
