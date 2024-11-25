@@ -678,11 +678,6 @@ or file path may exist now."
   (gdb-display-io-buffer nil) ; don't display a separate IO buffer (Emacs 30.1+)
   (gdb-display-io-nopopup nil)) ; in case we enabled the IO buffer, we don't want it to popup when hidden
 
-(use-package gud
-  :config
-  :custom
-  (gud-highlight-current-line-overlay t))
-
 (use-package org
   :straight (:source gnu-elpa-mirror)
   :preface
