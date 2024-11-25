@@ -779,6 +779,14 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
   (interactive)
   (minemacs-set-enabled-proxies (mapcar (lambda (a) (list (car a))) (minemacs-get-enabled-proxies))))
 
+(defmacro +with-no-proxies! (&rest body)
+  "Run BODY without proxies. Doesn't work with `emacs-async'.
+
+Example:
+  (+with-no-proxies! (async-shell-command \"git fetch --all\"))."
+  `(let ((process-environment (cl-remove-if (lambda (env) (cl-some (lambda (prox) (string-prefix-p (format "%s_proxy=" (car prox)) env t)) (minemacs-get-enabled-proxies))) process-environment)))
+    ,@body))
+
 
 
 ;;; Data serialization
