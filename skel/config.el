@@ -264,8 +264,8 @@
 
 ;; Module: `me-services' -- Package: `jiralib' / `org-jira'
 ;; When `jiralib2' is enabled, do some extra stuff
-(when (memq 'jiralib minemacs-configured-packages)
-  ;; You need to set `jiralib-url', `jiralib-host' and `jiralib-user' are optional
+(when (+package-configured-p 'jiralib)
+  ;; You only need to set `jiralib-url'. The `jiralib-host' and `jiralib-user' are optional
   (setq jiralib-url "https://my-jira-server.tld/"
         jiralib-host "my-jira-server.tld"
         jiralib-user "my-username")
