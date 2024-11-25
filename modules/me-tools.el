@@ -170,6 +170,18 @@ a project, call `multi-vterm-dedicated-toggle'."
   :init
   (add-hook 'python-base-mode-hook 'pet-mode -10)
   :config
+  ;; BUG+HACK: Use `fd' to find the files, otherwise it will stuck when working
+  ;; with large codebases. See: https://github.com/wyuenho/emacs-pet/issues/45
+  (defun +pet-find-file-from-project-root-recursively-fd (file)
+    (condition-case err
+        (when-let* ((root (pet-project-root)))
+          (car (cl-remove-if
+                #'string-empty-p
+                (string-lines (shell-command-to-string (format "fd -t f -H -a -g %S %S" file root))))))
+      (error (pet-report-error err))))
+
+  (advice-add 'pet-find-file-from-project-root-recursively :override '+pet-find-file-from-project-root-recursively-fd)
+
   (defun +pet-quickrun-setup ()
     (with-eval-after-load 'quickrun
       (let* ((cmd-alist (copy-alist (alist-get "python" quickrun--language-alist nil nil #'equal))))
