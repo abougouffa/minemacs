@@ -345,6 +345,7 @@ If BUFFER-COUNT is passed and is > 1, then skip unloading."
         (run-hooks 'ansible-hook))
     (ansible-remove-font-lock)
     (ansible-maybe-unload-snippets 0)))
+(defalias 'ansible 'ansible-mode)
 
 (defun ansible-update-root-path ()
   "Update `ansible-root-path`."
