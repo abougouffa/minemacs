@@ -94,17 +94,16 @@
 
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
-  :straight (:host github :repo "protesilaos/pulsar" :fork (:host github :repo "abougouffa/pulsar" :branch "refined-pulse-region"))
+  :straight (:host github :repo "protesilaos/pulsar")
   :hook (minemacs-first-file . pulsar-global-mode)
   :custom
-  (pulsar-face 'pulsar-red)
-  (pulsar-pulse-on-region t)
+  (pulsar-pulse-region t)
+  (pulsar-pulse-on-window-change t)
+  (pulsar-region-face 'pulsar-green)
+  (pulsar-highlight-face 'pulsar-cyan)
+  (pulsar-region-change-face 'pulsar-red)
+  (pulsar-window-change-face 'pulsar-yellow)
   :config
-  (cl-callf append pulsar-pulse-region-functions
-    '(kill-whole-line crux-smart-kill-line
-      +kill-whitespace-or-word +kill-whitespace-or-word
-      +kill-region-as-paragraph +kill-region-or-backward-word
-      +backward-kill-whitespace-or-word))
   (cl-callf append pulsar-pulse-functions '(what-cursor-position)))
 
 
