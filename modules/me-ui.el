@@ -75,6 +75,7 @@
        ("Restore session" desktop-read "r")
        ("Restore session from file" +desktop-read-session "R")))))
   :init
+  (+setq-hook! enlight-mode pulsar-mode nil) ; avoid flickering
   (if minemacs-started-with-extra-args-p
       (enlight-open)
     (setq initial-buffer-choice #'enlight)))
