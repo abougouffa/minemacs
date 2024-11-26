@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.6.0](https://github.com/abougouffa/minemacs/compare/86bc9fd07d7917bb3dee1978d1e79bf2cd77ce28..v11.6.0) - 2024-11-26
+#### Bug Fixes
+- **(pet)** use `fd` to avoid freezing Emacs in large codebases - ([e0e6e7a](https://github.com/abougouffa/minemacs/commit/e0e6e7a37c8c7b84b30a83b34e999f497ac8f546)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** return values of `projectile` emulation primitives - ([dc1a199](https://github.com/abougouffa/minemacs/commit/dc1a199bb8c453cf8a4d2bf2f90b120b7c546444)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** update the configuration examples - ([a612f01](https://github.com/abougouffa/minemacs/commit/a612f01f1fbfb1adf7a25dbfc7a4c57d1afdc5cd)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+package-configured-p` - ([2dd5d4d](https://github.com/abougouffa/minemacs/commit/2dd5d4dfb0fa546990bec81348c6e133d68fdfbd)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `+with-no-proxies!` - ([86bc9fd](https://github.com/abougouffa/minemacs/commit/86bc9fd07d7917bb3dee1978d1e79bf2cd77ce28)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** restore `ffip` - ([0bc5f8b](https://github.com/abougouffa/minemacs/commit/0bc5f8b5b7e3b09ba96b317935c6a5fb75dab9c4)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(pet)** remove the `fd` hack, merged upstream - ([859f487](https://github.com/abougouffa/minemacs/commit/859f4871fffd13a3899af57bf6e23d25ed5b44ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** restore `treesit-fold` obsolete - ([63c2092](https://github.com/abougouffa/minemacs/commit/63c20921e329f85a16f15239d93ae6f925169e27)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(ffip)** integrate with `nerd-icons-completion-mode` - ([66702a5](https://github.com/abougouffa/minemacs/commit/66702a52285260ab4c13be0a4940af8ec5137f77)) - [@abougouffa](https://github.com/abougouffa)
+- **(gud)** remove useless customization - ([9af93fe](https://github.com/abougouffa/minemacs/commit/9af93fe64d296d9b5e7d93f3ff183c15797a9ef6)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** update for the latest version - ([f43f8cc](https://github.com/abougouffa/minemacs/commit/f43f8cc6c827ea25946e49ba1062f7f18c238555)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([385d49a](https://github.com/abougouffa/minemacs/commit/385d49ade632e121fbf01a3e4a1643f4a37ebf76)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.5.0](https://github.com/abougouffa/minemacs/compare/c964e6ef85a5714ec222db8d4532a7d528b8c54c..v11.5.0) - 2024-11-24
 #### Documentation
 - regenerate the documentation - ([d941b72](https://github.com/abougouffa/minemacs/commit/d941b727e34c693be3cf41dc625201d313eae756)) - [@abougouffa](https://github.com/abougouffa)
