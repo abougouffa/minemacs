@@ -34,7 +34,6 @@
 
 ## `me-debug`
 * `dape`: Debug Adapter Protocol for Emacs
-* `disaster`: Disassemble C, C++ or Fortran code under cursor
 * `rmsbolt`: A compiler output viewer
 * `beardbolt`: Compiler Explorer clone (fork of `rmsbolt` optimized for C/C++)
 * `objdump-disassemble`: Use "objdump" to display disassembled executable and object files
@@ -95,7 +94,6 @@
 ## `me-files`
 * `dired-hacks`: Collection of useful dired additions
 * `disk-usage`: Sort and browse disk usage listings
-* `neotree`: A Emacs tree plugin like NerdTree for Vim
 * `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
 * `sudo-edit`: Utilities for opening files with "sudo"
@@ -163,6 +161,7 @@
 ## `me-prog`
 * `treesit-auto`: Automatically manage `treesit` grammars
 * `ts-movement`: Move and edit code blocks based on tree-sitter AST
+* `treesit-fold`: Tree-sitter based code folding
 * `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `gambol`: Emacs text actions using LSP symbol information
 * `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
@@ -186,6 +185,7 @@
 * `projection-multi`: Projection integration for `compile-multi`
 * `projection-multi-embark`: Integration for `projection-multi` and `embark`
 * `projection-dape`: Projection integration for `dape`
+* `find-file-in-project`: Quick access to project files using `fd`
 
 ## `me-robot`
 * `ros`: A package to ease the interaction ROS nodes and the development of ROS software
@@ -287,6 +287,7 @@
 * `repo`: Running "repo" from Emacs
 * `jujutsushi`: Integrate `vc` and `project` with Jujutsu, a Git-compatible VCS that is both simple and powerful
 * `diffview`: View diffs side-by-side in Emacs
+* `difftastic`: A structural diff that understands syntax
 
 ## `me-window`
 * `ace-window`: Quickly switch windows in Emacs
@@ -591,6 +592,7 @@
 ## `on-demand/me-python`
 * `python-docstring`: Smart Python docstring formatting
 * `python-pytest`: Helpers to run Python's pytest
+* `pip-requirements`: Major mode for editing Python's pip requirements files
 
 ## `on-demand/me-qsharp`
 * `qsharp-mode`: Major mode for the Q# programming language

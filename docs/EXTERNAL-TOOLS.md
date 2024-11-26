@@ -47,54 +47,55 @@ you might need install some of these tools.
 41. [`ripgrep`](https://github.com/BurntSushi/ripgrep) - Recursively search directories for a regex pattern while respecting your gitignore
 42. [`fzf`](https://github.com/junegunn/fzf) - A command-line fuzzy finder
 43. [`fd`](https://github.com/sharkdp/fd) - A simple, fast and user-friendly alternative to 'find'
-44. [`git`](https://github.com/git/git) - The stupid content tracker
-45. [`git-imerge`](https://github.com/mhagger/git-imerge) - Incremental merge and rebase for Git
-46. [`jujutsu`](https://github.com/martinvonz/jj) - A Git-compatible VCS that is both simple and powerful
-47. [`python`](https://python.org) - The Python interpreter
-48. [`pyright`](https://github.com/microsoft/pyright) - LSP server for Python
-49. [`ccls`](https://github.com/MaskRay/ccls) - C/C++/Objective-C language server
-50. [`clangd`](https://clangd.llvm.org) - A C/C++ language server that provides IDE-like features to editors
-51. [`clang`](https://clang.llvm.org) - A C language family frontend for LLVM
-52. [`clang-tidy`](https://clang.llvm.org/extra/clang-tidy) - Clang-based C++ “linter” tool
-53. [`luac`](https://www.lua.org) - Lua compiler
-54. [`rust-analyzer`](https://github.com/rust-lang/rust-analyzer) - A Rust compiler front-end for IDEs, aka. Rust LSP
-55. [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) - Language Server for YAML files
-56. [`lemminx`](https://github.com/eclipse/lemminx) - Eclipse XML language server
-57. [`bash-language-server`](https://github.com/bash-lsp/bash-language-server) - LSP for Bash/Shell
-58. [`ltex-ls`](https://github.com/valentjn/ltex-ls) - LTeX Language Server based on Language Tool
-59. [`sqlfluff`](https://github.com/sqlfluff/sqlfluff) - SQLFluff is a modular SQL linter for humans
-60. [`sqlformat`](https://github.com/andialbrecht/sqlparse) - SQL formatter based on sqlparse
-61. [`pg_format`](https://github.com/darold/pgFormatter) - A PostgreSQL SQL syntax beautifier that can work as a console program or as a CGI
-62. [`docker`](https://www.docker.com) - A self-sufficient runtime for containers
-63. [`bear`](https://github.com/rizsotto/Bear) - A tool that generates a compilation database for Clang tooling
-64. [`clink`](https://github.com/Smattr/clink) - A modern re-implementation of Cscope based on Clang
-65. [`autoconf`](https://www.gnu.org/software/autoconf) - Generate configuration script
-66. [`tmux`](https://github.com/tmux/tmux) - THE terminal multiplexer
-67. [`aspell`](https://github.com/GNUAspell/aspell) - Interactive spell checker
-68. [`enchant-2`](https://github.com/AbiWord/enchant) - A generic spell checker
-69. [`codespell`](https://github.com/codespell-project/codespell) - Check code for common misspellings
-70. [`bandit`](https://github.com/pycqa/bandit) - A tool designed to find common security issues in Python code
-71. [`guild`](https://www.gnu.org/software/guile) - The command-line interface to Guile’s compiler and utilities
-72. [`pmd`](https://github.com/pmd/pmd) - An extensible cross-language static code analyzer
-73. [`pyre`](https://github.com/facebook/pyre-check) - A performant type-checker for Python 3
-74. [`nasm`](https://github.com/netwide-assembler/nasm) - Netwide Assembler (NASM), an assembler for the x86 CPU
-75. [`fasm`](https://flatassembler.net) - Flat Assembler (FASM), supporting x86 and x86-64 instructions sets with several extensions
-76. [`tshark`](https://flatassembler.net) - TShark is a dump and analyze network traffic
-77. [`cppcheck`](https://github.com/danmar/cppcheck) - A tool for static C/C++ code analysis
-78. [`pycodestyle`](https://github.com/pycqa/pycodestyle) - Simple Python style checker in one Python file
-79. [`mypy`](https://github.com/python/mypy) - Optional Static Typing for Python
-80. [`ruff`](https://github.com/astral-sh/ruff) - An extremely fast Python linter and code formatter, written in Rust
-81. [`pylint`](https://github.com/pylint-dev/pylint) - It's not just a linter that annoys you!
-82. [`flake8`](https://github.com/pycqa/flake8) - Glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code
-83. [`sqlint`](https://github.com/purcell/sqlint) - Simple SQL linter supporting ANSI and PostgreSQL syntaxes
-84. [`sqlite3`](https://github.com/sqlite/sqlite) - A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
-85. [`sql-lint`](https://github.com/joereynolds/sql-lint) - An SQL linter
-86. [`markdownlint`](https://github.com/markdownlint/markdownlint) - Markdown lint tool
-87. [`tidy`](https://github.com/htacg/tidy-html5) - The granddaddy of HTML tools, with support for modern standards
-88. [`luacheck`](https://github.com/mpeterv/luacheck) - A tool for linting and static analysis of Lua code
-89. [`yamllint`](https://github.com/adrienverge/yamllint) - A linter for YAML files
-90. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
-91. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
-92. [`mpv`](https://github.com/mpv-player/mpv) - Command line video player
-93. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
-94. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
+44. [`difftastic`](https://github.com/Wilfred/difftastic) - A structural diff that understands syntax
+45. [`git`](https://github.com/git/git) - The stupid content tracker
+46. [`git-imerge`](https://github.com/mhagger/git-imerge) - Incremental merge and rebase for Git
+47. [`jujutsu`](https://github.com/martinvonz/jj) - A Git-compatible VCS that is both simple and powerful
+48. [`python`](https://python.org) - The Python interpreter
+49. [`pyright`](https://github.com/microsoft/pyright) - LSP server for Python
+50. [`ccls`](https://github.com/MaskRay/ccls) - C/C++/Objective-C language server
+51. [`clangd`](https://clangd.llvm.org) - A C/C++ language server that provides IDE-like features to editors
+52. [`clang`](https://clang.llvm.org) - A C language family frontend for LLVM
+53. [`clang-tidy`](https://clang.llvm.org/extra/clang-tidy) - Clang-based C++ “linter” tool
+54. [`luac`](https://www.lua.org) - Lua compiler
+55. [`rust-analyzer`](https://github.com/rust-lang/rust-analyzer) - A Rust compiler front-end for IDEs, aka. Rust LSP
+56. [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) - Language Server for YAML files
+57. [`lemminx`](https://github.com/eclipse/lemminx) - Eclipse XML language server
+58. [`bash-language-server`](https://github.com/bash-lsp/bash-language-server) - LSP for Bash/Shell
+59. [`ltex-ls`](https://github.com/valentjn/ltex-ls) - LTeX Language Server based on Language Tool
+60. [`sqlfluff`](https://github.com/sqlfluff/sqlfluff) - SQLFluff is a modular SQL linter for humans
+61. [`sqlformat`](https://github.com/andialbrecht/sqlparse) - SQL formatter based on sqlparse
+62. [`pg_format`](https://github.com/darold/pgFormatter) - A PostgreSQL SQL syntax beautifier that can work as a console program or as a CGI
+63. [`docker`](https://www.docker.com) - A self-sufficient runtime for containers
+64. [`bear`](https://github.com/rizsotto/Bear) - A tool that generates a compilation database for Clang tooling
+65. [`clink`](https://github.com/Smattr/clink) - A modern re-implementation of Cscope based on Clang
+66. [`autoconf`](https://www.gnu.org/software/autoconf) - Generate configuration script
+67. [`tmux`](https://github.com/tmux/tmux) - THE terminal multiplexer
+68. [`aspell`](https://github.com/GNUAspell/aspell) - Interactive spell checker
+69. [`enchant-2`](https://github.com/AbiWord/enchant) - A generic spell checker
+70. [`codespell`](https://github.com/codespell-project/codespell) - Check code for common misspellings
+71. [`bandit`](https://github.com/pycqa/bandit) - A tool designed to find common security issues in Python code
+72. [`guild`](https://www.gnu.org/software/guile) - The command-line interface to Guile’s compiler and utilities
+73. [`pmd`](https://github.com/pmd/pmd) - An extensible cross-language static code analyzer
+74. [`pyre`](https://github.com/facebook/pyre-check) - A performant type-checker for Python 3
+75. [`nasm`](https://github.com/netwide-assembler/nasm) - Netwide Assembler (NASM), an assembler for the x86 CPU
+76. [`fasm`](https://flatassembler.net) - Flat Assembler (FASM), supporting x86 and x86-64 instructions sets with several extensions
+77. [`tshark`](https://flatassembler.net) - TShark is a dump and analyze network traffic
+78. [`cppcheck`](https://github.com/danmar/cppcheck) - A tool for static C/C++ code analysis
+79. [`pycodestyle`](https://github.com/pycqa/pycodestyle) - Simple Python style checker in one Python file
+80. [`mypy`](https://github.com/python/mypy) - Optional Static Typing for Python
+81. [`ruff`](https://github.com/astral-sh/ruff) - An extremely fast Python linter and code formatter, written in Rust
+82. [`pylint`](https://github.com/pylint-dev/pylint) - It's not just a linter that annoys you!
+83. [`flake8`](https://github.com/pycqa/flake8) - Glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code
+84. [`sqlint`](https://github.com/purcell/sqlint) - Simple SQL linter supporting ANSI and PostgreSQL syntaxes
+85. [`sqlite3`](https://github.com/sqlite/sqlite) - A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
+86. [`sql-lint`](https://github.com/joereynolds/sql-lint) - An SQL linter
+87. [`markdownlint`](https://github.com/markdownlint/markdownlint) - Markdown lint tool
+88. [`tidy`](https://github.com/htacg/tidy-html5) - The granddaddy of HTML tools, with support for modern standards
+89. [`luacheck`](https://github.com/mpeterv/luacheck) - A tool for linting and static analysis of Lua code
+90. [`yamllint`](https://github.com/adrienverge/yamllint) - A linter for YAML files
+91. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
+92. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
+93. [`mpv`](https://github.com/mpv-player/mpv) - Command line video player
+94. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
+95. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model

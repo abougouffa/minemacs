@@ -334,6 +334,11 @@ SYMBOL is non-nil, then `eq` is used instead.
 This method may mutate the original alist, but you still need to use the return
 value of this method instead of the original alist, to ensure correct results.
 
+#### `(+add-to-list-at LIST-VAR ELEMENT INDEX)`
+
+Insert into LIST-VAR an ELEMENT at INDEX.
+If INDEX is 0, ELEMENT is inserted before the first element.
+
 #### `(+mode-alist-add-ts-modes! MODE-ALIST)` (macro)
 
 Duplicate elements in MODE-ALIST to include Treesit modes.
@@ -453,6 +458,11 @@ Add ROOTS to ignored projects, recentf, etc.
 Is package PACKAGE disabled in `minemacs-disabled-packages`.
 Optionally, check also for the containing MODULE.
 
+#### `(+package-configured-p PACKAGE)`
+
+Check if the PACKAGE has been configured by MinEmacs.
+This is only valable after loading all modules (in the user's "config.el").
+
 #### `(minemacs-modules &optional INCLUDE-ON-DEMAND INCLUDE-OBSOLETE)`
 
 List all the available modules.
@@ -567,6 +577,12 @@ Set *_proxy Linux environment variables from PROXIES.
 #### `(minemacs-disable-proxy)`
 
 Unset *_proxy Linux environment variables.
+
+#### `(+with-no-proxies! &rest BODY)` (macro)
+
+Run BODY without proxies. Doesn't work with `emacs-async`.
+Example:
+  (+with-no-proxies! (async-shell-command "git fetch --all")).
 
 #### `(+serialize-sym SYM &optional DIR FILENAME-FORMAT)`
 
