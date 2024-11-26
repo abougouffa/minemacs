@@ -73,8 +73,8 @@
   :group 'ansible)
 
 (defcustom ansible-vault-password 'file
-  "Password for `ansible-vault`.
-This can be a file path (from `ansible-vault-password-file`) or a function."
+  "Password for `ansible-vault'.
+This can be a file path (from `ansible-vault-password-file') or a function."
   :type '(choice
            (const
              :tag "Use ansible-vault-password-file" file)
@@ -348,7 +348,7 @@ If BUFFER-COUNT is passed and is > 1, then skip unloading."
 (defalias 'ansible 'ansible-mode)
 
 (defun ansible-update-root-path ()
-  "Update `ansible-root-path`."
+  "Update `ansible-root-path'."
   (let ((spec-path (ansible-find-root-path)))
     (unless (not spec-path)
       (setq ansible-root-path spec-path))
@@ -380,7 +380,7 @@ If BUFFER-COUNT is passed and is > 1, then skip unloading."
     nil))
 
 (defun ansible-vault-get-password ()
-  "Retrieve the password based on the value of `ansible-vault-password`."
+  "Retrieve the password based on the value of `ansible-vault-password'."
   (cond
     ((functionp ansible-vault-password)
      (funcall ansible-vault-password))
@@ -397,14 +397,16 @@ MODE is `encrypt' or `decrypt'.
 
 STR is the string to be handled.
 
-PARAM-STR is produced by `ansible-vault-string` and is meant to be an
+PARAM-STR is produced by `ansible-vault-string' and is meant to be an
 empty string or `--vault-password-file ...'.
 
 If the first line of STR is indented with whitespace, only those lines
 in STR that match that whitespace will be handled by `ansible-vault MODE'.
 The rest will be untouched.
 
-The string that results will be returned."
+The string that results will be returned.
+
+See the man page `ansible-vault(1)' for more details."
   (let* ((temp-file (make-temp-file "ansible-vault-ansible"))
           (lines (split-string str "\n"))
           (first-line (car lines))
@@ -439,7 +441,7 @@ The string that results will be returned."
             (concat "\n" (mapconcat 'identity rest-lines "\n"))))))))
 
 (defun ansible-vault-string (mode str)
-  "Do `ansible-vault` MODE on STR and return result.
+  "Do `ansible-vault' MODE on STR and return result.
 MODE should be one of `decrypt' or `encrypt'."
   (if (or (string-equal "decrypt" mode) (string-equal "encrypt" mode))
     (let ((output (ansible-vault mode str (ansible-vault-get-password))))
@@ -467,11 +469,11 @@ MODE should be one of `decrypt' or `encrypt'."
   (ansible-vault-buffer "encrypt"))
 
 (defun ansible-vault-buffer (mode)
-  "Execute `ansible-vault` MODE and update current buffer."
+  "Execute `ansible-vault' MODE and update current buffer."
   (ansible-vault-region mode (point-min) (point-max)))
 
 (defun ansible-vault-region (mode start end)
-  "Execute `ansible-vault` MODE from START to END and update the region."
+  "Execute `ansible-vault' MODE from START to END and update the region."
   (let ((output (ansible-vault-string mode (buffer-substring-no-properties start end))))
     (delete-region start end)
     (insert output)))
