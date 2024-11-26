@@ -342,7 +342,7 @@ or file path may exist now."
           (or project-vc-name
               (cl-call-next-method))))))
 
-  (add-to-list 'project-switch-commands '(project-shell "Shell") t)
+  (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands)))
 
   ;; Define some `projectile' commands/functions on top of `project' (required by `fzf', `neotree', `platformio-mode', etc.)
   (defun projectile-project-p (&optional dir) (let ((default-directory (or dir default-directory))) (and (project-current) t)))

@@ -126,6 +126,14 @@ value of this method instead of the original alist, to ensure correct results."
     (push (cons key val) alist))
   alist)
 
+(defun +add-to-list-at (list-var element index)
+  "Insert into LIST-VAR an ELEMENT at INDEX.
+If INDEX is 0, ELEMENT is inserted before the first element."
+  (let* ((padded-list (cons nil (eval list-var)))
+         (c (nthcdr index padded-list)))
+    (setcdr c (cons element (cdr c)))
+    (set list-var (cdr padded-list))))
+
 (defmacro +mode-alist-add-ts-modes! (mode-alist)
   "Duplicate elements in MODE-ALIST to include Treesit modes.
 
