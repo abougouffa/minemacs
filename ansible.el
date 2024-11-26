@@ -466,7 +466,9 @@ MODE should be one of `decrypt' or `encrypt'."
 (defun ansible-encrypt-buffer ()
   "Encrypt current buffer."
   (interactive)
-  (ansible-vault-buffer "encrypt"))
+  (if (buffer-modified-p)
+	  (ansible-vault-buffer "encrypt")
+	(revert-buffer t t)))
 
 (defun ansible-vault-buffer (mode)
   "Execute `ansible-vault' MODE and update current buffer."
