@@ -351,7 +351,7 @@ restores it after that.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-delayed" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -799,7 +799,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-python.el
 
-(minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
+(minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)) :auto-mode '((("requirements\\.in" "\\.pip\\'" "requirements[^z-a]*\\.txt\\'") . pip-requirements-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-qsharp.el
