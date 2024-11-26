@@ -201,6 +201,11 @@ use `project-remember-project' with each detected repo."
   :straight t)
 
 
+;; A structural diff that understands syntax
+(use-package difftastic
+  :straight t)
+
+
 (provide 'me-vc)
 
 ;;; me-vc.el ends here

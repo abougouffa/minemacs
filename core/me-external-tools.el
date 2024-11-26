@@ -131,6 +131,9 @@
     (:tool fd
      :link "https://github.com/sharkdp/fd"
      :desc "A simple, fast and user-friendly alternative to 'find'")
+    (:tool difftastic
+     :link "https://github.com/Wilfred/difftastic"
+     :desc "A structural diff that understands syntax")
     (:tool git
      :link "https://github.com/git/git"
      :desc "The stupid content tracker")
