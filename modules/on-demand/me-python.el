@@ -10,7 +10,8 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-python
-  :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)))
+  :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode))
+  :auto-mode '((("requirements\\.in" "\\.pip\\'" "requirements[^z-a]*\\.txt\\'") . pip-requirements-mode)))
 
 
 ;; Smart Python docstring formatting
@@ -21,6 +22,11 @@
 
 ;; Helpers to run Python's pytest
 (use-package python-pytest
+  :straight t)
+
+
+;; Major mode for editing Python's pip requirements files
+(use-package pip-requirements
   :straight t)
 
 
