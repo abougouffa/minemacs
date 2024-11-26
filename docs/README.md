@@ -24,6 +24,28 @@ packages](/docs/PACKAGES.md).
 > in tinkering with Emacs, MinEmacs remains just a tool that I use in my
 > everyday work, and that I like to share with other Emacsers.
 
+## Main features
+MinEmacs comes with batteries included. Here are some of its unique features:
+
+#### Laziness
+Defer loading packages until the user needs them. Or, for packages that needs to
+be loaded, try to do that after starting Emacs.
+
+#### Modules system
+The packages are grouped in modules, with a bit of glue to make them work
+together.
+
+#### On demand modules
+MinEmacs includes a large number of major-modes and packages to work with
+programming languages. However, the majority of these packages aren't loaded at
+startup. MinEmacs uses an on-demand system to load the packages only when the
+user opens a supported file, or when he opens a buffer with a mode that can be
+extended by one of the on-demand modules. The behavior of this feature
+customized via `minemacs-on-demand-enable-auto-mode`,
+`minemacs-on-demand-enable-magic-mode`,
+`minemacs-on-demand-enable-interpreter-mode` and
+`minemacs-on-demand-enable-companion-packages`.
+
 ## Install
 
 Open a shell and run:
