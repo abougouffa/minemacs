@@ -409,8 +409,8 @@ or file path may exist now."
 
       ;; Better fringe bitmaps
       (define-fringe-bitmap '+flymake-bitmap-left-arrow-hi-res
-        [#b00000011110
-         #b00000111100
+        [#b00000000000
+         #b00000000000
          #b00001111000
          #b00011110000
          #b00111100000
@@ -419,8 +419,8 @@ or file path may exist now."
          #b00111100000
          #b00011110000
          #b00001111000
-         #b00000111100
-         #b00000011110]
+         #b00000000000
+         #b00000000000]
         nil 13)
 
       (setopt flymake-indicator-type 'fringes
@@ -588,7 +588,6 @@ or file path may exist now."
 
 (use-package eglot
   :straight (:source gnu-elpa-mirror)
-  :hook (eglot-managed-mode . eglot-inlay-hints-mode)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ; async, do not block
