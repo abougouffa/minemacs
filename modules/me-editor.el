@@ -37,21 +37,20 @@
   :straight t
   :after minemacs-first-file
   :hook ((change-major-mode-after-body read-only-mode) . +dtrt-indent-mode-maybe)
+  :commands (+dtrt-indent-tab-to-tab-stop)
+  :bind (([remap tab-to-tab-stop] . +dtrt-indent-tab-to-tab-stop)) ; Smarter M-i
   :custom
   (dtrt-indent-max-lines 2500) ; Faster than the default 5000
   (dtrt-indent-run-after-smie t)
   :init
+  (defvar +dtrt-indent-tab-context-lines 20 "The number of lines above and below point to consider in `+dtrt-indent-tab-to-tab-stop'.")
   ;; Better predicates for enabling `dtrt-indent', inspired by Doom Emacs
   (defvar +dtrt-indent-excluded-modes
     '(emacs-lisp-mode
       lisp-mode
       pascal-mode
-      ;; Automatic indent detection in Org files is meaningless. Not to mention,
-      ;; a non-standard `tab-width' causes an error in `org-mode.'
-      org-mode
-      ;; Indent detection is slow and inconclusive in coq-mode files, and rarely
-      ;; helpful anyway, so inhibit it (see doomemacs/doomemacs#5823).
-      coq-mode)
+      org-mode ; a non-standard `tab-width' causes an error in `org-mode'.
+      coq-mode) ; see https://github.com/doomemacs/doomemacs/issues/5823
     "A list of major modes where indentation shouldn't be auto-detected.")
   (defun +dtrt-indent-mode-maybe ()
     (unless (or (not (featurep 'minemacs-first-file))
@@ -60,7 +59,28 @@
                 (apply #'derived-mode-p +dtrt-indent-excluded-modes))
       ;; Don't display messages in the echo area, but still log them
       (let ((inhibit-message (not minemacs-verbose-p)))
-        (dtrt-indent-mode +1)))))
+        (dtrt-indent-mode +1))))
+  :config
+  (defun +dtrt-indent-tab-to-tab-stop ()
+    "Like `tab-to-tab-stop', but set `indent-tabs-mode' according the context.
+In some files, there is a mix of spaces and tabs. This uses
+`dtrt-indent' to detect which one to insert at point."
+    (interactive)
+    (let* ((lang (cadr (dtrt-indent--search-hook-mapping major-mode)))
+           (result
+            (and lang
+                 (save-excursion
+                   (save-restriction
+                     (narrow-to-region
+                      (line-beginning-position (- +dtrt-indent-tab-context-lines))
+                      (line-end-position +dtrt-indent-tab-context-lines))
+                     (dtrt-indent--analyze (dtrt-indent--calc-histogram lang))))))
+           (modify-indentation (and (not (cdr (assoc :rejected result))) (cdr (assoc :change-indent-tabs-mode result))))
+           (new-indent-tabs-mode (cdr (assoc :indent-tabs-mode-setting result))))
+      (when (and modify-indentation (not (eq indent-tabs-mode new-indent-tabs-mode)))
+        (+log! "Temporary changing `indent-tabs-mode' to %S for context-aware indentation" new-indent-tabs-mode))
+      (let ((indent-tabs-mode (if modify-indentation new-indent-tabs-mode indent-tabs-mode)))
+        (call-interactively #'tab-to-tab-stop)))))
 
 
 ;; Writable grep buffer and apply the changes to files
