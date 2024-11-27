@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v11.7.0](https://github.com/abougouffa/minemacs/compare/187d7f0cb1d2106d85b413d9a0ba4555c5b13cc3..v11.7.0) - 2024-11-27
+#### Bug Fixes
+- **(enlight)** `pulsar` cases annoying flashed in `enlight` - ([deea54b](https://github.com/abougouffa/minemacs/commit/deea54b49f68f8002abadc788cb724b2fe74659f)) - [@abougouffa](https://github.com/abougouffa)
+- defer some packages - ([93efe42](https://github.com/abougouffa/minemacs/commit/93efe4237a6e9cec6e52a6ea4f7ce80ca5014118)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** list some of the main features of MinEmacs - ([fca43c6](https://github.com/abougouffa/minemacs/commit/fca43c67a92c7fdd2ec6daf7ddffd678fc18aca1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([26009b6](https://github.com/abougouffa/minemacs/commit/26009b698b1a9088b3a4a028586e43a03b1f7c81)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** reduce flickering by loading the theme's background-color early - ([55d1891](https://github.com/abougouffa/minemacs/commit/55d18918cc6678152df921b117a7e66a8ae669bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(dtrt-indent)** add `+dtrt-indent-tab-to-tab-stop` - ([9b2703e](https://github.com/abougouffa/minemacs/commit/9b2703e78fd35b8ec1e909ff26dc0a5b136cfd88)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/python)** add `pip-requirements` - ([ed5000b](https://github.com/abougouffa/minemacs/commit/ed5000b9d73b321dfcdfde36e3c242b97f84b7a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add support for `difftastic` - ([8d77f7e](https://github.com/abougouffa/minemacs/commit/8d77f7e6638598067cadd2b2b8c6a5503716e543)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(treesit)** enhance `+treesit-create-parser-in-buffer` and remove redundant code - ([daffc36](https://github.com/abougouffa/minemacs/commit/daffc36a1d73da94312767094dc8dee801d680bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** rename a variable and a command - ([d0499c8](https://github.com/abougouffa/minemacs/commit/d0499c818e5955b8daf217b34d4f5c7b89232d76)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(eglot)** don't automatically enable `eglot-inlay-hints-mode` - ([cc41559](https://github.com/abougouffa/minemacs/commit/cc41559df75daa791cf66aca4c432afa659b0c9f)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot-booster)** automatically enable when available - ([3644eb0](https://github.com/abougouffa/minemacs/commit/3644eb08febd8bb25088c1b74ea0b5770bef2a5b)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** minor tweak - ([187d7f0](https://github.com/abougouffa/minemacs/commit/187d7f0cb1d2106d85b413d9a0ba4555c5b13cc3)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([3bee1e4](https://github.com/abougouffa/minemacs/commit/3bee1e4e94eb5237fd0b7fd4a2e0f0fb85ef0024)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v11.6.0](https://github.com/abougouffa/minemacs/compare/86bc9fd07d7917bb3dee1978d1e79bf2cd77ce28..v11.6.0) - 2024-11-26
 #### Bug Fixes
 - **(pet)** use `fd` to avoid freezing Emacs in large codebases - ([e0e6e7a](https://github.com/abougouffa/minemacs/commit/e0e6e7a37c8c7b84b30a83b34e999f497ac8f546)) - [@abougouffa](https://github.com/abougouffa)
