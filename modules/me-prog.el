@@ -85,19 +85,19 @@
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
 
-  (defvar +treesit-auto-enable-in-normal-modes-deny '(org-mode))
+  (defvar +treesit-auto-create-parser-modes-deny '(org-mode))
 
   ;; Create `treesit' parsers when they are available even in non-treesit modes.
   ;; This is useful for packages like `virtual-format', `treesit-fold', `expreg'
   ;; and `ts-movement'.
-  (defun +treesit-create-parser-in-buffer (&optional buffer)
+  (defun +treesit-auto-create-parser-in-buffer (&optional buffer)
     "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
     (interactive (list (when current-prefix-arg (get-buffer (read-buffer "Create treesit parser in buffer: ")))))
     (let ((buffer (or buffer (current-buffer)))
           (interact-p (called-interactively-p 'interactive)))
       (if (treesit-available-p)
-          (when (or (not (derived-mode-p +treesit-auto-enable-in-normal-modes-deny))
-                    (and interact-p (y-or-n-p "Creating parsers for `%S' is blacklisted in `+treesit-auto-enable-in-normal-modes-deny', continue?")))
+          (when (or (not (derived-mode-p +treesit-auto-create-parser-modes-deny))
+                    (and interact-p (y-or-n-p "Creating parsers for `%S' is blacklisted in `+treesit-auto-create-parser-modes-deny', continue?")))
             (with-current-buffer buffer
               (if-let* ((lang-recipe (cl-find-if (lambda (recipe) (eq major-mode (treesit-auto-recipe-remap recipe)))
                                                  treesit-auto-recipe-list))
@@ -110,7 +110,7 @@
                 (when interact-p (user-error "No installed tree-sitter grammar for mode `%s'" major-mode)))))
         (when interact-p (user-error "Tree-sitter isn't available in this Emacs build")))))
 
-  (add-hook 'after-change-major-mode-hook '+treesit-create-parser-in-buffer))
+  (add-hook 'after-change-major-mode-hook '+treesit-auto-create-parser-in-buffer))
 
 
 ;; Move and edit code blocks based on tree-sitter AST
