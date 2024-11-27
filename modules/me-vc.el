@@ -48,6 +48,7 @@
 (use-package magit-file-icons
   :straight t
   :trigger-commands magit magit-status magit-status-here magit-log magit-log-all
+  :after magit
   :init
   (magit-file-icons-mode 1))
 

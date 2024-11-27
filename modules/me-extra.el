@@ -30,8 +30,7 @@
 ;; Persistent per-project scratch buffers for Emacs
 (use-package pscratch
   :straight (:host github :repo "abougouffa/persistent-scratch")
-  :init
-  (pscratch-mode 1))
+  :hook (minemacs-after-startup . pscratch-mode))
 
 
 (provide 'me-extra)

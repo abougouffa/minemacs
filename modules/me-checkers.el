@@ -39,6 +39,7 @@
 ;; A `flymake' integration with the linting library (`package-lint') for Elisp package metadata
 (use-package package-lint-flymake
   :straight t
+  :after minemacs-first-elisp-file
   :hook (emacs-lisp-mode . package-lint-flymake-setup))
 
 
