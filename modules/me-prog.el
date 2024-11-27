@@ -90,38 +90,27 @@
   ;; Create `treesit' parsers when they are available even in non-treesit modes.
   ;; This is useful for packages like `virtual-format', `treesit-fold', `expreg'
   ;; and `ts-movement'.
-  (defun +treesit-enable-available-grammars-on-normal-modes ()
-    "Enable `treesit' parses in non-treesit modes."
-    (when (treesit-available-p)
-      (dolist (recipe treesit-auto-recipe-list)
-        (let ((lang (treesit-auto-recipe-lang recipe)))
-          (unless (fboundp (treesit-auto-recipe-ts-mode recipe)) ; When the `xxx-ts-mode' is not available
-            (dolist (remap-mode (ensure-list (treesit-auto-recipe-remap recipe))) ; Get the basic mode name (non-ts)
-              (unless (memq remap-mode +treesit-auto-enable-in-normal-modes-deny) ; Unless this mode is explicitly disabled
-                (let ((fn-name (intern (format "+treesit--enable-on-%s-h" remap-mode)))
-                      (hook-name (intern (format "%s-hook" remap-mode))))
-                  (defalias fn-name (lambda () ; Create the parser if the grammar for the language is available
-                                      (when (treesit-language-available-p lang)
-                                        (treesit-parser-create lang))))
-                  (add-hook hook-name fn-name)))))))))
-
-  (+treesit-enable-available-grammars-on-normal-modes)
-
-  (defun +treesit-create-parser-in-buffer (buff-name)
+  (defun +treesit-create-parser-in-buffer (&optional buffer)
     "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
-    (interactive (list (if current-prefix-arg (read-buffer "Create treesit parser in buffer: ") (buffer-name))))
-    (unless (treesit-available-p) (user-error "Tree-sitter isn't available in this Emacs build"))
-    (with-current-buffer (get-buffer buff-name)
-      (if-let* ((lang-recipe (cl-find-if
-                              (lambda (recipe)
-                                (eq major-mode (or (treesit-auto-recipe-remap recipe)
-                                                   (treesit-auto-recipe-ts-mode recipe))))
-                              treesit-auto-recipe-list))
-                (lang (treesit-auto-recipe-lang lang-recipe))
-                (lang (and (treesit-language-available-p lang) lang)))
-          (treesit-parser-create lang)
-        (when (called-interactively-p)
-          (user-error "No installed tree-sitter grammar for mode `%s'" major-mode))))))
+    (interactive (list (when current-prefix-arg (get-buffer (read-buffer "Create treesit parser in buffer: ")))))
+    (let ((buffer (or buffer (current-buffer)))
+          (interact-p (called-interactively-p 'interactive)))
+      (if (treesit-available-p)
+          (when (or (not (derived-mode-p +treesit-auto-enable-in-normal-modes-deny))
+                    (and interact-p (y-or-n-p "Creating parsers for `%S' is blacklisted in `+treesit-auto-enable-in-normal-modes-deny', continue?")))
+            (with-current-buffer buffer
+              (if-let* ((lang-recipe (cl-find-if (lambda (recipe) (eq major-mode (treesit-auto-recipe-remap recipe)))
+                                                 treesit-auto-recipe-list))
+                        (lang (treesit-auto-recipe-lang lang-recipe))
+                        (lang (and (treesit-language-available-p lang) lang)))
+                  (when (or (not (treesit-parser-list buffer lang))
+                            (and interact-p (y-or-n-p (format "The %S buffer already have a %S language parser, continue?" buffer lang))))
+                    (treesit-parser-create lang)
+                    (when interact-p (message "Created a %S language parser in %S" lang buffer)))
+                (when interact-p (user-error "No installed tree-sitter grammar for mode `%s'" major-mode)))))
+        (when interact-p (user-error "Tree-sitter isn't available in this Emacs build")))))
+
+  (add-hook 'after-change-major-mode-hook '+treesit-create-parser-in-buffer))
 
 
 ;; Move and edit code blocks based on tree-sitter AST
