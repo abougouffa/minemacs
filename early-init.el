@@ -52,7 +52,11 @@
   (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist))
 
 ;; Load MinEmacs variables from the `me-vars' core module.
-(load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t)
+(dolist (lib '("core/me-vars.el" "core/me-lib.el"))
+  (load (expand-file-name lib (file-name-directory (file-truename load-file-name))) nil t))
+
+(when (+deserialize-sym 'minemacs--background-color nil t)
+  (push `(background-color . ,minemacs--background-color) default-frame-alist))
 
 ;; Better titlebar on MacOS!
 (when (featurep 'ns)

@@ -277,7 +277,7 @@ provided as the first argument, inhibit messages but keep writing them to the
 (defcustom +first-file-hook-ignore-list nil
   "A list of files to ignore in the `minemacs-first-*-file-hook'."
   :group 'minemacs-core
-  :type '(repeat file))
+  :type '(repeat (choice file sexp)))
 
 (defcustom +first-file-hooks nil
   "A list of defined hooks using `+make-first-file-hook!'."
@@ -316,7 +316,7 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
                 (when-let* ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
                  (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
                (not ; not an ignored file
-                (member (expand-file-name filename) (mapcar #'expand-file-name +first-file-hook-ignore-list)))
+                (member (expand-file-name filename) (mapcar #'expand-file-name (mapcar #'eval +first-file-hook-ignore-list))))
                (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
                 (string-match-p ,ext-regexp filename)))
          (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
@@ -804,7 +804,7 @@ Example:
 
 ;;; Data serialization
 
-(defcustom +serialized-symbols-directory (concat minemacs-local-dir "+serialized-symbols/")
+(defcustom +serialized-symbols-directory (concat minemacs-local-dir "minemacs-serialized-symbols/")
   "Default directory to store serialized symbols."
   :group 'minemacs-core
   :type 'directory)
@@ -817,6 +817,7 @@ If FILENAME-FORMAT is non-nil, use it to format the file name (ex.
     (let ((out-file (expand-file-name
                      (format (or filename-format "%s.el") (symbol-name sym))
                      (or dir +serialized-symbols-directory))))
+      (mkdir +serialized-symbols-directory t)
       (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
       (with-temp-buffer
         (prin1 (eval sym) (current-buffer))
@@ -833,6 +834,7 @@ file dont exist."
                   (or dir +serialized-symbols-directory)))
         res)
     (when (file-exists-p in-file)
+      (add-to-list '+first-file-hook-ignore-list in-file)
       (+log! "Loading `%s' from file \"%s\"" sym (abbreviate-file-name in-file))
       (with-temp-buffer
         (insert-file-contents in-file)

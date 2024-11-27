@@ -83,6 +83,13 @@
   (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   :init
+  (defun +save-background-color ()
+    (when-let* ((bg (ignore-errors (frame-parameter nil 'background-color))))
+      (setq minemacs--background-color bg)
+      (+serialize-sym 'minemacs--background-color)))
+
+  (add-hook 'minemacs-after-load-theme-hook #'+save-background-color)
+
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
                 tab-width 4 ; Default (8) is too big!
