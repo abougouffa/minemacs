@@ -51,9 +51,10 @@
             (alpha (string-to-number alpha)))
   (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist))
 
-;; Load MinEmacs variables from the `me-vars' core module.
-(dolist (lib '("core/me-vars.el" "core/me-lib.el"))
-  (load (expand-file-name lib (file-name-directory (file-truename load-file-name))) nil t))
+;; Load MinEmacs variables and basic  from the `me-vars' core module.
+(add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename load-file-name))))
+(require 'me-vars)
+(require 'me-lib)
 
 (when (color-defined-p (+deserialize-sym 'minemacs--background-color nil t))
   (push `(background-color . ,minemacs--background-color) default-frame-alist))
