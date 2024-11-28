@@ -1020,7 +1020,9 @@ Typing these will trigger reindentation of the current line.")
   :bind (("C-c c r" . recentf-open-files))
   :init
   ;; Enable `recentf-mode' to remember recent files
-  (+shutup! (recentf-mode 1)))
+  (+shutup! (recentf-mode 1))
+  :config
+  (add-to-list 'recentf-exclude +serialized-symbols-directory))
 
 (use-package url
   :custom
