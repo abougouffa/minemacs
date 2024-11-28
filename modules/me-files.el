@@ -48,8 +48,8 @@
 When called with \\[universal-argument], prompt for the user, otherwise,
 save as `sudo-edit-user'. When called with \\[universal-argument] \\[universal-argument],
 write to a new file name."
-    (interactive (let ((num (car current-prefix-arg)))
-                   (list num (and num (> num 4)))))
+    (interactive (let ((num (prefix-numeric-value current-prefix-arg)))
+                   (list (> num 1) (> num 4))))
     (if-let* ((user (if choose-user
                         (completing-read "User: " (and (fboundp 'system-users) (system-users)) nil nil nil 'sudo-edit-user-history sudo-edit-user)
                       sudo-edit-user))
