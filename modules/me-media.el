@@ -14,12 +14,13 @@
   :type 'string)
 
 
-(when (executable-find +mpv-command)
-  (defun +browse-url-mpv (url &optional _args)
-    "Open URL with MPV."
-    (start-process "browse-url:mpv" " *MPV:browse-url*" +mpv-command url))
-  ;; Automatically open Youtube links in MPV
-  (setq browse-url-browser-function
+;; Automatically open YouTube links in MPV
+(with-eval-after-load 'browse-url
+  (when (executable-find +mpv-command)
+    (defun +browse-url-mpv (url &optional _args)
+      "Open URL with MPV."
+      (start-process "browse-url:mpv" " *MPV:browse-url*" +mpv-command url)))
+  (setq browse-url-handlers
         `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
           ("." . ,browse-url-browser-function))))
 
