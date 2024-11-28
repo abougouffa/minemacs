@@ -315,8 +315,10 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
                 (featurep 'minemacs-loaded) ; after MinEmacs is loaded
                 (when-let* ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
                  (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
-               (not ; not an ignored file
-                (member (expand-file-name filename) (mapcar #'expand-file-name (mapcar #'eval +first-file-hook-ignore-list))))
+               (not (cl-some ; not an ignored file
+                     (apply-partially #'string-prefix-p (expand-file-name filename))
+                     (mapcar (+apply-partially-right #'file-expand-wildcards t)
+                      (mapcar #'eval +first-file-hook-ignore-list))))
                (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
                 (string-match-p ,ext-regexp filename)))
          (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
@@ -814,14 +816,17 @@ Example:
 If FILENAME-FORMAT is non-nil, use it to format the file name (ex.
 \"file-%s.el\"). Return the written file name, or nil if SYM is not bound."
   (when (boundp sym)
-    (let ((out-file (expand-file-name
-                     (format (or filename-format "%s.el") (symbol-name sym))
-                     (or dir +serialized-symbols-directory))))
-      (mkdir +serialized-symbols-directory t)
-      (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
-      (with-temp-buffer
-        (prin1 (eval sym) (current-buffer))
-        (+shutup! (write-file out-file)))
+    (let* ((out-file (expand-file-name
+                      (format (or filename-format "%s.el") (symbol-name sym))
+                      (or dir +serialized-symbols-directory)))
+           (sym-val (eval sym))
+           (read-sym-val (+deserialize-sym sym dir nil filename-format)))
+      (unless (eq read-sym-val sym-val) ; no need to rewrite the file
+        (mkdir +serialized-symbols-directory t)
+        (+log! "Saving `%s' to file \"%s\"" (symbol-name sym) (abbreviate-file-name out-file))
+        (with-temp-buffer
+          (prin1 sym-val (current-buffer))
+          (+shutup! (write-file out-file))))
       out-file)))
 
 (defun +deserialize-sym (sym &optional dir mutate filename-format)
