@@ -69,6 +69,7 @@
 ;; A `treesit'-based Bitbake major mode
 (use-package bitbake-ts-mode
   :straight t
+  :disabled ; TEMP: No good syntax highlighting
   :when (+emacs-options-p 'tree-sitter))
 
 
