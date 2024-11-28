@@ -173,6 +173,7 @@
          ([remap goto-line] . consult-goto-line) ; M-g g or M-g M-g
 
          ;; M-s bindings in `search-map'
+         ("M-s f"   . consult-fd)
          ("M-s d"   . consult-find)
          ("M-s D"   . consult-locate)
          ("M-s g"   . consult-grep)
@@ -194,7 +195,7 @@
 
          ;; Minibuffer history
          :map minibuffer-local-map
-         ("M-i" . +insert-thing-at-point)
+         ("M-I" . +insert-thing-at-point)
          ([remap next-matching-history-element] . consult-history) ; M-s
          ([remap previous-matching-history-element] . consult-history)) ; M-r
   :custom
