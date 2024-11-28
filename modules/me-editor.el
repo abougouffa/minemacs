@@ -50,7 +50,7 @@
       lisp-mode
       pascal-mode
       org-mode ; a non-standard `tab-width' causes an error in `org-mode'.
-      coq-mode) ; see https://github.com/doomemacs/doomemacs/issues/5823
+      coq-mode) ; see doomemacs/doomemacs#5823
     "A list of major modes where indentation shouldn't be auto-detected.")
   (defun +dtrt-indent-mode-maybe ()
     (unless (or (not (featurep 'minemacs-first-file))

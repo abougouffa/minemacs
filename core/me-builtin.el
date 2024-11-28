@@ -1222,12 +1222,15 @@ Typing these will trigger reindentation of the current line.")
 
 (use-package goto-addr
   :hook ((prog-mode conf-mode) . goto-address-prog-mode)
+  :hook ((prog-mode conf-mode) . bug-reference-prog-mode)
   :custom
   (goto-address-url-face '+goto-addr-url-face)
-  :config
+  :init
   (defface +goto-addr-url-face '((t :italic t :underline t))
     "Face for URLs, I prefer keeping the original face and add underline and italic."
-    :group 'goto-addr))
+    :group 'goto-addr)
+  (with-eval-after-load 'bug-reference
+    (put 'bug-reference 'face '+goto-addr-url-face)))
 
 (use-package visual-wrap
   :when (>= emacs-major-version 30)
