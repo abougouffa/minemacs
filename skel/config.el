@@ -121,7 +121,7 @@
 ;; Module: `me-tools' -- Package: `vterm'
 ;; When the libvterm present in the system is too old, you can face VTERM_COLOR
 ;; related compilation errors. Thil parameter tells `vterm' to download libvterm
-;; for you, see the FAQ at: github.com/akermu/emacs-libvterm.
+;; for you, see the FAQ at: https://github.com/akermu/emacs-libvterm.
 ;; (with-eval-after-load 'vterm
 ;;   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
 

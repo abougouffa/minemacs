@@ -113,7 +113,7 @@ in MinEmacs directory before upgrading."
   "Set some Emacs variables for better (!) performance."
   (interactive)
   (setq gc-cons-threshold (* 128 1024 1024) ; Set a big enough threshhold
-        gc-cons-percentage 0.25 ; Set a high enough percentage (see zenodo.org/records/10213384)
+        gc-cons-percentage 0.25 ; Set a high enough percentage (see https://zenodo.org/records/10213384)
         inhibit-compacting-font-caches t ; Don’t compact font caches during GC
         read-process-output-max (* 1024 1024) ; Increase single chunk bytes to read from subprocess
         fast-but-imprecise-scrolling t)) ; Fast scrolling
@@ -662,7 +662,7 @@ Applicable only when calling `+screenshot-svg' with a prefix."
   :group 'minemacs-utils
   :type 'number)
 
-;; Inspired by: reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y
+;; Inspired by: https://reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y
 ;;;###autoload
 (defun +screenshot-svg (outfile)
   "Save a screenshot of the current frame as an SVG image to OUTFILE.
@@ -888,7 +888,7 @@ the children of class at point."
 ;;; Binary files tweaks
 
 ;; A predicate for detecting binary files. Inspired by:
-;; emacs.stackexchange.com/q/10277/37002
+;; https://emacs.stackexchange.com/q/10277/37002
 ;;;###autoload
 (defun +binary-buffer-p (&optional buffer)
   "Return whether BUFFER or the current buffer is binary.

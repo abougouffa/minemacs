@@ -76,7 +76,7 @@
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
-;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
+;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
 ;; Store the current value so we can reset it after Emacs startup.
 (put 'file-name-handler-alist 'original-value (default-toplevel-value 'file-name-handler-alist))
 ;; Make sure the new value survives any current let-binding.

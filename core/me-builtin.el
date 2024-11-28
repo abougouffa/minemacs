@@ -623,7 +623,7 @@ or file path may exist now."
       "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")
     "ccls")
 
-  ;; PERF: Optimization, inspired by: reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
+  ;; PERF: Optimization, inspired by: https://reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
     (cl-callf plist-put eglot-events-buffer-config :size 0) ; Disable logs in `eglot-events-buffer' (def. 2000000)
     (with-eval-after-load 'jsonrpc ; Disable logging in `jsonrpc'

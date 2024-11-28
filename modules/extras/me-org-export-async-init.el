@@ -13,7 +13,7 @@
 ;; BUG: For some reason, exporting in background can fail with this error:
 ;; (error "Odd length text property list"), in such case, you can remove the Org
 ;; cache directory and retry again: rm -rf ~/.emacs.d/local/cache/org/ (see
-;; github.com/org-roam/org-roam/issues/2155#issuecomment-1145388814)
+;; org-roam/org-roam#2155#issuecomment-1145388814)
 
 ;;; Code:
 

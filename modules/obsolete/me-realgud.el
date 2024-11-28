@@ -7,7 +7,7 @@
 ;;; Commentary:
 
 ;; Evil integraion has been adopted from Doom Emacs
-;; github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/tools/debugger/autoload/evil.el
 
 ;;; Code:
 

@@ -10,7 +10,7 @@
 
 ;; - `:pin-ref' - allow pinning package version (installed via `straight') to a
 ;;   specific commit/revision from `use-package' using the `:pin-ref' keyword.
-;;   github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
+;;   https://github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
 ;;
 ;; - `:trigger-commands' - allow loading the package before executing a specific
 ;;   external command/function using the `:trigger-commands' keyword.

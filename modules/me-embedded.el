@@ -76,7 +76,7 @@
 (use-package x86-lookup
   :straight t
   :custom
-  ;; Get manual from intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+  ;; Get manual from https://intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
   (x86-lookup-pdf (concat minemacs-local-dir "intel-64-and-ia32-volumes-1234.pdf"))
   (x86-lookup-cache-directory (concat minemacs-cache-dir "x86-lookup/"))
   :config

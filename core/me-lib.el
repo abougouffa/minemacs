@@ -471,7 +471,7 @@ Consider only documented, non-obsolete interactive functions."
     ((rx bol (or "tsch" "csh") eol) "-dc")
     (_ "-ilc")))
 
-;; Inspired by: emacs.stackexchange.com/a/21432/37002
+;; Inspired by: https://emacs.stackexchange.com/a/21432/37002
 (defun +shell-command-to-string-ignore-stderr (command)
   "Execute shell command COMMAND and return its output as a string.
 
@@ -990,7 +990,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
           (+log! "Setting %s `%s' to `%s'" (if scriptp "script" "face") script-or-face spec)
           (throw 'done spec))))))
 
-;; Inspired by: github.com/seagle0128/.emacs.d/blob/master/custom-example.el
+;; Inspired by: https://github.com/seagle0128/.emacs.d/blob/master/custom-example.el
 (defun +setup-fonts ()
   "Setup fonts."
   (interactive)

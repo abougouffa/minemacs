@@ -8,7 +8,7 @@
 
 ;; Window configuration for special windows.
 ;; This section inspired by the article "Demystifying Emacs’s Window Manager" found here:
-;; www.masteringemacs.org/article/demystifying-emacs-window-manager
+;; https://www.masteringemacs.org/article/demystifying-emacs-window-manager
 
 ;;; Code:
 

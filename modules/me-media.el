@@ -40,7 +40,7 @@
           (vids (seq-filter
                  #'identity ; Filter nils
                  (mapcar
-                  (lambda (item) ; Extract ID from URL patterns youtube.com/watch?v=8x7eUKYhBKg or youtu.be/8x7eUKYhBKg
+                  (lambda (item) ; Extract ID from URL patterns https://youtube.com/watch?v=8x7eUKYhBKg or https://youtu.be/8x7eUKYhBKg
                     (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
                          (match-string 1 item)))
                   playlist))))
