@@ -70,12 +70,10 @@
   ;; `straight'.
   (defun +use-package--check-if-disabled:around-a (origfn package &rest args)
     (if (or (+package-disabled-p package)
-            (and (memq :if args)
-                 (not (and (memq :if args) (eval (+varplist-get args :if t)))))
-            (and (memq :when args)
-                 (not (and (memq :when args) (eval (+varplist-get args :when t)))))
-            (and (memq :unless args)
-                 (not (and (memq :unless args) (not (eval (+varplist-get args :unless t)))))))
+            (memq :disabled args)
+            (and (memq :if args) (not (eval (+varplist-get args :if t))))
+            (and (memq :when args) (not (eval (+varplist-get args :when t))))
+            (and (memq :unless args) (eval (+varplist-get args :unless t))))
         ;; Register the package but don't enable it, useful when creating the lockfile,
         ;; this is the official straight.el way for conditionally installing packages
         (when-let* ((recipe (+varplist-get args :straight t)))
