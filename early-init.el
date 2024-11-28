@@ -55,7 +55,7 @@
 (dolist (lib '("core/me-vars.el" "core/me-lib.el"))
   (load (expand-file-name lib (file-name-directory (file-truename load-file-name))) nil t))
 
-(when (+deserialize-sym 'minemacs--background-color nil t)
+(when (color-defined-p (+deserialize-sym 'minemacs--background-color nil t))
   (push `(background-color . ,minemacs--background-color) default-frame-alist))
 
 ;; Better titlebar on MacOS!
