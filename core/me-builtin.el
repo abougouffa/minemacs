@@ -943,17 +943,18 @@ Typing these will trigger reindentation of the current line.")
   :mode ("\\.m\\'" . octave-maybe-mode)
   :config
   (defun +octave-eval-last-sexp ()
-    "Evaluate Octave sexp before point and print value into current buffer."
+    "Like `octave-eval-print-last-sexp', but it doesn't print to the buffer."
     (interactive)
     (inferior-octave t)
-    (let ((print-escape-newlines nil)
-          (opoint (point)))
-      (prin1
-       (save-excursion
-         (forward-sexp -1)
-         (inferior-octave-send-list-and-digest
-          (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
-         (mapconcat 'identity inferior-octave-output-list "\n"))))))
+    (let* ((print-escape-newlines nil)
+           (opoint (point))
+           (result (save-excursion
+                     (forward-sexp -1)
+                     (inferior-octave-send-list-and-digest
+                      (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
+                     (string-join inferior-octave-output-list "\n"))))
+      (when (called-interactively-p 'interactive) (message "%s" result))
+      result)))
 
 (use-package bookmark
   :custom

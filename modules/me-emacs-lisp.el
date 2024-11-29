@@ -98,7 +98,7 @@
     (defun +eros-octave-eval-last-sexp ()
       "Wrapper for `+octave-eval-last-sexp' that overlays results."
       (interactive)
-      (eros--eval-overlay (+octave-eval-last-sexp) (point)))))
+      (eros--make-result-overlay (+octave-eval-last-sexp) :where (point) :duration eros-eval-result-duration))))
 
 
 ;; Elisp regexp mistake finder
