@@ -885,10 +885,9 @@ Typing these will trigger reindentation of the current line.")
 
   ;; Electric indent at Bash/Sh keywords, extracted from the grammar
   (+setq-hook! (sh-mode bash-ts-mode)
-    +electric-indent-words
-    (delete-dups (apply #'append (mapcar (lambda (e) (list (car e) (cdr e))) (cdar sh-smie-sh-grammar)))))
+    +electric-indent-words (seq-uniq (flatten-list (alist-get :smie-closer-alist sh-smie-sh-grammar))))
 
-  ;; From Doom Emacs
+  ;; Inspired by Doom Emacs
   (add-hook
    'electric-indent-functions
    (satch-defun +electric-indent-char-fn (_c)
