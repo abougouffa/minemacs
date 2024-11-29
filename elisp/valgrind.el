@@ -31,6 +31,11 @@ You might also use mode hooks to specify it in certain modes, like this:
   :type 'string
   :group 'valgrind)
 
+(defcustom valgrind-buffer-name-function (lambda (_mode-name) "Takes the MODE-NAME, returns a string." "*valgrind*")
+  "A function that takes one argument (mode name) and returns name of the buffer."
+  :type 'function
+  :group 'valgrind)
+
 ;; History of compile commands.
 (defvar valgrind-history nil)
 
@@ -54,7 +59,7 @@ move to the source code that caused it."
   (let ((default-directory (or (let ((proj (project-current))) (project-root proj)) default-directory)))
     (unless (equal command (eval valgrind-command))
       (setq valgrind-command command))
-    (compilation-start command nil (lambda (_) "*valgrind*"))))
+    (compilation-start command nil valgrind-buffer-name-function)))
 
 
 (provide 'valgrind)
