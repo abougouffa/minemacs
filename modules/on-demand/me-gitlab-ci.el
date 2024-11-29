@@ -16,7 +16,7 @@
 
 ;; Mode for editing GitLab CI files
 (use-package gitlab-ci-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-gitlab-ci)

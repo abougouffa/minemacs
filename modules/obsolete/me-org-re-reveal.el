@@ -9,14 +9,14 @@
 ;;; Code:
 
 (use-package org-re-reveal
-  :straight t)
+  :ensure t)
 
 (use-package oer-reveal
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . oer-reveal-setup-submodules))
 
 (use-package org-re-reveal-citeproc
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-org-re-reveal)

@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package ibuffer-project
-  :straight t
+  :ensure t
   :hook (ibuffer . +ibuffer-project-h)
   :config
   ;; From Crafted Emacs

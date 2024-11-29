@@ -17,12 +17,12 @@
 
 ;; Major mode for editing QT Declarative (QML) code
 (use-package qml-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Qt's Pro/Pri files
 (use-package qt-pro-mode
-  :straight t
+  :ensure t
   :mode "\\.pr[io]\\'")
 
 

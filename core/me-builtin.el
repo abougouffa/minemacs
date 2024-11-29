@@ -221,8 +221,7 @@ or file path may exist now."
   (+setq-hook! python-mode comment-inline-offset 2))
 
 (use-package compat
-  :straight (:source gnu-elpa-mirror)
-  :demand)
+  :ensure t)
 
 (use-package crm
   :config
@@ -234,7 +233,7 @@ or file path may exist now."
      (cons (format "[CRM%s] %s" (replace-regexp-in-string "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" "" crm-separator) (car args)) (cdr args)))))
 
 (use-package transient
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :autoload transient-define-prefix transient-define-infix transient-define-suffix
   :bind (:map
          transient-map ; Map ESC and q to quit transient
@@ -242,7 +241,7 @@ or file path may exist now."
          ("<escape>" . transient-quit-one)))
 
 (use-package which-key
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :hook (minemacs-lazy . which-key-mode)
   :custom
   (which-key-idle-delay 1.0)
@@ -258,7 +257,7 @@ or file path may exist now."
   (which-key-setup-minibuffer))
 
 (use-package tramp
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :init
   (if (+emacs-options-p 'os/win)
       (when (executable-find "plink")
@@ -328,7 +327,7 @@ or file path may exist now."
   (doc-view-mupdf-use-svg (+emacs-options-p 'rsvg)))
 
 (use-package project
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :commands (project-remember-projects-under)
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
@@ -401,14 +400,14 @@ or file path may exist now."
     (setcdr (assq 'explicit-name tab) 'def)))
 
 (use-package editorconfig
-  :straight t
-  :hook (minemacs-first-file . editorconfig-mode)
-  :config
-  ;; Exclude compressed files
-  (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
+  :ensure t
+  :hook (minemacs-first-file . editorconfig-mode))
+;; :config
+;; ;; Exclude compressed files
+;; (push "\\.\\(zip\\|epub\\|\\(doc\\|xls\\|ppt\\)x\\)\\'" editorconfig-exclude-regexps))
 
 (use-package flymake
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
@@ -586,7 +585,7 @@ or file path may exist now."
         hs-special-modes-alist '((t)))))
 
 (use-package xref
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
@@ -603,7 +602,7 @@ or file path may exist now."
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ; async, do not block
@@ -654,7 +653,7 @@ or file path may exist now."
   (imenu-max-item-length 120)) ; Show longer definitions (def. 60)
 
 (use-package eldoc
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
@@ -694,7 +693,7 @@ or file path may exist now."
   (gdb-display-io-nopopup nil)) ; in case we enabled the IO buffer, we don't want it to popup when hidden
 
 (use-package org
-  :straight (:source gnu-elpa-mirror)
+  :ensure t
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)

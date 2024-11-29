@@ -16,7 +16,7 @@
 
 ;; Major mode for editing Crystal files
 (use-package crystal-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-crystal)

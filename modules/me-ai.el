@@ -10,12 +10,12 @@
 
 ;; A library abstracting LLM capabilities for Emacs
 (use-package llm
-  :straight t)
+  :ensure t)
 
 
 ;; `llm' module for integrating with Ollama
 (use-package llm-ollama
-  :straight llm
+  :ensure llm
   :autoload make-llm-ollama +ollama-serve +ollama-kill-server +ollama-list-installed-models
   :config
   (defvar +ollama-process-name "ellama-server")
@@ -54,7 +54,7 @@
 
 ;; A package for interacting with LLMs from Emacs
 (use-package ellama
-  :straight t
+  :ensure t
   :config
   (defun +ellama-set-providers ()
     (setopt ellama-providers
@@ -65,12 +65,12 @@
 
 ;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 (use-package elisa
-  :straight t)
+  :ensure t)
 
 
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
-  :straight (:host github :repo "natrys/whisper.el")
+  :vc (:url "https://github.com/natrys/whisper.el")
   :custom
   (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
   (whisper-use-threads (/ (num-processors) 2)))

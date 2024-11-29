@@ -16,23 +16,23 @@
 
 ;; Major mode for editing Julia source code
 (use-package julia-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Julia source code using Tree-sitter
 (use-package julia-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter))
 
 
 ;; A minor mode for a Julia REPL
 (use-package julia-repl
-  :straight t)
+  :ensure t)
 
 
 ;; An Emacs development environment for Julia
 (use-package julia-snail
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-julia)

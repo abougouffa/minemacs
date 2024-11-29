@@ -6,39 +6,42 @@
 
 ;; A deployment plugin via Tramp for Emacs
 (use-package ssh-deploy
-  :straight t
+  :vc (:url "https://github.com/cjohansson/emacs-ssh-deploy" :ignored-files ("ssh-deploy-hydra.el"))
+  ;; :disabled t
   ;; Should be configured in per-project basis, good documentation at:
   ;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
-  :hook ((after-save . ssh-deploy-after-save)
-         (find-file . ssh-deploy-find-file))
-  :bind (("C-c C-z" . ssh-deploy-prefix-map))
+  ;; :hook ((after-save . ssh-deploy-after-save)
+  ;;        (find-file . ssh-deploy-find-file))
+  :bind-keymap (("C-c C-z" . ssh-deploy-prefix-map))
   :custom
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
 
 
 ;; TRAMP integration for Incus containers
 (use-package incus-tramp
-  :straight t
+  :ensure t
   :after tramp
-  :init
-  (incus-tramp-add-method))
+  :demand
+  :config
+  (incus-tramp-add-method)
+  (tramp-set-completion-function incus-tramp-method '((incus-tramp-completion-function-alist))))
 
 
 ;; Launch system applications from Emacs
 (use-package app-launcher
-  :straight (:host github :repo "SebastienWae/app-launcher")
+  :vc (:url "https://github.com/SebastienWae/app-launcher")
   :when (+emacs-options-p :any 'os/linux 'os/bsd)
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 
 ;; System-wide popup Emacs windows for quick edits
 (use-package emacs-everywhere
-  :straight t)
+  :ensure t)
 
 
 ;; Browse "tldr" pages from Emacs
 (use-package tldr
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . tldr-update-docs)
   :hook (tldr-mode . visual-line-mode)
   :custom
@@ -47,7 +50,7 @@
 
 ;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
 (use-package vterm
-  :straight t
+  :ensure t
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :hook (vterm-mode . compilation-shell-minor-mode)
@@ -67,7 +70,7 @@
 
 ;; Managing multiple vterm buffers in Emacs
 (use-package multi-vterm
-  :straight t
+  :ensure t
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :bind (([remap project-shell] . multi-vterm-project)
          ([f1] . +multi-vterm-dedicated-toggle-dwim)
@@ -105,24 +108,24 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Manage docker from Emacs
 (use-package docker
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
 ;; Major mode for editing systemd units
 (use-package systemd
-  :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
+  :vc (:url "https://github.com/abougouffa/systemd-mode"))
 
 
 ;; Major mode to view journalctl's output in Emacs
 (use-package journalctl-mode
-  :straight t
+  :ensure t
   :commands (journalctl-mode))
 
 
 ;; Emacs mode for viewing log files
 (use-package logview
-  :straight t
+  :ensure t
   :custom
   (logview-additional-timestamp-formats '(("RDK-CCSP" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))))
   (logview-additional-submodes '(("RDK-CCSP" (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]") (levels . "RDK-CCSP"))))
@@ -131,7 +134,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
-  :straight t
+  :ensure t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
   :init
   ;; `julia-repl' seems to start on `term-mode', so let's check for it before exporting the editor
@@ -150,7 +153,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Buffer-local "direnv" integration for Emacs
 (use-package envrc
-  :straight t
+  :ensure t
   :hook (minemacs-first-file . envrc-global-mode)
   :when (and (not (+emacs-options-p 'os/win)) (executable-find "direnv"))
   :custom
@@ -163,7 +166,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Python Executable Tracker
 (use-package pet
-  :straight t
+  :ensure t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (+emacs-options-p 'sqlite3) (executable-find "sqlite3")))
   :hook (pet-mode . +pet-quickrun-setup)
@@ -179,7 +182,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
 (use-package add-node-modules-path
-  :straight t
+  :ensure t
   :hook (js-base-mode . add-node-modules-path)
   :config
   (when (executable-find "pnpm")
@@ -188,19 +191,19 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Organize and send HTTP requests from Emacs' Org mode files
 (use-package verb
-  :straight t
+  :ensure t
   :config
   (keymap-set org-mode-map "C-c C-r" `("verb" . ,verb-command-map)))
 
 
 ;; Import of Postman collections in Emacs (for `verb' and `restclient')
 (use-package impostman
-  :straight t)
+  :ensure t)
 
 
 ;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
-  :straight (:host github :repo "abougouffa/emacs-ecryptfs")
+  :vc (:url "https://github.com/abougouffa/emacs-ecryptfs")
   :when (and (+emacs-options-p :any 'os/linux 'os/bsd) (executable-find "ecryptfs-verify"))
   :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
 

@@ -16,7 +16,7 @@
 
 ;; Major mode for AWK using Tree-sitter
 (use-package awk-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter))
 
 

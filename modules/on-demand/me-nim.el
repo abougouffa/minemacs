@@ -17,7 +17,7 @@
 
 ;; A major mode for the Nim programming language
 (use-package nim-mode
-  :straight t)
+  :ensure t)
 
 (cl-callf2 remq 'flycheck-nimsuggest straight-built-in-pseudo-packages)
 

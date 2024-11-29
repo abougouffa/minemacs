@@ -16,7 +16,7 @@
 
 ;; Major mode for Fish shell scripts
 (use-package fish-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-fish)

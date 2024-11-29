@@ -9,11 +9,8 @@
 ;;; Code:
 
 
-(use-package gerrit
-  :straight (chromeos-gerrit :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/repo-transient.el")))
-
 (use-package gee
-  :straight (:host bitbucket :repo "olanilsson/gee"))
+  :vc (:url "https://bitbucket.org/olanilsson/gee"))
 
 
 (provide 'obsolete/me-gerrit)

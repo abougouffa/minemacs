@@ -10,7 +10,7 @@
 
 
 (use-package highlight-indent-guides
-  :straight t
+  :ensure t
   :custom
   (highlight-indent-guides-method 'character)
   (highlight-indent-guides-character #x2506)

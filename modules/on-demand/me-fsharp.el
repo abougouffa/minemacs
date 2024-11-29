@@ -15,7 +15,7 @@
 
 ;; Support for the F# programming language
 (use-package fsharp-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-fsharp)

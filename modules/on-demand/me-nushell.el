@@ -15,7 +15,7 @@
 
 
 (use-package nushell-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-nushell)

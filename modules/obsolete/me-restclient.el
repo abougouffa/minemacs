@@ -10,7 +10,7 @@
 
 
 (use-package restclient
-  :straight (:host github :repo "pashky/restclient.el" :files ("*.el") :fork (:repo "abougouffa/restclient.el"))
+  :vc (:url "https://github.com/abougouffa/restclient.el")
   :hook (restclient-mode . +prog-mode-run-hooks)
   :mode ("\\.http\\'" . restclient-mode)
   :config
@@ -28,10 +28,10 @@ certs, rather than reject them silently."
      (let (gnutls-verify-error) (apply orig-fn args)))))
 
 (use-package restclient-test
-  :straight t)
+  :ensure t)
 
 (use-package ob-restclient
-  :straight t
+  :ensure t
   :after org
   :init
   (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t))))

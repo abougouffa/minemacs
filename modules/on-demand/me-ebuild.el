@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Gentoo's ebuild and eclass files
 (use-package ebuild-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-ebuild)

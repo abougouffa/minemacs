@@ -11,7 +11,7 @@
 
 ;; Extra non-standard functionalities for Eglot
 (use-package eglot-x
-  :straight (:host github :repo "nemethf/eglot-x")
+  :vc (:url "https://github.com/nemethf/eglot-x")
   :commands (eglot-x-setup))
 
 

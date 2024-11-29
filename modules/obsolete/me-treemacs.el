@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package treemacs
-  :straight t
+  :ensure t
   :custom
   (treemacs-persist-file (concat minemacs-local-dir "treemacs/persist.el"))
   (treemacs-last-error-persist-file (concat minemacs-local-dir "treemacs/last-error-persist.el"))
@@ -19,7 +19,7 @@
   (set-face-attribute 'treemacs-root-face nil :height 1.0))
 
 (use-package treemacs-nerd-icons
-  :straight t
+  :ensure t
   :after treemacs nerd-icons
   :demand
   :config

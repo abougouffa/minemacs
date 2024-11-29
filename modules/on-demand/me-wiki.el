@@ -15,13 +15,13 @@
 
 ;; Major mode for editing Wikitexts
 (use-package wikitext-mode
-  :straight t
+  :ensure t
   :mode "\\.wiki\\'")
 
 
 ;; MediaWiki frontend
 (use-package mediawiki
-  :straight t
+  :ensure t
   :commands (mediawiki-mode))
 
 

@@ -18,7 +18,7 @@
 
 ;; Major mode to edit, run and test HTTP requests using Hurl
 (use-package hurl-mode
-  :straight (:host github :repo "JasZhe/hurl-mode")
+  :vc (:url "https://github.com/JasZhe/hurl-mode")
   :mode "\\.hurl\\'")
 
 

@@ -145,7 +145,7 @@ It is deferred until `general' gets loaded and configured."
 
 
 (use-package evil
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . evil-mode)
   :preface
   ;; Needed by `evil-collection'
@@ -193,7 +193,7 @@ It is deferred until `general' gets loaded and configured."
          (consult-buffer))))))
 
 (use-package evil-collection
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :after evil minemacs-loaded
   :demand
@@ -211,7 +211,7 @@ It is deferred until `general' gets loaded and configured."
       (evil-collection-define-key 'normal 'emacs-lisp-mode-map "gr" 'xref-find-references))))
 
 (use-package evil-snipe
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :hook (evil-mode . evil-snipe-mode)
   :hook (evil-mode . evil-snipe-override-mode)
@@ -222,7 +222,7 @@ It is deferred until `general' gets loaded and configured."
   (evil-snipe-auto-scroll t))
 
 (use-package evil-numbers
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :init
   (+nmap!
@@ -235,7 +235,7 @@ It is deferred until `general' gets loaded and configured."
     "g-" #'evil-numbers/dec-at-pt-incremental))
 
 (use-package evil-nerd-commenter
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :commands (evilnc-comment-operator evilnc-copy-and-comment-operator)
   :init
@@ -251,7 +251,7 @@ It is deferred until `general' gets loaded and configured."
       `(with-eval-after-load ',package ,config-form))))
 
 (use-package general
-  :straight t
+  :ensure t
   ;; PERF: Loading `general' early make Emacs very slow on startup.
   :after evil
   :when (memq 'me-keybindings minemacs-modules)
@@ -652,7 +652,7 @@ It is deferred until `general' gets loaded and configured."
 ;;; For `me-multi-cursors'
 
 (use-package evil-multiedit ; This will load `iedit' and suppresses it
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'iedit 'me-multi-cursors)
   :after evil minemacs-first-file
   :demand
@@ -676,7 +676,7 @@ It is deferred until `general' gets loaded and configured."
   (evil-multiedit-default-keybinds))
 
 (use-package evil-iedit-state
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'iedit 'me-multi-cursors)
   :commands (evil-iedit-state/iedit-mode)
   :after iedit
@@ -693,7 +693,7 @@ It is deferred until `general' gets loaded and configured."
     (keymap-set evil-iedit-state-map (key-description iedit-toggle-key-default) 'evil-iedit-state/quit-iedit-mode)))
 
 (use-package evil-mc
-  :straight t
+  :ensure t
   :when (memq 'me-multi-cursors minemacs-modules)
   :hook (minemacs-first-file . global-evil-mc-mode)
   :config
@@ -731,7 +731,7 @@ It is deferred until `general' gets loaded and configured."
 ;;; For `me-org'
 
 (use-package evil-org
-  :straight t
+  :ensure t
   :hook (org-mode . evil-org-mode))
 
 (use-package evil-org-agenda
@@ -989,7 +989,7 @@ It is deferred until `general' gets loaded and configured."
 ;;; For `me-prog'
 
 (use-package evil-textobj-tree-sitter
-  :straight (:host github :repo "meain/evil-textobj-tree-sitter" :files (:defaults "queries" "treesit-queries"))
+  :vc (:url "https://github.com/meain/evil-textobj-tree-sitter")
   :when (memq 'me-prog minemacs-modules)
   :after evil minemacs-first-file
   :init

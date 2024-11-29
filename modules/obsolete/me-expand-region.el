@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package expand-region
-  :straight t
+  :ensure t
   :bind (("C-M-SPC" . er/expand-region) ; orig. `mark-sexp'
          ("S-C-M-SPC" . er/contract-region)))
 

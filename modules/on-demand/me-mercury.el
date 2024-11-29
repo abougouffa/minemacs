@@ -15,7 +15,7 @@
 
 ;; Concise mercury major mode
 (use-package metal-mercury-mode
-  :straight (:host github :repo "ahungry/metal-mercury-mode"))
+  :vc (:url "https://github.com/ahungry/metal-mercury-mode"))
 
 
 (provide 'on-demand/me-mercury)

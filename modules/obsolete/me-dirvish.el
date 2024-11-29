@@ -19,7 +19,7 @@
 ;;; Code:
 
 (use-package dirvish
-  :straight t
+  :ensure t
   :after dired
   :demand
   :custom

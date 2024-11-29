@@ -17,12 +17,12 @@
 
 ;; Major mode for the Hy programming language
 (use-package hy-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Org Babel code evaluation for the Hy language
 (use-package ob-hy
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-hy)

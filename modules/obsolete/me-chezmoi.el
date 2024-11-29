@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package chezmoi
-  :straight (:files (:defaults "extensions/*.el"))
+  :ensure t
   :when (executable-find "chezmoi")
   :commands (chezmoi-find chezmoi-write chezmoi-diff chezmoi-open-other chezmoi-sync-files chezmoi-magit-status))
 

@@ -10,7 +10,7 @@
 
 ;; Nerd Font icons for Emacs
 (use-package nerd-icons
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :config
   ;; Show .m files as Matlab/Octave files (integral icon)
@@ -19,7 +19,7 @@
 
 ;; A megapack of themes for Emacs
 (use-package doom-themes
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'org
     (doom-themes-org-config))
@@ -29,12 +29,12 @@
 
 ;; Colourful and legible themes for GNU Emacs
 (use-package ef-themes
-  :straight t)
+  :ensure t)
 
 
 ;; A fancy and fast mode-line inspired by minimalism design
 (use-package doom-modeline
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . doom-modeline-mode)
   :custom
   (doom-modeline-time-icon nil)
@@ -47,7 +47,7 @@
 
 ;; Show current command and its key in the mode line
 (use-package keycast
-  :straight t
+  :ensure t
   :commands (keycast-doom-modeline-mode)
   :config
   (define-minor-mode keycast-doom-modeline-mode
@@ -62,7 +62,7 @@
 
 ;; Highly customizable startup screen for Emacs
 (use-package enlight
-  :straight (:host github :repo "ichernyshovvv/enlight")
+  :vc (:url "https://github.com/ichernyshovvv/enlight")
   :custom
   (enlight-content
    (enlight-menu
@@ -82,19 +82,19 @@
 
 ;; Execute menu items as commands, with completion
 (use-package lacarte
-  :straight t
+  :vc (:url "https://github.com/emacsmirror/lacarte")
   :bind ([f10] . lacarte-execute-menu-command))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines
 (use-package page-break-lines
-  :straight t
+  :ensure t
   :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
 
 
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
-  :straight (:host github :repo "protesilaos/pulsar")
+  :ensure t
   :hook (minemacs-first-file . pulsar-global-mode)
   :custom
   (pulsar-iterations 6)
@@ -110,29 +110,29 @@
 
 ;; Dim the font color of text in surrounding sections
 (use-package focus
-  :straight t)
+  :ensure t)
 
 
 ;; Minor mode to automatically balance window margins
 (use-package olivetti
-  :straight t)
+  :ensure t)
 
 
 ;; Integrate `nerd-icons' with `ibuffer'
 (use-package nerd-icons-ibuffer
-  :straight t
+  :ensure t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 
 ;; Integrate `nerd-icons' with `archive-mode', `tar-mode', `dired-mode', and `ztree'
 (use-package nerd-icons-multimodal
-  :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
+  :vc (:url "https://github.com/abougouffa/nerd-icons-multimodal")
   :hook ((archive-mode tar-mode dired-mode ztree-mode) . nerd-icons-multimodal-mode))
 
 
 ;; Extra font lock rules for a more colourful `dired'
 (use-package diredfl
-  :straight t
+  :ensure t
   :hook (dired-mode . diredfl-mode)
   :config
   (cl-callf append diredfl-compressed-extensions '(".zst" ".rar" ".7z" ".cab" ".arc" ".zoo")))
@@ -140,18 +140,18 @@
 
 ;; Extra colors for `Info-mode'
 (use-package info-colors
-  :straight t
+  :ensure t
   :hook (Info-selection . info-colors-fontify-node))
 
 
 ;; Format buffers visually without modification
 (use-package virtual-format
-  :straight (:host github :repo "abougouffa/virtual-format"))
+  :vc (:url "https://github.com/abougouffa/virtual-format"))
 
 
 ;; A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 (use-package casual
-  :straight (:host github :repo "kickingvegas/casual")
+  :ensure t
   :bind ("C-o" . casual-editkit-main-tmenu)
   :bind (:package isearch :map isearch-mode-map ([f2] . casual-isearch-tmenu))
   :bind (:package dired :map dired-mode-map ([f2] . casual-dired-tmenu))
@@ -165,13 +165,13 @@
 
 ;; An opinionated `transient' menu for `avy'
 (use-package casual-avy
-  :straight t
+  :ensure t
   :bind ("M-g a" . casual-avy-tmenu))
 
 
 ;; An opinionated `transient' menu for `symbol-overlay'
 (use-package casual-symbol-overlay
-  :straight t
+  :ensure t
   :bind (:package symbol-overlay :map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
 
 

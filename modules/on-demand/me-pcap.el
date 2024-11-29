@@ -15,7 +15,7 @@
 
 ;; Major mode for working with PCAP files via Wireshark's `tshark' tool
 (use-package pcap-mode
-  :straight t
+  :ensure t
   :mode (rx "." (or "pcap" "pcapng" "ntar") eol)
   :config
   (+setq-hook! pcap-mode

@@ -16,7 +16,7 @@
 
 ;; Edit and run Arch Linux's PKGBUILD recipes
 (use-package pkgbuild-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-pkgbuild)

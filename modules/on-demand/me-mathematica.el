@@ -14,7 +14,7 @@
 
 ;; Mathematica editing and inferior mode
 (use-package wolfram-mode
-  :straight (:host github :repo "kawabata/wolfram-mode"))
+  :vc (:url "https://github.com/kawabata/wolfram-mode"))
 
 
 (provide 'on-demand/me-mathematica)

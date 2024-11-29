@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package flymake-quickdef
-  :straight t
+  :ensure t
   :autoload flymake-quickdef-backend +flymake-bandit-load +flymake-codespell-load +flymake-clang-tidy-load
   :init
   ;; Automatically generate `backend-load' function to be used as a hook
@@ -125,10 +125,10 @@ This uses `project', `projectile', `vc' or the \".clang-tidy\" file"
 ;; Backends that depends on `flymake-quickdef'
 
 (use-package flymake-nasm
-  :straight (:host github :repo "juergenhoetzel/flymake-nasm"))
+  :vc (:url "https://github.com/juergenhoetzel/flymake-nasm"))
 
 (use-package flymake-pyre
-  :straight (:host github :repo "juergenhoetzel/flymake-pyre")
+  :vc (:url "https://github.com/juergenhoetzel/flymake-pyre")
   :init
   (when (executable-find "pyre") (add-hook 'asm-mode-hook #'flymake-pyre-setup)))
 

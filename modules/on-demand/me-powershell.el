@@ -15,7 +15,7 @@
 
 ;; Mode for editing PowerShell scripts
 (use-package powershell
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-powershell)

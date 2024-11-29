@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package eopengrok
-  :straight t
+  :ensure t
   :commands
   (eopengrok-mode
    eopengrok-find-reference eopengrok-find-text eopengrok-find-definition eopengrok-find-custom

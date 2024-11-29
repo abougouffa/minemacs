@@ -16,12 +16,12 @@
 
 ;; Major mode for editing Dart files
 (use-package dart-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tools for working with Flutter SDK
 (use-package flutter
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-dart)

@@ -9,11 +9,11 @@
 ;;; Code:
 
 (use-package guix
-  :straight t
+  :ensure t
   :when (executable-find "guix"))
 
 (use-package nix-update
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-packages-managers)

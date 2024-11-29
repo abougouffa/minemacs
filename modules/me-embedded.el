@@ -10,12 +10,12 @@
 
 ;; Emacs package with utilities for embedded development with OpenOCD
 (use-package embed
-  :straight (:host github :repo "xal-0/embed-el"))
+  :vc (:url "https://github.com/xal-0/embed-el"))
 
 
 ;; A set of Emacs modes for various Yocto/Bitbake file formats
 (use-package bitbake
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
+  :vc (bitbake-modes :url "https://bitbucket.org/olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode)
   :autoload (+bitbake-poky-sources)
   :commands (+bitbake-insert-poky-sources)
@@ -68,14 +68,14 @@
 
 ;; A `treesit'-based Bitbake major mode
 (use-package bitbake-ts-mode
-  :straight t
+  :ensure t
   :disabled ; TEMP: No good syntax highlighting
   :when (+emacs-options-p 'tree-sitter))
 
 
 ;; Quickly jump to Intel's x86 documentation from Emacs
 (use-package x86-lookup
-  :straight t
+  :ensure t
   :custom
   ;; Get manual from https://intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
   (x86-lookup-pdf (concat minemacs-local-dir "intel-64-and-ia32-volumes-1234.pdf"))

@@ -10,7 +10,7 @@
 
 ;; Reborn Cscope extension for Emacs
 (use-package rscope
-  :straight (:host github :repo "rjarzmik/rscope")
+  :vc (:url "https://github.com/rjarzmik/rscope")
   :commands (rscope-init rscope-regenerate-database))
 
 

@@ -16,7 +16,7 @@
 
 ;; Major mode for editing comma/char separated values
 (use-package csv-mode
-  :straight t
+  :ensure t
   :hook (csv-mode . csv-guess-set-separator)
   :custom
   (csv-separators '("," ";" "\t" "|")))
@@ -24,7 +24,7 @@
 
 ;; Highlight CSV and TSV files in different rainbow colors
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv"))
+  :vc (:url "https://github.com/emacs-vs/rainbow-csv"))
 
 
 (provide 'on-demand/me-csv)

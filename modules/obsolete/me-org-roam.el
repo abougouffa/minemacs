@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package org-roam
-  :straight t
+  :ensure t
   :custom
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags:20}" 'face 'org-tag)))
   :config
@@ -39,10 +39,10 @@
         org-roam-directory))))))
 
 (use-package org-roam-ui
-  :straight t)
+  :ensure t)
 
 (use-package consult-org-roam
-  :straight t
+  :ensure t
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   (consult-org-roam-buffer-narrow-key ?r) ; custom narrow key for `consult-buffer'
@@ -53,7 +53,7 @@
   (consult-customize consult-org-roam-forward-links :preview-key (kbd "M-.")))
 
 (use-package citar-org-roam
-  :straight t
+  :ensure t
   :after citar org-roam
   :demand
   :commands (+org-roam-node-from-cite)

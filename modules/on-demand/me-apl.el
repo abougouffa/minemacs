@@ -16,7 +16,7 @@
 
 ;; Major mode for GNU APL
 (use-package gnu-apl-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-apl)

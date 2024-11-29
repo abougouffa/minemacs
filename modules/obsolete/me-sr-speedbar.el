@@ -11,7 +11,7 @@
 
 ;; Same frame speedbar
 (use-package sr-speedbar
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-sr-speedbar)

@@ -10,7 +10,7 @@
 
 ;; Islamic prayer times for Emacs
 (use-package awqat
-  :straight (:host github :repo "zkry/awqat")
+  :vc (:url "https://github.com/zkry/awqat")
   :commands (awqat-times-for-day)
   :custom
   ;; In your "config.el", you need to set `calendar-latitude' and

@@ -14,9 +14,7 @@
 
 (use-package gdb-mi
   ;; I use my own fork in which I've merged some open PRs on the upstream.
-  :straight `(:host github
-              :repo "weirdNox/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile")
-              :fork (:repo "abougouffa/emacs-gdb"))
+  :vc (:url "https://github.com/abougouffa/emacs-gdb" :make)
   :demand
   :init
   (fmakunbound 'gdb)

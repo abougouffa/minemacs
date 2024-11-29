@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Cython files
 (use-package cython-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cython)

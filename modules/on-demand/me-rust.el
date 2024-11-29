@@ -16,7 +16,7 @@
 
 ;; Major mode for editing Rust source code
 (use-package rust-mode
-  :straight t
+  :ensure t
   :custom
   (rust-mode-treesitter-derive (+emacs-options-p 'tree-sitter)))
 

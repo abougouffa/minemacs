@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package project-cmake
-  :straight (:host github :repo "juanjosegarciaripoll/project-cmake"))
+  :vc (:url "https://github.com/juanjosegarciaripoll/project-cmake"))
 
 
 (provide 'obsolete/me-project-cmake)

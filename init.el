@@ -65,11 +65,17 @@
 
 ;; Check if Emacs version is supported.
 (let ((min-ver 29)
-      (recommended-ver 29))
+      (recommended-ver 30))
   (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
   (when (< emacs-major-version recommended-ver)
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
+
+;; Write user custom variables to separate file instead of "init.el"
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
+
+;; Load the custom variables file if it exists
+(when (file-exists-p custom-file) (+load custom-file))
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start

@@ -15,7 +15,7 @@
 
 ;; A major mode for the FreeBASIC programming language
 (use-package fb-mode
-  :straight (:host github :repo "rversteegen/fb-mode")
+  :vc (:url "https://github.com/rversteegen/fb-mode")
   :commands (fb-mode)
   :mode "\\.b\\(i\\|as\\)\\'")
 

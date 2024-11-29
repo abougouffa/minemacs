@@ -15,7 +15,7 @@
 
 ;; Major mode for the Q# programming language
 (use-package qsharp-mode
-  :straight (:host github :repo "forked-from-1kasper/emacs-qsharp-mode"))
+  :vc (:url "https://github.com/forked-from-1kasper/emacs-qsharp-mode"))
 
 
 (provide 'on-demand/me-qsharp)

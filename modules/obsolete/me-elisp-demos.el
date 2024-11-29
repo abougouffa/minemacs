@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package elisp-demos
-  :straight t
+  :ensure t
   :init
   (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))

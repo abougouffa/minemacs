@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package project-x
-  :straight (:host github :repo "karthink/project-x")
+  :vc (:url "https://github.com/karthink/project-x")
   :after project
   :commands (project-x-window-state-save project-x-window-state-load)
   :custom

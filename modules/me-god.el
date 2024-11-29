@@ -6,7 +6,7 @@
 
 ;; Global minor mode for entering Emacs commands without modifier keys
 (use-package god-mode
-  :straight t
+  :ensure t
   :bind (("M-<escape>" . god-local-mode))
   :custom
   (god-mode-enable-function-key-translation nil)

@@ -11,7 +11,7 @@
 
 ;; Colorize color names in buffers
 (use-package rainbow-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-rainbow)

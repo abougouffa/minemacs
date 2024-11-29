@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package evil-escape
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :hook (evil-mode . evil-escape-mode)
   :custom

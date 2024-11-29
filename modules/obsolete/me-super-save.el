@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package super-save
-  :straight t
+  :ensure t
   :hook (minemacs-first-file . super-save-mode)
   :custom
   (super-save-silent t)

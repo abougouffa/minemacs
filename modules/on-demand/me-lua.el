@@ -16,7 +16,7 @@
 
 ;; Major mode for editing Lua scripts
 (use-package lua-mode
-  :straight t
+  :ensure t
   :custom
   (lua-indent-level 2))
 

@@ -15,12 +15,12 @@
 
 ;; Major-mode for Apple's Swift programming language
 (use-package swift-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Swift based on Tree-sitter
 (use-package swift-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter))
 
 

@@ -8,9 +8,16 @@
 
 ;;; Code:
 
+;; Load MinEmacs variables and basic  from the `me-vars' core module.
+(add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename (or load-file-name buffer-file-name)))))
+(require 'me-vars)
+(require 'me-lib)
+
 (setq
  ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup nil
+ package-enable-at-startup t
+ package-user-dir (concat minemacs-local-dir "package-archives")
+ package-vc-register-as-project nil
  ;; Avoid garbage collections during startup, this will be overwritten by `+minemacs--gc-tweaks-h'
  gc-cons-threshold most-positive-fixnum
  ;; Prefer loading newer files
@@ -50,11 +57,6 @@
 (when-let* ((alpha (getenv "MINEMACS_ALPHA"))
             (alpha (string-to-number alpha)))
   (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist))
-
-;; Load MinEmacs variables and basic  from the `me-vars' core module.
-(add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename load-file-name))))
-(require 'me-vars)
-(require 'me-lib)
 
 (when (color-defined-p (+deserialize-sym 'minemacs--background-color nil t))
   (push `(background-color . ,minemacs--background-color) default-frame-alist))

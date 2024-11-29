@@ -15,7 +15,7 @@
 
 ;; Major mode for editing SELinux TE-RBAC
 (use-package selinux-policy
-  :straight (:host github :repo "pierre-rouleau/selinux-policy")
+  :vc (:url "https://github.com/pierre-rouleau/selinux-policy")
   :commands (selinuxpolicy-mode)
   :mode "\\.te\\'")
 

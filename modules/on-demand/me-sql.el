@@ -15,7 +15,7 @@
 
 ;; Upcase SQL words for you
 (use-package sqlup-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-sql)

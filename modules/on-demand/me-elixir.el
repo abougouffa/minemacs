@@ -16,12 +16,12 @@
 
 ;; Major mode for editing Elixir files
 (use-package elixir-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Org Babel code evaluation for Elixir
 (use-package ob-elixir
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-elixir)

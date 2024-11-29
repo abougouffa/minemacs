@@ -15,7 +15,7 @@
 
 ;; Integrated environment for TeX
 (use-package tex
-  :straight auctex
+  :ensure auctex
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
   :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
   :custom
@@ -43,7 +43,7 @@
 
 ;; Integrated environment for LaTeX
 (use-package latex
-  :straight auctex
+  :ensure auctex
   :hook (LaTeX-mode . latex-math-mode)
   :hook (LaTeX-mode . turn-on-reftex)
   :custom
@@ -69,7 +69,7 @@
 
 ;; Add LatexMk support to AUCTeX
 (use-package auctex-latexmk
-  :straight t
+  :ensure t
   :after latex
   :demand
   :custom
@@ -92,7 +92,7 @@
 
 ;; Makes LaTeX editing less painful by providing a updatable preview pane
 (use-package latex-preview-pane
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-latex)

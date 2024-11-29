@@ -10,7 +10,7 @@
 
 
 (use-package dashboard
-  :straight t
+  :ensure t
   :after evil evil-collection
   :demand
   :unless (bound-and-true-p +dashboard-disable)

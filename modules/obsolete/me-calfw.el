@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package calfw
-  :straight t
+  :ensure t
   :custom
   (cfw:face-item-separator-color nil)
   (cfw:render-line-breaker #'cfw:render-line-breaker-none)
@@ -39,17 +39,17 @@
        text))))
 
 (use-package calfw-ical
-  :straight t
+  :ensure t
   :demand
   :after calfw)
 
 (use-package calfw-cal
-  :straight t
+  :ensure t
   :demand
   :after calfw)
 
 (use-package calfw-org
-  :straight t
+  :ensure t
   :demand
   :after calfw
   :commands (+cfw-open-calendar)

@@ -15,12 +15,12 @@
 
 ;; Major mode for Hashicorp Configuration Language (HCL)
 (use-package hcl-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Terraform configuration files
 (use-package terraform-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-hcl)

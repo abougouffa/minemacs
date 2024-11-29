@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package better-jumper
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . better-jumper-mode)
   ;; Map extra mouse buttons to jump forward/backward
   :bind (("<mouse-8>" . better-jumper-jump-backward)

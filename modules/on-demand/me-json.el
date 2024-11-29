@@ -18,13 +18,13 @@
 
 ;; Major mode for editing JSON files
 (use-package json-mode
-  :straight t
+  :ensure t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'")
 
 
 ;; Major mode for interactively editing jq queries
 (use-package jq-mode
-  :straight t
+  :ensure t
   :custom
   (jq-interactive-font-lock-mode (if (+emacs-options-p 'tree-sitter) #'json-ts-mode #'json-mode))
   :commands (+yq-interactively +xq-interactively)

@@ -11,7 +11,7 @@
 
 ;; Control `isearch' from the minibuffer
 (use-package isearch-mb
-  :straight t
+  :ensure t
   :after isearch
   :init
   (isearch-mb-mode 1))

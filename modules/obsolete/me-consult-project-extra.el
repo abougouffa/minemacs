@@ -11,7 +11,7 @@
 
 ;; Consult extension for `project'
 (use-package consult-project-extra
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-consult-project-extra)

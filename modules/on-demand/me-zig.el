@@ -15,12 +15,12 @@
 
 ;; Major mode for the Zig programming language
 (use-package zig-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter based major mode for the Zig programming language
 (use-package zig-ts-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-zig)

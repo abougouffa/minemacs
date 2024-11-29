@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package whitespace-cleanup-mode
-  :straight t
+  :ensure t
   :hook (minemacs-first-file . global-whitespace-cleanup-mode)
   :custom
   (whitespace-cleanup-mode-preserve-point t))

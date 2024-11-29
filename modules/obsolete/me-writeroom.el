@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package writeroom-mode
-  :straight t
+  :ensure t
   :init
   (defcustom +writeroom-text-scale 1.7
     "The text-scaling level for `writeroom-mode'."

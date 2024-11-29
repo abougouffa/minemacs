@@ -15,7 +15,7 @@
 
 ;; Major modes for editing and running Erlang files
 (use-package erlang
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-erlang)

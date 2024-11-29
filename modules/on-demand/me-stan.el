@@ -16,17 +16,17 @@
 
 ;; Major mode for editing Stan files
 (use-package stan-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Eldoc Eldoc support for Stan functions
 (use-package eldoc-stan
-  :straight t)
+  :ensure t)
 
 
 ;; Yasnippets for Stan
 (use-package stan-snippets
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-stan)

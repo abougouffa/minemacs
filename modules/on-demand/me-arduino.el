@@ -15,7 +15,7 @@
 
 ;; Major mode for the Arduino language
 (use-package arduino-mode
-  :straight (:host github :repo "bookest/arduino-mode")
+  :vc (:url "https://github.com/bookest/arduino-mode")
   :hook (arduino-mode . +prog-mode-run-hooks))
 
 

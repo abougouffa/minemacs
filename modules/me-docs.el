@@ -10,7 +10,7 @@
 
 ;; Emacs support library for PDF files
 (use-package pdf-tools
-  :straight t
+  :ensure t
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :hook (minemacs-build-functions . pdf-tools-install)
@@ -22,7 +22,7 @@
 
 ;; PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 (use-package pdfgrep
-  :straight t
+  :ensure t
   :commands (pdfgrep-mode pdfgrep)
   :custom
   (pdfgrep-options " -H -n -r --include \"*.pdf\" ")
@@ -36,7 +36,7 @@
 
 ;; Collaborative editing using Conflict-free Replicated Data Types
 (use-package crdt
-  :straight t
+  :ensure t
   :when (or +tuntox-available-p +stunnel-available-p)
   :custom
   (crdt-tuntox-password-in-url t)
@@ -46,7 +46,7 @@
 
 ;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
-  :straight t
+  :ensure t
   :custom
   (rfc-mode-directory (concat minemacs-local-dir "rfc"))
   :init

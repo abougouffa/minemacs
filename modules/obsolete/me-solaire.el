@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package solaire-mode
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . solaire-global-mode)
   :config
   (dolist (face '(mode-line mode-line-active mode-line-inactive mode-line-emphasis))

@@ -10,7 +10,7 @@
 
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
-  :straight t
+  :ensure t
   :custom
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
@@ -41,12 +41,12 @@
 
 ;; Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
 (use-package magit-todos
-  :straight t)
+  :ensure t)
 
 
 ;; File icons for Magit based on `nerd-icons'
 (use-package magit-file-icons
-  :straight t
+  :ensure t
   :trigger-commands magit magit-status magit-status-here magit-log magit-log-all
   :after magit
   :init
@@ -55,7 +55,7 @@
 
 ;; Magit extension for "git-imerge"
 (use-package magit-imerge
-  :straight t
+  :ensure t
   :after magit
   :init
   (transient-append-suffix 'magit-merge "m" '("M" "magit-imerge" magit-imerge)))
@@ -63,7 +63,7 @@
 
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously
 (use-package multi-magit
-  :straight (:host github :repo "luismbo/multi-magit")
+  :vc (:url "https://github.com/luismbo/multi-magit")
   :init
   (defvar +multi-magit-discover-max-depth 6 "Scan the sub-directoris up to this depth.")
   (defcustom +multi-magit-discover-ignore-directories '("downloads" "build-f5688w" "sstate-cache")
@@ -134,24 +134,24 @@ use `project-remember-project' with each detected repo."
 
 ;; Store EIEIO objects using EmacSQL
 (use-package closql
-  :straight t)
+  :ensure t)
 
 
 ;; Work with Git forges from the comfort of Magit
 (use-package forge
-  :straight t
+  :ensure t
   :config
   (require 'on-demand/me-markdown))
 
 
 ;; Emacs-GitLab integration
 (use-package lab
-  :straight (:host github :repo "isamert/lab.el"))
+  :vc (:url "https://github.com/isamert/lab.el"))
 
 
 ;; Emacs package for highlighting uncommitted changes
 (use-package diff-hl
-  :straight t
+  :ensure t
   :hook (find-file . diff-hl-mode)
   :hook (dired-mode . diff-hl-dired-mode)
   :hook (vc-dir-mode . diff-hl-dir-mode)
@@ -162,7 +162,7 @@ use `project-remember-project' with each detected repo."
 
 ;; Walk through Git revisions of a file
 (use-package git-timemachine
-  :straight t
+  :ensure t
   ;; HACK: `git-timemachine' applies the mode with `delay-mode-hooks', resulting
   ;; in an unfontified buffer.
   :hook (git-timemachine-mode . font-lock-mode)
@@ -185,18 +185,18 @@ use `project-remember-project' with each detected repo."
 
 ;; Emacs major modes for Git configuration files
 (use-package git-modes
-  :straight t
+  :ensure t
   :mode ("/.dockerignore\\'" . gitignore-mode))
 
 
 ;; Running "repo" from Emacs
 (use-package repo
-  :straight t)
+  :ensure t)
 
 
 ;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
 (use-package jujutsushi
-  :straight (:host github :repo "abougouffa/jujutsushi" :branch "default")
+  :vc (:url "https://github.com/abougouffa/jujutsushi" :branch "default")
   :init
   (with-eval-after-load 'project
     (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))))
@@ -204,12 +204,12 @@ use `project-remember-project' with each detected repo."
 
 ;; View diffs side-by-side in Emacs
 (use-package diffview
-  :straight t)
+  :ensure t)
 
 
 ;; A structural diff that understands syntax
 (use-package difftastic
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-vc)

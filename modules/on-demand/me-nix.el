@@ -16,12 +16,12 @@
 
 ;; Major mode for editing Nix files
 (use-package nix-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter based major mode for editing Nix files
 (use-package nix-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter)
   :mode "\\.nix\\'"
   :config

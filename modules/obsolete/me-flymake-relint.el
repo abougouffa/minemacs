@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package flymake-relint
-  :straight t
+  :ensure t
   :hook ((emacs-lisp-mode lisp-interaction-mode) . flymake-relint-setup))
 
 

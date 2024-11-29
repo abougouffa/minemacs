@@ -15,7 +15,7 @@
 
 ;; A major mode for editing ballerina source code
 (use-package ballerina-mode
-  :straight (:host github :repo "heshanpadmasiri/ballerina-mode")
+  :vc (:url "https://github.com/heshanpadmasiri/ballerina-mode")
   :config
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(ballerina-mode . ("bal" "start-language-server")))))

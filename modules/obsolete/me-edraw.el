@@ -11,7 +11,7 @@
 (defconst +easydraw-available-p (+emacs-options-p 'rsvg 'zlib 'libxml2))
 
 (use-package edraw
-  :straight (:host github :repo "misohena/el-easydraw")
+  :vc (:url "https://github.com/misohena/el-easydraw")
   :when +easydraw-available-p)
 
 (use-package edraw-org

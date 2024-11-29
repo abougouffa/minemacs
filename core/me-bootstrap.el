@@ -1,4 +1,4 @@
-;; me-bootstrap.el --- Bootstrap packages (straight & use-package) -*- lexical-binding: t; -*-
+;; me-bootstrap.el --- Initialize package management -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
@@ -8,45 +8,13 @@
 
 ;;; Code:
 
-(setq
- ;; Base directory
- straight-base-dir minemacs-local-dir
- ;; Add Emacs version and the Git hash to the build directory to avoid problems
- straight-build-dir (format "build-%s%s" emacs-version (if emacs-repository-version (format "-%s" (substring emacs-repository-version 0 8)) ""))
- ;; Use the "develop" branch on straight.el's repo.
- straight-repository-branch "develop"
- ;; Do not slow startup by checking for package modifs, check only on demand
- straight-check-for-modifications '(check-on-save find-when-checking))
+(require 'me-lib)
+(require 'package)
+(require 'use-package)
 
-;; Bootstrapping straight.el
-;; See: https://github.com/radian-software/straight.el#bootstrapping-straightel
-(defvar bootstrap-version)
-(let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
-      (install-url "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el")
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer (url-retrieve-synchronously install-url 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0",
-;; this cuts the size of the "repos" directory by more than half (from 807M to
-;; 362M) while keeping it possible to download older commits on-demand (unlike
-;; "--depth=N"). The parameter is injected in `straight--process-run' which is
-;; called from `straight-vc-git--clone-internal'
-(advice-add
- 'straight--process-run :around
- (lambda (fn &rest a)
-   (apply fn (if (equal (list (car a) (cadr a)) '("git" "clone")) `(,(car a) ,(cadr a) "--filter=tree:0" ,@(cddr a)) a))))
-
-;; Configure `use-package'
-(unless (require 'use-package nil t)
-  (straight-use-package 'use-package))
-
-(cl-callf append straight-built-in-pseudo-packages
-  '(treesit ; Some packages like `ts-movement' depends on it
-    docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package--builtins '(treesit . [nil nil "Tree-Sitter integration"])) ; Some packages like `ts-movement' depends on it
+(add-to-list 'package--builtins '(docker-tramp . [nil nil "Tree-Sitter integration"])) ; Needed by some packages like `ros', but provided by `tramp'
 
 (setq
  ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
@@ -57,21 +25,38 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p))
 
-;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
-;; add support for `minemacs-disabled-packages'.
-(require 'me-use-package-extra)
 
-;; Extra utilities
+;;; `use-package' extensions
+;; Add `:vc' support for `use-package' in Emacs 29
+(unless (> emacs-major-version 29) (require 'me-backports))
+
+;; Prefer the newest commit over the latest release
+(setq use-package-vc-prefer-newest t)
+
+;; Add `:trigger-commands', allow loading the package before executing a
+;; specific external command/function.
+(add-to-list 'use-package-keywords :trigger-commands)
+
+;; `:trigger-commands' implementation
+(defun use-package-normalize/:trigger-commands (name keyword args)
+  (setq args (use-package-normalize-recursive-symlist name keyword args))
+  (if (consp args) args (list args)))
+
+(defun use-package-handler/:trigger-commands (name _keyword arg rest state)
+  (use-package-concat
+   (unless (plist-get state :demand)
+     `((satch-add-advice ',(delete-dups arg) :before (lambda (&rest _args) (require ',name)) nil :transient t)))
+   (use-package-process-keywords name rest state)))
+
+
+;;; Extra utilities
 ;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
 (use-package once
-  :straight (:host github :repo "emacs-magus/once")
-  :pin-ref "a6f950c29c846a50018bc63695f24f611c1a58be")
+  :vc (:url "https://github.com/emacs-magus/once" :rev "a6f950c29c846a50018bc63695f24f611c1a58be"))
 
 (use-package satch
-  :straight (:host github :repo "emacs-magus/satch.el")
-  :pin-ref "77993b711cccf16702fdc8d21d8f8ba10d7bd0fb")
+  :vc (:url "https://github.com/emacs-magus/satch.el" :rev "77993b711cccf16702fdc8d21d8f8ba10d7bd0fb"))
 
 
 (provide 'me-bootstrap)
-
 ;;; me-bootstrap.el ends here

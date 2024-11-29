@@ -16,7 +16,7 @@
 
 ;; Major mode for editing TOML files
 (use-package toml-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-toml)

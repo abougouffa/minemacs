@@ -10,7 +10,7 @@
 
 ;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'modules)
   :autoload jinx--load-module
   :preface
@@ -53,18 +53,18 @@ Based on `jinx-mode' if available. Falls back to the built-in
 
 ;; Distraction-free words correction with `flyspell' via `completing-read'
 (use-package flyspell-correct
-  :straight t)
+  :ensure t)
 
 
 ;; Fancy Emacs integration with the console version of StarDict
 (use-package lexic
-  :straight t
+  :ensure t
   :when (executable-find "sdcv"))
 
 
 ;; Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
-  :straight (:host github :repo "SqrtMinusOne/reverso.el"))
+  :vc (:url "https://github.com/SqrtMinusOne/reverso.el"))
 
 
 ;; Internal package to add support for LTeX-LS specific commands to `eglot'

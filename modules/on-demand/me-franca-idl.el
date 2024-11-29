@@ -15,7 +15,7 @@
 
 ;; A major mode to edit Franca IDL code
 (use-package franca-idl
-  :straight (:host github :repo "zeph1e/franca-idl.el"))
+  :vc (:url "https://github.com/zeph1e/franca-idl.el"))
 
 
 (provide 'on-demand/me-franca-idl)

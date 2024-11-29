@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package makefile-executor
-  :straight t
+  :ensure t
   :hook (makefile-mode . makefile-executor-mode))
 
 

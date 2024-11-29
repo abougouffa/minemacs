@@ -15,7 +15,7 @@
 
 ;; Major mode for the Agda programming language
 (use-package agda2-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-agda)

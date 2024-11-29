@@ -15,12 +15,12 @@
 
 ;; Major mode for working with Mermaid graphs
 (use-package mermaid-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Org Babel support for Mermaid evaluation
 (use-package ob-mermaid
-  :straight (:host github :repo "arnm/ob-mermaid")
+  :vc (:url "https://github.com/arnm/ob-mermaid")
   :after minemacs-first-org-file ob
   :demand
   :config

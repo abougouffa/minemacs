@@ -27,7 +27,7 @@
 
 ;; An Emacs media player, media library manager, radio player, YouTube frontend
 (use-package empv
-  :straight (:host github :repo "isamert/empv.el")
+  :vc (:url "https://github.com/isamert/empv.el")
   :when (executable-find +mpv-command)
   :custom
   (empv-invidious-instance "https://invidious.privacydev.net/api/v1") ; Pick from: https://api.invidious.io
@@ -63,7 +63,7 @@
 
 ;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
 (use-package ready-player
-  :straight (:host github :repo "xenodium/ready-player")
+  :vc (:url "https://github.com/xenodium/ready-player")
   :hook (minemacs-first-file . ready-player-mode))
 
 

@@ -10,7 +10,7 @@
 
 
 (use-package tabspaces
-  :straight t
+  :ensure t
   :after minemacs-loaded
   :hook (tabspaces-mode . +consult-tabspaces-setup)
   :custom

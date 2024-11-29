@@ -15,7 +15,7 @@
 
 ;; Major mode for editing COBOL code
 (use-package cobol-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cobol)

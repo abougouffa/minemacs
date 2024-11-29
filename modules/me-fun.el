@@ -10,19 +10,19 @@
 
 ;; Implementation of an xkcd reader for Emacs
 (use-package xkcd
-  :straight t
+  :ensure t
   :config
   (+ignore-root xkcd-cache-dir))
 
 
 ;; Practice touch/speed typing in Emacs
 (use-package speed-type
-  :straight t)
+  :ensure t)
 
 
 ;; Play Wordle (a.k.a. Lingo) in Emacs
 (use-package wordel
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-fun)

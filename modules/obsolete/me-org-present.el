@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package org-present
-  :straight t
+  :ensure t
   :hook (org-present-mode . +org-present--on-h)
   :hook (org-present-mode-quit . +org-present--off-h)
   :custom

@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package zotxt
-  :straight t
+  :ensure t
   :when (executable-find "zotero"))
 
 

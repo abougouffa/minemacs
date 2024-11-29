@@ -19,12 +19,12 @@
   (+setq-hook! term-mode buffer-display-table (make-display-table)))
 
 (use-package nano-theme
-  :straight (:host github :repo "rougier/nano-theme")
+  :vc (:url "https://github.com/rougier/nano-theme")
   :init
   (setq minemacs-theme 'nano-light))
 
 (use-package nano-modeline
-  :straight (:host github :repo "rougier/nano-modeline")
+  :vc (:url "https://github.com/rougier/nano-modeline")
   :after minemacs-loaded
   :demand
   :config
@@ -37,7 +37,7 @@
       (add-hook mode-hook hook-func))))
 
 (use-package nano-vertico
-  :straight (:host github :repo "rougier/nano-vertico")
+  :vc (:url "https://github.com/rougier/nano-vertico")
   :hook (minemacs-lazy . nano-vertico-mode))
 
 

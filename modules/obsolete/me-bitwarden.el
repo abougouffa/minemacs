@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package bitwarden
-  :straight (:host github :repo "seanfarley/emacs-bitwarden")
+  :vc (:url "https://github.com/seanfarley/emacs-bitwarden")
   :when (executable-find "bw")
   :custom
   (bitwarden-automatic-unlock

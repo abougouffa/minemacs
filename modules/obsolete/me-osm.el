@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package osm
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-osm)

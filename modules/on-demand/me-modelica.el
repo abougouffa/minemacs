@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Modelica files
 (use-package modelica-mode
-  :straight t
+  :ensure t
   :mode "\\.mo\\'")
 
 

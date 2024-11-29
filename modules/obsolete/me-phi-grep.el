@@ -11,12 +11,12 @@
 
 ;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
-  :straight t)
+  :ensure t)
 
 
 ;; Interactively-editable recursive "grep" implementation in Elisp
 (use-package phi-grep
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-phi-search)

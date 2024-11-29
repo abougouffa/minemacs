@@ -10,7 +10,7 @@
 
 ;; Automatically manage `treesit' grammars
 (use-package treesit-auto
-  :straight (:host github :repo "renzmann/treesit-auto")
+  :vc (:url "https://github.com/renzmann/treesit-auto")
   :when (+emacs-options-p 'tree-sitter)
   :hook (minemacs-build-functions . treesit-auto-install-all)
   :hook (minemacs-lazy . global-treesit-auto-mode)
@@ -115,7 +115,7 @@
 
 ;; Move and edit code blocks based on tree-sitter AST
 (use-package ts-movement
-  :straight (:host github :repo "haritkapadia/ts-movement")
+  :vc (:url "https://github.com/abougouffa/ts-movement")
   :when (+emacs-options-p 'tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
   :init
@@ -144,13 +144,13 @@
 
 ;; Tree-sitter based code folding
 (use-package treesit-fold
-  :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
+  :vc (:url "https://github.com/emacs-tree-sitter/treesit-fold")
   :when (+emacs-options-p 'tree-sitter))
 
 
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
-  :straight (:host github :repo "jdtsmith/eglot-booster")
+  :vc (:url "https://github.com/jdtsmith/eglot-booster")
   :after eglot
   :init
   (when (executable-find "emacs-lsp-booster")
@@ -159,7 +159,7 @@
 
 ;; Emacs text actions using LSP symbol information
 (use-package gambol
-  :straight (:host codeberg :repo "woolsweater/gambol.el")
+  :vc (:url "https://codeberg.org/woolsweater/gambol.el" :ignored-files ("gambol-embark.el"))
   :hook (eglot-managed-mode . gambol-mode)
   :bind
   (("M-g ," . gambol:go-to-previous)
@@ -179,14 +179,14 @@
     (unless (and (featurep 'eglot) (eglot-managed-p) (ignore-errors (gambol:occur) t))
       (call-interactively #'occur))))
 
+(use-package gambol-embark
+  :vc (:url "https://codeberg.org/woolsweater/gambol.el" :ignored-files ("gambol.el"))
+  :after embark eglot)
 
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate-setup
-  :straight (combobulate
-             :host github
-             :repo "mickeynp/combobulate"
-             :nonrecursive t ; Cloning the `html-ts-mode' submodule causes problems
-             :files (:defaults (:exclude "combobulate.el"))) ; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading
+  ;; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading, we exclude the main file
+  :vc (combobulate :url "https://github.com/mickeynp/combobulate" :ignored-files ("combobulate.el"))
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'tree-sitter)) ; TEMP: disable on Windows
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
@@ -211,12 +211,12 @@
 
 ;; Consult integration with Eglot
 (use-package consult-eglot
-  :straight t)
+  :ensure t)
 
 
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia
-  :straight t
+  :ensure t
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :config
@@ -252,18 +252,18 @@
 
 ;; Auto-format source code in many languages with one command
 (use-package format-all
-  :straight t)
+  :ensure t)
 
 
 ;; Out of the box code execution from editing buffer
 (use-package quickrun
-  :straight t
+  :ensure t
   :bind (([f5] . quickrun)))
 
 
 ;; An Emacs "jump to definition" package for 50+ languages
 (use-package dumb-jump
-  :straight t
+  :ensure t
   :after xref
   :custom
   (dumb-jump-selector 'completing-read)
@@ -274,7 +274,7 @@
 
 ;; Combine multiple Xref backends
 (use-package xref-union
-  :straight t
+  :ensure t
   :commands (xref-union-mode)
   :custom
   ;; BUG+HACK: When in `xref-union-mode', the `xref-union--backend' seems to
@@ -292,7 +292,7 @@
 
 ;; Highlight TODO keywords
 (use-package hl-todo
-  :straight (:host github :repo "tarsius/hl-todo")
+  :vc (:url "https://github.com/tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
   :config
   (cl-callf append hl-todo-keyword-faces
@@ -307,7 +307,7 @@
 
 ;; Emacs headerline indication of where you are in a large project
 (use-package breadcrumb
-  :straight t
+  :ensure t
   :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
   ;; Don't show the project/file name in the header by just a file icon
@@ -322,7 +322,7 @@
 
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'libxml2))
 
 

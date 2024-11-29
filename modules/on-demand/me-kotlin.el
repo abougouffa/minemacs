@@ -15,12 +15,12 @@
 
 ;; Major mode for the Kotlin programming language
 (use-package kotlin-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter based major mode for the Kotlin programming language
 (use-package kotlin-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter)
   :mode "\\.kts?\\'")
 

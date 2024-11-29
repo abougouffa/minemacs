@@ -15,7 +15,7 @@
 
 ;; Major mode for editing GenExpr files
 (use-package genexpr-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-genexpr)

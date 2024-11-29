@@ -16,7 +16,7 @@
 
 ;; Major mode for Markdown-formatted text
 (use-package markdown-mode
-  :straight t
+  :ensure t
   :custom
   (markdown-enable-html t)
   (markdown-enable-math t)
@@ -26,7 +26,7 @@
 
 ;; Major mode for Markdown using Treesitter
 (use-package markdown-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter)
   :hook (markdown-ts-mode . display-line-numbers-mode)
   :commands (markdown-ts-mode)

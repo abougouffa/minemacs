@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package matlab-mode
-  :straight (:url "https://git.code.sf.net/p/matlab-emacs/src" :files (:defaults (:exclude "company-matlab-shell.el"))))
+  :vc (:url "https://git.code.sf.net/p/matlab-emacs/src" :ignored-files ("company-matlab-shell.el")))
 
 
 (provide 'obsolete/me-matlab)

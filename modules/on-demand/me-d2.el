@@ -15,13 +15,13 @@
 
 ;; Major mode for working with D2 graphs
 (use-package d2-mode
-  :straight t
+  :ensure t
   :mode "\\.d2\\'")
 
 
 ;; Org Babel code evaluation for the D2 graph lanugage
 (use-package ob-d2
-  :straight t
+  :ensure t
   :after minemacs-first-org-file ob
   :demand
   :config

@@ -15,7 +15,7 @@
 
 ;; Major mode for vimrc files
 (use-package vimrc-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-vimscript)

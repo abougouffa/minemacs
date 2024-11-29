@@ -15,7 +15,7 @@
 
 ;; Major mode for Odin
 (use-package odin-mode
-  :straight (:host github :repo "mattt-b/odin-mode"))
+  :vc (:url "https://github.com/mattt-b/odin-mode"))
 
 
 (provide 'on-demand/me-odin)

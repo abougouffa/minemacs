@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package loccur
-  :straight t
+  :ensure t
   :bind (("C-S-o" . loccur-current)
          ("C-M-S-o" . loccur)
          ("M-s C-o" . loccur-isearch)

@@ -15,7 +15,7 @@
 
 ;; Major mode for CUE language files
 (use-package cue-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cue)

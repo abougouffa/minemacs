@@ -15,7 +15,7 @@
 
 ;; Major mode for the Idris programming language
 (use-package idris-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-idris)

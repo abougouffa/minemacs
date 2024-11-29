@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Nvidia CUDA C++ files
 (use-package cuda-mode
-  :straight t
+  :ensure t
   :hook (cuda-mode . +prog-mode-run-hooks))
 
 

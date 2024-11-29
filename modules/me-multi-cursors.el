@@ -10,13 +10,13 @@
 
 ;; Modify multiple occurrences simultaneously
 (use-package iedit
-  :straight t
+  :ensure t
   :bind ("C-;" . iedit-mode))
 
 
 ;; Multiple cursors implementation for Emacs
 (use-package multiple-cursors
-  :straight t
+  :ensure t
   :bind (("C->"           . mc/mark-next-like-this)
          ("C-<"           . mc/mark-previous-like-this)
          ("C-M->"         . mc/skip-to-next-like-this)

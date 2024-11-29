@@ -10,7 +10,7 @@
 
 ;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
-  :straight org-jira
+  :ensure org-jira
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init
@@ -73,27 +73,27 @@ The link style depends on the current major mode."
 
 ;; Bring Jira and Org mode together
 (use-package org-jira
-  :straight (:host github :repo "ahungry/org-jira")
+  :vc (:url "https://github.com/ahungry/org-jira")
   :custom
   (org-jira-working-dir (+directory-ensure org-directory "jira/")))
 
 
 ;; Edit Confluence wiki pages in Emacs
 (use-package tributary
-  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
+  :vc (:url "https://github.com/mrkrd/tributary")
   :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 
 ;; Stack Exchange for Emacs
 (use-package sx
-  :straight t
+  :ensure t
   :custom
   (sx-cache-directory (concat minemacs-cache-dir "sx/")))
 
 
 ;; Paste text to pastebin-like services
 (use-package webpaste
-  :straight t
+  :ensure t
   :custom
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
 

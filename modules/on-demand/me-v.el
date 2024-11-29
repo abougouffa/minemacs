@@ -15,7 +15,7 @@
 
 ;; Major mode for the V programming language
 (use-package v-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-v)

@@ -39,32 +39,32 @@
 
 ;; Major mode for MIPS assembly
 (use-package mips-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for RISC V assembly
 (use-package riscv-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Flat Assembler
 (use-package fasm-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Microsoft Macro Assembler
 (use-package masm-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Netwide Assembler
 (use-package nasm-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for GNU Assembler
 (use-package gas-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-assembly)

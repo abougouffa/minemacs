@@ -16,12 +16,12 @@
 
 ;; Major mode for the Vala programming language
 (use-package vala-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Yasnippets for Vala
 (use-package vala-snippets
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-vala)

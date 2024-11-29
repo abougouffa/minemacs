@@ -11,7 +11,7 @@
 
 ;; A template system for Emacs
 (use-package yasnippet
-  :straight t
+  :ensure t
   :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
   :init
   (defvar yas-verbosity (if minemacs-verbose-p 4 2))
@@ -25,7 +25,7 @@
 
 ;; Completion-At-Point Extension for YASnippet
 (use-package yasnippet-capf
-  :straight t
+  :ensure t
   :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
   :bind (("C-c p y" . yasnippet-capf))
   :init
@@ -36,20 +36,7 @@
 
 ;; A collection of yasnippet snippets for many languages
 (use-package yasnippet-snippets
-  :straight t)
-
-
-;; The Doom Emacs snippets library
-(use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
-
-
-;; Insert SPDX license header
-(use-package spdx
-  :straight (:host github :repo "condy0919/spdx.el")
-  :custom
-  (spdx-copyright-holder 'user)
-  (spdx-project-detection 'auto))
+  :ensure t)
 
 
 (provide 'me-snippets)

@@ -15,7 +15,7 @@
 
 ;; Major mode for editing GraphQL schemas
 (use-package graphql-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-graphql)

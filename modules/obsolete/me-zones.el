@@ -11,7 +11,7 @@
 
 ;; Zones of text - like multiple regions
 (use-package zones
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-zones)

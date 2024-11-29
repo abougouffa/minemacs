@@ -15,7 +15,7 @@
 
 ;; Automatically demangle C++, D, and Rust symbols in LLVM code
 (use-package demangle-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-demangle)

@@ -16,12 +16,12 @@
 
 ;; Major mode for Elm
 (use-package elm-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Enhanced support for running `elm-test'
 (use-package elm-test-runner
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-elm)

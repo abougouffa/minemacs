@@ -15,7 +15,7 @@
 
 ;; Flymake backend for CppCheck
 (use-package flymake-cppcheck
-  :straight (:host github :repo "shaohme/flymake-cppcheck")
+  :vc (:url "https://github.com/shaohme/flymake-cppcheck")
   :init
   (when (executable-find "cppcheck")
     (satch-add-hook '(c-mode-hook c-ts-mode-hook c++-mode-hook c++-ts-mode-hook) #'flymake-cppcheck-setup)))

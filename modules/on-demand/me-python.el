@@ -16,18 +16,18 @@
 
 ;; Smart Python docstring formatting
 (use-package python-docstring
-  :straight t
+  :ensure t
   :hook ((python-mode python-ts-mode) . python-docstring-mode))
 
 
 ;; Helpers to run Python's pytest
 (use-package python-pytest
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing Python's pip requirements files
 (use-package pip-requirements
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-python)

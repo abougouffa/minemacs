@@ -10,7 +10,7 @@
 
 ;; GTD workflow with Org mode
 (use-package org-gtd
-  :straight t
+  :ensure t
   :custom
   (org-gtd-directory (+directory-ensure org-directory "gtd/")))
 

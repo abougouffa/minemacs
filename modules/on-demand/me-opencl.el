@@ -15,7 +15,7 @@
 
 ;; Major mode with for OpenCL kernels
 (use-package opencl-c-mode
-  :straight t
+  :ensure t
   :mode "\\.cl\\'")
 
 

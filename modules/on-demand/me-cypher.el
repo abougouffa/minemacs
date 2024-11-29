@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Cypher scripts
 (use-package cypher-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cypher)

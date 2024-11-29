@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package spell-fu
-  :straight t
+  :ensure t
   :when (executable-find "aspell")
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom

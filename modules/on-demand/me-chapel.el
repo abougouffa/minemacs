@@ -15,7 +15,7 @@
 
 ;; A major mode for the Chapel programming language
 (use-package chapel-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-chapel)

@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package consult-notes
-  :straight t
+  :ensure t
   :init
   (defun +consult-notes--unbound-org-roam ()
     (fmakunbound 'consult-notes-org-roam-mode)

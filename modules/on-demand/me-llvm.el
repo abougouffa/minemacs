@@ -15,7 +15,7 @@
 
 ;; LLVM major mode using Tree-sitter
 (use-package llvm-ts-mode
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'tree-sitter))
 
 

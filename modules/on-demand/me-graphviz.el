@@ -15,7 +15,7 @@
 
 ;; Mode for the dot-language used by GraphViz
 (use-package graphviz-dot-mode
-  :straight (:files ("graphviz-dot-mode.el" "texinfo"))
+  :ensure t
   :custom
   (graphviz-dot-view-command "xdot %s")
   (graphviz-dot-preview-extension "svg")

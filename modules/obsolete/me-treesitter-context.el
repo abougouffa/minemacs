@@ -11,7 +11,7 @@
 
 ;; A `treesit'-based package to show code context, dim surrouding text, and fold code
 (use-package treesitter-context
-  :straight (:host github :repo "zbelial/treesitter-context.el")
+  :vc (:url "https://github.com/zbelial/treesitter-context.el")
   :when (+emacs-options-p 'tree-sitter)
   :custom
   (treesitter-context-idle-time 0.5)

@@ -11,7 +11,7 @@
 
 ;; Use a variable pitch, keeping fixed pitch where it's sensible
 (use-package mixed-pitch
-  :straight t
+  :ensure t
   :custom
   (mixed-pitch-variable-pitch-cursor nil)
   :config

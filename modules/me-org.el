@@ -23,17 +23,17 @@
 
 ;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
-  :straight (:host github :repo "abougouffa/org-contrib" :branch "master"))
+  :vc (:url "https://github.com/abougouffa/org-contrib" :branch "master"))
 
 
 ;; Convert font-lock faces to other formats
 (use-package engrave-faces
-  :straight t)
+  :ensure t)
 
 
 ;; A carefully crafted Org exporter back-end for Hugo
 (use-package ox-hugo
-  :straight t
+  :ensure t
   :after ox
   :demand)
 
@@ -41,6 +41,7 @@
 ;; Convenience functions for Org export
 (use-package ox-extra
   :after ox
+  :disabled
   :demand
   :config
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
@@ -48,7 +49,7 @@
 
 ;; Auto-toggle Org elements
 (use-package org-appear
-  :straight t
+  :ensure t
   :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-inside-latex t)
@@ -64,7 +65,7 @@
 
 ;; Modern Org style
 (use-package org-modern
-  :straight t
+  :ensure t
   :hook (org-mode . org-modern-mode)
   :hook (org-agenda-finalize . org-modern-agenda)
   :custom-face
@@ -89,7 +90,7 @@
 
 ;; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 (use-package org-fragtog
-  :straight t
+  :ensure t
   :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.2))
@@ -97,13 +98,13 @@
 
 ;; Rich text clipboard for org-mode: Paste as a #+BEGIN_SRC block of correct mode, with link to where it came from
 (use-package org-rich-yank
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . org-rich-yank-enable))
 
 
 ;; Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 (use-package citar
-  :straight t
+  :ensure t
   :after minemacs-first-org-file oc
   :demand
   :custom
@@ -126,7 +127,7 @@
 
 ;; Citar integration with Embark
 (use-package citar-embark
-  :straight t
+  :ensure t
   :after citar embark
   :init
   (citar-embark-mode 1))

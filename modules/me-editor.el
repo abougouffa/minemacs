@@ -10,7 +10,7 @@
 
 ;; Visualize and navigate the undo tree
 (use-package vundo
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("u" . vundo))
   :custom
   (vundo-compact-display t)
@@ -20,7 +20,7 @@
 
 ;; Persistent undo tree between sessions
 (use-package undo-fu-session
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . undo-fu-session-global-mode)
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz)))
@@ -28,13 +28,13 @@
 
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
 (use-package ws-butler
-  :straight (:host github :repo "hlissner/ws-butler")
+  :vc (:url "https://github.com/hlissner/ws-butler")
   :hook (minemacs-first-file . ws-butler-global-mode))
 
 
 ;; Smart guessing the indentation offset originally used in the opened source files
 (use-package dtrt-indent
-  :straight t
+  :ensure t
   :after minemacs-first-file
   :hook ((change-major-mode-after-body read-only-mode) . +dtrt-indent-mode-maybe)
   :commands (+dtrt-indent-tab-to-tab-stop)
@@ -85,7 +85,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Writable grep buffer and apply the changes to files
 (use-package wgrep
-  :straight t
+  :ensure t
   :commands (wgrep-change-to-wgrep-mode)
   :custom
   (wgrep-auto-save-buffer t))
@@ -93,18 +93,18 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Highlight symbols with keymap-enabled overlays
 (use-package symbol-overlay
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
-  :straight t
+  :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 
 ;; Highlight numbers in source code
 (use-package highlight-numbers
-  :straight t
+  :ensure t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
   (setq highlight-numbers-generic-regexp (rx (and symbol-start (one-or-more digit)) (optional "." (* digit)) symbol-end))
@@ -116,7 +116,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; An Emacs minor mode for highlighting matches to the selection
 (use-package selection-highlight-mode
-  :straight (:host github :repo "balloneij/selection-highlight-mode" :fork (:repo "abougouffa/selection-highlight-mode"))
+  :vc (:url "https://github.com/abougouffa/selection-highlight-mode")
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
   ;; Automatically set the face for `selection-highlight-mode'
@@ -139,7 +139,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . smartparens-global-mode)
   :custom
   (sp-ignore-modes-list '(minibuffer-inactive-mode)) ; Enable in `minibuffer-mode'
@@ -158,7 +158,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Your friendly neighborhood expand-region clone
 (use-package expreg
-  :straight (:host github :repo "casouri/expreg")
+  :vc (:url "https://github.com/casouri/expreg")
   :when (+emacs-options-p 'tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
@@ -166,7 +166,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Drag stuff around in Emacs
 (use-package drag-stuff
-  :straight t
+  :ensure t
   :init
   :bind (("M-<up>" . drag-stuff-up)
          ("M-<down>" . drag-stuff-down)
@@ -176,7 +176,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Perform a backup on each file save, real backup for Emacs!
 (use-package real-backup
-  :straight (:host github :repo "abougouffa/real-backup")
+  :vc (:url "https://github.com/abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
 
 

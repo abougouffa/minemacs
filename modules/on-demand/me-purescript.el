@@ -15,7 +15,7 @@
 
 ;; A PureScript editing mode
 (use-package purescript-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-purescript)

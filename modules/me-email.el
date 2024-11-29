@@ -101,7 +101,7 @@
 
 ;; Send ical calendar invites by email
 (use-package varuga
-  :straight t
+  :ensure t
   :commands (varuga-invite))
 
 
@@ -148,7 +148,7 @@
 
 ;; Global minor mode mixing up `org-mode' and `message-mode' to compose and reply to emails in a Outlook HTML friendly style
 (use-package org-msg
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e
   :custom
@@ -179,7 +179,7 @@
 
 ;; Send HTML email using Org-mode HTML export (alternative to `org-msg')
 (use-package org-mime
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e org
   :demand
@@ -190,7 +190,7 @@
 
 ;; Desktop notifications and modeline display for `mu4e'
 (use-package mu4e-alert
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e
   :demand
@@ -245,7 +245,7 @@
 
 ;; Encrypt and decrypt mails in `mu4e'
 (use-package mu4e-crypto
-  :straight t
+  :vc (:url "https://github.com/emacsattic/mu4e-crypto")
   :when +mu4e-available-p
   :after mu4e
   :bind (:map mu4e-compose-mode-map ("C-c C-m e" . mu4e-crypto-encrypt-message))

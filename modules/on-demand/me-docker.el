@@ -16,12 +16,12 @@
 
 ;; Major mode for editing Docker's Dockerfiles
 (use-package dockerfile-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing docker-compose files
 (use-package docker-compose-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-docker)

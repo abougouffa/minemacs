@@ -10,7 +10,7 @@
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
-  :straight t
+  :ensure t
   :bind (("M-j" . avy-goto-char-timer) ; Instead of `default-indent-new-line'
          ("C-é" . avy-goto-line) ; French AZERTY
          ("M-g l" . avy-goto-line)))
@@ -18,19 +18,19 @@
 
 ;; Zap to char using `avy'
 (use-package avy-zap
-  :straight t
+  :ensure t
   :bind ("M-z" . avy-zap-to-char-dwim))
 
 
 ;; Jump around your source code in emacs using `treesit' and `avy'
 (use-package treesit-jump
-  :straight (:host github :repo "abougouffa/treesit-jump" :branch "enhancements" :files (:defaults "treesit-queries"))
+  :vc (:url "https://github.com/abougouffa/treesit-jump" :branch "enhancements")
   :when (+emacs-options-p 'tree-sitter))
 
 
 ;; Never lose your place in Emacs again
 (use-package dogears
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . dogears-mode)
   :bind (("M-g d"   . dogears-go)
          ("M-g M-b" . dogears-back)
@@ -50,23 +50,23 @@
 
 ;; Extensions to `isearch'
 (use-package isearch+
-  :straight t)
+  :vc (:url "https://github.com/emacsmirror/isearch-plus"))
 
 
 ;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs search tool based on "ripgrep"
 (use-package rg
-  :straight t
+  :ensure t
   :bind (("C-c s" . rg-menu)))
 
 
 ;; Asynchronous fuzzy finder for Emacs
 (use-package affe
-  :straight t
+  :ensure t
   :custom
   (affe-regexp-compiler #'+affe-orderless-regexp-compiler)
   :config
@@ -79,7 +79,7 @@
 
 ;; An Emacs front-end for "fzf"
 (use-package fzf
-  :straight t
+  :ensure t
   :commands (+fzf-project-super-project)
   :init
   (defalias '+fzf-project 'fzf-projectile)

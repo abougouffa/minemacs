@@ -10,7 +10,7 @@
 
 ;; One tab per project, with unique names - simple implementation of workspaces
 (use-package otpp
-  :straight (:host github :repo "abougouffa/one-tab-per-project")
+  :vc (:url "https://github.com/abougouffa/one-tab-per-project")
   :after project
   :bind (("C-x t D" . otpp-detach-buffer-to-tab)
          ("C-x t C" . otpp-change-tab-root-dir)
@@ -22,12 +22,12 @@
 
 ;; Multi target interface to compile
 (use-package compile-multi
-  :straight t)
+  :ensure t)
 
 
 ;; Integration for `compile-multi' and `embark'
 (use-package compile-multi-embark
-  :straight t
+  :ensure t
   :after embark
   :init
   (compile-multi-embark-mode 1))
@@ -35,7 +35,7 @@
 
 ;; Consulting read support for `compile-multi'
 (use-package consult-compile-multi
-  :straight t
+  :ensure t
   :after consult
   :init
   (consult-compile-multi-mode 1))
@@ -43,14 +43,14 @@
 
 ;; Integration of `compile-multi' with `nerd-icons'
 (use-package compile-multi-nerd-icons
-  :straight t
+  :ensure t
   :after compile-multi
   :demand t)
 
 
 ;; Projectile like project management library built on Emacs' `project'
 (use-package projection
-  :straight t
+  :ensure t
   :hook (ibuffer . ibuffer-projection-set-filter-groups)
   :after project
   :demand
@@ -69,13 +69,13 @@
 
 ;; Projection integration for `compile-multi'
 (use-package projection-multi
-  :straight t
+  :ensure t
   :bind (:map projection-map ("C" . #'projection-multi-compile)))
 
 
 ;; Integration for `projection-multi' and `embark'
 (use-package projection-multi-embark
-  :straight t
+  :ensure t
   :after embark
   :init
   (projection-multi-embark-setup-command-map))
@@ -83,13 +83,13 @@
 
 ;; Projection integration for `dape'
 (use-package projection-dape
-  :straight t
+  :ensure t
   :bind (:map projection-map ("D" . #'projection-dape)))
 
 
 ;; Quick access to project files using `fd'
 (use-package find-file-in-project
-  :straight t
+  :ensure t
   :custom
   (ffip-use-rust-fd (and (executable-find "fd") t))
   :config

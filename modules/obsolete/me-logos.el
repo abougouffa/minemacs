@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package logos
-  :straight t
+  :ensure t
   :custom
   ;; If you want to use outlines instead of page breaks (the ^L):
   (logos-outlines-are-pages t)

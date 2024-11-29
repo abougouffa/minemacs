@@ -11,7 +11,7 @@
 
 ;; A Emacs tree plugin like NerdTree for Vim
 (use-package neotree
-  :straight t
+  :ensure t
   :custom
   (neo-theme 'nerd-icons))
 

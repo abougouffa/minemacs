@@ -15,7 +15,7 @@
 
 ;; Major mode and interactive frontend for GNUPlot
 (use-package gnuplot
-  :straight t
+  :ensure t
   :mode ("\\.gnuplot\\'" . gnuplot-mode)
   :mode ("\\.plt\\'" . gnuplot-mode)
   :mode ("\\.gplt\\'" . gnuplot-mode)

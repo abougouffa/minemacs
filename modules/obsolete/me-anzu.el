@@ -11,7 +11,7 @@
 
 ;; From Doom Emacs
 (use-package anzu
-  :straight t
+  :ensure t
   :custom
   (anzu-cons-mode-line-p nil) ; We manage our own modeline segments
   :config
@@ -24,7 +24,7 @@
           anzu--cached-positions anzu--last-command anzu--last-isearch-string anzu--overflow-p)))
 
 (use-package evil-anzu
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'evil 'obsolete/me-evil)
   :hook (evil-mode . global-anzu-mode))
 

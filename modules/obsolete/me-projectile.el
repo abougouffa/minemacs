@@ -13,7 +13,7 @@
 (cl-callf2 remq 'projectile straight-built-in-pseudo-packages)
 
 (use-package projectile
-  :straight t
+  :ensure t
   :after minemacs-loaded
   :demand
   :custom
@@ -52,10 +52,10 @@
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
 
 (use-package consult-projectile
-  :straight t)
+  :ensure t)
 
 (use-package treemacs-projectile
-  :straight t
+  :ensure t
   :after projectile treemacs
   :demand)
 

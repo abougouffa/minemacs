@@ -16,12 +16,12 @@
 
 ;; Major mode for editing Scala
 (use-package scala-mode
-  :straight t)
+  :ensure t)
 
 
 ;; An Emacs mode for interacting with Scala sbt (Simple build tool) and projects
 (use-package sbt-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-scala)

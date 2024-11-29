@@ -11,7 +11,7 @@
 
 ;; Disassemble C, C++ or Fortran code under cursor
 (use-package disaster
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-disaster)

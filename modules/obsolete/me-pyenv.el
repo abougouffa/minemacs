@@ -9,10 +9,10 @@
 ;;; Code:
 
 (use-package pyvenv
-  :straight t)
+  :ensure t)
 
 (use-package pyenv
-  :straight (:host github :repo "aiguofer/pyenv.el")
+  :vc (:url "https://github.com/aiguofer/pyenv.el")
   :hook (minemacs-first-python-file . +global-pyenv-mode-maybe)
   :custom
   (pyenv-show-active-python-in-modeline nil)

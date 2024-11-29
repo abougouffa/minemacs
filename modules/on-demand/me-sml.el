@@ -17,7 +17,7 @@
 
 ;; Major mode for editing (Standard) ML
 (use-package sml-mode
-  :straight t
+  :ensure t
   :mode "\\.s\\(?:ml\\|ig\\)\\'"
   :config
   ;; Don't auto-close apostrophes and backticks

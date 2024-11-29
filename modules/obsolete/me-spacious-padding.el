@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package spacious-padding
-  :straight t
+  :ensure t
   :hook (minemacs-after-startup . spacious-padding-mode)
   :custom
   (spacious-padding-subtle-mode-line t)

@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package tempel
-  :straight t
+  :ensure t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path (list (concat minemacs-assets-dir "templates/tempel/*.eld")
@@ -26,7 +26,7 @@
     (add-hook 'completion-at-point-functions #'tempel-complete -90 t)))
 
 (use-package tempel-collection
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-tempel)

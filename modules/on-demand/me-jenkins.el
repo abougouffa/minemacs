@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Jenkins declarative pipeline syntax
 (use-package jenkinsfile-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-jenkins)

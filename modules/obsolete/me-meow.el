@@ -10,7 +10,7 @@
 
 
 (use-package meow
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . +meow-activate)
   :config
   (defun +meow-setup/azerty ()

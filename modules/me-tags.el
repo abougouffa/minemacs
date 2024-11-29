@@ -10,7 +10,7 @@
 
 ;; Emacs frontend to GNU Global source code tagging system
 (use-package ggtags
-  :straight t
+  :ensure t
   :custom
   (ggtags-extra-args (when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX")) '("--objdir")))
   (ggtags-use-sqlite3 t))
@@ -18,7 +18,7 @@
 
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
-  :straight t
+  :ensure t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
@@ -31,7 +31,7 @@
    `("--compact"
      ;; TEMP: Sane defaults, see: universal-ctags/citre#184
      ,@(when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX"))
-         '("--objdir"))))
+        '("--objdir"))))
   (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
@@ -128,7 +128,7 @@ Fall back to the default `citre--project-root'."
 
 ;; Cscope interface for Emacs
 (use-package xcscope
-  :straight t
+  :ensure t
   :unless (+emacs-options-p 'os/win)
   :commands (cscope-create-list-of-files-to-index cscope-index-files)
   :custom
@@ -138,7 +138,7 @@ Fall back to the default `citre--project-root'."
 
 ;; Cscope integration for Emacs' Consult
 (use-package consult-cscope
-  :straight (:host github :repo "blorbx/consult-cscope")
+  :vc (:url "https://github.com/blorbx/consult-cscope")
   :config
   (defun +consult--cscope-find-database-file (start-dir)
     "Looks first for the dominating directory that includes the database file.
@@ -162,7 +162,7 @@ Fallback to the default function if none is found."
 
 ;; Clink integration to Emacs
 (use-package clink
-  :straight (:host github :repo "abougouffa/clink.el")
+  :vc (:url "https://github.com/abougouffa/clink.el")
   :when (+emacs-options-p 'sqlite3)
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 

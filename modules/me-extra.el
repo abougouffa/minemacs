@@ -10,7 +10,7 @@
 
 ;; A Collection of Ridiculously Useful eXtensions for Emacs
 (use-package crux
-  :straight t
+  :ensure t
   :bind (("C-k" . crux-smart-kill-line)
          ("C-<return>" . crux-smart-open-line)
          ("C-S-<return>" . crux-smart-open-line-above)
@@ -23,13 +23,13 @@
 
 ;; Override the `default-directory' in the next command
 (use-package run-in-dir
-  :straight (:host github :repo "abougouffa/run-in-dir")
+  :vc (:url "https://github.com/abougouffa/run-in-dir")
   :bind (("C-c C-i" . run-in-dir-prefix)))
 
 
 ;; Persistent per-project scratch buffers for Emacs
 (use-package pscratch
-  :straight (:host github :repo "abougouffa/persistent-scratch")
+  :vc (:url "https://github.com/abougouffa/persistent-scratch")
   :hook (minemacs-after-startup . pscratch-mode))
 
 

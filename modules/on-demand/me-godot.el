@@ -15,7 +15,7 @@
 
 ;; Major mode for Godot's GDScript language
 (use-package gdscript-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-godot)

@@ -11,7 +11,7 @@
 
 ;; Define commands which run reformatters on the current Emacs buffer
 (use-package reformatter
-  :straight t
+  :ensure t
   :config
   (reformatter-define ref-black
     :program "black"

@@ -15,7 +15,7 @@
 
 ;; Major mode for editing YANG files
 (use-package yang-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-yang)

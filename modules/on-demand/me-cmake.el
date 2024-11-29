@@ -16,12 +16,12 @@
 
 ;; Major mode for editing CMake sources
 (use-package cmake-mode
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+  :vc (:url "https://github.com/emacsmirror/cmake-mode")
 
 
 ;; Advanced, type aware, highlight support for CMake
 (use-package cmake-font-lock
-  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :vc (:url "https://github.com/Lindydancer/cmake-font-lock")
   :custom
   (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
 

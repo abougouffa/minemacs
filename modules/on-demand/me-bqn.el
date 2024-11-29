@@ -16,7 +16,7 @@
 
 ;; Major mode for editing BQN grammar files
 (use-package bqn-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-bqn)

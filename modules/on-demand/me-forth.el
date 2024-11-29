@@ -15,7 +15,7 @@
 
 ;; Major mode for the Forth programming language
 (use-package forth-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-forth)

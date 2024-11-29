@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package eldoc-box
-  :straight t
+  :ensure t
   :hook (prog-mode . +eldoc-box-hover-at-point-mode-maybe)
   :hook (eglot-managed-mode . +eldoc-box-hover-at-point-mode-maybe)
   :init

@@ -14,7 +14,7 @@
 
 ;; Simple notes for Emacs with an efficient file-naming scheme
 (use-package denote
-  :straight t
+  :ensure t
   :commands (denote-create-note denote-insert-link denote-show-backlinks-buffer)
   :hook (dired-mode . denote-dired-mode)
   :custom
@@ -25,7 +25,7 @@
 
 ;; Use Consult in tandem with Denote
 (use-package consult-denote
-  :straight t
+  :ensure t
   :after consult
   :init
   (consult-denote-mode 1)
@@ -39,7 +39,7 @@
 
 ;; View and filter Denote files in a tabulated list
 (use-package denote-menu
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-notes)

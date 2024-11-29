@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package eaf
-  :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
+  :vc (:url "https://github.com/emacs-eaf/emacs-application-framework")
   :unless (+emacs-options-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
   :commands (eaf-file-sender-qrcode-in-dired +browse-url-eaf eaf-open-browser)

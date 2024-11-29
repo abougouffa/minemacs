@@ -15,7 +15,7 @@
 
 ;; Simple G-Code major mode
 (use-package gcode-mode
-  :straight t
+  :ensure t
   :hook (gcode-mode . eldoc-mode))
 
 

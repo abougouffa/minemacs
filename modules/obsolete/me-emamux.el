@@ -11,7 +11,7 @@
 
 ;; Manipulate "tmux" from Emacs
 (use-package emamux
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-emamux)

@@ -16,7 +16,7 @@
 
 ;; Major mode for editing Haskell code
 (use-package haskell-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-haskell)

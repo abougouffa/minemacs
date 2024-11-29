@@ -15,7 +15,7 @@
 
 ;; A major mode for editing OpenSCAD code
 (use-package scad-mode
-  :straight t
+  :ensure t
   :init
   (with-eval-after-load 'nerd-icons
     (add-to-list

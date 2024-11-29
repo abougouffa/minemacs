@@ -15,7 +15,7 @@
 
 ;; A mode for editing Visual Basic programs
 (use-package visual-basic-mode
-  :straight t
+  :vc (:url "https://github.com/abougouffa/visual-basic-mode")
   :mode "\\.vbs?\\'"
   :hook (visual-basic-mode . +prog-mode-run-hooks))
 

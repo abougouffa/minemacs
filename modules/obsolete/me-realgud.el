@@ -13,16 +13,16 @@
 
 
 (use-package realgud
-  :straight (:build (:not compile)))
+  :ensure t
 
 (use-package realgud-lldb
-  :straight t
+  :ensure t
   :init
   (defalias 'realgud:lldb #'realgud--lldb)
   :commands (realgud--lldb realgud:lldb lldb))
 
 (use-package realgud-ipdb
-  :straight t
+  :ensure t
   :commands (ipdb realgud:ipdb))
 
 

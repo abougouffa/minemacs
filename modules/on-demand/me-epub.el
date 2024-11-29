@@ -15,7 +15,7 @@
 
 ;; Featureful EPUB reader mode
 (use-package nov
-  :straight t
+  :ensure t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 

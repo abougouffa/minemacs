@@ -15,7 +15,7 @@
 
 ;; Major mode for Robot Framework files
 (use-package robot-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-mode-framework)

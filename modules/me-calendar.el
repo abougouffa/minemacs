@@ -8,13 +8,13 @@
 
 ;;; Code:
 
-;; Schedule your day visually, using timeblocking technique inside Emacs
-(use-package org-timeblock
-  :straight t)
+;; ;; Schedule your day visually, using timeblocking technique inside Emacs
+;; (use-package org-timeblock
+;;   :ensure t)
 
 
 (use-package org-caldav
-  :straight (:host github :repo "dengste/org-caldav")
+  :vc (:url "https://github.com/dengste/org-caldav")
   :custom
   (org-caldav-files (list (concat org-directory "appointements.org"))))
 

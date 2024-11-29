@@ -11,7 +11,7 @@
 
 ;; Fast, friendly searching with ripgrep and Emacs
 (use-package deadgrep
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-deadgrep)

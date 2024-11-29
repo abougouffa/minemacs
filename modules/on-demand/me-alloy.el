@@ -15,7 +15,7 @@
 
 ;; Emacs major mode for Alloy language
 (use-package alloy-mode
-  :straight (:host github :repo "dwwmmn/alloy-mode")
+  :vc (:url "https://github.com/dwwmmn/alloy-mode")
   :mode "\\.als\\'")
 
 

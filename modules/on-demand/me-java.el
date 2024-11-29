@@ -17,12 +17,12 @@
 
 ;; Major mode for Groovy source files
 (use-package groovy-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Minor mode for Android application development
 (use-package android-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-java)

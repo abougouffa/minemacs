@@ -15,7 +15,7 @@
 
 ;; Major mode for PlantUML
 (use-package plantuml-mode
-  :straight t
+  :ensure t
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
   (plantuml-jar-path (concat minemacs-local-dir "plantuml.jar"))
@@ -49,7 +49,7 @@
 
 ;; Add `flymake' support for editing PlantUML files
 (use-package flymake-plantuml
-  :straight (:host github :repo "shaohme/flymake-plantuml")
+  :vc (:url "https://github.com/shaohme/flymake-plantuml")
   :hook (plantuml-mode . flymake-plantuml-setup))
 
 

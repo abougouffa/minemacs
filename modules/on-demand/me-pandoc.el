@@ -15,7 +15,7 @@
 
 ;; Minor mode for interacting with Pandoc
 (use-package pandoc-mode
-  :straight t
+  :ensure t
   :hook ((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . conditionally-turn-on-pandoc))
 
 

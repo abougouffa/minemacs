@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package mlscroll
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . +mlscroll-right-mode)
   :config
   ;; For `doom-modeline'

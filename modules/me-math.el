@@ -35,12 +35,12 @@
 
 ;; Preview TeX math equations inline
 (use-package math-preview ; Needed by ein to render equations
-  :straight t)
+  :ensure t)
 
 
 ;; Jupyter notebook client in Emacs
 (use-package ein
-  :straight t
+  :ensure t
   :custom
   (ein:output-area-inlined-images t)
   :config
@@ -52,7 +52,7 @@
 
 ;; Lightweight notebooks in Emacs
 (use-package code-cells
-  :straight t
+  :ensure t
   :init
   ;; Both `ein' and `code-cells' registers auto-mode for ".ipynb" files,
   ;; we remove `code-cells' so `ein' gets used by default.
@@ -62,27 +62,27 @@
 
 ;; An interface to communicate with Jupyter kernels
 (use-package jupyter
-  :straight t)
+  :ensure t)
 
 
 ;; Julia support in Emacs
 (use-package julia-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs Speaks Statistics
 (use-package ess
-  :straight t)
+  :ensure t)
 
 
 ;; View R dataframes in a spreadsheet software
 (use-package ess-view
-  :straight t)
+  :ensure t)
 
 
 ;; Data viewer for GNU R
 (use-package ess-R-data-view
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-math)

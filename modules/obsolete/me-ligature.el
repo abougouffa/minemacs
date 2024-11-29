@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package ligature
-  :straight t
+  :ensure t
   :when (+emacs-options-p 'harfbuzz 'cairo)
   :after minemacs-loaded
   :hook (prog-mode . ligature-mode)

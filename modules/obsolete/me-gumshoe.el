@@ -11,7 +11,7 @@
 
 ;; A smart point tracker
 (use-package gumshoe
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . global-gumshoe-mode))
 
 

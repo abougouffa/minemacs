@@ -15,7 +15,7 @@
 
 ;; Support for the P4_16 programming language
 (use-package p4-16-mode
-  :straight t
+  :ensure t
   :mode "\\.p4\\'")
 
 

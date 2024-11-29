@@ -10,7 +10,7 @@
 
 ;; Debug Adapter Protocol for Emacs
 (use-package dape
-  :straight t
+  :ensure t
   :commands (+dape-transient)
   :hook
   ((kill-emacs . dape-breakpoint-save) ; Save breakpoints on quit
@@ -52,14 +52,14 @@
 
 ;; A compiler output viewer
 (use-package rmsbolt
-  :straight t
+  :ensure t
   :config
   (+mode-alist-add-ts-modes! rmsbolt-languages))
 
 
 ;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
 (use-package beardbolt
-  :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
+  :vc (:url "https://github.com/joaotavora/beardbolt")
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   (+mode-alist-add-ts-modes! beardbolt-languages))
@@ -67,7 +67,7 @@
 
 ;; Use "objdump" to display disassembled executable and object files
 (use-package objdump-disassemble
-  :straight (:host github :repo "abougouffa/objdump-disassemble"))
+  :vc (:url "https://github.com/abougouffa/objdump-disassemble"))
 
 
 (provide 'me-debug)

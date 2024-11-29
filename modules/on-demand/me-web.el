@@ -38,7 +38,7 @@
 
 ;; Major mode for editing web templates
 (use-package web-mode
-  :straight t
+  :ensure t
   :custom
   (web-mode-enable-html-entities-fontification t)
   :config
@@ -48,28 +48,28 @@
 
 ;; Support for Emmet, the essential toolkit for web-developers
 (use-package emmet-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing Haml files
 (use-package haml-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing Sass files
 (use-package sass-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for WebAssembly
 (use-package wat-mode
-  :straight (:host github :repo "devonsparks/wat-mode")
+  :vc (:url "https://github.com/devonsparks/wat-mode")
   :commands (wat-mode))
 
 
 ;; Flymake integration for checking JavaScript files using `biome'
 (use-package flymake-biome
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-web)

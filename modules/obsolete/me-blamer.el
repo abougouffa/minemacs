@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package blamer
-  :straight t
+  :ensure t
   :custom
   (blamer-min-offset 60)
   (blamer-prettify-time-p t)

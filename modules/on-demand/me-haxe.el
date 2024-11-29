@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Haxe files
 (use-package haxe-mode
-  :straight t
+  :ensure t
   :hook (haxe-mode . +prog-mode-run-hooks))
 
 
