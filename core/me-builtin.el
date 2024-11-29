@@ -917,7 +917,7 @@ Typing these will trigger reindentation of the current line.")
    99))
 
 (use-package smerge-mode
-  :commands (+smerge-hydra/body)
+  :commands (+smerge-first +smerge-last +smerge-vc-next-conflict-recenter)
   :config
   (defun +smerge-first ()
     "Got to the first occurrence."
