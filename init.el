@@ -134,8 +134,12 @@
   "Generate MinEmacs' loaddefs file."
   (interactive)
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
-  (apply (if (fboundp 'loaddefs-generate) #'loaddefs-generate #'make-directory-autoloads)
-         (list (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir) minemacs-loaddefs-file)))
+  (loaddefs-generate
+   (list minemacs-core-dir
+         minemacs-elisp-dir
+         minemacs-extras-dir
+         minemacs-on-demand-modules-dir)
+   minemacs-loaddefs-file))
 
 ;; Generate the loaddefs file if needed
 (unless (file-exists-p minemacs-loaddefs-file) (minemacs-generate-loaddefs))
