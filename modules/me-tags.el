@@ -27,6 +27,11 @@
   ;; I prefer disabling this.
   (citre-tags-file-global-cache-dir nil)
   (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
+  (citre-gtags-args
+   `("--compact"
+     ;; TEMP: Sane defaults, see: universal-ctags/citre#184
+     ,@(when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX"))
+         '("--objdir"))))
   :init
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
