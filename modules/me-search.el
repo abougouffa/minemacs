@@ -22,6 +22,12 @@
   :bind ("M-z" . avy-zap-to-char-dwim))
 
 
+;; Jump around your source code in emacs using `treesit' and `avy'
+(use-package treesit-jump
+  :straight (:host github :repo "abougouffa/treesit-jump" :branch "enhancements" :files (:defaults "treesit-queries"))
+  :when (+emacs-options-p 'tree-sitter))
+
+
 ;; Never lose your place in Emacs again
 (use-package dogears
   :straight t
