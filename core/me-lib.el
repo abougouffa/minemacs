@@ -298,11 +298,10 @@ EXT-REGEXP. When it runs, this function provides a feature named
          (hook-name (intern (format "minemacs-first%s-file-hook" (if filetype (format "-%s" filetype) ""))))
          (feature-name (intern (format "minemacs-first%s-file" (if filetype (format "-%s" filetype) ""))))
          (hook-docs (format "This hook will be run before opening the first %s file.
-
-Applies to files that matches %S.
-
-Executed before `find-file-noselect', it runs all hooks in `%s' and provide the `%s' feature."
-                            (or filetype "") (eval ext-regexp) hook-name feature-name)))
+- Executed before `find-file-noselect'.
+- It runs all hooks in `%s'.
+- It provides the `%s' feature."
+                            (or filetype "") hook-name feature-name)))
     `(progn
        (push ',hook-name +first-file-hooks)
        (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'." ',hook-name ',fn-name ',feature-name)
