@@ -727,6 +727,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-nix :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-nushell.el
+
+(minemacs-register-on-demand-module 'me-nushell :auto-mode '(("\\.nu\\'" . nushell-mode)) :interpreter-mode '(("nu" . nushell-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
 (minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
