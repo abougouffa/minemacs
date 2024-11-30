@@ -12,6 +12,8 @@
 (use-package elisp-plus
   :straight (:host github :repo "abougouffa/elisp-plus")
   :after minemacs-first-elisp-file
+  :custom
+  (elisp-plus-better-lisp-indent nil)
   :init
   (elisp-plus-mode 1))
 

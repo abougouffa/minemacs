@@ -192,7 +192,8 @@
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
   ;; TEMP+FIX: Basically, load the same features that would be loaded by "combobulate.el"
-  (dolist (feature '(combobulate-rules combobulate-procedure combobulate-navigation
+  (dolist (feature '(combobulate-rules
+                     combobulate-procedure combobulate-navigation
                      combobulate-manipulation combobulate-envelope combobulate-display
                      combobulate-ui combobulate-misc combobulate-query combobulate-cursor
                      combobulate-toml combobulate-html combobulate-python combobulate-js-ts
