@@ -10,7 +10,10 @@
 
 ;; Emacs frontend to GNU Global source code tagging system
 (use-package ggtags
-  :straight t)
+  :straight t
+  :custom
+  (ggtags-extra-args (when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX")) '("--objdir")))
+  (ggtags-use-sqlite3 t))
 
 
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
