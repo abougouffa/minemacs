@@ -32,6 +32,7 @@
      ;; TEMP: Sane defaults, see: universal-ctags/citre#184
      ,@(when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX"))
          '("--objdir"))))
+  (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
@@ -58,6 +59,21 @@
     :type '(repeat string)
     :group 'minemacs-prog)
   :config
+  ;; Use `citre' with Emacs Lisp, see: https://github.com/universal-ctags/citre/blob/master/docs/user-manual/adapt-an-existing-xref-backend.md
+  (defvar +citre-elisp-backend
+    (citre-xref-backend-to-citre-backend
+     ;; This is the xref backend name
+     'elisp
+     ;; A function to tell if the backend is usable
+     (lambda () (derived-mode-p 'emacs-lisp-mode))))
+
+  ;; Register the backend, which means to bind it with the symbol `elisp'.
+  (citre-register-backend 'elisp +citre-elisp-backend)
+
+  ;; Add Elisp to the backend lists.
+  (add-to-list 'citre-find-definition-backends 'elisp)
+  (add-to-list 'citre-find-reference-backends 'elisp)
+
   (defun +citre-recursive-project-root ()
     "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
