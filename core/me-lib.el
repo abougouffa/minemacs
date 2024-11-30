@@ -139,10 +139,10 @@ If INDEX is 0, ELEMENT is inserted before the first element."
 
 For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
   `(cl-callf append ,mode-alist
-    (cl-loop
-     for mode-spec in ,mode-alist
-     collect (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
-              (when (fboundp ts-mode) (cons ts-mode (cdr mode-spec)))))))
+     (cl-loop
+      for mode-spec in ,mode-alist
+      collect (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
+                (when (fboundp ts-mode) (cons ts-mode (cdr mode-spec)))))))
 
 ;;; Missing primitive utilities
 
@@ -187,19 +187,19 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
   "Log info MSG and VARS using `message'."
   (when (>= minemacs-msg-level 2)
     `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Info] " ,msg) ,@vars)))))
+       (apply #'message (list (concat "[MinEmacs:Info] " ,msg) ,@vars)))))
 
 (defmacro +log! (msg &rest vars)
   "Log MSG and VARS using `message' when `minemacs-verbose-p' is non-nil."
   (when (>= minemacs-msg-level 3)
     `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
+       (apply #'message (list (concat "[MinEmacs:Log] " ,msg) ,@vars)))))
 
 (defmacro +debug! (msg &rest vars)
   "Log debug MSG and VARS using `message' when `minemacs-msg-level' is 4."
   (when (>= minemacs-msg-level 4)
     `(let ((inhibit-message t))
-      (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
+       (apply #'message (list (concat "[MinEmacs:Debug] " ,msg) ,@vars)))))
 
 (defmacro +shutup! (&rest body)
   "Suppress new messages temporarily while evaluating BODY.
@@ -211,7 +211,7 @@ provided as the first argument, inhibit messages but keep writing them to the
     (if (not minemacs-verbose-p)
         `(let ((message-log-max ,(when logp message-log-max))
                (inhibit-message t))
-          (with-temp-message (or (current-message) "") ,@body))
+           (with-temp-message (or (current-message) "") ,@body))
       `(progn ,@body))))
 
 (defun +load-theme ()
@@ -272,7 +272,7 @@ provided as the first argument, inhibit messages but keep writing them to the
 (defmacro +lazy! (&rest body)
   "Run BODY as a lazy block (see `minemacs-lazy')."
   `(with-eval-after-load 'minemacs-lazy
-    (+eval-when-idle-for! +lazy-delay ,@body)))
+     (+eval-when-idle-for! +lazy-delay ,@body)))
 
 (defcustom +first-file-hook-ignore-list nil
   "A list of files to ignore in the `minemacs-first-*-file-hook'."
@@ -308,23 +308,23 @@ Executed before `find-file-noselect', it runs all hooks in `%s' and provide the 
        (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'." ',hook-name ',fn-name ',feature-name)
        (defcustom ,hook-name nil ,hook-docs :group 'minemacs-core :type 'hook)
        (defun ,fn-name (&optional filename &rest _)
-        (when (and
-               after-init-time ; after Emacs initialization
-               filename ; for named files
-               (or
-                (featurep 'minemacs-loaded) ; after MinEmacs is loaded
-                (when-let* ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
-                 (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
-               (not (cl-some ; not an ignored file
-                     (apply-partially #'string-prefix-p (expand-file-name filename))
-                     (mapcar (+apply-partially-right #'file-expand-wildcards t)
-                      (mapcar #'eval +first-file-hook-ignore-list))))
-               (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
-                (string-match-p ,ext-regexp filename)))
-         (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
-         (advice-remove 'find-file-noselect #',fn-name)
-         (provide ',feature-name)
-         (run-hooks ',hook-name)))
+         (when (and
+                after-init-time ; after Emacs initialization
+                filename ; for named files
+                (or
+                 (featurep 'minemacs-loaded) ; after MinEmacs is loaded
+                 (when-let* ((files (cdr command-line-args))) ; or immediately if the file is passed as a command line argument
+                   (cl-some (lambda (file) (string= (expand-file-name filename) (expand-file-name file))) files)))
+                (not (cl-some ; not an ignored file
+                      (apply-partially #'string-prefix-p (expand-file-name filename))
+                      (mapcar (+apply-partially-right #'file-expand-wildcards t)
+                              (mapcar #'eval +first-file-hook-ignore-list))))
+                (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
+                  (string-match-p ,ext-regexp filename)))
+           (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
+           (advice-remove 'find-file-noselect #',fn-name)
+           (provide ',feature-name)
+           (run-hooks ',hook-name)))
        (if (daemonp) ; load immediately after init when in daemon mode
            (add-hook 'after-init-hook (lambda () (provide ',feature-name) (run-hooks ',hook-name)) 90)
          (advice-add 'find-file-noselect :before #',fn-name '((depth . ,(if filetype -90 -91))))))))
@@ -381,8 +381,8 @@ the the function.
   (macroexp-progn
    (cl-loop for (var val hook hook-fn) in (+setq-hook-fns hooks var-vals)
             collect `(defun ,hook-fn (&rest args)
-                      ,(format "%s = %s" var (pp-to-string val))
-                      (setq-local ,var ,val))
+                       ,(format "%s = %s" var (pp-to-string val))
+                       (setq-local ,var ,val))
             collect `(add-hook ',hook #',hook-fn -90))))
 
 (defmacro +setq-advice! (funcs how &rest var-vals)
@@ -400,8 +400,8 @@ function.
   (macroexp-progn
    (cl-loop for (var val func advice-fn) in (+setq-hook-fns funcs var-vals nil how)
             collect `(defun ,advice-fn (&rest args)
-                      ,(format "%s = %s" var (pp-to-string val))
-                      (setq-local ,var ,val))
+                       ,(format "%s = %s" var (pp-to-string val))
+                       (setq-local ,var ,val))
             collect `(advice-add #',func ,how #',advice-fn))))
 
 ;; From Doom Emacs
@@ -623,13 +623,13 @@ be deleted.
       (setq
        fn-body
        `((defun ,exit-fn-name (&rest _)
-          (if (fboundp 'tabspaces-mode)
-              ;; When `tabspaces' is available, use it.
-              (when-let* ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
-               (tabspaces-close-workspace (1+ tab-num)))
-            ;; Or default to the built-in `tab-bar'.
-            (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
-             (tab-close (1+ tab-num)))))))
+           (if (fboundp 'tabspaces-mode)
+               ;; When `tabspaces' is available, use it.
+               (when-let* ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
+                 (tabspaces-close-workspace (1+ tab-num)))
+             ;; Or default to the built-in `tab-bar'.
+             (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
+               (tab-close (1+ tab-num)))))))
       (when exit-func
         (setq fn-body (append fn-body `((advice-add ',exit-func :after #',exit-fn-name)))))
       (when exit-hook
@@ -637,14 +637,14 @@ be deleted.
     `(progn
        (defvar ,tab-name ,(format "*%s*" cmd))
        (defun ,fn-name ()
-        ,fn-doc
-        (interactive)
-        (when ,tab-name
-         (if (fboundp 'tabspaces-mode)
-             (tabspaces-switch-or-create-workspace ,tab-name)
-           (tab-new)
-           (tab-rename ,tab-name)))
-        ,@sexp)
+         ,fn-doc
+         (interactive)
+         (when ,tab-name
+           (if (fboundp 'tabspaces-mode)
+               (tabspaces-switch-or-create-workspace ,tab-name)
+             (tab-new)
+             (tab-rename ,tab-name)))
+         ,@sexp)
        ,(macroexp-progn fn-body)
        #',fn-name)))
 
@@ -655,7 +655,8 @@ be deleted.
 ;; Modified from Crafted Emacs, pass `eglot-server-programs' to this function
 ;; to fill `+eglot-auto-enable-modes' with all supported modes.
 (defcustom +eglot-auto-enable-modes
-  '(c-mode c++-mode c-ts-base-mode python-base-mode rust-mode
+  '(c-mode
+    c++-mode c-ts-base-mode python-base-mode rust-mode
     rust-ts-mode cmake-mode cmake-ts-mode js-base-mode typescript-mode
     typescript-ts-base-mode json-mode json-ts-mode js-json-mode)
   "Modes for which Eglot can be automatically enabled by `+eglot-auto-enable'."
@@ -748,10 +749,10 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
         (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command))))
           (push
            `(defun ,new-cmd (&rest args)
-             ,(format "Call `%s' in a super-project context." command)
-             ,(interactive-form command) ; Use the same interactive form as the original command
-             (let ((project-find-functions '(+project-super-project-try-or-fail)))
-              (apply (function ,command) args)))
+              ,(format "Call `%s' in a super-project context." command)
+              ,(interactive-form command) ; Use the same interactive form as the original command
+              (let ((project-find-functions '(+project-super-project-try-or-fail)))
+                (apply (function ,command) args)))
            form)))
       (eval (macroexp-progn form)))))
 
@@ -800,7 +801,7 @@ It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) t
 Example:
   (+with-no-proxies! (async-shell-command \"git fetch --all\"))."
   `(let ((process-environment (cl-remove-if (lambda (env) (cl-some (lambda (prox) (string-prefix-p (format "%s_proxy=" (car prox)) env t)) (minemacs-get-enabled-proxies))) process-environment)))
-    ,@body))
+     ,@body))
 
 
 
@@ -947,14 +948,14 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   "Supported scripts, like `latin', `arabic', `han', and so on.")
 
 (defconst +face-attributes
-  '(:family :foundry :width :height :weight :slant :foreground
-    :distant-foreground :background :underline :overline :strike-through :box
-    :inverse-video :stipple :font :inherit :extend)
+  (list :family :foundry :width :height :weight :slant :foreground
+        :distant-foreground :background :underline :overline :strike-through :box
+        :inverse-video :stipple :font :inherit :extend)
   "Arguments accepted by the `set-face-attribute' function.")
 
 (defconst +font-spec-keywords
-  '(:family :foundry :width :weight :slant :adstyle :registry :dpi :size
-    :spacing :avgwidth :name :script :lang :otf)
+  (list :family :foundry :width :weight :slant :adstyle :registry :dpi :size
+        :spacing :avgwidth :name :script :lang :otf)
   "Arguments accepted by the `font-spec' function.")
 
 (defun +font--get-valid-args (script-or-face font)
