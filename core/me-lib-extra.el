@@ -143,7 +143,7 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
             old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
-      (minemacs-run-build-functions (not (called-interactively-p))))))
+      (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
 
 
 
@@ -796,6 +796,7 @@ you have `editorconfig' or `dtrt-indent' installed."
 (defvar +webjump-read-string-initial-query nil)
 
 (defun +webjump-read-string-with-initial-query (prompt)
+  "To be used as a replacement for `webjump-read-string', PROMPT."
   (let ((input (read-string (concat prompt ": ") +webjump-read-string-initial-query)))
     (unless (webjump-null-or-blank-string-p input) input)))
 
@@ -836,8 +837,8 @@ the children of class at point."
                  (+ (pos-bol 0) depth) (pos-eol 0)
                  'action (lambda (_arg)
                            (interactive)
-                           (find-file (eglot--uri-to-path uri))
-                           (goto-char (car (eglot--range-region range)))))
+                           (find-file (eglot-uri-to-path uri))
+                           (goto-char (car (eglot-range-region range)))))
                 (cl-loop for child across (plist-get node :children)
                          do (push (cons (1+ depth) child) tree)))))))
     (eglot--error "Hierarchy unavailable")))
@@ -937,9 +938,11 @@ This checks the first CHUNK of bytes, defaults to 1024."
 ;; specific other buffer taking the place of the killed buffer (in the window).
 ;;;###autoload
 (defun +kill-buffer-and-its-windows (buffer &optional msgp)
-  "Kill BUFFER and delete its windows.  Default is `current-buffer'.
-BUFFER may be either a buffer or its name (a string)."
-  (interactive (list (read-buffer "Kill buffer: " (current-buffer) 'existing) 'MSGP))
+  "Kill BUFFER and delete its windows.
+Default is `current-buffer'. When MSGP is non-nil, signal an error when
+the buffer isn't alive. BUFFER may be either a buffer or its name (a
+string)."
+  (interactive (list (read-buffer "Kill buffer: " (current-buffer) t) t))
   (setq buffer (get-buffer buffer))
   (if (buffer-live-p buffer) ; Kill live buffer only.
       (let ((wins (get-buffer-window-list buffer nil t))) ; On all frames.
@@ -949,7 +952,7 @@ BUFFER may be either a buffer or its name (a string)."
               ;; Ignore error, in particular,
               ;; "Attempt to delete the sole visible or iconified frame".
               (condition-case nil (delete-window win) (error nil))))))
-    (when msgp (user-error "Cannot kill buffer.  Not a live buffer: `%s'" buffer))))
+    (when msgp (user-error "Cannot kill buffer. Not a live buffer: `%s'" buffer))))
 
 ;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
@@ -1039,7 +1042,7 @@ See `kill-some-buffers'."
 
 ;;;###autoload
 (defun +kill-buffer-ask-if-modified (buffer)
-  "Like `kill-buffer-ask', but kills BUFFER without confirmation when unmodified.
+  "Like `kill-buffer-ask', but don't ask if BUFFER isn't modified.
 Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
   (when (or (not (buffer-modified-p buffer))
             (member (buffer-name buffer) +kill-buffer-no-ask-list)
@@ -1123,7 +1126,7 @@ This command removes new line characters between lines."
           (while (re-search-forward "\n[^\n]" nil t)
             (replace-region-contents
              (- (point) 2) (- (point) 1)
-             (lambda (&optional a b) " ")))
+             (lambda (&optional _a _b) " ")))
           (kill-new (buffer-string)))))
     (deactivate-mark)))
 
@@ -1273,5 +1276,4 @@ you might need install some of these tools.\n\n")
 
 
 (provide 'me-lib-extra)
-
 ;;; me-lib-extra.el ends here

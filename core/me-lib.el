@@ -9,6 +9,8 @@
 ;;; Code:
 
 (require 'me-vars)
+(require 'cl-lib)
+(require 'rx)
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
 (autoload 'url-filename "url-parse")
@@ -17,8 +19,6 @@
 (autoload 'vc-git-revert "vc-git")
 (autoload 'tramp-make-tramp-file-name "tramp")
 (defvar tramp-root-id-string) ; Make byte-compiler happy
-
-(require 'rx)
 
 
 
@@ -163,17 +163,6 @@ For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
   (lambda (&rest args2)
     (apply fun (append args2 args))))
 
-;; Helper functions to be used as advises
-
-(defun +apply-inhibit-messages (fn &rest args)
-  "Call FN with ARGS while to suppressing the messages in echo area.
-If `minemacs-verbose-p' is non-nil, do not print any message to
-*Messages* buffer."
-  (let ((message-log-max (and minemacs-verbose-p message-log-max)))
-    (with-temp-message (or (current-message) "")
-      (+debug! "Inhibiting messages of %s" (symbol-name fn))
-      (apply fn args))))
-
 
 
 ;;; Minemacs' core functions and macros
@@ -213,6 +202,15 @@ provided as the first argument, inhibit messages but keep writing them to the
                (inhibit-message t))
            (with-temp-message (or (current-message) "") ,@body))
       `(progn ,@body))))
+
+(defun +apply-inhibit-messages (fn &rest args) ; Helper functions to be used as advises
+  "Call FN with ARGS while to suppressing the messages in echo area.
+If `minemacs-verbose-p' is non-nil, do not print any message to
+*Messages* buffer."
+  (let ((message-log-max (and minemacs-verbose-p message-log-max)))
+    (with-temp-message (or (current-message) "")
+      (+debug! "Inhibiting messages of %s" (symbol-name fn))
+      (apply fn args))))
 
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
@@ -344,8 +342,9 @@ list is returned as-is."
                else collect (intern (format "%s-hook" (symbol-name hook)))))))
 
 (defun +setq-hook-fns (hooks rest &optional singles advice-how)
+  "HOOKS REST SINGLES ADVICE-HOW."
   (unless (or singles (= 0 (% (length rest) 2)))
-    (signal 'wrong-number-of-arguments (list #'evenp (length rest))))
+    (signal 'wrong-number-of-arguments (list #'cl-evenp (length rest))))
   (cl-loop with vars = (let ((args rest)
                              vars)
                          (while args
@@ -391,8 +390,8 @@ FUNCS can be expect receiving arguments, the `args' variable can
 be used inside VAR-VALS forms to get the arguments passed the the
 function.
 
-  (+setq-advice! #'revert-buffer :before
-    revert-buffer-function #'ignore)
+  (+setq-advice! #\\='revert-buffer :before
+    `revert-buffer-function' #\\='ignore)
 
 \(fn FUNCS HOW &rest [SYM VAL]...)"
   (declare (indent 2))
@@ -713,7 +712,8 @@ Examples:
 
 (defcustom +project-scan-dir-paths nil
   "A list of paths to scan and add to known projects list.
-It can be a list of strings (paths) or a list of (cons \"~/path\" recursive-p) to scan directories recursively."
+It can be a list of strings (paths) or a list of (\"~/path\" .
+recursive-p) to scan directories recursively."
   :group 'minemacs-project
   :type '(repeat (choice directory (cons directory boolean))))
 
@@ -1030,7 +1030,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 - :INTERPRETER-MODE add add an alist like
   `interpreter-mode-alist'.
 - :COMPANION-PACKAGES defines companion packages for some modes like
-  '((some-mode . package))."
+  \\='((some-mode . package))."
   (declare (indent 1))
   (unless (assq module minemacs-on-demand-modules-alist)
     (let ((plist nil))
@@ -1166,9 +1166,36 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
     mods))
 
 (defun +prog-mode-run-hooks ()
+  "Run the hooks in `prog-mode-hook'."
   (run-hooks 'prog-mode-hook))
 
 
+
+;; Functions
+(defun +load-user-configs (&rest configs)
+  "Load user configurations CONFIGS."
+  (dolist (conf configs)
+    (unless (memq conf minemacs-ignore-user-config)
+      (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
+        (when (file-exists-p conf-path) (+load conf-path))))))
+
+(defun +load (&rest filename-parts)
+  "Load a file, the FILENAME-PARTS are concatenated to form the file name."
+  (let ((filename (file-truename (apply #'file-name-concat filename-parts))))
+    (if (file-exists-p filename)
+        (with-demoted-errors "[MinEmacs:LoadError] %s"
+          (load filename nil (not minemacs-verbose-p)))
+      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
+
+(defun +emacs-options-p (&rest feats)
+  "Is features FEATS are enabled in this Emacs build.
+When the first argument is `:any', this returns t if at least one of the
+FEATS is available."
+  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
+    (and (funcall fn (lambda (feat) (memq feat minemacs--extra-features)) feats) t)))
+
+(define-obsolete-function-alias '+emacs-features-p '+emacs-options-p "v11.0.0")
+
 
 (provide 'me-lib)
 ;;; me-lib.el ends here

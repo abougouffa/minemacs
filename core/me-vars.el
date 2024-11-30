@@ -18,7 +18,7 @@
 (defgroup minemacs-core nil "MinEmacs core tweaks." :group 'minemacs)
 (defgroup minemacs-edit nil "MinEmacs editor tweaks." :group 'minemacs)
 (defgroup minemacs-keybinding nil "MinEmacs keybinding." :group 'minemacs)
-(defgroup minemacs-org nil "MinEmacs org-mode tweaks." :group 'minemacs)
+(defgroup minemacs-org nil "MinEmacs `org-mode' tweaks." :group 'minemacs)
 (defgroup minemacs-prog nil "MinEmacs programming stuff." :group 'minemacs)
 (defgroup minemacs-project nil "MinEmacs project stuff." :group 'minemacs)
 (defgroup minemacs-ui nil "MinEmacs UI tweaks." :group 'minemacs)
@@ -313,32 +313,6 @@ Each string is a regexp, matched against variable names to omit from
   :group 'minemacs-core
   :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
 
-;; Functions
-(defun +load-user-configs (&rest configs)
-  "Load user configurations CONFIGS."
-  (dolist (conf configs)
-    (unless (memq conf minemacs-ignore-user-config)
-      (let ((conf-path (format "%s%s.el" minemacs-config-dir conf)))
-        (when (file-exists-p conf-path) (+load conf-path))))))
-
-(defun +load (&rest filename-parts)
-  "Load a file, the FILENAME-PARTS are concatenated to form the file name."
-  (let ((filename (file-truename (apply #'file-name-concat filename-parts))))
-    (if (file-exists-p filename)
-        (with-demoted-errors "[MinEmacs:LoadError] %s"
-          (load filename nil (not minemacs-verbose-p)))
-      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
-
-(defun +emacs-options-p (&rest feats)
-  "Is features FEATS are enabled in this Emacs build.
-When the first argument is `:any', this returns t if at least one of the
-FEATS is available."
-  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
-    (and (funcall fn (lambda (feat) (memq feat minemacs--extra-features)) feats) t)))
-
-(define-obsolete-function-alias '+emacs-features-p '+emacs-options-p "v11.0.0")
-
 
 (provide 'me-vars)
-
 ;;; me-vars.el ends here
