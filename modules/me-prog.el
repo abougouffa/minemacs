@@ -172,6 +172,7 @@
    ("e" . gambol:edit-all)
    ("o" . gambol:occur))
   :init
+  (with-eval-after-load 'embark (gambol:install-embark-integration)) ; Integrate with `embark'
   (defun +gambol:occur-dwim ()
     "Call `gambol:occur' if in an Eglot managed buffer, fallback to `occur'."
     (interactive)
