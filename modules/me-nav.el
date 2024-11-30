@@ -1,4 +1,4 @@
-;;; me-search.el --- MinEmacs search & navigation packages -*- lexical-binding: t; -*-
+;;; me-nav.el --- MinEmacs search & navigation packages -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2024  Abdelhak Bougouffa
 
@@ -88,5 +88,5 @@
   (+super-project-define-commands 'fzf '+fzf-project))
 
 
-(provide 'me-search)
-;;; me-search.el ends here
+(provide 'me-nav)
+;;; me-nav.el ends here
