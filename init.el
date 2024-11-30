@@ -20,26 +20,29 @@
 
 ;; Load and hooks order:
 ;; - `~/.emacs.d/early-init.el`
-;; - `$MINEMACSDIR/early-config.el` (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
-;; - `$MINEMACSDIR/local/early-config.el` (unless disabled)
+;;   * `~/.emacs.d/core/me-vars.el`
+;;   * `~/.emacs.d/core/me-lib.el`
+;; - `$MINEMACSDIR/early-config.el`             (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
+;; - `$MINEMACSDIR/local/early-config.el`       (unless disabled)
 ;; - `~/.emacs.d/init.el`
 ;;   * `before-init-hook'
-;;   * `~/.emacs.d/core/me-vars.el`
-;;   * `~/.emacs.d/core/me-loaddefs.el`
-;;   * `$MINEMACSDIR/init-tweaks.el` (unless disabled)
-;;   * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
-;;   * `$MINEMACSDIR/modules.el` (unless disabled)
-;;   * `$MINEMACSDIR/local/modules.el` (unless disabled)
-;;   * `~/.emacs.d/core/<module>.el`
-;;   * `~/.emacs.d/modules/<module>.el` (for module in `minemacs-modules')
-;;   * `minemacs-after-loading-modules-hook'
+;;   * `~/.emacs.d/core/me-vars.el`             (unless already loaded by "early-init.el")
 ;;   * `$MINEMACSDIR/custom-vars.el`
-;;   * `$MINEMACSDIR/config.el` (unless disabled)
-;;   * `$MINEMACSDIR/local/config.el` (unless disabled)
+;;   * `~/.emacs.d/core/me-lib.el`              (unless already loaded by "early-init.el")
+;;   * `~/.emacs.d/core/me-loaddefs.el`
+;;   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
+;;   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
+;;   * `$MINEMACSDIR/modules.el`                (unless disabled)
+;;   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
+;;   * `~/.emacs.d/core/<module>.el`
+;;   * `~/.emacs.d/modules/<module>.el`         (for module in `minemacs-modules')
+;;   * `minemacs-after-loading-modules-hook'
+;;   * `$MINEMACSDIR/config.el`                 (unless disabled)
+;;   * `$MINEMACSDIR/local/config.el`           (unless disabled)
 ;;   * `after-init-hook'
 ;;   * `emacs-startup-hook'
 ;;   * `minemacs-after-startup-hook'
-;;     + `minemacs-lazy-hook' (delayed)
+;;     + `minemacs-lazy-hook'                   (hooks are incrementally loaded via a timer)
 
 ;; Special hooks defined with `+make-first-file-hook!'
 ;; - `minemacs-first-file-hook'
@@ -58,14 +61,7 @@
       (add-to-list 'load-path dir)
       (require 'benchmark-init)
       (benchmark-init/activate)
-
-      (defun +benchmark-init--desactivate-and-show-h ()
-        (benchmark-init/deactivate)
-        (require 'benchmark-init-modes)
-        (benchmark-init/show-durations-tree))
-
-      (with-eval-after-load 'me-vars
-        (add-hook 'minemacs-lazy-hook #'+benchmark-init--desactivate-and-show-h 99)))))
+      (add-hook 'minemacs-lazy-hook (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99))))
 
 ;; Check if Emacs version is supported.
 (let ((min-ver 29)
@@ -79,32 +75,28 @@
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
 ;; Store the current value so we can reset it after Emacs startup.
 (put 'file-name-handler-alist 'original-value (default-toplevel-value 'file-name-handler-alist))
-;; Make sure the new value survives any current let-binding.
-(set-default-toplevel-value 'file-name-handler-alist nil)
+(set-default-toplevel-value 'file-name-handler-alist nil) ; Make sure the new value survives any current let-binding.
 ;; After Emacs startup, we restore `file-name-handler-alist' while conserving
 ;; the potential new elements made during startup.
-(defun +mineamcs--restore-file-name-handler-alist-h ()
-  (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value)))))
-(add-hook 'emacs-startup-hook '+mineamcs--restore-file-name-handler-alist-h 99)
+(add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
 
-;; HACK: At this point, MinEmacs variables defined in `me-vars' should be
-;; already loaded (in "early-init.el"). However, we double-check here and load
-;; them if necessary in case Emacs has been loaded directly from "init.el"
-;; without passing by "early-init.el". This can happen when we are running in a
-;; `me-org-export-async-init' context, or if we use some bootstrapping mechanism
+(dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
+  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
+
+;; NOTE: At this point, MinEmacs variables defined in `me-vars' should be
+;; already loaded (in "early-init.el"). However, we load it here if necessary in
+;; case Emacs has been loaded directly from "init.el" without passing by
+;; "early-init.el". This can happen when we use some bootstrapping mechanism
 ;; like Chemacs2.
-(unless (featurep 'me-vars)
-  (load (expand-file-name "core/me-vars.el" (file-name-directory (file-truename load-file-name))) nil t))
-
-;; Add some of MinEmacs' directories to `load-path'.
-(setq load-path (append (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-modules-dir) load-path))
-
-;; Load MinEmacs' core library
-(require 'me-lib)
+(require 'me-vars)
 
 ;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
-(setq user-emacs-directory minemacs-local-dir)
+(setq user-emacs-directory minemacs-local-dir
+      custom-file (concat minemacs-config-dir "custom-vars.el"))
+(when (file-exists-p custom-file) (+load custom-file))
+
+(require 'me-lib) ; Load MinEmacs' core library
 
 (setq
  ;; Enable debugging on error when Emacs if needed
@@ -135,10 +127,7 @@
   (interactive)
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
   (loaddefs-generate
-   (list minemacs-core-dir
-         minemacs-elisp-dir
-         minemacs-extras-dir
-         minemacs-on-demand-modules-dir)
+   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir)
    minemacs-loaddefs-file))
 
 ;; Generate the loaddefs file if needed
@@ -159,10 +148,9 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
-;; The `gc-cons-threshold' has been set in "early-init.el" to a ridiculously
-;; high value (`most-positive-fixnum') to reduce the number of garbage
-;; collections during startup, it will be overwritten by the following hook, so
-;; we place it at the end of `minemacs-lazy-hook' to maximize the benefit.
+;; HACK: The `gc-cons-threshold' has been set in "early-init.el" to
+;; `most-positive-fixnum' to avoid garbage collection during startup. We will
+;; overwrite it at the end of `minemacs-lazy-hook' to maximize the benefit.
 (defun +minemacs--gc-tweaks-h ()
   "Better garbage collection settings, no GCMH required.
 See: https://zenodo.org/records/10213384."
@@ -174,21 +162,20 @@ See: https://zenodo.org/records/10213384."
 (defun +minemacs--loaded-h ()
   "This is MinEmacs' synchronization point.
 
-To achieve fast Emacs startup, we try to defer loading most of
-the packages until this hook is executed. This is managed by the
-`minemacs-loaded' and `minemacs-lazy' features.
+To achieve fast startup, we try to defer loading most of the packages
+until this hook is executed. This is managed by the `minemacs-loaded'
+and `minemacs-lazy' features.
 
-After loading Emacs, the `emacs-startup-hook' gets executed, we
-use this hook to profile the startup time, and load the theme.
-Lastly we require the `minemacs-loaded' synchronization module,
-which runs the `minemacs-after-startup-hook' hooks and provide
-`minemacs-loaded' so the packages loaded with `:after
-minemacs-loaded' can be loaded.
+After loading Emacs, the `emacs-startup-hook' gets executed, we use this
+hook to profile the startup time, and load the theme. Lastly we require
+the `minemacs-loaded' synchronization module, which runs the
+`minemacs-after-startup-hook' hooks and provide `minemacs-loaded' so the
+packages loaded with `:after minemacs-loaded' can be loaded.
 
-The `minemacs-loaded' will require `minemacs-lazy', which
-incrementally run the hooks in `minemacs-lazy-hook' after
-startup, and at the end, provide the `minemacs-lazy' feature so
-the packages loaded with `:after minemacs-lazy' can be loaded."
+The `minemacs-loaded' will require `minemacs-lazy', which incrementally
+run the hooks in `minemacs-lazy-hook' after startup, and at the end,
+provide the `minemacs-lazy' feature so the packages loaded with `:after
+minemacs-lazy' can be loaded."
   (+info! "Loaded Emacs%s in %s, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "") (emacs-init-time) gc-elapsed gcs-done)
   (unless (featurep 'me-org-export-async-init) (+load-theme))
   (require 'minemacs-loaded))
@@ -205,36 +192,25 @@ the packages loaded with `:after minemacs-lazy' can be loaded."
 
 ;; ========= Load MinEmacs packages and user customization =========
 ;; When running in an async Org export context, the used modules are set in
-;; modules/extras/me-org-export-async-init.el, so we must not override them with
-;; the user's enabled modules.
+;; "modules/extras/me-org-export-async-init.el", so we must not override them
+;; with the user's enabled modules.
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
-           (setq minemacs-not-lazy-p t))
+           ;; No need to load all modules, load only these related to Org
+           (setq minemacs-modules '(me-org me-latex me-project me-prog me-emacs-lisp)
+                 minemacs-not-lazy-p t)) ; Don't be lazy
   ;; Load the default list of enabled modules `minemacs-modules'
-  (+load minemacs-core-dir "me-modules.el")
   (+load-user-configs 'modules 'local/modules))
 
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules.
-(when minemacs-load-all-modules-p
-  (setq minemacs-modules (minemacs-modules t)))
+(when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
 ;; Load modules
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-builtin)))
 (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
-
-;; Run hooks
 (run-hooks 'minemacs-after-loading-modules-hook)
-
-;; Write user custom variables to separate file instead of "init.el"
-(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
-
-;; Load the custom variables file if it exists
-(when (file-exists-p custom-file) (+load custom-file))
-
-;; Load user configuration
-(+load-user-configs 'config 'local/config)
-
+(+load-user-configs 'config 'local/config) ; Load user configuration
 
 (+log! "Loaded init.el")
 

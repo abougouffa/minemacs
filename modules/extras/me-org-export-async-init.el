@@ -22,9 +22,6 @@
 ;; This signals that we are running in a org-export-async context
 (provide 'me-org-export-async-init)
 
-;; Load only some essential modules
-(setq minemacs-modules '(me-org me-latex me-project me-prog me-emacs-lisp))
-
 (load (concat user-emacs-directory "early-init.el") nil t)
 (load (concat user-emacs-directory "init.el") nil t)
 

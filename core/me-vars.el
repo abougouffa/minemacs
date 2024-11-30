@@ -204,6 +204,48 @@ it automatically."
   :group 'minemacs-core
   :type '(repeat (cons string string)))
 
+(defcustom minemacs-modules
+  '(;; me-ai
+    ;; me-biblio
+    ;; me-calendar
+    me-checkers
+    me-completion
+    me-daemon
+    me-debug
+    me-docs
+    me-editor
+    me-emacs-lisp
+    ;; me-email
+    ;; me-embedded
+    me-extra
+    me-files
+    ;; me-fun
+    me-god
+    ;; me-gtd
+    ;; me-lifestyle
+    ;; me-math
+    ;; me-media
+    me-multi-cursors
+    me-natural-langs
+    me-notes
+    me-org
+    me-prog
+    me-project
+    ;; me-robot
+    ;; me-rss
+    me-search
+    ;; me-services
+    me-snippets
+    ;; me-tags
+    me-tools
+    me-tty
+    me-ui
+    me-vc
+    me-window)
+  "MinEmacs enabled modules."
+  :group 'minemacs-core
+  :type '(repeat symbol))
+
 (defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
 (defvar minemacs-build-functions nil
   "Special hook for build functions that are run after completing package updates.")
