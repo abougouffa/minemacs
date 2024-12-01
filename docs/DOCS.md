@@ -4,26 +4,29 @@
 
 Load and hooks order:
 - `~/.emacs.d/early-init.el`
-- `$MINEMACSDIR/early-config.el` (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
-- `$MINEMACSDIR/local/early-config.el` (unless disabled)
+  * `~/.emacs.d/core/me-vars.el`
+  * `~/.emacs.d/core/me-lib.el`
+- `$MINEMACSDIR/early-config.el`             (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
+- `$MINEMACSDIR/local/early-config.el`       (unless disabled)
 - `~/.emacs.d/init.el`
   * `before-init-hook`
-  * `~/.emacs.d/core/me-vars.el`
-  * `~/.emacs.d/core/me-loaddefs.el`
-  * `$MINEMACSDIR/init-tweaks.el` (unless disabled)
-  * `$MINEMACSDIR/local/init-tweaks.el` (unless disabled)
-  * `$MINEMACSDIR/modules.el` (unless disabled)
-  * `$MINEMACSDIR/local/modules.el` (unless disabled)
-  * `~/.emacs.d/core/<module>.el`
-  * `~/.emacs.d/modules/<module>.el` (for module in `minemacs-modules`)
-  * `minemacs-after-loading-modules-hook`
+  * `~/.emacs.d/core/me-vars.el`             (unless already loaded by "early-init.el")
   * `$MINEMACSDIR/custom-vars.el`
-  * `$MINEMACSDIR/config.el` (unless disabled)
-  * `$MINEMACSDIR/local/config.el` (unless disabled)
+  * `~/.emacs.d/core/me-lib.el`              (unless already loaded by "early-init.el")
+  * `~/.emacs.d/core/me-loaddefs.el`
+  * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
+  * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
+  * `$MINEMACSDIR/modules.el`                (unless disabled)
+  * `$MINEMACSDIR/local/modules.el`          (unless disabled)
+  * `~/.emacs.d/core/<module>.el`
+  * `~/.emacs.d/modules/<module>.el`         (for module in `minemacs-modules`)
+  * `minemacs-after-loading-modules-hook`
+  * `$MINEMACSDIR/config.el`                 (unless disabled)
+  * `$MINEMACSDIR/local/config.el`           (unless disabled)
   * `after-init-hook`
   * `emacs-startup-hook`
   * `minemacs-after-startup-hook`
-    + `minemacs-lazy-hook` (delayed)
+    + `minemacs-lazy-hook`                   (hooks are incrementally loaded via a timer)
 
 Special hooks defined with `+make-first-file-hook!`
 - `minemacs-first-file-hook`
@@ -100,6 +103,10 @@ These will set the environment variables "no_proxy", "ftp_proxy", ...
 When set in "early-config.el" or in "init-tweaks.el", MinEmacs will enable
 it automatically.
 
+#### `minemacs-modules`
+
+MinEmacs enabled modules.
+
 #### `+env-file`
 
 The file in which the environment variables will be saved.
@@ -157,7 +164,8 @@ Enable or disable opening suitable files in `hexl-mode`.
 #### `+project-scan-dir-paths`
 
 A list of paths to scan and add to known projects list.
-It can be a list of strings (paths) or a list of (cons "~/path" recursive-p) to scan directories recursively.
+It can be a list of strings (paths) or a list of ("~/path" .
+recursive-p) to scan directories recursively.
 
 #### `+super-project-root-markers`
 
@@ -270,20 +278,6 @@ Automatically convert Org keywords and properties to lowercase on save.
 
 Generate MinEmacs' loaddefs file.
 
-#### `(+load-user-configs &rest CONFIGS)`
-
-Load user configurations CONFIGS.
-
-#### `(+load &rest FILENAME-PARTS)`
-
-Load a file, the FILENAME-PARTS are concatenated to form the file name.
-
-#### `(+emacs-options-p &rest FEATS)`
-
-Is features FEATS are enabled in this Emacs build.
-When the first argument is `:any`, this returns t if at least one of the
-FEATS is available.
-
 #### `(+with-delayed! &rest BODY)` (macro)
 
 Delay evaluating BODY with priority 0 (high priority).
@@ -357,12 +351,6 @@ Return t when EXPR is quoted.
 
 Like `apply-partially`, but apply the ARGS to the right of FUN.
 
-#### `(+apply-inhibit-messages FN &rest ARGS)`
-
-Call FN with ARGS while to suppressing the messages in echo area.
-If `minemacs-verbose-p` is non-nil, do not print any message to
-*Messages* buffer.
-
 #### `(+error! MSG &rest VARS)` (macro)
 
 Log error MSG and VARS using `message`.
@@ -385,6 +373,12 @@ Suppress new messages temporarily while evaluating BODY.
 This inhebits both the echo area and the `*Messages*` buffer. If `:log` is
 provided as the first argument, inhibit messages but keep writing them to the
 `*Messages*` buffer.
+
+#### `(+apply-inhibit-messages FN &rest ARGS)`
+
+Call FN with ARGS while to suppressing the messages in echo area.
+If `minemacs-verbose-p` is non-nil, do not print any message to
+*Messages* buffer.
 
 #### `(+load-theme)`
 
@@ -427,6 +421,10 @@ If a mode is quoted, it is left as is. If the entire HOOKS list is quoted, the
 list is returned as-is.
   This function does not change global state, including the match data.
 
+#### `(+setq-hook-fns HOOKS REST &optional SINGLES ADVICE-HOW)`
+
+HOOKS REST SINGLES ADVICE-HOW.
+
 #### `(+setq-hook! HOOKS &rest [SYM VAL]...)` (macro)
 
 Set buffer-local variables on HOOKS.
@@ -443,7 +441,7 @@ FUNCS can be expect receiving arguments, the `args` variable can
 be used inside VAR-VALS forms to get the arguments passed the the
 function.
   (+setq-advice! #'revert-buffer :before
-    revert-buffer-function #'ignore)
+    `revert-buffer-function` #'ignore)
 
 #### `(+unsetq-hook! HOOKS &rest VAR1 VAR2...)` (macro)
 
@@ -636,6 +634,24 @@ Try to automatically enable a mode for FILENAME.
 #### `(minemacs-on-demand-try-interpreter-mode)`
 
 Try to automatically enable a mode based on the `:interpreter-mode` value.
+
+#### `(+prog-mode-run-hooks)`
+
+Run the hooks in `prog-mode-hook`.
+
+#### `(+load-user-configs &rest CONFIGS)`
+
+Load user configurations CONFIGS.
+
+#### `(+load &rest FILENAME-PARTS)`
+
+Load a file, the FILENAME-PARTS are concatenated to form the file name.
+
+#### `(+emacs-options-p &rest FEATS)`
+
+Is features FEATS are enabled in this Emacs build.
+When the first argument is `:any`, this returns t if at least one of the
+FEATS is available.
 
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
@@ -832,6 +848,10 @@ Go to line N, like `goto-line` but for Lisp code.
 
 Add the ;;;###autoload to region (BEG . END).
 
+#### `(+webjump-read-string-with-initial-query PROMPT)`
+
+To be used as a replacement for `webjump-read-string`, PROMPT.
+
 #### `(+webjump)`
 
 Like `webjump`, with initial query filled from `+region-or-thing-at-point`.
@@ -871,8 +891,10 @@ Activate `hexl-mode` if relevant for the current buffer.
 
 #### `(+kill-buffer-and-its-windows BUFFER &optional MSGP)`
 
-Kill BUFFER and delete its windows.  Default is `current-buffer`.
-BUFFER may be either a buffer or its name (a string).
+Kill BUFFER and delete its windows.
+Default is `current-buffer`. When MSGP is non-nil, signal an error when
+the buffer isn't alive. BUFFER may be either a buffer or its name (a
+string).
 
 #### `(+region-to-buffer START END BUFFER ARG)`
 
@@ -904,7 +926,7 @@ See `kill-some-buffers`.
 
 #### `(+kill-buffer-ask-if-modified BUFFER)`
 
-Like `kill-buffer-ask`, but kills BUFFER without confirmation when unmodified.
+Like `kill-buffer-ask`, but don't ask if BUFFER isn't modified.
 Kill without asking for buffer names in `+kill-buffer-no-ask-list`.
 
 #### `(+delete-extra-windows-for-buffer)`

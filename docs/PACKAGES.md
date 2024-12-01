@@ -141,6 +141,18 @@
 * `reverso`: Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
 * `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
 
+## `me-nav`
+* `avy`: Jump to things in Emacs tree-style
+* `avy-zap`: Zap to char using `avy`
+* `treesit-jump`: Jump around your source code in emacs using `treesit` and `avy`
+* `dogears`: Never lose your place in Emacs again
+* `goto-last-change`: An Emacs package to move point through `buffer-undo-list` positions
+* `isearch+`: Extensions to `isearch`
+* `phi-search`: Another incremental search command, compatible with `multiple-cursors`
+* `rg`: Emacs search tool based on "ripgrep"
+* `affe`: Asynchronous fuzzy finder for Emacs
+* `fzf`: An Emacs front-end for "fzf"
+
 ## `me-notes`
 * `denote`: Simple notes for Emacs with an efficient file-naming scheme
 * `consult-denote`: Use Consult in tandem with Denote
@@ -194,17 +206,6 @@
 ## `me-rss`
 * `elfeed`: An Emacs RSS web feeds client
 * `elfeed-protocol`: Extra `elfeed` protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
-
-## `me-search`
-* `avy`: Jump to things in Emacs tree-style
-* `avy-zap`: Zap to char using `avy`
-* `dogears`: Never lose your place in Emacs again
-* `goto-last-change`: An Emacs package to move point through `buffer-undo-list` positions
-* `isearch+`: Extensions to `isearch`
-* `phi-search`: Another incremental search command, compatible with `multiple-cursors`
-* `rg`: Emacs search tool based on "ripgrep"
-* `affe`: Asynchronous fuzzy finder for Emacs
-* `fzf`: An Emacs front-end for "fzf"
 
 ## `me-services`
 * `jiralib`: Provide connectivity to Jira SOAP/REST services
@@ -542,6 +543,8 @@
 ## `on-demand/me-nix`
 * `nix-mode`: Major mode for editing Nix files
 * `nix-ts-mode`: Tree-sitter based major mode for editing Nix files
+
+## `on-demand/me-nushell`
 
 ## `on-demand/me-ocaml`
 * `tuareg`: Major mode and REPL for the OCaml programming language
