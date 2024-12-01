@@ -8,9 +8,12 @@
 
 ;;; Code:
 
-;; Load MinEmacs variables and basic  from the `me-vars' core module.
 (add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename (or load-file-name buffer-file-name)))))
 (require 'me-vars)
+
+(setq package-user-dir (expand-file-name "elpa" minemacs-local-dir)
+      package-enable-at-startup t)
+
 (require 'me-lib)
 (require 'package)
 (require 'package-vc nil :noerror)
@@ -20,9 +23,6 @@
  gc-cons-threshold most-positive-fixnum
  ;; Prefer loading newer files
  load-prefer-newer t
- ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup t
- package-user-dir (concat minemacs-local-dir "package-archives")
  package-vc-register-as-project nil
  ;; Remove some unneeded UI elements
  default-frame-alist '((tool-bar-lines . 0)

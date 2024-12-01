@@ -52,20 +52,10 @@
 ;;; Extra utilities
 ;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
 (use-package once
-  :vc (:url "https://github.com/emacs-magus/once" :rev "a6f950c29c846a50018bc63695f24f611c1a58be"))
+  :vc (:url "https://github.com/emacs-magus/once" :rev "a6f950c29c846a50018bc63695f24f611c1a58be" :ignored-files ("tests/*")))
 
 (use-package satch
   :vc (:url "https://github.com/emacs-magus/satch.el" :rev "77993b711cccf16702fdc8d21d8f8ba10d7bd0fb"))
-
-;; HACK+BUG: Prevent `package' from failing when looking for depdendencies that
-;; doesn't have proper versions
-(advice-add
- 'version-to-list :around
- (satch-defun +version-to-list--no-fail:around-a (fn ver)
-   (condition-case err
-       (funcall fn ver)
-     (error (message "`version-to-list': %s" (error-message-string err))
-            nil))))
 
 
 (provide 'me-bootstrap)

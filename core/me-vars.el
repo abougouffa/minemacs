@@ -80,7 +80,7 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
           (const :tag "Debug" 4)))
 
 ;; Derive the root directory from this file path
-(defconst minemacs-root-dir (abbreviate-file-name (file-name-directory (directory-file-name (file-name-directory (file-truename load-file-name))))))
+(defconst minemacs-root-dir (expand-file-name (file-name-directory (directory-file-name (file-name-directory (file-truename load-file-name))))))
 (defconst minemacs-core-dir (concat minemacs-root-dir "core/"))
 (defconst minemacs-assets-dir (concat minemacs-root-dir "assets/"))
 (defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
@@ -92,11 +92,12 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
 (defconst minemacs-extra-packages-dir (concat minemacs-local-dir "extra-packages/"))
-(defconst minemacs-config-dir (file-name-as-directory
-                               (or (getenv "MINEMACS_DIR")
-                                   (getenv "MINEMACSDIR")
-                                   (and (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/")
-                                   (concat minemacs-root-dir "user-config/")))
+(defconst minemacs-config-dir (expand-file-name
+                               (file-name-as-directory
+                                (or (getenv "MINEMACS_DIR")
+                                    (getenv "MINEMACSDIR")
+                                    (and (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/")
+                                    (concat minemacs-root-dir "user-config/"))))
   "MinEmacs user customization directory.")
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
@@ -110,13 +111,6 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst sys/arch (intern (car (split-string system-configuration "-")))
   "The system's architecture read from `system-configuration'.
 It return a symbol like `x86_64', `aarch64', `armhf', ...")
-
-(make-obsolete-variable 'os/android '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/linux '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/bsd '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/win '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/mac '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'sys/arch '+emacs-options-p "v11.0.0")
 
 (defconst minemacs--extra-features
   (append

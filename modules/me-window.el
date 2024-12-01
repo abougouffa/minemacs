@@ -43,6 +43,13 @@
    (reusable-frames . visible) ;;
    (window-height . 10)))
 
+;; Don't show the *Compile-Log* buffer
+(add-to-list
+ 'display-buffer-alist
+ `(,(rx bol "*" "Compile-Log" "*" eol)
+   (display-buffer-no-window)
+   (allow-no-window . t)))
+
 ;; Show dictionary definition and completion buffer on the right side
 (add-to-list
  'display-buffer-alist
@@ -65,10 +72,10 @@
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*"
-     (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
-      "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
-      (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
-     "*" eol)
+        (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
+            "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
+            (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
+        "*" eol)
    (display-buffer-in-side-window)
    (side . right)
    (dedicated . t) ;; Close when finished

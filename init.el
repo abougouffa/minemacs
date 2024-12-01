@@ -71,12 +71,6 @@
   (when (< emacs-major-version recommended-ver)
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
-;; Write user custom variables to separate file instead of "init.el"
-(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
-
-;; Load the custom variables file if it exists
-(when (file-exists-p custom-file) (+load custom-file))
-
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
 ;; Store the current value so we can reset it after Emacs startup.
@@ -87,7 +81,7 @@
 (add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
 
 (dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
-  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
+  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename (or load-file-name buffer-file-name))))))
 
 ;; NOTE: At this point, MinEmacs variables defined in `me-vars' should be
 ;; already loaded (in "early-init.el"). However, we load it here if necessary in
@@ -103,6 +97,12 @@
 (when (file-exists-p custom-file) (load custom-file))
 
 (require 'me-lib) ; Load MinEmacs' core library
+
+;; Write user custom variables to separate file instead of "init.el"
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
+
+;; Load the custom variables file if it exists
+(when (file-exists-p custom-file) (+load custom-file))
 
 (setq
  ;; Enable debugging on error when Emacs if needed

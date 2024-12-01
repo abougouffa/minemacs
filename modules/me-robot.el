@@ -10,7 +10,7 @@
 
 ;; A package to ease the interaction ROS nodes and the development of ROS software
 (use-package ros
-  :vc (:url "https://github.com/mbeutelspacher/ros.el")
+  :ensure t
   :commands (ros-set-network-setting ros-set-workspace ros-go-to-package ros-clean-cache))
 
 
