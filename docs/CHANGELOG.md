@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.0.1](https://github.com/abougouffa/minemacs/compare/db487f79dfa03f64e3ad65c2eb850241517eba8d..v12.0.1) - 2024-12-01
+#### Bug Fixes
+- **(mu4e)** refactor and fix some deprecated stuff - ([c303c96](https://github.com/abougouffa/minemacs/commit/c303c96cd0880ef30022a120e8f0da5e27bf7e26)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** load the right LaTeX module when exporting Org files - ([db487f7](https://github.com/abougouffa/minemacs/commit/db487f79dfa03f64e3ad65c2eb850241517eba8d)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- some code formatting - ([8138a9a](https://github.com/abougouffa/minemacs/commit/8138a9a943c9b16e007e60d75ce874ab72a62ff4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.0.0](https://github.com/abougouffa/minemacs/compare/c66f43b94c799b49c2f3cdb7bbf5be1c6bff1d89..v12.0.0) - 2024-12-01
 #### Bug Fixes
 - **(core)** rename the module `me-search` to `me-nav` - ([39c9ea7](https://github.com/abougouffa/minemacs/commit/39c9ea752fc17f30e73b6fb704a280c80cb25a8a)) - [@abougouffa](https://github.com/abougouffa)
