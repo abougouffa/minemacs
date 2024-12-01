@@ -197,7 +197,7 @@ minemacs-lazy' can be loaded."
 (if (featurep 'me-org-export-async-init)
     (progn (message "Loading \"init.el\" in an org-export-async context.")
            ;; No need to load all modules, load only these related to Org
-           (setq minemacs-modules '(me-org me-latex me-project me-prog me-emacs-lisp)
+           (setq minemacs-modules '(me-org me-project me-prog me-emacs-lisp on-demand/me-latex)
                  minemacs-not-lazy-p t)) ; Don't be lazy
   ;; Load the default list of enabled modules `minemacs-modules'
   (+load-user-configs 'modules 'local/modules))
