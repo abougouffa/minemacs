@@ -94,7 +94,7 @@
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
 (setq user-emacs-directory minemacs-local-dir
       custom-file (concat minemacs-config-dir "custom-vars.el"))
-(when (file-exists-p custom-file) (+load custom-file))
+(when (file-exists-p custom-file) (load custom-file))
 
 (require 'me-lib) ; Load MinEmacs' core library
 
