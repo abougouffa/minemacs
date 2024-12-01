@@ -10,11 +10,15 @@
 
 ;;; Code:
 
+(require 'mu4e)
+
 (defcustom +mu4e-gmail-accounts nil
   "Gmail accounts that do not contain \"gmail\" in address and maildir.
-An alist of Gmail addresses of the format \((\"username@domain.com\" . \"account-maildir\"))
-to which Gmail integrations (behind the `+gmail' flag of the `mu4e' module) should be applied.
-See `+mu4e-msg-gmail-p' and `mu4e-sent-messages-behavior'."
+An alist of Gmail addresses of the format
+\\='((\"username@domain.com\" . \"account-maildir\"))
+to which Gmail integrations (behind the `+gmail' flag of the `mu4e'
+module) should be applied. See `+mu4e-msg-gmail-p' and
+`mu4e-sent-messages-behavior'."
   :group 'minemacs-mu4e
   :type '(repeat (cons string string)))
 

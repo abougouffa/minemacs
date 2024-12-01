@@ -8,6 +8,11 @@
 
 ;;; Code:
 
+(require 'mu4e)
+(require 'me-mu4e-gmail)
+
+(autoload 'nerd-icons-icon-for-file "nerd-icons")
+
 (defcustom +mu4e-account-aliases nil
   "Per-account alias list."
   :group 'minemacs-mu4e
@@ -19,34 +24,6 @@
   :type '(choice string (repeat string)))
 
 ;; Some of these functions are adapted from Doom Emacs
-
-(defun +mu4e-view-select-attachment ()
-  "Use `completing-read' to select a single attachment.
-Acts like a singular `mu4e-view-save-attachments', without the saving."
-  (if-let* ((parts (delq nil (mapcar
-                              (lambda (part)
-                                (when (assoc "attachment" (cdr part))
-                                  part))
-                              (mu4e--view-gather-mime-parts))))
-            (files (+mu4e-part-selectors parts)))
-      (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
-    (user-error (mu4e-format "No attached files found"))))
-
-(defun +mu4e-view-open-attachment ()
-  "Select an attachment, and open it."
-  (interactive)
-  (mu4e--view-open-file
-   (mu4e--view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
-
-(defun +mu4e-view-select-mime-part-action ()
-  "Select a MIME part, and perform an action on it."
-  (interactive)
-  (let ((labeledparts (+mu4e-part-selectors (mu4e--view-gather-mime-parts))))
-    (if labeledparts
-        (mu4e-view-mime-part-action
-         (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
-                      labeledparts)))
-      (user-error (mu4e-format "No parts found")))))
 
 (defun +mu4e-part-selectors (parts)
   "Generate selection strings for PARTS."
@@ -73,10 +50,7 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
           (push (cons
                  (concat
                   (propertize (format "%-2s " (plist-get pinfo :index)) 'face '(bold font-lock-type-face))
-                  (cond ((featurep 'nerd-icons)
-                         (nerd-icons-icon-for-file (or (plist-get pinfo :filename) "")))
-                        ((featurep 'all-the-icons)
-                         (all-the-icons-icon-for-file (or (plist-get pinfo :filename) ""))))
+                  (nerd-icons-icon-for-file (or (plist-get pinfo :filename) ""))
                   (format fnamefmt (or (plist-get pinfo :filename)
                                        (propertize (plist-get pinfo :type) 'face '(italic font-lock-doc-face))))
                   (format sizefmt (propertize (plist-get pinfo :size) 'face 'font-lock-builtin-face))
@@ -84,6 +58,34 @@ Acts like a singular `mu4e-view-save-attachments', without the saving."
                  (plist-get pinfo :part))
                 labeledparts))
         labeledparts)))
+
+(defun +mu4e-view-select-attachment ()
+  "Use `completing-read' to select a single attachment.
+Acts like a singular `mu4e-view-save-attachments', without the saving."
+  (if-let* ((parts (delq nil (mapcar
+                              (lambda (part)
+                                (when (assoc "attachment" (cdr part))
+                                  part))
+                              (mu4e-view-mime-parts))))
+            (files (+mu4e-part-selectors parts)))
+      (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
+    (user-error (mu4e-format "No attached files found"))))
+
+(defun +mu4e-view-open-attachment ()
+  "Select an attachment, and open it."
+  (interactive)
+  (mu4e--view-open-file
+   (mu4e--view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
+
+(defun +mu4e-view-select-mime-part-action ()
+  "Select a MIME part, and perform an action on it."
+  (interactive)
+  (let ((labeledparts (+mu4e-part-selectors (mu4e-view-mime-parts))))
+    (if labeledparts
+        (mu4e-view-mime-part-action
+         (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
+                      labeledparts)))
+      (user-error (mu4e-format "No parts found")))))
 
 (defun +mu4e-view-save-all-attachments (&optional ask-dir)
   "Save all files from the current view buffer.
@@ -185,9 +187,10 @@ for :EXTRA-LINES."
     (save-excursion (message-add-header (format "BCC: %s\n" (string-join (ensure-list +mu4e-auto-bcc-address) ", "))))))
 
 (defun +mu4e--set-from-address-h ()
-  "If the user defines multiple `+mu4e-account-aliases' for email aliases
-within a context, set `user-mail-address' to an alias found in the 'To' or
-'From' headers of the parent message if present, or prompt the user for a
+  "Choose the sender alias.
+If the user defines multiple `+mu4e-account-aliases' for email aliases
+within a context, set `user-mail-address' to an alias found in the TO or
+FROM headers of the parent message if present, or prompt the user for a
 preferred alias"
   (when-let* ((addresses (if (or mu4e-contexts +mu4e-account-aliases)
                              (cons user-mail-address ;; the main address
@@ -220,7 +223,7 @@ preferred alias"
         (message "Sending...")))))
 
 (defun +mu4e-save-message-at-point (&optional msg)
-  "Copy message at point to somewhere else as <date>_<subject>.eml."
+  "Copy MSG at point to somewhere else as <date>_<subject>.eml."
   (interactive)
   (let* ((msg (or msg (mu4e-message-at-point)))
          (target (format "%s_%s.eml"
