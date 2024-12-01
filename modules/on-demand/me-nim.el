@@ -13,13 +13,9 @@
   :auto-mode '(("\\.nim\\'" . nim-mode) ("\\.nim\\(ble\\|s\\)\\'" . nimscript-mode-maybe)))
 
 
-(push 'flycheck-nimsuggest straight-built-in-pseudo-packages)
-
 ;; A major mode for the Nim programming language
 (use-package nim-mode
   :ensure t)
-
-(cl-callf2 remq 'flycheck-nimsuggest straight-built-in-pseudo-packages)
 
 
 (provide 'on-demand/me-nim)

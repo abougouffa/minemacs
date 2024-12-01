@@ -10,12 +10,8 @@
 
 
 ;; PlatformIO integration for Emacs
-(push 'projectile straight-built-in-pseudo-packages)
-
 (use-package platformio-mode
   :ensure t)
-
-(cl-callf2 remove 'projectile straight-built-in-pseudo-packages)
 
 
 (provide 'obsolete/me-platformio)

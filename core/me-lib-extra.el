@@ -30,19 +30,11 @@ Call functions without asking when DONT-ASK-P is non-nil."
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
   ;; Load all modules
+  (user-error "Not yet implemented for `package'")
   (message "[MinEmacs]: Loading all modules and on-demand modules")
   (apply #'minemacs-load-module (minemacs-modules t))
 
-  ;; Update straight recipe repositories
-  (straight-pull-recipe-repositories)
-
-  ;; Run `straight's update cycle, taking into account the explicitly pinned versions
-  (message "[MinEmacs]: Pulling packages")
-  (straight-x-pull-all)
-  (message "[MinEmacs]: Freezing packages")
-  (straight-x-freeze-versions)
-  (message "[MinEmacs]: Rebuilding packages")
-  (straight-rebuild-all)
+  ;; TODO: Implement for `package'
 
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
@@ -55,22 +47,13 @@ This takes into account the explicitly pinned packages. When called with
 \\[universal-argument] or with PULL-MINEMACS, it will run \"git pull\"
 in MinEmacs directory before upgrading."
   (interactive "P")
+  (user-error "Not yet implemented for `package'")
   (when pull-minemacs
     (let ((default-directory minemacs-root-dir))
       (vc-pull)))
-  ;; Update straight recipe repositories
-  (straight-pull-recipe-repositories)
-  ;; This will ensure that the pinned lockfile is up-to-date
-  (straight-x-freeze-pinned-versions)
-  ;; Restore packages to the versions pinned in the lockfiles
-  (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
-    (message "[MinEmacs] Restoring pinned versions of packages")
-    (straight-x-thaw-pinned-versions))
-  (message "[MinEmacs] Restoring packages from the global lockfile versions")
-  (straight-thaw-versions)
-  ;; Rebuild the packages
-  (message "[MinEmacs] Rebuilding packages")
-  (straight-rebuild-all)
+
+  ;; TODO: Implement for `package'
+
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs] Running additional package-specific build functions")
   (minemacs-run-build-functions 'dont-ask))
@@ -83,19 +66,6 @@ in MinEmacs directory before upgrading."
           (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
 
 ;;;###autoload
-(defun +straight-prune-build-cache ()
-  "Prune straight.el build directories for old Emacs versions."
-  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    ;; Prune the build cache and build directory.
-    (straight-prune-build)
-    ;; Prune old build directories
-    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-          (seq-filter
-           (lambda (name)
-             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-           (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
-
-;;;###autoload
 (defun minemacs-cleanup-emacs-directory ()
   "Cleanup unwanted files/directories from MinEmacs' directory."
   (interactive)
@@ -103,8 +73,6 @@ in MinEmacs directory before upgrading."
     (+info! "Trying to clean outdated native compile cache")
     ;; Delete outdated natively compiled files when Emacs become idle
     (+shutup! (native-compile-prune-cache)))
-  (+info! "Trying to clean outdated straight build cache")
-  (+shutup! (+straight-prune-build-cache))
   (+info! "Trying to clean MinEmacs' root directory")
   (+shutup! (minemacs-root-dir-cleanup)))
 
@@ -859,17 +827,17 @@ the children of class at point."
   "Request documentation for the thing at point."
   (interactive)
   (eglot--dbind ((Hover) contents range)
-      (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
-    (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
-          (hint (thing-at-point 'symbol)))
-      (if blurb
-          (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
-                                   (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
-            (with-help-window (current-buffer)
-              (rename-buffer (format "*eglot-help for %s*" hint))
-              (with-current-buffer standard-output (insert blurb))
-              (setq-local nobreak-char-display nil)))
-        (display-local-help)))))
+                (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
+                (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
+                      (hint (thing-at-point 'symbol)))
+                  (if blurb
+                      (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
+                                               (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
+                        (with-help-window (current-buffer)
+                          (rename-buffer (format "*eglot-help for %s*" hint))
+                          (with-current-buffer standard-output (insert blurb))
+                          (setq-local nobreak-char-display nil)))
+                    (display-local-help)))))
 
 
 
