@@ -8,6 +8,8 @@
 
 ;;; Code:
 
+(require 'me-lib)
+
 (use-package emacs
   :hook (after-save . +save--guess-file-mode-h)
   :hook (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
@@ -541,12 +543,15 @@ or file path may exist now."
   (c-ts-mode-indent-style 'k&r))
 
 (use-package hideshow
-  :hook ((prog-mode conf-mode nxml-mode) . hs-minor-mode) ; Hide/show code blocks, a.k.a. code folding
+  :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding
   :custom
   (hs-hide-comments-when-hiding-all nil)
   :bind (:map hs-minor-mode-map
               ("C-c f" . #'hs-toggle-hiding)
               ("C-c F" . #'+hs-toggle-all))
+  :init
+  (defun +hs-minor-mode-maybe () ; Fail sailently
+    (condition-case err (hs-minor-mode 1) (error (+log! "`hs-minor-mode': %s" (error-message-string err)))))
   :config
   (defvar-local +hs-toggle-all-show nil)
   (defun +hs-toggle-all ()
