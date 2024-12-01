@@ -227,13 +227,13 @@ it automatically."
     ;; me-media
     me-multi-cursors
     me-natural-langs
+    me-nav
     me-notes
     me-org
     me-prog
     me-project
     ;; me-robot
     ;; me-rss
-    me-search
     ;; me-services
     me-snippets
     ;; me-tags

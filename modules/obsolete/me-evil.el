@@ -1051,20 +1051,20 @@ It is deferred until `general' gets loaded and configured."
 
 
 
-;;; For `me-search'
+;;; For `me-nav'
 
-(+evil-conf-for! dogears me-search
+(+evil-conf-for! dogears me-nav
   :init-form
   (progn
     (keymap-global-set "<remap> <evil-jump-forward>" #'dogears-forward)
     (keymap-global-set "<remap> <evil-jump-backward>" #'dogears-back)
     (keymap-global-set "<remap> <xref-pop-marker-stack>" #'dogears-back)))
 
-(+map! :package rg :module me-search
+(+map! :package rg :module me-nav
   "sr" #'rg-dwim
   "sR" #'rg)
 
-(+map! :package fzf :module me-search
+(+map! :package fzf :module me-nav
   "/"   #'fzf-project
   "sz" '(nil :wk "fzf")
   "szz" #'fzf
