@@ -23,7 +23,7 @@
 
 ;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
-  :vc (:url "https://github.com/abougouffa/org-contrib" :branch "master"))
+  :vc (:url "https://github.com/abougouffa/org-contrib" :branch "master" :lisp-dir "lisp"))
 
 
 ;; Convert font-lock faces to other formats

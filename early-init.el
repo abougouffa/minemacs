@@ -12,16 +12,18 @@
 (add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename (or load-file-name buffer-file-name)))))
 (require 'me-vars)
 (require 'me-lib)
+(require 'package)
+(require 'package-vc nil :noerror)
 
 (setq
- ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup t
- package-user-dir (concat minemacs-local-dir "package-archives")
- package-vc-register-as-project nil
  ;; Avoid garbage collections during startup, this will be overwritten by `+minemacs--gc-tweaks-h'
  gc-cons-threshold most-positive-fixnum
  ;; Prefer loading newer files
  load-prefer-newer t
+ ;; Do not make installed packages available when Emacs starts (we use `straight')
+ package-enable-at-startup t
+ package-user-dir (concat minemacs-local-dir "package-archives")
+ package-vc-register-as-project nil
  ;; Remove some unneeded UI elements
  default-frame-alist '((tool-bar-lines . 0)
                        (menu-bar-lines . 0)
@@ -56,14 +58,13 @@
 ;; MinEmacs will fallback to the default alpha of 93%.
 (when-let* ((alpha (getenv "MINEMACS_ALPHA"))
             (alpha (string-to-number alpha)))
-  (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist))
+  (add-to-list 'default-frame-alist `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha))))
 
 (when (color-defined-p (+deserialize-sym 'minemacs--background-color nil t))
-  (push `(background-color . ,minemacs--background-color) default-frame-alist))
+  (add-to-list 'default-frame-alist `(background-color . ,minemacs--background-color)))
 
 ;; Better titlebar on MacOS!
-(when (featurep 'ns)
-  (push '(ns-transparent-titlebar . t) default-frame-alist))
+(when (featurep 'ns) (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)
