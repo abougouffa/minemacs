@@ -16,6 +16,26 @@
 
 (add-to-list 'use-package-keywords :vc)
 
+(defun use-package-split-list (pred xs)
+  (let ((ys (list nil)) (zs (list nil)) flip)
+    (cl-dolist (x xs)
+      (if flip
+          (nconc zs (list x))
+        (if (funcall pred x)
+            (progn (setq flip t)
+                   (nconc zs (list x)))
+          (nconc ys (list x)))))
+    (cons (cdr ys) (cdr zs))))
+
+(defun use-package-split-when (pred xs)
+  (unless (seq-empty-p xs)
+    (pcase-let* ((`(,first . ,rest) (if (funcall pred (car xs))
+                                        (cons (car xs) (cdr xs))
+                                      (use-package-split-list pred xs)))
+                 (`(,val . ,recur) (use-package-split-list pred rest)))
+      (cons (cons first val)
+            (use-package-split-when pred recur)))))
+
 (defvar use-package-vc-prefer-newest nil)
 
 (defun use-package-vc-install (arg &optional local-path)
@@ -81,7 +101,7 @@
       (`(,(pred keywordp) . ,(pred listp))       ; list + guess name
        (use-package-normalize--vc-arg (cons name arg)))
       (`(,(pred symbolp) . ,(or (pred listp)     ; list/version string + name
-                             (pred stringp)))
+                                (pred stringp)))
        (use-package-normalize--vc-arg arg))
       (_ (use-package-error "Unrecognized argument to :vc")))))
 
