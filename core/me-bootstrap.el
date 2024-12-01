@@ -30,6 +30,16 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0",
+;; this cuts the size of the "repos" directory by more than half (from 807M to
+;; 362M) while keeping it possible to download older commits on-demand (unlike
+;; "--depth=N"). The parameter is injected in `straight--process-run' which is
+;; called from `straight-vc-git--clone-internal'
+(advice-add
+ 'straight--process-run :around
+ (lambda (fn &rest a)
+   (apply fn (if (equal (list (car a) (cadr a)) '("git" "clone")) `(,(car a) ,(cadr a) "--filter=tree:0" ,@(cddr a)) a))))
+
 ;; Configure `use-package'
 (unless (require 'use-package nil t)
   (straight-use-package 'use-package))
