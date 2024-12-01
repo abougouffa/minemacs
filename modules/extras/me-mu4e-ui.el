@@ -141,61 +141,61 @@ characters."
    mu4e-header-info-custom
    '((:account
       . (:name "Account"
-         :shortname "Account"
-         :help "Which account/maildir this email belongs to"
-         :function
-         (lambda (msg)
-           (let ((maildir (replace-regexp-in-string
-                           "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                           (mu4e-message-field msg :maildir))))
-            (+mu4e-colorize-str
-             (replace-regexp-in-string
-              "^gmail"
-              (propertize "g" 'face 'bold-italic)
-              maildir)
-             '+mu4e-header--maildir-colors
-             maildir)))))
+               :shortname "Account"
+               :help "Which account/maildir this email belongs to"
+               :function
+               (lambda (msg)
+                 (let ((maildir (replace-regexp-in-string
+                                 "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                                 (mu4e-message-field msg :maildir))))
+                   (+mu4e-colorize-str
+                    (replace-regexp-in-string
+                     "^gmail"
+                     (propertize "g" 'face 'bold-italic)
+                     maildir)
+                    '+mu4e-header--maildir-colors
+                    maildir)))))
      (:subject-truncated
       . (:name "Subject"
-         :shortname "Subject"
-         :help "Subject of the message"
-         :sortable t
-         :function
-         (lambda (msg)
-           (let ((prefix (mu4e~headers-thread-prefix (mu4e-message-field msg :meta))))
-            (concat
-             prefix
-             (truncate-string-to-width
-              ;; Some times, a newline/carriage return char slips in the
-              ;; subject and drives mu4e crazy! Let's fix it and truncate
-              ;; the string at 100 characters.
-              (replace-regexp-in-string
-               "[\n\r]" ""
-               (mu4e-message-field msg :subject))
-              (- 100 (length prefix)) nil nil t))))))
+               :shortname "Subject"
+               :help "Subject of the message"
+               :sortable t
+               :function
+               (lambda (msg)
+                 (let ((prefix (mu4e~headers-thread-prefix (mu4e-message-field msg :meta))))
+                   (concat
+                    prefix
+                    (truncate-string-to-width
+                     ;; Some times, a newline/carriage return char slips in the
+                     ;; subject and drives mu4e crazy! Let's fix it and truncate
+                     ;; the string at 100 characters.
+                     (replace-regexp-in-string
+                      "[\n\r]" ""
+                      (mu4e-message-field msg :subject))
+                     (- 100 (length prefix)) nil nil t))))))
      (:account-stripe
       . (:name "Account"
-         :shortname "▐"
-         :help "Which account/maildir this email belongs to, as a colorized stripe"
-         :function
-         (lambda (msg)
-           (let ((account
-                  (replace-regexp-in-string
-                   "\\`/?\\([^/]+\\)/.*\\'" "\\1"
-                   (mu4e-message-field msg :maildir))))
-            (propertize
-             (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
-             'help-echo account)))))
+               :shortname "▐"
+               :help "Which account/maildir this email belongs to, as a colorized stripe"
+               :function
+               (lambda (msg)
+                 (let ((account
+                        (replace-regexp-in-string
+                         "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                         (mu4e-message-field msg :maildir))))
+                   (propertize
+                    (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
+                    'help-echo account)))))
      (:recipnum
       . (:name "Number of recipients"
-         :shortname " ⭷"
-         :help "Number of recipients for this message"
-         :function
-         (lambda (msg)
-           (propertize (format "%2d"
-                        (+ (length (mu4e-message-field msg :to))
-                         (length (mu4e-message-field msg :cc))))
-            'face 'mu4e-footer-face)))))
+               :shortname " ⭷"
+               :help "Number of recipients for this message"
+               :function
+               (lambda (msg)
+                 (propertize (format "%2d"
+                                     (+ (length (mu4e-message-field msg :to))
+                                        (length (mu4e-message-field msg :cc))))
+                             'face 'mu4e-footer-face)))))
    mu4e-headers-date-format "%d/%m/%y"
    mu4e-headers-time-format "%H:%M"
    mu4e-use-fancy-chars t

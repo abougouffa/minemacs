@@ -290,8 +290,7 @@ Example: \"#+TITLE\" -> \"#+title\"
    (satch-defun +org--strip-properties-from-outline:around-a (fn &rest args)
      (let ((org-level-faces
             (cl-loop for face in org-level-faces
-                     collect `(:foreground ,(face-foreground face nil t)
-                               :weight regular))))
+                     collect `(:foreground ,(face-foreground face nil t) :weight regular))))
        (apply fn args)))))
 
 (defun +org-extras-pretty-latex-fragments-setup ()

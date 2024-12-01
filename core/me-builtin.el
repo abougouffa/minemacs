@@ -559,15 +559,15 @@ or file path may exist now."
     (cl-callf2 append
         '((vimrc-mode "{{{" "}}}" "\"")
           (ruby-mode "class\\|d\\(?:ef\\|o\\)\\|module\\|[[{]"
-           "end\\|[]}]"
-           "#\\|=begin"
-           ruby-forward-sexp)
+                     "end\\|[]}]"
+                     "#\\|=begin"
+                     ruby-forward-sexp)
           (matlab-mode "if\\|switch\\|case\\|otherwise\\|while\\|for\\|try\\|catch"
-           "end"
-           nil (lambda (_arg) (matlab-forward-sexp)))
+                       "end"
+                       nil (lambda (_arg) (matlab-forward-sexp)))
           (nxml-mode "<!--\\|<[^/>]*[^/]>"
-           "-->\\|</[^/>]*[^/]>"
-           "<!--" sgml-skip-tag-forward nil)
+                     "-->\\|</[^/>]*[^/]>"
+                     "<!--" sgml-skip-tag-forward nil)
           (latex-mode
            ;; LaTeX-find-matching-end needs to be inside the env
            ("\\\\begin{[a-zA-Z*]+}\\(\\)" 1)
@@ -576,7 +576,7 @@ or file path may exist now."
            (lambda (_arg)
              ;; Don't fold whole document, that's useless
              (unless (save-excursion (search-backward "\\begin{document}" (line-beginning-position) t))
-              (LaTeX-find-matching-end)))
+               (LaTeX-find-matching-end)))
            nil))
         hs-special-modes-alist '((t)))))
 
@@ -589,7 +589,7 @@ or file path may exist now."
   (xref-show-xrefs-function #'xref-show-definitions-buffer)
   (xref-prompt-for-identifier
    '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame ; The default value
-     xref-find-references)) ; We add `xref-find-references', which causes problems on big codebases
+         xref-find-references)) ; We add `xref-find-references', which causes problems on big codebases
   ;; NOTE: Usually, this shorcut can be bound to moves the window (set by the OS
   ;; window manager), so we need to disable it in the WM for this to work.
   :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse)
@@ -745,7 +745,7 @@ or file path may exist now."
    'org-babel-load-languages
    (cl-loop
     for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
-                  maxima eshell scheme python fortran gnuplot plantuml makefile)
+                    maxima eshell scheme python fortran gnuplot plantuml makefile)
     collect (cons lang t)))
 
   (with-eval-after-load 'org-src
