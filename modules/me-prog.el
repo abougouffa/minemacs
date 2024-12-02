@@ -186,7 +186,7 @@
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate-setup
   ;; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading, we exclude the main file
-  :vc (combobulate :url "https://github.com/mickeynp/combobulate" :ignored-files ("combobulate.el"))
+  :vc (combobulate :url "https://github.com/mickeynp/combobulate" :ignored-files ("combobulate.el" "tests/*"))
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'tree-sitter)) ; TEMP: disable on Windows
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
