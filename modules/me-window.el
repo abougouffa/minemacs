@@ -18,11 +18,6 @@
   :bind (("M-o" . ace-window)))
 
 
-;; Manage windows and buffers according to purposes
-(use-package window-purpose
-  :ensure t)
-
-
 ;; Help/info buffers
 (add-to-list
  'display-buffer-alist
