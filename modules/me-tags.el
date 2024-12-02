@@ -31,7 +31,7 @@
    `("--compact"
      ;; TEMP: Sane defaults, see: universal-ctags/citre#184
      ,@(when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX"))
-        '("--objdir"))))
+         '("--objdir"))))
   (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
@@ -165,6 +165,11 @@ Fallback to the default function if none is found."
   :vc (:url "https://github.com/abougouffa/clink.el")
   :when (+emacs-options-p 'sqlite3)
   :hook (minemacs-first-c/c++-file . global-clink-mode))
+
+
+;; Generate call graph for C/C++ functions
+(use-package call-graph
+  :ensure t)
 
 
 (provide 'me-tags)
