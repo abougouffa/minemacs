@@ -49,7 +49,7 @@
 
 ;; Major mode for Flat Assembler
 (use-package fasm-mode
-  :ensure t)
+  :vc (:url "https://github.com/emacsattic/fasm-mode"))
 
 
 ;; Major mode for Microsoft Macro Assembler
@@ -64,7 +64,7 @@
 
 ;; Major mode for GNU Assembler
 (use-package gas-mode
-  :ensure t)
+  :vc (:url "https://codeberg.org/Enocstocks/gas-mode.el"))
 
 
 (provide 'on-demand/me-assembly)

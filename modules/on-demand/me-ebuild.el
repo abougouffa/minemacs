@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Gentoo's ebuild and eclass files
 (use-package ebuild-mode
-  :ensure t)
+  :vc (:url "https://github.com/emacsmirror/ebuild-mode"))
 
 
 (provide 'on-demand/me-ebuild)

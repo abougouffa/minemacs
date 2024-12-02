@@ -15,7 +15,7 @@
 
 ;; Major mode for editing Wikitexts
 (use-package wikitext-mode
-  :ensure t
+  :vc (:url "https://github.com/emacsmirror/wikitext-mode")
   :mode "\\.wiki\\'")
 
 

@@ -15,7 +15,7 @@
 
 ;; Major mode for the Agda programming language
 (use-package agda2-mode
-  :ensure t)
+  :vc (:url "https://github.com/emacsmirror/agda2-mode"))
 
 
 (provide 'on-demand/me-agda)
