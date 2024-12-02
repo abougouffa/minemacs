@@ -167,6 +167,11 @@ Fallback to the default function if none is found."
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 
 
+;; Generate call graph for C/C++ functions
+(use-package call-graph
+  :straight t)
+
+
 (provide 'me-tags)
 
 ;;; me-tags.el ends here
