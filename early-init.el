@@ -11,9 +11,6 @@
 (add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename (or load-file-name buffer-file-name)))))
 (require 'me-vars)
 
-(setq package-user-dir (expand-file-name "elpa" minemacs-local-dir)
-      package-enable-at-startup t)
-
 (require 'me-lib)
 (require 'package)
 (require 'package-vc nil :noerror)
@@ -21,8 +18,10 @@
 (setq
  ;; Avoid garbage collections during startup, this will be overwritten by `+minemacs--gc-tweaks-h'
  gc-cons-threshold most-positive-fixnum
- ;; Prefer loading newer files
  load-prefer-newer t
+ package-user-dir (expand-file-name "elpa" minemacs-local-dir)
+ package-quickstart t
+ package-quickstart-file (expand-file-name "package-quickstart.el" minemacs-local-dir)
  package-vc-register-as-project nil
  ;; Remove some unneeded UI elements
  default-frame-alist '((tool-bar-lines . 0)
