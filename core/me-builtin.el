@@ -694,6 +694,7 @@ or file path may exist now."
 
 (use-package org
   :ensure t
+  :defer 10 ; load after 10s of inactivity
   :preface
   ;; Set to nil so we can detect user changes (in config.el)
   (setq org-directory nil)
@@ -805,7 +806,6 @@ or file path may exist now."
   (org-agenda-tags-column 0))
 
 (use-package ox-latex
-  :after ox
   :custom
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
@@ -861,8 +861,6 @@ or file path may exist now."
   (mapc #'require '(ox-odt ox-beamer ox-koma-letter)))
 
 (use-package oc
-  :after org
-  :demand
   :custom
   (org-cite-export-processors '((latex biblatex) (t csl)))
   (org-support-shift-select t)
