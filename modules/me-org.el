@@ -65,8 +65,7 @@
 ;; Modern Org style
 (use-package org-modern
   :straight t
-  :hook (org-mode . org-modern-mode)
-  :hook (org-agenda-finalize . org-modern-agenda)
+  :after org
   :custom-face
   ;; Force monospaced font for tags
   (org-modern-tag ((t (:inherit org-verbatim :weight regular :foreground "black" :background "LightGray" :box "black"))))
@@ -84,7 +83,9 @@
      ("KILL" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "DarkGreen"))
      ("PROJ" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "LimeGreen"))
      ("HOLD" . (:inherit org-verbatim :weight semi-bold :foreground "white" :background "orange"))
-     ("DONE" . (:inherit org-verbatim :weight semi-bold :foreground "black" :background "LightGray")))))
+     ("DONE" . (:inherit org-verbatim :weight semi-bold :foreground "black" :background "LightGray"))))
+  :init
+  (global-org-modern-mode 1))
 
 
 ;; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
@@ -104,8 +105,6 @@
 ;; Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 (use-package citar
   :straight t
-  :after minemacs-first-org-file oc
-  :demand
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
