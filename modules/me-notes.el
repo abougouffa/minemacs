@@ -23,7 +23,7 @@
   (denote-rename-buffer-mode 1))
 
 
-;; Use Consult in tandem with Denote
+;; Use `consult' in tandem with `denote'
 (use-package consult-denote
   :ensure t
   :after consult
@@ -35,6 +35,16 @@
     (setopt consult-denote-find-command #'consult-fd))
   (when (executable-find "rg")
     (setopt consult-denote-grep-command #'consult-ripgrep)))
+
+
+;; Integrate `citar' with `denote'
+(use-package citar-denote
+  :ensure t
+  :after (:any citar denote)
+  :custom
+  (citar-denote-use-bib-keywords t)
+  :init
+  (citar-denote-mode t))
 
 
 ;; View and filter Denote files in a tabulated list
