@@ -112,15 +112,10 @@
   (citar-symbol-separator "  ")
   :config
   (with-eval-after-load 'nerd-icons
-    (defun +citar--set-symbols ()
-      (setq citar-symbols
-            `((file ,(nerd-icons-codicon "nf-cod-file_pdf" :face 'error) . " ")
-              (note ,(nerd-icons-faicon "nf-fa-file_text" :face 'warning) . " ")
-              (link ,(nerd-icons-mdicon "nf-md-link" :face 'org-link) . " "))))
-
-    ;; Properly setup citar-symbols
-    (once-x-call '(:check display-graphic-p :hooks server-after-make-frame-hook :packages (citar))
-      #'+citar--set-symbols)))
+    (setq citar-symbols
+          `((file ,(nerd-icons-codicon "nf-cod-file_pdf" :face 'error) . " ")
+            (note ,(nerd-icons-faicon "nf-fa-file_text" :face 'warning) . " ")
+            (link ,(nerd-icons-mdicon "nf-md-link" :face 'org-link) . " ")))))
 
 
 ;; Citar integration with Embark
