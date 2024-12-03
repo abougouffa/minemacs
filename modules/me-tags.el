@@ -21,11 +21,6 @@
   :straight t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
-  ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
-  ;; sshfs), causing `citre' to trigger an error when calling
-  ;; `citre--tags-file-in-global-cache'. I'm not using global cache directory so
-  ;; I prefer disabling this.
-  (citre-tags-file-global-cache-dir nil)
   (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
   (citre-gtags-args
    `("--compact"
@@ -59,6 +54,19 @@
     :type '(repeat string)
     :group 'minemacs-prog)
   :config
+  ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
+  ;; sshfs), causing `citre' to trigger an error when calling
+  ;; `citre--tags-file-in-global-cache'. This happens when openning any file of
+  ;; a remote project over SSHFS for example.
+  (advice-add
+   'citre--tags-file-in-global-cache :around
+   (satch-defun +citre--tags-file-in-global-cache-no-fail (fn dir)
+     (condition-case err
+         (let ((inhibit-message t))
+           (funcall fn dir))
+       (error (+log! "`citre': %s, falling back to a local cache directory" (error-message-string err))
+              citre-tags-file-global-cache-dir))))
+
   ;; Use `citre' with Emacs Lisp, see: https://github.com/universal-ctags/citre/blob/master/docs/user-manual/adapt-an-existing-xref-backend.md
   (defvar +citre-elisp-backend
     (citre-xref-backend-to-citre-backend
