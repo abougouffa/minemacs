@@ -31,6 +31,11 @@
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 
+;; Manipulate "tmux" from Emacs
+(use-package emamux
+  :straight t)
+
+
 ;; System-wide popup Emacs windows for quick edits
 (use-package emacs-everywhere
   :straight t)
