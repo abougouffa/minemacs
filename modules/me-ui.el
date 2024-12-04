@@ -14,7 +14,14 @@
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :config
   ;; Show .m files as Matlab/Octave files (integral icon)
-  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
+  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange))
+  (defun +nerd-icons-icon (name &rest args)
+    "Generic function to get icons by NAME, with ARGS."
+    (if-let* ((variant (and (string-match "^nf-\\([[:alnum:]]+\\)-" name) (match-string 1 name)))
+              (fn (intern (format "nerd-icons-%sicon" variant)))
+              ((fboundp fn)))
+        (apply fn (cons name args))
+      (error "Cannot detect the function which provides %S" name))))
 
 
 ;; A megapack of themes for Emacs
