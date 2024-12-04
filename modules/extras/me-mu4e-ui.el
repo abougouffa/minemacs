@@ -10,10 +10,8 @@
 
 ;;; Code:
 
-(defvar +mu4e-main-bullet "⦿"
-  "Prefix to use instead of \"  *\" in the mu4e main view.
-This is enacted by `+mu4e--main-action-str-prettier-a' and
-`+mu4e--main-keyval-str-prettier:filter-return-a'.")
+(defvar +mu4e-main-bullet "⦿")
+(defvar +mu4e-main-bullet-icon "nf-fa-dot_circle_o")
 
 (defvar +mu4e-header-colorized-faces
   '(nerd-icons-green
@@ -90,7 +88,7 @@ integer OFFSET."
            (lambda(m)
              (format "%s"
                      (propertize (match-string 1 m) 'face '(mode-line-emphasis bold))))
-           (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) title)))
+           (replace-regexp-in-string "\t\\*" (format "\t%s" (+mu4e--get-icon-for-section title)) title)))
          (map (make-sparse-keymap)))
     (keymap-set map "<mouse-2>" cmd)
     (keymap-set map "RET" cmd)
@@ -100,9 +98,42 @@ integer OFFSET."
                        (- (length title) 1) 'mouse-face 'highlight title)
     (propertize title 'keymap map)))
 
+(defvar +icon-colors
+  '(("jump to some maildir" "nf-md-mailbox" nerd-icons-red)
+    ("enter a search query" "nf-md-email_search" nerd-icons-blue)
+    ("compose a new message" "nf-md-email_edit" nerd-icons-green)
+    ("unread messages" "nf-md-email" nerd-icons-green)
+    ("today's messages" "nf-md-calendar_today")
+    ("yesterday's messages" "nf-md-calendar_today")
+    ("last 7 days" "nf-md-calendar_multiple")
+    ("messages with images" "nf-fa-image" nerd-icons-red)
+    ("unified inbox" "nf-md-inbox_multiple" nerd-icons-blue)
+    ("spams" "nf-md-fire" nerd-icons-orange)
+    ("choose query" "nf-md-email_search_outline" nerd-icons-blue)
+    ("switch context" "nf-fa-exchange")
+    ("update email & database" "nf-md-email_sync_outline")
+    ("news" "nf-md-newspaper_variant_outline")
+    ("help" "nf-md-help_circle" nerd-icons-dgreen)
+    ("about mu4e" "nf-fa-info_circle" nerd-icons-green)
+    ("quit" "nf-md-exit_to_app" nerd-icons-dred)
+    (".*" "nf-fa-dot_circle_o")))
+
+(defun +mu4e--get-icon-for-section (title)
+  (if (fboundp '+nerd-icons-icon)
+      (let ((case-fold-search t)
+            (icon-spec (cl-find-if (lambda (e) (string-match-p (car e) (replace-regexp-in-string "[][]" "" title))) +icon-colors)))
+        (+nerd-icons-icon (cadr icon-spec) :face (caddr icon-spec) :height 0.95))
+    +mu4e-main-bullet))
+
 (defun +mu4e--main-keyval-str-prettier:filter-return-a (str)
-  "Replace '*' with `+mu4e-main-bullet' in STR."
-  (replace-regexp-in-string "\t\\*" (format "\t%s" +mu4e-main-bullet) str))
+  "Replace the start * with a prettier bullet in STR."
+  (replace-regexp-in-string
+   "\t\\*"
+   (format "\t%s"
+           (if (fboundp '+nerd-icons-icon)
+               (+nerd-icons-icon +mu4e-main-bullet-icon)
+             +mu4e-main-bullet))
+   str))
 
 (defun +mu4e--get-string-width (str)
   "Return the width in pixels of STR in the current window's default font.
