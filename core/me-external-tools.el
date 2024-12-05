@@ -1,4 +1,4 @@
-;;; me-external-tools.el - External tools
+;;; me-external-tools.el - External tools  -*- lexical-binding: t; -*-
 
 (defvar
   minemacs-external-dependencies
@@ -134,6 +134,9 @@
     (:tool difftastic
      :link "https://github.com/Wilfred/difftastic"
      :desc "A structural diff that understands syntax")
+    (:tool coccinelle
+     :link "https://github.com/coccinelle/coccinelle"
+     :desc "Complex style-preserving source-to-source transformations")
     (:tool git
      :link "https://github.com/git/git"
      :desc "The stupid content tracker")
