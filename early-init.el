@@ -11,8 +11,9 @@
 (setq
  ;; Do not make installed packages available when Emacs starts (we use `straight')
  package-enable-at-startup nil
- ;; Avoid garbage collections during startup, this will be overwritten by `+minemacs--gc-tweaks-h'
- gc-cons-threshold most-positive-fixnum
+ ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
+ gc-cons-threshold (* 128 1024 1024)
+ gc-cons-percentage 0.2
  ;; Prefer loading newer files
  load-prefer-newer t
  ;; Remove some unneeded UI elements

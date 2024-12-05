@@ -148,17 +148,6 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
-;; HACK: The `gc-cons-threshold' has been set in "early-init.el" to
-;; `most-positive-fixnum' to avoid garbage collection during startup. We will
-;; overwrite it at the end of `minemacs-lazy-hook' to maximize the benefit.
-(defun +minemacs--gc-tweaks-h ()
-  "Better garbage collection settings, no GCMH required.
-See: https://zenodo.org/records/10213384."
-  (setq gc-cons-threshold (* 128 1024 1024)
-        gc-cons-percentage 0.25))
-
-(add-hook 'minemacs-lazy-hook #'+minemacs--gc-tweaks-h 90)
-
 (defun +minemacs--loaded-h ()
   "This is MinEmacs' synchronization point.
 
