@@ -115,11 +115,6 @@
   (cl-callf append pulsar-pulse-functions '(what-cursor-position)))
 
 
-;; Dim the font color of text in surrounding sections
-(use-package focus
-  :straight t)
-
-
 ;; Integrate `nerd-icons' with `ibuffer'
 (use-package nerd-icons-ibuffer
   :straight t
