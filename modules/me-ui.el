@@ -120,11 +120,6 @@
   :straight t)
 
 
-;; Minor mode to automatically balance window margins
-(use-package olivetti
-  :straight t)
-
-
 ;; Integrate `nerd-icons' with `ibuffer'
 (use-package nerd-icons-ibuffer
   :straight t
