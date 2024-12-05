@@ -22,9 +22,10 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'straight)
-  (require 'use-package))
+(require 'me-lib)
+(require 'straight)
+(require 'use-package)
+
 
 (with-eval-after-load 'straight
   ;; Add a profile (and lockfile) for stable package revisions.
@@ -59,8 +60,8 @@
       (if (null ref)
           body
         `((let ((straight-current-profile 'pinned))
-           (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
-           ,(macroexp-progn body))))))
+            (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
+            ,(macroexp-progn body))))))
 
   ;; HACK: This advice around `use-package' checks if a package is disabled in
   ;; `minemacs-disabled-packages' before calling `use-package'. This can come
@@ -86,7 +87,7 @@
       (add-to-list 'minemacs-configured-packages package t)
       (apply origfn package args)))
 
-  (advice-add 'use-package :around #'+use-package--check-if-disabled:around-a)
+  (advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
 
   ;; If you want to keep the `+use-package--check-if-disabled:around-a' advice after
   ;; loading MinEmacs' modules. You need to set in in your
@@ -100,7 +101,7 @@
     (unless +use-package-keep-checking-for-disabled-p
       (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))
 
-  (add-hook 'minemacs-after-loading-modules-hook #'+use-package--remove-check-if-disabled-advice-h))
+  (add-hook 'minemacs-after-loading-modules-hook '+use-package--remove-check-if-disabled-advice-h))
 
 
 (provide 'me-use-package-extra)

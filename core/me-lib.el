@@ -413,6 +413,7 @@ function.
             in (+setq-hook-fns hooks vars 'singles)
             collect `(remove-hook ',hook #',fn))))
 
+(defvar recentf-exclude)
 (defun +ignore-root (&rest roots)
   "Add ROOTS to ignored projects, recentf, etc."
   (dolist (root roots)
@@ -679,6 +680,8 @@ be deleted.
        (t (unless (memq mode '(clojure-mode lisp-mode scheme-mode)) ; prefer cider, sly and geiser, respectively
             (add-to-list '+eglot-auto-enable-modes mode)))))))
 
+(defvar eglot-server-programs)
+(declare-function eglot-alternatives "eglot")
 (defun +eglot-register (modes &rest servers)
   "Register MODES with LSP SERVERS.
 Examples:
@@ -717,6 +720,8 @@ recursive-p) to scan directories recursively."
   :group 'minemacs-project
   :type '(repeat (choice directory (cons directory boolean))))
 
+(declare-function project-remember-projects-under "project")
+
 (defun +project-scan-for-projects (&optional dir)
   "Scan and remember projects under DIR or `+project-scan-dir-paths'."
   (interactive)
@@ -754,6 +759,10 @@ recursive-p) to scan directories recursively."
                 (apply (function ,command) args)))
            form)))
       (eval (macroexp-progn form)))))
+
+(declare-function project-root "project")
+(declare-function projectile-project-root "projectile")
+(declare-function ffip-project-root "find-file-in-project")
 
 (defun +project-safe-root (&optional proj)
   "Return the root of PROJ using several backends, don't fail."

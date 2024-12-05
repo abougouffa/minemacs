@@ -8,6 +8,14 @@
 
 ;;; Code:
 
+(require 'me-lib)
+(require 'use-package)
+
+(defvar straight-base-dir)
+(defvar straight-build-dir)
+(defvar straight-repository-branch)
+(defvar straight-check-for-modifications)
+
 (setq
  ;; Base directory
  straight-base-dir minemacs-local-dir
@@ -30,6 +38,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(require 'straight)
+
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0",
 ;; this cuts the size of the "repos" directory by more than half (from 807M to
 ;; 362M) while keeping it possible to download older commits on-demand (unlike
@@ -39,10 +49,6 @@
  'straight--process-run :around
  (lambda (fn &rest a)
    (apply fn (if (equal (list (car a) (cadr a)) '("git" "clone")) `(,(car a) ,(cadr a) "--filter=tree:0" ,@(cddr a)) a))))
-
-;; Configure `use-package'
-(unless (require 'use-package nil t)
-  (straight-use-package 'use-package))
 
 (cl-callf append straight-built-in-pseudo-packages
   '(treesit ; Some packages like `ts-movement' depends on it
