@@ -62,7 +62,7 @@ The link style depends on the current major mode."
     "Auto login to Jira using credentials from `auth-source'."
     (interactive)
     (unless jiralib-token
-      (when-let* ((host (if (string= jiralib-host "")
+      (when-let* ((host (if (string-empty-p jiralib-host)
                             (url-host (url-generic-parse-url jiralib-url))
                           jiralib-host))
                   (auth (car (auth-source-search :host host)))
