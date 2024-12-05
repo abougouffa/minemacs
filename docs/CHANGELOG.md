@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.1.0](https://github.com/abougouffa/minemacs/compare/ade2563d8313b346fda001abb743a8f9c1e073b3..v12.1.0) - 2024-12-05
+#### Bug Fixes
+- **(citre)** fix the problem with SSHFS and other protocols - ([ea595f2](https://github.com/abougouffa/minemacs/commit/ea595f27b4b8210d615d6eb4303f33ad41e565f0)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideshow)** fail silently when the mode don't support `hs-minor-mode` - ([ade2563](https://github.com/abougouffa/minemacs/commit/ade2563d8313b346fda001abb743a8f9c1e073b3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(mu4e)** beautify the UI using `nerd-icons` - ([ab41a3d](https://github.com/abougouffa/minemacs/commit/ab41a3dcf536619433d1fdeae1635fcd09658f9d)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons)** add a generic function `+nerd-icons-icon` - ([d0ebccd](https://github.com/abougouffa/minemacs/commit/d0ebccdc321587c1a36b9b3ce584d0decba2e9ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** load Coccinelle integration when available - ([fb8f7f2](https://github.com/abougouffa/minemacs/commit/fb8f7f2c8ab58f28d62d9b8297258cb4722c835e)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** add initial support for `call-graph` - ([53c6a3f](https://github.com/abougouffa/minemacs/commit/53c6a3fdfbf38a9de7ad44e90130bc35c02dd535)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `focus` obsolete - ([e847c74](https://github.com/abougouffa/minemacs/commit/e847c749e178085b833975cd11bebc897bfe9f35)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `olivetti` obsolete - ([3e81d9f](https://github.com/abougouffa/minemacs/commit/3e81d9fa23d7136c06ce301969bf83d6af3b1ef6)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add Gitlab integration - ([898ccc5](https://github.com/abougouffa/minemacs/commit/898ccc59e6bf486fd8cc4eac4ebbbc71cef09640)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(citar)** remove unneeded stuff - ([ff385e0](https://github.com/abougouffa/minemacs/commit/ff385e045264337666e23eb07acdbe40811870f0)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib)** minor edit - ([e2d714a](https://github.com/abougouffa/minemacs/commit/e2d714a564e6cc2dd51e5a3fa9ff7ca18c8a33b7)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(tools)** restore `emamux`, pretty useful - ([dd7a45f](https://github.com/abougouffa/minemacs/commit/dd7a45f5a712fd0a068cb36a11d51b5db56483f9)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** minor edits, make byte-compiler happy - ([cdc39bb](https://github.com/abougouffa/minemacs/commit/cdc39bbf1bf0cb5c1756165b2a42f2d2673787fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** better deferring of Org related packages - ([5edcdd9](https://github.com/abougouffa/minemacs/commit/5edcdd9d37a3d2e2c35bc6c73752b4f7b84b81e9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.0.1](https://github.com/abougouffa/minemacs/compare/db487f79dfa03f64e3ad65c2eb850241517eba8d..v12.0.1) - 2024-12-01
 #### Bug Fixes
 - **(mu4e)** refactor and fix some deprecated stuff - ([c303c96](https://github.com/abougouffa/minemacs/commit/c303c96cd0880ef30022a120e8f0da5e27bf7e26)) - [@abougouffa](https://github.com/abougouffa)
