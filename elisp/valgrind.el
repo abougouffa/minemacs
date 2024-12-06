@@ -36,6 +36,32 @@ You might also use mode hooks to specify it in certain modes, like this:
   :type 'function
   :group 'valgrind)
 
+
+(defconst valgrind--font-lock-defaults
+  `((("\\(?:\\(?:ERROR\\|HEAP\\|LEAK\\) SUMMARY\\)" 0 font-lock-keyword-face)
+     ("\\(definitely lost\\):" 0 compilation-error-face)
+     ("\\(indirectly lost\\|possibly lost\\):" 0 compilation-warning-face)
+     ("\\(still reachable\\|suppressed\\):" 0 compilation-info-face)
+     ("\\(==\\)\\([[:digit:]]+\\)\\(==\\)" (1 font-lock-comment-delimiter-face) (2 font-lock-comment-face) (3 font-lock-comment-delimiter-face))
+     ;; ("==[[:digit:]]+== \\(Warning: .*\\(\n==[[:digit:]]+==    .*\\)*\\)" (1 compilation-warning-face))
+     ("\\(0x[0-9a-fA-F]+\\)" 0 'font-lock-number-face)
+     ("[^[:alpha:]]\\([[:digit:]]+\\(,[[:digit:]]+\\)*\\)[[:space:]]" 1 'font-lock-number-face)
+     ("\\(at\\) 0x[0-9a-fA-F]+: \\([^\s]+\\) (\\(in\\) \\([^\s]+\\))"
+      (0 'underline)
+      (1 'bold-italic) ; at
+      (2 font-lock-function-name-face) ; funct
+      (3 'bold-italic) ; in
+      (4 'underline)) ; file
+     ("\\(by\\) 0x[0-9a-fA-F]+: \\([^\s]+\\) (\\([^\s]+:[[:digit:]]+\\))"
+      (1 'bold-italic) ; by
+      (2 font-lock-function-name-face) ; funct
+      (3 'underline))))) ; file:num
+
+(define-derived-mode valgrind-mode compilation-mode "Valgrind"
+  "Major mode for viewing Valgrind's logs."
+  (setq font-lock-defaults valgrind--font-lock-defaults
+        font-lock-multiline t))
+
 ;; History of compile commands.
 (defvar valgrind-history nil)
 
