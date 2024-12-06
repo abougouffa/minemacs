@@ -324,6 +324,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-jenkins :auto-mode '(("Jenkinsfile\\'" . jenkinsfile-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-jira.el
+
+(minemacs-register-on-demand-module 'me-jira :auto-mode '(("\\.confluence$" . jira-markup-mode) ("jira.*\\.txt$" . jira-markup-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-json.el
 
 (minemacs-register-on-demand-module 'me-json :auto-mode '((("\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'" "/.babelrc\\'" "/.bowerrc\\'" "/composer.lock\\'") . json-mode)) :companion-packages '((json-ts-mode jq-mode json-mode) ((nxml-mode yaml-mode yaml-ts-mode) . jq-mode)))
@@ -576,8 +581,10 @@ Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'.
 (autoload '+binary-hexl-mode-maybe "me-lib-extra" "\
 Activate `hexl-mode' if relevant for the current buffer." t)
 (autoload '+kill-buffer-and-its-windows "me-lib-extra" "\
-Kill BUFFER and delete its windows.  Default is `current-buffer'.
-BUFFER may be either a buffer or its name (a string).
+Kill BUFFER and delete its windows.
+Default is `current-buffer'. When MSGP is non-nil, signal an error when
+the buffer isn't alive. BUFFER may be either a buffer or its name (a
+string).
 
 (fn BUFFER &optional MSGP)" t)
 (autoload '+region-to-buffer "me-lib-extra" "\
@@ -609,7 +616,7 @@ See `kill-some-buffers'.
 
 (fn &optional LIST)" t)
 (autoload '+kill-buffer-ask-if-modified "me-lib-extra" "\
-Like `kill-buffer-ask', but kills BUFFER without confirmation when unmodified.
+Like `kill-buffer-ask', but don't ask if BUFFER isn't modified.
 Kill without asking for buffer names in `+kill-buffer-no-ask-list'.
 
 (fn BUFFER)")
@@ -692,11 +699,6 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-modelica :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
 
-;;; Generated autoloads from me-modules.el
-
-(register-definition-prefixes "me-modules" '("minemacs-modules"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-mojo.el
 
 (minemacs-register-on-demand-module 'me-mojo :auto-mode '(("\\.mojo\\'" . mojo-mode) ("\\.🔥\\'" . mojo-mode)))
@@ -714,7 +716,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-ui.el
 
-(register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+mu4e-"))
+(register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+icon-colors" "+mu4e-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-nim.el
@@ -880,7 +882,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+e" "+load" "minemacs-" "os/" "sys/arch"))
+(register-definition-prefixes "me-vars" '("+env-" "minemacs-" "os/" "sys/arch"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vb.el
