@@ -6,9 +6,11 @@
 ;; some early initialization stuff, or to set some MinEmacs variables, specially
 ;; these used in macros.
 
+
 ;; Set log level to `info' rather than `error'
-(unless minemacs-verbose-p
-  (setq minemacs-msg-level 2))
+;; (unless minemacs-verbose-p
+;;   (setq minemacs-msg-level 2))
+
 
 ;; Setup proxies
 ;; (setq minemacs-proxies
@@ -17,19 +19,35 @@
 ;;         ("http" . "http://myproxy.local:8080/")
 ;;         ("https" . "http://myproxy.local:8080/")))
 
+
 ;; Enable full screen at startup
 ;; (if-let* ((fullscreen (assq 'fullscreen default-frame-alist)))
 ;;     (setcdr fullscreen 'fullboth)
 ;;   (push '(fullscreen . fullboth) default-frame-alist))
 
+
+;; Frames can have a transparent background via the `alpha-background'
+;; parameter. For better experience, this value should be set early before any
+;; frame gets created (i.e. in "early-init.el"). This can be used to set the
+;; alpha value to 95%.
+;; (push '(alpha-background . 95) default-frame-alist)
+
+
+;; Transparent titlebar on MacOS!
+;; (when (featurep 'ns) (push '(ns-transparent-titlebar . t) default-frame-alist))
+
+
 ;; Force loading lazy packages immediately, not in idle time
 ;; (setq minemacs-not-lazy-p t)
+
 
 ;; Setup a `debug-on-message' to catch a wired message!
 ;; (setq debug-on-message "Package cl is deprecated")
 
+
 ;; Compute statistics to use with `use-package-report'
 ;; (setq use-package-compute-statistics t)
+
 
 ;; Sometimes, a packge gets loaded early at startup. This can be useful:
 ;; (defun +debug-on-require (feature)

@@ -8,11 +8,16 @@
 
 ;;; Code:
 
+(dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
+  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
+
+(require 'me-lib)
+
 (setq
  ;; Do not make installed packages available when Emacs starts (we use `straight')
  package-enable-at-startup nil
  ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
- gc-cons-threshold (* 128 1024 1024)
+ gc-cons-threshold (* 100 1000 1000)
  gc-cons-percentage 0.2
  ;; Prefer loading newer files
  load-prefer-newer t
@@ -23,7 +28,6 @@
                        (left-fringe . 8)
                        (right-fringe . 13)
                        (internal-border-width . 15)
-                       (mouse-color . "blue")
                        (fullscreen . maximized))
  ;; Explicitly set modes disabled in `default-frame-alist' to nil
  tool-bar-mode nil
@@ -35,36 +39,16 @@
 ;; It seems like, even when `tool-bar-mode' is nil, `tool-bar-setup' still be called
 (advice-add 'tool-bar-setup :override #'ignore)
 
-;; We restore it after starting Emacs so the user can manually enable the `tool-bar'
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (advice-remove 'tool-bar-setup #'ignore) ; Remove the advice so the toolbar can be enabled
-   (when tool-bar-mode (tool-bar-setup)))) ; Ensure running it if toolbar is enabled
-
-;; Frames can have a transparent background via the `alpha-background'
-;; parameter. For better experience, this value should be set early before any
-;; frame gets created (i.e. in "early-init.el"). MinEmacs uses the
-;; `$MINEMACS_ALPHA` environment variable that can be set to an integer value in
-;; the [1-100] range. When this variable is set but the value is not valid,
-;; MinEmacs will fallback to the default alpha of 93%.
-(when-let* ((alpha (getenv "MINEMACS_ALPHA"))
-            (alpha (string-to-number alpha)))
-  (push `(alpha-background . ,(if (or (zerop alpha) (> alpha 100)) 93 alpha)) default-frame-alist))
-
-;; Load MinEmacs variables and basic  from the `me-vars' core module.
-(add-to-list 'load-path (expand-file-name "core" (file-name-directory (file-truename load-file-name))))
-(require 'me-vars)
-(require 'me-lib)
-
-(when (color-defined-p (+deserialize-sym 'minemacs--background-color nil t))
-  (push `(background-color . ,minemacs--background-color) default-frame-alist))
-
-;; Better titlebar on MacOS!
-(when (featurep 'ns)
-  (push '(ns-transparent-titlebar . t) default-frame-alist))
+;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
+;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
+;; Store the current value so we can reset it after Emacs startup.
+(put 'file-name-handler-alist 'original-value (default-toplevel-value 'file-name-handler-alist))
+(set-default-toplevel-value 'file-name-handler-alist nil) ; Make sure the new value survives any current let-binding
+;; Restore `file-name-handler-alist' after startup while conserving the potential new elements
+(add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)
 
+(provide 'early-init)
 ;;; early-init.el ends here

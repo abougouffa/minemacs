@@ -20,27 +20,27 @@
 
 ;; Load and hooks order:
 ;; - `~/.emacs.d/early-init.el`
-;;   * `~/.emacs.d/core/me-vars.el`
 ;;   * `~/.emacs.d/core/me-lib.el`
-;; - `$MINEMACSDIR/early-config.el`             (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
-;; - `$MINEMACSDIR/local/early-config.el`       (unless disabled)
+;;     + `~/.emacs.d/core/me-vars.el`
+;;   * `$MINEMACSDIR/early-config.el`           (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
+;;   * `$MINEMACSDIR/local/early-config.el`     (unless disabled)
+;; - `before-init-hook'
 ;; - `~/.emacs.d/init.el`
-;;   * `before-init-hook'
-;;   * `~/.emacs.d/core/me-vars.el`             (unless already loaded by "early-init.el")
+;;   * `~/.emacs.d/early-init.el`               (ensure it is loaded, in case we started Emacs without early-init)
 ;;   * `$MINEMACSDIR/custom-vars.el`
-;;   * `~/.emacs.d/core/me-lib.el`              (unless already loaded by "early-init.el")
 ;;   * `~/.emacs.d/core/me-loaddefs.el`
 ;;   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
 ;;   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
-;;   * `$MINEMACSDIR/modules.el`                (unless disabled)
 ;;   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
-;;   * `~/.emacs.d/core/<module>.el`
-;;   * `~/.emacs.d/modules/<module>.el`         (for module in `minemacs-modules')
+;;   * `~/.emacs.d/core/me-bootstrap.el`
+;;   * `~/.emacs.d/core/me-builtin.el`
+;;   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules')
 ;;   * `minemacs-after-loading-modules-hook'
 ;;   * `$MINEMACSDIR/config.el`                 (unless disabled)
 ;;   * `$MINEMACSDIR/local/config.el`           (unless disabled)
-;;   * `after-init-hook'
-;;   * `emacs-startup-hook'
+;; - `after-init-hook'
+;; - `emacs-startup-hook'
+;;   * `minemacs-after-load-theme-hook'         (after applying `minemacs-theme')
 ;;   * `minemacs-after-startup-hook'
 ;;     + `minemacs-lazy-hook'                   (hooks are incrementally loaded via a timer)
 
@@ -63,32 +63,16 @@
       (benchmark-init/activate)
       (add-hook 'minemacs-lazy-hook (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99))))
 
-;; Check if Emacs version is supported.
-(let ((min-ver 29)
-      (recommended-ver 29))
+(let ((min-ver 29) (recommended-ver 29)) ; Check if Emacs version is supported.
   (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
   (when (< emacs-major-version recommended-ver)
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
-;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
-;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
-;; Store the current value so we can reset it after Emacs startup.
-(put 'file-name-handler-alist 'original-value (default-toplevel-value 'file-name-handler-alist))
-(set-default-toplevel-value 'file-name-handler-alist nil) ; Make sure the new value survives any current let-binding.
-;; After Emacs startup, we restore `file-name-handler-alist' while conserving
-;; the potential new elements made during startup.
-(add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
+(unless (featurep 'early-init) ; In case we decided to do some funny loading without the `early-init-file'
+  (load (expand-file-name "early-init.el" (file-name-directory (file-truename buffer-file-name)))))
 
-(dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
-  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
-
-;; NOTE: At this point, MinEmacs variables defined in `me-vars' should be
-;; already loaded (in "early-init.el"). However, we load it here if necessary in
-;; case Emacs has been loaded directly from "init.el" without passing by
-;; "early-init.el". This can happen when we use some bootstrapping mechanism
-;; like Chemacs2.
-(require 'me-vars)
+(require 'me-lib)
 
 ;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
@@ -139,7 +123,7 @@
 ;; Load user init tweaks when available
 (+load-user-configs 'init-tweaks 'local/init-tweaks)
 
-;; When `minemacs-proxies' is set in "early-init.el" or in "init-tweaks.el",
+;; When `minemacs-proxies' is set in "early-config.el" or in "init-tweaks.el",
 ;; `minemacs-enable-proxy' will set the environment variables accordingly.
 (unless minemacs-no-proxies-p (minemacs-enable-proxy minemacs-proxies))
 
