@@ -30,20 +30,6 @@
   (pdfgrep-mode 1))
 
 
-(defconst +tuntox-available-p (and (executable-find "tuntox") t))
-(defconst +stunnel-available-p (and (executable-find "stunnel") t))
-
-
-;; Collaborative editing using Conflict-free Replicated Data Types
-(use-package crdt
-  :straight t
-  :when (or +tuntox-available-p +stunnel-available-p)
-  :custom
-  (crdt-tuntox-password-in-url t)
-  (crdt-use-tuntox +tuntox-available-p)
-  (crdt-use-stunnel +stunnel-available-p))
-
-
 ;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
   :straight t

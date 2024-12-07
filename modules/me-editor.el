@@ -174,6 +174,16 @@ In some files, there is a mix of spaces and tabs. This uses
          ("M-<right>" . drag-stuff-right)))
 
 
+;; Collaborative editing using Conflict-free Replicated Data Types
+(use-package crdt
+  :straight t
+  :when (or (executable-find "tuntox") (executable-find "stunnel"))
+  :custom
+  (crdt-tuntox-password-in-url t)
+  (crdt-use-tuntox (executable-find "tuntox"))
+  (crdt-use-stunnel (executable-find "stunnel")))
+
+
 ;; Perform a backup on each file save, real backup for Emacs!
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")
