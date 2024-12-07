@@ -36,11 +36,6 @@
   (mc/list-file (concat minemacs-local-dir "mc-list.el"))
   :commands (+mc/transient)
   :config
-  ;; FIX: In `parinfer-rust-mode', when we insert a space at the end on an
-  ;; s-expression in `multiple-cursors', it gets added only at the real cursor.
-  ;; However, `parinfer-rust-mode' prevents the others from being added.
-  (add-to-list 'mc/unsupported-minor-modes 'parinfer-rust-mode)
-
   ;; Add some extra commands to be run on all cursors
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
