@@ -85,7 +85,7 @@ move to the source code that caused it."
   (let ((default-directory (or (let ((proj (project-current))) (project-root proj)) default-directory)))
     (unless (equal command (eval valgrind-command))
       (setq valgrind-command command))
-    (compilation-start command nil valgrind-buffer-name-function)))
+    (compilation-start command 'valgrind-mode valgrind-buffer-name-function)))
 
 
 (provide 'valgrind)
