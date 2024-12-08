@@ -43,9 +43,11 @@
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
 
 
-;; An Emacs package to move point through `buffer-undo-list' positions
-(use-package goto-last-change
-  :bind (("M-é" . goto-last-change))) ; For French AZERTY keybords
+;; Go to last change
+(use-package goto-chg
+  :straight t
+  :bind (("M-é" . goto-last-change) ; For French AZERTY keybords
+         ("C-M-é" . goto-last-change-reverse)))
 
 
 ;; Extensions to `isearch'
