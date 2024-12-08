@@ -223,7 +223,7 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
         (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
         (unless (ignore-errors (load-theme default-theme t))
           (+error! "Cannot load default theme %S, falling back to the builtin tsdh-light theme" default-theme)
-          (load-theme 'tsdh-light t)))))
+          (load-theme 'modus-operandi t)))))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
 
