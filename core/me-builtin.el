@@ -75,8 +75,7 @@
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
-                tab-width 4 ; Default (8) is too big!
-                cursor-type 'bar) ; Use a bar by default, this can be changed by other modes (`evil', `god-mode', etc.)
+                tab-width 4) ; Default (8) is too big!
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (+package-disabled-p 'vertico 'me-completion) (fido-vertical-mode 1))

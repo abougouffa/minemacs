@@ -12,8 +12,8 @@
   (god-mode-enable-function-key-translation nil)
   :config
   ;; Change cursor shape, a box when in `god-mode' and a bar when not
-  (+setq-hook! god-mode-enabled cursor-type 'box)
-  (+setq-hook! god-mode-disabled cursor-type 'bar)
+  (+setq-hook! god-mode-enabled cursor-type 'hbar)
+  (+setq-hook! god-mode-disabled cursor-type (default-value 'cursor-type))
 
   ;; Pause `god-mode' when entering `overwrite-mode'
   (add-hook
