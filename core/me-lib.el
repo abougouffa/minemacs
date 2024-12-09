@@ -379,7 +379,7 @@ the the function.
   (macroexp-progn
    (cl-loop for (var val hook hook-fn) in (+setq-hook-fns hooks var-vals)
             collect `(defun ,hook-fn (&rest args)
-                       ,(format "%s = %s" var (pp-to-string val))
+                       ,(format "In `%S', locally set `%s' to %S." hook var val)
                        (setq-local ,var ,val))
             collect `(add-hook ',hook #',hook-fn -90))))
 
@@ -398,7 +398,7 @@ function.
   (macroexp-progn
    (cl-loop for (var val func advice-fn) in (+setq-hook-fns funcs var-vals nil how)
             collect `(defun ,advice-fn (&rest args)
-                       ,(format "%s = %s" var (pp-to-string val))
+                       ,(format "Locally set `%s' to %S in `%S' `%S'." var val how func)
                        (setq-local ,var ,val))
             collect `(advice-add #',func ,how #',advice-fn))))
 
