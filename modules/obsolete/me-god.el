@@ -44,5 +44,5 @@
   (keymap-set god-local-mode-map ")" #'forward-paragraph))
 
 
-(provide 'me-god)
+(provide 'obsolete/me-god)
 ;;; me-god.el ends here
