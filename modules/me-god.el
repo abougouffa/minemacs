@@ -21,7 +21,7 @@
    (satch-defun +god-mode--toggle-on-overwrite-h ()
      (if overwrite-mode (god-local-mode-pause) (god-local-mode-resume))))
 
-  ;; Enable `which-key' integration for `god-mode' (EXPERIMENTAL)
+  ;; Enable `which-key' integration for `god-mode'
   (with-eval-after-load 'which-key
     (which-key-enable-god-mode-support))
 
