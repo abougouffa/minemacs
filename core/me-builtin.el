@@ -72,17 +72,24 @@
   (widget-image-enable nil) ; No ugly button for widgets
   (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
+  (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
                 tab-width 4) ; Default (8) is too big!
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
-  (when (+package-disabled-p 'vertico 'me-completion) (fido-vertical-mode 1))
+  (when (+package-disabled-p 'vertico 'me-completion)
+    (fido-vertical-mode 1))
 
   ;; When `me-completion/corfu' is disabled, enable `global-completion-preview-mode'
   (when (and (+package-disabled-p 'corfu 'me-completion) (fboundp 'global-completion-preview-mode))
-    (global-completion-preview-mode 1))
+    (global-completion-preview-mode 1)
+    (add-hook 'minibuffer-mode-hook 'completion-preview-mode)) ; Use also in the minibuffer
+
+  ;; When `me-editor/smartparens' is disabled, enable `electric-pair-mode'
+  (when  (+package-disabled-p 'smartparens 'me-editor)
+    (electric-pair-mode 1))
 
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
