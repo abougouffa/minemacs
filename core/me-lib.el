@@ -1041,7 +1041,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 - :COMPANION-PACKAGES defines companion packages for some modes like
   \\='((some-mode . package))."
   (declare (indent 1))
-  (unless (assq module minemacs-on-demand-modules-alist)
+  (unless (or minemacs-builtin-only-p (assq module minemacs-on-demand-modules-alist))
     (let ((plist nil))
       (when auto-mode
         (setq plist (append plist `(:auto-mode ,(ensure-list auto-mode)))))

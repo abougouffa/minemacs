@@ -51,7 +51,8 @@
    (apply fn (if (equal (list (car a) (cadr a)) '("git" "clone")) `(,(car a) ,(cadr a) "--filter=tree:0" ,@(cddr a)) a))))
 
 (cl-callf append straight-built-in-pseudo-packages
-  '(treesit ; Some packages like `ts-movement' depends on it
+  '(org ; Otherwise, `straight' will try to install it as a dependency
+    treesit ; Some packages like `ts-movement' depends on it
     docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
 
 (setq
@@ -67,15 +68,19 @@
 ;; add support for `minemacs-disabled-packages'.
 (require 'me-use-package-extra)
 
+;; Update the builtin packages if needed
+(dolist (pkg (seq-uniq (append minemacs-update-builtin-packages
+                               (and (< emacs-major-version 30)
+                                    '(which-key editorconfig compat)))))
+  (straight-use-package `(,pkg :source gnu-elpa-mirror)))
+
 ;; Extra utilities
 ;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
 (use-package once
-  :straight (:host github :repo "emacs-magus/once")
-  :pin-ref "a6f950c29c846a50018bc63695f24f611c1a58be")
+  :straight (:host github :repo "emacs-magus/once"))
 
 (use-package satch
-  :straight (:host github :repo "emacs-magus/satch.el")
-  :pin-ref "77993b711cccf16702fdc8d21d8f8ba10d7bd0fb")
+  :straight (:host github :repo "emacs-magus/satch.el"))
 
 
 (provide 'me-bootstrap)

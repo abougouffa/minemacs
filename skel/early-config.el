@@ -33,7 +33,7 @@
 ;; (push '(alpha-background . 95) default-frame-alist)
 
 
-;; Transparent titlebar on MacOS!
+;; Transparent title bar on MacOS!
 ;; (when (featurep 'ns) (push '(ns-transparent-titlebar . t) default-frame-alist))
 
 
@@ -49,7 +49,17 @@
 ;; (setq use-package-compute-statistics t)
 
 
-;; Sometimes, a packge gets loaded early at startup. This can be useful:
+;; Tell MinEmacs to use `straight' to update built-in packages
+;; (setq minemacs-update-builtin-packages
+;;       '(compat transient which-key tramp eglot org project editorconfig flymake xref eldoc))
+
+
+;; Only load built-in packages. This can also be achieved by setting the
+;; environment variable "MINEMACS_BUILTIN_ONLY"
+;; (setq minemacs-builtin-only-p t)
+
+
+;; Sometimes, a package gets loaded early at startup. This can be useful:
 ;; (defun +debug-on-require (feature)
 ;;   (advice-add 'require :before (lambda (f &rest _) (when (eq f feature) (debug)))))
 ;; (+debug-on-require 'parinfer-rust-flymake)

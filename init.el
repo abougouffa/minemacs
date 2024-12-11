@@ -70,7 +70,7 @@
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
 (unless (featurep 'early-init) ; In case we decided to do some funny loading without the `early-init-file'
-  (load (expand-file-name "early-init.el" (file-name-directory (file-truename buffer-file-name)))))
+  (load (expand-file-name "early-init.el" (file-name-directory (file-truename load-file-name)))))
 
 (require 'me-lib)
 
@@ -176,12 +176,17 @@ minemacs-lazy' can be loaded."
   (+load-user-configs 'modules 'local/modules))
 
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
-;; loading all modules.
+;; loading all modules, including on-demand ones.
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
 ;; Load modules
-(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-core-dir) '(me-bootstrap me-builtin)))
-(mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules))
+(require 'me-builtin)
+(require 'me-use-package-extra)
+
+(unless minemacs-builtin-only-p
+  (require 'me-bootstrap)
+  (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
+
 (run-hooks 'minemacs-after-loading-modules-hook)
 (+load-user-configs 'config 'local/config) ; Load user configuration
 

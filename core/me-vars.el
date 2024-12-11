@@ -54,6 +54,10 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
   (or minemacs-always-demand-p (daemonp) (and (getenv "MINEMACS_NOT_LAZY") t))
   "Load lazy packages (minemacs-lazy-hook) immediately.")
 
+(defconst minemacs-builtin-only-p
+  (and (getenv "MINEMACS_BUILTIN_ONLY") t)
+  "Load only built-in packages, no need to install any external package.")
+
 (defconst minemacs-load-all-modules-p
   (and (getenv "MINEMACS_LOAD_ALL_MODULES") t)
   "Force loading all MinEmacs modules.")
@@ -210,7 +214,6 @@ it automatically."
     ;; me-calendar
     me-checkers
     me-completion
-    me-daemon
     me-debug
     me-docs
     me-editor
@@ -242,6 +245,11 @@ it automatically."
     me-vc
     me-window)
   "MinEmacs enabled modules."
+  :group 'minemacs-core
+  :type '(repeat symbol))
+
+(defcustom minemacs-update-builtin-packages nil
+  "Make sure these packages are updated from ELPA."
   :group 'minemacs-core
   :type '(repeat symbol))
 

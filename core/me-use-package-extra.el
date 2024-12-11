@@ -8,10 +8,6 @@
 
 ;; ## Use-package & straight.el extensions
 
-;; - `:pin-ref' - allow pinning package version (installed via `straight') to a
-;;   specific commit/revision from `use-package' using the `:pin-ref' keyword.
-;;   https://github.com/radian-software/straight.el#how-do-i-pin-package-versions-or-use-only-tagged-releases
-;;
 ;; - `:trigger-commands' - allow loading the package before executing a specific
 ;;   external command/function using the `:trigger-commands' keyword.
 ;;
@@ -23,85 +19,64 @@
 ;;; Code:
 
 (require 'me-lib)
-(require 'straight)
 (require 'use-package)
 
 
-(with-eval-after-load 'straight
-  ;; Add a profile (and lockfile) for stable package revisions.
-  (add-to-list 'straight-profiles '(pinned . "pinned.el"))
-  (require 'straight-x))
+;;; Extend `use-package'
 
-(with-eval-after-load 'use-package-core
-  (add-to-list 'use-package-keywords :pin-ref)
-  (add-to-list 'use-package-keywords :trigger-commands)
+(add-to-list 'use-package-keywords :trigger-commands)
 
-  ;; `:trigger-commands' implementation
-  (defun use-package-normalize/:trigger-commands (name keyword args)
-    (setq args (use-package-normalize-recursive-symlist name keyword args))
-    (if (consp args) args (list args)))
+;; `:trigger-commands' implementation
+(defun use-package-normalize/:trigger-commands (name keyword args)
+  (setq args (use-package-normalize-recursive-symlist name keyword args))
+  (if (consp args) args (list args)))
 
-  (defun use-package-handler/:trigger-commands (name _keyword arg rest state)
-    (use-package-concat
-     (unless (plist-get state :demand)
-       `((satch-add-advice ',(delete-dups arg) :before (lambda (&rest _args) (require ',name)) nil :transient t)))
-     (use-package-process-keywords name rest state)))
+(defun use-package-handler/:trigger-commands (name _keyword arg rest state)
+  (use-package-concat
+   (unless (plist-get state :demand)
+     `((satch-add-advice ',(delete-dups arg) :before (lambda (&rest _args) (require ',name)) nil :transient t)))
+   (use-package-process-keywords name rest state)))
 
-  ;; `:pin-ref' implementation
-  (defun use-package-normalize/:pin-ref (_name-symbol keyword args)
-    (use-package-only-one (symbol-name keyword) args
-      (lambda (_label arg)
-        (cond ((stringp arg) arg) ; accept strings
-              ((symbolp arg) (symbol-name arg)) ; and symbols
-              (t (use-package-error ":pin-ref wants a commit hash or a ref"))))))
+;; HACK: This advice around `use-package' checks if a package is disabled in
+;; `minemacs-disabled-packages' before calling `use-package'. This can come
+;; handy if the user wants to enable some module while excluding some packages
+;; from it. This advice also evaluates `use-package's conditional sections
+;; (`:if', `:when' and `:unless') to prevent installing packages with
+;; `straight'.
+(defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+  (if (or (+package-disabled-p package)
+          (memq :disabled args)
+          (and (memq :if args) (not (eval (+varplist-get args :if t))))
+          (and (memq :when args) (not (eval (+varplist-get args :when t))))
+          (and (memq :unless args) (eval (+varplist-get args :unless t))))
+      ;; Register the package but don't enable it, useful when creating the lockfile,
+      ;; this is the official straight.el way for conditionally installing packages
+      (when-let* ((recipe (+varplist-get args :straight t)))
+        (let* ((recipe (if (eq recipe t) (list package) recipe))
+               (car-recipe (and (listp recipe) (car recipe)))
+               (car-recipe-is-pkg (and (symbolp car-recipe) (not (keywordp car-recipe))))
+               (recipe (if (and car-recipe car-recipe-is-pkg) recipe (append (list package) recipe))))
+          (when (fboundp 'straight-register-package)
+            (straight-register-package recipe))))
+    ;; Otherwise, add it to the list of configured packages and apply the `use-package' form
+    (add-to-list 'minemacs-configured-packages package t)
+    (apply origfn package args)))
 
-  (defun use-package-handler/:pin-ref (name-symbol _keyword ref rest state)
-    (let ((body (use-package-process-keywords name-symbol rest state)))
-      (if (null ref)
-          body
-        `((let ((straight-current-profile 'pinned))
-            (push '(,(symbol-name name-symbol) . ,ref) straight-x-pinned-packages)
-            ,(macroexp-progn body))))))
+(advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
 
-  ;; HACK: This advice around `use-package' checks if a package is disabled in
-  ;; `minemacs-disabled-packages' before calling `use-package'. This can come
-  ;; handy if the user wants to enable some module while excluding some packages
-  ;; from it. This advice also evaluates `use-package's conditional sections
-  ;; (`:if', `:when' and `:unless') to prevent installing packages with
-  ;; `straight'.
-  (defun +use-package--check-if-disabled:around-a (origfn package &rest args)
-    (if (or (+package-disabled-p package)
-            (memq :disabled args)
-            (and (memq :if args) (not (eval (+varplist-get args :if t))))
-            (and (memq :when args) (not (eval (+varplist-get args :when t))))
-            (and (memq :unless args) (eval (+varplist-get args :unless t))))
-        ;; Register the package but don't enable it, useful when creating the lockfile,
-        ;; this is the official straight.el way for conditionally installing packages
-        (when-let* ((recipe (+varplist-get args :straight t)))
-          (let* ((recipe (if (eq recipe t) (list package) recipe))
-                 (car-recipe (and (listp recipe) (car recipe)))
-                 (car-recipe-is-pkg (and (symbolp car-recipe) (not (keywordp car-recipe))))
-                 (recipe (if (and car-recipe car-recipe-is-pkg) recipe (append (list package) recipe))))
-            (straight-register-package recipe)))
-      ;; Otherwise, add it to the list of configured packages and apply the `use-package' form
-      (add-to-list 'minemacs-configured-packages package t)
-      (apply origfn package args)))
+;; If you want to keep the `+use-package--check-if-disabled:around-a' advice after
+;; loading MinEmacs' modules. You need to set in in your
+;; "$MINEMACSDIR/early-config.el"
+(defvar +use-package-keep-checking-for-disabled-p nil)
 
-  (advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
+;; The previous advice will be removed after loading MinEmacs packages to avoid
+;; messing with the user configuration (for example, if the user manually
+;; install a disabled package).
+(defun +use-package--remove-check-if-disabled-advice-h ()
+  (unless +use-package-keep-checking-for-disabled-p
+    (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))
 
-  ;; If you want to keep the `+use-package--check-if-disabled:around-a' advice after
-  ;; loading MinEmacs' modules. You need to set in in your
-  ;; "$MINEMACSDIR/early-config.el"
-  (defvar +use-package-keep-checking-for-disabled-p nil)
-
-  ;; The previous advice will be removed after loading MinEmacs packages to avoid
-  ;; messing with the user configuration (for example, if the user manually
-  ;; install a disabled package).
-  (defun +use-package--remove-check-if-disabled-advice-h ()
-    (unless +use-package-keep-checking-for-disabled-p
-      (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))
-
-  (add-hook 'minemacs-after-loading-modules-hook '+use-package--remove-check-if-disabled-advice-h))
+(add-hook 'minemacs-after-loading-modules-hook '+use-package--remove-check-if-disabled-advice-h)
 
 
 (provide 'me-use-package-extra)
