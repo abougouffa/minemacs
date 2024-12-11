@@ -861,6 +861,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
+;;; Generated autoloads from me-use-package-extra.el
+
+(register-definition-prefixes "me-use-package-extra" '("+use-package-" "use-package-"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-v.el
 
 (minemacs-register-on-demand-module 'me-v :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
