@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.2.0](https://github.com/abougouffa/minemacs/compare/03098105a8938d03db8606333fae4d767491cd74..v12.2.0) - 2024-12-11
+#### Bug Fixes
+- **(corfu)** binding `corfu-send` to `RET` isn't a good option (ex. ielm) - ([c240749](https://github.com/abougouffa/minemacs/commit/c240749afdef1e327db756fd2d14355bc0021b4b)) - [@abougouffa](https://github.com/abougouffa)
+- **(repo)** correctly treat the ANSI colors in `repo-status` buffer - ([5691ade](https://github.com/abougouffa/minemacs/commit/5691ade77f1d2328d0fbd52a5b61ed4fc8ef3800)) - [@abougouffa](https://github.com/abougouffa)
+- remove references to the obsolete `me-god` module - ([5053cf5](https://github.com/abougouffa/minemacs/commit/5053cf5e341cc311724b765baf6a2c94b014aebe)) - [@abougouffa](https://github.com/abougouffa)
+- don't use unlimited GC threshold, cases too much memory usage - ([0309810](https://github.com/abougouffa/minemacs/commit/03098105a8938d03db8606333fae4d767491cd74)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(nav)** replace `goto-last-change` with `goto-chg` - ([f0c984a](https://github.com/abougouffa/minemacs/commit/f0c984ac4e4cffa7c43010371b3c95d971845bad)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for SmallTalk - ([d50c7fd](https://github.com/abougouffa/minemacs/commit/d50c7fdf30f1726fbceca93458a2100aaae15668)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for `jira-markup-mode` - ([8291d2c](https://github.com/abougouffa/minemacs/commit/8291d2c0b78b2d424a525df571851f4fc13b64da)) - [@abougouffa](https://github.com/abougouffa)
+- **(valgrind)** initial `valgrind-mode` (WIP) - ([8640ba5](https://github.com/abougouffa/minemacs/commit/8640ba5f17c070f596c7667bc6526c43ba523691)) - [@abougouffa](https://github.com/abougouffa)
+- add the `me-experimental` module - ([e11138d](https://github.com/abougouffa/minemacs/commit/e11138db6d85ff42ce85f3e35d55bf90b3edfbaa)) - [@abougouffa](https://github.com/abougouffa)
+- make `me-god` obsolete, not used from a long time - ([f5aeaf4](https://github.com/abougouffa/minemacs/commit/f5aeaf44e3c54fc29dbad827cd95cf7f50dd631f)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** minor edits - ([526451a](https://github.com/abougouffa/minemacs/commit/526451a876813f4372121bc9b0fb2c04cd88a718)) - [@abougouffa](https://github.com/abougouffa)
+- **(god)** which-key integration is no longer experimental - ([c721298](https://github.com/abougouffa/minemacs/commit/c7212988bd59f65b348a2b5494beb155c22326a1)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** cleanup and remove dependency on `satch` and `once` - ([7ba5522](https://github.com/abougouffa/minemacs/commit/7ba5522933c3d04dbcdbe1aa75a26d134bcd46c9)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** cleanup and refactor `init.el` and `early-ini.el` - ([2a07e41](https://github.com/abougouffa/minemacs/commit/2a07e411f77c4904725d8b4cfcab7e082c47f461)) - [@abougouffa](https://github.com/abougouffa)
+- move `crdt` from `me-docs` to `me-editor` - ([22c97d0](https://github.com/abougouffa/minemacs/commit/22c97d03c3202fb551a32b0b9d57f1d9ec543f7b)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(multiple-cursors)** use with `parinfer-rust` - ([bd14cf8](https://github.com/abougouffa/minemacs/commit/bd14cf829badd6445a843c13373a0f38a9f30bde)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** better defaults for fallback packages - ([ffac8b6](https://github.com/abougouffa/minemacs/commit/ffac8b6a59eaa824bb1be333336008be84e43191)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** use the default cursor type - ([e07c0ed](https://github.com/abougouffa/minemacs/commit/e07c0eddca24068d942a3226f9195d6062160d30)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** restore the default behavior for `ESC` - ([dbdf163](https://github.com/abougouffa/minemacs/commit/dbdf16350ce61f3afff6a898314976a928c8672a)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** use `modus-operandi` as fallback theme - ([7400c6e](https://github.com/abougouffa/minemacs/commit/7400c6e58d020e2bd27d9a3b63b44f7d7e833428)) - [@abougouffa](https://github.com/abougouffa)
+- **(valgrind)** use the new `valgrind-mode` in `valgrind` - ([ae24e1d](https://github.com/abougouffa/minemacs/commit/ae24e1de22c1c58b0b38634f6b5aca377fb03e00)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e8c17d1](https://github.com/abougouffa/minemacs/commit/e8c17d13eeb889a5ee8edcf5e249b0c4e16b08e8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7a43831](https://github.com/abougouffa/minemacs/commit/7a43831e43784979d8cd8f2a33d867c1f4cb534f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([6e54cc6](https://github.com/abougouffa/minemacs/commit/6e54cc6e4a89ce7b4500158e12daa7b43dfc4759)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1c30caa](https://github.com/abougouffa/minemacs/commit/1c30caa0fb207594893c1ee87b75cd7cc85acb7d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.1.0](https://github.com/abougouffa/minemacs/compare/ade2563d8313b346fda001abb743a8f9c1e073b3..v12.1.0) - 2024-12-05
 #### Bug Fixes
 - **(citre)** fix the problem with SSHFS and other protocols - ([ea595f2](https://github.com/abougouffa/minemacs/commit/ea595f27b4b8210d615d6eb4303f33ad41e565f0)) - [@abougouffa](https://github.com/abougouffa)
