@@ -33,12 +33,21 @@
   :custom-face
   (mu4e-thread-fold-face ((t (:inherit default))))
   :init
-  (defcustom +mu4e-auto-start t
+  (defcustom +mu4e-auto-start nil
     "Automatically start `mu4e' in background in `me-daemon'."
     :group 'minemacs-mu4e
     :type 'boolean)
   ;; Make `+mu4e' dedicated tab for `mu4e'
   (+def-dedicated-tab! mu4e :exit-func mu4e-quit)
+  (+lazy! ; Keep mu4e running in the background based on `+mu4e-auto-start'
+   (when (and +mu4e-available-p +mu4e-auto-start (require 'mu4e nil :noerror))
+     (defvar +daemon--mu4e-persist-timer
+       (run-at-time
+        (* 10) (* 60 3) ; Run after 10s, recheck every 3min
+        (lambda ()
+          (unless (or (+lockedp 'mu) (mu4e-running-p))
+            (+info! "Starting `mu4e' in background.")
+            (+shutup! :log (mu4e t))))))))
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
