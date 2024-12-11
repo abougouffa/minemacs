@@ -71,8 +71,13 @@
 ;; Update the builtin packages if needed
 (dolist (pkg (seq-uniq (append minemacs-update-builtin-packages
                                (and (< emacs-major-version 30)
-                                    '(which-key editorconfig compat)))))
+                                    '(which-key editorconfig)))))
   (straight-use-package `(,pkg :source gnu-elpa-mirror)))
+
+(use-package compat
+  :straight (compat :source gnu-elpa-mirror)
+  :when (< emacs-major-version 30)
+  :demand)
 
 ;; Extra utilities
 ;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
