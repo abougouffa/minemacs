@@ -7,20 +7,6 @@
 
 
 
-;;; Generated autoloads from ../elisp/goto-last-change.el
-
-(autoload 'goto-last-change "../elisp/goto-last-change" "\
-Set point to the position of the last change.
-
-Consecutive calls set point to the position of the previous changes.
-With a prefix arg (optional arg MARK-POINT non-nil), this will set mark
-so \\[exchange-point-and-mark] will return point to the current
-position.
-
-(fn &optional MARK-POINT)" t)
-(register-definition-prefixes "../elisp/goto-last-change" '("goto-last-change-"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-agda.el
 
 (minemacs-register-on-demand-module 'me-agda :auto-mode '(("\\.l?agda\\'" . agda2-mode)))
@@ -838,6 +824,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-selinux-policy.el
 
 (minemacs-register-on-demand-module 'me-selinux-policy :auto-mode '(("\\.te\\'" . selinuxpolicy-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-smalltalk.el
+
+(minemacs-register-on-demand-module 'me-smalltalk :auto-mode '(("\\.st\\'" . smalltalk-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
