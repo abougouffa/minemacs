@@ -220,7 +220,6 @@ it automatically."
     me-extra
     me-files
     ;; me-fun
-    me-god
     ;; me-gtd
     ;; me-lifestyle
     ;; me-math

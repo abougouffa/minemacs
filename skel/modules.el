@@ -21,7 +21,6 @@
         me-extra          ; Extra features (better-jumper, crux, ...)
         me-files          ; Files and directories (dired+, vlf, guard-lf, sudo-edit, ztree, ...)
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
-        me-god            ; Enter Emacs commands without modifier keys (god-mode, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
         ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
