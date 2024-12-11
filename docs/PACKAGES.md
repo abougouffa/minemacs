@@ -30,8 +30,6 @@
 * `orderless`: Emacs completion style that matches multiple regexps in any order
 * `vertico`: Vertico provides a performant and minimalistic vertical completion UI based on the default completion system
 
-## `me-daemon`
-
 ## `me-debug`
 * `dape`: Debug Adapter Protocol for Emacs
 * `rmsbolt`: A compiler output viewer
@@ -41,7 +39,6 @@
 ## `me-docs`
 * `pdf-tools`: Emacs support library for PDF files
 * `pdfgrep`: PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
-* `crdt`: Collaborative editing using Conflict-free Replicated Data Types
 * `rfc-mode`: An Emacs major mode to read and browse RFC documents
 
 ## `me-editor`
@@ -57,6 +54,7 @@
 * `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 * `expreg`: Your friendly neighborhood expand-region clone
 * `drag-stuff`: Drag stuff around in Emacs
+* `crdt`: Collaborative editing using Conflict-free Replicated Data Types
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
 
 ## `me-emacs-lisp`
@@ -86,6 +84,11 @@
 * `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
 * `x86-lookup`: Quickly jump to Intel's x86 documentation from Emacs
 
+## `me-experimental`
+* `eglot-inactive-regions`: Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
+* `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
+* `igist`: Work seamlessly with GitHub gists from Emacs
+
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
 * `run-in-dir`: Override the `default-directory` in the next command
@@ -105,9 +108,6 @@
 * `xkcd`: Implementation of an xkcd reader for Emacs
 * `speed-type`: Practice touch/speed typing in Emacs
 * `wordel`: Play Wordle (a.k.a. Lingo) in Emacs
-
-## `me-god`
-* `god-mode`: Global minor mode for entering Emacs commands without modifier keys
 
 ## `me-gtd`
 * `org-gtd`: GTD workflow with Org mode
@@ -146,7 +146,7 @@
 * `avy-zap`: Zap to char using `avy`
 * `treesit-jump`: Jump around your source code in emacs using `treesit` and `avy`
 * `dogears`: Never lose your place in Emacs again
-* `goto-last-change`: An Emacs package to move point through `buffer-undo-list` positions
+* `goto-chg`: Go to last change
 * `isearch+`: Extensions to `isearch`
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
 * `rg`: Emacs search tool based on "ripgrep"
@@ -186,6 +186,7 @@
 * `hl-todo`: Highlight TODO keywords
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
+* `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
@@ -228,11 +229,13 @@
 * `xcscope`: Cscope interface for Emacs
 * `consult-cscope`: Cscope integration for Emacs' Consult
 * `clink`: Clink integration to Emacs
+* `call-graph`: Generate call graph for C/C++ functions
 
 ## `me-tools`
 * `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `incus-tramp`: TRAMP integration for Incus containers
 * `app-launcher`: Launch system applications from Emacs
+* `emamux`: Manipulate "tmux" from Emacs
 * `emacs-everywhere`: System-wide popup Emacs windows for quick edits
 * `tldr`: Browse "tldr" pages from Emacs
 * `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
@@ -262,8 +265,6 @@
 * `lacarte`: Execute menu items as commands, with completion
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
-* `focus`: Dim the font color of text in surrounding sections
-* `olivetti`: Minor mode to automatically balance window margins
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
 * `nerd-icons-multimodal`: Integrate `nerd-icons` with `archive-mode`, `tar-mode`, `dired-mode`, and `ztree`
 * `diredfl`: Extra font lock rules for a more colourful `dired`
@@ -282,6 +283,7 @@
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
+* `lab`: Emacs-GitLab integration
 * `diff-hl`: Emacs package for highlighting uncommitted changes
 * `git-timemachine`: Walk through Git revisions of a file
 * `git-modes`: Emacs major modes for Git configuration files
@@ -484,6 +486,8 @@
 ## `on-demand/me-jenkins`
 * `jenkinsfile-mode`: Major mode for editing Jenkins declarative pipeline syntax
 
+## `on-demand/me-jira`
+
 ## `on-demand/me-json`
 * `json-mode`: Major mode for editing JSON files
 * `jq-mode`: Major mode for interactively editing jq queries
@@ -623,6 +627,8 @@
 
 ## `on-demand/me-selinux-policy`
 * `selinux-policy`: Major mode for editing SELinux TE-RBAC
+
+## `on-demand/me-smalltalk`
 
 ## `on-demand/me-sml`
 * `sml-mode`: Major mode for editing (Standard) ML

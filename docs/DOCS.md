@@ -4,27 +4,27 @@
 
 Load and hooks order:
 - `~/.emacs.d/early-init.el`
-  * `~/.emacs.d/core/me-vars.el`
   * `~/.emacs.d/core/me-lib.el`
-- `$MINEMACSDIR/early-config.el`             (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
-- `$MINEMACSDIR/local/early-config.el`       (unless disabled)
+    + `~/.emacs.d/core/me-vars.el`
+  * `$MINEMACSDIR/early-config.el`           (unless disabled in `$MINEMACS_IGNORE_USER_CONFIG`)
+  * `$MINEMACSDIR/local/early-config.el`     (unless disabled)
+- `before-init-hook`
 - `~/.emacs.d/init.el`
-  * `before-init-hook`
-  * `~/.emacs.d/core/me-vars.el`             (unless already loaded by "early-init.el")
+  * `~/.emacs.d/early-init.el`               (ensure it is loaded, in case we started Emacs without early-init)
   * `$MINEMACSDIR/custom-vars.el`
-  * `~/.emacs.d/core/me-lib.el`              (unless already loaded by "early-init.el")
   * `~/.emacs.d/core/me-loaddefs.el`
   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
-  * `$MINEMACSDIR/modules.el`                (unless disabled)
   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
-  * `~/.emacs.d/core/<module>.el`
-  * `~/.emacs.d/modules/<module>.el`         (for module in `minemacs-modules`)
+  * `~/.emacs.d/core/me-bootstrap.el`
+  * `~/.emacs.d/core/me-builtin.el`
+  * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules`)
   * `minemacs-after-loading-modules-hook`
   * `$MINEMACSDIR/config.el`                 (unless disabled)
   * `$MINEMACSDIR/local/config.el`           (unless disabled)
-  * `after-init-hook`
-  * `emacs-startup-hook`
+- `after-init-hook`
+- `emacs-startup-hook`
+  * `minemacs-after-load-theme-hook`         (after applying `minemacs-theme`)
   * `minemacs-after-startup-hook`
     + `minemacs-lazy-hook`                   (hooks are incrementally loaded via a timer)
 
@@ -106,6 +106,10 @@ it automatically.
 #### `minemacs-modules`
 
 MinEmacs enabled modules.
+
+#### `minemacs-update-builtin-packages`
+
+Make sure these packages are updated from ELPA.
 
 #### `+env-file`
 
@@ -256,9 +260,11 @@ Auto add this/these addresses as BCC.
 #### `+mu4e-gmail-accounts`
 
 Gmail accounts that do not contain "gmail" in address and maildir.
-An alist of Gmail addresses of the format (("username@domain.com" . "account-maildir"))
-to which Gmail integrations (behind the `+gmail` flag of the `mu4e` module) should be applied.
-See `+mu4e-msg-gmail-p` and `mu4e-sent-messages-behavior`.
+An alist of Gmail addresses of the format
+\='(("username@domain.com" . "account-maildir"))
+to which Gmail integrations (behind the `+gmail` flag of the `mu4e`
+module) should be applied. See `+mu4e-msg-gmail-p` and
+`mu4e-sent-messages-behavior`.
 
 #### `+org-responsive-image-percentage`
 
@@ -1010,6 +1016,10 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 
 Disable Eglot hack to handle code actions of LTeX-LS.
 
+#### `(+mu4e-part-selectors PARTS)`
+
+Generate selection strings for PARTS.
+
 #### `(+mu4e-view-select-attachment)`
 
 Use `completing-read` to select a single attachment.
@@ -1022,10 +1032,6 @@ Select an attachment, and open it.
 #### `(+mu4e-view-select-mime-part-action)`
 
 Select a MIME part, and perform an action on it.
-
-#### `(+mu4e-part-selectors PARTS)`
-
-Generate selection strings for PARTS.
 
 #### `(+mu4e-view-save-all-attachments &optional ASK-DIR)`
 
@@ -1043,7 +1049,7 @@ used later for Gmail specific actions.
 
 #### `(+mu4e-save-message-at-point &optional MSG)`
 
-Copy message at point to somewhere else as <date>_<subject>.eml.
+Copy MSG at point to somewhere else as <date>_<subject>.eml.
 
 #### `(+mu4e-view-save-mail-as-pdf &optional MSG SKIP-HEADERS)`
 
