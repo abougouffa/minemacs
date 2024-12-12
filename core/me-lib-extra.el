@@ -38,9 +38,9 @@ Call functions without asking when DONT-ASK-P is non-nil."
 
   ;; Run `straight's update cycle, taking into account the explicitly pinned versions
   (message "[MinEmacs]: Pulling packages")
-  (straight-x-pull-all)
+  (straight-pull-all)
   (message "[MinEmacs]: Freezing packages")
-  (straight-x-freeze-versions)
+  (straight-freeze-versions)
   (message "[MinEmacs]: Rebuilding packages")
   (straight-rebuild-all)
 
@@ -60,12 +60,6 @@ in MinEmacs directory before upgrading."
       (vc-pull)))
   ;; Update straight recipe repositories
   (straight-pull-recipe-repositories)
-  ;; This will ensure that the pinned lockfile is up-to-date
-  (straight-x-freeze-pinned-versions)
-  ;; Restore packages to the versions pinned in the lockfiles
-  (when (file-exists-p (concat straight-base-dir "versions/pinned.el"))
-    (message "[MinEmacs] Restoring pinned versions of packages")
-    (straight-x-thaw-pinned-versions))
   (message "[MinEmacs] Restoring packages from the global lockfile versions")
   (straight-thaw-versions)
   ;; Rebuild the packages
