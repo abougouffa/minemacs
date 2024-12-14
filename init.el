@@ -182,6 +182,8 @@ minemacs-lazy' can be loaded."
 ;; Load modules
 (require 'me-builtin)
 (require 'me-use-package-extra)
+(require 'once)
+(require 'satch)
 
 (unless minemacs-builtin-only-p
   (require 'me-bootstrap)

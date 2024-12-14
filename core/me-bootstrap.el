@@ -79,14 +79,6 @@
   :when (< emacs-major-version 30)
   :demand)
 
-;; Extra utilities
-;; Be cautious about the installed revision of `once' and `satch' as they aren't stable yet
-(use-package once
-  :straight (:host github :repo "emacs-magus/once"))
-
-(use-package satch
-  :straight (:host github :repo "emacs-magus/satch.el"))
-
 
 (provide 'me-bootstrap)
 
