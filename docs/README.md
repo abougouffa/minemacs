@@ -61,19 +61,19 @@ loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
 > [!IMPORTANT]
-> Please note that I'm using a fresh Emacs 29.4.50 *(recommended version)* built
-> from the `emacs-29` branch mainly on two machines, one based on Manjaro Linux
-> and the other on (the quite old) Debian 10. However, I have set up some basic
-> [Github CI actions](https://github.com/abougouffa/minemacs/actions) that
-> automatically test running this configuration on Emacs 29 and 30 in [Ubuntu
+> Please note that I'm using a fresh Emacs 30.0.92 *(recommended version)* built
+> from the `emacs-30` branch mainly on two machines, one based on Manjaro Linux
+> and the other on Debian 12. However, I have set up some basic [Github CI
+> actions](https://github.com/abougouffa/minemacs/actions) that automatically
+> test running this configuration on Emacs 29, 30 and 31 in [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 > and on Emacs 29 in
 > [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml).
 > These actions ensure that MinEmacs is "runnable" on these systems; with all
-> its modules enabled. However, more testing should be done to validate the
-> configuration as a whole on systems other than Linux.
+> its modules enabled. However, further testing should be done to properly
+> validate the configuration as a whole on systems other than Linux.
 
 ## Customization
 
