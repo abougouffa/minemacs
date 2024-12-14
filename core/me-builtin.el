@@ -73,6 +73,7 @@
   (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
+  (ring-bell-function #'ignore) ; Don't beep
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
@@ -83,7 +84,7 @@
     (fido-vertical-mode 1))
 
   ;; When `me-completion/corfu' is disabled, enable `global-completion-preview-mode'
-  (when (or minemacs-builtin-only-p (and (+package-disabled-p 'corfu 'me-completion) (fboundp 'global-completion-preview-mode)))
+  (when (and (fboundp 'global-completion-preview-mode) (or minemacs-builtin-only-p (+package-disabled-p 'corfu 'me-completion)))
     (global-completion-preview-mode 1)
     (add-hook 'minibuffer-mode-hook 'completion-preview-mode)) ; Use also in the minibuffer
 
@@ -211,6 +212,7 @@ or file path may exist now."
 
 (use-package which-key
   :hook (minemacs-lazy . which-key-mode)
+  :when (>= emacs-major-version 30)
   :custom
   (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay nil)
@@ -366,7 +368,8 @@ or file path may exist now."
     (setcdr (assq 'explicit-name tab) 'def)))
 
 (use-package editorconfig
-  :hook (minemacs-first-file . editorconfig-mode))
+  :hook (minemacs-first-file . editorconfig-mode)
+  :when (>= emacs-major-version 30))
 
 (use-package flymake
   :hook ((prog-mode conf-mode) . flymake-mode)
