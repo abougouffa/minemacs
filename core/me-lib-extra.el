@@ -215,7 +215,7 @@ RECURSIVE is non-nil."
     (user-error "This buffer isn't bound to a file")))
 
 (defvar +apply-patch-dwim-proj-dir nil)
-(defvar +apply-patch-dwim-extra-options "--ignore-whitespace")
+(defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
 (autoload 'project-files "project")
 (autoload 'diff-hunk-next "diff-mode")
 (autoload 'diff-hunk-file-names "diff-mode")
@@ -288,21 +288,20 @@ When a region is active, propose to use it as the patch buffer."
                             temp-filename))))
                    (out-buf (get-buffer-create (format " *apply-patch-dwim:%s*" (file-name-nondirectory patch-file)))))
               (run-hook-with-args '+apply-patch-dwim-pre-patch-functions patch-buf patch-files target-dir)
-              (with-current-buffer out-buf (view-mode -1))
-              (let ((inhibit-message t))
-                (shell-command (format "patch -p1 %s -i %S" +apply-patch-dwim-extra-options patch-file) out-buf out-buf))
               (with-current-buffer out-buf
                 (setq default-directory target-dir)
-                (view-mode 1)
-                (goto-char (point-min))
-                (let ((case-fold-search nil))
-                  (when (or (re-search-forward "^Hunk #?[[:digit:]]* FAILED" nil t)
-                            (re-search-forward "^Skipping patch" nil t)
-                            (re-search-forward "^[[:digit:]]* out of [[:digit:]]* hunk FAILED" nil t)
-                            (re-search-forward "^[[:digit:]]* out of [[:digit:]]* hunk ignored" nil t))
-                    (pop-to-buffer out-buf))))
-              (when (y-or-n-p (format "Open target directory %S?" target-dir))
-                (dired target-dir))
+                (let ((inhibit-read-only t))
+                  (make-process
+                   :name (format "patch-%s" (file-name-nondirectory patch-file))
+                   :buffer out-buf
+                   :command `("patch" "-p1" "--force" ,@+apply-patch-dwim-extra-options "-i" ,patch-file) ; TODO: --silent instead of --force may be interesting!
+                   :sentinel (lambda (proc _event)
+                               (unless (process-live-p proc)
+                                 (if (zerop (process-exit-status proc))
+                                     (when (y-or-n-p (format "Patch applied successfylly, open target directory %S?" target-dir))
+                                       (dired target-dir))
+                                   (pop-to-buffer out-buf))))))
+                (view-mode 1))
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
 
 ;;;###autoload
