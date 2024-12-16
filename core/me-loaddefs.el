@@ -757,7 +757,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-pcap.el
 
-(minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:ntar\\|pcap\\(?:ng\\)?\\)\\'" . pcap-mode)))
+(minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:5vw\\|apc\\|bfr\\|cap\\|dmp\\|eth\\|fdc\\|mplog\\|n\\(?:cf\\|tar\\)\\|p\\(?:cap\\(?:ng\\)?\\|kt\\)\\|rf5\\|s\\(?:noop\\|yc\\)\\|t\\(?:pc\\|r\\(?:c[01]\\|[1c]\\)\\)\\|vn\\(?:tc\\)?\\|wpz\\)$" . pcap-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-pdf.el
@@ -919,6 +919,261 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from minemacs-lazy.el
 
 (register-definition-prefixes "minemacs-lazy" '("minemacs--lazy-"))
+
+
+;;; Generated autoloads from ../elisp/once.el
+
+(autoload 'once-eval-after-load "../elisp/once" "\
+Like `eval-after-load' but don't always add to `after-load-alist'.
+When FILE has already been loaded, execute FORM immediately without adding it to
+`after-load-alist'.  Otherwise add it to `after-load-alist' but remove the FORM
+from `after-load-alist' after it runs.  See `eval-after-load' for more
+information.
+
+(fn FILE FORM)")
+(defalias 'once-after-load #'once-eval-after-load)
+(autoload 'once-with-eval-after-load "../elisp/once" "\
+Like `with-eval-after-load' but don't always add to `after-load-alist'.
+When FILE has already been loaded, execute BODY immediately without adding it to
+`after-load-alist'.  Otherwise add it to `after-load-alist' but remove the FORM
+from `after-load-alist' after it runs.  See `eval-after-load' for more
+information.
+
+(fn FILE &rest BODY)" nil t)
+(function-put 'once-with-eval-after-load 'lisp-indent-function 1)
+(defalias 'once-with #'once-with-eval-after-load)
+(autoload 'once-x-call "../elisp/once" "\
+When CONDITION is first met, call FUNCTIONS once.
+
+The \"once\" has two meanings:
+- Run something once some condition is met (hook OR advice with optional extra
+  checks)
+- Run it only once (unlike `eval-after-load')
+
+This is inspired by `evil-delay', Doom's :after-call, Doom's `defer-until!',
+etc.  It can be thought of as a combination of transient hooks, advice, and
+`eval-after-load'.  It aims to be both very generic but to also provide more
+convenient syntax for common cases.  If you don't need a combination of these
+conditions, you can alternatively use `satch-add-hook' (from satch.el),
+`satch-advice-add', or `once-with' instead.
+
+FUNCTIONS should be a single function or a list of functions.  FUNCTIONS will
+only run once.  This function will add FUNCTIONS to any specified hooks or as
+advice to any specified functions, but it will remove all advice/hook additions
+the first time FUNCTIONS run to prevent multiple runs.
+
+Unlike `satch-add-hook' and `satch-advice-add' (from satch.el), all FUNCTIONS
+should take no arguments.
+
+CONDITION should be a condition in the following format:
+(list :hooks arg1 arg2... :before arg1 arg2... :check (lambda () ...) ...)
+
+Here are the available CONDITION keywords:
+
+- :check - an additional check to determine whether to run FUNCTIONS.  This will
+  be used initially to determine whether to add any advice or to any hooks.  If
+  the check returns non-nil, FUNCTIONS will be run immediately.  Otherwise, the
+  advice/hook additions will be made, and FUNCTIONS will run the first time the
+  check succeeds when an advised function or hook triggers.
+- :initial-check - an alternate check to determine whether to run FUNCTIONS
+  before adding any advice or to any hooks.  When both :check and :initial-check
+  are specified, :initial-check will be used only before adding advice or adding
+  to hooks, and :check will only be used when the advised function or hook
+  triggers.
+- :hooks - list of hooks that can trigger running FUNCTIONS
+- :packages or :files - list of files/features (i.e. valid arguments to
+  `eval-after-load') that can trigger running FUNCTIONS on load.  Unlike :after
+  or Doom's after!, `once-x-call' does not support any sort of complex
+  \"and\"/\"or\" rules for packages.  I have yet to encounter a situation where
+  these are actually necessary.  Any of the specified files/packages loading can
+  trigger FUNCTIONS.
+- :variables or :vars - list of variables that can trigger running FUNCTIONS
+  when set (using `add-variable-watcher')
+- any advice WHERE position (e.g. :before or :after) - list of functions to
+  advise that can trigger running FUNCTIONS
+
+You must specify at least one of :hooks, :packages/:files, :variables, or the
+advice keywords.
+
+If you want to potentially run FUNCTIONS immediately, you must specify
+:initial-check and/or :check.  The only exception is if you specify :packages.
+If there are no checks and any of the specified files/features has loaded,
+FUNCTIONS will be run immediately.  On the other hand, if :check is specified
+and fails initially, the code will always be delayed even if one of the
+files/features has already loaded.  In that case, some other method (a different
+package load or a hook or advice) will have to trigger later when the :check
+returns non-nil for FUNCTIONS to run.
+
+If you specify :check but do not want FUNCTIONS to run immediately if the check
+passes, you should specify :initial-check as (lambda () nil).
+
+Arguments can specify a \"local check\" that only applies to a specific hook,
+for example, by specifying a list like (<hook> <specific-check>) instead of a
+single symbol.  For example:
+(list
+ :hooks
+ (list \\='after-load-functions (lambda (_load-file) (boundp \\='some-symbol))))
+
+Unlike the :check and :initial-check functions, which take no arguments, a local
+check function will be passed whatever arguments are given for the hook or
+advice.  For :variables, a local check function will be passed <symbol newval
+operation where> like the watch-function for `add-variable-watcher'.  If your
+local check does not need to use any given arguments, specify (&rest _).
+
+Packages can also specify a local check, but it will be passed no arguments, so
+this may not often be useful.
+
+Here is a phony example of what a `once-x-call' invocation looks like (you
+would never actually use this condition):
+(once-x-call (list :hooks \\='pre-command-hook-hook \\='another-hook
+                   :before \\='after-find-file
+                   :packages \\='evil
+                   :initial-check (lambda () (and (bar) (foo)))
+                   :check (lambda () (foo)))
+             #\\='some-mode)
+
+If you set `once-shorthand' to non-nil, you can also use a more brief
+condition syntax.  See its documentation for more information.
+
+For real examples, see the README or specific once \"x\" utilities like
+`once-gui' and `once-buffer'.
+
+(fn CONDITION &rest FUNCTIONS)")
+(function-put 'once-x-call 'lisp-indent-function 1)
+(autoload 'once "../elisp/once" "\
+When CONDITION is met for the first time, execute BODY.
+If the first item is BODY is anything that could be a function, it will be
+considered to be a list of functions:
+(once condition #\\='foo \\='bar some-func-in-var (lambda ()))
+
+Otherwise, if the first item is in the form (fun arg1), it will be considered to
+be a function body:
+ (once <condition>
+   (foo)
+   (bar)
+   (baz))
+
+See `once-x-call' for more information, including how to specify CONDITION.
+
+(fn CONDITION &rest BODY)" nil t)
+(function-put 'once 'lisp-indent-function 1)
+(register-definition-prefixes "../elisp/once" '("once-"))
+
+
+;;; Generated autoloads from ../elisp/satch.el
+
+(autoload 'satch-setq "../elisp/satch" "\
+A stripped-down `customize-set-variable' with the syntax of `setq'.
+Like `setq', multiple variables can be set at once; SETTINGS should consist of
+variable to value pairs.
+
+Some variables have a custom setter (specified with `defcustom' and :set) that
+is used to run code necessary for changes to take effect (e.g.
+`auto-revert-interval').  If a package has already been loaded, and the user
+uses `setq' to set one of these variables, the :set code will not run (e.g. in
+the case of `auto-revert-interval', the timer will not be updated).  Like with
+`customize-set-variable', `satch-setq' will use the custom :set setter when it
+exists.  If the package defining the variable has not yet been loaded, the
+custom setter will not be known, but it will still be run upon loading the
+package.
+
+Unlike `customize-set-variable', `satch-setq' does not attempt to load any
+dependencies for the variable and does not support giving variables
+comments (which makes it 10-100x faster, though this generally shouldn't
+matter).  It also falls back to `set' instead of `set-default', so that like
+`setq' it will change the local value of a buffer-local variable instead of the
+default value.  See `satch-setq-default' for an equivalent that falls back to
+`set-default'.
+
+In the future, this will automatically record user SETTINGS using annalist.el.
+
+(fn &rest SETTINGS)" nil t)
+(autoload 'satch-set "../elisp/satch" "\
+Like `satch-setq' but evaluate variable positions like `set'.
+In the future, this will automatically record user SETTINGS using annalist.el.
+
+(fn &rest SETTINGS)" nil t)
+(autoload 'satch-setq-default "../elisp/satch" "\
+Like `satch-setq' but fall back to `set-default' if no custom setter.
+In the future, this will automatically record user SETTINGS using annalist.el.
+
+(fn &rest SETTINGS)" nil t)
+(autoload 'satch-setq-local "../elisp/satch" "\
+Like `satch-set' but make all variables in SETTINGS buffer-local.
+In the future, this will automatically record user settings using annalist.el.
+
+(fn &rest SETTINGS)" nil t)
+(autoload 'satch-pushnew "../elisp/satch" "\
+Call `cl-pushnew' with X, PLACE, and KEYS.
+:test defaults to `equal'.  If PLACE has a a custom-set function, call it
+afterwards with PLACE and its new value.
+
+In the future, this will automatically record user settings using annalist.el.
+
+(fn X PLACE &rest KEYS)" nil t)
+(autoload 'satch-add-hook "../elisp/satch" "\
+A drop-in replacement for `add-hook'.
+Unlike `add-hook', HOOKS and FUNCTIONS can be single items or lists.  DEPTH and
+LOCAL are passed directly to `add-hook'.
+
+Since this can add to multiple hooks, make sure not to mix HOOKS that run with
+different numbers of arguments (or make sure that your specified FUNCTIONS
+handle this).  Most hooks do not pass arguments, so FUNCTIONS will usually not
+take any arguments, but keep this possibility in mind.
+
+When TRANSIENT is non-nil, each function will remove itself from every hook in
+HOOKS after it is run once.  If TRANSIENT is a function, call it when a hook
+runs with any arguments to determine whether to continue.  If it returns nil, do
+nothing.  If it returns non-nil, run the function and remove it from HOOKS.
+
+In the future, this will automatically record hook additions using annalist.el.
+
+(fn HOOKS FUNCTIONS &optional DEPTH LOCAL &key TRANSIENT)")
+(autoload 'satch-remove-hook "../elisp/satch" "\
+A drop-in replacement for `remove-hook'.
+Unlike `remove-hook', HOOKS and FUNCTIONS can be single items or lists.  LOCAL
+is passed directly to `remove-hook'.
+
+(fn HOOKS FUNCTIONS &optional LOCAL)")
+(autoload 'satch-advice-add "../elisp/satch" "\
+A drop-in replacement for `advice-add'.
+SYMBOLS, WHERE, FUNCTIONS, and PROPS correspond to the arguments for
+`advice-add'.  Unlike `advice-add', SYMBOLS and FUNCTIONS can be single items or
+lists.
+
+Usually you will specify multiple SYMBOLS and not multiple FUNCTIONS.  Note That
+all FUNCTIONS must be able to handle the argument lists of all SYMBOLS.  Most of
+the time when you specify either as a list, the function(s) will ignore all
+arguments rather than try to handle different argument lists.
+
+When TRANSIENT is non-nil, each function will remove itself as advice after it
+is run once.  If TRANSIENT is a function, call it with the same arguments that
+would be passed to the advice function.  If it returns nil, do nothing.  If it
+returns non-nil, run the function and remove it from HOOKS.
+
+In the future, this will automatically record advice using annalist.el.
+
+(fn SYMBOLS WHERE FUNCTIONS &optional PROPS &key TRANSIENT)")
+ (autoload 'satch-add-advice "satch")
+(autoload 'satch-advice-remove "../elisp/satch" "\
+A drop-in replacement for `advice-remove'.
+Unlike `advice-remove', SYMBOLS and FUNCTIONS can be single items or lists.
+
+(fn SYMBOLS FUNCTIONS)")
+ (autoload 'satch-remove-advice "satch")
+(autoload 'satch-defun "../elisp/satch" "\
+Define NAME as a function, returning the function.
+This is `defun' but it is guaranteed to return the created function (`defun'
+technically has an undefined return value).
+
+(fn NAME ARGLIST &optional DOCSTRING &rest BODY)" nil t)
+(function-put 'satch-defun 'doc-string-elt 3)
+(function-put 'satch-defun 'lisp-indent-function 2)
+(autoload 'satch-disable "../elisp/satch" "\
+Return a named function that disables MODE.
+
+(fn MODE)" nil t)
+(register-definition-prefixes "../elisp/satch" '("satch--"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
