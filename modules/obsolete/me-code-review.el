@@ -22,9 +22,10 @@
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))
   (code-review-auth-login-marker 'forge) ; use the same credentials as forge in ~/.authinfo.gpg
   :init
-  (transient-append-suffix 'magit-merge "i" '("y" "Review pull-request" code-review-forge-pr-at-point))
-  (with-eval-after-load 'forge
-    (transient-append-suffix 'forge-dispatch "c u" '("c r" "review pull-request" code-review-forge-pr-at-point)))
+  (with-eval-after-load 'transient
+    (transient-append-suffix 'magit-merge "i" '("y" "Review pull-request" code-review-forge-pr-at-point))
+    (with-eval-after-load 'forge
+      (transient-append-suffix 'forge-dispatch "c u" '("c r" "review pull-request" code-review-forge-pr-at-point))))
   :config
   (require 'on-demand/me-markdown))
 

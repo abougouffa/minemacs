@@ -57,25 +57,26 @@
   (cl-callf append mc--default-cmds-to-run-once
     '(pixel-scroll-precision +mc/mark-all-symbol-overlays))
 
-  (transient-define-prefix +mc/transient ()
-    "Multiple-cursors transient menu."
-    [["Up"
-      ("p" "prev" mc/mark-previous-like-this :transient t)
-      ("P" "skip" mc/skip-to-previous-like-this :transient t)
-      ("M-p" "unmark" mc/unmark-previous-like-this :transient t)
-      ("|" "align with input CHAR" mc/vertical-align :transient t)]
-     ["Down"
-      ("n" "next" mc/mark-next-like-this :transient t)
-      ("N" "skip" mc/skip-to-next-like-this :transient t)
-      ("M-n" "unmark" mc/unmark-next-like-this :transient t)]
-     ["Misc"
-      ("l" "edit lines" mc/edit-lines)
-      ("a" "mark all" mc/mark-all-like-this)
-      ("s" "search" mc/mark-all-in-region-regexp)
-      ("<mouse-1>" "click" mc/add-cursor-on-click :transient t)]
-     ["Insert"
-      ("0" "insert numbers" mc/insert-numbers)
-      ("A" "insert letters" mc/insert-letters)]])
+  (with-eval-after-load 'transient
+    (transient-define-prefix +mc/transient ()
+      "Multiple-cursors transient menu."
+      [["Up"
+        ("p" "prev" mc/mark-previous-like-this :transient t)
+        ("P" "skip" mc/skip-to-previous-like-this :transient t)
+        ("M-p" "unmark" mc/unmark-previous-like-this :transient t)
+        ("|" "align with input CHAR" mc/vertical-align :transient t)]
+       ["Down"
+        ("n" "next" mc/mark-next-like-this :transient t)
+        ("N" "skip" mc/skip-to-next-like-this :transient t)
+        ("M-n" "unmark" mc/unmark-next-like-this :transient t)]
+       ["Misc"
+        ("l" "edit lines" mc/edit-lines)
+        ("a" "mark all" mc/mark-all-like-this)
+        ("s" "search" mc/mark-all-in-region-regexp)
+        ("<mouse-1>" "click" mc/add-cursor-on-click :transient t)]
+       ["Insert"
+        ("0" "insert numbers" mc/insert-numbers)
+        ("A" "insert letters" mc/insert-letters)]]))
 
   ;; Integrate with `symbol-overlay'
   (with-eval-after-load 'symbol-overlay
@@ -101,8 +102,9 @@
               overlays)
         (mc/maybe-multiple-cursors-mode)))
 
-    ;; Add to the transient menu after the "s"
-    (transient-append-suffix '+mc/transient "s" '("S" "symbol overlays" +mc/mark-all-symbol-overlays))))
+    (with-eval-after-load 'transient
+      ;; Add to the transient menu after the "s"
+      (transient-append-suffix '+mc/transient "s" '("S" "symbol overlays" +mc/mark-all-symbol-overlays)))))
 
 
 (provide 'me-multi-cursors)

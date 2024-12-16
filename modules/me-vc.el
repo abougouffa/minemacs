@@ -8,6 +8,12 @@
 
 ;;; Code:
 
+;; A library for defining keyboard-driven menus
+(use-package transient
+  ;; We need to install a new version, otherwise, `forge' will not work
+  :straight t)
+
+
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
   :straight t
@@ -58,7 +64,8 @@
   :straight t
   :after magit
   :init
-  (transient-append-suffix 'magit-merge "m" '("M" "magit-imerge" magit-imerge)))
+  (with-eval-after-load 'transient
+    (transient-append-suffix 'magit-merge "m" '("M" "magit-imerge" magit-imerge))))
 
 
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously

@@ -123,23 +123,24 @@
     "Enable `ts-movement-mode' when if `major-mode' is a trees-sitter mode."
     (run-with-timer 1.0 nil (lambda () (when (treesit-parser-list) (ts-movement-mode 1)))))
   :config
-  (transient-define-prefix +ts-movement-transient ()
-    "Transient for ts-movement."
-    [[("d" "delete-overlay-at-point" tsm/delete-overlay-at-point :transient t)
-      ("D" "clear-overlays-of-type" tsm/clear-overlays-of-type :transient t)
-      ("C-b" "backward-overlay" tsm/backward-overlay :transient t)
-      ("C-f" "forward-overlay" tsm/forward-overlay :transient t)
-      ("c" "tsm/mc/mark-all-overlays" tsm/mc/mark-all-overlays :transient t)]
-     [("a" "node-start" tsm/node-start :transient t)
-      ("e" "node-end" tsm/node-end :transient t)
-      ("b" "node-prev" tsm/node-prev :transient t)
-      ("f" "node-next" tsm/node-next :transient t)]
-     [("p" "node-parent" tsm/node-parent :transient t)
-      ("n" "node-child" tsm/node-child :transient t)
-      ("N" "node-children" tsm/node-children :transient t)
-      ("s" "node-children-of-type" tsm/node-children-of-type :transient t)
-      ("m" "node-mark" tsm/node-mark :transient t)]]
-    [("Q" "Quit" ignore :transient t)]))
+  (with-eval-after-load 'transient
+    (transient-define-prefix +ts-movement-transient ()
+      "Transient for ts-movement."
+      [[("d" "delete-overlay-at-point" tsm/delete-overlay-at-point :transient t)
+        ("D" "clear-overlays-of-type" tsm/clear-overlays-of-type :transient t)
+        ("C-b" "backward-overlay" tsm/backward-overlay :transient t)
+        ("C-f" "forward-overlay" tsm/forward-overlay :transient t)
+        ("c" "tsm/mc/mark-all-overlays" tsm/mc/mark-all-overlays :transient t)]
+       [("a" "node-start" tsm/node-start :transient t)
+        ("e" "node-end" tsm/node-end :transient t)
+        ("b" "node-prev" tsm/node-prev :transient t)
+        ("f" "node-next" tsm/node-next :transient t)]
+       [("p" "node-parent" tsm/node-parent :transient t)
+        ("n" "node-child" tsm/node-child :transient t)
+        ("N" "node-children" tsm/node-children :transient t)
+        ("s" "node-children-of-type" tsm/node-children-of-type :transient t)
+        ("m" "node-mark" tsm/node-mark :transient t)]]
+      [("Q" "Quit" ignore :transient t)])))
 
 
 ;; Tree-sitter based code folding

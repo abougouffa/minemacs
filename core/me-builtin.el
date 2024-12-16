@@ -203,13 +203,6 @@ or file path may exist now."
     (cons (format "[CRM%s] %s" (replace-regexp-in-string "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" "" crm-separator) (car args)) (cdr args)))
   (advice-add #'completing-read-multiple :filter-args #'+crm--indicator:filter-args-a))
 
-(use-package transient
-  :autoload transient-define-prefix transient-define-infix transient-define-suffix
-  :bind (:map
-         transient-map ; Map ESC and q to quit transient
-         ("q" . transient-quit-one)
-         ("<escape>" . transient-quit-one)))
-
 (use-package which-key
   :hook (minemacs-lazy . which-key-mode)
   :when (>= emacs-major-version 30)
@@ -403,15 +396,16 @@ or file path may exist now."
                 flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning)
                 flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info)))))
   :config
-  (transient-define-prefix +flymake-transient ()
-    "Transient for flymake."
-    [[("n" "Next error" flymake-goto-next-error :transient t)
-      ("N" "Prev error" flymake-goto-prev-error :transient t)]
-     [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
-      ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
-      ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
-     [("S" "Start" flymake-start :transient t)
-      ("Q" "Quit" ignore :transient t)]])
+  (with-eval-after-load 'transient
+    (transient-define-prefix +flymake-transient ()
+      "Transient for flymake."
+      [[("n" "Next error" flymake-goto-next-error :transient t)
+        ("N" "Prev error" flymake-goto-prev-error :transient t)]
+       [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
+        ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
+        ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
+       [("S" "Start" flymake-start :transient t)
+        ("Q" "Quit" ignore :transient t)]]))
 
   ;; Use the session's `load-path' with flymake
   (with-eval-after-load 'elisp-mode
