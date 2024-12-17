@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.3.0](https://github.com/abougouffa/minemacs/compare/b943fe9bf5e768c38fe6c9535116abe9ead50cfe..v12.3.0) - 2024-12-17
+#### Bug Fixes
+- **(builtin)** fix a couple of issues with Emacs 29 - ([95ce8e9](https://github.com/abougouffa/minemacs/commit/95ce8e9948606409b0618385e8098c42cdd35232)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** compatibility with the built-in version of Eglot in Emacs 29 - ([77d6ac2](https://github.com/abougouffa/minemacs/commit/77d6ac297a04fd84f3d2f80ee588ab71c7a62f45)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** require `compat`, fixes issues on Emacs 29 - ([1692e34](https://github.com/abougouffa/minemacs/commit/1692e3431359de8daad2392e019bd73ac2d503fe)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** cleanup references to `straight-x` - ([008e789](https://github.com/abougouffa/minemacs/commit/008e789b4ca2924cadeb1620ec0ba78a765eda86)) - [@abougouffa](https://github.com/abougouffa)
+- **(transient)** `forge` needs a recent version - ([5ad1189](https://github.com/abougouffa/minemacs/commit/5ad1189aacb7da9c4eb9ebfb415e393290922a2f)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** update information about the supported version of Emacs - ([64c2e4b](https://github.com/abougouffa/minemacs/commit/64c2e4b711d49b21b84e41d0d4123146b2dff24e)) - [@abougouffa](https://github.com/abougouffa)
+- update comments - ([effcd05](https://github.com/abougouffa/minemacs/commit/effcd059bf310eb573da4a8694bd492e40e51291)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([f6ca225](https://github.com/abougouffa/minemacs/commit/f6ca225f5e17f2adbd7a58f95ff563ec2a2b5d5b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- add an option to load only built-in package, cleanup the config - ([362b6ee](https://github.com/abougouffa/minemacs/commit/362b6ee13756165a35c07f208a824306961991af)) - [@abougouffa](https://github.com/abougouffa)
+- remove `me-daemon` - ([b943fe9](https://github.com/abougouffa/minemacs/commit/b943fe9bf5e768c38fe6c9535116abe9ead50cfe)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** only test Emacs 29.4 - ([9cc5b8f](https://github.com/abougouffa/minemacs/commit/9cc5b8fcb4061df39f381a51e0ebe94ce432a66e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(mu4e)** move the daemon integration to `me-mu4e` - ([ef3ac20](https://github.com/abougouffa/minemacs/commit/ef3ac2076af2dc5a6414189e3edf62bffd069af6)) - [@abougouffa](https://github.com/abougouffa)
+- include `satch` and `once` as internal dependencies - ([52661b2](https://github.com/abougouffa/minemacs/commit/52661b2d49ec103a6380f7ca010f2acbc8e7c721)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(pcap-mode)** bind `n` and `p` + add more extensions - ([06031b7](https://github.com/abougouffa/minemacs/commit/06031b744439637182798f5ee13480ef308ca871)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([38146f8](https://github.com/abougouffa/minemacs/commit/38146f864bf07275faef2cc734b86a8f885c13ef)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([965e59f](https://github.com/abougouffa/minemacs/commit/965e59f34d3d3f6d81d6d353b51dd45f3fd15777)) - [@abougouffa](https://github.com/abougouffa)
+- better and simpler error catching in `+apply-patch-dwim` - ([d882484](https://github.com/abougouffa/minemacs/commit/d88248408768ddc3466dc78e8bdee7a2d2932e64)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9cf35f1](https://github.com/abougouffa/minemacs/commit/9cf35f128c92655d68877b011feae6dad3e17946)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([115cbd8](https://github.com/abougouffa/minemacs/commit/115cbd87ce199065296249005312f66dabde1efc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.2.0](https://github.com/abougouffa/minemacs/compare/03098105a8938d03db8606333fae4d767491cd74..v12.2.0) - 2024-12-11
 #### Bug Fixes
 - **(corfu)** binding `corfu-send` to `RET` isn't a good option (ex. ielm) - ([c240749](https://github.com/abougouffa/minemacs/commit/c240749afdef1e327db756fd2d14355bc0021b4b)) - [@abougouffa](https://github.com/abougouffa)
