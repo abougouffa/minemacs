@@ -226,9 +226,19 @@ or file path may exist now."
         (setopt tramp-default-method "plink")) ; When available, use "plink", the PuTTY Link SSH
     (setopt tramp-default-method "ssh")) ; This is faster than the default "scp"
   :custom
+  ;; PERF: More responsive file editing via TRAMP.
+  ;; See: "(tramp) Ssh setup" and https://news.ycombinator.com/item?id=39193252
+  (tramp-use-connection-share t)
+  (tramp-ssh-controlmaster-options
+   (concat
+    "-o ControlPath=" (file-name-as-directory temporary-file-directory) "tramp.ssh-controlpath-%%r@%%h:%%p "
+    "-o ControlMaster=auto -o ControlPersist=yes "
+    "-o ServerAliveInterval=5 -o ServerAliveCountMax=2"))
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
-  (tramp-default-remote-shell "/bin/bash"))
+  (tramp-default-remote-shell "/bin/bash")
+  :config
+  (setq tramp-temp-name-prefix "/tmp/tramp."))
 
 (use-package password-cache
   :custom
