@@ -10,6 +10,9 @@
 
 ;;; Minemacs' core functions and macros
 
+(require 'me-lib)
+
+
 ;;;###autoload
 (defun minemacs-run-build-functions (&optional dont-ask-p)
   "Run all build functions in `minemacs-build-functions'.
@@ -861,6 +864,29 @@ the children of class at point."
               (with-current-buffer standard-output (insert blurb))
               (setq-local nobreak-char-display nil)))
         (display-local-help)))))
+
+;;;###autoload
+(defun +shellcheck-describe-error (error-code)
+  "Describe a ShellCheck ERROR-CODE."
+  (interactive (list (if-let* ((thing (+region-or-thing-at-point))
+                               ((string-prefix-p "SC" thing)))
+                         thing
+                       (read-string "Enter shellcheck error code: " "SC"))))
+  (let* ((wiki-dir (expand-file-name "shellcheck.wiki" minemacs-local-dir))
+         (error-wiki-file (expand-file-name (file-name-with-extension error-code "md") wiki-dir)))
+    (unless (file-directory-p wiki-dir)
+      (vc-git-clone "https://github.com/koalaman/shellcheck.wiki.git" wiki-dir nil))
+    (if (file-exists-p error-wiki-file)
+        (with-current-buffer (get-buffer-create (format "*shellcheck:%s*" error-code))
+          (insert-file-contents error-wiki-file)
+          (cond ((fboundp 'markdown-view-mode)
+                 (markdown-view-mode))
+                ((fboundp 'markdown-ts-mode)
+                 (markdown-ts-mode)
+                 (view-mode 1))
+                (t (view-mode 1)))
+          (pop-to-buffer (current-buffer)))
+      (user-error "No description found for %s" error-code))))
 
 
 
