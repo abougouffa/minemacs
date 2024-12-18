@@ -12,7 +12,7 @@
 (minemacs-register-on-demand-module 'me-yaml
   :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
   :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode))
-  :companion-packages '((yaml-ts-mode . (yaml-mode yaml-pro-ts-mode))))
+  :companion-packages '((yaml-ts-mode . (yaml-mode yaml-pro-ts-mode ansible-mode))))
 
 
 ;; Major mode for editing YAML files
@@ -28,6 +28,11 @@
   :when (+emacs-options-p 'tree-sitter)
   :hook (yaml-mode . yaml-pro-mode)
   :hook (yaml-ts-mode . yaml-pro-ts-mode))
+
+
+;; Ansible minor mode
+(use-package ansible
+  :straight t)
 
 
 (provide 'on-demand/me-yaml)
