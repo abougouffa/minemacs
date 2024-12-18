@@ -544,6 +544,10 @@ the children of class at point.
 (fn &optional DERIVED)" t)
 (autoload '+eglot-help-at-point "me-lib-extra" "\
 Request documentation for the thing at point." t)
+(autoload '+shellcheck-describe-error "me-lib-extra" "\
+Describe a ShellCheck ERROR-CODE.
+
+(fn ERROR-CODE)" t)
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
@@ -903,7 +907,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
 
-(minemacs-register-on-demand-module 'me-yaml :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode)) :companion-packages '((yaml-ts-mode yaml-mode yaml-pro-ts-mode)))
+(minemacs-register-on-demand-module 'me-yaml :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode)) :companion-packages '((yaml-ts-mode yaml-mode yaml-pro-ts-mode ansible-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-yang.el
