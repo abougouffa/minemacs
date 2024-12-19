@@ -865,28 +865,51 @@ the children of class at point."
               (setq-local nobreak-char-display nil)))
         (display-local-help)))))
 
+(defvar +shellcheck--current-error nil)
+
 ;;;###autoload
-(defun +shellcheck-describe-error (error-code)
-  "Describe a ShellCheck ERROR-CODE."
-  (interactive (list (if-let* ((thing (+region-or-thing-at-point))
-                               ((string-prefix-p "SC" thing)))
-                         thing
-                       (read-string "Enter shellcheck error code: " "SC"))))
+(defun +shellcheck-describe-error (&rest codes)
+  "Describe a ShellCheck message CODES."
+  (interactive)
   (let* ((wiki-dir (expand-file-name "shellcheck.wiki" minemacs-local-dir))
-         (error-wiki-file (expand-file-name (file-name-with-extension error-code "md") wiki-dir)))
+         (codes (seq-uniq
+                 (sort
+                  (or codes
+                      (let* ((eglot-stay-out-of '(eldoc))
+                             (eldoc-display-functions ; error code from eldoc
+                              (list (lambda (docs _interactive)
+                                      (setq +shellcheck--current-error
+                                            (cl-loop for (docs . _rest) on docs
+                                                     for (this-doc . _plist) = docs
+                                                     collect (and (string-match "\\(SC[[:digit:]]\\{4\\}\\)" this-doc)
+                                                                  (match-string 1 this-doc))))))))
+                        (eldoc-print-current-symbol-info t)
+                        +shellcheck--current-error)
+                      (completing-read-multiple "Enter shellcheck error code: " ; prompt for error code
+                                                (mapcar #'file-name-base
+                                                        (and (file-directory-p wiki-dir)
+                                                             (directory-files wiki-dir nil "SC[[:digit:]]\\{4\\}\\.md")))
+                                                nil t "SC")))))
+         (wiki-files (mapcar (lambda (code) (expand-file-name (file-name-with-extension code "md") wiki-dir)) codes))
+         (desc-buf (format "*shellcheck:%s*" (string-join codes ","))))
     (unless (file-directory-p wiki-dir)
       (vc-git-clone "https://github.com/koalaman/shellcheck.wiki.git" wiki-dir nil))
-    (if (file-exists-p error-wiki-file)
-        (with-current-buffer (get-buffer-create (format "*shellcheck:%s*" error-code))
-          (insert-file-contents error-wiki-file)
+    (if (not (cl-some #'file-exists-p wiki-files))
+        (user-error "No description found for %s" codes)
+      (unless (buffer-live-p (get-buffer desc-buf))
+        (with-current-buffer (get-buffer-create desc-buf)
+          (dolist (file wiki-files)
+            (when (file-exists-p file)
+              (insert-file-contents file)
+              (goto-char (point-max))
+              (insert "\n---\n")))
           (cond ((fboundp 'markdown-view-mode)
                  (markdown-view-mode))
                 ((fboundp 'markdown-ts-mode)
                  (markdown-ts-mode)
                  (view-mode 1))
-                (t (view-mode 1)))
-          (pop-to-buffer (current-buffer)))
-      (user-error "No description found for %s" error-code))))
+                (t (view-mode 1)))))
+      (pop-to-buffer desc-buf))))
 
 
 

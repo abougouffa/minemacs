@@ -26,7 +26,7 @@
 ;; Help/info buffers
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan " "eglot-help for ") (* any))) "*")
+ `(,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan " "eglot-help for " "shellcheck:") (* any))) "*")
    (display-buffer-in-side-window)
    (slot . 0)
    (side . right)
@@ -65,10 +65,10 @@
 (add-to-list
  'display-buffer-alist
  `(,(rx bol "*"
-     (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
-      "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
-      (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
-     "*" eol)
+        (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
+            "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
+            (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
+        "*" eol)
    (display-buffer-in-side-window)
    (side . right)
    (dedicated . t) ;; Close when finished
