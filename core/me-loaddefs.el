@@ -248,6 +248,7 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab-ci.el
 
 (minemacs-register-on-demand-module 'me-gitlab-ci :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
+(autoload '+gitlab-ci-add-schema "on-demand/me-gitlab-ci")
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gnuplot.el
@@ -545,9 +546,9 @@ the children of class at point.
 (autoload '+eglot-help-at-point "me-lib-extra" "\
 Request documentation for the thing at point." t)
 (autoload '+shellcheck-describe-error "me-lib-extra" "\
-Describe a ShellCheck ERROR-CODE.
+Describe a ShellCheck message CODES.
 
-(fn ERROR-CODE)" t)
+(fn &rest CODES)" t)
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
