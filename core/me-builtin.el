@@ -231,8 +231,8 @@ or file path may exist now."
   (tramp-use-connection-share t)
   (tramp-ssh-controlmaster-options
    (concat
-    "-o ControlPath=" (file-name-as-directory temporary-file-directory) "tramp.ssh-controlpath-%%r@%%h:%%p "
-    "-o ControlMaster=auto -o ControlPersist=yes "
+    "-o ControlPath=" (file-name-as-directory temporary-file-directory) "tramp.ssh-controlpath-%%C "
+    "-o ControlMaster=auto -o ControlPersist=1800 " ; persist for 30min
     "-o ServerAliveInterval=5 -o ServerAliveCountMax=2"))
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
