@@ -76,6 +76,10 @@
   (whisper-use-threads (/ (num-processors) 2)))
 
 
+(use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el"))
+
+
 (provide 'me-ai)
 
 ;;; me-ai.el ends here
