@@ -77,7 +77,9 @@
 
 
 (use-package copilot
-  :straight (:host github :repo "copilot-emacs/copilot.el"))
+  :straight (:host github :repo "copilot-emacs/copilot.el")
+  :custom
+  (copilot-install-dir (expand-file-name "copilot" minemacs-local-dir)))
 
 
 (provide 'me-ai)
