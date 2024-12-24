@@ -149,7 +149,8 @@ The `minemacs-loaded' will require `minemacs-lazy', which incrementally
 run the hooks in `minemacs-lazy-hook' after startup, and at the end,
 provide the `minemacs-lazy' feature so the packages loaded with `:after
 minemacs-lazy' can be loaded."
-  (+info! "Loaded Emacs%s in %s, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "") (emacs-init-time) gc-elapsed gcs-done)
+  (+info! "Emacs%s loaded in %.3fs, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
+          (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done)
   (unless (featurep 'me-org-export-async-init) (+load-theme))
   (require 'minemacs-loaded))
 
