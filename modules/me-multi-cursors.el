@@ -81,10 +81,12 @@
   ;; Integrate with `symbol-overlay'
   (with-eval-after-load 'symbol-overlay
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
-    (defun +mc/mark-all-symbol-overlays ()
-      "Mark all symbol overlays using multiple cursors."
-      (interactive)
-      (mc/remove-fake-cursors)
+    (defun +mc/mark-all-symbol-overlays (&optional discard)
+      "Mark all symbol overlays using multiple cursors.
+When DISCARD is non-nil, discard the current cursors before creating the
+new ones."
+      (interactive "P")
+      (when discard (mc/remove-fake-cursors))
       (when-let* ((overlays (symbol-overlay-get-list 0))
                   (point (point))
                   (point-overlay (seq-find
@@ -104,7 +106,11 @@
 
     (with-eval-after-load 'transient
       ;; Add to the transient menu after the "s"
-      (transient-append-suffix '+mc/transient "s" '("S" "symbol overlays" +mc/mark-all-symbol-overlays)))))
+      (transient-append-suffix '+mc/transient "s" '("S" "symbol overlays" +mc/mark-all-symbol-overlays)))
+
+    (with-eval-after-load 'casual-symbol-overlay
+      (transient-append-suffix 'casual-symbol-overlay-tmenu '(-2)
+        ["Multiple cursors" ("c" "Mark all" +mc/mark-all-symbol-overlays)]))))
 
 
 (provide 'me-multi-cursors)
