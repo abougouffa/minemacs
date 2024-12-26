@@ -32,7 +32,7 @@
 
 ;; Ansible minor mode
 (use-package ansible
-  :straight t)
+  :straight (ansible :nonrecursive t))
 
 
 (provide 'on-demand/me-yaml)
