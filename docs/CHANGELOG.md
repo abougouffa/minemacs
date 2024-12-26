@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.4.0](https://github.com/abougouffa/minemacs/compare/a2a8f7fc6a9d8400f26a0062631b4e54b823d465..v12.4.0) - 2024-12-26
+#### Bug Fixes
+- **(ansible)** fix the recipe - ([821d7c4](https://github.com/abougouffa/minemacs/commit/821d7c4172229ddcc15b09be8772699e9fa7e47f)) - [@abougouffa](https://github.com/abougouffa)
+- **(transient)** install a newer version at the right place - ([2540cbb](https://github.com/abougouffa/minemacs/commit/2540cbb85fbf004b6d0e7e64c0f9ec036462093d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ai)** initial support for Copilot - ([009f7a2](https://github.com/abougouffa/minemacs/commit/009f7a2bbb74d9119d423bc4c98727388f2895fd)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add a command to display ShellCheck errors description - ([7be3de3](https://github.com/abougouffa/minemacs/commit/7be3de35405a5fcda7073a24e53e3447cc9e2669)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/gitlab-ci)** add a helper command `+gitlab-ci-add-schema` - ([b45c89a](https://github.com/abougouffa/minemacs/commit/b45c89a523e28e31effedbd5149940d250946017)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/yaml)** add `ansible-mode` - ([7b82935](https://github.com/abougouffa/minemacs/commit/7b82935c19b9536454ed50ec8deef9d8c0ffbba4)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** inhibit compacting font caches - ([2e777e0](https://github.com/abougouffa/minemacs/commit/2e777e02a5dce27a5d15c0ccf951d2830ef0075b)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** larger kill ring size - ([d1eb039](https://github.com/abougouffa/minemacs/commit/d1eb0393d7e9126eeda9aea0ef114956b7fd634b)) - [@abougouffa](https://github.com/abougouffa)
+- **(copilot)** customize the installation directory - ([705d6c6](https://github.com/abougouffa/minemacs/commit/705d6c652de7ef38f981fafa04db688f33f6a0e9)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** minor tweaks in the integration with `symbol-overlay` - ([55eb96d](https://github.com/abougouffa/minemacs/commit/55eb96de8654d7ee779e556aa23c0b4274a2d1c3)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** change the ControlPath socket name format - ([7788f5b](https://github.com/abougouffa/minemacs/commit/7788f5bf066bf01e5d28a43afba0f85ecb229f49)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** more responsive SSH editing - ([a2a8f7f](https://github.com/abougouffa/minemacs/commit/a2a8f7fc6a9d8400f26a0062631b4e54b823d465)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([baff206](https://github.com/abougouffa/minemacs/commit/baff2069a08c4b475b9129fa90320b6be8d7f036)) - [@abougouffa](https://github.com/abougouffa)
+- edit the message displayed after loading Emacs - ([a975058](https://github.com/abougouffa/minemacs/commit/a975058a04ab23c9b06aed30a397d4cb98bffa40)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([f665741](https://github.com/abougouffa/minemacs/commit/f66574105a12c66d82301f175c7941482b439a9a)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of `+shellcheck-describe-error` - ([46a4064](https://github.com/abougouffa/minemacs/commit/46a406443a9720a21f802a8c4cfa4ef1477c42b6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([ea65ade](https://github.com/abougouffa/minemacs/commit/ea65adea4ecc5bc0b3973e57c4faf68cbebec70d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.3.0](https://github.com/abougouffa/minemacs/compare/b943fe9bf5e768c38fe6c9535116abe9ead50cfe..v12.3.0) - 2024-12-17
 #### Bug Fixes
 - **(builtin)** fix a couple of issues with Emacs 29 - ([95ce8e9](https://github.com/abougouffa/minemacs/commit/95ce8e9948606409b0618385e8098c42cdd35232)) - [@abougouffa](https://github.com/abougouffa)
