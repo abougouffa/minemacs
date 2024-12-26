@@ -8,12 +8,6 @@
 
 ;;; Code:
 
-;; A library for defining keyboard-driven menus
-(use-package transient
-  ;; We need to install a new version, otherwise, `forge' will not work
-  :straight t)
-
-
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
   :straight t

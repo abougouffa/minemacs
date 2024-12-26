@@ -74,6 +74,12 @@
                                     '(which-key editorconfig)))))
   (straight-use-package `(,pkg :source gnu-elpa-mirror)))
 
+;; HACK+FIX: We need to install a new version, otherwise, `magit' and `forge'
+;; can cause problems. This needs to be done early before the builtin
+;; `transient' gets loaded.
+(use-package transient
+  :straight t)
+
 (use-package compat
   :straight (compat :source gnu-elpa-mirror)
   :when (< emacs-major-version 30)
