@@ -75,6 +75,7 @@
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
   (ring-bell-function #'ignore) ; Don't beep
+  (inhibit-compacting-font-caches t) ; Trade memory usage for less lagging
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
