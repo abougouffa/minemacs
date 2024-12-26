@@ -679,6 +679,7 @@
 ## `on-demand/me-yaml`
 * `yaml-mode`: Major mode for editing YAML files
 * `yaml-pro`: Parser-aided YAML editing features
+* `ansible`: Ansible minor mode
 
 ## `on-demand/me-yang`
 * `yang-mode`: Major mode for editing YANG files

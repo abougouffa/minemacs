@@ -16,9 +16,9 @@ Load and hooks order:
   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
-  * `~/.emacs.d/core/me-bootstrap.el`
   * `~/.emacs.d/core/me-builtin.el`
-  * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules`)
+  * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`)
+  * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules`, unless `MINEMACS_BUILTIN_ONLY)
   * `minemacs-after-loading-modules-hook`
   * `$MINEMACSDIR/config.el`                 (unless disabled)
   * `$MINEMACSDIR/local/config.el`           (unless disabled)
@@ -871,6 +871,10 @@ the children of class at point.
 #### `(+eglot-help-at-point)`
 
 Request documentation for the thing at point.
+
+#### `(+shellcheck-describe-error &rest CODES)`
+
+Describe a ShellCheck message CODES.
 
 #### `(+server-restart)`
 
