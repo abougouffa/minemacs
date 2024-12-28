@@ -984,6 +984,7 @@ Typing these will trigger reindentation of the current line.")
   :custom
   (recentf-max-saved-items 500) ; Increase the maximum number of saved items (def. 20)
   (recentf-case-fold-search t) ; Ignore case when searching recentf files
+  (recentf-save-file (concat minemacs-local-dir "recentf")) ; Needed, otherwise Emacs will still create a file under "~/.emacs.d"
   (recentf-exclude ; Exclude some files from being remembered by recentf
    `(file-remote-p
      ,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
