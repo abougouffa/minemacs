@@ -722,10 +722,10 @@ recursive-p) to scan directories recursively."
 
 (declare-function project-remember-projects-under "project")
 
-(defun +project-scan-for-projects (&optional dir)
-  "Scan and remember projects under DIR or `+project-scan-dir-paths'."
+(defun +project-scan-for-projects (&rest dirs)
+  "Scan and remember projects under DIRS or `+project-scan-dir-paths'."
   (interactive)
-  (dolist (cons-dir (or dir +project-scan-dir-paths))
+  (dolist (cons-dir (or dirs +project-scan-dir-paths))
     (let* ((cons-dir (ensure-list cons-dir))
            (root-dir (car cons-dir))
            (recursive (cdr cons-dir))
