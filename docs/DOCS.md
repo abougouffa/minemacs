@@ -550,9 +550,9 @@ Examples:
   (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
   (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
-#### `(+project-scan-for-projects &optional DIR)`
+#### `(+project-scan-for-projects &rest DIRS)`
 
-Scan and remember projects under DIR or `+project-scan-dir-paths`.
+Scan and remember projects under DIRS or `+project-scan-dir-paths`.
 
 #### `(+project-super-project-try-or-fail DIR)`
 
