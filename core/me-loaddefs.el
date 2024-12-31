@@ -549,6 +549,10 @@ Request documentation for the thing at point." t)
 Describe a ShellCheck message CODES.
 
 (fn &rest CODES)" t)
+(autoload '+explainshell "me-lib-extra" "\
+Get an explanation of the shell COMMAND using explainshell.com.
+
+(fn COMMAND)" t)
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
