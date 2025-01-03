@@ -14,22 +14,9 @@
   :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
 
 
-;;;###autoload(autoload '+gitlab-ci-add-schema "on-demand/me-gitlab-ci")
-
-
 ;; Mode for editing GitLab CI files
 (use-package gitlab-ci-mode
-  :straight t
-  :init
-  (defun +gitlab-ci-add-schema ()
-    (interactive)
-    (save-excursion
-      (save-restriction
-        (widen)
-        (goto-char (point-min))
-        (insert "# yaml-language-server: "
-                "$schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"
-                "\n\n")))))
+  :straight t)
 
 
 (provide 'on-demand/me-gitlab-ci)

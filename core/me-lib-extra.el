@@ -917,6 +917,53 @@ the children of class at point."
   (interactive (list (read-shell-command "Enter a command: " (when (region-active-p) (buffer-substring (region-beginning) (region-end))))))
   (browse-url (url-encode-url (format "https://explainshell.com/explain?cmd=%s" (string-join (string-split command nil t) "+")))))
 
+(defun +fetch-json-from-url (url)
+  "Fetch JSON data from a specified URL."
+  (with-current-buffer (url-retrieve-synchronously url)
+    (goto-char (point-min))
+    (re-search-forward "^$" nil 'move) ; Move to the end of the headers
+    (prog1 (json-read) (kill-buffer (current-buffer)))))
+
+(defun +json-schema-for-file (filename)
+  "Get a JSON Schema that matches FILENAME."
+  (and filename
+       (seq-filter
+        (lambda (spec)
+          (seq-find (lambda (pattern)
+                      (string-match-p (wildcard-to-regexp pattern) (expand-file-name filename)))
+                    (alist-get 'fileMatch spec)))
+        (alist-get 'schemas (+json-schemas-catalog)))))
+
+(defvar +json-schemas-catalog-cache (+deserialize-sym '+json-schemas-catalog-cache minemacs-cache-dir))
+
+(defun +json-schemas-catalog (&optional refresh)
+  "Get the catalog of schemas from JSON Schemas Store.
+When REFRESH is non-nil, don't use the cached version and force
+reloading the JSON file."
+  (when-let* ((catalog (or (and (not refresh) +json-schemas-catalog-cache)
+                           (+fetch-json-from-url "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json"))))
+    (setq +json-schemas-catalog-cache catalog)
+    (unless (equal (+deserialize-sym '+json-schemas-catalog-cache minemacs-cache-dir) +json-schemas-catalog-cache)
+      (+serialize-sym '+json-schemas-catalog-cache minemacs-cache-dir))
+    catalog))
+
+;;;###autoload
+(defun +yaml-insert-schema (&optional ask)
+  "Insert a schema for the current buffer file.
+When ASK is non-nil, ask which schema to insert without trying to guess
+the schema from the file name."
+  (interactive "P")
+  (when-let* ((catalog (+json-schemas-catalog))
+              (schemas (alist-get 'schemas catalog))
+              (name (or (and (not ask) (alist-get 'name (car (+json-schema-for-file (buffer-file-name)))))
+                        (completing-read "Choose a JSON schema: " (mapcar (apply-partially #'alist-get 'name) schemas))))
+              (url (alist-get 'url (seq-find (lambda (a) (equal (alist-get 'name a) name)) schemas))))
+    (save-excursion
+      (save-restriction
+        (widen)
+        (goto-char (point-min))
+        (insert "# yaml-language-server: $schema=" url "\n\n")))))
+
 
 
 ;;; Emacs server
