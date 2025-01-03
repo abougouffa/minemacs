@@ -6,17 +6,17 @@
 
 **MinEmacs** is a complete and fast Emacs configuration framework.
 
-![MinEmacs banner](/docs/images/minemacs-cover.svg)
+![MinEmacs banner](docs/images/minemacs-cover.svg)
 
-![MinEmacs screenshot](/docs/images/minemacs-screenshot.png)
+![MinEmacs screenshot](docs/images/minemacs-screenshot.png)
 
 ## Why?
 
-[Long story](/docs/STORY.md) short, I'm relaying on Emacs for my everyday's
+[Long story](docs/STORY.md) short, I'm relaying on Emacs for my everyday's
 work, so I needed a fast and stable configuration that fits my needs. MinEmacs
-is changing constantly, please refer to the [change log](/docs/CHANGELOG.md) for
+is changing constantly, please refer to the [change log](docs/CHANGELOG.md) for
 more information. See also the [list of MinEmacs' modules and
-packages](/docs/PACKAGES.md).
+packages](docs/PACKAGES.md).
 
 > [!NOTE]
 > Please note that I have no intent or availability to create an alternative to
@@ -97,8 +97,8 @@ There are two main files that can be added in the `~/.minemacs.d` directory:
    customization, you can think of it as your `init.el`, which gets loaded at
    the end of MinEmacs' `init.el`!
 
-This repository contains skeleton files for [`modules.el`](/skel/modules.el) and
-[`config.el`](/skel/config.el) (under [`skel/`](/skel)). We highly recommend
+This repository contains skeleton files for [`modules.el`](skel/modules.el) and
+[`config.el`](skel/config.el) (under [`skel/`](skel)). We highly recommend
 following the same structure as in the skeleton files, specially the use of
 `with-eval-after-load` and `use-package` instead of using `require` directly
 (`require` loads the packages immediately, which increases the startup time of
@@ -130,9 +130,9 @@ MinEmacs runnable on older Emacs versions, etc.
    UI, overwrite the variables set by MinEmacs in `~/.emacs.d/early-init.el`,
    and so on.
 2. The `~/.minemacs.d/init-tweaks.el` file is loaded at an early stage of the
-   [`init.el`](/init.el) file. You can use it to do some useful stuff before
+   [`init.el`](init.el) file. You can use it to do some useful stuff before
    MinEmacs starts to customize packages and load modules. See the comments in
-   [`init.el`](/init.el) for more information.
+   [`init.el`](init.el) for more information.
 
 ### Environment variables
 
@@ -169,11 +169,11 @@ You can customize MinEmacs' behavior via some environment variables.
 ## Extra documentation
 For more information about customization variables, functions and commands
 defined by MinEmacs, you can refer to the [documentation generated from the
-source code](/docs/DOCS.md).
+source code](docs/DOCS.md).
 
 ## Troubleshooting
 
 If you experienced an issue with MinEmacs, you can take a look at the
-[FAQ](/docs/FAQ.md), consult the
+[FAQ](docs/FAQ.md), consult the
 [discussions](https://github.com/abougouffa/minemacs/discussions), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).
