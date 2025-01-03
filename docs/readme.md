@@ -12,11 +12,11 @@
 
 ## Why?
 
-[Long story](docs/STORY.md) short, I'm relaying on Emacs for my everyday's
+[Long story](docs/story.md) short, I'm relaying on Emacs for my everyday's
 work, so I needed a fast and stable configuration that fits my needs. MinEmacs
-is changing constantly, please refer to the [change log](docs/CHANGELOG.md) for
+is changing constantly, please refer to the [change log](docs/changelog.md) for
 more information. See also the [list of MinEmacs' modules and
-packages](docs/PACKAGES.md).
+packages](docs/packages.md).
 
 > [!NOTE]
 > Please note that I have no intent or availability to create an alternative to
@@ -169,11 +169,11 @@ You can customize MinEmacs' behavior via some environment variables.
 ## Extra documentation
 For more information about customization variables, functions and commands
 defined by MinEmacs, you can refer to the [documentation generated from the
-source code](docs/DOCS.md).
+source code](docs/functions-and-commands.md).
 
 ## Troubleshooting
 
 If you experienced an issue with MinEmacs, you can take a look at the
-[FAQ](docs/FAQ.md), consult the
+[FAQ](docs/faq.md), consult the
 [discussions](https://github.com/abougouffa/minemacs/discussions), check [open
 issues or open a new one](https://github.com/abougouffa/minemacs/issues).

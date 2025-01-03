@@ -61,10 +61,10 @@ ci-daemon:
 	HOME=$(PWD)/.. timeout 180 $(EMACS) --daemon 2>&1
 
 gen-descriptions:
-	$(EMACS_BATCH) --eval='(progn (minemacs-extract-packages-descriptions) (with-current-buffer (get-buffer "*minemacs-modules-pkg-desc*") (write-file "docs/PACKAGES.md")))'
+	$(EMACS_BATCH) --eval='(progn (minemacs-extract-packages-descriptions) (with-current-buffer (get-buffer "*minemacs-modules-pkg-desc*") (write-file "docs/packages.md")))'
 
 gen-external-tools:
-	$(EMACS_BATCH) --eval='(progn (+list-external-dependencies) (with-current-buffer (get-buffer "*external-dependencies*") (write-file "docs/EXTERNAL-TOOLS.md")))'
+	$(EMACS_BATCH) --eval='(progn (+list-external-dependencies) (with-current-buffer (get-buffer "*external-dependencies*") (write-file "docs/external-tools.md")))'
 
 make-readme-markdown.el:
 	wget -q -O $@ https://raw.github.com/mgalgs/make-readme-markdown/master/make-readme-markdown.el
@@ -73,6 +73,6 @@ combined.el:
 	cat init.el early-init.el core/me-{vars,lib,lib-extra,builtin}.el modules/me-*.el modules/extras/me-*.el >combined.el
 
 documentation: gen-descriptions gen-external-tools combined.el make-readme-markdown.el
-	emacs --script make-readme-markdown.el <combined.el >docs/DOCS.md 2>/dev/null
+	emacs --script make-readme-markdown.el <combined.el >docs/functions-and-commands.md 2>/dev/null
 
 .INTERMEDIATE: make-readme-markdown.el combined.el

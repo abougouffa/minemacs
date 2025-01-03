@@ -18,7 +18,7 @@ tweak = { changelog_title = "Tweaks" }
 nit = { changelog_title = "Nitpicks, changes with no side effect" }
 
 [changelog]
-path = "docs/CHANGELOG.md"
+path = "docs/changelog.md"
 template = "remote"
 remote = "github.com"
 repository = "minemacs"
