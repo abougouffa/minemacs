@@ -913,7 +913,7 @@ the children of class at point."
 
 ;;;###autoload
 (defun +explainshell (command)
-  "Get an explanation of the shell COMMAND using explainshell.com."
+  "Get an explanation of the shell COMMAND from explainshell.com."
   (interactive (list (read-shell-command "Enter a command: " (when (region-active-p) (buffer-substring (region-beginning) (region-end))))))
   (browse-url (url-encode-url (format "https://explainshell.com/explain?cmd=%s" (string-join (string-split command nil t) "+")))))
 

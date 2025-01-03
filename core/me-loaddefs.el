@@ -248,7 +248,6 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab-ci.el
 
 (minemacs-register-on-demand-module 'me-gitlab-ci :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
-(autoload '+gitlab-ci-add-schema "on-demand/me-gitlab-ci")
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gnuplot.el
@@ -550,9 +549,15 @@ Describe a ShellCheck message CODES.
 
 (fn &rest CODES)" t)
 (autoload '+explainshell "me-lib-extra" "\
-Get an explanation of the shell COMMAND using explainshell.com.
+Get an explanation of the shell COMMAND from explainshell.com.
 
 (fn COMMAND)" t)
+(autoload '+yaml-insert-schema "me-lib-extra" "\
+Insert a schema for the current buffer file.
+When ASK is non-nil, ask which schema to insert without trying to guess
+the schema from the file name.
+
+(fn &optional ASK)" t)
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
@@ -651,7 +656,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+g" "+html2pdf-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schema" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -1206,7 +1211,7 @@ move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8
+;; coding: utf-8-emacs-unix
 ;; End:
 
 ;;; me-loaddefs.el ends here
