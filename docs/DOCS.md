@@ -876,6 +876,30 @@ Request documentation for the thing at point.
 
 Describe a ShellCheck message CODES.
 
+#### `(+explainshell COMMAND)`
+
+Get an explanation of the shell COMMAND from explainshell.com.
+
+#### `(+fetch-json-from-url URL)`
+
+Fetch JSON data from a specified URL.
+
+#### `(+json-schema-for-file FILENAME)`
+
+Get a JSON Schema that matches FILENAME.
+
+#### `(+json-schemas-catalog &optional REFRESH)`
+
+Get the catalog of schemas from JSON Schemas Store.
+When REFRESH is non-nil, don't use the cached version and force
+reloading the JSON file.
+
+#### `(+yaml-insert-schema &optional ASK)`
+
+Insert a schema for the current buffer file.
+When ASK is non-nil, ask which schema to insert without trying to guess
+the schema from the file name.
+
 #### `(+server-restart)`
 
 Restart the Emacs server.
