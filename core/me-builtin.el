@@ -575,6 +575,7 @@ or file path may exist now."
   (eglot-sync-connect 0) ; async, do not block
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
+  (eglot-stay-out-of '(yasnippet))
   :config
   ;; Register some missing LSP servers
   (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
