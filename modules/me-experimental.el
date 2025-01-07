@@ -15,12 +15,6 @@
   :commands (eglot-inactive-regions-mode))
 
 
-;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
-(use-package p-search
-  :straight (:host github :repo "zkry/p-search")
-  :commands (p-search))
-
-
 ;; Work seamlessly with GitHub gists from Emacs
 (use-package igist
   :straight t)

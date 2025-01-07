@@ -66,6 +66,12 @@
   :bind (("C-c s" . rg-menu)))
 
 
+;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
+(use-package p-search
+  :straight (:host github :repo "zkry/p-search")
+  :commands (p-search))
+
+
 ;; Asynchronous fuzzy finder for Emacs
 (use-package affe
   :straight t
