@@ -665,8 +665,8 @@ or file path may exist now."
 (use-package org
   :defer 10
   :preface
-  ;; Set to nil so we can detect user changes (in config.el)
-  (setq org-directory nil)
+  ;; Set to the default value, this can be overwritten in the user config file.
+  (setq org-directory minemacs-default-org-dir)
   :custom
   (org-persist-directory (+directory-ensure minemacs-cache-dir "org/persist/"))
   (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
