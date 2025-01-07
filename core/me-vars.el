@@ -166,8 +166,6 @@ Compiled from the `system-configuration-features',
   :group 'minemacs-ui
   :type 'symbol)
 
-(defvar minemacs--background-color nil)
-
 (defcustom minemacs-disabled-packages nil
   "List of packages to be disabled when loading MinEmacs modules.
 This can be useful if you want to enable a module but you don't want a package
@@ -213,6 +211,7 @@ MinEmacs hooks will be run in this order:
   :group 'minemacs-core
   :type 'hook)
 
+;; TODO: Maybe replace with `url-proxy-services' (if the last works with shell commands)
 (defcustom minemacs-proxies nil
   "MinEmacs proxies.
 
