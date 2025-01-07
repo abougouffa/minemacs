@@ -15,6 +15,7 @@
   :autoload +jira-get-ticket
   :init
   (defvar-local +jira-open-status '("open" "to do" "in progress"))
+  (defvar-local +jira-commit-auto-insert-ticket-id-predicate nil)
   :config
   (defun +jira--ticket-annotation-fn (ticket)
     (let ((item (assoc ticket minibuffer-completion-table)))
@@ -57,6 +58,31 @@ The link style depends on the current major mode."
              ((derived-mode-p 'markdown-mode 'git-commit-mode 'markdown-ts-mode)
               (format "[%s%s](%s)" id (if with-summary (concat ": " summary) "") link))
              (t link)))))
+
+  ;; INFO: Here is an example of a predicate function, it inserts a Jira ID
+  ;; only if the project's remote contains the username "abougouffa"
+  ;; (setq +jira-commit-auto-insert-ticket-id-predicate
+  ;;       (lambda ()
+  ;;         (when-let* ((urls (mapcar (lambda (remote) (string-trim-right (shell-command-to-string (format "git config --get remote.%s.url" remote)))) (magit-list-remotes))))
+  ;;           (cl-some (apply-partially #'string-match-p (rx (or "github.com/abougouffa" "gitlab.com/abougouffa"))) urls))))
+
+  (defun +jira-commit-auto-insert-ticket-id ()
+    "Insert a ticket ID at the beginning of the commit if the first line is empty.
+
+This function is meant to be hooked to `git-commit-mode-hook' for
+projects to uses the convention of commit messages like:
+
+\"JIRA-TICKET-ID: Commit message\"."
+    (when (and (+first-line-empty-p) ; Do not auto insert if the commit message is not empty (ex. amend)
+               +jira-commit-auto-insert-ticket-id-predicate
+               (funcall +jira-commit-auto-insert-ticket-id-predicate))
+      (goto-char (point-min))
+      (insert "\n")
+      (goto-char (point-min))
+      (let ((pt (point)))
+        (+jira-insert-ticket-id nil)
+        (when (/= pt (point))
+          (insert ": ")))))
 
   (defun +jiralib-auto-login ()
     "Auto login to Jira using credentials from `auth-source'."
