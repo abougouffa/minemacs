@@ -930,7 +930,9 @@ the children of class at point."
        (seq-filter
         (lambda (spec)
           (seq-find (lambda (pattern)
-                      (string-match-p (wildcard-to-regexp pattern) (expand-file-name filename)))
+                      (string-match-p
+                       (string-remove-prefix "\\`" (wildcard-to-regexp pattern))
+                       (expand-file-name filename)))
                     (alist-get 'fileMatch spec)))
         (alist-get 'schemas (+json-schemas-catalog)))))
 
