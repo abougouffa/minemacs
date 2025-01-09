@@ -918,14 +918,16 @@ the children of class at point."
   (browse-url (url-encode-url (format "https://explainshell.com/explain?cmd=%s" (string-join (string-split command nil t) "+")))))
 
 (defun +fetch-json-from-url (url)
-  "Fetch JSON data from a specified URL."
+  "Get an Emacs JSON object from a specified URL."
   (with-current-buffer (url-retrieve-synchronously url)
     (goto-char (point-min))
     (re-search-forward "^$" nil 'move) ; Move to the end of the headers
     (prog1 (json-read) (kill-buffer (current-buffer)))))
 
-(defun +json-schema-for-file (filename)
-  "Get a JSON Schema that matches FILENAME."
+(declare-function string-remove-prefix "subr-x")
+
+(defun +json-schemas-for-file (filename)
+  "Get a list of JSON Schemas that apply to FILENAME."
   (and filename
        (seq-filter
         (lambda (spec)
@@ -957,7 +959,7 @@ the schema from the file name."
   (interactive "P")
   (when-let* ((catalog (+json-schemas-catalog))
               (schemas (alist-get 'schemas catalog))
-              (name (or (and (not ask) (alist-get 'name (car (+json-schema-for-file (buffer-file-name)))))
+              (name (or (and (not ask) (alist-get 'name (car (+json-schemas-for-file (buffer-file-name)))))
                         (completing-read "Choose a JSON schema: " (mapcar (apply-partially #'alist-get 'name) schemas))))
               (url (alist-get 'url (seq-find (lambda (a) (equal (alist-get 'name a) name)) schemas))))
     (save-excursion
