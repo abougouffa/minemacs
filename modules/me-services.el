@@ -59,17 +59,6 @@ The link style depends on the current major mode."
               (format "[%s%s](%s)" id (if with-summary (concat ": " summary) "") link))
              (t link)))))
 
-  ;; INFO: Here is an example of a predicate function, it inserts a Jira ID
-  ;; only if the project's remote contains the username "abougouffa"
-  ;; (setq-default +jira-commit-auto-insert-ticket-id-function
-  ;;               (lambda ()
-  ;;                 (when-let* ((id (and (cl-some (apply-partially #'string-match-p (rx (or "github.com/abougouffa" "gitlab.com/abougouffa")))
-  ;;                                               (mapcar (lambda (remote) (string-trim-right (shell-command-to-string (format "git config --get remote.%s.url" remote))))
-  ;;                                                       (magit-list-remotes)))
-  ;;                                      (+jira-get-ticket))))
-  ;;                   (insert (car id) ": ")
-  ;;                   (save-excursion (insert "\n\n\n" (car id) ": " (cdr id))))))
-
   (defun +jira-commit-auto-insert-ticket-id ()
     "Insert a ticket ID at the beginning of the commit if the first line is empty.
 

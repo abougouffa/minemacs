@@ -270,20 +270,28 @@
         jiralib-host "my-jira-server.tld"
         jiralib-user "my-username")
 
-  ;; Add a hook on git-commit, so it automatically prompt for a ticket number to
-  ;; add to the commit message
-  (add-hook
-   'git-commit-mode-hook
-   (satch-defun +jira-commit-auto-insert-ticket-id-h ()
-     (require 'jiralib)
-     (when (and jiralib-url jiralib-token
-                ;; Do not auto insert if the commit message is not empty (ex. amend)
-                (+first-line-empty-p))
-       (goto-char (point-min))
-       (insert "\n")
-       (goto-char (point-min))
-       (+jira-insert-ticket-id)
-       (insert ": "))))
+  ;; INFO: Here is an example of a function, it inserts the following template
+  ;; if the project's remote contains the username "abougouffa"
+  ;; ------------------------------------------
+  ;; JIRA-TICKET-ID: | <- cursor here
+  ;;
+  ;;
+  ;; Ref: JIRA-TICKET-ID: JIRA TICKET TITLE
+  ;; ------------------------------------------
+  (setq-default
+   +jira-commit-auto-insert-ticket-id-function
+   (lambda ()
+     (when-let* ((id (and (cl-some (apply-partially #'string-match-p (rx (or "github.com/abougouffa" "gitlab.com/abougouffa")))
+                                   (mapcar (lambda (remote) (string-trim-right (shell-command-to-string (format "git config --get remote.%s.url" remote))))
+                                           (magit-list-remotes)))
+                          (+jira-get-ticket))))
+       (insert (car id) ": ")
+       (save-excursion (insert "\n\n\nRef: " (car id) ": " (cdr id))))))
+
+  ;; Add the hook which uses `+jira-commit-auto-insert-ticket-id-function' on
+  ;; git-commit, so it automatically prompt for a ticket number to add to the
+  ;; commit message
+  (add-hook 'git-commit-mode-on-hook #'+jira-commit-auto-insert-ticket-id)
 
   ;; Login automatically using credentials from `auth-source'
   ;; You can achieve this by adding this line in your "~/.authinfo.gpg"
