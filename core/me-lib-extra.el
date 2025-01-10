@@ -638,6 +638,15 @@ If ENABLE is non-nil, force enabling autoreloading."
 
 ;;; Misc Emacs tweaks
 
+(autoload 'ansi-color-apply-on-region "ansi-color")
+
+;;;###autoload
+(defun +ansi-color-apply-on-buffer ()
+  "Decode and apply ANSI color chars in the curernt buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
 ;; Adapted from: https://github.com/rougier/nano-emacs
 ;;;###autoload
 (defun +what-faces (pos)

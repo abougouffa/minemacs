@@ -193,12 +193,7 @@ use `project-remember-project' with each detected repo."
 ;; Running "repo" from Emacs
 (use-package repo
   :straight t
-  :hook (repo-mode . +ansi-color-apply-on-buffer)
-  :config
-  (defun +ansi-color-apply-on-buffer ()
-    (require 'ansi-color)
-    (let ((inhibit-read-only t))
-      (ansi-color-apply-on-region (point-min) (point-max)))))
+  :hook (repo-mode . +ansi-color-apply-on-buffer))
 
 
 ;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
