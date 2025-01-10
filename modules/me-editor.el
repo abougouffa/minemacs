@@ -126,13 +126,7 @@ In some files, there is a mix of spaces and tabs. This uses
      (with-eval-after-load 'selection-highlight-mode
        (with-eval-after-load 'isearch
          (when (display-graphic-p)
-           (require 'color)
-           (let ((new-color (funcall
-                             (if (eq 'light (frame-parameter nil 'background-mode))
-                                 #'color-lighten-name
-                               #'color-darken-name)
-                             (face-attribute 'isearch :background nil t)
-                             5)))
+           (when-let* ((new-color (+color-subtle 'isearch 5)))
              (set-face-background 'selection-highlight-mode-match-face new-color)
              (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 

@@ -1027,6 +1027,25 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
    :overline (face-attribute 'default :foreground nil t)
    :background (face-attribute 'default :background nil t)))
 
+(autoload 'color-darken-name "color")
+(autoload 'color-lighten-name "color")
+
+(defun +color-subtle (base-color percentage &optional face-attr)
+  "Make a more subtle color based on BASE-COLOR and PERCENTAGE.
+
+We mean by subtle here, a darker color in dark themes and a lighter
+color in light themes.
+
+BASE-COLOR can be a color (string) or a face.
+When it is a face, the FACE-ATTR needs to be provided, otherwise, the
+:background attribute will be used."
+  (let ((base-color (if (facep base-color)
+                        (face-attribute base-color (or face-attr :background) nil t)
+                      base-color)))
+    (when (color-defined-p base-color)
+      (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
+               base-color percentage))))
+
 
 
 ;;; Lazy on-demand modules
