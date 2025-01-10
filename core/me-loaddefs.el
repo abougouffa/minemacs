@@ -342,7 +342,7 @@ restores it after that.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -487,6 +487,8 @@ If ENABLE is non-nil, force enabling autoreloading.
 (fn &optional ENABLE)" t)
 (autoload '+dir-locals-open-or-create "me-lib-extra" "\
 Open or create the dir-locals.el for the current project." t)
+(autoload '+ansi-color-apply-on-buffer "me-lib-extra" "\
+Decode and apply ANSI color chars in the curernt buffer." t)
 (autoload '+what-faces "me-lib-extra" "\
 Get the font faces at POS.
 
@@ -656,7 +658,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schema" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -1211,7 +1213,7 @@ move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8-emacs-unix
+;; coding: utf-8
 ;; End:
 
 ;;; me-loaddefs.el ends here
