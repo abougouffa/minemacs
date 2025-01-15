@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.5.0](https://github.com/abougouffa/minemacs/compare/67de6736d3e5ced35bbf5531698806fe2bd391c6..v12.5.0) - 2025-01-15
+#### Bug Fixes
+- **(core)** better file matching in `+json-schema-for-file` - ([a75eab0](https://github.com/abougouffa/minemacs/commit/a75eab00d115742c895af5c667bdbe1ca7db29ef)) - [@abougouffa](https://github.com/abougouffa)
+- **(recentf)** explicitly set the file path - ([4ec182e](https://github.com/abougouffa/minemacs/commit/4ec182e725183378f4256b1027dff1f330a79dc4)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** make links relative - ([33ce5ea](https://github.com/abougouffa/minemacs/commit/33ce5ea15f38016e870fef7421d99ffeb8a34d24)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([8b5c152](https://github.com/abougouffa/minemacs/commit/8b5c15273a72551941b5fabedc6e02fd70401ca4)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([a6a441e](https://github.com/abougouffa/minemacs/commit/a6a441e529878a325bc2ea831777709dfbfdd9d9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate documentation - ([67de673](https://github.com/abougouffa/minemacs/commit/67de6736d3e5ced35bbf5531698806fe2bd391c6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+explainshell` - ([3052104](https://github.com/abougouffa/minemacs/commit/30521047dbc41108254368babc1718836c131dfa)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib)** add `+jira-commit-auto-insert-ticket-id` - ([c16e786](https://github.com/abougouffa/minemacs/commit/c16e786c326907bf8d6ff90754c326fe6e15295e)) - [@abougouffa](https://github.com/abougouffa)
+- generic implementation of inserting YAML schemas - ([6cc5ebe](https://github.com/abougouffa/minemacs/commit/6cc5ebe599ac50ba645188d0e474ade656ef1ac3)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(docs)** rename documentation files - ([2e867d1](https://github.com/abougouffa/minemacs/commit/2e867d157baa2662dc2d9cbcf36c42bbfeeb6179)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- cleanup - ([c48737c](https://github.com/abougouffa/minemacs/commit/c48737c15ef6a2072248589be5a2a00d238be14d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- make `+ansi-color-apply-on-buffer` a command, move to lib - ([e65402a](https://github.com/abougouffa/minemacs/commit/e65402af9e67ae17489ae588199d12da0cf4da3e)) - [@abougouffa](https://github.com/abougouffa)
+- move subtle color hack to `+color-subtle` and fix an edge case - ([c39dc7f](https://github.com/abougouffa/minemacs/commit/c39dc7fe5d09f5fecf32c82e1d7ff46f834a6d84)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(copilot)** complete with TAB - ([b181e8b](https://github.com/abougouffa/minemacs/commit/b181e8bf4083029bcdcd8ce7a4f85229722ef6f9)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor edits - ([9ca0aaf](https://github.com/abougouffa/minemacs/commit/9ca0aafa38b3d770ea35f4fd25b33e9c51a211d0)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `minemacs-default-org-dir` - ([d6aee19](https://github.com/abougouffa/minemacs/commit/d6aee19903d38142691e446cab0d5a3dfb1e0596)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** don't mess with YASnippet - ([c39ed24](https://github.com/abougouffa/minemacs/commit/c39ed24a36e5fba373d4786f307e094476a49ba9)) - [@abougouffa](https://github.com/abougouffa)
+- **(nav)** move `p-search` from `me-experimental` to `me-nav` - ([7e178be](https://github.com/abougouffa/minemacs/commit/7e178bedf21328bffab31c2011222d418aedb125)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** accept multiple dirs in `+project-scan-for-projects` - ([d38da3d](https://github.com/abougouffa/minemacs/commit/d38da3d63e66251475360a4245acb94ad6faa0bc)) - [@abougouffa](https://github.com/abougouffa)
+- **(skel)** move config example for `jiralib` to `skel/config.el` - ([005870c](https://github.com/abougouffa/minemacs/commit/005870c02ad6d3fa6a92fadf71c7a01e2db45b08)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bf303dd](https://github.com/abougouffa/minemacs/commit/bf303dde470468a08f8fde46b89a91526c000a5e)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([aa23913](https://github.com/abougouffa/minemacs/commit/aa239131d96fc57b6dbbc08f23d1e1344f4b418c)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of `+jira-commit-auto-insert-ticket-id` - ([ceec2f3](https://github.com/abougouffa/minemacs/commit/ceec2f314e39eea42a2bdf4b65acd19197ce4fab)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([65b86e1](https://github.com/abougouffa/minemacs/commit/65b86e1052d9bbfc321bcbc8d972c4e355539b02)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.4.0](https://github.com/abougouffa/minemacs/compare/a2a8f7fc6a9d8400f26a0062631b4e54b823d465..v12.4.0) - 2024-12-26
 #### Bug Fixes
 - **(ansible)** fix the recipe - ([821d7c4](https://github.com/abougouffa/minemacs/commit/821d7c4172229ddcc15b09be8772699e9fa7e47f)) - [@abougouffa](https://github.com/abougouffa)
