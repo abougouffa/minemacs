@@ -151,6 +151,9 @@ You can customize MinEmacs' behavior via some environment variables.
   `use-package-always-demand` to `t` and `use-package-always-defer` to `nil` (by
   default, MinEmacs sets `use-package` to always defer, unless explicit
   `:demand` is added).
+- `MINEMACS_BUILTIN_ONLY`: Load only built-in packages, no need to install any
+  external package, including `straight`. This can be useful when you want to
+  use MinEmacs on a machine with limited internet access.
 - `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables
   loading `~/.minemacs.d/<file>.el` user configuration files. Accepted values
   for `<file>` are: `early-config`, `init-tweaks`, `modules`, `config`,
