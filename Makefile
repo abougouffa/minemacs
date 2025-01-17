@@ -4,9 +4,10 @@ EMACS_BATCH=emacs --batch --script init.el
 CLOC=cloc
 
 all:
-	@echo "Cleaning options are: clean, clean_pcache, clean_all, prune, loaddefs."
+	@echo "Cleaning options are: clean, clean_extras, clean_all, prune, loaddefs."
 	@echo "Straight options are: pull, rebuild, check."
-	@echo "Extra options are: bump, cloc, ci."
+	@echo "Extra options are: bump, cloc, locked, ci."
+	@echo "Documentation options: gen-external-tools, gen-descriptions, documentation."
 
 clean_extras:
 	rm -rf $(EMACS_DIR)/local/parinfer-rust || true
@@ -17,9 +18,6 @@ clean_extras:
 
 clean: clean_extras
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
-
-clean_pcache:
-	rm -rf $(EMACS_DIR)/local/cache/pcache
 
 clean_all: clean
 	cp $(EMACS_DIR)/local/straight/versions/default.el /tmp/straight-versions-default.el
@@ -46,10 +44,10 @@ check:
 	$(EMACS_BATCH) --eval='(straight-check-all)'
 
 bump:
-	MINEMACS_LOAD_ALL_MODULES=1 $(EMACS_BATCH) --eval='(minemacs-bump-packages)'
+	$(EMACS_BATCH) --eval='(minemacs-bump-packages)'
 
 locked:
-	$(EMACS_BATCH) --eval='(minemacs-restore-locked-packages nil)'
+	$(EMACS_BATCH) --eval='(minemacs-upgrade nil)'
 
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
