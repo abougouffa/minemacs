@@ -127,22 +127,9 @@ used (all small case, or title case):
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
 
-(defconst os/android (eq system-type 'android) "Non-nil on Android systems.")
-(defconst os/linux (eq system-type 'gnu/linux) "Non-nil on GNU/Linux systems.")
-(defconst os/bsd (and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) "Non-nil on BSD systems.")
-(defconst os/win (and (memq system-type '(cygwin windows-nt ms-dos)) t) "Non-nil on Windows systems.")
-(defconst os/mac (eq system-type 'darwin) "Non-nil on MacOS systems.")
-
 (defconst sys/arch (intern (car (split-string system-configuration "-")))
   "The system's architecture read from `system-configuration'.
 It return a symbol like `x86_64', `aarch64', `armhf', ...")
-
-(make-obsolete-variable 'os/android '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/linux '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/bsd '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/win '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'os/mac '+emacs-options-p "v11.0.0")
-(make-obsolete-variable 'sys/arch '+emacs-options-p "v11.0.0")
 
 (defconst minemacs--extra-features
   (append

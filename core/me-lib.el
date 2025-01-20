@@ -1222,8 +1222,6 @@ FEATS is available."
   (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
     (and (funcall fn (lambda (feat) (memq feat minemacs--extra-features)) feats) t)))
 
-(define-obsolete-function-alias '+emacs-features-p '+emacs-options-p "v11.0.0")
-
 
 (provide 'me-lib)
 ;;; me-lib.el ends here
