@@ -172,7 +172,7 @@
          ([remap goto-line] . consult-goto-line) ; M-g g or M-g M-g
 
          ;; M-s bindings in `search-map'
-         ("M-s f"   . consult-fd)
+         ("M-s F"   . consult-fd)
          ("M-s d"   . consult-find)
          ("M-s D"   . consult-locate)
          ("M-s g"   . consult-grep)
