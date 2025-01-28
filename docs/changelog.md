@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.5.1](https://github.com/abougouffa/minemacs/compare/39fce901abb318cc3fe88a29a19a44048c8407db..v12.5.1) - 2025-01-28
+#### Bug Fixes
+- **(magit-file-icons)** temporary disable, not working with new Magit version - ([be40918](https://github.com/abougouffa/minemacs/commit/be40918b6769f86c9dd91ee0805f9372118bf7e3)) - [@abougouffa](https://github.com/abougouffa)
+- use `if-let*` instead of the obsolete `if-let` - ([fe5342f](https://github.com/abougouffa/minemacs/commit/fe5342f0ec7fedb28205ac300d0801c8e3624a1b)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** document the `MINEMACS_BUILTIN_ONLY` environment variable - ([0077b51](https://github.com/abougouffa/minemacs/commit/0077b5127e558b0d96aa6d684f81769568d23177)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(make)** minor updates - ([39fce90](https://github.com/abougouffa/minemacs/commit/39fce901abb318cc3fe88a29a19a44048c8407db)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- add an example script for monitoring a directory - ([807debb](https://github.com/abougouffa/minemacs/commit/807debb5c3499aa799c41dc09190f41639c99da5)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move obsolete definitions to `me-obsolete-defs` - ([2b610c9](https://github.com/abougouffa/minemacs/commit/2b610c9ef962cc1a702e7ee3631cdff5dd5dc060)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult)** bind `fd` to `M-s F` to avoid conflict in `dired-mode` - ([a27c385](https://github.com/abougouffa/minemacs/commit/a27c38588b179c0a93101cd82763264e179f1d9c)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** reuse the same buffer in `+shellcheck-describe-error` (WIP) - ([47b6021](https://github.com/abougouffa/minemacs/commit/47b6021dd58ae61337119a3aa06ece20936f849f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1c1c048](https://github.com/abougouffa/minemacs/commit/1c1c0486f27eee1e81a1db32d9a642cac4b98c41)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.5.0](https://github.com/abougouffa/minemacs/compare/67de6736d3e5ced35bbf5531698806fe2bd391c6..v12.5.0) - 2025-01-15
 #### Bug Fixes
 - **(core)** better file matching in `+json-schema-for-file` - ([a75eab0](https://github.com/abougouffa/minemacs/commit/a75eab00d115742c895af5c667bdbe1ca7db29ef)) - [@abougouffa](https://github.com/abougouffa)
