@@ -101,7 +101,7 @@ a project, call `multi-vterm-dedicated-toggle'."
                                           display-buffer-alist)))
         (if-let* ((buf (get-buffer buf-name))
                   ((buffer-live-p buf)))
-            (if-let ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
+            (if-let* ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
                 (delete-window win)
               (pop-to-buffer buf))
           (multi-vterm-project))
