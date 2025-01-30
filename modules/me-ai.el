@@ -30,7 +30,7 @@
           (if (make-process :name +ollama-process-name :buffer +ollama-server-buffer-name :command '("ollama" "serve"))
               (message "Successfully started Ollama server.")
             (user-error "Cannot start the Ollama server"))
-          (with-eval-after-load 'ellama (+ellama-set-providers)))
+          (with-eval-after-load 'ellama (+ellama-set-available-providers)))
       (user-error "Cannot find the \"ollama\" executable")))
 
   (defun +ollama-kill-server ()
@@ -56,7 +56,7 @@
 (use-package ellama
   :straight t
   :config
-  (defun +ellama-set-providers ()
+  (defun +ellama-set-available-providers ()
     (setopt ellama-providers
             (cl-loop for model in (+ollama-list-installed-models)
                      collect (cons model (make-llm-ollama :chat-model model :embedding-model model)))
