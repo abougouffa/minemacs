@@ -76,6 +76,7 @@
   (whisper-use-threads (/ (num-processors) 2)))
 
 
+;; Copilot integration
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el")
   :bind (:map copilot-completion-map ([tab] . copilot-accept-completion))
