@@ -34,10 +34,16 @@
   :straight t
   :config
   (defun +ellama-set-available-providers ()
-    (setopt ellama-providers
-            (cl-loop for model in (+ollama-list-installed-models)
-                     collect (cons model (make-llm-ollama :chat-model model :embedding-model model)))
-            ellama-provider (cdr (car ellama-providers)))))
+    "Automatically set the available providers from Ollama."
+    (interactive)
+    (when-let* ((models (+ollama-list-installed-models)))
+      (setopt ellama-providers
+              (cl-loop for model in models
+                       collect (cons model (make-llm-ollama :chat-model model :embedding-model model)))
+              ellama-provider (cdr (car ellama-providers)))))
+
+  ;; Ensure loading all the available providers from Ollama
+  (ignore-errors (+ellama-set-available-providers)))
 
 
 ;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
