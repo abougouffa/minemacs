@@ -68,7 +68,17 @@
 
 ;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 (use-package elisa
-  :straight t)
+  :straight t
+  :config
+  (require 'ellama)
+  (require 'llm-ollama)
+  (defun +elisa-set-providers-from-ellama ()
+    (setopt elisa-embeddings-provider (make-llm-ollama :embedding-model (+ollama-get-default-embedding-model))
+            elisa-chat-provider (make-llm-ollama :chat-model (copy-sequence ellama-provider)
+                                                 :embedding-model (+ollama-get-default-embedding-model))))
+
+  (advice-add 'ellama-provider-select :after #'+elisa-set-providers-from-ellama)
+  (+elisa-set-providers-from-ellama))
 
 
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
