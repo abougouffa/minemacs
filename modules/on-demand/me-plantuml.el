@@ -18,9 +18,14 @@
   :straight t
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
-  (plantuml-jar-path (concat minemacs-local-dir "plantuml.jar"))
   (plantuml-indent-level 2)
   :config
+  ;; Use the executable if available or automatically download the latest version of PlantUML
+  (if (executable-find "plantuml")
+      (setopt plantuml-default-exec-mode 'executable)
+    (setopt plantuml-default-exec-mode 'jar
+            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar" nil :ver "1.2025.0")))
+
   ;; Define `capf' function, based on `plantuml-complete-symbol'
   (defun +plantuml-completion-at-point ()
     "Perform symbol-at-pt completion on word before cursor."
@@ -34,13 +39,6 @@
                 (if (eq max-match t)
                     (list keyword)
                   (all-completions sym-at-pt plantuml-kwdList)))))))
-
-  (if (executable-find "plantuml")
-      ;; Use the executable
-      (setopt plantuml-default-exec-mode 'executable)
-    ;; Automatically download the latest version of PlantUML
-    (setopt plantuml-default-exec-mode 'jar
-            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-{{ver}}.jar" nil :ver "1.2024.7")))
 
   ;; Add support for `capf'
   (defun +plantuml-mode-setup ()
