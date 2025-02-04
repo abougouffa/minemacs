@@ -47,7 +47,6 @@
 ;; File icons for Magit based on `nerd-icons'
 (use-package magit-file-icons
   :straight t
-  :disabled
   :trigger-commands magit magit-status magit-status-here magit-log magit-log-all
   :after magit
   :init
