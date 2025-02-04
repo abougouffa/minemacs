@@ -67,7 +67,7 @@
   :straight (:host github :repo "luismbo/multi-magit")
   :init
   (defvar +multi-magit-discover-max-depth 6 "Scan the sub-directoris up to this depth.")
-  (defcustom +multi-magit-discover-ignore-directories '("downloads" "build-f5688w" "sstate-cache")
+  (defcustom +multi-magit-discover-ignore-directories nil
     "Ignore these regexps when discovering repos.
 By default, the regexp is applied to the directory name. If you want to
 match the full path, use the \(cons \"path/to/ignore[0-9]*\" full) syntax."
