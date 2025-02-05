@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.6.0](https://github.com/abougouffa/minemacs/compare/67db86b7fc3e381783889e2796ddaf10ea3c380b..v12.6.0) - 2025-02-05
+#### Bug Fixes
+- **(magit-file-icons)** enable back, fixed incompatibility with new Magit - ([e9e8f57](https://github.com/abougouffa/minemacs/commit/e9e8f579eab2efc1a8acef5ec759732c5338a834)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(ai)** add a comment - ([83fa406](https://github.com/abougouffa/minemacs/commit/83fa406cb569494eccc37530d860665c9d8ecac3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(ai)** make `copilot` obsolete (not used, and I prefer local agents) - ([17dd038](https://github.com/abougouffa/minemacs/commit/17dd0389a505d9fafd5b849ac05c5a62807a8235)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(ellama)** rename a function - ([67db86b](https://github.com/abougouffa/minemacs/commit/67db86b7fc3e381783889e2796ddaf10ea3c380b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** add keybindings for `casual-image` - ([a16758d](https://github.com/abougouffa/minemacs/commit/a16758df995cd49f005fbbfb116cef2fdbc2e72e)) - [@abougouffa](https://github.com/abougouffa)
+- **(elisa)** use the same providers as Ellama - ([c313cf0](https://github.com/abougouffa/minemacs/commit/c313cf0a88b871b7d8b03dde33a263b736bf1045)) - [@abougouffa](https://github.com/abougouffa)
+- **(ellama)** make use of the new helpers, prefer fast embedding models - ([275675b](https://github.com/abougouffa/minemacs/commit/275675bf079f43125e1e0a4b31f5095d64e96ccd)) - [@abougouffa](https://github.com/abougouffa)
+- **(ellama)** make `+ellama-set-available-providers` a command - ([d35d1da](https://github.com/abougouffa/minemacs/commit/d35d1daf4902e6bfed8a9d3653a2a78f6cfa2a96)) - [@abougouffa](https://github.com/abougouffa)
+- **(llm)** add some Ollama helpers - ([04ef6d3](https://github.com/abougouffa/minemacs/commit/04ef6d34419172743f907eb23e850f5ad947e0ab)) - [@abougouffa](https://github.com/abougouffa)
+- **(llm-ollama)** remove server management, should be done externally - ([e658569](https://github.com/abougouffa/minemacs/commit/e658569c30f613b55b6ea6ab0f241989b3d0b140)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-magit)** remove project-specific defaults - ([f4ed4e6](https://github.com/abougouffa/minemacs/commit/f4ed4e6f9a0b181f4e807f68bf67ea373205ef25)) - [@abougouffa](https://github.com/abougouffa)
+- **(plantuml)** bump the version of PlanUML JAR - ([4071745](https://github.com/abougouffa/minemacs/commit/407174595c44ea121d30b769860b9f3e587553b1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([42c1e07](https://github.com/abougouffa/minemacs/commit/42c1e073531e11b02a13384a790b3d33ab8b0efc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.5.1](https://github.com/abougouffa/minemacs/compare/39fce901abb318cc3fe88a29a19a44048c8407db..v12.5.1) - 2025-01-28
 #### Bug Fixes
 - **(magit-file-icons)** temporary disable, not working with new Magit version - ([be40918](https://github.com/abougouffa/minemacs/commit/be40918b6769f86c9dd91ee0805f9372118bf7e3)) - [@abougouffa](https://github.com/abougouffa)
