@@ -45,12 +45,9 @@
 
 
 ;; File icons for Magit based on `nerd-icons'
-(use-package magit-file-icons
-  :straight t
-  :trigger-commands magit magit-status magit-status-here magit-log magit-log-all
-  :after magit
-  :init
-  (magit-file-icons-mode 1))
+(use-package magit-iconify
+  :straight (:host github :repo "justinbarclay/magit-iconify")
+  :hook (magit-mode . magit-iconify-mode))
 
 
 ;; Magit extension for "git-imerge"
