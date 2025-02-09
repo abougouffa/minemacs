@@ -15,6 +15,7 @@
   (magit-diff-refine-hunk t)
   (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
+  (magit-format-file-function #'magit-format-file-nerd-icons)
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1) ; Show in new window
   :init
   ;; Replace the `project-vc-dir' by `magit-project-status' in project prefix and switch commands
@@ -42,12 +43,6 @@
 ;; Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
 (use-package magit-todos
   :straight t)
-
-
-;; File icons for Magit based on `nerd-icons'
-(use-package magit-iconify
-  :straight (:host github :repo "justinbarclay/magit-iconify")
-  :hook (magit-mode . magit-iconify-mode))
 
 
 ;; Magit extension for "git-imerge"
