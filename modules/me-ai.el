@@ -69,6 +69,7 @@
 ;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 (use-package elisa
   :straight t
+  :hook (minemacs-build-functions . elisa-download-sqlite-vss)
   :config
   (require 'ellama)
   (require 'llm-ollama)
