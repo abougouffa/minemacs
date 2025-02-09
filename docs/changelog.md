@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.7.0](https://github.com/abougouffa/minemacs/compare/d2f1053b761b2c0b7723692af52bd79bafac6e35..v12.7.0) - 2025-02-09
+#### Documentation
+- regenerate the documentation - ([975d810](https://github.com/abougouffa/minemacs/commit/975d81032e06005944f95ebc3c935aaaa08564a8)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(magit)** replace `magit-iconify` with the new builtin icons support - ([bb69461](https://github.com/abougouffa/minemacs/commit/bb694616b385449a8400683989d838cc17f50410)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** replace `magit-file-icons` with `magit-iconify` - ([d2f1053](https://github.com/abougouffa/minemacs/commit/d2f1053b761b2c0b7723692af52bd79bafac6e35)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(elisa)** register `elisa-download-sqlite-vss` as build function - ([bdc9eed](https://github.com/abougouffa/minemacs/commit/bdc9eedc87befd02726bdc4f68fd9dd9fce01dff)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6f53f79](https://github.com/abougouffa/minemacs/commit/6f53f79de0e78fdb364a0b3c809fc6e86ce5f110)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e6949f5](https://github.com/abougouffa/minemacs/commit/e6949f5e676e93b06e047f4e369ffd78226e5521)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.6.0](https://github.com/abougouffa/minemacs/compare/67db86b7fc3e381783889e2796ddaf10ea3c380b..v12.6.0) - 2025-02-05
 #### Bug Fixes
 - **(magit-file-icons)** enable back, fixed incompatibility with new Magit - ([e9e8f57](https://github.com/abougouffa/minemacs/commit/e9e8f579eab2efc1a8acef5ec759732c5338a834)) - [@abougouffa](https://github.com/abougouffa)
