@@ -86,7 +86,6 @@
 
 ## `me-experimental`
 * `eglot-inactive-regions`: Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
-* `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
 * `igist`: Work seamlessly with GitHub gists from Emacs
 
 ## `me-extra`
@@ -150,6 +149,7 @@
 * `isearch+`: Extensions to `isearch`
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
 * `rg`: Emacs search tool based on "ripgrep"
+* `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
 * `affe`: Asynchronous fuzzy finder for Emacs
 * `fzf`: An Emacs front-end for "fzf"
 
@@ -278,7 +278,6 @@
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
 * `git-commit`: Edit Git commit messages - part of `magit`
 * `magit-todos`: Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
-* `magit-file-icons`: File icons for Magit based on `nerd-icons`
 * `magit-imerge`: Magit extension for "git-imerge"
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `closql`: Store EIEIO objects using EmacSQL

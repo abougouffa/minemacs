@@ -617,6 +617,15 @@ Setup fonts.
 
 Subtle look for the mode-line.
 
+#### `(+color-subtle BASE-COLOR PERCENTAGE &optional FACE-ATTR)`
+
+Make a more subtle color based on BASE-COLOR and PERCENTAGE.
+We mean by subtle here, a darker color in dark themes and a lighter
+color in light themes.
+BASE-COLOR can be a color (string) or a face.
+When it is a face, the FACE-ATTR needs to be provided, otherwise, the
+:background attribute will be used.
+
 #### `(minemacs-try-load-extra-mode)`
 
 Load extra mode if available.
@@ -800,6 +809,10 @@ If ENABLE is non-nil, force enabling autoreloading.
 
 Open or create the dir-locals.el for the current project.
 
+#### `(+ansi-color-apply-on-buffer)`
+
+Decode and apply ANSI color chars in the curernt buffer.
+
 #### `(+what-faces POS)`
 
 Get the font faces at POS.
@@ -882,11 +895,11 @@ Get an explanation of the shell COMMAND from explainshell.com.
 
 #### `(+fetch-json-from-url URL)`
 
-Fetch JSON data from a specified URL.
+Get an Emacs JSON object from a specified URL.
 
-#### `(+json-schema-for-file FILENAME)`
+#### `(+json-schemas-for-file FILENAME)`
 
-Get a JSON Schema that matches FILENAME.
+Get a list of JSON Schemas that apply to FILENAME.
 
 #### `(+json-schemas-catalog &optional REFRESH)`
 
