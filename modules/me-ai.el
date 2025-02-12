@@ -82,6 +82,22 @@
   (+elisa-set-providers-from-ellama))
 
 
+;; Pair-programming with AI agents using Aider
+(use-package aidermacs
+  :straight (:host github :repo "MatthewZMD/aidermacs")
+  :custom
+  (aidermacs-popular-models
+   (let ((ollama-models
+          '("qwen2.5-coder" "deepseek-r1" "deepseek-coder-v2" "command-r7b"
+            "codellama" "codegemma" "codestral" "codegeex4" "starcoder2"
+            "granite-code" "mistral-nemo" "mistral-small")))
+     (cl-loop for model in (+ollama-list-installed-models)
+              when (cl-member model ollama-models :test (lambda (a b) (string-prefix-p b a)))
+              collect (concat "ollama_chat/" model))))
+  :config
+  (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434"))
+
+
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
   :straight (:host github :repo "natrys/whisper.el")
