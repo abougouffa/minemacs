@@ -96,12 +96,6 @@
   (org-fragtog-preview-delay 0.2))
 
 
-;; Rich text clipboard for org-mode: Paste as a #+BEGIN_SRC block of correct mode, with link to where it came from
-(use-package org-rich-yank
-  :straight t
-  :hook (minemacs-lazy . org-rich-yank-enable))
-
-
 ;; Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 (use-package citar
   :straight t
