@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.8.0](https://github.com/abougouffa/minemacs/compare/987c77102314e085dd7d8f5a221709d8c51acc6b..v12.8.0) - 2025-02-24
+#### Features
+- **(ai)** add initial support for `aidermacs`, prefer local LLMs - ([f79b2b8](https://github.com/abougouffa/minemacs/commit/f79b2b8cfca26417cf43b6643486830d6f267b64)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** make `org-rich-yank` obsolete - ([4d20284](https://github.com/abougouffa/minemacs/commit/4d20284163e9257d126e38a8016acc8aa7643f72)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(whisper)** better defaults - ([987c771](https://github.com/abougouffa/minemacs/commit/987c77102314e085dd7d8f5a221709d8c51acc6b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0d89424](https://github.com/abougouffa/minemacs/commit/0d894247ee513abe824aa39e863581eb4a184ff8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.7.0](https://github.com/abougouffa/minemacs/compare/d2f1053b761b2c0b7723692af52bd79bafac6e35..v12.7.0) - 2025-02-09
 #### Documentation
 - regenerate the documentation - ([975d810](https://github.com/abougouffa/minemacs/commit/975d81032e06005944f95ebc3c935aaaa08564a8)) - [@abougouffa](https://github.com/abougouffa)
