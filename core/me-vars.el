@@ -127,7 +127,7 @@ used (all small case, or title case):
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
 
-(defconst minemacs--extra-features
+(defconst minemacs--options
   (append
    (list
     (intern (concat "arch/" (car (split-string system-configuration "-"))))

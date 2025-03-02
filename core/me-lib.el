@@ -1220,7 +1220,7 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
 When the first argument is `:any', this returns t if at least one of the
 FEATS is available."
   (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
-    (and (funcall fn (lambda (feat) (memq feat minemacs--extra-features)) feats) t)))
+    (and (funcall fn (lambda (feat) (memq feat minemacs--options)) feats) t)))
 
 
 (provide 'me-lib)
