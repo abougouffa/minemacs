@@ -15,6 +15,9 @@
 (defconst os/bsd (+emacs-options-p 'os/bsd) "Non-nil on BSD systems.")
 (defconst os/win (+emacs-options-p 'os/win) "Non-nil on Windows systems.")
 (defconst os/mac (+emacs-options-p 'os/mac) "Non-nil on MacOS systems.")
+(defconst sys/arch (intern (car (split-string system-configuration "-")))
+  "The system's architecture read from `system-configuration'.
+It return a symbol like `x86_64', `aarch64', `armhf', ...")
 
 (make-obsolete-variable 'os/android '+emacs-options-p "v11.0.0")
 (make-obsolete-variable 'os/linux '+emacs-options-p "v11.0.0")

@@ -127,10 +127,6 @@ used (all small case, or title case):
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
 
-(defconst sys/arch (intern (car (split-string system-configuration "-")))
-  "The system's architecture read from `system-configuration'.
-It return a symbol like `x86_64', `aarch64', `armhf', ...")
-
 (defconst minemacs--extra-features
   (append
    (list
