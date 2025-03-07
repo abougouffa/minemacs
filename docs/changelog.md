@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.8.1](https://github.com/abougouffa/minemacs/compare/594e6fd8003132e1ce9a42670e785f42e6cfca4e..v12.8.1) - 2025-03-07
+#### Nitpicks, changes with no side effect
+- rename an internal constant - ([5d7ab43](https://github.com/abougouffa/minemacs/commit/5d7ab4359efbc1645874e188701643feebdd122c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([3333f6a](https://github.com/abougouffa/minemacs/commit/3333f6a32265a8fa1322563d1aa2b4f59a8afcde)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1a0d890](https://github.com/abougouffa/minemacs/commit/1a0d89055ce5fbd6fae7644c690244e47c00f124)) - [@abougouffa](https://github.com/abougouffa)
+- move an obsolete constant - ([0d272b1](https://github.com/abougouffa/minemacs/commit/0d272b1f2b57f2fc6dec479e0c084d4a836fb86a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b942d79](https://github.com/abougouffa/minemacs/commit/b942d79a9f28dd25451c6a1d0c2797da64409bd0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8573f61](https://github.com/abougouffa/minemacs/commit/8573f617a15e4582153752e8b3981b235dc38950)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([594e6fd](https://github.com/abougouffa/minemacs/commit/594e6fd8003132e1ce9a42670e785f42e6cfca4e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.8.0](https://github.com/abougouffa/minemacs/compare/987c77102314e085dd7d8f5a221709d8c51acc6b..v12.8.0) - 2025-02-24
 #### Features
 - **(ai)** add initial support for `aidermacs`, prefer local LLMs - ([f79b2b8](https://github.com/abougouffa/minemacs/commit/f79b2b8cfca26417cf43b6643486830d6f267b64)) - [@abougouffa](https://github.com/abougouffa)
