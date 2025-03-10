@@ -4,6 +4,7 @@
 * `llm-ollama`: `llm` module for integrating with Ollama
 * `ellama`: A package for interacting with LLMs from Emacs
 * `elisa`: Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
+* `aidermacs`: Pair-programming with AI agents using Aider
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 
 ## `me-calendar`
@@ -166,7 +167,6 @@
 * `org-appear`: Auto-toggle Org elements
 * `org-modern`: Modern Org style
 * `org-fragtog`: Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
-* `org-rich-yank`: Rich text clipboard for org-mode: Paste as a #+BEGIN_SRC block of correct mode, with link to where it came from
 * `citar`: Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 * `citar-embark`: Citar integration with Embark
 
