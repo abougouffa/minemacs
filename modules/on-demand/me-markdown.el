@@ -27,14 +27,10 @@
 ;; Major mode for Markdown using Treesitter
 (use-package markdown-ts-mode
   :straight t
-  :when (+emacs-options-p 'tree-sitter)
+  :when (and (+emacs-options-p 'tree-sitter)
+             (< emacs-major-version 31)) ;; Built-in in Emacs 31+
   :hook (markdown-ts-mode . display-line-numbers-mode)
-  :commands (markdown-ts-mode)
-  :init
-  ;; Turn `markdown-ts-mode' if the buffer is big, otherwise use `markdown-mode'.
-  (+alist-set "\\.md\\'" '+markdown-ts-mode-maybe auto-mode-alist)
-  (defun +markdown-ts-mode-maybe (&rest _args)
-    (if (< (buffer-size) 100000) (markdown-mode) (markdown-ts-mode))))
+  :commands (markdown-ts-mode))
 
 
 (provide 'on-demand/me-markdown)
