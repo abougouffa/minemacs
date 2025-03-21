@@ -1,6 +1,6 @@
 ;;; early-config.el --- Early configuration file -*- coding: utf-8-unix; lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2024 Abdelhak Bougouffa
+;; Copyright (C) 2022-2025 Abdelhak Bougouffa
 
 ;; This file will be loaded at the end of `early-init.el', it can be used to set
 ;; some early initialization stuff, or to set some MinEmacs variables, specially

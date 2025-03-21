@@ -1,6 +1,6 @@
 ;; ci-init.el --- This file is used as an init script in the CI -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2023  Abdelhak Bougouffa
+;; Copyright (C) 2023-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 

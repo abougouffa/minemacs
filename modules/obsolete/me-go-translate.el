@@ -1,6 +1,6 @@
 ;;; me-go-translate.el --- Translate -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2024  Abdelhak Bougouffa
+;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 
