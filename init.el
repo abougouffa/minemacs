@@ -93,7 +93,7 @@
  byte-compile-verbose minemacs-verbose-p)
 
 ;; Native compilation settings
-(when (featurep 'native-compile)
+(when (and (featurep 'native-compile) (native-comp-available-p))
   (setq
    ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
    native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
