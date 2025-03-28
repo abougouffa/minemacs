@@ -132,9 +132,9 @@ used (all small case, or title case):
    (list
     (intern (concat "arch/" (car (split-string system-configuration "-"))))
     (cond ((eq system-type 'android) 'os/android)
-          ((eq system-type 'gnu/linux) 'os/linux)
-          ((and (memq system-type '(berkeley-unix gnu/kfreebsd)) t) 'os/bsd)
-          ((and (memq system-type '(cygwin windows-nt ms-dos)) t) 'os/win)
+          ((memq system-type '(gnu gnu/linux)) 'os/linux)
+          ((memq system-type '(berkeley-unix gnu/kfreebsd)) 'os/bsd)
+          ((memq system-type '(cygwin windows-nt ms-dos)) 'os/win)
           ((eq system-type 'darwin) 'os/mac)
           (t 'os/unknown)))
    (mapcar #'intern
@@ -214,7 +214,6 @@ it automatically."
 
 (defcustom minemacs-modules
   '(;; me-ai
-    ;; me-biblio
     ;; me-calendar
     me-checkers
     me-completion
