@@ -28,6 +28,29 @@ Call functions without asking when DONT-ASK-P is non-nil."
           (funcall-interactively fn))
       (funcall-interactively fn))))
 
+;; Do some tweaks to avoid asking questions when running
+;; `minemacs-bump-packages'
+(defun +minemacs--straight--popup-raw:around (orig-fn prompt actions)
+  (let (action-func action-args)
+    (dolist (action actions)
+      (let ((desc (nth 1 action))
+            (func (nth 2 action))
+            (args (cdddr action)))
+        (when (or (string-match-p "Stash changes" desc)
+                  (string-match-p "Rename remote .* to .*, re-create .* with correct URL, and fetch" desc)
+                  (string-match-p "Reset .* to .*" desc))
+          (setq action-func func
+                action-args args))))
+    (if action-func
+        (apply action-func action-args)
+      (funcall orig-fn prompt actions))))
+
+(defun +minemacs--straight-read-string (orig-fn prompt &rest args)
+  (cond
+   ((string-match-p "Optional stash message:" prompt)
+    (format-time-string "Stashed when bumping the package %F at %T"))
+   (t (apply orig-fn (cons prompt args)))))
+
 ;;;###autoload
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
@@ -35,17 +58,21 @@ Call functions without asking when DONT-ASK-P is non-nil."
   ;; Load all modules
   (message "[MinEmacs]: Loading all modules and on-demand modules")
   (apply #'minemacs-load-module (minemacs-modules t))
-
-  ;; Update straight recipe repositories
-  (straight-pull-recipe-repositories)
-
-  ;; Run `straight's update cycle, taking into account the explicitly pinned versions
-  (message "[MinEmacs]: Pulling packages")
-  (straight-pull-all)
-  (message "[MinEmacs]: Freezing packages")
-  (straight-freeze-versions)
-  (message "[MinEmacs]: Rebuilding packages")
-  (straight-rebuild-all)
+  (unwind-protect
+      (progn
+        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around)
+        (advice-add 'read-string :around '+minemacs--straight-read-string)
+        ;; Update straight recipe repositories
+        (straight-pull-recipe-repositories)
+        ;; Run `straight's update cycle, taking into account the explicitly pinned versions
+        (message "[MinEmacs]: Pulling packages")
+        (straight-pull-all)
+        (message "[MinEmacs]: Freezing packages")
+        (straight-freeze-versions)
+        (message "[MinEmacs]: Rebuilding packages")
+        (straight-rebuild-all))
+    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around)
+    (advice-remove 'read-string '+minemacs--straight-read-string))
 
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
