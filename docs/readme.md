@@ -61,15 +61,15 @@ loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
 > [!IMPORTANT]
-> Please note that I'm using a fresh Emacs 30.0.92 *(recommended version)* built
-> from the `emacs-30` branch mainly on two machines, one based on Manjaro Linux
-> and the other on Debian 12. However, I have set up some basic [Github CI
+> Please note that I'm using a fresh Emacs 31.0.50 built from the `emacs-31`
+> branch mainly on two machines, one based on Manjaro Linux and the other on
+> Debian 12. However, I have set up some basic [Github CI
 > actions](https://github.com/abougouffa/minemacs/actions) that automatically
 > test running this configuration on Emacs 29, 30 and 31 in [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
-> and on Emacs 29 in
+> and on Emacs 30 in
 > [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml).
 > These actions ensure that MinEmacs is "runnable" on these systems; with all
 > its modules enabled. However, further testing should be done to properly
