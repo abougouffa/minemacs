@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.9.0](https://github.com/abougouffa/minemacs/compare/395ada35add6120fd6dc3af56b51871fcd6d3f70..v12.9.0) - 2025-04-01
+#### Bug Fixes
+- **(ws-butler)** use the right repo with the right parameters - ([4a5e4a0](https://github.com/abougouffa/minemacs/commit/4a5e4a0062a4a65e125289a26520a6c361aef0b9)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- update copyright year - ([4098768](https://github.com/abougouffa/minemacs/commit/40987682547d9f9fe827046b964b51e85053c8c6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([387e93f](https://github.com/abougouffa/minemacs/commit/387e93f85057d5d26a8a0fe8bff56d5521907104)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(lib)** don't ask stupid questions when bumping packages versions - ([8069e4d](https://github.com/abougouffa/minemacs/commit/8069e4d6a2243007dff78d0fb9f2ed5e02cb3b5c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(init)** better detection of native compilation support - ([f6e13a5](https://github.com/abougouffa/minemacs/commit/f6e13a5ef6d72d81bed4e3406a5195261ffa133d)) - [@abougouffa](https://github.com/abougouffa)
+- **(lib)** minor edits - ([0eebec3](https://github.com/abougouffa/minemacs/commit/0eebec39739eeb622931e45668c1b4e456dad8a7)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** `markdown-ts-mode` is now built-in - ([969a287](https://github.com/abougouffa/minemacs/commit/969a287ab05a1756264025566b412ff318393ba1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([142cf5c](https://github.com/abougouffa/minemacs/commit/142cf5c996dc2c147ff84576d8c6c247e8a81331)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([90b0c62](https://github.com/abougouffa/minemacs/commit/90b0c62aad055b67573e1ce7b7f1bfa1ae27e320)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4743259](https://github.com/abougouffa/minemacs/commit/47432590fa9ef2017c85478c1d6dc30f4d92dfb1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1cc9419](https://github.com/abougouffa/minemacs/commit/1cc94198e1d9f91600557b710ed5e90132ac3381)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([395ada3](https://github.com/abougouffa/minemacs/commit/395ada35add6120fd6dc3af56b51871fcd6d3f70)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.8.1](https://github.com/abougouffa/minemacs/compare/594e6fd8003132e1ce9a42670e785f42e6cfca4e..v12.8.1) - 2025-03-07
 #### Nitpicks, changes with no side effect
 - rename an internal constant - ([5d7ab43](https://github.com/abougouffa/minemacs/commit/5d7ab4359efbc1645874e188701643feebdd122c)) - [@abougouffa](https://github.com/abougouffa)
