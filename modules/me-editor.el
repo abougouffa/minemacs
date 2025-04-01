@@ -28,7 +28,7 @@
 
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
 (use-package ws-butler
-  :straight (:host github :repo "hlissner/ws-butler")
+  :straight (:host github :repo "emacsmirror/nongnu_elpa" :branch "elpa/ws-butler")
   :hook (minemacs-first-file . ws-butler-global-mode))
 
 
