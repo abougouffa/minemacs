@@ -1545,8 +1545,6 @@ It is deferred until `general' gets loaded and configured."
 (+map! :package ace-window :module me-window
   "wa" #'ace-window)
 
-(+map! "wj" '(+window-adjust-size-transient :wk "+window-adjust-size"))
-
 
 
 ;;; For obsolete modules/packages

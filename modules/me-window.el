@@ -78,15 +78,6 @@
 
 (setq frame-title-format '("GNU Emacs (%b)"))
 
-(with-eval-after-load 'transient
-  (transient-define-prefix +window-adjust-size-transient ()
-    "Transient for adjusting window size."
-    [[("s" "Shrink" shrink-window :transient t)
-      ("e" "Enlarge" enlarge-window :transient t)]
-     [("h" "Shrink horizontally" shrink-window-horizontally :transient t)
-      ("l" "Enlarge horizontally" enlarge-window-horizontally :transient t)]
-     [("Q" "Quit" ignore :transient t)]]))
-
 
 (provide 'me-window)
 
