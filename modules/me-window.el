@@ -59,7 +59,7 @@
    (dedicated . t) ;; Close when finished
    (direction . bottom)
    (reusable-frames . visible) ;;
-   (window-height . 0.3)))
+   (window-height . 0.2)))
 
 (defvar +buffer-display-zoom-levels
   `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol)
