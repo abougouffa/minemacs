@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.10.0](https://github.com/abougouffa/minemacs/compare/4d87a324df3f315b7dffda3976fd74e93fd57ea2..v12.10.0) - 2025-04-05
+#### Bug Fixes
+- **(window)** decrease scale only once - ([81ebb96](https://github.com/abougouffa/minemacs/commit/81ebb96b95e9c8828705d100eeeedef06127c6ba)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(readme)** update information relative to the tested Emacs versions - ([6135339](https://github.com/abougouffa/minemacs/commit/61353397676d695e91607cabd146d846228dfca8)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(window)** set zoom level for some buffers after `display-buffer` - ([78c5bc8](https://github.com/abougouffa/minemacs/commit/78c5bc82bc6a41f2482c4883f9a1aa223b62777f)) - [@abougouffa](https://github.com/abougouffa)
+- remove the unused `+window-adjust-size-transient` - ([2b20c6a](https://github.com/abougouffa/minemacs/commit/2b20c6a0460403eb6716848debb533b84bdebf83)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(ci)** explicitly add Emacs 30.1 to the test matrix - ([4d87a32](https://github.com/abougouffa/minemacs/commit/4d87a324df3f315b7dffda3976fd74e93fd57ea2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(window)** make terminal windows take 20% instead of 30% height - ([17f6086](https://github.com/abougouffa/minemacs/commit/17f60862b13c366f090604f018afa36ff5763872)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a4dcd86](https://github.com/abougouffa/minemacs/commit/a4dcd86db326b2441f007122bc3cb0dc5af71a26)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.9.0](https://github.com/abougouffa/minemacs/compare/395ada35add6120fd6dc3af56b51871fcd6d3f70..v12.9.0) - 2025-04-01
 #### Bug Fixes
 - **(ws-butler)** use the right repo with the right parameters - ([4a5e4a0](https://github.com/abougouffa/minemacs/commit/4a5e4a0062a4a65e125289a26520a6c361aef0b9)) - [@abougouffa](https://github.com/abougouffa)
