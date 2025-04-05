@@ -70,10 +70,10 @@
  'display-buffer
  :after
  (satch-defun +display-buffer--change-font-size (buffer-or-name &optional action frame)
-   (when-let* ((zoom-level (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p))))
-     (if (< zoom-level 0)
-         (text-scale-decrease (abs zoom-level))
-       (text-scale-increase zoom-level)))))
+   (when-let* ((zoom-level
+                (and (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
+                     (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p)))))
+     (text-scale-increase zoom-level))))
 
 ;; REPL buffers
 (add-to-list
