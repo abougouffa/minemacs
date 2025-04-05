@@ -61,20 +61,6 @@
    (reusable-frames . visible) ;;
    (window-height . 0.2)))
 
-(defvar +buffer-display-zoom-levels
-  `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol)
-     . -0.7)
-    (,(rx bol "*" (or "Warnings" "envrc") "*" eol) . -0.7)))
-
-(advice-add
- 'display-buffer
- :after
- (satch-defun +display-buffer--change-font-size (buffer-or-name &optional action frame)
-   (when-let* ((zoom-level
-                (and (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
-                     (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p)))))
-     (text-scale-increase zoom-level))))
-
 ;; REPL buffers
 (add-to-list
  'display-buffer-alist
@@ -91,6 +77,20 @@
 
 
 (setq frame-title-format '("GNU Emacs (%b)"))
+
+;; Samller fonts for some kind of windows like terminals
+(defvar +buffer-display-zoom-levels
+  `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol) . -0.7)
+    (,(rx bol "*" (or "Warnings" "envrc") "*" eol) . -0.7)))
+
+(advice-add
+ 'display-buffer
+ :after
+ (satch-defun +display-buffer--change-font-size:after-a (buffer-or-name &optional action frame)
+   (when-let* ((zoom-level
+                (and (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
+                     (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p)))))
+     (text-scale-increase zoom-level))))
 
 
 (provide 'me-window)
