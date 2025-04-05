@@ -61,6 +61,20 @@
    (reusable-frames . visible) ;;
    (window-height . 0.3)))
 
+(defvar +buffer-display-zoom-levels
+  `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol)
+     . -0.7)
+    (,(rx bol "*" (or "Warnings" "envrc") "*" eol) . -0.7)))
+
+(advice-add
+ 'display-buffer
+ :after
+ (satch-defun +display-buffer--change-font-size (buffer-or-name &optional action frame)
+   (when-let* ((zoom-level (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p))))
+     (if (< zoom-level 0)
+         (text-scale-decrease (abs zoom-level))
+       (text-scale-increase zoom-level)))))
+
 ;; REPL buffers
 (add-to-list
  'display-buffer-alist
