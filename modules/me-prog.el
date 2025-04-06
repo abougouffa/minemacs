@@ -234,7 +234,7 @@
               (dir (locate-dominating-file
                     (or (+project-safe-root) default-directory)
                     conf-file)))
-        (expand-file-name conf-file dir)
+        (concat "file:" (expand-file-name conf-file dir))
       (let ((indent
              (cond
               ((derived-mode-p 'c-ts-mode 'c++-ts-mode) 'c-ts-mode-indent-offset)
