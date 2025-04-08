@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.10.1](https://github.com/abougouffa/minemacs/compare/edb5755ef7cd10186d88eab59b11f68eb6f4db78..v12.10.1) - 2025-04-08
+#### Bug Fixes
+- **(apheleia)** properly use the `.clang-format` file when available - ([4bc3c40](https://github.com/abougouffa/minemacs/commit/4bc3c40a424efd80056cb33e416d18df33f8bdc2)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- move some code around - ([edb5755](https://github.com/abougouffa/minemacs/commit/edb5755ef7cd10186d88eab59b11f68eb6f4db78)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(treesit)** minor recipes edits - ([4a25714](https://github.com/abougouffa/minemacs/commit/4a257147b94d6e6c1d43029c9ef4eeb9c04c1d94)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f3f15ab](https://github.com/abougouffa/minemacs/commit/f3f15ab55f7b7cb166fa4445b453cd1c1bde1d5e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.10.0](https://github.com/abougouffa/minemacs/compare/4d87a324df3f315b7dffda3976fd74e93fd57ea2..v12.10.0) - 2025-04-05
 #### Bug Fixes
 - **(window)** decrease scale only once - ([81ebb96](https://github.com/abougouffa/minemacs/commit/81ebb96b95e9c8828705d100eeeedef06127c6ba)) - [@abougouffa](https://github.com/abougouffa)
