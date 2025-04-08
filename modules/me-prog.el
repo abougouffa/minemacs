@@ -21,57 +21,35 @@
   ;; BUG+FIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
   (let* ((extra-recipes
           (list (make-treesit-auto-recipe
-                 :lang 'xml
-                 :ts-mode 'xml-ts-mode
-                 :remap '(nxml-mode xml-mode)
+                 :lang 'xml :ts-mode 'xml-ts-mode :remap '(nxml-mode xml-mode)
                  :url "https://github.com/tree-sitter-grammars/tree-sitter-xml"
-                 :source-dir "xml/src"
-                 :ext "\\.xml\\'")
+                 :source-dir "xml/src" :ext "\\.xml\\'")
                 (make-treesit-auto-recipe
-                 :lang 'hurl
-                 :ts-mode 'hurl-ts-mode
-                 :remap 'hurl-mode
+                 :lang 'hurl :ts-mode 'hurl-ts-mode :remap 'hurl-mode
                  :url "https://github.com/pfeiferj/tree-sitter-hurl"
                  :ext "\\.hurl\\'")
                 (make-treesit-auto-recipe
-                 :lang 'markdown
-                 :ts-mode 'markdown-ts-mode
-                 :remap '(poly-markdown-mode markdown-mode)
-                 :requires 'markdown-inline
+                 :lang 'markdown :ts-mode 'markdown-ts-mode :remap '(poly-markdown-mode markdown-mode) :requires 'markdown-inline
                  :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-                 :revision "split_parser"
-                 :source-dir "tree-sitter-markdown/src"
-                 :ext "\\.md\\'")
+                 :revision "split_parser" :source-dir "tree-sitter-markdown/src" :ext "\\.md\\'")
                 (make-treesit-auto-recipe
-                 :lang 'markdown-inline
-                 :ts-mode 'markdown-inline-mode ; Fake mode to make `treesit-auto' happy
-                 :remap 'markdown-inline-ts-mode
-                 :requires 'markdown
+                 :lang 'markdown-inline :requires 'markdown
                  :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-                 :revision "split_parser"
-                 :source-dir "tree-sitter-markdown-inline/src")
+                 :revision "split_parser" :source-dir "tree-sitter-markdown-inline/src")
                 (make-treesit-auto-recipe
-                 :lang 'llvm
-                 :ts-mode 'llvm-ts-mode
-                 :remap 'llvm-mode
+                 :lang 'llvm :ts-mode 'llvm-ts-mode :remap 'llvm-mode
                  :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
                  :ext "\\.ll\\'")
                 (make-treesit-auto-recipe
-                 :lang 'elisp
-                 :ts-mode 'emacs-lisp-ts-mode
-                 :remap 'emacs-lisp-mode
+                 :lang 'elisp :ts-mode 'emacs-lisp-ts-mode :remap 'emacs-lisp-mode
                  :url "https://github.com/Wilfred/tree-sitter-elisp"
                  :ext "\\.eld?\\'")
                 (make-treesit-auto-recipe
-                 :lang 'bitbake
-                 :ts-mode 'bitbake-ts-mode
-                 :remap 'bitbake-mode
+                 :lang 'bitbake :ts-mode 'bitbake-ts-mode :remap 'bitbake-mode
                  :url "https://github.com/tree-sitter-grammars/tree-sitter-bitbake"
                  :ext "\\.bb\\(append\\)?\\'")
                 (make-treesit-auto-recipe
-                 :lang 'zig
-                 :ts-mode 'zig-ts-mode
-                 :remap 'zig-mode
+                 :lang 'zig :ts-mode 'zig-ts-mode :remap 'zig-mode
                  :url "https://github.com/GrayJack/tree-sitter-zig"
                  :ext "\\.\\(zig\\|zon\\)\\'"))))
     ;; First, delete the duplicate recipes already present in the list, if any
