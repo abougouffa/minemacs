@@ -169,8 +169,8 @@ Example: \"#+TITLE\" -> \"#+title\"
   (advice-add
    'org-latex-export-to-pdf :around
    (satch-defun +org--latex-export-to-pdf-main-file:around-a (orig-fn &rest orig-args)
-     (let* ((main-file (and +org-export-to-pdf-main-file
-                            (file-exists-p (expand-file-name +org-export-to-pdf-main-file))))
+     (let* ((main-file (and (file-exists-p (expand-file-name +org-export-to-pdf-main-file))
+                            +org-export-to-pdf-main-file))
             (out-file (if main-file
                           (with-current-buffer (find-file-noselect main-file)
                             (apply orig-fn orig-args))
