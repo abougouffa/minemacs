@@ -1041,7 +1041,7 @@ Typing these will trigger reindentation of the current line.")
   ;; modification time of the file on save and on buffer switch.
   (defvar-local +auto-revert-buffer-time nil)
   (defun +file-mtime (file)
-    (when-let* ((file-attr (and file (file-attributes file))))
+    (when-let* ((file-attr (and file (file-exists-p file) (file-attributes file))))
       (file-attribute-modification-time file-attr)))
 
   (defun +auto-revert--save-file-mtime (&rest _args)
@@ -1054,9 +1054,10 @@ Typing these will trigger reindentation of the current line.")
   (defun +auto-revert--on-buffer-switch-h (_frame)
     (unless +auto-revert-buffer-time
       (setq +auto-revert-buffer-time (+file-mtime buffer-file-name)))
-    (unless (equal +auto-revert-buffer-time (+file-mtime buffer-file-name))
-      (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
-      (revert-buffer t t)))
+    (when-let* ((mtime (+file-mtime buffer-file-name)))
+      (unless (equal mtime +auto-revert-buffer-time)
+        (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
+        (revert-buffer t t))))
 
   (add-hook 'window-buffer-change-functions #'+auto-revert--on-buffer-switch-h))
 
