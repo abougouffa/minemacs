@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.10.3](https://github.com/abougouffa/minemacs/compare/2060de46829678c9a74a5498d1ea787ca3607f0d..v12.10.3) - 2025-04-11
+#### Bug Fixes
+- **(window)** avoid an error when running in headless mode - ([2060de4](https://github.com/abougouffa/minemacs/commit/2060de46829678c9a74a5498d1ea787ca3607f0d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([52a33ba](https://github.com/abougouffa/minemacs/commit/52a33ba034884746d8eee06f180d27fd08533bbc)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.10.2](https://github.com/abougouffa/minemacs/compare/941d4accf490602e831fdacf736adccb4e14581f..v12.10.2) - 2025-04-11
 #### Bug Fixes
 - **(auto-revert)** fix immediate auto-reverting when the file is deleted - ([a772fbd](https://github.com/abougouffa/minemacs/commit/a772fbd4c4187e4cd22ac08e0e62fef2cb10c6fa)) - [@abougouffa](https://github.com/abougouffa)
