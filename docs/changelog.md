@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.10.2](https://github.com/abougouffa/minemacs/compare/941d4accf490602e831fdacf736adccb4e14581f..v12.10.2) - 2025-04-11
+#### Bug Fixes
+- **(auto-revert)** fix immediate auto-reverting when the file is deleted - ([a772fbd](https://github.com/abougouffa/minemacs/commit/a772fbd4c4187e4cd22ac08e0e62fef2cb10c6fa)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** bug fix in the multi-file Org export advice - ([c0d41ed](https://github.com/abougouffa/minemacs/commit/c0d41ed6e46acc5aa79ad9a3b4511b2697d2cc02)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(on-demand/opencl)** add the `.clc` and `.opencl` extensions - ([941d4ac](https://github.com/abougouffa/minemacs/commit/941d4accf490602e831fdacf736adccb4e14581f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.10.1](https://github.com/abougouffa/minemacs/compare/edb5755ef7cd10186d88eab59b11f68eb6f4db78..v12.10.1) - 2025-04-08
 #### Bug Fixes
 - **(apheleia)** properly use the `.clang-format` file when available - ([4bc3c40](https://github.com/abougouffa/minemacs/commit/4bc3c40a424efd80056cb33e416d18df33f8bdc2)) - [@abougouffa](https://github.com/abougouffa)
