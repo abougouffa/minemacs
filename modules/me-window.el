@@ -88,7 +88,8 @@
  :after
  (satch-defun +display-buffer--change-font-size:after-a (buffer-or-name &optional action frame)
    (when-let* ((zoom-level
-                (and (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
+                (and (boundp 'text-scale-mode-amount)
+                     (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
                      (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p)))))
      (text-scale-increase zoom-level))))
 
