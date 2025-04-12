@@ -30,7 +30,7 @@ Call functions without asking when DONT-ASK-P is non-nil."
 
 ;; Do some tweaks to avoid asking questions when running
 ;; `minemacs-bump-packages'
-(defun +minemacs--straight--popup-raw:around (orig-fn prompt actions)
+(defun +minemacs--straight--popup-raw:around-a (orig-fn prompt actions)
   (let (action-func action-args)
     (dolist (action actions)
       (let ((desc (nth 1 action))
@@ -45,11 +45,17 @@ Call functions without asking when DONT-ASK-P is non-nil."
         (apply action-func action-args)
       (funcall orig-fn prompt actions))))
 
-(defun +minemacs--straight-read-string (orig-fn prompt &rest args)
+(defun +minemacs--read-string:around-a (orig-fn prompt &rest args)
   (cond
    ((string-match-p "Optional stash message:" prompt)
     (format-time-string "Stashed when bumping the package %F at %T"))
    (t (apply orig-fn (cons prompt args)))))
+
+(defun +minemacs--y-or-n-p:around-a (orig-fn prompt)
+  (cond
+   ((equal prompt "Caches are outdated, reload init-file? ")
+    nil)
+   (t (funcall orig-fn prompt))))
 
 ;;;###autoload
 (defun minemacs-bump-packages ()
@@ -60,8 +66,9 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (apply #'minemacs-load-module (minemacs-modules t))
   (unwind-protect
       (progn
-        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around)
-        (advice-add 'read-string :around '+minemacs--straight-read-string)
+        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
+        (advice-add 'read-string :around '+minemacs--read-string:around-a)
+        (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
         ;; Update straight recipe repositories
         (straight-pull-recipe-repositories)
         ;; Run `straight's update cycle, taking into account the explicitly pinned versions
@@ -71,8 +78,9 @@ Call functions without asking when DONT-ASK-P is non-nil."
         (straight-freeze-versions)
         (message "[MinEmacs]: Rebuilding packages")
         (straight-rebuild-all))
-    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around)
-    (advice-remove 'read-string '+minemacs--straight-read-string))
+    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
+    (advice-remove 'read-string '+minemacs--read-string:around-a)
+    (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
 
   ;; Run package-specific build functions (ex: `pdf-tools-install')
   (message "[MinEmacs]: Running additional package-specific build functions")
