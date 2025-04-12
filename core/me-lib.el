@@ -134,16 +134,6 @@ If INDEX is 0, ELEMENT is inserted before the first element."
     (setcdr c (cons element (cdr c)))
     (set list-var (cdr padded-list))))
 
-(defmacro +mode-alist-add-ts-modes! (mode-alist)
-  "Duplicate elements in MODE-ALIST to include Treesit modes.
-
-For the alist \=((some-mode . spec)), this will add \=(some-ts-mode . spec)."
-  `(cl-callf append ,mode-alist
-     (cl-loop
-      for mode-spec in ,mode-alist
-      collect (let ((ts-mode (intern (format "%s-ts-mode" (string-remove-suffix "-mode" (symbol-name (car mode-spec)))))))
-                (when (fboundp ts-mode) (cons ts-mode (cdr mode-spec)))))))
-
 ;;; Missing primitive utilities
 
 ;; Adapted from `evil-unquote', takes functions into account
