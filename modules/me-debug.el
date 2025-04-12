@@ -53,9 +53,7 @@
 
 ;; A compiler output viewer
 (use-package rmsbolt
-  :straight t
-  :config
-  (+mode-alist-add-ts-modes! rmsbolt-languages))
+  :straight t)
 
 
 ;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
