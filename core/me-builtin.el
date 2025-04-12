@@ -194,12 +194,20 @@ or file path may exist now."
   (+setq-hook! python-mode comment-inline-offset 2))
 
 (use-package crm
+  :custom
+  (crm-prompt "[CRM%s] %p")
   :config
-  ;; From: https://github.com/a-schaefers/spartan-emacs/blob/main/spartan-layers/spartan-vertico.el
-  ;; Add prompt indicator to `completing-read-multiple'. We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
-  (defun +crm--indicator:filter-args-a (args)
-    (cons (format "[CRM%s] %s" (replace-regexp-in-string "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" "" crm-separator) (car args)) (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'+crm--indicator:filter-args-a))
+  (unless (>= emacs-major-version 31) ; Backporting Emacs 31's `crm-prompt' integration
+    (defvar crm-prompt "[CRM%s] %p")
+    (defun +crm--indicator:filter-args-a (args)
+      (cons (format-spec
+             crm-prompt
+             (let* ((prompt (car args))
+                    (sep (or (get-text-property 0 'separator crm-separator) (string-replace "[ \t]*" "" crm-separator)))
+                    (desc (or (get-text-property 0 'description crm-separator) (concat "list separated by " sep))))
+               `((?s . ,sep) (?d . ,desc) (?p . ,prompt))))
+            (cdr args)))
+    (advice-add #'completing-read-multiple :filter-args #'+crm--indicator:filter-args-a)))
 
 (use-package which-key
   :hook (minemacs-lazy . which-key-mode)
