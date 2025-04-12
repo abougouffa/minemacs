@@ -61,7 +61,7 @@
   :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
-  (+mode-alist-add-ts-modes! beardbolt-languages))
+  (add-to-list 'beardbolt-languages '(rust-ts-mode beardbolt--rust-setup)))
 
 
 ;; Use "objdump" to display disassembled executable and object files
