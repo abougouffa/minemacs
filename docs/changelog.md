@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.10.4](https://github.com/abougouffa/minemacs/compare/7da1453d4bec82696c1e46748e7d8552984a13aa..v12.10.4) - 2025-04-13
+#### Refactoring
+- **(lib)** remove the unused `+mode-alist-add-ts-modes!` - ([fd8b94c](https://github.com/abougouffa/minemacs/commit/fd8b94c24a9e2e03c91e59f416c171606801e29c)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(beardbolt)** only add `rust-ts-mode` to `beardbolt-languages` - ([0ac2069](https://github.com/abougouffa/minemacs/commit/0ac20695848b551a4ac77b690bd60426a9394f51)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** don't ask about reloading init-file after bumping packages - ([6b93142](https://github.com/abougouffa/minemacs/commit/6b9314257396bae0249bb216fd2cf93a3c8ea0bd)) - [@abougouffa](https://github.com/abougouffa)
+- **(crm)** make use of the new Emacs 31 `crm-prompt` & port it back - ([067162c](https://github.com/abougouffa/minemacs/commit/067162ca6a7ca9fb8de15fbca8c64dded4db74f1)) - [@abougouffa](https://github.com/abougouffa)
+- **(rmsbolt)** no need to manually add treesit modes - ([3331cc7](https://github.com/abougouffa/minemacs/commit/3331cc71f86703f622cdfa31ed3f57611cf638df)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([56c93ba](https://github.com/abougouffa/minemacs/commit/56c93ba62dc35e1e9dac822b177e69d64df2436c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7da1453](https://github.com/abougouffa/minemacs/commit/7da1453d4bec82696c1e46748e7d8552984a13aa)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.10.3](https://github.com/abougouffa/minemacs/compare/2060de46829678c9a74a5498d1ea787ca3607f0d..v12.10.3) - 2025-04-11
 #### Bug Fixes
 - **(window)** avoid an error when running in headless mode - ([2060de4](https://github.com/abougouffa/minemacs/commit/2060de46829678c9a74a5498d1ea787ca3607f0d)) - [@abougouffa](https://github.com/abougouffa)
