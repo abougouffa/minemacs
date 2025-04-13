@@ -88,6 +88,12 @@
   (global-org-modern-mode 1))
 
 
+;; Add `org-indent' styling for `org-modern'
+(use-package org-modern-indent
+  :straight (org-modern-indent :type git :host github :repo "jdtsmith/org-modern-indent")
+  :hook (org-modern-mode . org-modern-indent-mode))
+
+
 ;; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 (use-package org-fragtog
   :straight t
