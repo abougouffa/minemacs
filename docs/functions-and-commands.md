@@ -339,11 +339,6 @@ value of this method instead of the original alist, to ensure correct results.
 Insert into LIST-VAR an ELEMENT at INDEX.
 If INDEX is 0, ELEMENT is inserted before the first element.
 
-#### `(+mode-alist-add-ts-modes! MODE-ALIST)` (macro)
-
-Duplicate elements in MODE-ALIST to include Treesit modes.
-For the alist =((some-mode . spec)), this will add =(some-ts-mode . spec).
-
 #### `(+unquote EXPR)`
 
 Return EXPR unquoted.
@@ -1038,8 +1033,9 @@ Show the list of declared external dependencies.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
-Bump version LEVEL (`auto`, `major`, `minor` or `patch`), and with PRE if it
-is a pre-release.
+Bump version LEVEL (`auto`, `major`, `minor` or `patch`).
+When PRE is provided, it is used as pre-release suffix.
+Call with C-u for applying an `auto` bump.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
 

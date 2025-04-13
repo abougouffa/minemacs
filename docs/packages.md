@@ -166,6 +166,7 @@
 * `ox-extra`: Convenience functions for Org export
 * `org-appear`: Auto-toggle Org elements
 * `org-modern`: Modern Org style
+* `org-modern-indent`: Add `org-indent` styling for `org-modern`
 * `org-fragtog`: Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 * `citar`: Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 * `citar-embark`: Citar integration with Embark
