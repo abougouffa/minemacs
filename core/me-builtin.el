@@ -311,6 +311,7 @@ or file path may exist now."
   (project-vc-extra-root-markers
    '(".projectile.el" ".project.el" ".project" ; Emacs
      ".repo" ; Repo workspaces
+     ".jj" ; Jujutsu
      "autogen.sh" ; Autotools
      "*.csproj" "*.vbproj" "*.vcxproj" "*.vdproj" ".code-workspace" ; Visual Studio
      "requirements.txt" ; Python
