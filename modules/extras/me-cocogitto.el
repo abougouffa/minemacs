@@ -12,17 +12,23 @@
 
 ;;;###autoload
 (defun +cocogitto-bump (level &optional pre)
-  "Bump version LEVEL (`auto', `major', `minor' or `patch'), and with PRE if it
-is a pre-release.
+  "Bump version LEVEL (`auto', `major', `minor' or `patch').
+
+When PRE is provided, it is used as pre-release suffix.
+
+Call with \\[universal-argument] for applying an `auto' bump.
 
 This command stashes the current workspace before bumping the version, and
 restores it after that."
   (interactive
-   (list (if (yes-or-no-p "Manually set the target version? ")
-             (concat "version " (read-string "Version: "))
-           (completing-read "Increment the version: " '(auto major minor patch)))
-         (when (yes-or-no-p "Is this version a pre-release? ")
-           (read-string "Pre-release version: "))))
+   (if current-prefix-arg
+       '("auto")
+     (list
+      (if (yes-or-no-p "Manually set the target version? ")
+          (concat "version " (read-string "Version: "))
+        (completing-read "Increment the version: " '(auto major minor patch)
+                         (when (yes-or-no-p "Is this version a pre-release? ")
+                           (read-string "Pre-release version: ")))))))
   (if-let* ((default-directory (vc-root-dir)))
       (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
         (conf-colon-mode)
@@ -32,7 +38,7 @@ restores it after that."
           (when stashed
             (call-process-shell-command "git stash pop" nil (current-buffer))))
         (message "Cocogitto finished!"))
-    (user-error "Not in a VC managed directory.")))
+    (user-error "Not in a VC managed directory")))
 
 
 (provide 'me-cocogitto)
