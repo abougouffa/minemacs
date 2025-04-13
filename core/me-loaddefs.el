@@ -79,8 +79,11 @@ Ask the MODE to run.
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
-Bump version LEVEL (`auto', `major', `minor' or `patch'), and with PRE if it
-is a pre-release.
+Bump version LEVEL (`auto', `major', `minor' or `patch').
+
+When PRE is provided, it is used as pre-release suffix.
+
+Call with \\[universal-argument] for applying an `auto' bump.
 
 This command stashes the current workspace before bumping the version, and
 restores it after that.
@@ -342,7 +345,7 @@ restores it after that.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-first-file-hook!" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -658,7 +661,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+minemacs--" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -736,6 +739,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-nushell :auto-mode '(("\\.nu\\'" . nushell-mode)) :interpreter-mode '(("nu" . nushell-mode)))
 
 
+;;; Generated autoloads from me-obsolete-defs.el
+
+(register-definition-prefixes "me-obsolete-defs" '("os/" "sys/arch"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
 (minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
@@ -748,7 +756,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
 
-(minemacs-register-on-demand-module 'me-opencl :auto-mode '(("\\.cl\\'" . opencl-c-mode)))
+(minemacs-register-on-demand-module 'me-opencl :auto-mode '(("\\.\\(?:clc?\\|opencl\\)'" . opencl-c-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-openscad.el
@@ -894,7 +902,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-" "minemacs-" "os/" "sys/arch"))
+(register-definition-prefixes "me-vars" '("+env-" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vb.el
