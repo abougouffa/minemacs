@@ -358,6 +358,8 @@ Call functions without asking when DONT-ASK-P is non-nil.
 (fn &optional DONT-ASK-P)" t)
 (autoload 'minemacs-bump-packages "me-lib-extra" "\
 Update MinEmacs packages to the last revisions (can cause breakages)." t)
+(autoload 'minemacs-bump-packages-async "me-lib-extra" "\
+Like `minemacs-bump-packages', but runs asynchronously." t)
 (autoload 'minemacs-upgrade "me-lib-extra" "\
 Upgrade the packages list to the locked revisions.
 This takes into account the explicitly pinned packages. When called with
