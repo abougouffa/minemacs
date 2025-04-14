@@ -87,6 +87,20 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (minemacs-run-build-functions 'dont-ask))
 
 ;;;###autoload
+(defun minemacs-bump-packages-async ()
+  "Like `minemacs-bump-packages', but runs asynchronously."
+  (interactive)
+  (let* ((proc-name "minemacs-bump-packages")
+         (buff-name (format "*%s*" proc-name)))
+    (if (process-live-p (get-process proc-name))
+        (user-error "MinEmacs bump process is already running")
+      (make-process
+       :name proc-name
+       :buffer buff-name
+       :command `(,(car command-line-args) "--batch" "--script" ,user-init-file "--eval=(minemacs-bump-packages)")))
+    (pop-to-buffer buff-name)))
+
+;;;###autoload
 (defun minemacs-upgrade (pull-minemacs)
   "Upgrade the packages list to the locked revisions.
 This takes into account the explicitly pinned packages. When called with
