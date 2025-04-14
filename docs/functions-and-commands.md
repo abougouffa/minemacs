@@ -672,6 +672,10 @@ Call functions without asking when DONT-ASK-P is non-nil.
 
 Update MinEmacs packages to the last revisions (can cause breakages).
 
+#### `(minemacs-bump-packages-async)`
+
+Like `minemacs-bump-packages`, but runs asynchronously.
+
 #### `(minemacs-upgrade PULL-MINEMACS)`
 
 Upgrade the packages list to the locked revisions.
