@@ -293,6 +293,7 @@
   :straight (:files (:defaults "extensions/*.el"))
   :hook (minemacs-lazy . vertico-mode)
   :hook (minemacs-lazy . vertico-mouse-mode)
+  :hook (vertico-mode . vertico-indexed-mode)
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :hook (minibuffer-setup . vertico-repeat-save)
   :bind (("M-R" . vertico-repeat)
