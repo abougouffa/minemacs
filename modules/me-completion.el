@@ -62,6 +62,7 @@
   :hook ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
   :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   :hook (corfu-mode . corfu-history-mode)
+  :hook (corfu-mode . corfu-indexed-mode)
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
