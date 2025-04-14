@@ -43,10 +43,11 @@
   (help-window-select t) ; Select help window for faster quit!
   (Man-notify-method 'aggressive) ; Same thing with `man'
   (read-process-output-max ; Increase single chunk bytes to read from subprocess (def. 4096)
-   (or (ignore-errors (with-temp-buffer ; On GNU/Linux systems, the value should not exceed `pipe-max-size'
-                        (insert-file-contents "/proc/sys/fs/pipe-max-size")
-                        (string-to-number (buffer-string))))
-       (* 1024 1024)))
+   (condition-case nil
+       (with-temp-buffer ; On GNU/Linux systems, the value should not exceed `pipe-max-size'
+         (insert-file-contents "/proc/sys/fs/pipe-max-size")
+         (string-to-number (buffer-string)))
+     (error (* 1024 1024))))
   (completion-ignore-case t) ; Ignore case when completing
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t) ; Ignores case when completing files names

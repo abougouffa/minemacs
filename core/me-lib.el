@@ -208,12 +208,16 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
   (when minemacs-theme
     (+log! "Loading user theme: %s" minemacs-theme)
     ;; Fallback to built-in `tsdh-light' when `minemacs-theme' is not available.
-    (unless (ignore-errors (load-theme minemacs-theme t))
-      (let ((default-theme (eval (car (get 'minemacs-theme 'standard-value)))))
-        (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
-        (unless (ignore-errors (load-theme default-theme t))
-          (+error! "Cannot load default theme %S, falling back to the builtin `modus-operandi' theme" default-theme)
-          (load-theme 'modus-operandi t)))))
+    (condition-case nil
+        (load-theme minemacs-theme t)
+      (error
+       (let ((default-theme (eval (car (get 'minemacs-theme 'standard-value)))))
+         (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
+         (condition-case nil
+             (load-theme default-theme t)
+           (error
+            (+error! "Cannot load default theme %S, falling back to the builtin `modus-operandi' theme" default-theme)
+            (load-theme 'modus-operandi t)))))))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
 
