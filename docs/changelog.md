@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.11.0](https://github.com/abougouffa/minemacs/compare/129c585f305bedacc6bc359f7cf828378e27fd53..v12.11.0) - 2025-04-14
+#### Documentation
+- regenerate the documentation - ([3e34aa4](https://github.com/abougouffa/minemacs/commit/3e34aa4399066390c3e7c2c84b889780e741d003)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(cocogitto)** call `+cocogitto-bump` with `C-u` to auto bump - ([a605050](https://github.com/abougouffa/minemacs/commit/a605050e40c41aae7550994dc874bd839b9a0d5b)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** `org-indent` styling for `org-modern` via `org-modern-indent` - ([6165aab](https://github.com/abougouffa/minemacs/commit/6165aab43f238d3e50065a7f040823bb3ab015f2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** regenerate loaddefs - ([ea5d16b](https://github.com/abougouffa/minemacs/commit/ea5d16b67ed592adab6356ea35a6bba72572f606)) - [@abougouffa](https://github.com/abougouffa)
+- **(otpp)** mark the `+project-` prefix as project aware commands - ([6f4c2ab](https://github.com/abougouffa/minemacs/commit/6f4c2ab9f601bbfe3d5165fe05d706e0de88bd2e)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** make `.jj` a project marker for Jujutsu projects - ([b8592d0](https://github.com/abougouffa/minemacs/commit/b8592d0b75e1b588b92d4036205c8d2e06895213)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** add spacing when `tab-bar-tab-hints` is `nil` - ([129c585](https://github.com/abougouffa/minemacs/commit/129c585f305bedacc6bc359f7cf828378e27fd53)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([dd62553](https://github.com/abougouffa/minemacs/commit/dd625535725c5d2bcceab7932e38d6037aba381e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ff904a8](https://github.com/abougouffa/minemacs/commit/ff904a837aaf8c12239ee751acdcf180749b5a28)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.10.4](https://github.com/abougouffa/minemacs/compare/7da1453d4bec82696c1e46748e7d8552984a13aa..v12.10.4) - 2025-04-13
 #### Refactoring
 - **(lib)** remove the unused `+mode-alist-add-ts-modes!` - ([fd8b94c](https://github.com/abougouffa/minemacs/commit/fd8b94c24a9e2e03c91e59f416c171606801e29c)) - [@abougouffa](https://github.com/abougouffa)
