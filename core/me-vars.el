@@ -109,21 +109,22 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
   (or (getenv "MINEMACS_ORG_DIR")
       (seq-find #'file-directory-p
                 (cl-loop
-                 for dir in `(,(expand-file-name "Org" minemacs-config-dir)
-                              ,(expand-file-name "~/Org")
-                              ,@(when-let* ((dir (getenv "XDG_DOCUMENTS_DIR"))) (list (expand-file-name "Org" dir)))
-                              ,(expand-file-name "~/Documents/Org"))
-                 collect dir
-                 collect (expand-file-name (downcase (file-name-nondirectory dir)) (file-name-directory dir)))))
+                 for dir in `(,(expand-file-name "org" minemacs-config-dir)
+                              ,(expand-file-name "~/org")
+                              ,@(when-let* ((dir (getenv "XDG_DOCUMENTS_DIR"))) (list (expand-file-name "org" dir)))
+                              ,(expand-file-name "~/Documents/org"))
+                 append (cl-loop
+                         for func in '(downcase upcase capitalize)
+                         collect (expand-file-name (funcall func (file-name-nondirectory dir)) (file-name-directory dir))))))
   "The default directory to use for `org-directory'.
 If environment variable \"MINEMACS_ORG_DIR\" is defined, it gets used,
 else, the first existing directory of the following list will be
 used (all small case, or title case):
 
-- `minemacs-config-dir'/{Org,org}
-- $HOME/{Org,org}
-- $XDG_DOCUMENTS_DIR/{Org,org}
-- $HOME/Documents/{Org,org}.")
+- `minemacs-config-dir'/{Org,org,ORG}
+- $HOME/{Org,org,ORG}
+- $XDG_DOCUMENTS_DIR/{Org,org,ORG}
+- $HOME/Documents/{Org,org,ORG}.")
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
 
