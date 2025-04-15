@@ -140,6 +140,7 @@ You can customize MinEmacs' behavior via some environment variables.
 
 - `MINEMACS_DIR` or `MINEMACSDIR`: Path for MinEmacs user configuration
   directory, if not set, `~/.minemacs.d/` is used.
+- `MINEMACS_ORG_DIR`: Path for the default directory to use for `org-directory`.
 - `MINEMACS_MSG_LEVEL`: Change message log level, from 1 (only errors) to 4 (all
   messages).
 - `MINEMACS_VERBOSE`: Be more verbose (useful for debugging).
