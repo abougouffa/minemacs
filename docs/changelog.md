@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.12.0](https://github.com/abougouffa/minemacs/compare/5d32d347e9dbefda5c61ec26c2217b392fff1abd..v12.12.0) - 2025-04-15
+#### Documentation
+- add information about `MINEMACS_ORG_DIR` - ([eb2bf18](https://github.com/abougouffa/minemacs/commit/eb2bf188f18b43dcabf00ae5afaf1d019a7929b2)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([53b9737](https://github.com/abougouffa/minemacs/commit/53b9737ab826635b4dd1b97f599083094a55d474)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** better implementation of `+github-download-release` - ([e2ed9b6](https://github.com/abougouffa/minemacs/commit/e2ed9b6e309139f832b6b88c079fa73452b3a82b)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `minemacs-bump-packages-async` - ([2807922](https://github.com/abougouffa/minemacs/commit/28079221c3154ed3ceb50ee8cf30e2a88286517a)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(submodule)** bump version for `benchmark-init` - ([724386a](https://github.com/abougouffa/minemacs/commit/724386aa422e1c937b005537eac0f85c66ea8574)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- use `condition-case` when appropriate - ([5d32d34](https://github.com/abougouffa/minemacs/commit/5d32d347e9dbefda5c61ec26c2217b392fff1abd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** better automatic detection of Org directory - ([aa5814c](https://github.com/abougouffa/minemacs/commit/aa5814ce6f0c0534a774be8b269d57a768c23bf0)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** enable `corfu-indexed-mode` - ([acf7c1f](https://github.com/abougouffa/minemacs/commit/acf7c1f8a5a67501e89a23ae6d9b6994fecb56e4)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** reference the `ltex-ls-plus` - ([0dd7771](https://github.com/abougouffa/minemacs/commit/0dd7771da3af0370c8ae076e5b011da58c993729)) - [@abougouffa](https://github.com/abougouffa)
+- **(ltex-ls-plus)** use the new fork `LTeX+`, add a command to download it - ([bde9dbb](https://github.com/abougouffa/minemacs/commit/bde9dbb6258a9fa489ba8904543066a1afe54274)) - [@abougouffa](https://github.com/abougouffa)
+- **(vertico)** enable `vertico-indexed-mode` - ([5c5fa76](https://github.com/abougouffa/minemacs/commit/5c5fa763f2059bff2fbb73d2766992ffb09f7e55)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f904f5a](https://github.com/abougouffa/minemacs/commit/f904f5acb70e62d496e9a3c711f11d4f785b673e)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([7d1bc09](https://github.com/abougouffa/minemacs/commit/7d1bc09b2492fbd0c495a53af16ca34098b9102b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.11.0](https://github.com/abougouffa/minemacs/compare/129c585f305bedacc6bc359f7cf828378e27fd53..v12.11.0) - 2025-04-14
 #### Documentation
 - regenerate the documentation - ([3e34aa4](https://github.com/abougouffa/minemacs/commit/3e34aa4399066390c3e7c2c84b889780e741d003)) - [@abougouffa](https://github.com/abougouffa)
