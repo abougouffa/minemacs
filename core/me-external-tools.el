@@ -179,9 +179,9 @@
     (:tool bash-language-server
      :link "https://github.com/bash-lsp/bash-language-server"
      :desc "LSP for Bash/Shell")
-    (:tool ltex-ls
-     :link "https://github.com/valentjn/ltex-ls"
-     :desc "LTeX Language Server based on Language Tool")
+    (:tool ltex-ls-plus
+     :link "https://github.com/ltex-plus/ltex-ls-plus"
+     :desc "LTeX+ Language Server based on Language Tool")
     (:tool sqlfluff
      :link "https://github.com/sqlfluff/sqlfluff"
      :desc "SQLFluff is a modular SQL linter for humans")
