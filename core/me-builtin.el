@@ -845,7 +845,7 @@ or file path may exist now."
 (use-package ob-ditaa
   :config
   ;; Automatically download the latest version of Ditaa
-  (setopt org-ditaa-jar-path (+github-download-release "stathissideris/ditaa" "ditaa-{{ver}}-standalone.jar" nil :ver "0.11.0")))
+  (setopt org-ditaa-jar-path (+github-download-release "stathissideris/ditaa" "ditaa-.*-standalone.jar" nil :ver "v0.11.0")))
 
 (use-package ol-man
   :after ol

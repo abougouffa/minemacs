@@ -603,26 +603,38 @@ When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version."
 (defvar +github-download-dir minemacs-local-dir)
 
 ;;;###autoload
-(cl-defun +github-download-release (repo filename-fmt &optional ok-if-already-exists &key ver out-file)
+(cl-defun +github-download-release (repo filename-regexp &optional ok-if-already-exists &key ver out-file prerelease)
   "Download release from REPO.
 
-FILENAME-FMT is a string representing the file name, it can include the
-special format {{ver}} which gets replaced with the release version.
+If FILENAME-REGEXP is a string, use it as a regexp to match against the
+file name.
+
 When OK-IF-ALREADY-EXISTS is non-nil, the file gets overwritten if it
 already exists.
 
 Keyword argument :VER can be used to pass the version to download, when
 no version is passed, the latest release is downloaded. The :OUT-FILE
-can be used to choose the output file name, otherwise, the file will be
-downloaded with it's original file name to `+github-download-dir'"
-  (when-let* ((ver (or ver (+github-latest-release repo ver t))))
-    (let* ((url (format "https://github.com/%s/releases/download/v%s/%s" repo ver (string-replace "{{ver}}" ver filename-fmt)))
-           (out-file (or out-file (expand-file-name (url-file-nondirectory url) +github-download-dir))))
-      (if (and (not ok-if-already-exists) (file-exists-p out-file))
-          (+log! "File %S already exist" out-file)
-        (mkdir (file-name-directory out-file) t)
-        (+shutup! (url-copy-file url out-file ok-if-already-exists)))
-      out-file)))
+can be used to choose the output file path, otherwise, the file will be
+downloaded with the original file name to `+github-download-dir'. If a
+non-nil value is provided for :PRERELEASE, we download the latest
+prerelease if no :VER is provided."
+  (when-let* ((releases (ignore-errors
+                          (with-temp-buffer
+                            (+shutup!
+                             (url-insert-file-contents
+                              (format "https://api.github.com/repos/%s/releases" repo)))
+                            (json-parse-buffer :object-type 'plist))))
+              (release (if ver
+                           (seq-find (lambda (rel) (equal ver (plist-get rel :tag_name))) releases)
+                         (seq-first (if prerelease releases (seq-filter (lambda (rel) (eq :false (plist-get rel :prerelease))) releases)))))
+              (url (seq-find (apply-partially #'string-match-p filename-regexp)
+                             (mapcar (+apply-partially-right #'plist-get :browser_download_url) (plist-get release :assets))))
+              (out-file (or out-file (expand-file-name (url-file-nondirectory url) +github-download-dir))))
+    (if (and (not ok-if-already-exists) (file-exists-p out-file))
+        (+log! "File %S already exist" out-file)
+      (mkdir (file-name-directory out-file) t)
+      (+shutup! (url-copy-file url out-file ok-if-already-exists)))
+    out-file))
 
 
 
