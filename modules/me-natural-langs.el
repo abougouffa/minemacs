@@ -73,14 +73,37 @@ Based on `jinx-mode' if available. Falls back to the built-in
   :demand
   :config
   (eglot-ltex-enable-handling-client-commands)
+  (defvar +ltex-ls-plus-path (expand-file-name "ltex-ls-plus/" minemacs-local-dir))
+  (defvar +ltex-ls-plus-bin (expand-file-name "bin/ltex-ls-plus" +ltex-ls-plus-path))
+  (defun +ltex-ls-plus-download (pre)
+    "Download the latest release of \"ltex-ls-plus\".
+
+When PRE is non-nil, allow downloading the latest prerelease."
+    (interactive "P")
+    (if (zerop
+         (when-let* ((tarball (+github-download-release
+                               "ltex-plus/ltex-ls-plus"
+                               (concat "-" (cond ((+emacs-options-p 'os/linux) "linux")
+                                                 ((+emacs-options-p 'os/mac) "mac")
+                                                 ((+emacs-options-p 'os/win) "windows"))
+                                       "-" (cond ((+emacs-options-p 'arch/x86_64) "x64")
+                                                 ((+emacs-options-p 'arch/x86_64) "aarch64")))
+                               nil :prerelease pre)))
+           (when (file-directory-p +ltex-ls-plus-path)
+             (delete-directory +ltex-ls-plus-path t))
+           (mkdir +ltex-ls-plus-path)
+           (shell-command (format "tar -C %S -xf %S --strip-components=2" +ltex-ls-plus-path tarball)
+                          (get-buffer-create "*ltex-ls-plus*"))))
+        (message "Downloaded successfully!")
+      (user-error "A problem occured when trying to download ltex-ls-plus")))
   (+eglot-register
     '(text-mode org-mode markdown-mode markdown-ts-mode rst-mode git-commit-mode)
-    '("ltex-ls" "--server-type=TcpSocket" "--port" :autoport))
+    `(,+ltex-ls-plus-bin "--server-type=TcpSocket" "--port" :autoport))
   (+eglot-register
     '(tex-mode context-mode texinfo-mode bibtex-mode)
     "digestif"
     "texlab"
-    '("ltex-ls" "--server-type=TcpSocket" "--port" :autoport)))
+    `(,+ltex-ls-plus-bin "--server-type=TcpSocket" "--port" :autoport)))
 
 
 (provide 'me-natural-langs)
