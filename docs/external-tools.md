@@ -63,7 +63,7 @@ you might need install some of these tools.
 57. [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) - Language Server for YAML files
 58. [`lemminx`](https://github.com/eclipse/lemminx) - Eclipse XML language server
 59. [`bash-language-server`](https://github.com/bash-lsp/bash-language-server) - LSP for Bash/Shell
-60. [`ltex-ls`](https://github.com/valentjn/ltex-ls) - LTeX Language Server based on Language Tool
+60. [`ltex-ls-plus`](https://github.com/ltex-plus/ltex-ls-plus) - LTeX+ Language Server based on Language Tool
 61. [`sqlfluff`](https://github.com/sqlfluff/sqlfluff) - SQLFluff is a modular SQL linter for humans
 62. [`sqlformat`](https://github.com/andialbrecht/sqlparse) - SQL formatter based on sqlparse
 63. [`pg_format`](https://github.com/darold/pgFormatter) - A PostgreSQL SQL syntax beautifier that can work as a console program or as a CGI
