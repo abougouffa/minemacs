@@ -92,8 +92,8 @@ When PRE is non-nil, allow downloading the latest prerelease."
            (when (file-directory-p +ltex-ls-plus-path)
              (delete-directory +ltex-ls-plus-path t))
            (mkdir +ltex-ls-plus-path)
-           (shell-command (format "tar -C %S -xf %S --strip-components=2" +ltex-ls-plus-path tarball)
-                          (get-buffer-create "*ltex-ls-plus*"))))
+           (let ((compilation-buffer-name-function (lambda (_a) "*ltex-ls-plus:install*")))
+             (compile (format "tar -C %S -xf %S --strip-components=2" +ltex-ls-plus-path tarball)))))
         (message "Downloaded successfully!")
       (user-error "A problem occured when trying to download ltex-ls-plus")))
   (+eglot-register
