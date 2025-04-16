@@ -84,7 +84,14 @@
   :init
   (if minemacs-started-with-extra-args-p
       (enlight-open)
-    (setq initial-buffer-choice #'enlight)))
+    (setq initial-buffer-choice #'enlight))
+  :config
+  (satch-add-hook
+   '(window-size-change-functions window-state-change-functions)
+   (satch-defun +enlight--recenter-h (&optional _frame)
+     ;; When in Enlight's buffer, we recall `enlight-open' to refresh and recenter the buffer
+     (when (eq (current-buffer) (get-buffer enlight-buffer-name))
+       (enlight-open)))))
 
 
 ;; Execute menu items as commands, with completion
