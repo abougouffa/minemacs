@@ -129,11 +129,7 @@
 
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
-  :straight (:host github :repo "jdtsmith/eglot-booster")
-  :after eglot
-  :init
-  (when (executable-find "emacs-lsp-booster")
-    (eglot-booster-mode 1)))
+  :straight (:host github :repo "jdtsmith/eglot-booster"))
 
 
 ;; Emacs text actions using LSP symbol information
