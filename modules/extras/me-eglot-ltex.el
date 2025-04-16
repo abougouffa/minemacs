@@ -6,9 +6,9 @@
 
 ;;; Commentary:
 
-;; This file provides a hackish implementation of some of `ltex-ls' commands
-;; which needs to be handled by the client.
-;; See: https://valentjn.github.io/ltex/ltex-ls/server-usage.html#commands
+;; This file provides a hackish implementation of some of `ltex-ls-plus'
+;; commands which needs to be handled by the client. See:
+;; https://ltex-plus.github.io/ltex-plus/ltex-ls-plus/server-usage.html#commands
 
 ;; This file implements these code actions:
 ;; * _ltex.addToDictionary
@@ -32,16 +32,50 @@
 ;;; Code:
 
 (defgroup minemacs-eglot-ltex nil
-  "LTeX-LS related settings."
+  "LTeX+ LS related settings."
   :group 'minemacs-utils)
-
-(defvar-local eglot-ltex-language "auto")
-;;;###autoload(put 'eglot-ltex-language 'safe-local-variable 'stringp)
 
 (defcustom eglot-ltex-user-rules-path (concat minemacs-local-dir "eglot/ltex/")
   "Path to save user rules."
   :group 'minemacs-eglot-ltex
   :type 'directory)
+
+(defcustom eglot-ltex-ngrams-path nil
+  "Path the language model's ngrams."
+  :group 'minemacs-eglot-ltex
+  :type 'directory)
+
+(defcustom eglot-ltex-ls-path (expand-file-name "ltex-ls-plus/" minemacs-local-dir)
+  "Path to LTeX+ LS."
+  :group 'minemacs-eglot-ltex
+  :type 'directory)
+
+(defcustom eglot-ltex-ls-program (expand-file-name "bin/ltex-ls-plus" eglot-ltex-ls-path)
+  "The path or executable name of the LTeX+ LS."
+  :group 'minemacs-eglot-ltex
+  :type '(choice file string))
+
+;;;###autoload
+(defun eglot-ltex-ls-install (pre)
+  "Download the latest release of LTeX+ LS.
+
+When PRE is non-nil, allow downloading the latest prerelease."
+  (interactive "P")
+  (when-let* ((tarball (+github-download-release
+                        "ltex-plus/ltex-ls-plus"
+                        (concat "-" (cond ((+emacs-options-p 'os/linux) "linux")
+                                          ((+emacs-options-p 'os/mac) "mac")
+                                          ((+emacs-options-p 'os/win) "windows"))
+                                "-" (cond ((+emacs-options-p 'arch/x86_64) "x64")
+                                          ((+emacs-options-p 'arch/x86_64) "aarch64")))
+                        nil :prerelease pre)))
+    (when (file-directory-p eglot-ltex-ls-path) (delete-directory eglot-ltex-ls-path t))
+    (mkdir eglot-ltex-ls-path)
+    (let ((compilation-buffer-name-function (lambda (_a) "*ltex-ls-plus:install*")))
+      (compile (format "tar -C %S -xf %S --strip-components=2" eglot-ltex-ls-path tarball)))))
+
+(defvar-local eglot-ltex-language "auto")
+;;;###autoload(put 'eglot-ltex-language 'safe-local-variable 'stringp)
 
 ;; Load serialized rules
 (defvar eglot-ltex-dictionary
@@ -76,13 +110,29 @@
 It generates the workspace configuration dynamically, taking into account
 changed values of `eglot-ltex-language', `eglot-ltex-dictrionary', and so on."
   `(:ltex
-    ;; Add "tex" to the default supported markups
-    (:enabled ["bibtex" "context" "context.tex" "html" "latex" "markdown" "org" "restructuredtext" "rsweave" "tex"]
+    ;; Enable all supported lanugage IDs by default, the full list here:
+    ;; https://github.com/ltex-plus/ltex-ls-plus/blob/develop/src/main/kotlin/org/bsplines/ltexls/parsing/CodeFragmentizer.kt
+    (:enabled
+     ["asciidoc"
+      "bib" "bibtex"
+      "gitcommit" "git-commit"
+      "html" "xhtml"
+      "context" "context.tex" "latex" "tex" "plaintex" "rsweave"
+      "markdown" "mdx" "quatro" "rmd"
+      "nop"
+      "org"
+      "restructuredtext"
+      "typst"
+      "plaintext"]
      :language ,eglot-ltex-language
      :dictionary ,eglot-ltex-dictionary
      :disabledRules ,eglot-ltex-disable-rules
      :hiddenFalsePositives ,eglot-ltex-hidden-false-positives
-     :additionalRules (:languageModel "/usr/share/ngrams/"))))
+     :additionalRules
+     (:languageModel
+      ,(if (and (stringp eglot-ltex-ngrams-path) (file-directory-p eglot-ltex-ngrams-path))
+           eglot-ltex-ngrams-path
+         "/usr/share/ngrams/")))))
 
 (defun eglot-ltex--add-rule (lang rule rules-plist)
   "Add RULE of language LANG to the plist named RULES-PLIST (symbol)."
