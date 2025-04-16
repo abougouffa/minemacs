@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.12.1](https://github.com/abougouffa/minemacs/compare/eb264d7b7a597953b4f05989be817a5413551120..v12.12.1) - 2025-04-16
+#### Documentation
+- regenerate the documentation - ([cbe5c75](https://github.com/abougouffa/minemacs/commit/cbe5c75069953519b2fbac8922ff134cb8908e31)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(eglot-ltex)** move the LTeX+ LS options to `me-eglot-ltex` - ([f7c9e75](https://github.com/abougouffa/minemacs/commit/f7c9e751c375a8ef1653b84961158fea637f5abc)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(dape)** minor tweaks and remove unused `+dape-transient` - ([96a6082](https://github.com/abougouffa/minemacs/commit/96a6082ae5e97db691483559e860700c72bf3deb)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** recenter the Enlight buffer on window size change - ([8990049](https://github.com/abougouffa/minemacs/commit/8990049819fbb31ecffe19ac24f57c396455f000)) - [@abougouffa](https://github.com/abougouffa)
+- **(ltex-ls-plus)** use `compile` - ([eb264d7](https://github.com/abougouffa/minemacs/commit/eb264d7b7a597953b4f05989be817a5413551120)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5fe9653](https://github.com/abougouffa/minemacs/commit/5fe965355f443b3c192c27ebd1cea89f2b8726c6)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.12.0](https://github.com/abougouffa/minemacs/compare/5d32d347e9dbefda5c61ec26c2217b392fff1abd..v12.12.0) - 2025-04-15
 #### Documentation
 - add information about `MINEMACS_ORG_DIR` - ([eb2bf18](https://github.com/abougouffa/minemacs/commit/eb2bf188f18b43dcabf00ae5afaf1d019a7929b2)) - [@abougouffa](https://github.com/abougouffa)
