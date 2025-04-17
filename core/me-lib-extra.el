@@ -38,7 +38,8 @@ Call functions without asking when DONT-ASK-P is non-nil."
             (args (cdddr action)))
         (when (or (string-match-p "Stash changes" desc)
                   (string-match-p "Rename remote .* to .*, re-create .* with correct URL, and fetch" desc)
-                  (string-match-p "Reset .* to .*" desc))
+                  (string-match-p "Reset .* to .*" desc)
+                  (string-match-p "Checkout .*" desc))
           (setq action-func func
                 action-args args))))
     (if action-func
