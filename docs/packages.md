@@ -215,6 +215,7 @@
 * `tributary`: Edit Confluence wiki pages in Emacs
 * `sx`: Stack Exchange for Emacs
 * `webpaste`: Paste text to pastebin-like services
+* `isgd`: Simply shortening URLs using the is.gd service
 
 ## `me-snippets`
 * `yasnippet`: A template system for Emacs
@@ -249,8 +250,6 @@
 * `envrc`: Buffer-local "direnv" integration for Emacs
 * `pet`: Python Executable Tracker
 * `add-node-modules-path`: Adds the "node_modules/.bin" directory to the buffer "exec_path"
-* `verb`: Organize and send HTTP requests from Emacs' Org mode files
-* `impostman`: Import of Postman collections in Emacs (for `verb` and `restclient`)
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
 ## `me-tty`

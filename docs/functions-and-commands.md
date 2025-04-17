@@ -249,6 +249,18 @@ The MPV command.
 
 Path to save user rules.
 
+#### `eglot-ltex-ngrams-path`
+
+Path the language model's ngrams.
+
+#### `eglot-ltex-ls-path`
+
+Path to LTeX+ LS.
+
+#### `eglot-ltex-ls-program`
+
+The path or executable name of the LTeX+ LS.
+
 #### `+mu4e-account-aliases`
 
 Per-account alias list.
@@ -447,6 +459,10 @@ function.
 #### `(+unsetq-hook! HOOKS &rest VAR1 VAR2...)` (macro)
 
 Unbind setq hooks on HOOKS for VARS.
+
+#### `(+fn-sans-advice SYM)`
+
+Get original function defined at SYM, sans advices.
 
 #### `(+ignore-root &rest ROOTS)`
 
@@ -1042,6 +1058,11 @@ When PRE is provided, it is used as pre-release suffix.
 Call with C-u for applying an `auto` bump.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
+
+#### `(eglot-ltex-ls-install PRE)`
+
+Download the latest release of LTeX+ LS.
+When PRE is non-nil, allow downloading the latest prerelease.
 
 #### `(eglot-ltex-workspace-config-fn &optional SERVER)`
 
