@@ -407,6 +407,15 @@ function.
             in (+setq-hook-fns hooks vars 'singles)
             collect `(remove-hook ',hook #',fn))))
 
+;; https://emacs.stackexchange.com/a/82465/37002
+(defun +fn-sans-advice (sym)
+  "Get original function defined at SYM, sans advices."
+  (if (advice--p (symbol-function sym))
+      (advice--cd*r (symbol-function sym))
+    (if (fboundp 'ad-get-orig-definition)
+        (ad-get-orig-definition sym)
+      sym)))
+
 (defvar recentf-exclude)
 (defun +ignore-root (&rest roots)
   "Add ROOTS to ignored projects, recentf, etc."
