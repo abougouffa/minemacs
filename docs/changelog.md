@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.13.0](https://github.com/abougouffa/minemacs/compare/ed0a2069c83815c53cc27508a473a6777c9a9d25..v12.13.0) - 2025-04-17
+#### Bug Fixes
+- **(on-demand/powershell)** fix the install path for PowerShell LSP - ([aa1c991](https://github.com/abougouffa/minemacs/commit/aa1c991a490a29b1233342d7de90f152db449a83)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([514f6df](https://github.com/abougouffa/minemacs/commit/514f6dfdcb66b77ebe0c7f0252fd83008219dbad)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+fn-sans-advice` - ([dea7412](https://github.com/abougouffa/minemacs/commit/dea741299bde7b61b65672776ebdb3e08fcceba3)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** add support for shortening URLs using `is.gd` - ([e6dfa52](https://github.com/abougouffa/minemacs/commit/e6dfa520b12e78312b2a0011333572ec42b1d4c8)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `verb` and `impostman` obsoletes - ([e670968](https://github.com/abougouffa/minemacs/commit/e6709683835a263ce9cef8245533b1255914e301)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** enhance `minemacs-bump-packages` - ([e197a21](https://github.com/abougouffa/minemacs/commit/e197a21a14a39aab7d3e1ecffd17c5233299856d)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot-booster)** don't enable by default, incompatible with `pet-mode` - ([ed0a206](https://github.com/abougouffa/minemacs/commit/ed0a2069c83815c53cc27508a473a6777c9a9d25)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/powershell)** revert the install dir fix, merged :upstream - ([8dcc5f3](https://github.com/abougouffa/minemacs/commit/8dcc5f3d6f4b20e3b74e0f9596892988292a8f60)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/qt)** use `xml-mode` for `*.qrc` files - ([92ca504](https://github.com/abougouffa/minemacs/commit/92ca504f2207014942e3a58c24565b761c310570)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** register `.magic` as a project marker for Mojo projects - ([e116492](https://github.com/abougouffa/minemacs/commit/e1164926e4de4cd910b3dd846a7528c48206ddfd)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ff979fa](https://github.com/abougouffa/minemacs/commit/ff979fae1c475209dbe9be95d580b29a9195f137)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e652460](https://github.com/abougouffa/minemacs/commit/e6524600f962b7c070ccd6e41fe1c6bab97528c5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.12.1](https://github.com/abougouffa/minemacs/compare/eb264d7b7a597953b4f05989be817a5413551120..v12.12.1) - 2025-04-16
 #### Documentation
 - regenerate the documentation - ([cbe5c75](https://github.com/abougouffa/minemacs/commit/cbe5c75069953519b2fbac8922ff134cb8908e31)) - [@abougouffa](https://github.com/abougouffa)
