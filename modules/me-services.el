@@ -113,6 +113,13 @@ projects to uses the convention of commit messages like:
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
 
 
+;; Simply shortening URLs using the is.gd service
+(use-package isgd
+  :straight t
+  :custom
+  (isgd-ask-custom-url t))
+
+
 (provide 'me-services)
 
 ;;; me-services.el ends here
