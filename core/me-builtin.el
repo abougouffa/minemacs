@@ -314,8 +314,10 @@ or file path may exist now."
      ".repo" ; Repo workspaces
      ".jj" ; Jujutsu
      "autogen.sh" ; Autotools
-     "*.csproj" "*.vbproj" "*.vcxproj" "*.vdproj" ".code-workspace" ; Visual Studio
+     "*.csproj" "*.vbproj" "*.vcxproj" "*.vdproj" ; Visual Studio
+     ".code-workspace" ; VSCode, ".vscode" is present also in the user home
      "requirements.txt" ; Python
+     ".magic" ; MAX + Mojo
      "package.json" ; Node.js
      "pom.xml" ; Apache Maven (Java/Kotlin)
      "Cargo.toml")) ; Cargo (Rust)
