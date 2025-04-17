@@ -191,18 +191,6 @@ a project, call `multi-vterm-dedicated-toggle'."
     (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
 
 
-;; Organize and send HTTP requests from Emacs' Org mode files
-(use-package verb
-  :straight t
-  :config
-  (keymap-set org-mode-map "C-c C-r" `("verb" . ,verb-command-map)))
-
-
-;; Import of Postman collections in Emacs (for `verb' and `restclient')
-(use-package impostman
-  :straight t)
-
-
 ;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
