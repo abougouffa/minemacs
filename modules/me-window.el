@@ -78,20 +78,22 @@
 
 (setq frame-title-format '("GNU Emacs (%b)"))
 
-;; Samller fonts for some kind of windows like terminals
+;; Smaller fonts for some kind of windows like terminals
 (defvar +buffer-display-zoom-levels
   `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol) . -0.7)
     (,(rx bol "*" (or "Warnings" "envrc") "*" eol) . -0.7)))
 
+;; Apply the scaling if relevant when displaying the buffer
 (advice-add
  'display-buffer
  :after
- (satch-defun +display-buffer--change-font-size:after-a (buffer-or-name &optional action frame)
+ (satch-defun +display-buffer--text-scale:after-a (buffer-or-name &optional _action _frame)
    (when-let* ((zoom-level
                 (and (boundp 'text-scale-mode-amount)
                      (zerop text-scale-mode-amount) ; Don't apply multiple times when invoking `display-buffer'
-                     (cdr (assoc (buffer-name) +buffer-display-zoom-levels #'buffer-match-p)))))
-     (text-scale-increase zoom-level))))
+                     (cdr (assoc (buffer-name buffer-or-name) +buffer-display-zoom-levels #'buffer-match-p)))))
+     (with-current-buffer (get-buffer buffer-or-name)
+       (text-scale-increase zoom-level)))))
 
 
 (provide 'me-window)
