@@ -22,11 +22,28 @@
 (use-package window-purpose
   :straight t)
 
+(defconst +me-help-buffers-re
+  (rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" "Dictionary" "lexic" "Completions"
+                  (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan " "eglot-help for " "shellcheck:" "show-marks") (* any)))
+      "*" eol))
+
+(defconst +me-warning-buffers-re
+  (rx bol "*" (or "Warnings" "envrc") "*" eol))
+
+(defconst +me-terminal-buffers-re
+  (rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol))
+
+(defconst +me-repl-buffers-re
+  (rx bol "*"
+      (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
+          "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
+          (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
+      "*" eol))
 
 ;; Help/info buffers
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan " "eglot-help for " "shellcheck:") (* any))) "*")
+ `(,+me-help-buffers-re
    (display-buffer-in-side-window)
    (slot . 0)
    (side . right)
@@ -36,25 +53,17 @@
 ;; Show *Warnings* at bottom
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "Warnings" "envrc") "*" eol)
+ `(,+me-warning-buffers-re
    (display-buffer-reuse-window display-buffer-in-direction)
    (direction . bottom) ;; bottom (above below...)
    (dedicated . t) ;; Close when finished
-   (reusable-frames . visible) ;;
+   (reusable-frames . visible)
    (window-height . 10)))
-
-;; Show dictionary definition and completion buffer on the right side
-(add-to-list
- 'display-buffer-alist
- `(,(rx bol "*" (or "Dictionary" "lexic" "Completions" (seq "show-marks" (* any))) "*" eol)
-   (display-buffer-in-side-window)
-   (side . right)
-   (window-width . 85)))
 
 ;; Terminal buffers
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol)
+ `(,+me-terminal-buffers-re
    (display-buffer-reuse-window display-buffer-at-bottom)
    (dedicated . t) ;; Close when finished
    (direction . bottom)
@@ -64,11 +73,7 @@
 ;; REPL buffers
 (add-to-list
  'display-buffer-alist
- `(,(rx bol "*"
-        (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
-            "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
-            (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
-        "*" eol)
+ `(,+me-repl-buffers-re
    (display-buffer-in-side-window)
    (side . right)
    (dedicated . t) ;; Close when finished
@@ -80,8 +85,9 @@
 
 ;; Smaller fonts for some kind of windows like terminals
 (defvar +buffer-display-zoom-levels
-  `((,(rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol) . -0.7)
-    (,(rx bol "*" (or "Warnings" "envrc") "*" eol) . -0.7)))
+  `((,+me-terminal-buffers-re . -0.7)
+    (,+me-warning-buffers-re . -0.7)
+    (,+me-repl-buffers-re . -0.7)))
 
 ;; Apply the scaling if relevant when displaying the buffer
 (advice-add
