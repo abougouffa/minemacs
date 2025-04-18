@@ -91,7 +91,7 @@
    (satch-defun +enlight--recenter-h (&optional _frame)
      ;; When in Enlight's buffer, we recall `enlight-open' to refresh and recenter the buffer
      (when (eq (current-buffer) (get-buffer enlight-buffer-name))
-       (enlight-open)))))
+       (enlight)))))
 
 
 ;; Execute menu items as commands, with completion
