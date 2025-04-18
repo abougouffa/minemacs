@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.13.1](https://github.com/abougouffa/minemacs/compare/31032fe3b283e99848a3aed9ac4790295cd3816d..v12.13.1) - 2025-04-18
+#### Bug Fixes
+- **(aidermacs)** update for the new way of choosing the default model - ([a4ef986](https://github.com/abougouffa/minemacs/commit/a4ef986845f68bbd2b667ab948951458d4b22347)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** fix opening files with Emacs when Enlight is displayed - ([31032fe](https://github.com/abougouffa/minemacs/commit/31032fe3b283e99848a3aed9ac4790295cd3816d)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** scale the text in the right buffer - ([e9dc470](https://github.com/abougouffa/minemacs/commit/e9dc470d9b9233be3d4548f95c0460dce20ca1f6)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(window)** group and refactor common stuff - ([c73d556](https://github.com/abougouffa/minemacs/commit/c73d556958822778726ccc3f11483cb710304ffa)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- bump packages versions - ([feb9875](https://github.com/abougouffa/minemacs/commit/feb9875ff8dfb8e96527a6baaf0809ecff30dc3d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.13.0](https://github.com/abougouffa/minemacs/compare/ed0a2069c83815c53cc27508a473a6777c9a9d25..v12.13.0) - 2025-04-17
 #### Bug Fixes
 - **(on-demand/powershell)** fix the install path for PowerShell LSP - ([aa1c991](https://github.com/abougouffa/minemacs/commit/aa1c991a490a29b1233342d7de90f152db449a83)) - [@abougouffa](https://github.com/abougouffa)
