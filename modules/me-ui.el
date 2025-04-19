@@ -52,21 +52,6 @@
   (doom-modeline-continuous-word-count-modes '(markdown-mode markdown-ts-mode gfm-mode org-mode rst-mode latex-mode tex-mode)))
 
 
-;; Show current command and its key in the mode line
-(use-package keycast
-  :straight t
-  :commands (keycast-doom-modeline-mode)
-  :config
-  (define-minor-mode keycast-doom-modeline-mode
-    "Show keycast in `doom-modeline'."
-    :global t
-    (if keycast-doom-modeline-mode
-        (progn (add-hook 'pre-command-hook 'keycast--update t)
-               (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
-      (remove-hook 'pre-command-hook 'keycast--update)
-      (cl-callf2 delete '("" keycast-mode-line " ") global-mode-string))))
-
-
 ;; Highly customizable startup screen for Emacs
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
