@@ -144,7 +144,8 @@
   :bind (:package re-builder :map reb-mode-map ([f2] . casual-re-builder-tmenu))
   :bind (:package bookmark :map bookmark-bmenu-mode-map ([f2] . casual-bookmarks-tmenu))
   :bind (:package image-mode :map image-mode-map ([f2] . casual-image-tmenu))
-  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu)))
+  :bind (:package org-agenda :map org-agenda-mode-map ([f2] . casual-agenda-tmenu))
+  :bind (:package make-mode :map makefile-mode-map ([f2] . casual-make-tmenu)))
 
 
 ;; An opinionated `transient' menu for `avy'
