@@ -99,13 +99,6 @@ projects to uses the convention of commit messages like:
   :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 
-;; Stack Exchange for Emacs
-(use-package sx
-  :straight t
-  :custom
-  (sx-cache-directory (concat minemacs-cache-dir "sx/")))
-
-
 ;; Paste text to pastebin-like services
 (use-package webpaste
   :straight t
