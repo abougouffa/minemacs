@@ -79,12 +79,6 @@
        (enlight)))))
 
 
-;; Execute menu items as commands, with completion
-(use-package lacarte
-  :straight t
-  :bind ([f10] . lacarte-execute-menu-command))
-
-
 ;; Display "^L" page breaks as tidy horizontal lines
 (use-package page-break-lines
   :straight t
