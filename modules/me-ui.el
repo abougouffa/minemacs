@@ -34,11 +34,6 @@
   (+with-delayed-1! (doom-themes-visual-bell-config)))
 
 
-;; Colourful and legible themes for GNU Emacs
-(use-package ef-themes
-  :straight t)
-
-
 ;; A fancy and fast mode-line inspired by minimalism design
 (use-package doom-modeline
   :straight t
