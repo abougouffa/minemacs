@@ -43,6 +43,7 @@
       tab-to-tab-stop indent-for-tab-command transient-noop comment-line comment-dwim
       ;; MinEmacs' commands
       +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
+      +dtrt-indent-tab-to-tab-stop
       ;; `avy'
       avy-goto-char avy-goto-char-timer avy-goto-char-in-line avy-goto-char-2
       ;; `avy-zap'
