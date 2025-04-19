@@ -166,11 +166,6 @@
     (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
 
 
-;; Auto-format source code in many languages with one command
-(use-package format-all
-  :straight t)
-
-
 ;; Out of the box code execution from editing buffer
 (use-package quickrun
   :straight t
