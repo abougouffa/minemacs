@@ -109,9 +109,6 @@
 * `speed-type`: Practice touch/speed typing in Emacs
 * `wordel`: Play Wordle (a.k.a. Lingo) in Emacs
 
-## `me-gtd`
-* `org-gtd`: GTD workflow with Org mode
-
 ## `me-lifestyle`
 * `awqat`: Islamic prayer times for Emacs
 
@@ -121,10 +118,6 @@
 * `ein`: Jupyter notebook client in Emacs
 * `code-cells`: Lightweight notebooks in Emacs
 * `jupyter`: An interface to communicate with Jupyter kernels
-* `julia-mode`: Julia support in Emacs
-* `ess`: Emacs Speaks Statistics
-* `ess-view`: View R dataframes in a spreadsheet software
-* `ess-R-data-view`: Data viewer for GNU R
 
 ## `me-media`
 * `empv`: An Emacs media player, media library manager, radio player, YouTube frontend
@@ -173,14 +166,12 @@
 
 ## `me-prog`
 * `treesit-auto`: Automatically manage `treesit` grammars
-* `ts-movement`: Move and edit code blocks based on tree-sitter AST
 * `treesit-fold`: Tree-sitter based code folding
 * `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `gambol`: Emacs text actions using LSP symbol information
-* `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
 * `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
-* `format-all`: Auto-format source code in many languages with one command
+* `reformatter`: Define commands which run reformatters on the current Emacs buffer
 * `quickrun`: Out of the box code execution from editing buffer
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `xref-union`: Combine multiple Xref backends
@@ -213,7 +204,6 @@
 * `jiralib`: Provide connectivity to Jira SOAP/REST services
 * `org-jira`: Bring Jira and Org mode together
 * `tributary`: Edit Confluence wiki pages in Emacs
-* `sx`: Stack Exchange for Emacs
 * `webpaste`: Paste text to pastebin-like services
 * `isgd`: Simply shortening URLs using the is.gd service
 
@@ -258,11 +248,8 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
-* `ef-themes`: Colourful and legible themes for GNU Emacs
 * `doom-modeline`: A fancy and fast mode-line inspired by minimalism design
-* `keycast`: Show current command and its key in the mode line
 * `enlight`: Highly customizable startup screen for Emacs
-* `lacarte`: Execute menu items as commands, with completion
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
@@ -293,7 +280,6 @@
 
 ## `me-window`
 * `ace-window`: Quickly switch windows in Emacs
-* `window-purpose`: Manage windows and buffers according to purposes
 
 
 # MinEmacs on-demand modules and packages
@@ -639,6 +625,12 @@
 * `stan-mode`: Major mode for editing Stan files
 * `eldoc-stan`: Eldoc Eldoc support for Stan functions
 * `stan-snippets`: Yasnippets for Stan
+
+## `on-demand/me-statistics`
+* `julia-mode`: Julia support in Emacs
+* `ess`: Emacs Speaks Statistics
+* `ess-view`: View R dataframes in a spreadsheet software
+* `ess-R-data-view`: Data viewer for GNU R
 
 ## `on-demand/me-swift`
 * `swift-mode`: Major-mode for Apple's Swift programming language
