@@ -211,6 +211,7 @@
 * `yasnippet`: A template system for Emacs
 * `yasnippet-capf`: Completion-At-Point Extension for YASnippet
 * `yasnippet-snippets`: A collection of yasnippet snippets for many languages
+* `consult-yasnippet`: A consulting-read interface for yasnippet
 * `doom-snippets`: The Doom Emacs snippets library
 * `spdx`: Insert SPDX license header
 
