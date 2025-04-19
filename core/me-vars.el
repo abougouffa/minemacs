@@ -115,7 +115,8 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
                               ,(expand-file-name "~/Documents/org"))
                  append (cl-loop
                          for func in '(downcase upcase capitalize)
-                         collect (expand-file-name (funcall func (file-name-nondirectory dir)) (file-name-directory dir))))))
+                         collect (expand-file-name (funcall func (file-name-nondirectory dir)) (file-name-directory dir)))))
+      "~/org") ; The default value for `org-directory'
   "The default directory to use for `org-directory'.
 If environment variable \"MINEMACS_ORG_DIR\" is defined, it gets used,
 else, the first existing directory of the following list will be
