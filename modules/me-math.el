@@ -65,26 +65,6 @@
   :straight t)
 
 
-;; Julia support in Emacs
-(use-package julia-mode
-  :straight t)
-
-
-;; Emacs Speaks Statistics
-(use-package ess
-  :straight t)
-
-
-;; View R dataframes in a spreadsheet software
-(use-package ess-view
-  :straight t)
-
-
-;; Data viewer for GNU R
-(use-package ess-R-data-view
-  :straight t)
-
-
 (provide 'me-math)
 
 ;;; me-math.el ends here
