@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.14.0](https://github.com/abougouffa/minemacs/compare/e814095e1338f87a70e7fc7bdf0a178f339e2f9e..v12.14.0) - 2025-04-19
+#### Documentation
+- regenerate the documentation - ([59ccb63](https://github.com/abougouffa/minemacs/commit/59ccb63c09e366a5717cbb94449b740c4c002647)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(prog)** restore `reformatter` - ([669319e](https://github.com/abougouffa/minemacs/commit/669319e252a57160424e46ce6fcc943d12f408e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `format-all` obsolete - ([7b95501](https://github.com/abougouffa/minemacs/commit/7b9550109355ba422e70f9af7583920fd57d4c4e)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `combobulate` obsolete - ([9514bdc](https://github.com/abougouffa/minemacs/commit/9514bdc51ab3648312842fe81c70081d4c0e6cd3)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `ts-movement` obsolete - ([2160953](https://github.com/abougouffa/minemacs/commit/2160953bc0da7a60c218bd1e293c6069a9661ef2)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** make `sx` obsolete - ([708b52d](https://github.com/abougouffa/minemacs/commit/708b52d089d6a852a7afa1b9426d491a2b42f69d)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** add `consult-yasnippet` - ([3a59e75](https://github.com/abougouffa/minemacs/commit/3a59e759914bd7488e76005c1b280207b480e117)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `ef-themes` obsolete - ([98bf992](https://github.com/abougouffa/minemacs/commit/98bf992720b38c705c3245b46bf54c98630984cb)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `lacarte` obsolete - ([d641b50](https://github.com/abougouffa/minemacs/commit/d641b508acfb2727ba79d4c8761d31ceadcccd85)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `keycast` obsolete - ([660a8e7](https://github.com/abougouffa/minemacs/commit/660a8e7d435e80f9b468c0fef2e2cda645cb555f)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** make `window-purpose` obsolete - ([17610e1](https://github.com/abougouffa/minemacs/commit/17610e1f4f991ae01e39182adf7d75c2003d254a)) - [@abougouffa](https://github.com/abougouffa)
+- make `org-gtd` and `me-gtd` obsolete - ([80a45ae](https://github.com/abougouffa/minemacs/commit/80a45ae8ba60b15854fa538a2197608e41ff65c9)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(git)** ignore `aidermacs` files - ([7aac703](https://github.com/abougouffa/minemacs/commit/7aac7032b245fe9c9ec7b80221ff9921c63cab25)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move `ess` and `julia-mode` to `on-demand/me-statistics` - ([55f48f5](https://github.com/abougouffa/minemacs/commit/55f48f566381cb499c12d27c122a38ac070f99fb)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** bind `casual-make-tmenu` - ([661de0d](https://github.com/abougouffa/minemacs/commit/661de0d9a4f66cfec354b108e0b56d7298628c54)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** fallback to `~/org` in `minemacs-default-org-dir` - ([e814095](https://github.com/abougouffa/minemacs/commit/e814095e1338f87a70e7fc7bdf0a178f339e2f9e)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-cursor)** register `+dtrt-indent-tab-to-tab-stop` command - ([22d8bc5](https://github.com/abougouffa/minemacs/commit/22d8bc5eddc577c50513abd57be5562c9db89eee)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0652a6c](https://github.com/abougouffa/minemacs/commit/0652a6cdb2e41dcf8c3ad74212587febec9a6bd2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.13.1](https://github.com/abougouffa/minemacs/compare/31032fe3b283e99848a3aed9ac4790295cd3816d..v12.13.1) - 2025-04-18
 #### Bug Fixes
 - **(aidermacs)** update for the new way of choosing the default model - ([a4ef986](https://github.com/abougouffa/minemacs/commit/a4ef986845f68bbd2b667ab948951458d4b22347)) - [@abougouffa](https://github.com/abougouffa)
