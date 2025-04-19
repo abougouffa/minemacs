@@ -1,0 +1,18 @@
+;;; me-window-purpose.el --- Description -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+
+;;; Commentary:
+
+;;; Code:
+
+
+;; Manage windows and buffers according to purposes
+(use-package window-purpose
+  :straight t)
+
+
+(provide 'obsolete/me-window-purpose)
+;;; me-window-purpose.el ends here

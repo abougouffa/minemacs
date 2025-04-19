@@ -18,10 +18,6 @@
   :bind (("M-o" . ace-window)))
 
 
-;; Manage windows and buffers according to purposes
-(use-package window-purpose
-  :straight t)
-
 (defconst +me-help-buffers-re
   (rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" "Dictionary" "lexic" "Completions"
                   (seq (or "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan " "eglot-help for " "shellcheck:" "show-marks") (* any)))
