@@ -99,7 +99,12 @@ In some files, there is a mix of spaces and tabs. This uses
 ;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
   :straight t
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :hook (prog-mode . +rainbow-delimiters-mode-maybe)
+  :init
+  (defvar +rainbow-delimiters-disabled-modes '(makefile-mode))
+  (defun +rainbow-delimiters-mode-maybe ()
+    (unless (derived-mode-p +rainbow-delimiters-disabled-modes)
+      (rainbow-delimiters-mode 1))))
 
 
 ;; Highlight numbers in source code
