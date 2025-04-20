@@ -748,6 +748,16 @@ by `+screenshot-delay') before taking the screenshot."
     (when (stringp outfile) (copy-file tmp-file outfile))
     (message "Screenshot saved to %s" (or outfile tmp-file))))
 
+;;;###autoload
+(defun +completion-mark-category (seq category)
+  "Mark SEQ as being in CATEGORY for use with `completing-read'."
+  (lambda (str pred flag)
+    (pcase flag
+      ('metadata
+       `(metadata (category . ,category)))
+      (_
+       (all-completions str seq pred)))))
+
 ;; Kill the minibuffer even when in another windown.
 ;; Adapted from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 ;;;###autoload
