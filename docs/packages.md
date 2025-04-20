@@ -388,6 +388,12 @@
 * `dockerfile-mode`: Major mode for editing Docker's Dockerfiles
 * `docker-compose-mode`: Major mode for editing docker-compose files
 
+## `on-demand/me-dotnet`
+* `csproj-mode`: Work with .NET project files (csproj, vbproj)
+* `dotnet`: Interact with dotnet CLI tool
+* `sharper`: A dotnet CLI wrapper, using Transient
+* `vbnet-mode`: A mode for editing Visual Basic .NET code
+
 ## `on-demand/me-ebuild`
 * `ebuild-mode`: Major mode for editing Gentoo's ebuild and eclass files
 
@@ -649,9 +655,6 @@
 ## `on-demand/me-vala`
 * `vala-mode`: Major mode for the Vala programming language
 * `vala-snippets`: Yasnippets for Vala
-
-## `on-demand/me-vb`
-* `visual-basic-mode`: A mode for editing Visual Basic programs
 
 ## `on-demand/me-vimscript`
 * `vimrc-mode`: Major mode for vimrc files
