@@ -172,6 +172,12 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
+
+(minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj" . csproj-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet csproj-mode sharper)))
+(register-definition-prefixes "../modules/on-demand/me-dotnet" '("+dotnet-get-templates"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-ebuild.el
 
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
@@ -179,6 +185,12 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
+(autoload 'eglot-ltex-ls-install "../modules/extras/me-eglot-ltex" "\
+Download the latest release of LTeX+ LS.
+
+When PRE is non-nil, allow downloading the latest prerelease.
+
+(fn PRE)" t)
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
@@ -469,17 +481,20 @@ When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version.
 (autoload '+github-download-release "me-lib-extra" "\
 Download release from REPO.
 
-FILENAME-FMT is a string representing the file name, it can include the
-special format {{ver}} which gets replaced with the release version.
+If FILENAME-REGEXP is a string, use it as a regexp to match against the
+file name.
+
 When OK-IF-ALREADY-EXISTS is non-nil, the file gets overwritten if it
 already exists.
 
 Keyword argument :VER can be used to pass the version to download, when
 no version is passed, the latest release is downloaded. The :OUT-FILE
-can be used to choose the output file name, otherwise, the file will be
-downloaded with it's original file name to `+github-download-dir'
+can be used to choose the output file path, otherwise, the file will be
+downloaded with the original file name to `+github-download-dir'. If a
+non-nil value is provided for :PRERELEASE, we download the latest
+prerelease if no :VER is provided.
 
-(fn REPO FILENAME-FMT &optional OK-IF-ALREADY-EXISTS &key VER OUT-FILE)")
+(fn REPO FILENAME-REGEXP &optional OK-IF-ALREADY-EXISTS &key VER OUT-FILE PRERELEASE)")
 (autoload '+dir-locals-reload-for-this-buffer "me-lib-extra" "\
 Reload directory-local for the current buffer." t)
 (autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-extra" "\
@@ -830,6 +845,7 @@ Show the list of declared external dependencies." t)
 
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 (add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rust.el
@@ -872,6 +888,13 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-stan :auto-mode '(("\\.stan\\'" . stan-mode)) :companion-packages '(((stan-mode stan-ts-mode) eldoc-stan stan-snippets)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-statistics.el
+
+(minemacs-register-on-demand-module 'me-statistics :auto-mode '((("\\(NAMESPACE\\|CITATION\\)\\'" "/R/.*\\.q\\'" "\\.[rR]\\(profile\\)?\\'") . ess-r-mode) (("\\.[Bb][Uu][Gg]\\'" "\\.[Bb][Oo][Gg]\\'" "\\.[Bb][Mm][Dd]\\'") . ess-bugs-mode) ("\\.[Rr]out\\'" . ess-r-transcript-mode) ("\\.Rd\\'" . Rd-mode) ("\\.[Jj][Aa][Gg]\\'" . ess-jags-mode) ("\\.inp\\'" . ess-gretl-mode) ("\\.jl\\'" . julia-mode)) :interpreter-mode '((("r" "Rscript") . ess-r-mode) ("julia" . julia-mode)))
+(add-to-list 'auto-mode-alist '("/Makevars\\(\\.win\\)?\\'" . makefile-mode))
+(add-to-list 'auto-mode-alist '("DESCRIPTION\\'" . conf-colon-mode))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-swift.el
 
 (minemacs-register-on-demand-module 'me-swift :auto-mode '(("\\.swift\\(interface\\)?\\'" . swift-mode)))
@@ -905,11 +928,6 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+env-" "minemacs-"))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-vb.el
-
-(minemacs-register-on-demand-module 'me-vb :auto-mode '(("\\.vbs?\\'" . visual-basic-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
