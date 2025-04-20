@@ -11,33 +11,55 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-dotnet
   :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode)
-               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj" . csproj-mode))
+               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . csproj-mode)
+               ("\\.sln\\'" . sln-mode))
   :companion-packages '(((csharp-mode csharp-ts-mode) . (dotnet csproj-mode sharper))))
 
 
-(defun +dotnet-get-templates (&optional type)
+(defun +dotnet-get-templates (&optional full-desc)
   "Get the supported templates from \"dotnet new list\".
 
-When TYPE is specified, it will return only templates of that type."
-  (let ((out-lines (string-lines (shell-command-to-string "dotnet new list --columns=type")))
+When FULL-DESC, return an alist with the short and long names alongside
+the lanugage and the type."
+  (let ((lines (string-lines (shell-command-to-string "dotnet new list --columns=language --columns=type")))
+        (regexp (rx (group (+ ?-))    ; 1. Template Name
+                    (group (+ space))
+                    (group (+ ?-))    ; 3. Short Name
+                    (group (+ space))
+                    (group (+ ?-))    ; 5. Language
+                    (group (+ space))
+                    (group (+ ?-))))  ; 7. Type
         skel templates)
-    (dolist (line out-lines)
-      (cond ((string-match "\\([-]+\\)\\([[:space:]]+\\)\\([-]+\\)\\([[:space:]]+\\)\\([-]+\\)" line)
-             (setq skel (list (length (match-string 1 line)) (length (match-string 2 line))
-                              (length (match-string 3 line)) (length (match-string 4 line)))))
+    (dolist (line lines)
+      (cond ((string-match regexp line)
+             (setq skel (mapcar (lambda (n) (cons (match-beginning n) (match-end n)))
+                                (number-sequence 1 7 2))))
             ((and skel (length> line 1))
-             (when (or (not type)
-                       (equal type (string-trim (substring line (+ (nth 0 skel) (nth 1 skel) (nth 2 skel))))))
-               (push (car (string-split
-                           (string-trim (substring line (+ (nth 0 skel) (nth 1 skel)) (+ (nth 0 skel) (nth 1 skel) (nth 2 skel) 1)))
-                           ","))
+             (let ((l-name (cl-destructuring-bind (beg . end) (nth 0 skel) (string-trim (substring line beg end))))
+                   (l-shrt (cl-destructuring-bind (beg . end) (nth 1 skel) (string-trim (substring line beg end))))
+                   (l-lang (cl-destructuring-bind (beg . end) (nth 2 skel) (string-trim (substring line beg end))))
+                   (l-type (cl-destructuring-bind (beg . end) (nth 3 skel) (string-trim (substring line beg end)))))
+               (push (if full-desc
+                         (list l-shrt l-name (string-replace "]" "" (string-replace "[" "" l-lang)) l-type)
+                       l-shrt)
                      templates)))))
     templates))
 
 
-;; Work with .NET project files (csproj, vbproj)
+(use-package font-lock-ext ; Dependency of `sln-mode'
+  :straight t)
+
+
+;; A major mode to edit Visual Studio's solution files `*.sln'
+(use-package sln-mode
+  :straight t
+  :mode "\\.sln\\'")
+
+
+;; Work with .NET project files (csproj, vbproj, fsproj, vdproj, vcxproj)
 (use-package csproj-mode
   :straight t
+  :mode "\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'"
   :config
   ;; BUG+FIX: Switch to a working function
   (advice-add 'csproj-mode--get-dotnet-new-templates :override #'+dotnet-get-templates))
@@ -47,20 +69,43 @@ When TYPE is specified, it will return only templates of that type."
 (use-package dotnet
   :straight t
   :config
-  (add-to-list 'dotnet-langs "vb")
-  (when (executable-find "dotnet")
-    (setq dotnet-templates (+dotnet-get-templates "project")))
   (defun +dotnet-goto-vbproj ()
     "Search for a VB.Net project file in any enclosing folders relative to current directory."
     (interactive)
     (dotnet-goto ".vbproj"))
-  ;; BUG+FIX: `dotnet-new' uses `shell-quote-argument' on the path before
-  ;; expanding it, this results in creating a "~" named directory when the path
-  ;; starts with ~
+
+  (defvar +dotnet--templates-cache nil)
+  (when (executable-find "dotnet")
+    (setq +dotnet--templates-cache (+dotnet-get-templates t)))
+
+  ;; Register the annonater for Marginalia
+  (with-eval-after-load 'marginalia
+    (defun +marginalia-annotate-dotnet-template (cand)
+      (when-let* ((desc (cl-first (alist-get cand +dotnet--templates-cache nil nil 'equal)))
+                  (lang (cl-second (alist-get cand +dotnet--templates-cache nil nil 'equal))))
+        (marginalia--fields
+         (lang :face 'marginalia-size :width -10)
+         (desc :face 'marginalia-file-name))))
+    (add-to-list 'marginalia-annotator-registry '(dotnet-template +marginalia-annotate-dotnet-template builtin none)))
+
+  ;; TWEAK+FIX: Fix the path issue and provide a more smart prompting for templates and languages
   (advice-add
-   'dotnet-new :filter-args
-   (satch-defun +dotnet-new--expand-path:filter-args-a (args)
-     (cons (expand-file-name (car args)) (cdr args)))))
+   'dotnet-new :override
+   (lambda (path template language)
+     "Initialize a new console .NET project.
+PATH is the path to the new project, TEMPLATE is a template, and
+LANGUAGE is a supported language."
+     (interactive
+      (let* ((dir (expand-file-name (read-directory-name "Project path: ")))
+             (templ (completing-read "Choose a template: " (+completion-mark-category +dotnet--templates-cache 'dotnet-template)))
+             (langs (cl-third (assoc-string templ +dotnet--templates-cache)))
+             (lang (unless (string-empty-p langs)
+                     (completing-read "Choose a language: " (string-split langs ",")))))
+        (list dir (car (string-split templ ",")) lang)))
+     (dotnet-command
+      (mapconcat 'shell-quote-argument
+                 `("dotnet" "new" ,template "-o" ,path ,@(when language (list "-lang" language)))
+                 " ")))))
 
 
 ;; A dotnet CLI wrapper, using Transient
