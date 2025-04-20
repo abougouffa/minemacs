@@ -314,7 +314,7 @@ or file path may exist now."
      ".repo" ; Repo workspaces
      ".jj" ; Jujutsu
      "autogen.sh" ; Autotools
-     "*.csproj" "*.vbproj" "*.vcxproj" "*.vdproj" ; Visual Studio
+     "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
      ".code-workspace" ; VSCode, ".vscode" is present also in the user home
      "requirements.txt" ; Python
      ".magic" ; MAX + Mojo
