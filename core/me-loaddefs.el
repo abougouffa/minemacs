@@ -174,7 +174,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
 
-(minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj" . csproj-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet csproj-mode sharper)))
+(minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . csproj-mode) ("\\.sln\\'" . sln-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet csproj-mode sharper)))
 (register-definition-prefixes "../modules/on-demand/me-dotnet" '("+dotnet-get-templates"))
 
 
@@ -520,6 +520,10 @@ If launched with a prefix or universal argument, it waits for a moment (defined
 by `+screenshot-delay') before taking the screenshot.
 
 (fn OUTFILE)" t)
+(autoload '+completion-mark-category "me-lib-extra" "\
+Mark SEQ as being in CATEGORY for use with `completing-read'.
+
+(fn SEQ CATEGORY)")
 (autoload '+minibuffer-kill-minibuffer "me-lib-extra" "\
 Kill the minibuffer when switching to window with mouse." t)
 (autoload '+region-or-thing-at-point "me-lib-extra" "\
