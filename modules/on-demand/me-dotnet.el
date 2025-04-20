@@ -53,7 +53,14 @@ When TYPE is specified, it will return only templates of that type."
   (defun +dotnet-goto-vbproj ()
     "Search for a VB.Net project file in any enclosing folders relative to current directory."
     (interactive)
-    (dotnet-goto ".vbproj")))
+    (dotnet-goto ".vbproj"))
+  ;; BUG+FIX: `dotnet-new' uses `shell-quote-argument' on the path before
+  ;; expanding it, this results in creating a "~" named directory when the path
+  ;; starts with ~
+  (advice-add
+   'dotnet-new :filter-args
+   (satch-defun +dotnet-new--expand-path:filter-args-a (args)
+     (cons (expand-file-name (car args)) (cdr args)))))
 
 
 ;; A dotnet CLI wrapper, using Transient
