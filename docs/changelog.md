@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.15.0](https://github.com/abougouffa/minemacs/compare/55c47a6039b3cf967116784ead64c544c2de57f6..v12.15.0) - 2025-04-20
+#### Bug Fixes
+- **(on-demand/dotnet)** correctly handle paths in `dotnet-new` - ([33491a5](https://github.com/abougouffa/minemacs/commit/33491a525ec5d5cd292e2534cefabb46e31d8d8e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([ffa1f06](https://github.com/abougouffa/minemacs/commit/ffa1f0668e786a7770ebdc7099cd166c9563c837)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([e6d09fc](https://github.com/abougouffa/minemacs/commit/e6d09fc0d250ed6b029938219597d8394ebd5806)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([55c47a6](https://github.com/abougouffa/minemacs/commit/55c47a6039b3cf967116784ead64c544c2de57f6)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+completion-mark-category` - ([636eb75](https://github.com/abougouffa/minemacs/commit/636eb754257ebb9974482aa60798c2ffa06a7455)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add `me-dotnet` to better support .NET development - ([4845ee7](https://github.com/abougouffa/minemacs/commit/4845ee7e72aa73be085385fdfb83ebd9010e31f7)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bookmark)** add the bookmark file to `recentf`'s ignore list - ([77aa682](https://github.com/abougouffa/minemacs/commit/77aa682411436261ca56d4e35fa5bca058976b77)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/dotnet)** smart handling of templates - ([d2cf4e0](https://github.com/abougouffa/minemacs/commit/d2cf4e0dd27e3d8566daa874648d7d47ec090ec5)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** register Visual Studio's "*.sln" & `*.fsproj` as markers - ([6bba980](https://github.com/abougouffa/minemacs/commit/6bba9805eb753c0c0c8b444148fb6f3afb444729)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-delimiters)** don't enable in `makefile-mode` - ([272d9fc](https://github.com/abougouffa/minemacs/commit/272d9fccbab547cd895f40d6ec2698ff67195a31)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([a96f7a9](https://github.com/abougouffa/minemacs/commit/a96f7a95ed37b7bec429a7a0d66575d0ecd4da75)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([c62dee1](https://github.com/abougouffa/minemacs/commit/c62dee1ae67943d61fbc20349b9132a6414f38e5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b99b3e2](https://github.com/abougouffa/minemacs/commit/b99b3e26e5347a85db7dca6844adfcd88cac2d9a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.14.0](https://github.com/abougouffa/minemacs/compare/e814095e1338f87a70e7fc7bdf0a178f339e2f9e..v12.14.0) - 2025-04-19
 #### Documentation
 - regenerate the documentation - ([59ccb63](https://github.com/abougouffa/minemacs/commit/59ccb63c09e366a5717cbb94449b740c4c002647)) - [@abougouffa](https://github.com/abougouffa)
