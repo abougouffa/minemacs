@@ -389,7 +389,8 @@
 * `docker-compose-mode`: Major mode for editing docker-compose files
 
 ## `on-demand/me-dotnet`
-* `csproj-mode`: Work with .NET project files (csproj, vbproj)
+* `sln-mode`: A major mode to edit Visual Studio's solution files `*.sln`
+* `csproj-mode`: Work with .NET project files (csproj, vbproj, fsproj, vdproj, vcxproj)
 * `dotnet`: Interact with dotnet CLI tool
 * `sharper`: A dotnet CLI wrapper, using Transient
 * `vbnet-mode`: A mode for editing Visual Basic .NET code

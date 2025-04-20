@@ -838,6 +838,10 @@ Save a screenshot of the current frame as an SVG image to OUTFILE.
 If launched with a prefix or universal argument, it waits for a moment (defined
 by `+screenshot-delay`) before taking the screenshot.
 
+#### `(+completion-mark-category SEQ CATEGORY)`
+
+Mark SEQ as being in CATEGORY for use with `completing-read`.
+
 #### `(+minibuffer-kill-minibuffer)`
 
 Kill the minibuffer when switching to window with mouse.
