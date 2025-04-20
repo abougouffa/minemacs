@@ -946,7 +946,9 @@ Typing these will trigger reindentation of the current line.")
        (truncate-string-to-width
         (format "%s: %s" (buffer-name) (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
         60 nil nil t))))
-  (push bookmark-default-file +first-file-hook-ignore-list))
+  (push bookmark-default-file +first-file-hook-ignore-list)
+  (with-eval-after-load 'recentf
+    (push bookmark-default-file recentf-exclude)))
 
 (use-package desktop
   :hook (minemacs-lazy . desktop-save-mode)
