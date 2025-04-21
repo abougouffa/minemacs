@@ -96,6 +96,7 @@
  ("dts-mode" . "cd1847d0e7162c1ecab772c6ca7ef4f3c5d2214d")
  ("dumb-jump" . "737267a6139a988369cb95ecd365b2db95e05db0")
  ("dune" . "266b78181982ea35df8d58b0eea76d9612287c74")
+ ("eat" . "c8d54d649872bfe7b2b9f49ae5c2addbf12d3b99")
  ("ebuild-mode" . "1dd08c89bc71ca802daaa05cfdc7f028b7254159")
  ("eglot" . "170a1443963898d71ae4cbe981099a822028766e")
  ("eglot-booster" . "e6daa6bcaf4aceee29c8a5a949b43eb1b89900ed")

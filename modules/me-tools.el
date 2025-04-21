@@ -96,7 +96,7 @@ a project, call `multi-vterm-dedicated-toggle'."
     (if-let* ((buf-name (and (multi-vterm-project-root) (multi-vterm-project-get-buffer-name)))
               (display-buffer-alist (cons `(,(regexp-quote buf-name)
                                             (display-buffer-reuse-window display-buffer-at-bottom)
-                                            (dedicated . t) ;; Close when finished
+                                            (dedicated . t) ; Close when finished
                                             (window-height . 0.3))
                                           display-buffer-alist)))
         (if-let* ((buf (get-buffer buf-name))
@@ -106,6 +106,11 @@ a project, call `multi-vterm-dedicated-toggle'."
               (pop-to-buffer buf))
           (multi-vterm-project))
       (multi-vterm-dedicated-toggle))))
+
+
+;; Emulate A Terminal, in a region, in a buffer and in Eshell
+(use-package eat
+  :straight t)
 
 
 ;; Manage docker from Emacs
