@@ -75,14 +75,16 @@ the lanugage and the type."
     (dotnet-goto ".vbproj"))
 
   (defvar +dotnet--templates-cache nil)
-  (when (executable-find "dotnet")
-    (setq +dotnet--templates-cache (+dotnet-get-templates t)))
+  (defun +dotnet--templates-cache ()
+    (or +dotnet--templates-cache
+        (and (executable-find "dotnet")
+             (setq +dotnet--templates-cache (+dotnet-get-templates t)))))
 
   ;; Register the annonater for Marginalia
   (with-eval-after-load 'marginalia
     (defun +marginalia-annotate-dotnet-template (cand)
-      (when-let* ((desc (cl-first (alist-get cand +dotnet--templates-cache nil nil 'equal)))
-                  (lang (cl-second (alist-get cand +dotnet--templates-cache nil nil 'equal))))
+      (when-let* ((desc (cl-first (alist-get cand (+dotnet--templates-cache) nil nil 'equal)))
+                  (lang (cl-second (alist-get cand (+dotnet--templates-cache) nil nil 'equal))))
         (marginalia--fields
          (lang :face 'marginalia-size :width -10)
          (desc :face 'marginalia-file-name))))
@@ -97,8 +99,8 @@ PATH is the path to the new project, TEMPLATE is a template, and
 LANGUAGE is a supported language."
      (interactive
       (let* ((dir (expand-file-name (read-directory-name "Project path: ")))
-             (templ (completing-read "Choose a template: " (+completion-mark-category +dotnet--templates-cache 'dotnet-template)))
-             (langs (cl-third (assoc-string templ +dotnet--templates-cache)))
+             (templ (completing-read "Choose a template: " (+completion-mark-category (+dotnet--templates-cache) 'dotnet-template)))
+             (langs (cl-third (assoc-string templ (+dotnet--templates-cache))))
              (lang (unless (string-empty-p langs)
                      (completing-read "Choose a language: " (string-split langs ",")))))
         (list dir (car (string-split templ ",")) lang)))
