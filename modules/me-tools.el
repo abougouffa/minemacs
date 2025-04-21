@@ -114,6 +114,11 @@ a project, call `multi-vterm-dedicated-toggle'."
   :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
+;; Rudimentary support for devcontainer in emacs
+(use-package devcontainer-mode
+  :straight (:host github :repo "johannes-mueller/devcontainer-mode"))
+
+
 ;; Major mode for editing systemd units
 (use-package systemd
   :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
