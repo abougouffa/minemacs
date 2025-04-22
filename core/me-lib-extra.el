@@ -641,48 +641,42 @@ prerelease if no :VER is provided."
 
 ;;; Directory local tweaks & hacks
 
+(defvar +dir-locals-enable-local-vars :all
+  "A value to use for `enable-local-variables'.")
+
 ;;;###autoload
 (defun +dir-locals-reload-for-this-buffer ()
   "Reload directory-local for the current buffer."
   (interactive)
-  (let ((enable-local-variables :all))
+  (let ((enable-local-variables +dir-locals-enable-local-vars))
     (hack-dir-local-variables-non-file-buffer)
-    (+info! "Reloaded directory-local variables for buffer %s"
-            (buffer-name (current-buffer)))))
+    (+info! "Reloaded directory-local variables for buffer %S" (current-buffer))))
 
 ;;;###autoload
 (defun +dir-locals-reload-for-all-buffers-in-this-directory ()
-  "Reload dir-locals for all buffers in the current `default-directory'."
+  "Reload dir-locals for all buffers under `default-directory'."
   (interactive)
-  (let ((dir default-directory))
+  (let ((dir-locals-dir (car (ensure-list (dir-locals-find-file default-directory)))))
     (dolist (buffer (buffer-list))
       (with-current-buffer buffer
-        (when (equal default-directory dir)
+        (when-let* ((file (or buffer-file-name default-directory))
+                    ((equal (car (ensure-list (dir-locals-find-file file))) dir-locals-dir)))
           (+dir-locals-reload-for-this-buffer))))))
 
-(defun +dir-locals--autoreload-h ()
+(defun +dir-locals-autoreload ()
   "Is it relevant to auto reload dir-locals for his buffer."
   (when (and (buffer-file-name)
              (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
     (+dir-locals-reload-for-all-buffers-in-this-directory)
-    (message "Reloaded directory-local variables defined in %s." dir-locals-file)))
-
-(defvar +dir-locals--autoreload-p nil)
+    (+log! "Reloaded directory-local variables defined in %s" dir-locals-file)))
 
 ;;;###autoload
-(defun +dir-locals-toggle-autoreload (&optional enable)
-  "Toggle autoloading dir-local variables after editing the \".dir-locals\" file.
-
-If ENABLE is non-nil, force enabling autoreloading."
-  (interactive)
-  (if (or enable (not +dir-locals--autoreload-p))
-      (progn
-        (remove-hook 'after-save-hook #'+dir-locals--autoreload-h)
-        (setq +dir-locals--autoreload-p nil)
-        (message "Disabled auto-reloading directory-locals."))
-    (add-hook 'after-save-hook #'+dir-locals--autoreload-h)
-    (setq +dir-locals--autoreload-p t)
-    (message "Enabled auto-reloading directory-locals.")))
+(define-minor-mode +dir-locals-autoreload-mode
+  "Autoload buffers affected by editing the current `dir-locals-file'."
+  :global t
+  (if +dir-locals-autoreload-mode
+      (add-hook 'after-save-hook #'+dir-locals-autoreload)
+    (remove-hook 'after-save-hook #'+dir-locals-autoreload)))
 
 
 
