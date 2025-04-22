@@ -110,7 +110,8 @@ a project, call `multi-vterm-dedicated-toggle'."
 
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
-  :straight t)
+  :straight t
+  :hook (eat-mode . minemacs-reduced-font-size))
 
 
 ;; Manage docker from Emacs
