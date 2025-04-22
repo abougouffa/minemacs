@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.16.0](https://github.com/abougouffa/minemacs/compare/1c35ed02ce4aed0ad6645d19a34e8b6b9a7b0f75..v12.16.0) - 2025-04-22
+#### Documentation
+- regenerate the documentation - ([8ed6769](https://github.com/abougouffa/minemacs/commit/8ed67697f2a3b6d314b8d6cd794abff670a31b12)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(builtin)** enable `minemacs-reduced-font-size` in some modes - ([f6f9466](https://github.com/abougouffa/minemacs/commit/f6f9466c70bc85201c64afb77444f1a47ad3dff3)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add `minemacs-reduced-font-size` to be used as a hook - ([cb2e024](https://github.com/abougouffa/minemacs/commit/cb2e024015411cf2776adbc6e6647f47790a2b59)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** restore `eglot-x` to experiment with it - ([77f2808](https://github.com/abougouffa/minemacs/commit/77f2808e3359c08293115c2896674c75cda88479)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add initial support for `eat` - ([c1db896](https://github.com/abougouffa/minemacs/commit/c1db8963eea700b90b631a5264febad882e08494)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add initial support for `devcontainer-mode` - ([9d105ff](https://github.com/abougouffa/minemacs/commit/9d105ff53fcf7c394bd3397393cc832ed17c81ee)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(citre)** rename an internal function - ([2a934bc](https://github.com/abougouffa/minemacs/commit/2a934bc23b2545c6b43ddf1ef0b8af487b27dd6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** new mode `+dir-locals-autoreload-mode` with better implementation - ([e3f7bbc](https://github.com/abougouffa/minemacs/commit/e3f7bbcdcce7128e9ca446f0566290c1ef9e19f0)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove `+dir-locals-open-or-create` - ([7c043f9](https://github.com/abougouffa/minemacs/commit/7c043f941c25db5c1bfcc295702a8267df31e486)) - [@abougouffa](https://github.com/abougouffa)
+- move `+clang-format-get-style` to `me-lib-extra` - ([8d40562](https://github.com/abougouffa/minemacs/commit/8d405621022a3f2a4156664b145c211774c86603)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(window)** remove the font size hack, not generic enough - ([34cd1f7](https://github.com/abougouffa/minemacs/commit/34cd1f741376a816a0dced017dd5b91c54178e91)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bookmark)** make use of `+ignore-root` - ([c9a4f7f](https://github.com/abougouffa/minemacs/commit/c9a4f7f81411a423efde5b869cbb2bd4fe005f35)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better implementation of `minemacs-bump-packages-async` - ([fa2aecc](https://github.com/abougouffa/minemacs/commit/fa2aecc90ac7f02e9957f1bb7c9ba6f3da5191e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor edits in the `project` extensions - ([4456b27](https://github.com/abougouffa/minemacs/commit/4456b27006108ed206592cd550e3f38226fa15d5)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better implementation of `+project-safe-root` - ([f62f5a1](https://github.com/abougouffa/minemacs/commit/f62f5a16c8544ba867c7400ce74a9ea2e3506882)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** cleanup `+def-dedicated-tab!`, not returns `+CMD-dedicated-tab` - ([d7a6e2e](https://github.com/abougouffa/minemacs/commit/d7a6e2eb4998b37bf5d72ab5ef1d62631e5c2339)) - [@abougouffa](https://github.com/abougouffa)
+- **(eat)** enable reduced font size - ([f6db2b3](https://github.com/abougouffa/minemacs/commit/f6db2b33bd7c308ac0138cbdb49a8cfd2db9f150)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/dotnet)** minor edit - ([1c35ed0](https://github.com/abougouffa/minemacs/commit/1c35ed02ce4aed0ad6645d19a34e8b6b9a7b0f75)) - [@abougouffa](https://github.com/abougouffa)
+- **(tldr)** enable more docs - ([28fe7f2](https://github.com/abougouffa/minemacs/commit/28fe7f2ecb7426f1a03db15081dbcc10c466bc6f)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** reduced font size, restore default `vterm-tramp-shells` - ([530b887](https://github.com/abougouffa/minemacs/commit/530b887144d1e68daef47cffcb88b02a32d0bbff)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d430b82](https://github.com/abougouffa/minemacs/commit/d430b82aad461f6c02c0b4847642fe67eaa078d8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4d754db](https://github.com/abougouffa/minemacs/commit/4d754db3bff4d68b1d7636ecc3f22ecb8fbb91eb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([78feca3](https://github.com/abougouffa/minemacs/commit/78feca3bc4aa7d2ec4dffa2671cb6c23788b1d0c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.15.0](https://github.com/abougouffa/minemacs/compare/55c47a6039b3cf967116784ead64c544c2de57f6..v12.15.0) - 2025-04-20
 #### Bug Fixes
 - **(on-demand/dotnet)** correctly handle paths in `dotnet-new` - ([33491a5](https://github.com/abougouffa/minemacs/commit/33491a525ec5d5cd292e2534cefabb46e31d8d8e)) - [@abougouffa](https://github.com/abougouffa)
