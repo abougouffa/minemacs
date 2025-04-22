@@ -763,12 +763,10 @@ recursive-p) to scan directories recursively."
 
 (defun +project-safe-root (&optional proj)
   "Return the root of PROJ using several backends, don't fail."
-  (let ((proj (or proj (project-current))))
-    (or
-     (and proj (project-root proj))
-     (and (fboundp 'ffip-project-root) (ffip-project-root))
-     (and (fboundp 'projectile-project-p) (projectile-project-p) (projectile-project-root))
-     (vc-root-dir))))
+  (when-let* ((root (if-let* ((proj (or proj (project-current))))
+                        (project-root proj)
+                      (vc-root-dir))))
+    (expand-file-name root)))
 
 
 
