@@ -21,7 +21,7 @@
     "Directory of downloaded pictures."
     :group 'minemacs-elfeed)
   (+def-dedicated-tab! elfeed :exit-func elfeed-search-quit-window)
-  :bind (:map minemacs-open-thing-map ("f" . +elfeed))
+  :bind (:map minemacs-open-thing-map ("f" . +elfeed-dedicated-tab))
   :custom
   (elfeed-db-directory (concat minemacs-local-dir "elfeed/db/"))
   (elfeed-enclosure-default-dir (concat minemacs-local-dir "elfeed/enclosure/"))

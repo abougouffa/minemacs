@@ -611,7 +611,7 @@ be deleted.
 
 \(fn NAME [[:exit-hook HOOK] [:exit-func FUNC]] FORMS...)"
   (let* ((cmd (+unquote cmd))
-         (fn-name (intern (format "+%s" cmd)))
+         (fn-name (intern (format "+%s-dedicated-tab" cmd)))
          (fn-doc (format "Launch %s in a dedicated workspace." cmd))
          (tab-name (intern (format "+%s-tab-name" cmd)))
          (exit-fn-name (intern (format "+%s--close-workspace" cmd)))
@@ -625,13 +625,9 @@ be deleted.
       (setq
        fn-body
        `((defun ,exit-fn-name (&rest _)
-           (if (fboundp 'tabspaces-mode)
-               ;; When `tabspaces' is available, use it.
-               (when-let* ((tab-num (seq-position (tabspaces--list-tabspaces) ,tab-name #'string=)))
-                 (tabspaces-close-workspace (1+ tab-num)))
-             ;; Or default to the built-in `tab-bar'.
-             (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
-               (tab-close (1+ tab-num)))))))
+           ;; Or default to the built-in `tab-bar'.
+           (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
+             (tab-close (1+ tab-num))))))
       (when exit-func
         (setq fn-body (append fn-body `((advice-add ',exit-func :after #',exit-fn-name)))))
       (when exit-hook
@@ -642,10 +638,8 @@ be deleted.
          ,fn-doc
          (interactive)
          (when ,tab-name
-           (if (fboundp 'tabspaces-mode)
-               (tabspaces-switch-or-create-workspace ,tab-name)
-             (tab-new)
-             (tab-rename ,tab-name)))
+           (tab-new)
+           (tab-rename ,tab-name))
          ,@sexp)
        ,(macroexp-progn fn-body)
        #',fn-name)))
