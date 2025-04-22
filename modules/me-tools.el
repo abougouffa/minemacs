@@ -47,7 +47,7 @@
   :hook (minemacs-build-functions . tldr-update-docs)
   :hook (tldr-mode . visual-line-mode)
   :custom
-  (tldr-enabled-categories '("common" "linux" "osx")))
+  (tldr-enabled-categories '("common" "linux" "netbsd" "openbsd" "freebsd" "osx" "windows")))
 
 
 ;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
