@@ -684,18 +684,6 @@ If ENABLE is non-nil, force enabling autoreloading."
     (setq +dir-locals--autoreload-p t)
     (message "Enabled auto-reloading directory-locals.")))
 
-;;;###autoload
-(defun +dir-locals-open-or-create ()
-  "Open or create the dir-locals.el for the current project."
-  (interactive)
-  (let* ((file-name (or buffer-file-name default-directory))
-         (base-dir (car (ensure-list (dir-locals-find-file file-name)))))
-    (find-file (expand-file-name
-                dir-locals-file
-                (or (expand-file-name dir-locals-file base-dir)
-                    (+project-safe-root)
-                    (file-name-directory file-name))))))
-
 
 
 ;;; Misc Emacs tweaks
