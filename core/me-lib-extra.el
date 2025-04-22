@@ -91,15 +91,8 @@ Call functions without asking when DONT-ASK-P is non-nil."
 (defun minemacs-bump-packages-async ()
   "Like `minemacs-bump-packages', but runs asynchronously."
   (interactive)
-  (let* ((proc-name "minemacs-bump-packages")
-         (buff-name (format "*%s*" proc-name)))
-    (if (process-live-p (get-process proc-name))
-        (user-error "MinEmacs bump process is already running")
-      (make-process
-       :name proc-name
-       :buffer buff-name
-       :command `(,(car command-line-args) "--batch" "--script" ,user-init-file "--eval=(minemacs-bump-packages)")))
-    (pop-to-buffer buff-name)))
+  (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
+    (compile (string-join (list (car command-line-args) "--batch" "--script" user-init-file "--eval='(minemacs-bump-packages)'") " "))))
 
 ;;;###autoload
 (defun minemacs-upgrade (pull-minemacs)
