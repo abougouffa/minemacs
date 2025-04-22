@@ -435,6 +435,7 @@ or file path may exist now."
   :hook (tty-setup . xterm-mouse-mode))
 
 (use-package eshell
+  :hook (eshell-mode . minemacs-reduced-font-size)
   :custom
   (eshell-scroll-to-bottom-on-input 'this))
 
@@ -635,9 +636,13 @@ or file path may exist now."
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
+(use-package comint
+  :hook (comint-mode . minemacs-reduced-font-size))
+
 (use-package compile
   :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
   :hook (shell-mode . compilation-shell-minor-mode)
+  :hook (compilation-mode . minemacs-reduced-font-size)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
@@ -1081,6 +1086,7 @@ Typing these will trigger reindentation of the current line.")
   :hook (minemacs-first-file . save-place-mode)) ; Save place in files
 
 (use-package term
+  :hook (term-mode . minemacs-reduced-font-size)
   :config
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
   ;; `shell-kill-buffer-on-exit').
