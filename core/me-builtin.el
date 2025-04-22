@@ -637,7 +637,12 @@ or file path may exist now."
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (use-package comint
-  :hook (comint-mode . minemacs-reduced-font-size))
+  :hook (comint-mode . minemacs-reduced-font-size)
+  :custom
+  (comint-scroll-to-bottom-on-input 'this) ; Move to bottom on input in the current window
+  (comint-scroll-to-bottom-on-output 'this) ; Move to bottom on output in the current window
+  (comint-buffer-maximum-size (* 64 1024)) ; Increase the maximum buffer size (def. 1024)
+  (comint-input-ring-size 5000)) ; Increase the size of the input history ring (def. 500)
 
 (use-package compile
   :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
