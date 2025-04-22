@@ -142,25 +142,6 @@
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist)
 
-  ;; Helper function to get the style for "clang-format"
-  (defun +clang-format-get-style ()
-    "Get the \"-style\" argument for clang-format."
-    (if-let* ((conf-file ".clang-format")
-              (dir (locate-dominating-file
-                    (or (+project-safe-root) default-directory)
-                    conf-file)))
-        (concat "file:" (expand-file-name conf-file dir))
-      (let ((indent
-             (cond
-              ((derived-mode-p 'c-ts-mode 'c++-ts-mode) 'c-ts-mode-indent-offset)
-              ((derived-mode-p 'java-ts-mode) 'java-ts-mode-indent-offset)
-              ((derived-mode-p 'csharp-ts-mode) 'csharp-ts-mode-indent-offset)
-              ((derived-mode-p 'protobuf-ts-mode) 'protobuf-ts-mode-indent-offset)
-              ((derived-mode-p 'c-mode 'c++-mode 'csharp-mode 'opencl-c-mode 'protobuf-mode 'cuda-mode) 'c-basic-offset))))
-        (format "{IndentWidth: %d, TabWidth: %d}"
-                (or (and indent (symbol-value indent)) standard-indent)
-                (or (and indent (symbol-value indent)) tab-width)))))
-
   ;; Append the "-style" option to the `clang-format' command
   (let ((clang (assq 'clang-format apheleia-formatters)))
     (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
