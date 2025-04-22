@@ -15,6 +15,12 @@
   :commands (eglot-inactive-regions-mode))
 
 
+;; Extra non-standard functionalities for Eglot
+(use-package eglot-x
+  :straight (:host github :repo "nemethf/eglot-x")
+  :commands (eglot-x-setup))
+
+
 ;; Work seamlessly with GitHub gists from Emacs
 (use-package igist
   :straight t)
