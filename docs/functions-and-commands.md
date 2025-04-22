@@ -624,6 +624,10 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 
 Setup fonts.
 
+#### `(minemacs-reduced-font-size)`
+
+Reduce the font size in the buffer by `minemacs-reduced-font-size-ratio`.
+
 #### `(+subtle-mode-line)`
 
 Subtle look for the mode-line.

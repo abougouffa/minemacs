@@ -87,6 +87,7 @@
 
 ## `me-experimental`
 * `eglot-inactive-regions`: Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
+* `eglot-x`: Extra non-standard functionalities for Eglot
 * `igist`: Work seamlessly with GitHub gists from Emacs
 
 ## `me-extra`
@@ -233,7 +234,9 @@
 * `tldr`: Browse "tldr" pages from Emacs
 * `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
 * `multi-vterm`: Managing multiple vterm buffers in Emacs
+* `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `docker`: Manage docker from Emacs
+* `devcontainer-mode`: Rudimentary support for devcontainer in emacs
 * `systemd`: Major mode for editing systemd units
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `logview`: Emacs mode for viewing log files
