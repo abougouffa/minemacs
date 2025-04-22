@@ -21,7 +21,7 @@
   :straight t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
-  (citre-project-root-function #'+citre-recursive-project-root) ; Better (!) project root detection function
+  (citre-project-root-function #'+citre-dominating-project-root) ; Better (!) project root detection function
   (citre-gtags-args
    `("--compact"
      ;; TEMP: Sane defaults, see: universal-ctags/citre#184
@@ -82,8 +82,8 @@
   (add-to-list 'citre-find-definition-backends 'elisp)
   (add-to-list 'citre-find-reference-backends 'elisp)
 
-  (defun +citre-recursive-project-root ()
-    "Search recursively until we find one of `+citre-recursive-root-project-detection-files'.
+  (defun +citre-dominating-project-root ()
+    "Search upward until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
     (or (cl-some (apply-partially #'locate-dominating-file (or buffer-file-name default-directory))
                  +citre-recursive-root-project-detection-files) ; locate the root containing the file
