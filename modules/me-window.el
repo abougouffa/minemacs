@@ -73,7 +73,7 @@
    (display-buffer-in-side-window)
    (side . right)
    (dedicated . t) ;; Close when finished
-   (window-width . 0.5)
+   (window-width . 80)
    (reusable-frames . visible)))
 
 
