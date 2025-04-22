@@ -56,6 +56,7 @@
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :hook (vterm-mode . compilation-shell-minor-mode)
+  :hook (vterm-mode . minemacs-reduced-font-size)
   :bind (:map vterm-mode-map ([return] . vterm-send-return))
   :init
   ;; Hide vterm install window
@@ -66,8 +67,7 @@
   (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions)
   :custom
   (vterm-always-compile-module t)
-  (vterm-max-scrollback 5000)
-  (vterm-tramp-shells '(("docker" "/bin/bash"))))
+  (vterm-max-scrollback 5000))
 
 
 ;; Managing multiple vterm buffers in Emacs
