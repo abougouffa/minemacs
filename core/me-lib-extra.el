@@ -1331,7 +1331,7 @@ it forget them only when we are sure they don't exist."
   (dolist (proj (project-known-project-roots))
     (unless (or (and (file-remote-p proj nil t) (file-readable-p proj)) ; Connected remote + existent project
                 (file-remote-p proj) ; Non connected remote project
-                (file-exists-p proj)) ; Existent local project
+                (file-directory-p proj)) ; Existent local project
       (project-forget-project proj))))
 
 ;;;###autoload
@@ -1364,15 +1364,8 @@ it forget them only when we are sure they don't exist."
 (defun +project-root-initialize ()
   "Initialize project list from `+project-root-wildcards'."
   (interactive)
-  ;; Forget non-existent projects
-  (mapc
-   (lambda (pr)
-     (or (file-remote-p pr) ; Don't forget remote projects
-         (file-directory-p pr)
-         (project-forget-project pr)))
-   (project-known-project-roots))
-  ;; Remember some Git repositories as projects by path
-  (mapc
+  (+project-forget-zombie-projects) ; Forget non-existent projects
+  (mapc ; Remember some Git repositories as projects by path
    (lambda (dir)
      (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
