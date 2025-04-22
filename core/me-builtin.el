@@ -638,11 +638,20 @@ or file path may exist now."
 
 (use-package comint
   :hook (comint-mode . minemacs-reduced-font-size)
+  :commands (+comint-clear-buffer)
+  :bind (:map comint-mode-map ("C-l" . +comint-clear-buffer))
   :custom
   (comint-scroll-to-bottom-on-input 'this) ; Move to bottom on input in the current window
   (comint-scroll-to-bottom-on-output 'this) ; Move to bottom on output in the current window
   (comint-buffer-maximum-size (* 64 1024)) ; Increase the maximum buffer size (def. 1024)
-  (comint-input-ring-size 5000)) ; Increase the size of the input history ring (def. 500)
+  (comint-input-ring-size 5000) ; Increase the size of the input history ring (def. 500)
+  :config
+  (defun +comint-clear-buffer ()
+    "Clears the current comint buffer, removing all its content."
+    (interactive)
+    (when (derived-mode-p 'comint-mode)
+      (let ((comint-buffer-maximum-size 0))
+        (comint-truncate-buffer)))))
 
 (use-package compile
   :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
