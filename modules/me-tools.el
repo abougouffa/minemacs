@@ -154,10 +154,11 @@ a project, call `multi-vterm-dedicated-toggle'."
   (defvar +with-editor-ignore-matching-buffers '("\\*julia\\*"))
   (defun +with-editor-export-all ()
     (unless (seq-some (+apply-partially-right #'string-match-p (buffer-name)) +with-editor-ignore-matching-buffers)
-      (+shutup! (with-editor-export-editor)) ; Export EDITOR
-      (+shutup! (with-editor-export-hg-editor)) ; Export HG_EDITOR
-      (+shutup! (with-editor-export-git-editor)) ; Export GIT_EDITOR
-      (+shutup! (with-editor-export-editor "JJ_EDITOR")))) ; Export JJ_EDITOR
+      (+shutup!
+       (with-editor-export-editor) ; Export EDITOR
+       (with-editor-export-hg-editor) ; Export HG_EDITOR
+       (with-editor-export-git-editor) ; Export GIT_EDITOR
+       (with-editor-export-editor "JJ_EDITOR")))) ; Export JJ_EDITOR
   :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
          ("<remap> <shell-command>" . with-editor-shell-command))
   :config
