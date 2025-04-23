@@ -435,7 +435,7 @@ or file path may exist now."
   :hook (tty-setup . xterm-mouse-mode))
 
 (use-package eshell
-  :hook (eshell-mode . minemacs-reduced-font-size)
+  :hook (eshell-mode . minemacs-reduce-font-size)
   :custom
   (eshell-scroll-to-bottom-on-input 'this))
 
@@ -637,7 +637,7 @@ or file path may exist now."
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (use-package comint
-  :hook (comint-mode . minemacs-reduced-font-size)
+  :hook (comint-mode . minemacs-reduce-font-size)
   :commands (+comint-clear-buffer)
   :bind (:map comint-mode-map ("C-l" . +comint-clear-buffer))
   :custom
@@ -656,7 +656,7 @@ or file path may exist now."
 (use-package compile
   :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
   :hook (shell-mode . compilation-shell-minor-mode)
-  :hook (compilation-mode . minemacs-reduced-font-size)
+  :hook (compilation-mode . minemacs-reduce-font-size)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
@@ -1100,7 +1100,7 @@ Typing these will trigger reindentation of the current line.")
   :hook (minemacs-first-file . save-place-mode)) ; Save place in files
 
 (use-package term
-  :hook (term-mode . minemacs-reduced-font-size)
+  :hook (term-mode . minemacs-reduce-font-size)
   :config
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
   ;; `shell-kill-buffer-on-exit').
@@ -1277,6 +1277,7 @@ Typing these will trigger reindentation of the current line.")
   (keymap-global-set "C-c w" +windmove-keys))
 
 (use-package grep
+  :hook (grep-mode . minemacs-reduce-font-size)
   :custom
   (grep-use-headings t)) ; subdivide grep output into sections, one per file like `rg' (Emacs 30)
 

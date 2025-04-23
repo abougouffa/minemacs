@@ -56,7 +56,7 @@
   :when (and (not (+emacs-options-p 'os/win)) (+emacs-options-p 'modules))
   :hook (minemacs-build-functions . vterm-module-compile)
   :hook (vterm-mode . compilation-shell-minor-mode)
-  :hook (vterm-mode . minemacs-reduced-font-size)
+  :hook (vterm-mode . minemacs-reduce-font-size)
   :bind (:map vterm-mode-map ([return] . vterm-send-return))
   :init
   ;; Hide vterm install window
@@ -111,7 +111,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
   :straight t
-  :hook (eat-mode . minemacs-reduced-font-size))
+  :hook (eat-mode . minemacs-reduce-font-size))
 
 
 ;; Manage docker from Emacs

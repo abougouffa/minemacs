@@ -1014,11 +1014,17 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (add-hook 'window-setup-hook #'+setup-fonts)
 (add-hook 'server-after-make-frame-hook #'+setup-fonts)
 
-(defvar minemacs-reduced-font-size-ratio 0.85)
-(defun minemacs-reduced-font-size ()
-  "Reduce the font size in the buffer by `minemacs-reduced-font-size-ratio'."
-  (when (display-graphic-p)
-    (face-remap-add-relative 'default :height minemacs-reduced-font-size-ratio)))
+(defvar minemacs-reduce-font-size-ratio 0.85)
+(defvar-local minemacs-reduce-font-remap-cookie nil)
+(defun minemacs-reduce-font-size (&optional reset)
+  "Reduce the font size in the buffer by `minemacs-reduce-font-size-ratio'.
+When RESET is non-nil, restore the original font size."
+  (interactive "P")
+  (if reset
+      (progn (face-remap-remove-relative minemacs-reduce-font-remap-cookie)
+             (setq minemacs-reduce-font-remap-cookie nil))
+    (when (and (display-graphic-p) (not minemacs-reduce-font-remap-cookie))
+      (setq minemacs-reduce-font-remap-cookie (face-remap-add-relative 'default :height minemacs-reduce-font-size-ratio)))))
 
 ;; Reproduce the look of the subtle mode-line of the `spacious-padding' package
 (defun +subtle-mode-line ()
