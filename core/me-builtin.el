@@ -420,7 +420,7 @@ or file path may exist now."
     (transient-define-prefix +flymake-transient ()
       "Transient for flymake."
       [[("n" "Next error" flymake-goto-next-error :transient t)
-        ("N" "Prev error" flymake-goto-prev-error :transient t)]
+        ("p" "Prev error" flymake-goto-prev-error :transient t)]
        [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
         ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
         ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
