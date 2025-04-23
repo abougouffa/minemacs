@@ -97,6 +97,8 @@
   (setq
    ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
    native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
+   ;; Ask the user whether to terminate asynchronous compilations on exit
+   native-comp-async-query-on-exit t
    ;; Do not be too verbose
    native-comp-verbose (if minemacs-verbose-p 1 0)
    native-comp-debug (if minemacs-debug-p 1 0)
