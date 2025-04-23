@@ -1,4 +1,4 @@
-# MinEmacs (NG)
+# MinEmacs
 
 [![CI-Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml/badge.svg?branch=main)](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 [![CI-MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml/badge.svg?branch=main)](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
