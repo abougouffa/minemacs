@@ -286,6 +286,7 @@ or file path may exist now."
   (dired-vc-rename-file t)
   (dired-create-destination-dirs 'ask)
   :config
+  (push '("\\.tgz\\'" . "tar -cf - %i | gzip -c9 > %o") dired-compress-files-alist)
   (push '("\\.tar\\'" . "tar -cf %o %i") dired-compress-files-alist))
 
 (use-package dired-x
