@@ -22,6 +22,15 @@
 (require 'use-package)
 
 
+;; When only built-in packages are loaded, we define `:straight' to do nothing.
+;; This is important for the updates installed for built-in packages in
+;; `me-builtin' like `transient', `eglot', `xref', etc.
+(when minemacs-builtin-only-p
+  (add-to-list 'use-package-keywords :straight)
+  (defalias 'use-package-normalize/:straight #'ignore)
+  (defun use-package-handler/:straight (name _keyword _arg rest state)
+    (use-package-concat (use-package-process-keywords name rest state))))
+
 ;;; Extend `use-package'
 
 (add-to-list 'use-package-keywords :trigger-commands)

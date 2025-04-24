@@ -183,13 +183,13 @@ minemacs-lazy' can be loaded."
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
 ;; Load modules
-(require 'me-builtin)
+(unless minemacs-builtin-only-p (require 'me-bootstrap))
 (require 'me-use-package-extra)
+(require 'me-builtin)
 (require 'once)
 (require 'satch)
 
 (unless minemacs-builtin-only-p
-  (require 'me-bootstrap)
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
 (run-hooks 'minemacs-after-loading-modules-hook)

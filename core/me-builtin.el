@@ -186,6 +186,9 @@ or file path may exist now."
   (advice-add 'rename-file :before #'+create-non-existent-directory)
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory))
 
+(use-package transient
+  :straight (transient :source gnu-elpa-mirror))
+
 (use-package newcomment
   :custom
   (comment-multi-line t)
@@ -211,6 +214,7 @@ or file path may exist now."
     (advice-add #'completing-read-multiple :filter-args #'+crm--indicator:filter-args-a)))
 
 (use-package which-key
+  :straight (which-key :source gnu-elpa-mirror)
   :hook (minemacs-lazy . which-key-mode)
   :when (>= emacs-major-version 30)
   :custom
@@ -227,6 +231,7 @@ or file path may exist now."
   (which-key-setup-minibuffer))
 
 (use-package tramp
+  :straight (tramp :source gnu-elpa-mirror)
   :init
   (if (+emacs-options-p 'os/win)
       (when (executable-find "plink")
@@ -309,6 +314,7 @@ or file path may exist now."
   (doc-view-mupdf-use-svg (+emacs-options-p 'rsvg)))
 
 (use-package project
+  :straight (project :source gnu-elpa-mirror)
   :commands (project-remember-projects-under)
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
@@ -384,10 +390,12 @@ or file path may exist now."
     (setcdr (assq 'explicit-name tab) 'def)))
 
 (use-package editorconfig
+  :straight (editorconfig :source nongnu-elpa)
   :hook (minemacs-first-file . editorconfig-mode)
   :when (>= emacs-major-version 30))
 
 (use-package flymake
+  :straight (flymake :source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
   :hook (server-after-make-frame . +flymake-fringe-setup)
   :custom
@@ -566,6 +574,7 @@ or file path may exist now."
         hs-special-modes-alist '((t)))))
 
 (use-package xref
+  :straight (xref :source gnu-elpa-mirror)
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
@@ -582,6 +591,7 @@ or file path may exist now."
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
+  :straight (eglot :source gnu-elpa-mirror)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ; async, do not block
@@ -636,6 +646,7 @@ or file path may exist now."
   (imenu-max-item-length 120)) ; Show longer definitions (def. 60)
 
 (use-package eldoc
+  :straight (eldoc :source gnu-elpa-mirror)
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
@@ -693,6 +704,7 @@ or file path may exist now."
   (gdb-display-io-nopopup nil)) ; in case we enabled the IO buffer, we don't want it to popup when hidden
 
 (use-package org
+  :straight (org :source gnu-elpa-mirror)
   :defer 10
   :preface
   ;; Set to the default value, this can be overwritten in the user config file.
