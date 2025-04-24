@@ -928,7 +928,7 @@ Typing these will trigger reindentation of the current line.")
     (add-hook hook #'+ediff--restore-window-config-h 99)))
 
 (use-package smerge-mode
-  :commands (+smerge-first +smerge-last +smerge-vc-next-conflict-recenter)
+  :commands (+smerge-first +smerge-last)
   :config
   (defun +smerge-first ()
     "Got to the first occurrence."
@@ -940,15 +940,7 @@ Typing these will trigger reindentation of the current line.")
     "Got to the last occurrence."
     (interactive)
     (goto-char (point-max))
-    (smerge-prev))
-
-  (defun +smerge-vc-next-conflict-recenter ()
-    "Go to next conflict, possibly in another file."
-    (interactive)
-    (smerge-vc-next-conflict)
-    ;; Often, after calling `smerge-vc-next-conflict', the cursor will land at
-    ;; the bottom of the window.
-    (recenter-top-bottom (/ (window-height) 8))))
+    (smerge-prev)))
 
 (use-package octave
   :mode ("\\.m\\'" . octave-maybe-mode)
@@ -1179,7 +1171,9 @@ Typing these will trigger reindentation of the current line.")
   (window-divider-default-right-width 2))
 
 (use-package repeat
-  :hook (minemacs-lazy . repeat-mode)) ; Enable repeat mode, "C-x o then C-x o" becomes "C-x o o"
+  :after minemacs-lazy
+  :init
+  (+shutup! (repeat-mode 1))) ; Enable repeat mode, "C-x o then C-x o" becomes "C-x o o"
 
 (use-package server
   :autoload server-running-p
