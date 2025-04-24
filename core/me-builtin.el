@@ -284,7 +284,9 @@ or file path may exist now."
 (use-package dired-aux
   :custom
   (dired-vc-rename-file t)
-  (dired-create-destination-dirs 'ask))
+  (dired-create-destination-dirs 'ask)
+  :config
+  (push '("\\.tar\\'" . "tar -cf %o %i") dired-compress-files-alist))
 
 (use-package dired-x
   :hook (dired-mode . dired-omit-mode)
