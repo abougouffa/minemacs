@@ -157,7 +157,7 @@ In some files, there is a mix of spaces and tabs. This uses
 
 ;; Your friendly neighborhood expand-region clone
 (use-package expreg
-  :straight (:host github :repo "casouri/expreg")
+  :straight t
   :when (+emacs-options-p 'tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
