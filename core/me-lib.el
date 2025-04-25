@@ -1220,7 +1220,7 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
     (if (file-exists-p filename)
         (with-demoted-errors "[MinEmacs:LoadError] %s"
           (load filename nil (not minemacs-verbose-p)))
-      (message "[MinEmacs:Error] Cannot load \"%s\", the file doesn't exists." filename))))
+      (+log! "Cannot load \"%s\", the file doesn't exists." filename))))
 
 (defun +emacs-options-p (&rest feats)
   "Is features FEATS are enabled in this Emacs build.

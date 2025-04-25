@@ -62,30 +62,20 @@ Call functions without asking when DONT-ASK-P is non-nil."
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
-  ;; Load all modules
-  (message "[MinEmacs]: Loading all modules and on-demand modules")
-  (apply #'minemacs-load-module (minemacs-modules t))
+  (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
   (unwind-protect
       (progn
         (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
         (advice-add 'read-string :around '+minemacs--read-string:around-a)
         (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
-        ;; Update straight recipe repositories
-        (straight-pull-recipe-repositories)
-        ;; Run `straight's update cycle, taking into account the explicitly pinned versions
-        (message "[MinEmacs]: Pulling packages")
+        (straight-pull-recipe-repositories) ; Update straight recipe repositories
         (straight-pull-all)
-        (message "[MinEmacs]: Freezing packages")
         (straight-freeze-versions)
-        (message "[MinEmacs]: Rebuilding packages")
         (straight-rebuild-all))
     (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
     (advice-remove 'read-string '+minemacs--read-string:around-a)
     (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
-
-  ;; Run package-specific build functions (ex: `pdf-tools-install')
-  (message "[MinEmacs]: Running additional package-specific build functions")
-  (minemacs-run-build-functions 'dont-ask))
+  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 ;;;###autoload
 (defun minemacs-bump-packages-async ()
@@ -95,25 +85,17 @@ Call functions without asking when DONT-ASK-P is non-nil."
     (compile (string-join (list (car command-line-args) "--batch" "--script" user-init-file "--eval='(minemacs-bump-packages)'") " "))))
 
 ;;;###autoload
-(defun minemacs-upgrade (pull-minemacs)
+(defun minemacs-upgrade (pull)
   "Upgrade the packages list to the locked revisions.
 This takes into account the explicitly pinned packages. When called with
-\\[universal-argument] or with PULL-MINEMACS, it will run \"git pull\"
-in MinEmacs directory before upgrading."
+\\[universal-argument] or with PULL, it will run \"git pull\" in
+MinEmacs directory before upgrading."
   (interactive "P")
-  (when pull-minemacs
-    (let ((default-directory minemacs-root-dir))
-      (vc-pull)))
-  ;; Update straight recipe repositories
-  (straight-pull-recipe-repositories)
-  (message "[MinEmacs] Restoring packages from the global lockfile versions")
+  (when pull (let ((default-directory minemacs-root-dir)) (vc-pull)))
+  (straight-pull-recipe-repositories) ; Update straight recipe repositories
   (straight-thaw-versions)
-  ;; Rebuild the packages
-  (message "[MinEmacs] Rebuilding packages")
-  (straight-rebuild-all)
-  ;; Run package-specific build functions (ex: `pdf-tools-install')
-  (message "[MinEmacs] Running additional package-specific build functions")
-  (minemacs-run-build-functions 'dont-ask))
+  (straight-rebuild-all) ; Rebuild the packages
+  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 ;;;###autoload
 (defun minemacs-root-dir-cleanup ()
@@ -139,14 +121,11 @@ in MinEmacs directory before upgrading."
 (defun minemacs-cleanup-emacs-directory ()
   "Cleanup unwanted files/directories from MinEmacs' directory."
   (interactive)
-  (when (featurep 'native-compile)
-    (+info! "Trying to clean outdated native compile cache")
-    ;; Delete outdated natively compiled files when Emacs become idle
-    (+shutup! (native-compile-prune-cache)))
-  (+info! "Trying to clean outdated straight build cache")
-  (+shutup! (+straight-prune-build-cache))
-  (+info! "Trying to clean MinEmacs' root directory")
-  (+shutup! (minemacs-root-dir-cleanup)))
+  (+shutup!
+   (when (featurep 'native-compile) (native-compile-prune-cache))
+   (+straight-prune-build-cache)
+   (minemacs-root-dir-cleanup))
+  (message "Finished cleanup!"))
 
 ;;;###autoload
 (defun minemacs-apply-performance-tweaks ()
@@ -208,8 +187,7 @@ If PATH is not specified, default to the current buffer's file.
 
 If FORCE-P, delete without confirmation."
   (interactive
-   (list (buffer-file-name (buffer-base-buffer))
-         current-prefix-arg))
+   (list (buffer-file-name (buffer-base-buffer)) current-prefix-arg))
   (let* ((path (or path (buffer-file-name (buffer-base-buffer))))
          (short-path (abbreviate-file-name path)))
     (unless (and path (file-exists-p path))
@@ -274,8 +252,7 @@ RECURSIVE is non-nil."
       (let ((last-pos (point))
             patched-files)
         (while (prog2 (ignore-errors (diff-hunk-next))
-                   ;; To detect the last hunk
-                   (not (= last-pos (point)))
+                   (not (= last-pos (point))) ; To detect the last hunk
                  (setq last-pos (point)))
           (setq patched-files (append patched-files (diff-hunk-file-names))))
         (mapcar #'substring-no-properties (delete-dups patched-files))))))
@@ -340,7 +317,8 @@ When a region is active, propose to use it as the patch buffer."
                   (make-process
                    :name (format "patch-%s" (file-name-nondirectory patch-file))
                    :buffer out-buf
-                   :command `("patch" "-p1" "--force" ,@+apply-patch-dwim-extra-options "-i" ,patch-file) ; TODO: --silent instead of --force may be interesting!
+                   ;; TODO: "--silent" instead of "--force" might be interesting!
+                   :command `("patch" "-p1" "--force" ,@+apply-patch-dwim-extra-options "-i" ,patch-file)
                    :sentinel (lambda (proc _event)
                                (unless (process-live-p proc)
                                  (if (zerop (process-exit-status proc))
