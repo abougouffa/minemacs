@@ -32,7 +32,7 @@ Based on `jinx-mode' if available. Falls back to the built-in
     (interactive)
     (cond ((bound-and-true-p jinx-mode)
            (call-interactively 'jinx-correct))
-          ((and (bound-and-true-p flyspell-mode))
+          ((and (bound-and-true-p flyspell-mode) (fboundp 'flyspell-correct-wrapper))
            (call-interactively 'flyspell-correct-wrapper))
           (t (user-error "No usable `jinx' nor `flyspell-correct'"))))
 
@@ -62,7 +62,7 @@ Based on `jinx-mode' if available. Falls back to the built-in
   :when (executable-find "sdcv"))
 
 
-;; Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
+;; Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
 
