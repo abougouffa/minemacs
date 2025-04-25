@@ -59,7 +59,7 @@
                 (apply #'derived-mode-p +dtrt-indent-excluded-modes))
       ;; Don't display messages in the echo area, but still log them
       (let ((inhibit-message (not minemacs-verbose-p)))
-        (dtrt-indent-mode +1))))
+        (dtrt-indent-mode 1))))
   :config
   (defun +dtrt-indent-tab-to-tab-stop ()
     "Like `tab-to-tab-stop', but set `indent-tabs-mode' according the context.
@@ -131,7 +131,7 @@ In some files, there is a mix of spaces and tabs. This uses
      (with-eval-after-load 'selection-highlight-mode
        (with-eval-after-load 'isearch
          (when (display-graphic-p)
-           (when-let* ((new-color (+color-subtle 'isearch 5)))
+           (when-let* ((new-color (+color-subtle 'isearch 20)))
              (set-face-background 'selection-highlight-mode-match-face new-color)
              (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 
