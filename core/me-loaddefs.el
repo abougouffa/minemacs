@@ -498,15 +498,33 @@ prerelease if no :VER is provided.
 (autoload '+dir-locals-reload-for-this-buffer "me-lib-extra" "\
 Reload directory-local for the current buffer." t)
 (autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-extra" "\
-Reload dir-locals for all buffers in the current `default-directory'." t)
-(autoload '+dir-locals-toggle-autoreload "me-lib-extra" "\
-Toggle autoloading dir-local variables after editing the \".dir-locals\" file.
+Reload dir-locals for all buffers under `default-directory'." t)
+(defvar +dir-locals-autoreload-mode nil "\
+Non-nil if +Dir-Locals-Autoreload mode is enabled.
+See the `+dir-locals-autoreload-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `+dir-locals-autoreload-mode'.")
+(custom-autoload '+dir-locals-autoreload-mode "me-lib-extra" nil)
+(autoload '+dir-locals-autoreload-mode "me-lib-extra" "\
+Autoload buffers affected by editing the current `dir-locals-file'.
 
-If ENABLE is non-nil, force enabling autoreloading.
+This is a global minor mode.  If called interactively, toggle the
+`+Dir-Locals-Autoreload mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
 
-(fn &optional ENABLE)" t)
-(autoload '+dir-locals-open-or-create "me-lib-extra" "\
-Open or create the dir-locals.el for the current project." t)
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='+dir-locals-autoreload-mode)'.
+
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
+
+(fn &optional ARG)" t)
 (autoload '+ansi-color-apply-on-buffer "me-lib-extra" "\
 Decode and apply ANSI color chars in the curernt buffer." t)
 (autoload '+what-faces "me-lib-extra" "\
@@ -584,6 +602,8 @@ When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
 (fn &optional ASK)" t)
+(autoload '+clang-format-get-style "me-lib-extra" "\
+Get the \"-style\" argument for clang-format.")
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
@@ -682,7 +702,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals--autoreload-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+minemacs--" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+minemacs--" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -758,11 +778,6 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-nushell.el
 
 (minemacs-register-on-demand-module 'me-nushell :auto-mode '(("\\.nu\\'" . nushell-mode)) :interpreter-mode '(("nu" . nushell-mode)))
-
-
-;;; Generated autoloads from me-obsolete-defs.el
-
-(register-definition-prefixes "me-obsolete-defs" '("os/" "sys/arch"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
@@ -914,11 +929,6 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
-;;; Generated autoloads from me-use-package-extra.el
-
-(register-definition-prefixes "me-use-package-extra" '("+use-package-" "use-package-"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-v.el
 
 (minemacs-register-on-demand-module 'me-v :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
@@ -964,9 +974,9 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-zig :auto-mode '(("\\.\\(zig\\|zon\\)\\'" . zig-mode)))
 
 
-;;; Generated autoloads from minemacs-lazy.el
+;;; Generated autoloads from minemacs-loaded.el
 
-(register-definition-prefixes "minemacs-lazy" '("minemacs--lazy-"))
+(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-"))
 
 
 ;;; Generated autoloads from ../elisp/once.el
