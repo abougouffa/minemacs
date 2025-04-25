@@ -93,14 +93,7 @@
   :straight t
   :hook (minemacs-first-elisp-file . eros-mode)
   :custom
-  (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>"))
-  :config
-  ;; Add an Elisp-like evaluation for Octave
-  (with-eval-after-load 'octave
-    (defun +eros-octave-eval-last-sexp ()
-      "Wrapper for `+octave-eval-last-sexp' that overlays results."
-      (interactive)
-      (eros--make-result-overlay (+octave-eval-last-sexp) :where (point) :duration eros-eval-result-duration))))
+  (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>")))
 
 
 ;; Elisp regexp mistake finder

@@ -943,21 +943,7 @@ Typing these will trigger reindentation of the current line.")
     (smerge-prev)))
 
 (use-package octave
-  :mode ("\\.m\\'" . octave-maybe-mode)
-  :config
-  (defun +octave-eval-last-sexp ()
-    "Like `octave-eval-print-last-sexp', but it doesn't print to the buffer."
-    (interactive)
-    (inferior-octave t)
-    (let* ((print-escape-newlines nil)
-           (opoint (point))
-           (result (save-excursion
-                     (forward-sexp -1)
-                     (inferior-octave-send-list-and-digest
-                      (list (concat (buffer-substring-no-properties (point) opoint) "\n")))
-                     (string-join inferior-octave-output-list "\n"))))
-      (when (called-interactively-p 'interactive) (message "%s" result))
-      result)))
+  :mode ("\\.m\\'" . octave-maybe-mode))
 
 (use-package bookmark
   :custom
