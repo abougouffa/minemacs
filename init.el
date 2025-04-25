@@ -72,15 +72,14 @@
 (unless (featurep 'early-init) ; In case we decided to do some funny loading without the `early-init-file'
   (load (expand-file-name "early-init.el" (file-name-directory (file-truename load-file-name)))))
 
-(require 'me-lib)
+(require 'me-lib) ; Load MinEmacs' core library
+(require 'use-package)
 
 ;; NOTE: It is important to set this here and not in `me-vars' nor in
 ;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
 (setq user-emacs-directory minemacs-local-dir
       custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (load custom-file))
-
-(require 'me-lib) ; Load MinEmacs' core library
 
 (setq
  ;; Enable debugging on error when Emacs if needed
@@ -90,7 +89,14 @@
  warning-minimum-log-level warning-minimum-level
  ;; Make byte compilation less noisy
  byte-compile-warnings minemacs-verbose-p
- byte-compile-verbose minemacs-verbose-p)
+ byte-compile-verbose minemacs-verbose-p
+ ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
+ use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
+ ;; Defer loading packages by default, use `:demand' to force loading a package
+ use-package-always-defer (not minemacs-always-demand-p)
+ use-package-always-demand minemacs-always-demand-p
+ ;; Make the expanded code as minimal as possible, do not try to catch errors
+ use-package-expand-minimally (not minemacs-debug-p))
 
 ;; Native compilation settings
 (when (and (featurep 'native-compile) (native-comp-available-p))
@@ -182,12 +188,20 @@ minemacs-lazy' can be loaded."
 ;; loading all modules, including on-demand ones.
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
-;; Load modules
-(unless minemacs-builtin-only-p (require 'me-bootstrap))
-(require 'me-use-package-extra)
-(require 'me-builtin)
+;; When only built-in packages are loaded, we define `:straight' to do nothing.
+;; This is important for the updates installed for built-in packages in
+;; `me-builtin' like `transient', `eglot', `xref', etc.
+(if minemacs-builtin-only-p
+    (progn
+      (add-to-list 'use-package-keywords :straight)
+      (defalias 'use-package-normalize/:straight #'ignore)
+      (defun use-package-handler/:straight (name _keyword _arg rest state)
+        (use-package-concat (use-package-process-keywords name rest state))))
+  (require 'me-bootstrap))
+
 (require 'once)
 (require 'satch)
+(require 'me-builtin)
 
 (unless minemacs-builtin-only-p
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))

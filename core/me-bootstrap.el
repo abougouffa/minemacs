@@ -55,19 +55,6 @@
     treesit ; Some packages like `ts-movement' depends on it
     docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
 
-(setq
- ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
- use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
- ;; Defer loading packages by default, use `:demand' to force loading a package
- use-package-always-defer (not minemacs-always-demand-p)
- use-package-always-demand minemacs-always-demand-p
- ;; Make the expanded code as minimal as possible, do not try to catch errors
- use-package-expand-minimally (not minemacs-debug-p))
-
-;; Add the `:pin-ref' extension to integrate `straight' with `use-package'. And
-;; add support for `minemacs-disabled-packages'.
-(require 'me-use-package-extra)
-
 ;; Update the builtin packages if needed
 (dolist (pkg (seq-uniq (append minemacs-update-builtin-packages
                                (and (< emacs-major-version 30)
