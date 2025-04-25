@@ -83,11 +83,6 @@
          ("C-h h" . helpful-at-point))) ; orig. `view-hello-file'
 
 
-;; Inspection tool for Emacs Lisp objects
-(use-package inspector
-  :straight t)
-
-
 ;; Evaluation Result OverlayS for Emacs Lisp
 (use-package eros
   :straight t
