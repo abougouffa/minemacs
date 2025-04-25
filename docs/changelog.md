@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.17.0](https://github.com/abougouffa/minemacs/compare/c892be9341bec612dd097d4b1de0a028cf545f7a..v12.17.0) - 2025-04-25
+#### Documentation
+- **(readme)** minor edit - ([670e3f6](https://github.com/abougouffa/minemacs/commit/670e3f6d91cd23b6f48ed4f830193ff161eb4e52)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(comint)** add `+comint-clear-buffer`, bind it to `C-l` - ([153c1e6](https://github.com/abougouffa/minemacs/commit/153c1e6253b7e6adae072e6e7bbfa696949ffeda)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add support for `apptainer-mode` - ([5df70e4](https://github.com/abougouffa/minemacs/commit/5df70e420c5b0e9598282a193d2702cf7142457b)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(bootstrap)** minor edits - ([24b24cb](https://github.com/abougouffa/minemacs/commit/24b24cbf62fa288a41c3b09accec45b405c10255)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** merge `minemacs-lazy` into `minemacs-loaded` - ([b9521ec](https://github.com/abougouffa/minemacs/commit/b9521ecb6aa4a0fbdae138177a0de33782226e4d)) - [@abougouffa](https://github.com/abougouffa)
+- **(with-editor)** group `+shutup!` blocks - ([a24d9e4](https://github.com/abougouffa/minemacs/commit/a24d9e44ce8f27aa23b0b42ce24de8853eb3a2dd)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits - ([8c4ef08](https://github.com/abougouffa/minemacs/commit/8c4ef0808b7372e5218614768b193223dc3cb5af)) - [@abougouffa](https://github.com/abougouffa)
+- remove obsolete definitions - ([8ee9f9c](https://github.com/abougouffa/minemacs/commit/8ee9f9c366eff16b6616580c4bdf42a4d6620f18)) - [@abougouffa](https://github.com/abougouffa)
+- simplify and move `use-package` config to `init.el` - ([96858f4](https://github.com/abougouffa/minemacs/commit/96858f4650d8301a9ef84d270be95bbc9dfd0495)) - [@abougouffa](https://github.com/abougouffa)
+- make sure to install the last versions of builtin packages - ([2ce35e9](https://github.com/abougouffa/minemacs/commit/2ce35e9ad238b3a47541d6e1c25908b9baa9352e)) - [@abougouffa](https://github.com/abougouffa)
+- rename `minemacs-reduced-font-size` and make it a command - ([a2d1290](https://github.com/abougouffa/minemacs/commit/a2d129066db6ba15c7cdc9e17e5c27784cb16396)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** some cleanup and removal of unused stuff - ([fe42a2c](https://github.com/abougouffa/minemacs/commit/fe42a2c964219f519a8d99b66c255a2c95c549b3)) - [@abougouffa](https://github.com/abougouffa)
+- **(comint)** better tweaks - ([c892be9](https://github.com/abougouffa/minemacs/commit/c892be9341bec612dd097d4b1de0a028cf545f7a)) - [@abougouffa](https://github.com/abougouffa)
+- **(dired-aux)** add a rule to compress to `.tgz` file - ([01dfa80](https://github.com/abougouffa/minemacs/commit/01dfa8068b856f6f269b893a662c32a90d513ddf)) - [@abougouffa](https://github.com/abougouffa)
+- **(dired-aux)** add a rule to compress (!) to `.tar` file - ([01cab59](https://github.com/abougouffa/minemacs/commit/01cab59e286a2fb0c3801dd461da7a89f71eca1e)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** add `devcontainer` - ([f965f3c](https://github.com/abougouffa/minemacs/commit/f965f3c6768bac6a2cb9aee70c5d203d25ae55d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** minor edit in the `+flymake-transient` - ([afebe91](https://github.com/abougouffa/minemacs/commit/afebe91e7c5ee89790d79a7e5075241d2713e1dd)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** ask before stopping async native compilation on exit - ([97b1fc9](https://github.com/abougouffa/minemacs/commit/97b1fc9a3b868d178bbf310fdf6a0a42e0e92291)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** remove the hack of `use-package` - ([053d1e6](https://github.com/abougouffa/minemacs/commit/053d1e61ad196f2556229db3bebdf127f61e6999)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** set `window-width` to 80 for REPL buffers - ([30645ae](https://github.com/abougouffa/minemacs/commit/30645ae35f54a202cbf85bf08106aa147e1ea5c5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5ee95fc](https://github.com/abougouffa/minemacs/commit/5ee95fcebb59aff40f9679072ac0a9086b3d5815)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([107e75d](https://github.com/abougouffa/minemacs/commit/107e75d36bfd688edb7f57415a5250d33edd1d8c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bf09f28](https://github.com/abougouffa/minemacs/commit/bf09f28b438f0f2c7dba641f654269891f4625b0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([525fdfe](https://github.com/abougouffa/minemacs/commit/525fdfe038c0de39644337f7d7832ae3559ca59f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.16.0](https://github.com/abougouffa/minemacs/compare/1c35ed02ce4aed0ad6645d19a34e8b6b9a7b0f75..v12.16.0) - 2025-04-22
 #### Documentation
 - regenerate the documentation - ([8ed6769](https://github.com/abougouffa/minemacs/commit/8ed67697f2a3b6d314b8d6cd794abff670a31b12)) - [@abougouffa](https://github.com/abougouffa)
