@@ -125,6 +125,14 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight (:host github :repo "johannes-mueller/devcontainer-mode"))
 
 
+;; Major mode for Apptainer definition files
+(use-package apptainer-mode
+  :straight (:host github :repo "jrgant/apptainer-mode")
+  :config
+  (setq apptainer-boxed-headers t
+        apptainer-boxed-sections t))
+
+
 ;; Major mode for editing systemd units
 (use-package systemd
   :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
