@@ -11,17 +11,12 @@
 (require 'me-lib)
 (require 'use-package)
 
-(defvar straight-base-dir)
-(defvar straight-build-dir)
-(defvar straight-repository-branch)
-(defvar straight-check-for-modifications)
-
 (setq
  ;; Base directory
  straight-base-dir minemacs-local-dir
  ;; Add Emacs version and the Git hash to the build directory to avoid problems
  straight-build-dir (format "build-%s%s" emacs-version (if emacs-repository-version (format "-%s" (substring emacs-repository-version 0 8)) ""))
- ;; Use the "develop" branch on straight.el's repo.
+ ;; Use the "develop" branch on straight.el's repo
  straight-repository-branch "develop"
  ;; Do not slow startup by checking for package modifs, check only on demand
  straight-check-for-modifications '(check-on-save find-when-checking))
@@ -40,19 +35,21 @@
 
 (require 'straight)
 
-;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0",
-;; this cuts the size of the "repos" directory by more than half (from 807M to
-;; 362M) while keeping it possible to download older commits on-demand (unlike
-;; "--depth=N"). The parameter is injected in `straight--process-run' which is
-;; called from `straight-vc-git--clone-internal'
+;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
+;; This cuts the size of the "straight/repos" directory by more than half (from
+;; 807M to 362M) while keeping it possible to checkout and download older
+;; commits on-demand (unlike "--depth=N"). The parameter is injected when a "git
+;; clone" command call is requested in `straight--process-run' which is called
+;; from `straight-vc-git--clone-internal'
 (advice-add
- 'straight--process-run :around
- (lambda (fn &rest a)
-   (apply fn (if (equal (list (car a) (cadr a)) '("git" "clone")) `(,(car a) ,(cadr a) "--filter=tree:0" ,@(cddr a)) a))))
+ 'straight--process-run :filter-args
+ (lambda (args)
+   (if (and (equal (car args) "git") (equal (cadr args) "clone"))
+       `("git" "clone" "--filter=tree:0" ,@(cddr args))
+     args)))
 
 (cl-callf append straight-built-in-pseudo-packages
-  '(org ; Otherwise, `straight' will try to install it as a dependency
-    treesit ; Some packages like `ts-movement' depends on it
+  '(treesit ; Some packages like `ts-movement' depends on it
     docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
 
 ;; Update the builtin packages if needed
