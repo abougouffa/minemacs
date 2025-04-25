@@ -194,6 +194,9 @@
     (:tool docker
      :link "https://www.docker.com"
      :desc "A self-sufficient runtime for containers")
+    (:tool devcontainer
+     :link "https://github.com/devcontainers/cli"
+     :desc "Use a container as a full-featured development environment")
     (:tool bear
      :link "https://github.com/rizsotto/Bear"
      :desc "A tool that generates a compilation database for Clang tooling")
