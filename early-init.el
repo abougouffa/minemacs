@@ -36,9 +36,6 @@
  ;; Set mode-line format to prevent it from showing at startup
  mode-line-format nil)
 
-;; It seems like, even when `tool-bar-mode' is nil, `tool-bar-setup' still be called
-(advice-add 'tool-bar-setup :override #'ignore)
-
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
 ;; Store the current value so we can reset it after Emacs startup.
