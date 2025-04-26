@@ -33,8 +33,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(require 'straight)
-
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
 ;; This cuts the size of the "straight/repos" directory by more than half (from
 ;; 807M to 362M) while keeping it possible to checkout and download older
@@ -51,12 +49,6 @@
 (cl-callf append straight-built-in-pseudo-packages
   '(treesit ; Some packages like `ts-movement' depends on it
     docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
-
-;; Update the builtin packages if needed
-(dolist (pkg (seq-uniq (append minemacs-update-builtin-packages
-                               (and (< emacs-major-version 30)
-                                    '(which-key editorconfig)))))
-  (straight-use-package `(,pkg :source gnu-elpa-mirror)))
 
 (use-package compat
   :straight (compat :source gnu-elpa-mirror)

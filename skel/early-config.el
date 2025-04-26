@@ -49,11 +49,6 @@
 ;; (setq use-package-compute-statistics t)
 
 
-;; Tell MinEmacs to use `straight' to update built-in packages
-;; (setq minemacs-update-builtin-packages
-;;       '(compat transient which-key tramp eglot org project editorconfig flymake xref eldoc))
-
-
 ;; Only load built-in packages. This can also be achieved by setting the
 ;; environment variable "MINEMACS_BUILTIN_ONLY"
 ;; (setq minemacs-builtin-only-p t)

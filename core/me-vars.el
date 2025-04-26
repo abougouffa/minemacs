@@ -253,11 +253,6 @@ it automatically."
   :group 'minemacs-core
   :type '(repeat symbol))
 
-(defcustom minemacs-update-builtin-packages nil
-  "Make sure these packages are updated from ELPA."
-  :group 'minemacs-core
-  :type '(repeat symbol))
-
 (defvaralias 'minemacs-build-functions-hook 'minemacs-build-functions)
 (defvar minemacs-build-functions nil
   "Special hook for build functions that are run after completing package updates.")
