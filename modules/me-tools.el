@@ -167,8 +167,8 @@ a project, call `multi-vterm-dedicated-toggle'."
        (with-editor-export-hg-editor) ; Export HG_EDITOR
        (with-editor-export-git-editor) ; Export GIT_EDITOR
        (with-editor-export-editor "JJ_EDITOR")))) ; Export JJ_EDITOR
-  :bind (("<remap> <async-shell-command>" . with-editor-async-shell-command)
-         ("<remap> <shell-command>" . with-editor-shell-command))
+  :bind (([remap async-shell-command] . with-editor-async-shell-command)
+         ([remap shell-command] . with-editor-shell-command))
   :config
   (add-to-list 'with-editor-envvars "JJ_EDITOR")) ; Add support for Jujutsu (`jj')
 
