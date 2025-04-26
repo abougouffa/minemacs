@@ -24,7 +24,11 @@
 
 ;; A compiler output viewer
 (use-package rmsbolt
-  :straight t)
+  :straight t
+  :hook (rmsbolt-mode . +rmsbolt-disable-flymake-in-asm)
+  :config
+  (defun +rmsbolt-disable-flymake-in-asm ()
+    (when (derived-mode-p 'asm-mode) (flymake-mode-off))))
 
 
 ;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
