@@ -31,7 +31,8 @@
                               ("masm" . "Microsoft Macro Assembler")
                               ("mips" . "MIPS Assembly")
                               ("nasm" . "Netwide Assembler")
-                              ("riscv" . "RISC-V Assembly"))))))))
+                              ("riscv" . "RISC-V Assembly")
+                              ("arm" . "Advanced RISC Machine (ARM) Assembly"))))))))
   (if (fboundp mode)
       (call-interactively mode)
     (user-error "`%s' is not available" mode)))
@@ -65,6 +66,12 @@
 ;; Major mode for GNU Assembler
 (use-package gas-mode
   :straight t)
+
+
+;; Major mode for editing Advanced RISC Machine (a.k.a. ARM) assembly code
+(use-package arm-mode
+  :straight (:host github :repo "charJe/arm-mode")
+  :commands (arm-mode))
 
 
 (provide 'on-demand/me-assembly)
