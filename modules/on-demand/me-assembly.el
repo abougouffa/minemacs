@@ -22,7 +22,11 @@
   (interactive
    (list (intern (format "%s-mode"
                          (let ((completion-extra-properties
-                                `(:annotation-function ,(lambda (m) (concat " \t" (cdr (assoc m minibuffer-completion-table)))))))
+                                `(:annotation-function
+                                  ,(lambda (m)
+                                     (concat (make-string (- 10 (length m)) ?\ )
+                                             (propertize (alist-get m minibuffer-completion-table nil nil #'equal)
+                                                         'face 'font-lock-comment-face))))))
                            (completing-read
                             "Assembly flavor for this file: "
                             '(("asm"  . "Default (builtin `asm-mode')")
