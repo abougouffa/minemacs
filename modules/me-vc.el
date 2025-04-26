@@ -188,12 +188,9 @@ use `project-remember-project' with each detected repo."
   :hook (repo-mode . +ansi-color-apply-on-buffer))
 
 
-;; Integrate `vc' and `project' with Jujutsu, a Git-compatible VCS that is both simple and powerful
-(use-package jujutsushi
-  :straight (:host github :repo "abougouffa/jujutsushi" :branch "default")
-  :init
-  (with-eval-after-load 'project
-    (add-to-list 'project-vc-backend-markers-alist '(jj . ".jj"))))
+;; Jujutsu (jj) integration with Emacs `vc' and `project'
+(use-package vc-jj
+  :straight t)
 
 
 ;; View diffs side-by-side in Emacs
