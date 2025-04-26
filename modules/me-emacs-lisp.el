@@ -28,20 +28,21 @@
   :hook ((lisp-mode emacs-lisp-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . +parinfer-rust-mode-maybe)
   :config
   (defun +parinfer-rust-mode-maybe ()
-    (when (or parinfer-rust-auto-download (file-exists-p (expand-file-name parinfer-rust--lib-name parinfer-rust-library-directory)))
+    (when (or parinfer-rust-auto-download (file-exists-p parinfer-rust-library))
       ;; BUG+HACK: Defer applying `parinfer-rust-mode', this should fix the
       ;; issue of unusable `parinfer-rust-mode' until disabled and enabled again
       (run-with-timer
        0.5 nil
        (lambda (buffer)
-         (when (and (buffer-live-p buffer) (get-buffer-window buffer)) ; The buffer still alive and it is visible
-           (with-current-buffer buffer
-             ;; When calling `parinfer-rust-mode' in a non-visible buffer, don't
-             ;; ask about modifying indentation, assume we said no.
-             (if (get-buffer-window)
-                 (parinfer-rust-mode 1)
-               (cl-letf (((symbol-function 'y-or-n-p) #'ignore))
-                 (parinfer-rust-mode 1))))))
+         (while-no-input
+           (when (buffer-live-p buffer)
+             (with-current-buffer buffer
+               ;; When calling `parinferf-rust-mode' in a non-visible buffer,
+               ;; don't ask about modifying indentation, assume we said "no".
+               (if (get-buffer-window)
+                   (parinfer-rust-mode 1)
+                 (cl-letf (((symbol-function 'y-or-n-p) #'ignore))
+                   (parinfer-rust-mode 1)))))))
        (current-buffer))))
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
