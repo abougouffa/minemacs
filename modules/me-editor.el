@@ -12,11 +12,24 @@
 (use-package vundo
   :straight t
   :bind (:map minemacs-open-thing-map ("u" . vundo))
+  :commands (+vundo-diff-mode)
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)
-  (vundo-glyph-alist vundo-unicode-symbols))
-
+  (vundo-glyph-alist vundo-unicode-symbols)
+  :config
+  (defun +vundo--diff-wrapper (&rest _) (vundo-diff))
+  (defvar +vundo-diff-commands
+    '(; A list of commands after which `vundo-diff' gets called
+      vundo-next vundo-previous vundo-forward vundo-backward
+      vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved))
+  (define-minor-mode +vundo-diff-mode
+    "Automatically show diffs when navigating the undo tree."
+    :global t
+    (if +vundo-diff-mode
+        (satch-advice-add +vundo-diff-commands :after #'+vundo--diff-wrapper)
+      (satch-advice-remove +vundo-diff-commands #'+vundo--diff-wrapper)))
+  (+vundo-diff-mode 1))
 
 ;; Persistent undo tree between sessions
 (use-package undo-fu-session
