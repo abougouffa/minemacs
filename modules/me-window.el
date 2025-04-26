@@ -76,6 +76,13 @@
    (window-width . 80)
    (reusable-frames . visible)))
 
+;; Hide the `treesit-auto-install-all' buffer
+(add-to-list
+ 'display-buffer-alist
+ `("\\*Treesit-auto install candidates\\*"
+   (display-buffer-no-window)
+   (allow-no-window . t)))
+
 
 (setq frame-title-format '("GNU Emacs (%b)"))
 
