@@ -76,12 +76,12 @@
 ;; A better Emacs *help* buffer
 (use-package helpful
   :straight t
-  :bind (("<remap> <describe-variable>" . helpful-variable)
-         ("<remap> <describe-symbol>" . helpful-symbol)
-         ("<remap> <describe-function>" . helpful-callable)
-         ("<remap> <describe-command>" . helpful-command)
-         ("<remap> <describe-key>" . helpful-key)
-         ("C-h h" . helpful-at-point))) ; orig. `view-hello-file'
+  :bind (("C-h h" . helpful-at-point) ; orig. `view-hello-file'
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-symbol] . helpful-symbol)
+         ([remap describe-function] . helpful-callable)
+         ([remap describe-command] . helpful-command)
+         ([remap describe-key] . helpful-key)))
 
 
 ;; Evaluation Result OverlayS for Emacs Lisp
