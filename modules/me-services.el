@@ -17,10 +17,6 @@
   (defvar-local +jira-open-status '("open" "to do" "in progress"))
   (defvar-local +jira-commit-auto-insert-ticket-id-function nil)
   :config
-  (defun +jira--ticket-annotation-fn (ticket)
-    (let ((item (assoc ticket minibuffer-completion-table)))
-      (when item (concat "    " (cdr item)))))
-
   (defun +jira-get-ticket ()
     "Get ticket ID, choose from states defined in `+jira-open-status'."
     (when-let* ((user (or jiralib-user-login-name jiralib-user))
@@ -33,7 +29,11 @@
                                  issues)))
       (if (length= tickets 1)
           (car tickets)
-        (let ((completion-extra-properties '(:annotation-function +jira--ticket-annotation-fn)))
+        (let ((completion-extra-properties
+               '(:annotation-function
+                 ,(lambda (ticket)
+                    (when-let* ((desc (alist-get ticket minibuffer-completion-table)))
+                      (concat (make-string (- 15 (length ticket)) ?\ ) (propertize desc 'face 'font-lock-comment-face)))))))
           (assoc (completing-read "Select ticket: " tickets) tickets #'string=)))))
 
   (defun +jira-insert-ticket-id (with-summary)
