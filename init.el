@@ -159,7 +159,7 @@ provide the `minemacs-lazy' feature so the packages loaded with `:after
 minemacs-lazy' can be loaded."
   (+info! "Emacs%s loaded in %.3fs, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
           (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done)
-  (unless (featurep 'me-org-export-async-init) (+load-theme))
+  (+load-theme)
   (require 'minemacs-loaded))
 
 ;; Add it to the very beginning of `emacs-startup-hook'
@@ -173,16 +173,8 @@ minemacs-lazy' can be loaded."
 (+make-first-file-hook! nil ".")
 
 ;; ========= Load MinEmacs packages and user customization =========
-;; When running in an async Org export context, the used modules are set in
-;; "modules/extras/me-org-export-async-init.el", so we must not override them
-;; with the user's enabled modules.
-(if (featurep 'me-org-export-async-init)
-    (progn (message "Loading \"init.el\" in an org-export-async context.")
-           ;; No need to load all modules, load only these related to Org
-           (setq minemacs-modules '(me-org me-project me-prog me-emacs-lisp on-demand/me-latex)
-                 minemacs-not-lazy-p t)) ; Don't be lazy
-  ;; Load the default list of enabled modules `minemacs-modules'
-  (+load-user-configs 'modules 'local/modules))
+;; Load the default list of enabled modules `minemacs-modules'
+(+load-user-configs 'modules 'local/modules)
 
 ;; When the MINEMACS_LOAD_ALL_MODULES environment variable is set, we force
 ;; loading all modules, including on-demand ones.

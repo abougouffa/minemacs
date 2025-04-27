@@ -711,7 +711,6 @@ or file path may exist now."
   (org-preview-latex-image-directory (+directory-ensure minemacs-cache-dir "org/preview/latex-image/"))
   (org-publish-timestamp-directory (+directory-ensure minemacs-cache-dir "org/publish/timestamps/"))
   (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
-  (org-export-async-init-file (expand-file-name (concat minemacs-modules-dir "extras/me-org-export-async-init.el")))
   (org-auto-align-tags nil)
   (org-cycle-hide-block-startup t)
   (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
