@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.18.0](https://github.com/abougouffa/minemacs/compare/55833828216fbd9babb145ae740b366d7bf51c24..v12.18.0) - 2025-04-27
+#### Features
+- **(emacs-lisp)** make `inspector` obsolete - ([75a08e3](https://github.com/abougouffa/minemacs/commit/75a08e3f2cdc8b39e2fd4aaa82dad0906920a4d4)) - [@abougouffa](https://github.com/abougouffa)
+- **(eros+octave)** remove unreliable `+eros-octave-eval-last-sexp` - ([cde0a54](https://github.com/abougouffa/minemacs/commit/cde0a546e94385034289364bccf747a2f0766496)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/assembly)** add support for `arm-mode` - ([fa152d6](https://github.com/abougouffa/minemacs/commit/fa152d63e5ec1d8712d99d0a99b5ac16e77c971e)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** replace `jujutsushi` with `vc-jj` - ([febef56](https://github.com/abougouffa/minemacs/commit/febef5691b91e8cdcf4cc61a9a29ba794e02b4b8)) - [@abougouffa](https://github.com/abougouffa)
+- **(vundo)** add `+vundo-diff-mode` to automatically trigger `vundo-diff` - ([6d3d7a9](https://github.com/abougouffa/minemacs/commit/6d3d7a9877dd333676f8bc831425ba128c7d8a42)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(editor)** minor edits - ([07cb925](https://github.com/abougouffa/minemacs/commit/07cb9251cd939a2ed68a6d40f14c27e3fbfea6b9)) - [@abougouffa](https://github.com/abougouffa)
+- **(helpful)** minor edits - ([7cd0b79](https://github.com/abougouffa/minemacs/commit/7cd0b7919b875d972593abbf390326681f1ed1fa)) - [@abougouffa](https://github.com/abougouffa)
+- **(natural-langs)** minor edits - ([9ef5c72](https://github.com/abougouffa/minemacs/commit/9ef5c72f43ffc3992f16a5b9f9c4a8f5bb41b3db)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** simplify and enhance code - ([7f43446](https://github.com/abougouffa/minemacs/commit/7f434464650d788d2d3f6efcc6ed48fed6c61f0a)) - [@abougouffa](https://github.com/abougouffa)
+- **(with-editor)** minor edits - ([5733220](https://github.com/abougouffa/minemacs/commit/5733220b1d50a674518d11caeeadb260efb8628b)) - [@abougouffa](https://github.com/abougouffa)
+- remove unneeded tweak - ([d0bff7f](https://github.com/abougouffa/minemacs/commit/d0bff7fd745772230fa2961f1e26e3d6c728403d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** disable `xterm-mouse-mode`, not working under Alacritty - ([d217fce](https://github.com/abougouffa/minemacs/commit/d217fce159faecad92ea753d4eb540db4c042578)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** minor cleanup - ([2392a92](https://github.com/abougouffa/minemacs/commit/2392a92cebd2ac3c142fa3061a591b22767d1f11)) - [@abougouffa](https://github.com/abougouffa)
+- **(expreg)** use the default recipe - ([fd74381](https://github.com/abougouffa/minemacs/commit/fd74381c49073f66539f3042051568c2bc7ff90f)) - [@abougouffa](https://github.com/abougouffa)
+- **(jiralib)** better completion candidates - ([f8b779f](https://github.com/abougouffa/minemacs/commit/f8b779f977e03e8c44bdc15fc46e493038e2f538)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/assembly)** better completion candidates - ([9a57834](https://github.com/abougouffa/minemacs/commit/9a57834b2326b2d1baf5be03d12b397c31512aa2)) - [@abougouffa](https://github.com/abougouffa)
+- **(rmsbolt)** disable `flymake` in disassembled code - ([9f3a830](https://github.com/abougouffa/minemacs/commit/9f3a8302aa4b343191349b4a4c0779270b982ee6)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** hide the buffer showed by `treesit-auto-install-all` - ([08c1cff](https://github.com/abougouffa/minemacs/commit/08c1cff9b4521218a0e174bbf4ee4861bacc2e41)) - [@abougouffa](https://github.com/abougouffa)
+- **(ws-butler)** customize the local repo name to avoid conflicts - ([5583382](https://github.com/abougouffa/minemacs/commit/55833828216fbd9babb145ae740b366d7bf51c24)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([92952ff](https://github.com/abougouffa/minemacs/commit/92952ff53bdbc754358e1af115c1922dba21531d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.17.0](https://github.com/abougouffa/minemacs/compare/c892be9341bec612dd097d4b1de0a028cf545f7a..v12.17.0) - 2025-04-25
 #### Documentation
 - **(readme)** minor edit - ([670e3f6](https://github.com/abougouffa/minemacs/commit/670e3f6d91cd23b6f48ed4f830193ff161eb4e52)) - [@abougouffa](https://github.com/abougouffa)
