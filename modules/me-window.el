@@ -26,9 +26,6 @@
 (defconst +me-warning-buffers-re
   (rx bol "*" (or "Warnings" "envrc") "*" eol))
 
-(defconst +me-terminal-buffers-re
-  (rx bol "*" (or "eshell" "terminal" "shell" "Shell Command Output" "Async Shell Command" (seq "vterminal - " (* any))) "*" eol))
-
 (defconst +me-repl-buffers-re
   (rx bol "*"
       (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
@@ -59,11 +56,11 @@
 ;; Terminal buffers
 (add-to-list
  'display-buffer-alist
- `(,+me-terminal-buffers-re
+ '((vterm-mode eshell-mode shell-mode)
    (display-buffer-reuse-window display-buffer-at-bottom)
    (dedicated . t) ;; Close when finished
    (direction . bottom)
-   (reusable-frames . visible) ;;
+   (reusable-frames . visible)
    (window-height . 0.2)))
 
 ;; REPL buffers
