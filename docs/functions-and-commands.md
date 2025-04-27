@@ -107,10 +107,6 @@ it automatically.
 
 MinEmacs enabled modules.
 
-#### `minemacs-update-builtin-packages`
-
-Make sure these packages are updated from ELPA.
-
 #### `+env-file`
 
 The file in which the environment variables will be saved.
@@ -624,9 +620,10 @@ Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist`.
 
 Setup fonts.
 
-#### `(minemacs-reduce-font-size)`
+#### `(minemacs-reduce-font-size &optional RESET)`
 
 Reduce the font size in the buffer by `minemacs-reduce-font-size-ratio`.
+When RESET is non-nil, restore the original font size.
 
 #### `(+subtle-mode-line)`
 
@@ -696,12 +693,12 @@ Update MinEmacs packages to the last revisions (can cause breakages).
 
 Like `minemacs-bump-packages`, but runs asynchronously.
 
-#### `(minemacs-upgrade PULL-MINEMACS)`
+#### `(minemacs-upgrade PULL)`
 
 Upgrade the packages list to the locked revisions.
 This takes into account the explicitly pinned packages. When called with
-C-u or with PULL-MINEMACS, it will run "git pull"
-in MinEmacs directory before upgrading.
+C-u or with PULL, it will run "git pull" in
+MinEmacs directory before upgrading.
 
 #### `(minemacs-root-dir-cleanup)`
 
@@ -817,16 +814,11 @@ Reload directory-local for the current buffer.
 
 #### `(+dir-locals-reload-for-all-buffers-in-this-directory)`
 
-Reload dir-locals for all buffers in the current `default-directory`.
+Reload dir-locals for all buffers under `default-directory`.
 
-#### `(+dir-locals-toggle-autoreload &optional ENABLE)`
+#### `(+dir-locals-autoreload)`
 
-Toggle autoloading dir-local variables after editing the ".dir-locals" file.
-If ENABLE is non-nil, force enabling autoreloading.
-
-#### `(+dir-locals-open-or-create)`
-
-Open or create the dir-locals.el for the current project.
+Is it relevant to auto reload dir-locals for his buffer.
 
 #### `(+ansi-color-apply-on-buffer)`
 
@@ -935,6 +927,10 @@ reloading the JSON file.
 Insert a schema for the current buffer file.
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
+
+#### `(+clang-format-get-style)`
+
+Get the "-style" argument for clang-format.
 
 #### `(+server-restart)`
 
@@ -1184,7 +1180,7 @@ Enable responsive images' size.
 
 Enable LaTeX equations renumbering.
 
-#### `(+org-extras-multifiles-document-setup)`
+#### `(+org-extras-multifile-document-setup)`
 
 Enable multi-files documents.
 

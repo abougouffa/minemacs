@@ -63,7 +63,6 @@
 * `parinfer-rust-mode`: Simplifying how you write Lisp
 * `macrostep`: Interactive macro-expander for Emacs
 * `helpful`: A better Emacs *help* buffer
-* `inspector`: Inspection tool for Emacs Lisp objects
 * `eros`: Evaluation Result OverlayS for Emacs Lisp
 * `relint`: Elisp regexp mistake finder
 
@@ -132,7 +131,7 @@
 * `jinx`: Just-in-time spell checker based on the Enchanted library
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
 * `lexic`: Fancy Emacs integration with the console version of StarDict
-* `reverso`: Emacs client for www.reverso.net for translation, grammar check, context and synonyms search
+* `reverso`: Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 * `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
 
 ## `me-nav`
@@ -237,6 +236,7 @@
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `docker`: Manage docker from Emacs
 * `devcontainer-mode`: Rudimentary support for devcontainer in emacs
+* `apptainer-mode`: Major mode for Apptainer definition files
 * `systemd`: Major mode for editing systemd units
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `logview`: Emacs mode for viewing log files
@@ -278,7 +278,7 @@
 * `git-timemachine`: Walk through Git revisions of a file
 * `git-modes`: Emacs major modes for Git configuration files
 * `repo`: Running "repo" from Emacs
-* `jujutsushi`: Integrate `vc` and `project` with Jujutsu, a Git-compatible VCS that is both simple and powerful
+* `vc-jj`: Jujutsu (jj) integration with Emacs `vc` and `project`
 * `diffview`: View diffs side-by-side in Emacs
 * `difftastic`: A structural diff that understands syntax
 
@@ -306,6 +306,7 @@
 * `masm-mode`: Major mode for Microsoft Macro Assembler
 * `nasm-mode`: Major mode for Netwide Assembler
 * `gas-mode`: Major mode for GNU Assembler
+* `arm-mode`: Major mode for editing Advanced RISC Machine (a.k.a. ARM) assembly code
 
 ## `on-demand/me-awk`
 * `awk-ts-mode`: Major mode for AWK using Tree-sitter
@@ -631,6 +632,7 @@
 
 ## `on-demand/me-sql`
 * `sqlup-mode`: Upcase SQL words for you
+* `flymake-sqlfluff`: Flymake backend for sqlfluff
 
 ## `on-demand/me-stan`
 * `stan-mode`: Major mode for editing Stan files
