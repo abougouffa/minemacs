@@ -1132,10 +1132,10 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (auto-mode auto-modes)
               (let ((regexps (ensure-list (car auto-mode)))
-                    (mode (cdr auto-mode)))
+                    (modes (ensure-list (cdr auto-mode))))
                 (when-let* (((and (buffer-file-name)
                                   (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
-                                  (not (fboundp mode))
+                                  (cl-find-if-not #'fboundp modes)
                                   (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
                                       (and (not noninteractive) ; ask only when in an interactive session
                                            (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
@@ -1155,8 +1155,8 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (magic-mode magic-modes)
               (let ((func-or-regexp (car magic-mode))
-                    (mode (cdr magic-mode)))
-                (when-let* (((and (not (fboundp mode))
+                    (modes (ensure-list (cdr magic-mode))))
+                (when-let* (((and (cl-find-if-not #'fboundp modes)
                                   (cond ((functionp func-or-regexp) (funcall func-or-regexp))
                                         ((stringp func-or-regexp)
                                          (save-excursion
@@ -1184,8 +1184,8 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (interpreter-mode interpreter-modes)
               (let ((interpreter (car interpreter-mode))
-                    (mode (cdr interpreter-mode)))
-                (when-let* (((and (not (fboundp mode))
+                    (modes (ensure-list (cdr interpreter-mode))))
+                (when-let* (((and (cl-find-if-not #'fboundp modes)
                                   (when-let* ((interp (save-excursion
                                                         (goto-char (point-min))
                                                         (when (looking-at auto-mode-interpreter-regexp)
