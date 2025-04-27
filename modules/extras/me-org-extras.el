@@ -164,7 +164,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Enable LaTeX equations renumbering."
   (+shutup! (+org-extras-toggle-latex-equation-numbering :enable)))
 
-(defun +org-extras-multifiles-document-setup ()
+(defun +org-extras-multifile-document-setup ()
   "Enable multi-files documents."
   (advice-add
    'org-latex-export-to-pdf :around
@@ -186,9 +186,14 @@ Example: \"#+TITLE\" -> \"#+title\"
                 org-export-process
                 (lambda (process event)
                   (unless (process-live-p process)
-                    (message "Org async export %s, see `%s' for more details."
-                             (string-trim event)
-                             (buffer-name org-export-process-buffer)))))))
+                    (let ((output-file-name
+                           (with-current-buffer org-export-process-buffer
+                             (goto-char (point-max))
+                             (and (re-search-backward "\".*\\.pdf\"" nil :noerror) (match-string 0)))))
+                      (message "Org async export %shas %s, see `%s' for more details."
+                               (if output-file-name (format "to file %s " output-file-name) "")
+                               (string-trim event)
+                               (buffer-name org-export-process-buffer))))))))
          (message "PDF exported to: %s."
                   (abbreviate-file-name (file-name-nondirectory out-file))))))))
 
@@ -329,7 +334,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   (+org-extras-pretty-latex-fragments-setup)
   (+org-extras-responsive-images-setup)
   (+org-extras-equation-numbering-setup)
-  (+org-extras-multifiles-document-setup)
+  (+org-extras-multifile-document-setup)
   (+org-extras-lower-case-keywords-and-properties-setup))
 
 

@@ -16,7 +16,7 @@
   (+org-extras-latex-classes-setup)
   (+org-extras-responsive-images-setup)
   (+org-extras-equation-numbering-setup)
-  (+org-extras-multifiles-document-setup)
+  (+org-extras-multifile-document-setup)
   (+org-extras-pretty-latex-fragments-setup)
   (+org-extras-lower-case-keywords-and-properties-setup))
 
