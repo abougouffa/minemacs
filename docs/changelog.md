@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.19.0](https://github.com/abougouffa/minemacs/compare/2bbd236862df19d90c66bdb15acd010812b29874..v12.19.0) - 2025-04-27
+#### Bug Fixes
+- **(core)** accept multiple modes in `minemacs-register-on-demand-module` - ([8dc1aaa](https://github.com/abougouffa/minemacs/commit/8dc1aaa9a0008e5f84a495f7b3e97e2bce249771)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** properly set non-custom variables/constants - ([aeff52c](https://github.com/abougouffa/minemacs/commit/aeff52cc9c244619aa11e0452f23d4b12a26883f)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([7a6f56e](https://github.com/abougouffa/minemacs/commit/7a6f56e73ec3329a2be012868ac50e802c5a2a7f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand/sql)** add `flymake-sqlfluff` - ([ae850d8](https://github.com/abougouffa/minemacs/commit/ae850d8adee4680b925c2cb27e4726d981378a81)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- cleanup modules list in `me-vars` - ([e41ffb8](https://github.com/abougouffa/minemacs/commit/e41ffb874242e8681120db99eaa9a250a9a16024)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- simplify async Org export by using the default init file - ([72119da](https://github.com/abougouffa/minemacs/commit/72119da67aaa3ab4f49e81c8da9a48f04dde8b64)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(gambol)** remove confusing `+gambol:occur-dwim` - ([d617b1e](https://github.com/abougouffa/minemacs/commit/d617b1ea30204319da29537106fb715c749b09e4)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-timemachine)** it seems there is no need to the font-lock hack - ([2bbd236](https://github.com/abougouffa/minemacs/commit/2bbd236862df19d90c66bdb15acd010812b29874)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** better message for multi-file async export - ([e48a6de](https://github.com/abougouffa/minemacs/commit/e48a6de421bd81ec83ffc3769e953be29b038fa5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.18.0](https://github.com/abougouffa/minemacs/compare/55833828216fbd9babb145ae740b366d7bf51c24..v12.18.0) - 2025-04-27
 #### Features
 - **(emacs-lisp)** make `inspector` obsolete - ([75a08e3](https://github.com/abougouffa/minemacs/commit/75a08e3f2cdc8b39e2fd4aaa82dad0906920a4d4)) - [@abougouffa](https://github.com/abougouffa)
