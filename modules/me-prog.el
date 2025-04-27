@@ -110,19 +110,13 @@
   (("M-g ," . gambol:go-to-previous)
    ("M-g ." . gambol:go-to-next)
    ([remap mc/mark-all-dwim] . gambol:edit-all)
-   ([remap occur] . +gambol:occur-dwim)
    :map gambol-repeat-map
    ("," . gambol:go-to-previous)
    ("." . gambol:go-to-next)
    ("e" . gambol:edit-all)
    ("o" . gambol:occur))
   :init
-  (with-eval-after-load 'embark (gambol:install-embark-integration)) ; Integrate with `embark'
-  (defun +gambol:occur-dwim ()
-    "Call `gambol:occur' if in an Eglot managed buffer, fallback to `occur'."
-    (interactive)
-    (unless (and (featurep 'eglot) (eglot-managed-p) (ignore-errors (gambol:occur) t))
-      (call-interactively #'occur))))
+  (with-eval-after-load 'embark (gambol:install-embark-integration))) ; Integrate with `embark'
 
 
 ;; Consult integration with Eglot
