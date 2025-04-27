@@ -225,10 +225,10 @@ it automatically."
     me-emacs-lisp
     ;; me-email
     ;; me-embedded
+    ;; me-experimental
     me-extra
     me-files
     ;; me-fun
-    ;; me-gtd
     ;; me-lifestyle
     ;; me-math
     ;; me-media
