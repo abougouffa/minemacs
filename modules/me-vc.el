@@ -156,9 +156,6 @@ use `project-remember-project' with each detected repo."
 ;; Walk through Git revisions of a file
 (use-package git-timemachine
   :straight t
-  ;; HACK: `git-timemachine' applies the mode with `delay-mode-hooks', resulting
-  ;; in an unfontified buffer.
-  :hook (git-timemachine-mode . font-lock-mode)
   :hook (git-timemachine-mode . display-line-numbers-mode)
   :config
   (advice-add
