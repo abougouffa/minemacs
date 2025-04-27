@@ -18,5 +18,10 @@
   :straight t)
 
 
+;; Flymake backend for sqlfluff
+(use-package flymake-sqlfluff
+  :straight t)
+
+
 (provide 'on-demand/me-sql)
 ;;; me-sql.el ends here
