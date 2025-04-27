@@ -442,9 +442,6 @@ or file path may exist now."
   (with-eval-after-load 'elisp-mode
     (cl-callf append elisp-flymake-byte-compile-load-path load-path)))
 
-(use-package xt-mouse
-  :hook (tty-setup . xterm-mouse-mode))
-
 (use-package eshell
   :hook (eshell-mode . minemacs-reduce-font-size)
   :custom
