@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-28
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -65,7 +65,7 @@
       (benchmark-init/activate)
       (add-hook 'minemacs-lazy-hook (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99))))
 
-(let ((min-ver 29) (recommended-ver 29)) ; Check if Emacs version is supported.
+(let ((min-ver 29) (recommended-ver 30)) ; Check if Emacs version is supported.
   (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
   (when (< emacs-major-version recommended-ver)
