@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-28
 
 ;;; Commentary:
 
@@ -15,12 +15,6 @@
 (require 'rx)
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
-(autoload 'url-filename "url-parse")
-(autoload 'url-generic-parse-url "url-parse")
-(autoload 'vc-git-root "vc-git")
-(autoload 'vc-git-revert "vc-git")
-(autoload 'tramp-make-tramp-file-name "tramp")
-(defvar tramp-root-id-string) ; Make byte-compiler happy
 
 
 
