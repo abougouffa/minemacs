@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-04-25
+;; Last modified: 2025-04-29
 
 ;;; Commentary:
 
@@ -40,6 +40,7 @@ Call functions without asking when DONT-ASK-P is non-nil."
             (args (cdddr action)))
         (when (or (string-match-p "Stash changes" desc)
                   (string-match-p "Rename remote .* to .*, re-create .* with correct URL, and fetch" desc)
+                  (string-match-p "Skip this repository for now and come back to it later" desc)
                   (string-match-p "Reset .* to .*" desc)
                   (string-match-p "Checkout .*" desc))
           (setq action-func func
