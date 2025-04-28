@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-28
 
 ;;; Commentary:
 
@@ -26,7 +26,13 @@
 
 ;; Highlight CSV and TSV files in different rainbow colors
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv"))
+  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :hook (csv-mode . +rainbow-csv-mode-maybe)
+  :config
+  (defvar +rainbow-csv-max-file-size (* 10 1024 1024)) ; 10MB
+  (defun +rainbow-csv-mode-maybe ()
+    (when (< (buffer-size) +rainbow-csv-max-file-size)
+      (run-with-timer 0.1 nil #'rainbow-csv-mode))))
 
 
 (provide 'on-demand/me-csv)
