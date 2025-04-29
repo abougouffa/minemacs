@@ -30,76 +30,6 @@ Call functions without asking when DONT-ASK-P is non-nil."
           (funcall-interactively fn))
       (funcall-interactively fn))))
 
-;; Do some tweaks to avoid asking questions when running
-;; `minemacs-bump-packages'
-(defun +minemacs--straight--popup-raw:around-a (orig-fn prompt actions)
-  (let (action-func action-args)
-    (dolist (action actions)
-      (let ((desc (nth 1 action))
-            (func (nth 2 action))
-            (args (cdddr action)))
-        (when (or (string-match-p "Stash changes" desc)
-                  (string-match-p "Rename remote .* to .*, re-create .* with correct URL, and fetch" desc)
-                  (string-match-p "Skip this repository for now and come back to it later" desc)
-                  (string-match-p "Reset .* to .*" desc)
-                  (string-match-p "Checkout .*" desc))
-          (setq action-func func
-                action-args args))))
-    (if action-func
-        (apply action-func action-args)
-      (funcall orig-fn prompt actions))))
-
-(defun +minemacs--read-string:around-a (orig-fn prompt &rest args)
-  (cond
-   ((string-match-p "Optional stash message:" prompt)
-    (format-time-string "Stashed when bumping the package %F at %T"))
-   (t (apply orig-fn (cons prompt args)))))
-
-(defun +minemacs--y-or-n-p:around-a (orig-fn prompt)
-  (cond
-   ((equal prompt "Caches are outdated, reload init-file? ")
-    nil)
-   (t (funcall orig-fn prompt))))
-
-;;;###autoload
-(defun minemacs-bump-packages ()
-  "Update MinEmacs packages to the last revisions (can cause breakages)."
-  (interactive)
-  (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
-  (unwind-protect
-      (progn
-        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
-        (advice-add 'read-string :around '+minemacs--read-string:around-a)
-        (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
-        (straight-pull-recipe-repositories) ; Update straight recipe repositories
-        (straight-pull-all)
-        (straight-freeze-versions)
-        (straight-rebuild-all))
-    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
-    (advice-remove 'read-string '+minemacs--read-string:around-a)
-    (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
-  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
-
-;;;###autoload
-(defun minemacs-bump-packages-async ()
-  "Like `minemacs-bump-packages', but runs asynchronously."
-  (interactive)
-  (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
-    (compile (string-join (list (car command-line-args) "--batch" "--script" user-init-file "--eval='(minemacs-bump-packages)'") " "))))
-
-;;;###autoload
-(defun minemacs-upgrade (pull)
-  "Upgrade the packages list to the locked revisions.
-This takes into account the explicitly pinned packages. When called with
-\\[universal-argument] or with PULL, it will run \"git pull\" in
-MinEmacs directory before upgrading."
-  (interactive "P")
-  (when pull (let ((default-directory minemacs-root-dir)) (vc-pull)))
-  (straight-pull-recipe-repositories) ; Update straight recipe repositories
-  (straight-thaw-versions)
-  (straight-rebuild-all) ; Rebuild the packages
-  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
-
 ;;;###autoload
 (defun minemacs-root-dir-cleanup ()
   "Cleanup MinEmacs' root directory."
@@ -108,25 +38,12 @@ MinEmacs directory before upgrading."
           (directory-files minemacs-root-dir nil (rx (seq bol (or "eln-cache" "auto-save-list" "elpa") eol))))))
 
 ;;;###autoload
-(defun +straight-prune-build-cache ()
-  "Prune straight.el build directories for old Emacs versions."
-  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    ;; Prune the build cache and build directory.
-    (straight-prune-build)
-    ;; Prune old build directories
-    (mapc (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-          (seq-filter
-           (lambda (name)
-             (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-           (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
-
-;;;###autoload
 (defun minemacs-cleanup-emacs-directory ()
   "Cleanup unwanted files/directories from MinEmacs' directory."
   (interactive)
   (+shutup!
    (when (featurep 'native-compile) (native-compile-prune-cache))
-   (+straight-prune-build-cache)
+   (when (fboundp '+straight-prune-build-cache) (+straight-prune-build-cache))
    (minemacs-root-dir-cleanup))
   (message "Finished cleanup!"))
 
