@@ -69,7 +69,7 @@ When PRE is non-nil, allow downloading the latest prerelease."
                                           ((featurep 'os/mac) "mac")
                                           ((featurep 'os/win) "windows"))
                                 "-" (cond ((featurep 'arch/x86_64) "x64")
-                                          ((featurep 'arch/x86_64) "aarch64")))
+                                          ((featurep 'arch/aarch64) "aarch64")))
                         nil :prerelease pre)))
     (when (file-directory-p eglot-ltex-ls-path) (delete-directory eglot-ltex-ls-path t))
     (mkdir eglot-ltex-ls-path)
