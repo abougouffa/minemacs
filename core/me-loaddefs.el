@@ -46,6 +46,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-ballerina :auto-mode '(("\\.bal\\'" . ballerina-mode)))
 
 
+;;; Generated autoloads from me-bootstrap.el
+
+(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-prune-build-cache" "minemacs-"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-bqn.el
 
 (minemacs-register-on-demand-module 'me-bqn :auto-mode '(("\\.bqn\\'" . bqn-mode)) :interpreter-mode '(("bqn" . bqn-mode)))
@@ -368,21 +373,8 @@ Run all build functions in `minemacs-build-functions'.
 Call functions without asking when DONT-ASK-P is non-nil.
 
 (fn &optional DONT-ASK-P)" t)
-(autoload 'minemacs-bump-packages "me-lib-extra" "\
-Update MinEmacs packages to the last revisions (can cause breakages)." t)
-(autoload 'minemacs-bump-packages-async "me-lib-extra" "\
-Like `minemacs-bump-packages', but runs asynchronously." t)
-(autoload 'minemacs-upgrade "me-lib-extra" "\
-Upgrade the packages list to the locked revisions.
-This takes into account the explicitly pinned packages. When called with
-\\[universal-argument] or with PULL-MINEMACS, it will run \"git pull\"
-in MinEmacs directory before upgrading.
-
-(fn PULL-MINEMACS)" t)
 (autoload 'minemacs-root-dir-cleanup "me-lib-extra" "\
 Cleanup MinEmacs' root directory.")
-(autoload '+straight-prune-build-cache "me-lib-extra" "\
-Prune straight.el build directories for old Emacs versions.")
 (autoload 'minemacs-cleanup-emacs-directory "me-lib-extra" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
 (autoload 'minemacs-apply-performance-tweaks "me-lib-extra" "\
@@ -702,7 +694,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+minemacs--" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
