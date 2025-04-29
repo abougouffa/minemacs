@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-22
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -214,7 +214,7 @@
   (mu4e-alert-email-notification-types '(subjects))
   :init
   (defcustom +mu4e-alert-bell-command
-    (when (+emacs-options-p :any 'os/linux 'os/bsd)
+    (when (or (featurep 'os/linux) (featurep 'os/bsd))
       '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
     "A cons list of the command and arguments to play the notification bell."
     :group 'minemacs-mu4e

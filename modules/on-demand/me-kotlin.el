@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -23,7 +23,7 @@
 ;; Tree-sitter based major mode for the Kotlin programming language
 (use-package kotlin-ts-mode
   :straight t
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :mode "\\.kts?\\'")
 
 

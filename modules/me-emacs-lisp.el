@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-04-26
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -23,10 +23,10 @@
 ;; Simplifying how you write Lisp
 (use-package parinfer-rust-mode
   :straight t
-  :when (+emacs-options-p 'modules)
+  :when (featurep 'feat/modules)
   :autoload +parinfer-rust-mode-maybe
   :custom
-  (parinfer-rust-auto-download (+emacs-options-p 'arch/x86_64))
+  (parinfer-rust-auto-download (featurep 'arch/x86_64))
   :hook ((lisp-mode emacs-lisp-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . +parinfer-rust-mode-maybe)
   :config
   (defun +parinfer-rust-mode-maybe ()

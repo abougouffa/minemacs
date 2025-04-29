@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-04-05
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -471,7 +471,7 @@ It is deferred until `general' gets loaded and configured."
    :global-prefix minemacs-global-mode-prefix
    "u" #'universal-argument-more)
 
-  (when (+emacs-options-p :any 'os/linux 'os/bsd)
+  (when (or (featurep 'os/linux) (featurep 'os/bsd))
     (when (executable-find "ecryptfs-verify")
       (+map! "te" #'ecryptfs-toggle-mount-private)))
 

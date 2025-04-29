@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-20
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 (use-package ligature
   :straight t
-  :when (+emacs-options-p 'harfbuzz 'cairo)
+  :when (and (featurep 'feat/harfbuzz) (featurep 'feat/cairo))
   :after minemacs-loaded
   :hook (prog-mode . ligature-mode)
   :config

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-26
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -173,7 +173,7 @@ In some files, there is a mix of spaces and tabs. This uses
 ;; Your friendly neighborhood expand-region clone
 (use-package expreg
   :straight t
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
 

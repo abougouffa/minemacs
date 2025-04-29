@@ -4,13 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-07
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
 ;;; Code:
 
-(defconst +easydraw-available-p (+emacs-options-p 'rsvg 'zlib 'libxml2))
+(defconst +easydraw-available-p (and (featurep 'feat/rsvg) (featurep 'feat/zlib) (featurep 'feat/libxml2)))
 
 (use-package edraw
   :straight (:host github :repo "misohena/el-easydraw")

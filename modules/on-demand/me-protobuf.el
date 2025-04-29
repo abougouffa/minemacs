@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -23,7 +23,7 @@
 ;; Tree-sitter based major mode for editing Protocol Buffers files
 (use-package protobuf-ts-mode
   :straight (:host github :repo "emacsattic/protobuf-ts-mode")
-  :when (+emacs-options-p 'tree-sitter))
+  :when (featurep 'feat/tree-sitter))
 
 
 (provide 'on-demand/me-protobuf)

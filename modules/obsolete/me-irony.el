@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 ;; Created: 2024-11-06
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -14,7 +14,7 @@
 (use-package irony-mode
   :straight t
   :config
-  (when (+emacs-options-p 'os/win) ; Windows performance tweaks
+  (when (featurep 'os/win) ; Windows performance tweaks
     (when (boundp 'w32-pipe-read-delay) (setq w32-pipe-read-delay 0))
     ;; Set the buffer size to 64K on Windows (from the original 4K)
     (when (boundp 'w32-pipe-buffer-size) (setq irony-server-w32-pipe-buffer-size (* 64 1024)))))

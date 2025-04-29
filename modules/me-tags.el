@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-04-22
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -139,7 +139,7 @@ Fall back to the default `citre--project-root'."
 ;; Cscope interface for Emacs
 (use-package xcscope
   :straight t
-  :unless (+emacs-options-p 'os/win)
+  :unless (featurep 'os/win)
   :commands (cscope-create-list-of-files-to-index cscope-index-files)
   :custom
   (cscope-option-do-not-update-database t)
@@ -173,7 +173,7 @@ Fallback to the default function if none is found."
 ;; Clink integration to Emacs
 (use-package clink
   :straight (:host github :repo "abougouffa/clink.el")
-  :when (+emacs-options-p 'sqlite3)
+  :when (featurep 'feat/sqlite3)
   :hook (minemacs-first-c/c++-file . global-clink-mode))
 
 

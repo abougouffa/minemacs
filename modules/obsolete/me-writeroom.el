@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -82,7 +82,7 @@
          (* ;; The scale from current font
           (/ (float (or (face-attribute 'default :height) 100)) 100.0)
           ;; Proportional upscaling
-          (/ +writeroom-text-scale (if (+emacs-options-p 'pgtk) 1.8 1.4)))))))
+          (/ +writeroom-text-scale (if (featurep 'feat/pgtk) 1.8 1.4)))))))
 
     (add-hook
      'writeroom-mode-disable-hook

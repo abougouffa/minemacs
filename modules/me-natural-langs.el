@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-26
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 ;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
   :straight t
-  :when (+emacs-options-p 'modules)
+  :when (featurep 'feat/modules)
   :autoload jinx--load-module
   :preface
   (defvar-local +spellcheck-mode nil)

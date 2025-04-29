@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
 ;; LLVM major mode using Tree-sitter
 (use-package llvm-ts-mode
   :straight t
-  :when (+emacs-options-p 'tree-sitter))
+  :when (featurep 'feat/tree-sitter))
 
 
 (provide 'on-demand/me-llvm)

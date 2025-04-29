@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -27,7 +27,7 @@
 ;; Parser-aided YAML editing features
 (use-package yaml-pro
   :straight t
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :hook (yaml-mode . yaml-pro-mode)
   :hook (yaml-ts-mode . yaml-pro-ts-mode))
 

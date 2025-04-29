@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-06
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 (use-package eaf
   :straight (:host github :repo "emacs-eaf/emacs-application-framework" :files (:defaults "*"))
-  :unless (+emacs-options-p 'lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
+  :unless (featurep 'feat/lucid) ; EAF don't work on LUCID, a.k.a. XEmacs.
   :hook (minemacs-build-functions . eaf-install-and-update)
   :commands (eaf-file-sender-qrcode-in-dired +browse-url-eaf eaf-open-browser)
   :custom

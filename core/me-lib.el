@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-04-28
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -15,6 +15,16 @@
 (require 'rx)
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
+
+
+
+;; Obsolete and temporary definitions
+
+(defun +emacs-options-p (&rest feats)
+  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
+    (and (funcall fn #'featurep feats) t)))
+
+(make-obsolete '+emacs-options-p 'featurep "v12.20.0")
 
 
 
@@ -487,7 +497,7 @@ Emacs-specific early exit in \".bashrc\"."
 (defun +env-save ()
   "Load environment variables from shell and save them to `+env-file'."
   (interactive)
-  (unless (+emacs-options-p 'os/win)
+  (unless (featurep 'os/win)
     (with-temp-buffer
       (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
       (let ((env-vars
@@ -518,7 +528,7 @@ Emacs-specific early exit in \".bashrc\"."
 (defun +env-load ()
   "Load environment variables from `+env-file'."
   (interactive)
-  (unless (+emacs-options-p 'os/win)
+  (unless (featurep 'os/win)
     (unless (file-exists-p +env-file) (+env-save))
     (+load +env-file)))
 
@@ -1217,13 +1227,6 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
         (with-demoted-errors "[MinEmacs:LoadError] %s"
           (load filename nil (not minemacs-verbose-p)))
       (+log! "Cannot load \"%s\", the file doesn't exists." filename))))
-
-(defun +emacs-options-p (&rest feats)
-  "Is features FEATS are enabled in this Emacs build.
-When the first argument is `:any', this returns t if at least one of the
-FEATS is available."
-  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
-    (and (funcall fn (lambda (feat) (memq feat minemacs--options)) feats) t)))
 
 
 (provide 'me-lib)

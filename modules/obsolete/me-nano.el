@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-01
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; (setq default-frame-alist (+alist-set 'internal-border-width 20 default-frame-alist))
 
-(when (+emacs-options-p 'os/mac)
+(when (featurep 'os/mac)
   (+setq-hook! term-mode buffer-display-table (make-display-table)))
 
 (use-package nano-theme

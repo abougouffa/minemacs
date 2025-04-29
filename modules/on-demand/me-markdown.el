@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -29,7 +29,7 @@
 ;; Major mode for Markdown using Treesitter
 (use-package markdown-ts-mode
   :straight t
-  :when (and (+emacs-options-p 'tree-sitter)
+  :when (and (featurep 'feat/tree-sitter)
              (< emacs-major-version 31)) ;; Built-in in Emacs 31+
   :hook (markdown-ts-mode . display-line-numbers-mode)
   :commands (markdown-ts-mode))

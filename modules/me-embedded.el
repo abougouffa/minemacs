@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -72,7 +72,7 @@
 (use-package bitbake-ts-mode
   :straight t
   :disabled ; TEMP: No good syntax highlighting
-  :when (+emacs-options-p 'tree-sitter))
+  :when (featurep 'feat/tree-sitter))
 
 
 ;; Quickly jump to Intel's x86 documentation from Emacs

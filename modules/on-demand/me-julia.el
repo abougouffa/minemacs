@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 ;; Major mode for Julia source code using Tree-sitter
 (use-package julia-ts-mode
   :straight t
-  :when (+emacs-options-p 'tree-sitter))
+  :when (featurep 'feat/tree-sitter))
 
 
 ;; A minor mode for a Julia REPL

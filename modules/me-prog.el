@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 ;; Automatically manage `treesit' grammars
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :hook (minemacs-build-functions . treesit-auto-install-all)
   :hook (minemacs-lazy . global-treesit-auto-mode)
   :custom
@@ -96,7 +96,7 @@
 ;; Tree-sitter based code folding
 (use-package treesit-fold
   :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
-  :when (+emacs-options-p 'tree-sitter))
+  :when (featurep 'feat/tree-sitter))
 
 
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
@@ -253,7 +253,7 @@
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
   :straight t
-  :when (+emacs-options-p 'libxml2))
+  :when (featurep 'feat/libxml2))
 
 
 ;; Coccinelle: Complex style-preserving source-to-source transformations

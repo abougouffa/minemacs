@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -110,7 +110,7 @@
   (set-language-environment "UTF-8")
   (set-locale-environment "en_US.UTF-8")
   ;; Use UTF-16-LE in Windows, see: https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
-  (set-selection-coding-system (if (+emacs-options-p 'os/win) 'utf-16-le 'utf-8))
+  (set-selection-coding-system (if (featurep 'os/win) 'utf-16-le 'utf-8))
   :config
   ;; Unbind some annoying commands
   (keymap-global-unset "C-z" 'remove)
@@ -235,7 +235,7 @@ or file path may exist now."
 (use-package tramp
   :straight (tramp :source gnu-elpa-mirror)
   :init
-  (if (+emacs-options-p 'os/win)
+  (if (featurep 'os/win)
       (when (executable-find "plink")
         (setopt tramp-default-method "plink")) ; When available, use "plink", the PuTTY Link SSH
     (setopt tramp-default-method "ssh")) ; This is faster than the default "scp"
@@ -313,7 +313,7 @@ or file path may exist now."
 (use-package doc-view
   :custom
   (doc-view-continuous t)
-  (doc-view-mupdf-use-svg (+emacs-options-p 'rsvg)))
+  (doc-view-mupdf-use-svg (featurep 'feat/rsvg)))
 
 (use-package project
   :straight (project :source gnu-elpa-mirror)
@@ -474,17 +474,17 @@ or file path may exist now."
   (bibtex-text-indentation 20))
 
 (use-package treesit
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
   (treesit-font-lock-level 4))
 
 (use-package dockerfile-ts-mode
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :mode "/Dockerfile\\'")
 
 (use-package cmake-ts-mode
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :mode "CMakeLists\\.txt\\'"
   :mode "\\.cmake\\'")
 
@@ -1328,7 +1328,7 @@ surrounded by word boundaries."
           (query-replace-regexp re replacement delimited beg end backward))))))
 
 (use-package yaml-ts-mode
-  :when (+emacs-options-p 'tree-sitter)
+  :when (featurep 'feat/tree-sitter)
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
 
 

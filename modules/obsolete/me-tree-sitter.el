@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 (use-package tree-sitter
   :straight t
   :defer 5
-  :when (+emacs-options-p 'arch/x86_64)
+  :when (featurep 'arch/x86_64)
   :preface
   (advice-add 'tsc-dyn-get-ensure :around '+apply-inhibit-messages)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)

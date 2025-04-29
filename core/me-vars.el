@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -131,22 +131,21 @@ used (all small case, or title case):
 
 (defconst minemacs-started-with-extra-args-p (and (cdr command-line-args) t) "Has Emacs been started with extras arguments? like a file name or so.")
 
-(defconst minemacs--options
-  (append
-   (list
-    (intern (concat "arch/" (car (split-string system-configuration "-"))))
-    (cond ((eq system-type 'android) 'os/android)
-          ((memq system-type '(gnu gnu/linux)) 'os/linux)
-          ((memq system-type '(berkeley-unix gnu/kfreebsd)) 'os/bsd)
-          ((memq system-type '(cygwin windows-nt ms-dos)) 'os/win)
-          ((eq system-type 'darwin) 'os/mac)
-          (t 'os/unknown)))
-   (mapcar #'intern
-           (mapcar (apply-partially #'string-replace "_" "-")
-                   (mapcar #'downcase (split-string system-configuration-features)))))
-  "List of symbols representing Emacs' enabled features.
-Compiled from the `system-configuration-features',
-`system-configuration' and `system-type'.")
+;; Register some Emacs build options as features
+(setq features
+      (append
+       features
+       (list
+        (intern (concat "arch/" (car (split-string system-configuration "-"))))
+        (cond ((eq system-type 'android) 'os/android)
+              ((memq system-type '(gnu gnu/linux)) 'os/linux)
+              ((memq system-type '(berkeley-unix gnu/kfreebsd)) 'os/bsd)
+              ((memq system-type '(cygwin windows-nt ms-dos)) 'os/win)
+              ((eq system-type 'darwin) 'os/mac)
+              (t 'os/unknown)))
+       (mapcar #'intern
+               (mapcar (apply-partially #'string-replace "_" "-")
+                       (mapcar (apply-partially #'concat "feat/") (mapcar #'downcase (split-string system-configuration-features)))))))
 
 (defcustom minemacs-theme 'doom-one-light
   "The theme of MinEmacs."

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-04-16
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -65,11 +65,11 @@ When PRE is non-nil, allow downloading the latest prerelease."
   (interactive "P")
   (when-let* ((tarball (+github-download-release
                         "ltex-plus/ltex-ls-plus"
-                        (concat "-" (cond ((+emacs-options-p 'os/linux) "linux")
-                                          ((+emacs-options-p 'os/mac) "mac")
-                                          ((+emacs-options-p 'os/win) "windows"))
-                                "-" (cond ((+emacs-options-p 'arch/x86_64) "x64")
-                                          ((+emacs-options-p 'arch/x86_64) "aarch64")))
+                        (concat "-" (cond ((featurep 'os/linux) "linux")
+                                          ((featurep 'os/mac) "mac")
+                                          ((featurep 'os/win) "windows"))
+                                "-" (cond ((featurep 'arch/x86_64) "x64")
+                                          ((featurep 'arch/x86_64) "aarch64")))
                         nil :prerelease pre)))
     (when (file-directory-p eglot-ltex-ls-path) (delete-directory eglot-ltex-ls-path t))
     (mkdir eglot-ltex-ls-path)

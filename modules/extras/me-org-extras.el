@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-04-27
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -310,7 +310,7 @@ Example: \"#+TITLE\" -> \"#+title\"
 
   (setq org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
 
-  (unless (+emacs-options-p 'pgtk) ;; PGTK not need extra up-scaling
+  (unless (featurep 'feat/pgtk) ;; PGTK not need extra up-scaling
     (add-hook
      'org-mode-hook
      (satch-defun +org--set-format-latex-scale-h ()
