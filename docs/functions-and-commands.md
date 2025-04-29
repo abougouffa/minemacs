@@ -685,28 +685,9 @@ FEATS is available.
 Run all build functions in `minemacs-build-functions`.
 Call functions without asking when DONT-ASK-P is non-nil.
 
-#### `(minemacs-bump-packages)`
-
-Update MinEmacs packages to the last revisions (can cause breakages).
-
-#### `(minemacs-bump-packages-async)`
-
-Like `minemacs-bump-packages`, but runs asynchronously.
-
-#### `(minemacs-upgrade PULL)`
-
-Upgrade the packages list to the locked revisions.
-This takes into account the explicitly pinned packages. When called with
-C-u or with PULL, it will run "git pull" in
-MinEmacs directory before upgrading.
-
 #### `(minemacs-root-dir-cleanup)`
 
 Cleanup MinEmacs' root directory.
-
-#### `(+straight-prune-build-cache)`
-
-Prune straight.el build directories for old Emacs versions.
 
 #### `(minemacs-cleanup-emacs-directory)`
 
