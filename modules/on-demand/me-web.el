@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -12,24 +12,11 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-web
-  :auto-mode '((("\\.[px]?html?\\'"
-                 "\\.tpl\\.php\\'"
-                 "\\.[lh]?eex\\'"
-                 "\\.[agj]sp\\'"
-                 "\\.ejs\\'"
-                 "\\.hbs\\'"
-                 "\\.svelte\\'"
-                 "\\.twig\\'"
-                 "\\.jinja2?\\'"
-                 "\\.eco\\'"
-                 "\\.as[cp]x\\'"
-                 "\\.erb\\'"
-                 "\\.mustache\\'"
-                 "\\.djhtml\\'"
-                 "\\.vue\\'"
-                 "wp-content/themes/.+/.+\\.php\\'"
-                 "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'"
-                 "/\\(views\\|html\\|templates\\)/.*\\.php\\'")
+  :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'"
+                 "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'"
+                 "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'"
+                 "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'"
+                 "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'")
                 . web-mode)
                ("\\.haml\\'" . haml-mode)
                ("\\.sass\\'" . sass-mode)
