@@ -674,12 +674,6 @@ Load user configurations CONFIGS.
 
 Load a file, the FILENAME-PARTS are concatenated to form the file name.
 
-#### `(+emacs-options-p &rest FEATS)`
-
-Is features FEATS are enabled in this Emacs build.
-When the first argument is `:any`, this returns t if at least one of the
-FEATS is available.
-
 #### `(minemacs-run-build-functions &optional DONT-ASK-P)`
 
 Run all build functions in `minemacs-build-functions`.
