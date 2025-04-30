@@ -1303,6 +1303,8 @@ Typing these will trigger reindentation of the current line.")
 With non-nil optional argument DELIMITED, only replace matches
 surrounded by word boundaries."
     (interactive "P")
+    (unless (derived-mode-p 'reb-mode 'reb-lisp-mode)
+      (user-error "Not in a `regexp-builder' buffer"))
     (reb-update-regexp)
     (let* ((re (reb-target-value 'reb-regexp))
            (replacement
