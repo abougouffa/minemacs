@@ -180,6 +180,8 @@ a project, call `multi-vterm-dedicated-toggle'."
   :when (and (not (featurep 'os/win)) (executable-find "direnv"))
   :custom
   (envrc-debug minemacs-debug-p)
+  (envrc-remote t)
+  (envrc-supported-tramp-methods '("ssh" "docker"))
   :config
   ;; Ensure loading envrc for babel source blocks
   (with-eval-after-load 'ob
