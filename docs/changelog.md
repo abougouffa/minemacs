@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.20.0](https://github.com/abougouffa/minemacs/compare/1cdce160d5b6e28445754b0755b0519539613732..v12.20.0) - 2025-04-30
+#### Tweaks
+- **(on-demand/web)** don't use `web-mode` for HTML - ([1cdce16](https://github.com/abougouffa/minemacs/commit/1cdce160d5b6e28445754b0755b0519539613732)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.19.0](https://github.com/abougouffa/minemacs/compare/2bbd236862df19d90c66bdb15acd010812b29874..v12.19.0) - 2025-04-27
 #### Bug Fixes
 - **(core)** accept multiple modes in `minemacs-register-on-demand-module` - ([8dc1aaa](https://github.com/abougouffa/minemacs/commit/8dc1aaa9a0008e5f84a495f7b3e97e2bce249771)) - [@abougouffa](https://github.com/abougouffa)
