@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-04-19
+;; Last modified: 2025-04-30
 
 ;;; Commentary:
 
@@ -52,6 +52,7 @@
 ;; Highly customizable startup screen for Emacs
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
+  :hook (enlight-mode . +enlight-responsive-h)
   :custom
   (enlight-content
    (enlight-menu
@@ -68,12 +69,14 @@
       (enlight-open)
     (setq initial-buffer-choice #'enlight))
   :config
-  (satch-add-hook
-   '(window-size-change-functions window-state-change-functions)
-   (satch-defun +enlight--recenter-h (&optional _frame)
-     ;; When in Enlight's buffer, we recall `enlight-open' to refresh and recenter the buffer
-     (when (eq (current-buffer) (get-buffer enlight-buffer-name))
-       (enlight)))))
+  (defun +enlight-responsive-h ()
+    (satch-add-hook
+     '(window-size-change-functions window-state-change-functions)
+     (satch-defun +enlight--recenter-h (&optional _frame)
+       ;; When in Enlight's buffer, we recall `enlight-open' to refresh and recenter the buffer
+       (when (eq (current-buffer) (get-buffer enlight-buffer-name))
+         (enlight)))
+     nil 'local)))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines
