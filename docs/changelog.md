@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.19.1](https://github.com/abougouffa/minemacs/compare/e707fbad4724374711d928d47dba7c5ba79d79ee..v12.19.1) - 2025-04-30
+#### Bug Fixes
+- **(ltex-plus)** fix the download of LSP server for aarch64 - ([ba09562](https://github.com/abougouffa/minemacs/commit/ba09562ebaddf36fb558a4ec5c7a866dbd078dce)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([e296765](https://github.com/abougouffa/minemacs/commit/e296765abb970056e5ebab93ba9dcdd58942602f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([5603d77](https://github.com/abougouffa/minemacs/commit/5603d77bffaa0dc81a4e3b8465d836dd3c1b046d)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- add `.dir-locals.el` - ([2b367c2](https://github.com/abougouffa/minemacs/commit/2b367c2d0fbaf2cfcfc68351551d03b6706cdfe5)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- add file creation timestamps - ([e8f8de8](https://github.com/abougouffa/minemacs/commit/e8f8de8969f891c7f04fd9b1c30671b4b965a59c)) - [@abougouffa](https://github.com/abougouffa)
+- add modification time stamps - ([1a20708](https://github.com/abougouffa/minemacs/commit/1a207080d765aa41d7704a7948f0991633892eb7)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** remove unneeded autoloads - ([38e65ee](https://github.com/abougouffa/minemacs/commit/38e65eed5cfdbb46cf45434da6678366a68f31b8)) - [@abougouffa](https://github.com/abougouffa)
+- Use `featurep` instead of `+emacs-options-p` - ([5624961](https://github.com/abougouffa/minemacs/commit/56249618048a7e74c3be9ad5dafccba2d0a262a2)) - [@abougouffa](https://github.com/abougouffa)
+- move `straight` related stuff to `me-bootstrap` - ([e8e8ce2](https://github.com/abougouffa/minemacs/commit/e8e8ce2a0b9b058704d098395669b94ca1feb607)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** better automation in `minemacs-bump-packages` - ([811f670](https://github.com/abougouffa/minemacs/commit/811f6700fedaed4929b8dab79a24239708be8b69)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** mark Emacs 30 as the recommended version - ([b36f5ea](https://github.com/abougouffa/minemacs/commit/b36f5eacdc17c4fcd65c7141b4e1ef1f17ded0d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/csv)** automatically enable `rainbow-csv` in small files - ([4aff2b6](https://github.com/abougouffa/minemacs/commit/4aff2b6ef1cc174db928200c41a92c0359d4e7bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(re-builder)** better error handling in `+reb-replace-regexp` - ([7f6f9e9](https://github.com/abougouffa/minemacs/commit/7f6f9e972581988fb17528f75073189362ba166f)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** use mode-based condition for displaying terminal buffers - ([e707fba](https://github.com/abougouffa/minemacs/commit/e707fbad4724374711d928d47dba7c5ba79d79ee)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b618991](https://github.com/abougouffa/minemacs/commit/b6189914b41e5d19ee99f33e21fa30798e4e8997)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([8297797](https://github.com/abougouffa/minemacs/commit/8297797d792a955d6eafe09246c9c2f09f0bb709)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([39905b3](https://github.com/abougouffa/minemacs/commit/39905b36b59c65a29f3c75c9f17b36db1a161c4b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ee7da69](https://github.com/abougouffa/minemacs/commit/ee7da69cfece453c19ba3119d52828a6e9e4d128)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.19.0](https://github.com/abougouffa/minemacs/compare/2bbd236862df19d90c66bdb15acd010812b29874..v12.19.0) - 2025-04-27
 #### Bug Fixes
 - **(core)** accept multiple modes in `minemacs-register-on-demand-module` - ([8dc1aaa](https://github.com/abougouffa/minemacs/commit/8dc1aaa9a0008e5f84a495f7b3e97e2bce249771)) - [@abougouffa](https://github.com/abougouffa)
