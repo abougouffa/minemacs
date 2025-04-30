@@ -1,5 +1,11 @@
 ;;  me-tools.el -- System tools -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+
+;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
+;; Created: 2022-10-02
+;; Last modified: 2025-05-01
+
 ;;; Commentary:
 
 ;;; Code:
@@ -197,10 +203,15 @@ a project, call `multi-vterm-dedicated-toggle'."
   :init
   (add-hook 'python-base-mode-hook 'pet-mode -10)
   :config
+  ;; BUG+TODO: When the path contains spaces, this will fail to work. Using
+  ;; `shell-quote-argument' don't work either.
   (defun +pet-quickrun-setup ()
     (with-eval-after-load 'quickrun
-      (let* ((cmd-alist (copy-alist (alist-get "python" quickrun--language-alist nil nil #'equal))))
-        (setcar (assq :command cmd-alist) (pet-executable-find "python"))
+      (let ((cmd-alist (copy-alist (quickrun--command-info "python"))))
+        (dolist (key '(:command :compile-only))
+          (let* ((cmd (assq key cmd-alist))
+                 (args (string-split (cdr cmd))))
+            (setcdr cmd (string-join `(,(pet-executable-find (car args)) ,@(cdr args)) " "))))
         (setq-local quickrun-option-cmd-alist cmd-alist)))))
 
 
