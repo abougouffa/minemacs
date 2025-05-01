@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-01
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-01
 
 ;;; Commentary:
 
@@ -29,18 +29,34 @@
   :straight (:host github :repo "rougier/nano-modeline")
   :after minemacs-loaded
   :demand
+  :custom
+  (nano-modeline-position #'nano-modeline-footer)
   :config
   ;; Disable the default mode-line
   (setq-default mode-line-format nil)
   (nano-modeline-text-mode t)
-  (dolist (mode '(prog text org pdf-view mu4e-headers mu4e-view mu4e-compose elfeed-show elfeed-search elpher term eat xwidget-webkit messages-buffer org-capture org-agenda))
-    (let ((mode-hook (intern (format "%s-mode-hook" mode)))
-          (hook-func (intern (format "nano-modeline-%s-mode" mode))))
-      (add-hook mode-hook hook-func))))
+  ;; Install hooks
+  (add-hook 'prog-mode-hook            #'nano-modeline-prog-mode)
+  (add-hook 'text-mode-hook            #'nano-modeline-text-mode)
+  (add-hook 'org-mode-hook             #'nano-modeline-org-mode)
+  (add-hook 'pdf-view-mode-hook        #'nano-modeline-pdf-mode)
+  (add-hook 'mu4e-headers-mode-hook    #'nano-modeline-mu4e-headers-mode)
+  (add-hook 'mu4e-view-mode-hook       #'nano-modeline-mu4e-message-mode)
+  (add-hook 'mu4e-compose-mode-hook    #'nano-modeline-mu4e-compose-mode)
+  (add-hook 'elfeed-show-mode-hook     #'nano-modeline-elfeed-entry-mode)
+  (add-hook 'elfeed-search-mode-hook   #'nano-modeline-elfeed-search-mode)
+  (add-hook 'elpher-mode-hook          #'nano-modeline-elpher-mode)
+  (add-hook 'term-mode-hook            #'nano-modeline-term-mode)
+  (add-hook 'eat-mode-hook             #'nano-modeline-eat-mode)
+  (add-hook 'xwidget-webkit-mode-hook  #'nano-modeline-xwidget-mode)
+  (add-hook 'messages-buffer-mode-hook #'nano-modeline-message-mode)
+  (add-hook 'org-capture-mode-hook     #'nano-modeline-org-capture-mode)
+  (add-hook 'org-agenda-mode-hook      #'nano-modeline-org-agenda-mode))
 
 (use-package nano-vertico
   :straight (:host github :repo "rougier/nano-vertico")
-  :hook (minemacs-lazy . nano-vertico-mode))
+  :hook (minemacs-lazy . nano-vertico-mode)
+  :disabled)
 
 
 (provide 'obsolete/me-nano)
