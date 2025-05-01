@@ -35,6 +35,11 @@
   :straight t)
 
 
+;; TRAMP integration for LXD containers
+(use-package lxd-tramp
+  :straight t)
+
+
 ;; Launch system applications from Emacs
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
