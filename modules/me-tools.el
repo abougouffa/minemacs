@@ -30,6 +30,11 @@
   (incus-tramp-add-method))
 
 
+;; TRAMP integration for LXC containers
+(use-package lxc-tramp
+  :straight t)
+
+
 ;; Launch system applications from Emacs
 (use-package app-launcher
   :straight (:host github :repo "SebastienWae/app-launcher")
