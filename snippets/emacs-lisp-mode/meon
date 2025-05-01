@@ -7,6 +7,8 @@
 ;; Copyright (C) 2022-`(concat (format-time-string "%Y") "  " user-full-name)`
 
 ;; Author: `(format "%s  (rot13 %S)" user-full-name (rot13 user-mail-address))`
+;; Created: `(format-time-string "%Y-%m-%d")`
+;; Last modified: `(format-time-string "%Y-%m-%d")`
 
 ;;; Commentary:
 
