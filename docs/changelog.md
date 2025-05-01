@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.21.0](https://github.com/abougouffa/minemacs/compare/71900cf44af560b664065d3c09d3ce161973a1e0..v12.21.0) - 2025-05-01
+#### Documentation
+- cleanup some unneeded docs - ([12bb42c](https://github.com/abougouffa/minemacs/commit/12bb42c32501f0b9a135cd648c52b42c642b2390)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(tools)** add TRAMP support for LXD containers - ([1f920a8](https://github.com/abougouffa/minemacs/commit/1f920a87eb2ac702ab95100e21f2d7a5d89599fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** add TRAMP support for LXC containers - ([349cf3a](https://github.com/abougouffa/minemacs/commit/349cf3a1c6dd4be0293b172032ffb00c61101940)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(snippets)** add creation and modification times in the templates - ([32866ee](https://github.com/abougouffa/minemacs/commit/32866ee22b80e75f4c512e99838d5e87f1433828)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(enlight)** make the recentering hook buffer-local to `enlight` - ([71900cf](https://github.com/abougouffa/minemacs/commit/71900cf44af560b664065d3c09d3ce161973a1e0)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** enable on remote SSH and Docker machines - ([500b4a6](https://github.com/abougouffa/minemacs/commit/500b4a62b09bcfabf80c03d9703092f91e3da7c3)) - [@abougouffa](https://github.com/abougouffa)
+- **(pet)** better integration with `quickrun` - ([62b8a5e](https://github.com/abougouffa/minemacs/commit/62b8a5ebbb950c0aa463bdee061c6daad8e6e1e4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a3875ba](https://github.com/abougouffa/minemacs/commit/a3875ba72d8ff1d9075b5a222cef267d634e6436)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.20.0](https://github.com/abougouffa/minemacs/compare/1cdce160d5b6e28445754b0755b0519539613732..v12.20.0) - 2025-04-30
 #### Tweaks
 - **(on-demand/web)** don't use `web-mode` for HTML - ([1cdce16](https://github.com/abougouffa/minemacs/commit/1cdce160d5b6e28445754b0755b0519539613732)) - [@abougouffa](https://github.com/abougouffa)
