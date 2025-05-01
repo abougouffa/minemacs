@@ -4,15 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-01
 
 ;;; Commentary:
 
 ;;; Code:
 
 ;;; MinEmacs groups
-
-(require 'cl-lib)
 
 (defgroup minemacs nil "MinEmacs specific functionalities." :group 'emacs)
 (defgroup minemacs-apps nil "MinEmacs applications." :group 'minemacs)
@@ -110,14 +108,16 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-default-org-dir
   (or (getenv "MINEMACS_ORG_DIR")
       (seq-find #'file-directory-p
-                (cl-loop
-                 for dir in `(,(expand-file-name "org" minemacs-config-dir)
-                              ,(expand-file-name "~/org")
-                              ,@(when-let* ((dir (getenv "XDG_DOCUMENTS_DIR"))) (list (expand-file-name "org" dir)))
-                              ,(expand-file-name "~/Documents/org"))
-                 append (cl-loop
-                         for func in '(downcase upcase capitalize)
-                         collect (expand-file-name (funcall func (file-name-nondirectory dir)) (file-name-directory dir)))))
+                (let (dir-candidates)
+                  (dolist (dir `(,(expand-file-name "org" minemacs-config-dir)
+                                 ,(expand-file-name "~/org")
+                                 ,@(when-let* ((dir (getenv "XDG_DOCUMENTS_DIR"))) (list (expand-file-name "org" dir)))
+                                 ,(expand-file-name "~/Documents/org")))
+                    (dolist (func '(downcase upcase capitalize))
+                      (push
+                       (expand-file-name (funcall func (file-name-nondirectory dir)) (file-name-directory dir))
+                       dir-candidates)))
+                  dir-candidates))
       "~/org") ; The default value for `org-directory'
   "The default directory to use for `org-directory'.
 If environment variable \"MINEMACS_ORG_DIR\" is defined, it gets used,
