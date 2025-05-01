@@ -136,9 +136,10 @@ a project, call `multi-vterm-dedicated-toggle'."
   :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
-;; Rudimentary support for devcontainer in emacs
-(use-package devcontainer-mode
-  :straight (:host github :repo "johannes-mueller/devcontainer-mode"))
+;; VSCode-compatible Dev Containers (https://containers.dev/) for Emacs
+(use-package devcontainer
+  :straight (:host github :repo "lina-bh/devcontainer.el")
+  :commands (devcontainer-up devcontainer-down))
 
 
 ;; Major mode for Apptainer definition files
