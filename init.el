@@ -83,23 +83,6 @@
       custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (load custom-file))
 
-(setq
- ;; Enable debugging on error when Emacs if needed
- debug-on-error minemacs-debug-p
- ;; Decrease the warning type to `:error', unless we are running in verbose mode
- warning-minimum-level (if minemacs-verbose-p :warning :error)
- warning-minimum-log-level warning-minimum-level
- ;; Make byte compilation less noisy
- byte-compile-warnings minemacs-verbose-p
- byte-compile-verbose minemacs-verbose-p
- ;; Set `use-package' to verbose when MinEmacs is started in verbose mode
- use-package-verbose (cond (minemacs-debug-p 'debug) (minemacs-verbose-p t))
- ;; Defer loading packages by default, use `:demand' to force loading a package
- use-package-always-defer (not minemacs-always-demand-p)
- use-package-always-demand minemacs-always-demand-p
- ;; Make the expanded code as minimal as possible, do not try to catch errors
- use-package-expand-minimally (not minemacs-debug-p))
-
 ;; Native compilation settings
 (when (and (featurep 'native-compile) (native-comp-available-p))
   (setq
