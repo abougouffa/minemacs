@@ -756,12 +756,11 @@ or file path may exist now."
        :weight 'bold
        :height size)))
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   (cl-loop
-    for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
-                    maxima eshell scheme python fortran gnuplot plantuml makefile)
-    collect (cons lang t)))
+  (setopt org-babel-load-languages
+          (cl-loop
+           for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
+                           maxima eshell scheme python fortran gnuplot plantuml makefile)
+           collect (cons lang t)))
 
   (with-eval-after-load 'org-src
     (+alist-set "dot" 'graphviz-dot org-src-lang-modes))
