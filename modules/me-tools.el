@@ -91,10 +91,10 @@
   :straight t
   :when (and (not (featurep 'os/win)) (featurep 'feat/modules))
   :bind (([remap project-shell] . multi-vterm-project)
-         ([f1] . +multi-vterm-dedicated-toggle-dwim)
-         :map vterm-mode-map ([f1] . +multi-vterm-dedicated-toggle-dwim))
+         ([f1] . +multi-vterm-toggle-dwim)
+         :map vterm-mode-map ([f1] . +multi-vterm-toggle-dwim))
   :custom
-  (multi-vterm-dedicated-window-height-percent 30)
+  (multi-vterm-dedicated-window-height-percent 20)
   :config
   ;; If a dedicated terminal is run on a remote machine, it seems that
   ;; `multi-vterm' don't get the working directory right, lets fix it!
@@ -102,19 +102,15 @@
    'multi-vterm-dedicated-open :after
    (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
      (when-let* ((dir (file-remote-p default-directory 'localname)))
-       (vterm-send-string (format "cd %S\n" dir)))))
+       (vterm-send-string (format "cd %S" dir))
+       (vterm-send-return))))
 
-  (defun +multi-vterm-dedicated-toggle-dwim ()
+  (defun +multi-vterm-toggle-dwim ()
     "Toggle the vterm window.
 When in a project, toggle a `multi-vterm-project' terminal. When outside
 a project, call `multi-vterm-dedicated-toggle'."
     (interactive)
-    (if-let* ((buf-name (and (multi-vterm-project-root) (multi-vterm-project-get-buffer-name)))
-              (display-buffer-alist (cons `(,(regexp-quote buf-name)
-                                            (display-buffer-reuse-window display-buffer-at-bottom)
-                                            (dedicated . t) ; Close when finished
-                                            (window-height . 0.3))
-                                          display-buffer-alist)))
+    (if-let* ((buf-name (and (multi-vterm-project-root) (multi-vterm-project-get-buffer-name))))
         (if-let* ((buf (get-buffer buf-name))
                   ((buffer-live-p buf)))
             (if-let* ((win (get-buffer-window buf))) ; The project's vterm already exists, toggle it's window
