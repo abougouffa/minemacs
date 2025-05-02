@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-02
 
 ;;; Commentary:
 
@@ -262,6 +262,14 @@
   :load-path "/usr/share/emacs/site-lisp/"
   :mode ("\\.iso$" . cocci-mode)
   :mode ("\\.cocci$" . cocci-mode))
+
+
+;; Same frame speedbar
+(use-package sr-speedbar
+  :straight t
+  :custom
+  (sr-speedbar-right-side nil)
+  (sr-speedbar-default-width 35))
 
 
 (provide 'me-prog)
