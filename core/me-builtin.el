@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-02
 
 ;;; Commentary:
 
@@ -42,6 +42,7 @@
   (window-combination-resize t) ; Resize window combinations proportionally
   (x-stretch-cursor t) ; Stretch cursor to the glyph width
   (frame-resize-pixelwise t) ; Do force frame size to be a multiple of char size
+  (frame-title-format '("GNU Emacs (%b)")) ; Custom frame title
   (help-window-select t) ; Select help window for faster quit!
   (Man-notify-method 'aggressive) ; Same thing with `man'
   (read-process-output-max ; Increase single chunk bytes to read from subprocess (def. 4096)
@@ -1255,6 +1256,63 @@ Typing these will trigger reindentation of the current line.")
                              (string-match-p "unknown" battery-str)
                              (string-match-p "N/A" battery-str)))))
        (display-battery-mode 1)))))
+
+(use-package window
+  :bind (("<f8>" . window-toggle-side-windows))
+  :custom
+  (display-buffer-alist
+   `((,(rx bol "*"
+           (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
+               "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
+               (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
+           "*" eol)
+      (display-buffer-in-side-window)
+      (side . right)
+      (slot . 1)
+      (dedicated . t)
+      (window-width . 80)
+      (reusable-frames . visible))
+     (,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" "Dictionary" "lexic"
+                       (seq (or "help" "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan "
+                                "eglot-help for " "shellcheck:" "show-marks")
+                            (* any)))
+           "*" eol)
+      (display-buffer-in-side-window)
+      (window-width . 85)
+      (side . right)
+      (slot . 0))
+     (,(rx "*" (or "Ibuffer" "Buffer List") "*")
+      (display-buffer-in-side-window)
+      (window-width . 100)
+      (side . right)
+      (slot . 1))
+     (,(rx "*" (or "eshell" "vterminal" "vterm" "shell" "terminal"))
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (reusable-frames . visible)
+      (dedicated . t)
+      (side . bottom)
+      (slot . -1))
+     (,(rx "*" (or "Backtrace" "Warnings" "envrc" "Compile-Log" "Messages" "Bookmark List") "*")
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 0))
+     ((compilation-mode)
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 0))
+     ((rx "*" (or "Flymake diagnostics" "xref" "Completions"))
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 1))
+     ("\\*\\(grep\\|find\\|Occur\\|rg\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 2)))))
 
 (use-package windmove
   :after minemacs-lazy

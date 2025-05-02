@@ -18,6 +18,9 @@
   :hook (minemacs-lazy . global-treesit-auto-mode)
   :custom
   (treesit-auto-install 'prompt)
+  :init
+  ;; Hide the `treesit-auto-install-all' buffer
+  (add-to-list 'display-buffer-alist '("\\*Treesit-auto install candidates\\*" (display-buffer-no-window) (allow-no-window . t)))
   :config
   ;; Add extra grammars
   ;; BUG+FIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
