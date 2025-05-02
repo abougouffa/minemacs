@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.22.0](https://github.com/abougouffa/minemacs/compare/b2ef9c9e9369d61968117aaa3f4c685c3ff8dd8b..v12.22.0) - 2025-05-02
+#### Features
+- **(prog)** restore `sr-speedbar` - ([6ef77b7](https://github.com/abougouffa/minemacs/commit/6ef77b772ab5b90335de1f6bde961da3cdff2eff)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** replace `devcontainer-mode` with `devcontainer` - ([6e33df4](https://github.com/abougouffa/minemacs/commit/6e33df4d1d12a8efe6c9724e92cec9bba62c1e04)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** don't depend on `cl-lib` in `me-vars` - ([d50d8e3](https://github.com/abougouffa/minemacs/commit/d50d8e3e71984eacee626a92ec7ac8da1cb8dfc5)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** move some variables to `early-init` - ([933f742](https://github.com/abougouffa/minemacs/commit/933f7422b3d93aebe4d97e6cc0ebb561433a70c4)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** move `display-buffer-alist` stuff to `me-builtin` - ([2a9bc89](https://github.com/abougouffa/minemacs/commit/2a9bc89cc7fa99e05a280c6d325f7085b6783ca0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(multi-vterm)** better `+multi-vterm-toggle-dwim` - ([05f8f79](https://github.com/abougouffa/minemacs/commit/05f8f793c44a62f7d0057553ba08ef6b8c8142bc)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/nano)** minor edits - ([b2ef9c9](https://github.com/abougouffa/minemacs/commit/b2ef9c9e9369d61968117aaa3f4c685c3ff8dd8b)) - [@abougouffa](https://github.com/abougouffa)
+- **(with-editor)** better integration - ([4b14ba0](https://github.com/abougouffa/minemacs/commit/4b14ba0b64f60359b83f0d9fca53c3d439b81f79)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.21.0](https://github.com/abougouffa/minemacs/compare/71900cf44af560b664065d3c09d3ce161973a1e0..v12.21.0) - 2025-05-01
 #### Documentation
 - cleanup some unneeded docs - ([12bb42c](https://github.com/abougouffa/minemacs/commit/12bb42c32501f0b9a135cd648c52b42c642b2390)) - [@abougouffa](https://github.com/abougouffa)
