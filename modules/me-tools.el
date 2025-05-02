@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-01
+;; Last modified: 2025-05-02
 
 ;;; Commentary:
 
@@ -175,17 +175,16 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
   :init
+  (once-x-call '(:before shell-command) #'shell-command-with-editor-mode)
   ;; `julia-repl' seems to start on `term-mode', so let's check for it before exporting the editor
   (defvar +with-editor-ignore-matching-buffers '("\\*julia\\*"))
   (defun +with-editor-export-all ()
     (unless (seq-some (+apply-partially-right #'string-match-p (buffer-name)) +with-editor-ignore-matching-buffers)
-      (+shutup!
-       (with-editor-export-editor) ; Export EDITOR
-       (with-editor-export-hg-editor) ; Export HG_EDITOR
-       (with-editor-export-git-editor) ; Export GIT_EDITOR
-       (with-editor-export-editor "JJ_EDITOR")))) ; Export JJ_EDITOR
-  :bind (([remap async-shell-command] . with-editor-async-shell-command)
-         ([remap shell-command] . with-editor-shell-command))
+      (+shutup! ; Export "EDITOR", then "(HG|GIT|JJ)_EDITOR" when needed
+       (with-editor-export-editor)
+       (when (getenv "HG_EDITOR") (with-editor-export-hg-editor))
+       (when (getenv "GIT_EDITOR") (with-editor-export-git-editor))
+       (when (getenv "JJ_EDITOR") (with-editor-export-editor "JJ_EDITOR")))))
   :config
   (add-to-list 'with-editor-envvars "JJ_EDITOR")) ; Add support for Jujutsu (`jj')
 
