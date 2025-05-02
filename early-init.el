@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-01
+;; Last modified: 2025-05-02
 
 ;;; Commentary:
 
@@ -21,8 +21,8 @@
  ;; Decrease the warning type to `:error', unless we are running in verbose mode
  warning-minimum-level (if minemacs-verbose-p :warning :error)
  warning-minimum-log-level warning-minimum-level
- ;; Enable EIEIO backward compatibility but don't warn about it by default
- eieio-backward-compatibility (if minemacs-verbose-p 'warn t)
+ ;; Enable EIEIO backward compatibility and don't warn about it
+ eieio-backward-compatibility t
  ;; Make byte compilation less noisy
  byte-compile-warnings minemacs-verbose-p
  byte-compile-verbose minemacs-verbose-p
