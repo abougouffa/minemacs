@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-02
 
 ;;; Commentary:
 
@@ -23,6 +23,31 @@
   (denote-date-prompt-use-org-read-date t) ; And `org-read-date' is an amazing bit of tech
   :config
   (denote-rename-buffer-mode 1))
+
+
+;; Convenience functions for working with multiple silos
+(use-package denote-silo
+  :straight t)
+
+
+;; Convenience functions for daily journaling with Denote
+(use-package denote-journal
+  :straight t)
+
+
+;; Sequence notes or Folgezettel with Denote
+(use-package denote-sequence
+  :straight t)
+
+
+;; Extensions to better integrate Org with Denote
+(use-package denote-org
+  :straight t)
+
+
+;; Extensions to better integrate Markdown with Denote
+(use-package denote-markdown
+  :straight t)
 
 
 ;; Use Consult in tandem with Denote
