@@ -219,7 +219,6 @@ or file path may exist now."
 (use-package which-key
   :straight (which-key :source gnu-elpa-mirror)
   :hook (minemacs-lazy . which-key-mode)
-  :when (>= emacs-major-version 30)
   :custom
   (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay nil)
@@ -394,8 +393,7 @@ or file path may exist now."
 
 (use-package editorconfig
   :straight (editorconfig :source nongnu-elpa)
-  :hook (minemacs-first-file . editorconfig-mode)
-  :when (>= emacs-major-version 30))
+  :hook (minemacs-first-file . editorconfig-mode))
 
 (use-package flymake
   :straight (flymake :source gnu-elpa-mirror)
