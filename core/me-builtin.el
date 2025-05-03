@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-02
+;; Last modified: 2025-05-03
 
 ;;; Commentary:
 
@@ -80,6 +80,7 @@
   (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
   (ring-bell-function #'ignore) ; Don't beep
   (inhibit-compacting-font-caches t) ; Trade memory usage for less lagging
+  (set-mark-command-repeat-pop t) ; Use C-u C-SPC C-SPC... instead of C-u C-SPC C-u C-SPC...
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
@@ -1083,10 +1084,15 @@ Typing these will trigger reindentation of the current line.")
   (add-hook 'window-buffer-change-functions #'+auto-revert--on-buffer-switch-h))
 
 (use-package savehist
-  :hook (minemacs-lazy . savehist-mode)) ; Save history
+  :hook (minemacs-lazy . savehist-mode) ; Save history
+  :custom
+  (savehist-additional-variables ; Save clipboard, marks, macros, etc.
+   '(kill-ring register-alist mark-ring global-mark-ring search-ring regexp-search-ring)))
 
 (use-package saveplace
-  :hook (minemacs-first-file . save-place-mode)) ; Save place in files
+  :hook (minemacs-first-file . save-place-mode) ; Save place in files
+  :custom
+  (save-place-limit 1000))
 
 (use-package term
   :hook (term-mode . minemacs-reduce-font-size)
@@ -1283,7 +1289,7 @@ Typing these will trigger reindentation of the current line.")
       (window-width . 100)
       (side . right)
       (slot . 1))
-     (,(rx "*" (or "eshell" "vterminal" "vterm" "shell" "terminal"))
+     (,(rx "*" (or (seq (* any) "eshell") "vterminal" "vterm" "shell" "terminal"))
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (reusable-frames . visible)
