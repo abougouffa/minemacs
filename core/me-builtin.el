@@ -1099,14 +1099,7 @@ Typing these will trigger reindentation of the current line.")
   :config
   ;; Kill `term' buffer on exit (reproduce a similar behavior to `shell's
   ;; `shell-kill-buffer-on-exit').
-  (defun +term--kill-after-exit:around-a (orig-fn proc msg)
-    (if (memq (process-status proc) '(signal exit))
-        (let ((buffer (process-buffer proc)))
-          (apply orig-fn (list proc msg))
-          (kill-buffer buffer))
-      (apply orig-fn (list proc msg))))
-
-  (advice-add 'term-sentinel :around #'+term--kill-after-exit:around-a))
+  (advice-add 'term-sentinel :around #'+kill-buffer-after-sentinel-exit))
 
 (use-package executable
   ;; Make scripts (files starting with shebang "#!") executable when saved

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-04-29
+;; Last modified: 2025-05-03
 
 ;;; Commentary:
 
@@ -942,6 +942,15 @@ the schema from the file name."
       (format "{IndentWidth: %d, TabWidth: %d}"
               (or (and indent (symbol-value indent)) standard-indent)
               (or (and indent (symbol-value indent)) tab-width)))))
+
+;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
+;;;###autoload
+(defun +kill-buffer-after-sentinel-exit (orig-fn proc msg)
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        (apply orig-fn (list proc msg))
+        (kill-buffer buffer))
+    (apply orig-fn (list proc msg))))
 
 
 
