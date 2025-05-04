@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-04
 
 ;;; Commentary:
 
@@ -475,8 +475,16 @@ It is deferred until `general' gets loaded and configured."
     (when (executable-find "ecryptfs-verify")
       (+map! "te" #'ecryptfs-toggle-mount-private)))
 
+  ;; Kill the minibuffer even when in another windown.
+  ;; Adapted from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+  (defun +kill-minibuffer ()
+    "Kill the minibuffer from another window."
+    (interactive)
+    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+      (abort-recursive-edit)))
+
   ;; Exit minibuffer from anywhere
-  (keymap-global-set "S-<escape>" #'+minibuffer-kill-minibuffer)
+  (keymap-global-set "S-<escape>" #'+kill-minibuffer)
 
   ;; HACK: This is a synchronization feature, providing `me-general-ready' tells
   ;; the `+map!', `+map-local!', ... macros that `general' is ready and the

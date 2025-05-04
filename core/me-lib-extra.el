@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-03
+;; Last modified: 2025-05-04
 
 ;;; Commentary:
 
@@ -630,15 +630,6 @@ by `+screenshot-delay') before taking the screenshot."
        `(metadata (category . ,category)))
       (_
        (all-completions str seq pred)))))
-
-;; Kill the minibuffer even when in another windown.
-;; Adapted from: https://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
-;;;###autoload
-(defun +minibuffer-kill-minibuffer ()
-  "Kill the minibuffer when switching to window with mouse."
-  (interactive)
-  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-    (abort-recursive-edit)))
 
 ;;;###autoload
 (defun +region-or-thing-at-point (&optional leave-region-marked)
