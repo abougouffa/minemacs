@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-02
+;; Last modified: 2025-05-04
 
 ;;; Commentary:
 
@@ -64,6 +64,29 @@
 (set-default-toplevel-value 'file-name-handler-alist nil) ; Make sure the new value survives any current let-binding
 ;; Restore `file-name-handler-alist' after startup while conserving the potential new elements
 (add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
+
+;; HACK: This advice around `use-package' checks if a package is disabled in
+;; `minemacs-disabled-packages' before calling `use-package'.
+(defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+  (unless (+package-disabled-p package)
+    (add-to-list 'minemacs-configured-packages package t)
+    (apply origfn package args)))
+
+(advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
+
+;; If you want to keep the `+use-package--check-if-disabled:around-a' advice after
+;; loading MinEmacs' modules. You need to set in in your
+;; "$MINEMACSDIR/early-config.el"
+(defvar +use-package-keep-checking-for-disabled-p nil)
+
+;; The previous advice will be removed after loading MinEmacs packages to avoid
+;; messing with the user configuration (for example, if the user manually
+;; install a disabled package).
+(defun +use-package--remove-check-if-disabled-advice-h ()
+  (unless +use-package-keep-checking-for-disabled-p
+    (advice-remove 'use-package '+use-package--check-if-disabled:around-a)))
+
+(add-hook 'minemacs-after-loading-modules-hook '+use-package--remove-check-if-disabled-advice-h)
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)
