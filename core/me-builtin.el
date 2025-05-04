@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-03
+;; Last modified: 2025-05-04
 
 ;;; Commentary:
 
@@ -122,7 +122,7 @@
   (keymap-global-set "M-:" #'pp-eval-expression) ; Instead of `eval-expression'
   (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
   (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
-  (keymap-global-set "C-c D" #'+delete-this-file-and-buffer)
+  (keymap-global-set "C-c D" #'+delete-current-file-and-buffer)
   (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace

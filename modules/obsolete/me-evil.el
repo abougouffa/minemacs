@@ -307,7 +307,7 @@ It is deferred until `general' gets loaded and configured."
    "f"    '(nil :wk "file")
    "fS"   '(write-file :wk "Save as ...")
    "fd"   #'+delete-this-file
-   "fD"   #'+delete-this-file-and-buffer
+   "fD"   #'+delete-current-file-and-buffer
    "fR"   #'rename-visited-file
    "ff"   #'find-file
    "fs"   #'save-buffer

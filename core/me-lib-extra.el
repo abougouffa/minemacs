@@ -126,15 +126,15 @@ RECURSIVE is non-nil."
 ;; Rewrite of: `crux-delete-file-and-buffer', proposes also to delete VC
 ;; controlled files even when `vc-delete-file' fails (edited, conflict, ...).
 ;;;###autoload
-(defun +delete-this-file-and-buffer (&optional filename)
+(defun +delete-current-file-and-buffer (&optional filename)
   "Delete FILENAME and its associated visiting buffer."
   (interactive)
   (when-let* ((filename (or filename (buffer-file-name)))
               (short-path (abbreviate-file-name filename)))
     (if (vc-backend filename)
-        (or (ignore-errors (vc-delete-file (buffer-file-name)))
-            (+delete-this-file filename)
-            (kill-buffer))
+        (or (condition-case nil (progn (vc-delete-file (buffer-file-name)) t) (error nil))
+            (and (condition-case nil (progn (+delete-this-file filename) t) (error nil))
+                 (kill-buffer)))
       (when (y-or-n-p (format "Are you sure you want to delete %s? " short-path))
         (delete-file filename delete-by-moving-to-trash)
         (message "Deleted file %s" short-path)
