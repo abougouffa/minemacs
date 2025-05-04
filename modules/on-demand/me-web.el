@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-04
 
 ;;; Commentary:
 
@@ -61,5 +61,5 @@
   :straight t)
 
 
-(provide 'obsolete/me-web)
+(provide 'on-demand/me-web)
 ;;; me-web.el ends here
