@@ -377,8 +377,6 @@ Call functions without asking when DONT-ASK-P is non-nil.
 Cleanup MinEmacs' root directory.")
 (autoload 'minemacs-cleanup-emacs-directory "me-lib-extra" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
-(autoload 'minemacs-apply-performance-tweaks "me-lib-extra" "\
-Set some Emacs variables for better (!) performance." t)
 (autoload 'minemacs-load-module "me-lib-extra" "\
 Interactively install and load MODULES that aren't enabled in \"modules.el\".
 
@@ -386,6 +384,10 @@ When called with \\[universal-argument], it prompts also for on-demand modules.
 When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules.
 
 (fn &rest MODULES)" t)
+(autoload '+clean-file-name "me-lib-extra" "\
+Clean FILENAME, optionally convert to DOWNCASE-P.
+
+(fn FILENAME &optional DOWNCASE-P)")
 (autoload '+file-name-incremental "me-lib-extra" "\
 Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
@@ -406,21 +408,17 @@ Move to trash when TRASH is non-nil, delete directories recursively when
 RECURSIVE is non-nil.
 
 (fn FILE-OR-DIRECTORY &optional TRASH RECURSIVE)")
-(autoload '+delete-this-file-and-buffer "me-lib-extra" "\
+(autoload '+delete-current-file-and-buffer "me-lib-extra" "\
 Delete FILENAME and its associated visiting buffer.
 
 (fn &optional FILENAME)" t)
-(autoload '+copy-this-file-name "me-lib-extra" "\
+(autoload '+copy-current-file-name "me-lib-extra" "\
 Save (copy) the file name of this buffer to the kill ring." t)
 (autoload '+apply-patch-dwim "me-lib-extra" "\
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
 
 (fn PATCH-BUF &optional PROJ-DIR)" t)
-(autoload '+clean-file-name "me-lib-extra" "\
-Clean FILENAME, optionally convert to DOWNCASE-P.
-
-(fn FILENAME &optional DOWNCASE-P)")
 (autoload '+html2pdf "me-lib-extra" "\
 Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
@@ -523,19 +521,10 @@ Decode and apply ANSI color chars in the curernt buffer." t)
 Get the font faces at POS.
 
 (fn POS)" t)
-(autoload '+screenshot-svg "me-lib-extra" "\
-Save a screenshot of the current frame as an SVG image to OUTFILE.
-
-If launched with a prefix or universal argument, it waits for a moment (defined
-by `+screenshot-delay') before taking the screenshot.
-
-(fn OUTFILE)" t)
 (autoload '+completion-mark-category "me-lib-extra" "\
 Mark SEQ as being in CATEGORY for use with `completing-read'.
 
 (fn SEQ CATEGORY)")
-(autoload '+minibuffer-kill-minibuffer "me-lib-extra" "\
-Kill the minibuffer when switching to window with mouse." t)
 (autoload '+region-or-thing-at-point "me-lib-extra" "\
 Return the region or the thing at point.
 
@@ -596,6 +585,10 @@ the schema from the file name.
 (fn &optional ASK)" t)
 (autoload '+clang-format-get-style "me-lib-extra" "\
 Get the \"-style\" argument for clang-format.")
+(autoload '+kill-buffer-after-sentinel-exit "me-lib-extra" "\
+
+
+(fn ORIG-FN PROC MSG)")
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
 (autoload '+binary-buffer-p "me-lib-extra" "\
@@ -943,7 +936,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.[px]?html?\\'" "\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-wiki.el
