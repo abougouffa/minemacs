@@ -151,14 +151,14 @@ RECURSIVE is non-nil."
         (kill-buffer)))))
 
 ;;;###autoload
-(defun +copy-this-file-name ()
+(defun +copy-current-file-name ()
   "Save (copy) the file name of this buffer to the kill ring."
   (interactive)
-  (if-let* ((file (buffer-file-name)))
+  (if-let* ((filename (buffer-file-name)))
       (with-temp-buffer
-        (insert file)
+        (insert filename)
         (kill-ring-save (point-min) (point-max)))
-    (user-error "This buffer isn't bound to a file")))
+    (user-error "This buffer is not visiting a file")))
 
 (defvar +apply-patch-dwim-proj-dir nil)
 (defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
