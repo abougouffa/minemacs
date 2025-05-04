@@ -218,11 +218,11 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
         (load-theme minemacs-theme t)
       (error
        (let ((default-theme (eval (car (get 'minemacs-theme 'standard-value)))))
-         (+error! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
+         (+log! "Cannot load theme %S, trying to load the default theme %S" minemacs-theme default-theme)
          (condition-case nil
              (load-theme default-theme t)
            (error
-            (+error! "Cannot load default theme %S, falling back to the builtin `modus-operandi' theme" default-theme)
+            (+log! "Cannot load default theme %S, falling back to the builtin `modus-operandi' theme" default-theme)
             (load-theme 'modus-operandi t)))))))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
