@@ -79,17 +79,27 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
 ;;; Files, directories and IO helper functions
 
 ;;;###autoload
+(defun +clean-file-name (filename &optional downcase-p)
+  "Clean FILENAME, optionally convert to DOWNCASE-P."
+  (replace-regexp-in-string ; Clean slashes, backslashes, ":", ";", spaces, and tabs
+   "[:;\t\n\r /\\_]+" "-"
+   (replace-regexp-in-string
+    "[‘’‚“”„\"`'()&]+" ""
+    (if downcase-p (downcase filename) filename))))
+
+;;;###autoload
 (defun +file-name-incremental (filename)
   "Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\"."
-  (let* ((ext (file-name-extension filename))
-         (dir (file-name-directory filename))
-         (file (file-name-base filename))
-         (filename-regex (concat "^" file "\\(?:-\\(?1:[[:digit:]]+\\)\\)?" (if ext (concat "\\." ext) "")))
-         (last-file (car (last (directory-files dir nil filename-regex))))
-         (last-file-num (and last-file (string-match filename-regex last-file) (match-string 1 last-file)))
-         (num (1+ (string-to-number (or last-file-num "-1")))))
-    (file-name-concat dir (format "%s%s%s" file (if last-file (format "-%d" num) "") (if ext (concat "." ext) "")))))
+  (let* ((directory (file-name-directory filename))
+         (basename (file-name-base filename))
+         (extension (file-name-extension filename t))
+         (candidate filename)
+         (counter 0))
+    (while (file-exists-p candidate)
+      (setq counter (1+ counter))
+      (setq candidate (concat directory basename "-" (number-to-string counter) extension)))
+    candidate))
 
 ;;;###autoload
 (defun +delete-this-file (&optional path force-p)
@@ -239,16 +249,6 @@ When a region is active, propose to use it as the patch buffer."
                                    (pop-to-buffer out-buf))))))
                 (view-mode 1))
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
-
-;;;###autoload
-(defun +clean-file-name (filename &optional downcase-p)
-  "Clean FILENAME, optionally convert to DOWNCASE-P."
-  ;; Clean slashes, backslashes, ":", ";", spaces, and tabs
-  (replace-regexp-in-string
-   "[:;\t\n\r /\\_]+" "-"
-   (replace-regexp-in-string
-    "[‘’‚“”„\"`'()&]+" ""
-    (if downcase-p (downcase filename) filename))))
 
 
 
