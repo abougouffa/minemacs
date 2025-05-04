@@ -48,14 +48,6 @@ Call functions without asking when DONT-ASK-P is non-nil."
   (message "Finished cleanup!"))
 
 ;;;###autoload
-(defun minemacs-apply-performance-tweaks ()
-  "Set some Emacs variables for better (!) performance."
-  (interactive)
-  (setq inhibit-compacting-font-caches t ; Don’t compact font caches during GC
-        read-process-output-max (* 1024 1024) ; Increase single chunk bytes to read from subprocess
-        fast-but-imprecise-scrolling t)) ; Fast scrolling
-
-;;;###autoload
 (defun minemacs-load-module (&rest modules)
   "Interactively install and load MODULES that aren't enabled in \"modules.el\".
 
@@ -593,33 +585,6 @@ prerelease if no :VER is provided."
                       (get-char-property pos 'face)
                       (plist-get (text-properties-at pos) 'face)))))
     (message "Faces: %s" faces)))
-
-(defcustom +screenshot-delay 5
-  "A delay to wait before taking the screenshot.
-Applicable only when calling `+screenshot-svg' with a prefix."
-  :group 'minemacs-utils
-  :type 'number)
-
-;; Inspired by: https://reddit.com/r/emacs/comments/idz35e/comment/g2c2c6y
-;;;###autoload
-(defun +screenshot-svg (outfile)
-  "Save a screenshot of the current frame as an SVG image to OUTFILE.
-
-If launched with a prefix or universal argument, it waits for a moment (defined
-by `+screenshot-delay') before taking the screenshot."
-  (interactive "FSave to file: ")
-  (let ((outfile (file-name-with-extension outfile "svg")))
-    (if current-prefix-arg
-        (run-with-timer +screenshot-delay nil (apply-partially #'+screenshot-svg--take-screenshot outfile))
-      (+screenshot-svg--take-screenshot outfile))))
-
-(defun +screenshot-svg--take-screenshot (&optional outfile)
-  "Save a SVG screenshot of the current frame to OUTFILE."
-  (let* ((tmp-file (make-temp-file "emacs-" nil ".svg"))
-         (data (x-export-frames nil 'svg)))
-    (with-temp-file tmp-file (insert data))
-    (when (stringp outfile) (copy-file tmp-file outfile))
-    (message "Screenshot saved to %s" (or outfile tmp-file))))
 
 ;;;###autoload
 (defun +completion-mark-category (seq category)
