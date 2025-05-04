@@ -273,12 +273,15 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
      (+eval-when-idle-for! +lazy-delay ,@body)))
 
 (defcustom +first-file-hook-ignore-list nil
-  "A list of files to ignore in the `minemacs-first-*-file-hook'."
+  "A list of files to ignore in the `minemacs-first-*-file-hook' hooks.
+
+It can be a filename, a filename with wildcard or a function that
+returns one of the two."
   :group 'minemacs-core
-  :type '(repeat (choice file sexp)))
+  :type '(repeat (choice function string)))
 
 (defcustom +first-file-hooks nil
-  "A list of defined hooks using `+make-first-file-hook!'."
+  "A list of hooks defined using `+make-first-file-hook!'."
   :group 'minemacs-core
   :type '(repeat symbol))
 
@@ -454,21 +457,6 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
                                          (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
-;; Taken from: https://sachachua.com/dotemacs/index.html#building-a-today-i-learned-habit-and-displaying-the-documentation-for-random-emacs-commands
-(defun +describe-random-command ()
-  "Show the documentation for a random command.
-Consider only documented, non-obsolete interactive functions."
-  (interactive)
-  (let (result)
-    (mapatoms
-     (lambda (s)
-       (when (and (commandp s)
-                  (documentation s t)
-                  (not (get s 'byte-obsolete-info)))
-         (setq result (cons s result)))))
-    (funcall-interactively (if (fboundp 'helpful-command) 'helpful-command 'describe-command)
-                           (elt result (random (length result))))))
-
 
 
 ;;; Environment variables
@@ -631,7 +619,6 @@ be deleted.
       (setq
        fn-body
        `((defun ,exit-fn-name (&rest _)
-           ;; Or default to the built-in `tab-bar'.
            (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
              (tab-close (1+ tab-num))))))
       (when exit-func
