@@ -147,11 +147,14 @@ The default delay (in seconds) to consider in `+lazy!` macro.
 
 #### `+first-file-hook-ignore-list`
 
-A list of files to ignore in the `minemacs-first-*-file-hook`.
+A list of files to ignore in the `minemacs-first-*-file-hook` hooks.
+
+It can be a filename, a filename with wildcard or a function that
+returns one of the two.
 
 #### `+first-file-hooks`
 
-A list of defined hooks using `+make-first-file-hook!`.
+A list of hooks defined using `+make-first-file-hook!`.
 
 #### `+eglot-auto-enable-modes`
 
@@ -474,11 +477,6 @@ This is only valable after loading all modules (in the user's "config.el").
 List all the available modules.
 With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
-#### `(+describe-random-command)`
-
-Show the documentation for a random command.
-Consider only documented, non-obsolete interactive functions.
-
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
 Execute shell command COMMAND and return its output as a string.
@@ -632,6 +630,11 @@ color in light themes.
 BASE-COLOR can be a color (string) or a face.
 When it is a face, the FACE-ATTR needs to be provided, otherwise, the
 :background attribute will be used.
+
+#### `(+make-buffer-conds &rest CONDITIONS)`
+
+Return a lambda that matches CONDITIONS.
+To be used as a predicate generator for `display-buffer-alist`.
 
 #### `(minemacs-try-load-extra-mode)`
 
