@@ -1255,51 +1255,60 @@ Typing these will trigger reindentation of the current line.")
 
 (use-package window
   :bind (("<f8>" . window-toggle-side-windows))
-  :custom
-  (display-buffer-alist
-   `((,(rx bol "*"
-           (or "scheme" "ielm" "Python" "Inferior Octave" "maxima" "imaxima" "lua"
-               "inferior-lisp" "prolog" "gnuplot" "Nix-REPL" "julia"
-               (seq (or (seq "R" (opt ":" (any digit))) "julia" "SQL") ":" (* any)))
-           "*" eol)
+  :init
+  ;; NOTE: Set `display-buffer-alist' via `setopt' instead of `:custom' to
+  ;; ensure showing warnings when the condition isn't correct
+  (setopt
+   display-buffer-alist
+   `((,(lambda (buff-or-name &rest _args)
+         (with-current-buffer (get-buffer buff-or-name)
+           (or ; Generic way of detecting interactive modes
+            (string-match-p "\\(inferior\\|repl\\|interactive\\|-comint\\)-" (symbol-name major-mode))
+            (string-match-p (rx bol "*" (or "imaxima" "lua" "Lua" "Nix-REPL" "forth" "julia" "sbt") "*") (buffer-name)))))
       (display-buffer-in-side-window)
       (side . right)
       (slot . 1)
       (dedicated . t)
       (window-width . 80)
       (reusable-frames . visible))
-     (,(rx bol "*" (or "info" "Printing Help" "Org Entity Help" "General Keybindings" "tldr" "Dictionary" "lexic"
-                       (seq (or "help" "Help" "helpful" "eldoc" "Tcl help" "Man " "WoMan "
-                                "eglot-help for " "shellcheck:" "show-marks")
-                            (* any)))
-           "*" eol)
+     (,(+make-buffer-conds
+        'help-mode 'Info-mode 'Man-mode 'woman-mode 'tldr-mode 'dictionary-mode 'lexic-mode
+        (rx bol "*" (or "Metahelp" "Printing Help" "Org Entity Help"
+                        (seq (or "eldoc" "Tcl help" "eglot-help for " "shellcheck:" "show-marks") (* any)))
+            "*" eol))
       (display-buffer-in-side-window)
       (window-width . 85)
       (side . right)
       (slot . 0))
-     (,(rx "*" (or "Ibuffer" "Buffer List") "*")
+     (,(+make-buffer-conds 'ibuffer-mode 'Buffer-menu-mode)
       (display-buffer-in-side-window)
       (window-width . 100)
       (side . right)
       (slot . 1))
-     (,(rx "*" (or (seq (* any) "eshell") "vterminal" "vterm" "shell" "terminal"))
+     (,(+make-buffer-conds
+        'term-mode 'eshell-mode 'shell-mode 'vterm-mode 'eat-mode
+        (rx bol "*" (or "eshell" "vterm" "vterminal" "shell" "terminal") (* any) "*"))
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (reusable-frames . visible)
       (dedicated . t)
       (side . bottom)
       (slot . -1))
-     (,(rx "*" (or "compilation" "minemacs-bump-packages" "Backtrace" "Warnings" "envrc" "Compile-Log" "Messages" "Bookmark List") "*")
+     (,(+make-buffer-conds
+        'compilation-mode 'bookmark-bmenu-mode 'messages-buffer-mode 'backtrace-mode
+        "\\*\\(?:Compile-Log\\|Warnings\\|envrc\\)\\*")
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (side . bottom)
       (slot . 0))
-     (,(rx "*" (or "Flymake diagnostics" "xref" "Completions"))
+     (,(+make-buffer-conds
+        'flymake-diagnostics-buffer-mode 'flymake-project-diagnostics-mode 'xref--xref-buffer-mode
+        "\\*Completions")
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (side . bottom)
       (slot . 1))
-     ("\\*\\(grep\\|find\\|Occur\\|rg\\)\\*"
+     (,(+make-buffer-conds 'grep-mode 'occur-mode 'rg-mode "\\*find\\*")
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (side . bottom)
