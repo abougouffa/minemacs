@@ -2,6 +2,44 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.23.0](https://github.com/abougouffa/minemacs/compare/e89d27bbdecb28813d708bf26c3e2ec036a5dbc8..v12.23.0) - 2025-05-04
+#### Bug Fixes
+- **(builtin)** install `which-key` and `editorconfig` on Emacs 29 - ([9e7dbf5](https://github.com/abougouffa/minemacs/commit/9e7dbf58d7dcbfdeb59ae7818336fda54991b1e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** fix `+file-name-incremental` - ([590f41f](https://github.com/abougouffa/minemacs/commit/590f41fadd8fcb832418d19213801e5a4b3e1f56)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** rename and fix the `+delete-current-file-and-buffer` - ([43da678](https://github.com/abougouffa/minemacs/commit/43da6783d18f4361ae2fcd3268b39454aae30d8b)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** `warn` in verbose mode, it triggers the debugger - ([1149d19](https://github.com/abougouffa/minemacs/commit/1149d196d0d68db3066e8d695d0a5f3f6ebad612)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/web)** provide the right feature - ([7693bb9](https://github.com/abougouffa/minemacs/commit/7693bb9cc8734cdec747c841a9bf3f8db75ac951)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** fix a condition in `display-buffer-alist` - ([3205a36](https://github.com/abougouffa/minemacs/commit/3205a36b80541b6890bb64c73ffd6e0b96d6d371)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** display compilation buffers in side windows - ([147cf24](https://github.com/abougouffa/minemacs/commit/147cf248c19ad8238226df1676928ddd14a6fb96)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([ece5044](https://github.com/abougouffa/minemacs/commit/ece50449c7132863ccfd09858f7aab6797e1fdc3)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([93d5bfd](https://github.com/abougouffa/minemacs/commit/93d5bfd36a8f6f3711c3bc9d6401af6f14ab916a)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add helper function `+make-buffer-conds` - ([cdacbe9](https://github.com/abougouffa/minemacs/commit/cdacbe9e1a37f316c81860d3130ecb9dcace5e44)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** add `denote-(silo|journal|sequence|org|markdown)` - ([e89d27b](https://github.com/abougouffa/minemacs/commit/e89d27bbdecb28813d708bf26c3e2ec036a5dbc8)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** some cleanup - ([ee79e95](https://github.com/abougouffa/minemacs/commit/ee79e95e6f2e4b3017819a115bf781b9329be056)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor edit - ([975fee0](https://github.com/abougouffa/minemacs/commit/975fee0f7c7e1af241f9285705ff60fde9d99aae)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** rename `+copy-this-file-name` to `+copy-current-file-name` - ([b54ef3d](https://github.com/abougouffa/minemacs/commit/b54ef3d782a3d5b37db5bbcc66d5f755c6ba79ad)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove some unused or unnecessary commands - ([bb9a5f7](https://github.com/abougouffa/minemacs/commit/bb9a5f7dd2b8e68b7b95e48fb728eb3bfde4aa9f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** move unused command to `obsolete/me-evil` - ([3d14aaf](https://github.com/abougouffa/minemacs/commit/3d14aaf49a5ea547e091e6ee980b3b131ec545e6)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** minor edit - ([3610ce0](https://github.com/abougouffa/minemacs/commit/3610ce086e91d301b26d5a621844ff935322223a)) - [@abougouffa](https://github.com/abougouffa)
+- **(term)** move the exit advice to `me-lib-extra` - ([81b045a](https://github.com/abougouffa/minemacs/commit/81b045af1f3314e63c985c0fc2e0b1de8db56284)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(tools)** restore `devcontainer-mode` - ([f65555f](https://github.com/abougouffa/minemacs/commit/f65555f3e7a288617a64f44676d82ceb7583c3d0)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** restore the `minemacs-disabled-packages` hack - ([fa13237](https://github.com/abougouffa/minemacs/commit/fa1323704b2de92f99336c300bf8b2183049bfda)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** better defaults - ([30c7c8f](https://github.com/abougouffa/minemacs/commit/30c7c8f427ee00d6103700fbd094ad54fc3227bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** reduce log level in `+load-theme` - ([1bb04b8](https://github.com/abougouffa/minemacs/commit/1bb04b8218998020b0c175e9109e4cf2467c13b5)) - [@abougouffa](https://github.com/abougouffa)
+- **(eat)** kill buffer after exit - ([f9b0946](https://github.com/abougouffa/minemacs/commit/f9b0946109448781b92998bf16b3a65b71e691f1)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** more robust configuration for `display-buffer-alist` - ([3301a5c](https://github.com/abougouffa/minemacs/commit/3301a5c73fb9c94140c521e6c6c0efe24ccef673)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([344ce91](https://github.com/abougouffa/minemacs/commit/344ce91e84f06671eb28f5aa03d3c087656477a0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bc7555c](https://github.com/abougouffa/minemacs/commit/bc7555c3c8421b7a3c8cf2a8cd4a965eb4b00b75)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6ac4b50](https://github.com/abougouffa/minemacs/commit/6ac4b50079d93a4736c212b6cb592a837028d412)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4c4d99b](https://github.com/abougouffa/minemacs/commit/4c4d99bf90fa8e2bb67af8693a1c857f3385d619)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.22.0](https://github.com/abougouffa/minemacs/compare/b2ef9c9e9369d61968117aaa3f4c685c3ff8dd8b..v12.22.0) - 2025-05-02
 #### Features
 - **(prog)** restore `sr-speedbar` - ([6ef77b7](https://github.com/abougouffa/minemacs/commit/6ef77b772ab5b90335de1f6bde961da3cdff2eff)) - [@abougouffa](https://github.com/abougouffa)
