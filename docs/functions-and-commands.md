@@ -228,11 +228,6 @@ The default baudrate to use.
 
 A list of commands to run in the serial terminal after creation.
 
-#### `+screenshot-delay`
-
-A delay to wait before taking the screenshot.
-Applicable only when calling `+screenshot-svg` with a prefix.
-
 #### `+kill-buffer-no-ask-list`
 
 A list of buffer names to be killed without confirmation.
@@ -687,15 +682,15 @@ Cleanup MinEmacs' root directory.
 
 Cleanup unwanted files/directories from MinEmacs' directory.
 
-#### `(minemacs-apply-performance-tweaks)`
-
-Set some Emacs variables for better (!) performance.
-
 #### `(minemacs-load-module &rest MODULES)`
 
 Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
+
+#### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
+
+Clean FILENAME, optionally convert to DOWNCASE-P.
 
 #### `(+file-name-incremental FILENAME)`
 
@@ -714,11 +709,11 @@ Delete FILE-OR-DIRECTORY with `delete-file` or `delete-directory`.
 Move to trash when TRASH is non-nil, delete directories recursively when
 RECURSIVE is non-nil.
 
-#### `(+delete-this-file-and-buffer &optional FILENAME)`
+#### `(+delete-current-file-and-buffer &optional FILENAME)`
 
 Delete FILENAME and its associated visiting buffer.
 
-#### `(+copy-this-file-name)`
+#### `(+copy-current-file-name)`
 
 Save (copy) the file name of this buffer to the kill ring.
 
@@ -730,10 +725,6 @@ Get the list of the patches A/B files mentioned in PATCH-BUFF.
 
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
-
-#### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
-
-Clean FILENAME, optionally convert to DOWNCASE-P.
 
 #### `(+html2pdf INFILE OUTFILE &optional BACKEND)`
 
@@ -803,19 +794,9 @@ Decode and apply ANSI color chars in the curernt buffer.
 
 Get the font faces at POS.
 
-#### `(+screenshot-svg OUTFILE)`
-
-Save a screenshot of the current frame as an SVG image to OUTFILE.
-If launched with a prefix or universal argument, it waits for a moment (defined
-by `+screenshot-delay`) before taking the screenshot.
-
 #### `(+completion-mark-category SEQ CATEGORY)`
 
 Mark SEQ as being in CATEGORY for use with `completing-read`.
-
-#### `(+minibuffer-kill-minibuffer)`
-
-Kill the minibuffer when switching to window with mouse.
 
 #### `(+region-or-thing-at-point &optional LEAVE-REGION-MARKED)`
 

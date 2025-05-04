@@ -149,6 +149,11 @@
 
 ## `me-notes`
 * `denote`: Simple notes for Emacs with an efficient file-naming scheme
+* `denote-silo`: Convenience functions for working with multiple silos
+* `denote-journal`: Convenience functions for daily journaling with Denote
+* `denote-sequence`: Sequence notes or Folgezettel with Denote
+* `denote-org`: Extensions to better integrate Org with Denote
+* `denote-markdown`: Extensions to better integrate Markdown with Denote
 * `consult-denote`: Use Consult in tandem with Denote
 * `denote-menu`: View and filter Denote files in a tabulated list
 
@@ -179,6 +184,7 @@
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 * `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
+* `sr-speedbar`: Same frame speedbar
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
@@ -227,6 +233,8 @@
 ## `me-tools`
 * `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `incus-tramp`: TRAMP integration for Incus containers
+* `lxc-tramp`: TRAMP integration for LXC containers
+* `lxd-tramp`: TRAMP integration for LXD containers
 * `app-launcher`: Launch system applications from Emacs
 * `emamux`: Manipulate "tmux" from Emacs
 * `emacs-everywhere`: System-wide popup Emacs windows for quick edits
