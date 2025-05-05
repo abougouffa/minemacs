@@ -88,6 +88,8 @@
 * `eglot-inactive-regions`: Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
 * `eglot-x`: Extra non-standard functionalities for Eglot
 * `igist`: Work seamlessly with GitHub gists from Emacs
+* `gee`: The Emacs Gerrit Experience
+* `gerrit`: Gerrit integration
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -272,6 +274,7 @@
 * `casual`: A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 * `casual-avy`: An opinionated `transient` menu for `avy`
 * `casual-symbol-overlay`: An opinionated `transient` menu for `symbol-overlay`
+* `ligature`: Display typographical ligatures in major modes
 
 ## `me-vc`
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
