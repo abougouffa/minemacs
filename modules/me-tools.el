@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-03
+;; Last modified: 2025-05-05
 
 ;;; Commentary:
 
@@ -12,9 +12,9 @@
 
 ;; A deployment plugin via Tramp for Emacs
 (use-package ssh-deploy
-  :straight t
+  :straight (ssh-deploy :source gnu-elpa-mirror)
   ;; Should be configured in per-project basis, good documentation at:
-  ;; https://github.com/cjohansson/emacs-ssh-deploy#deployment-configuration-examples
+  ;; https://github.com/emacs-straight/ssh-deploy#deployment-configuration-examples
   :hook ((after-save . ssh-deploy-after-save)
          (find-file . ssh-deploy-find-file))
   :bind (("C-c C-z" . ssh-deploy-prefix-map))
