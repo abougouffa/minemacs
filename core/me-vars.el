@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-01
+;; Last modified: 2025-05-05
 
 ;;; Commentary:
 
@@ -320,6 +320,10 @@ Each string is a regexp, matched against variable names to omit from
   "Enable loading on-demand companion packages when needed."
   :group 'minemacs-core
   :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+
+(defface +goto-addr-url-face '((t :italic t :underline t))
+  "Face for URLs, I prefer keeping the original face and add underline and italic."
+  :group 'goto-addr)
 
 
 (provide 'me-vars)

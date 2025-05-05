@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-04
+;; Last modified: 2025-05-05
 
 ;;; Commentary:
 
@@ -1213,17 +1213,15 @@ Typing these will trigger reindentation of the current line.")
   (kill-do-not-save-duplicates t) ; Filter duplicate entries in kill ring
   (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
 
+(use-package bug-reference
+  :hook ((prog-mode conf-mode) . bug-reference-prog-mode)
+  :config
+  (put 'bug-reference 'face '+goto-addr-url-face))
+
 (use-package goto-addr
   :hook ((prog-mode conf-mode) . goto-address-prog-mode)
-  :hook ((prog-mode conf-mode) . bug-reference-prog-mode)
   :custom
-  (goto-address-url-face '+goto-addr-url-face)
-  :init
-  (defface +goto-addr-url-face '((t :italic t :underline t))
-    "Face for URLs, I prefer keeping the original face and add underline and italic."
-    :group 'goto-addr)
-  (with-eval-after-load 'bug-reference
-    (put 'bug-reference 'face '+goto-addr-url-face)))
+  (goto-address-url-face '+goto-addr-url-face))
 
 (use-package visual-wrap
   :when (>= emacs-major-version 30)
@@ -1242,16 +1240,7 @@ Typing these will trigger reindentation of the current line.")
   :hook (minemacs-lazy . global-subword-mode)) ; Global SubWord mode
 
 (use-package battery
-  :hook (minemacs-lazy . +display-battery-mode-maybe)
-  :init
-  ;; Show the battery status (if available) in the mode-line
-  (defun +display-battery-mode-maybe ()
-    (+shutup!
-     (when-let* ((battery-str (battery))
-                 (_ (not (or (equal "Battery status not available" battery-str)
-                             (string-match-p "unknown" battery-str)
-                             (string-match-p "N/A" battery-str)))))
-       (display-battery-mode 1)))))
+  :hook (minemacs-lazy . display-battery-mode))
 
 (use-package window
   :bind (("<f8>" . window-toggle-side-windows))
