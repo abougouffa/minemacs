@@ -33,5 +33,10 @@
   :straight (:host bitbucket :repo "olanilsson/gee"))
 
 
+;; Gerrit integration
+(use-package gerrit
+  :straight t)
+
+
 (provide 'me-experimental)
 ;;; me-experimental.el ends here
