@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-05-05
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -36,6 +36,12 @@
 ;; Gerrit integration
 (use-package gerrit
   :straight t)
+
+
+;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
+(use-package webkit
+  :straight (:host github :repo "akirakyle/emacs-webkit" :files (:defaults "*.js" "*.css" "*.so") :pre-build ("make"))
+  :when (featurep 'feat/modules))
 
 
 (provide 'me-experimental)
