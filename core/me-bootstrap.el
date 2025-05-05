@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-29
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -125,9 +125,17 @@ This takes into account the explicitly pinned packages. When called with
 MinEmacs directory before upgrading."
   (interactive "P")
   (when pull (let ((default-directory minemacs-root-dir)) (vc-pull)))
-  (straight-pull-recipe-repositories) ; Update straight recipe repositories
-  (straight-thaw-versions)
-  (straight-rebuild-all) ; Rebuild the packages
+  (unwind-protect
+      (progn
+        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
+        (advice-add 'read-string :around '+minemacs--read-string:around-a)
+        (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
+        (straight-pull-recipe-repositories) ; Update straight recipe repositories
+        (straight-thaw-versions)
+        (straight-rebuild-all)) ; Rebuild the packages
+    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
+    (advice-remove 'read-string '+minemacs--read-string:around-a)
+    (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
   (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun +straight-prune-build-cache ()
