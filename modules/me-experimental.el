@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-04-22
+;; Last modified: 2025-05-05
 
 ;;; Commentary:
 
@@ -26,6 +26,11 @@
 ;; Work seamlessly with GitHub gists from Emacs
 (use-package igist
   :straight t)
+
+
+;; The Emacs Gerrit Experience
+(use-package gee
+  :straight (:host bitbucket :repo "olanilsson/gee"))
 
 
 (provide 'me-experimental)
