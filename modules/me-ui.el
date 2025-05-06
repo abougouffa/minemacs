@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -167,36 +167,62 @@
   :hook (prog-mode . ligature-mode)
   :hook (minemacs-after-setup-fonts . ligature-generate-ligatures)
   :config
-  (ligature-set-ligatures 't '("www"))
-  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; A list of ligatures compiled from several fonts:
-  ;; - JetBrains Mono: https://www.jetbrains.com/lp/mono/
-  ;; - Fira Code: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
+  ;; A fine-tuned list of per-language ligatures, constructed from:
   ;; - Iosevka: https://typeof.net/Iosevka/customizer
+  ;; - Fira Code: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
   ;; - Cascadia Code: https://github.com/microsoft/cascadia-code/wiki/Coding-ligature-coverage
+  (defvar +ligature-common
+    `("<<" "<<<" ">>>" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "=="
+      "*=" "+=" "<|" "<|>" "|>" "++" "+++" "&&" "||" "/=" "--" "#!" "::="
+      "#[" "]#" "{|" "|}" "__"))
+
+  (defvar +ligature-c-like ; C, C++, C#, Java, Rust, JS, PHP, Go, V
+    `("!=" "<>" "/*" "*/" "//" "///" "^=" "|=" "?." "??" "<~>"))
+
+  (defvar +ligature-html ; HTML, XML, JS, PHP
+    `("</" "</>" "/>" "<!--" "<!---" "www"))
+
+  (defvar +ligature-brackets ; Ruby, PHP, Julia, ML, Haskell, Raku, Dafny, Swift, Idris, PHP
+    `("<>" "<:" ":=" "*+" "<*" "<*>" "*>" "<." "<.>" ".>" "+*" "=*"
+      "=:" ":>" "(*" "*)" "/*" "*/"))
+
+  (defvar +ligature-js `(,@+ligature-c-like ,@+ligature-html "!==" "!===" "==="))
+
+  (defvar +ligature-markdown
+    `("##" "###" "####" "#####" "######" "--" "---" "----" "-----" "------"))
+
+  (defvar +ligature-functional ; ML, Ocaml, F#, Idris, Coq, Haskell, Elm, PureScript
+    `(,@+ligature-brackets "~~" "~-" "<>" "\\/" "/\\" "|-" "-|" "[|" "|]" "%%" "<$" "<$>" "$>" "=/="))
+
+  (defvar +ligature-arrows
+    `("<-" "->" "<<-" "->>" "<--" "-->" "<---" "--->"
+      "=>" "<==" "==>" "<===" "===>" "<<=" "=>>" "<<==" "==>>" "<->" "<=>"
+      "<~~" "~~>" "<-->" "<--->" "<---->" "<==>" "<===>" "<====>"))
+
+  (defvar +ligature-arrows-extra
+    '("-<<" "-<" "-<-" "->-" ">-" ">>-" "=<<" "=<" "=<=" "=>="
+      "<<==>>" "|-|-|" "|=|=|" "/=/" "=<<=" "=>>=" "-<<-" "->>-" "||-" "-||"
+      "<=//" "//=>" "<=|" "|=>" "<-|" "|->" "<-<<" ">>->" "<=<<" ">>=>"
+      "__|__" "/==/==/" "//==//==//" "|==|==|" "||==||==||" "<==<==<" ">==>==>"
+      "<<==<<==<<" ">>==>>==>>" "|--|--|" "||--||--||" "<--<--<" ">-->-->"
+      "<<--<<--<<" ">>-->>-->>"))
+
+  (ligature-set-ligatures 't '("ff" "ffi" "Fl" "Tl" "fi" "fj" "fl" "ft" "www"))
+  (ligature-set-ligatures '(prog-mode conf-mode) `(,@+ligature-common ,@+ligature-arrows ,@+ligature-arrows-extra))
+  (ligature-set-ligatures '(js-mode typescript-mode typescript-ts-mode php-ts-mode php-mode) +ligature-js)
+  (ligature-set-ligatures '(julia-mode julia-ts-mode ess-julia-mode ruby-mode ruby-ts-mode php-mode) +ligature-brackets)
+  (ligature-set-ligatures '(markdown-mode markdown-ts-mode) +ligature-markdown)
+  (ligature-set-ligatures '(html-mode nxml-mode) +ligature-html)
   (ligature-set-ligatures
-   'prog-mode
-   '("!!" "!!." "!." "!:" "!=" "!==" "!===" "#!" "##" "###" "####"
-     "#(" "#:" "#=" "#?" "#[" "#_" "#_(" "#{" "$>" "%%" "&&" "&&&"
-     "&=" "(*" "*)" "**" "***" "**/" "*+" "*/" "*=" "*>" "+*" "++"
-     "+++" "+>" "--" "---" "----" "--->" "-->" "-<" "-<-" "-<<"
-     "->" "->-" "->>" "-|" "-}" "-~" ".-" ".." "..." "..<" "..="
-     ".=" ".>" ".?" "/*" "/**" "//" "///" "//=" "//==//==//" "/="
-     "/==" "/==/==/" "/>" "/\\" "://" "::" ":::" "::=" ":<" ":="
-     ":>" ":?" ":?>" ";;" ";;;" "<!--" "<!---" "<#--" "<$" "<$>"
-     "<*" "<*>" "<+" "<+>" "<-" "<--" "<---" "<---->" "<--->"
-     "<--<--<" "<-->" "<-<" "<->" "<-|" "<." "<.>" "</" "</>" "<:"
-     "<:<" "<<" "<<-" "<<--<<--<<" "<<<" "<<=" "<<==<<==<<" "<="
-     "<=<" "<==" "<==<==<" "<===" "<====>" "<===>" "<==>" "<=>"
-     "<=|" "<>" "<|" "<|>" "<||" "<|||" "<~" "<~>" "<~~" "=!="
-     "=*" "=/=" "=:" "=:=" "=<" "=<<" "=<=" "==" "===" "===>"
-     "==>" "=>" "=>=" "=>>" ">-" ">-->-->" ">->" ">:" ">="
-     ">==>==>" ">=>" ">>" ">>-" ">>-->>-->>" ">>=" ">>==>>==>>"
-     ">>>" ">]" "?." "?:" "?=" "??" "??=" "???" "@_" "[<" "[|"
-     "[||]" "\\/" "\\\\" "\\\\\\" "]#" "^=" "__" "__|__" "_|_"
-     "{-" "{|" "|-" "|--|--|" "|->" "|=" "|==|==|" "|=>" "|>" "|]"
-     "||" "||-" "||--||--||" "||=" "||==||==||" "||>" "|||" "|||>"
-     "|}" "}#" "~-" "~=" "~>" "~@" "~~" "~~>")))
+   '( c-mode c++-mode opencl-c-mode cuda-mode llvm-ts-mode java-mode
+      java-ts-mode csharp-mode csharp-ts-mode rust-mode rust-ts-mode
+      go-mode go-ts-mode go-mod-ts-mode v-mode v-ts-mode zig-mode zig-ts-mode)
+   +ligature-c-like)
+  (ligature-set-ligatures
+   '( haskell-mode haskell-ts-mode elm-mode elm-ts-mode purescript-mode
+      purescript-ts-mode ml-mode caml-mode tuareg-mode fsharp-mode fstar-mode
+      fsharp-ts-mode dafny-mode swift-mode coq-mode idris-mode)
+   +ligature-functional))
 
 
 (provide 'me-ui)
