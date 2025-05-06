@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-04
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -713,15 +713,22 @@ recursive-p) to scan directories recursively."
 (declare-function project-remember-projects-under "project")
 
 (defun +project-scan-for-projects (&rest dirs)
-  "Scan and remember projects under DIRS or `+project-scan-dir-paths'."
-  (interactive)
+  "Scan and remember projects under DIRS or `+project-scan-dir-paths'.
+
+When called interactively with \\[universal-argument], ask for the
+directory. When called with \\[universal-argument]
+\\[universal-argument], scan the selected directory recursively."
+  (interactive (list (if current-prefix-arg
+                         (cons (read-directory-name "Select a directory to scan: ")
+                               (equal current-prefix-arg '(16)))
+                       +project-scan-dir-paths)))
   (dolist (cons-dir (or dirs +project-scan-dir-paths))
-    (let* ((cons-dir (ensure-list cons-dir))
-           (root-dir (car cons-dir))
-           (recursive (cdr cons-dir))
-           (sub-dirs (and (file-directory-p root-dir) (+directory-subdirs root-dir))))
-      (dolist (dir sub-dirs)
-        (project-remember-projects-under dir recursive)))))
+    (when-let* ((cons-dir (ensure-list cons-dir))
+                (root-dir (car cons-dir))
+                (sub-dirs (and (file-directory-p root-dir) (+directory-subdirs root-dir))))
+      (let ((recursive (cdr cons-dir)))
+        (dolist (dir sub-dirs)
+          (project-remember-projects-under dir recursive))))))
 
 (defcustom +super-project-root-markers '(".super-project" ".super-project.el" ".repo" ".code-workspace" ".workspace")
   "List of super-project markers."
