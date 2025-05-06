@@ -553,6 +553,9 @@ Examples:
 #### `(+project-scan-for-projects &rest DIRS)`
 
 Scan and remember projects under DIRS or `+project-scan-dir-paths`.
+When called interactively with C-u, ask for the
+directory. When called with C-u
+C-u, scan the selected directory recursively.
 
 #### `(+project-super-project-try-or-fail DIR)`
 

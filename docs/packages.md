@@ -90,6 +90,7 @@
 * `igist`: Work seamlessly with GitHub gists from Emacs
 * `gee`: The Emacs Gerrit Experience
 * `gerrit`: Gerrit integration
+* `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
