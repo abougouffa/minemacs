@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -57,7 +57,7 @@
   (defun +writeroom--enable-mixed-pitch-mode-maybe-h ()
     "Enable `mixed-pitch-mode' when in supported modes."
     (when (and +writeroom-enable-mixed-pitch
-               (apply #'derived-mode-p +writeroom-mixed-pitch-modes))
+               (derived-mode-p +writeroom-mixed-pitch-modes))
       (require 'mixed-pitch)
       (mixed-pitch-mode (if writeroom-mode 1 -1))))
 

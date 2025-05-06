@@ -1117,7 +1117,7 @@ To be used as a predicate generator for `display-buffer-alist'."
             (dolist (companion-assoc companion-packages)
               (let ((cur-modes (ensure-list (car companion-assoc)))
                     (modes (ensure-list (cdr companion-assoc))))
-                (when-let* (((and (apply #'derived-mode-p cur-modes)
+                (when-let* (((and (derived-mode-p cur-modes)
                                   (cl-find-if-not #'fboundp modes)
                                   (or (eq minemacs-on-demand-enable-companion-packages 'no-ask)
                                       (and (not noninteractive) ; ask only when in an interactive session

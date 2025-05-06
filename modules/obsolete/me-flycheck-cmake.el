@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-04
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -49,7 +49,7 @@ When FILENAME is nil, use the file name of the current buffer."
                                "\\.\\([Cc]\\|[Cc][Cc]\\|[Cc]\\+\\+\\|[Cc][Pp][Pp]\\|[Cc][Xx][Xx]\\)$")
                               nil)))
         (setq file (car src-files))))
-    (when (and (cl-some #'derived-mode-p '(c-mode c++-mode c-ts-mode c++-ts-mode))
+    (when (and (derived-mode-p '(c-mode c++-mode c-ts-mode c++-ts-mode))
                (string-match (file-truename proj-root) file))
       (unless +flycheck-cmake-json
         (when-let* ((db-file (+flycheck-cmake-get-compile-db-file)))
@@ -70,7 +70,7 @@ When FILENAME is nil, use the file name of the current buffer."
 (defun +flycheck-cmake-setup (&rest _)
   "Setup GCC and Clang checkers with the right arguments."
   (interactive)
-  (when (cl-some #'derived-mode-p '(c-mode c++-mode c-ts-base-mode))
+  (when (derived-mode-p '(c-mode c++-mode c-ts-base-mode))
     (ignore-errors
       (let ((args (+flycheck-cmake-extract-args)))
         (setq-local flycheck-gcc-args args

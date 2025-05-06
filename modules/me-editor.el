@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -71,7 +71,7 @@
     (unless (or (not (featurep 'minemacs-first-file))
                 (memq major-mode '(fundamental-mode guard-lf-large-file-mode so-long-mode))
                 (member (substring (buffer-name) 0 1) '(" " "*"))
-                (apply #'derived-mode-p +dtrt-indent-excluded-modes))
+                (derived-mode-p +dtrt-indent-excluded-modes))
       ;; Don't display messages in the echo area, but still log them
       (let ((inhibit-message (not minemacs-verbose-p)))
         (dtrt-indent-mode 1))))

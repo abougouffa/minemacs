@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-24
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -112,7 +112,7 @@
 (defun +turn-on-writing-mode ()
   (interactive)
   (when (or (memq major-mode +writing-major-modes)
-            (seq-some #'derived-mode-p +writing-derived-major-modes))
+            (derived-mode-p +writing-derived-major-modes))
     (+writing-mode 1)))
 
 ;;;###autoload

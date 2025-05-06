@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-26
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -55,9 +55,9 @@ The link style depends on the current major mode."
            (summary (cdr ticket))
            (link (format "%s/browse/%s" jiralib-url id)))
       (insert
-       (cond ((derived-mode-p 'org-mode)
+       (cond ((derived-mode-p '(org-mode))
               (format "[[%s][%s%s]]" link id (if with-summary (concat ": " summary) "")))
-             ((derived-mode-p 'markdown-mode 'git-commit-mode 'markdown-ts-mode)
+             ((derived-mode-p '(markdown-mode git-commit-mode markdown-ts-mode))
               (format "[%s%s](%s)" id (if with-summary (concat ": " summary) "") link))
              (t link)))))
 
