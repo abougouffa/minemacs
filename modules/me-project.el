@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-14
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -63,9 +63,9 @@
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
   (add-hook 'ibuffer-hook (lambda () (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update)))))
   ;; Mark compile commands as safe (customized in ".dir-locals.el")
-  (dolist (var '(projection-commands-configure-project projection-commands-build-project
-                 projection-commands-test-project projection-commands-run-project
-                 projection-commands-package-project projection-commands-install-project))
+  (dolist (var '( projection-commands-configure-command projection-commands-build-command
+                  projection-commands-test-command projection-commands-run-command
+                  projection-commands-package-command projection-commands-install-command))
     (put var 'safe-local-variable #'stringp))
   ;; Enable `projection-hook', adds the possibility to run functions in per-project basis
   (global-projection-hook-mode 1))
