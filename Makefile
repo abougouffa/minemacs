@@ -68,7 +68,7 @@ make-readme-markdown.el:
 	wget -q -O $@ https://raw.github.com/mgalgs/make-readme-markdown/master/make-readme-markdown.el
 
 combined.el:
-	cat init.el early-init.el core/me-{vars,lib,lib-extra,builtin}.el modules/me-*.el modules/extras/me-*.el >combined.el
+	cat init.el early-init.el core/me-vars.el core/me-lib.el core/me-lib-extra.el core/me-builtin.el modules/me-*.el modules/extras/me-*.el >combined.el
 
 documentation: gen-descriptions gen-external-tools combined.el make-readme-markdown.el
 	emacs --script make-readme-markdown.el <combined.el >docs/functions-and-commands.md 2>/dev/null
