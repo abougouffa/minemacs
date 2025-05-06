@@ -574,6 +574,7 @@ or file path may exist now."
 
 (use-package xref
   :straight (xref :source gnu-elpa-mirror)
+  :hook (xref--xref-buffer-mode . minemacs-reduce-font-size)
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
   (xref-show-definitions-function #'xref-show-definitions-completing-read)
