@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-04
+;; Last modified: 2025-05-06
 
 ;;; Commentary:
 
@@ -22,13 +22,14 @@
 Call functions without asking when DONT-ASK-P is non-nil."
   (interactive "P")
   (dolist (fn minemacs-build-functions)
-    (message "[MinEmacs]: Running `%s'" fn)
-    (if dont-ask-p
-        ;; Do not ask before installing
-        (cl-letf (((symbol-function 'yes-or-no-p) #'always)
-                  ((symbol-function 'y-or-n-p) #'always))
+    (message "Running `%s'" fn)
+    (condition-case err
+        (if dont-ask-p ; Do not ask before installing
+            (cl-letf (((symbol-function 'yes-or-no-p) #'always)
+                      ((symbol-function 'y-or-n-p) #'always))
+              (funcall-interactively fn))
           (funcall-interactively fn))
-      (funcall-interactively fn))))
+      (error (message "While running `%S' got: \"%s\", skipping" fn (error-message-string err))))))
 
 ;;;###autoload
 (defun minemacs-root-dir-cleanup ()
