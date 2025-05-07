@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-08
 
 ;;; Commentary:
 
@@ -171,7 +171,7 @@
   ;; - Iosevka: https://typeof.net/Iosevka/customizer
   ;; - Fira Code: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
   ;; - Cascadia Code: https://github.com/microsoft/cascadia-code/wiki/Coding-ligature-coverage
-  (defvar +ligature-common
+  (defvar +ligature-common-prog
     `("<<" "<<<" ">>>" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "=="
       "*=" "+=" "<|" "<|>" "|>" "++" "+++" "&&" "||" "/=" "--" "#!" "::="
       "#[" "]#" "{|" "|}" "__"))
@@ -210,7 +210,8 @@
       "<<--<<--<<" ">>-->>-->>"))
 
   (ligature-set-ligatures 't '("ff" "ffi" "Fl" "Tl" "fi" "fj" "fl" "ft" "www"))
-  (ligature-set-ligatures '(prog-mode conf-mode text-mode) `(,@+ligature-common ,@+ligature-arrows ,@+ligature-arrows-extra))
+  (ligature-set-ligatures '(prog-mode conf-mode) `(,@+ligature-common-prog ,@+ligature-arrows ,@+ligature-arrows-extra))
+  (ligature-set-ligatures '(text-mode) `(,@+ligature-arrows ,@+ligature-arrows-extra))
   (ligature-set-ligatures '(js-mode typescript-mode typescript-ts-mode php-ts-mode php-mode) +ligature-js)
   (ligature-set-ligatures '(julia-mode julia-ts-mode ess-julia-mode ruby-mode ruby-ts-mode php-mode) +ligature-brackets)
   (ligature-set-ligatures '(markdown-mode markdown-ts-mode) +ligature-markdown)
