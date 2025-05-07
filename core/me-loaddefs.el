@@ -362,7 +362,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-first-file-hook!" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -384,6 +384,12 @@ When called with \\[universal-argument], it prompts also for on-demand modules.
 When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules.
 
 (fn &rest MODULES)" t)
+(autoload 'minemacs-user-config "me-lib-extra" "\
+Open MinEmacs user configuration.
+
+When ASK is non-nil (\\[universal-argument]), ask about which file to open.
+
+(fn ASK)" t)
 (autoload '+clean-file-name "me-lib-extra" "\
 Clean FILENAME, optionally convert to DOWNCASE-P.
 
