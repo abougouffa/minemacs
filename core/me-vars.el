@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-05
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -272,6 +272,8 @@ it automatically."
     "^DESKTOP_STARTUP_ID$" "^LS_?COLORS$" "^$"
     ;; Python virtual environment
     "^VIRTUAL_ENV$"
+    ;; Gnome session
+    "^GNOME_\\(DESKTOP_SESSION_ID\\|SETUP_DISPLAY\\|SHELL_SESSION_MODE\\)$"
     ;; KDE session
     "^KDE_\\(FULL_SESSION\\|APPLICATIONS_.*\\|SESSION_\\(UID\\|VERSION\\)\\)$"
     ;; X server, Wayland, or services' env that shouldn't be persisted
