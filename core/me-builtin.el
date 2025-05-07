@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-08
 
 ;;; Commentary:
 
@@ -1079,7 +1079,7 @@ Typing these will trigger reindentation of the current line.")
     (when-let* ((mtime (+file-mtime buffer-file-name)))
       (unless (equal mtime +auto-revert-buffer-time)
         (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
-        (revert-buffer t t))))
+        (+shutup! (revert-buffer t t)))))
 
   (add-hook 'window-buffer-change-functions #'+auto-revert--on-buffer-switch-h))
 
