@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -78,13 +78,12 @@
   (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
-  (ring-bell-function #'ignore) ; Don't beep
+  (ring-bell-function #'ignore) ; Don't beep (will be overwritten by `doom-modeline')
   (inhibit-compacting-font-caches t) ; Trade memory usage for less lagging
   (set-mark-command-repeat-pop t) ; Use C-u C-SPC C-SPC... instead of C-u C-SPC C-u C-SPC...
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
-                fill-column 80 ; Default fill column width
-                tab-width 4) ; Default (8) is too big!
+                fill-column 80) ; Default fill column width (def. 70)
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (or minemacs-builtin-only-p (+package-disabled-p 'vertico 'me-completion))
