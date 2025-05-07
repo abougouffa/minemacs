@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-02
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -67,6 +67,15 @@
 ;; View and filter Denote files in a tabulated list
 (use-package denote-menu
   :straight t)
+
+
+;; Connecting clues (a.k.a., note taking) while reading code
+(use-package clue
+  :straight (:host github :repo "AmaiKinono/clue")
+  :custom
+  (clue-project-root-function
+   (if (fboundp '+citre-dominating-project-root) #'+citre-dominating-project-root #'clue-project-root))
+  :hook (find-file . clue-auto-enable-clue-mode))
 
 
 (provide 'me-notes)
