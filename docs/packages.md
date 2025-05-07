@@ -159,6 +159,7 @@
 * `denote-markdown`: Extensions to better integrate Markdown with Denote
 * `consult-denote`: Use Consult in tandem with Denote
 * `denote-menu`: View and filter Denote files in a tabulated list
+* `clue`: Connecting clues (a.k.a., note taking) while reading code
 
 ## `me-org`
 * `org-contrib`: Contributed packages to Org in search for new maintainers

@@ -694,6 +694,11 @@ Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
 
+#### `(minemacs-user-config ASK)`
+
+Open MinEmacs user configuration.
+When ASK is non-nil (C-u), ask about which file to open.
+
 #### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
 
 Clean FILENAME, optionally convert to DOWNCASE-P.
