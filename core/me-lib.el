@@ -860,7 +860,7 @@ file dont exist."
   '(:default
     ((:family "Iosevka" :height 110)
      (:family "Martian Mono" :height 100)
-     (:family "Cascadia Code" :height 120 :weight semi-light)
+     (:family "Cascadia Code" :height 110 :weight semi-light)
      (:family "Fira Code" :height 110)
      (:family "Jetbrains Mono" :height 100)
      (:family "Iosevka Comfy" :height 110)
