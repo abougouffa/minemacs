@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-02
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -126,7 +126,11 @@
 
 ;; Consult integration with Eglot
 (use-package consult-eglot
-  :straight t)
+  :straight t
+  :config
+  (consult-customize
+   consult-eglot-symbols
+   :initial (or (thing-at-point 'region t) (thing-at-point 'symbol t))))
 
 
 ;; Run code formatter on buffer contents without moving point
