@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-08
 
 ;;; Commentary:
 
@@ -147,12 +147,16 @@ use `project-remember-project' with each detected repo."
 ;; Emacs package for highlighting uncommitted changes
 (use-package diff-hl
   :straight t
-  :hook (find-file . diff-hl-mode)
+  :hook (minemacs-first-file . global-diff-hl-mode)
+  :hook (diff-hl-mode . +diff-hl-update-on-buffer-change)
   :hook (dired-mode . diff-hl-dired-mode)
-  :hook (vc-dir-mode . diff-hl-dir-mode)
-  :hook (diff-hl-mode . diff-hl-flydiff-mode)
-  :hook (magit-pre-refresh . diff-hl-magit-pre-refresh)
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
+  :config
+  ;; BUG+HACK: After commiting changes from `magit' and switching back to the
+  ;; buffer, the diff-hl doesn't go away until an input happens. This hook will
+  ;; ensure updating the `diff-hl' each time we switch to the buffer.
+  (defun +diff-hl-update-on-buffer-change ()
+    (add-hook 'window-buffer-change-functions (lambda (_win) (diff-hl-update))))
+  (diff-hl-flydiff-mode 1))
 
 
 ;; Walk through Git revisions of a file
