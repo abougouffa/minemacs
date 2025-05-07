@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-27
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -189,7 +189,9 @@ use `project-remember-project' with each detected repo."
 
 ;; Jujutsu (jj) integration with Emacs `vc' and `project'
 (use-package vc-jj
-  :straight t)
+  :straight t
+  :after vc
+  :demand)
 
 
 ;; View diffs side-by-side in Emacs
