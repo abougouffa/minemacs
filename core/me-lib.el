@@ -757,10 +757,6 @@ directory. When called with \\[universal-argument]
            form)))
       (eval (macroexp-progn form)))))
 
-(declare-function project-root "project")
-(declare-function projectile-project-root "projectile")
-(declare-function ffip-project-root "find-file-in-project")
-
 (defun +project-safe-root (&optional proj)
   "Return the root of PROJ using several backends, don't fail."
   (when-let* ((root (if-let* ((proj (or proj (project-current))))
