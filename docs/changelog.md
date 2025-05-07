@@ -2,6 +2,55 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.24.0](https://github.com/abougouffa/minemacs/compare/801a6efd8528163cb4def52fa24697645e2a7816..v12.24.0) - 2025-05-07
+#### Bug Fixes
+- **(core)** fix the super-project project root derivation - ([7459923](https://github.com/abougouffa/minemacs/commit/7459923eab764f35cf1ebd81d4a6e16a911c7cb8)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** don't fail if one of the build functions fails - ([1a3aa39](https://github.com/abougouffa/minemacs/commit/1a3aa39be3776bf03303ef2faf3eff39e63e357b)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** declare the right commands variables as safe - ([c6ab383](https://github.com/abougouffa/minemacs/commit/c6ab3836a195d5205931eefe3a20f917d8aad7e5)) - [@abougouffa](https://github.com/abougouffa)
+- **(ssh-deploy)** install from GNU ELPA, upstream repo has been deleted - ([801a6ef](https://github.com/abougouffa/minemacs/commit/801a6efd8528163cb4def52fa24697645e2a7816)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** don't depend on the `libvterm` of the system - ([c3e2207](https://github.com/abougouffa/minemacs/commit/c3e22070f49bc03130b31a585c5f5110d8ba76ab)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([23661f1](https://github.com/abougouffa/minemacs/commit/23661f157b96f02f533aa0971eb08ecb87d1e1a8)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([2e20273](https://github.com/abougouffa/minemacs/commit/2e2027316df39ec0e379038fcca45d8ca474fb80)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([86e0f89](https://github.com/abougouffa/minemacs/commit/86e0f89cd974ce435bf53ec591485d8eee167054)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add the `minemacs-user-config` command - ([fb17c1a](https://github.com/abougouffa/minemacs/commit/fb17c1a0d576b8da7838f1b34151e2ff95726131)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add `webkit` - ([4122bcc](https://github.com/abougouffa/minemacs/commit/4122bccda1638c1e0d68334bd224508461f77153)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add `gerrit` - ([391d118](https://github.com/abougouffa/minemacs/commit/391d1187d0f34ff3325ebd912702b6330ea38c71)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** restore `gee` - ([42406dd](https://github.com/abougouffa/minemacs/commit/42406dd9f0346cc5acaecbd4364188912aec7404)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** add support for `clue`, integrate with `citre` - ([0a0548c](https://github.com/abougouffa/minemacs/commit/0a0548c361d2b7d5db59e2c8554ffb5c5602f26c)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add `boogie-mode`, `dafny-mode` and `z3-smt2-mode` - ([841f9fa](https://github.com/abougouffa/minemacs/commit/841f9fa4af7edd88027d1725615c927fecbc8d6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** restore `ligature` - ([8972713](https://github.com/abougouffa/minemacs/commit/8972713ca7b81af806d4e493488a93a5524bf58a)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(make)** fix filename glob for some GNU Make 4.3 - ([87d30eb](https://github.com/abougouffa/minemacs/commit/87d30ebd0c16e6f07de16945ead6895a0900edb3)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** refactor & remove unneeded code - ([7dea3d6](https://github.com/abougouffa/minemacs/commit/7dea3d69eb84b3277056363ea57680f45f38e6d7)) - [@abougouffa](https://github.com/abougouffa)
+- cleanup some dead code - ([8935d10](https://github.com/abougouffa/minemacs/commit/8935d108bdaff7b51a1d51af15f3b63306e60cba)) - [@abougouffa](https://github.com/abougouffa)
+- don't use the obsolete form of `derived-mode-p` - ([5f963ac](https://github.com/abougouffa/minemacs/commit/5f963acabf04ddf2f7b0b5263a4b47a4a7144001)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(on-demand)** `boogie-friends` adds `company` and `flycheck` as  dependencies - ([d034614](https://github.com/abougouffa/minemacs/commit/d034614d46904ac3201fd56c148354739e05aedd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** restore the default `tab-width` - ([2c0d804](https://github.com/abougouffa/minemacs/commit/2c0d804cc219891bf6a3e793eab6363f6895dfbb)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** bind some navigation commands to `C-c C-p` in `citre-mode` - ([581d336](https://github.com/abougouffa/minemacs/commit/581d3361142782749c4cb98de2e50ed475192d7d)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** don't override the initial input for some commands - ([8f98923](https://github.com/abougouffa/minemacs/commit/8f98923d2d86ba34cbbf1f182e8512c9fa3d59e1)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-eglot)** use the initial input from region or symbol at point - ([24832e2](https://github.com/abougouffa/minemacs/commit/24832e2014c0bd98709a99dd7390d91281fc6b6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** reduce the default font size of Cascadia Code - ([a1b95ba](https://github.com/abougouffa/minemacs/commit/a1b95bab180ee2ae0d75361263850e66220505c1)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** change font order, prefer fonts with ligatures - ([c0f86fb](https://github.com/abougouffa/minemacs/commit/c0f86fbc3f215475a00f2ef69676a0ce6e77505b)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more invocation options for `+project-scan-for-projects` - ([c764728](https://github.com/abougouffa/minemacs/commit/c764728914cb266194ba6931a6526fa7eb68d41f)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** don't display a message when loading `custom-vars.el` - ([a6440dd](https://github.com/abougouffa/minemacs/commit/a6440dd481f815b61839af1c9ff6b1e9576f792e)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** enable common ligatures in `text-mode` - ([b4ffd55](https://github.com/abougouffa/minemacs/commit/b4ffd55178d5c709dfc43591b8ba5a4ec8a94506)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** fine-tuned list of ligatures in a per-language basis - ([5e2d2af](https://github.com/abougouffa/minemacs/commit/5e2d2afab4583f75d0095360a2abc85f649aaf77)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** compile a list of ligatures from several fonts - ([ae65071](https://github.com/abougouffa/minemacs/commit/ae65071e6d53ab11a752a6c0ea7d5a852aabc419)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** don't ask when upgrading packages - ([c4f3e55](https://github.com/abougouffa/minemacs/commit/c4f3e55081c744534dc29157b04153ee37cef2d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** ignore Gnome session variables in `+env-save` - ([59be709](https://github.com/abougouffa/minemacs/commit/59be709101cc30850dbd103515becdd9af665ab1)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** smaller font size for `xref` buffer - ([9bacd46](https://github.com/abougouffa/minemacs/commit/9bacd4656227755b63e848eca65fde5215493de6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the loaddefs - ([27378ad](https://github.com/abougouffa/minemacs/commit/27378ad0660c32d4fee5d67fe31afca965be6f37)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d900fbd](https://github.com/abougouffa/minemacs/commit/d900fbd36c38f301532948835c8313b88fa2897a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9823855](https://github.com/abougouffa/minemacs/commit/982385593f59e1d0ebd6fda4b13f304c49b73a56)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([61be24c](https://github.com/abougouffa/minemacs/commit/61be24c3bd61ced362cc3fcb5de1868b3be4b2f5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.23.0](https://github.com/abougouffa/minemacs/compare/e89d27bbdecb28813d708bf26c3e2ec036a5dbc8..v12.23.0) - 2025-05-04
 #### Bug Fixes
 - **(builtin)** install `which-key` and `editorconfig` on Emacs 29 - ([9e7dbf5](https://github.com/abougouffa/minemacs/commit/9e7dbf58d7dcbfdeb59ae7818336fda54991b1e5)) - [@abougouffa](https://github.com/abougouffa)
