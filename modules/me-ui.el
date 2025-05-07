@@ -208,7 +208,7 @@
       "<<--<<--<<" ">>-->>-->>"))
 
   (ligature-set-ligatures 't '("ff" "ffi" "Fl" "Tl" "fi" "fj" "fl" "ft" "www"))
-  (ligature-set-ligatures '(prog-mode conf-mode) `(,@+ligature-common ,@+ligature-arrows ,@+ligature-arrows-extra))
+  (ligature-set-ligatures '(prog-mode conf-mode text-mode) `(,@+ligature-common ,@+ligature-arrows ,@+ligature-arrows-extra))
   (ligature-set-ligatures '(js-mode typescript-mode typescript-ts-mode php-ts-mode php-mode) +ligature-js)
   (ligature-set-ligatures '(julia-mode julia-ts-mode ess-julia-mode ruby-mode ruby-ts-mode php-mode) +ligature-brackets)
   (ligature-set-ligatures '(markdown-mode markdown-ts-mode) +ligature-markdown)
