@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -74,6 +74,16 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
       (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
+
+;;;###autoload
+(defun minemacs-user-config (ask)
+  "Open MinEmacs user configuration.
+
+When ASK is non-nil (\\[universal-argument]), ask about which file to open."
+  (interactive "P")
+  (if ask
+      (find-file (read-file-name "Select which file to open: " minemacs-config-dir))
+    (dired minemacs-config-dir)))
 
 
 
