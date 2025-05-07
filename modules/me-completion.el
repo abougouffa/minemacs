@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-14
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -235,11 +235,8 @@
 
   ;; Fill the initial query of `consult' commands from region or thing at point.
   (consult-customize
-   consult-locate consult-fd consult-find
-   consult-grep consult-git-grep consult-ripgrep
-   consult-line consult-line-multi consult-keep-lines consult-focus-lines
-   consult-man
-   :initial (+region-or-thing-at-point)))
+   consult-grep consult-git-grep consult-ripgrep consult-keep-lines consult-man
+   :initial (thing-at-point 'region t)))
 
 
 ;; Insert paths into the minibuffer prompt
