@@ -188,6 +188,8 @@
 
   (defvar +ligature-js `(,@+ligature-c-like ,@+ligature-html "!==" "!===" "==="))
 
+  (defvar +ligature-lisp `(";;" ";;;"))
+
   (defvar +ligature-markdown
     `("##" "###" "####" "#####" "######" "--" "---" "----" "-----" "------"))
 
@@ -213,6 +215,10 @@
   (ligature-set-ligatures '(julia-mode julia-ts-mode ess-julia-mode ruby-mode ruby-ts-mode php-mode) +ligature-brackets)
   (ligature-set-ligatures '(markdown-mode markdown-ts-mode) +ligature-markdown)
   (ligature-set-ligatures '(html-mode nxml-mode) +ligature-html)
+  (ligature-set-ligatures
+   '( emacs-lisp-mode lisp-mode lisp-data-mode common-lisp-mode
+      hy-mode scheme-mode geiser-mode)
+   +ligature-lisp)
   (ligature-set-ligatures
    '( c-mode c++-mode opencl-c-mode cuda-mode llvm-ts-mode java-mode
       java-ts-mode csharp-mode csharp-ts-mode rust-mode rust-ts-mode
