@@ -738,7 +738,7 @@ directory. When called with \\[universal-argument]
 (defun +project-super-project-try-or-fail (dir)
   "Find super-project root starting from DIR."
   (if-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
-      (cons 'local root)
+      (cons 'transient root)
     (user-error "It doesn't seem that we are in a super-project")))
 
 (defun +super-project-define-commands (package &rest commands)
