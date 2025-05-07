@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-07
 
 ;;; Commentary:
 
@@ -858,16 +858,16 @@ file dont exist."
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "Iosevka Fixed Curly Slab" :height 110)
+    ((:family "Iosevka" :height 110)
+     (:family "Martian Mono" :height 100)
+     (:family "Cascadia Code" :height 120 :weight semi-light)
+     (:family "Fira Code" :height 110)
+     (:family "Jetbrains Mono" :height 100)
+     (:family "Iosevka Comfy" :height 110)
+     (:family "Iosevka Fixed Curly Slab" :height 110)
      (:family "Iosevka Fixed Curly" :height 110)
      (:family "Iosevka Comfy Fixed" :height 110)
      (:family "Iosevka Comfy Motion Fixed" :height 110)
-     (:family "Iosevka" :height 110)
-     (:family "Iosevka Comfy" :height 110)
-     (:family "Martian Mono" :height 100)
-     (:family "Cascadia Code" :height 110)
-     (:family "Fira Code" :height 110)
-     (:family "Jetbrains Mono" :height 100)
      (:family "Hack" :height 110)
      (:family "Roboto Mono" :height 100)
      (:family "SF Mono" :height 110)
@@ -903,7 +903,8 @@ file dont exist."
      (:family "Quivira" :prepend t))
     ;; Arabic script
     :arabic
-    ("Amiri Typewriter"
+    ((:family "Cascadia Code" :height 120 :weight semi-light)
+     "Amiri Typewriter"
      "KacstOne"
      "Greta Arabic"
      "Scheherazade"
@@ -951,14 +952,14 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   "Supported scripts, like `latin', `arabic', `han', and so on.")
 
 (defconst +face-attributes
-  (list :family :foundry :width :height :weight :slant :foreground
-        :distant-foreground :background :underline :overline :strike-through :box
-        :inverse-video :stipple :font :inherit :extend)
+  `( :family :foundry :width :height :weight :slant :foreground
+     :distant-foreground :background :underline :overline :strike-through :box
+     :inverse-video :stipple :font :inherit :extend)
   "Arguments accepted by the `set-face-attribute' function.")
 
 (defconst +font-spec-keywords
-  (list :family :foundry :width :weight :slant :adstyle :registry :dpi :size
-        :spacing :avgwidth :name :script :lang :otf)
+  `( :family :foundry :width :weight :slant :adstyle :registry :dpi :size
+     :spacing :avgwidth :name :script :lang :otf)
   "Arguments accepted by the `font-spec' function.")
 
 (defun +font--get-valid-args (script-or-face font)
