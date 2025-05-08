@@ -121,8 +121,35 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 
 ## [v12.20.0](https://github.com/abougouffa/minemacs/compare/1cdce160d5b6e28445754b0755b0519539613732..v12.20.0) - 2025-04-30
+#### Bug Fixes
+- **(ltex-plus)** fix the download of LSP server for aarch64 - ([ba09562e](https://github.com/abougouffa/minemacs/commit/ba09562e)) - ([@abougouffa](https://github.com/abougouffa))
+
+#### Documentation
+- regenerate the documentation - ([5603d77b](https://github.com/abougouffa/minemacs/commit/5603d77b)) - ([@abougouffa](https://github.com/abougouffa))
+- regenerate the documentation - ([e296765a](https://github.com/abougouffa/minemacs/commit/e296765a)) - ([@abougouffa](https://github.com/abougouffa))
+
+#### Miscellaneous Chores
+- add `.dir-locals.el` - ([2b367c2d](https://github.com/abougouffa/minemacs/commit/2b367c2d)) - ([@abougouffa](https://github.com/abougouffa))
+
+#### Nitpicks, changes with no side effect
+- add file creation timestamps - ([e8f8de89](https://github.com/abougouffa/minemacs/commit/e8f8de89)) - ([@abougouffa](https://github.com/abougouffa))
+- add modification time stamps - ([1a207080](https://github.com/abougouffa/minemacs/commit/1a207080)) - ([@abougouffa](https://github.com/abougouffa))
+
+#### Refactoring
+- **(core)** remove unneeded autoloads - ([38e65eed](https://github.com/abougouffa/minemacs/commit/38e65eed)) - ([@abougouffa](https://github.com/abougouffa))
+- Use `featurep` instead of `+emacs-options-p` - ([56249618](https://github.com/abougouffa/minemacs/commit/56249618)) - ([@abougouffa](https://github.com/abougouffa))
+- move `straight` related stuff to `me-bootstrap` - ([e8e8ce2a](https://github.com/abougouffa/minemacs/commit/e8e8ce2a)) - ([@abougouffa](https://github.com/abougouffa))
+
 #### Tweaks
-- **(on-demand/web)** don't use `web-mode` for HTML - ([1cdce16](https://github.com/abougouffa/minemacs/commit/1cdce160d5b6e28445754b0755b0519539613732)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** better automation in `minemacs-bump-packages` - ([811f6700](https://github.com/abougouffa/minemacs/commit/811f6700)) - ([@abougouffa](https://github.com/abougouffa))
+- **(init)** mark Emacs 30 as the recommended version - ([b36f5eac](https://github.com/abougouffa/minemacs/commit/b36f5eac)) - ([@abougouffa](https://github.com/abougouffa))
+- **(on-demand/csv)** automatically enable `rainbow-csv` in small files - ([4aff2b6e](https://github.com/abougouffa/minemacs/commit/4aff2b6e)) - ([@abougouffa](https://github.com/abougouffa))
+- **(on-demand/web)** don't use `web-mode` for HTML - ([1cdce160](https://github.com/abougouffa/minemacs/commit/1cdce160)) - ([@abougouffa](https://github.com/abougouffa))
+- **(re-builder)** better error handling in `+reb-replace-regexp` - ([7f6f9e97](https://github.com/abougouffa/minemacs/commit/7f6f9e97)) - ([@abougouffa](https://github.com/abougouffa))
+- bump packages versions - ([39905b36](https://github.com/abougouffa/minemacs/commit/39905b36)) - ([@abougouffa](https://github.com/abougouffa))
+- bump packages versions - ([b6189914](https://github.com/abougouffa/minemacs/commit/b6189914)) - ([@abougouffa](https://github.com/abougouffa))
+- bump packages versions - ([ee7da69c](https://github.com/abougouffa/minemacs/commit/ee7da69c)) - ([@abougouffa](https://github.com/abougouffa))
+- regenerate loaddefs - ([8297797d](https://github.com/abougouffa/minemacs/commit/8297797d)) - ([@abougouffa](https://github.com/abougouffa))
 
 - - -
 
