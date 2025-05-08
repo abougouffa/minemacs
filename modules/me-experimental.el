@@ -41,7 +41,7 @@
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 (use-package webkit
   :straight (:host github :repo "akirakyle/emacs-webkit" :files (:defaults "*.js" "*.css" "*.so") :pre-build ("make"))
-  :when (featurep 'feat/modules))
+  :when (and (featurep 'feat/modules) (not (featurep 'os/win))))
 
 
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
