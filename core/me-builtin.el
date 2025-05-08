@@ -1261,7 +1261,7 @@ Typing these will trigger reindentation of the current line.")
       (window-width . 80)
       (reusable-frames . visible))
      (,(+make-buffer-conds
-        'help-mode 'Info-mode 'Man-mode 'woman-mode 'tldr-mode 'dictionary-mode 'lexic-mode
+        'help-mode 'helpful-mode 'Info-mode 'Man-mode 'woman-mode 'tldr-mode 'dictionary-mode 'lexic-mode
         (rx bol "*" (or "Metahelp" "Printing Help" "Org Entity Help"
                         (seq (or "eldoc" "Tcl help" "eglot-help for " "shellcheck:" "show-marks") (* any)))
             "*" eol))
@@ -1285,7 +1285,7 @@ Typing these will trigger reindentation of the current line.")
       (slot . -1))
      (,(+make-buffer-conds
         'compilation-mode 'bookmark-bmenu-mode 'messages-buffer-mode 'backtrace-mode
-        "\\*\\(?:Compile-Log\\|Warnings\\|envrc\\)\\*")
+        "\\*\\(?:Compile-Log\\|Warnings\\|envrc\\|Pp Eval Output\\)\\*")
       (display-buffer-in-side-window)
       (window-height . 0.2)
       (side . bottom)
