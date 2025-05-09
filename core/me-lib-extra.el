@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-09
 
 ;;; Commentary:
 
@@ -890,25 +890,52 @@ the schema from the file name."
         (goto-char (point-min))
         (insert "# yaml-language-server: $schema=" url "\n\n")))))
 
+(defun +clang-format--config-file (&optional dir)
+  (when-let* ((config-dir (locate-dominating-file (or dir default-directory) ".clang-format")))
+    (expand-file-name ".clang-format" config-dir)))
+
+(defvar +clang-format-mode-alist
+  '(((c-ts-mode) "c" c-ts-mode-indent-offset)
+    ((c++-ts-mode) "cpp" c-ts-mode-indent-offset)
+    ((js-mode js-ts-mode) "js" js-indent-level)
+    ((typescript-ts-base-mode) "ts" typescript-ts-mode-indent-offset)
+    ((csharp-mode csharp-ts-mode) "cs")
+    ((protobuf-ts-mode) "proto" protobuf-ts-mode-indent-offset)
+    ((java-ts-mode) "java" java-ts-mode-indent-offset)
+    ((java-mode) "java" c-basic-offset)
+    ((c-mode cuda-mode opencl-c-mode) "c" c-basic-offset)
+    ((c++-mode) "cpp" c-basic-offset)))
+
+(defun +clang-format--get-lang ()
+  (alist-get major-mode +clang-format-mode-alist nil nil (lambda (modes mode) (provided-mode-derived-p mode modes))))
+
+(defun +clang-format--guess-ext ()
+  (or (and (buffer-file-name) (file-name-extension (buffer-file-name)))
+      (car (+clang-format--get-lang))))
+
 ;; Helper function to get the style for "clang-format"
 ;;;###autoload
 (defun +clang-format-get-style ()
   "Get the \"-style\" argument for clang-format."
-  (if-let* ((conf-file ".clang-format")
-            (dir (locate-dominating-file
-                  (or (+project-safe-root) default-directory)
-                  conf-file)))
-      (concat "file:" (expand-file-name conf-file dir))
-    (let ((indent
-           (cond
-            ((derived-mode-p '(c-ts-mode c++-ts-mode)) 'c-ts-mode-indent-offset)
-            ((derived-mode-p 'java-ts-mode) 'java-ts-mode-indent-offset)
-            ((derived-mode-p 'csharp-ts-mode) 'csharp-ts-mode-indent-offset)
-            ((derived-mode-p 'protobuf-ts-mode) 'protobuf-ts-mode-indent-offset)
-            ((derived-mode-p '(c-mode c++-mode csharp-mode opencl-c-mode protobuf-mode cuda-mode)) 'c-basic-offset))))
+  (if-let* ((conf-file (+clang-format--config-file)))
+      (concat "file:" conf-file)
+    (let ((indent (cadr (+clang-format--get-lang))))
       (format "{IndentWidth: %d, TabWidth: %d}"
               (or (and indent (symbol-value indent)) standard-indent)
               (or (and indent (symbol-value indent)) tab-width)))))
+
+;;;###autoload
+(defun +clang-format-guess-indentation-style ()
+  "Set the editor tab and indent widths from \".clang-format\"."
+  (when-let* ((lang (+clang-format--get-lang))
+              ((executable-find "clang-format"))
+              (out (shell-command-to-string (format "clang-format --assume-filename=dummy.%s --dump-config" (car lang))))
+              (yaml-hash (yaml-parse-string out)))
+    (+log! "Found a .clang-format file, setting tab/indent style form it")
+    (editorconfig-set-indentation
+     (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")
+     (number-to-string (gethash 'IndentWidth yaml-hash))
+     (number-to-string (gethash 'TabWidth yaml-hash)))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
