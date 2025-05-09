@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-05-04
+;; Last modified: 2025-05-09
 
 ;;; Commentary:
 
@@ -256,7 +256,6 @@ It is deferred until `general' gets loaded and configured."
   :straight t
   ;; PERF: Loading `general' early make Emacs very slow on startup.
   :after evil
-  :when (memq 'me-keybindings minemacs-modules)
   :demand
   :config
   ;; Advise `define-key' to automatically unbind keys when necessary.
