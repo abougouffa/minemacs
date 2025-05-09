@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-09
 
 ;;; Commentary:
 
@@ -22,7 +22,6 @@
 (use-package citre
   :straight t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
-  :bind (:map citre-mode-map ("C-c C-p" . +citre-map))
   :custom
   (citre-project-root-function #'+citre-dominating-project-root) ; Better (!) project root detection function
   (citre-gtags-args
@@ -32,16 +31,6 @@
          '("--objdir"))))
   (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
-  (defvar-keymap +citre-map
-    :doc "Citre navigation commands." :name "citre"
-    "C-p" #'citre-peek
-    "C-r" #'citre-peek-reference
-    "p"   #'citre-peek-restore
-    "j"   #'citre-jump
-    "b"   #'citre-jump-back
-    "r"   #'citre-jump-to-reference
-    "q"   #'citre-query-peek
-    "Q"   #'citre-query-jump)
   (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
@@ -67,6 +56,18 @@
     :type '(repeat string)
     :group 'minemacs-prog)
   :config
+  (defvar-keymap +citre-navigation-map
+    :doc "Citre navigation commands." :name "citre-navigation"
+    "C-p" #'citre-peek
+    "C-r" #'citre-peek-reference
+    "p"   #'citre-peek-restore
+    "j"   #'citre-jump
+    "b"   #'citre-jump-back
+    "r"   #'citre-jump-to-reference
+    "q"   #'citre-query-peek
+    "Q"   #'citre-query-jump)
+  (keymap-set citre-mode-map "C-c C-p" `("citre-navigation" . ,+citre-navigation-map))
+
   ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
   ;; sshfs), causing `citre' to trigger an error when calling
   ;; `citre--tags-file-in-global-cache'. This happens when openning any file of
