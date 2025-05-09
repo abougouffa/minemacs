@@ -83,7 +83,8 @@
   (set-mark-command-repeat-pop t) ; Use C-u C-SPC C-SPC... instead of C-u C-SPC C-u C-SPC...
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
-                fill-column 80) ; Default fill column width (def. 70)
+                fill-column 80 ; Default fill column width
+                tab-width 4) ; Default (8) is too big!
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (or minemacs-builtin-only-p (+package-disabled-p 'vertico 'me-completion))
