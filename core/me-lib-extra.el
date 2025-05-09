@@ -909,10 +909,6 @@ the schema from the file name."
 (defun +clang-format--get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (lambda (modes mode) (provided-mode-derived-p mode modes))))
 
-(defun +clang-format--guess-ext ()
-  (or (and (buffer-file-name) (file-name-extension (buffer-file-name)))
-      (car (+clang-format--get-lang))))
-
 ;; Helper function to get the style for "clang-format"
 ;;;###autoload
 (defun +clang-format-get-style ()
@@ -925,17 +921,17 @@ the schema from the file name."
               (or (and indent (symbol-value indent)) tab-width)))))
 
 ;;;###autoload
-(defun +clang-format-guess-indentation-style ()
+(defun +editorconfig-guess-indentation-style-from-clang-format ()
   "Set the editor tab and indent widths from \".clang-format\"."
-  (when-let* ((lang (+clang-format--get-lang))
-              ((executable-find "clang-format"))
-              (out (shell-command-to-string (format "clang-format --assume-filename=dummy.%s --dump-config" (car lang))))
-              (yaml-hash (yaml-parse-string out)))
-    (+log! "Found a .clang-format file, setting tab/indent style form it")
-    (editorconfig-set-indentation
-     (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")
-     (number-to-string (gethash 'IndentWidth yaml-hash))
-     (number-to-string (gethash 'TabWidth yaml-hash)))))
+  (when (and (require 'yaml nil t) (executable-find "clang-format"))
+    (when-let* ((lang (+clang-format--get-lang))
+                (out (shell-command-to-string (format "clang-format --assume-filename=dummy.%s --dump-config" (car lang))))
+                (yaml-hash (yaml-parse-string out)))
+      (+log! "Found a .clang-format file, setting tab/indent style form it")
+      (editorconfig-set-indentation
+       (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")
+       (number-to-string (gethash 'IndentWidth yaml-hash))
+       (number-to-string (gethash 'TabWidth yaml-hash))))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
