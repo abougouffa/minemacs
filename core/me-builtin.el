@@ -401,35 +401,9 @@ or file path may exist now."
 (use-package flymake
   :straight (flymake :source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
-  :hook (server-after-make-frame . +flymake-fringe-setup)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
-  (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30
-  :init
-  (defun +flymake-fringe-setup ()
-    (when (display-graphic-p)
-      (with-eval-after-load 'flymake
-        (with-eval-after-load 'fringe (set-fringe-style '(8 . 13))) ; Larger right fringes
-        (define-fringe-bitmap ; Better fringe bitmaps
-          '+flymake-bitmap-left-arrow-hi-res
-          [#b00000000000
-           #b00000000000
-           #b00001111000
-           #b00011110000
-           #b00111100000
-           #b01111000000
-           #b01111000000
-           #b00111100000
-           #b00011110000
-           #b00001111000
-           #b00000000000
-           #b00000000000]
-          nil 1)
-
-        (setopt flymake-indicator-type 'fringes
-                flymake-error-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-error)
-                flymake-warning-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-warning)
-                flymake-note-bitmap '(+flymake-bitmap-left-arrow-hi-res compilation-info)))))
+  (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30 (see `flymake-indicator-type')
   :config
   (with-eval-after-load 'transient
     (transient-define-prefix +flymake-transient ()
@@ -442,8 +416,7 @@ or file path may exist now."
        [("S" "Start" flymake-start :transient t)
         ("Q" "Quit" ignore :transient t)]]))
 
-  ;; Use the session's `load-path' with flymake
-  (with-eval-after-load 'elisp-mode
+  (with-eval-after-load 'elisp-mode ; Use the session's `load-path' with flymake
     (cl-callf append elisp-flymake-byte-compile-load-path load-path)))
 
 (use-package eshell
