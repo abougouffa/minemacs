@@ -4,4 +4,5 @@
 ((nil . ((project-vc-name . "MinEmacs")))
  (emacs-lisp-mode . ((time-stamp-pattern . "^;; Last modified: %%$")
                      (time-stamp-format . "%04Y-%02m-%02d")
-                     (eval . (and (fboundp 'apheleia-mode) (apheleia-mode 1))))))
+                     (eval . (and (fboundp 'apheleia-mode) (apheleia-mode 1)))))
+ (text-mode . ((+git-commit-conventional-in-project . t))))
