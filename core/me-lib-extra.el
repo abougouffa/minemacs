@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-09
+;; Last modified: 2025-05-10
 
 ;;; Commentary:
 
@@ -923,15 +923,17 @@ the schema from the file name."
 ;;;###autoload
 (defun +editorconfig-guess-indentation-style-from-clang-format ()
   "Set the editor tab and indent widths from \".clang-format\"."
-  (when (and (require 'yaml nil t) (executable-find "clang-format"))
+  (when (and (require 'yaml nil t)
+             (executable-find "clang-format")
+             (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
     (when-let* ((lang (+clang-format--get-lang))
                 (out (shell-command-to-string (format "clang-format --assume-filename=dummy.%s --dump-config" (car lang))))
                 (yaml-hash (yaml-parse-string out)))
-      (+log! "Found a .clang-format file, setting tab/indent style form it")
-      (editorconfig-set-indentation
-       (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")
-       (number-to-string (gethash 'IndentWidth yaml-hash))
-       (number-to-string (gethash 'TabWidth yaml-hash))))))
+      (let ((iw (gethash 'IndentWidth yaml-hash))
+            (tw (gethash 'TabWidth yaml-hash))
+            (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
+        (+log! "Found a .clang-format file, using it to set tab-width=%s, indent-offset=%s and indent-style=%s" tw iw is)
+        (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw))))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload

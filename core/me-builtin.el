@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-09
+;; Last modified: 2025-05-10
 
 ;;; Commentary:
 
@@ -396,11 +396,7 @@ or file path may exist now."
   :straight (editorconfig :source nongnu-elpa)
   :hook (minemacs-first-file . editorconfig-mode)
   :init
-  (defun +editorconfig-guess-indentation-style-from-clang-format-maybe ()
-    (require 'me-lib-extra)
-    (when (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))
-      (+editorconfig-guess-indentation-style-from-clang-format)))
-  (add-hook 'prog-mode-hook #'+editorconfig-guess-indentation-style-from-clang-format-maybe 80))
+  (add-hook 'prog-mode-hook #'+editorconfig-guess-indentation-style-from-clang-format 80))
 
 (use-package flymake
   :straight (flymake :source gnu-elpa-mirror)
