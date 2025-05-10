@@ -6,6 +6,7 @@ user-config/
 test/
 .yas-compiled-snippets.el
 .aider*
+.cache/
 
 # Ignore files in "local/" except the lockfile "local/straight/versions/default.el"
 local/*
