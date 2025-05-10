@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-09
+;; Last modified: 2025-05-10
 
 ;;; Commentary:
 
@@ -35,11 +35,63 @@
 (use-package git-commit
   :after magit
   :commands (global-git-commit-mode)
+  :hook (git-commit-setup . +git-commit-insert-conventional-commit)
   :custom
   (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :init
-  (global-git-commit-mode 1))
+  (global-git-commit-mode 1)
+  :config
+  ;; Adapted from https://github.com/jesse-c/dotfiles/blob/7788769fc48caffc600409e05be04669c16a71c4/home/dot_config/emacs/init.el#L295
+  (defvar +git-commit-conventional-commit-types
+    '("feat" "fix" "tweak" "docs" "style" "refactor" "perf" "test" "build" "ci" "chore" "revert"))
+
+  (defvar-local +git-commit-conventional-in-project nil)
+
+  (defun +git-commit--find-conventional-commit-scopes ()
+    "Find all scopes used in conventional commits in the current Git project."
+    (let* ((default-directory (magit-toplevel))
+           (cache-dir (expand-file-name ".cache" (or (+project-safe-root) default-directory)))
+           (cache-file (expand-file-name "conventional-commit-scopes" cache-dir)))
+      (unless (file-exists-p cache-dir) (make-directory cache-dir t))
+      (with-temp-buffer
+        (call-process "git" nil t nil "log" "--pretty=format:%s")
+        (goto-char (point-min))
+        (let ((scopes
+               (cl-loop while (re-search-forward
+                               (rx-to-string `(seq (or ,@+git-commit-conventional-commit-types) "(" (group-n 2 (+ (not ")"))) ")"))
+                               nil t)
+                        append (let ((scope-text (match-string 2))) ; Split by comma and add each scope
+                                 (split-string scope-text "," t "[ \t]+")))))
+          (with-temp-file cache-file ; Write unique scopes to the cache file
+            (insert (mapconcat #'identity (delete-dups scopes) "\n")))))
+      cache-file)) ; Return the cache file path
+
+  (defun +git-commit-get-conventional-commit-scopes ()
+    "Get commit scopes from cache or generate them if needed."
+    (let* ((default-directory (magit-toplevel))
+           (cache-dir (expand-file-name ".cache" (or (+project-safe-root) default-directory)))
+           (cache-file (expand-file-name "conventional-commit-scopes" cache-dir)))
+      (unless (and (file-exists-p cache-file)
+                   (> (time-to-seconds (time-since (file-attribute-modification-time (file-attributes cache-file))))
+                      (* 60 60 24))) ; Cache for 24 hours
+        (+git-commit--find-conventional-commit-scopes))
+      (when (file-exists-p cache-file)
+        (with-temp-buffer
+          (insert-file-contents cache-file)
+          (split-string (buffer-string) "\n" t)))))
+
+  (defun +git-commit-insert-conventional-commit ()
+    "Prompt for conventional commit type with scope completion."
+    (interactive)
+    (when (and +git-commit-conventional-in-project
+               (+first-line-empty-p) ; Skip when amending a commit
+               (or (called-interactively-p) (y-or-n-p "Use conventional commit format? ")))
+      (let* ((type (completing-read "Commit type: " +git-commit-conventional-commit-types nil t))
+             (scopes (+git-commit-get-conventional-commit-scopes))
+             (scope-input (completing-read-multiple "Scope: " scopes)))
+        (insert type (if (null scope-input) "" (concat "(" (string-join scope-input ",") ")")) ": ")
+        (let ((pos (point))) (insert "\n") (goto-char pos))))))
 
 
 ;; Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
