@@ -33,11 +33,6 @@
   :straight (:host bitbucket :repo "olanilsson/gee"))
 
 
-;; Gerrit integration
-(use-package gerrit
-  :straight t)
-
-
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
   :straight (:host github :repo "darcylee/magit-gerrit")
