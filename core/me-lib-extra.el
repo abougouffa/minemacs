@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-10
+;; Last modified: 2025-05-12
 
 ;;; Commentary:
 
@@ -842,8 +842,7 @@ the children of class at point."
 (defun +fetch-json-from-url (url)
   "Get an Emacs JSON object from a specified URL."
   (with-current-buffer (url-retrieve-synchronously url)
-    (goto-char (point-min))
-    (re-search-forward "^$" nil 'move) ; Move to the end of the headers
+    (goto-char url-http-end-of-headers)
     (prog1 (json-read) (kill-buffer (current-buffer)))))
 
 (declare-function string-remove-prefix "subr-x")
