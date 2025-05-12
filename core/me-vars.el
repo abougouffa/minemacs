@@ -25,6 +25,7 @@
 (defgroup minemacs-project nil "MinEmacs project stuff." :group 'minemacs)
 (defgroup minemacs-ui nil "MinEmacs UI tweaks." :group 'minemacs)
 (defgroup minemacs-utils nil "MinEmacs utility functions." :group 'minemacs)
+(defgroup minemacs-vc nil "MinEmacs version control stuff." :group 'minemacs)
 
 ;;; MinEmacs directories
 
