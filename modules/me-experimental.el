@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-05-09
+;; Last modified: 2025-05-12
 
 ;;; Commentary:
 
@@ -40,7 +40,9 @@
 
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
-  :straight (:host github :repo "darcylee/magit-gerrit"))
+  :straight (:host github :repo "darcylee/magit-gerrit")
+  :custom
+  (magit-gerrit-popup-prefix "_"))
 
 
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
