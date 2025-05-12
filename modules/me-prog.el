@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-12
 
 ;;; Commentary:
 
@@ -145,9 +145,10 @@
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
   (push '(nxml-mode . xmllint) apheleia-mode-alist)
 
-  ;; Append the "-style" option to the `clang-format' command
+  ;; For `clang-format', use the command from `+clang-format-command', and
+  ;; append the "-style" option
   (let ((clang (assq 'clang-format apheleia-formatters)))
-    (setcdr clang (append (cdr clang) '("-style" (+clang-format-get-style))))))
+    (setcdr clang (cons +clang-format-command (append (cddr clang) '("-style" (+clang-format-get-style)))))))
 
 
 ;; Define commands which run reformatters on the current Emacs buffer
@@ -173,7 +174,7 @@
     :lighter "LuaFmt ")
 
   (reformatter-define ref-clang-format
-    :program "clang-format"
+    :program +clang-format-command
     :args (list
            "-style" (+clang-format-get-style)
            "-assume-filename"

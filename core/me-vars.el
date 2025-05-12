@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-12
 
 ;;; Commentary:
 
@@ -326,6 +326,14 @@ Each string is a regexp, matched against variable names to omit from
 (defface +goto-addr-url-face '((t :italic t :underline t))
   "Face for URLs, I prefer keeping the original face and add underline and italic."
   :group 'goto-addr)
+
+(defcustom +clang-format-command "clang-format"
+  "The \"clang-format\" command to use by default.
+This allows us to use a specific Clang-format version (like
+\"clang-format-12\"). This command will be used in
+`+editorconfig-guess-indentation-style-from-clang-format',
+`reformatter', `apheleia', etc."
+  :group 'minemacs-prog)
 
 
 (provide 'me-vars)

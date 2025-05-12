@@ -923,10 +923,10 @@ the schema from the file name."
 (defun +editorconfig-guess-indentation-style-from-clang-format ()
   "Set the editor tab and indent widths from \".clang-format\"."
   (when (and (require 'yaml nil t)
-             (executable-find "clang-format")
+             (executable-find +clang-format-command)
              (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
     (when-let* ((lang (+clang-format--get-lang))
-                (out (shell-command-to-string (format "clang-format --assume-filename=dummy.%s --dump-config" (car lang))))
+                (out (shell-command-to-string (format "%s --assume-filename=dummy.%s --dump-config" +clang-format-command (car lang))))
                 (yaml-hash (yaml-parse-string out)))
       (let ((iw (gethash 'IndentWidth yaml-hash))
             (tw (gethash 'TabWidth yaml-hash))
