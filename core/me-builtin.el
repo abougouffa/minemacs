@@ -599,10 +599,7 @@ or file path may exist now."
 
   ;; PERF: Optimization, inspired by: https://reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
-    (cond ((boundp 'eglot-events-buffer-config)
-           (cl-callf plist-put eglot-events-buffer-config :size 0)) ; Disable logs in `eglot-events-buffer' (def. 2000000)
-          ((boundp 'eglot-events-buffer-size) ; Emacs 29
-           (setq eglot-events-buffer-size 0)))
+    (cl-callf plist-put eglot-events-buffer-config :size 0) ; Disable logs in `eglot-events-buffer' (def. 2000000)
     (with-eval-after-load 'jsonrpc ; Disable logging in `jsonrpc'
       (fset 'jsonrpc--log-event #'ignore)
       (remove-hook 'jsonrpc-event-hook 'jsonrpc--log-event)))
@@ -612,8 +609,8 @@ or file path may exist now."
   ;; See: https://lists.gnu.org/archive/html/emacs-devel/2022-11/msg01087.html
   (defun +project-find-virtualenv-for-eglot (dir)
     (when (bound-and-true-p eglot-lsp-context)
-      (let ((root (locate-dominating-file dir ".virtualenv")))
-        (when root (cons 'transient root)))))
+      (when-let* ((root (locate-dominating-file dir ".virtualenv")))
+        (cons 'transient root))))
 
   (add-hook 'project-find-functions #'+project-find-virtualenv-for-eglot))
 
