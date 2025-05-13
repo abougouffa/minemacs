@@ -362,7 +362,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+binary-hexl-enable" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
@@ -599,26 +599,6 @@ Set the editor tab and indent widths from \".clang-format\".")
 (fn ORIG-FN PROC MSG)")
 (autoload '+server-restart "me-lib-extra" "\
 Restart the Emacs server." t)
-(autoload '+binary-buffer-p "me-lib-extra" "\
-Return whether BUFFER or the current buffer is binary.
-
-A binary buffer is defined as containing at least one null byte.
-
-Returns either nil, or the position of the first null byte.
-
-(fn &optional BUFFER)")
-(autoload '+binary-file-p "me-lib-extra" "\
-Is FILE a binary?
-
-This checks the first CHUNK of bytes, defaults to 1024.
-
-(fn FILE &optional CHUNK)")
-(autoload '+binary-hexl-buffer-p "me-lib-extra" "\
-Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'.
-
-(fn &optional BUFFER)")
-(autoload '+binary-hexl-mode-maybe "me-lib-extra" "\
-Activate `hexl-mode' if relevant for the current buffer." t)
 (autoload '+kill-buffer-and-its-windows "me-lib-extra" "\
 Kill BUFFER and delete its windows.
 Default is `current-buffer'. When MSGP is non-nil, signal an error when
@@ -922,6 +902,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-typst.el
+
+(minemacs-register-on-demand-module 'me-typst :auto-mode '(("\\.typ\\'" . typst-ts-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-v.el
 
 (minemacs-register-on-demand-module 'me-v :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
@@ -934,7 +919,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+env-" "minemacs-"))
+(register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
