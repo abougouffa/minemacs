@@ -89,8 +89,9 @@
 * `eglot-x`: Extra non-standard functionalities for Eglot
 * `igist`: Work seamlessly with GitHub gists from Emacs
 * `gee`: The Emacs Gerrit Experience
-* `gerrit`: Gerrit integration
+* `magit-gerrit`: Gerrit integration with Magit
 * `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
+* `webkit-dark`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -667,6 +668,10 @@
 
 ## `on-demand/me-toml`
 * `toml-mode`: Major mode for editing TOML files
+
+## `on-demand/me-typst`
+* `typst-ts-mode`: Typst tree sitter major mode for Emacs
+* `typst-preview`: Typst live preview minor mode
 
 ## `on-demand/me-v`
 * `v-mode`: Major mode for the V programming language

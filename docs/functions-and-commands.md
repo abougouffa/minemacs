@@ -137,6 +137,14 @@ Enable loading on-demand packages when needed based on `:interpreter-mode`.
 
 Enable loading on-demand companion packages when needed.
 
+#### `+clang-format-command`
+
+The "clang-format" command to use by default.
+This allows us to use a specific Clang-format version (like
+"clang-format-12"). This command will be used in
+`+editorconfig-guess-indentation-style-from-clang-format`,
+`reformatter`, `apheleia`, etc.
+
 #### `+eval-when-idle-delay`
 
 The default delay (in seconds) to consider in `+eval-when-idle!` macro.
@@ -163,12 +171,6 @@ Modes for which Eglot can be automatically enabled by `+eglot-auto-enable`.
 #### `+binary-hexl-enable`
 
 Enable or disable opening suitable files in `hexl-mode`.
-
-#### `+project-scan-dir-paths`
-
-A list of paths to scan and add to known projects list.
-It can be a list of strings (paths) or a list of ("~/path" .
-recursive-p) to scan directories recursively.
 
 #### `+super-project-root-markers`
 
@@ -550,13 +552,6 @@ Examples:
   (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
   (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
-#### `(+project-scan-for-projects &rest DIRS)`
-
-Scan and remember projects under DIRS or `+project-scan-dir-paths`.
-When called interactively with C-u, ask for the
-directory. When called with C-u
-C-u, scan the selected directory recursively.
-
 #### `(+project-super-project-try-or-fail DIR)`
 
 Find super-project root starting from DIR.
@@ -898,6 +893,10 @@ the schema from the file name.
 #### `(+clang-format-get-style)`
 
 Get the "-style" argument for clang-format.
+
+#### `(+editorconfig-guess-indentation-style-from-clang-format)`
+
+Set the editor tab and indent widths from ".clang-format".
 
 #### `(+server-restart)`
 
