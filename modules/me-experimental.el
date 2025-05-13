@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-05-12
+;; Last modified: 2025-05-13
 
 ;;; Commentary:
 
@@ -38,6 +38,17 @@
   :straight (:host github :repo "darcylee/magit-gerrit")
   :custom
   (magit-gerrit-popup-prefix "_"))
+
+
+;; Gerrit integration from ChromiumOS development utils
+(use-package gerrit
+  :straight (chromiumos-dev-utils :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))
+
+
+;; Transient menus to use some "repo" commands within Magit
+(use-package repo-transient
+  :straight chromiumos-dev-utils
+  :commands (repo-main-menu))
 
 
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
