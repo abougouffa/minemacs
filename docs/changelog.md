@@ -2,6 +2,62 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.25.0](https://github.com/abougouffa/minemacs/compare/9f2c52ec214e97a092db261a8c4f5b6c08146675..v12.25.0) - 2025-05-13
+#### Bug Fixes
+- **(citre)** fix the keymap binding - ([d8e9a1f](https://github.com/abougouffa/minemacs/commit/d8e9a1f35b960d74a9c772a442049fba3a616f7f)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** enable globally and fix integration with `magit` - ([9e66b84](https://github.com/abougouffa/minemacs/commit/9e66b8446669fe7f2f71c43c0f78ef7186ab8903)) - [@abougouffa](https://github.com/abougouffa)
+- **(obsolete/me-evil)** ensure loading `general` - ([1ba00d0](https://github.com/abougouffa/minemacs/commit/1ba00d00f7fc6a75730d2a72f35b5f1e93340f91)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc-jj)** load only when the `jj` executable is available - ([86cef6e](https://github.com/abougouffa/minemacs/commit/86cef6e843e10f1c703b1c27a91d71c79c9ca7d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc-jj)** ensure enabling the `vc-jj` backend - ([1c46c29](https://github.com/abougouffa/minemacs/commit/1c46c29801f0cbfc1ed6e78e6f44d33f5d6ce865)) - [@abougouffa](https://github.com/abougouffa)
+- **(webkit)** disable and don't build the module on Windows - ([fdac44b](https://github.com/abougouffa/minemacs/commit/fdac44bbad55b4ee252af2c05e3772b697459fca)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** buffer display rules for `helpful` and `pp-eval-expression` - ([ad9b1d8](https://github.com/abougouffa/minemacs/commit/ad9b1d8781171abae78f6330643fea85be37fe7a)) - [@abougouffa](https://github.com/abougouffa)
+- check for Tree-Sitter support before installing `*-ts-mode`s - ([accc068](https://github.com/abougouffa/minemacs/commit/accc068e37dff09b0c00209b2a8d8fbde4a22c6e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([1853ef8](https://github.com/abougouffa/minemacs/commit/1853ef8a4f3b4d8f174ecf855263fd0fcdb9a281)) - [@abougouffa](https://github.com/abougouffa)
+- manually fix the change log for v12.20.0 - ([4d63ede](https://github.com/abougouffa/minemacs/commit/4d63ede282dbf9239e73e53699b001f68a6e625a)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** automatically guess indentation style from `.clang-format` - ([9f87940](https://github.com/abougouffa/minemacs/commit/9f87940f8835df80f3f0ca42b8788ad4b7127954)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more polished utilities for `clang-format` - ([246b15c](https://github.com/abougouffa/minemacs/commit/246b15c967c2100cd8bdc5ae68a049b3cfe56989)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** restore `repo-transient` and add `gerrit` - ([1d477ba](https://github.com/abougouffa/minemacs/commit/1d477ba4706f17c14f1a181b6a931e03363147ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** remove `gerrit` - ([1fc5b2c](https://github.com/abougouffa/minemacs/commit/1fc5b2c066055efc28eb0a3144b367ea9153717e)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add initial support for `magit-gerrit` - ([eae994c](https://github.com/abougouffa/minemacs/commit/eae994c2bb03b129aba365d7a80f72bfec001952)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-commit)** add a helper to insert conventional commits - ([bcf66fd](https://github.com/abougouffa/minemacs/commit/bcf66fde4af6b7203fb2d4791c500e6374652825)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for Typst - ([8481415](https://github.com/abougouffa/minemacs/commit/8481415a37b98b233f3a5127a5d3fbfa1768d71a)) - [@abougouffa](https://github.com/abougouffa)
+- **(webkit)** autoload and bind `webkit-dark-toggle` - ([0b41205](https://github.com/abougouffa/minemacs/commit/0b41205c6d9a86b0c007acba0ff69a3f1f889f7e)) - [@abougouffa](https://github.com/abougouffa)
+- add the option to select a specific `clang-format` version - ([847c4f0](https://github.com/abougouffa/minemacs/commit/847c4f0f251f29002e4ce4ebe8b6a8fe36b53422)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(gitignore)** don't track `.cache/` - ([ab9018e](https://github.com/abougouffa/minemacs/commit/ab9018e51586844bbfff0068c369674102349e59)) - [@abougouffa](https://github.com/abougouffa)
+- update the `.dir-locals.el` - ([95c67b2](https://github.com/abougouffa/minemacs/commit/95c67b2776329bea5dace23e44323654ff193122)) - [@abougouffa](https://github.com/abougouffa)
+- enable conventional commits for the project - ([037b2a2](https://github.com/abougouffa/minemacs/commit/037b2a26aa742304b1d7f07a512b664bc54854d5)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** code formatting - ([f7bdd41](https://github.com/abougouffa/minemacs/commit/f7bdd41827c1894f8b77b50fbf388712ab2c919a)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** move `hexl` related customization to `me-builtin` - ([368711d](https://github.com/abougouffa/minemacs/commit/368711d6e9966c96433d09d290ff9687bf2e4e9f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove unused `+project-scan-for-projects` - ([f5c480d](https://github.com/abougouffa/minemacs/commit/f5c480dfef00ea9bfccd6a0c739bf1a1b8cc5f37)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** make use of `url-http-end-of-headers` - ([3672fea](https://github.com/abougouffa/minemacs/commit/3672fea13f3f6be6f63b89ba3132d0242fdff207)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** simplify and remove references to old options - ([baad80f](https://github.com/abougouffa/minemacs/commit/baad80f50f698e1cbc558e25f792684107158594)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** remove buggy `flymake` fringe marker customization - ([233a524](https://github.com/abougouffa/minemacs/commit/233a5243ce07215a2d192127130038fb87fd9db3)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-commit)** generic commit prefix, available per-project - ([cfa25a2](https://github.com/abougouffa/minemacs/commit/cfa25a2012cbc38c35ab7b881d7ab3fbcf70e59e)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(builtin)** reset `tab-width` to 8 by default - ([75e751c](https://github.com/abougouffa/minemacs/commit/75e751c524f7c0819cbc0d71f6af898c0796d1be)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(autorevert)** no messages on reverting externally modified buffers - ([b882110](https://github.com/abougouffa/minemacs/commit/b882110523bdb452f565e1a861e202f033943cda)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult)** remove a non longer needed setting - ([9f2c52e](https://github.com/abougouffa/minemacs/commit/9f2c52ec214e97a092db261a8c4f5b6c08146675)) - [@abougouffa](https://github.com/abougouffa)
+- **(editorconfig)** polish guessing indentation style from `.clang-format` - ([d445ec8](https://github.com/abougouffa/minemacs/commit/d445ec8d0edd397232266f9fe505882cff65a1a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** register only arrows in `text-mode` (not working) - ([95daf3c](https://github.com/abougouffa/minemacs/commit/95daf3cf957d24835bd1617129e1f61b5059c53e)) - [@abougouffa](https://github.com/abougouffa)
+- **(ligature)** add `;;` and `;;;` for LISPs - ([015e82f](https://github.com/abougouffa/minemacs/commit/015e82fcfd26a677438443838822daa3041f1306)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-gerrit)** use my fork until PR gets eventually merged - ([aa3ece9](https://github.com/abougouffa/minemacs/commit/aa3ece9912b7f743e155fe1763d1a989deb29e97)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-gerrit)** Use `_` instead of `R` as a prefix - ([7b00b42](https://github.com/abougouffa/minemacs/commit/7b00b4214e14a794cfadf9d57bf5a7d35e92201a)) - [@abougouffa](https://github.com/abougouffa)
+- **(webkit)** disable on Windows - ([60fae95](https://github.com/abougouffa/minemacs/commit/60fae95e6bfc6e88595d430ff8e50c1769ee443f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([adb2bc2](https://github.com/abougouffa/minemacs/commit/adb2bc24a13975538bb3d58b79b5127def0e2347)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([935efb2](https://github.com/abougouffa/minemacs/commit/935efb2fff5b5738e495f1ba3bb7445ab75ad540)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([eb52ff8](https://github.com/abougouffa/minemacs/commit/eb52ff8e7dcf7439b6076e8a224f07c548a9fd58)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bdbff6f](https://github.com/abougouffa/minemacs/commit/bdbff6f053af87fc40d1aa6ebdd38b069ec05934)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([a95b88d](https://github.com/abougouffa/minemacs/commit/a95b88d08429110befaf6c53515a19d8e3f2aa42)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b3d9038](https://github.com/abougouffa/minemacs/commit/b3d903811da8e68daf9dfe3f6697e9493c0ff4e4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.24.0](https://github.com/abougouffa/minemacs/compare/801a6efd8528163cb4def52fa24697645e2a7816..v12.24.0) - 2025-05-07
 #### Bug Fixes
 - **(core)** fix the super-project project root derivation - ([7459923](https://github.com/abougouffa/minemacs/commit/7459923eab764f35cf1ebd81d4a6e16a911c7cb8)) - [@abougouffa](https://github.com/abougouffa)
