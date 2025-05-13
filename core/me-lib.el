@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-13
+;; Last modified: 2025-05-14
 
 ;;; Commentary:
 
@@ -674,18 +674,18 @@ be deleted.
 (declare-function eglot-alternatives "eglot")
 (defun +eglot-register (modes &rest servers)
   "Register MODES with LSP SERVERS.
+
 Examples:
-  (+eglot-register \\='vhdl-mode \"vhdl_ls\")
-  (+eglot-register \\='lua-mode \"lua-language-server\" \"lua-lsp\")
-  (+eglot-register \\='(c-mode c++-mode) \\='(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")"
+\(+eglot-register \\='vhdl-mode \"vhdl_ls\")
+\(+eglot-register \\='lua-mode \"lua-language-server\" \"lua-lsp\")
+\(+eglot-register \\='(c-mode c++-mode) \\='(\"clangd\" \"--clang-tidy\" \"-j=12\") \"ccls\")"
   (declare (indent 0))
   (with-eval-after-load 'eglot
     (let ((orig-val (assoc modes eglot-server-programs (lambda (s1 s2) (seq-intersection (ensure-list s1) (ensure-list s2)))))
           (contact (if (length> servers 1) (eglot-alternatives (ensure-list servers)) (ensure-list (car servers)))))
       (if (null orig-val) ; not present, add it
           (add-to-list 'eglot-server-programs (cons modes contact))
-        (unless (equal (car orig-val) modes)
-          (setcar orig-val modes))
+        (unless (equal (car orig-val) modes) (setcar orig-val modes))
         (setcdr orig-val contact)))))
 
 
