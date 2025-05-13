@@ -35,7 +35,7 @@
 
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
-  :straight (:host github :repo "darcylee/magit-gerrit")
+  :straight (:host github :repo "darcylee/magit-gerrit" :fork "abougouffa/magit-gerrit")
   :custom
   (magit-gerrit-popup-prefix "_"))
 
