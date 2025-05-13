@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-13
 
 ;;; Commentary:
 
@@ -22,8 +22,8 @@
 
 ;; Tree-sitter based major mode for the Zig programming language
 (use-package zig-ts-mode
-  :straight t)
-
+  :straight t
+  :when (featurep 'feat/tree-sitter))
 
 (provide 'on-demand/me-zig)
 ;;; me-zig.el ends here

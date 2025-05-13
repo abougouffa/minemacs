@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-10
+;; Last modified: 2025-05-13
 
 ;;; Commentary:
 
@@ -501,6 +501,7 @@ or file path may exist now."
         '((c-mode . "k&r") (c++-mode . "k&r"))))
 
 (use-package c-ts-mode
+  :when (featurep 'feat/tree-sitter)
   :custom
   (c-ts-mode-indent-style 'k&r))
 

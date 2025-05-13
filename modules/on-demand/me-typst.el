@@ -17,7 +17,8 @@
 
 ;; Typst tree sitter major mode for Emacs
 (use-package typst-ts-mode
-  :straight t)
+  :straight t
+  :when (featurep 'feat/tree-sitter))
 
 
 ;; Typst live preview minor mode
