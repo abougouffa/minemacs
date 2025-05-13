@@ -690,17 +690,6 @@ Examples:
 
 
 
-;;; Binary files tweaks
-
-;; (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t)
-
-(defcustom +binary-hexl-enable t
-  "Enable or disable opening suitable files in `hexl-mode'."
-  :group 'minemacs-binary
-  :type 'boolean)
-
-
-
 ;;; Project tweaks
 
 (defcustom +super-project-root-markers '(".super-project" ".super-project.el" ".repo" ".code-workspace" ".workspace")

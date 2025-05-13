@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-12
+;; Last modified: 2025-05-14
 
 ;;; Commentary:
 
@@ -955,49 +955,6 @@ the schema from the file name."
   (while (server-running-p)
     (sleep-for 1))
   (server-start))
-
-
-
-;;; Binary files tweaks
-
-;; A predicate for detecting binary files. Inspired by:
-;; https://emacs.stackexchange.com/q/10277/37002
-;;;###autoload
-(defun +binary-buffer-p (&optional buffer)
-  "Return whether BUFFER or the current buffer is binary.
-
-A binary buffer is defined as containing at least one null byte.
-
-Returns either nil, or the position of the first null byte."
-  (with-current-buffer (or buffer (current-buffer))
-    (save-excursion
-      (goto-char (point-min))
-      (search-forward (string ?\x00) nil t 1))))
-
-;;;###autoload
-(defun +binary-file-p (file &optional chunk)
-  "Is FILE a binary?
-
-This checks the first CHUNK of bytes, defaults to 1024."
-  (with-temp-buffer
-    (insert-file-contents-literally file nil 0 (or chunk 1024))
-    (+binary-buffer-p)))
-
-;;;###autoload
-(defun +binary-hexl-buffer-p (&optional buffer)
-  "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
-  (and +binary-hexl-enable
-       (+binary-buffer-p buffer)
-       (not (and (fboundp 'objdump-recognizable-buffer-p)
-                 ;; Executables are viewed with objdump mode
-                 (objdump-recognizable-buffer-p buffer)))))
-
-;;;###autoload
-(defun +binary-hexl-mode-maybe ()
-  "Activate `hexl-mode' if relevant for the current buffer."
-  (interactive)
-  (when (and (not (eq major-mode 'hexl-mode)) (+binary-hexl-buffer-p))
-    (hexl-mode 1)))
 
 
 
