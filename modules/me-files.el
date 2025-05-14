@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-14
 
 ;;; Commentary:
 
@@ -35,7 +35,7 @@
   :init
   (guard-lf-mode 1)
   :config
-  (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode ein:ipynb-mode)))
+  (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode ein:ipynb-mode +hexl-mode-maybe)))
 
 
 ;; Utilities for opening files with "sudo"
