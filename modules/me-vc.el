@@ -243,16 +243,11 @@ use `project-remember-project' with each detected repo."
   :hook (git-timemachine-mode . display-line-numbers-mode)
   :config
   (advice-add
-   'git-timemachine--show-minibuffer-details :override
-   (satch-defun +git-timemachine--show-revision-in-header-line:override-a (revision)
+   'git-timemachine--show-minibuffer-details :around
+   (satch-defun +git-timemachine--show-revision-in-header-line:around-a (orig-fn revision)
      "Show the current revision in the header-line instead of the echo area."
-     (let ((author (if git-timemachine-show-author (concat (nth 6 revision) ": ") ""))
-           (sha-or-subject (if (eq git-timemachine-minibuffer-detail 'commit) (car revision) (nth 5 revision))))
-       (setq header-line-format
-             (format "%s%s [%s (%s)]"
-                     (propertize author 'face 'git-timemachine-minibuffer-author-face)
-                     (propertize sha-or-subject 'face 'git-timemachine-minibuffer-detail-face)
-                     (nth 4 revision) (nth 3 revision)))))))
+     (let* ((inhibit-message t))
+       (setq header-line-format (concat "  " (funcall orig-fn revision)))))))
 
 
 ;; Emacs major modes for Git configuration files
