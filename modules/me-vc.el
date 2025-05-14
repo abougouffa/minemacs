@@ -167,7 +167,7 @@ to `conventional' or `prefix'."
   ;; buffer, the diff-hl doesn't go away until an input happens. This hook will
   ;; ensure updating the `diff-hl' each time we switch to the buffer.
   (defun +diff-hl-update-on-buffer-change ()
-    (add-hook 'window-buffer-change-functions (lambda (_win) (diff-hl-update))))
+    (add-hook 'window-buffer-change-functions (lambda (_win) (when diff-hl-mode (diff-hl-update))) nil t))
   (diff-hl-flydiff-mode 1))
 
 
