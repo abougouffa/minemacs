@@ -136,73 +136,7 @@ to `conventional' or `prefix'."
 
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously
 (use-package multi-magit
-  :straight (:host github :repo "luismbo/multi-magit")
-  :init
-  (defvar +multi-magit-discover-max-depth 6 "Scan the sub-directoris up to this depth.")
-  (defcustom +multi-magit-discover-ignore-directories nil
-    "Ignore these regexps when discovering repos.
-By default, the regexp is applied to the directory name. If you want to
-match the full path, use the \(cons \"path/to/ignore[0-9]*\" full) syntax."
-    :type '(repeat (choice regexp (cons regexp (const full)))))
-  :commands (+multi-magit-discover-repos)
-  :config
-  (defun +multi-magit-discover-repos (dir &optional reset remember-projects)
-    "Recursively discover and select Git repositories under DIR.
-
-When RESET is non-nil (\\[universal-argument]), reset the
-`multi-magit-selected-repositories' and `magit-repository-directories'
-variables.
-
-When REMEMBER-PROJECTS (\\[universal-argument] \\[universal-argument]),
-use `project-remember-project' with each detected repo."
-    (interactive "DSelect the base directory: ")
-    (let* ((reset (or reset (= (prefix-numeric-value current-prefix-arg) 4)))
-           (remember-projects (or remember-projects (= (prefix-numeric-value current-prefix-arg) 16)))
-           (dir (expand-file-name dir))
-           (regexps (append +multi-magit-discover-ignore-directories
-                            (mapcar #'regexp-quote (append project-vc-extra-root-markers
-                                                           (mapcar #'cdr project-vc-backend-markers-alist)))))
-           (directories
-            (progn
-              (message "Creating directory list at %S up to depth %d" dir +multi-magit-discover-max-depth)
-              (mapcar #'abbreviate-file-name
-                      (seq-filter
-                       #'file-directory-p
-                       (directory-files-recursively
-                        dir
-                        directory-files-no-dot-files-regexp
-                        t
-                        (lambda (path) ; Use a predicate for the maximum depth
-                          (and
-                           (not (seq-find
-                                 (lambda (regexp)
-                                   (let ((matching-part (if (and (consp regexp) (eq (car regexp) 'full)) path (file-name-directory path))))
-                                     (string-match-p regexp matching-part)))
-                                 regexps))
-                           (length< (file-name-split (string-remove-prefix dir (expand-file-name path)))
-                                    +multi-magit-discover-max-depth)))))))))
-      (when reset ; Reset the two variables
-        (setq magit-repository-directories
-              (cl-delete-if (lambda (dir-depth) (member (car dir-depth) multi-magit-selected-repositories)) magit-repository-directories))
-        (setq multi-magit-selected-repositories nil))
-
-      (dolist (dir directories)
-        (message "Scanning repositories under: %S" (abbreviate-file-name dir))
-        (when-let* ((dir (vc-git-root dir)))
-          (when remember-projects (project-remember-project (project-current nil dir)))
-          (add-to-list 'multi-magit-selected-repositories dir)))
-
-      (message "Scanning repositories under: done.")
-
-      ;; Set `magit-repository-directories' if not already there
-      (dolist (dir multi-magit-selected-repositories)
-        (unless (seq-find (lambda (e) (equal (expand-file-name (car e)) dir)) magit-repository-directories)
-          (add-to-list 'magit-repository-directories (cons dir 0)))))
-
-    (with-eval-after-load 'desktop
-      ;; Save these variables between sessions
-      (add-to-list 'desktop-globals-to-save 'magit-repository-directories)
-      (add-to-list 'desktop-globals-to-save 'multi-magit-selected-repositories))))
+  :straight (:host github :repo "luismbo/multi-magit"))
 
 
 ;; Store EIEIO objects using EmacSQL
