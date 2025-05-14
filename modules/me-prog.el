@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-12
+;; Last modified: 2025-05-14
 
 ;;; Commentary:
 
@@ -206,8 +206,10 @@
   :custom
   (dumb-jump-selector 'completing-read)
   :init
-  ;; Use `dumb-jump' as `xref' backend
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate) ; Use `dumb-jump' as `xref' backend
+  :config
+  (with-eval-after-load 'project
+    (cl-callf append dumb-jump-project-denoters project-vc-extra-root-markers)))
 
 
 ;; Combine multiple Xref backends
