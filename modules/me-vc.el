@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-12
+;; Last modified: 2025-05-14
 
 ;;; Commentary:
 
@@ -246,15 +246,13 @@ use `project-remember-project' with each detected repo."
    'git-timemachine--show-minibuffer-details :override
    (satch-defun +git-timemachine--show-revision-in-header-line:override-a (revision)
      "Show the current revision in the header-line instead of the echo area."
-     (let* ((date-relative (nth 3 revision))
-            (date-full (nth 4 revision))
-            (author (if git-timemachine-show-author (concat (nth 6 revision) ": ") ""))
-            (sha-or-subject (if (eq git-timemachine-minibuffer-detail 'commit) (car revision) (nth 5 revision))))
+     (let ((author (if git-timemachine-show-author (concat (nth 6 revision) ": ") ""))
+           (sha-or-subject (if (eq git-timemachine-minibuffer-detail 'commit) (car revision) (nth 5 revision))))
        (setq header-line-format
              (format "%s%s [%s (%s)]"
                      (propertize author 'face 'git-timemachine-minibuffer-author-face)
                      (propertize sha-or-subject 'face 'git-timemachine-minibuffer-detail-face)
-                     date-full date-relative))))))
+                     (nth 4 revision) (nth 3 revision)))))))
 
 
 ;; Emacs major modes for Git configuration files
