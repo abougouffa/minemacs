@@ -1356,15 +1356,17 @@ surrounded by word boundaries."
 
 
 (use-package hexl
+  :autoload (+hexl-buffer-p)
   :init
-  (defcustom +binary-hexl-enable t
+  (defcustom +hexl-auto-enable t
     "Enable or disable opening suitable files in `hexl-mode'."
     :group 'minemacs-binary
     :type 'boolean)
-  (add-to-list 'magic-fallback-mode-alist '(+binary-hexl-buffer-p . +binary-hexl-mode-maybe) t)
+  ;; Add the fallback predicate near the end, `objdump-disassemble' predicate is
+  ;; added with depth 99, so this one should be tested first
+  (add-hook 'magic-fallback-mode-alist '(+hexl-buffer-p . +hexl-mode-maybe) 95)
   :config
-  ;; A predicate for detecting binary files. Inspired by:
-  ;; https://emacs.stackexchange.com/q/10277/37002
+  ;; A predicate for detecting binary files. Inspired by: https://emacs.stackexchange.com/q/10277/37002
   (defun +hexl-binary-buffer-p (&optional buffer)
     "Check if BUFFER or the current buffer contains binary data.
 
@@ -1375,18 +1377,18 @@ Returns either nil, or the position of the first null byte."
       (save-excursion (goto-char (point-min))
                       (search-forward (string ?\x00) nil :noerror))))
 
-  (defun +binary-hexl-buffer-p (&optional buffer)
+  (defun +hexl-buffer-p (&optional buffer)
     "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
-    (and +binary-hexl-enable
+    (and +hexl-auto-enable
          (+hexl-binary-buffer-p buffer)
          (not (and (fboundp 'objdump-recognizable-buffer-p)
                    ;; Executables are viewed with objdump mode
                    (objdump-recognizable-buffer-p buffer)))))
 
-  (defun +binary-hexl-mode-maybe ()
+  (defun +hexl-mode-maybe ()
     "Activate `hexl-mode' if relevant for the current buffer."
     (interactive)
-    (when (and (not (eq major-mode 'hexl-mode)) (+binary-hexl-buffer-p))
+    (when (and (not (eq major-mode 'hexl-mode)) (+hexl-buffer-p))
       (hexl-mode 1))))
 
 
