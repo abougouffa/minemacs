@@ -247,7 +247,9 @@ use `project-remember-project' with each detected repo."
    (satch-defun +git-timemachine--show-revision-in-header-line:around-a (orig-fn revision)
      "Show the current revision in the header-line instead of the echo area."
      (let* ((inhibit-message t))
-       (setq header-line-format (concat "  " (funcall orig-fn revision)))))))
+       (setq header-line-format
+             (concat "  " (if (featurep 'nerd-icons) (concat (nerd-icons-octicon "nf-oct-git_branch") " ") "")
+                     (funcall orig-fn revision)))))))
 
 
 ;; Emacs major modes for Git configuration files
