@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-15
 
 ;;; Commentary:
 
@@ -633,7 +633,8 @@ be deleted.
          (when ,tab-name
            (tab-new)
            (tab-rename ,tab-name))
-         ,@sexp)
+         (let (display-buffer-alist) ; To by pass the defined rules
+           ,@sexp))
        ,(macroexp-progn fn-body)
        #',fn-name)))
 
