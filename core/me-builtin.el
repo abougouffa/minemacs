@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-15
 
 ;;; Commentary:
 
@@ -1258,7 +1258,7 @@ Typing these will trigger reindentation of the current line.")
       (side . bottom)
       (slot . -1))
      (,(+make-buffer-conds
-        'compilation-mode 'bookmark-bmenu-mode 'messages-buffer-mode 'backtrace-mode
+        'compilation-mode 'bookmark-bmenu-mode 'messages-buffer-mode 'backtrace-mode 'quickrun--mode
         "\\*\\(?:Compile-Log\\|Warnings\\|envrc\\|Pp Eval Output\\)\\*")
       (display-buffer-in-side-window)
       (window-height . 0.2)
