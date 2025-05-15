@@ -90,6 +90,8 @@
 * `igist`: Work seamlessly with GitHub gists from Emacs
 * `gee`: The Emacs Gerrit Experience
 * `magit-gerrit`: Gerrit integration with Magit
+* `gerrit`: Gerrit integration from ChromiumOS development utils
+* `repo-transient`: Transient menus to use some "repo" commands within Magit
 * `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 * `webkit-dark`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 

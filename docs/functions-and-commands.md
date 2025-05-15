@@ -168,10 +168,6 @@ A list of hooks defined using `+make-first-file-hook!`.
 
 Modes for which Eglot can be automatically enabled by `+eglot-auto-enable`.
 
-#### `+binary-hexl-enable`
-
-Enable or disable opening suitable files in `hexl-mode`.
-
 #### `+super-project-root-markers`
 
 List of super-project markers.
@@ -548,9 +544,9 @@ Add all modes in MODE-LIST to `+eglot-auto-enable-modes`.
 
 Register MODES with LSP SERVERS.
 Examples:
-  (+eglot-register 'vhdl-mode "vhdl_ls")
-  (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
-  (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
+(+eglot-register 'vhdl-mode "vhdl_ls")
+(+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
+(+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
 #### `(+project-super-project-try-or-fail DIR)`
 
@@ -901,25 +897,6 @@ Set the editor tab and indent widths from ".clang-format".
 #### `(+server-restart)`
 
 Restart the Emacs server.
-
-#### `(+binary-buffer-p &optional BUFFER)`
-
-Return whether BUFFER or the current buffer is binary.
-A binary buffer is defined as containing at least one null byte.
-Returns either nil, or the position of the first null byte.
-
-#### `(+binary-file-p FILE &optional CHUNK)`
-
-Is FILE a binary?
-This checks the first CHUNK of bytes, defaults to 1024.
-
-#### `(+binary-hexl-buffer-p &optional BUFFER)`
-
-Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode`.
-
-#### `(+binary-hexl-mode-maybe)`
-
-Activate `hexl-mode` if relevant for the current buffer.
 
 #### `(+kill-buffer-and-its-windows BUFFER &optional MSGP)`
 
