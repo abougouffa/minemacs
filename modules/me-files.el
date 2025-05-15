@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-15
 
 ;;; Commentary:
 
@@ -53,11 +53,11 @@ write to a new file name."
     (interactive (let ((num (prefix-numeric-value current-prefix-arg)))
                    (list (> num 1) (> num 4))))
     (if-let* ((user (if choose-user
-                        (completing-read "User: " (and (fboundp 'system-users) (system-users)) nil nil nil 'sudo-edit-user-history sudo-edit-user)
+                        (completing-read "User: " (system-users) nil nil nil 'sudo-edit-user-history sudo-edit-user)
                       sudo-edit-user))
-              (file (or (and (or (not buffer-file-name) save-as)
-                             (read-file-name (format "Save (as %S) to: " sudo-edit-user)))
-                        buffer-file-name))
+              (file (if (or (not buffer-file-name) save-as)
+                        (read-file-name (format "Save (as %S) to: " sudo-edit-user))
+                      buffer-file-name))
               (file (sudo-edit-filename file user))
               (dest-buffer (find-file-noselect file))
               (src-buffer (current-buffer)))
