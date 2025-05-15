@@ -580,11 +580,12 @@ or file path may exist now."
   (+eglot-register '(nxml-mode xml-mode) "lemminx")
   (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls") ; vhdl_ls from rust_hdl (AUR: rust_hdl-git)
   (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver")
-  (+eglot-register ; add `pylyzer'
+  (+eglot-register ; add `pylyzer' and `ty'
     '(python-mode python-ts-mode)
     "pylsp"
     "pyls"
     '("pylyzer" "--server")
+    '("ty" "server")
     '("basedpyright-langserver" "--stdio")
     '("pyright-langserver" "--stdio")
     "jedi-language-server"
