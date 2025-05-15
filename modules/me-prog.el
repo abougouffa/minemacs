@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-15
 
 ;;; Commentary:
 
@@ -196,6 +196,7 @@
 ;; Out of the box code execution from editing buffer
 (use-package quickrun
   :straight t
+  :hook (quickrun--mode . minemacs-reduce-font-size)
   :bind (([f5] . quickrun)))
 
 
