@@ -332,6 +332,7 @@ or file path may exist now."
      ".magic" ; MAX + Mojo
      "package.json" ; Node.js
      "pom.xml" ; Apache Maven (Java/Kotlin)
+     "pyproject.toml" ; uv (Python)
      "Cargo.toml")) ; Cargo (Rust)
   :config
   ;; BUG+HACK: Project name should not be inherited from super-projects
