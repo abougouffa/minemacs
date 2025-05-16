@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-16
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
    (satch-defun +clang-format--set-style ()
      "Automatically set the `clang-format' style if not already set."
      (unless (local-variable-p 'clang-format-style)
-       (setq-local clang-format-style (+clang-format-get-style))))))
+       (setq-local clang-format-style (+clang-format-get-style t))))))
 
 
 (provide 'obsolete/me-clang-format)

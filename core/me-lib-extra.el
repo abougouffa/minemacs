@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-16
 
 ;;; Commentary:
 
@@ -910,14 +910,17 @@ the schema from the file name."
 
 ;; Helper function to get the style for "clang-format"
 ;;;###autoload
-(defun +clang-format-get-style ()
-  "Get the \"-style\" argument for clang-format."
-  (if-let* ((conf-file (+clang-format--config-file)))
-      (concat "file:" conf-file)
-    (let ((indent (cadr (+clang-format--get-lang))))
-      (format "{IndentWidth: %d, TabWidth: %d}"
-              (or (and indent (symbol-value indent)) standard-indent)
-              (or (and indent (symbol-value indent)) tab-width)))))
+(defun +clang-format-get-style (&optional no-opt)
+  "Get the \"-style=XXX\" argument for clang-format.
+
+When NO-OPT isn non-nil, don't return the \"-style=\" part."
+  (concat (if no-opt "-style=" "")
+          (if-let* ((conf-file (+clang-format--config-file)))
+              "file"
+            (let ((indent (cadr (+clang-format--get-lang))))
+              (format "{IndentWidth: %d, TabWidth: %d}"
+                      (or (and indent (symbol-value indent)) standard-indent)
+                      (or (and indent (symbol-value indent)) tab-width))))))
 
 ;;;###autoload
 (defun +editorconfig-guess-indentation-style-from-clang-format ()

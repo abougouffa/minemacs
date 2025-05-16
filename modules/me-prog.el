@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-15
+;; Last modified: 2025-05-16
 
 ;;; Commentary:
 
@@ -148,7 +148,7 @@
   ;; For `clang-format', use the command from `+clang-format-command', and
   ;; append the "-style" option
   (let ((clang (assq 'clang-format apheleia-formatters)))
-    (setcdr clang (cons +clang-format-command (append (cddr clang) '("-style" (+clang-format-get-style)))))))
+    (setcdr clang (cons +clang-format-command (append (cddr clang) '((+clang-format-get-style)))))))
 
 
 ;; Define commands which run reformatters on the current Emacs buffer
@@ -176,7 +176,7 @@
   (reformatter-define ref-clang-format
     :program +clang-format-command
     :args (list
-           "-style" (+clang-format-get-style)
+           (+clang-format-get-style)
            "-assume-filename"
            (or (buffer-file-name)
                (alist-get major-mode
