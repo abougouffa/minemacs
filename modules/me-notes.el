@@ -22,7 +22,38 @@
   :custom
   (denote-date-prompt-use-org-read-date t) ; And `org-read-date' is an amazing bit of tech
   :config
-  (denote-rename-buffer-mode 1))
+  (denote-rename-buffer-mode 1)
+  :init
+  (with-eval-after-load 'org-capture
+    (add-to-list
+     'org-capture-templates
+     '("j" "New journal (with Denote)" plain
+       (file denote-last-path)
+       (function
+        (lambda ()
+          ;; The "journal" subdirectory of the `denote-directory'---this must exist!
+          (let* ((denote-use-directory (expand-file-name "journal" (denote-directory)))
+                 ;; Use the existing `denote-prompts' as well as the one for a date.
+                 (denote-prompts (denote-add-prompts '(date))))
+            (mkdir denote-use-directory t)
+            (denote-org-capture))))
+       :no-save t
+       :immediate-finish nil
+       :kill-buffer t
+       :jump-to-captured t))
+    (add-to-list
+     'org-capture-templates
+     '("r" "New reference (with Denote)" plain
+       (file denote-last-path)
+       (function
+        (lambda ()
+          (let ((denote-use-directory (expand-file-name "reference" (denote-directory))))
+            (mkdir denote-use-directory t)
+            (denote-org-capture))))
+       :no-save t
+       :immediate-finish nil
+       :kill-buffer t
+       :jump-to-captured t))))
 
 
 ;; Convenience functions for working with multiple silos
