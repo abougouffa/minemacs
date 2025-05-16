@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-16
 
 ;;; Commentary:
 
@@ -93,12 +93,6 @@ projects to uses the convention of commit messages like:
   :straight (:host github :repo "ahungry/org-jira")
   :custom
   (org-jira-working-dir (+directory-ensure org-directory "jira/")))
-
-
-;; Edit Confluence wiki pages in Emacs
-(use-package tributary
-  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
-  :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 
 ;; Paste text to pastebin-like services
