@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-16
 
 ;;; Commentary:
 
@@ -32,7 +32,8 @@
 
 ;; Convenience functions for daily journaling with Denote
 (use-package denote-journal
-  :straight t)
+  :straight t
+  :hook (calendar-mode . denote-journal-calendar-mode))
 
 
 ;; Sequence notes or Folgezettel with Denote
