@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-16
+;; Last modified: 2025-05-17
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
-  :straight org-jira
+  :straight (:host github :repo "ahungry/org-jira" :files ("jiralib.el"))
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init
@@ -86,13 +86,6 @@ projects to uses the convention of commit messages like:
                   (user (plist-get auth :user))
                   (pass (funcall (plist-get auth :secret))))
         (jiralib-login user pass)))))
-
-
-;; Bring Jira and Org mode together
-(use-package org-jira
-  :straight (:host github :repo "ahungry/org-jira")
-  :custom
-  (org-jira-working-dir (+directory-ensure org-directory "jira/")))
 
 
 ;; Paste text to pastebin-like services
