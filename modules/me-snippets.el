@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2025-04-20
+;; Last modified: 2025-05-17
 
 ;;; Commentary:
 
@@ -22,6 +22,7 @@
     (satch-advice-add '(yas-define-snippets yas--parse-template) :around '+apply-inhibit-messages))
   :custom
   (yas-triggers-in-field t) ; Allow nested snippets
+  (yas-alias-to-yas/prefix-p nil) ; Don't define old `yas/*' aliases
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
 
 
