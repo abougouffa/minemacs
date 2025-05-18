@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-16
+;; Last modified: 2025-05-18
 
 ;;; Commentary:
 
@@ -68,7 +68,7 @@
   ;; Ensure that installed tree-sitter languages have their corresponding `x-ts-mode' added to `auto-mode-alist'
   (treesit-auto-add-to-auto-mode-alist 'all)
 
-  (defvar +treesit-auto-create-parser-modes-deny '(org-mode))
+  (defvar +treesit-auto-create-parser-modes-deny nil)
 
   ;; Create `treesit' parsers when they are available even in non-treesit modes.
   ;; This is useful for packages like `virtual-format', `treesit-fold', `expreg'
