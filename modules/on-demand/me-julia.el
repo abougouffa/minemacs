@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-18
 
 ;;; Commentary:
 
@@ -13,18 +13,21 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-julia
   :auto-mode '(("\\.jl\\'" . julia-mode))
+  :interpreter-mode '(("julia" . julia-mode))
   :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) . (julia-repl julia-snail julia-ts-mode))))
 
 
 ;; Major mode for editing Julia source code
 (use-package julia-mode
-  :straight t)
+  :straight t
+  :interpreter "julia")
 
 
 ;; Major mode for Julia source code using Tree-sitter
 (use-package julia-ts-mode
   :straight t
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :interpreter "julia")
 
 
 ;; A minor mode for a Julia REPL

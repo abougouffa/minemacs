@@ -1,10 +1,10 @@
-;;; me-statistics.el --- Statistics using R and Julia -*- lexical-binding: t; -*-
+;;; me-statistics.el --- Statistics in Emacs -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-04-20
+;; Last modified: 2025-05-18
 
 ;;; Commentary:
 
@@ -17,19 +17,12 @@
                ("\\.[Rr]out\\'" . ess-r-transcript-mode)
                ("\\.Rd\\'" . Rd-mode)
                ("\\.[Jj][Aa][Gg]\\'" . ess-jags-mode)
-               ("\\.inp\\'" . ess-gretl-mode)
-               ("\\.jl\\'" . julia-mode))
-  :interpreter-mode '((("r" "Rscript") . ess-r-mode)
-                      ("julia" . julia-mode)))
+               ("\\.inp\\'" . ess-gretl-mode))
+  :interpreter-mode '((("r" "Rscript") . ess-r-mode)))
 
 
 ;;;###autoload(add-to-list 'auto-mode-alist '("/Makevars\\(\\.win\\)?\\'" . makefile-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("DESCRIPTION\\'" . conf-colon-mode))
-
-
-;; Julia support in Emacs
-(use-package julia-mode
-  :straight t)
 
 
 ;; Emacs Speaks Statistics
