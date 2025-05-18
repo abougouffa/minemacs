@@ -182,13 +182,15 @@ or file path may exist now."
   ;; Offer to create parent directories if they do not exist. The arguments are
   ;; made optional so we can use it with both `find-file' and `rename-file'
   (defun +create-non-existent-directory (&optional _filename newname &rest _args)
-    (let ((parent-directory (file-name-directory (or newname buffer-file-name))))
-      (when (and (not (file-exists-p parent-directory))
-                 (y-or-n-p (format "Directory %S does't exist! Create it?" parent-directory)))
-        (make-directory parent-directory t))))
+    (when-let* ((target-file (or newname buffer-file-name))
+                (parent-directory (file-name-directory target-file))
+                ((not (file-exists-p parent-directory)))
+                ((y-or-n-p (format "Directory %S does't exist! Create it?" parent-directory))))
+      (make-directory parent-directory t)
+      t))
 
   (advice-add 'rename-file :before #'+create-non-existent-directory)
-  (add-hook 'find-file-not-found-functions #'+create-non-existent-directory))
+  (add-hook 'find-file-not-found-functions #'+create-non-existent-directory 80))
 
 (use-package transient
   :straight (:host github :repo "magit/transient")) ; Magit depends on the fresh version
