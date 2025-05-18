@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-15
+;; Last modified: 2025-05-18
 
 ;;; Commentary:
 
@@ -191,7 +191,7 @@ or file path may exist now."
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory))
 
 (use-package transient
-  :straight (transient :source gnu-elpa-mirror))
+  :straight (:host github :repo "magit/transient")) ; Magit depends on the fresh version
 
 (use-package newcomment
   :custom
