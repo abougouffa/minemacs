@@ -2,6 +2,42 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.26.0](https://github.com/abougouffa/minemacs/compare/8d656e364f63e98e5a9bd75bbf478068c71d5035..v12.26.0) - 2025-05-18
+#### Bug Fixes
+- **(clang-format)** fix the "-style" option deduction - ([10d8a45](https://github.com/abougouffa/minemacs/commit/10d8a4599a65912d4fdc40bee33aa53c0b941b09)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** bypass `display-buffer-alist` rules in `+def-dedicated-tab!` - ([f3ac6d5](https://github.com/abougouffa/minemacs/commit/f3ac6d5b1c5fa240a3379d624c74b07c49bcb90c)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** check for `diff-hl-mode` before updating - ([52508d0](https://github.com/abougouffa/minemacs/commit/52508d0acf18d8000c323e8af79d54d1e9e950f8)) - [@abougouffa](https://github.com/abougouffa)
+- **(hexl)** use the `+hexl-` prefix and autoload `+hexl-buffer-p` - ([ccdb54b](https://github.com/abougouffa/minemacs/commit/ccdb54ba65e5a880202c5b3b2ac451af7a3ee80b)) - [@abougouffa](https://github.com/abougouffa)
+- **(igist)** don't blindly generate revisions on every `C-x C-s` - ([625babc](https://github.com/abougouffa/minemacs/commit/625babcc3b975b60627ce5e4522ee53d73ae0fbf)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** use a fresh `transient` version for `magit` - ([6fa864b](https://github.com/abougouffa/minemacs/commit/6fa864b28bd1cad00e3dea71a8f4422153017b01)) - [@abougouffa](https://github.com/abougouffa)
+- **(vterm)** ensure hiding the `vterm` install buffer - ([7b41454](https://github.com/abougouffa/minemacs/commit/7b41454eabcc01df3e9a2e766906c35995f4bf20)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([584ae64](https://github.com/abougouffa/minemacs/commit/584ae64bbd54c9dbc4317be048baacfbc03f95de)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(services)** make `org-jira` obsolete, leave only `jiralib` - ([0fad5e3](https://github.com/abougouffa/minemacs/commit/0fad5e36aa16c6a50f77ffafdd53c770716cf267)) - [@abougouffa](https://github.com/abougouffa)
+- **(services)** make unused `tributary` obsolete - ([ce28421](https://github.com/abougouffa/minemacs/commit/ce2842119f3040b3746d3037faa7a5813ff81672)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(git-timemachine)** minor edits - ([8d656e3](https://github.com/abougouffa/minemacs/commit/8d656e364f63e98e5a9bd75bbf478068c71d5035)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-magit)** remove unused `+multi-magit-discover-repos` - ([3fa2f57](https://github.com/abougouffa/minemacs/commit/3fa2f5766af4454ca2a75c7408b88bd6f76906ba)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(awqat)** minor change in the mode line format - ([d236a55](https://github.com/abougouffa/minemacs/commit/d236a55846399f02f1960b08bdf7bf3697755c2e)) - [@abougouffa](https://github.com/abougouffa)
+- **(denote)** add `org-capture` templates for `denote` journal and refs - ([752d497](https://github.com/abougouffa/minemacs/commit/752d4971005723d6cfe902448a3570c0e37e3c62)) - [@abougouffa](https://github.com/abougouffa)
+- **(denote-journal)** enable `denote-journal-calendar-mode` - ([26a8c0b](https://github.com/abougouffa/minemacs/commit/26a8c0bff8fb06e99af7066d8110195ddb9b59d5)) - [@abougouffa](https://github.com/abougouffa)
+- **(dumb-jump)** register extra project markers from `project` - ([5fd0ed2](https://github.com/abougouffa/minemacs/commit/5fd0ed24c9538b172f2da9983ee8c6da6bf4a1a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** add support for `ty` LSP server - ([854e9b1](https://github.com/abougouffa/minemacs/commit/854e9b1b331db1cbb51a0757cfc0f094e652c531)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-timemachine)** add an icon from `nerd-icons` in the header line - ([c7968e9](https://github.com/abougouffa/minemacs/commit/c7968e9758abdbd03676315c51dfe9f459817df3)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-timemachine)** simplify displaying revision in header-line - ([c5842f3](https://github.com/abougouffa/minemacs/commit/c5842f3a504c85829c7988eaa7aa7ae1465053b8)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** ignore `+hexl-mode-maybe` - ([62d3f4b](https://github.com/abougouffa/minemacs/commit/62d3f4b9fd5f3cb69bb76b793b2e14462aef211e)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** use `pyproject.toml` as a project marker for Python's `uv` - ([258663b](https://github.com/abougouffa/minemacs/commit/258663ba84d5b802126c75729be1f18072f5e108)) - [@abougouffa](https://github.com/abougouffa)
+- **(quickrun)** reduce font size in `quickrun` buffers - ([27a8af1](https://github.com/abougouffa/minemacs/commit/27a8af1fe8206632e1dc240bc5f8a36a01e94424)) - [@abougouffa](https://github.com/abougouffa)
+- **(sudo-edit)** minor refactoring - ([a807e14](https://github.com/abougouffa/minemacs/commit/a807e14df546b564b63d8c1c09bd5dcfd5af6a79)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** add a rule for `quickrun--mode` - ([0ffb412](https://github.com/abougouffa/minemacs/commit/0ffb41234dc3a249c1d4cc54e0ff20059ef7a0ae)) - [@abougouffa](https://github.com/abougouffa)
+- **(yasnippet)** don't define old `yas/*` aliases - ([a466fd2](https://github.com/abougouffa/minemacs/commit/a466fd24431069017c7261a198c99c2358d999d0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bd65679](https://github.com/abougouffa/minemacs/commit/bd65679b7b6c86a2c34247eb5dbddef7fdf6c6e6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9608235](https://github.com/abougouffa/minemacs/commit/960823507ab3e68c2ab3047f796a679969df8d49)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.25.0](https://github.com/abougouffa/minemacs/compare/9f2c52ec214e97a092db261a8c4f5b6c08146675..v12.25.0) - 2025-05-13
 #### Bug Fixes
 - **(citre)** fix the keymap binding - ([d8e9a1f](https://github.com/abougouffa/minemacs/commit/d8e9a1f35b960d74a9c772a442049fba3a616f7f)) - [@abougouffa](https://github.com/abougouffa)
