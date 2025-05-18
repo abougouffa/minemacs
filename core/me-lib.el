@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-15
+;; Last modified: 2025-05-18
 
 ;;; Commentary:
 
@@ -1101,21 +1101,21 @@ To be used as a predicate generator for `display-buffer-alist'."
   (let ((mods nil))
     (when minemacs-on-demand-enable-auto-mode
       (dolist (spec minemacs-on-demand-modules-alist)
-        (let* ((module (car spec))
-               (auto-modes (plist-get (cdr spec) :auto-mode)))
+        (when-let* ((module (car spec))
+                    (auto-modes (plist-get (cdr spec) :auto-mode)))
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (auto-mode auto-modes)
-              (let ((regexps (ensure-list (car auto-mode)))
-                    (modes (ensure-list (cdr auto-mode))))
-                (when-let* (((and (buffer-file-name)
-                                  (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
-                                  (cl-find-if-not #'fboundp modes)
-                                  (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
-                                      (and (not noninteractive) ; ask only when in an interactive session
-                                           (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
-                                                             (abbreviate-file-name (buffer-file-name)) mode module)))))))
-                  (push module mods)
-                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+              (when-let* ((regexps (ensure-list (car auto-mode)))
+                          (modes (ensure-list (cdr auto-mode)))
+                          ((and (buffer-file-name)
+                                (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
+                                (cl-find-if-not #'fboundp modes)
+                                (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
+                                    (and (not noninteractive) ; ask only when in an interactive session
+                                         (y-or-n-p (format "File %s can be opened with `%s' from `%s', load it? "
+                                                           (abbreviate-file-name (buffer-file-name)) mode module)))))))
+                (push module mods)
+                (+load minemacs-on-demand-modules-dir (format "%s.el" module))))))))
     (when mods (set-auto-mode t))
     mods))
 
@@ -1124,27 +1124,27 @@ To be used as a predicate generator for `display-buffer-alist'."
   (let ((mods nil))
     (when minemacs-on-demand-enable-magic-mode
       (dolist (spec minemacs-on-demand-modules-alist)
-        (let* ((module (car spec))
-               (magic-modes (plist-get (cdr spec) :magic-mode)))
+        (when-let* ((module (car spec))
+                    (magic-modes (plist-get (cdr spec) :magic-mode)))
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (magic-mode magic-modes)
-              (let ((func-or-regexp (car magic-mode))
-                    (modes (ensure-list (cdr magic-mode))))
-                (when-let* (((and (cl-find-if-not #'fboundp modes)
-                                  (cond ((functionp func-or-regexp) (funcall func-or-regexp))
-                                        ((stringp func-or-regexp)
-                                         (save-excursion
-                                           (goto-char (point-min))
-                                           (save-restriction
-                                             (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
-                                             (let ((case-fold-search nil))
-                                               (looking-at func-or-regexp))))))
-                                  (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
-                                      (and (not noninteractive) ; ask only when in an interactive session
-                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
-                                                             (current-buffer) mode module)))))))
-                  (push module mods)
-                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+              (when-let* ((func-or-regexp (car magic-mode))
+                          (modes (ensure-list (cdr magic-mode)))
+                          ((and (cl-find-if-not #'fboundp modes)
+                                (cond ((functionp func-or-regexp) (funcall func-or-regexp))
+                                      ((stringp func-or-regexp)
+                                       (save-excursion
+                                         (goto-char (point-min))
+                                         (save-restriction
+                                           (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
+                                           (let ((case-fold-search nil))
+                                             (looking-at func-or-regexp))))))
+                                (or (eq minemacs-on-demand-enable-magic-mode 'no-ask)
+                                    (and (not noninteractive) ; ask only when in an interactive session
+                                         (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                           (current-buffer) mode module)))))))
+                (push module mods)
+                (+load minemacs-on-demand-modules-dir (format "%s.el" module))))))))
     (when mods (set-auto-mode t))
     mods))
 
@@ -1153,24 +1153,25 @@ To be used as a predicate generator for `display-buffer-alist'."
   (let ((mods nil))
     (when minemacs-on-demand-enable-interpreter-mode
       (dolist (spec minemacs-on-demand-modules-alist)
-        (let* ((module (car spec))
-               (interpreter-modes (plist-get (cdr spec) :interpreter-mode)))
+        (when-let* ((module (car spec))
+                    (interpreter-modes (plist-get (cdr spec) :interpreter-mode)))
           (unless (featurep (intern (format "on-demand/%s" module)))
             (dolist (interpreter-mode interpreter-modes)
-              (let ((interpreter (car interpreter-mode))
-                    (modes (ensure-list (cdr interpreter-mode))))
-                (when-let* (((and (cl-find-if-not #'fboundp modes)
-                                  (when-let* ((interp (save-excursion
-                                                        (goto-char (point-min))
-                                                        (when (looking-at auto-mode-interpreter-regexp)
-                                                          (match-string 2)))))
-                                    (string-match-p (format "\\`%s\\'" interpreter) (file-name-nondirectory interp)))
-                                  (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
-                                      (and (not noninteractive) ; ask only when in an interactive session
-                                           (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
-                                                             (current-buffer) mode module)))))))
-                  (push module mods)
-                  (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
+              (when-let* ((interpreters (ensure-list (car interpreter-mode)))
+                          (modes (ensure-list (cdr interpreter-mode)))
+                          ((and (cl-find-if-not #'fboundp modes)
+                                (when-let* ((interp (save-excursion
+                                                      (goto-char (point-min))
+                                                      (when (looking-at auto-mode-interpreter-regexp)
+                                                        (match-string 2)))))
+                                  (dolist (interpreter interpreters)
+                                    (string-match-p (format "\\`%s\\'" interpreters) (file-name-nondirectory interp))))
+                                (or (eq minemacs-on-demand-enable-interpreter-mode 'no-ask)
+                                    (and (not noninteractive) ; ask only when in an interactive session
+                                         (y-or-n-p (format "Buffer %s can be opened with `%s' from `%s', load it? "
+                                                           (current-buffer) mode module)))))))
+                (push module mods)
+                (+load minemacs-on-demand-modules-dir (format "%s.el" module))))))))
     (when mods (set-auto-mode t))
     mods))
 
