@@ -352,15 +352,43 @@ or file path may exist now."
 
   (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands)))
 
-  ;; Define some `projectile' commands/functions on top of `project' (required by `fzf', `neotree', `platformio-mode', etc.)
-  (defun projectile-project-p (&optional dir) (let ((default-directory (or dir default-directory))) (and (project-current) t)))
-  (defun projectile-project-root (&optional dir) (let ((default-directory (or dir default-directory))) (when-let* ((proj (project-current))) (expand-file-name (project-root proj)))))
-  (defun projectile-project-name (&optional proj) (when-let* ((proj (or proj (project-current)))) (project-name proj)))
-  (defun projectile-project-files (&optional proj-root) (when-let* ((default-directory (or proj-root default-directory)) (proj (project-current))) (mapcar #'file-relative-name (project-files proj))))
-  (defun projectile-project-buffers (&optional proj) (when-let* ((proj (or proj (project-current)))) (project-buffers proj)))
-  (defun projectile-expand-root (name &optional dir) (and (projectile-project-p dir) (expand-file-name name (projectile-project-root dir))))
-  (defun projectile-verify-file (file &optional dir) (when-let* ((file (projectile-expand-root file dir))) (file-exists-p file)))
-  (defun projectile-project-buffer-p (buffer proj-root) (and (let ((default-directory proj-root)) (member buffer (projectile-project-buffers))) t))
+  ;; Define some `projectile' wrapper functions on top of `project' (required by
+  ;; some packages like `fzf', `neotree', `platformio-mode', etc.)
+  (defun projectile-project-p (&optional dir)
+    (let ((default-directory (or dir default-directory)))
+      (and (project-current) t)))
+
+  (defun projectile-project-root (&optional dir)
+    (when-let* ((default-directory (or dir default-directory))
+                (proj (project-current)))
+      (expand-file-name (project-root proj))))
+
+  (defun projectile-project-name (&optional proj)
+    (when-let* ((proj (or proj (project-current))))
+      (project-name proj)))
+
+  (defun projectile-project-files (&optional proj-root)
+    (when-let* ((default-directory (or proj-root default-directory))
+                (proj (project-current)))
+      (mapcar #'file-relative-name (project-files proj))))
+
+  (defun projectile-project-buffers (&optional proj)
+    (when-let* ((proj (or proj (project-current))))
+      (project-buffers proj)))
+
+  (defun projectile-expand-root (name &optional dir)
+    (when (projectile-project-p dir)
+      (expand-file-name name (projectile-project-root dir))))
+
+  (defun projectile-verify-file (file &optional dir)
+    (when-let* ((file (projectile-expand-root file dir)))
+      (file-exists-p file)))
+
+  (defun projectile-project-buffer-p (buffer proj-root)
+    (and (let ((default-directory proj-root))
+           (member buffer (projectile-project-buffers)))
+         t))
+
   (provide 'projectile))
 
 (use-package tab-bar
