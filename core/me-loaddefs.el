@@ -342,7 +342,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from ../modules/on-demand/me-julia.el
 
-(minemacs-register-on-demand-module 'me-julia :auto-mode '(("\\.jl\\'" . julia-mode)) :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) julia-repl julia-snail julia-ts-mode)))
+(minemacs-register-on-demand-module 'me-julia :auto-mode '(("\\.jl\\'" . julia-mode)) :interpreter-mode '(("julia" . julia-mode)) :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) julia-repl julia-snail julia-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-just.el
@@ -590,7 +590,11 @@ the schema from the file name.
 
 (fn &optional ASK)" t)
 (autoload '+clang-format-get-style "me-lib-extra" "\
-Get the \"-style\" argument for clang-format.")
+Get the \"-style=XXX\" argument for clang-format.
+
+When NO-OPT isn non-nil, don't return the \"-style=\" part.
+
+(fn &optional NO-OPT)")
 (autoload '+editorconfig-guess-indentation-style-from-clang-format "me-lib-extra" "\
 Set the editor tab and indent widths from \".clang-format\".")
 (autoload '+kill-buffer-after-sentinel-exit "me-lib-extra" "\
@@ -882,7 +886,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-statistics.el
 
-(minemacs-register-on-demand-module 'me-statistics :auto-mode '((("\\(NAMESPACE\\|CITATION\\)\\'" "/R/.*\\.q\\'" "\\.[rR]\\(profile\\)?\\'") . ess-r-mode) (("\\.[Bb][Uu][Gg]\\'" "\\.[Bb][Oo][Gg]\\'" "\\.[Bb][Mm][Dd]\\'") . ess-bugs-mode) ("\\.[Rr]out\\'" . ess-r-transcript-mode) ("\\.Rd\\'" . Rd-mode) ("\\.[Jj][Aa][Gg]\\'" . ess-jags-mode) ("\\.inp\\'" . ess-gretl-mode) ("\\.jl\\'" . julia-mode)) :interpreter-mode '((("r" "Rscript") . ess-r-mode) ("julia" . julia-mode)))
+(minemacs-register-on-demand-module 'me-statistics :auto-mode '((("\\(NAMESPACE\\|CITATION\\)\\'" "/R/.*\\.q\\'" "\\.[rR]\\(profile\\)?\\'") . ess-r-mode) (("\\.[Bb][Uu][Gg]\\'" "\\.[Bb][Oo][Gg]\\'" "\\.[Bb][Mm][Dd]\\'") . ess-bugs-mode) ("\\.[Rr]out\\'" . ess-r-transcript-mode) ("\\.Rd\\'" . Rd-mode) ("\\.[Jj][Aa][Gg]\\'" . ess-jags-mode) ("\\.inp\\'" . ess-gretl-mode)) :interpreter-mode '((("r" "Rscript") . ess-r-mode)))
 (add-to-list 'auto-mode-alist '("/Makevars\\(\\.win\\)?\\'" . makefile-mode))
 (add-to-list 'auto-mode-alist '("DESCRIPTION\\'" . conf-colon-mode))
 
