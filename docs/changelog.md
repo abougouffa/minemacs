@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.26.1](https://github.com/abougouffa/minemacs/compare/4030d837c25c4091ec22b5256a28b117baef01b8..v12.26.1) - 2025-05-18
+#### Bug Fixes
+- **(on-demand/julia)** remove duplicate `julia-mode`, fix interpreter mode - ([9839b4f](https://github.com/abougouffa/minemacs/commit/9839b4f0be127e23bf354473d9d6e840d6d12377)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** refactor on-demand modules loading functions - ([ba79ca3](https://github.com/abougouffa/minemacs/commit/ba79ca30e53a7e140c699f097a2277ce69c9e1fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** robust tests when trying to create non-existing paths - ([4030d83](https://github.com/abougouffa/minemacs/commit/4030d837c25c4091ec22b5256a28b117baef01b8)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** minor refactoring of `projectile` wrappers - ([b7cfce1](https://github.com/abougouffa/minemacs/commit/b7cfce11a2a3c428e0ec19f4bf3c463445f9dc66)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(treesit-auto)** don't exclude `org-mode` from `treesit` parsers - ([7bbf5f2](https://github.com/abougouffa/minemacs/commit/7bbf5f2475ddb715c48ccdd0f121199afdbcd420)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([a36a365](https://github.com/abougouffa/minemacs/commit/a36a36517d20f08076faedbb75a2feac2d5e324e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.26.0](https://github.com/abougouffa/minemacs/compare/8d656e364f63e98e5a9bd75bbf478068c71d5035..v12.26.0) - 2025-05-18
 #### Bug Fixes
 - **(clang-format)** fix the "-style" option deduction - ([10d8a45](https://github.com/abougouffa/minemacs/commit/10d8a4599a65912d4fdc40bee33aa53c0b941b09)) - [@abougouffa](https://github.com/abougouffa)
