@@ -918,13 +918,19 @@ the schema from the file name."
   "Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part."
-  (concat (if no-opt "" "-style=")
-          (if (+clang-format--config-file)
-              "file"
-            (let ((indent (cadr (+clang-format--get-lang))))
-              (format "{IndentWidth: %d, TabWidth: %d}"
-                      (or (and indent (symbol-value indent)) standard-indent)
-                      (or (and indent (symbol-value indent)) tab-width))))))
+  (when-let* ((lang (+clang-format--get-lang)))
+    (concat (if no-opt "" "-style=")
+            (if (and (+clang-format--config-file)
+                     ;; In case of a missing config for the language or a buggy .clang-format file
+                     (with-temp-buffer
+                       (zerop (call-process
+                               +clang-format-command nil (current-buffer) nil
+                               (concat "--assume-filename=dummy." (car lang)) "--dump-config"))))
+                "file"
+              (let ((indent-sym (cadr lang)))
+                (format "{IndentWidth: %d, TabWidth: %d}"
+                        (or (and indent-sym (symbol-value indent-sym)) standard-indent)
+                        (or (and indent-sym (symbol-value indent-sym)) tab-width)))))))
 
 ;;;###autoload
 (defun +editorconfig-guess-indentation-style-from-clang-format ()
@@ -933,7 +939,11 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
              (executable-find +clang-format-command)
              (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
     (when-let* ((lang (+clang-format--get-lang))
-                (out (shell-command-to-string (format "%s --assume-filename=dummy.%s --dump-config" +clang-format-command (car lang))))
+                (out (with-temp-buffer
+                       (when (zerop (call-process
+                                     +clang-format-command nil (current-buffer) nil
+                                     (concat "--assume-filename=dummy." (car lang)) "--dump-config"))
+                         (buffer-string))))
                 (yaml-hash (yaml-parse-string out))
                 (iw (gethash 'IndentWidth yaml-hash))
                 (tw (gethash 'TabWidth yaml-hash))
