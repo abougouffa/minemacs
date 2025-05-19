@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-06
+;; Last modified: 2025-05-19
 
 ;;; Commentary:
 
@@ -76,6 +76,8 @@
       (let ((inhibit-message (not minemacs-verbose-p)))
         (dtrt-indent-mode 1))))
   :config
+  ;; Add support for `protobuf-ts-mode'
+  (add-to-list 'dtrt-indent-hook-mapping-list '(protobuf-ts-mode c/c++/java protobuf-ts-mode-indent-offset))
   (defun +dtrt-indent-tab-to-tab-stop ()
     "Like `tab-to-tab-stop', but set `indent-tabs-mode' according the context.
 In some files, there is a mix of spaces and tabs. This uses
