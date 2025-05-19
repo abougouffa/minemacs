@@ -362,7 +362,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+resolve-hook-forms" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el

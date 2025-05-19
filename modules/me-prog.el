@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-18
+;; Last modified: 2025-05-19
 
 ;;; Commentary:
 
@@ -189,7 +189,7 @@
                             ((objc-mode objc-ts-mode)         . ".m")
                             ((protobuf-mode protobuf-ts-mode) . ".proto"))
                           ".c" nil
-                          (lambda (lst elt) (memq elt lst)))))
+                          (+reverse-args #'memq))))
     :lighter "ClangFmt "))
 
 

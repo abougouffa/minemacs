@@ -906,7 +906,7 @@ the schema from the file name."
     ((c++-mode) "cpp" c-basic-offset)))
 
 (defun +clang-format--get-lang ()
-  (alist-get major-mode +clang-format-mode-alist nil nil (lambda (modes mode) (provided-mode-derived-p mode modes))))
+  (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
 
 ;; Helper function to get the style for "clang-format"
 ;;;###autoload

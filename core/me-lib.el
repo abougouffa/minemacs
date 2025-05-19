@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-18
+;; Last modified: 2025-05-19
 
 ;;; Commentary:
 
@@ -158,6 +158,11 @@ If INDEX is 0, ELEMENT is inserted before the first element."
   "Like `apply-partially', but apply the ARGS to the right of FUN."
   (lambda (&rest args2)
     (apply fun (append args2 args))))
+
+(defun +reverse-args (fun)
+  "Return a function that calls FUN with arguments in the reversed order."
+  (lambda (&rest args)
+    (apply fun (reverse args))))
 
 
 
@@ -374,8 +379,8 @@ HOOKS can be expect receiving arguments (like in `enable-theme-functions'), the
 `args' variable can be used inside VAR-VALS forms to get the arguments passed
 the the function.
 
-  (+setq-hook! \\='enable-theme-functions
-    current-theme (car args))
+\(+setq-hook! \\='enable-theme-functions
+  current-theme (car args))
 
 \(fn HOOKS &rest [SYM VAL]...)"
   (declare (indent 1))
@@ -393,8 +398,8 @@ FUNCS can be expect receiving arguments, the `args' variable can
 be used inside VAR-VALS forms to get the arguments passed the the
 function.
 
-  (+setq-advice! #\\='revert-buffer :before
-    `revert-buffer-function' #\\='ignore)
+\(+setq-advice! #\\='revert-buffer :before
+  revert-buffer-function #\\='ignore)
 
 \(fn FUNCS HOW &rest [SYM VAL]...)"
   (declare (indent 2))
@@ -1108,7 +1113,7 @@ To be used as a predicate generator for `display-buffer-alist'."
               (when-let* ((regexps (ensure-list (car auto-mode)))
                           (modes (ensure-list (cdr auto-mode)))
                           ((and (buffer-file-name)
-                                (cl-find-if (lambda (regexp) (string-match regexp (buffer-file-name))) regexps)
+                                (cl-find-if (+apply-partially-right #'string-match (buffer-file-name)) regexps)
                                 (cl-find-if-not #'fboundp modes)
                                 (or (eq minemacs-on-demand-enable-auto-mode 'no-ask)
                                     (and (not noninteractive) ; ask only when in an interactive session
