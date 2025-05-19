@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-14
+;; Last modified: 2025-05-19
 
 ;;; Commentary:
 
@@ -62,7 +62,7 @@ to `conventional' or `prefix'."
           (scope-sep . ",")
           (format . ("%s%s: " . "(%s)"))))
       (prefix
-       . ((types . ,(rx (seq bol "[" (group-n 1 (+ (not (any "]" space)))) (* any))))
+       . ((type . ,(rx (seq bol "[" (group-n 1 (+ (not (any "]" space)))) (* any))))
           (scope . ,(rx (seq bol "[" (+ (not (any "]" space))) (group-n 1 (+ (not (any "]")))))))
           (scope-sep . " ")
           (format . ("[%s%s] " . " %s"))))))
