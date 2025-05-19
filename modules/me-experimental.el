@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-05-18
+;; Last modified: 2025-05-19
 
 ;;; Commentary:
 
@@ -42,6 +42,8 @@
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
   :straight (:host github :repo "darcylee/magit-gerrit" :fork "abougouffa/magit-gerrit")
+  :after magit
+  :demand
   :custom
   (magit-gerrit-popup-prefix "_"))
 
