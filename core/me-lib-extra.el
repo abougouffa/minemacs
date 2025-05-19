@@ -919,7 +919,7 @@ the schema from the file name."
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part."
   (concat (if no-opt "" "-style=")
-          (if-let* ((conf-file (+clang-format--config-file)))
+          (if (+clang-format--config-file)
               "file"
             (let ((indent (cadr (+clang-format--get-lang))))
               (format "{IndentWidth: %d, TabWidth: %d}"
