@@ -930,12 +930,12 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
              (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
     (when-let* ((lang (+clang-format--get-lang))
                 (out (shell-command-to-string (format "%s --assume-filename=dummy.%s --dump-config" +clang-format-command (car lang))))
-                (yaml-hash (yaml-parse-string out)))
-      (let ((iw (gethash 'IndentWidth yaml-hash))
-            (tw (gethash 'TabWidth yaml-hash))
-            (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
-        (+log! "Found a .clang-format file, using it to set tab-width=%s, indent-offset=%s and indent-style=%s" tw iw is)
-        (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw))))))
+                (yaml-hash (yaml-parse-string out))
+                (iw (gethash 'IndentWidth yaml-hash))
+                (tw (gethash 'TabWidth yaml-hash))
+                (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
+      (+log! "Found a .clang-format file, using it to set tab-width=%s, indent-offset=%s and indent-style=%s" tw iw is)
+      (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw)))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
