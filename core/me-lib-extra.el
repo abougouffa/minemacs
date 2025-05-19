@@ -903,7 +903,11 @@ the schema from the file name."
     ((java-ts-mode) "java" java-ts-mode-indent-offset)
     ((java-mode) "java" c-basic-offset)
     ((c-mode cuda-mode opencl-c-mode) "c" c-basic-offset)
-    ((c++-mode) "cpp" c-basic-offset)))
+    ((c++-mode) "cpp" c-basic-offset)
+    ((json-mode) "json" c-basic-offset)
+    ((json-ts-mode) "json" json-ts-mode-indent-offset)
+    ((verilog-mode) "v" verilog-indent-level)
+    ((verilog-ts-mode) "v" verilog-ts-indent-level)))
 
 (defun +clang-format--get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
