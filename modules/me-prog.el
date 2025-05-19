@@ -143,7 +143,11 @@
    'nxml-mode-hook
    (satch-defun +xmllint--set-indent-h ()
      (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
-  (push '(nxml-mode . xmllint) apheleia-mode-alist)
+
+  (cl-callf append apheleia-mode-alist
+    '((nxml-mode . xmllint)
+      (protobuf-mode . clang-format)
+      (protobuf-ts-mode . clang-format)))
 
   ;; For `clang-format', use the command from `+clang-format-command', and
   ;; append the "-style" option
