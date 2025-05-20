@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-19
+;; Last modified: 2025-05-20
 
 ;;; Commentary:
 
@@ -918,7 +918,7 @@ the schema from the file name."
   "Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part."
-  (when-let* ((lang (+clang-format--get-lang)))
+  (let ((lang (+clang-format--get-lang)))
     (concat (if no-opt "" "-style=")
             (if (and (+clang-format--config-file)
                      ;; In case of a missing config for the language or a buggy .clang-format file
