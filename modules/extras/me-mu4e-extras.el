@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-20
 
 ;;; Commentary:
 
@@ -52,7 +52,9 @@
           (push (cons
                  (concat
                   (propertize (format "%-2s " (plist-get pinfo :index)) 'face '(bold font-lock-type-face))
-                  (nerd-icons-icon-for-file (or (plist-get pinfo :filename) ""))
+                  (if (fboundp 'nerd-icons-icon-for-file)
+                      (nerd-icons-icon-for-file (or (plist-get pinfo :filename) ""))
+                    "")
                   (format fnamefmt (or (plist-get pinfo :filename)
                                        (propertize (plist-get pinfo :type) 'face '(italic font-lock-doc-face))))
                   (format sizefmt (propertize (plist-get pinfo :size) 'face 'font-lock-builtin-face))

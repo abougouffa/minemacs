@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-19
+;; Last modified: 2025-05-21
 
 ;;; Commentary:
 
@@ -1017,6 +1017,15 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
     (when (color-defined-p base-color)
       (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
                base-color percentage))))
+
+(defun +nerd-icons-icon (name &rest args)
+  "Generic function to get icons by NAME, with ARGS."
+  (when (featurep 'nerd-icons)
+    (if-let* ((variant (and (string-match "^nf-\\([[:alnum:]]+\\)-" name) (match-string 1 name)))
+              (fn (intern (format "nerd-icons-%sicon" variant)))
+              ((fboundp fn)))
+        (apply fn (cons name args))
+      (error "Cannot detect the function which provides %S" name))))
 
 
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-05-17
+;; Last modified: 2025-05-21
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
   ;; calculation method, either by setting the right angles for Fajr and Isha,
   ;; or by using one of the predefined presets (see `awqat' for more
   ;; information).
-  (awqat-mode-line-format (concat " " (nerd-icons-faicon "nf-fa-mosque" :face 'nerd-icons-dgreen) " ${prayer} in ${hours}h${minutes}m "))
+  (awqat-mode-line-format (concat " " (+nerd-icons-icon "nf-fa-mosque" :face 'nerd-icons-dgreen) " ${prayer} in ${hours}h${minutes}m "))
   (awqat-update-interval 30.0))
 
 

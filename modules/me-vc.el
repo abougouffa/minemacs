@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-19
+;; Last modified: 2025-05-21
 
 ;;; Commentary:
 
@@ -182,7 +182,7 @@ to `conventional' or `prefix'."
      "Show the current revision in the header-line instead of the echo area."
      (let* ((inhibit-message t))
        (setq header-line-format
-             (concat "  " (if (featurep 'nerd-icons) (concat (nerd-icons-octicon "nf-oct-git_branch") " ") "")
+             (concat (format "  %s " (or (+nerd-icons-icon "nf-oct-git_branch") ""))
                      (funcall orig-fn revision)))))))
 
 

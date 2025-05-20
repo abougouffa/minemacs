@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-05-21
 
 ;;; Commentary:
 
@@ -121,20 +121,17 @@ integer OFFSET."
     (".*" "nf-fa-dot_circle_o")))
 
 (defun +mu4e--get-icon-for-section (title)
-  (if (fboundp '+nerd-icons-icon)
-      (let ((case-fold-search t)
-            (icon-spec (cl-find-if (lambda (e) (string-match-p (car e) (replace-regexp-in-string "[][]" "" title))) +icon-colors)))
-        (+nerd-icons-icon (cadr icon-spec) :face (caddr icon-spec) :height 0.95))
-    +mu4e-main-bullet))
+  (or
+   (let ((case-fold-search t)
+         (icon-spec (cl-find-if (lambda (e) (string-match-p (car e) (replace-regexp-in-string "[][]" "" title))) +icon-colors)))
+     (+nerd-icons-icon (cadr icon-spec) :face (caddr icon-spec) :height 0.95))
+   +mu4e-main-bullet))
 
 (defun +mu4e--main-keyval-str-prettier:filter-return-a (str)
   "Replace the start * with a prettier bullet in STR."
   (replace-regexp-in-string
    "\t\\*"
-   (format "\t%s"
-           (if (fboundp '+nerd-icons-icon)
-               (+nerd-icons-icon +mu4e-main-bullet-icon)
-             +mu4e-main-bullet))
+   (format "\t%s" (or (+nerd-icons-icon +mu4e-main-bullet-icon) +mu4e-main-bullet))
    str))
 
 (defun +mu4e--get-string-width (str)
