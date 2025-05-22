@@ -542,9 +542,20 @@ or file path may exist now."
   :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding
   :custom
   (hs-hide-comments-when-hiding-all nil)
-  :bind ( :map hs-minor-mode-map
-          ("C-c f" . #'hs-toggle-hiding)
-          ("C-c F" . #'+hs-toggle-all))
+  :bind (:map hs-minor-mode-map
+              ("C-c @ C-f"     . +hs-toggle-all)
+              ;; The key "à = @" in AZERTY keyboards, the @ need "Alt Gr" to insert it
+              ("C-c C-à C-f"   . +hs-toggle-all)
+              ("C-c C-à C-h"   . hs-hide-block)
+              ("C-c C-à C-s"   . hs-show-block)
+              ("C-c C-à C-M-h" . hs-hide-all)
+              ("C-c C-à C-M-s" . hs-show-all)
+              ("C-c C-à C-l"   . hs-hide-level)
+              ("C-c C-à C-c"   . hs-toggle-hiding)
+              ("C-c C-à C-a"   . hs-show-all)
+              ("C-c C-à C-t"   . hs-hide-all)
+              ("C-c C-à C-d"   . hs-hide-block)
+              ("C-c C-à C-e"   . hs-toggle-hiding))
   :init
   (defun +hs-minor-mode-maybe () ; Fail sailently
     (condition-case err (hs-minor-mode 1) (error (+log! "`hs-minor-mode': %s" (error-message-string err)))))
