@@ -7,6 +7,17 @@
 
 
 
+;;; Generated autoloads from ../modules/extras/me-adb.el
+
+(autoload '+adb-push "../modules/extras/me-adb" "\
+Run adb push SRC DEST.
+
+(fn SRC DEST)" t)
+(autoload '+adb-remount "../modules/extras/me-adb" "\
+Run adb remount." t)
+(register-definition-prefixes "../modules/extras/me-adb" '("+adb-"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-agda.el
 
 (minemacs-register-on-demand-module 'me-agda :auto-mode '(("\\.l?agda\\'" . agda2-mode)))
@@ -362,7 +373,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-extra.el
