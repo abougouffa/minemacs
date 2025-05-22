@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-21
+;; Last modified: 2025-05-22
 
 ;;; Commentary:
 
@@ -1036,10 +1036,11 @@ When it is a face, the FACE-ATTR needs to be provided, otherwise, the
 To be used as a predicate generator for `display-buffer-alist'."
   (lambda (buff-or-name &rest _args)
     (with-current-buffer (get-buffer buff-or-name)
-      (catch 'done
-        (dolist (condition conditions)
-          (cond ((symbolp condition) (when (derived-mode-p condition) (throw 'done t)))
-                ((stringp condition) (when (string-match-p condition (buffer-name)) (throw 'done t)))))))))
+      (cl-some
+       (lambda (condition)
+         (cond ((symbolp condition) (derived-mode-p condition))
+               ((stringp condition) (string-match-p condition (buffer-name)))))
+       conditions))))
 
 
 
