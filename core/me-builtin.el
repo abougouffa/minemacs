@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-19
+;; Last modified: 2025-05-22
 
 ;;; Commentary:
 
@@ -542,18 +542,18 @@ or file path may exist now."
   :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding
   :custom
   (hs-hide-comments-when-hiding-all nil)
-  :bind (:map hs-minor-mode-map
-              ("C-c f" . #'hs-toggle-hiding)
-              ("C-c F" . #'+hs-toggle-all))
+  :bind ( :map hs-minor-mode-map
+          ("C-c f" . #'hs-toggle-hiding)
+          ("C-c F" . #'+hs-toggle-all))
   :init
   (defun +hs-minor-mode-maybe () ; Fail sailently
     (condition-case err (hs-minor-mode 1) (error (+log! "`hs-minor-mode': %s" (error-message-string err)))))
   :config
-  (defvar-local +hs-toggle-all-show nil)
   (defun +hs-toggle-all ()
     (interactive)
-    (if +hs-toggle-all-show (hs-show-all) (hs-hide-all))
-    (setq +hs-toggle-all-show (not +hs-toggle-all-show)))
+    (if (cl-some (+apply-partially-right #'overlay-get 'hs) (overlays-in (point-min) (point-max)))
+        (hs-show-all)
+      (hs-hide-all)))
 
   ;; Add extra modes support
   (unless (assq 't hs-special-modes-alist)
