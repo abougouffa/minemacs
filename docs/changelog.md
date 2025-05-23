@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.27.0](https://github.com/abougouffa/minemacs/compare/5a33c0012e2185b1a92ccba2d55b44367bcc2cbe..v12.27.0) - 2025-05-23
+#### Bug Fixes
+- **(clang-format)** properly handle edge cases - ([70ef83a](https://github.com/abougouffa/minemacs/commit/70ef83a8e0dd191082cc3257c279f085100fa64e)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** Special case when config file doesn't include a lanugage - ([8cccbe7](https://github.com/abougouffa/minemacs/commit/8cccbe7d0b4ffad6acb2e4baf7e480a21840e9a1)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** proper use of `no-opt` arg in `+clang-format-get-style` - ([5a33c00](https://github.com/abougouffa/minemacs/commit/5a33c0012e2185b1a92ccba2d55b44367bcc2cbe)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-commit)** fix a type leading to bugs with the `prefix` convention - ([09be6c1](https://github.com/abougouffa/minemacs/commit/09be6c164c09661912bf2945449eddde9a7729b1)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideshow)** the keybindings conflicts with `recentf-open-files` - ([8250054](https://github.com/abougouffa/minemacs/commit/8250054bd7a4297b21116e5af89c33d036cddcf1)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(adb)** add some wrappers for ADB commands - ([ba744d9](https://github.com/abougouffa/minemacs/commit/ba744d9a7f987db9374a9e9a74bb3667426fb99f)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(clang-format)** fall back to default options for all modes - ([f26dddb](https://github.com/abougouffa/minemacs/commit/f26dddb881e5d7f30a22f6e844b06634e42d146c)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** remove unused variable - ([a9b6f65](https://github.com/abougouffa/minemacs/commit/a9b6f6523024777014343374677cce1524f597b7)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** simpler implementation of `+make-buffer-conds` - ([cab8493](https://github.com/abougouffa/minemacs/commit/cab8493f9d69e5dcbfa49445e978b2e480da2cf7)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add and make use of `+reverse-args` - ([d4fd1cd](https://github.com/abougouffa/minemacs/commit/d4fd1cdbbceb3d72fe2ba8e702273534e8d01f32)) - [@abougouffa](https://github.com/abougouffa)
+- move `+nerd-icons-icon` to `me-lib` + make use of it - ([c754431](https://github.com/abougouffa/minemacs/commit/c754431f5a71908cd3ee2c7d2f4312fe553fd4d1)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** use `clang-format` for `protobuf[-ts]-mode` - ([373eed2](https://github.com/abougouffa/minemacs/commit/373eed295f0d643c5d0335474f5a6cc552b5530e)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** add JSON and Verilog to `+clang-format-mode-alist` - ([de11f0e](https://github.com/abougouffa/minemacs/commit/de11f0e2c0ab249246051ee25b8e3e9b1fc13a16)) - [@abougouffa](https://github.com/abougouffa)
+- **(dtrt-indent)** register indentation variable for `protobuf-ts-mode` - ([755700f](https://github.com/abougouffa/minemacs/commit/755700f10343eafac922de881488f4e329446ddd)) - [@abougouffa](https://github.com/abougouffa)
+- **(editorconfig)** register indentation variable for `protobuf-ts-mode` - ([cf4546a](https://github.com/abougouffa/minemacs/commit/cf4546acf6fb16f410478970b0bc540d00062565)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideshow)** more robust `+hs-toggle-all` - ([6baaf18](https://github.com/abougouffa/minemacs/commit/6baaf1868ef7dff22e39ff56197e8823b48184a0)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-gerrit)** load after `magit` for seamless integration - ([58dc712](https://github.com/abougouffa/minemacs/commit/58dc712afbd9ceb975c07894f50e500aa6fb710d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([da9b1cd](https://github.com/abougouffa/minemacs/commit/da9b1cd8f201833c547a3e928a4886ffdc8416e8)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([737d39a](https://github.com/abougouffa/minemacs/commit/737d39ad3c3f3a8e7c92f6ea0af6f93e17a2020c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5e68976](https://github.com/abougouffa/minemacs/commit/5e68976e56dd09104aee0c72a7272e318c70a43d)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.26.1](https://github.com/abougouffa/minemacs/compare/4030d837c25c4091ec22b5256a28b117baef01b8..v12.26.1) - 2025-05-18
 #### Bug Fixes
 - **(on-demand/julia)** remove duplicate `julia-mode`, fix interpreter mode - ([9839b4f](https://github.com/abougouffa/minemacs/commit/9839b4f0be127e23bf354473d9d6e840d6d12377)) - [@abougouffa](https://github.com/abougouffa)
