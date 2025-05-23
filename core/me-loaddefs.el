@@ -14,7 +14,13 @@ Run adb push SRC DEST.
 
 (fn SRC DEST)" t)
 (autoload '+adb-remount "../modules/extras/me-adb" "\
-Run adb remount." t)
+Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
+
+(fn AUTO-REBOOT-DEVICE)" t)
+(autoload '+adb-reboot "../modules/extras/me-adb" "\
+Run adb reboot MODE.
+
+(fn MODE)" t)
 (register-definition-prefixes "../modules/extras/me-adb" '("+adb-"))
 
 
