@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-22
+;; Last modified: 2025-05-24
 
 ;;; Commentary:
 
@@ -1195,6 +1195,14 @@ To be used as a predicate generator for `display-buffer-alist'."
   (run-hooks 'prog-mode-hook))
 
 
+
+(defun minemacs-generate-loaddefs ()
+  "Generate MinEmacs' loaddefs file."
+  (interactive)
+  (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
+  (loaddefs-generate
+   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir)
+   minemacs-loaddefs-file))
 
 ;; Functions
 (defun +load-user-configs (&rest configs)

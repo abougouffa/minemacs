@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-07
+;; Last modified: 2025-05-24
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -99,14 +99,6 @@
   ;; Set the directory for storing the native compilation cache
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
-(defun minemacs-generate-loaddefs ()
-  "Generate MinEmacs' loaddefs file."
-  (interactive)
-  (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
-  (loaddefs-generate
-   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir)
-   minemacs-loaddefs-file))
-
 ;; Generate the loaddefs file if needed
 (unless (file-exists-p minemacs-loaddefs-file) (minemacs-generate-loaddefs))
 
@@ -125,15 +117,15 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
-(defun +minemacs--loaded-h ()
-  "This is MinEmacs' synchronization point."
-  (+info! "Emacs%s loaded in %.3fs, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
-          (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done)
-  (+load-theme)
-  (require 'minemacs-loaded))
-
-;; Add it to the very beginning of `emacs-startup-hook'
-(add-hook 'emacs-startup-hook #'+minemacs--loaded-h -91)
+;; This is MinEmacs' synchronization point, add it to the very beginning of `emacs-startup-hook'
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (+info! "Emacs%s loaded in %.3fs, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
+           (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done)
+   (+load-theme)
+   (require 'minemacs-loaded))
+ -91)
 
 ;; ========= Make some special hooks =========
 (+make-first-file-hook! 'org "\\.org$")
