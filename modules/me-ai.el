@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2025-04-18
+;; Last modified: 2025-05-24
 
 ;;; Commentary:
 
@@ -90,7 +90,7 @@
   :custom
   (aidermacs-default-model ; Get the first available model
    (cl-loop for model in (+ollama-list-installed-models)
-            when (cl-member model '("qwen2.5-coder" "deepseek-coder-v2" "command-r7b"
+            when (cl-member model '("devstral" "qwen2.5-coder" "deepseek-coder-v2" "command-r7b"
                                     "codellama" "codegemma" "codestral" "codegeex4"
                                     "starcoder2" "granite-code" "mistral-nemo"
                                     "mistral-small" "deepseek-r1")
