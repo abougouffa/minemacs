@@ -948,6 +948,12 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-vimscript :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-viper.el
+
+(with-eval-after-load 'viper (require 'me-viper))
+(register-definition-prefixes "../modules/extras/me-viper" '("+viper-" "viper-change-inner-compound-word"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
 (minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
