@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.28.0](https://github.com/abougouffa/minemacs/compare/6d85f00e962fd22b16849c05678b2736231f769c..v12.28.0) - 2025-05-25
+#### Bug Fixes
+- **(core)** ensure `minemacs-lazy-hook` hooks are run before `+with-delayed!` blocks - ([28c348c](https://github.com/abougouffa/minemacs/commit/28c348ca811550fa5f8b3ceec6af2525ea44635b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(viper)** add some extensions for `viper-mode` from Emacs Solo - ([c4e1f75](https://github.com/abougouffa/minemacs/commit/c4e1f75de2d88e2ee9b41b050351156f90e51760)) - [@abougouffa](https://github.com/abougouffa)
+- remove the `me-window` module, move `ace-window` to `me-nav` - ([2cdf50b](https://github.com/abougouffa/minemacs/commit/2cdf50b2665fa09f7d1e7f2aa133bc9352141c11)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(obsolete/copilot)** cleanup spaces - ([5eb07a6](https://github.com/abougouffa/minemacs/commit/5eb07a64005bc2e17765f1052305e103d93dbf3f)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(init)** minor refactoring and move version check to `early-init.el` - ([694a476](https://github.com/abougouffa/minemacs/commit/694a476badafd53a800993e72988ae193916cf48)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** move `minemacs-generate-loaddefs` to `me-lib` - ([787ddc3](https://github.com/abougouffa/minemacs/commit/787ddc3c23075a16935e03705e10887d14d2571f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** more tweaks and commands for ADB - ([6d85f00](https://github.com/abougouffa/minemacs/commit/6d85f00e962fd22b16849c05678b2736231f769c)) - [@abougouffa](https://github.com/abougouffa)
+- **(aidermacs)** add `devstral` to the list - ([1069600](https://github.com/abougouffa/minemacs/commit/106960096d64002bd0a42e2323947a52755bdda5)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([2f1e593](https://github.com/abougouffa/minemacs/commit/2f1e59325c1eb7b0f58a9d72189943521e633577)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([074611c](https://github.com/abougouffa/minemacs/commit/074611c324c490c3ccb33290798480af795f6c0f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([8105fe4](https://github.com/abougouffa/minemacs/commit/8105fe469d5c3743740fa108cb345ae6c625ce5a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0ebfc24](https://github.com/abougouffa/minemacs/commit/0ebfc241dc03591fbc6cd6b0deb159638aff836a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.27.0](https://github.com/abougouffa/minemacs/compare/5a33c0012e2185b1a92ccba2d55b44367bcc2cbe..v12.27.0) - 2025-05-23
 #### Bug Fixes
 - **(clang-format)** properly handle edge cases - ([70ef83a](https://github.com/abougouffa/minemacs/commit/70ef83a8e0dd191082cc3257c279f085100fa64e)) - [@abougouffa](https://github.com/abougouffa)
