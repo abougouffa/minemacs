@@ -4,16 +4,23 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-04
+;; Last modified: 2025-05-25
 
 ;;; Commentary:
 
 ;;; Code:
 
+(let ((min-ver 29) (recommended-ver 30)) ; Check if Emacs version is supported.
+  (when (< emacs-major-version min-ver)
+    (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
+  (when (< emacs-major-version recommended-ver)
+    (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
+
 (dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
   (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
 
 (require 'me-vars)
+(require 'me-lib)
 
 (setq
  ;; Enable debugging on error when Emacs if needed
@@ -54,8 +61,6 @@
  scroll-bar-mode nil
  ;; Set mode-line format to prevent it from showing at startup
  mode-line-format nil)
-
-(require 'me-lib)
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start

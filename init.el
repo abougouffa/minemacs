@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-24
+;; Last modified: 2025-05-25
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -65,12 +65,6 @@
       (benchmark-init/activate)
       (add-hook 'minemacs-lazy-hook (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99))))
 
-(let ((min-ver 29) (recommended-ver 30)) ; Check if Emacs version is supported.
-  (when (< emacs-major-version min-ver)
-    (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
-  (when (< emacs-major-version recommended-ver)
-    (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
-
 (unless (featurep 'early-init) ; In case we decided to do some funny loading without the `early-init-file'
   (load (expand-file-name "early-init.el" (file-name-directory (file-truename load-file-name)))))
 
@@ -88,13 +82,10 @@
   (setq
    ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
    native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
-   ;; Ask the user whether to terminate asynchronous compilations on exit
-   native-comp-async-query-on-exit t
-   ;; Do not be too verbose
    native-comp-verbose (if minemacs-verbose-p 1 0)
    native-comp-debug (if minemacs-debug-p 1 0)
-   ;; Make native compilation happens asynchronously
-   native-comp-jit-compilation t)
+   native-comp-jit-compilation t ; Make native compilation happens asynchronously
+   native-comp-async-query-on-exit t) ; Ask before terminating asynchronous compilations on exit
 
   ;; Set the directory for storing the native compilation cache
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
