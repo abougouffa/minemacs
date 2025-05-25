@@ -4,11 +4,19 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2025-04-30
+;; Last modified: 2025-05-25
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; Quickly switch windows in Emacs
+(use-package ace-window
+  :straight t
+  :bind (("M-o" . ace-window))
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
