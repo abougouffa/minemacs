@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-25
+;; Last modified: 2025-05-25
 
 ;;; Commentary:
 
@@ -28,8 +28,8 @@
         (run-hooks 'minemacs-lazy-hook)
         (provide 'minemacs-lazy))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
-    (cl-callf append minemacs--lazy-high-priority-forms
-      (mapcar #'ensure-list minemacs-lazy-hook)
+    (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook)
+               minemacs--lazy-high-priority-forms
       '((provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
 
 (defvar minemacs--lazy-high-priority-timer
