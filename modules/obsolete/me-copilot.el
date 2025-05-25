@@ -10,14 +10,13 @@
 
 ;;; Code:
 
+
 ;; Copilot integration
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el")
   :bind (:map copilot-completion-map ([tab] . copilot-accept-completion))
   :custom
   (copilot-install-dir (expand-file-name "copilot" minemacs-local-dir)))
-
-
 
 
 (provide 'obsolete/me-copilot)
