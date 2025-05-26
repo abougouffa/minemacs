@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-20
+;; Last modified: 2025-05-26
 
 ;;; Commentary:
 
@@ -435,7 +435,7 @@ When called with universal argument, open the current buffer's file."
 ;;;###autoload
 (defun +serial-running-p ()
   "Is there a serial port terminal running?"
-  (buffer-live-p +serial-buffer) (process-live-p +serial-process))
+  (and (buffer-live-p +serial-buffer) (process-live-p +serial-process)))
 
 (defun +serial--run-commands (port baud &rest commands)
   "Run COMMANDS on a device via serial communication.
@@ -459,7 +459,7 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
   (let ((port (or port +serial-port))
         (baud (or baud +serial-baudrate)))
     (+log! "Dev %s@%d: running commands %S" port baud commands)
-    (apply #'+serial--run-commands (append (list port baud) (ensure-list commands)))))
+    (apply #'+serial--run-commands `(,port ,baud ,@(ensure-list commands)))))
 
 
 
