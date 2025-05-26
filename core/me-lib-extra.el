@@ -465,12 +465,15 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'."
 
 ;;; Networking
 
-(defvar +net-default-device "wlan0")
+(defvar +net-default-device nil
+  "Default network interface, like \"wlan0\" or \"wlp0s20f3\".
+Set to nil to use the first interface reported by
+`network-interface-list'.")
 
 ;;;###autoload
 (defun +net-get-ip-address (&optional dev)
-  "Get the IP-address for device DEV (default: eth0) of the current machine."
-  (let ((dev (or dev +net-default-device)))
+  "Get the IP-address for device DEV of the current machine."
+  (when-let* ((dev (or dev +net-default-device (caar (network-interface-list)))))
     (format-network-address (car (network-interface-info dev)) t)))
 
 
