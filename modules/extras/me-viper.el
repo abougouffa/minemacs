@@ -8,7 +8,7 @@
 
 ;;; Commentary:
 
-;; Mostly copy/paste from https://github.com/LionyxML/emacs-solo
+;; Based on Emacs Solo https://github.com/LionyxML/emacs-solo
 
 ;;; Code:
 
@@ -195,8 +195,10 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "g") nil)
 (define-key viper-vi-global-user-map (kbd "gg") '+viper-go-to-nth-or-first-line)
 
-;; Delete/Yank current line or region
+;; Delete/Yank
 (define-key viper-vi-global-user-map (kbd "dd") '+viper-delete-line-or-region)
+(define-key viper-vi-global-user-map (kbd "dw") 'kill-word)
+(define-key viper-vi-global-user-map (kbd "d$") 'kill-line)
 (define-key viper-vi-global-user-map (kbd "yy") '+viper-yank-line-or-region)
 
 ;; Visual mode is actually marking
