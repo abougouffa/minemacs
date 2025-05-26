@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-19
+;; Last modified: 2025-05-27
 
 ;;; Commentary:
 
@@ -103,6 +103,7 @@ In some files, there is a mix of spaces and tabs. This uses
 ;; Writable grep buffer and apply the changes to files
 (use-package wgrep
   :straight t
+  :when (< emacs-major-version 31) ; Emacs 31+ natively supports editing `grep-mode' buffers via `grep-edit-mode'
   :commands (wgrep-change-to-wgrep-mode)
   :custom
   (wgrep-auto-save-buffer t))
