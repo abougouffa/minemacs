@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-05-09
+;; Last modified: 2025-05-26
 
 ;;; Commentary:
 
@@ -55,6 +55,12 @@
     "List of directories to be ignored when creating the file list using `+citre-gtags-find-files-command'."
     :type '(repeat string)
     :group 'minemacs-prog)
+
+  (defcustom +citre-auto-enable-ignore-modes '(bash-ts-mode sh-mode)
+    "Don't auto-enable `citre-mode' in these modes.
+This complements `citre-auto-enable-citre-mode-modes'."
+    :type '(repeat symbol)
+    :group 'minemacs-prog)
   :config
   (defvar-keymap +citre-navigation-map
     :doc "Citre navigation commands." :name "citre-navigation"
@@ -67,6 +73,14 @@
     "q"   #'citre-query-peek
     "Q"   #'citre-query-jump)
   (keymap-set citre-mode-map "C-c C-p" `("citre-navigation" . ,+citre-navigation-map))
+
+  ;; HACK: Don't enable `citre-mode' in some modes, this fixes the too slow
+  ;; `bash-ts-mode' in large code bases
+  (advice-add
+   'citre-auto-enable-citre-mode :around
+   (satch-defun +citre--auto-enable-ignore-modes (fn)
+     (unless (and +citre-auto-enable-ignore-modes (derived-mode-p +citre-auto-enable-ignore-modes))
+       (funcall fn))))
 
   ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
   ;; sshfs), causing `citre' to trigger an error when calling
