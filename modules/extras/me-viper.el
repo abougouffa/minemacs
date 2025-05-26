@@ -208,8 +208,6 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "SPC c a") 'eglot-code-actions)
 (define-key viper-vi-global-user-map (kbd "SPC s g") 'project-find-regexp)
 (define-key viper-vi-global-user-map (kbd "SPC s f") 'project-find-file)
-(define-key viper-vi-global-user-map (kbd "SPC m p") 'emacs-solo-movements/format-current-file)
-(global-set-key (kbd "C-o") 'xref-go-back)
 
 ;; Map `C-w` followed by specific keys to window commands in Viper
 (define-key viper-vi-global-user-map (kbd "C-w s") '+viper-window-split-horizontally)
@@ -234,6 +232,7 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "[ b") 'previous-buffer)
 (define-key viper-vi-global-user-map (kbd "b l") 'switch-to-buffer)
 (define-key viper-vi-global-user-map (kbd "SPC SPC") 'switch-to-buffer)
+(define-key viper-vi-global-user-map (kbd "SPC :") 'execute-extended-command)
 
 ;; Tabs (like in tmux tabs, not vscode tabs)
 (define-key viper-vi-global-user-map (kbd "C-w t") 'tab-bar-new-tab)
@@ -245,10 +244,6 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "] d") 'flymake-goto-next-error)
 (define-key viper-vi-global-user-map (kbd "[ d") 'flymake-goto-prev-error)
 (define-key viper-vi-global-user-map (kbd "SPC t i") 'toggle-flymake-diagnostics-at-eol)
-
-;; Gutter
-(define-key viper-vi-global-user-map (kbd "] c") 'emacs-solo/goto-next-hunk)
-(define-key viper-vi-global-user-map (kbd "[ c") 'emacs-solo/goto-previous-hunk)
 
 
 (provide 'me-viper)
