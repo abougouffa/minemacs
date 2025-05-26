@@ -40,8 +40,7 @@
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
         me-tty            ; Emacs from terminal (xclip, ...)
         me-ui             ; User interface (doom-themes, modus-themes, doom-modeline, svg-lib, page-break-lines, ...)
-        me-vc             ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
-        me-window))       ; Frame & window tweaks (ace-window, ...)
+        me-vc))           ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
 
 
 ;;; List of disabled packages

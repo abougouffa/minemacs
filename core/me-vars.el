@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-12
+;; Last modified: 2025-05-26
 
 ;;; Commentary:
 
@@ -249,8 +249,7 @@ it automatically."
     me-tools
     me-tty
     me-ui
-    me-vc
-    me-window)
+    me-vc)
   "MinEmacs enabled modules."
   :group 'minemacs-core
   :type '(repeat symbol))
