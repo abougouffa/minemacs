@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-15
+;; Last modified: 2025-05-27
 
 ;;; Commentary:
 
@@ -132,9 +132,9 @@ a project, call `multi-vterm-dedicated-toggle'."
   :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
-;; Rudimentary support for devcontainer in emacs
-(use-package devcontainer-mode
-  :straight (:host github :repo "johannes-mueller/devcontainer-mode"))
+;; Rudimentary devcontainer support for Emacs
+(use-package devcontainer
+  :straight (:host github :repo "johannes-mueller/devcontainer.el"))
 
 
 ;; Major mode for Apptainer definition files
