@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.28.1](https://github.com/abougouffa/minemacs/compare/380d67a41d62f06e6ef54badf84f49ef5780ac5a..v12.28.1) - 2025-05-26
+#### Bug Fixes
+- **(devcontainer)** fix the recipe, package renamed - ([7827e32](https://github.com/abougouffa/minemacs/commit/7827e32a5822617e45eafbcc63c57de0d13428a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(term)** fix `+serial-running-p` - ([978df75](https://github.com/abougouffa/minemacs/commit/978df7580277135ed63a3b93b2d3bca12b63e28a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(viper)** edits comments - ([380d67a](https://github.com/abougouffa/minemacs/commit/380d67a41d62f06e6ef54badf84f49ef5780ac5a)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** remove obsolete function - ([3b6a085](https://github.com/abougouffa/minemacs/commit/3b6a085543d6fc93a02b12de2c4d129109083c58)) - [@abougouffa](https://github.com/abougouffa)
+- **(viper)** cleanup some copy/paste dirt - ([660d13c](https://github.com/abougouffa/minemacs/commit/660d13ce056ed7a4324a5e8b8823b8bfa4a80ea6)) - [@abougouffa](https://github.com/abougouffa)
+- remove references to the removed `me-window` module - ([a9cef2e](https://github.com/abougouffa/minemacs/commit/a9cef2e4667bba29aa2a192aeaf47a2b58583d1b)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** change the implementation of `+net-get-ip-address` - ([12ee1ec](https://github.com/abougouffa/minemacs/commit/12ee1ec1d4c4c0ce70a5d694bb6e7e0cfe3c57c6)) - [@abougouffa](https://github.com/abougouffa)
+- **(viper)** add bindings for `dw` and `d$` - ([fac1ab2](https://github.com/abougouffa/minemacs/commit/fac1ab20bbf8a6f12a18b8adafde990eb4e14c4d)) - [@abougouffa](https://github.com/abougouffa)
+- **(viper)** bind `SPC h` to `help-map` - ([259a5e0](https://github.com/abougouffa/minemacs/commit/259a5e0ce5c5c68127fa39f3b4c6942b63da873f)) - [@abougouffa](https://github.com/abougouffa)
+- **(wgrep)** disable on Emacs 31+ in favor of `grep-edit-mode` - ([442a1e2](https://github.com/abougouffa/minemacs/commit/442a1e258a1839df59a06318c1281ee180d8cc88)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([74a2058](https://github.com/abougouffa/minemacs/commit/74a205865d2b47d5e85038e31f3cd84015df9f86)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.28.0](https://github.com/abougouffa/minemacs/compare/6d85f00e962fd22b16849c05678b2736231f769c..v12.28.0) - 2025-05-25
 #### Bug Fixes
 - **(core)** ensure `minemacs-lazy-hook` hooks are run before `+with-delayed!` blocks - ([28c348c](https://github.com/abougouffa/minemacs/commit/28c348ca811550fa5f8b3ceec6af2525ea44635b)) - [@abougouffa](https://github.com/abougouffa)
