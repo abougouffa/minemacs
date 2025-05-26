@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-24
+;; Last modified: 2025-05-26
 
 ;;; Commentary:
 
@@ -15,16 +15,6 @@
 (require 'rx)
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
-
-
-
-;; Obsolete and temporary definitions
-
-(defun +emacs-options-p (&rest feats)
-  (let ((fn (if (eq (car feats) :any) (progn (setq feats (cdr feats)) #'cl-some) #'cl-every)))
-    (and (funcall fn #'featurep feats) t)))
-
-(make-obsolete '+emacs-options-p 'featurep "v12.20.0")
 
 
 
