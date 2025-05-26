@@ -233,6 +233,8 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "b l") 'switch-to-buffer)
 (define-key viper-vi-global-user-map (kbd "SPC SPC") 'switch-to-buffer)
 (define-key viper-vi-global-user-map (kbd "SPC :") 'execute-extended-command)
+(with-eval-after-load 'help
+  (define-key viper-vi-global-user-map (kbd "SPC h") help-map))
 
 ;; Tabs (like in tmux tabs, not vscode tabs)
 (define-key viper-vi-global-user-map (kbd "C-w t") 'tab-bar-new-tab)
