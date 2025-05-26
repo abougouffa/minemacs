@@ -1,10 +1,10 @@
-;;; me-adb.el --- Interface for ADB commands -*- lexical-binding: t; -*-
+;;; me-adb.el --- Extra commands for `viper-mode' -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
-;; Created: 2025-05-22
-;; Last modified: 2025-05-25
+;; Created: 2025-05-25
+;; Last modified: 2025-05-26
 
 ;;; Commentary:
 
