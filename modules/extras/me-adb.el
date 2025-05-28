@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-05-24
+;; Last modified: 2025-05-28
 
 ;;; Commentary:
 
@@ -48,9 +48,14 @@ By default, qutote the arguments unless `+adb-no-quote' is non-nil."
 ;;;###autoload
 (defun +adb-reboot (mode)
   "Run adb reboot MODE."
-  (interactive (list (and current-prefix-arg (completing-read "Reboot in mode: " '("bootloader" "recovery" "sideload" "sideload-auto-reboot")))))
+  (interactive (list (and current-prefix-arg (completing-read "Reboot in mode: " '("bootloader" "recovery" "sideload" "sideload-auto-reboot" "edl")))))
   (when (y-or-n-p "Do you really want to reboot the device? ")
     (+adb-run-command "reboot" mode)))
+
+(defun +adb-root (&optional arg)
+  "Run adb root (or unroot with \\[universal-argument])."
+  (interactive "P")
+  (+adb-run-command (if arg "unroot" "root")))
 
 
 (provide 'me-adb)
