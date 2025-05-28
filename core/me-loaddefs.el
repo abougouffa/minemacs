@@ -21,6 +21,10 @@ Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
 Run adb reboot MODE.
 
 (fn MODE)" t)
+(autoload '+adb-root "../modules/extras/me-adb" "\
+Run adb root (or unroot with \\[universal-argument]).
+
+(fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-adb" '("+adb-"))
 
 
@@ -482,7 +486,7 @@ If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'.
 
 (fn COMMANDS &optional PORT BAUD)" t)
 (autoload '+net-get-ip-address "me-lib-extra" "\
-Get the IP-address for device DEV (default: eth0) of the current machine.
+Get the IP-address for device DEV of the current machine.
 
 (fn &optional DEV)")
 (autoload '+github-latest-release "me-lib-extra" "\
@@ -1260,7 +1264,7 @@ move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8
+;; coding: utf-8-emacs-unix
 ;; End:
 
 ;;; me-loaddefs.el ends here
