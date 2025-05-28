@@ -22,7 +22,9 @@
 (defun +adb-run-command (&rest args)
   "Run adb with command ARGS.
 By default, qutote the arguments unless `+adb-no-quote' is non-nil."
-  (let ((out-buf (get-buffer-create +adb-buffer-name))
+  (let ((display-buffer-overriding-action
+         '((display-buffer-in-side-window) (window-height . 0.2) (reusable-frames . visible) (dedicated . t) (side . bottom) (slot . -1)))
+        (out-buf (get-buffer-create +adb-buffer-name))
         (cmd (string-join `("adb" ,@(mapcar (if +adb-no-quote #'identity #'shell-quote-argument) (seq-filter #'identity args))) " ")))
     (async-shell-command cmd out-buf)
     (pop-to-buffer out-buf)))
@@ -52,6 +54,7 @@ By default, qutote the arguments unless `+adb-no-quote' is non-nil."
   (when (y-or-n-p "Do you really want to reboot the device? ")
     (+adb-run-command "reboot" mode)))
 
+;;;###autoload
 (defun +adb-root (&optional arg)
   "Run adb root (or unroot with \\[universal-argument])."
   (interactive "P")
