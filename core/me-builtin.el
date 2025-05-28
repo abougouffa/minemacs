@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-22
+;; Last modified: 2025-05-28
 
 ;;; Commentary:
 
@@ -1408,33 +1408,21 @@ surrounded by word boundaries."
     :group 'minemacs-binary
     :type 'boolean)
   ;; Add the fallback predicate near the end, `objdump-disassemble' predicate is
-  ;; added with depth 99, so this one should be tested first
-  (add-hook 'magic-fallback-mode-alist '(+hexl-buffer-p . +hexl-mode-maybe) 95)
+  ;; added with depth 95, so this one gets called only when the file isn't
+  ;; recognizable by `objdump-disassemble'
+  (add-hook 'magic-fallback-mode-alist '(+hexl-buffer-p . hexl-mode) 96)
   :config
   ;; A predicate for detecting binary files. Inspired by: https://emacs.stackexchange.com/q/10277/37002
   (defun +hexl-binary-buffer-p (&optional buffer)
-    "Check if BUFFER or the current buffer contains binary data.
-
+    "Check if BUFFER contains binary data.
 A binary buffer is defined as containing at least one null byte.
-
 Returns either nil, or the position of the first null byte."
     (with-current-buffer (or buffer (current-buffer))
-      (save-excursion (goto-char (point-min))
-                      (search-forward (string ?\x00) nil :noerror))))
+      (save-excursion (goto-char (point-min)) (search-forward (string ?\x00) nil :noerror))))
 
   (defun +hexl-buffer-p (&optional buffer)
     "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
-    (and +hexl-auto-enable
-         (+hexl-binary-buffer-p buffer)
-         (not (and (fboundp 'objdump-recognizable-buffer-p)
-                   ;; Executables are viewed with objdump mode
-                   (objdump-recognizable-buffer-p buffer)))))
-
-  (defun +hexl-mode-maybe ()
-    "Activate `hexl-mode' if relevant for the current buffer."
-    (interactive)
-    (when (and (not (eq major-mode 'hexl-mode)) (+hexl-buffer-p))
-      (hexl-mode 1))))
+    (and +hexl-auto-enable (not (eq major-mode 'hexl-mode)) (+hexl-binary-buffer-p buffer))))
 
 
 (provide 'me-builtin)
