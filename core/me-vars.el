@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-26
+;; Last modified: 2025-05-29
 
 ;;; Commentary:
 
@@ -162,13 +162,6 @@ of being enabled."
 
 (defvar minemacs-configured-packages nil
   "List of packages installed and configured by MinEmacs during startup.")
-
-(defcustom minemacs-after-loading-modules-hook nil
-  "This hook will be run after loading MinEmacs modules.
-It is used internally to remove the `+use-package--check-if-disabled:around-a'
-advice we set on `use-package' in `me-bootstrap'."
-  :group 'minemacs-core
-  :type 'hook)
 
 (defcustom minemacs-after-setup-fonts-hook nil
   "Runs after setting MinEmacs fonts, runs at the end of `+setup-fonts'."

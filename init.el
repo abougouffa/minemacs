@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-25
+;; Last modified: 2025-05-28
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -37,7 +37,6 @@
 ;;   * `~/.emacs.d/core/me-builtin.el`
 ;;   * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`)
 ;;   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules', unless `MINEMACS_BUILTIN_ONLY)
-;;   * `minemacs-after-loading-modules-hook'
 ;;   * `$MINEMACSDIR/config.el`                 (unless disabled)
 ;;   * `$MINEMACSDIR/local/config.el`           (unless disabled)
 ;; - `after-init-hook'
@@ -151,7 +150,9 @@
 (unless minemacs-builtin-only-p
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
-(run-hooks 'minemacs-after-loading-modules-hook)
+(unless +use-package-keep-checking-for-disabled-p
+  (advice-remove 'use-package '+use-package--check-if-disabled:around-a))
+
 (+load-user-configs 'config 'local/config) ; Load user configuration
 
 (+log! "Loaded init.el")
