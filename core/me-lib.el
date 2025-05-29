@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-26
+;; Last modified: 2025-05-29
 
 ;;; Commentary:
 
@@ -300,7 +300,7 @@ EXT-REGEXP. When it runs, this function provides a feature named
                             (or filetype "") hook-name feature-name)))
     `(progn
        (push ',hook-name +first-file-hooks)
-       (+log! "Setting up hook `%s' -- function `%s' -- feature `%s'." ',hook-name ',fn-name ',feature-name)
+       (+log! "Setting up hook `%s' and feature `%s'." ',hook-name ',feature-name)
        (defcustom ,hook-name nil ,hook-docs :group 'minemacs-core :type 'hook)
        (defun ,fn-name (&optional filename &rest _)
          (when (and
@@ -316,7 +316,7 @@ EXT-REGEXP. When it runs, this function provides a feature named
                               (mapcar #'eval +first-file-hook-ignore-list))))
                 (let ((case-fold-search t)) ; file name matches the regexp (case-insensitive)
                   (string-match-p ,ext-regexp filename)))
-           (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name filename)
+           (+log! "Running %d `%s' hooks (triggered by: %s)." (length ,hook-name) ',hook-name (abbreviate-file-name filename))
            (advice-remove 'find-file-noselect #',fn-name)
            (provide ',feature-name)
            (run-hooks ',hook-name)))
