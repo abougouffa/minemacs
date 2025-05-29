@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.29.0](https://github.com/abougouffa/minemacs/compare/a5df51c64c8e00b72b37c8580c2c14ef7adcddab..v12.29.0) - 2025-05-29
+#### Bug Fixes
+- **(citre)** add a way to ignore enabling `citre-mode` in some modes - ([a5df51c](https://github.com/abougouffa/minemacs/commit/a5df51c64c8e00b72b37c8580c2c14ef7adcddab)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-vterm)** use `shell-quote-argument` in the CWD advice - ([2d26a21](https://github.com/abougouffa/minemacs/commit/2d26a21e798d3fa2ad326f48aca5e4cc0ade3c51)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(adb)** add `+adb-root` and `adb reboot edl` for Qualcomm boards - ([7105ec3](https://github.com/abougouffa/minemacs/commit/7105ec3f4a51f58974373cb26d735d0a1cbdb26d)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** change some log messages - ([283654b](https://github.com/abougouffa/minemacs/commit/283654bb32cf7954b052bbc2cca7410b53219428)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(hexl)** cleanup `hexl` extensions - ([8d5df7e](https://github.com/abougouffa/minemacs/commit/8d5df7eedf1c8896ab7abc13df787e761df41f17)) - [@abougouffa](https://github.com/abougouffa)
+- remove unused `minemacs-after-loading-modules-hook` - ([31fbd36](https://github.com/abougouffa/minemacs/commit/31fbd36da7e464ba4db68f046f03649463955047)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** display output in a side buffer in bottom - ([cf2ce4a](https://github.com/abougouffa/minemacs/commit/cf2ce4a3c67979f0bbb466d6a9c5b8bf4c2be5de)) - [@abougouffa](https://github.com/abougouffa)
+- **(objdump-disassemble)** enable globally - ([7aeb0b7](https://github.com/abougouffa/minemacs/commit/7aeb0b799025186ab683d54c7d18c664a071fee0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1f5bf18](https://github.com/abougouffa/minemacs/commit/1f5bf18bf75bea3f8e5ef066e8862f7fd9c10bbb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([58e2a4b](https://github.com/abougouffa/minemacs/commit/58e2a4bf3ac1652c17c86a5f0c68b423240bd5fa)) - [@abougouffa](https://github.com/abougouffa)
+- Don't display annoying warning messages about `[if|when]-let` - ([92ea104](https://github.com/abougouffa/minemacs/commit/92ea104e1ba9f0e251a2a3ac18abc7fa1c7ac20c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2fafa2f](https://github.com/abougouffa/minemacs/commit/2fafa2f310289fb9495c2824ccbc4d2f21ec07eb)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([305675c](https://github.com/abougouffa/minemacs/commit/305675c47cdb49c6152289f1553aee83fdf8cbd3)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.28.1](https://github.com/abougouffa/minemacs/compare/380d67a41d62f06e6ef54badf84f49ef5780ac5a..v12.28.1) - 2025-05-26
 #### Bug Fixes
 - **(devcontainer)** fix the recipe, package renamed - ([7827e32](https://github.com/abougouffa/minemacs/commit/7827e32a5822617e45eafbcc63c57de0d13428a9)) - [@abougouffa](https://github.com/abougouffa)
