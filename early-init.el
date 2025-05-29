@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-28
+;; Last modified: 2025-05-29
 
 ;;; Commentary:
 
@@ -21,6 +21,10 @@
 
 (require 'me-vars)
 (require 'me-lib)
+
+;; Avoid spitting messages like "somefile.el: Warning: ‘if-let’ is an obsolete macro (as of 31.1); use ‘if-let*’ instead."
+(unless minemacs-verbose-p
+  (advice-add 'macroexp-warn-and-return :around '+apply-inhibit-messages))
 
 (setq
  ;; Enable debugging on error when Emacs if needed
