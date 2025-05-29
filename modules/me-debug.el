@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2025-04-26
+;; Last modified: 2025-05-29
 
 ;;; Commentary:
 
@@ -43,7 +43,8 @@
 
 ;; Use "objdump" to display disassembled executable and object files
 (use-package objdump-disassemble
-  :straight (:host github :repo "abougouffa/objdump-disassemble"))
+  :straight (:host github :repo "abougouffa/objdump-disassemble")
+  :hook (minemacs-first-file . global-objdump-disassemble-mode))
 
 
 (provide 'me-debug)
