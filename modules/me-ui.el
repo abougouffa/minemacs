@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-05-21
+;; Last modified: 2025-05-30
 
 ;;; Commentary:
 
@@ -14,6 +14,8 @@
 (use-package nerd-icons
   :straight t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
+  :init
+  (unless (+font-installed-p "Symbols Nerd Font Mono") (nerd-icons-install-fonts t)) ; Ensure installing the font
   :config
   ;; Show .m files as Matlab/Octave files (integral icon)
   (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
