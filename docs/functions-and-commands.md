@@ -19,7 +19,6 @@ Load and hooks order:
   * `~/.emacs.d/core/me-builtin.el`
   * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`)
   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules`, unless `MINEMACS_BUILTIN_ONLY)
-  * `minemacs-after-loading-modules-hook`
   * `$MINEMACSDIR/config.el`                 (unless disabled)
   * `$MINEMACSDIR/local/config.el`           (unless disabled)
 - `after-init-hook`
@@ -39,6 +38,11 @@ Special hooks defined with `+make-first-file-hook!`
 
 ### Customization Documentation
 
+#### `+use-package-keep-checking-for-disabled-p`
+
+If you want to keep the advice that skip disabled packages.
+You need to set in in your "early-config.el".
+
 #### `minemacs-msg-level`
 
 Level of printed messages.
@@ -56,12 +60,6 @@ The theme of MinEmacs.
 List of packages to be disabled when loading MinEmacs modules.
 This can be useful if you want to enable a module but you don't want a package
 of being enabled.
-
-#### `minemacs-after-loading-modules-hook`
-
-This hook will be run after loading MinEmacs modules.
-It is used internally to remove the `+use-package--check-if-disabled:around-a`
-advice we set on `use-package` in `me-bootstrap`.
 
 #### `minemacs-after-setup-fonts-hook`
 
@@ -284,10 +282,6 @@ Automatically convert Org keywords and properties to lowercase on save.
 
 ### Function and Macro Documentation
 
-#### `(minemacs-generate-loaddefs)`
-
-Generate MinEmacs' loaddefs file.
-
 #### `(+with-delayed! &rest BODY)` (macro)
 
 Delay evaluating BODY with priority 0 (high priority).
@@ -355,6 +349,10 @@ Return t when EXPR is quoted.
 #### `(+apply-partially-right FUN &rest ARGS)`
 
 Like `apply-partially`, but apply the ARGS to the right of FUN.
+
+#### `(+reverse-args FUN)`
+
+Return a function that calls FUN with arguments in the reversed order.
 
 #### `(+error! MSG &rest VARS)` (macro)
 
@@ -436,8 +434,8 @@ Set buffer-local variables on HOOKS.
 HOOKS can be expect receiving arguments (like in `enable-theme-functions`), the
 `args` variable can be used inside VAR-VALS forms to get the arguments passed
 the the function.
-  (+setq-hook! 'enable-theme-functions
-    current-theme (car args))
+(+setq-hook! 'enable-theme-functions
+  current-theme (car args))
 
 #### `(+setq-advice! FUNCS HOW &rest [SYM VAL]...)` (macro)
 
@@ -445,8 +443,8 @@ Set buffer-local variables as HOW advices for FUNCS.
 FUNCS can be expect receiving arguments, the `args` variable can
 be used inside VAR-VALS forms to get the arguments passed the the
 function.
-  (+setq-advice! #'revert-buffer :before
-    `revert-buffer-function` #'ignore)
+(+setq-advice! #'revert-buffer :before
+  revert-buffer-function #'ignore)
 
 #### `(+unsetq-hook! HOOKS &rest VAR1 VAR2...)` (macro)
 
@@ -625,6 +623,10 @@ BASE-COLOR can be a color (string) or a face.
 When it is a face, the FACE-ATTR needs to be provided, otherwise, the
 :background attribute will be used.
 
+#### `(+nerd-icons-icon NAME &rest ARGS)`
+
+Generic function to get icons by NAME, with ARGS.
+
 #### `(+make-buffer-conds &rest CONDITIONS)`
 
 Return a lambda that matches CONDITIONS.
@@ -657,6 +659,10 @@ Try to automatically enable a mode based on the `:interpreter-mode` value.
 #### `(+prog-mode-run-hooks)`
 
 Run the hooks in `prog-mode-hook`.
+
+#### `(minemacs-generate-loaddefs)`
+
+Generate MinEmacs' loaddefs file.
 
 #### `(+load-user-configs &rest CONFIGS)`
 
@@ -768,7 +774,7 @@ If PORT or BAUD are nil, use values from `+serial-port` and `+serial-baudrate`.
 
 #### `(+net-get-ip-address &optional DEV)`
 
-Get the IP-address for device DEV (default: eth0) of the current machine.
+Get the IP-address for device DEV of the current machine.
 
 #### `(+github-latest-release REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)`
 
@@ -886,9 +892,10 @@ Insert a schema for the current buffer file.
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
-#### `(+clang-format-get-style)`
+#### `(+clang-format-get-style &optional NO-OPT)`
 
-Get the "-style" argument for clang-format.
+Get the "-style=XXX" argument for clang-format.
+When NO-OPT isn non-nil, don't return the "-style=" part.
 
 #### `(+editorconfig-guess-indentation-style-from-clang-format)`
 
@@ -997,6 +1004,27 @@ Extract the descriptions of MinEmacs packages.
 #### `(+list-external-dependencies)`
 
 Show the list of declared external dependencies.
+
+#### `(+adb-run-command &rest ARGS)`
+
+Run adb with command ARGS.
+By default, qutote the arguments unless `+adb-no-quote` is non-nil.
+
+#### `(+adb-push SRC DEST)`
+
+Run adb push SRC DEST.
+
+#### `(+adb-remount AUTO-REBOOT-DEVICE)`
+
+Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
+
+#### `(+adb-reboot MODE)`
+
+Run adb reboot MODE.
+
+#### `(+adb-root &optional ARG)`
+
+Run adb root (or unroot with C-u).
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 
@@ -1146,6 +1174,88 @@ Automatically convert KEYWORDS to lower case on save.
 #### `(+org-extras-setup)`
 
 Enable all Org-mode extra tweaks.
+
+#### `(+viper-operate-inside-delimiters OPEN CLOSE OP)`
+
+Perform OP inside delimiters OPEN and CLOSE (e.g., (), {}, '', or "").
+
+#### `(+viper-delete-inside-delimiters OPEN CLOSE)`
+
+Delete text inside delimiters OPEN and CLOSE, saving it to the kill ring.
+
+#### `(+viper-yank-inside-delimiters OPEN CLOSE)`
+
+Copy text inside delimiters OPEN and CLOSE to the kill ring.
+
+#### `(+viper-delete-line-or-region)`
+
+Delete the current line or the selected region in Viper mode.
+The deleted text is saved to the kill ring.
+
+#### `(+viper-yank-line-or-region)`
+
+Yank the current line or the selected region and highlight the region.
+
+#### `(+viper-visual-select)`
+
+Start visual selection from the current position.
+
+#### `(+viper-visual-select-line)`
+
+Start visual selection from the beginning of the current line.
+
+#### `(+viper-delete-inner-word)`
+
+Delete the current word under the cursor, handling edge cases.
+
+#### `(+viper-change-inner-word)`
+
+Change the current word under the cursor, handling edge cases.
+
+#### `(+viper-yank-inner-word)`
+
+Yank (copy) the current word under the cursor, handling edge cases.
+
+#### `(+viper-delete-inner-compound-word)`
+
+Delete the entire compound word under the cursor, including `-` and `_`.
+
+#### `(viper-change-inner-compound-word)`
+
+Change the entire compound word under the cursor, including `-` and `_`.
+
+#### `(+viper-yank-inner-compound-word)`
+
+Yank the entire compound word under the cursor into the kill ring.
+
+#### `(+viper-compound-word-bounds)`
+
+Get the bounds of a compound word under the cursor.
+A compound word includes letters, numbers, `-`, and `_`.
+
+#### `(+viper-go-to-nth-or-first-line ARG)`
+
+Go to the first line of the document, or the ARG-nth.
+
+#### `(+viper-go-to-last-line)`
+
+Go to the last line of the document.
+
+#### `(+viper-window-split-horizontally)`
+
+Split the window horizontally (mimics Vim's `C-w s`).
+
+#### `(+viper-window-split-vertically)`
+
+Split the window vertically (mimics Vim's `C-w v`).
+
+#### `(+viper-window-close)`
+
+Close the current window (mimics Vim's `C-w c`).
+
+#### `(+viper-window-maximize)`
+
+Maximize the current window (mimics Vim's `C-w o`).
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">

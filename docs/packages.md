@@ -118,13 +118,6 @@
 ## `me-lifestyle`
 * `awqat`: Islamic prayer times for Emacs
 
-## `me-math`
-* `maxima`: Major modes for writing Maxima code
-* `imaxima`: Maxima mode with images
-* `ein`: Jupyter notebook client in Emacs
-* `code-cells`: Lightweight notebooks in Emacs
-* `jupyter`: An interface to communicate with Jupyter kernels
-
 ## `me-media`
 * `empv`: An Emacs media player, media library manager, radio player, YouTube frontend
 * `ready-player`: An Emacs major mode to open media (audio/video) files like any other file (via `find-file`, `dired`, etc)
@@ -141,6 +134,7 @@
 * `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
 
 ## `me-nav`
+* `ace-window`: Quickly switch windows in Emacs
 * `avy`: Jump to things in Emacs tree-style
 * `avy-zap`: Zap to char using `avy`
 * `treesit-jump`: Jump around your source code in emacs using `treesit` and `avy`
@@ -215,8 +209,6 @@
 
 ## `me-services`
 * `jiralib`: Provide connectivity to Jira SOAP/REST services
-* `org-jira`: Bring Jira and Org mode together
-* `tributary`: Edit Confluence wiki pages in Emacs
 * `webpaste`: Paste text to pastebin-like services
 * `isgd`: Simply shortening URLs using the is.gd service
 
@@ -250,7 +242,7 @@
 * `multi-vterm`: Managing multiple vterm buffers in Emacs
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `docker`: Manage docker from Emacs
-* `devcontainer-mode`: Rudimentary support for devcontainer in emacs
+* `devcontainer`: Rudimentary devcontainer support for Emacs
 * `apptainer-mode`: Major mode for Apptainer definition files
 * `systemd`: Major mode for editing systemd units
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
@@ -297,9 +289,6 @@
 * `vc-jj`: Jujutsu (jj) integration with Emacs `vc` and `project`
 * `diffview`: View diffs side-by-side in Emacs
 * `difftastic`: A structural diff that understands syntax
-
-## `me-window`
-* `ace-window`: Quickly switch windows in Emacs
 
 
 # MinEmacs on-demand modules and packages
@@ -511,6 +500,10 @@
 * `julia-repl`: A minor mode for a Julia REPL
 * `julia-snail`: An Emacs development environment for Julia
 
+## `on-demand/me-jupyter`
+* `ein`: Jupyter notebook client in Emacs
+* `jupyter`: An interface to communicate with Jupyter kernels
+
 ## `on-demand/me-just`
 * `just-mode`: Major mode for editing Justfile
 * `justl`: Major mode for driving just files
@@ -537,6 +530,10 @@
 
 ## `on-demand/me-mathematica`
 * `wolfram-mode`: Mathematica editing and inferior mode
+
+## `on-demand/me-maxima`
+* `maxima`: Major modes for writing Maxima code
+* `imaxima`: Maxima mode with images
 
 ## `on-demand/me-mercury`
 * `metal-mercury-mode`: Concise mercury major mode
@@ -656,7 +653,6 @@
 * `stan-snippets`: Yasnippets for Stan
 
 ## `on-demand/me-statistics`
-* `julia-mode`: Julia support in Emacs
 * `ess`: Emacs Speaks Statistics
 * `ess-view`: View R dataframes in a spreadsheet software
 * `ess-R-data-view`: Data viewer for GNU R
