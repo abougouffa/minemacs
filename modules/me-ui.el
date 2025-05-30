@@ -15,7 +15,9 @@
   :straight t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :init
-  (unless (+font-installed-p "Symbols Nerd Font Mono") (nerd-icons-install-fonts t)) ; Ensure installing the font
+  ;; Ensure installing the font
+  (when (and (display-graphic-p) (not (+font-installed-p "Symbols Nerd Font Mono")))
+    (nerd-icons-install-fonts t))
   :config
   ;; Show .m files as Matlab/Octave files (integral icon)
   (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
