@@ -23,7 +23,6 @@
         me-fun            ; Games and funny packages (xkcd, speed-type, wordel, ...)
         ;; me-gtd         ; Getting Things Done (org-gtd, ...)
         ;; me-lifestyle   ; *Very* opinionated lifestyle packages (awqat, ...)
-        ;; me-math        ; Mathematics (maxima, ess, ein, code-cells, julia-mode, ...)
         me-media          ; Multimedia (empv, emms, ...)
         me-multi-cursors  ; Multi-cursors editing (iedit, multiple-cursors, ...)
         me-natural-langs  ; Natural language stuff (jinx, spell-fu, go-translate, eglot-ltex, ...)

@@ -366,6 +366,13 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (minemacs-register-on-demand-module 'me-julia :auto-mode '(("\\.jl\\'" . julia-mode)) :interpreter-mode '(("julia" . julia-mode)) :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) julia-repl julia-snail julia-ts-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-jupyter.el
+
+(minemacs-register-on-demand-module 'me-jupyter :auto-mode '(("\\.ipynb\\'" . ein:ipynb-mode)))
+(autoload 'minemacs-jupyter-load "../modules/on-demand/me-jupyter" "\
+Load the `on-demand/me-jupyter' modules (`ein' + `jupyter')." t)
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-just.el
 
 (minemacs-register-on-demand-module 'me-just :auto-mode '((("/[Jj]ustfile\\'" "\\.[Jj]ust\\(file\\)?\\'") . just-mode)) :companion-packages '(((just-mode just-ts-mode) . justl)))
@@ -721,6 +728,13 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-mathematica.el
 
 (minemacs-register-on-demand-module 'me-mathematica)
+
+
+;;; Generated autoloads from ../modules/on-demand/me-maxima.el
+
+(defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
+(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
+(when +maxima-available-p (defun minemacs-maxima-load nil "Load the `on-demand/me-maxima' module." (interactive)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
