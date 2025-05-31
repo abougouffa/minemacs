@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-05-30
+;; Last modified: 2025-06-01
 
 ;;; Commentary:
 
@@ -18,10 +18,9 @@
 (defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
 
 ;;;###autoload
-(when +maxima-available-p
-  (defun minemacs-maxima-load ()
-    "Load the `on-demand/me-maxima' module."
-    (interactive)))
+(defun minemacs-maxima-load ()
+  "Load the `on-demand/me-maxima' module."
+  (interactive))
 
 
 ;; Major modes for writing Maxima code

@@ -734,7 +734,8 @@ Show the list of declared external dependencies." t)
 
 (defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
 (defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
-(when +maxima-available-p (defun minemacs-maxima-load nil "Load the `on-demand/me-maxima' module." (interactive)))
+(autoload 'minemacs-maxima-load "../modules/on-demand/me-maxima" "\
+Load the `on-demand/me-maxima' module." t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
@@ -1278,7 +1279,7 @@ move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8-emacs-unix
+;; coding: utf-8
 ;; End:
 
 ;;; me-loaddefs.el ends here
