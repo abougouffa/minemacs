@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.30.0](https://github.com/abougouffa/minemacs/compare/65c75b4c6758dc63913a7ef981d845a7e6ebeaca..v12.30.0) - 2025-05-31
+#### Bug Fixes
+- **(nerd-icons)** avoid re-installing the font when running Emacs daemon - ([aab3051](https://github.com/abougouffa/minemacs/commit/aab3051b8b409fbda829a0220dd7ca5736cc93e6)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([2ab4bee](https://github.com/abougouffa/minemacs/commit/2ab4bee695a70963271f45ad0d7fd92b4f48d6b3)) - [@abougouffa](https://github.com/abougouffa)
+- update the screenshot - ([cc55184](https://github.com/abougouffa/minemacs/commit/cc55184736ce6ac2a91c6bc000168572cf03c7a3)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([263f324](https://github.com/abougouffa/minemacs/commit/263f3244ba51632b7cb6673c74f5af61feca0722)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(math)** split `me-math` into `on-demand/me-{jupyter,maxima}` - ([0be3ebf](https://github.com/abougouffa/minemacs/commit/0be3ebf32f5e95e1584a40bad74130019fb93d2d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** refactor and simplify the code for on-demand modules - ([9031421](https://github.com/abougouffa/minemacs/commit/9031421f27c3f32ccaeb2a2ce476911fc2d9e570)) - [@abougouffa](https://github.com/abougouffa)
+- **(vundo)** make the `+vundo-diff-commands` variable customizable - ([0bed67a](https://github.com/abougouffa/minemacs/commit/0bed67a51d509b3d488c05a7f553c10cc0ea3c09)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(nerd-icons)** ensure installing the font - ([65c75b4](https://github.com/abougouffa/minemacs/commit/65c75b4c6758dc63913a7ef981d845a7e6ebeaca)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([2d6900b](https://github.com/abougouffa/minemacs/commit/2d6900bf132ec0e89d30d0b1376eda8500863a27)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3c01bdd](https://github.com/abougouffa/minemacs/commit/3c01bddb26c3d2b77b6768bafec60d9f17528079)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.29.0](https://github.com/abougouffa/minemacs/compare/a5df51c64c8e00b72b37c8580c2c14ef7adcddab..v12.29.0) - 2025-05-29
 #### Bug Fixes
 - **(citre)** add a way to ignore enabling `citre-mode` in some modes - ([a5df51c](https://github.com/abougouffa/minemacs/commit/a5df51c64c8e00b72b37c8580c2c14ef7adcddab)) - [@abougouffa](https://github.com/abougouffa)
