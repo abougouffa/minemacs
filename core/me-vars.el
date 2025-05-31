@@ -295,25 +295,15 @@ Each string is a regexp, matched against variable names to omit from
   :group 'minemacs-core
   :type 'alist)
 
-(defcustom minemacs-on-demand-enable-auto-mode 'no-ask
-  "Enable loading on-demand packages when needed based on `:auto-mode'."
+(defcustom minemacs-on-demand-enable-plist
+  '( :auto-mode no-ask
+     :interpreter-mode no-ask
+     :magic-mode no-ask
+     :magic-fallback-mode no-ask
+     :companion-packages no-ask)
+  "Enable loading on-demand packages when needed."
   :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
-
-(defcustom minemacs-on-demand-enable-magic-mode 'no-ask
-  "Enable loading on-demand packages when needed based on `:magic-mode'."
-  :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
-
-(defcustom minemacs-on-demand-enable-interpreter-mode 'no-ask
-  "Enable loading on-demand packages when needed based on `:interpreter-mode'."
-  :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
-
-(defcustom minemacs-on-demand-enable-companion-packages 'no-ask
-  "Enable loading on-demand companion packages when needed."
-  :group 'minemacs-core
-  :type '(choice (symbol t) (symbol nil) (symbol 'no-ask)))
+  :type 'plist)
 
 (defface +goto-addr-url-face '((t :italic t :underline t))
   "Face for URLs, I prefer keeping the original face and add underline and italic."
