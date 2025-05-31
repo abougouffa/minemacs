@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-27
+;; Last modified: 2025-05-31
 
 ;;; Commentary:
 
@@ -21,10 +21,12 @@
   (vundo-glyph-alist vundo-unicode-symbols)
   :config
   (defun +vundo--diff-wrapper (&rest _) (vundo-diff))
-  (defvar +vundo-diff-commands
-    '(; A list of commands after which `vundo-diff' gets called
-      vundo-next vundo-previous vundo-forward vundo-backward
-      vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved))
+  (defcustom +vundo-diff-commands
+    '( vundo-next vundo-previous vundo-forward vundo-backward
+       vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved)
+    "A list of commands after which `vundo-diff' gets called."
+    :group 'minemacs-editor
+    :type '(repeat function))
   (define-minor-mode +vundo-diff-mode
     "Automatically show diffs when navigating the undo tree."
     :global t
