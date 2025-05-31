@@ -119,21 +119,9 @@ Each string is a regexp, matched against variable names to omit from
 
 List of extra on-demand modules.
 
-#### `minemacs-on-demand-enable-auto-mode`
+#### `minemacs-on-demand-enable-plist`
 
-Enable loading on-demand packages when needed based on `:auto-mode`.
-
-#### `minemacs-on-demand-enable-magic-mode`
-
-Enable loading on-demand packages when needed based on `:magic-mode`.
-
-#### `minemacs-on-demand-enable-interpreter-mode`
-
-Enable loading on-demand packages when needed based on `:interpreter-mode`.
-
-#### `minemacs-on-demand-enable-companion-packages`
-
-Enable loading on-demand companion packages when needed.
+Enable loading on-demand packages when needed.
 
 #### `+clang-format-command`
 
@@ -632,9 +620,9 @@ Generic function to get icons by NAME, with ARGS.
 Return a lambda that matches CONDITIONS.
 To be used as a predicate generator for `display-buffer-alist`.
 
-#### `(minemacs-try-load-extra-mode)`
+#### `(minemacs-on-demand-try)`
 
-Load extra mode if available.
+Loop over on-demand modules and load the ones available for the buffer.
 
 #### `(minemacs-on-demand-try-load-companion-packages)`
 
@@ -643,18 +631,6 @@ Load companion packages for the current buffer's mode.
 #### `(minemacs-load-companion-packages-for-buffer)`
 
 Load companion packages applicables to the current's buffer mode.
-
-#### `(minemacs-on-demand-try-auto-mode)`
-
-Try to automatically enable a mode for the current buffer.
-
-#### `(minemacs-on-demand-try-magic-mode)`
-
-Try to automatically enable a mode for FILENAME.
-
-#### `(minemacs-on-demand-try-interpreter-mode)`
-
-Try to automatically enable a mode based on the `:interpreter-mode` value.
 
 #### `(+prog-mode-run-hooks)`
 
