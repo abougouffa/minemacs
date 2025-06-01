@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-19
+;; Last modified: 2025-06-01
 
 ;;; Commentary:
 
@@ -112,14 +112,15 @@
   :straight (:host codeberg :repo "woolsweater/gambol.el")
   :hook (eglot-managed-mode . gambol-mode)
   :bind
-  (("M-g ," . gambol:go-to-previous)
-   ("M-g ." . gambol:go-to-next)
-   ([remap mc/mark-all-dwim] . gambol:edit-all)
-   :map gambol-repeat-map
-   ("," . gambol:go-to-previous)
-   ("." . gambol:go-to-next)
-   ("e" . gambol:edit-all)
-   ("o" . gambol:occur))
+  ( :map gambol-mode-map
+    ("M-g ," . gambol:go-to-previous)
+    ("M-g ." . gambol:go-to-next)
+    ([remap mc/mark-all-dwim] . gambol:edit-all)
+    :map gambol-repeat-map
+    ("," . gambol:go-to-previous)
+    ("." . gambol:go-to-next)
+    ("e" . gambol:edit-all)
+    ("o" . gambol:occur))
   :init
   (with-eval-after-load 'embark (gambol:install-embark-integration))) ; Integrate with `embark'
 
