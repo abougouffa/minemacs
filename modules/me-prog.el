@@ -96,12 +96,6 @@
   (add-hook 'after-change-major-mode-hook '+treesit-auto-create-parser-in-buffer))
 
 
-;; Tree-sitter based code folding
-(use-package treesit-fold
-  :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
-  :when (featurep 'feat/tree-sitter))
-
-
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
   :straight (:host github :repo "jdtsmith/eglot-booster"))
