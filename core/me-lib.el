@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-05-31
+;; Last modified: 2025-06-01
 
 ;;; Commentary:
 
@@ -1072,7 +1072,6 @@ To be used as a predicate generator for `display-buffer-alist'."
       (when-let* ((module (car module-spec))
                   (keys (+plist-keys (cdr module-spec))))
         (dolist (key keys)
-          (message "Called with %S" key)
           (when-let* ((enable (plist-get minemacs-on-demand-enable-plist key))
                       (key-specs (plist-get (cdr module-spec) key)))
             (unless (featurep (intern (format "on-demand/%s" module)))
