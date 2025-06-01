@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-05-28
+;; Last modified: 2025-06-01
 
 ;;; Commentary:
 
@@ -81,6 +81,7 @@
   (ring-bell-function #'ignore) ; Don't beep (will be overwritten by `doom-modeline')
   (inhibit-compacting-font-caches t) ; Trade memory usage for less lagging
   (set-mark-command-repeat-pop t) ; Use C-u C-SPC C-SPC... instead of C-u C-SPC C-u C-SPC...
+  (mode-line-collapse-minor-modes t) ; Collapse minor modes in mode line lighters (Emacs 31+)
   :init
   (setq-default truncate-lines nil ; Don't truncate long line, display them
                 fill-column 80 ; Default fill column width
