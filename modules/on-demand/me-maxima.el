@@ -17,10 +17,10 @@
 ;;;###autoload
 (defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
 
-;;;###autoload
-(defun minemacs-maxima-load ()
-  "Load the `on-demand/me-maxima' module."
-  (interactive))
+;;;###autoload(when +maxima-available-p
+;;;###autoload  (defun minemacs-maxima-load ()
+;;;###autoload    "Load the `on-demand/me-maxima' module."
+;;;###autoload    (interactive)))
 
 
 ;; Major modes for writing Maxima code
