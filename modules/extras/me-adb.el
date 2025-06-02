@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-05-28
+;; Last modified: 2025-06-02
 
 ;;; Commentary:
 
@@ -26,7 +26,8 @@ By default, qutote the arguments unless `+adb-no-quote' is non-nil."
          '((display-buffer-in-side-window) (window-height . 0.2) (reusable-frames . visible) (dedicated . t) (side . bottom) (slot . -1)))
         (out-buf (get-buffer-create +adb-buffer-name))
         (cmd (string-join `("adb" ,@(mapcar (if +adb-no-quote #'identity #'shell-quote-argument) (seq-filter #'identity args))) " ")))
-    (async-shell-command cmd out-buf)
+    (let ((shell-command-with-editor-mode nil))
+      (async-shell-command cmd out-buf))
     (pop-to-buffer out-buf)))
 
 ;;;###autoload
