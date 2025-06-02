@@ -720,12 +720,13 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-maxima.el
 
-(defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
-(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
+(defconst +maxima-path (if-let* ((sys-path "/usr/share/emacs/site-lisp/maxima/") ((file-directory-p sys-path))) sys-path (mapcar (apply-partially #'concat minemacs-on-demand-modules-dir "third-party/maxima/") '("emaxima/" "imaxima/" "misc/"))))
+(defconst +maxima-available-p (and (executable-find "maxima") t))
 (when +maxima-available-p
  (defun minemacs-maxima-load ()
    "Load the `on-demand/me-maxima' module."
-   (interactive)))
+   (interactive)
+   (require 'on-demand/me-maxima)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
@@ -846,6 +847,7 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
 
 (minemacs-register-on-demand-module 'me-protobuf :auto-mode '(("\\.proto\\'" . protobuf-mode)))
+(register-definition-prefixes "../modules/on-demand/me-protobuf" '("+protobuf-path"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-purescript.el
