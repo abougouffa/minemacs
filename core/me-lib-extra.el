@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-05-26
+;; Last modified: 2025-06-02
 
 ;;; Commentary:
 
@@ -47,33 +47,6 @@ Call functions without asking when DONT-ASK-P is non-nil."
    (when (fboundp '+straight-prune-build-cache) (+straight-prune-build-cache))
    (minemacs-root-dir-cleanup))
   (message "Finished cleanup!"))
-
-;;;###autoload
-(defun minemacs-load-module (&rest modules)
-  "Interactively install and load MODULES that aren't enabled in \"modules.el\".
-
-When called with \\[universal-argument], it prompts also for on-demand modules.
-When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules."
-  (interactive (completing-read-multiple
-                "Select modules: "
-                (seq-filter (lambda (module) (not (featurep module)))
-                            (let ((prefix (prefix-numeric-value current-prefix-arg)))
-                              (minemacs-modules (>= prefix 4) (>= prefix 16))))))
-  (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
-         (append minemacs-after-startup-hook minemacs-lazy-hook
-                 minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                 (cl-loop for hook in +first-file-hooks append (eval hook))))
-        (old-fns minemacs-build-functions-hook))
-    (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) modules))
-    (let ((new-hooks
-           (cl-set-difference
-            (append minemacs-after-startup-hook minemacs-lazy-hook
-                    minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                    (cl-loop for hook in +first-file-hooks append (eval hook)))
-            old-hooks))
-          (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
-      (mapc #'funcall new-hooks)
-      (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
 
 ;;;###autoload
 (defun minemacs-user-config (ask)
