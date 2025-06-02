@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-05-30
+;; Last modified: 2025-06-02
 
 ;;; Commentary:
 
@@ -19,6 +19,12 @@
 (defun minemacs-jupyter-load ()
   "Load the `on-demand/me-jupyter' modules (`ein' + `jupyter')."
   (interactive))
+
+
+;; Preview TeX math equations inline
+(use-package math-preview ; Needed by ein to render equations
+  :straight t)
+
 
 ;; Jupyter notebook client in Emacs
 (use-package ein

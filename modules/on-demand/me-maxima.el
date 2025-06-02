@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-06-01
+;; Last modified: 2025-06-02
 
 ;;; Commentary:
 
@@ -42,11 +42,6 @@
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
   :custom
   (imaxima-use-maxima-mode-flag nil))
-
-
-;; Preview TeX math equations inline
-(use-package math-preview ; Needed by ein to render equations
-  :straight t)
 
 
 (provide 'obsolete/me-maxima)
