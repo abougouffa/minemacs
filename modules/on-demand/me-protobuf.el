@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-02
 
 ;;; Commentary:
 
@@ -14,10 +14,12 @@
 (minemacs-register-on-demand-module 'me-protobuf
   :auto-mode '(("\\.proto\\'" . protobuf-mode)))
 
+(defconst +protobuf-path (concat minemacs-on-demand-modules-dir "third-party/protobuf/"))
+
 
 ;; Major mode for editing Protocol Buffers
 (use-package protobuf-mode
-  :straight t)
+  :load-path +protobuf-path)
 
 
 ;; Tree-sitter based major mode for editing Protocol Buffers files

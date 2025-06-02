@@ -1,0 +1,4 @@
+# -*- mode: conf; -*-
+
+source = https://github.com/protocolbuffers/protobuf/tree/main/editors
+updated = 2025-06-02 14:57
