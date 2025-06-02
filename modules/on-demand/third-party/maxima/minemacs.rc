@@ -1,0 +1,4 @@
+# -*- mode: conf; -*-
+
+source = https://sourceforge.net/p/maxima/code/ci/master/tree/interfaces/emacs/
+updated = 2025-06-02 14:57

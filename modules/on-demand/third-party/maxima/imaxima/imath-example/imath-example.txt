@@ -1,0 +1,20 @@
+;; -*- mode: imath -*-
+;; Please type C-c $ to convert all maxima and latex forms into images.
+;; (C) 2004 Yasuaki Honda (yhonda@mac.com)
+
+Q: Find the value of a formula {latex \sqrt{\, n + \sqrt{n + \sqrt{n + \cdots}}} latex} for {latex n \in N latex}.
+
+A: Let's define x as the value of the given formula:
+{latex x= \sqrt{\, n + \sqrt{n + \sqrt{n + \cdots}}} latex}. 
+Then x satisfies the formula {maxima x=sqrt(n+x) maxima}&{latex  x=\isqrt{x+n} latex}. 
+Remember {maxima x>0 maxima}&{latex  x>0 latex}, take square of the formula, we obtain 
+{maxima x^2=x+n maxima}&{latex 
+ x^{2}=x+n latex}. The solution of the formula is:
+
+{maxima solve(x^2=x+n, x) maxima}&{latex  \left[ x=-\ifracn{\isqrt{4\*n+1}-1}{2},\linebreak[0]x=\ifracn{\isqrt{4\*n+1}+1}{2} \right]  latex}
+
+Since {maxima x>0 maxima}&{latex  x>0 latex}, we know that the latter is the answer.
+{maxima second(solve(x^2=x+n, x)) maxima}&{latex  x=\ifracn{\isqrt{4\*n+1}+1}{2} latex}.
+
+
+

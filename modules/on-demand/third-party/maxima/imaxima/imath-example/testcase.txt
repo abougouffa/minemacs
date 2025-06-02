@@ -1,0 +1,19 @@
+;; -*- mode: imath -*-
+
+test1: Maxima formula 1
+Definite integral {maxima 'integrate(sin(x)/x,x,0,inf)=integrate(sin(x)/x,x,0,inf) maxima}&{latex  \int_{0}^{\infty }{\ifracn{\sin x}{x}\;dx}=\frac{\pi}{2} latex}
+
+test2: Maxima formula 2
+Summantion {maxima sum(k^2,k,1,n)=nusum(k^2,k,1,n) maxima}&{latex  \sum_{k=1}^{n}{k^{2}}=\ifracn{n\*\left(n+1\right)\*\left(2\*n+1\right)}{6} latex}
+
+test3: Latex formula 1
+Intersection set: {latex S = \bigcap^{\infty}_{n = 0} S_n latex}
+
+test4: Latex formula 2
+Mobious inversion formula: {latex G ( n ) = \sum_{d|n} F ( d ) \Rightarrow \sum_{d|n} \mu ( \frac{n}{d} ) G ( d ) = F ( n ) latex}
+
+Test5 and 6: Both formula 1 and 2
+
+Solve {maxima a*x^2+b*x+c=0 maxima}&{latex a\*x^{2}+b\*x+c=0 latex},
+The answer: {maxima solve(a*x^2+b*x+c=0,x) maxima}&{latex \left[ x=-\ifrac{\isqrt{b^{2}-4\*a\*c}+b}{2\*a},\linebreak[0]x=\ifrac{\isqrt{b^{2}-4\*a\*c}-b}{2\*a} \right]  latex}
+

@@ -1,0 +1,64 @@
+Install imaxima by unpacking the tarball and doing the usual incantation
+
+     ./configure
+     make
+     make install
+
+and put
+
+     (autoload 'imaxima "imaxima" "Image support for Maxima." t)
+
+in your `.emacs' file.
+
+If you want to use imath-mode, put
+
+     (autoload 'imath-mode "imath" "Interactive Math minor mode." t)
+
+in your `.emacs' file, too.
+
+To do line breaking imaxima requires the LaTeX package `breqn'. This
+package is officially distributed by Morten Høgholm from:
+http://www.ctan.org/tex-archive/macros/latex/contrib/mh
+as mh.zip. 
+
+Alternatively, for the easy installation, you may download:
+http://members3.jcom.home.ne.jp/imaxima/breqn097a.zip
+
+The files in `breqn' must be installed in a place where TeX can find
+them.  In a typical teTeX installation you should put the `*.sty' and
+`*.sym' files in
+
+     `/usr/share/texmf/tex/latex/breqn/'
+
+and the documentation files in
+
+     `/usr/share/texmf/doc/latex/breqn/'.
+
+The files can also be installed in a number of other places - consult
+your TeX documentation for details.
+
+Now run `texhash' after installing the files.  You can use `kpsewhich'
+to verify that TeX is able to find the files, e.g.
+
+     kpsewhich breqn.sty
+
+To get the best image quality a fairly recent version of Ghostscript
+is recommended.  See the Info manaul for options suitable for using
+older versions of Ghostscript or not using Ghostscript at all.
+
+From the version 1.0 beta, imaxima and imath supports inline graph
+capability. That is, special plotting commands such as wxplot2d()
+can be used in imaxima and the resulted graph appears in the
+*imaxima* session buffer in Emacs. Similarly, you can use the same
+special plotting commands in a maxima formula in imath mode buffers.
+Such formula are converted to graph image in imath mode.
+
+To do so, you need to install GNUPLOT 4.2 or later. Your Maxima 
+should be 5.12.0 or later.
+
+Imaxima and imath are distributed from:
+http://members3.jcom.home.ne.jp/imaxima
+by Yasuaki Honda, the current maintainer of this package.
+
+Imaxima and imath are distributed under GPL license.
+

@@ -1,0 +1,403 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 1997-2003 by Michael J. Downes
+% Copyright (C) 2007 by Morten Hoegholm <mh.ctan@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+%
+% This Current Maintainer of this work is Morten Hoegholm.
+%
+% This work consists of the main source file mathstyle.dtx
+% and the derived files
+%    mathstyle.sty, mathstyle.pdf, mathstyle.ins, mathstyle.drv.
+%
+% Distribution:
+%    CTAN:macros/latex/contrib/mh/mathstyle.dtx
+%    CTAN:macros/latex/contrib/mh/mathstyle.pdf
+%
+% Unpacking:
+%    (a) If mathstyle.ins is present:
+%           tex mathstyle.ins
+%    (b) Without mathstyle.ins:
+%           tex mathstyle.dtx
+%    (c) If you insist on using LaTeX
+%           latex \let\install=y\input{mathstyle.dtx}
+%        (quote the arguments according to the demands of your shell)
+%
+% Documentation:
+%    (a) If mathstyle.drv is present:
+%           latex mathstyle.drv
+%    (b) Without mathstyle.drv:
+%           latex mathstyle.dtx; ...
+%    The class ltxdoc loads the configuration file ltxdoc.cfg
+%    if available. Here you can specify further options, e.g.
+%    use A4 as paper format:
+%       \PassOptionsToClass{a4paper}{article}
+%
+%    Programm calls to get the documentation (example):
+%       pdflatex mathstyle.dtx
+%       makeindex -s gind.ist mathstyle.idx
+%       pdflatex mathstyle.dtx
+%       makeindex -s gind.ist mathstyle.idx
+%       pdflatex mathstyle.dtx
+%
+% Installation:
+%    TDS:tex/latex/mh/mathstyle.sty
+%    TDS:doc/latex/mh/mathstyle.pdf
+%    TDS:source/latex/mh/mathstyle.dtx
+%
+%<*ignore>
+\begingroup
+  \def\x{LaTeX2e}
+\expandafter\endgroup
+\ifcase 0\ifx\install y1\fi\expandafter
+         \ifx\csname processbatchFile\endcsname\relax\else1\fi
+         \ifx\fmtname\x\else 1\fi\relax
+\else\csname fi\endcsname
+%</ignore>
+%<*install>
+\input docstrip.tex
+\Msg{************************************************************************}
+\Msg{* Installation}
+\Msg{* Package: mathstyle 2007/12/19 v0.84 Mathstyle (MH)}
+\Msg{************************************************************************}
+
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+
+This is a generated file.
+
+Copyright (C) 1997-2003 by Michael J. Downes
+Copyright (C) 2007 by Morten Hoegholm <mh.ctan@gmail.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any later
+version. The latest version of this license is in
+   http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+
+This Current Maintainer of this work is Morten Hoegholm.
+
+This work consists of the main source file mathstyle.dtx
+and the derived files
+   mathstyle.sty, mathstyle.pdf, mathstyle.ins, mathstyle.drv.
+
+\endpreamble
+
+\generate{%
+  \file{mathstyle.ins}{\from{mathstyle.dtx}{install}}%
+  \file{mathstyle.drv}{\from{mathstyle.dtx}{driver}}%
+  \usedir{tex/latex/mh}%
+  \file{mathstyle.sty}{\from{mathstyle.dtx}{package}}%
+}
+
+\obeyspaces
+\Msg{************************************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* file into a directory searched by TeX:}
+\Msg{*}
+\Msg{*     mathstyle.sty}
+\Msg{*}
+\Msg{* To produce the documentation run the file `mathstyle.drv'}
+\Msg{* through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*}
+\Msg{************************************************************************}
+
+\endbatchfile
+%</install>
+%<*ignore>
+\fi
+%</ignore>
+%<*driver>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{mathstyle.drv}%
+  [2007/12/19 v0.84 mathstyle (MH)]
+\documentclass{ltxdoc}
+\CodelineIndex
+\EnableCrossrefs
+\setcounter{IndexColumns}{2}
+\providecommand*\pkg[1]{\textsf{#1}}
+\begin{document}
+  \DocInput{mathstyle.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{The \textsf{mathstyle} package}
+% \date{2007/12/19 v0.84}
+% \author{Morten H\o gholm \\\texttt{mh.ctan@gmail.com}}
+%
+%
+% \maketitle
+%
+% \part*{User's guide}
+%
+% This package exists for two reasons: 
+% \begin{itemize}
+% \item The primitive operations for creating a super- or subscript in
+%   \TeX\ work almost as if \verb|^| and \verb|_| are macros taking an
+%   argument. However, that is not quite the case, and
+%   some things that you'd expect to work don't (e.g., \verb|^\cong|) 
+%   whereas others which you'd think shouldn't work actually
+%   do (such as |^\mathsf{s}|). We do everyone a favor if it behaves
+%   consistently, i.e., if the superscript and subscript operations
+%   act as if they are macros taking exactly one argument.
+%
+% \item Because the \TeX\ math typesetting engine uses infix notation
+%   for fractions, one has to use \cs{mathchoice} or \cs{mathpalette}
+%   whenever trying to do anything requiring boxing or measuring
+%   math. This creates problems for loading fonts on demand as the
+%   font loading mechanism has to load fonts for all styles without
+%   even knowing if the font is going to be used. Getting the timing
+%   of \cs{mathchoice} right can be tricky as well. Since \LaTeX\ does
+%   not promote the primitive infix notation, this package keeps track
+%   of a current mathstyle parameter.
+% \end{itemize}
+% 
+% 
+% \section{Some usage tips}
+%
+% If you want to use this package with \pkg{amsmath}, it is important
+% \pkg{mathstyle} is loaded \emph{after} \pkg{amsmath}.
+%
+% The current mathstyle is stored in the variable \cs{mathstyle}. The
+% command \cs{currentmathstyle} can be used to switch to the mode
+% currently active. Below is shown how the macro \cs{mathrlap} from
+% \pkg{mathtools} is implemented without knowing about the current
+% mathstyle using \cs{mathpalette}.
+% \begin{verbatim}
+% \providecommand*\mathrlap[1][]{%
+%   \ifx\@empty#1\@empty
+%     \expandafter \mathpalette \expandafter \@mathrlap
+%   \else
+%     \expandafter \@mathrlap \expandafter #1%
+%   \fi}
+% \providecommand*\@mathrlap #1#2{{}\rlap{$\m@th#1{#2}$}}
+% \end{verbatim}
+% The same definition using \cs{currentmathstyle} from this package.
+% \begin{verbatim}
+% \providecommand*\mathrlap[2][]{%
+%   #1 {}\rlap{$\m@th \currentmathstyle {#2}$}}
+% \end{verbatim}
+%
+%
+%
+% \StopEventually{}
+% \part*{Implementation}
+%
+%
+%
+%    \begin{macrocode}
+%<*package>
+\ProvidesPackage{mathstyle}[2007/12/19 v0.84]
+%    \end{macrocode}
+% \begin{macro}{\@saveprimitive}
+%   A straight copy from \pkg{breqn}, see implementation details
+%   there.  Of course, with a recent pdf\TeX\ (v1.40+), one can just
+%   use \cs{primitive} to get the original. We will implement that
+%   some day.
+%    \begin{macrocode}
+\providecommand\@saveprimitive[2]{%
+  \begingroup
+  \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
+  \ifx\@tempa\@tempb \global\let#2#1%
+  \else
+    \edef\@tempb{\meaning#2}%
+    \ifx\@tempa\@tempb
+    \else \@saveprimitive@a#1#2%
+    \fi
+  \fi
+  \endgroup
+}
+\providecommand\@saveprimitive@a[2]{%
+  \begingroup
+  \def\@tempb##1#1##2{\edef\@tempb{##2}\@car{}}%
+  \@tempb\nullfont{select font nullfont}%
+    \topmark{\string\topmark:}%
+    \firstmark{\string\firstmark:}%
+    \botmark{\string\botmark:}%
+    \splitfirstmark{\string\splitfirstmark:}%
+    \splitbotmark{\string\splitbotmark:}%
+    #1{\string#1}%
+  \edef\@tempa{\expandafter\strip@prefix\meaning\@tempb}%
+  \edef\@tempb{\meaning#1}%
+  \ifx\@tempa\@tempb \global\let#2#1%
+  \else
+    \PackageError{mathstyle}%
+      {Unable to properly define \string#2; primitive
+      \noexpand#1no longer primitive}\@eha
+    \fi
+  \fi
+  \endgroup
+}
+%    \end{macrocode}
+% \end{macro}
+% Do initial \cs{chardef} of \cs{mathstyle}.
+%    \begin{macrocode}
+\chardef\mathstyle=\z@
+%    \end{macrocode}
+% Save the four style changing primitives, \cs{mathchoice} and the
+% fraction commands.
+%    \begin{macrocode}
+\@saveprimitive\displaystyle\@@displaystyle
+\@saveprimitive\textstyle\@@textstyle
+\@saveprimitive\scriptstyle\@@scriptstyle
+\@saveprimitive\scriptscriptstyle\@@scriptscriptstyle
+\@saveprimitive\mathchoice\@@mathchoice
+\@saveprimitive\over\@@over
+\@saveprimitive\atop\@@atop
+\@saveprimitive\above\@@above
+\@saveprimitive\overwithdelims\@@overwithdelims
+\@saveprimitive\atopwithdelims\@@atopwithdelims
+\@saveprimitive\abovewithdelims\@@abovewithdelims
+%    \end{macrocode}
+% Then we redeclare the four style changing primitives.
+%    \begin{macrocode}
+\DeclareRobustCommand{\displaystyle}{%
+  \@@displaystyle \chardef\mathstyle\z@}
+\DeclareRobustCommand{\textstyle}{%
+  \@@textstyle \chardef\mathstyle\@ne}
+\DeclareRobustCommand{\scriptstyle}{%
+  \@@scriptstyle \chardef\mathstyle\tw@}
+\DeclareRobustCommand{\scriptscriptstyle}{%
+  \@@scriptscriptstyle \chardef\mathstyle\thr@@}
+%    \end{macrocode}
+% First we get the primitive operations. These should have been
+% control sequences in \TeX\ just like operations for begin math, end
+% math, begin display, end display.
+%    \begin{macrocode}
+\begingroup \catcode`\^=7\relax \catcode`\_=8\relax % just in case
+\lowercase{\endgroup
+\let\@@superscript=^ \let\@@subscript=_
+}%
+%    \end{macrocode}
+% If we enter a sub- or superscript the \cs{mathstyle} must be
+% adjusted. Since all is happening in a group, we do not have to worry
+% about resetting.
+%    \begin{macrocode}
+\def\subsupstyle{%
+  \ifnum\mathstyle<\tw@ \chardef\mathstyle\tw@
+  \else \chardef\mathstyle\thr@@   
+  \fi
+}
+%    \end{macrocode}
+% Provide commands with meaningful names for the two primitives, cf.\
+% \cs{mathrel}.
+%    \begin{macrocode}
+\let\mathsup=\@@superscript
+\let\mathsub=\@@subscript
+%    \end{macrocode}
+% \cs{sb} and \cs{sp} are then defined as macros.
+%    \begin{macrocode}
+\def\sb#1{\mathsub{\protect\subsupstyle#1}}%
+\def\sp#1{\mathsup{\protect\subsupstyle#1}}%
+%    \end{macrocode}
+% \cs{mathchoice} is now just a switch. Note that this redefinition
+% does not allow the arbitrary \meta{filler} of the \TeX\
+% primitive. Very rarely used anyway.
+%    \begin{macrocode}
+\def\mathchoice{%
+  \relax\ifcase\mathstyle
+    \expandafter\@firstoffour
+  \or
+    \expandafter\@secondoffour
+  \or
+    \expandafter\@thirdoffour
+  \else
+    \expandafter\@fourthoffour
+  \fi
+}
+%    \end{macrocode}
+% Helper macros.
+%    \begin{macrocode}
+\providecommand\@firstoffour[4]{#1}
+\providecommand\@secondoffour[4]{#2}
+\providecommand\@thirdoffour[4]{#3}
+\providecommand\@fourthoffour[4]{#4}
+%    \end{macrocode}
+% The fractions. Note that this uses the same names as in
+% \pkg{amsmath}. Much the same except here they call \cs{fracstyle}.
+%    \begin{macrocode}
+\DeclareRobustCommand\genfrac[6]{%
+  {\fracstyle #1%
+    {\begingroup #5\endgroup
+      \csname @@\ifx\maxdimen#4\maxdimen over\else above\fi
+        \if @#2@\else withdelims\fi\endcsname #2#3#4\relax
+     #6}%
+  }%
+}
+\renewcommand{\frac}{\genfrac{}{}{}{}}
+\providecommand{\dfrac}{}
+\providecommand{\tfrac}{}
+\renewcommand{\dfrac}{\genfrac\displaystyle{}{}{}}
+\renewcommand{\tfrac}{\genfrac\textstyle{}{}{}}
+\providecommand{\binom}{}
+\providecommand{\tbinom}{}
+\providecommand{\dbinom}{}
+\renewcommand{\binom}{\genfrac{}(){0pt}}
+\renewcommand{\dbinom}{\genfrac\displaystyle(){0pt}}
+\renewcommand{\tbinom}{\genfrac\textstyle(){0pt}}
+%    \end{macrocode}
+% The \cs{fracstyle} command is a switch to go one level down but no
+% further than three.
+%    \begin{macrocode}
+\def\fracstyle{\ifcase\mathstyle
+    \chardef\mathstyle=\@ne
+  \or 
+    \chardef\mathstyle=\tw@
+  \else 
+    \chardef\mathstyle=\thr@@
+  \fi
+}
+%    \end{macrocode}
+% The \cs{currentmathstyle} checks the value of \cs{mathstyle} and
+% switches to it so it is in essence the opposite of \cs{displaystyle}
+% and friends.
+%    \begin{macrocode}
+\def\currentmathstyle{%
+  \ifcase\mathstyle
+    \@@displaystyle
+  \or
+    \@@textstyle
+  \or
+    \@@scriptstyle
+  \or
+    \@@scriptscripstyle
+  \fi}
+%    \end{macrocode}
+% Finally, we declare the package options.
+%    \begin{macrocode}
+\DeclareOption{mathactivechars}{\catcode`\^=7\relax \catcode`\_=8\relax }
+\DeclareOption{activechars}{\catcode`\^=13\relax \catcode`\_=13\relax }
+\ProcessOptions\relax
+\ifnum\catcode`\^=13\relax
+  \let^=\sp \let_=\sb
+\else
+  \mathcode`\^="8000\relax \mathcode`\_="8000\relax
+  \begingroup \catcode`\^=\active \catcode`\_=\active
+  \global\let^=\sp \global\let_=\sb
+  \endgroup
+\fi
+%</package>
+%    \end{macrocode}
+%
+% \PrintIndex
+%
+% \Finale

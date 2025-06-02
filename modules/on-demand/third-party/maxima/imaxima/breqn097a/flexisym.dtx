@@ -1,0 +1,1287 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 1997-2003 by Michael J. Downes
+% Copyright (C) 2007 by Morten Hoegholm <mh.ctan@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+%
+% This Current Maintainer of this work is Morten Hoegholm.
+%
+% This work consists of the main source file flexisym.dtx
+% and the derived files
+%    flexisym.sty, flexisym.pdf, flexisym.ins, flexisym.drv,
+%    cmbase.sym, msabm.sym.
+%
+% Distribution:
+%    CTAN:macros/latex/contrib/mh/flexisym.dtx
+%    CTAN:macros/latex/contrib/mh/flexisym.pdf
+%
+% Unpacking:
+%    (a) If flexisym.ins is present:
+%           tex flexisym.ins
+%    (b) Without flexisym.ins:
+%           tex flexisym.dtx
+%    (c) If you insist on using LaTeX
+%           latex \let\install=y\input{flexisym.dtx}
+%        (quote the arguments according to the demands of your shell)
+%
+% Documentation:
+%    (a) If flexisym.drv is present:
+%           latex flexisym.drv
+%    (b) Without flexisym.drv:
+%           latex flexisym.dtx; ...
+%    The class ltxdoc loads the configuration file ltxdoc.cfg
+%    if available. Here you can specify further options, e.g.
+%    use A4 as paper format:
+%       \PassOptionsToClass{a4paper}{article}
+%
+%    Programm calls to get the documentation (example):
+%       pdflatex flexisym.dtx
+%       makeindex -s gind.ist flexisym.idx
+%       pdflatex flexisym.dtx
+%       makeindex -s gind.ist flexisym.idx
+%       pdflatex flexisym.dtx
+%
+% Installation:
+%    TDS:tex/latex/mh/flexisym.sty
+%    TDS:tex/latex/mh/cmbase.sym
+%    TDS:tex/latex/mh/mathpazo.sym
+%    TDS:tex/latex/mh/mathptmx.sym
+%    TDS:tex/latex/mh/msabm.sym
+%    TDS:doc/latex/mh/flexisym.pdf
+%    TDS:source/latex/mh/flexisym.dtx
+%
+%<*ignore>
+\begingroup
+  \def\x{LaTeX2e}
+\expandafter\endgroup
+\ifcase 0\ifx\install y1\fi\expandafter
+         \ifx\csname processbatchFile\endcsname\relax\else1\fi
+         \ifx\fmtname\x\else 1\fi\relax
+\else\csname fi\endcsname
+%</ignore>
+%<*install>
+\input docstrip.tex
+\Msg{************************************************************************}
+\Msg{* Installation}
+\Msg{* Package: flexisym 2007/12/19 v0.96 Flexisym (MH)}
+\Msg{************************************************************************}
+
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+
+This is a generated file.
+
+Copyright (C) 1997-2003 by Michael J. Downes
+Copyright (C) 2007 by Morten Hoegholm <mh.ctan@gmail.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any later
+version. The latest version of this license is in
+   http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+
+This Current Maintainer of this work is Morten Hoegholm.
+
+This work consists of the main source file flexisym.dtx
+and the derived files
+   flexisym.sty, flexisym.pdf, flexisym.ins, flexisym.drv,
+   cmbase.sym, mathpazo.sym, mathptmx.sym, msabm.sym.
+
+\endpreamble
+
+\generate{%
+  \file{flexisym.ins}{\from{flexisym.dtx}{install}}%
+  \file{flexisym.drv}{\from{flexisym.dtx}{driver}}%
+  \usedir{tex/latex/mh}%
+  \file{flexisym.sty}{\from{flexisym.dtx}{package}}%
+  \file{cmbase.sym}{\from{flexisym.dtx}{cmbase}}%
+  \file{mathpazo.sym}{\from{flexisym.dtx}{mathpazo}}%
+  \file{mathptmx.sym}{\from{flexisym.dtx}{mathptmx}}%
+  \file{msabm.sym}{\from{flexisym.dtx}{msabm}}%
+}
+
+\obeyspaces
+\Msg{************************************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* files into a directory searched by TeX:}
+\Msg{*}
+\Msg{*     flexisym.sty, cmbase.sym, mathpazo.sym, mathptmx.sym, msabm.sym}
+\Msg{*}
+\Msg{* To produce the documentation run the file `flexisym.drv'}
+\Msg{* through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*}
+\Msg{************************************************************************}
+
+\endbatchfile
+%</install>
+%<*ignore>
+\fi
+%</ignore>
+%<*driver>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{flexisym.drv}%
+  [2007/12/19 v0.96 flexisym (MH)]
+\documentclass{ltxdoc}
+\CodelineIndex
+\EnableCrossrefs
+\setcounter{IndexColumns}{2}
+\providecommand*\pkg[1]{\textsf{#1}}
+\providecommand*\cls[1]{\textsf{#1}}
+\providecommand*\opt[1]{\texttt{#1}}
+\providecommand*\env[1]{\texttt{#1}}
+\providecommand*\fn[1]{\texttt{#1}}
+\makeatletter
+\providecommand{\AmS}{{\protect\AmSfont
+  A\kern-.1667em\lower.5ex\hbox{M}\kern-.125emS}}
+\providecommand{\AmSfont}{%
+  \usefont{OMS}{cmsy}{\if\expandafter\@car\f@series\@nil bb\else m\fi}{n}}
+\makeatother
+\newenvironment{aside}{\begin{quote}\bfseries}{\end{quote}}
+\begin{document}
+  \DocInput{flexisym.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{The \textsf{flexisym} package}
+% \date{2007/12/19 v0.96}
+% \author{Morten H\o gholm \\\texttt{mh.ctan@gmail.com}}
+%
+% \maketitle
+%
+% \part*{User's guide}
+%
+% For now, the user's guide is in breqn.
+%
+% \StopEventually{}
+% \part*{Implementation}
+% 
+% \section{flexisym}
+%
+%    \begin{macrocode}
+%<*package>
+\ProvidesPackage{flexisym}[2007/12/19 v0.96]
+\let\@xp\expandafter \let\@nx\noexpand
+\edef\do{%
+  \@nx\AtEndOfPackage{%
+    \catcode\number`\"=\number\catcode`\"
+    \relax
+  }%
+}
+\do \let\do\relax
+\catcode`\"=12
+\let\@sym\@gobble
+\DeclareOption{robust}{%
+  \def\@sym#1{%
+    \ifx\protect\@typeset@protect \else\protect#1\@xp\@gobblefour\fi
+  }%
+}
+\def\mg@bin{2}% binary operators
+\def\mg@rel{2}% relations
+%%\def\mg@nre{B}% negated relations
+\def\mg@del{3}% delimiters
+%%\def\mg@arr{B}% arrows
+\def\mg@acc{0}% accents
+\def\mg@cop{3}% cumulative operators (sum, int)
+\def\mg@latin{1}% (Latin) letters
+\def\mg@greek{1}% (lowercase) Greek
+\def\mg@Greek{0}% (capital) Greek
+%%\def\mg@bflatin{4}% bold upright Latin letters ?
+%%\def\mg@Bbb{B}% blackboard bold
+\def\mg@cal{2}% script/calligraphic
+%%\def\mg@frak{5}% Fraktur letters
+\def\mg@digit{0}% decimal digits % 1 = oldstyle, 0 = capital
+\expandafter\let\csname MathChar \endcsname\mathchar
+\expandafter\let\csname Delimiter \endcsname\delimiter
+\expandafter\let\csname Radical \endcsname\radical
+\newcommand{\MathChar}{}
+\edef\MathChar{\csname MathChar \endcsname\noexpand\string}
+\newcommand{\Delimiter}{}
+\edef\Delimiter{\csname Delimiter \endcsname\noexpand\string}
+\newcommand{\Radical}{}
+\edef\Radical{\csname Radical \endcsname\noexpand\string}
+\let\sumlimits\displaylimits
+\let\intlimits\nolimits
+\let\namelimits\displaylimits
+\edef\m@Ord#1#2#3{\csname MathChar \endcsname"0#1#2#3 }
+\edef\m@Var#1#2#3{\csname MathChar \endcsname"7#1#2#3 }
+\edef\m@Bin#1#2#3{\csname MathChar \endcsname"2#1#2#3 }
+\edef\m@Rel#1#2#3{\csname MathChar \endcsname"3#1#2#3 }
+\edef\m@Pun#1#2#3{\csname MathChar \endcsname"6#1#2#3 }
+\edef\m@COs#1#2#3{\csname MathChar \endcsname"1#1#2#3 \sumlimits}
+\edef\m@COi#1#2#3{\csname MathChar \endcsname"1#1#2#3 \intlimits}
+\def\delim@a#1#2#3#4{\ifx\relax#1#2#3#4\else#1\fi #2#3#4}
+\def\delim@b#1#2#3#4{\ifx\relax#1#2#3#4\else#1\fi }
+\def\@tempa{%
+  \@nx\@xp\@nx\delim@a\@nx\csname sd@##1##2##3\@nx\endcsname ##1##2##3 }
+\edef\m@DeL#1#2#3{\csname Delimiter \endcsname"4\@tempa}
+\edef\m@DeR#1#2#3{\csname Delimiter \endcsname"5\@tempa}
+\edef\m@DeB#1#2#3{\csname Delimiter \endcsname"0\@tempa}
+\edef\m@DeA#1#2#3{\csname Delimiter \endcsname"3\@tempa}
+\edef\m@Rad#1#2#3{\csname Radical \endcsname"\@tempa}
+\def\do#1#2{\@xp\def\csname sd@#1\endcsname{#2}}
+\do{300}{028}
+\do{301}{029}
+\do{302}{05B}
+\do{303}{05D}
+\do{304}{262}
+\do{305}{263}
+\do{306}{264}
+\do{307}{265}
+\do{308}{266}
+\do{309}{267}
+\do{30A}{268}
+\do{30B}{269}
+\do{30C}{26A}
+\do{30D}{26B}
+\do{30E}{13D}
+\do{30F}{26E}
+\do{340}{37A}
+\do{341}{37B}
+\do{33A}{33A}
+\do{33B}{33B}
+\do{33E}{33E}
+\do{33C}{26A}
+\do{33D}{26B}
+\do{378}{222}
+\do{379}{223}
+\do{33F}{26C}
+\do{37E}{22A}
+\do{37F}{22B}
+\do{377}{26D}
+\do{30F}{26E}
+\def\m@Acc#1#2#3#4{\mathaccent"#1#2#3{#4}}
+\def\@symAcc{\@sym}
+\let\@symtype\@firstofone
+\def\@symOrd#1#2{\@symtype\mathord{\OrdSymbol{#2}}}
+\def\@symVar{\@symOrd}
+\def\@symBin#1#2{\@symtype\mathbin{\OrdSymbol{#2}}}
+\def\@symRel#1#2{\@symtype\mathrel{\OrdSymbol{#2}}}
+\def\@symPun#1#2{\@symtype\mathpunct{\OrdSymbol{#2}}}
+\def\@symCOi#1#2{\@symtype{\mathop{\OrdSymbol{#2}}\intlimits}}
+\def\@symCOs#1#2{\@symtype{\mathop{\OrdSymbol{#2}}\sumlimits}}
+\def\@symOpe#1#2{\@symtype\mathopen{\OrdSymbol{#2}}}
+\def\@symClo#1#2{\@symtype\mathclose{\OrdSymbol{#2}}}
+\def\@symDeL#1#2{\@symtype\mathopen{\OrdSymbol{#2}}}
+\def\@symDeR#1#2{\@symtype\mathclose{\OrdSymbol{#2}}}
+\def\@symDeB#1#2{\@symtype\mathord{\OrdSymbol{#2}}}
+\def\@symInn#1#2{\@symtype\mathinner{\OrdSymbol{#2}}}
+\def\@xnce#1{\@xp\@nx\csname#1\endcsname}
+\let\sym@global\global
+\def\DeclareFlexSymbol#1#2#3#4{%
+  \begingroup
+  \edef\@tempb{\@nx\@sym\@nx#1\@xnce{m@#2}\@xnce{mg@#3}#4}%
+  \ifcat\@nx#1\relax
+    \sym@global\let#1\@tempb
+  \else
+    \sym@global\mathcode`#1="8000\relax
+    \lccode`\~=`#1\relax
+    \lowercase{\sym@global\let~\@tempb}%
+  \fi
+  \endgroup
+}
+\def\DeclareFlexCompoundSymbol#1#2#3{%
+  \@xp\DeclareRobustCommand\@xp#1\@xp{\csname @sym#2\endcsname#1{#3}}%
+  \sym@global\let#1#1\relax
+}
+\DeclareRobustCommand\textchar{\text@char\textfont}
+\DeclareRobustCommand\scriptchar{\text@char\scriptfont}%
+\def\text@char@a{\?\endgroup}%
+\def\text@char@sym#1#2#3{%
+  \begingroup
+    \let\@sym\relax % defense against infinite loops
+    \the\text@script@char#3%
+    \afterassignment\text@char@a
+    \chardef\?="%
+}
+\def\text@char#1#2{\begingroup\check@mathfonts
+  \let\text@script@char#1\let\@sym\text@char@sym
+  \let\@symtype\@secondoftwo \let\OrdSymbol\@firstofone
+  \let\ifmmode\iftrue \everymath{$\@gobble}%$
+  \def\mkern{\muskip\z@}\let\mskip\mkern
+  \ifcat\relax\noexpand#2#2%
+  \else
+    \lccode`\~=\expandafter`\string#2\relax
+    \lowercase{~}%
+  \fi
+  \endgroup
+}
+\providecommand\textprime{}
+\DeclareRobustCommand\textprime{\leavevmode
+  \raise.8ex\hbox{\text@char\scriptfont\prime}%
+}
+\@ifundefined{resetMathstrut@}{}{%
+  \def\resetMathstrut@{%
+    \setbox\z@\hbox{\textchar\vert}%
+    \ht\Mathstrutbox@\ht\z@ \dp\Mathstrutbox@\dp\z@
+  }%
+}
+\@ifundefined{rightarrowfill@}{}{%
+  \def\rightarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\copy\z@\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\box\z@\mkern-2mu$}\hfill
+    \mkern-6mu\OrdSymbol{\rightarrow}$}
+  \def\leftarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\OrdSymbol{\leftarrow}\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\copy\z@\mkern-2mu$}\hfill
+    \mkern-6mu\box\z@$}
+  \def\leftrightarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\OrdSymbol{\leftarrow}\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\box\z@\mkern-2mu$}\hfill
+    \mkern-6mu\OrdSymbol{\rightarrow}$}
+}
+\def\binrel@sym#1#2#3#4#5{%
+  \xdef\binrel@@##1{%
+    \ifx\m@Ord#2\@nx\@symOrd
+    \else\ifx\m@Var#2\@nx\@symVar
+    \else\ifx\m@COs#2\@nx\@symCOs
+    \else\ifx\m@COi#2\@nx\@symCOi
+    \else\ifx\m@Bin#2\@nx\@symBin
+    \else\ifx\m@Rel#2\@nx\@symRel
+    \else\ifx\m@Pun#2\@nx\@symPun
+    \else\@nx\@symErr \fi\fi\fi\fi\fi\fi\fi
+  ?{\@nx\OrdSymbol{##1}}}%
+}
+\def\binrel@a{%
+  \def\@symOrd##1##2{\gdef\binrel@@####1{\@symOrd##1{\OrdSymbol{####1}}}}%
+  \def\@symVar##1##2{\gdef\binrel@@####1{\@symVar##1{\OrdSymbol{####1}}}}%
+  \def\@symCOs##1##2{\gdef\binrel@@####1{\@symCOs##1{\OrdSymbol{####1}}}}%
+  \def\@symCOi##1##2{\gdef\binrel@@####1{\@symCOi##1{\OrdSymbol{####1}}}}%
+  \def\@symBin##1##2{\gdef\binrel@@####1{\@symBin##1{\OrdSymbol{####1}}}}%
+  \def\@symRel##1##2{\gdef\binrel@@####1{\@symRel##1{\OrdSymbol{####1}}}}%
+  \def\@symPun##1##2{\gdef\binrel@@####1{\@symPun##1{\OrdSymbol{####1}}}}%
+}
+\def\binrel@#1{%
+  \setbox\z@\hbox{$%
+    \let\mathchoice\@gobblethree
+    \let\@sym\binrel@sym \binrel@a
+    #1$}%
+}
+\def\@symextension{sym}
+\newcommand\usesymbols[1]{%
+  \@for\@tempb:=#1\do{%
+    \@xp\@onefilewithoptions\@xp{\@tempb}[][]\@symextension
+  }%
+}
+\newcommand\ProvidesSymbols[1]{\ProvidesFile{#1.sym}}
+\DeclareRobustCommand{\not}[1]{\@symRel\not{\OrdSymbol{\notRel#1}}}
+\DeclareRobustCommand{\OrdSymbol}[1]{%
+  \begingroup\mathchars@reset#1\endgroup
+}
+\def\mathchars@reset{\let\@sym\@sym@ord \let\@symtype\@symtype@ord
+  \let\OrdSymbol\relax}
+\def\@symtype@ord#1#{}% a strange sort of \@gobble
+\def\@sym@ord#1#2{\@xp\@sym@ord@a\string#2\@nil}%
+\begingroup
+\lccode`\.=`\@ \lowercase{\endgroup
+\def\@sym@ord@a#1.}#2#3\@nil#4#5#6{%
+  \csname MathChar \endcsname"0%
+    \if D#2\@xp\delim@b\csname sd@#4#5#6\endcsname#4#5#6
+    \else #4#5#6
+    \fi
+}
+%    \end{macrocode}
+%
+%
+% Before declaring any math characters active, we have to take care of
+% a small problem with \pkg{amsmath} v2.x, if it is loaded before
+% \pkg{flexisym}. \cs{std@minus} and \cs{std@equal} are defined as
+% \begin{verbatim}
+% \mathchardef\std@minus\mathcode`\-\relax
+% \mathchardef\std@equal\mathcode`\=\relax
+% \end{verbatim}
+% in \fn{amsmath.sty} and again \cs{AtBeginDocument}. The
+% latter is because
+% \begin{quote}
+%   In case some alternative math fonts are loaded
+%   later. [\fn{amsmath.dtx}]
+% \end{quote}
+% The problem arises because \pkg{flexisym} sets the mathcode of all
+% symbols to $32768$ which is illegal for a \cs{mathchardef}. 
+%
+% We have to remove the assignments from the \cs{AtBeginDocument} hook
+% as they will cause an error there.
+%    \begin{macrocode}
+\@ifpackageloaded{amsmath}{%
+  \begingroup
+%    \end{macrocode}
+% Split the contents of \cs{@begindocumenthook} by reading what we
+% search for as a delimited argument and ensure these two assignments
+% do not take place. It is questionable if anything reasonable can be
+% done to them. In the case of a package such as \pkg{mathpazo} which defines
+% \begin{verbatim}
+%\DeclareMathSymbol{=}{\mathrel}{upright}{"3D}
+% \end{verbatim}
+% the \cs{Relbar} will look wrong if we don't use the correct
+% symbol. The way to solve this is define additional \fn{.sym} files
+% which contain the definition of \cs{relbar} and \cs{Relbar}
+% needed. We need those additional files anyway for things like
+% \cs{joinord}.
+%    \begin{macrocode}
+  \long\def\next#1\mathchardef\std@minus\mathcode`\-\relax
+                  \mathchardef\std@equal\mathcode`\=\relax#2\flexi@stop{%
+    \toks@{#1#2}%
+    \xdef\@begindocumenthook{\the\toks@}%
+  }%
+  \expandafter\next\@begindocumenthook\flexi@stop
+  \endgroup
+}{}
+%    \end{macrocode}
+%
+% There is problem when using \cs{DeclareMathOperator} as the
+% operators defined call a command \cs{newmcodes@} which relies on the
+% mathcode of \texttt{-} being less than 32768. We delay the
+% definition \cs{AtBeginDocument} in case \pkg{amssymb} hasn't been
+% loaded yet.
+%    \begin{macrocode}
+\AtBeginDocument{%
+\def\newmcodes@{%
+  \mathcode `\'39\mathcode `\*42\mathcode `\."613A
+  \ifnum\mathcode`\-=45
+  \else
+%    \end{macrocode}
+% The extra check. Don't do anything if \texttt{-} is math active.
+%    \begin{macrocode}
+    \ifnum\mathcode`\-=32768
+    \else 
+      \mathchardef \std@minus \mathcode `\-\relax
+    \fi
+  \fi
+  \mathcode `\-45 \mathcode `\/47\mathcode `\:"603A\relax 
+}%
+}
+%    \end{macrocode}
+%
+% And we then continue with the options.
+%    \begin{macrocode}
+\DeclareOption{mathstyleoff}{\PassOptionsToPackage{mathactivechars}{mathstyle}}
+\DeclareOption{cmbase}{\usesymbols{cmbase}}
+\DeclareOption{mathpazo}{\usesymbols{mathpazo}}
+\DeclareOption{mathptmx}{\usesymbols{mathptmx}}
+\ExecuteOptions{cmbase}
+\ProcessOptions\relax
+\renewcommand{\lnot}{\neg}
+\renewcommand{\land}{\wedge}
+\renewcommand{\lor}{\vee}
+\renewcommand{\le}{\leq}
+\renewcommand{\ge}{\geq}
+\renewcommand{\ne}{\neq}
+\renewcommand{\owns}{\ni}
+\renewcommand{\gets}{\leftarrow}
+\renewcommand{\to}{\rightarrow}
+\renewcommand{\|}{\Vert}
+\RequirePackage{mathstyle}
+%</package>\endinput
+%    \end{macrocode}
+%
+% \section{cmbase, mathpazo, mathptmx}
+%
+%
+% For each math font package we define a corresponding symbol file
+% with extension \fn{sym}. The Computer Modern base is called
+% \opt{cmbase} and \opt{mathpazo} and \opt{mathptmx} corresponds to
+% the packages. The definitions are almost identical as they mostly
+% concern the positions in the math font encodings. Look for
+% differences in \cs{joinord}, \cs{relbar} and \cs{Relbar}. If you
+% inspect the source code, you'll see that the support for
+% \pkg{mathptmx} didn't require any work but I thought it better to
+% create a \fn{sym} file to maintain a uniform interface.
+%
+% \begin{aside}
+% Open question on \verb"!" and \verb"?": maybe they
+% should have type `Pun' instead of `DeR'.    Need to
+% search for uses in math in AMS archives.    Or, maybe add a special
+% `Clo' type for them: non-extensible closing delimiter.   
+% \end{aside}
+% 
+% 
+% 
+% Default mathgroup setup.   
+%    \begin{macrocode}
+%<*cmbase|mathpazo|mathptmx>
+%<cmbase>\ProvidesSymbols{cmbase}[2007/12/19 v0.92]
+%<mathpazo>\ProvidesSymbols{mathpazo}[2007/12/19 v0.2]
+%<mathptmx>\ProvidesSymbols{mathptmx}[2007/12/19 v0.2]
+\@xp\xdef\csname mg@OT1\endcsname{\hexnumber@\symoperators}
+\@xp\xdef\csname mg@OML\endcsname{\hexnumber@\symletters}
+\@xp\xdef\csname mg@OMS\endcsname{\hexnumber@\symsymbols}
+\@xp\xdef\csname mg@OMX\endcsname{\hexnumber@\symlargesymbols}
+\gdef\mg@bin{\mg@OMS}
+\gdef\mg@del{\mg@OMX}
+\xdef\mg@digit{\@xp\@nx\csname mg@OT1\endcsname}
+\gdef\mg@latin{\mg@OML}
+\global\let\mg@Latin\mg@latin
+\global\let\mg@greek\mg@latin
+\global\let\mg@Greek\mg@digit
+\global\let\mg@rel\mg@bin
+\global\let\mg@ord\mg@bin
+\global\let\mg@cop\mg@del
+%    \end{macrocode}
+% 
+% 
+% Symbols from the 128-character \fn{cmr} encoding.   
+% Paren and square bracket delimiters from this encoding are covered
+% by the definitions in the \fn{cmex} section, however.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{!}     {Pun}{OT1}{21}
+\DeclareFlexSymbol{+}     {Bin}{OT1}{2B}
+\DeclareFlexSymbol{:}     {Rel}{OT1}{3A}
+\DeclareFlexSymbol{\colon}{Pun}{OT1}{3A}
+\DeclareFlexSymbol{;}     {Pun}{OT1}{3B}
+\DeclareFlexSymbol{=}     {Rel}{OT1}{3D}
+\DeclareFlexSymbol{?}     {Pun}{OT1}{3F}
+%    \end{macrocode}
+% \AmS\TeX, and therefore the \pkg{amsmath} package, make the
+% uppercase Greek letters class 0 (nonvariable) instead of 7
+% (variable), to eliminate the glaring inconsistency with lowercase
+% Greek.    (In plain \TeX , \verb"{\bf\Delta}" works, while
+% \verb"{\bf\delta}" doesn't.   ) Let us try to make them both
+% variable (fonts permitting) instead of nonvariable.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\Gamma}  {Var}{Greek}{00}
+\DeclareFlexSymbol{\Delta}  {Var}{Greek}{01}
+\DeclareFlexSymbol{\Theta}  {Var}{Greek}{02}
+\DeclareFlexSymbol{\Lambda} {Var}{Greek}{03}
+\DeclareFlexSymbol{\Xi}     {Var}{Greek}{04}
+\DeclareFlexSymbol{\Pi}     {Var}{Greek}{05}
+\DeclareFlexSymbol{\Sigma}  {Var}{Greek}{06}
+\DeclareFlexSymbol{\Upsilon}{Var}{Greek}{07}
+\DeclareFlexSymbol{\Phi}    {Var}{Greek}{08}
+\DeclareFlexSymbol{\Psi}    {Var}{Greek}{09}
+\DeclareFlexSymbol{\Omega}  {Var}{Greek}{0A}
+%    \end{macrocode}
+% Decimal digits.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{0}{Var}{digit}{30}
+\DeclareFlexSymbol{1}{Var}{digit}{31}
+\DeclareFlexSymbol{2}{Var}{digit}{32}
+\DeclareFlexSymbol{3}{Var}{digit}{33}
+\DeclareFlexSymbol{4}{Var}{digit}{34}
+\DeclareFlexSymbol{5}{Var}{digit}{35}
+\DeclareFlexSymbol{6}{Var}{digit}{36}
+\DeclareFlexSymbol{7}{Var}{digit}{37}
+\DeclareFlexSymbol{8}{Var}{digit}{38}
+\DeclareFlexSymbol{9}{Var}{digit}{39}
+%    \end{macrocode}
+% Symbols from the 128-character \fn{cmmi} encoding.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{,}{Pun}{OML}{3B}
+\DeclareFlexSymbol{.}{Ord}{OML}{3A}
+\DeclareFlexSymbol{/}{Ord}{OML}{3D}
+\DeclareFlexSymbol{<}{Rel}{OML}{3C}
+\DeclareFlexSymbol{>}{Rel}{OML}{3E}
+%    \end{macrocode}
+% To do: make the Var property of lc Greek work properly.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\alpha}{Var}{greek}{0B}
+\DeclareFlexSymbol{\beta}{Var}{greek}{0C}
+\DeclareFlexSymbol{\gamma}{Var}{greek}{0D}
+\DeclareFlexSymbol{\delta}{Var}{greek}{0E}
+\DeclareFlexSymbol{\epsilon}{Var}{greek}{0F}
+\DeclareFlexSymbol{\zeta}{Var}{greek}{10}
+\DeclareFlexSymbol{\eta}{Var}{greek}{11}
+\DeclareFlexSymbol{\theta}{Var}{greek}{12}
+\DeclareFlexSymbol{\iota}{Var}{greek}{13}
+\DeclareFlexSymbol{\kappa}{Var}{greek}{14}
+\DeclareFlexSymbol{\lambda}{Var}{greek}{15}
+\DeclareFlexSymbol{\mu}{Var}{greek}{16}
+\DeclareFlexSymbol{\nu}{Var}{greek}{17}
+\DeclareFlexSymbol{\xi}{Var}{greek}{18}
+\DeclareFlexSymbol{\pi}{Var}{greek}{19}
+\DeclareFlexSymbol{\rho}{Var}{greek}{1A}
+\DeclareFlexSymbol{\sigma}{Var}{greek}{1B}
+\DeclareFlexSymbol{\tau}{Var}{greek}{1C}
+\DeclareFlexSymbol{\upsilon}{Var}{greek}{1D}
+\DeclareFlexSymbol{\phi}{Var}{greek}{1E}
+\DeclareFlexSymbol{\chi}{Var}{greek}{1F}
+\DeclareFlexSymbol{\psi}{Var}{greek}{20}
+\DeclareFlexSymbol{\omega}{Var}{greek}{21}
+\DeclareFlexSymbol{\varepsilon}{Var}{greek}{22}
+\DeclareFlexSymbol{\vartheta}{Var}{greek}{23}
+\DeclareFlexSymbol{\varpi}{Var}{greek}{24}
+\DeclareFlexSymbol{\varrho}{Var}{greek}{25}
+\DeclareFlexSymbol{\varsigma}{Var}{greek}{26}
+\DeclareFlexSymbol{\varphi}{Var}{greek}{27}
+%    \end{macrocode}
+% Note that in plain \TeX\  \cs{imath} and \cs{jmath} are
+% not variable-font.    But if a \verb"j" changes font to, let's
+% say, sans serif or calligraphic, a dotless \verb"j" in the same
+% context should change font in the same way.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\imath}{Var}{OML}{7B}
+\DeclareFlexSymbol{\jmath}{Var}{OML}{7C}
+\DeclareFlexSymbol{\ell}{Ord}{OML}{60}
+\DeclareFlexSymbol{\wp}{Ord}{OML}{7D}
+\DeclareFlexSymbol{\partial}{Ord}{OML}{40}
+\DeclareFlexSymbol{\flat}{Ord}{OML}{5B}
+\DeclareFlexSymbol{\natural}{Ord}{OML}{5C}
+\DeclareFlexSymbol{\sharp}{Ord}{OML}{5D}
+\DeclareFlexSymbol{\triangleleft}{Bin}{OML}{2F}
+\DeclareFlexSymbol{\triangleright}{Bin}{OML}{2E}
+\DeclareFlexSymbol{\star}{Bin}{OML}{3F}
+\DeclareFlexSymbol{\smile}{Rel}{OML}{5E}
+\DeclareFlexSymbol{\frown}{Rel}{OML}{5F}
+\DeclareFlexSymbol{\leftharpoonup}{Rel}{OML}{28}
+\DeclareFlexSymbol{\leftharpoondown}{Rel}{OML}{29}
+\DeclareFlexSymbol{\rightharpoonup}{Rel}{OML}{2A}
+\DeclareFlexSymbol{\rightharpoondown}{Rel}{OML}{2B}
+\DeclareFlexSymbol{a}{Var}{latin}{61}
+\DeclareFlexSymbol{b}{Var}{latin}{62}
+\DeclareFlexSymbol{c}{Var}{latin}{63}
+\DeclareFlexSymbol{d}{Var}{latin}{64}
+\DeclareFlexSymbol{e}{Var}{latin}{65}
+\DeclareFlexSymbol{f}{Var}{latin}{66}
+\DeclareFlexSymbol{g}{Var}{latin}{67}
+\DeclareFlexSymbol{h}{Var}{latin}{68}
+\DeclareFlexSymbol{i}{Var}{latin}{69}
+\DeclareFlexSymbol{j}{Var}{latin}{6A}
+\DeclareFlexSymbol{k}{Var}{latin}{6B}
+\DeclareFlexSymbol{l}{Var}{latin}{6C}
+\DeclareFlexSymbol{m}{Var}{latin}{6D}
+\DeclareFlexSymbol{n}{Var}{latin}{6E}
+\DeclareFlexSymbol{o}{Var}{latin}{6F}
+\DeclareFlexSymbol{p}{Var}{latin}{70}
+\DeclareFlexSymbol{q}{Var}{latin}{71}
+\DeclareFlexSymbol{r}{Var}{latin}{72}
+\DeclareFlexSymbol{s}{Var}{latin}{73}
+\DeclareFlexSymbol{t}{Var}{latin}{74}
+\DeclareFlexSymbol{u}{Var}{latin}{75}
+\DeclareFlexSymbol{v}{Var}{latin}{76}
+\DeclareFlexSymbol{w}{Var}{latin}{77}
+\DeclareFlexSymbol{x}{Var}{latin}{78}
+\DeclareFlexSymbol{y}{Var}{latin}{79}
+\DeclareFlexSymbol{z}{Var}{latin}{7A}
+\DeclareFlexSymbol{A}{Var}{Latin}{41}
+\DeclareFlexSymbol{B}{Var}{Latin}{42}
+\DeclareFlexSymbol{C}{Var}{Latin}{43}
+\DeclareFlexSymbol{D}{Var}{Latin}{44}
+\DeclareFlexSymbol{E}{Var}{Latin}{45}
+\DeclareFlexSymbol{F}{Var}{Latin}{46}
+\DeclareFlexSymbol{G}{Var}{Latin}{47}
+\DeclareFlexSymbol{H}{Var}{Latin}{48}
+\DeclareFlexSymbol{I}{Var}{Latin}{49}
+\DeclareFlexSymbol{J}{Var}{Latin}{4A}
+\DeclareFlexSymbol{K}{Var}{Latin}{4B}
+\DeclareFlexSymbol{L}{Var}{Latin}{4C}
+\DeclareFlexSymbol{M}{Var}{Latin}{4D}
+\DeclareFlexSymbol{N}{Var}{Latin}{4E}
+\DeclareFlexSymbol{O}{Var}{Latin}{4F}
+\DeclareFlexSymbol{P}{Var}{Latin}{50}
+\DeclareFlexSymbol{Q}{Var}{Latin}{51}
+\DeclareFlexSymbol{R}{Var}{Latin}{52}
+\DeclareFlexSymbol{S}{Var}{Latin}{53}
+\DeclareFlexSymbol{T}{Var}{Latin}{54}
+\DeclareFlexSymbol{U}{Var}{Latin}{55}
+\DeclareFlexSymbol{V}{Var}{Latin}{56}
+\DeclareFlexSymbol{W}{Var}{Latin}{57}
+\DeclareFlexSymbol{X}{Var}{Latin}{58}
+\DeclareFlexSymbol{Y}{Var}{Latin}{59}
+\DeclareFlexSymbol{Z}{Var}{Latin}{5A}
+%    \end{macrocode}
+% The \cs{ldotPun} glyph is used in constructing the
+% \cs{ldots} symbol.    It is just a period with a different math
+% symbol class.    \cs{lhookRel} and \cs{rhookRel} are used
+% in a similar way for building hooked arrow symbols.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\ldotPun}{Pun}{OML}{3A}
+\def\ldotp{\ldotPun}
+\DeclareFlexSymbol{\lhookRel}{Rel}{OML}{2C}
+\DeclareFlexSymbol{\rhookRel}{Rel}{OML}{2D}
+%    \end{macrocode}
+% Symbols from the 128-character \fn{cmsy} encoding.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{*}{Bin}{bin}{03} % \ast
+\DeclareFlexSymbol{-}{Bin}{bin}{00}
+\DeclareFlexSymbol{|}{Ord}{OMS}{6A}
+\DeclareFlexSymbol{\aleph}{Ord}{ord}{40}
+\DeclareFlexSymbol{\Re}{Ord}{ord}{3C}
+\DeclareFlexSymbol{\Im}{Ord}{ord}{3D}
+\DeclareFlexSymbol{\infty}{Ord}{ord}{31}
+\DeclareFlexSymbol{\prime}{Ord}{ord}{30}
+\DeclareFlexSymbol{\emptyset}{Ord}{ord}{3B}
+\DeclareFlexSymbol{\nabla}{Ord}{ord}{72}
+\DeclareFlexSymbol{\top}{Ord}{ord}{3E}
+\DeclareFlexSymbol{\bot}{Ord}{ord}{3F}
+\DeclareFlexSymbol{\triangle}{Ord}{ord}{34}
+\DeclareFlexSymbol{\forall}{Ord}{ord}{38}
+\DeclareFlexSymbol{\exists}{Ord}{ord}{39}
+\DeclareFlexSymbol{\neg}{Ord}{ord}{3A}
+\DeclareFlexSymbol{\clubsuit}{Ord}{ord}{7C}
+\DeclareFlexSymbol{\diamondsuit}{Ord}{ord}{7D}
+\DeclareFlexSymbol{\heartsuit}{Ord}{ord}{7E}
+\DeclareFlexSymbol{\spadesuit}{Ord}{ord}{7F}
+\DeclareFlexSymbol{\smallint}{COs}{OMS}{73}
+%    \end{macrocode}
+% Binary operators.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\bigtriangleup}{Bin}{bin}{34}
+\DeclareFlexSymbol{\bigtriangledown}{Bin}{bin}{35}
+\DeclareFlexSymbol{\wedge}{Bin}{bin}{5E}
+\DeclareFlexSymbol{\vee}{Bin}{bin}{5F}
+\DeclareFlexSymbol{\cap}{Bin}{bin}{5C}
+\DeclareFlexSymbol{\cup}{Bin}{bin}{5B}
+\DeclareFlexSymbol{\ddagger}{Bin}{bin}{7A}
+\DeclareFlexSymbol{\dagger}{Bin}{bin}{79}
+\DeclareFlexSymbol{\sqcap}{Bin}{bin}{75}
+\DeclareFlexSymbol{\sqcup}{Bin}{bin}{74}
+\DeclareFlexSymbol{\uplus}{Bin}{bin}{5D}
+\DeclareFlexSymbol{\amalg}{Bin}{bin}{71}
+\DeclareFlexSymbol{\diamond}{Bin}{bin}{05}
+\DeclareFlexSymbol{\bullet}{Bin}{bin}{0F}
+\DeclareFlexSymbol{\wr}{Bin}{bin}{6F}
+\DeclareFlexSymbol{\div}{Bin}{bin}{04}
+\DeclareFlexSymbol{\odot}{Bin}{bin}{0C}
+\DeclareFlexSymbol{\oslash}{Bin}{bin}{0B}
+\DeclareFlexSymbol{\otimes}{Bin}{bin}{0A}
+\DeclareFlexSymbol{\ominus}{Bin}{bin}{09}
+\DeclareFlexSymbol{\oplus}{Bin}{bin}{08}
+\DeclareFlexSymbol{\mp}{Bin}{bin}{07}
+\DeclareFlexSymbol{\pm}{Bin}{bin}{06}
+\DeclareFlexSymbol{\circ}{Bin}{bin}{0E}
+\DeclareFlexSymbol{\bigcirc}{Bin}{bin}{0D}
+\DeclareFlexSymbol{\setminus}{Bin}{bin}{6E}
+\DeclareFlexSymbol{\cdot}{Bin}{bin}{01}
+\DeclareFlexSymbol{\ast}{Bin}{bin}{03}
+\DeclareFlexSymbol{\times}{Bin}{bin}{02}
+%    \end{macrocode}
+% Relation symbols.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\propto}{Rel}{rel}{2F}
+\DeclareFlexSymbol{\sqsubseteq}{Rel}{rel}{76}
+\DeclareFlexSymbol{\sqsupseteq}{Rel}{rel}{77}
+\DeclareFlexSymbol{\parallel}{Rel}{rel}{6B}
+\DeclareFlexSymbol{\mid}{Rel}{rel}{6A}
+\DeclareFlexSymbol{\dashv}{Rel}{rel}{61}
+\DeclareFlexSymbol{\vdash}{Rel}{rel}{60}
+\DeclareFlexSymbol{\nearrow}{Rel}{rel}{25}
+\DeclareFlexSymbol{\searrow}{Rel}{rel}{26}
+\DeclareFlexSymbol{\nwarrow}{Rel}{rel}{2D}
+\DeclareFlexSymbol{\swarrow}{Rel}{rel}{2E}
+\DeclareFlexSymbol{\Leftrightarrow}{Rel}{rel}{2C}
+\DeclareFlexSymbol{\Leftarrow}{Rel}{rel}{28}
+\DeclareFlexSymbol{\Rightarrow}{Rel}{rel}{29}
+\DeclareFlexSymbol{\leq}{Rel}{rel}{14}
+\DeclareFlexSymbol{\geq}{Rel}{rel}{15}
+\DeclareFlexSymbol{\succ}{Rel}{rel}{1F}
+\DeclareFlexSymbol{\prec}{Rel}{rel}{1E}
+\DeclareFlexSymbol{\approx}{Rel}{rel}{19}
+\DeclareFlexSymbol{\succeq}{Rel}{rel}{17}
+\DeclareFlexSymbol{\preceq}{Rel}{rel}{16}
+\DeclareFlexSymbol{\supset}{Rel}{rel}{1B}
+\DeclareFlexSymbol{\subset}{Rel}{rel}{1A}
+\DeclareFlexSymbol{\supseteq}{Rel}{rel}{13}
+\DeclareFlexSymbol{\subseteq}{Rel}{rel}{12}
+\DeclareFlexSymbol{\in}{Rel}{rel}{32}
+\DeclareFlexSymbol{\ni}{Rel}{rel}{33}
+\DeclareFlexSymbol{\gg}{Rel}{rel}{1D}
+\DeclareFlexSymbol{\ll}{Rel}{rel}{1C}
+\DeclareFlexSymbol{\leftrightarrow}{Rel}{rel}{24}
+\DeclareFlexSymbol{\leftarrow}{Rel}{rel}{20}
+\DeclareFlexSymbol{\rightarrow}{Rel}{rel}{21}
+\DeclareFlexSymbol{\sim}{Rel}{rel}{18}
+\DeclareFlexSymbol{\simeq}{Rel}{rel}{27}
+\DeclareFlexSymbol{\perp}{Rel}{rel}{3F}
+\DeclareFlexSymbol{\equiv}{Rel}{rel}{11}
+\DeclareFlexSymbol{\asymp}{Rel}{rel}{10}
+%    \end{macrocode}
+% The \cs{notRel} glyph is a special zero-width glyph intended only
+% for use in constructing negated symbols.    \cs{mapstoRel} and
+% \cs{cdotPun} have similar but more restricted applications.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\notRel}{Rel}{rel}{36}
+\DeclareFlexSymbol{\mapstoOrd}{Ord}{OMS}{37}
+\DeclareFlexSymbol{\cdotOrd}{Ord}{OMS}{01}
+\def\cdotp{\mathpunct{\cdotOrd}}
+%    \end{macrocode}
+% Symbols from the 128-character \fn{cmex} encoding.   
+% \verb"COs" stands for `cumulative operator
+% (sum-like)'.   
+% \verb"COi" stands for `cumulative operator
+% (integral-like)'.    These typically differ only in the
+% default placement of limits.    \verb"cop" stands for
+% `cumulative operator math group'.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\coprod}{COs}{cop}{60}
+\DeclareFlexSymbol{\bigvee}{COs}{cop}{57}
+\DeclareFlexSymbol{\bigwedge}{COs}{cop}{56}
+\DeclareFlexSymbol{\biguplus}{COs}{cop}{55}
+\DeclareFlexSymbol{\bigcap}{COs}{cop}{54}
+\DeclareFlexSymbol{\bigcup}{COs}{cop}{53}
+\DeclareFlexSymbol{\int}{COi}{cop}{52}
+\DeclareFlexSymbol{\prod}{COs}{cop}{51}
+\DeclareFlexSymbol{\sum}{COs}{cop}{50}
+\DeclareFlexSymbol{\bigotimes}{COs}{cop}{4E}
+\DeclareFlexSymbol{\bigoplus}{COs}{cop}{4C}
+\DeclareFlexSymbol{\bigodot}{COs}{cop}{4A}
+\DeclareFlexSymbol{\oint}{COi}{cop}{48}
+\DeclareFlexSymbol{\bigsqcup}{COs}{cop}{46}
+%    \end{macrocode}
+% Delimiter symbols.   
+% \verb"DeL" stands for `delimiter (left)'.   
+% \verb"DeR" stands for `delimiter (right)'.   
+% \verb"DeB" stands for `delimiter (bidirectional)'.   
+% The principal encoding point for an extensible delimiter is the
+% first link in the list of linked sizes as specified in the font metric
+% information.   
+% For a math encoding such as OT1/OML/OMS/OMX where not all sizes of a
+% given delimiter reside in a given font, the extra encoding point for the
+% smallest delimiter must be supplied by defining
+% \begin{verbatim}
+% \sd@GXX
+% \end{verbatim}
+% where G is the mathgroup and XX is the hexadecimal glyph position.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\rangle}{DeR}{del}{0B}
+\DeclareFlexSymbol{\langle}{DeL}{del}{0A}
+\DeclareFlexSymbol{\rbrace}{DeR}{del}{09}
+\DeclareFlexSymbol{\lbrace}{DeL}{del}{08}
+\DeclareFlexSymbol{\rceil}{DeR}{del}{07}
+\DeclareFlexSymbol{\lceil}{DeL}{del}{06}
+\DeclareFlexSymbol{\rfloor}{DeR}{del}{05}
+\DeclareFlexSymbol{\lfloor}{DeL}{del}{04}
+\DeclareFlexSymbol{(}{DeL}{del}{00}
+\DeclareFlexSymbol{)}{DeR}{del}{01}
+\DeclareFlexSymbol{[}{DeL}{del}{02}
+\DeclareFlexSymbol{]}{DeR}{del}{03}
+\DeclareFlexSymbol{\lVert}{DeL}{del}{0D}
+\DeclareFlexSymbol{\rVert}{DeR}{del}{0D}
+\DeclareFlexSymbol{\lvert}{DeL}{del}{0C}
+\DeclareFlexSymbol{\rvert}{DeR}{del}{0C}
+\DeclareFlexSymbol{\Vert}{DeB}{del}{0D}
+\DeclareFlexSymbol{\vert}{DeB}{del}{0C}
+%    \end{macrocode}
+% Maybe make the vert bars mathord instead of delimiter, to discourage
+% poor usage.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{|}{DeB}{del}{0C}
+\DeclareFlexSymbol{/}{DeB}{del}{0E}
+%    \end{macrocode}
+% 
+% 
+% These wacky delimiters need to be supported I guess for
+% compabitility reasons.   
+% The DeA delimiter type is a special case used only for these
+% arrows.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\lmoustache}{DeL}{del}{40}
+\DeclareFlexSymbol{\rmoustache}{DeR}{del}{41}
+\DeclareFlexSymbol{\lgroup}{DeL}{del}{3A}
+\DeclareFlexSymbol{\rgroup}{DeR}{del}{3B}
+\DeclareFlexSymbol{\bracevert}{DeB}{del}{3E}
+\DeclareFlexSymbol{\arrowvert}{DeB}{del}{3C}
+\DeclareFlexSymbol{\Arrowvert}{DeB}{del}{3D}
+\DeclareFlexSymbol{\uparrow}{DeA}{del}{78}
+\DeclareFlexSymbol{\downarrow}{DeA}{del}{79}
+\DeclareFlexSymbol{\updownarrow}{DeA}{del}{3F}
+\DeclareFlexSymbol{\Uparrow}{DeA}{del}{7E}
+\DeclareFlexSymbol{\Downarrow}{DeA}{del}{7F}
+\DeclareFlexSymbol{\Updownarrow}{DeA}{del}{77}
+\DeclareFlexSymbol{\backslash}{DeB}{del}{0F}
+%    \end{macrocode}
+% 
+% 
+% 
+% 
+% \section{Some compound symbols}
+% The following symbols are not robust in standard \LaTeX\ 
+% because they use \verb"#" or \cs{mathpalette} (which is not
+% robust and contains a \verb"#" in its expansion): \cs{angle},
+% \cs{cong}, \cs{notin}, \cs{rightleftharpoons}.   
+% 
+% In this definition of \cs{hbar}, the symbol is cobbled together
+% from a math italic h and the cmr overbar accent glyph.   
+%    \begin{macrocode}
+\DeclareFlexSymbol{\hbarOrd}{Ord}{OT1}{16}
+\DeclareFlexCompoundSymbol{\hbar}{Ord}{\hbarOrd\mkern-9mu h}
+%    \end{macrocode}
+% For \cs{surd}, the interior symbol gets math class 1
+% (cumulative operator) to make the glyph vertically centered on the
+% math axis, but the desired horizontal spacing is the spacing for a
+% mathord.    (Couldn't it just be class mathopen, though?   )
+%    \begin{macrocode}
+\DeclareFlexSymbol{\surdOrd}{Ord}{OMS}{70}
+\DeclareFlexCompoundSymbol{\surd}{Ord}{\mathop{\surdOrd}}
+%    \end{macrocode}
+% As shown in this definition of \cs{angle}, rule dimens are not
+% allowed to use math-units, unfortunately.   
+%    \begin{macrocode}
+\DeclareFlexCompoundSymbol{\angle}{Ord}{%
+  \vbox{\ialign{%
+      $\m@th\scriptstyle##$\crcr
+      \notRel\mathrel{\mkern14mu}\crcr
+      \noalign{\nointerlineskip}%
+      \mkern2.5mu\leaders\hrule \@height.34pt\hfill\mkern2.5mu\crcr
+  }}%
+}
+%    \end{macrocode}
+% The \cs{not} function, which is defined in the \pkg{flexisym}
+% package, requires a suitably defined \cs{notRel} symbol.   
+%    \begin{macrocode}
+\DeclareFlexCompoundSymbol{\neq}{Rel}{\not{=}}
+%    \end{macrocode}
+% .   
+%    \begin{macrocode}
+\DeclareFlexCompoundSymbol{\mapsto}{Rel}{\mapstoOrd\rightarrow}
+%    \end{macrocode}
+% The \cs{@vereq} function ends by centering the whole
+% construction on the math axis, unlike \cs{buildrel} where the base
+% symbol remains at its normal altitude.    Furthermore,
+% \cs{@vereq} leaves the math style of the top symbol as given
+% instead of downsizing to scriptstyle.   
+%    \begin{macrocode}
+\DeclareFlexCompoundSymbol{\cong}{Rel}{\mathpalette\@vereq\sim}
+%    \end{macrocode}
+% The \cs{m@th} in the \fn{fontmath.ltx} definition of
+% \cs{notin} is superfluous unless \cs{c@ncel} doesn't include
+% it (which was perhaps true in an older version of
+% \fn{plain.tex}?).   
+%    \begin{macrocode}
+\providecommand*\joinord{}
+%<cmbase|mathptmx>\renewcommand*\joinord{\mkern-3mu }
+%<mathpazo>\renewcommand*\joinord{\mkern-3.45mu }
+\DeclareFlexCompoundSymbol{\notin}{Rel}{\mathpalette\c@ncel\in}
+\DeclareFlexCompoundSymbol{\rightleftharpoons}{Rel}{\mathpalette\rlh@{}}
+\DeclareFlexCompoundSymbol{\doteq}{Rel}{\buildrel\textstyle.\over=}
+\DeclareFlexCompoundSymbol{\hookrightarrow}{Rel}{\lhookRel\joinord\rightarrow}
+\DeclareFlexCompoundSymbol{\hookleftarrow}{Rel}{\leftarrow\joinord\rhookRel}
+\DeclareFlexCompoundSymbol{\bowtie}{Rel}{\triangleright\joinord\triangleleft}
+\DeclareFlexCompoundSymbol{\models}{Rel}{\vert\joinord=}
+\DeclareFlexCompoundSymbol{\Longrightarrow}{Rel}{\Relbar\joinord\Rightarrow}
+\DeclareFlexCompoundSymbol{\longrightarrow}{Rel}{\relbar\joinord\rightarrow}
+\DeclareFlexCompoundSymbol{\Longleftarrow}{Rel}{\Leftarrow\joinord\Relbar}
+\DeclareFlexCompoundSymbol{\longleftarrow}{Rel}{\leftarrow\joinord\relbar}
+\DeclareFlexCompoundSymbol{\longmapsto}{Rel}{\mapstochar\longrightarrow}
+\DeclareFlexCompoundSymbol{\longleftrightarrow}{Rel}{\leftarrow\joinord\rightarrow}
+\DeclareFlexCompoundSymbol{\Longleftrightarrow}{Rel}{\Leftarrow\joinord\Rightarrow}
+%    \end{macrocode}
+% Here is what you get from the old definition of \cs{iff}.   
+% \begin{verbatim}
+% \glue 2.77771 plus 2.77771
+% \glue(\thickmuskip) 2.77771 plus 2.77771
+% \OMS/cmsy/m/n/10 (
+% \hbox(0.0+0.0)x-1.66663
+% .\kern -1.66663
+% \OMS/cmsy/m/n/10 )
+% \penalty 500
+% \glue 2.77771 plus 2.77771
+% \glue(\thickmuskip) 2.77771 plus 2.77771
+% \end{verbatim}
+% Looks like it could be simplified slightly.    But it's not so
+% easy as it looks to do it without screwing up the line breaking
+% possibilities.   
+%    \begin{macrocode}
+\renewcommand*\iff{%
+  \mskip\thickmuskip\Longleftrightarrow\mskip\thickmuskip
+}
+%    \end{macrocode}
+% Some dotly symbols.   
+%    \begin{macrocode}
+\DeclareFlexCompoundSymbol{\cdots}{Inn}{\cdotp\cdotp\cdotp}%
+\DeclareFlexCompoundSymbol{\vdots}{Ord}{%
+  \vbox{\baselineskip4\p@ \lineskiplimit\z@
+    \kern6\p@\hbox{.}\hbox{.}\hbox{.}}}
+\DeclareFlexCompoundSymbol{\ddots}{Inn}{%
+  \mkern1mu\raise7\p@
+  \vbox{\kern7\p@\hbox{.}}\mkern2mu%
+  \raise4\p@\hbox{.}\mkern2mu\raise\p@\hbox{.}\mkern1mu%
+}
+%    \end{macrocode}
+% .   
+%    \begin{macrocode}
+\def\relbar{\begingroup \def\smash@{tb}% in case amsmath is loaded
+    \mathpalette\mathsm@sh{\mathchar"200 }\endgroup}
+%    \end{macrocode}
+% For \cs{Relbar} we take an equal sign of class $0$ (Ord) from the
+% operator family. For \fn{cmr} and \pkg{mathptmx} we know this is
+% family $0$.
+%    \begin{macrocode}
+%<cmbase|mathptmx>\def\Relbar{\mathchar"3D }
+%    \end{macrocode}
+% For the \pkg{mathpazo} setup we need to use the equal sign from
+% \fn{cmr} and so must insert class $0$ and use the symbol from the
+% upright symbols.
+%    \begin{macrocode}
+%<mathpazo>\edef\Relbar{\mathchar\string"\hexnumber@\symupright3D }
+%    \end{macrocode}
+% Done.
+%    \begin{macrocode}
+%</cmbase|mathpazo|mathptmx>
+%    \end{macrocode}
+% Various synonyms such as \cs{le} for \cs{leq} and
+% \cs{to} for \cs{rightarrow} are defined in
+% \pkg{flexisym} with \cs{def} instead of \cs{let}, for
+% slower execution speed but smaller chance of synchronization
+% problems.   
+%
+%
+%
+%    \begin{macrocode}
+%<*msabm>
+\ProvidesSymbols{msabm}[2001/09/08 v0.91]
+%    \end{macrocode}
+%    \begin{macrocode}
+\RequirePackage{amsfonts}\relax
+%    \end{macrocode}
+%    \begin{macrocode}
+\@xp\xdef\csname mg@MSA\endcsname{\hexnumber@\symAMSa}%
+\@xp\xdef\csname mg@MSB\endcsname{\hexnumber@\symAMSb}%
+%    \end{macrocode}
+%    \begin{macrocode}
+\DeclareFlexSymbol{\boxdot}       {Bin}{MSA}{00}
+\DeclareFlexSymbol{\boxplus}      {Bin}{MSA}{01}
+\DeclareFlexSymbol{\boxtimes}     {Bin}{MSA}{02}
+\DeclareFlexSymbol{\square}       {Ord}{MSA}{03}
+\DeclareFlexSymbol{\blacksquare}  {Ord}{MSA}{04}
+\DeclareFlexSymbol{\centerdot}    {Bin}{MSA}{05}
+\DeclareFlexSymbol{\lozenge}      {Ord}{MSA}{06}
+\DeclareFlexSymbol{\blacklozenge} {Ord}{MSA}{07}
+\DeclareFlexSymbol{\circlearrowright}   {Rel}{MSA}{08}
+\DeclareFlexSymbol{\circlearrowleft}    {Rel}{MSA}{09}
+%    \end{macrocode}
+% In amsfonts.sty:
+%    \begin{macrocode}
+%%\DeclareFlexSymbol{\rightleftharpoons}{Rel}{MSA}{0A}
+\DeclareFlexSymbol{\leftrightharpoons}  {Rel}{MSA}{0B}
+\DeclareFlexSymbol{\boxminus}     {Bin}{MSA}{0C}
+\DeclareFlexSymbol{\Vdash}        {Rel}{MSA}{0D}
+\DeclareFlexSymbol{\Vvdash}       {Rel}{MSA}{0E}
+\DeclareFlexSymbol{\vDash}        {Rel}{MSA}{0F}
+\DeclareFlexSymbol{\twoheadrightarrow}  {Rel}{MSA}{10}
+\DeclareFlexSymbol{\twoheadleftarrow}   {Rel}{MSA}{11}
+\DeclareFlexSymbol{\leftleftarrows}     {Rel}{MSA}{12}
+\DeclareFlexSymbol{\rightrightarrows}   {Rel}{MSA}{13}
+\DeclareFlexSymbol{\upuparrows}         {Rel}{MSA}{14}
+\DeclareFlexSymbol{\downdownarrows} {Rel}{MSA}{15}
+\DeclareFlexSymbol{\upharpoonright} {Rel}{MSA}{16}
+ \let\restriction\upharpoonright
+\DeclareFlexSymbol{\downharpoonright}   {Rel}{MSA}{17}
+\DeclareFlexSymbol{\upharpoonleft}  {Rel}{MSA}{18}
+\DeclareFlexSymbol{\downharpoonleft}{Rel}{MSA}{19}
+\DeclareFlexSymbol{\rightarrowtail} {Rel}{MSA}{1A}
+\DeclareFlexSymbol{\leftarrowtail}  {Rel}{MSA}{1B}
+\DeclareFlexSymbol{\leftrightarrows}{Rel}{MSA}{1C}
+\DeclareFlexSymbol{\rightleftarrows}{Rel}{MSA}{1D}
+\DeclareFlexSymbol{\Lsh}            {Rel}{MSA}{1E}
+\DeclareFlexSymbol{\Rsh}            {Rel}{MSA}{1F}
+\DeclareFlexSymbol{\rightsquigarrow}  {Rel}{MSA}{20}
+\DeclareFlexSymbol{\leftrightsquigarrow}{Rel}{MSA}{21}
+\DeclareFlexSymbol{\looparrowleft}  {Rel}{MSA}{22}
+\DeclareFlexSymbol{\looparrowright} {Rel}{MSA}{23}
+\DeclareFlexSymbol{\circeq}       {Rel}{MSA}{24}
+\DeclareFlexSymbol{\succsim}      {Rel}{MSA}{25}
+\DeclareFlexSymbol{\gtrsim}       {Rel}{MSA}{26}
+\DeclareFlexSymbol{\gtrapprox}    {Rel}{MSA}{27}
+\DeclareFlexSymbol{\multimap}     {Rel}{MSA}{28}
+\DeclareFlexSymbol{\therefore}    {Rel}{MSA}{29}
+\DeclareFlexSymbol{\because}      {Rel}{MSA}{2A}
+\DeclareFlexSymbol{\doteqdot}     {Rel}{MSA}{2B}
+ \let\Doteq\doteqdot
+\DeclareFlexSymbol{\triangleq}    {Rel}{MSA}{2C}
+\DeclareFlexSymbol{\precsim}      {Rel}{MSA}{2D}
+\DeclareFlexSymbol{\lesssim}      {Rel}{MSA}{2E}
+\DeclareFlexSymbol{\lessapprox}   {Rel}{MSA}{2F}
+\DeclareFlexSymbol{\eqslantless}  {Rel}{MSA}{30}
+\DeclareFlexSymbol{\eqslantgtr}   {Rel}{MSA}{31}
+\DeclareFlexSymbol{\curlyeqprec}  {Rel}{MSA}{32}
+\DeclareFlexSymbol{\curlyeqsucc}  {Rel}{MSA}{33}
+\DeclareFlexSymbol{\preccurlyeq}  {Rel}{MSA}{34}
+\DeclareFlexSymbol{\leqq}         {Rel}{MSA}{35}
+\DeclareFlexSymbol{\leqslant}     {Rel}{MSA}{36}
+\DeclareFlexSymbol{\lessgtr}      {Rel}{MSA}{37}
+\DeclareFlexSymbol{\backprime}    {Ord}{MSA}{38}
+\DeclareFlexSymbol{\risingdotseq} {Rel}{MSA}{3A}
+\DeclareFlexSymbol{\fallingdotseq}{Rel}{MSA}{3B}
+\DeclareFlexSymbol{\succcurlyeq}  {Rel}{MSA}{3C}
+\DeclareFlexSymbol{\geqq}         {Rel}{MSA}{3D}
+\DeclareFlexSymbol{\geqslant}     {Rel}{MSA}{3E}
+\DeclareFlexSymbol{\gtrless}      {Rel}{MSA}{3F}
+%    \end{macrocode}
+% in amsfonts.sty
+%    \begin{macrocode}
+%% \DeclareFlexSymbol{\sqsubset}    {Rel}{MSA}{40}
+%% \DeclareFlexSymbol{\sqsupset}    {Rel}{MSA}{41}
+\DeclareFlexSymbol{\vartriangleright}{Rel}{MSA}{42}
+\DeclareFlexSymbol{\vartriangleleft} {Rel}{MSA}{43}
+\DeclareFlexSymbol{\trianglerighteq} {Rel}{MSA}{44}
+\DeclareFlexSymbol{\trianglelefteq}  {Rel}{MSA}{45}
+\DeclareFlexSymbol{\bigstar}    {Ord}{MSA}{46}
+\DeclareFlexSymbol{\between}    {Rel}{MSA}{47}
+\DeclareFlexSymbol{\blacktriangledown}  {Ord}{MSA}{48}
+\DeclareFlexSymbol{\blacktriangleright} {Rel}{MSA}{49}
+\DeclareFlexSymbol{\blacktriangleleft}  {Rel}{MSA}{4A}
+\DeclareFlexSymbol{\vartriangle}        {Rel}{MSA}{4D}
+\DeclareFlexSymbol{\blacktriangle}      {Ord}{MSA}{4E}
+\DeclareFlexSymbol{\triangledown}       {Ord}{MSA}{4F}
+\DeclareFlexSymbol{\eqcirc}       {Rel}{MSA}{50}
+\DeclareFlexSymbol{\lesseqgtr}    {Rel}{MSA}{51}
+\DeclareFlexSymbol{\gtreqless}    {Rel}{MSA}{52}
+\DeclareFlexSymbol{\lesseqqgtr}   {Rel}{MSA}{53}
+\DeclareFlexSymbol{\gtreqqless}   {Rel}{MSA}{54}
+\DeclareFlexSymbol{\Rrightarrow}  {Rel}{MSA}{56}
+\DeclareFlexSymbol{\Lleftarrow}   {Rel}{MSA}{57}
+\DeclareFlexSymbol{\veebar}       {Bin}{MSA}{59}
+\DeclareFlexSymbol{\barwedge}     {Bin}{MSA}{5A}
+\DeclareFlexSymbol{\doublebarwedge} {Bin}{MSA}{5B}
+%    \end{macrocode}
+% In amsfonts.sty
+%    \begin{macrocode}
+%%\DeclareFlexSymbol{\angle}        {Ord}{MSA}{5C}
+\DeclareFlexSymbol{\measuredangle}  {Ord}{MSA}{5D}
+\DeclareFlexSymbol{\sphericalangle} {Ord}{MSA}{5E}
+\DeclareFlexSymbol{\varpropto}    {Rel}{MSA}{5F}
+\DeclareFlexSymbol{\smallsmile}   {Rel}{MSA}{60}
+\DeclareFlexSymbol{\smallfrown}   {Rel}{MSA}{61}
+\DeclareFlexSymbol{\Subset}       {Rel}{MSA}{62}
+\DeclareFlexSymbol{\Supset}       {Rel}{MSA}{63}
+\DeclareFlexSymbol{\Cup}          {Bin}{MSA}{64}
+ \let\doublecup\Cup
+\DeclareFlexSymbol{\Cap}          {Bin}{MSA}{65}
+ \let\doublecap\Cap
+\DeclareFlexSymbol{\curlywedge}   {Bin}{MSA}{66}
+\DeclareFlexSymbol{\curlyvee}     {Bin}{MSA}{67}
+\DeclareFlexSymbol{\leftthreetimes} {Bin}{MSA}{68}
+\DeclareFlexSymbol{\rightthreetimes}{Bin}{MSA}{69}
+\DeclareFlexSymbol{\subseteqq}    {Rel}{MSA}{6A}
+\DeclareFlexSymbol{\supseteqq}    {Rel}{MSA}{6B}
+\DeclareFlexSymbol{\bumpeq}       {Rel}{MSA}{6C}
+\DeclareFlexSymbol{\Bumpeq}       {Rel}{MSA}{6D}
+\DeclareFlexSymbol{\lll}          {Rel}{MSA}{6E}
+ \let\llless\lll
+\DeclareFlexSymbol{\ggg}          {Rel}{MSA}{6F}
+ \let\gggtr\ggg
+\DeclareFlexSymbol{\circledS}     {Ord}{MSA}{73}
+\DeclareFlexSymbol{\pitchfork}    {Rel}{MSA}{74}
+\DeclareFlexSymbol{\dotplus}      {Bin}{MSA}{75}
+\DeclareFlexSymbol{\backsim}      {Rel}{MSA}{76}
+\DeclareFlexSymbol{\backsimeq}    {Rel}{MSA}{77}
+\DeclareFlexSymbol{\complement}   {Ord}{MSA}{7B}
+\DeclareFlexSymbol{\intercal}     {Bin}{MSA}{7C}
+\DeclareFlexSymbol{\circledcirc}  {Bin}{MSA}{7D}
+\DeclareFlexSymbol{\circledast}   {Bin}{MSA}{7E}
+\DeclareFlexSymbol{\circleddash}  {Bin}{MSA}{7F}
+%    \end{macrocode}
+%   Begin AMSb declarations
+%    \begin{macrocode}
+\DeclareFlexSymbol{\lvertneqq}    {Rel}{MSB}{00}
+\DeclareFlexSymbol{\gvertneqq}    {Rel}{MSB}{01}
+\DeclareFlexSymbol{\nleq}         {Rel}{MSB}{02}
+\DeclareFlexSymbol{\ngeq}         {Rel}{MSB}{03}
+\DeclareFlexSymbol{\nless}        {Rel}{MSB}{04}
+\DeclareFlexSymbol{\ngtr}         {Rel}{MSB}{05}
+\DeclareFlexSymbol{\nprec}        {Rel}{MSB}{06}
+\DeclareFlexSymbol{\nsucc}        {Rel}{MSB}{07}
+\DeclareFlexSymbol{\lneqq}        {Rel}{MSB}{08}
+\DeclareFlexSymbol{\gneqq}        {Rel}{MSB}{09}
+\DeclareFlexSymbol{\nleqslant}    {Rel}{MSB}{0A}
+\DeclareFlexSymbol{\ngeqslant}    {Rel}{MSB}{0B}
+\DeclareFlexSymbol{\lneq}         {Rel}{MSB}{0C}
+\DeclareFlexSymbol{\gneq}         {Rel}{MSB}{0D}
+\DeclareFlexSymbol{\npreceq}      {Rel}{MSB}{0E}
+\DeclareFlexSymbol{\nsucceq}      {Rel}{MSB}{0F}
+\DeclareFlexSymbol{\precnsim}     {Rel}{MSB}{10}
+\DeclareFlexSymbol{\succnsim}     {Rel}{MSB}{11}
+\DeclareFlexSymbol{\lnsim}        {Rel}{MSB}{12}
+\DeclareFlexSymbol{\gnsim}        {Rel}{MSB}{13}
+\DeclareFlexSymbol{\nleqq}        {Rel}{MSB}{14}
+\DeclareFlexSymbol{\ngeqq}        {Rel}{MSB}{15}
+\DeclareFlexSymbol{\precneqq}     {Rel}{MSB}{16}
+\DeclareFlexSymbol{\succneqq}     {Rel}{MSB}{17}
+\DeclareFlexSymbol{\precnapprox}  {Rel}{MSB}{18}
+\DeclareFlexSymbol{\succnapprox}  {Rel}{MSB}{19}
+\DeclareFlexSymbol{\lnapprox}     {Rel}{MSB}{1A}
+\DeclareFlexSymbol{\gnapprox}     {Rel}{MSB}{1B}
+\DeclareFlexSymbol{\nsim}         {Rel}{MSB}{1C}
+\DeclareFlexSymbol{\ncong}        {Rel}{MSB}{1D}
+\DeclareFlexSymbol{\diagup}       {Ord}{MSB}{1E}
+\DeclareFlexSymbol{\diagdown}     {Ord}{MSB}{1F}
+\DeclareFlexSymbol{\varsubsetneq}   {Rel}{MSB}{20}
+\DeclareFlexSymbol{\varsupsetneq}   {Rel}{MSB}{21}
+\DeclareFlexSymbol{\nsubseteqq}     {Rel}{MSB}{22}
+\DeclareFlexSymbol{\nsupseteqq}     {Rel}{MSB}{23}
+\DeclareFlexSymbol{\subsetneqq}     {Rel}{MSB}{24}
+\DeclareFlexSymbol{\supsetneqq}     {Rel}{MSB}{25}
+\DeclareFlexSymbol{\varsubsetneqq}  {Rel}{MSB}{26}
+\DeclareFlexSymbol{\varsupsetneqq}  {Rel}{MSB}{27}
+\DeclareFlexSymbol{\subsetneq}      {Rel}{MSB}{28}
+\DeclareFlexSymbol{\supsetneq}      {Rel}{MSB}{29}
+\DeclareFlexSymbol{\nsubseteq}      {Rel}{MSB}{2A}
+\DeclareFlexSymbol{\nsupseteq}      {Rel}{MSB}{2B}
+\DeclareFlexSymbol{\nparallel}      {Rel}{MSB}{2C}
+\DeclareFlexSymbol{\nmid}           {Rel}{MSB}{2D}
+\DeclareFlexSymbol{\nshortmid}      {Rel}{MSB}{2E}
+\DeclareFlexSymbol{\nshortparallel} {Rel}{MSB}{2F}
+\DeclareFlexSymbol{\nvdash}         {Rel}{MSB}{30}
+\DeclareFlexSymbol{\nVdash}         {Rel}{MSB}{31}
+\DeclareFlexSymbol{\nvDash}         {Rel}{MSB}{32}
+\DeclareFlexSymbol{\nVDash}         {Rel}{MSB}{33}
+\DeclareFlexSymbol{\ntrianglerighteq}{Rel}{MSB}{34}
+\DeclareFlexSymbol{\ntrianglelefteq}{Rel}{MSB}{35}
+\DeclareFlexSymbol{\ntriangleleft}  {Rel}{MSB}{36}
+\DeclareFlexSymbol{\ntriangleright} {Rel}{MSB}{37}
+\DeclareFlexSymbol{\nleftarrow}     {Rel}{MSB}{38}
+\DeclareFlexSymbol{\nrightarrow}    {Rel}{MSB}{39}
+\DeclareFlexSymbol{\nLeftarrow}     {Rel}{MSB}{3A}
+\DeclareFlexSymbol{\nRightarrow}    {Rel}{MSB}{3B}
+\DeclareFlexSymbol{\nLeftrightarrow}{Rel}{MSB}{3C}
+\DeclareFlexSymbol{\nleftrightarrow}{Rel}{MSB}{3D}
+\DeclareFlexSymbol{\divideontimes}  {Bin}{MSB}{3E}
+\DeclareFlexSymbol{\varnothing}     {Ord}{MSB}{3F}
+\DeclareFlexSymbol{\nexists}        {Ord}{MSB}{40}
+\DeclareFlexSymbol{\Finv}           {Ord}{MSB}{60}
+\DeclareFlexSymbol{\Game}           {Ord}{MSB}{61}
+%    \end{macrocode}
+% In amsfonts.sty:
+%    \begin{macrocode}
+%%\DeclareFlexSymbol{\mho}          {Ord}{MSB}{66}
+\DeclareFlexSymbol{\eth}            {Ord}{MSB}{67}
+\DeclareFlexSymbol{\eqsim}          {Rel}{MSB}{68}
+\DeclareFlexSymbol{\beth}           {Ord}{MSB}{69}
+\DeclareFlexSymbol{\gimel}          {Ord}{MSB}{6A}
+\DeclareFlexSymbol{\daleth}         {Ord}{MSB}{6B}
+\DeclareFlexSymbol{\lessdot}        {Bin}{MSB}{6C}
+\DeclareFlexSymbol{\gtrdot}         {Bin}{MSB}{6D}
+\DeclareFlexSymbol{\ltimes}         {Bin}{MSB}{6E}
+\DeclareFlexSymbol{\rtimes}         {Bin}{MSB}{6F}
+\DeclareFlexSymbol{\shortmid}       {Rel}{MSB}{70}
+\DeclareFlexSymbol{\shortparallel}  {Rel}{MSB}{71}
+\DeclareFlexSymbol{\smallsetminus}  {Bin}{MSB}{72}
+\DeclareFlexSymbol{\thicksim}       {Rel}{MSB}{73}
+\DeclareFlexSymbol{\thickapprox}    {Rel}{MSB}{74}
+\DeclareFlexSymbol{\approxeq}       {Rel}{MSB}{75}
+\DeclareFlexSymbol{\succapprox}     {Rel}{MSB}{76}
+\DeclareFlexSymbol{\precapprox}     {Rel}{MSB}{77}
+\DeclareFlexSymbol{\curvearrowleft} {Rel}{MSB}{78}
+\DeclareFlexSymbol{\curvearrowright}{Rel}{MSB}{79}
+\DeclareFlexSymbol{\digamma}        {Ord}{MSB}{7A}
+\DeclareFlexSymbol{\varkappa}       {Ord}{MSB}{7B}
+\DeclareFlexSymbol{\Bbbk}           {Ord}{MSB}{7C}
+\DeclareFlexSymbol{\hslash}         {Ord}{MSB}{7D}
+%    \end{macrocode}
+% In amsfonts.sty:
+%    \begin{macrocode}
+%%\DeclareFlexSymbol{\hbar}         {Ord}{MSB}{7E}
+\DeclareFlexSymbol{\backepsilon}    {Rel}{MSB}{7F}
+%</msabm>
+%    \end{macrocode}
+%
+% \PrintIndex
+%
+% \Finale

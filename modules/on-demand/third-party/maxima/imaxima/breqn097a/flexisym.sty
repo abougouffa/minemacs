@@ -1,0 +1,293 @@
+%%
+%% This is file `flexisym.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% flexisym.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 1997-2003 by Michael J. Downes
+%% Copyright (C) 2007 by Morten Hoegholm <mh.ctan@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Morten Hoegholm.
+%% 
+%% This work consists of the main source file flexisym.dtx
+%% and the derived files
+%%    flexisym.sty, flexisym.pdf, flexisym.ins, flexisym.drv,
+%%    cmbase.sym, mathpazo.sym, mathptmx.sym, msabm.sym.
+%% 
+\ProvidesPackage{flexisym}[2007/12/19 v0.96]
+\let\@xp\expandafter \let\@nx\noexpand
+\edef\do{%
+  \@nx\AtEndOfPackage{%
+    \catcode\number`\"=\number\catcode`\"
+    \relax
+  }%
+}
+\do \let\do\relax
+\catcode`\"=12
+\let\@sym\@gobble
+\DeclareOption{robust}{%
+  \def\@sym#1{%
+    \ifx\protect\@typeset@protect \else\protect#1\@xp\@gobblefour\fi
+  }%
+}
+\def\mg@bin{2}% binary operators
+\def\mg@rel{2}% relations
+%%\def\mg@nre{B}% negated relations
+\def\mg@del{3}% delimiters
+%%\def\mg@arr{B}% arrows
+\def\mg@acc{0}% accents
+\def\mg@cop{3}% cumulative operators (sum, int)
+\def\mg@latin{1}% (Latin) letters
+\def\mg@greek{1}% (lowercase) Greek
+\def\mg@Greek{0}% (capital) Greek
+%%\def\mg@bflatin{4}% bold upright Latin letters ?
+%%\def\mg@Bbb{B}% blackboard bold
+\def\mg@cal{2}% script/calligraphic
+%%\def\mg@frak{5}% Fraktur letters
+\def\mg@digit{0}% decimal digits % 1 = oldstyle, 0 = capital
+\expandafter\let\csname MathChar \endcsname\mathchar
+\expandafter\let\csname Delimiter \endcsname\delimiter
+\expandafter\let\csname Radical \endcsname\radical
+\newcommand{\MathChar}{}
+\edef\MathChar{\csname MathChar \endcsname\noexpand\string}
+\newcommand{\Delimiter}{}
+\edef\Delimiter{\csname Delimiter \endcsname\noexpand\string}
+\newcommand{\Radical}{}
+\edef\Radical{\csname Radical \endcsname\noexpand\string}
+\let\sumlimits\displaylimits
+\let\intlimits\nolimits
+\let\namelimits\displaylimits
+\edef\m@Ord#1#2#3{\csname MathChar \endcsname"0#1#2#3 }
+\edef\m@Var#1#2#3{\csname MathChar \endcsname"7#1#2#3 }
+\edef\m@Bin#1#2#3{\csname MathChar \endcsname"2#1#2#3 }
+\edef\m@Rel#1#2#3{\csname MathChar \endcsname"3#1#2#3 }
+\edef\m@Pun#1#2#3{\csname MathChar \endcsname"6#1#2#3 }
+\edef\m@COs#1#2#3{\csname MathChar \endcsname"1#1#2#3 \sumlimits}
+\edef\m@COi#1#2#3{\csname MathChar \endcsname"1#1#2#3 \intlimits}
+\def\delim@a#1#2#3#4{\ifx\relax#1#2#3#4\else#1\fi #2#3#4}
+\def\delim@b#1#2#3#4{\ifx\relax#1#2#3#4\else#1\fi }
+\def\@tempa{%
+  \@nx\@xp\@nx\delim@a\@nx\csname sd@##1##2##3\@nx\endcsname ##1##2##3 }
+\edef\m@DeL#1#2#3{\csname Delimiter \endcsname"4\@tempa}
+\edef\m@DeR#1#2#3{\csname Delimiter \endcsname"5\@tempa}
+\edef\m@DeB#1#2#3{\csname Delimiter \endcsname"0\@tempa}
+\edef\m@DeA#1#2#3{\csname Delimiter \endcsname"3\@tempa}
+\edef\m@Rad#1#2#3{\csname Radical \endcsname"\@tempa}
+\def\do#1#2{\@xp\def\csname sd@#1\endcsname{#2}}
+\do{300}{028}
+\do{301}{029}
+\do{302}{05B}
+\do{303}{05D}
+\do{304}{262}
+\do{305}{263}
+\do{306}{264}
+\do{307}{265}
+\do{308}{266}
+\do{309}{267}
+\do{30A}{268}
+\do{30B}{269}
+\do{30C}{26A}
+\do{30D}{26B}
+\do{30E}{13D}
+\do{30F}{26E}
+\do{340}{37A}
+\do{341}{37B}
+\do{33A}{33A}
+\do{33B}{33B}
+\do{33E}{33E}
+\do{33C}{26A}
+\do{33D}{26B}
+\do{378}{222}
+\do{379}{223}
+\do{33F}{26C}
+\do{37E}{22A}
+\do{37F}{22B}
+\do{377}{26D}
+\do{30F}{26E}
+\def\m@Acc#1#2#3#4{\mathaccent"#1#2#3{#4}}
+\def\@symAcc{\@sym}
+\let\@symtype\@firstofone
+\def\@symOrd#1#2{\@symtype\mathord{\OrdSymbol{#2}}}
+\def\@symVar{\@symOrd}
+\def\@symBin#1#2{\@symtype\mathbin{\OrdSymbol{#2}}}
+\def\@symRel#1#2{\@symtype\mathrel{\OrdSymbol{#2}}}
+\def\@symPun#1#2{\@symtype\mathpunct{\OrdSymbol{#2}}}
+\def\@symCOi#1#2{\@symtype{\mathop{\OrdSymbol{#2}}\intlimits}}
+\def\@symCOs#1#2{\@symtype{\mathop{\OrdSymbol{#2}}\sumlimits}}
+\def\@symOpe#1#2{\@symtype\mathopen{\OrdSymbol{#2}}}
+\def\@symClo#1#2{\@symtype\mathclose{\OrdSymbol{#2}}}
+\def\@symDeL#1#2{\@symtype\mathopen{\OrdSymbol{#2}}}
+\def\@symDeR#1#2{\@symtype\mathclose{\OrdSymbol{#2}}}
+\def\@symDeB#1#2{\@symtype\mathord{\OrdSymbol{#2}}}
+\def\@symInn#1#2{\@symtype\mathinner{\OrdSymbol{#2}}}
+\def\@xnce#1{\@xp\@nx\csname#1\endcsname}
+\let\sym@global\global
+\def\DeclareFlexSymbol#1#2#3#4{%
+  \begingroup
+  \edef\@tempb{\@nx\@sym\@nx#1\@xnce{m@#2}\@xnce{mg@#3}#4}%
+  \ifcat\@nx#1\relax
+    \sym@global\let#1\@tempb
+  \else
+    \sym@global\mathcode`#1="8000\relax
+    \lccode`\~=`#1\relax
+    \lowercase{\sym@global\let~\@tempb}%
+  \fi
+  \endgroup
+}
+\def\DeclareFlexCompoundSymbol#1#2#3{%
+  \@xp\DeclareRobustCommand\@xp#1\@xp{\csname @sym#2\endcsname#1{#3}}%
+  \sym@global\let#1#1\relax
+}
+\DeclareRobustCommand\textchar{\text@char\textfont}
+\DeclareRobustCommand\scriptchar{\text@char\scriptfont}%
+\def\text@char@a{\?\endgroup}%
+\def\text@char@sym#1#2#3{%
+  \begingroup
+    \let\@sym\relax % defense against infinite loops
+    \the\text@script@char#3%
+    \afterassignment\text@char@a
+    \chardef\?="%
+}
+\def\text@char#1#2{\begingroup\check@mathfonts
+  \let\text@script@char#1\let\@sym\text@char@sym
+  \let\@symtype\@secondoftwo \let\OrdSymbol\@firstofone
+  \let\ifmmode\iftrue \everymath{$\@gobble}%$
+  \def\mkern{\muskip\z@}\let\mskip\mkern
+  \ifcat\relax\noexpand#2#2%
+  \else
+    \lccode`\~=\expandafter`\string#2\relax
+    \lowercase{~}%
+  \fi
+  \endgroup
+}
+\providecommand\textprime{}
+\DeclareRobustCommand\textprime{\leavevmode
+  \raise.8ex\hbox{\text@char\scriptfont\prime}%
+}
+\@ifundefined{resetMathstrut@}{}{%
+  \def\resetMathstrut@{%
+    \setbox\z@\hbox{\textchar\vert}%
+    \ht\Mathstrutbox@\ht\z@ \dp\Mathstrutbox@\dp\z@
+  }%
+}
+\@ifundefined{rightarrowfill@}{}{%
+  \def\rightarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\copy\z@\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\box\z@\mkern-2mu$}\hfill
+    \mkern-6mu\OrdSymbol{\rightarrow}$}
+  \def\leftarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\OrdSymbol{\leftarrow}\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\copy\z@\mkern-2mu$}\hfill
+    \mkern-6mu\box\z@$}
+  \def\leftrightarrowfill@#1{\m@th\setboxz@h{$#1\relbar$}\ht\z@\z@
+    $#1\OrdSymbol{\leftarrow}\mkern-6mu\cleaders
+    \hbox{$#1\mkern-2mu\box\z@\mkern-2mu$}\hfill
+    \mkern-6mu\OrdSymbol{\rightarrow}$}
+}
+\def\binrel@sym#1#2#3#4#5{%
+  \xdef\binrel@@##1{%
+    \ifx\m@Ord#2\@nx\@symOrd
+    \else\ifx\m@Var#2\@nx\@symVar
+    \else\ifx\m@COs#2\@nx\@symCOs
+    \else\ifx\m@COi#2\@nx\@symCOi
+    \else\ifx\m@Bin#2\@nx\@symBin
+    \else\ifx\m@Rel#2\@nx\@symRel
+    \else\ifx\m@Pun#2\@nx\@symPun
+    \else\@nx\@symErr \fi\fi\fi\fi\fi\fi\fi
+  ?{\@nx\OrdSymbol{##1}}}%
+}
+\def\binrel@a{%
+  \def\@symOrd##1##2{\gdef\binrel@@####1{\@symOrd##1{\OrdSymbol{####1}}}}%
+  \def\@symVar##1##2{\gdef\binrel@@####1{\@symVar##1{\OrdSymbol{####1}}}}%
+  \def\@symCOs##1##2{\gdef\binrel@@####1{\@symCOs##1{\OrdSymbol{####1}}}}%
+  \def\@symCOi##1##2{\gdef\binrel@@####1{\@symCOi##1{\OrdSymbol{####1}}}}%
+  \def\@symBin##1##2{\gdef\binrel@@####1{\@symBin##1{\OrdSymbol{####1}}}}%
+  \def\@symRel##1##2{\gdef\binrel@@####1{\@symRel##1{\OrdSymbol{####1}}}}%
+  \def\@symPun##1##2{\gdef\binrel@@####1{\@symPun##1{\OrdSymbol{####1}}}}%
+}
+\def\binrel@#1{%
+  \setbox\z@\hbox{$%
+    \let\mathchoice\@gobblethree
+    \let\@sym\binrel@sym \binrel@a
+    #1$}%
+}
+\def\@symextension{sym}
+\newcommand\usesymbols[1]{%
+  \@for\@tempb:=#1\do{%
+    \@xp\@onefilewithoptions\@xp{\@tempb}[][]\@symextension
+  }%
+}
+\newcommand\ProvidesSymbols[1]{\ProvidesFile{#1.sym}}
+\DeclareRobustCommand{\not}[1]{\@symRel\not{\OrdSymbol{\notRel#1}}}
+\DeclareRobustCommand{\OrdSymbol}[1]{%
+  \begingroup\mathchars@reset#1\endgroup
+}
+\def\mathchars@reset{\let\@sym\@sym@ord \let\@symtype\@symtype@ord
+  \let\OrdSymbol\relax}
+\def\@symtype@ord#1#{}% a strange sort of \@gobble
+\def\@sym@ord#1#2{\@xp\@sym@ord@a\string#2\@nil}%
+\begingroup
+\lccode`\.=`\@ \lowercase{\endgroup
+\def\@sym@ord@a#1.}#2#3\@nil#4#5#6{%
+  \csname MathChar \endcsname"0%
+    \if D#2\@xp\delim@b\csname sd@#4#5#6\endcsname#4#5#6
+    \else #4#5#6
+    \fi
+}
+\@ifpackageloaded{amsmath}{%
+  \begingroup
+  \long\def\next#1\mathchardef\std@minus\mathcode`\-\relax
+                  \mathchardef\std@equal\mathcode`\=\relax#2\flexi@stop{%
+    \toks@{#1#2}%
+    \xdef\@begindocumenthook{\the\toks@}%
+  }%
+  \expandafter\next\@begindocumenthook\flexi@stop
+  \endgroup
+}{}
+\AtBeginDocument{%
+\def\newmcodes@{%
+  \mathcode `\'39\mathcode `\*42\mathcode `\."613A
+  \ifnum\mathcode`\-=45
+  \else
+    \ifnum\mathcode`\-=32768
+    \else
+      \mathchardef \std@minus \mathcode `\-\relax
+    \fi
+  \fi
+  \mathcode `\-45 \mathcode `\/47\mathcode `\:"603A\relax
+}%
+}
+\DeclareOption{mathstyleoff}{\PassOptionsToPackage{mathactivechars}{mathstyle}}
+\DeclareOption{cmbase}{\usesymbols{cmbase}}
+\DeclareOption{mathpazo}{\usesymbols{mathpazo}}
+\DeclareOption{mathptmx}{\usesymbols{mathptmx}}
+\ExecuteOptions{cmbase}
+\ProcessOptions\relax
+\renewcommand{\lnot}{\neg}
+\renewcommand{\land}{\wedge}
+\renewcommand{\lor}{\vee}
+\renewcommand{\le}{\leq}
+\renewcommand{\ge}{\geq}
+\renewcommand{\ne}{\neq}
+\renewcommand{\owns}{\ni}
+\renewcommand{\gets}{\leftarrow}
+\renewcommand{\to}{\rightarrow}
+\renewcommand{\|}{\Vert}
+\RequirePackage{mathstyle}
+\endinput
+%%
+%% End of file `flexisym.sty'.

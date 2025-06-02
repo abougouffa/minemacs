@@ -1,0 +1,269 @@
+* Changes in imaxima-imath 1.0 rc1
+** As for inline graph, if the emacs buffer window is too small for
+   the generated graph image, the graph is not displayed, but a file
+   name is displayed instead. Now, the graph is resized to fit to the
+   current imaxima buffer size and correctly displayed. Thanks go to
+   Bertram for his patch.
+** A bug in setup-imaxima-imath.el, which is used in "Easy Install on
+   Windows XP / Vista" is fixed so that it can now correctly handles
+   the set up of info files.
+** Now csetup() function in ctensor package displays interactive
+   messages correctly.
+** derivabbrev:true is correctly handled.
+** A lot of lisp code in imaxima.lisp that are common in mactex.lisp are removed.
+
+
+* Changes in imaxima-imath 1.0 beta2
+
+** Workaround for OpenSUSE Linux is included.
+
+* Changes in imaxima-imath 1.0 beta
+
+** bohumir's patch for {eps xxx eps} is included.
+** Inline graph support in both imaxima and imath is added.
+** I have decided this version to be 1.0 beta. 
+
+* Changes in imaxima-imath 0.98
+
+** Greek letter gamma is better handled in imaxima.
+** Conjugate symbol is handled correctly in imaxima.
+** imaxima-to-html function, which converts imaxima
+session buffer to HTML format, is added.
+
+* Changes in imaxima-imath 0.97a
+
+** imaxima-imath causes an error when used with Maxima 5.11.99rc1
+and later (including 5.12.0). This is due to the fact that memq()
+is removed from Maxima source code. Now imaxima.lisp implements
+its own memq().
+
+* Changes in imaxima-imath 0.97
+
+** demo() prompts _ and waits for input of ; by the user.
+This behavior is now supported in the imaxima. As usual, you can type
+; when _ is displayed. Then the next demo is presented.
+
+** When maxima string is printed, imaxima eats all the white space
+and all the non-white space chars are concatenated. This version
+fixes this so that all the white space including newline chars are
+treated appropriately.
+
+** When you pass numbers to print function, an error occurred.
+This is fixed and appropriate value is now printed nicely.
+
+** When imaxima is used with maxima mode i.e.,
+(setq imaxima-use-maxima-mode-flag t) and the maxima compiled with
+clisp is used, the first prompt does not appear appropriately. This
+is fixed.
+
+** When batch() is called, imaxima processed the input line using
+latex and gs, which sometimes caused processing errors. Now the
+input lines are all displayed as ordinally input text and not
+processed by latex nor gs.
+
+* Changes in imaxima-imath 0.96
+
+** Repeated large scale testing of imaxima, including enable/disable 
+maxima mode, deleting *maxima*/*imaxima* buffers may cause maxima 
+process filter function to cause wrong type error on calling
+process-mark function. This bug is fixed.
+
+** When SBCL was used as the underlying lisp for Imaxima, it
+generates a lot of style warning of function redefinitions when
+imaxima.lisp was loaded. Thanks to the suggestion from the SBCL
+developer, this bug was fixed.
+
+** A new interactive function (imaxima-version) is added. This
+function displays autoconf package name and version. Currently
+they are imaxima-imath 0.96. Also two variables:
+    *imaxima-autoconf-package-name*
+    *imaxima-autoconf-version*
+are available in Emacs lisp.
+
+
+* Changes in imaxima-imath 0.95
+
+** imaxima-imath supports Maxima 5.10.0. Support for Maxima prior
+to 5.9.2 is discontinued. You need to update Maxima at lease 5.9.2.
+The latest release 5.10.0 is recommended.
+
+* Changes in imaxima version 0.94
+
+** Imaxima has been independently developed from imath. Now imath is updated to incorporate all the changes to imaxima.el up to 0.93a.
+
+* Changes in imaxima version 0.91
+
+** Add new functionality "imath-mode" provided by imath.el
+
+** Small modifications in imaxima.el to support imath-mode.
+
+* Changes in imaxima version 0.9
+
+** Fix compatibility problem with CLISP 2.29.
+
+** Fix compatibility problem with new prompt in Maxima 5.9.0.9beta2.
+
+* Changes in imaxima version 0.8
+
+** Fix Texlive dumping problem
+
+Change the name of the TeX executable called to fix dumping of format
+files in Texlive.
+
+** LaTeX fix
+
+Fix bug in powers of matrix elements.
+
+** imaxima-equation-color
+
+Default to foreground colour of the current frame.
+
+** CLISP 2.32
+
+Suppress warnings when loading imaxima.lisp in CLISP 2.32.
+
+* Changes in version 0.7
+
+** imaxima-scale-factor
+
+New option for more fine-grained control of font sizes.
+
+** ESP Ghostscript
+
+Workaround for this broken Ghostscript version.
+
+** LaTeX fixes
+
+Fix a bug with expressions containing `and', `or' and `not'.
+
+* Changes in version 0.6
+
+** Works on Microsoft Windows
+
+Imaxima now works with XEmacs on Windows.
+
+** Miscellaneous small changes
+
+Rewrite long square roots if applicable.  There's now a start and exit
+hook.  Load imaxima.lisp from the command line to avoid two (C1) lines
+when starting.
+
+* Changes in version 0.5
+
+** GNU Ghostscript 7.05
+
+Include a workaround for this broken version of Ghostscript.
+
+** imaxima-maxima-options
+
+New option.  Command line options passed to Maxima.  Can be used to
+select which Lisp to use.
+
+** Rename ps to postscript
+
+Rename value of `imaxima-image-type' from ps to postscript to allow
+better error diagnostics.
+
+** Various bug fixes
+
+Merge some fixes and improvements from the Maxima version of
+mactex.lisp.  Avoid compiler warnings when using CMUCL.  Avoid having
+TeX balk at directories with underscores.
+
+* Changes in version 0.4
+
+** Colors
+
+Colors work better for more background colors.  Also, the background
+color isn't changed by default in XEmacs.
+
+** Speed improvement
+
+We now dump a TeX format file with the required definitions
+pre-loaded.  This makes TeX start up twice as fast and the total time
+to generate an image is reduced by 30%.
+
+** Various bug fixes
+
+Scaling and linearizing was broken in the last version.  Mouse clicks
+didn't work in XEmacs.
+
+
+* Changes in version 0.3
+
+** Ghostscript
+
+Imaxima now works with the latest version of Ghostscript (7.04).
+
+** Colors
+
+The background and foreground color of the buffer is now customizable.
+The colors are changed by default in XEmacs, because it can't make the
+image background transparent.
+
+** Temporary files
+
+Don't create temporary files in a directory that is world writable.
+Also, temporary files were previously not removed in XEmacs.
+
+** LaTeX fixes
+
+Various LaTeX fixes and improvements.
+
+** Don't break Gnus
+
+Removed an alias that broke Gnus.
+
+
+* Changes in version 0.2
+
+** XEmacs support
+
+Imaxima now works with XEmacs.  Since the ms-windows port of XEmacs
+supports images, it might be possible to use it on Windows.  I haven't
+got a Windows box myself, though, so I can't test it.
+
+** LaTeX fixes
+
+Fixed a bug where an expression like sin(x)^2 would cause a LaTeX
+error.  Binomials are now displayed properly, and more trig functions
+are printed nicer.
+
+** Smarter line breaking
+
+Be smarter when rewriting expressions to allow line breaking.
+Exponentials and subscripts aren't rewritten if the exponent/subscript
+is an atom, and unnecessary bracket are avoided in fractions if the
+denominator or numerator is an atom.
+
+* Changes in version 0.1.1
+
+** Oops
+
+Include `imaxima.el' in the tarball.
+
+* Changes in version 0.1
+
+** Line breaking
+
+Imaxima can break wide fractions, subscripts and superscripts by
+either scaling the image down or rewriting the equation in a linear
+format, which allows line breaking.
+
+This can be customized with `imaxima-scale' and
+`imaxima-linearize-flag'.
+
+** Manual & configure script
+
+A Texinfo manual and a configure script is included.
+
+** maxima.el
+
+To enable the major mode from `maxima.el' when invoking imaxima set
+`imaxima-use-maxima-mode-flag' to t.
+
+
+Local variables:
+mode: outline
+paragraph-separate: "[ 	]*$"
+end:

@@ -12,15 +12,20 @@
 
 
 ;;;###autoload
-(defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
+(defconst +maxima-path (if-let* ((sys-path "/usr/share/emacs/site-lisp/maxima/")
+                                 ((file-directory-p sys-path)))
+                           sys-path
+                         (mapcar (apply-partially #'concat minemacs-on-demand-modules-dir "third-party/maxima/")
+                                 '("emaxima/" "imaxima/" "misc/"))))
 
 ;;;###autoload
-(defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
+(defconst +maxima-available-p (and (executable-find "maxima") t))
 
 ;;;###autoload(when +maxima-available-p
 ;;;###autoload  (defun minemacs-maxima-load ()
 ;;;###autoload    "Load the `on-demand/me-maxima' module."
-;;;###autoload    (interactive)))
+;;;###autoload    (interactive)
+;;;###autoload    (require 'on-demand/me-maxima)))
 
 
 ;; Major modes for writing Maxima code
@@ -37,12 +42,12 @@
 ;; Maxima mode with images
 (use-package imaxima
   :load-path +maxima-path
-  :when +maxima-available-p
+  :when (and +maxima-available-p (executable-find "latex"))
   :commands (imaxima imath-mode)
   :hook (imaxima-startup . maxima-inferior-mode) ; To get syntax highlighting
   :custom
   (imaxima-use-maxima-mode-flag nil))
 
 
-(provide 'obsolete/me-maxima)
+(provide 'on-demand/me-maxima)
 ;;; me-maxima.el ends here

@@ -1,0 +1,189 @@
+/* -*- mode: maxima -*- */
+/* Regression tests for imaxima.lisp */
+/*
+*
+* Author: Leo Butler (leo.butler@umanitoba.ca)
+* Credit: These tests are adapted from the Maxima manual
+*
+* This file is Maxima code (http://maxima.sourceforge.net/)
+*
+* It is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or (at your
+  * option) any later version.
+*
+* This software is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+* or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+* License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this file. If not, see http://www.gnu.org/licenses/.
+*/
+
+/*
+Usage:
+batch("rtest_imaxima.mac",'test);
+*/
+
+wxplot2d (x^2 = y^3 - 3*y + 1, [x, -4, 4], [y, -4, 4]);
+plot2d$
+
+wxplot2d (sin(x), [x, -%pi, %pi])$
+plot2d$
+
+wxplot2d (sec(x), [x, -2, 2], [y, -20, 20])$
+plot2d$
+
+wxplot2d ( x^2 - 1, [x, -3, 3], [box, false], grid2d,
+                [yx_ratio, 1], [axes, solid], [xtics, -2, 4, 2],
+                [ytics, 2, 2, 6], [label, ["x", 2.9, -0.3],
+                ["x^2-1", 0.1, 8]], [title, "A parabola"])$
+plot2d$
+
+wxplot2d (exp(3*s), [s, -2, 2], logy)$
+plot2d$
+
+block([F,G,H],
+  local(F,G,H),
+  F(x) := x^2,
+  G(x) := x^3,
+  H(x) := if x < 0 then x^4 - 1 else 1 - x^5,
+  wxplot2d ([F, G, H], [u, -1, 1], [y, -1.5, 1.5]))$
+plot2d$
+
+block([r],
+  r: (exp(cos(t))-2*cos(4*t)-sin(t/12)^5),
+  wxplot2d([parametric, r*sin(t), r*cos(t), [t, -8*%pi, 8*%pi]]))$
+plot2d$
+
+wxplot2d([[parametric, cos(t), sin(t), [t,0,2*%pi]], -abs(x)],
+                   [x, -sqrt(2), sqrt(2)], same_xy)$
+plot2d$
+
+wxplot2d ([discrete, makelist ( random(10), 200)])$
+plot2d$
+
+wxplot2d ([discrete, makelist(i*%pi, i, 1, 5),
+  [0.6, 0.9, 0.2, 1.3, 1]])$
+plot2d$
+
+block([data],
+  data : genmatrix(lambda([x,i], x^i),10,3),
+  wxplot2d ([discrete, transpose(data)[2], transpose(data)[3]],
+    [style,points], [point_type,diamond], [color,red]))$
+plot2d$
+
+block([xy],
+  xy: [[10, .6], [20, .9], [30, 1.1], [40, 1.3], [50, 1.4]],
+  wxplot2d([[discrete, xy], 2*%pi*sqrt(l/980)], [l,0,50],
+    [style, points, lines], [color, red, blue],
+    [point_type, asterisk],
+    [legend, "experiment", "theory"],
+    [xlabel, "pendulum's length (cm)"],
+    [ylabel, "period (s)"]))$
+plot2d$
+
+wxplot3d (u^2 - v^2, [u, -2, 2], [v, -3, 3], [grid, 100, 100],
+  [mesh_lines_color,false])$
+plot3d$
+
+wxplot3d ( log ( x^2*y^2 ), [x, -2, 2], [y, -2, 2], [z, -8, 4],
+                   [palette, false], [color, magenta])$
+plot3d$
+
+wxplot3d (log (x^2*y^2), [x, -2, 2], [y, -2, 2],[grid, 29, 29],
+                 [palette, [gradient, red, orange, yellow, green]],
+                 color_bar, [xtics, 1], [ytics, 1], [ztics, 4],
+                 [color_bar_tics, 4])$
+plot3d$
+
+
+wxmandelbrot ([iterations, 30], [x, -2, 1], [y, -1.2, 1.2],
+                      [grid,400,400])$
+mandelbrot $
+
+wxjulia (-0.55, 0.6, [iterations, 36], [x, -0.3, 0.2],
+  [y, 0.3, 0.9], [grid, 400, 400], [color_bar_tics, 0, 6, 36])$
+julia $
+
+listp(wxdraw2d(color=red,  explicit(x^2,x,-1,1))) $
+true $
+
+listp(wxdraw( gr2d( key="sin (x)",grid=[2,2], explicit( sin(x), x,0,2*%pi ) ), gr2d( key="cos (x)",grid=[2,2], explicit( cos(x), x,0,2*%pi ) ) )) $
+true $
+
+listp(wxdraw3d(axis_3d = false, explicit(sin(x^2+y^2),x,-2,2,y,-2,2) ))$
+true $
+
+listp(wxdraw3d(colorbox="Magnitude",enhanced3d=true,explicit(x^2+y^2,x,-1,1,y,-1,1)))$
+true $
+
+(load(drawdf), wxdrawdf(x+t,[t,x],[t,0,1],[x,0,1])) $
+0 $
+
+block([m], load(descriptive), m : read_matrix (file_search ("biomed.data")),
+  wxbarsplot(
+    col(m,2),
+    title        = "Ages",
+    xlabel       = "years",
+    box_width    = 1/2,
+    fill_density = 3/4))$
+[gr2d(?points,?bars,?label)] $
+
+block([s2:read_matrix(file_search("wind.data"))],
+  wxboxplot(s2,
+    box_width  = 0.2,
+    title      = "Windspeed in knots",
+    xlabel     = "Stations",
+    color      = red,
+    line_width = 2))$
+[gr2d(?points,?points,?points,?points,?points,?points,?points,?points,?points,
+  ?points,?points,?points,?points,?points,?points,?points,?points,?points,
+  ?points,?points,?points,?points,?points,?points,?points,?points,?points,
+  ?points,?points,?points)]$
+          
+block([s1:read_list (file_search ("pidigits.data"))],
+  wxhistogram (
+    s1,
+    nclasses     = 8,
+    title        = "pi digits",
+    xlabel       = "digits",
+    ylabel       = "Absolute frequency",
+    fill_color   = grey,
+    fill_density = 0.6))$
+[gr2d(?bars)] $
+
+block([s1 : read_list (file_search ("pidigits.data"))],
+  wxpiechart(
+    s1,
+    xrange  = [-1.1, 1.3],
+    yrange  = [-1.1, 1.1],
+    title   = "Digit frequencies in pi"))$
+[gr2d(?ellipse,?ellipse,?ellipse,?ellipse,?ellipse,?ellipse,?ellipse,?ellipse,
+  ?ellipse,?ellipse)]$
+
+block([s2 : read_matrix (file_search ("wind.data"))],
+  wxscatterplot(
+    submatrix(s2, 1,2,3),
+    title      = "Data from stations #4 and #5",
+    point_type = diamant,
+    point_size = 2,
+    color      = blue))$
+[gr2d(?points)]$
+
+block([l1: makelist(random(10),k,1,50),
+  l2: makelist(random(10),k,1,200)],
+  wxstarplot(
+    l1, l2,
+    stars_colors = [blue,red],
+    sample_keys = ["1st sample", "2nd sample"],
+    star_center = [1,2],
+    star_radius = 4,
+    proportional_axes = xy,
+    line_width = 2 )) $
+[gr2d(?points,?points,?points,?points,?points,?points,?points,?points,?points,
+  ?points,?label,?points,?points)]$
+
+
+/* end of rtest_imaxima.mac */

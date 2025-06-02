@@ -1,0 +1,723 @@
+\input texinfo                  @c -*-texinfo-*-
+@c %**start of header
+@documentencoding ISO-8859-1
+@setfilename imaxima.info
+@settitle Imaxima Manual
+@paragraphindent 0
+@c @set VERSION 1.0b
+@c @set UPDATED June 7
+@include version.texi
+@synindex fn cp
+@synindex vr cp
+@synindex pg cp
+@dircategory Emacs
+@direntry
+* Imaxima: (imaxima).   Image support for the computer algebra system Maxima. Interactive math minor mode.
+@end direntry
+
+@iftex
+@c @finalout
+@end iftex
+@ifinfo
+This file documents Imaxima.
+
+Copyright (C) 2002, 2003, 2004 Jesper Harder
+Copyright (C) 2004, 2007, 2008 Yasuaki Honda
+Copyright (C) 2020, 2021 Leo Butler
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+@ignore
+Permission is granted to process this file through Tex and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+@end ignore
+@end ifinfo
+
+@titlepage
+@title Imaxima Manual
+@subtitle Version @value{VERSION}
+@subtitle @value{UPDATED}
+@author by Jesper Harder, Yasuaki Honda and Leo Butler. Imath mode by Yasuaki Honda.
+@page
+
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2002, 2003, 2004 Jesper Harder 
+Copyright @copyright{} 2004, 2007, 2008 Yasuaki Honda   
+Copyright @copyright{} 2020, 2021 Leo Butler
+
+Permission is granted to make and distribute verbatim copies of@*
+this manual provided the copyright notice and this permission notice@*
+are preserved on all copies.
+@end titlepage
+@page
+
+@node Top, Installation, (dir), (dir)
+@top Imaxima
+Imaxima is a package for displaying the output from the computer
+algebra system Maxima as images typeset by @TeX{}.
+
+This manual documents imaxima version @value{VERSION}. You can
+download the latest version of imaxima from
+@uref{http://maxima.sourceforge.net/, the Maxima website}.
+
+Since version 1.0b, imaxima and imath supports inline graphs.
+
+Send suggestions and bug reports to
+@email{maxima-discuss@@lists.sourceforge.net, the Maxima email list} or
+@uref{https://sourceforge.net/p/maxima/bugs/, the Maxima bug tracker}.
+
+@menu
+* Installation::                Installing imaxima (and breqn).
+* Usage::                       Commands you can use in imaxima.
+* Inline Graphs::               Commands you can use for inline graphs.
+* Options::                     Customizing imaxima.
+* Imath minor mode::            Interactive Math minor mode.
+* Index::
+@end menu
+
+@node Installation, Usage, Top, Top
+@chapter Installation
+@cindex breqn
+Install imaxima by unpacking the tarball and doing the usual
+incantation
+
+@example
+./configure
+make
+make install
+@end example
+
+@noindent
+and put
+
+@lisp
+(autoload 'imaxima "imaxima" "Image support for Maxima." t)
+@end lisp
+
+@noindent
+in your @file{.emacs} file.
+
+If you use Interactive Math minor mode, put
+
+@lisp
+(autoload 'imath-mode "imath" "Interactive Math minor mode." t)
+@end lisp
+
+@noindent
+in your @file{.emacs} file.
+
+
+To do line breaking imaxima requires the LaTeX package
+@code{breqn}. This package is currently distributed from
+@uref{https://ctan.org/pkg/breqn, its CTAN webpage} as
+@uref{http://mirrors.ctan.org/install/macros/latex/contrib/breqn.tds.zip,
+breqn.tds.zip}.
+
+The files in @code{breqn} must be installed in a place where @TeX{} can
+find them. In a typical LaTeX installation you should put the
+@file{*.sty} and @file{*.sym} files in
+
+@example
+@file{/usr/share/texmf/tex/latex/breqn/}
+@end example
+
+@noindent
+and the documentation files in 
+
+@example
+@file{/usr/share/texmf/doc/latex/breqn/}.  
+@end example
+
+The files can also be installed in a number of other places---consult
+your @TeX{} documentation for details.
+
+Now run @command{texhash} after installing the files.  You can use the
+command @command{kpsewhich} to verify that @TeX{} is able to find the
+files, e.g.
+
+@example
+kpsewhich breqn.sty
+@end example
+
+To get the best image quality a fairly recent version of Ghostscript
+is recommended.  @xref{Miscellaneous}, for options suitable for using
+older versions of Ghostscript or not using Ghostscript at all
+
+@section Manual installation
+If you cannot use @command{make}, the manual steps required for
+installation are
+
+@itemize  @bullet{}
+@item 
+Byte compile @file{imaxima.el} and @file{imath.el}.
+@item
+Place the files @file{imaxima.el}, @file{imaxima.elc}, @file{imath.el},
+@file{imath.elc}, @file{imaxima-autoconf-variables.el} and
+@file{imaxima.lisp} in Emacs' @code{load-path} (@pxref{Lisp Libraries,
+, , emacs, The Emacs manual}).
+@item
+Install the @TeX{} files in the way explained above.
+@end itemize
+
+@node Usage, Inline Graphs, Installation, Top
+@chapter Usage
+To start using imaxima just type @kbd{M-x imaxima}. The imaxima
+directory needs to be on Emacs' @code{load-path}.
+
+@defun imaxima
+Starts a Maxima session in an Emacs buffer.
+@end defun
+
+You can turn image generation off by evaluating
+
+@example
+display2d:true
+@end example
+
+@noindent
+in Maxima.  Output from Maxima is then shown with the usual
+@acronym{ASCII} graphics.  To turn images on again, evaluate
+
+@example
+display2d:imaxima
+@end example
+
+If there is an error in a LaTeX expression you can press @kbd{Mouse-2}
+(or @kbd{@key{RET}}) on the error message to view the error log and
+@kbd{Mouse-3} (or @kbd{M-@key{RET}}) to view the LaTeX source file.
+
+@defopt imaxima-use-maxima-mode-flag
+Set to non-@code{nil} to use the Maxima mode from @code{maxima.el}.
+
+By default @code{imaxima.el} uses a very simple mode which doesn't
+provide any custom menus, font-locking or key-bindings.  You can,
+however, combine @code{imaxima.el} with the Emacs mode from the Maxima
+distribution to get these features.
+@end defopt
+
+@defun imaxima-latex
+Converts the Maxima buffer to a LaTeX document and opens it in LaTeX
+mode. @ref{imaxima-latex-buffer-name} @emph{Note:} This command does not
+work in XEmacs.
+@end defun
+
+@defun imaxima-to-html
+Converts the Maxima buffer to a HTML document named session.html 
+and opens it in HTML mode. All the PNG files generated by imaxima 
+for each output from Maxima are gathered in a folder named session-images
+and referenced from session.html. @emph{Note:} This command does not 
+work in XEmacs. 
+@end defun
+
+@defun imaxima-clean-up
+Delete temporary files created by imaxima and kill the Ghostscript
+process if it is running.  Normally imaxima does this automatically
+when you quit Maxima.  This command is just a convenience if
+this doesn't happen.
+@end defun
+
+@defun imaxima-version
+Display the package name and the version number of the imaxima imath
+package in the mini buffer. You should make sure the version 
+information when you want to make bug reports.
+@end defun
+
+@defun reinit-imaxima
+Initialize the imaxima program. Sometimes you may encounter situations
+where imaxima does not repond to your input. This is caused by the
+inconsistency between Emacs Lisp and Maxima. Such situations can be
+resolved by using this command. After calling this command from the
+Emacs mini buffer, you should type simple Maxima expression such as
+1+2; to ensure that the imaxima does respond to you now.
+@end defun
+
+@anchor{imaxima-print-buffer}
+@defun imaxima-print-buffer
+Run LaTeX on the current buffer and show output. See
+@xref{imaxima-print-tex-command} for how LaTeX is run.
+@end defun
+
+
+@node Inline Graphs, Options, Usage, Top
+@chapter Inline Graphs
+
+Since version 1.0b, imaxima and imath supports the inline graph display
+feature. That is, if a special graph command (such as wxplot2d, wxplot3d)
+is used in the maxima session, the graph generated by the command is 
+inserted in the maxima session buffer, instead of displaying in another
+window.
+
+
+Before using this feature, you should make sure @code{plot2d} works
+with Gnuplot by trying:
+@example
+(%i1) plot2d(x^2,[x,-5,5],[plot_format,gnuplot]);
+@end example
+If this works fine, then quite likely @code{wxplot2d} works, too.
+
+Following commands can be used in a maxima session to draw graphs to be
+displayed inline: @code{wxplot2d}, @code{wxplot3d}, @code{wxdraw2d},
+@code{wxdraw3d}, @code{wximplicit_plot}, and @code{wxcontour_plot}. New
+in version 1.0d, the graphics commands @code{wxdraw}, @code{wxjulia} and
+@code{wxmandelbroit} also provide inline images.
+
+The syntax and capabilities of the wx-prefixed versions of the commands
+and their arguments are the same as the ones of the corresponding
+original commands. Hence, @code{wxplot2d} draws a graph inline in the
+@verb{*imaxima*} buffer, while @code{plot2d} displays the same graph in
+a different window created by Gnuplot.
+
+The wx-prefixed versions of the commands set up arguments so that
+Gnuplot is used to draw the graph and writes the graph in extended
+postscript format into a temporary file. Conseqently, use of plot
+options such as @code{plot_format}, @code{gnuplot_script_file},
+@code{gnuplot_term}, @code{ps_file} or their draw counterparts will
+result in unspecified behaviour.
+
+The @code{wxdraw} family of commands automatically load the draw package
+since they call @code{draw} internally. Similarly, @code{wxjulia} and
+@code{wxmandelbroit} automatically load the dynamics package.
+
+@menu
+* Keybindings::
+* Commands and Options::
+@end menu
+
+@node Keybindings, Commands and Options, Inline Graphs, Inline Graphs
+@section Keybindings
+
+Images in the @verb{*imaxima*} buffer have a special keymap
+(@pxref{keymaps,keymaps,keymaps,emacs}). By hovering the mouse over the
+image, one can display the list of `hot keys' and a short description of
+each action pressing a key triggers. To activate the keymap, point must
+be on the image.
+
+@enumerate
+@item
+l : Copy the @LaTeX{} source to generate the image under point into the
+register stored in @ref{imaxima-latex-src-register} (default:
+l). @pxref{imaxima-get-latex-src}.
+
+@item
+g : Have Gnuplot replot the graph/image under point in a separate window
+spawned by Gnuplot. @pxref{imaxima-gnuplot-replot}.
+
+@item
+s : Forcibly restart the Gnuplot process. This can be useful if an error
+occurs during plotting. Some @code{plot} examples may only work if
+Gnuplot is restarted. @pxref{imaxima-gnuplot-restart}.
+@end enumerate
+
+@node Commands and Options,  , Keybindings, Inline Graphs
+@section Commands and Options
+
+@anchor{imaxima-get-latex-src}
+@deffn {Command} imaxima-get-latex-src
+When point is over an image, this copies the @LaTeX{} source used by
+imaxima to generate the image into the register named by
+@ref{imaxima-latex-src-register}.
+@end deffn
+
+@anchor{imaxima-gnuplot-replot}
+@deffn {Command} imaxima-gnuplot-replot
+When point is over an image created by Gnuplot, this command will
+re-execute the Gnuplot script that created the image and display it in a
+separate window spawned by Gnuplot. Asks for the Gnuplot terminal to
+use. @pxref{imaxima-gnuplot-replot-term}.
+@end deffn
+
+@anchor{imaxima-gnuplot-restart}
+@deffn {Command} imaxima-gnuplot-restart
+Forcibly kill the Gnuplot process and buffer, if necessary, and then
+start a new Gnuplot process.
+@end deffn
+
+@anchor{imaxima-gnuplot-buffer}
+@defopt imaxima-gnuplot-buffer
+The name of the buffer in which imaxima runs its Gnuplot
+process. Default: @verb{|*imaxima-gnuplot*|}.
+@end defopt
+
+@anchor{imaxima-gnuplot-command}
+@defopt imaxima-gnuplot-command
+The name of the Gnuplot executable that imaxima runs. Default:
+@verb{|gnuplot|}.
+@end defopt
+
+@anchor{imaxima-gnuplot-args}
+@defopt imaxima-gnuplot-args
+Optional arguments sent to the Gnuplot executable by imaxima. Default:
+@verb{|""|}.
+@end defopt
+
+@anchor{imaxima-latex-src-register}
+@defopt imaxima-latex-src-register
+One can copy the @LaTeX{} source used to generate an image into a
+register by placing point over the image and typing this key. Default:
+@code{l}.
+@end defopt
+
+@anchor{imaxima-gnuplot-replot-term}
+@defopt imaxima-gnuplot-replot-term
+The name of the Gnuplot terminal used to display an inline plot in an
+external, Gnuplot-spawned window. @pxref{imaxima-gnuplot-replot}.
+@end defopt
+
+
+@node Options, Imath minor mode, Inline Graphs, Top
+@chapter Options
+
+@menu
+* Appearance::                  Size, colors, fonts.
+* Line Breaking::               Options for Line Breaking.
+* Miscellaneous::
+@end menu
+
+All options can be changed in the Emacs customize interface, use
+@kbd{M-x customize-group @key{RET} imaxima @key{RET}}.
+
+@node Appearance, Line Breaking, Options, Options
+@section Appearance
+
+@anchor{imaxima-pt-size}
+@defopt imaxima-pt-size
+The type size used in LaTeX.  This can be @samp{9}, @samp{10},
+@samp{11} or @samp{12} pt.
+@end defopt
+
+@anchor{imaxima-fnt-size}
+@defopt imaxima-fnt-size
+Default size of font.  Options include @samp{small},
+@samp{normalsize}, @samp{large}, @samp{Large}, @samp{LARGE},
+@samp{huge} or @samp{Huge} (in non decreasing order).
+@end defopt
+
+@anchor{imaxima-scale-factor}
+@defopt imaxima-scale-factor
+Scale all images by this factor.  The default is @samp{1.0}.
+@end defopt
+
+@emph{Note:} The options @code{imaxima-pt-size},
+@code{imaxima-fnt-size} and @code{imaxima-scale-factor} are highly
+non-orthogonal.
+
+@anchor{imaxima-equation-color}
+@defopt imaxima-equation-color
+Color used for equations.
+@end defopt
+
+@anchor{imaxima-label-color}
+@defopt imaxima-label-color
+Color used for output labels (red by default).
+@end defopt
+
+@anchor{imaxima-bg-color}
+@defopt imaxima-bg-color
+Background color used in the imaxima buffer.  @code{nil} if you don't want
+to change the default color.
+@end defopt
+
+@anchor{imaxima-fg-color}
+@defopt imaxima-fg-color
+Foreground color used in the imaxima buffer.  @code{nil} if you don't want
+to change the default color.
+@end defopt
+
+@anchor{imaxima-latex-preamble}
+@defopt imaxima-latex-preamble
+(See options @code{imaxima-latex-document-class},
+@code{imaxima-latex-use-packages},
+@code{imaxima-latex-document-dimensions}, @code{imaxima-latex-macros}
+and @code{imaxima-latex-macros-linear}.) LaTeX expression inserted at
+the start of the document preamble when TeX'ing equations. This can be
+used to change, say, the document font. E.g.
+
+@example
+\usepackage@{concrete@}
+\usepackage@{euler@}
+@end example
+
+@cindex euler
+@cindex concrete
+will use Herman Zapf's Euler math fonts and the accompanying Concrete
+roman fonts.  These are probably better suited as screen fonts than the
+default Computer Modern, which works best at high resolutions.
+@end defopt
+
+@anchor{imaxima-latex-error-face}
+@defopt imaxima-latex-error-face
+Face used for LaTeX errors.  This option is ignored when using
+@code{maxima.el}.
+@end defopt
+
+@anchor{imaxima-latex-document-class}
+@defopt imaxima-latex-document-class
+An elisp list (FORMAT-STRING [ARGS]) that provides a valid list of
+inputs to @code{format}. FORMAT-STRING should generate the @LaTeX{}
+document class used to generate all @LaTeX{} documents; ARGS is
+evaluated. Used by @code{imaxima-latex}.
+@end defopt
+
+@anchor{imaxima-latex-use-packages}
+@defopt imaxima-latex-use-packages
+A string that contains all @code{usepackage} declarations needed. This
+is inserted into the @LaTeX{} document after
+@code{imaxima-latex-preamble}.
+@end defopt
+
+@anchor{imaxima-latex-macros-format-file}
+@defopt imaxima-latex-macros-format-file
+Macros used by @code{imaxima-dump-tex} to generate the format file.
+@end defopt
+
+@anchor{imaxima-latex-macros}
+@anchor{imaxima-latex-macros-linear}
+@defopt imaxima-latex-macros, imaxima-latex-macros-linear
+A string that defines @emph{imaxima}-specific macros to format fractions
+in regular and linear fashion.
+@end defopt
+
+@anchor{imaxima-latex-document-dimensions}
+@defopt imaxima-latex-document-dimensions
+A string the contains the document dimensions for @code{imaxima-latex}.
+@end defopt
+
+@anchor{imaxima-create-image-options}
+@defopt imaxima-create-image-options
+An association list of options that are used by the imaxima function
+@code{imaxima-create-image}. For example, if one is using a dark
+background in emacs, it may be preferable to set this option to
+@code{(:ascent center)}, thereby removing the default mask option.
+@end defopt
+
+
+@node Line Breaking, Miscellaneous, Appearance, Options
+@section Line Breaking
+Imaxima usually does a decent job of breaking lines that are too wide
+to fit in the buffer (thanks to the @code{breqn} LaTeX package).
+However, this doesn't work so well for very long fractions,
+superscripts and subscripts.  Imaxima has two ways of dealing with
+this:
+
+@itemize @bullet
+@item
+Scaling.
+@item
+Rewriting the equation in a ``linear'' form which can be split over
+several lines.
+@end itemize
+
+The following options control how this is done.
+
+
+@defopt imaxima-max-scale
+Maximum amount of scaling allowed to fit wide equations in the buffer.
+The default is @code{0.85}, which allows images to be scaled down to
+85% of the original size. @code{nil} disables scaling and @code{t}
+allows unlimited scaling.
+@end defopt
+
+@defopt imaxima-linearize-flag
+Non-@code{nil} allows fractions, superscripts, subscripts and square
+roots to be linearized to fit in the buffer.  That is
+@ifnottex
+@example
+
+         b                           a + b         _______
+        a              a            -------       V a + b 
+                        b            c + d
+@end example
+@end ifnottex
+@tex
+$$a^b \quad a_b \quad {{a+b}\over{c+d}} \quad \sqrt{a+b}$$
+@end tex
+
+are written as
+
+@ifnottex
+@example
+                                                          ?
+    expt(a,b)   subscript(a,b)   (a + b)/(c + d)   (a + b)
+@end example
+@end ifnottex
+@tex
+$${\rm expt}(a,b) \quad {\rm subscript}(a,b) \quad (a+b)/(c+d) \quad (a+b)^{1/2}$$
+@end tex
+@end defopt
+
+@node Miscellaneous,  , Line Breaking, Options
+@section Miscellaneous
+If the required files are in your path, you shouldn't normally need to
+change these options.
+
+@anchor{imaxima-latex-buffer-name}
+@defopt imaxima-latex-buffer-name
+The default name of the buffer created by @code{imaxima-latex}.
+The default value is @code{*imaxima-latex*}.
+@end defopt
+
+@cindex png
+@cindex jpeg
+@defopt imaxima-image-type
+Image type used in the buffer.  @acronym{PNG}, @acronym{JPEG},
+@acronym{TIFF} and PostScript are supported.  In my opinion
+@acronym{PNG} gives the best results, but if your Emacs wasn't
+compiled with @acronym{PNG} support you could try one of the others.
+PostScript doesn't require Ghostscript to be installed.  XEmacs can
+not display PostScript images, so this type does not work in XEmacs.
+@end defopt
+
+@cindex ghostscript
+@defopt imaxima-gs-program
+Ghostscript executable
+@end defopt
+
+@defopt imaxima-gs-options
+Options passed to @command{gs} when converting @acronym{EPS} to other
+image formats.  Older versions of Ghostscript don't support
+anti-aliasing. In that case you might have to remove the options
+@option{-dTextAlphaBits=4} and @option{-dGraphicsAlphaBits=4}.
+@end defopt
+
+@defopt imaxima-cp-program
+The default `copy' program.
+@end defopt
+
+@defopt imaxima-dvips-program
+Dvips executable.
+@end defopt
+
+@defopt imaxima-dvips-options
+Command line options passed to @command{dvips} when converting
+@acronym{EPS} files to @acronym{DVI}.
+@end defopt 
+
+@anchor{imaxima-tmp-dir}
+@defopt imaxima-tmp-dir
+Directory used for temporary files created by imaxima.
+@file{/tmp} by default.
+@end defopt
+
+@defopt imaxima-lisp-file 
+The Lisp file used to initialize Maxima.
+@end defopt 
+
+@defopt imaxima-tex-program
+@TeX{} executable.
+@end defopt
+
+@defopt imaxima-initex-option
+Option passed to @TeX{} to start it in the ``initial'' form capable of
+dumping format files.
+@end defopt
+
+@defopt imaxima-maxima-program
+Maxima executable.
+@end defopt
+
+@cindex CMUCL
+@defopt imaxima-maxima-options
+Command line arguments passed to Maxima.  If you have Maxima versions
+compiled with different Lisps, you can use this to select which one to
+use.  E.g. @option{--lisp=cmucl} will choose the version compiled with
+CMUCL.
+@end defopt
+
+@defopt imaxima-startup-hook
+Hook run when starting imaxima.
+@end defopt
+
+@defopt imaxima-exit-hook
+Hook run when exiting imaxima.
+@end defopt
+
+@defopt imaxima-html-dir
+When imaxima-to-html function is called, the function determines
+the directory into which the session.html file and the 
+session-images directory are created. The default value is ``~''.
+@end defopt
+
+@anchor{imaxima-print-tex-file}
+@defopt imaxima-print-tex-file
+Name of the LaTeX file name to be created by
+@code{imaxima-print-buffer}. Do not include ".tex" suffix. This file
+will be stored in the directory @code{imaxima-tmp-dir}.
+@end defopt
+
+@anchor{imaxima-print-tex-command}
+@defopt imaxima-print-tex-command
+Command to run LaTeX on the file created by
+@code{imaxima-print-buffer}. In the string '%s' is replaced by the name
+of the tex file. e.g. "pdflatex %s; xpdf %s"
+@end defopt
+
+@node Imath minor mode, Index, Options, Top
+@chapter Imath minor mode
+The imath minor mode provides a small set of functions to aid
+insert math formulas into plain text. 
+
+A math formula is written using a Maxima form whose syntax is
+@{maxima a formula maxima@} where a formula is a string which can
+be accepted as Maxima command input. C-c [ inserts a template
+for a maxima form. 
+
+The other way to write a math formula is to use LaTeX form
+whose syntax is @{latex a formula latex@} where a formula is 
+a valid LaTeX commands. C-c ] inserts a template for a latex
+form.
+
+Example maxima and latex forms are:
+@example
+@{maxima integrate(f(x),x) maxima@}
+@{maxima sum(a[n],n,0,i) maxima@}
+@{latex  \\int @{f\\left(x\\right)@}@{\\;dx@} latex@}
+@{latex  \\sum_@{n=0@}^@{i@}@{a_@{n@}@} latex@}
+@end example
+
+Assuming the cursor position is right after a form or in the
+middle, C-c ! transforms the form into the formula image using
+the Imaxima functionality.
+
+If the resulting image is not what you want, you may want to edit
+the formula again. To do this, place the cursor right after the
+image and C-c &. Then the image is removed and original form
+appears at the position.
+
+When saving the buffer into a file, images are
+discarded. However, maxima forms and their corresponding latex
+forms are kept there in the text. If the text is loaded again
+into Emacs and imath minor mode is enabled, you can type C-c $ to
+restore all the images for the forms in the buffer.
+
+@example
+\C-c[   Compose Maxima form
+\C-c]   Compose Latex form
+\C-c!   Transform a form to an image
+\C-c$   Transform all forms to images
+\C-c&   Remove the image to restore the original form text
+@end example
+
+You can export the imath mode buffer contents into HTML using
+a command named imath-to-html. This command can be invoked by
+M-x imath-to-html. Then a buffer is created, visiting a file
+whose name is the same as the original imath text file, only
+exception being .html as the file extension. Upon saving, the
+file is placed in the same directory as the original file. Also
+a directory is created whose name is the same as the imath text
+file, but removing the extension and add -images. Images for
+formulas are copied in this directory. 
+
+@node Index,  , Imath minor mode, Top
+@chapter Index
+@printindex cp
+
+@contents
+@bye
+
+@c Local Variables:
+@c time-stamp-format: "%:y-%02m-%02d %02H:%02M:%02S"
+@c End:

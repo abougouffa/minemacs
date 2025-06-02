@@ -1,0 +1,445 @@
+2012-03-25 Yasuaki Honda <yasuaki.honda@gmail.com>
+	* version 1.03
+	* A new command "reinit-imaxima" is added. This command reset the
+	communication status of Emacs Lisp and Maxima. When imaxima does
+	not respond to any input, this command will help to resolve such
+	situation.
+
+2011-10-02 Yasuaki Honda <yasuaki.honda@gmail.com>
+	* version 1.01
+	* An old workaround code for tex prevented imaxima on Mac OS X
+	Lion from working. This is related to the placing of the temporary
+	file directory and the name of the file path containing the
+	character "_". This is fixed in this version.
+	* Special treatment of greek character gamma is removed from
+	imaxima.el and committed to maxima mactex.lisp.
+
+2009-02-07 Yasuaki Honda <yasuaki.honda@gmail.com>
+	* As for inline graph, if the emacs buffer window is too small for
+	the generated graph image, the graph is not displayed, but a file
+	name is displayed instead. Now, the graph is resized to fit to the
+	current imaxima buffer size and correctly displayed. Thanks go to
+	Bertram for his patch.  
+
+	* A bug in setup-imaxima-imath.el, which is used in "Easy Install
+	on Windows XP / Vista" is fixed so that it can now correctly
+	handles the set up of info files.
+
+	* Now csetup() function in ctensor package displays interactive
+	messages correctly.
+
+	* derivabbrev:true is correctly handled.
+
+	* A lot of lisp code in imaxima.lisp that are common in
+	mactex.lisp are removed.
+
+
+2008-10-26 Yasuaki Honda <yasuaki.honda@gmail.com>
+	* A workaround for OpenSUSE Linux 10.3 is incorporated.
+
+2008-05-28 Yasuaki Honda <yhonda@mac.com>
+	* bohumir's patch for {eps xxx eps} is included.
+	* Inline graph support in both imaxima and imath is added.
+	* I have decided this version to be 1.0 beta. 
+
+2008-01-06 Yasuaki Honda <yhonda@mac.com>
+	* Nothing is changed for imaxima.el and imaxma.lisp.
+	* setup-imaxima-imath.el is now a part of the distribution package. This 
+	file is used for Easy Install for Windows.
+	* Copyright notice is added for imaxima-autoconf-variables.el.in.
+	* Any reference to breqn and its download/installation is reviewed and
+	updated to refrect the current situation.
+
+2007-09-30 Yasuaki Honda <yhonda@mac.com>
+	* Conjugate is correctly handled by imaxima. Reported by Dmitry Aleshin.
+	* Gamma function is printed with large gamma, while the euler constant
+	%gamma and a small greek letter gamma are printed with small gamma. 
+	Reported by Masumi Kasai.
+	* imaxima-to-html function is added by Yasuaki Honda.
+
+2006-10-30 Yasuaki Honda <yhonda@mac.com>
+	* imaxima-imath-0.96.tar.gz is created. See NEWS for more details.
+
+2006-03-11 Yasuaki Honda <yhonda@mac.com>
+	* Imaxima has been independently developed from imath. Now imath is updated to incorporate all the changes to imaxima.el up to 0.93a.
+
+2005-07-03 Yasuaki Honda <yhonda@mac.com>
+	* Mac OS X 10.4 Tiger seems to change its socket implementation
+	which prevents imaxima from running. Version 0.92 fixes this bug.
+
+2004-11-26  Yasuaki Honda <yhonda@mac.com>
+	* imath-mode is added to imaxima.el and imath.el. This mode
+	enables you to write maxima and latex formula in the plain
+	text and to view mathematical formula presentation.
+
+2004-08-15  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp (tex-mlable): Escape special chars.
+
+2004-06-18  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp: Don't use package prefix when setting
+	*suppress-check-redefinition* to maintain compatibility with clisp
+	2.29.  Reported by PA Monwall <pam@optimation.se>.
+
+2004-04-04  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Version 0.8 released.
+
+	* imaxima.el (imaxima-tex-program): Change to "latex".  Reported
+	by 沈 博轩 <ubx26@hotmail.com>.
+
+2004-03-19  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-latex): Use proper fraction for \ifracd and
+	\ifracn.
+	(imaxima-start-gs): Fix format string mismatch.
+
+2004-03-12  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp ($kappa): Don't use \varkappa.  Reported by Fr,Aid,Airic
+	Petit <frederic.petit@univ-rennes1.fr>.
+
+2004-03-07  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-bg-color, imaxima-fg-color): Fix customize
+	type mismatch.
+	(imaxima-linearize-flag, imaxima-use-maxima-mode-flag): Use
+	boolean.
+
+2004-03-06  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp: Suppress warnings in CLISP 2.32.  Reported by
+	Gustavo Sverzut Barbieri <gustavo.barbieri@ic.unicamp.br>
+
+	* imaxima.el (imaxima-equation-color): Default to foreground-color
+	of current frame.  Reported by Sam Halliday <fommil@yahoo.ie>
+
+	* imaxima.lisp (tex-mexpt): Fix for matrix elements, e.g. a[i]^2.
+
+2004-01-16  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp: Don't confuse telnet.  Replace literal control
+	characters with (string (code-char 3)) etc.
+
+2003-05-02  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima: Version 0.7 released.
+	
+2003-04-26  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp: Fix 'not', 'and', 'or' and '#'.
+
+2003-04-17  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-start-gs): ESP Ghostscript 7.05 is broken
+	too.  From Felix E. Klee <felix.klee@inka.de>.
+	(imaxima-scale-factor): New option.
+	(imaxima-dvi-to-ps): Use it.
+	(imaxima-tex-to-dvi): do.
+
+2003-04-14  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-fnt-size): Add "small" and "huge".
+
+2003-03-30  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Version 0.6 released.
+
+2003-03-30  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima): Load imaxima.lisp from the command line.
+	(imaxima-setup): Goto eob.
+
+2003-03-26  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-make-image): Use / in file names on Windows.
+
+	* imaxima.lisp (tex-sqrt): Define isqrt.
+
+	* imaxima.el (imaxima-tex-to-dvi, imaxima-latex)
+	(imaxima-dump-tex): do.
+
+2003-03-21  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-lisp-file): Use / in file names on
+	ms-windows.
+	(imaxima-ps-to-image): do.
+
+2002-12-08  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-setup): Fix docstring.
+	(imaxima-startup-hook): New variable.
+	(imaxima): Use it.
+	(imaxima-exit-hook): New option.
+	(imaxima-clean-up): Use it.
+
+2002-11-09  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: We need to require 'cl at runtime because
+	remove-if-not is used.
+	Version 0.5.1 released.
+
+2002-11-04  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-latex): Fix empty lines inside dmath.
+	Version 0.5 released.
+
+2002-11-02  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-image-types): New variable.
+	(imaxima-image-type): Use it, and rename 'ps to 'postscript.
+	(imaxima): *Really* fix the underscore problem.
+	(imaxima): Return an error if image type is not supported.
+
+2002-10-29  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-gs-7.05-is-broken): New variable.  GNU
+	Ghostscript 7.05 is broken -- we have to disable security features
+	to make it work.
+	(imaxima-start-gs): Set it.
+	(imaxima-ps-to-image): Use it.
+	(imaxima-image-type-available-p): New function.
+	(imaxima-start-gs): Use it.
+	(imaxima-tmp-dir): Don't define temporary-file-directory in XEmacs.
+
+2002-10-08  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima): Don't invoke comint-mode -- make-comint
+	takes care of that.
+	(imaxima): Connect processes to a pipe rather than a pty.
+	(imaxima-maxima-options): New option.
+	(imaxima): Use it.
+
+2002-10-07  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-subst-char-in-string): New function.
+	(imaxima): Use it.
+	(imaxima-setup): Call imaxima-dump-tex.
+
+	* imaxima.lisp (texmdoin): Replace $|in| with \mathbf{in}.
+
+2002-07-04  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima): Don't make imaxima a major mode.
+
+	* imaxima.lisp (latex): Don't test for stringp -- in some cases
+	(e.g. ask_integer) questions are symbols.
+	(displa): Advice displa instead of including it in imaxima.lisp.
+	(tex-d): Merge fix from Maxima CVS.
+	(texnumformat): Replace with version from Maxima CVS.
+
+	* imaxima.el (imaxima): Avoid underscores in imaxima-tmp-subdir.
+	(imaxima-with-temp-dir): Wrap a progn around body.
+
+2002-05-13  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp (latex): Use princ instead of myprinc.
+	(tex-list): (concat -> (concatenate 'string.
+
+2002-03-31  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Version 0.4 released.
+
+2002-03-29  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-make-image): Use imaxima-file-counter.
+	(imaxima-latex-error): Make errors accessible from the keyboard,
+	too: RET, M-RET.
+	(imaxima-mouse2, imaxima-mouse3): It's button2 not mouse2 in
+	XEmacs.
+	(imaxima-tex-program): New option.
+	(imaxima-initex-option): New option.
+	(imaxima-mylatex): `mylatex.ltx'.
+	(imaxima-dump-tex): New function, dump a TeX format file with
+	packages pre-loaded.
+	(imaxima): Use it.
+	(imaxima-tex-to-dvi): Use the dumped format file.
+
+2002-03-28  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-file-counter): New variable.
+	(imaxima): initialize it.
+
+	* imaxima.lisp (#'tex-setup): Better kerning.
+
+	* imaxima.el (imaxima-make-image): Append ".tex" to filename when
+	linearizing.
+
+2002-03-27  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima): Add link to manual and webpage in
+	customize group.
+	(imaxima-start-gs): Better error handling.
+
+2002-03-22  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-tex-to-dvi): Set pagecolor to buffer
+	background colour.
+	(imaxima-make-image): use imaxima-bg-color as mask.
+	(imaxima-image-creators): use png16m for PNG.
+
+2002-03-20  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Version 0.3 released.
+	
+	* imaxima.el (imaxima-change-color): new function.
+	(imaxima, imaxima-setup): use it.
+	(imaxima-clean-up): Restore original colors in Emacs.
+	(imaxima-bg-color, imaxima-fg-color): new option.
+
+2002-03-18  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-label-color): better customize interface.
+	(imaxima-equation-color): do.
+	(imaxima-color-to-rgb): new function.
+	(imaxima-tex-to-dvi): use it.
+	(imaxima-color-list): remove
+	(imaxima): use it.
+	(imaxima-setup): do.
+
+2002-03-17  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-clean-up): make it work in XEmacs.
+
+2002-03-16  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-latex-error): append ".tex" to LaTeX source
+	file.
+	(imaxima-tmp-subdir): new variable.  Don't write temporary files
+	to a dir that is world writable.
+	(imaxima): use it.
+	(imaxima-tex-to-dvi): do.
+	(imaxima-dvi-to-ps): do.
+	(imaxima-make-image): do.
+
+	* imaxima.lisp (tex-mexpt): don't use f,A2(x)-hack for %derivative.
+	(tex-mexpt): do. for %integrate, %lsum, %limit.
+
+	* imaxima.el (imaxima-ps-to-image): Make it work with gs 7.04
+	[solution borrowed from preview-latex.el].
+
+2002-03-15  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp (tex-mexpt): fix case where f(x)^2 is written as
+	f,A2((x)).
+
+	* imaxima.el (imaxima-tex-to-dvi): add definition for \boxed.
+
+	* imaxima.lisp (tex-mbox): add.
+	(tex-mlabox): add.
+
+	* imaxima.el: Remove aliases to shut up the byte-compiler since
+	this confuses Gnus.
+
+2002-03-14  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Version 0.2 released.
+	(imaxima-latex): add \ifracd etc.
+	
+2002-03-13  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-tex-to-dvi): Don't use brackets if numerator
+	is an atom etc.
+
+	* imaxima.lisp (tex-mquotient): do.
+
+	* imaxima.el (imaxima-error-map): new variable.
+	(imaxima-mouse2): do.
+	(imaxima-mouse3): do.
+	(imaxima-latex-error-emacs): remove.
+	(imaxima-latex-error-xemacs): remove.
+	(imaxima-latex-error): new function for both Emacs and XEmacs.
+
+2002-03-12  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (imaxima-dvips-options): add "-R" (run in secure mode).
+
+	* imaxima.lisp (tex-array): don't use \isubscript if subscript is
+	an atom.
+
+2002-03-11  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp (tex-choose): use \choose instead of \pmatrix
+	(tex-mexpt): don't use \iexpt when exponent is an atom.
+
+	* imaxima.el (imaxima-setup-preoutput-filter): new function
+	(imaxima-setup): use it.
+	(imaxima): do.
+	(imaxima-latex-error-xemacs): new function.
+
+	* imaxima.lisp (#'tex-setup): Add csch, acoth etc.
+
+	* imaxima.el (imaxima-filter): Check for empty string.
+
+	* imaxima.lisp (tex-mexpt): Fix bug where f(x)^2 causes LaTeX
+	error. It's still not quite right, but Maxima has the same bug.
+
+2002-03-10  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el (temporary-file-directory): XEmacs compatibility.
+
+2002-03-07  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.lisp (tex-choose): \\ -> \cr
+
+2002-03-07  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: imaxima version 0.1.1 released
+	
+	* Makefile.am (EXTRA_DIST): include imaxima.el
+
+2002-03-06  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: imaxima version 0.1 released	
+
+	* imaxima.el (imaxima-max-scale, imaxima-linearize-flag): New
+	options.
+	(imaxima-make-image, imaxima-tex-to-dvi): Use them.
+	(imaxima-filter): Remove extra linebreak.
+	(imaxima, imaxima-setup): Make `comint-preoutput-filter-functions'
+	buffer-local.
+	(imaxima-use-maxima-mode-flag): New option.
+	(imaxima): Use it.
+
+	* imaxima.lisp (tex-mquotient, texarray, tex-mexpt): Linearize.
+	
+2001-11-26  Jesper Harder <harder@ifa.au.dk>
+
+	* imaxima.lisp (myquote): Quote special LaTeX characters.
+	(tex-stripdollar): Use it.
+	(latex): Recognize questions better.
+
+	* imaxima.el (imaxima-quote): Remove.
+	(imaxima-make-image): Fix bug when using ps images, clean up, and
+	move LaTeX error to separate function.
+
+2001-11-18  Jesper Harder  <harder@ifa.au.dk>
+	
+	* imaxima.el (imaxima-latex-error): Use `view-file-other-window'
+	instead of `view-file' for LaTeX errors.
+	(imaxima-equation-color): New option
+	(imaxima-color-list): Add more color names
+	(imaxima-filter): Improve speed.
+	(imaxima-latex): New function.  Makes a LaTeX version of the
+	Maxima buffer
+	(imaxima-fnt-size): make LaTeX text size customizeable:
+	normalsize, large, Large etc.  From: Pedro Fortuny Ayuso
+	<P.Fortuny@maths.qmw.ac.uk>
+	(imaxima-texi-to-dvi) texi: Fix look of parens in labels.
+
+2001-11-15  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Make LaTeX error clickable.
+      
+	* imaxima.el: Use linenum:0 instead of ^C to avoid incrementing
+	labels when loading imaxima.lisp.
+
+2001-11-14  Jesper Harder  <harder@ifa.au.dk>
+
+	* imaxima.el: Initial released version
+
+;; Local Variables:
+;; coding: iso-2022-7bit
+;; End:
+	
