@@ -236,11 +236,6 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-erlang.el
-
-(minemacs-register-on-demand-module 'me-erlang :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
-
-
 ;;; Generated autoloads from me-external-tools.el
 
 (register-definition-prefixes "me-external-tools" '("minemacs-external-dependencies"))
@@ -405,13 +400,6 @@ Call functions without asking when DONT-ASK-P is non-nil.
 Cleanup MinEmacs' root directory.")
 (autoload 'minemacs-cleanup-emacs-directory "me-lib-extra" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
-(autoload 'minemacs-load-module "me-lib-extra" "\
-Interactively install and load MODULES that aren't enabled in \"modules.el\".
-
-When called with \\[universal-argument], it prompts also for on-demand modules.
-When called with \\[universal-argument] \\[universal-argument], it prompts also for obsolete modules.
-
-(fn &rest MODULES)" t)
 (autoload 'minemacs-user-config "me-lib-extra" "\
 Open MinEmacs user configuration.
 
@@ -734,8 +722,10 @@ Show the list of declared external dependencies." t)
 
 (defconst +maxima-path "/usr/share/emacs/site-lisp/maxima/")
 (defconst +maxima-available-p (and (executable-find "maxima") (file-directory-p +maxima-path)))
-(autoload 'minemacs-maxima-load "../modules/on-demand/me-maxima" "\
-Load the `on-demand/me-maxima' module." t)
+(when +maxima-available-p
+ (defun minemacs-maxima-load ()
+   "Load the `on-demand/me-maxima' module."
+   (interactive)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
@@ -795,7 +785,7 @@ Load the `on-demand/me-maxima' module." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
-(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
+(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-odin.el
