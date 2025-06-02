@@ -11,6 +11,7 @@
 ;;; Code:
 
 (defvar +adb-buffer-name "*adb*")
+(defvar +adb-process-name "adb-command")
 (defvar +adb-no-quote nil)
 (defvar +adb-push-dest-history nil)
 (defvar +adb-push-src-dest-cache nil)
@@ -27,7 +28,9 @@ By default, qutote the arguments unless `+adb-no-quote' is non-nil."
         (out-buf (get-buffer-create +adb-buffer-name))
         (cmd (string-join `("adb" ,@(mapcar (if +adb-no-quote #'identity #'shell-quote-argument) (seq-filter #'identity args))) " ")))
     (let ((shell-command-with-editor-mode nil))
-      (async-shell-command cmd out-buf))
+      (with-current-buffer out-buf
+        (insert (propertize (format "\n%s\n- Sending command:\n- %S\n\n" (make-string 20 ?-) cmd) 'face 'error)))
+      (start-process-shell-command +adb-process-name out-buf cmd))
     (pop-to-buffer out-buf)))
 
 ;;;###autoload
