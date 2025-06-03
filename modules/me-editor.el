@@ -105,7 +105,16 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 ;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
 (use-package vim-modeline
   :straight t
-  :hook (find-file . vim-modeline/do))
+  :hook (find-file . vim-modeline/do)
+  :config
+  (setcdr (assoc "shiftwidth" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
+  (setcdr (assoc "sw" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
+
+  (defun +vim-modeline/shiftwidth-use-editorconfig (_name &optional value _options)
+    (when-let* ((offset (string-to-number value))
+                ((or (> offset 0) (< offset 40))))
+      (message "vim-modeline: set shiftwidth to %d" offset)
+      (editorconfig-set-indentation nil nil value))))
 
 
 ;; Writable grep buffer and apply the changes to files
