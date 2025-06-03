@@ -19,7 +19,15 @@
 
 ;; Major modes for editing and running Erlang files
 (use-package erlang
-  :load-path +erlang-path)
+  :load-path +erlang-path
+  :init
+  (require 'erlang-start)) ; This file will define autoloads for the different Erlang commands
+
+
+;; Integrate `erlang' with `flymake'
+(use-package erlang-flymake
+  :after erlang
+  :demand)
 
 
 (provide 'on-demand/me-erlang)

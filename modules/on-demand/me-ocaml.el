@@ -32,7 +32,20 @@
 
 ;; Integration with the dune build system
 (use-package dune
-  :load-path +dune-path)
+  :load-path +dune-path
+  :commands (dune-mode dune-promote dune-runtest-and-promote))
+
+
+;; Integration with dune --watch tasks
+(use-package dune-watch
+  :after dune
+  :demand)
+
+
+;; Integrate `dune' with `flymake'
+(use-package dune-flymake
+  :after dune
+  :demand)
 
 
 ;; Universal toplevel for OCaml
