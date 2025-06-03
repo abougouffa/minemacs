@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-06-03
 
 ;;; Commentary:
 
@@ -28,9 +28,11 @@
   :straight t)
 
 
+(defconst +dune-path (concat minemacs-on-demand-modules-dir "third-party/dune/"))
+
 ;; Integration with the dune build system
 (use-package dune
-  :straight (:host github :repo "ocaml/dune" :depth 1 :files ("editor-integration/emacs/*.el")))
+  :load-path +dune-path)
 
 
 ;; Universal toplevel for OCaml
