@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-03
+;; Last modified: 2025-06-04
 
 ;;; Commentary:
 
@@ -103,26 +103,9 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 
 ;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
-(use-package vim-modeline
-  :straight t
-  :hook (find-file . vim-modeline/do)
-  :config
-  (add-to-list 'vim-modeline/options-alist '("filetype" . +vim-modeline/filetype))
-  (add-to-list 'vim-modeline/options-alist '("ft" . +vim-modeline/filetype))
-
-  (defun +vim-modeline/filetype (_name &optional ext _options)
-    (when-let* ((mode (alist-get (file-name-with-extension "dummy" ext) auto-mode-alist nil nil #'string-match-p)))
-      (message "vim-modeline: set filetype to %S (emacs mode: %S)" ext mode)
-      (funcall mode)))
-
-  (setcdr (assoc "shiftwidth" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
-  (setcdr (assoc "sw" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
-
-  (defun +vim-modeline/shiftwidth-use-editorconfig (_name &optional value _options)
-    (when-let* ((offset (string-to-number value))
-                ((or (> offset 0) (< offset 40))))
-      (message "vim-modeline: set shiftwidth to %d" offset)
-      (editorconfig-set-indentation nil nil value))))
+(use-package vim-modelines
+  :straight (:host github :repo "abougouffa/vim-modelines")
+  :hook (minemacs-first-file . vim-modelines-mode))
 
 
 ;; Writable grep buffer and apply the changes to files
