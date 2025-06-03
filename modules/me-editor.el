@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-31
+;; Last modified: 2025-06-03
 
 ;;; Commentary:
 
@@ -82,7 +82,7 @@
   (add-to-list 'dtrt-indent-hook-mapping-list '(protobuf-ts-mode c/c++/java protobuf-ts-mode-indent-offset))
   (defun +dtrt-indent-tab-to-tab-stop ()
     "Like `tab-to-tab-stop', but set `indent-tabs-mode' according the context.
-In some files, there is a mix of spaces and tabs. This uses
+In some dirty files, there is a mix of spaces and tabs. This uses
 `dtrt-indent' to detect which one to insert at point."
     (interactive)
     (let* ((lang (cadr (dtrt-indent--search-hook-mapping major-mode)))
@@ -100,6 +100,12 @@ In some files, there is a mix of spaces and tabs. This uses
         (+log! "Temporary changing `indent-tabs-mode' to %S for context-aware indentation" new-indent-tabs-mode))
       (let ((indent-tabs-mode (if modify-indentation new-indent-tabs-mode indent-tabs-mode)))
         (call-interactively #'tab-to-tab-stop)))))
+
+
+;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
+(use-package vim-modeline
+  :straight t
+  :hook (find-file . vim-modeline/do))
 
 
 ;; Writable grep buffer and apply the changes to files
