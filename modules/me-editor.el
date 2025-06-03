@@ -107,6 +107,14 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :straight t
   :hook (find-file . vim-modeline/do)
   :config
+  (add-to-list 'vim-modeline/options-alist '("filetype" . +vim-modeline/filetype))
+  (add-to-list 'vim-modeline/options-alist '("ft" . +vim-modeline/filetype))
+
+  (defun +vim-modeline/filetype (_name &optional ext _options)
+    (when-let* ((mode (alist-get (file-name-with-extension "dummy" ext) auto-mode-alist nil nil #'string-match-p)))
+      (message "vim-modeline: set filetype to %S (emacs mode: %S)" ext mode)
+      (funcall mode)))
+
   (setcdr (assoc "shiftwidth" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
   (setcdr (assoc "sw" vim-modeline/options-alist) #'+vim-modeline/shiftwidth-use-editorconfig)
 
