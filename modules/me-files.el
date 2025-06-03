@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-05-15
+;; Last modified: 2025-06-03
 
 ;;; Commentary:
 
@@ -92,6 +92,11 @@ write to a new file name."
     (setq ztree-draw-unicode-lines t)
     (keymap-set ztree-mode-map "n" #'ztree-next-line)
     (keymap-set ztree-mode-map "p" #'ztree-previous-line)))
+
+
+;; Apply all (!) ".dir-locals.el" from root to current directory
+(use-package cascading-dir-locals
+  :straight t)
 
 
 (provide 'me-files)
