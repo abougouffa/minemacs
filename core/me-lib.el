@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-02
+;; Last modified: 2025-06-03
 
 ;;; Commentary:
 
@@ -995,7 +995,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 (add-hook 'window-setup-hook #'+setup-fonts)
 (add-hook 'server-after-make-frame-hook #'+setup-fonts)
 
-(defvar minemacs-reduce-font-size-ratio 0.85)
+(defvar minemacs-reduce-font-size-ratio 0.82)
 (defvar-local minemacs-reduce-font-remap-cookie nil)
 (defun minemacs-reduce-font-size (&optional reset)
   "Reduce the font size in the buffer by `minemacs-reduce-font-size-ratio'.
