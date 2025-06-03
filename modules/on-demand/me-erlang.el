@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-06-03
 
 ;;; Commentary:
 
@@ -15,9 +15,11 @@
   :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
 
 
+(defconst +erlang-path (concat minemacs-on-demand-modules-dir "third-party/erlang/"))
+
 ;; Major modes for editing and running Erlang files
 (use-package erlang
-  :straight t)
+  :load-path +erlang-path)
 
 
 (provide 'on-demand/me-erlang)
