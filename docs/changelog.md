@@ -2,6 +2,45 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.31.0](https://github.com/abougouffa/minemacs/compare/5fcafb3b14aef725a73b80b342becf55e3dcb99b..v12.31.0) - 2025-06-04
+#### Bug Fixes
+- **(adb)** don't export EDITOR when running ADB commands - ([6c27bc5](https://github.com/abougouffa/minemacs/commit/6c27bc5aeb9612dd48df8869e852636ccc63cba6)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove debug message from `minemacs-on-demand-try` - ([ae74649](https://github.com/abougouffa/minemacs/commit/ae74649cccc0554676c5dfe1adc0281b7879896e)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** properly load commands from included third-party packages - ([937bb81](https://github.com/abougouffa/minemacs/commit/937bb81551214a7c23045317c055568b766dabc6)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** move `math-preview` to `on-demand/me-jupyter` - ([8c73d33](https://github.com/abougouffa/minemacs/commit/8c73d33282f4584d76f79f1f2141329d5bff07c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/maxima)** define `minemacs-maxima-load` only when needed - ([2a0adfc](https://github.com/abougouffa/minemacs/commit/2a0adfcfab383c7bfa87dce28feb3f9b00bc8dcf)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/maxima)** fix loading `on-demand/me-maxima` - ([5fcafb3](https://github.com/abougouffa/minemacs/commit/5fcafb3b14aef725a73b80b342becf55e3dcb99b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** replace `vim-modeline` by `vim-modelines` - ([d261f6f](https://github.com/abougouffa/minemacs/commit/d261f6f734d9026f0b56b2c934c04568e0f6e824)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** support Vim modeline options via `vim-modeline` - ([6bfc5ca](https://github.com/abougouffa/minemacs/commit/6bfc5cae010680df83d747189536eeb11ec2a131)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** initial support for `cascading-dir-locals` - ([1ef9a7e](https://github.com/abougouffa/minemacs/commit/1ef9a7e40823499fc923a56a4bd10016db6660da)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** make unused `erlang` obsolete, too big repo - ([ce6c90e](https://github.com/abougouffa/minemacs/commit/ce6c90e7cda4f8170dbf9d3cf0bbe1a72d4a956e)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/erlang)** restore `erlang` to be included as a third-party - ([31f61fc](https://github.com/abougouffa/minemacs/commit/31f61fc1188623c69565fee294f9e6c05fe74de2)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/maxima)** include Maxima integration from the official repo - ([de14c85](https://github.com/abougouffa/minemacs/commit/de14c858dab2d2fa57fa55b5af0982b8b4d03361)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/ocaml)** include `dune` as a third-party - ([036aaa0](https://github.com/abougouffa/minemacs/commit/036aaa0b2f8480b3d6b83419a54d685cfa984356)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/ocaml)** restore `dune` to include it as a third-party - ([f1bc4ec](https://github.com/abougouffa/minemacs/commit/f1bc4eca595c66891dc0273b3336727311e69715)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/ocaml)** make unused `dune` obsolete, too big repo - ([afa8a9a](https://github.com/abougouffa/minemacs/commit/afa8a9a67f1372b350a90861f133636432eeac6d)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/protobuf)** include `protobuf-mode`, the repo is too big - ([fc2f9b4](https://github.com/abougouffa/minemacs/commit/fc2f9b49bf31ea596720d067ac029529bd6541b9)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `treesit-fold` obsolete, `hideshow` should work fine - ([759261e](https://github.com/abougouffa/minemacs/commit/759261e3644ba99b24dec1823b1bfec0a4a4f578)) - [@abougouffa](https://github.com/abougouffa)
+- **(vim-modeline)** add support for `filetype` - ([7a15f62](https://github.com/abougouffa/minemacs/commit/7a15f62f8480d032b16e85f099769326c0254f6e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** move `minemacs-load-module` to `me-lib` - ([f849902](https://github.com/abougouffa/minemacs/commit/f8499024c4dc247968ad48272fea65153008175e)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** remove unneeded files from third-party packages - ([c363d92](https://github.com/abougouffa/minemacs/commit/c363d929f7ed617801ba58d9f63c12fb56b6e54c)) - [@abougouffa](https://github.com/abougouffa)
+- **(reformatter)** make use of `+clang-format--get-lang` - ([68085f4](https://github.com/abougouffa/minemacs/commit/68085f42e9c4d5317cdc6a5ebf7b081e6cd2fbb9)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** print the command set to `adb` - ([c585a93](https://github.com/abougouffa/minemacs/commit/c585a936c4f609ec95c5d720bd5679c0f950ec24)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** collapse lighters in mode line (Emacs 31+) - ([f874364](https://github.com/abougouffa/minemacs/commit/f874364e45b562fa5b0b91488fb6279e9a6f23c4)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** set reduced font size to 82% - ([d8e3685](https://github.com/abougouffa/minemacs/commit/d8e368506c49f8434eb42004cf7991b1a4162652)) - [@abougouffa](https://github.com/abougouffa)
+- **(gambol)** bind `M-g ,` and `M-g .` only in `gambol-mode-map` - ([7f2a6ca](https://github.com/abougouffa/minemacs/commit/7f2a6ca8ab2b344d20fad5a6c8568d3bcdd35b77)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/erlang)** include `erlang` from `otp` as a third-party - ([a5f557b](https://github.com/abougouffa/minemacs/commit/a5f557bf6f4d83532ab3308831470d244d793cba)) - [@abougouffa](https://github.com/abougouffa)
+- **(vim-modeline)** use `editorconfig` to set the offset for `shiftwidth` - ([9511dd3](https://github.com/abougouffa/minemacs/commit/9511dd3d2b4eefc92056f36e325fd761e2c6304f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a73115e](https://github.com/abougouffa/minemacs/commit/a73115e987eef5e5c36de2ba816b580e2ff87418)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0671fb8](https://github.com/abougouffa/minemacs/commit/0671fb8d835fbf138c3a4c1a648cdc7a67ebeec6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([ab61e60](https://github.com/abougouffa/minemacs/commit/ab61e605a281971df29be58bb0a173e706c55dc0)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([61081fe](https://github.com/abougouffa/minemacs/commit/61081fece40542277829ffa0cbb36c4c300fefaf)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.30.0](https://github.com/abougouffa/minemacs/compare/65c75b4c6758dc63913a7ef981d845a7e6ebeaca..v12.30.0) - 2025-05-31
 #### Bug Fixes
 - **(nerd-icons)** avoid re-installing the font when running Emacs daemon - ([aab3051](https://github.com/abougouffa/minemacs/commit/aab3051b8b409fbda829a0220dd7ca5736cc93e6)) - [@abougouffa](https://github.com/abougouffa)
