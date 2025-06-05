@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-02
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -865,7 +865,7 @@ the schema from the file name."
         (goto-char (point-min))
         (insert "# yaml-language-server: $schema=" url "\n\n")))))
 
-(defun +clang-format--config-file (&optional dir)
+(defun +clang-format-config-file (&optional dir)
   (when-let* ((config-dir (locate-dominating-file (or dir default-directory) ".clang-format")))
     (expand-file-name ".clang-format" config-dir)))
 
@@ -885,7 +885,7 @@ the schema from the file name."
     ((verilog-mode) "v" verilog-indent-level)
     ((verilog-ts-mode) "v" verilog-ts-indent-level)))
 
-(defun +clang-format--get-lang ()
+(defun +clang-format-get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
 
 ;; Helper function to get the style for "clang-format"
@@ -894,9 +894,9 @@ the schema from the file name."
   "Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part."
-  (let ((lang (+clang-format--get-lang)))
+  (let ((lang (+clang-format-get-lang)))
     (concat (if no-opt "" "-style=")
-            (if (and (+clang-format--config-file)
+            (if (and (+clang-format-config-file)
                      ;; In case of a missing config for the language or a buggy .clang-format file
                      (with-temp-buffer
                        (zerop (call-process
@@ -914,7 +914,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
   (when (and (require 'yaml nil t)
              (executable-find +clang-format-command)
              (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
-    (when-let* ((lang (+clang-format--get-lang))
+    (when-let* ((lang (+clang-format-get-lang))
                 (out (with-temp-buffer
                        (when (zerop (call-process
                                      +clang-format-command nil (current-buffer) nil

@@ -146,7 +146,7 @@
       (protobuf-ts-mode . clang-format)))
 
   (defun +aphelia-mode-maybe ()
-    (when (and (+clang-format--get-lang) (+clang-format--config-file))
+    (when (and (+clang-format-get-lang) (+clang-format-config-file))
       (apheleia-mode 1)))
 
   ;; For `clang-format', use the command from `+clang-format-command', and
@@ -180,7 +180,7 @@
     :args `(,(+clang-format-get-style)
             "-assume-filename"
             ,(or (when-let* ((file (buffer-file-name))) (file-name-nondirectory file))
-                 (when-let* ((ext (car (+clang-format--get-lang)))) (file-name-with-extension "file" ext))
+                 (when-let* ((ext (car (+clang-format-get-lang)))) (file-name-with-extension "file" ext))
                  "file.c"))
     :lighter "ClangFmt "))
 
