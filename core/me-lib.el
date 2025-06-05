@@ -725,6 +725,7 @@ Examples:
     (cons 'transient root)))
 
 (defun +super-project-current (&optional dir)
+  "Return the current super-project instance in DIR."
   (let ((project-find-functions '(+project-super-project-try)))
     (project-current nil dir)))
 
