@@ -46,7 +46,7 @@ check:
 bump:
 	$(EMACS_BATCH) --eval='(minemacs-bump-packages)'
 
-locked:
+upgrade:
 	$(EMACS_BATCH) --eval='(minemacs-upgrade nil)'
 
 cloc:
