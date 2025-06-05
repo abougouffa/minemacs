@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-04-28
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -33,6 +33,12 @@
   (defun +rainbow-csv-mode-maybe ()
     (when (< (buffer-size) +rainbow-csv-max-file-size)
       (run-with-timer 0.1 nil #'rainbow-csv-mode))))
+
+
+;; Interactively generate time series charts, plots and bar charts
+(use-package eplot
+  :straight (:host github :repo "larsmagne/eplot")
+  :commands (eplot eplot-with-headers))
 
 
 (provide 'on-demand/me-csv)
