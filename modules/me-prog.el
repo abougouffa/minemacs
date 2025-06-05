@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-01
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -133,6 +133,7 @@
   :straight t
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
+  :hook (prog-mode . +aphelia-mode-maybe)
   :config
   (add-hook
    'nxml-mode-hook
@@ -143,6 +144,10 @@
     '((nxml-mode . xmllint)
       (protobuf-mode . clang-format)
       (protobuf-ts-mode . clang-format)))
+
+  (defun +aphelia-mode-maybe ()
+    (when (and (+clang-format--get-lang) (+clang-format--config-file))
+      (apheleia-mode 1)))
 
   ;; For `clang-format', use the command from `+clang-format-command', and
   ;; append the "-style" option
