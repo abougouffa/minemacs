@@ -865,6 +865,7 @@ the schema from the file name."
         (goto-char (point-min))
         (insert "# yaml-language-server: $schema=" url "\n\n")))))
 
+;;;###autoload
 (defun +clang-format-config-file (&optional dir)
   (when-let* ((config-dir (locate-dominating-file (or dir default-directory) ".clang-format")))
     (expand-file-name ".clang-format" config-dir)))
@@ -885,6 +886,7 @@ the schema from the file name."
     ((verilog-mode) "v" verilog-indent-level)
     ((verilog-ts-mode) "v" verilog-ts-indent-level)))
 
+;;;###autoload
 (defun +clang-format-get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
 

@@ -67,6 +67,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-ballerina :auto-mode '(("\\.bal\\'" . ballerina-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-bazel.el
+
+(minemacs-register-on-demand-module 'me-bazel :auto-mode '(("/\\(?:\\(?:bazel\\)?\\.bazelrc\\)\\'" . bazelrc-mode) ("/Android\\.bp\\'" . bazel-build-mode) ("/\\(?:BUILD\\(?:\\.bazel\\)?\\)\\'" . bazel-build-mode) ("/MODULE\\.bazel\\'" . bazel-module-mode) ("/.+\\.bzl\\'" . bazel-starlark-mode) ("/\\.bazelignore\\'" . bazelignore-mode) ("/\\.bazeliskrc\\'" . bazeliskrc-mode) ("/\\(?:WORKSPACE\\(?:\\.b\\(?:azel\\|zlmod\\)\\)?\\)\\'" . bazel-workspace-mode)))
+
+
 ;;; Generated autoloads from me-bootstrap.el
 
 (register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-prune-build-cache" "minemacs-"))
@@ -234,6 +239,12 @@ When PRE is non-nil, allow downloading the latest prerelease.
 ;;; Generated autoloads from ../modules/on-demand/me-epub.el
 
 (minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-erlang.el
+
+(minemacs-register-on-demand-module 'me-erlang :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
+(register-definition-prefixes "../modules/on-demand/me-erlang" '("+erlang-path"))
 
 
 ;;; Generated autoloads from me-external-tools.el
@@ -605,6 +616,11 @@ When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
 (fn &optional ASK)" t)
+(autoload '+clang-format-config-file "me-lib-extra" "\
+
+
+(fn &optional DIR)")
+(autoload '+clang-format-get-lang "me-lib-extra")
 (autoload '+clang-format-get-style "me-lib-extra" "\
 Get the \"-style=XXX\" argument for clang-format.
 
@@ -695,7 +711,7 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-mode-alist" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
@@ -786,7 +802,8 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
-(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
+(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
+(register-definition-prefixes "../modules/on-demand/me-ocaml" '("+dune-path"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-odin.el
