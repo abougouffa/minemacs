@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-03
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -719,11 +719,14 @@ Examples:
   :group 'minemacs-project
   :type '(repeat string))
 
-(defun +project-super-project-try-or-fail (dir)
+(defun +project-super-project-try (dir)
   "Find super-project root starting from DIR."
-  (if-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
-      (cons 'transient root)
-    (user-error "It doesn't seem that we are in a super-project")))
+  (when-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
+    (cons 'transient root)))
+
+(defun +super-project-current (&optional dir)
+  (let ((project-find-functions '(+project-super-project-try)))
+    (project-current nil dir)))
 
 (defun +super-project-define-commands (package &rest commands)
   "Define PACKAGE's COMMANDS for super-project context."
@@ -736,8 +739,10 @@ Examples:
            `(defun ,new-cmd (&rest args)
               ,(format "Call `%s' in a super-project context." command)
               ,(interactive-form command) ; Use the same interactive form as the original command
-              (let ((project-find-functions '(+project-super-project-try-or-fail)))
-                (apply (function ,command) args)))
+              (if-let* ((project-find-functions '(+project-super-project-try))
+                        (project-current))
+                  (apply (function ,command) args)
+                (user-error "It doesn't seem that we are in a super-project")))
            form)))
       (eval (macroexp-progn form)))))
 
