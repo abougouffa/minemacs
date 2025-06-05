@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-06-03
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -96,7 +96,9 @@ write to a new file name."
 
 ;; Apply all (!) ".dir-locals.el" from root to current directory
 (use-package cascading-dir-locals
-  :straight t)
+  :straight t
+  :custom
+  (cascading-dir-locals-debug minemacs-debug-p))
 
 
 (provide 'me-files)
