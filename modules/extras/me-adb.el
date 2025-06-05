@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-06-02
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -12,7 +12,6 @@
 
 (defvar +adb-buffer-name "*adb*")
 (defvar +adb-process-name "adb-command")
-(defvar +adb-no-quote nil)
 (defvar +adb-push-dest-history nil)
 (defvar +adb-push-src-dest-cache nil)
 
@@ -21,17 +20,12 @@
   (add-to-list 'savehist-additional-variables '+adb-push-dest-history))
 
 (defun +adb-run-command (&rest args)
-  "Run adb with command ARGS.
-By default, qutote the arguments unless `+adb-no-quote' is non-nil."
+  "Run adb with command ARGS."
   (let ((display-buffer-overriding-action
          '((display-buffer-in-side-window) (window-height . 0.2) (reusable-frames . visible) (dedicated . t) (side . bottom) (slot . -1)))
-        (out-buf (get-buffer-create +adb-buffer-name))
-        (cmd (string-join `("adb" ,@(mapcar (if +adb-no-quote #'identity #'shell-quote-argument) (seq-filter #'identity args))) " ")))
-    (let ((shell-command-with-editor-mode nil))
-      (with-current-buffer out-buf
-        (insert (propertize (format "\n%s\n- Sending command:\n- %S\n\n" (make-string 20 ?-) cmd) 'face 'error)))
-      (start-process-shell-command +adb-process-name out-buf cmd))
-    (pop-to-buffer out-buf)))
+        (compilation-buffer-name-function (lambda (&rest _args) +adb-buffer-name))
+        (cmd (string-join `("adb" ,@(seq-filter #'identity args)) " ")))
+    (compile cmd)))
 
 ;;;###autoload
 (defun +adb-push (src dest)
