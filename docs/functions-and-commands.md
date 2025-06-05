@@ -544,6 +544,10 @@ Examples:
 
 Find super-project root starting from DIR.
 
+#### `(+super-project-current &optional DIR)`
+
+Return the current super-project instance in DIR.
+
 #### `(+super-project-define-commands PACKAGE &rest COMMANDS)`
 
 Define PACKAGE's COMMANDS for super-project context.
