@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-06
+;; Last modified: 2025-06-05
 
 ;;; Commentary:
 
@@ -26,7 +26,8 @@
 
 ;; Multi target interface to compile
 (use-package compile-multi
-  :straight t)
+  :straight t
+  :bind (("<f8>" . compile-multi)))
 
 
 ;; Integration for `compile-multi' and `embark'
