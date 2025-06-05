@@ -461,6 +461,12 @@ This is only valable after loading all modules (in the user's "config.el").
 List all the available modules.
 With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 
+#### `(minemacs-load-module &rest MODULES)`
+
+Interactively install and load MODULES that aren't enabled in "modules.el".
+When called with C-u, it prompts also for on-demand modules.
+When called with C-u C-u, it prompts also for obsolete modules.
+
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
 Execute shell command COMMAND and return its output as a string.
@@ -534,7 +540,7 @@ Examples:
 (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
 (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
 
-#### `(+project-super-project-try-or-fail DIR)`
+#### `(+project-super-project-try DIR)`
 
 Find super-project root starting from DIR.
 
@@ -660,12 +666,6 @@ Cleanup MinEmacs' root directory.
 #### `(minemacs-cleanup-emacs-directory)`
 
 Cleanup unwanted files/directories from MinEmacs' directory.
-
-#### `(minemacs-load-module &rest MODULES)`
-
-Interactively install and load MODULES that aren't enabled in "modules.el".
-When called with C-u, it prompts also for on-demand modules.
-When called with C-u C-u, it prompts also for obsolete modules.
 
 #### `(minemacs-user-config ASK)`
 
@@ -984,7 +984,6 @@ Show the list of declared external dependencies.
 #### `(+adb-run-command &rest ARGS)`
 
 Run adb with command ARGS.
-By default, qutote the arguments unless `+adb-no-quote` is non-nil.
 
 #### `(+adb-push SRC DEST)`
 

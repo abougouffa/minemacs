@@ -47,6 +47,7 @@
 * `undo-fu-session`: Persistent undo tree between sessions
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
+* `vim-modelines`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `wgrep`: Writable grep buffer and apply the changes to files
 * `symbol-overlay`: Highlight symbols with keymap-enabled overlays
 * `rainbow-delimiters`: Emacs rainbow delimiters mode
@@ -109,6 +110,7 @@
 * `dired-rsync`: Asynchronous "rsync" from `dired`
 * `fd-dired`: Same functionality as `find-dired` and `find-grep-dired`, using fd/rg instead
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
+* `cascading-dir-locals`: Apply all (!) ".dir-locals.el" from root to current directory
 
 ## `me-fun`
 * `xkcd`: Implementation of an xkcd reader for Emacs
@@ -172,7 +174,6 @@
 
 ## `me-prog`
 * `treesit-auto`: Automatically manage `treesit` grammars
-* `treesit-fold`: Tree-sitter based code folding
 * `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `gambol`: Emacs text actions using LSP symbol information
 * `consult-eglot`: Consult integration with Eglot
@@ -319,6 +320,8 @@
 ## `on-demand/me-ballerina`
 * `ballerina-mode`: A major mode for editing ballerina source code
 
+## `on-demand/me-bazel`
+
 ## `on-demand/me-bqn`
 * `bqn-mode`: Major mode for editing BQN grammar files
 
@@ -355,6 +358,7 @@
 ## `on-demand/me-csv`
 * `csv-mode`: Major mode for editing comma/char separated values
 * `rainbow-csv`: Highlight CSV and TSV files in different rainbow colors
+* `eplot`: Interactively generate time series charts, plots and bar charts
 
 ## `on-demand/me-cuda`
 * `cuda-mode`: Major mode for editing Nvidia CUDA C++ files
@@ -420,6 +424,7 @@
 
 ## `on-demand/me-erlang`
 * `erlang`: Major modes for editing and running Erlang files
+* `erlang-flymake`: Integrate `erlang` with `flymake`
 
 ## `on-demand/me-fish`
 * `fish-mode`: Major mode for Fish shell scripts
@@ -564,6 +569,8 @@
 * `tuareg`: Major mode and REPL for the OCaml programming language
 * `opam-switch-mode`: Select OCaml opam switches via a menu
 * `dune`: Integration with the dune build system
+* `dune-watch`: Integration with dune --watch tasks
+* `dune-flymake`: Integrate `dune` with `flymake`
 * `utop`: Universal toplevel for OCaml
 
 ## `on-demand/me-odin`
