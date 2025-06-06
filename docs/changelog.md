@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.32.0](https://github.com/abougouffa/minemacs/compare/4d23fa2bafdeb91da3ac08f770f725794131d6ce..v12.32.0) - 2025-06-06
+#### Bug Fixes
+- **(core)** autoload `clang-format` functions - ([bd5f40c](https://github.com/abougouffa/minemacs/commit/bd5f40c8055c8355ba3ec45408a8ae6212e224a0)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(core)** document the `+super-project-current` function - ([cba86df](https://github.com/abougouffa/minemacs/commit/cba86df542ecb5831b81fd46a54a3116bb8f6a66)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([36f0cf0](https://github.com/abougouffa/minemacs/commit/36f0cf0e9d27b2f1e9c23b074ee10bfc14d5800b)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([c92b1a9](https://github.com/abougouffa/minemacs/commit/c92b1a944ce42613e3fda87f31b49e236fdebc32)) - [@abougouffa](https://github.com/abougouffa)
+- fix email address - ([c3e2e92](https://github.com/abougouffa/minemacs/commit/c3e2e92b08dc4e007bb2933a13e9685e54396bc4)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+super-project-current` - ([399b040](https://github.com/abougouffa/minemacs/commit/399b040724e9a5d6240202b9dccc7b4e4b5c6e63)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for `bazel` - ([4d23fa2](https://github.com/abougouffa/minemacs/commit/4d23fa2bafdeb91da3ac08f770f725794131d6ce)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/csv)** add support for `eplot` - ([c0c7c30](https://github.com/abougouffa/minemacs/commit/c0c7c30486b288ba83367ad285aa697a6fb9e52c)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** rename `locked` to `upgrade` - ([7f29bfe](https://github.com/abougouffa/minemacs/commit/7f29bfefd5b4f0e9721804073414d9a643edba55)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(clang-format)** expose some API functions - ([1a2419e](https://github.com/abougouffa/minemacs/commit/1a2419e4d868ce204154a005d6e961ec70e5a3ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** move `lab` from `me-vc` to `on-demand/me-gitlab` - ([2e68093](https://github.com/abougouffa/minemacs/commit/2e680930682bc08afa9aafb498df2d92396be4ac)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** use `compile` to call the ADB commands - ([ea4d373](https://github.com/abougouffa/minemacs/commit/ea4d3739d51969795625fed7af666c064dd7afd5)) - [@abougouffa](https://github.com/abougouffa)
+- **(apheleia)** enable automatically when Clang config is available - ([4936a21](https://github.com/abougouffa/minemacs/commit/4936a210dc4a7d53d17cd2a2317e5a1510fb4923)) - [@abougouffa](https://github.com/abougouffa)
+- **(cascading-dir-locals)** enable debug mode when needed - ([fa57574](https://github.com/abougouffa/minemacs/commit/fa57574c6aa49a3276cdb0a1798eb6d79bc641d3)) - [@abougouffa](https://github.com/abougouffa)
+- **(compile-multi)** bind `compile-multi` to F8 - ([75844dc](https://github.com/abougouffa/minemacs/commit/75844dc86c385cc3a734dc40c7992cb21bc63b57)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** display diffs on margin, leave fringe for other stuff - ([b550a06](https://github.com/abougouffa/minemacs/commit/b550a06e79ded3d815f3b611944112ccfd333912)) - [@abougouffa](https://github.com/abougouffa)
+- **(difftastic)** check for `difft` on the system - ([5bb8a30](https://github.com/abougouffa/minemacs/commit/5bb8a3039ce2070bd7b132d038a2edbaa30db364)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c1cbb63](https://github.com/abougouffa/minemacs/commit/c1cbb637be1448443f9e4480eff73c85cb297f8a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([aa88f77](https://github.com/abougouffa/minemacs/commit/aa88f778c5c3ea9930a06dc02a3a6330fdf2f09d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0f0cf9f](https://github.com/abougouffa/minemacs/commit/0f0cf9fa5caf66725d4736d99b2b81b9c19706ea)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.31.0](https://github.com/abougouffa/minemacs/compare/5fcafb3b14aef725a73b80b342becf55e3dcb99b..v12.31.0) - 2025-06-04
 #### Bug Fixes
 - **(adb)** don't export EDITOR when running ADB commands - ([6c27bc5](https://github.com/abougouffa/minemacs/commit/6c27bc5aeb9612dd48df8869e852636ccc63cba6)) - [@abougouffa](https://github.com/abougouffa)
