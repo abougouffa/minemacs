@@ -214,7 +214,8 @@ to `conventional' or `prefix'."
 
 ;; A structural diff that understands syntax
 (use-package difftastic
-  :straight t)
+  :straight t
+  :when (executable-find "difft"))
 
 
 (provide 'me-vc)
