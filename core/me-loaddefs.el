@@ -292,9 +292,11 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (minemacs-register-on-demand-module 'me-genexpr :auto-mode '(("\\.genexpr\\'" . genexpr-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-gitlab-ci.el
+;;; Generated autoloads from ../modules/on-demand/me-gitlab.el
 
-(minemacs-register-on-demand-module 'me-gitlab-ci :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
+(minemacs-register-on-demand-module 'me-gitlab :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
+(autoload 'minemacs-gitlab-load "../modules/on-demand/me-gitlab" "\
+Load the `on-demand/me-gitlab' modules (`gitlab-ci-mode' + `lab')." t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gnuplot.el
