@@ -151,11 +151,6 @@ to `conventional' or `prefix'."
   (require 'on-demand/me-markdown))
 
 
-;; Emacs-GitLab integration
-(use-package lab
-  :straight (:host github :repo "isamert/lab.el"))
-
-
 ;; Emacs package for highlighting uncommitted changes
 (use-package diff-hl
   :straight t
