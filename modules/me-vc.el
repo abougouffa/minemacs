@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-21
+;; Last modified: 2025-06-06
 
 ;;; Commentary:
 
@@ -168,6 +168,7 @@ to `conventional' or `prefix'."
   ;; ensure updating the `diff-hl' each time we switch to the buffer.
   (defun +diff-hl-update-on-buffer-change ()
     (add-hook 'window-buffer-change-functions (lambda (_win) (when diff-hl-mode (diff-hl-update))) nil t))
+  (diff-hl-margin-mode 1)
   (diff-hl-flydiff-mode 1))
 
 
