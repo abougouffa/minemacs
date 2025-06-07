@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-06
+;; Last modified: 2025-06-07
 
 ;;; Commentary:
 
@@ -94,22 +94,28 @@
     nil)
    (t (funcall orig-fn prompt))))
 
+(defmacro +straight-with-no-questions (&rest body)
+  "Execute BODY and don't ask `straight' questions."
+  (declare (indent 0))
+  `(unwind-protect
+       (progn
+         (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
+         (advice-add 'read-string :around '+minemacs--read-string:around-a)
+         (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
+         ,(macroexp-progn body))
+     (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
+     (advice-remove 'read-string '+minemacs--read-string:around-a)
+     (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a)))
+
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
   (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
-  (unwind-protect
-      (progn
-        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
-        (advice-add 'read-string :around '+minemacs--read-string:around-a)
-        (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
-        (straight-pull-recipe-repositories) ; Update straight recipe repositories
-        (straight-pull-all)
-        (straight-freeze-versions)
-        (straight-rebuild-all))
-    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
-    (advice-remove 'read-string '+minemacs--read-string:around-a)
-    (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
+  (+straight-with-no-questions
+    (straight-pull-recipe-repositories) ; Update straight recipe repositories
+    (straight-pull-all)
+    (straight-freeze-versions)
+    (straight-rebuild-all))
   (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun minemacs-bump-packages-async ()
@@ -125,17 +131,10 @@ This takes into account the explicitly pinned packages. When called with
 MinEmacs directory before upgrading."
   (interactive "P")
   (when pull (let ((default-directory minemacs-root-dir)) (vc-pull)))
-  (unwind-protect
-      (progn
-        (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
-        (advice-add 'read-string :around '+minemacs--read-string:around-a)
-        (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
-        (straight-pull-recipe-repositories) ; Update straight recipe repositories
-        (straight-thaw-versions)
-        (straight-rebuild-all)) ; Rebuild the packages
-    (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
-    (advice-remove 'read-string '+minemacs--read-string:around-a)
-    (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a))
+  (+straight-with-no-questions
+    (straight-pull-recipe-repositories) ; Update straight recipe repositories
+    (straight-thaw-versions)
+    (straight-rebuild-all)) ; Rebuild the packages
   (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun +straight-prune-build-cache ()
