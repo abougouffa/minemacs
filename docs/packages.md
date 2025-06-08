@@ -47,7 +47,7 @@
 * `undo-fu-session`: Persistent undo tree between sessions
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
-* `vim-modelines`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
+* `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `wgrep`: Writable grep buffer and apply the changes to files
 * `symbol-overlay`: Highlight symbols with keymap-enabled overlays
 * `rainbow-delimiters`: Emacs rainbow delimiters mode
@@ -282,7 +282,6 @@
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
-* `lab`: Emacs-GitLab integration
 * `diff-hl`: Emacs package for highlighting uncommitted changes
 * `git-timemachine`: Walk through Git revisions of a file
 * `git-modes`: Emacs major modes for Git configuration files
@@ -451,8 +450,9 @@
 ## `on-demand/me-genexpr`
 * `genexpr-mode`: Major mode for editing GenExpr files
 
-## `on-demand/me-gitlab-ci`
+## `on-demand/me-gitlab`
 * `gitlab-ci-mode`: Mode for editing GitLab CI files
+* `lab`: Emacs-GitLab integration
 
 ## `on-demand/me-gnuplot`
 * `gnuplot`: Major mode and interactive frontend for GNUPlot
