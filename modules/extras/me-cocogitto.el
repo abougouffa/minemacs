@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-08
-;; Last modified: 2025-04-14
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -31,7 +31,7 @@ restores it after that."
         (completing-read "Increment the version: " '(auto major minor patch)
                          (when (yes-or-no-p "Is this version a pre-release? ")
                            (read-string "Pre-release version: ")))))))
-  (if-let* ((default-directory (vc-root-dir)))
+  (if-let* ((default-directory (or (vc-root-dir) (and (fboundp 'magit-git-dir) (magit-git-dir)))))
       (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
         (conf-colon-mode)
         (insert (format "############ Cocogitto bump (%s) ############\n" level))
