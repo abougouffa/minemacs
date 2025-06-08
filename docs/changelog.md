@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.32.1](https://github.com/abougouffa/minemacs/compare/328216fef2aee8773fb139bf22de40767b91eb55..v12.32.1) - 2025-06-08
+#### Bug Fixes
+- **(cocogitto)** don't error when invoking `+cocogitto-bump` from `magit` - ([4632af7](https://github.com/abougouffa/minemacs/commit/4632af7b2ca0e32aff6f1b6c829f164101eba4f6)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([68688c1](https://github.com/abougouffa/minemacs/commit/68688c17613ea4c25a267a1c65a721a2a446a3a2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(straight)** extract a common pattern to a macro - ([328216f](https://github.com/abougouffa/minemacs/commit/328216fef2aee8773fb139bf22de40767b91eb55)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(editor)** adapt to renaming `vim-modelines` to `vim-file-locals` - ([9f1fd3c](https://github.com/abougouffa/minemacs/commit/9f1fd3ce0603fccb18cbf4ea4b1883702ff45b8e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5eb7a64](https://github.com/abougouffa/minemacs/commit/5eb7a649f9ebe051d2bfbc48bd6aa0f56bac8f86)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4ff8367](https://github.com/abougouffa/minemacs/commit/4ff83673e83cb4a7e8e3166a95e182e67b869230)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.32.0](https://github.com/abougouffa/minemacs/compare/4d23fa2bafdeb91da3ac08f770f725794131d6ce..v12.32.0) - 2025-06-06
 #### Bug Fixes
 - **(core)** autoload `clang-format` functions - ([bd5f40c](https://github.com/abougouffa/minemacs/commit/bd5f40c8055c8355ba3ec45408a8ae6212e224a0)) - [@abougouffa](https://github.com/abougouffa)
