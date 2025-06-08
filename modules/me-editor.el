@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-04
+;; Last modified: 2025-06-08
 
 ;;; Commentary:
 
@@ -103,9 +103,9 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 
 ;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
-(use-package vim-modelines
-  :straight (:host github :repo "abougouffa/vim-modelines")
-  :hook (minemacs-first-file . vim-modelines-mode))
+(use-package vim-file-locals
+  :straight (:host github :repo "abougouffa/emacs-vim-file-locals")
+  :hook (minemacs-first-file . vim-file-locals-mode))
 
 
 ;; Writable grep buffer and apply the changes to files
