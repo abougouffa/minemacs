@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-06
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -137,6 +137,15 @@ to `conventional' or `prefix'."
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously
 (use-package multi-magit
   :straight (:host github :repo "luismbo/multi-magit"))
+
+
+;; Use delta when viewing diffs in `magit'
+(use-package magit-delta
+  :straight (:host github :repo "dandavison/magit-delta")
+  :when (executable-find "delta")
+  :hook (magit-mode . magit-delta-mode)
+  :custom
+  (magit-delta-hide-plus-minus-markers nil))
 
 
 ;; Store EIEIO objects using EmacSQL
