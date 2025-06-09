@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-04-19
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -54,8 +54,8 @@
       crux-smart-kill-line crux-smart-open-line crux-smart-open-line-above
       ;; `expreg'
       expreg-expand expreg-contract
-      ;; Org specific commands
-      org-delete-char org-self-insert-command))
+      ;; `org'
+      org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
 
   (cl-callf append mc--default-cmds-to-run-once
     '(pixel-scroll-precision +mc/mark-all-symbol-overlays))
