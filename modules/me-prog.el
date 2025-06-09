@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-05
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -33,14 +33,6 @@
                  :lang 'hurl :ts-mode 'hurl-ts-mode :remap 'hurl-mode
                  :url "https://github.com/pfeiferj/tree-sitter-hurl"
                  :ext "\\.hurl\\'")
-                (make-treesit-auto-recipe
-                 :lang 'markdown :ts-mode 'markdown-ts-mode :remap '(poly-markdown-mode markdown-mode) :requires 'markdown-inline
-                 :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-                 :revision "split_parser" :source-dir "tree-sitter-markdown/src" :ext "\\.md\\'")
-                (make-treesit-auto-recipe
-                 :lang 'markdown-inline :requires 'markdown
-                 :url "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-                 :revision "split_parser" :source-dir "tree-sitter-markdown-inline/src")
                 (make-treesit-auto-recipe
                  :lang 'llvm :ts-mode 'llvm-ts-mode :remap 'llvm-mode
                  :url "https://github.com/benwilliamgraham/tree-sitter-llvm"
