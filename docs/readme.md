@@ -164,7 +164,10 @@ You can customize MinEmacs' behavior via some environment variables.
   `~/.minemacs.d/modules.el` into account).
 - `MINEMACS_BENCHMARK`: Run a benchmark at initialization of Emacs (using
   [`benchmark-init.el`](https://github.com/dholm/benchmark-init-el)) and display
-  the results after startup (including lazy packages).
+  the results after startup (including lazy packages). If you set the value of
+  this variable to `lazy`, the benchmark will be run at the end of
+  `minemacs-lazy-hook`, otherwise, it will be run at the end of
+  `minemacs-after-startup-hook`.
 - `MINEMACS_NO_PROXIES`: Set if you have `minemacs-proxies` setup in your
   `early-config.el` but you want to start Emacs without passing by these proxies
   (useful if you use some proxies for workplace but you want Emacs to start
