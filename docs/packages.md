@@ -280,6 +280,7 @@
 * `magit-todos`: Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
 * `magit-imerge`: Magit extension for "git-imerge"
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
+* `magit-delta`: Use delta when viewing diffs in `magit`
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
@@ -531,7 +532,6 @@
 
 ## `on-demand/me-markdown`
 * `markdown-mode`: Major mode for Markdown-formatted text
-* `markdown-ts-mode`: Major mode for Markdown using Treesitter
 
 ## `on-demand/me-mathematica`
 * `wolfram-mode`: Mathematica editing and inferior mode
