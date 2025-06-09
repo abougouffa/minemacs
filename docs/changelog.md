@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.33.0](https://github.com/abougouffa/minemacs/compare/7b0f34dfb0d2cb7c26ff0bb9dcf5962be784d2a8..v12.33.0) - 2025-06-09
+#### Documentation
+- regenerate the documentation - ([05e33d3](https://github.com/abougouffa/minemacs/commit/05e33d3194adfa82723ed2ebf0a1983ee3ce377b)) - [@abougouffa](https://github.com/abougouffa)
+- update the benchmark section of README - ([3dcd13b](https://github.com/abougouffa/minemacs/commit/3dcd13bf651c9bf4a4bc607ffd6a84d04b20134b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(builtin)** move `markdown-ts-mode` configuration to `me-builtin` - ([5e194df](https://github.com/abougouffa/minemacs/commit/5e194df7a5fb7389e0b4998367ed879540cb696b)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add `magit-delta` - ([45dce0a](https://github.com/abougouffa/minemacs/commit/45dce0af669ec88c872d900bed181d40c50f0b49)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** add a menu for `smerge-mode` - ([0f61d2e](https://github.com/abougouffa/minemacs/commit/0f61d2e72f3c02fe4fe33c0125d1e9a7fb737d94)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** bind new `casual-calendar` and unify the binding to `C-o` - ([75e7a9c](https://github.com/abougouffa/minemacs/commit/75e7a9c000521d364a8a7d23d7e4eb25dd427487)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** don't show `+/-/!` symbols in the margin - ([18fd96b](https://github.com/abougouffa/minemacs/commit/18fd96be645afd7a31a8ce4a655de1f249380369)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** add `delta` to the list - ([cde5680](https://github.com/abougouffa/minemacs/commit/cde56803d42d655af661d7b3030b6057bd971616)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** allow benchmark at `minemacs-{after-startup,lazy}_hook` - ([7b0f34d](https://github.com/abougouffa/minemacs/commit/7b0f34dfb0d2cb7c26ff0bb9dcf5962be784d2a8)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-imerge)** condition on the presence of `git-imerge` - ([2d3aa75](https://github.com/abougouffa/minemacs/commit/2d3aa75d1585504b965c83d1678eb34de51d4937)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** register extra "run for all" commands - ([9632d23](https://github.com/abougouffa/minemacs/commit/9632d232c96cbc54a0b6c76039b5a16312e166cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit-auto)** use default Markdown grammar recipes - ([85aadf1](https://github.com/abougouffa/minemacs/commit/85aadf1e1d457d77bdd2abf25fc7688734e6a20e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6ede019](https://github.com/abougouffa/minemacs/commit/6ede0199a50f35fb593fac23ebc130f8053e8358)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.32.1](https://github.com/abougouffa/minemacs/compare/328216fef2aee8773fb139bf22de40767b91eb55..v12.32.1) - 2025-06-08
 #### Bug Fixes
 - **(cocogitto)** don't error when invoking `+cocogitto-bump` from `magit` - ([4632af7](https://github.com/abougouffa/minemacs/commit/4632af7b2ca0e32aff6f1b6c829f164101eba4f6)) - [@abougouffa](https://github.com/abougouffa)
