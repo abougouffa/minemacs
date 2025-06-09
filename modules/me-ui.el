@@ -143,7 +143,32 @@
   :bind (:package isearch :map isearch-mode-map ("C-o" . casual-isearch-tmenu))
   :bind (:package make-mode :map makefile-mode-map ("C-o" . casual-make-tmenu))
   :bind (:package org-agenda :map org-agenda-mode-map ("C-o" . casual-agenda-tmenu))
-  :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu)))
+  :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu))
+  :bind (:package smerge-mode :map smerge-mode-map ("C-o" . +casual-smerge-tmenu))
+  :config
+  ;; Partially from kickingvegas/casual#184
+  (transient-define-prefix +casual-smerge-tmenu ()
+    "Transient menu for smerge-mode operations."
+    [["Smerge Keep"
+      ("RET" "Keep current"      smerge-keep-current)
+      ("a"   "Keep all"          smerge-keep-all)
+      ("b"   "Keep base"         smerge-keep-base)
+      ("u"   "Keep upper"        smerge-keep-upper)
+      ("l"   "Keep lower"        smerge-keep-lower)]
+     ["Smerge Diff"
+      ("<" "Diff base vs upper"  smerge-diff-base-upper)
+      ("=" "Diff upper vs lower" smerge-diff-upper-lower)
+      (">" "Diff base vs lower"  smerge-diff-base-lower)]
+     ["Smerge Merge"
+      ("C" "Combine with next"   smerge-combine-with-next)
+      ("E" "Ediff"               smerge-ediff)
+      ("R" "Refine"              smerge-refine)
+      ("r" "Resolve"             smerge-resolve)]
+     ["Navigation"
+      ("F" "First"               +smerge-first)
+      ("L" "Last"                +smerge-last)
+      ("n" "Next conflict"       smerge-next)
+      ("p" "Previous conflict"   smerge-prev)]]))
 
 
 ;; An opinionated `transient' menu for `avy'
