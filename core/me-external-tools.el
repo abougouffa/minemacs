@@ -134,6 +134,9 @@
     (:tool difftastic
      :link "https://github.com/Wilfred/difftastic"
      :desc "A structural diff that understands syntax")
+    (:tool delta
+     :link "https://github.com/dandavison/delta"
+     :desc "A syntax-highlighting pager for git, diff, grep, and blame output")
     (:tool coccinelle
      :link "https://github.com/coccinelle/coccinelle"
      :desc "Complex style-preserving source-to-source transformations")
