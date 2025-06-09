@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-markdown
   :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
-  :companion-packages '((markdown-mode . markdown-ts-mode)))
+  :companion-packages '((markdown-ts-mode . markdown-mode)))
 
 
 ;; Major mode for Markdown-formatted text
@@ -24,15 +24,6 @@
   (markdown-enable-math t)
   (markdown-fontify-code-blocks-natively t)
   (markdown-enable-highlighting-syntax t))
-
-
-;; Major mode for Markdown using Treesitter
-(use-package markdown-ts-mode
-  :straight t
-  :when (and (featurep 'feat/tree-sitter)
-             (< emacs-major-version 31)) ;; Built-in in Emacs 31+
-  :hook (markdown-ts-mode . display-line-numbers-mode)
-  :commands (markdown-ts-mode))
 
 
 (provide 'on-demand/me-markdown)

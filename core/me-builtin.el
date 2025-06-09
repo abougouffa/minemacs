@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-06
+;; Last modified: 2025-06-09
 
 ;;; Commentary:
 
@@ -487,6 +487,17 @@ or file path may exist now."
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
   (treesit-font-lock-level 4))
+
+(use-package markdown-ts-mode
+  :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
+  :config
+  (cl-callf append markdown-ts--code-block-language-map
+    '(("emacs-lisp" . elisp)
+      ("shell" . bash)))
+  (cl-callf append markdown-ts-code-block-source-mode-map
+    '((elisp . emacs-lisp-mode)
+      (lisp . lisp-mode)
+      (scheme . scheme-mode))))
 
 (use-package dockerfile-ts-mode
   :when (featurep 'feat/tree-sitter)
