@@ -128,6 +128,7 @@ to `conventional' or `prefix'."
 ;; Magit extension for "git-imerge"
 (use-package magit-imerge
   :straight t
+  :when (executable-find "git-imerge")
   :after magit
   :init
   (with-eval-after-load 'transient
