@@ -1140,7 +1140,9 @@ To be used as a predicate generator for `display-buffer-alist'."
                   (setq module-found t)
                   (+log! "Loading on-demand module %S" module)
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
-    (when module-found (set-auto-mode t))
+    (when module-found
+      (set-auto-mode t) ; we set the mode automatically after loading the module
+      (revert-buffer t t)) ; this is needed, otherwise, it will only work on the second file
     nil))
 
 (defun minemacs-on-demand-try-load-companion-packages ()
