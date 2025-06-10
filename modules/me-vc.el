@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-09
+;; Last modified: 2025-06-10
 
 ;;; Commentary:
 
@@ -167,16 +167,12 @@ to `conventional' or `prefix'."
   :hook (minemacs-first-file . global-diff-hl-mode)
   :hook (diff-hl-mode . +diff-hl-update-on-buffer-change)
   :hook (dired-mode . diff-hl-dired-mode)
-  :custom
-  ;; Don't show symbols in the margin for addition, deletion and change
-  (diff-hl-margin-symbols-alist '((insert . " ") (delete . " ") (change . " ") (unknown . "?") (ignored . "i")))
   :config
   ;; BUG+HACK: After commiting changes from `magit' and switching back to the
   ;; buffer, the diff-hl doesn't go away until an input happens. This hook will
   ;; ensure updating the `diff-hl' each time we switch to the buffer.
   (defun +diff-hl-update-on-buffer-change ()
     (add-hook 'window-buffer-change-functions (lambda (_win) (when diff-hl-mode (diff-hl-update))) nil t))
-  (diff-hl-margin-mode 1)
   (diff-hl-flydiff-mode 1))
 
 
