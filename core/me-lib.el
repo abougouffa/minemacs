@@ -1110,29 +1110,27 @@ To be used as a predicate generator for `display-buffer-alist'."
               (dolist (mode-specs key-specs)
                 (when-let* ((specs (ensure-list (car mode-specs)))
                             (modes (ensure-list (cdr mode-specs)))
+                            ((cl-find-if-not #'fboundp modes))
                             ((pcase key
                                (:auto-mode
-                                (and (cl-find-if-not #'fboundp modes)
-                                     (buffer-file-name)
-                                     (cl-find-if (+apply-partially-right #'string-match (buffer-file-name)) specs)))
+                                (and (buffer-file-name)
+                                     (cl-find-if (+apply-partially-right #'string-match-p (buffer-file-name)) specs)))
                                (:interpreter-mode
-                                (and (cl-find-if-not #'fboundp modes)
-                                     interpreter
+                                (and interpreter
                                      (member (file-name-nondirectory interpreter) specs)))
                                ((or :magic-mode :magic-fallback-mode)
-                                (and (cl-find-if-not #'fboundp modes)
-                                     (catch 'done
-                                       (dolist (func-or-regexp specs)
-                                         (when (or (and (functionp func-or-regexp)
-                                                        (funcall func-or-regexp))
-                                                   (and (stringp func-or-regexp)
-                                                        (save-excursion
-                                                          (goto-char (point-min))
-                                                          (save-restriction
-                                                            (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
-                                                            (let ((case-fold-search nil))
-                                                              (looking-at func-or-regexp))))))
-                                           (throw 'done t))))))))
+                                (catch 'match-found
+                                  (dolist (func-or-regexp specs)
+                                    (when (or (and (functionp func-or-regexp)
+                                                   (funcall func-or-regexp))
+                                              (and (stringp func-or-regexp)
+                                                   (save-excursion
+                                                     (goto-char (point-min))
+                                                     (save-restriction
+                                                       (narrow-to-region (point-min) (min (point-max) (+ (point-min) magic-mode-regexp-match-limit)))
+                                                       (let ((case-fold-search nil))
+                                                         (looking-at func-or-regexp))))))
+                                      (throw 'match-found t)))))))
                             ((or (eq enable 'no-ask)
                                  (and (not noninteractive) ; ask only when in an interactive session
                                       (y-or-n-p (format "Buffer %s can be opened with a mode from `%s', load it? "
@@ -1143,7 +1141,7 @@ To be used as a predicate generator for `display-buffer-alist'."
     (when module-found
       (set-auto-mode t) ; we set the mode automatically after loading the module
       (revert-buffer t t)) ; this is needed, otherwise, it will only work on the second file
-    nil))
+    nil)) ; return nil so the placeholder mode added to `magit-fallback-mode-alist' doesn't get applied
 
 (defun minemacs-on-demand-try-load-companion-packages ()
   "Load companion packages for the current buffer's mode."
