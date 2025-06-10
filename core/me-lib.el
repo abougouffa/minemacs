@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-05
+;; Last modified: 2025-06-10
 
 ;;; Commentary:
 
@@ -735,13 +735,13 @@ Examples:
   (with-eval-after-load package
     (let (form)
       (dolist (command commands)
-        (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (format "%s" command)) "" "+") command))))
+        (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (symbol-name command)) "" "+") command))))
           (push
            `(defun ,new-cmd (&rest args)
               ,(format "Call `%s' in a super-project context." command)
               ,(interactive-form command) ; Use the same interactive form as the original command
               (if-let* ((project-find-functions '(+project-super-project-try))
-                        (project-current))
+                        ((project-current)))
                   (apply (function ,command) args)
                 (user-error "It doesn't seem that we are in a super-project")))
            form)))
