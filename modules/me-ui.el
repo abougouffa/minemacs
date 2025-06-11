@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-09
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -38,6 +38,7 @@
   :straight t
   :hook (minemacs-lazy . doom-modeline-mode)
   :custom
+  (doom-modeline-height 24)
   (doom-modeline-time-icon nil)
   (doom-modeline-buffer-encoding 'nondefault)
   (doom-modeline-unicode-fallback t)
