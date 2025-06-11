@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-09
+;; Last modified: 2025-06-11
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -74,19 +74,6 @@
 (setq user-emacs-directory minemacs-local-dir
       custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (+load custom-file))
-
-;; Native compilation settings
-(when (and (featurep 'native-compile) (native-comp-available-p))
-  (setq
-   ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
-   native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
-   native-comp-verbose (if minemacs-verbose-p 1 0)
-   native-comp-debug (if minemacs-debug-p 1 0)
-   native-comp-jit-compilation t ; Make native compilation happens asynchronously
-   native-comp-async-query-on-exit t) ; Ask before terminating asynchronous compilations on exit
-
-  ;; Set the directory for storing the native compilation cache
-  (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 ;; Generate the loaddefs file if needed
 (unless (file-exists-p minemacs-loaddefs-file) (minemacs-generate-loaddefs))

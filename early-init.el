@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-29
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -65,6 +65,19 @@
  scroll-bar-mode nil
  ;; Set mode-line format to prevent it from showing at startup
  mode-line-format nil)
+
+;; Native compilation settings
+(when (and (featurep 'native-compile) (native-comp-available-p))
+  (setq
+   ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
+   native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
+   native-comp-verbose (if minemacs-verbose-p 1 0)
+   native-comp-debug (if minemacs-debug-p 1 0)
+   native-comp-jit-compilation t ; Make native compilation happens asynchronously
+   native-comp-async-query-on-exit t ; Ask before terminating asynchronous compilations on exit
+   native-comp-async-on-battery-power nil) ; Don't native compile when on battery (Emacs 31+)
+  ;; Set the directory for storing the native compilation cache
+  (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
 ;; PERF: Setting `file-name-handler-alist' to nil should boost startup time.
 ;; https://reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start
