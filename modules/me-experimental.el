@@ -22,15 +22,6 @@
   :straight (:host bitbucket :repo "olanilsson/gee"))
 
 
-;; Gerrit integration with Magit
-(use-package magit-gerrit
-  :straight (:host github :repo "darcylee/magit-gerrit" :fork "abougouffa/magit-gerrit")
-  :after magit
-  :demand
-  :custom
-  (magit-gerrit-popup-prefix "_"))
-
-
 ;; Gerrit integration from ChromiumOS development utils
 (use-package gerrit
   :straight (chromiumos-dev-utils :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))

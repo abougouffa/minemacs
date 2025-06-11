@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-10
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -147,6 +147,15 @@ to `conventional' or `prefix'."
   :hook (magit-mode . magit-delta-mode)
   :custom
   (magit-delta-hide-plus-minus-markers nil))
+
+
+;; Gerrit integration with Magit
+(use-package magit-gerrit
+  :straight (:host github :repo "darcylee/magit-gerrit" :fork "abougouffa/magit-gerrit")
+  :after magit
+  :demand
+  :custom
+  (magit-gerrit-popup-prefix "_"))
 
 
 ;; Store EIEIO objects using EmacSQL
