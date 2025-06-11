@@ -11,12 +11,6 @@
 ;;; Code:
 
 
-;; Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
-(use-package eglot-inactive-regions
-  :straight t
-  :commands (eglot-inactive-regions-mode))
-
-
 ;; Extra non-standard functionalities for Eglot
 (use-package eglot-x
   :straight (:host github :repo "nemethf/eglot-x")
