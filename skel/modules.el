@@ -37,7 +37,6 @@
         me-snippets       ; Snippets (yasnippet, yasnippet-capf, doom-snippets, spdx, ...)
         ;; me-tags        ; Source code tagging tools (citre, ggtags, clink, ...)
         me-tools          ; System tools (vterm, tldr, ssh-deploy, docker, logview, with-editor, ...)
-        me-tty            ; Emacs from terminal (xclip, ...)
         me-ui             ; User interface (doom-themes, modus-themes, doom-modeline, svg-lib, page-break-lines, ...)
         me-vc))           ; Version control (magit, forge, diff-hl, git-timemachine, repo, diffview, ...)
 

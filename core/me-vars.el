@@ -239,7 +239,6 @@ it automatically."
     me-snippets
     ;; me-tags
     me-tools
-    me-tty
     me-ui
     me-vc)
   "MinEmacs enabled modules."

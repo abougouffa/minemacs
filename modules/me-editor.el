@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-08
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -213,6 +213,16 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")
   :hook (minemacs-first-file . real-backup-mode))
+
+
+;; Copy&paste GUI clipboard from text terminal
+(use-package xclip
+  :straight t
+  :hook (tty-setup . +xclip--enable-in-tty-h)
+  :config
+  (defun +xclip--enable-in-tty-h ()
+    (let ((inhibit-message t))
+      (with-demoted-errors "%s" (xclip-mode 1)))))
 
 
 (provide 'me-editor)
