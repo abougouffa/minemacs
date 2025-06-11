@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-31
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -290,10 +290,7 @@ Each string is a regexp, matched against variable names to omit from
   :group 'minemacs-core
   :type '(repeat regexp))
 
-(defcustom minemacs-on-demand-modules-alist nil
-  "List of extra on-demand modules."
-  :group 'minemacs-core
-  :type 'alist)
+(defvar minemacs-on-demand-modules-alist nil "List of extra on-demand modules.")
 
 (defcustom minemacs-on-demand-enable-plist
   '( :auto-mode no-ask
