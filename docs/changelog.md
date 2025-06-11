@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.34.0](https://github.com/abougouffa/minemacs/compare/f0be55bf80d9201915fa917a0000913109c44542..v12.34.0) - 2025-06-11
+#### Bug Fixes
+- **(compile-multi)** bind to F9 instead of already used F8 - ([9401b8c](https://github.com/abougouffa/minemacs/commit/9401b8ce0db576bdcd585f5b5706ca0d96187143)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** revert buffer to apply the loaded on-demand mode immediately - ([ee2f873](https://github.com/abougouffa/minemacs/commit/ee2f87368a1307f181edff4c964096c1fb58e40d)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** correct check in `+super-project-define-commands` - ([f0be55b](https://github.com/abougouffa/minemacs/commit/f0be55bf80d9201915fa917a0000913109c44542)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** move `xclip` to `me-editor`, delete `me-tty` - ([cb54a51](https://github.com/abougouffa/minemacs/commit/cb54a51fdc6a11e82cec1aaae56e8af6619463bc)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** make unused Gerrit/repo stuff obsolete - ([5d2cdc4](https://github.com/abougouffa/minemacs/commit/5d2cdc4d15651e8d215a00d9cbc365b6c9920bad)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** make `eglot-inactive-regions-mode` obsolete - ([e5495ec](https://github.com/abougouffa/minemacs/commit/e5495ec13506b8c5c7f2f9ce7c2f192fd936af10)) - [@abougouffa](https://github.com/abougouffa)
+- **(igist)** move `igist` from `me-experimental` to `me-services` - ([b1731ca](https://github.com/abougouffa/minemacs/commit/b1731ca7a2766525f636880315b25d372fe87df6)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** move `magit-gerrit` from `me-experimental` to `me-vc` - ([a3f3725](https://github.com/abougouffa/minemacs/commit/a3f3725782d215ae576dd9216c35203ab7ebb74a)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(citre)** mark some project-related variables as buffer-locals - ([6f42384](https://github.com/abougouffa/minemacs/commit/6f4238456ebf320905816435e4d522b126204f03)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** make `minemacs-on-demand-modules-alist` a regular variable - ([0b54c87](https://github.com/abougouffa/minemacs/commit/0b54c871eb23f8c75059a29b9d5a57adf462d88e)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** simplify conditions in `minemacs-on-demand-try` - ([a47fc1a](https://github.com/abougouffa/minemacs/commit/a47fc1adebad33613cfa740822c54a7a11217458)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(diff-hl)** use the fringe, the margin is used by `eglot` actions - ([ec4c6ae](https://github.com/abougouffa/minemacs/commit/ec4c6ae93b0f794d47e272f22acf63627c09e405)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(doom-modeline)** increase the height of `doom-modeline` - ([c590e9c](https://github.com/abougouffa/minemacs/commit/c590e9c36cd9a13067bb9d6aa2ae1f951b8d3c64)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** add Alchemy project markers - ([0a43e3b](https://github.com/abougouffa/minemacs/commit/0a43e3becbfeac50fd1529af7f75aee7e65feaf4)) - [@abougouffa](https://github.com/abougouffa)
+- move native compile config to `early-init` and disable on battery - ([b752e93](https://github.com/abougouffa/minemacs/commit/b752e9338119368d66b22e5547fd483cb09fcbdb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f6584ed](https://github.com/abougouffa/minemacs/commit/f6584ed92b81e98f2537db298dd785b0a3c4f706)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.33.0](https://github.com/abougouffa/minemacs/compare/7b0f34dfb0d2cb7c26ff0bb9dcf5962be784d2a8..v12.33.0) - 2025-06-09
 #### Documentation
 - regenerate the documentation - ([05e33d3](https://github.com/abougouffa/minemacs/commit/05e33d3194adfa82723ed2ebf0a1983ee3ce377b)) - [@abougouffa](https://github.com/abougouffa)
