@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-05-19
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -21,17 +21,6 @@
 (use-package eglot-x
   :straight (:host github :repo "nemethf/eglot-x")
   :commands (eglot-x-setup))
-
-
-;; Work seamlessly with GitHub gists from Emacs
-(use-package igist
-  :straight t
-  :config
-  (advice-add ; BUG+FIX: Don't save the Gist unless it has been modified
-   'igist-save-gist-buffer :around
-   (satch-defun igist--check-if-modified:around-a (orig-fn buffer &optional callback)
-     (when (igist-gist-modified-p buffer)
-       (funcall orig-fn buffer callback)))))
 
 
 ;; The Emacs Gerrit Experience
