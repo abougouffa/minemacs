@@ -17,22 +17,6 @@
   :commands (eglot-x-setup))
 
 
-;; The Emacs Gerrit Experience
-(use-package gee
-  :straight (:host bitbucket :repo "olanilsson/gee"))
-
-
-;; Gerrit integration from ChromiumOS development utils
-(use-package gerrit
-  :straight (chromiumos-dev-utils :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))
-
-
-;; Transient menus to use some "repo" commands within Magit
-(use-package repo-transient
-  :straight chromiumos-dev-utils
-  :commands (repo-main-menu))
-
-
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 (use-package webkit
   :straight `( :host github :repo "akirakyle/emacs-webkit"
