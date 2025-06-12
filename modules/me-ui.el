@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-12
 
 ;;; Commentary:
 
@@ -151,25 +151,25 @@
   (transient-define-prefix +casual-smerge-tmenu ()
     "Transient menu for smerge-mode operations."
     [["Smerge Keep"
-      ("RET" "Keep current"      smerge-keep-current)
-      ("a"   "Keep all"          smerge-keep-all)
-      ("b"   "Keep base"         smerge-keep-base)
-      ("u"   "Keep upper"        smerge-keep-upper)
-      ("l"   "Keep lower"        smerge-keep-lower)]
+      ("RET" "Keep current"      smerge-keep-current :transient t)
+      ("a"   "Keep all"          smerge-keep-all :transient t)
+      ("b"   "Keep base"         smerge-keep-base :transient t)
+      ("u"   "Keep upper"        smerge-keep-upper :transient t)
+      ("l"   "Keep lower"        smerge-keep-lower :transient t)]
      ["Smerge Diff"
       ("<" "Diff base vs upper"  smerge-diff-base-upper)
       ("=" "Diff upper vs lower" smerge-diff-upper-lower)
       (">" "Diff base vs lower"  smerge-diff-base-lower)]
      ["Smerge Merge"
-      ("C" "Combine with next"   smerge-combine-with-next)
-      ("E" "Ediff"               smerge-ediff)
-      ("R" "Refine"              smerge-refine)
-      ("r" "Resolve"             smerge-resolve)]
+      ("C" "Combine with next"   smerge-combine-with-next :transient t)
+      ("E" "Ediff"               smerge-ediff :transient t)
+      ("R" "Refine"              smerge-refine :transient t)
+      ("r" "Resolve"             smerge-resolve :transient t)]
      ["Navigation"
-      ("F" "First"               +smerge-first)
-      ("L" "Last"                +smerge-last)
-      ("n" "Next conflict"       smerge-next)
-      ("p" "Previous conflict"   smerge-prev)]]))
+      ("F" "First"               +smerge-first :transient t)
+      ("L" "Last"                +smerge-last :transient t)
+      ("n" "Next conflict"       smerge-next :transient t)
+      ("p" "Previous conflict"   smerge-prev :transient t)]]))
 
 
 ;; An opinionated `transient' menu for `avy'
