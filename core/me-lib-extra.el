@@ -923,10 +923,12 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                                      (concat "--assume-filename=dummy." (car lang)) "--dump-config"))
                          (buffer-string))))
                 (yaml-hash (yaml-parse-string out))
+                (cl (gethash 'ColumnLimit yaml-hash))
                 (iw (gethash 'IndentWidth yaml-hash))
                 (tw (gethash 'TabWidth yaml-hash))
                 (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
-      (+log! "Found a .clang-format file, using it to set tab-width=%s, indent-offset=%s and indent-style=%s" tw iw is)
+      (+log! "Setting fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s from \".clang-format\"" cl tw iw is)
+      (editorconfig-set-line-length (number-to-string cl))
       (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw)))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
