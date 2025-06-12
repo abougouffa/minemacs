@@ -115,10 +115,6 @@ Environment variables to omit.
 Each string is a regexp, matched against variable names to omit from
 `+env-file` when saving evnironment variables in `+env-save`.
 
-#### `minemacs-on-demand-modules-alist`
-
-List of extra on-demand modules.
-
 #### `minemacs-on-demand-enable-plist`
 
 Enable loading on-demand packages when needed.

@@ -58,6 +58,7 @@
 * `drag-stuff`: Drag stuff around in Emacs
 * `crdt`: Collaborative editing using Conflict-free Replicated Data Types
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
+* `xclip`: Copy&paste GUI clipboard from text terminal
 
 ## `me-emacs-lisp`
 * `elisp-plus`: Better Emacs Lisp code viewing
@@ -86,13 +87,7 @@
 * `x86-lookup`: Quickly jump to Intel's x86 documentation from Emacs
 
 ## `me-experimental`
-* `eglot-inactive-regions`: Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
 * `eglot-x`: Extra non-standard functionalities for Eglot
-* `igist`: Work seamlessly with GitHub gists from Emacs
-* `gee`: The Emacs Gerrit Experience
-* `magit-gerrit`: Gerrit integration with Magit
-* `gerrit`: Gerrit integration from ChromiumOS development utils
-* `repo-transient`: Transient menus to use some "repo" commands within Magit
 * `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 * `webkit-dark`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 
@@ -212,6 +207,7 @@
 * `jiralib`: Provide connectivity to Jira SOAP/REST services
 * `webpaste`: Paste text to pastebin-like services
 * `isgd`: Simply shortening URLs using the is.gd service
+* `igist`: Work seamlessly with GitHub gists from Emacs
 
 ## `me-snippets`
 * `yasnippet`: A template system for Emacs
@@ -254,9 +250,6 @@
 * `add-node-modules-path`: Adds the "node_modules/.bin" directory to the buffer "exec_path"
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
-## `me-tty`
-* `xclip`: Copy&paste GUI clipboard from text terminal
-
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
@@ -281,6 +274,7 @@
 * `magit-imerge`: Magit extension for "git-imerge"
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `magit-delta`: Use delta when viewing diffs in `magit`
+* `magit-gerrit`: Gerrit integration with Magit
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
