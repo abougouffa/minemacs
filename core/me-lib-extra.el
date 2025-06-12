@@ -912,25 +912,29 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 
 ;;;###autoload
 (defun +editorconfig-guess-style-from-clang-format ()
-  "Set the editor tab and indent widths from \".clang-format\"."
+  "Set some editor settings from \".clang-format\" when available."
   (interactive)
-  (when (and (require 'yaml nil t)
-             (executable-find +clang-format-command)
-             (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
-    (when-let* ((lang (+clang-format-get-lang))
-                (out (with-temp-buffer
-                       (when (zerop (call-process
-                                     +clang-format-command nil (current-buffer) nil
-                                     (concat "--assume-filename=dummy." (car lang)) "--dump-config"))
-                         (buffer-string))))
-                (yaml-hash (yaml-parse-string out))
-                (cl (gethash 'ColumnLimit yaml-hash))
-                (iw (gethash 'IndentWidth yaml-hash))
-                (tw (gethash 'TabWidth yaml-hash))
-                (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
-      (+log! "Setting fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s from \".clang-format\"" cl tw iw is)
-      (editorconfig-set-line-length (number-to-string cl))
-      (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw)))))
+  (if-let* (((and (require 'yaml nil t)
+                  (executable-find +clang-format-command)
+                  (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))))
+            (lang (+clang-format-get-lang))
+            (out (with-temp-buffer
+                   (when (zerop (call-process
+                                 +clang-format-command nil (current-buffer) nil
+                                 (concat "--assume-filename=dummy." (car lang)) "--dump-config"))
+                     (buffer-string))))
+            (yaml-hash (yaml-parse-string out))
+            (cl (gethash 'ColumnLimit yaml-hash))
+            (iw (gethash 'IndentWidth yaml-hash))
+            (tw (gethash 'TabWidth yaml-hash))
+            (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
+      (progn
+        (editorconfig-set-line-length (number-to-string cl))
+        (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw))
+        (when (called-interactively-p 'interactive)
+          (message "Set fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s" cl tw iw is)))
+    (when (called-interactively-p 'interactive)
+      (user-error "No applicable \".clang-format\" for buffer %S" (buffer-name)))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
