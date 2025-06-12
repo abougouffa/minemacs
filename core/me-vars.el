@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-12
 
 ;;; Commentary:
 
@@ -309,7 +309,7 @@ Each string is a regexp, matched against variable names to omit from
   "The \"clang-format\" command to use by default.
 This allows us to use a specific Clang-format version (like
 \"clang-format-12\"). This command will be used in
-`+editorconfig-guess-indentation-style-from-clang-format',
+`+editorconfig-guess-style-from-clang-format',
 `reformatter', `apheleia', etc."
   :group 'minemacs-prog)
 

@@ -629,7 +629,7 @@ Get the \"-style=XXX\" argument for clang-format.
 When NO-OPT isn non-nil, don't return the \"-style=\" part.
 
 (fn &optional NO-OPT)")
-(autoload '+editorconfig-guess-indentation-style-from-clang-format "me-lib-extra" "\
+(autoload '+editorconfig-guess-style-from-clang-format "me-lib-extra" "\
 Set the editor tab and indent widths from \".clang-format\".")
 (autoload '+kill-buffer-after-sentinel-exit "me-lib-extra" "\
 

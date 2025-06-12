@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-12
 
 ;;; Commentary:
 
@@ -429,7 +429,7 @@ or file path may exist now."
   :straight (editorconfig :source nongnu-elpa)
   :hook (minemacs-first-file . editorconfig-mode)
   :init
-  (add-hook 'prog-mode-hook #'+editorconfig-guess-indentation-style-from-clang-format 80)
+  (add-hook 'prog-mode-hook #'+editorconfig-guess-style-from-clang-format 80)
   :config
   (add-to-list 'editorconfig-indentation-alist '(protobuf-ts-mode . protobuf-ts-mode-indent-offset)))
 

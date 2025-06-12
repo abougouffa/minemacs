@@ -128,7 +128,7 @@ Enable loading on-demand packages when needed.
 The "clang-format" command to use by default.
 This allows us to use a specific Clang-format version (like
 "clang-format-12"). This command will be used in
-`+editorconfig-guess-indentation-style-from-clang-format`,
+`+editorconfig-guess-style-from-clang-format`,
 `reformatter`, `apheleia`, etc.
 
 #### `+eval-when-idle-delay`
@@ -877,7 +877,7 @@ the schema from the file name.
 Get the "-style=XXX" argument for clang-format.
 When NO-OPT isn non-nil, don't return the "-style=" part.
 
-#### `(+editorconfig-guess-indentation-style-from-clang-format)`
+#### `(+editorconfig-guess-style-from-clang-format)`
 
 Set the editor tab and indent widths from ".clang-format".
 
