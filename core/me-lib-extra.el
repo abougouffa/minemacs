@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-12
+;; Last modified: 2025-06-13
 
 ;;; Commentary:
 
@@ -913,6 +913,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 ;;;###autoload
 (defun +editorconfig-guess-style-from-clang-format ()
   "Set the editor tab and indent widths from \".clang-format\"."
+  (interactive)
   (when (and (require 'yaml nil t)
              (executable-find +clang-format-command)
              (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist))))
