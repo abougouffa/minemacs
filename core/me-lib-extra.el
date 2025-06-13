@@ -750,17 +750,17 @@ the children of class at point."
   "Request documentation for the thing at point."
   (interactive)
   (eglot--dbind ((Hover) contents range)
-                (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
-                (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
-                      (hint (thing-at-point 'symbol)))
-                  (if blurb
-                      (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
-                                               (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
-                        (with-help-window (current-buffer)
-                          (rename-buffer (format "*eglot-help for %s*" hint))
-                          (with-current-buffer standard-output (insert blurb))
-                          (setq-local nobreak-char-display nil)))
-                    (display-local-help)))))
+      (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
+    (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
+          (hint (thing-at-point 'symbol)))
+      (if blurb
+          (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
+                                   (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
+            (with-help-window (current-buffer)
+              (rename-buffer (format "*eglot-help for %s*" hint))
+              (with-current-buffer standard-output (insert blurb))
+              (setq-local nobreak-char-display nil)))
+        (display-local-help)))))
 
 (defvar +shellcheck--current-error nil)
 (defvar +shellcheck--buffer nil)
