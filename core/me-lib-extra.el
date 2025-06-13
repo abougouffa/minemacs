@@ -714,9 +714,7 @@ the children of class at point."
   (if-let* ((res (jsonrpc-request
                   (eglot--current-server-or-lose)
                   :$ccls/inheritance
-                  (append (eglot--TextDocumentPositionParams)
-                          `(:derived ,(if derived t :json-false))
-                          '(:levels 100) '(:hierarchy t))))
+                  `(,@(eglot--TextDocumentPositionParams) :derived ,(if derived t :json-false) :levels 100 :hierarchy t)))
             (tree (list (cons 0 res))))
       (with-help-window "*ccls inheritance*"
         (with-current-buffer standard-output
@@ -743,7 +741,7 @@ the children of class at point."
 ;; copied or kept open), but doing so with an eldoc buffer is difficult because
 ;; a) its contents are generated asynchronously, making them tough to scrape,
 ;; and b) their contents change frequently (every time you move your cursor).
-(defvar +eglot--help-buffer nil)
+(defvar-local +eglot--help-buffer nil)
 
 ;;;###autoload
 (defun +eglot-help-at-point ()
@@ -754,7 +752,7 @@ the children of class at point."
     (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
           (hint (thing-at-point 'symbol)))
       (if blurb
-          (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
+          (with-current-buffer (or (buffer-live-p +eglot--help-buffer)
                                    (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
             (with-help-window (current-buffer)
               (rename-buffer (format "*eglot-help for %s*" hint))
