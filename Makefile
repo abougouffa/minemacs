@@ -34,20 +34,14 @@ prune: clean
 loaddefs:
 	rm $(EMACS_DIR)/core/me-loaddefs.el
 
-pull:
-	$(EMACS_BATCH) --eval='(straight-pull-all)'
-
-rebuild:
-	$(EMACS_BATCH) --eval='(straight-rebuild-all)'
-
-check:
-	$(EMACS_BATCH) --eval='(straight-check-all)'
-
 bump:
 	$(EMACS_BATCH) --eval='(minemacs-bump-packages)'
 
 upgrade:
 	$(EMACS_BATCH) --eval='(minemacs-upgrade nil)'
+
+build:
+	$(EMACS_BATCH) --eval='(minemacs-run-build-functions t)'
 
 cloc:
 	$(CLOC) --match-f='\.el$$' init.el early-init.el elisp/ modules/ core/ skel/
