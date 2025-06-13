@@ -1095,11 +1095,7 @@ To be used as a predicate generator for `display-buffer-alist'."
 
 (defun minemacs-on-demand-try ()
   "Loop over on-demand modules and load the ones available for the buffer."
-  (let ((interpreter (save-excursion
-                       (goto-char (point-min))
-                       (when (looking-at auto-mode-interpreter-regexp)
-                         (match-string 2))))
-        (module-found nil))
+  (let (module-found)
     (dolist (module-spec minemacs-on-demand-modules-alist)
       (when-let* ((module (car module-spec))
                   (keys (+plist-keys (cdr module-spec))))
@@ -1116,8 +1112,11 @@ To be used as a predicate generator for `display-buffer-alist'."
                                 (and (buffer-file-name)
                                      (cl-find-if (+apply-partially-right #'string-match-p (buffer-file-name)) specs)))
                                (:interpreter-mode
-                                (and interpreter
-                                     (member (file-name-nondirectory interpreter) specs)))
+                                (when-let* ((interpreter (save-excursion
+                                                           (goto-char (point-min))
+                                                           (when (looking-at auto-mode-interpreter-regexp)
+                                                             (match-string 2)))))
+                                  (member (file-name-nondirectory interpreter) specs)))
                                ((or :magic-mode :magic-fallback-mode)
                                 (catch 'match-found
                                   (dolist (func-or-regexp specs)
