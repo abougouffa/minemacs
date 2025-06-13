@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.34.1](https://github.com/abougouffa/minemacs/compare/ce9e1d38bfbf781290f7cacd0065857adfdb2ecf..v12.34.1) - 2025-06-13
+#### Bug Fixes
+- **(clang-format)** handle the unlimited column limit case (ColumnLimit=0) - ([302bff3](https://github.com/abougouffa/minemacs/commit/302bff351618469eea3274bfc2a21aeebe19bd9b)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** fix issue caused by `native-comp-async-on-battery-power` - ([ce9e1d3](https://github.com/abougouffa/minemacs/commit/ce9e1d38bfbf781290f7cacd0065857adfdb2ecf)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([c2ff403](https://github.com/abougouffa/minemacs/commit/c2ff40358a0bc18d6f9f19abb87703ef57f9a770)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(clang-format)** extract common patterns - ([2a29a42](https://github.com/abougouffa/minemacs/commit/2a29a423875226d71552ba7e75d5e453cb97f91f)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** function to command + signal errors accordingly - ([e9604b7](https://github.com/abougouffa/minemacs/commit/e9604b7f3eef2cab5cbd3debbd4558085e982381)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** rename a function - ([e9baac7](https://github.com/abougouffa/minemacs/commit/e9baac7ee24d01ec155955cefa488da14b7fc0bc)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** mark some `+casual-smerge-tmenu` commands as transient - ([08132df](https://github.com/abougouffa/minemacs/commit/08132df36ce0ff87505feabe603bbf873ce4db1b)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** guess `fill-column` from `.clang-format` - ([3802b21](https://github.com/abougouffa/minemacs/commit/3802b213053d4424a4f04efc50956bc8eb8061de)) - [@abougouffa](https://github.com/abougouffa)
+- mark `+editorconfig-guess-style-from-clang-format` as command - ([9ed6d65](https://github.com/abougouffa/minemacs/commit/9ed6d6526028e344992ba7600c001225b5b8c7a0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0b4741d](https://github.com/abougouffa/minemacs/commit/0b4741ded54111d243c0f69f8eef7ada642b92f1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.34.0](https://github.com/abougouffa/minemacs/compare/f0be55bf80d9201915fa917a0000913109c44542..v12.34.0) - 2025-06-11
 #### Bug Fixes
 - **(compile-multi)** bind to F9 instead of already used F8 - ([9401b8c](https://github.com/abougouffa/minemacs/commit/9401b8ce0db576bdcd585f5b5706ca0d96187143)) - [@abougouffa](https://github.com/abougouffa)
