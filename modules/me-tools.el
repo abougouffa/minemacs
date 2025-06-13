@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-27
+;; Last modified: 2025-06-13
 
 ;;; Commentary:
 
@@ -160,6 +160,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 (use-package logview
   :straight t
   :custom
+  (logview-cache-filename (concat minemacs-cache-dir "logview-cache.extmap"))
   (logview-additional-timestamp-formats '(("RDK-CCSP" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))))
   (logview-additional-submodes '(("RDK-CCSP" (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]") (levels . "RDK-CCSP"))))
   (logview-additional-level-mappings '(("RDK-CCSP" (error "ERROR") (warning "WARN") (information "INFO") (debug "DEBUG") (trace "NOTICE")))))
