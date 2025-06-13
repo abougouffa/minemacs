@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-10
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -1141,7 +1141,7 @@ To be used as a predicate generator for `display-buffer-alist'."
     (when module-found
       (set-auto-mode t) ; we set the mode automatically after loading the module
       (revert-buffer t t)) ; this is needed, otherwise, it will only work on the second file
-    nil)) ; return nil so the placeholder mode added to `magit-fallback-mode-alist' doesn't get applied
+    nil)) ; return nil so the placeholder mode added to `magit-mode-alist' doesn't get applied
 
 (defun minemacs-on-demand-try-load-companion-packages ()
   "Load companion packages for the current buffer's mode."
@@ -1173,10 +1173,14 @@ To be used as a predicate generator for `display-buffer-alist'."
         (message "Loaded on-demand modules %s." (string-join (mapcar (apply-partially #'format "`%s'") modules) ", "))
       (message "No suitable on-demand module for the current buffer."))))
 
-;; Ensure `minemacs-on-demand-try' is the last to be evaluated. The
-;; `fundamental-mode' is just a placeholder, it won't be applied because
+;; We hook to `magic-mode-alist' and not `magit-fallback-mode-alist', this is
+;; important for files that can be opened in some available mode but have a
+;; dedicated on-demand mode. For example, opening a PKGBUILD file will activate
+;; the `sh-mode', however, there is the `on-demand/me-pkgbuild' module which
+;; contain the dedicated `pkgbuild-mode', so we need to load that. The
+;; `fundamental-mode' here is just a placeholder, it won't be applied because
 ;; `minemacs-on-demand-try' returns nil.
-(add-hook 'magic-fallback-mode-alist '(minemacs-on-demand-try . fundamental-mode) 99)
+(add-hook 'magic-mode-alist '(minemacs-on-demand-try . fundamental-mode))
 
 (defun +prog-mode-run-hooks ()
   "Run the hooks in `prog-mode-hook'."
