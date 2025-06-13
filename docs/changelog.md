@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.34.2](https://github.com/abougouffa/minemacs/compare/d1836613f81fa6fdac71daafd80c39a0c443dfaf..v12.34.2) - 2025-06-13
+#### Documentation
+- strip long hashes in changelog - ([3ce4ec1](https://github.com/abougouffa/minemacs/commit/3ce4ec127ca622979efbf08ff774707518059c1e)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- **(makefile)** better cleaning rules - ([c3ebf43](https://github.com/abougouffa/minemacs/commit/c3ebf4392c63d2d21c589d9892a9842c6fc4a80a)) - [@abougouffa](https://github.com/abougouffa)
+- **(makefile)** remove unused rules and add `build` - ([a9e73d2](https://github.com/abougouffa/minemacs/commit/a9e73d2910680080ebaf0239584995ae63bae85f)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(core)** fix formatting issue - ([d183661](https://github.com/abougouffa/minemacs/commit/d1836613f81fa6fdac71daafd80c39a0c443dfaf)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** some simplifications - ([29cdb78](https://github.com/abougouffa/minemacs/commit/29cdb787a8c37cb3643d1ea97e2cc276804331f8)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(logview)** customize the cache file path - ([4cc2afd](https://github.com/abougouffa/minemacs/commit/4cc2afdaa80b83d7df115f39b466c11d48dbf4c7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([be9ce5c](https://github.com/abougouffa/minemacs/commit/be9ce5c501c370d4f3d64c4ea441719d57283d30)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.34.1](https://github.com/abougouffa/minemacs/compare/ce9e1d3..v12.34.1) - 2025-06-13
 #### Bug Fixes
 - **(clang-format)** handle the unlimited column limit case (ColumnLimit=0) - ([302bff3](https://github.com/abougouffa/minemacs/commit/302bff3)) - [@abougouffa](https://github.com/abougouffa)
