@@ -750,17 +750,17 @@ the children of class at point."
   "Request documentation for the thing at point."
   (interactive)
   (eglot--dbind ((Hover) contents range)
-      (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
-    (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
-          (hint (thing-at-point 'symbol)))
-      (if blurb
-          (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
-                                   (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
-            (with-help-window (current-buffer)
-              (rename-buffer (format "*eglot-help for %s*" hint))
-              (with-current-buffer standard-output (insert blurb))
-              (setq-local nobreak-char-display nil)))
-        (display-local-help)))))
+                (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover (eglot--TextDocumentPositionParams))
+                (let ((blurb (and (not (seq-empty-p contents)) (eglot--hover-info contents range)))
+                      (hint (thing-at-point 'symbol)))
+                  (if blurb
+                      (with-current-buffer (or (and (buffer-live-p +eglot--help-buffer) +eglot--help-buffer)
+                                               (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
+                        (with-help-window (current-buffer)
+                          (rename-buffer (format "*eglot-help for %s*" hint))
+                          (with-current-buffer standard-output (insert blurb))
+                          (setq-local nobreak-char-display nil)))
+                    (display-local-help)))))
 
 (defvar +shellcheck--current-error nil)
 (defvar +shellcheck--buffer nil)
@@ -886,6 +886,13 @@ the schema from the file name."
     ((verilog-mode) "v" verilog-indent-level)
     ((verilog-ts-mode) "v" verilog-ts-indent-level)))
 
+(defun +clang-format-dump-config (&optional extension)
+  "Dump config for the current buffer assuming a file with EXTENSION."
+  (when-let* ((extension (or extension (car (+clang-format-get-lang)))))
+    (with-temp-buffer
+      (when (zerop (call-process +clang-format-command nil (current-buffer) nil (concat "--assume-filename=dummy." extension) "--dump-config"))
+        (buffer-substring-no-properties (point-min) (point-max))))))
+
 ;;;###autoload
 (defun +clang-format-get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
@@ -899,11 +906,8 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
   (let ((lang (+clang-format-get-lang)))
     (concat (if no-opt "" "-style=")
             (if (and (+clang-format-config-file)
-                     ;; In case of a missing config for the language or a buggy .clang-format file
-                     (with-temp-buffer
-                       (zerop (call-process
-                               +clang-format-command nil (current-buffer) nil
-                               (concat "--assume-filename=dummy." (car lang)) "--dump-config"))))
+                     ;; In case of a missing config for the language or a malformed ".clang-format" file
+                     (+clang-format-dump-config (car lang)))
                 "file"
               (let ((indent-sym (cadr lang)))
                 (format "{IndentWidth: %d, TabWidth: %d}"
@@ -918,11 +922,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                   (executable-find +clang-format-command)
                   (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))))
             (lang (+clang-format-get-lang))
-            (out (with-temp-buffer
-                   (when (zerop (call-process
-                                 +clang-format-command nil (current-buffer) nil
-                                 (concat "--assume-filename=dummy." (car lang)) "--dump-config"))
-                     (buffer-string))))
+            (out (+clang-format-dump-config (car lang)))
             (yaml-hash (yaml-parse-string out))
             (fc (gethash 'ColumnLimit yaml-hash))
             (iw (gethash 'IndentWidth yaml-hash))
@@ -935,6 +935,11 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
           (message "Set fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s" fc tw iw is)))
     (when (called-interactively-p 'interactive)
       (user-error "No applicable \".clang-format\" for buffer %S" (buffer-name)))))
+
+(put '+editorconfig-guess-style-from-clang-format 'completion-predicate
+     (lambda (cmd buf)
+       (with-current-buffer buf
+         (and (+clang-format-get-lang) (+clang-format-config-file) (+clang-format-dump-config) t))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
