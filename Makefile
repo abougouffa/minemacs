@@ -4,22 +4,45 @@ EMACS_BATCH=emacs --batch --script init.el
 CLOC=cloc
 
 all:
-	@echo "Cleaning options are: clean, clean_extras, clean_all, prune, loaddefs."
-	@echo "Straight options are: pull, rebuild, check."
-	@echo "Extra options are: bump, cloc, locked, ci."
+	@echo "Cleaning rules are: clean, clean-extras, clean-all, clean-cache, prune, clean-loaddefs."
+	@echo "MinEmacs packages rules: bump, upgrade."
+	@echo "MinEmacs CI rules: ci, ci-daemon."
+	@echo "Extra rules: cloc."
 	@echo "Documentation options: gen-external-tools, gen-descriptions, documentation."
 
-clean_extras:
+clean-extras:
 	rm -rf $(EMACS_DIR)/local/parinfer-rust || true
 	rm -rf $(EMACS_DIR)/local/tree-sitter || true
 	rm -rf $(EMACS_DIR)/local/lsp || true
-	rm -rf $(EMACS_DIR)/local/extra-packages || true
+	rm -rf $(EMACS_DIR)/local/ltex-ls-plus* || true
+	rm -rf $(EMACS_DIR)/local/copilot || true
+	rm -rf $(EMACS_DIR)/local/whisper || true
+	rm -rf $(EMACS_DIR)/local/devdocs || true
+	rm -rf $(EMACS_DIR)/local/tldr || true
+	rm -rf $(EMACS_DIR)/local/powershell || true
 	rm -rf $(EMACS_DIR)/local/clean_extras || true
 
-clean: clean_extras
+clean-cache: clean-extras
+	rm -rf $(EMACS_DIR)/local/ellama-sessions || true
+	rm -rf $(EMACS_DIR)/local/tramp-auto-save || true
+	rm -rf $(EMACS_DIR)/local/xkcd || true
+	rm -rf $(EMACS_DIR)/local/undo-fu-session || true
+	rm -rf $(EMACS_DIR)/local/real-backup || true
+	rm -rf $(EMACS_DIR)/local/pscratch || true
+	rm -rf $(EMACS_DIR)/local/logview-cache.extmap || true
+	rm -rf $(EMACS_DIR)/local/desktop-session || true
+	rm -rf $(EMACS_DIR)/local/auto-save || true
+	rm -rf $(EMACS_DIR)/local/auto-insert || true
+	rm -rf $(EMACS_DIR)/local/backup || true
+	rm -rf $(EMACS_DIR)/local/beardbolt-sandbox || true
+	rm $(EMACS_DIR)/local/dape-breakpoints || true
+	rm $(EMACS_DIR)/local/ditaa*.jar || true
+	rm $(EMACS_DIR)/local/forge-database*.sqlite || true
+
+clean: clean-extras
 	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
 
-clean_all: clean
+clean-all: clean clean-cache
 	cp $(EMACS_DIR)/local/straight/versions/default.el /tmp/straight-versions-default.el
 	rm -rf $(EMACS_DIR)/local/straight/
 	mkdir -p $(EMACS_DIR)/local/straight/versions/
@@ -31,7 +54,7 @@ prune: clean
 	mkdir -p $(EMACS_DIR)/local/straight/versions/
 	cp /tmp/straight-versions-default.el $(EMACS_DIR)/local/straight/versions/default.el
 
-loaddefs:
+clean-loaddefs:
 	rm $(EMACS_DIR)/core/me-loaddefs.el
 
 bump:
