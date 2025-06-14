@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.34.3](https://github.com/abougouffa/minemacs/compare/b2e6b148401e89f644a927ac78425332f8e74a10..v12.34.3) - 2025-06-14
+#### Bug Fixes
+- **(core)** don't miss on-demand modules when applicable - ([b2e6b14](https://github.com/abougouffa/minemacs/commit/b2e6b148401e89f644a927ac78425332f8e74a10)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** minor edit - ([76f4297](https://github.com/abougouffa/minemacs/commit/76f42974441310dfae170ada510d16cc6cc952d1)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** move `demangle-mode` to `on-demand/me-llvm` - ([2552330](https://github.com/abougouffa/minemacs/commit/2552330bb5329b34361c8fd64d1d2a0e5f2d6191)) - [@abougouffa](https://github.com/abougouffa)
+- don't repeat `use-package`'s `:hook` blocks - ([afbb986](https://github.com/abougouffa/minemacs/commit/afbb986f26e4ca00a8a055926f9da3ec1994fa55)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cape)** use `setopt` to set `text-mode-ispell-word-completion` - ([d5a25fd](https://github.com/abougouffa/minemacs/commit/d5a25fdf013ab33b46679f784f74f30a044f54e6)) - [@abougouffa](https://github.com/abougouffa)
+- **(helpful)** don't show the "Source Code" section - ([d653eb2](https://github.com/abougouffa/minemacs/commit/d653eb2aacb1901d6166bd2aefc1d3dce6188888)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([62e0004](https://github.com/abougouffa/minemacs/commit/62e0004b9a21fc48140421b7b52afe202b424b46)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([92514b0](https://github.com/abougouffa/minemacs/commit/92514b0574998421328103d74024bd609ec9ec44)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.34.2](https://github.com/abougouffa/minemacs/compare/d1836613f81fa6fdac71daafd80c39a0c443dfaf..v12.34.2) - 2025-06-13
 #### Documentation
 - strip long hashes in changelog - ([3ce4ec1](https://github.com/abougouffa/minemacs/commit/3ce4ec127ca622979efbf08ff774707518059c1e)) - [@abougouffa](https://github.com/abougouffa)
