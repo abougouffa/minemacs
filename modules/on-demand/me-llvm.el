@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -12,13 +12,19 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-llvm
-  :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
+  :auto-mode '(("\\.ll\\'" . llvm-ts-mode))
+  :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 
 ;; LLVM major mode using Tree-sitter
 (use-package llvm-ts-mode
   :straight t
   :when (featurep 'feat/tree-sitter))
+
+
+;; Automatically demangle C++, D, and Rust symbols in LLVM code
+(use-package demangle-mode
+  :straight t)
 
 
 (provide 'on-demand/me-llvm)
