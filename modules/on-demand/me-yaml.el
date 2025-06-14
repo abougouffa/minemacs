@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -28,8 +28,9 @@
 (use-package yaml-pro
   :straight t
   :when (featurep 'feat/tree-sitter)
-  :hook (yaml-mode . yaml-pro-mode)
-  :hook (yaml-ts-mode . yaml-pro-ts-mode))
+  :hook
+  (yaml-mode . yaml-pro-mode)
+  (yaml-ts-mode . yaml-pro-ts-mode))
 
 
 ;; Ansible minor mode

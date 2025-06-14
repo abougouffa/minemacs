@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-05-07
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -61,10 +61,11 @@
 ;; Corfu enhances in-buffer completion with a small completion popup
 (use-package corfu
   :straight (:files (:defaults "extensions/*.el"))
-  :hook ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
-  :hook (minibuffer-setup . +corfu-enable-in-minibuffer-h)
-  :hook (corfu-mode . corfu-history-mode)
-  :hook (corfu-mode . corfu-indexed-mode)
+  :hook
+  ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
+  (minibuffer-setup . +corfu-enable-in-minibuffer-h)
+  (corfu-mode . corfu-history-mode)
+  (corfu-mode . corfu-indexed-mode)
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
@@ -132,10 +133,11 @@
 ;; Consult provides search and navigation commands based on the Emacs completion function `completing-read'
 (use-package consult
   :straight t
-  :hook (embark-collect-mode . consult-preview-at-point-mode)
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode)
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  (completion-list-mode . consult-preview-at-point-mode)
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c k"   . consult-kmacro)
@@ -288,11 +290,12 @@
 ;; Vertico provides a performant and minimalistic vertical completion UI based on the default completion system
 (use-package vertico
   :straight (:files (:defaults "extensions/*.el"))
-  :hook (minemacs-lazy . vertico-mode)
-  :hook (minemacs-lazy . vertico-mouse-mode)
-  :hook (vertico-mode . vertico-indexed-mode)
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
-  :hook (minibuffer-setup . vertico-repeat-save)
+  :hook
+  (minemacs-lazy . vertico-mode)
+  (minemacs-lazy . vertico-mouse-mode)
+  (vertico-mode . vertico-indexed-mode)
+  (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  (minibuffer-setup . vertico-repeat-save)
   :bind (("M-R" . vertico-repeat)
          :map vertico-map
          ("RET" . vertico-directory-enter)

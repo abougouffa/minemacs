@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -173,9 +173,10 @@ to `conventional' or `prefix'."
 ;; Emacs package for highlighting uncommitted changes
 (use-package diff-hl
   :straight t
-  :hook (minemacs-first-file . global-diff-hl-mode)
-  :hook (diff-hl-mode . +diff-hl-update-on-buffer-change)
-  :hook (dired-mode . diff-hl-dired-mode)
+  :hook
+  (minemacs-first-file . global-diff-hl-mode)
+  (diff-hl-mode . +diff-hl-update-on-buffer-change)
+  (dired-mode . diff-hl-dired-mode)
   :config
   ;; BUG+HACK: After commiting changes from `magit' and switching back to the
   ;; buffer, the diff-hl doesn't go away until an input happens. This hook will

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -23,8 +23,9 @@
   :mode ("\\.gplt\\'" . gnuplot-mode)
   :mode ("\\.gpi\\'" . gnuplot-mode)
   :mode ("\\.plot\\'" . gnuplot-mode)
-  :hook (gnuplot-mode . +prog-mode-run-hooks)
-  :hook (gnuplot-mode . visual-line-mode))
+  :hook
+  (gnuplot-mode . +prog-mode-run-hooks)
+  (gnuplot-mode . visual-line-mode))
 
 
 (provide 'on-demand/me-gnuplot)

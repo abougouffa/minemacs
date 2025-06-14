@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-12
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -188,8 +188,9 @@
 (use-package ligature
   :straight t
   :when (and (featurep 'feat/harfbuzz) (featurep 'feat/cairo) (version<= "1.16.0" cairo-version-string))
-  :hook (prog-mode . ligature-mode)
-  :hook (minemacs-after-setup-fonts . ligature-generate-ligatures)
+  :hook
+  (prog-mode . ligature-mode)
+  (minemacs-after-setup-fonts . ligature-generate-ligatures)
   :config
   ;; A fine-tuned list of per-language ligatures, constructed from:
   ;; - Iosevka: https://typeof.net/Iosevka/customizer

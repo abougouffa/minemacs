@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-29
-;; Last modified: 2025-03-21
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -18,8 +18,9 @@
 ;; Integrated environment for TeX
 (use-package tex
   :straight auctex
-  :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
-  :hook ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
+  :hook
+  ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
+  ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
   :custom
   (TeX-parse-self t) ; parse on load
   (TeX-auto-save t)  ; parse on save
@@ -46,8 +47,9 @@
 ;; Integrated environment for LaTeX
 (use-package latex
   :straight auctex
-  :hook (LaTeX-mode . latex-math-mode)
-  :hook (LaTeX-mode . turn-on-reftex)
+  :hook
+  (LaTeX-mode . latex-math-mode)
+  (LaTeX-mode . turn-on-reftex)
   :custom
   ;; Add the TOC entry to the sectioning hooks.
   (LaTeX-fill-break-at-separators nil)

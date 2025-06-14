@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-09
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -14,8 +14,9 @@
 (use-package treesit-auto
   :straight (:host github :repo "renzmann/treesit-auto")
   :when (featurep 'feat/tree-sitter)
-  :hook (minemacs-build-functions . treesit-auto-install-all)
-  :hook (minemacs-lazy . global-treesit-auto-mode)
+  :hook
+  (minemacs-build-functions . treesit-auto-install-all)
+  (minemacs-lazy . global-treesit-auto-mode)
   :custom
   (treesit-auto-install 'prompt)
   :init

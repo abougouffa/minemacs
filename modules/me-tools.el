@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-13
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -15,8 +15,9 @@
   :straight (ssh-deploy :source gnu-elpa-mirror)
   ;; Should be configured in per-project basis, good documentation at:
   ;; https://github.com/emacs-straight/ssh-deploy#deployment-configuration-examples
-  :hook ((after-save . ssh-deploy-after-save)
-         (find-file . ssh-deploy-find-file))
+  :hook
+  (after-save . ssh-deploy-after-save)
+  (find-file . ssh-deploy-find-file)
   :bind (("C-c C-z" . ssh-deploy-prefix-map))
   :custom
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
@@ -60,8 +61,9 @@
 ;; Browse "tldr" pages from Emacs
 (use-package tldr
   :straight t
-  :hook (minemacs-build-functions . tldr-update-docs)
-  :hook (tldr-mode . visual-line-mode)
+  :hook
+  (minemacs-build-functions . tldr-update-docs)
+  (tldr-mode . visual-line-mode)
   :custom
   (tldr-enabled-categories '("common" "linux" "netbsd" "openbsd" "freebsd" "osx" "windows")))
 
@@ -70,9 +72,10 @@
 (use-package vterm
   :straight t
   :when (and (not (featurep 'os/win)) (featurep 'feat/modules))
-  :hook (minemacs-build-functions . vterm-module-compile)
-  :hook (vterm-mode . compilation-shell-minor-mode)
-  :hook (vterm-mode . minemacs-reduce-font-size)
+  :hook
+  (minemacs-build-functions . vterm-module-compile)
+  (vterm-mode . compilation-shell-minor-mode)
+  (vterm-mode . minemacs-reduce-font-size)
   :bind (:map vterm-mode-map ([return] . vterm-send-return))
   :init
   (+def-dedicated-tab! vterm :exit-hook vterm-exit-functions)
