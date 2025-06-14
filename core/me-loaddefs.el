@@ -50,7 +50,7 @@ Run adb root (or unroot with \\[universal-argument]).
 
 ;;; Generated autoloads from ../modules/on-demand/me-assembly.el
 
-(minemacs-register-on-demand-module 'me-assembly :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)))
+(minemacs-register-on-demand-module 'me-assembly :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)) :companion-packages '((asm-mode . x86-lookup)))
 (autoload '+asm-ask-for-mode "../modules/on-demand/me-assembly" "\
 Ask the MODE to run.
 
