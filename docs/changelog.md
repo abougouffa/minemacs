@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.35.0](https://github.com/abougouffa/minemacs/compare/c086cd243dd53e3b4b730d8aeb0e01c9580837b9..v12.35.0) - 2025-06-14
+#### Features
+- **(desktop)** remove customization, switching to `easysession` - ([3aebd6c](https://github.com/abougouffa/minemacs/commit/3aebd6c039bb2bf085db990b30d2720779f6568f)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add support for `solaire-mode` - ([92c0841](https://github.com/abougouffa/minemacs/commit/92c08415a4e746daad35c2d7a2da4c55847738ae)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `easysession` - ([7832e7f](https://github.com/abougouffa/minemacs/commit/7832e7fa8ac5e771aa4f895686fef28b1e5b31fb)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- auto update the copyright date on save - ([14f2e3d](https://github.com/abougouffa/minemacs/commit/14f2e3d02fff95f3b53d1513becd238988f907d4)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(init)** handle `MINEMACS_BENCHMARK` in `early-init` - ([d3ea8b8](https://github.com/abougouffa/minemacs/commit/d3ea8b8451d3bc779cc55944826fc35c941d4be9)) - [@abougouffa](https://github.com/abougouffa)
+- don't repeat `use-package`'s `:hook` blocks in `me-builtin` - ([fb11fd4](https://github.com/abougouffa/minemacs/commit/fb11fd42e556b7e38799b64e492f8450c85e19b6)) - [@abougouffa](https://github.com/abougouffa)
+- move `x86-lookup` from `me-embedded` to `on-demand/me-assembly` - ([a1155a8](https://github.com/abougouffa/minemacs/commit/a1155a802186af0debff176fe3c991a6d364f46d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(rmsbolt)** minor edit - ([c086cd2](https://github.com/abougouffa/minemacs/commit/c086cd243dd53e3b4b730d8aeb0e01c9580837b9)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** renaming the initial tab is assured by `otpp` - ([0314c1f](https://github.com/abougouffa/minemacs/commit/0314c1fa311fdbd02fd0681118b28f1310cd3f1b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([13b3032](https://github.com/abougouffa/minemacs/commit/13b3032f154e730c57918e7da0111543a082c212)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([47c75e0](https://github.com/abougouffa/minemacs/commit/47c75e033fa4f934bcf6fb8746e5f0cd617a76d8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.34.3](https://github.com/abougouffa/minemacs/compare/b2e6b148401e89f644a927ac78425332f8e74a10..v12.34.3) - 2025-06-14
 #### Bug Fixes
 - **(core)** don't miss on-demand modules when applicable - ([b2e6b14](https://github.com/abougouffa/minemacs/commit/b2e6b148401e89f644a927ac78425332f8e74a10)) - [@abougouffa](https://github.com/abougouffa)
