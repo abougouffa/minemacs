@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -83,7 +83,11 @@
          ([remap describe-symbol] . helpful-symbol)
          ([remap describe-function] . helpful-callable)
          ([remap describe-command] . helpful-command)
-         ([remap describe-key] . helpful-key)))
+         ([remap describe-key] . helpful-key))
+  :config
+  ;; HACK: Showing the source code of the symbol in the help buffer isn't always
+  ;; helpful, especially for big definitions.
+  (advice-add 'helpful--source :override #'ignore))
 
 
 ;; Evaluation Result OverlayS for Emacs Lisp
