@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-12
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -13,8 +13,9 @@
 (require 'me-lib)
 
 (use-package emacs
-  :hook (after-save . +save--guess-file-mode-h)
-  :hook (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
+  :hook
+  (after-save . +save--guess-file-mode-h)
+  (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
   :custom
   ;; ====== Default directories for builtin packages ======
   (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
@@ -699,9 +700,10 @@ or file path may exist now."
         (comint-truncate-buffer)))))
 
 (use-package compile
-  :hook (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
-  :hook (shell-mode . compilation-shell-minor-mode)
-  :hook (compilation-mode . minemacs-reduce-font-size)
+  :hook
+  (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
+  (shell-mode . compilation-shell-minor-mode)
+  (compilation-mode . minemacs-reduce-font-size)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
@@ -1237,10 +1239,11 @@ Typing these will trigger reindentation of the current line.")
 (use-package simple
   :init
   (setq-default indent-tabs-mode nil) ; Never mix, use only spaces
-  :hook (minemacs-lazy . line-number-mode) ; Show line number in mode-line
-  :hook (minemacs-lazy . column-number-mode) ; Show column numbers (a.k.a. cursor position) in the mode-line
-  :hook (minemacs-lazy . size-indication-mode) ; Display buffer size on mode line
-  :hook ((prog-mode conf-mode org-mode) . visual-line-mode) ; Wrap long lines
+  :hook
+  (minemacs-lazy . line-number-mode) ; Show line number in mode-line
+  (minemacs-lazy . column-number-mode) ; Show column numbers (a.k.a. cursor position) in the mode-line
+  (minemacs-lazy . size-indication-mode) ; Display buffer size on mode line
+  ((prog-mode conf-mode org-mode) . visual-line-mode) ; Wrap long lines
   :custom
   (kill-do-not-save-duplicates t) ; Filter duplicate entries in kill ring
   (save-interprogram-paste-before-kill t)) ; Save existing clipboard text into the kill ring before replacing it.
