@@ -74,7 +74,7 @@ Ask the MODE to run.
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-prune-build-cache" "minemacs-"))
+(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-bqn.el
@@ -176,11 +176,6 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-dart.el
 
 (minemacs-register-on-demand-module 'me-dart :auto-mode '(("\\.dart\\'" . dart-mode)) :companion-packages '((dart-mode . flutter)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-demangle.el
-
-(minemacs-register-on-demand-module 'me-demangle :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-devicetree.el
@@ -630,7 +625,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part.
 
 (fn &optional NO-OPT)")
 (autoload '+editorconfig-guess-style-from-clang-format "me-lib-extra" "\
-Set the editor tab and indent widths from \".clang-format\".")
+Set some editor settings from \".clang-format\" when available." t)
 (autoload '+kill-buffer-after-sentinel-exit "me-lib-extra" "\
 
 
@@ -713,12 +708,12 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-extra" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-mode-alist" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
 
-(minemacs-register-on-demand-module 'me-llvm :auto-mode '(("\\.ll\\'" . llvm-ts-mode)))
+(minemacs-register-on-demand-module 'me-llvm :auto-mode '(("\\.ll\\'" . llvm-ts-mode)) :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-lua.el
@@ -728,7 +723,7 @@ Show the list of declared external dependencies." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-markdown.el
 
-(minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-mode . markdown-ts-mode)))
+(minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-ts-mode . markdown-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mathematica.el
