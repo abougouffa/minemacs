@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-15
 
 ;;; Commentary:
 
@@ -54,14 +54,15 @@
   :custom
   (enlight-content
    (enlight-menu
-    '(("Org Mode"
+    `(("Org Mode"
        ("Org-Agenda (today)" (org-agenda nil "a") "a")
        ("Org directory" (dired org-directory) "o"))
       ("Projects"
        ("Switch to project" project-switch-project "p"))
-      ("Desktop / Session"
-       ("Restore session" desktop-read "r")
-       ("Restore session from file" +desktop-read-session "R")))))
+      ,@(unless (+package-disabled-p 'easysession 'me-ui)
+          `(("Session"
+             ("Load session" easysession-load "l")
+             ("Switch to session" easysession-switch-to "s")))))))
   :init
   (if minemacs-started-with-extra-args-p
       (enlight-open)
@@ -255,6 +256,12 @@
       purescript-ts-mode ml-mode caml-mode tuareg-mode fsharp-mode fstar-mode
       fsharp-ts-mode dafny-mode swift-mode coq-mode idris-mode)
    +ligature-functional))
+
+
+;; Effortlessly persist and restore your Emacs sessions
+(use-package easysession
+  :straight t
+  :hook (minemacs-lazy . easysession-save-mode))
 
 
 (provide 'me-ui)
