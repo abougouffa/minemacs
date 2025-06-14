@@ -400,7 +400,7 @@ or file path may exist now."
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
   (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
   (tab-bar-close-button-show nil)
-  (tab-bar-auto-width-max '(150 20))
+  (tab-bar-auto-width-max '((150) 20))
   (tab-bar-tab-hints t)
   (tab-bar-show t)
   :init
@@ -419,12 +419,7 @@ or file path may exist now."
                                  (if current-p 'non-selected 'selected)))
                         tab-bar-close-button)
                    ""))
-       'face (funcall tab-bar-tab-face-function tab))))
-  ;; Rename the first tab to "*default*"
-  (let ((tab (assq 'current-tab (funcall tab-bar-tabs-function))))
-    ;; A softer explicit name flag, so `otpp' can change it if relevant
-    (setcdr (assq 'name tab) "*default*")
-    (setcdr (assq 'explicit-name tab) 'def)))
+       'face (funcall tab-bar-tab-face-function tab)))))
 
 (use-package editorconfig
   :straight (editorconfig :source nongnu-elpa)
