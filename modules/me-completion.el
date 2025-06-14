@@ -75,7 +75,7 @@
   :config
   ;; HACK: Prevent the annoting completion error when no `ispell' dictionary is set, prefer `cape-dict'
   (when (>= emacs-major-version 30)
-    (setq text-mode-ispell-word-completion nil))
+    (setopt text-mode-ispell-word-completion nil))
 
   (defun +corfu-enable-in-minibuffer-h ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
