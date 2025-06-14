@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-12
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -16,8 +16,17 @@
   (when (< emacs-major-version recommended-ver)
     (message "Recommended Emacs version for MinEmacs is %d or higher, you have v%s" recommended-ver emacs-version)))
 
-(dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
-  (add-to-list 'load-path (expand-file-name dir (file-name-directory (file-truename load-file-name)))))
+(let ((minemacs-dir (file-name-directory (file-truename load-file-name))))
+  (when-let* ((val (getenv "MINEMACS_BENCHMARK"))) ; Run a profiling session if `$MINEMACS_BENCHMARK' is defined
+    (add-to-list 'load-path (expand-file-name "elisp/benchmark-init/" minemacs-dir))
+    (if (not (require 'benchmark-init nil :noerror))
+        (error "[MinEmacs:Error] `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory")
+      (benchmark-init/activate)
+      (add-hook (if (equal (downcase val) "lazy") 'minemacs-lazy-hook 'minemacs-after-startup-hook)
+                (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99)))
+
+  (dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
+    (add-to-list 'load-path (expand-file-name dir minemacs-dir))))
 
 (require 'me-vars)
 (require 'me-lib)

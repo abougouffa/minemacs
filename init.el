@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-14
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -53,15 +53,6 @@
 ;; - `minemacs-first-c/c++-file-hook'
 
 ;;; Code:
-
-;; Run a profiling session if `$MINEMACS_BENCHMARK' is defined.
-(when-let* ((val (getenv "MINEMACS_BENCHMARK")))
-  (add-to-list 'load-path (concat (file-name-directory load-file-name) "elisp/benchmark-init/"))
-  (if (not (require 'benchmark-init nil :noerror))
-      (error "[MinEmacs:Error] `benchmark-init' is not available, make sure you've run \"git submodule update --init\" inside MinEmacs' directory")
-    (benchmark-init/activate)
-    (add-hook (if (equal (downcase val) "lazy") 'minemacs-lazy-hook 'minemacs-after-startup-hook)
-              (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99)))
 
 (unless (featurep 'early-init) ; In case we decided to do some funny loading without the `early-init-file'
   (load (expand-file-name "early-init.el" (file-name-directory (file-truename load-file-name)))))
