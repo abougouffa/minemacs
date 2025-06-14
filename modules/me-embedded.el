@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-14
 
 ;;; Commentary:
 
@@ -73,18 +73,6 @@
   :straight t
   :disabled ; TEMP: No good syntax highlighting
   :when (featurep 'feat/tree-sitter))
-
-
-;; Quickly jump to Intel's x86 documentation from Emacs
-(use-package x86-lookup
-  :straight t
-  :custom
-  ;; Get manual from https://intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
-  (x86-lookup-pdf (concat minemacs-local-dir "intel-64-and-ia32-volumes-1234.pdf"))
-  (x86-lookup-cache-directory (concat minemacs-cache-dir "x86-lookup/"))
-  :config
-  (unless (file-exists-p x86-lookup-pdf)
-    (url-copy-file "https://cdrdv2.intel.com/v1/dl/getContent/671200" x86-lookup-pdf t)))
 
 
 (provide 'me-embedded)
