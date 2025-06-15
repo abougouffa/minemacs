@@ -72,6 +72,13 @@
   (global-projection-hook-mode 1))
 
 
+;; Projection extension to jump between related files in a project
+(use-package projection-find
+  :config
+  ;; Add header/source mapping for Modula-2
+  (cl-callf2 append '(("mod" "def") ("def" "mod")) projection-find-other-file-suffix))
+
+
 ;; Projection integration for `compile-multi'
 (use-package projection-multi
   :straight t
