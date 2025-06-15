@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-12
+;; Last modified: 2025-06-15
 
 ;;; Commentary:
 
@@ -105,6 +105,8 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
                                    (and (file-directory-p "~/.minemacs.d/") "~/.minemacs.d/")
                                    (concat minemacs-root-dir "user-config/")))
   "MinEmacs user customization directory.")
+
+(setq user-emacs-directory minemacs-local-dir)
 
 (defconst minemacs-default-org-dir
   (or (getenv "MINEMACS_ORG_DIR")

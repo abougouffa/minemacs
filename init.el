@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-15
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -60,10 +60,7 @@
 (require 'me-lib) ; Load MinEmacs' core library
 (require 'use-package)
 
-;; NOTE: It is important to set this here and not in `me-vars' nor in
-;; "early-init.el", otherwise, it won't work with Chemacs2-based installations.
-(setq user-emacs-directory minemacs-local-dir
-      custom-file (concat minemacs-config-dir "custom-vars.el"))
+(setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (+load custom-file))
 
 ;; Generate the loaddefs file if needed
