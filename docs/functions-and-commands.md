@@ -868,6 +868,10 @@ Insert a schema for the current buffer file.
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
+#### `(+clang-format-dump-config &optional EXTENSION)`
+
+Dump config for the current buffer assuming a file with EXTENSION.
+
 #### `(+clang-format-get-style &optional NO-OPT)`
 
 Get the "-style=XXX" argument for clang-format.
@@ -875,7 +879,7 @@ When NO-OPT isn non-nil, don't return the "-style=" part.
 
 #### `(+editorconfig-guess-style-from-clang-format)`
 
-Set the editor tab and indent widths from ".clang-format".
+Set some editor settings from ".clang-format" when available.
 
 #### `(+server-restart)`
 

@@ -84,7 +84,6 @@
 * `embed`: Emacs package with utilities for embedded development with OpenOCD
 * `bitbake`: A set of Emacs modes for various Yocto/Bitbake file formats
 * `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
-* `x86-lookup`: Quickly jump to Intel's x86 documentation from Emacs
 
 ## `me-experimental`
 * `eglot-x`: Extra non-standard functionalities for Eglot
@@ -190,6 +189,7 @@
 * `consult-compile-multi`: Consulting read support for `compile-multi`
 * `compile-multi-nerd-icons`: Integration of `compile-multi` with `nerd-icons`
 * `projection`: Projectile like project management library built on Emacs' `project`
+* `projection-find`: Projection extension to jump between related files in a project
 * `projection-multi`: Projection integration for `compile-multi`
 * `projection-multi-embark`: Integration for `projection-multi` and `embark`
 * `projection-dape`: Projection integration for `dape`
@@ -254,6 +254,7 @@
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
 * `doom-modeline`: A fancy and fast mode-line inspired by minimalism design
+* `solaire-mode`: Visually distinguish "real" buffers (i.e. file-visiting code buffers) from "unreal" buffers (like popups, sidebars, etc)
 * `enlight`: Highly customizable startup screen for Emacs
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
@@ -266,6 +267,7 @@
 * `casual-avy`: An opinionated `transient` menu for `avy`
 * `casual-symbol-overlay`: An opinionated `transient` menu for `symbol-overlay`
 * `ligature`: Display typographical ligatures in major modes
+* `easysession`: Effortlessly persist and restore your Emacs sessions
 
 ## `me-vc`
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
@@ -307,6 +309,7 @@
 * `nasm-mode`: Major mode for Netwide Assembler
 * `gas-mode`: Major mode for GNU Assembler
 * `arm-mode`: Major mode for editing Advanced RISC Machine (a.k.a. ARM) assembly code
+* `x86-lookup`: Quickly jump to Intel's x86 documentation from Emacs
 
 ## `on-demand/me-awk`
 * `awk-ts-mode`: Major mode for AWK using Tree-sitter
@@ -376,9 +379,6 @@
 ## `on-demand/me-dart`
 * `dart-mode`: Major mode for editing Dart files
 * `flutter`: Tools for working with Flutter SDK
-
-## `on-demand/me-demangle`
-* `demangle-mode`: Automatically demangle C++, D, and Rust symbols in LLVM code
 
 ## `on-demand/me-devicetree`
 * `dts-mode`: Major mode for DeviceTree source code
@@ -520,6 +520,7 @@
 
 ## `on-demand/me-llvm`
 * `llvm-ts-mode`: LLVM major mode using Tree-sitter
+* `demangle-mode`: Automatically demangle C++, D, and Rust symbols in LLVM code
 
 ## `on-demand/me-lua`
 * `lua-mode`: Major mode for editing Lua scripts
