@@ -289,9 +289,7 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab.el
 
-(minemacs-register-on-demand-module 'me-gitlab :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
-(autoload 'minemacs-gitlab-load "../modules/on-demand/me-gitlab" "\
-Load the `on-demand/me-gitlab' modules (`gitlab-ci-mode' + `lab')." t)
+(minemacs-register-on-demand-module 'me-gitlab :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)) :define-loader t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gnuplot.el
@@ -371,9 +369,7 @@ Load the `on-demand/me-gitlab' modules (`gitlab-ci-mode' + `lab')." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-jupyter.el
 
-(minemacs-register-on-demand-module 'me-jupyter :auto-mode '(("\\.ipynb\\'" . ein:ipynb-mode)))
-(autoload 'minemacs-jupyter-load "../modules/on-demand/me-jupyter" "\
-Load the `on-demand/me-jupyter' modules (`ein' + `jupyter')." t)
+(minemacs-register-on-demand-module 'me-jupyter :auto-mode '(("\\.ipynb\\'" . ein:ipynb-mode)) :define-loader t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-just.el
@@ -735,11 +731,7 @@ Show the list of declared external dependencies." t)
 
 (defconst +maxima-path (if-let* ((sys-path "/usr/share/emacs/site-lisp/maxima/") ((file-directory-p sys-path))) sys-path (mapcar (apply-partially #'concat minemacs-on-demand-modules-dir "third-party/maxima/") '("emaxima/" "imaxima/" "misc/"))))
 (defconst +maxima-available-p (and (executable-find "maxima") t))
-(when +maxima-available-p
- (defun minemacs-maxima-load ()
-   "Load the `on-demand/me-maxima' module."
-   (interactive)
-   (require 'on-demand/me-maxima)))
+(minemacs-register-on-demand-module 'me-maxima :define-loader '+maxima-available-p)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
