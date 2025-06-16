@@ -120,7 +120,8 @@ This command stashes the current workspace before bumping the version, and
 restores it after that.
 
 (fn LEVEL &optional PRE)" t)
-(register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
+(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) +cocogitto-available-p))
+(register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-coffee.el
