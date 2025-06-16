@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -210,6 +210,8 @@ a project, call `multi-vterm-dedicated-toggle'."
              (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
   :hook (pet-mode . +pet-quickrun-setup)
   :init
+  ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
+  ;; down opening Python buffers (or reverting them)
   (add-hook 'python-base-mode-hook 'pet-mode -10)
   :config
   ;; BUG+TODO: When the path contains spaces, this will fail to work. Using
