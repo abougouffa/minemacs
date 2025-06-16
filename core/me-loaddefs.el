@@ -9,6 +9,10 @@
 
 ;;; Generated autoloads from ../modules/extras/me-adb.el
 
+(defvar +adb-program "adb")
+(defvar +adb-available-p nil)
+(defun +adb-available-p (&rest _args) (with-memoization +adb-available-p (and (executable-find +adb-program) t)))
+(dolist (cmd '(+adb-push +adb-remount +adb-reboot +adb-root)) (put cmd 'completion-predicate #'+adb-available-p))
 (autoload '+adb-push "../modules/extras/me-adb" "\
 Run adb push SRC DEST.
 
@@ -109,6 +113,9 @@ Ask the MODE to run.
 
 ;;; Generated autoloads from ../modules/extras/me-cocogitto.el
 
+(defvar +cocogitto-program "cog")
+(defvar +cocogitto-available-p nil)
+(defun +cocogitto-available-p (&rest _args) (with-memoization +cocogitto-available-p (and (executable-find +cocogitto-program) t)))
 (autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
 Bump version LEVEL (`auto', `major', `minor' or `patch').
 
@@ -121,7 +128,7 @@ restores it after that.
 
 (fn LEVEL &optional PRE)" t)
 (put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) +cocogitto-available-p))
-(register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-"))
+(register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-coffee.el
