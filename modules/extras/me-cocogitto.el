@@ -11,8 +11,14 @@
 ;;; Code:
 
 (defvar +cocogitto-buffer-name " *cocogitto*")
-(defvar +cocogitto-program "cog")
-(defvar +cocogitto-available-p (and (executable-find +cocogitto-program) t))
+
+;;;###autoload
+(progn
+  (defvar +cocogitto-program "cog")
+  (defvar +cocogitto-available-p nil)
+  (defun +cocogitto-available-p (&rest _args)
+    (with-memoization +cocogitto-available-p
+      (and (executable-find +cocogitto-program) t))))
 
 ;;;###autoload
 (defun +cocogitto-bump (level &optional pre)
