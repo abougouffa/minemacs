@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-06-02
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -12,13 +12,8 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-jupyter
-  :auto-mode '(("\\.ipynb\\'" . ein:ipynb-mode)))
-
-
-;;;###autoload
-(defun minemacs-jupyter-load ()
-  "Load the `on-demand/me-jupyter' modules (`ein' + `jupyter')."
-  (interactive))
+  :auto-mode '(("\\.ipynb\\'" . ein:ipynb-mode))
+  :define-loader t)
 
 
 ;; Preview TeX math equations inline

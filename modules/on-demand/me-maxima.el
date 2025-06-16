@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-06-02
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -21,11 +21,9 @@
 ;;;###autoload
 (defconst +maxima-available-p (and (executable-find "maxima") t))
 
-;;;###autoload(when +maxima-available-p
-;;;###autoload  (defun minemacs-maxima-load ()
-;;;###autoload    "Load the `on-demand/me-maxima' module."
-;;;###autoload    (interactive)
-;;;###autoload    (require 'on-demand/me-maxima)))
+;;;###autoload
+(minemacs-register-on-demand-module 'me-maxima
+  :define-loader '+maxima-available-p)
 
 
 ;; Major modes for writing Maxima code

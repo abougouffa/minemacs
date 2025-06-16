@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-06
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -13,13 +13,8 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-gitlab
   :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode))
-  :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)))
-
-
-;;;###autoload
-(defun minemacs-gitlab-load ()
-  "Load the `on-demand/me-gitlab' modules (`gitlab-ci-mode' + `lab')."
-  (interactive))
+  :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode))
+  :define-loader t)
 
 
 ;; Mode for editing GitLab CI files
