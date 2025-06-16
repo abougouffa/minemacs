@@ -12,6 +12,7 @@
 
 (require 'me-vars)
 (require 'cl-lib)
+(require 'subr-x)
 (require 'rx)
 
 (autoload 'cl-loop "cl-macs" nil nil 'macro)
