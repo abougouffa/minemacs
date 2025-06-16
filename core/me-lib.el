@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -1068,7 +1068,7 @@ To be used as a predicate generator for `display-buffer-alist'."
 
 ;;; Lazy on-demand modules
 
-(cl-defun minemacs-register-on-demand-module (module &optional &key auto-mode magic-mode magic-fallback-mode interpreter-mode companion-packages)
+(cl-defun minemacs-register-on-demand-module (module &optional &key auto-mode magic-mode magic-fallback-mode interpreter-mode companion-packages define-loader)
   "Register extra MODULE.
 
 - :AUTO-MODE add an alist like `auto-mode-alist'.
@@ -1077,6 +1077,8 @@ To be used as a predicate generator for `display-buffer-alist'."
 - :INTERPRETER-MODE add add an alist like
   `interpreter-mode-alist'.
 - :COMPANION-PACKAGES defines companion packages for some modes like
+- :DEFINE-LOADER defines a command `minemacs-load-<MODULE>' to manually load the
+  module.
   \\='((some-mode . package))."
   (declare (indent 1))
   (unless (or minemacs-builtin-only-p (assq module minemacs-on-demand-modules-alist))
@@ -1091,6 +1093,15 @@ To be used as a predicate generator for `display-buffer-alist'."
         (setq plist (append plist `(:interpreter-mode ,(ensure-list interpreter-mode)))))
       (when companion-packages
         (setq plist (append plist `(:companion-packages ,(ensure-list companion-packages)))))
+      ;; We can pass a function or a form to `:define-loader'
+      (when (cond ((functionp define-loader) (funcall define-loader))
+                  (t (eval define-loader)))
+        (let* ((mod-name (intern (format "on-demand/%s" module)))
+               (cmd (intern (format "minemacs-load-%s" (string-remove-prefix "me-" (symbol-name module)))))
+               (docstr (format "Load the `%s' module." mod-name)))
+          (defalias cmd (lambda () (interactive) (require mod-name)) docstr)
+          ;; Show the command only when the module isn't loaded
+          (put cmd 'completion-predicate (lambda (_cmd _buf) (not (featurep mod-name))))))
       (push (cons module plist) minemacs-on-demand-modules-alist))))
 
 (defun minemacs-on-demand-try ()
