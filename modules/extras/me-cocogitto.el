@@ -4,13 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-08
-;; Last modified: 2025-06-09
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
 ;;; Code:
 
 (defvar +cocogitto-buffer-name " *cocogitto*")
+(defvar +cocogitto-program "cog")
+(defvar +cocogitto-available-p (and (executable-find +cocogitto-program) t))
 
 ;;;###autoload
 (defun +cocogitto-bump (level &optional pre)
@@ -36,11 +38,14 @@ restores it after that."
         (conf-colon-mode)
         (insert (format "############ Cocogitto bump (%s) ############\n" level))
         (let ((stashed (string-match-p "COCOGITTO SAVED STATE" (shell-command-to-string "git stash -u -m \"COCOGITTO SAVED STATE\""))))
-          (call-process-shell-command (format "cog bump --%s%s" level (if pre (format " --pre %s" pre) "")) nil (current-buffer))
+          (call-process-shell-command (format "%s bump --%s%s" +cocogitto-program level (if pre (format " --pre %s" pre) "")) nil (current-buffer))
           (when stashed
             (call-process-shell-command "git stash pop" nil (current-buffer))))
         (message "Cocogitto finished!"))
     (user-error "Not in a VC managed directory")))
+
+;;;###autoload
+(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) +cocogitto-available-p))
 
 
 (provide 'me-cocogitto)
