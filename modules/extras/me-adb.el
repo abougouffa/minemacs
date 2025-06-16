@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-06-05
+;; Last modified: 2025-06-16
 
 ;;; Commentary:
 
@@ -13,7 +13,18 @@
 (defvar +adb-buffer-name "*adb*")
 (defvar +adb-process-name "adb-command")
 (defvar +adb-push-dest-history nil)
-(defvar +adb-push-src-dest-cache nil)
+
+;;;###autoload
+(progn
+  (defvar +adb-program "adb")
+  (defvar +adb-available-p nil)
+  (defun +adb-available-p (&rest _args)
+    (with-memoization +adb-available-p
+      (and (executable-find +adb-program) t))))
+
+;;;###autoload
+(dolist (cmd '(+adb-push +adb-remount +adb-reboot +adb-root))
+  (put cmd 'completion-predicate #'+adb-available-p))
 
 (with-eval-after-load 'savehist
   (add-to-list 'savehist-additional-variables '+adb-push-src-dest-cache)
@@ -24,7 +35,7 @@
   (let ((display-buffer-overriding-action
          '((display-buffer-in-side-window) (window-height . 0.2) (reusable-frames . visible) (dedicated . t) (side . bottom) (slot . -1)))
         (compilation-buffer-name-function (lambda (&rest _args) +adb-buffer-name))
-        (cmd (string-join `("adb" ,@(seq-filter #'identity args)) " ")))
+        (cmd (string-join `(,+adb-program ,@(seq-filter #'identity args)) " ")))
     (compile cmd)))
 
 ;;;###autoload
