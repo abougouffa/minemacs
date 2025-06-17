@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.36.0](https://github.com/abougouffa/minemacs/compare/d395f53d5339661229358f7f6354c0a131f04135..v12.36.0) - 2025-06-17
+#### Bug Fixes
+- **(adb)** restore accidentally remove variable - ([57e814e](https://github.com/abougouffa/minemacs/commit/57e814e0ea0074975ce03666e4f364873efa778d)) - [@abougouffa](https://github.com/abougouffa)
+- **(cocogitto)** use the right predicate - ([6324511](https://github.com/abougouffa/minemacs/commit/6324511b03a308532e5b5a6f656fc5d402dfc949)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** load `subr-x` early to avoid problems - ([51ad0bc](https://github.com/abougouffa/minemacs/commit/51ad0bc38cd11d87458dad5d184310e80aa38955)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([15d416c](https://github.com/abougouffa/minemacs/commit/15d416c0464c295f1ea9a7645e1eb27aa37e7096)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add the `:define-loader` option when declaring on-demand modules - ([976476e](https://github.com/abougouffa/minemacs/commit/976476e5e9d744f3d53cae78a7a66606c98f2f0d)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add `dash-docs` and `consult-dash` - ([7698a81](https://github.com/abougouffa/minemacs/commit/7698a810e90e180349658638ac71af3a0fff19c7)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for Scallop - ([db50e02](https://github.com/abougouffa/minemacs/commit/db50e02c3c485e56c762561200311a7a08d0c5d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `doom-two-tone-themes` - ([7bbc648](https://github.com/abougouffa/minemacs/commit/7bbc6481f44d735fdc7fddeccc730f4257e4371a)) - [@abougouffa](https://github.com/abougouffa)
+- remove `obsolete/me-solaire` - ([d395f53](https://github.com/abougouffa/minemacs/commit/d395f53d5339661229358f7f6354c0a131f04135)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(pet)** add a comment - ([04fd36d](https://github.com/abougouffa/minemacs/commit/04fd36d13522626f3754be7ca066676dfd167268)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** add a completion predicate to the commands - ([be1758f](https://github.com/abougouffa/minemacs/commit/be1758f590a8ac3f69886352e9c0ad01c61f84e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(cocogitto)** better completion predicate (use memoization) - ([5f60df2](https://github.com/abougouffa/minemacs/commit/5f60df245462f720c578830fd9baef4bd850937c)) - [@abougouffa](https://github.com/abougouffa)
+- **(cocogitto)** show `+cocogitto-bump` only when relevant - ([d6d7f85](https://github.com/abougouffa/minemacs/commit/d6d7f85599bf8415b24190c643cf1f1c3303e778)) - [@abougouffa](https://github.com/abougouffa)
+- **(dash-docs)** remove custom command, integrated in the package - ([8bbeb38](https://github.com/abougouffa/minemacs/commit/8bbeb38d8511ca0c4179bfe34038695b76781e7a)) - [@abougouffa](https://github.com/abougouffa)
+- **(eww)** auto rename the buffer to the page's title - ([2f09a1e](https://github.com/abougouffa/minemacs/commit/2f09a1e192dcc848fb92969e9949fa077f5983ed)) - [@abougouffa](https://github.com/abougouffa)
+- **(ffip)** remove unneeded hack, support added upstream - ([fc0fef5](https://github.com/abougouffa/minemacs/commit/fc0fef52f38c22bb841a489bda5c8c06dad95b3a)) - [@abougouffa](https://github.com/abougouffa)
+- **(init)** set `user-emacs-directory` in `me-vars`, remove old hack - ([e0e8cab](https://github.com/abougouffa/minemacs/commit/e0e8cabff7b9000f380403c57a738eac9c549533)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** make use of the new `:define-loader` option - ([60116b9](https://github.com/abougouffa/minemacs/commit/60116b9c49dcf0382d590aeac169ad2001640b09)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** add Modula-2 header/source mapping - ([99f4364](https://github.com/abougouffa/minemacs/commit/99f43643ccee0ddb630c45daeb23746847fb520d)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([19e30f3](https://github.com/abougouffa/minemacs/commit/19e30f32fff132e4f6b22d6a1ca6d8d96aae41bb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6c72158](https://github.com/abougouffa/minemacs/commit/6c721585dabfa14973a543396d2ec6dc16ab7664)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5bfc146](https://github.com/abougouffa/minemacs/commit/5bfc146ead1e60e506249d66f49dc4a0aa02e8c1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([7f700a2](https://github.com/abougouffa/minemacs/commit/7f700a29d97cbd2a5c8c2e0dc2d176b945a5bb41)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([c75e3a8](https://github.com/abougouffa/minemacs/commit/c75e3a879930503087f95b603cca066bbc955a77)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([42e5088](https://github.com/abougouffa/minemacs/commit/42e5088786c5078d42de1a89dc2be74402080d2e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6bc10b2](https://github.com/abougouffa/minemacs/commit/6bc10b2bbbe409d578eff9a4e32b0e99814d1559)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.35.0](https://github.com/abougouffa/minemacs/compare/c086cd243dd53e3b4b730d8aeb0e01c9580837b9..v12.35.0) - 2025-06-14
 #### Features
 - **(desktop)** remove customization, switching to `easysession` - ([3aebd6c](https://github.com/abougouffa/minemacs/commit/3aebd6c039bb2bf085db990b30d2720779f6568f)) - [@abougouffa](https://github.com/abougouffa)
