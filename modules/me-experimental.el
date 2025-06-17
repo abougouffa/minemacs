@@ -43,12 +43,7 @@
   (dash-docs-browser-func #'eww-browse-url)
   :init
   (+setq-hook! (c-mode c-ts-mode) dash-docs-docsets '("C" "OpenCV" "OpenCV C"))
-  (+setq-hook! (c++-mode c++-ts-mode) dash-docs-docsets '("C++" "OpenCV" "OpenCV C++"))
-  :config
-  (defun +dash-docs-register-for-buffer (docsets)
-    "Register DOCSETS for the current buffer."
-    (interactive (list (completing-read-multiple "Select docsets: " (dash-docs-installed-docsets) nil t)))
-    (setq-local dash-docs-docsets (cl-remove-duplicates (append dash-docs-docsets docsets)))))
+  (+setq-hook! (c++-mode c++-ts-mode) dash-docs-docsets '("C++" "OpenCV" "OpenCV C++")))
 
 
 ;; Integration of `consult' with `dash-docs'
