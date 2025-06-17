@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-06-16
+;; Last modified: 2025-06-17
 
 ;;; Commentary:
 
@@ -12,6 +12,7 @@
 
 (defvar +adb-buffer-name "*adb*")
 (defvar +adb-process-name "adb-command")
+(defvar +adb-push-src-dest-cache nil)
 (defvar +adb-push-dest-history nil)
 
 ;;;###autoload
