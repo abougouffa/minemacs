@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-15
+;; Last modified: 2025-06-17
 
 ;;; Commentary:
 
@@ -1393,6 +1393,10 @@ Returns either nil, or the position of the first null byte."
   (defun +hexl-buffer-p (&optional buffer)
     "Does BUFFER (defaults to the current buffer) should be viewed using `hexl-mode'."
     (and +hexl-auto-enable (not (eq major-mode 'hexl-mode)) (+hexl-binary-buffer-p buffer))))
+
+(use-package eww
+  :custom
+  (eww-auto-rename-buffer 'title))
 
 
 (provide 'me-builtin)
