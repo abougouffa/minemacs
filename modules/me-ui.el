@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-15
+;; Last modified: 2025-06-18
 
 ;;; Commentary:
 
@@ -31,6 +31,11 @@
     (doom-themes-org-config))
   ;; Enable blinking modeline on errors (`visible-bell')
   (+with-delayed-1! (doom-themes-visual-bell-config)))
+
+
+;; A sophisticated collection of two-tone themes
+(use-package doom-two-tone-themes
+  :straight (:host github :repo "eliraz-refael/doom-two-tone-themes" :files ("doom-two-tone-themes.el" "themes/*.el")))
 
 
 ;; A fancy and fast mode-line inspired by minimalism design
