@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-08
-;; Last modified: 2025-06-16
+;; Last modified: 2025-06-18
 
 ;;; Commentary:
 
@@ -51,7 +51,7 @@ restores it after that."
     (user-error "Not in a VC managed directory")))
 
 ;;;###autoload
-(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) +cocogitto-available-p))
+(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) (+cocogitto-available-p)))
 
 
 (provide 'me-cocogitto)
