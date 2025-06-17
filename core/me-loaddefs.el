@@ -127,7 +127,7 @@ This command stashes the current workspace before bumping the version, and
 restores it after that.
 
 (fn LEVEL &optional PRE)" t)
-(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) +cocogitto-available-p))
+(put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) (+cocogitto-available-p)))
 (register-definition-prefixes "../modules/extras/me-cocogitto" '("+cocogitto-buffer-name"))
 
 
@@ -894,6 +894,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-scala.el
 
 (minemacs-register-on-demand-module 'me-scala :auto-mode '(("\\.\\(scala\\|sbt\\|worksheet\\.sc\\)\\'" . scala-mode)) :companion-packages '(((scala-mode scala-ts-mode) . sbt-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-scallop.el
+
+(minemacs-register-on-demand-module 'me-scallop :auto-mode '(("\\.scl\\'" . scallop-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-scheme.el
