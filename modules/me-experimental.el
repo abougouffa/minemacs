@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-06-11
+;; Last modified: 2025-06-17
 
 ;;; Commentary:
 
@@ -32,6 +32,28 @@
   :straight webkit
   :when (and (featurep 'feat/modules) (not (featurep 'os/win)))
   :bind (:map webkit-mode-map ("C-c d" . webkit-dark-toggle)))
+
+
+;; Offline documentation browser using Dash/Zeal docsets
+(use-package dash-docs
+  :straight (:host github :repo "abougouffa/dash-docs")
+  :commands (+dash-docs-register)
+  :custom
+  (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
+  (dash-docs-browser-func #'eww-browse-url)
+  :init
+  (+setq-hook! (c-mode c-ts-mode) dash-docs-docsets '("C" "OpenCV" "OpenCV C"))
+  (+setq-hook! (c++-mode c++-ts-mode) dash-docs-docsets '("C++" "OpenCV" "OpenCV C++"))
+  :config
+  (defun +dash-docs-register-for-buffer (docsets)
+    "Register DOCSETS for the current buffer."
+    (interactive (list (completing-read-multiple "Select docsets: " (dash-docs-installed-docsets) nil t)))
+    (setq-local dash-docs-docsets (cl-remove-duplicates (append dash-docs-docsets docsets)))))
+
+
+;; Integration of `consult' with `dash-docs'
+(use-package consult-dash
+  :straight t)
 
 
 (provide 'me-experimental)
