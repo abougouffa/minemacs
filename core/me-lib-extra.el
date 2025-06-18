@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-13
+;; Last modified: 2025-06-18
 
 ;;; Commentary:
 
@@ -925,7 +925,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
             (fc (gethash 'ColumnLimit yaml-hash))
             (iw (gethash 'IndentWidth yaml-hash))
             (tw (gethash 'TabWidth yaml-hash))
-            (is (if (equal (gethash 'UseTab yaml-hash) "Never") "space" "tab")))
+            (is (if (equal "never" (downcase (gethash 'UseTab yaml-hash))) "space" "tab")))
       (progn
         (setq fill-column (if (zerop fc) nil fc)) ; `editorconfig-set-line-length' doesn't handle the unlimited case
         (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw))
