@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-06-17
+;; Last modified: 2025-06-18
 
 ;;; Commentary:
 
@@ -37,7 +37,6 @@
 ;; Offline documentation browser using Dash/Zeal docsets
 (use-package dash-docs
   :straight (:host github :repo "abougouffa/dash-docs")
-  :commands (+dash-docs-register)
   :custom
   (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
   (dash-docs-browser-func #'eww-browse-url)
