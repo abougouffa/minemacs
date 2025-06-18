@@ -41,6 +41,8 @@
   (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
   (dash-docs-browser-func #'eww-browse-url)
   :init
+  (+setq-hook! (sh-mode bash-ts-mode) dash-docs-docsets '("Bash"))
+  (+setq-hook! (python-mode python-ts-mode) dash-docs-docsets '("Python 3" "OpenCV Python" "NumPy" "SciPy"))
   (+setq-hook! (c-mode c-ts-mode) dash-docs-docsets '("C" "OpenCV" "OpenCV C"))
   (+setq-hook! (c++-mode c++-ts-mode) dash-docs-docsets '("C++" "OpenCV" "OpenCV C++")))
 
