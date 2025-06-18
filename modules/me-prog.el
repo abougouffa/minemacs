@@ -130,7 +130,7 @@
   :straight t
   :custom
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
-  :hook (prog-mode . +aphelia-mode-maybe)
+  :hook (prog-mode . +apheleia-mode-maybe)
   :config
   (add-hook
    'nxml-mode-hook
@@ -142,7 +142,7 @@
       (protobuf-mode . clang-format)
       (protobuf-ts-mode . clang-format)))
 
-  (defun +aphelia-mode-maybe ()
+  (defun +apheleia-mode-maybe ()
     (when (and (+clang-format-get-lang) (+clang-format-config-file))
       (apheleia-mode 1)))
 
