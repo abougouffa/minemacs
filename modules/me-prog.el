@@ -132,10 +132,15 @@
   (apheleia-remote-algorithm 'local) ; format remote files using local formatters
   :hook (prog-mode . +apheleia-mode-maybe)
   :config
-  (add-hook
-   'nxml-mode-hook
-   (satch-defun +xmllint--set-indent-h ()
-     (setenv "XMLLINT_INDENT" (make-string nxml-child-indent (string-to-char " ")))))
+  (advice-add
+   'apheleia--run-formatter-process :around
+   (satch-defun +apheleia--set-process-environment:around-a (orig-fn command buffer remote callback stdin formatter)
+     (let ((process-environment
+            (if (eq formatter 'xmllint)
+                (cons (format "XMLLINT_INDENT=%s" (if indent-tabs-mode "\t" (make-string nxml-child-indent (string-to-char " "))))
+                      process-environment)
+              process-environment)))
+       (funcall orig-fn command buffer remote callback stdin formatter))))
 
   (cl-callf append apheleia-mode-alist
     '((nxml-mode . xmllint)
