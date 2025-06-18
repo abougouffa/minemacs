@@ -182,8 +182,8 @@
     :args `(,(+clang-format-get-style)
             "-assume-filename"
             ,(or (when-let* ((file (buffer-file-name))) (file-name-nondirectory file))
-                 (when-let* ((ext (car (+clang-format-get-lang)))) (file-name-with-extension "file" ext))
-                 "file.c"))
+                 (when-let* ((ext (car (+clang-format-get-lang)))) (file-name-with-extension "dummy" ext))
+                 "dummy.c"))
     :lighter "ClangFmt "))
 
 
