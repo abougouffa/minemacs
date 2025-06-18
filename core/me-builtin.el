@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-17
+;; Last modified: 2025-06-18
 
 ;;; Commentary:
 
@@ -546,6 +546,9 @@ or file path may exist now."
   :when (featurep 'feat/tree-sitter)
   :custom
   (c-ts-mode-indent-style 'k&r))
+
+(use-package conf-mode
+  :mode "\\.prop\\'")
 
 (use-package hideshow
   :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding
