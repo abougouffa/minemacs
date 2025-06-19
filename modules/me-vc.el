@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-19
 
 ;;; Commentary:
 
@@ -15,7 +15,6 @@
   :straight t
   :custom
   (magit-diff-refine-hunk t)
-  (magit-revision-show-gravatars t)
   (magit-save-repository-buffers nil)
   (magit-format-file-function #'magit-format-file-nerd-icons)
   (magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1) ; Show in new window
