@@ -120,7 +120,7 @@
 ;; Integrate `nerd-icons' with `archive-mode', `tar-mode', `dired-mode', and `ztree'
 (use-package nerd-icons-multimodal
   :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
-  :hook ((archive-mode tar-mode dired-mode ztree-mode) . nerd-icons-multimodal-mode))
+  :hook ((archive-mode tar-mode dired-mode ztree-mode vc-dir-mode) . nerd-icons-multimodal-mode))
 
 
 ;; Extra font lock rules for a more colourful `dired'
