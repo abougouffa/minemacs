@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-06-17
+;; Last modified: 2025-06-19
 
 ;;; Commentary:
 
@@ -14,6 +14,16 @@
 (defvar +adb-process-name "adb-command")
 (defvar +adb-push-src-dest-cache nil)
 (defvar +adb-push-dest-history nil)
+(defvar +adb-after-command-functions nil
+  "Functions to call after the command finishes.")
+
+(defvar +adb--buffer nil)
+(defun +adb--after-command (buff desc)
+  (when (and buff (eq buff +adb--buffer))
+    (run-hook-with-args '+adb-after-command-functions (equal desc "finished\n") buff)))
+
+(with-eval-after-load 'compile
+  (add-hook 'compilation-finish-functions '+adb--after-command))
 
 ;;;###autoload
 (progn
@@ -37,7 +47,7 @@
          '((display-buffer-in-side-window) (window-height . 0.2) (reusable-frames . visible) (dedicated . t) (side . bottom) (slot . -1)))
         (compilation-buffer-name-function (lambda (&rest _args) +adb-buffer-name))
         (cmd (string-join `(,+adb-program ,@(seq-filter #'identity args)) " ")))
-    (compile cmd)))
+    (setq +adb--buffer (compile cmd))))
 
 ;;;###autoload
 (defun +adb-push (src dest)
@@ -58,10 +68,10 @@
   (+adb-run-command "remount" (when auto-reboot-device "-R")))
 
 ;;;###autoload
-(defun +adb-reboot (mode)
-  "Run adb reboot MODE."
+(defun +adb-reboot (&optional mode no-confirm)
+  "Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask."
   (interactive (list (and current-prefix-arg (completing-read "Reboot in mode: " '("bootloader" "recovery" "sideload" "sideload-auto-reboot" "edl")))))
-  (when (y-or-n-p "Do you really want to reboot the device? ")
+  (when (or no-confirm (y-or-n-p "Do you really want to reboot the device? "))
     (+adb-run-command "reboot" mode)))
 
 ;;;###autoload
