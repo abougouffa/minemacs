@@ -101,7 +101,6 @@
   :hook (minemacs-first-file . pulsar-global-mode)
   :custom
   (pulsar-iterations 6)
-  (pulsar-pulse-region t)
   (pulsar-pulse-on-window-change t)
   (pulsar-region-face 'pulsar-green)
   (pulsar-highlight-face 'pulsar-cyan)
