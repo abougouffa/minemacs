@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-18
+;; Last modified: 2025-06-19
 
 ;;; Commentary:
 
@@ -158,7 +158,17 @@
   :bind (:package org-agenda :map org-agenda-mode-map ("C-o" . casual-agenda-tmenu))
   :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu))
   :bind (:package smerge-mode :map smerge-mode-map ("C-o" . +casual-smerge-tmenu))
+  :hook (smerge-mode . +casual-smerge-tmenu-auto-open-maybe)
+  :init
+  (defcustom +casual-smerge-tmenu-auto-open t
+    "Automatically open `+casual-smerge-tmenu'.
+The menu is only opened when entering in `smerge-mode' in a visible
+buffer."
+    :type 'boolean :group 'minemacs-ui)
   :config
+  (defun +casual-smerge-tmenu-auto-open-maybe ()
+    (when (and +casual-smerge-tmenu-auto-open smerge-mode (eq (current-buffer) (window-buffer (selected-window))))
+      (+casual-smerge-tmenu)))
   ;; Partially from kickingvegas/casual#184
   (transient-define-prefix +casual-smerge-tmenu ()
     "Transient menu for smerge-mode operations."
