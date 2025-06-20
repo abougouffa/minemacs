@@ -972,11 +972,23 @@ Typing these will trigger reindentation of the current line.")
     (smerge-prev))
 
   (defun +smerge-vc-next-conflict-recenter ()
-    "Go to next conflict, possibly in another file."
+    "Like `smerge-vc-next-conflict' but recenters the buffer."
     (interactive)
     (smerge-vc-next-conflict)
     ;; Often, after calling `smerge-vc-next-conflict', the cursor will land at
     ;; the bottom of the window.
+    (recenter-top-bottom (/ (window-height) 8)))
+
+  (defun +smerge-next-recenter ()
+    "Like `smerge-next' but recenters the buffer."
+    (interactive)
+    (smerge-next)
+    (recenter-top-bottom (/ (window-height) 8)))
+
+  (defun +smerge-prev-recenter ()
+    "Like `smerge-prev' but recenters the buffer."
+    (interactive)
+    (smerge-prev)
     (recenter-top-bottom (/ (window-height) 8))))
 
 (use-package octave
