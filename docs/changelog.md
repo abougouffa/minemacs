@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.36.1](https://github.com/abougouffa/minemacs/compare/e78bf3a772e084a87c092145c90e03634b6522bf..v12.36.1) - 2025-06-20
+#### Bug Fixes
+- **(apheleia)** fix a typo - ([44a0e33](https://github.com/abougouffa/minemacs/commit/44a0e33400c8cbf81d6231f8d05d2591f3c302c8)) - [@abougouffa](https://github.com/abougouffa)
+- **(dash-docs)** remove reference to old custom command - ([e78bf3a](https://github.com/abougouffa/minemacs/commit/e78bf3a772e084a87c092145c90e03634b6522bf)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(reformatter)** minor edit - ([d94d7cc](https://github.com/abougouffa/minemacs/commit/d94d7ccd97034e78060f94f5f1b58451b0f74dd2)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(smerge)** restore some useful custom command - ([12a37f0](https://github.com/abougouffa/minemacs/commit/12a37f00ae3264d84404a4ec29d5e79e1778c093)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** add `+adb-after-command-functions` - ([2c08863](https://github.com/abougouffa/minemacs/commit/2c088631ae74770d70cc72f54cac7fb43a306554)) - [@abougouffa](https://github.com/abougouffa)
+- **(apheleia)** more intelligent way of setting `xmllint` indentation - ([b0886d5](https://github.com/abougouffa/minemacs/commit/b0886d59fd9e180b6a271d7c180744dbb48617a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** open `*.prop` files in `conf-mode` - ([f96989f](https://github.com/abougouffa/minemacs/commit/f96989f942643039cd4583d8117d04f8424a768e)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** recenter after jumping to next/prev conflict - ([97c2146](https://github.com/abougouffa/minemacs/commit/97c21465d1a29c648db2f54b6d3e08a241c86bb3)) - [@abougouffa](https://github.com/abougouffa)
+- **(clang-format)** ignore case when checking TAB config - ([f6f912d](https://github.com/abougouffa/minemacs/commit/f6f912d44af8d50d5575a2f84f246f30ffd1ba13)) - [@abougouffa](https://github.com/abougouffa)
+- **(dash-docs)** register more docsets - ([ade03bb](https://github.com/abougouffa/minemacs/commit/ade03bbdc4e3285df0ad1ce726cc14d847523ce2)) - [@abougouffa](https://github.com/abougouffa)
+- **(dash-docs)** register docsets for Bash and Python - ([791d195](https://github.com/abougouffa/minemacs/commit/791d19505372a4e717339669a58e130cd53452d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot-booster)** use IO only mode in Emacs 30+ - ([1a32840](https://github.com/abougouffa/minemacs/commit/1a32840e4bc4398abdb5c464b5f55fcb5e8e29ca)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** don't show Gravatars - ([7d7dc99](https://github.com/abougouffa/minemacs/commit/7d7dc998a4a39bf4a3a6d19034dc59a286a73775)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons-multimodal)** enable in `vc-dir-mode` - ([fef618d](https://github.com/abougouffa/minemacs/commit/fef618dfe0dc85323d0a5342e77c889328ef3065)) - [@abougouffa](https://github.com/abougouffa)
+- **(pulsar)** remove deleted variable - ([c1c0aaf](https://github.com/abougouffa/minemacs/commit/c1c0aaf253636ee510f10b4f9fd5d15c5796c2cd)) - [@abougouffa](https://github.com/abougouffa)
+- **(smerge)** more useful custom commands - ([80b7ad3](https://github.com/abougouffa/minemacs/commit/80b7ad33837b529adfb8a504d775a79df10971f0)) - [@abougouffa](https://github.com/abougouffa)
+- **(smerge)** automatically call `+casual-smerge-tmenu` - ([37d4f6d](https://github.com/abougouffa/minemacs/commit/37d4f6d2906b9147216aae1f60fc83a4e69157a9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([498df1b](https://github.com/abougouffa/minemacs/commit/498df1bf71b11d694b0658e898c1de5e5863008e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a66ea49](https://github.com/abougouffa/minemacs/commit/a66ea49617551775d381a689351af599634305a3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([fb8d150](https://github.com/abougouffa/minemacs/commit/fb8d150ae2114f4adab10d777431257a72ec3283)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.36.0](https://github.com/abougouffa/minemacs/compare/d395f53d5339661229358f7f6354c0a131f04135..v12.36.0) - 2025-06-17
 #### Bug Fixes
 - **(adb)** restore accidentally remove variable - ([57e814e](https://github.com/abougouffa/minemacs/commit/57e814e0ea0074975ce03666e4f364873efa778d)) - [@abougouffa](https://github.com/abougouffa)
