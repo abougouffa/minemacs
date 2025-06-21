@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-18
+;; Last modified: 2025-06-21
 
 ;;; Commentary:
 
@@ -538,7 +538,7 @@ prerelease if no :VER is provided."
   (when (and (buffer-file-name)
              (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
     (+dir-locals-reload-for-all-buffers-in-this-directory)
-    (+log! "Reloaded directory-local variables defined in %s" dir-locals-file)))
+    (+log! "Reloaded directory-local variables defined in %s to buffer %S" dir-locals-file (current-buffer))))
 
 ;;;###autoload
 (define-minor-mode +dir-locals-autoreload-mode
