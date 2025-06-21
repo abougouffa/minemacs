@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-06-14
+;; Last modified: 2025-06-21
 
 ;;; Commentary:
 
@@ -39,12 +39,13 @@
          (while-no-input
            (when (buffer-live-p buffer)
              (with-current-buffer buffer
-               ;; When calling `parinferf-rust-mode' in a non-visible buffer,
-               ;; don't ask about modifying indentation, assume we said "no".
-               (if (get-buffer-window)
-                   (parinfer-rust-mode 1)
-                 (cl-letf (((symbol-function 'y-or-n-p) #'ignore))
-                   (parinfer-rust-mode 1)))))))
+               (unless buffer-read-only ; don't enable in read-only buffers
+                 (if (get-buffer-window)
+                     (parinfer-rust-mode 1)
+                   ;; When calling `parinferf-rust-mode' in a non-visible buffer,
+                   ;; don't ask about modifying indentation, assume we said "no".
+                   (cl-letf (((symbol-function 'y-or-n-p) #'ignore))
+                     (parinfer-rust-mode 1))))))))
        (current-buffer))))
 
   ;; HACK: Disable `parinfer-rust-mode' on some commands.
