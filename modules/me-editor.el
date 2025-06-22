@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-21
+;; Last modified: 2025-06-11
 
 ;;; Commentary:
 
@@ -223,14 +223,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   (defun +xclip--enable-in-tty-h ()
     (let ((inhibit-message t))
       (with-demoted-errors "%s" (xclip-mode 1)))))
-
-
-;; Increase and decrease the number at point
-(use-package evil-numbers
-  ;; Use the original repo, older than the current `evil-numbers' fork but simpler and don't depend on `evil'
-  :straight (:host github :repo "cofi/evil-numbers")
-  :bind (("M-+" . evil-numbers/inc-at-pt)
-         ("M-_" . evil-numbers/dec-at-pt)))
 
 
 (provide 'me-editor)
