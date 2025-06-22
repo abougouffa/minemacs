@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-20
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -190,7 +190,8 @@ buffer."
       ("F" "First"               +smerge-first :transient t)
       ("L" "Last"                +smerge-last :transient t)
       ("n" "Next conflict"       +smerge-next-recenter :transient t)
-      ("p" "Previous conflict"   +smerge-prev-recenter :transient t)]]))
+      ("p" "Previous conflict"   +smerge-prev-recenter :transient t)
+      ("N" "Next conflict (vc)"  +smerge-vc-next-conflict-recenter :transient t)]]))
 
 
 ;; An opinionated `transient' menu for `avy'
