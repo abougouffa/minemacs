@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.36.2](https://github.com/abougouffa/minemacs/compare/392bdb075fab4727622d7332b814619c6f3a2151..v12.36.2) - 2025-06-22
+#### Bug Fixes
+- **(parinfer-rust)** don't auto enable in read-only buffers - ([e46ba1d](https://github.com/abougouffa/minemacs/commit/e46ba1db6c0471542f8f4f36c88a3212936b7180)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** add `evil-numbers` - ([392bdb0](https://github.com/abougouffa/minemacs/commit/392bdb075fab4727622d7332b814619c6f3a2151)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** move Git commit prefix stuff to `extras/me-git` - ([d0836a7](https://github.com/abougouffa/minemacs/commit/d0836a7c3d6205a7872efb9e1e037cf918f32434)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(git-timemachine)** minor edit - ([0789199](https://github.com/abougouffa/minemacs/commit/07891998ec3655b74d296b6d2d11558216fd44d9)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(editor)** remove `evil-numbers` - ([77b03ae](https://github.com/abougouffa/minemacs/commit/77b03aeb0db9a7a931c9d1b329c47afc730305cb)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** minor change in a log message - ([e8e67e5](https://github.com/abougouffa/minemacs/commit/e8e67e529c515ffd706ad72097914dda1450cc5d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0b80c20](https://github.com/abougouffa/minemacs/commit/0b80c20bcb2d7ed271f5d8d73a6eb25a3b957b2a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([8c7bac2](https://github.com/abougouffa/minemacs/commit/8c7bac24fc6cee189058cb82180361e88e575373)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.36.1](https://github.com/abougouffa/minemacs/compare/e78bf3a772e084a87c092145c90e03634b6522bf..v12.36.1) - 2025-06-20
 #### Bug Fixes
 - **(apheleia)** fix a typo - ([44a0e33](https://github.com/abougouffa/minemacs/commit/44a0e33400c8cbf81d6231f8d05d2591f3c302c8)) - [@abougouffa](https://github.com/abougouffa)
