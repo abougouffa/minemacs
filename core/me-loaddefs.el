@@ -22,9 +22,9 @@ Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
 
 (fn AUTO-REBOOT-DEVICE)" t)
 (autoload '+adb-reboot "../modules/extras/me-adb" "\
-Run adb reboot MODE.
+Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
 
-(fn MODE)" t)
+(fn &optional MODE NO-CONFIRM)" t)
 (autoload '+adb-root "../modules/extras/me-adb" "\
 Run adb root (or unroot with \\[universal-argument]).
 
@@ -293,6 +293,24 @@ When PRE is non-nil, allow downloading the latest prerelease.
 ;;; Generated autoloads from ../modules/on-demand/me-genexpr.el
 
 (minemacs-register-on-demand-module 'me-genexpr :auto-mode '(("\\.genexpr\\'" . genexpr-mode)))
+
+
+;;; Generated autoloads from ../modules/extras/me-git.el
+
+(defvar +git-commit-prefix-in-project nil "\
+Propose to insert a commit prefix in the current project.
+
+Set this variable in your project's \".dir-locals.el\". You can set it
+to `conventional' or `prefix'.")
+(custom-autoload '+git-commit-prefix-in-project "../modules/extras/me-git" t)
+(make-variable-buffer-local '+git-commit-prefix-in-project)
+(autoload '+git-insert-commit-prefix "../modules/extras/me-git" "\
+Prompt for conventional commit type with scope completion.
+When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
+will be generated each `+git-types-cache-age'.
+
+(fn &optional CLEAN-CACHE)" t)
+(register-definition-prefixes "../modules/extras/me-git" '("+git-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab.el
