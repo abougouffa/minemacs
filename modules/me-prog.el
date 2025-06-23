@@ -256,7 +256,7 @@
   :straight t
   :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
-  ;; Don't show the project/file name in the header by just a file icon
+  ;; Don't show the project/file name in the header, show only an icon
   (with-eval-after-load 'nerd-icons
     (advice-add
      'breadcrumb-project-crumbs :override
