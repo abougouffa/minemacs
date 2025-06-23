@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.37.0](https://github.com/abougouffa/minemacs/compare/73f9b5ffb58d23ddcb295eb91f3b1d37e601973a..v12.37.0) - 2025-06-23
+#### Documentation
+- **(git)** minor docstring edit - ([f66040f](https://github.com/abougouffa/minemacs/commit/f66040fced06512382a30623b73c35250cb8fd5e)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand)** add `crontab-mode` - ([f961a11](https://github.com/abougouffa/minemacs/commit/f961a11a4c17484cd52a74fc89e358c638ded20a)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(breadcrumb)** fix typo in comment - ([19c095c](https://github.com/abougouffa/minemacs/commit/19c095c9afa80058d9a081256531aba633e67d79)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(macrostep)** move from `me-emacs-lisp` to `me-prog`, enable for C/C++ - ([f5fea1f](https://github.com/abougouffa/minemacs/commit/f5fea1ff85067cc23de745c46f1ccbdf0c037089)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(autorevert)** don't be chatty unless in verbose mode - ([c0e911c](https://github.com/abougouffa/minemacs/commit/c0e911cc3d296daeb3e72f1cb78664e58e1aec2f)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** show buffer boundaries - ([ac4c295](https://github.com/abougouffa/minemacs/commit/ac4c295c426864f690e35759d3cc4c3347dd9c17)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** remove the disabled property from some useful commands - ([ba80743](https://github.com/abougouffa/minemacs/commit/ba807433e404c3b1d58bfdc873e878ac47bba6a9)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** bind `+smerge-vc-next-conflict-recenter` for `+casual-smerge` - ([73f9b5f](https://github.com/abougouffa/minemacs/commit/73f9b5ffb58d23ddcb295eb91f3b1d37e601973a)) - [@abougouffa](https://github.com/abougouffa)
+- **(csv)** add space to the list of default separators - ([1a4a61e](https://github.com/abougouffa/minemacs/commit/1a4a61e129787d4ed0dee01a4cdc1e36e562de95)) - [@abougouffa](https://github.com/abougouffa)
+- **(envrc)** bind `envrc-command-map` to `C-c o v` - ([d484b3f](https://github.com/abougouffa/minemacs/commit/d484b3f384dc565bb29e111263e804bae9f57ff6)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/csv)** mark `eplot` as a companion package for `csv-mode` - ([1e0fad2](https://github.com/abougouffa/minemacs/commit/1e0fad29839df4773dcdbd3a43440e4b70e440f6)) - [@abougouffa](https://github.com/abougouffa)
+- **(ready-player)** enable when at least one supported player is installed - ([e4a7b6c](https://github.com/abougouffa/minemacs/commit/e4a7b6cbf076ddb51fd2c58599b3cd572cd46f77)) - [@abougouffa](https://github.com/abougouffa)
+- **(ready-player)** bind to `C-c o p`, default `C-c m` is used by `macrostep` - ([ae19d34](https://github.com/abougouffa/minemacs/commit/ae19d3422ae7147f5064ec9a21909a106747c764)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([483f9d4](https://github.com/abougouffa/minemacs/commit/483f9d40ef1e7e0341eb26d698897df1e6abedad)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.36.2](https://github.com/abougouffa/minemacs/compare/392bdb075fab4727622d7332b814619c6f3a2151..v12.36.2) - 2025-06-22
 #### Bug Fixes
 - **(parinfer-rust)** don't auto enable in read-only buffers - ([e46ba1d](https://github.com/abougouffa/minemacs/commit/e46ba1db6c0471542f8f4f36c88a3212936b7180)) - [@abougouffa](https://github.com/abougouffa)
