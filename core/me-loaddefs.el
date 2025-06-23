@@ -141,6 +141,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-cron.el
+
+(minemacs-register-on-demand-module 'me-cron :auto-mode '(("\\.?cron\\(tab\\)?\\(\\.X*[[:alnum:]]+\\)?\\'" . crontab-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-crystal.el
 
 (minemacs-register-on-demand-module 'me-crystal :auto-mode '(("\\(?:\\.cr\\)\\'" . crystal-mode)) :interpreter-mode '(("crystal" . crystal-mode)))
@@ -148,7 +153,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-csv.el
 
-(minemacs-register-on-demand-module 'me-csv :auto-mode '(("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.[Tt][Ss][Vv]\\'" . tsv-mode)) :companion-packages '((csv-mode . rainbow-csv)))
+(minemacs-register-on-demand-module 'me-csv :auto-mode '(("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.[Tt][Ss][Vv]\\'" . tsv-mode)) :companion-packages '((csv-mode rainbow-csv eplot)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
