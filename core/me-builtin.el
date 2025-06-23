@@ -130,8 +130,8 @@
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
 
   ;; Enable some useful Emacs commands by default
-  (put 'narrow-to-region 'disabled nil)
-  (put 'narrow-to-page 'disabled nil)
+  (dolist (command '(narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
+    (put command 'disabled nil))
 
   (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
   (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
