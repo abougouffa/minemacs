@@ -13,7 +13,7 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-csv
   :auto-mode '(("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.[Tt][Ss][Vv]\\'" . tsv-mode))
-  :companion-packages '((csv-mode . rainbow-csv)))
+  :companion-packages '((csv-mode . (rainbow-csv eplot))))
 
 
 ;; Major mode for editing comma/char separated values
