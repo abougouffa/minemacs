@@ -72,6 +72,7 @@
   (confirm-kill-emacs #'y-or-n-p) ; Confirm before quitting
   (prettify-symbols-unprettify-at-point t) ; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
   (display-fill-column-indicator-character ?\u250a) ; Use a dashed line for `display-fill-column-indicator-mode'
+  (indicate-buffer-boundaries 'right) ; Show buffer boundaries in the right fringe
   (apropos-do-all t) ; Make apropos commands search more extensively
   (vc-follow-symlinks t) ; Do not ask obvious questions, follow symlinks
   (shell-kill-buffer-on-exit t) ; Kill the shell buffer after exit
