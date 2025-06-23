@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-16
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -193,6 +193,7 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
   :when (and (not (featurep 'os/win)) (executable-find "direnv"))
+  :bind (:map minemacs-open-thing-map ("v" . envrc-command-map))
   :custom
   (envrc-debug minemacs-debug-p)
   (envrc-remote t)
