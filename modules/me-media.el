@@ -66,9 +66,14 @@
 ;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
 (use-package ready-player
   :straight (:host github :repo "xenodium/ready-player")
-  :hook (minemacs-first-file . ready-player-mode)
+  :after minemacs-first-file
+  :demand
   :custom
-  (ready-player-minor-mode-map-prefix "C-c o p"))
+  (ready-player-minor-mode-map-prefix "C-c o p")
+  :config
+  ;; Enable only when we have at least one supported media player installed
+  (when (seq-some #'executable-find (mapcar #'car ready-player-open-playback-commands))
+    (ready-player-mode 1)))
 
 
 (provide 'me-media)
