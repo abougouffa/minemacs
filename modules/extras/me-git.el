@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-22
-;; Last modified: 2025-06-22
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -38,7 +38,9 @@ to `conventional' or `prefix'."
         (format . ("[%s%s] " . " %s"))))))
 
 (defun +git--types-cache-file (conv kind)
-  "Returns the (filename . bool), the bool means that the cache file is still valid."
+  "Cache file for CONV (`conventional' or `prefix') and KIND (`types' or `scopes').
+Returns a cons cell \\=(filename . valid-p) with its car the cache file
+name and its cdr indicates if the cache file is still valid."
   (let* ((cache-dir (expand-file-name ".cache" (or (+project-safe-root) default-directory)))
          (cache-file (expand-file-name (format "%s-%s" conv kind) cache-dir)))
     (unless (file-exists-p cache-dir) (make-directory cache-dir t))
