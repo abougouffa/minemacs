@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-06-05
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
   :straight t
   :hook (csv-mode . csv-guess-set-separator)
   :custom
-  (csv-separators '("," ";" "\t" "|")))
+  (csv-separators '("," ";" "\t" "|" " ")))
 
 
 ;; Highlight CSV and TSV files in different rainbow colors
