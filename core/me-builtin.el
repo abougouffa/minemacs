@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-20
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -1069,6 +1069,7 @@ Typing these will trigger reindentation of the current line.")
   :hook (minemacs-first-file . global-auto-revert-mode) ; Auto load files changed on disk
   :custom
   (global-auto-revert-non-file-buffers t) ; Revert non-file buffers like dired
+  (auto-revert-verbose minemacs-verbose-p)
   :config
   ;; HACK: Avoid delays when auto reverting buffers. This is based on saving the
   ;; modification time of the file on save and on buffer switch.
