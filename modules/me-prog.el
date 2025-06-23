@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-18
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -238,6 +238,17 @@
       ("INFO"  . "#0e9030")
       ("TWEAK" . "#fe9030")
       ("PERF"  . "#e09030"))))
+
+
+;; Interactive macro-expander for Emacs Lisp and C
+(use-package macrostep
+  :straight t
+  :hook ((c-mode c++-mode c-ts-mode c++-ts-mode) . macrostep-c-mode-hook)
+  :bind (:package elisp-mode :map emacs-lisp-mode-map ("C-c m" . macrostep-expand))
+  :bind (:package cc-mode :map c-mode-map ("C-c m" . macrostep-expand))
+  :bind (:package cc-mode :map c++-mode-map ("C-c m" . macrostep-expand))
+  :bind (:package c-ts-mode :map c-ts-mode-map ("C-c m" . macrostep-expand))
+  :bind (:package c-ts-mode :map c++-ts-mode-map ("C-c m" . macrostep-expand)))
 
 
 ;; Emacs headerline indication of where you are in a large project

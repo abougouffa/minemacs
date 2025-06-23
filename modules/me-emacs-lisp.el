@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-06-21
+;; Last modified: 2025-06-23
 
 ;;; Commentary:
 
@@ -68,12 +68,6 @@
   (with-eval-after-load 'vundo
     (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
     (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))
-
-
-;; Interactive macro-expander for Emacs
-(use-package macrostep
-  :straight t
-  :bind (:map emacs-lisp-mode-map ("C-c m" . macrostep-expand)))
 
 
 ;; A better Emacs *help* buffer
