@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-23
+;; Last modified: 2025-06-24
 
 ;;; Commentary:
 
@@ -707,11 +707,19 @@ or file path may exist now."
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
   (compilation-skip-visited t) ; Skip visited messages on compilation motion commands
-  (compilation-window-height 12) ; Keep it readable  :init
+  (compilation-window-height 12) ; Keep it readable
+  (compilation-buffer-name-function #'+compilation--project-prefix-buffer-name)
   :config
   ;; Integration of `compile' with `savehist'
   (with-eval-after-load 'savehist
-    (add-to-list 'savehist-additional-variables 'compile-history)))
+    (add-to-list 'savehist-additional-variables 'compile-history))
+  ;; When compiling in a super-project or a project, use its name as a prefix
+  (defun +compilation--project-prefix-buffer-name (mode)
+    (if-let* ((default (compilation--default-buffer-name mode))
+              (proj (or (+super-project-current) (project-current)))
+              (proj (project-name proj)))
+        (concat "*" proj ":" (string-remove-prefix "*" default))
+      default)))
 
 (use-package nxml-mode
   :mode "\\.xmpi\\'"
