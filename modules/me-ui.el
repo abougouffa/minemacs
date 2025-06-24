@@ -79,6 +79,7 @@
       (enlight-open)
     (setq initial-buffer-choice #'enlight))
   :config
+  (+setq-hook! enlight-mode indicate-buffer-boundaries nil)
   (defun +enlight-responsive-h ()
     (satch-add-hook
      '(window-size-change-functions window-state-change-functions)
