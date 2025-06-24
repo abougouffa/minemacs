@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-23
+;; Last modified: 2025-06-24
 
 ;;; Commentary:
 
@@ -83,9 +83,8 @@
     (satch-add-hook
      '(window-size-change-functions window-state-change-functions)
      (satch-defun +enlight--recenter-h (&optional _frame)
-       ;; When in Enlight's buffer, we recall `enlight-open' to refresh and recenter the buffer
-       (when (eq (current-buffer) (get-buffer enlight-buffer-name))
-         (enlight)))
+       ;; When Enlight's buffer is visible, we recall `enlight' to refresh/recenter it
+       (and (get-buffer-window enlight-buffer-name) (enlight)))
      nil 'local)))
 
 
