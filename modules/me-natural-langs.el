@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -72,17 +72,8 @@ Based on `jinx-mode' if available. Falls back to the built-in
 ;; Internal package to add support for LTeX-LS specific commands to `eglot'
 (use-package me-eglot-ltex
   :after eglot
-  :demand
-  :config
-  (eglot-ltex-enable-handling-client-commands)
-  (+eglot-register
-    '(text-mode org-mode markdown-mode markdown-ts-mode rst-mode git-commit-mode)
-    `(,eglot-ltex-ls-program "--server-type=TcpSocket" "--port" :autoport))
-  (+eglot-register
-    '(tex-mode context-mode texinfo-mode bibtex-mode)
-    "digestif"
-    "texlab"
-    `(,eglot-ltex-ls-program "--server-type=TcpSocket" "--port" :autoport)))
+  :init
+  (eglot-ltex-enable-handling-client-commands))
 
 
 (provide 'me-natural-langs)

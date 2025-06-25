@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-04-30
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -50,9 +50,10 @@
 (defcustom eglot-ltex-ls-path (expand-file-name "ltex-ls-plus/" minemacs-local-dir)
   "Path to LTeX+ LS."
   :group 'minemacs-eglot-ltex
+  :set (lambda (_sym val) (add-to-list 'exec-path (expand-file-name "bin/" val)))
   :type 'directory)
 
-(defcustom eglot-ltex-ls-program (expand-file-name "bin/ltex-ls-plus" eglot-ltex-ls-path)
+(defcustom eglot-ltex-ls-program "ltex-ls-plus"
   "The path or executable name of the LTeX+ LS."
   :group 'minemacs-eglot-ltex
   :type '(choice file string))
@@ -157,6 +158,7 @@ When STORE is non-nil, this will also store the new plist in the directory
                 (+serialize-sym rules-plist eglot-ltex-user-rules-path)))
             (plist-get args-plist lang)))))
 
+;;;###autoload
 (defun eglot-ltex-enable-handling-client-commands ()
   "Enable Eglot hack to handle code actions of LTeX-LS."
   (interactive)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-24
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -632,29 +632,6 @@ or file path may exist now."
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   (eglot-stay-out-of '(yasnippet))
   :config
-  ;; Register some missing LSP servers
-  (+eglot-register '(awk-mode awk-ts-mode) "awk-language-server")
-  (+eglot-register '(nxml-mode xml-mode) "lemminx")
-  (+eglot-register '(vhdl-mode vhdl-ts-mode) "vhdl_ls") ; vhdl_ls from rust_hdl (AUR: rust_hdl-git)
-  (+eglot-register '(verilog-mode verilog-ts-mode) "svls" "verible-verilog-ls" "svlangserver")
-  (+eglot-register ; add `pylyzer' and `ty'
-    '(python-mode python-ts-mode)
-    "pylsp"
-    "pyls"
-    '("pylyzer" "--server")
-    '("ty" "server")
-    '("basedpyright-langserver" "--stdio")
-    '("pyright-langserver" "--stdio")
-    "jedi-language-server"
-    "ruff-lsp")
-  (+eglot-register ; better (!) parameters for Clangd
-    '(c++-mode c++-ts-mode c-mode c-ts-mode)
-    '("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
-      "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-      "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
-      "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")
-    "ccls")
-
   ;; PERF: Optimization, inspired by: https://reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
     (cl-callf plist-put eglot-events-buffer-config :size 0) ; Disable logs in `eglot-events-buffer' (def. 2000000)
