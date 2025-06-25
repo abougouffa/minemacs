@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-22
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -26,6 +26,8 @@
       (setcar vc 'magit-project-status)
       (setcdr vc '("Magit project status"))))
   :config
+  ;; Make `magit' collaborate with `tramp-direct-async-process' (magit/magit#5220)
+  (setq magit-tramp-pipe-stty-settings 'pty)
   ;; Automatically refresh Magit after save
   (add-hook 'after-save-hook 'magit-after-save-refresh-status))
 
