@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-16
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -477,7 +477,7 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
             old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
-      (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
+      (minemacs-run-build-functions (not (interactive-p))))))
 
 
 

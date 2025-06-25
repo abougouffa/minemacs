@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-22
-;; Last modified: 2025-06-23
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -82,7 +82,7 @@ will be generated each `+git-types-cache-age'."
   (let ((conv +git-commit-prefix-in-project)
         (+git-types-cache-age (if clean-cache 0 +git-types-cache-age)))
     (when (and conv
-               (or (called-interactively-p)
+               (or (interactive-p)
                    (and (+first-line-empty-p) ; Skip when amending a commit
                         (y-or-n-p (format "Use %s commit format? " (symbol-name conv))))))
       (let-alist (alist-get conv +git-commit-format-alist)

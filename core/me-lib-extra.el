@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-21
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -929,9 +929,9 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
       (progn
         (setq fill-column (if (zerop fc) nil fc)) ; `editorconfig-set-line-length' doesn't handle the unlimited case
         (editorconfig-set-indentation is (number-to-string iw) (number-to-string tw))
-        (when (called-interactively-p 'interactive)
+        (when (interactive-p)
           (message "Set fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s" fc tw iw is)))
-    (when (called-interactively-p 'interactive)
+    (when (interactive-p)
       (user-error "No applicable \".clang-format\" for buffer %S" (buffer-name)))))
 
 (put '+editorconfig-guess-style-from-clang-format 'completion-predicate

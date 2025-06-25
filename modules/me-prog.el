@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-23
+;; Last modified: 2025-06-25
 
 ;;; Commentary:
 
@@ -70,7 +70,7 @@
     "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
     (interactive (list (when current-prefix-arg (get-buffer (read-buffer "Create treesit parser in buffer: ")))))
     (let ((buffer (or buffer (current-buffer)))
-          (interact-p (called-interactively-p 'interactive)))
+          (interact-p (interactive-p)))
       (if (treesit-available-p)
           (when (or (not (derived-mode-p +treesit-auto-create-parser-modes-deny))
                     (and interact-p (y-or-n-p "Creating parsers for `%S' is blacklisted in `+treesit-auto-create-parser-modes-deny', continue?")))
