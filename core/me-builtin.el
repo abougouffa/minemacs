@@ -249,7 +249,22 @@ or file path may exist now."
   (tramp-use-connection-share t)
   (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
+  ;; TRAMP optimizations from:
+  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+  (tramp-use-scp-direct-remote-copying t)
+  (tramp-copy-size-limit (* 1024 1024)) ; 1MB (def. 10kB)
+  (tramp-verbose (if minemacs-verbose-p 4 2))
+  (remote-file-name-inhibit-locks t)
+  (remote-file-name-inhibit-auto-save-visited t)
   :config
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
   (setq tramp-temp-name-prefix (expand-file-name "tramp." temporary-file-directory)
         tramp-default-remote-shell "/bin/bash"
         ;; PERF: More responsive file editing via TRAMP.
