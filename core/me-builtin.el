@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-25
+;; Last modified: 2025-06-26
 
 ;;; Commentary:
 
@@ -356,6 +356,28 @@ or file path may exist now."
      "pyproject.toml" ; uv (Python)
      "Cargo.toml")) ; Cargo (Rust)
   :config
+  ;; HACK+PERF: For big non-Git projects, `project' uses `find' which is too
+  ;; slow, so lets memoize the results.
+  ;; TODO: Override `project--files-in-directory' with a fd-based implementation
+  (defvar +project--caches (make-hash-table :test #'equal))
+  (defun +project--files-in-directory-memoize (orig-fn dir ignores &optional files)
+    (let ((hash (secure-hash 'sha256 (string-join `(,dir "\n" ,@ignores "\n" ,@files) "::"))))
+      (if-let* ((cached-value (gethash hash +project--caches)))
+          (progn
+            (+log! "Reusing cached files list for %S" dir)
+            cached-value)
+        (+log! "Caching files list for %S" dir)
+        (let ((value (funcall orig-fn dir ignores files)))
+          (puthash hash value +project--caches)
+          value))))
+
+  (advice-add 'project--files-in-directory :around #'+project--files-in-directory-memoize)
+
+  (defun +project-clear-caches ()
+    "Clear files cache."
+    (interactive)
+    (setq +project--caches (make-hash-table :test #'equal)))
+
   ;; BUG+HACK: Project name should not be inherited from super-projects
   (cl-defmethod project-name ((project (head vc)))
     (let ((proj-root (project-root project)))
