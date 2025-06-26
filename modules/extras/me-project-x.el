@@ -10,6 +10,10 @@
 
 ;;; Code:
 
+
+
+;;; Find files faster using "fd"
+
 ;;;###autoload(with-eval-after-load 'project (require 'me-project-x))
 
 (defcustom +fd-program (if (executable-find "fdfind") "fdfind" "fd")
@@ -75,6 +79,37 @@
 
 (when (executable-find +fd-program)
   (advice-add 'project--files-in-directory :override '+project--files-in-directory-fd))
+
+
+
+;;; Caching
+
+(defcustom +project-cache-project-files t
+  "Cache project files when using the generic fd/find backend."
+  :group 'minemacs-project
+  :type 'boolean)
+
+(defvar +project--caches (make-hash-table :test #'equal))
+
+(defun +project--files-in-directory-memoize (orig-fn dir ignores &optional files)
+  (if +project-cache-project-files
+      (let ((hash (secure-hash 'sha256 (string-join `(,dir "\n" ,@ignores "\n" ,@files) "::"))))
+        (if-let* ((cached-value (gethash hash +project--caches)))
+            (progn
+              (+log! "Reusing cached files list for %S" dir)
+              cached-value)
+          (+log! "Caching files list for %S" dir)
+          (let ((value (funcall orig-fn dir ignores files)))
+            (puthash hash value +project--caches)
+            value)))
+    (funcall orig-fn dir ignores files)))
+
+(advice-add 'project--files-in-directory :around #'+project--files-in-directory-memoize)
+
+(defun +project-clear-caches ()
+  "Clear files cache."
+  (interactive)
+  (setq +project--caches (make-hash-table :test #'equal)))
 
 
 (provide 'me-project-x)
