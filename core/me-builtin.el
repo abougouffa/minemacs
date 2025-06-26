@@ -706,11 +706,13 @@ or file path may exist now."
   (with-eval-after-load 'savehist
     (add-to-list 'savehist-additional-variables 'compile-history))
   ;; When compiling in a super-project or a project, use its name as a prefix
-  (defun +compilation--project-prefix-buffer-name (mode)
-    (if-let* ((default (compilation--default-buffer-name mode))
+  (defun +compilation--project-prefix-buffer-name (name-of-mode)
+    (if-let* ((default (compilation--default-buffer-name name-of-mode))
               (proj (or (+super-project-current) (project-current)))
-              (proj (project-name proj)))
-        (concat "*" proj ":" (string-remove-prefix "*" default))
+              (proj (project-name proj))
+              (proj-prefix (concat "*" proj "::"))
+              ((not (string-prefix-p proj-prefix default))))
+        (concat proj-prefix (string-remove-prefix "*" default))
       default)))
 
 (use-package nxml-mode
