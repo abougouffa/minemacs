@@ -222,6 +222,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-eglot.el
+
+(with-eval-after-load 'eglot (require 'me-eglot))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (autoload 'eglot-ltex-ls-install "../modules/extras/me-eglot-ltex" "\
@@ -231,6 +236,8 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 (fn PRE)" t)
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
+(autoload 'eglot-ltex-enable-handling-client-commands "../modules/extras/me-eglot-ltex" "\
+Enable Eglot hack to handle code actions of LTeX-LS." t)
 (register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
 
 
