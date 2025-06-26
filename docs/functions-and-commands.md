@@ -235,6 +235,13 @@ Path to LTeX+ LS.
 
 The path or executable name of the LTeX+ LS.
 
+#### `+git-commit-prefix-in-project`
+
+Propose to insert a commit prefix in the current project.
+
+Set this variable in your project's ".dir-locals.el". You can set it
+to `conventional` or `prefix`.
+
 #### `+mu4e-account-aliases`
 
 Per-account alias list.
@@ -263,6 +270,14 @@ The minimum and maximum width of a displayed image.
 #### `+org-use-lower-case-keywords-and-properties`
 
 Automatically convert Org keywords and properties to lowercase on save.
+
+#### `+fd-program`
+
+The fd program to use.
+
+#### `+project-cache-project-files`
+
+Cache project files when using the generic fd/find backend.
 
 ### Function and Macro Documentation
 
@@ -997,9 +1012,9 @@ Run adb push SRC DEST.
 
 Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
 
-#### `(+adb-reboot MODE)`
+#### `(+adb-reboot &optional MODE NO-CONFIRM)`
 
-Run adb reboot MODE.
+Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
 
 #### `(+adb-root &optional ARG)`
 
@@ -1031,6 +1046,16 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 #### `(eglot-ltex-disable-handling-client-commands)`
 
 Disable Eglot hack to handle code actions of LTeX-LS.
+
+#### `(+git-get-commit-kind CONV KIND)`
+
+CONV can be `conventional` or `prefix`, KIND can be `types` or `scopes`.
+
+#### `(+git-insert-commit-prefix &optional CLEAN-CACHE)`
+
+Prompt for conventional commit type with scope completion.
+When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
+will be generated each `+git-types-cache-age`.
 
 #### `(+mu4e-part-selectors PARTS)`
 
@@ -1153,6 +1178,11 @@ Automatically convert KEYWORDS to lower case on save.
 #### `(+org-extras-setup)`
 
 Enable all Org-mode extra tweaks.
+
+#### `(+project-clear-cache ALL)`
+
+Clear project's files cache.
+When ALL is non-nil, clear the cache of all projects.
 
 #### `(+viper-operate-inside-delimiters OPEN CLOSE OP)`
 

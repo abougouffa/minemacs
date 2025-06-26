@@ -63,7 +63,6 @@
 ## `me-emacs-lisp`
 * `elisp-plus`: Better Emacs Lisp code viewing
 * `parinfer-rust-mode`: Simplifying how you write Lisp
-* `macrostep`: Interactive macro-expander for Emacs
 * `helpful`: A better Emacs *help* buffer
 * `eros`: Evaluation Result OverlayS for Emacs Lisp
 * `relint`: Elisp regexp mistake finder
@@ -89,6 +88,8 @@
 * `eglot-x`: Extra non-standard functionalities for Eglot
 * `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
 * `webkit-dark`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
+* `dash-docs`: Offline documentation browser using Dash/Zeal docsets
+* `consult-dash`: Integration of `consult` with `dash-docs`
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -177,6 +178,7 @@
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `xref-union`: Combine multiple Xref backends
 * `hl-todo`: Highlight TODO keywords
+* `macrostep`: Interactive macro-expander for Emacs Lisp and C
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 * `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
@@ -253,6 +255,7 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
+* `doom-two-tone-themes`: A sophisticated collection of two-tone themes
 * `doom-modeline`: A fancy and fast mode-line inspired by minimalism design
 * `solaire-mode`: Visually distinguish "real" buffers (i.e. file-visiting code buffers) from "unreal" buffers (like popups, sidebars, etc)
 * `enlight`: Highly customizable startup screen for Emacs
@@ -348,6 +351,9 @@
 * `sly-asdf`: ASDF system support for SLY
 * `sly-repl-ansi-color`: Add ANSI colors support to the `sly-mrepl`
 * `sly-macrostep`: Fancy macro-expansion via `macrostep`
+
+## `on-demand/me-cron`
+* `crontab-mode`: Major mode for crontab
 
 ## `on-demand/me-crystal`
 * `crystal-mode`: Major mode for editing Crystal files
@@ -626,6 +632,9 @@
 ## `on-demand/me-scala`
 * `scala-mode`: Major mode for editing Scala
 * `sbt-mode`: An Emacs mode for interacting with Scala sbt (Simple build tool) and projects
+
+## `on-demand/me-scallop`
+* `scallop-mode`: Major mode for editing Scallop programming language
 
 ## `on-demand/me-scheme`
 * `racket-mode`: Racket editing, REPL, and more
