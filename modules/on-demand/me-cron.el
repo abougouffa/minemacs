@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-23
-;; Last modified: 2025-06-23
+;; Last modified: 2025-06-26
 
 ;;; Commentary:
 
@@ -15,6 +15,7 @@
   :auto-mode '(("\\.?cron\\(tab\\)?\\(\\.X*[[:alnum:]]+\\)?\\'" . crontab-mode)))
 
 
+;; Major mode for crontab
 (use-package crontab-mode
   :straight t)
 
