@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.38.0](https://github.com/abougouffa/minemacs/compare/ab6945d27aa6c4c3c7e08f8f0ca5021556b06fe1..v12.38.0) - 2025-06-26
+#### Bug Fixes
+- **(compile)** fix the buffer name function for existing compilation buffers - ([bc10d17](https://github.com/abougouffa/minemacs/commit/bc10d175dcd186e68c6e97591662597639df01df)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(on-demand/cron)** add a comment - ([538e7a0](https://github.com/abougouffa/minemacs/commit/538e7a0b53e19d62902316bd48df6af7d9510c5a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([34ace1b](https://github.com/abougouffa/minemacs/commit/34ace1bb841be1f2c5829a89545215dc79aa7a2b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(obsolete)** remove `obsolete/project-x` to avoid confusion - ([4a49175](https://github.com/abougouffa/minemacs/commit/4a491757ce1ca9ebd5295f6cf15e2cb3656e1995)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** move project caching to `me-project-x` - ([c45958b](https://github.com/abougouffa/minemacs/commit/c45958b44ab9c45817baa249a2a2dcba477a3d27)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** use `fd` instead of `find` to browse project files - ([d62018a](https://github.com/abougouffa/minemacs/commit/d62018aa5c4e17926f8d8a710f442a5d79ca28ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** clear cache per-project - ([e550d88](https://github.com/abougouffa/minemacs/commit/e550d88aa09f404c6b2910489d51eea701b5983d)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(eglot)** move Eglot configuration to `extras/me-eglot` - ([5398c0f](https://github.com/abougouffa/minemacs/commit/5398c0fe91286a29865c42ab766966861d6969de)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** simplify the code - ([6ff9850](https://github.com/abougouffa/minemacs/commit/6ff9850e2bb3913eb501b40e399bcb2a66868a24)) - [@abougouffa](https://github.com/abougouffa)
+- use `interactive-p` shortcut - ([fa0f842](https://github.com/abougouffa/minemacs/commit/fa0f842ec78290d597edb5a5e7537aee930aa10a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(cc-mode)** register the `*.c.GEN` extension - ([babc34b](https://github.com/abougouffa/minemacs/commit/babc34b36bdb8991f1ae0a453ca020f7558a1b98)) - [@abougouffa](https://github.com/abougouffa)
+- **(compile)** prefix the compilation buffer with the project name - ([ab6945d](https://github.com/abougouffa/minemacs/commit/ab6945d27aa6c4c3c7e08f8f0ca5021556b06fe1)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** disable buffer boundaries in `enlight` - ([1c3f110](https://github.com/abougouffa/minemacs/commit/1c3f1106e47165945efa11a5e80d0a5a627b7f4d)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** recenter/refresh always when `enlight` is visible - ([cc7fbeb](https://github.com/abougouffa/minemacs/commit/cc7fbebd2eee2bec4c4166a45dbfc104646edbef)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** make `magit` collaborate with `tramp-direct-async-process` - ([e088266](https://github.com/abougouffa/minemacs/commit/e088266a18602d0b0f7383708d8818af7e681005)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** cache files list when using the generic `find` backend - ([f0393ac](https://github.com/abougouffa/minemacs/commit/f0393ac42f6bc18bbfe0f9dd338b31ab030b49c7)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** making TRAMP go Brrr - ([a7fbdcb](https://github.com/abougouffa/minemacs/commit/a7fbdcbcc86af9bda5ac85c24040568d9f7ef712)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9fce0a8](https://github.com/abougouffa/minemacs/commit/9fce0a8e02db1efbf172af5375a3c2066a85a77b)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([4c70a99](https://github.com/abougouffa/minemacs/commit/4c70a992db51ce5784c5dc64cc26f08660802f67)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([fc68a8d](https://github.com/abougouffa/minemacs/commit/fc68a8d930b7ca808075a3ce79114b6171f15884)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6aab2f2](https://github.com/abougouffa/minemacs/commit/6aab2f24d48fb49eb5d736ec00defb6aab982a4e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.37.0](https://github.com/abougouffa/minemacs/compare/73f9b5ffb58d23ddcb295eb91f3b1d37e601973a..v12.37.0) - 2025-06-23
 #### Documentation
 - **(git)** minor docstring edit - ([f66040f](https://github.com/abougouffa/minemacs/commit/f66040fced06512382a30623b73c35250cb8fd5e)) - [@abougouffa](https://github.com/abougouffa)
