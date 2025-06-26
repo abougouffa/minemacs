@@ -53,24 +53,17 @@
                             "")))
          res)
     (with-temp-buffer
-      (let ((status
-             (process-file-shell-command command nil t))
-            (pt (point-min)))
+      (let ((status (process-file-shell-command command nil t)))
         (unless (zerop status)
           (goto-char (point-min))
-          (if (and
-               (not (eql status 127))
-               (search-forward "Permission denied\n" nil t))
+          (if (and (not (eql status 127))
+                   (search-forward "Permission denied\n" nil t))
               (let ((end (1- (point))))
                 (re-search-backward "\\`\\|\0")
                 (error "File listing failed: %s"
                        (buffer-substring (1+ (point)) end)))
             (error "File listing failed: %s" (buffer-string))))
-        (goto-char pt)
-        (while (search-forward "\0" nil t)
-          (push (buffer-substring-no-properties (+ pt 2) (1- (point)))
-                res)
-          (setq pt (point)))))
+        (setq res (string-split (buffer-substring-no-properties (point-min) (point-max)) "\0" t))))
     (if project-files-relative-names
         (sort res #'string<)
       (project--remote-file-names
