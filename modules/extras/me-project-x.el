@@ -93,23 +93,32 @@
 
 (defun +project--files-in-directory-memoize (orig-fn dir ignores &optional files)
   (if +project-cache-project-files
-      (let ((hash (secure-hash 'sha256 (string-join `(,dir "\n" ,@ignores "\n" ,@files) "::"))))
-        (if-let* ((cached-value (gethash hash +project--caches)))
-            (progn
-              (+log! "Reusing cached files list for %S" dir)
-              cached-value)
-          (+log! "Caching files list for %S" dir)
-          (let ((value (funcall orig-fn dir ignores files)))
-            (puthash hash value +project--caches)
-            value)))
+      (if-let* ((cached-value (gethash dir +project--caches)))
+          (progn
+            (+log! "Reusing cached files list for %S" dir)
+            cached-value)
+        (+log! "Caching files list for %S" dir)
+        (let ((value (funcall orig-fn dir ignores files)))
+          (puthash dir value +project--caches)
+          value))
     (funcall orig-fn dir ignores files)))
 
 (advice-add 'project--files-in-directory :around #'+project--files-in-directory-memoize)
 
-(defun +project-clear-caches ()
-  "Clear files cache."
-  (interactive)
-  (setq +project--caches (make-hash-table :test #'equal)))
+(defun +project-clear-cache (all)
+  "Clear project's files cache.
+When ALL is non-nil, clear the cache of all projects."
+  (interactive "P")
+  (if all
+      (setq +project--caches (make-hash-table :test #'equal))
+    (let* ((proj (project-current t))
+           (root (project-root proj)))
+      (if (gethash root +project--caches)
+          (progn
+            (remhash root +project--caches)
+            (message "Cleared cache for %s" root))
+        (when (interactive-p)
+          (user-error "The current project doesn't have any cache"))))))
 
 
 (provide 'me-project-x)
