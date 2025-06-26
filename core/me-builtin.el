@@ -558,6 +558,9 @@ or file path may exist now."
   (mapc (lambda (m) (setq-default c-default-style (+alist-set (car m) (cdr m) c-default-style)))
         '((c-mode . "k&r") (c++-mode . "k&r"))))
 
+(use-package cc-mode
+  :mode ("\\.c\\.[Gg][Ee][Nn]]\\'" . c-mode)) ; Some automatically generated C files have this format
+
 (use-package c-ts-mode
   :when (featurep 'feat/tree-sitter)
   :custom
