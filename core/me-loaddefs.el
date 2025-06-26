@@ -888,6 +888,12 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-powershell :auto-mode '(("\\.ps[dm]?1\\'" . powershell-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-project-x.el
+
+(with-eval-after-load 'project (require 'me-project-x))
+(register-definition-prefixes "../modules/extras/me-project-x" '("+fd-program" "+project-"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
 
 (minemacs-register-on-demand-module 'me-protobuf :auto-mode '(("\\.proto\\'" . protobuf-mode)))
