@@ -222,6 +222,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-eglot.el
+
+(with-eval-after-load 'eglot (require 'me-eglot))
+
+
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (autoload 'eglot-ltex-ls-install "../modules/extras/me-eglot-ltex" "\
