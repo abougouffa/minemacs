@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-25
+;; Last modified: 2025-06-27
 
 ;;; Commentary:
 
@@ -128,7 +128,7 @@
 ;; Emacs major modes for Git configuration files
 (use-package git-modes
   :straight t
-  :mode ("/.dockerignore\\'" . gitignore-mode))
+  :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode))
 
 
 ;; Running "repo" from Emacs
