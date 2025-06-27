@@ -275,6 +275,10 @@ Automatically convert Org keywords and properties to lowercase on save.
 
 The fd program to use.
 
+#### `+fd-ignores`
+
+List of files to ignore in "fd".
+
 #### `+project-cache-project-files`
 
 Cache project files when using the generic fd/find backend.

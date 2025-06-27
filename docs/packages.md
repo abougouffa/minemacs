@@ -93,7 +93,6 @@
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
-* `run-in-dir`: Override the `default-directory` in the next command
 * `pscratch`: Persistent per-project scratch buffers for Emacs
 
 ## `me-files`
@@ -523,6 +522,9 @@
 * `latex`: Integrated environment for LaTeX
 * `auctex-latexmk`: Add LatexMk support to AUCTeX
 * `latex-preview-pane`: Makes LaTeX editing less painful by providing a updatable preview pane
+
+## `on-demand/me-linux`
+* `kconfig-mode`: Major mode for editing Kconfig files
 
 ## `on-demand/me-llvm`
 * `llvm-ts-mode`: LLVM major mode using Tree-sitter
