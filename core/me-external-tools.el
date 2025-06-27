@@ -185,6 +185,9 @@
     (:tool ltex-ls-plus
      :link "https://github.com/ltex-plus/ltex-ls-plus"
      :desc "LTeX+ Language Server based on Language Tool")
+    (:tool harper-ls
+     :link "https://github.com/Automattic/harper"
+     :desc "Offline, fast, open source, privacy-first grammar checker")
     (:tool sqlfluff
      :link "https://github.com/sqlfluff/sqlfluff"
      :desc "SQLFluff is a modular SQL linter for humans")
