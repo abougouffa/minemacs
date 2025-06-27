@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-06-26
+;; Last modified: 2025-06-27
 
 ;;; Commentary:
 
@@ -20,6 +20,11 @@
   "The fd program to use."
   :group 'minemacs-project
   :type 'string)
+
+(defcustom +fd-ignores '("GPATH" "GRTAGS" "GTAGS" ".tags" ".ctags.d" "gtags.files" "cscope.files")
+  "List of files to ignore in \"fd\"."
+  :group 'minemacs-project
+  :type '(repeat string))
 
 (defun +project--fd-ignores-arguments (ignores dir)
   "Like `xref--find-ignores-arguments', but for \"fd\"."
@@ -37,18 +42,17 @@
          (localdir (file-name-unquote (file-local-name (expand-file-name dir))))
          (command (format "%s -H %s -t f -0 %s"
                           +fd-program
-                          (+project--fd-ignores-arguments ignores "./")
+                          (+project--fd-ignores-arguments (append ignores +fd-ignores) "./")
                           (if files
                               (concat (shell-quote-argument "(")
                                       (shell-quote-argument
-                                       (mapconcat
-                                        (lambda (wildcard)
-                                          (thread-last
-                                            (wildcard-to-regexp wildcard)
-                                            (string-remove-suffix "\\'")
-                                            (string-remove-prefix "\\`")))
-                                        (split-string files)
-                                        (concat "|")))
+                                       (mapconcat (lambda (wildcard)
+                                                    (thread-last
+                                                      (wildcard-to-regexp wildcard)
+                                                      (string-remove-suffix "\\'")
+                                                      (string-remove-prefix "\\`")))
+                                                  (string-split files)
+                                                  (concat "|")))
                                       (shell-quote-argument ")"))
                             "")))
          res)
@@ -56,12 +60,10 @@
       (let ((status (process-file-shell-command command nil t)))
         (unless (zerop status)
           (goto-char (point-min))
-          (if (and (not (eql status 127))
-                   (search-forward "Permission denied\n" nil t))
+          (if (and (not (eql status 127)) (search-forward "Permission denied\n" nil t))
               (let ((end (1- (point))))
                 (re-search-backward "\\`\\|\0")
-                (error "File listing failed: %s"
-                       (buffer-substring (1+ (point)) end)))
+                (error "File listing failed: %s" (buffer-substring (1+ (point)) end)))
             (error "File listing failed: %s" (buffer-string))))
         (setq res (string-split (buffer-substring-no-properties (point-min) (point-max)) "\0" t))))
     (if project-files-relative-names
