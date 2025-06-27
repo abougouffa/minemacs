@@ -222,11 +222,6 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-eglot.el
-
-(with-eval-after-load 'eglot (require 'me-eglot))
-
-
 ;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
 
 (autoload 'eglot-ltex-ls-install "../modules/extras/me-eglot-ltex" "\
@@ -745,6 +740,11 @@ Show the list of declared external dependencies." t)
 (register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-linux.el
+
+(minemacs-register-on-demand-module 'me-linux :auto-mode '(("/Kconfig\\'" . kconfig-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
 
 (minemacs-register-on-demand-module 'me-llvm :auto-mode '(("\\.ll\\'" . llvm-ts-mode)) :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
@@ -891,7 +891,7 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/extras/me-project-x.el
 
 (with-eval-after-load 'project (require 'me-project-x))
-(register-definition-prefixes "../modules/extras/me-project-x" '("+fd-program" "+project-"))
+(register-definition-prefixes "../modules/extras/me-project-x" '("+fd-" "+project-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
