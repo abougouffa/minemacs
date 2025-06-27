@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-06-25
+;; Last modified: 2025-06-27
 
 ;;; Commentary:
 
@@ -50,7 +50,9 @@
 (defcustom eglot-ltex-ls-path (expand-file-name "ltex-ls-plus/" minemacs-local-dir)
   "Path to LTeX+ LS."
   :group 'minemacs-eglot-ltex
-  :set (lambda (_sym val) (add-to-list 'exec-path (expand-file-name "bin/" val)))
+  :set (lambda (sym val)
+         (set sym val)
+         (add-to-list 'exec-path (expand-file-name "bin/" val)))
   :type 'directory)
 
 (defcustom eglot-ltex-ls-program "ltex-ls-plus"
