@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-03-21
+;; Last modified: 2025-06-27
 
 ;;; Commentary:
 
@@ -21,12 +21,6 @@
          ("C-x 4 t" . crux-transpose-windows)
          :map minemacs-open-thing-map
          ("o" . crux-open-with)))
-
-
-;; Override the `default-directory' in the next command
-(use-package run-in-dir
-  :straight (:host github :repo "abougouffa/run-in-dir")
-  :bind (("C-c C-i" . run-in-dir-prefix)))
 
 
 ;; Persistent per-project scratch buffers for Emacs
