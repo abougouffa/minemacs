@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.39.0](https://github.com/abougouffa/minemacs/compare/8bd99e76d0a53cb59a206245f9ad5ff3706a117b..v12.39.0) - 2025-06-28
+#### Bug Fixes
+- **(eglot-ltex)** fix the setter of `eglot-ltex-ls-path` - ([8bd99e7](https://github.com/abougouffa/minemacs/commit/8bd99e76d0a53cb59a206245f9ad5ff3706a117b)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([e279f28](https://github.com/abougouffa/minemacs/commit/e279f2832bdbc154412666ad3260dd707b6328f9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([8b7e955](https://github.com/abougouffa/minemacs/commit/8b7e9559b58b9a9e336a882c24292a1d0a6dc555)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(eglot)** restore Eglot customizations - ([c936d86](https://github.com/abougouffa/minemacs/commit/c936d86f903c576a109a26a039162df248840356)) - [@abougouffa](https://github.com/abougouffa)
+- **(extra)** remove `run-in-dir` - ([e948e07](https://github.com/abougouffa/minemacs/commit/e948e07d3118eae9172ee96838a196d54122b1d2)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add `me-linux` module with `kconfig-mode` - ([fd612de](https://github.com/abougouffa/minemacs/commit/fd612de5018110e3f30394d3038e87cbf5b1797d)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(external-tools)** add `harper-ls` - ([91e45cb](https://github.com/abougouffa/minemacs/commit/91e45cb707bb992602c67a344eb1d6530a4411ec)) - [@abougouffa](https://github.com/abougouffa)
+- **(git-modes)** use `gitignore-mode` for several variants of `.*ignore` - ([f510882](https://github.com/abougouffa/minemacs/commit/f510882d5d80ae6765995c8397e2232f2c258e1b)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** add `+fd-ignores` - ([3305868](https://github.com/abougouffa/minemacs/commit/33058684bea723e172b19de79143217c670dd9cc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8462b90](https://github.com/abougouffa/minemacs/commit/8462b9072fa3c4e31c30d34abea0a2c8475814d2)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([5365bf8](https://github.com/abougouffa/minemacs/commit/5365bf8813fd77b68d6ad10e817b2480d2c61fd9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([54e2111](https://github.com/abougouffa/minemacs/commit/54e21111b345faf44184239bc482e7484acc74d4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.38.0](https://github.com/abougouffa/minemacs/compare/ab6945d27aa6c4c3c7e08f8f0ca5021556b06fe1..v12.38.0) - 2025-06-26
 #### Bug Fixes
 - **(compile)** fix the buffer name function for existing compilation buffers - ([bc10d17](https://github.com/abougouffa/minemacs/commit/bc10d175dcd186e68c6e97591662597639df01df)) - [@abougouffa](https://github.com/abougouffa)
