@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-24
+;; Last modified: 2025-06-28
 
 ;;; Commentary:
 
@@ -154,6 +154,8 @@
   :bind (:package info :map Info-mode-map ("C-o" . casual-info-tmenu))
   :bind (:package isearch :map isearch-mode-map ("C-o" . casual-isearch-tmenu))
   :bind (:package make-mode :map makefile-mode-map ("C-o" . casual-make-tmenu))
+  :bind (:package man :map Man-mode-map ("C-o" . casual-man-tmenu))
+  :bind (:package help-mode :map help-mode-map ("C-o" . casual-help-tmenu))
   :bind (:package org-agenda :map org-agenda-mode-map ("C-o" . casual-agenda-tmenu))
   :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu))
   :bind (:package smerge-mode :map smerge-mode-map ("C-o" . +casual-smerge-tmenu))
