@@ -1183,6 +1183,15 @@ Automatically convert KEYWORDS to lower case on save.
 
 Enable all Org-mode extra tweaks.
 
+#### `(+fd-ignores-arguments IGNORES DIR)`
+
+Like `xref--find-ignores-arguments`, but for "fd".
+
+#### `(+fd-files-in-directory DIR IGNORES &optional FILES)`
+
+Find FILES (or all) using "fd" in directory DIR, excluding IGNORES.
+Can override `project--files-in-directory` for x3.5 faster listing.
+
 #### `(+project-clear-cache ALL)`
 
 Clear project's files cache.
