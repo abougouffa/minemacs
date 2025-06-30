@@ -12,7 +12,8 @@
 
 
 
-;;; Find files faster using "fd"
+;;; Find files x3.5 times faster using "fd", with optional caching for x1000
+;;; faster listing
 
 ;;;###autoload(with-eval-after-load 'project (require 'me-project-x))
 
@@ -26,16 +27,23 @@
   :group 'minemacs-project
   :type '(repeat string))
 
-(defun +project--fd-ignores-arguments (ignores dir)
+(defcustom +project-cache-project-files t
+  "Cache project files when using the generic fd/find backend."
+  :group 'minemacs-project
+  :type 'boolean)
+
+(defvar +project--caches (make-hash-table :test #'equal))
+
+(defun +fd-ignores-arguments (ignores dir)
   "Like `xref--find-ignores-arguments', but for \"fd\"."
   (cl-assert (not (string-match-p "\\`~" dir)))
   (if ignores
       (concat " -E " (mapconcat #'shell-quote-argument ignores " -E "))
     ""))
 
-;; x3.5 faster than the default
-(defun +project--files-in-directory-fd (dir ignores &optional files)
-  "Like `project--files-in-directory', but for \"fd\"."
+(defun +fd-files-in-directory (dir ignores &optional files)
+  "Find FILES (or all) using \"fd\" in directory DIR, excluding IGNORES.
+Can override `project--files-in-directory' for x3.5 faster listing."
   (let* ((dir (file-name-as-directory dir))
          (default-directory dir)
          ;; Make sure ~/ etc. in local directory name is expanded and not left
@@ -43,7 +51,7 @@
          (localdir (file-name-unquote (file-local-name (expand-file-name dir))))
          (command (format "%s -H %s -t f -0 %s"
                           +fd-program
-                          (+project--fd-ignores-arguments (append ignores +fd-ignores) "./")
+                          (+fd-ignores-arguments (append ignores +fd-ignores) "./")
                           (if files
                               (concat (shell-quote-argument "(")
                                       (shell-quote-argument
@@ -73,33 +81,22 @@
        (mapcar (lambda (s) (concat localdir s))
                (sort res #'string<))))))
 
-(when (executable-find +fd-program)
-  (advice-add 'project--files-in-directory :override '+project--files-in-directory-fd))
-
-
-
-;;; Caching
-
-(defcustom +project-cache-project-files t
-  "Cache project files when using the generic fd/find backend."
-  :group 'minemacs-project
-  :type 'boolean)
-
-(defvar +project--caches (make-hash-table :test #'equal))
-
-(defun +project--files-in-directory-memoize (orig-fn dir ignores &optional files)
+;; x3.5 faster than the default
+(defun +project--files-in-directory-fd-with-caching (dir ignores &optional files)
+  "Like `project--files-in-directory', uses \"fd\" with optional caching."
   (if (and +project-cache-project-files (not files))
       (if-let* ((cached-value (gethash dir +project--caches)))
           (progn
             (+log! "Reusing cached files list for %S" dir)
             cached-value)
         (+log! "Caching files list for %S" dir)
-        (let ((value (funcall orig-fn dir ignores files)))
+        (let ((value (+fd-files-in-directory dir ignores files)))
           (puthash dir value +project--caches)
           value))
-    (funcall orig-fn dir ignores files)))
+    (+fd-files-in-directory dir ignores files)))
 
-(advice-add 'project--files-in-directory :around #'+project--files-in-directory-memoize)
+(when (executable-find +fd-program)
+  (advice-add 'project--files-in-directory :override '+project--files-in-directory-fd-with-caching))
 
 (defun +project-clear-cache (all)
   "Clear project's files cache.
