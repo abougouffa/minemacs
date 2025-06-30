@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-28
+;; Last modified: 2025-06-30
 
 ;;; Commentary:
 
@@ -79,7 +79,6 @@
       (enlight-open)
     (setq initial-buffer-choice #'enlight))
   :config
-  (+setq-hook! enlight-mode indicate-buffer-boundaries nil)
   (defun +enlight-responsive-h ()
     (satch-add-hook
      '(window-size-change-functions window-state-change-functions)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-26
+;; Last modified: 2025-06-30
 
 ;;; Commentary:
 
@@ -101,6 +101,10 @@
   ;; When `me-editor/smartparens' is disabled, enable `electric-pair-mode'
   (when (or minemacs-builtin-only-p (+package-disabled-p 'smartparens 'me-editor))
     (electric-pair-mode 1))
+
+  ;; Buffer boundaries looks uggly in these modes, disable them
+  (+setq-hook! (magit-status-mode magit-log-mode enlight-mode)
+    indicate-buffer-boundaries nil)
 
   ;; Inhibit startup message in echo area the brutal way!
   ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
