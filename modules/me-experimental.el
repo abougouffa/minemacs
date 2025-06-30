@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-06-19
+;; Last modified: 2025-06-30
 
 ;;; Commentary:
 
@@ -52,7 +52,10 @@
 
 ;; Integration of `consult' with `dash-docs'
 (use-package consult-dash
-  :straight t)
+  :straight t
+  :config
+  (with-eval-after-load 'consult
+    (consult-customize consult-dash :initial (or (thing-at-point 'region t) (thing-at-point 'symbol t)))))
 
 
 (provide 'me-experimental)
