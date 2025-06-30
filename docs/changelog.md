@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.39.1](https://github.com/abougouffa/minemacs/compare/bdf777a6cf4cea0dd42231bdc38d868c023eb08a..v12.39.1) - 2025-06-30
+#### Bug Fixes
+- **(native-compile)** remove the buggy on-battery customization - ([31c3b34](https://github.com/abougouffa/minemacs/commit/31c3b34b16a1b885ec0ce7f1025c73cc2fc299bd)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(project-x)** merge "fd" backend with caching - ([14a98dd](https://github.com/abougouffa/minemacs/commit/14a98dd177d8408429de18cd89fbb8d181fe585a)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** don't show buffer boundaries in some modes - ([2d6a65c](https://github.com/abougouffa/minemacs/commit/2d6a65c278d59344674a9d1d9c63088ab20a839c)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** bind `casual-help` and `casual-man` - ([775cb0d](https://github.com/abougouffa/minemacs/commit/775cb0d358dc47c369923a5f371aa90be6acd605)) - [@abougouffa](https://github.com/abougouffa)
+- **(consult-dash)** auto fill with symbol/region - ([dedddfe](https://github.com/abougouffa/minemacs/commit/dedddfee1258cade522a266c3b8a2fc826503ca4)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** minor tweaks - ([baf0d74](https://github.com/abougouffa/minemacs/commit/baf0d74032af890f652d674b90ae10ea84cbfce6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f7ddac6](https://github.com/abougouffa/minemacs/commit/f7ddac6b2394810b44f2cfba8a1d2a2eec6fb8ba)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([85a366c](https://github.com/abougouffa/minemacs/commit/85a366c3c898300547309c47fd515ac1923eb214)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bdf777a](https://github.com/abougouffa/minemacs/commit/bdf777a6cf4cea0dd42231bdc38d868c023eb08a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.39.0](https://github.com/abougouffa/minemacs/compare/8bd99e76d0a53cb59a206245f9ad5ff3706a117b..v12.39.0) - 2025-06-28
 #### Bug Fixes
 - **(eglot-ltex)** fix the setter of `eglot-ltex-ls-path` - ([8bd99e7](https://github.com/abougouffa/minemacs/commit/8bd99e76d0a53cb59a206245f9ad5ff3706a117b)) - [@abougouffa](https://github.com/abougouffa)
