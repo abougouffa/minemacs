@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-06-27
+;; Last modified: 2025-06-30
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
   :group 'minemacs-project
   :type 'string)
 
-(defcustom +fd-ignores '("GPATH" "GRTAGS" "GTAGS" ".tags" ".ctags.d" "gtags.files" "cscope.files")
+(defcustom +fd-ignores '("GPATH" "GRTAGS" "GTAGS" ".tags" ".ctags.d" "gtags.files" "cscope.files" "compile_commands.json")
   "List of files to ignore in \"fd\"."
   :group 'minemacs-project
   :type '(repeat string))
@@ -33,6 +33,7 @@
       (concat " -E " (mapconcat #'shell-quote-argument ignores " -E "))
     ""))
 
+;; x3.5 faster than the default
 (defun +project--files-in-directory-fd (dir ignores &optional files)
   "Like `project--files-in-directory', but for \"fd\"."
   (let* ((dir (file-name-as-directory dir))
@@ -87,7 +88,7 @@
 (defvar +project--caches (make-hash-table :test #'equal))
 
 (defun +project--files-in-directory-memoize (orig-fn dir ignores &optional files)
-  (if +project-cache-project-files
+  (if (and +project-cache-project-files (not files))
       (if-let* ((cached-value (gethash dir +project--caches)))
           (progn
             (+log! "Reusing cached files list for %S" dir)
