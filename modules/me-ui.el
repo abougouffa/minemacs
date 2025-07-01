@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-30
+;; Last modified: 2025-07-01
 
 ;;; Commentary:
 
@@ -68,6 +68,13 @@
     `(("Org Mode"
        ("Org-Agenda (today)" (org-agenda nil "a") "a")
        ("Org directory" (dired org-directory) "o"))
+      ("Emacs"
+       ("Calendar" calendar "c"))
+      ,@(unless (+package-disabled-p 'denote 'me-notes)
+          `(("Notes"
+             ("Denote" denote "n")
+             ("Open or create" denote-open-or-create "N")
+             ("Journal new or existing" denote-journal-new-or-existing-entry "j"))))
       ("Projects"
        ("Switch to project" project-switch-project "p"))
       ,@(unless (+package-disabled-p 'easysession 'me-ui)
