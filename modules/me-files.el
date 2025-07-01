@@ -70,10 +70,9 @@ write to a new file name."
 ;; Asynchronous "rsync" from `dired'
 (use-package dired-rsync
   :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
-  :bind (:map
-         dired-mode-map
-         ("C-c C-r" . dired-rsync)
-         ("C-c C-x" . dired-rsync-transient)))
+  :bind ( :package dired :map dired-mode-map
+          ("C-c C-r" . dired-rsync)
+          ("C-c C-x" . dired-rsync-transient)))
 
 
 ;; Same functionality as `find-dired' and `find-grep-dired', using fd/rg instead
