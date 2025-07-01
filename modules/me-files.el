@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-06-05
+;; Last modified: 2025-07-01
 
 ;;; Commentary:
 
@@ -31,11 +31,9 @@
 
 ;; Fast opening of large files
 (use-package guard-lf
-  :straight (:host github :repo "jcs-elpa/guard-lf")
+  :straight (:host github :repo "jcs-elpa/guard-lf" :fork "abougouffa/guard-lf" :branch "fix/more-intact-modes")
   :init
-  (guard-lf-mode 1)
-  :config
-  (cl-callf append guard-lf-intact-major-modes '(rosbag-info-mode ein:ipynb-mode +hexl-mode-maybe)))
+  (guard-lf-mode 1))
 
 
 ;; Utilities for opening files with "sudo"
