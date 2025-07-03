@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-03
 
 ;;; Commentary:
 
@@ -197,7 +197,6 @@
 ;; An Emacs "jump to definition" package for 50+ languages
 (use-package dumb-jump
   :straight t
-  :after xref
   :custom
   (dumb-jump-selector 'completing-read)
   :init
