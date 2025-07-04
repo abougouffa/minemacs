@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-07
+;; Last modified: 2025-07-04
 
 ;;; Commentary:
 
@@ -46,9 +46,7 @@
 
 ;;; `straight' customization
 
-(cl-callf append straight-built-in-pseudo-packages
-  '(treesit ; Some packages like `ts-movement' depends on it
-    docker-tramp)) ; Needed by some packages like `ros', but provided by `tramp'
+(add-to-list 'straight-built-in-pseudo-packages 'treesit) ; Some packages like `ts-movement' depends on it
 
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
 ;; This cuts the size of the "straight/repos" directory by more than half (from
