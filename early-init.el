@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-01
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -25,7 +25,7 @@
       (add-hook (if (equal (downcase val) "lazy") 'minemacs-lazy-hook 'minemacs-after-startup-hook)
                 (lambda () (benchmark-init/deactivate) (require 'benchmark-init-modes) (benchmark-init/show-durations-tree)) 99)))
 
-  (dolist (dir '("core" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
+  (dolist (dir '("core" "core/extras" "modules" "modules/extras" "elisp")) ; Add some of MinEmacs' directories to `load-path'
     (add-to-list 'load-path (expand-file-name dir minemacs-dir))))
 
 (require 'me-vars)
