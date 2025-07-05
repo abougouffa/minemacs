@@ -737,26 +737,12 @@ or file path may exist now."
   (org-pretty-entities-include-sub-superscripts t)
   (org-return-follows-link t) ; RET follows link (a key bind has to be defined for Evil, (see `me-evil'))
   (org-special-ctrl-a/e t)
-  (org-startup-indented nil)
+  (org-startup-indented t)
   (org-tags-column 0)
   (org-use-property-inheritance t) ; it's convenient to have properties inherited
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
   :config
   (setq org-export-async-debug minemacs-debug-p) ;; Can be useful!
-
-  ;; TEMP: This solve the "Invalid face reference: org-indent [X times]" problem.
-  (require 'org-indent)
-
-  ;; Dynamically change font size for Org heading levels, starting from
-  ;; `+org-level-base-size', and shrinking by a factor of 0.9 at each level.
-  (defvar +org-level-base-size 1.3)
-
-  (dotimes (level 8)
-    (let ((size (max 1.0 (* +org-level-base-size (expt 0.9 level)))))
-      (set-face-attribute
-       (intern (format "org-level-%d" (1+ level))) nil
-       :weight 'bold
-       :height size)))
 
   (setopt org-babel-load-languages
           (cl-loop
