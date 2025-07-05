@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-15
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -93,12 +93,10 @@ environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
 (defconst minemacs-elisp-dir (concat minemacs-root-dir "elisp/"))
 (defconst minemacs-modules-dir (concat minemacs-root-dir "modules/"))
 (defconst minemacs-obsolete-modules-dir (concat minemacs-modules-dir "obsolete/"))
-(defconst minemacs-extras-dir (concat minemacs-modules-dir "extras/"))
 (defconst minemacs-on-demand-modules-dir (concat minemacs-modules-dir "on-demand/"))
 (defconst minemacs-local-dir (concat minemacs-root-dir "local/"))
 (defconst minemacs-cache-dir (concat minemacs-local-dir "cache/"))
 (defconst minemacs-loaddefs-file (concat minemacs-core-dir "me-loaddefs.el"))
-(defconst minemacs-extra-packages-dir (concat minemacs-local-dir "extra-packages/"))
 (defconst minemacs-config-dir (file-name-as-directory
                                (or (getenv "MINEMACS_DIR")
                                    (getenv "MINEMACSDIR")

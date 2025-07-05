@@ -1204,7 +1204,11 @@ To be used as a predicate generator for `display-buffer-alist'."
   (interactive)
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
   (loaddefs-generate
-   (list minemacs-core-dir minemacs-elisp-dir minemacs-extras-dir minemacs-on-demand-modules-dir)
+   (list minemacs-core-dir
+	 (concat minemacs-core-dir "extras/")
+	 minemacs-elisp-dir
+	 (concat minemacs-modules-dir "extras/")
+	 minemacs-on-demand-modules-dir)
    minemacs-loaddefs-file))
 
 ;; Functions

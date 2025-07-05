@@ -1,16 +1,16 @@
-;;; me-eglot.el --- Eglot customizations -*- lexical-binding: t; -*-
+;;; me-eglot-x.el --- Eglot customizations -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-25
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
 ;;; Code:
 
-;;;###autoload(with-eval-after-load 'eglot (require 'me-eglot))
+;;;###autoload(with-eval-after-load 'eglot (require 'me-eglot-x))
 
 (require 'me-eglot-ltex)
 
@@ -87,5 +87,5 @@
   `(,eglot-ltex-ls-program "--server-type=TcpSocket" "--port" :autoport))
 
 
-(provide 'me-eglot)
-;;; me-eglot.el ends here
+(provide 'me-eglot-x)
+;;; me-eglot-x.el ends here

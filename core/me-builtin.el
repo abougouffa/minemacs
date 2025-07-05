@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-06-30
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -373,46 +373,7 @@ or file path may exist now."
           (or project-vc-name
               (cl-call-next-method))))))
 
-  (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands)))
-
-  ;; Define some `projectile' wrapper functions on top of `project' (required by
-  ;; some packages like `fzf', `neotree', `platformio-mode', etc.)
-  (defun projectile-project-p (&optional dir)
-    (let ((default-directory (or dir default-directory)))
-      (and (project-current) t)))
-
-  (defun projectile-project-root (&optional dir)
-    (when-let* ((default-directory (or dir default-directory))
-                (proj (project-current)))
-      (expand-file-name (project-root proj))))
-
-  (defun projectile-project-name (&optional proj)
-    (when-let* ((proj (or proj (project-current))))
-      (project-name proj)))
-
-  (defun projectile-project-files (&optional proj-root)
-    (when-let* ((default-directory (or proj-root default-directory))
-                (proj (project-current)))
-      (mapcar #'file-relative-name (project-files proj))))
-
-  (defun projectile-project-buffers (&optional proj)
-    (when-let* ((proj (or proj (project-current))))
-      (project-buffers proj)))
-
-  (defun projectile-expand-root (name &optional dir)
-    (when (projectile-project-p dir)
-      (expand-file-name name (projectile-project-root dir))))
-
-  (defun projectile-verify-file (file &optional dir)
-    (when-let* ((file (projectile-expand-root file dir)))
-      (file-exists-p file)))
-
-  (defun projectile-project-buffer-p (buffer proj-root)
-    (and (let ((default-directory proj-root))
-           (member buffer (projectile-project-buffers)))
-         t))
-
-  (provide 'projectile))
+  (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands))))
 
 (use-package tab-bar
   :hook (minemacs-lazy . tab-bar-mode)
@@ -965,41 +926,6 @@ Typing these will trigger reindentation of the current line.")
 
   (dolist (hook '(ediff-quit-hook ediff-suspend-hook))
     (add-hook hook #'+ediff--restore-window-config-h 99)))
-
-(use-package smerge-mode
-  :commands (+smerge-first +smerge-last +smerge-vc-next-conflict-recenter)
-  :config
-  (defun +smerge-first ()
-    "Got to the first occurrence."
-    (interactive)
-    (goto-char (point-min))
-    (smerge-next))
-
-  (defun +smerge-last ()
-    "Got to the last occurrence."
-    (interactive)
-    (goto-char (point-max))
-    (smerge-prev))
-
-  (defun +smerge-vc-next-conflict-recenter ()
-    "Like `smerge-vc-next-conflict' but recenters the buffer."
-    (interactive)
-    (smerge-vc-next-conflict)
-    ;; Often, after calling `smerge-vc-next-conflict', the cursor will land at
-    ;; the bottom of the window.
-    (recenter-top-bottom (/ (window-height) 8)))
-
-  (defun +smerge-next-recenter ()
-    "Like `smerge-next' but recenters the buffer."
-    (interactive)
-    (smerge-next)
-    (recenter-top-bottom (/ (window-height) 8)))
-
-  (defun +smerge-prev-recenter ()
-    "Like `smerge-prev' but recenters the buffer."
-    (interactive)
-    (smerge-prev)
-    (recenter-top-bottom (/ (window-height) 8))))
 
 (use-package octave
   :mode ("\\.m\\'" . octave-maybe-mode))

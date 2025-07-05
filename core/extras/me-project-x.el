@@ -4,18 +4,59 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-06-30
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
 ;;; Code:
 
+;;;###autoload(with-eval-after-load 'project (require 'me-project-x))
+
+;;; Thin `projectile' compatibility layer
+
+;; Define some `projectile' wrapper functions on top of `project' (required by
+;; some packages like `fzf', `neotree', `platformio-mode', etc.)
+(defun projectile-project-p (&optional dir)
+  (let ((default-directory (or dir default-directory)))
+    (and (project-current) t)))
+
+(defun projectile-project-root (&optional dir)
+  (when-let* ((default-directory (or dir default-directory))
+              (proj (project-current)))
+    (expand-file-name (project-root proj))))
+
+(defun projectile-project-name (&optional proj)
+  (when-let* ((proj (or proj (project-current))))
+    (project-name proj)))
+
+(defun projectile-project-files (&optional proj-root)
+  (when-let* ((default-directory (or proj-root default-directory))
+              (proj (project-current)))
+    (mapcar #'file-relative-name (project-files proj))))
+
+(defun projectile-project-buffers (&optional proj)
+  (when-let* ((proj (or proj (project-current))))
+    (project-buffers proj)))
+
+(defun projectile-expand-root (name &optional dir)
+  (when (projectile-project-p dir)
+    (expand-file-name name (projectile-project-root dir))))
+
+(defun projectile-verify-file (file &optional dir)
+  (when-let* ((file (projectile-expand-root file dir)))
+    (file-exists-p file)))
+
+(defun projectile-project-buffer-p (buffer proj-root)
+  (and (let ((default-directory proj-root))
+         (member buffer (projectile-project-buffers)))
+       t))
+
+(provide 'projectile)
+
 
 
 ;;; Find files x3.5 times faster using "fd", with optional caching for x1000
 ;;; faster listing
-
-;;;###autoload(with-eval-after-load 'project (require 'me-project-x))
 
 (defcustom +fd-program (if (executable-find "fdfind") "fdfind" "fd")
   "The fd program to use."

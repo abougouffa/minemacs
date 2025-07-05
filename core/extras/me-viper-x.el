@@ -1,10 +1,10 @@
-;;; me-adb.el --- Extra commands for `viper-mode' -*- lexical-binding: t; -*-
+;;; me-viper.el --- Extra commands for `viper-mode' -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-25
-;; Last modified: 2025-05-26
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;;; Code:
 
-;;;###autoload(with-eval-after-load 'viper (require 'me-viper))
+;;;###autoload(with-eval-after-load 'viper (require 'me-viper-x))
 
 (require 'viper)
 
@@ -250,5 +250,5 @@ A compound word includes letters, numbers, `-`, and `_`."
 (define-key viper-vi-global-user-map (kbd "SPC t i") 'toggle-flymake-diagnostics-at-eol)
 
 
-(provide 'me-viper)
-;;; me-viper.el ends here
+(provide 'me-viper-x)
+;;; me-viper-x.el ends here

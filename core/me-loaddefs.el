@@ -222,23 +222,23 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-eglot.el
+;;; Generated autoloads from extras/me-eglot-ltex.el
 
-(with-eval-after-load 'eglot (require 'me-eglot))
-
-
-;;; Generated autoloads from ../modules/extras/me-eglot-ltex.el
-
-(autoload 'eglot-ltex-ls-install "../modules/extras/me-eglot-ltex" "\
+(autoload 'eglot-ltex-ls-install "extras/me-eglot-ltex" "\
 Download the latest release of LTeX+ LS.
 
 When PRE is non-nil, allow downloading the latest prerelease.
 
 (fn PRE)" t)
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
-(autoload 'eglot-ltex-enable-handling-client-commands "../modules/extras/me-eglot-ltex" "\
+(autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-ltex" "\
 Enable Eglot hack to handle code actions of LTeX-LS." t)
-(register-definition-prefixes "../modules/extras/me-eglot-ltex" '("eglot-ltex-"))
+(register-definition-prefixes "extras/me-eglot-ltex" '("eglot-ltex-"))
+
+
+;;; Generated autoloads from extras/me-eglot-x.el
+
+(with-eval-after-load 'eglot (require 'me-eglot-x))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-elixir.el
@@ -893,10 +893,10 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-powershell :auto-mode '(("\\.ps[dm]?1\\'" . powershell-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-project-x.el
+;;; Generated autoloads from extras/me-project-x.el
 
 (with-eval-after-load 'project (require 'me-project-x))
-(register-definition-prefixes "../modules/extras/me-project-x" '("+fd-" "+project-"))
+(register-definition-prefixes "extras/me-project-x" '("+fd-" "+project-" "projectile-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
@@ -955,6 +955,12 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-smalltalk.el
 
 (minemacs-register-on-demand-module 'me-smalltalk :auto-mode '(("\\.st\\'" . smalltalk-mode)))
+
+
+;;; Generated autoloads from extras/me-smerge-x.el
+
+(with-eval-after-load 'smerge-mode (require 'me-smerge-x))
+(register-definition-prefixes "extras/me-smerge-x" '("+smerge-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
@@ -1019,10 +1025,10 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-vimscript :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-viper.el
+;;; Generated autoloads from extras/me-viper-x.el
 
-(with-eval-after-load 'viper (require 'me-viper))
-(register-definition-prefixes "../modules/extras/me-viper" '("+viper-" "viper-change-inner-compound-word"))
+(with-eval-after-load 'viper (require 'me-viper-x))
+(register-definition-prefixes "extras/me-viper-x" '("+viper-" "viper-change-inner-compound-word"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
