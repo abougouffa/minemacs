@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-06
 
 ;;; Commentary:
 
@@ -816,14 +816,6 @@ or file path may exist now."
      ("bgcolor"       "GhostWhite")
      ("linenos"       "true")))
   :config
-  ;; (setq org-latex-line-break-safe "\\\\")
-  ;; Add this to your config to be able to export with minted:
-  ;; (with-eval-after-load 'ox-latex
-  ;;   (add-to-list 'org-latex-packages-alist '("" "minted"))
-  ;;   (add-to-list 'org-latex-packages-alist '("svgnames" "xcolor"))
-  ;;   (setq org-latex-src-block-backend 'minted
-  ;;         org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
-
   ;; Map some org-mode blocks' languages to lexers supported by minted
   ;; you can see supported lexers by running this command in a terminal:
   ;; 'pygmentize -L lexers'
