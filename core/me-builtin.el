@@ -718,7 +718,6 @@ or file path may exist now."
   (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
   (org-auto-align-tags nil)
   (org-cycle-hide-block-startup t)
-  (org-edit-src-auto-save-idle-delay auto-save-timeout) ; use the defaults
   (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
   (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
   (org-ellipsis " ↩")
