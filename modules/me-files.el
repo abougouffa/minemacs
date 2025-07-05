@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-07-01
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -31,7 +31,7 @@
 
 ;; Fast opening of large files
 (use-package guard-lf
-  :straight (:host github :repo "jcs-elpa/guard-lf" :fork "abougouffa/guard-lf" :branch "fix/more-intact-modes")
+  :straight (:host github :repo "jcs-elpa/guard-lf")
   :init
   (guard-lf-mode 1))
 
