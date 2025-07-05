@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.39.2](https://github.com/abougouffa/minemacs/compare/13eaab119f0a1140b67bc72d1ff7114de52bcb6e..v12.39.2) - 2025-07-05
+#### Bug Fixes
+- **(dired-rsync)** fix the binding to `dired-mode-map` - ([3e2f3da](https://github.com/abougouffa/minemacs/commit/3e2f3da43b2dd16bfacf1f577967d4f9159551cc)) - [@abougouffa](https://github.com/abougouffa)
+- **(dumb-jump)** activate correctly - ([6e43e78](https://github.com/abougouffa/minemacs/commit/6e43e78139cebfe5cb979e56891e115eaf579055)) - [@abougouffa](https://github.com/abougouffa)
+- **(guard-lf)** don't trigger in PDF files (patch sent upstream) - ([f849d4a](https://github.com/abougouffa/minemacs/commit/f849d4a6a04e6d2b931ad27f69be3c6149eae991)) - [@abougouffa](https://github.com/abougouffa)
+- add the new `core/extras` to `load-path` - ([bc47687](https://github.com/abougouffa/minemacs/commit/bc476877fa62ad6330b1438263c7c8231a94994c)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([13eaab1](https://github.com/abougouffa/minemacs/commit/13eaab119f0a1140b67bc72d1ff7114de52bcb6e)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(org)** remove dead code - ([fd44b89](https://github.com/abougouffa/minemacs/commit/fd44b89410abc56e1b080e62230c8bc86cac840b)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** reorganize the builtin extra functionalities - ([f60deea](https://github.com/abougouffa/minemacs/commit/f60deea342373f6fc33e35036100055655a09a59)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** merge `me-eglot-x` and `me-eglot-ltex` - ([a5403d1](https://github.com/abougouffa/minemacs/commit/a5403d1990ada9ffac2a981222c7b9bbc42ec9c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** move `me-org-extras` to `me-org-x` - ([d97a796](https://github.com/abougouffa/minemacs/commit/d97a7964e6777b649472b008440a7464f39da800)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(guard-lf)** restore original repo, fix merged upstream - ([afd7106](https://github.com/abougouffa/minemacs/commit/afd7106a9560869633ef060004207d72e9b10c4e)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(casual)** remove `+casual-smerge-tmenu-auto-open-maybe` - ([f77a252](https://github.com/abougouffa/minemacs/commit/f77a252922c099fd372c3d6f6b23ab84fcbbdae8)) - [@abougouffa](https://github.com/abougouffa)
+- **(enlight)** bind `calendar` and some `denote` commands - ([7b0201a](https://github.com/abougouffa/minemacs/commit/7b0201aa25dbc7bb5f751ed42dc9652ce7a8d39e)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** remove unneeded customization - ([b43e64d](https://github.com/abougouffa/minemacs/commit/b43e64dbe7678a5f6d930d763696e2e799fb2690)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** no Org levels font size increase + `org-indent` by default - ([6abba53](https://github.com/abougouffa/minemacs/commit/6abba535721fe71f3b88b78e9d3127b379f995fc)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** no need for `docker-tramp`, `ros` don't depend on it anymore - ([d883996](https://github.com/abougouffa/minemacs/commit/d8839969d608a69f98a14d9128d1284da58a848a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6706ef2](https://github.com/abougouffa/minemacs/commit/6706ef22b5af5e30c1a4d884be65cb9a68652bf8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.39.1](https://github.com/abougouffa/minemacs/compare/bdf777a6cf4cea0dd42231bdc38d868c023eb08a..v12.39.1) - 2025-06-30
 #### Bug Fixes
 - **(native-compile)** remove the buggy on-battery customization - ([31c3b34](https://github.com/abougouffa/minemacs/commit/31c3b34b16a1b885ec0ce7f1025c73cc2fc299bd)) - [@abougouffa](https://github.com/abougouffa)
