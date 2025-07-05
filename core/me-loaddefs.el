@@ -222,23 +222,20 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
 
 
-;;; Generated autoloads from extras/me-eglot-ltex.el
+;;; Generated autoloads from extras/me-eglot-x.el
 
-(autoload 'eglot-ltex-ls-install "extras/me-eglot-ltex" "\
+(with-eval-after-load 'eglot (require 'me-eglot-x))
+(autoload 'eglot-ltex-ls-install "extras/me-eglot-x" "\
 Download the latest release of LTeX+ LS.
 
 When PRE is non-nil, allow downloading the latest prerelease.
 
 (fn PRE)" t)
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
-(autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-ltex" "\
+(autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-x" "\
 Enable Eglot hack to handle code actions of LTeX-LS." t)
-(register-definition-prefixes "extras/me-eglot-ltex" '("eglot-ltex-"))
-
-
-;;; Generated autoloads from extras/me-eglot-x.el
-
-(with-eval-after-load 'eglot (require 'me-eglot-x))
+(with-eval-after-load 'eglot (eglot-ltex-enable-handling-client-commands))
+(register-definition-prefixes "extras/me-eglot-x" '("eglot-ltex-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-elixir.el

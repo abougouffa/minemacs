@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -67,13 +67,6 @@ Based on `jinx-mode' if available. Falls back to the built-in
 ;; Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el"))
-
-
-;; Internal package to add support for LTeX-LS specific commands to `eglot'
-(use-package me-eglot-ltex
-  :after eglot
-  :init
-  (eglot-ltex-enable-handling-client-commands))
 
 
 (provide 'me-natural-langs)
