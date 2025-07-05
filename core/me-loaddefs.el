@@ -850,9 +850,9 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-openscad :auto-mode '(("\\.scad\\'" . scad-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-org-extras.el
+;;; Generated autoloads from extras/me-org-x.el
 
-(register-definition-prefixes "../modules/extras/me-org-extras" '("+org-"))
+(register-definition-prefixes "extras/me-org-x" '("+org-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-p4.el

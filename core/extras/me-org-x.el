@@ -1,10 +1,10 @@
-;;; me-org-extras.el --- Extra tweaks Org mode -*- lexical-binding: t; -*-
+;;; me-org-x.el --- Extra tweaks Org mode -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
@@ -340,6 +340,6 @@ Example: \"#+TITLE\" -> \"#+title\"
   (+org-extras-lower-case-keywords-and-properties-setup))
 
 
-(provide 'me-org-extras)
+(provide 'me-org-x)
 
-;;; me-org-extras.el ends here
+;;; me-org-x.el ends here

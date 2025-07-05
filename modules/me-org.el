@@ -4,13 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-27
+;; Last modified: 2025-07-05
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package me-org-extras
+(use-package me-org-x
   :after org
   :demand
   :config
