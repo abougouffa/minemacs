@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-11
+;; Last modified: 2025-07-06
 
 ;;; Commentary:
 
@@ -125,12 +125,15 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 ;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
   :straight t
-  :hook (prog-mode . +rainbow-delimiters-mode-maybe)
+  :hook (prog-mode . rainbow-delimiters-mode)
   :init
   (defvar +rainbow-delimiters-disabled-modes '(makefile-mode))
-  (defun +rainbow-delimiters-mode-maybe ()
-    (unless (derived-mode-p +rainbow-delimiters-disabled-modes)
-      (rainbow-delimiters-mode 1))))
+  :config
+  (advice-add
+   'rainbow-delimiters-mode :around
+   (satch-defun +rainbow-delimiters--maybe:around-a (orig-fn &rest args)
+     (unless (derived-mode-p +rainbow-delimiters-disabled-modes)
+       (apply orig-fn args)))))
 
 
 ;; Highlight numbers in source code
