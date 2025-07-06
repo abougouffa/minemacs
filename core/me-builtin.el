@@ -794,43 +794,9 @@ or file path may exist now."
   (org-latex-src-block-backend 'engraved)
   (org-latex-prefer-user-labels t)
   (org-latex-tables-booktabs t)
-  (org-latex-minted-options ; Default `minted` options, can be overwritten in file/dir locals
-   '(("frame"         "lines")
-     ("fontsize"      "\\footnotesize")
-     ("tabsize"       "2")
-     ("breaklines"    "true")
-     ("breakanywhere" "true") ; break anywhere, not just on spaces
-     ("style"         "default")
-     ("bgcolor"       "GhostWhite")
-     ("linenos"       "true")))
-  :config
-  ;; Map some org-mode blocks' languages to lexers supported by minted
-  ;; you can see supported lexers by running this command in a terminal:
-  ;; 'pygmentize -L lexers'
-  (dolist (pair '((ipython    "python")
-                  (jupyter    "python")
-                  (scheme     "scheme")
-                  (lisp-data  "lisp")
-                  (conf-unix  "unixconfig")
-                  (conf-space "unixconfig")
-                  (authinfo   "unixconfig")
-                  (gdb-script "unixconfig")
-                  (conf-toml  "yaml")
-                  (conf       "ini")
-                  (gitconfig  "ini")
-                  (systemd    "ini")))
-    (unless (member pair org-latex-minted-langs)
-      (add-to-list 'org-latex-minted-langs pair)))
-
-  (cond
-   ((executable-find "latexmk")
-    (setq org-latex-pdf-process
-          '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
-            "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f")))
-   ;; NOTE: Tectonic might have some issues with some documents (sagej + natbib)
-   ((executable-find "tectonic")
-    (setq org-latex-pdf-process
-          '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f")))))
+  (org-latex-pdf-process
+   '("latexmk -c -bibtex-cond1 %f" ; ensure cleaning ".bbl" files
+     "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))) ; add "-shell-escape"
 
 (use-package ox
   :config
