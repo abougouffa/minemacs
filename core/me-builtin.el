@@ -810,9 +810,9 @@ or file path may exist now."
   (mapc #'require '(oc-csl oc-natbib oc-biblatex)))
 
 (use-package ob-ditaa
-  :config
+  :custom
   ;; Automatically download the latest version of Ditaa
-  (setopt org-ditaa-jar-path (+github-download-release "stathissideris/ditaa" "ditaa-.*-standalone.jar" nil :ver "v0.11.0")))
+  (org-ditaa-jar-path (+github-download-release "stathissideris/ditaa" "ditaa-.*-standalone.jar" nil :ver "v0.11.0")))
 
 (use-package ol-man
   :after ol
