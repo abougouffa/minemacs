@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-06
 
 ;;; Commentary:
 
@@ -16,18 +16,13 @@
   :when (featurep 'feat/modules)
   :autoload jinx--load-module
   :preface
-  (defvar-local +spellcheck-mode nil)
-  (defun +spellcheck-mode (&optional arg)
+  (define-minor-mode +spellcheck-mode
     "Spell checking mode, with ARG.
 Based on `jinx-mode' if available. Falls back to the built-in
 `flyspell-mode'."
-    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
-    (if (and (fboundp 'jinx-mode) (+jinx-load-module))
-        (progn
-          (jinx-mode arg)
-          (setq +spellcheck-mode jinx-mode))
-      (flyspell-mode arg)
-      (setq +spellcheck-mode flyspell-mode)))
+    :init-value nil
+    (let ((arg (if +spellcheck-mode 1 -1)))
+      (if (and (fboundp 'jinx-mode) (+jinx-load-module)) (jinx-mode arg) (flyspell-mode arg))))
 
   (defun +spellcheck-correct ()
     "Correct word at point."
@@ -44,9 +39,7 @@ Based on `jinx-mode' if available. Falls back to the built-in
     "Try to compile and load the jinx module and fail silently."
     (condition-case err
         (let ((display-buffer-alist ; Hide the compilation buffer
-               (cons '("\\*jinx module compilation\\*"
-                       (display-buffer-no-window)
-                       (allow-no-window . t))
+               (cons '("\\*jinx module compilation\\*" (display-buffer-no-window) (allow-no-window . t))
                      display-buffer-alist)))
           (jinx--load-module))
       (error (+log! (error-message-string err)) nil)
