@@ -427,34 +427,34 @@ will be generated each `+git-types-cache-age'.
 (register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
-;;; Generated autoloads from me-lib-extra.el
+;;; Generated autoloads from me-lib-x.el
 
-(autoload 'minemacs-run-build-functions "me-lib-extra" "\
+(autoload 'minemacs-run-build-functions "me-lib-x" "\
 Run all build functions in `minemacs-build-functions'.
 
 Call functions without asking when DONT-ASK-P is non-nil.
 
 (fn &optional DONT-ASK-P)" t)
-(autoload 'minemacs-root-dir-cleanup "me-lib-extra" "\
+(autoload 'minemacs-root-dir-cleanup "me-lib-x" "\
 Cleanup MinEmacs' root directory.")
-(autoload 'minemacs-cleanup-emacs-directory "me-lib-extra" "\
+(autoload 'minemacs-cleanup-emacs-directory "me-lib-x" "\
 Cleanup unwanted files/directories from MinEmacs' directory." t)
-(autoload 'minemacs-user-config "me-lib-extra" "\
+(autoload 'minemacs-user-config "me-lib-x" "\
 Open MinEmacs user configuration.
 
 When ASK is non-nil (\\[universal-argument]), ask about which file to open.
 
 (fn ASK)" t)
-(autoload '+clean-file-name "me-lib-extra" "\
+(autoload '+clean-file-name "me-lib-x" "\
 Clean FILENAME, optionally convert to DOWNCASE-P.
 
 (fn FILENAME &optional DOWNCASE-P)")
-(autoload '+file-name-incremental "me-lib-extra" "\
+(autoload '+file-name-incremental "me-lib-x" "\
 Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
 
 (fn FILENAME)")
-(autoload '+delete-this-file "me-lib-extra" "\
+(autoload '+delete-this-file "me-lib-x" "\
 Delete PATH.
 
 If PATH is not specified, default to the current buffer's file.
@@ -462,47 +462,47 @@ If PATH is not specified, default to the current buffer's file.
 If FORCE-P, delete without confirmation.
 
 (fn &optional PATH FORCE-P)" t)
-(autoload '+delete-file-or-directory "me-lib-extra" "\
+(autoload '+delete-file-or-directory "me-lib-x" "\
 Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'.
 
 Move to trash when TRASH is non-nil, delete directories recursively when
 RECURSIVE is non-nil.
 
 (fn FILE-OR-DIRECTORY &optional TRASH RECURSIVE)")
-(autoload '+delete-current-file-and-buffer "me-lib-extra" "\
+(autoload '+delete-current-file-and-buffer "me-lib-x" "\
 Delete FILENAME and its associated visiting buffer.
 
 (fn &optional FILENAME)" t)
-(autoload '+copy-current-file-name "me-lib-extra" "\
+(autoload '+copy-current-file-name "me-lib-x" "\
 Save (copy) the file name of this buffer to the kill ring." t)
-(autoload '+apply-patch-dwim "me-lib-extra" "\
+(autoload '+apply-patch-dwim "me-lib-x" "\
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
 
 (fn PATCH-BUF &optional PROJ-DIR)" t)
-(autoload '+html2pdf "me-lib-extra" "\
+(autoload '+html2pdf "me-lib-x" "\
 Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
 value of `+html2pdf-default-backend' is used.
 
 (fn INFILE OUTFILE &optional BACKEND)")
-(autoload '+txt2html "me-lib-extra" "\
+(autoload '+txt2html "me-lib-x" "\
 Convert plain-text file INFILE to HTML and save it to OUTFILE.
 When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\".
 
 (fn INFILE OUTFILE &optional MAIL-MODE-P)")
-(autoload '+save-as-pdf "me-lib-extra" "\
+(autoload '+save-as-pdf "me-lib-x" "\
 Save URL as PDF.
 This function's signature is compatible with `browse-url-browser-function'
 so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 (fn INFILE &optional MAIL-MODE-P)")
-(autoload '+single-file "me-lib-extra" "\
+(autoload '+single-file "me-lib-x" "\
 Save URL into OUT-FILE as a standalone HTML file.
 
 (fn URL OUT-FILE)" t)
-(autoload '+browse-html-file "me-lib-extra" "\
+(autoload '+browse-html-file "me-lib-x" "\
 Browser HTML FILE following `+browse-html-file-browser-priority'.
 
 If no function from `+browse-html-file-browser-priority' is available,
@@ -511,25 +511,25 @@ use `browse-url'.
 When called with universal argument, open the current buffer's file.
 
 (fn FILE)" t)
-(autoload '+serial-running-p "me-lib-extra" "\
+(autoload '+serial-running-p "me-lib-x" "\
 Is there a serial port terminal running?")
-(autoload '+serial-run-commands "me-lib-extra" "\
+(autoload '+serial-run-commands "me-lib-x" "\
 Run COMMANDS on a device via serial communication.
 
 If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'.
 
 (fn COMMANDS &optional PORT BAUD)" t)
-(autoload '+net-get-ip-address "me-lib-extra" "\
+(autoload '+net-get-ip-address "me-lib-x" "\
 Get the IP-address for device DEV of the current machine.
 
 (fn &optional DEV)")
-(autoload '+github-latest-release "me-lib-extra" "\
+(autoload '+github-latest-release "me-lib-x" "\
 Get the latest release of REPO. Strips the \"v\" at left.
 Fallback to FALLBACK-RELEASE when it can't get the last one.
 When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version.
 
 (fn REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)")
-(autoload '+github-download-release "me-lib-extra" "\
+(autoload '+github-download-release "me-lib-x" "\
 Download release from REPO.
 
 If FILENAME-REGEXP is a string, use it as a regexp to match against the
@@ -546,9 +546,9 @@ non-nil value is provided for :PRERELEASE, we download the latest
 prerelease if no :VER is provided.
 
 (fn REPO FILENAME-REGEXP &optional OK-IF-ALREADY-EXISTS &key VER OUT-FILE PRERELEASE)")
-(autoload '+dir-locals-reload-for-this-buffer "me-lib-extra" "\
+(autoload '+dir-locals-reload-for-this-buffer "me-lib-x" "\
 Reload directory-local for the current buffer." t)
-(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-extra" "\
+(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-x" "\
 Reload dir-locals for all buffers under `default-directory'." t)
 (defvar +dir-locals-autoreload-mode nil "\
 Non-nil if +Dir-Locals-Autoreload mode is enabled.
@@ -557,8 +557,8 @@ for a description of this minor mode.
 Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `+dir-locals-autoreload-mode'.")
-(custom-autoload '+dir-locals-autoreload-mode "me-lib-extra" nil)
-(autoload '+dir-locals-autoreload-mode "me-lib-extra" "\
+(custom-autoload '+dir-locals-autoreload-mode "me-lib-x" nil)
+(autoload '+dir-locals-autoreload-mode "me-lib-x" "\
 Autoload buffers affected by editing the current `dir-locals-file'.
 
 This is a global minor mode.  If called interactively, toggle the
@@ -576,101 +576,101 @@ The mode's hook is called both when the mode is enabled and when it is
 disabled.
 
 (fn &optional ARG)" t)
-(autoload '+ansi-color-apply-on-buffer "me-lib-extra" "\
+(autoload '+ansi-color-apply-on-buffer "me-lib-x" "\
 Decode and apply ANSI color chars in the curernt buffer." t)
-(autoload '+what-faces "me-lib-extra" "\
+(autoload '+what-faces "me-lib-x" "\
 Get the font faces at POS.
 
 (fn POS)" t)
-(autoload '+completion-mark-category "me-lib-extra" "\
+(autoload '+completion-mark-category "me-lib-x" "\
 Mark SEQ as being in CATEGORY for use with `completing-read'.
 
 (fn SEQ CATEGORY)")
-(autoload '+region-or-thing-at-point "me-lib-extra" "\
+(autoload '+region-or-thing-at-point "me-lib-x" "\
 Return the region or the thing at point.
 
 If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
 when a region is selected.
 
 (fn &optional LEAVE-REGION-MARKED)")
-(autoload '+insert-thing-at-point "me-lib-extra" "\
+(autoload '+insert-thing-at-point "me-lib-x" "\
 Insert region or symbol in the minibuffer." t)
-(autoload '+kill-region-or-backward-word "me-lib-extra" "\
+(autoload '+kill-region-or-backward-word "me-lib-x" "\
 Kill selected region if region is active. Otherwise kill a backward word." t)
-(autoload '+kill-whitespace-or-word "me-lib-extra" "\
+(autoload '+kill-whitespace-or-word "me-lib-x" "\
 Kill forward whitespace or word.
 With argument ARG, do this that many times.
 Restricts the effect of `kill-word' to the current line.
 
 (fn ARG)" t)
-(autoload '+backward-kill-whitespace-or-word "me-lib-extra" "\
+(autoload '+backward-kill-whitespace-or-word "me-lib-x" "\
 Kill backward whitespace or word.
 With argument ARG, do this that many times.
 Restricts the effect of `backward-kill-word' to the current line.
 
 (fn ARG)" t)
-(autoload '+set-indent-width "me-lib-extra" "\
+(autoload '+set-indent-width "me-lib-x" "\
 Change the indentation size to WIDTH of the current buffer.
 
 The effectiveness of this command is significantly improved if
 you have `editorconfig' or `dtrt-indent' installed.
 
 (fn WIDTH)" t)
-(autoload '+autoload-region "me-lib-extra" "\
+(autoload '+autoload-region "me-lib-x" "\
 Add the ;;;###autoload to region (BEG . END).
 
 (fn BEG END)" t)
-(autoload '+webjump "me-lib-extra" "\
+(autoload '+webjump "me-lib-x" "\
 Like `webjump', with initial query filled from `+region-or-thing-at-point'." t)
-(autoload '+eglot-ccls-inheritance-hierarchy "me-lib-extra" "\
+(autoload '+eglot-ccls-inheritance-hierarchy "me-lib-x" "\
 Show inheritance hierarchy for the thing at point.
 If DERIVED is non-nil (interactively, with prefix argument), show
 the children of class at point.
 
 (fn &optional DERIVED)" t)
-(autoload '+eglot-help-at-point "me-lib-extra" "\
+(autoload '+eglot-help-at-point "me-lib-x" "\
 Request documentation for the thing at point." t)
-(autoload '+shellcheck-describe-error "me-lib-extra" "\
+(autoload '+shellcheck-describe-error "me-lib-x" "\
 Describe a ShellCheck message CODES.
 
 (fn &rest CODES)" t)
-(autoload '+explainshell "me-lib-extra" "\
+(autoload '+explainshell "me-lib-x" "\
 Get an explanation of the shell COMMAND from explainshell.com.
 
 (fn COMMAND)" t)
-(autoload '+yaml-insert-schema "me-lib-extra" "\
+(autoload '+yaml-insert-schema "me-lib-x" "\
 Insert a schema for the current buffer file.
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
 (fn &optional ASK)" t)
-(autoload '+clang-format-config-file "me-lib-extra" "\
+(autoload '+clang-format-config-file "me-lib-x" "\
 
 
 (fn &optional DIR)")
-(autoload '+clang-format-get-lang "me-lib-extra")
-(autoload '+clang-format-get-style "me-lib-extra" "\
+(autoload '+clang-format-get-lang "me-lib-x")
+(autoload '+clang-format-get-style "me-lib-x" "\
 Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part.
 
 (fn &optional NO-OPT)")
-(autoload '+editorconfig-guess-style-from-clang-format "me-lib-extra" "\
+(autoload '+editorconfig-guess-style-from-clang-format "me-lib-x" "\
 Set some editor settings from \".clang-format\" when available." t)
-(autoload '+kill-buffer-after-sentinel-exit "me-lib-extra" "\
+(autoload '+kill-buffer-after-sentinel-exit "me-lib-x" "\
 
 
 (fn ORIG-FN PROC MSG)")
-(autoload '+server-restart "me-lib-extra" "\
+(autoload '+server-restart "me-lib-x" "\
 Restart the Emacs server." t)
-(autoload '+kill-buffer-and-its-windows "me-lib-extra" "\
+(autoload '+kill-buffer-and-its-windows "me-lib-x" "\
 Kill BUFFER and delete its windows.
 Default is `current-buffer'. When MSGP is non-nil, signal an error when
 the buffer isn't alive. BUFFER may be either a buffer or its name (a
 string).
 
 (fn BUFFER &optional MSGP)" t)
-(autoload '+region-to-buffer "me-lib-extra" "\
+(autoload '+region-to-buffer "me-lib-x" "\
 Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
 START and END are the region boundaries.
 BUFFER is a buffer or its name (a string).
@@ -684,62 +684,62 @@ With no prefix ARG (nil): `copy-to-buffer'.
   Write region to BUFFER, replacing any previous contents.
 
 (fn START END BUFFER ARG)" t)
-(autoload '+region-to-file "me-lib-extra" "\
+(autoload '+region-to-file "me-lib-x" "\
 With prefix arg, this is `append-to-file'.  Without, it is `write-region'.
 START and END are the region boundaries.
 Prefix ARG non-nil means append region to end of file FILENAME.
 Prefix ARG nil means write region to FILENAME, replacing contents.
 
 (fn START END FILENAME ARG)" t)
-(autoload '+kill-some-buffers "me-lib-extra" "\
+(autoload '+kill-some-buffers "me-lib-x" "\
 Kill some buffers.  Asks the user whether to kill the modified ones.
 Non-interactively, if optional argument LIST is non-nil, it
 specifies the list of buffers to kill, asking for approval for each one.
 See `kill-some-buffers'.
 
 (fn &optional LIST)" t)
-(autoload '+kill-buffer-ask-if-modified "me-lib-extra" "\
+(autoload '+kill-buffer-ask-if-modified "me-lib-x" "\
 Like `kill-buffer-ask', but don't ask if BUFFER isn't modified.
 Kill without asking for buffer names in `+kill-buffer-no-ask-list'.
 
 (fn BUFFER)")
-(autoload '+delete-extra-windows-for-buffer "me-lib-extra" "\
+(autoload '+delete-extra-windows-for-buffer "me-lib-x" "\
 Delete all other windows showing the selected window's buffer." t)
-(autoload '+delete-window-maybe-kill-buffer "me-lib-extra" "\
+(autoload '+delete-window-maybe-kill-buffer "me-lib-x" "\
 Delete selected window.
 If no other window shows its buffer, kill the buffer too." t)
-(autoload '+replace-in-buffer "me-lib-extra" "\
+(autoload '+replace-in-buffer "me-lib-x" "\
 Replace OLD with NEW in the current buffer.
 
 (fn OLD NEW)")
-(autoload '+clear-frenchy-ponctuations "me-lib-extra" "\
+(autoload '+clear-frenchy-ponctuations "me-lib-x" "\
 Replace french ponctuations (like unsectable space) by regular ones." t)
-(autoload '+save-buffer-preserving-modtime "me-lib-extra" "\
+(autoload '+save-buffer-preserving-modtime "me-lib-x" "\
 Call `save-buffer', but keep the visited file's modtime the same." t)
-(autoload '+kill-region-as-paragraph "me-lib-extra" "\
+(autoload '+kill-region-as-paragraph "me-lib-x" "\
 Kill (copy) region as one paragraph.
 This command removes new line characters between lines." t)
-(autoload '+first-line-empty-p "me-lib-extra" "\
+(autoload '+first-line-empty-p "me-lib-x" "\
 Return t when the first line of the buffer is empty.")
-(autoload '+project-forget-zombie-projects "me-lib-extra" "\
+(autoload '+project-forget-zombie-projects "me-lib-x" "\
 Forget all known projects that don't exist any more.
 
 Like `project-forget-zombie-projects', but handles remote projects differently,
 it forget them only when we are sure they don't exist." t)
-(autoload '+project-gdb "me-lib-extra" "\
+(autoload '+project-gdb "me-lib-x" "\
 Invoke `gdb' in the project's root." t)
-(autoload '+project-list-cleanup "me-lib-extra" "\
+(autoload '+project-list-cleanup "me-lib-x" "\
 Forget all duplicate known projects (like /home/user/proj and ~/proj)." t)
 (defvar +project-root-wildcards '("~/Projects/*/*"))
-(autoload '+project-root-initialize "me-lib-extra" "\
+(autoload '+project-root-initialize "me-lib-x" "\
 Initialize project list from `+project-root-wildcards'." t)
-(autoload '+xref-find-references-at-point "me-lib-extra" "\
+(autoload '+xref-find-references-at-point "me-lib-x" "\
 Find references to the identifier at or around point." t)
-(autoload 'minemacs-extract-packages-descriptions "me-lib-extra" "\
+(autoload 'minemacs-extract-packages-descriptions "me-lib-x" "\
 Extract the descriptions of MinEmacs packages." t)
-(autoload '+list-external-dependencies "me-lib-extra" "\
+(autoload '+list-external-dependencies "me-lib-x" "\
 Show the list of declared external dependencies." t)
-(register-definition-prefixes "me-lib-extra" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el

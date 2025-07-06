@@ -1,10 +1,10 @@
-;; me-lib-extra.el -- MinEmacs Library (extra features and commands) -*- lexical-binding: t; -*-
+;; me-lib-x.el -- MinEmacs Library (extra features and commands) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-06
 
 ;;; Commentary:
 
@@ -1301,6 +1301,5 @@ you might need install some of these tools.\n\n")
 
 
 
-
-(provide 'me-lib-extra)
-;;; me-lib-extra.el ends here
+(provide 'me-lib-x)
+;;; me-lib-x.el ends here
