@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-06-16
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -23,7 +23,9 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-maxima
-  :define-loader '+maxima-available-p)
+  :define-loader '+maxima-available-p
+  :auto-mode '(("\\.ma[cx]\\'" . maxima-mode))
+  :interpreter-mode '(("maxima" . maxima-mode)))
 
 
 ;; Major modes for writing Maxima code
