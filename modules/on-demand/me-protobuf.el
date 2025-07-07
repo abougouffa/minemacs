@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-03
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -20,6 +20,7 @@
 ;; Major mode for editing Protocol Buffers
 (use-package protobuf-mode
   :load-path +protobuf-path
+  :mode "\\.proto\\'"
   :commands (protobuf-mode))
 
 
