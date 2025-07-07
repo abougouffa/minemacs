@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-03
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -146,6 +146,14 @@
     '((nxml-mode . xmllint)
       (protobuf-mode . clang-format)
       (protobuf-ts-mode . clang-format)))
+
+  (add-hook
+   'apheleia-skip-functions
+   (satch-defun +smerge--unresolved-conflict-p ()
+     (save-excursion (goto-char (point-min))
+                     ;; Regexps from `smerge-begin-re' and `smerge-end-re'
+                     (or (re-search-forward "^<<<<<<< \\(.*\\)\n" nil t)
+                         (re-search-forward "^>>>>>>> \\(.*\\)\n" nil t)))))
 
   (defun +apheleia-mode-maybe ()
     (when (and (+clang-format-get-lang) (+clang-format-config-file))
