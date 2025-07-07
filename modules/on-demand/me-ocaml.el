@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-06-03
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -33,7 +33,8 @@
 ;; Integration with the dune build system
 (use-package dune
   :load-path +dune-path
-  :commands (dune-mode dune-promote dune-runtest-and-promote))
+  :commands (dune-mode dune-promote dune-runtest-and-promote)
+  :mode ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode))
 
 
 ;; Integration with dune --watch tasks
