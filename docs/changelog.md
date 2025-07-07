@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.40.0](https://github.com/abougouffa/minemacs/compare/5e4984e134ede78aa7eebd9102d5e571232626d0..v12.40.0) - 2025-07-07
+#### Bug Fixes
+- **(on-demand/maxima)** ensure adding `maxima-mode` to `auto-mode-alist` - ([cae0f80](https://github.com/abougouffa/minemacs/commit/cae0f8003ac9bdf25b0e9da5d1125ca1e923960e)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/ocaml)** ensure adding `dune-mode` in `auto-mode-alist` - ([ce196c7](https://github.com/abougouffa/minemacs/commit/ce196c775e2cfa6417f8d6e43c4a42f82a7996f5)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/protobuf)** ensure adding `protobuf-mode` to `auto-mode-alist` - ([f759370](https://github.com/abougouffa/minemacs/commit/f759370bdf74ed7d53ccb2115b0d957baccb36c6)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([39c3dfa](https://github.com/abougouffa/minemacs/commit/39c3dfa8c274d99d5438f55bffa9e3e832fdb83b)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand/logs)** make `logview` an on-demand module - ([20c4e48](https://github.com/abougouffa/minemacs/commit/20c4e483926fec964c84f9d476ac77b5782a21a8)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/systemd)** make `systemd` an on-demand module - ([9fdeb24](https://github.com/abougouffa/minemacs/commit/9fdeb24a76c5a60b21ab8f9166690502ea58a1a7)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make unused `eat` obsolete - ([8a0698e](https://github.com/abougouffa/minemacs/commit/8a0698e06923275c183faae098ead2c3bf6e68c6)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** rename `me-lib-extra` to `me-lib-x` - ([c2db8b3](https://github.com/abougouffa/minemacs/commit/c2db8b31b7c770309d141c3660c76dccb5eca6b7)) - [@abougouffa](https://github.com/abougouffa)
+- **(jinx)** simplify `+spellcheck-mode` - ([6a65d87](https://github.com/abougouffa/minemacs/commit/6a65d87678399bf684f90460aeb2536b10e05192)) - [@abougouffa](https://github.com/abougouffa)
+- **(ob-ditaa)** minor edit - ([caa3056](https://github.com/abougouffa/minemacs/commit/caa30564320120ceb6fb9a530ae7d29a2b1cfff7)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** cleanup config, stick to some defaults - ([5e4984e](https://github.com/abougouffa/minemacs/commit/5e4984e134ede78aa7eebd9102d5e571232626d0)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(apheleia)** don't auto format when there is unresolved Git conflicts - ([c94f70e](https://github.com/abougouffa/minemacs/commit/c94f70e43f9661c458a5c61a04dd6d637b6044e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(git)** allow multiple types for prefixed commits - ([32bb622](https://github.com/abougouffa/minemacs/commit/32bb6222d1923254c77d5458d715a7a18feec1dc)) - [@abougouffa](https://github.com/abougouffa)
+- **(org-x)** minor tweaks and cleanups - ([e43a9aa](https://github.com/abougouffa/minemacs/commit/e43a9aa9785a6321521706ad9ab815a628dcf82a)) - [@abougouffa](https://github.com/abougouffa)
+- **(ox-latex)** cleanup unused customizations - ([df1bfe7](https://github.com/abougouffa/minemacs/commit/df1bfe7f84d925f365715507d0521c34c51af928)) - [@abougouffa](https://github.com/abougouffa)
+- **(rainbow-delimiters)** minor edit - ([13f9e02](https://github.com/abougouffa/minemacs/commit/13f9e02037513175d8f36b73734fd8e0fe6611f1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8635481](https://github.com/abougouffa/minemacs/commit/86354817864d537478f8460d6556cdb0eecbfbae)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([4aeb117](https://github.com/abougouffa/minemacs/commit/4aeb1175b4286ed2c47f312a24783bc8cac43a08)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.39.2](https://github.com/abougouffa/minemacs/compare/13eaab119f0a1140b67bc72d1ff7114de52bcb6e..v12.39.2) - 2025-07-05
 #### Bug Fixes
 - **(dired-rsync)** fix the binding to `dired-mode-map` - ([3e2f3da](https://github.com/abougouffa/minemacs/commit/3e2f3da43b2dd16bfacf1f577967d4f9159551cc)) - [@abougouffa](https://github.com/abougouffa)
