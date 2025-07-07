@@ -127,7 +127,6 @@
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
 * `lexic`: Fancy Emacs integration with the console version of StarDict
 * `reverso`: Emacs client for Reverso.net for translation, grammar check, context and synonyms search
-* `me-eglot-ltex`: Internal package to add support for LTeX-LS specific commands to `eglot`
 
 ## `me-nav`
 * `ace-window`: Quickly switch windows in Emacs

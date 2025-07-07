@@ -215,10 +215,6 @@ A list of commands to run in the serial terminal after creation.
 
 A list of buffer names to be killed without confirmation.
 
-#### `+mpv-command`
-
-The MPV command.
-
 #### `eglot-ltex-user-rules-path`
 
 Path to save user rules.
@@ -234,30 +230,6 @@ Path to LTeX+ LS.
 #### `eglot-ltex-ls-program`
 
 The path or executable name of the LTeX+ LS.
-
-#### `+git-commit-prefix-in-project`
-
-Propose to insert a commit prefix in the current project.
-
-Set this variable in your project's ".dir-locals.el". You can set it
-to `conventional` or `prefix`.
-
-#### `+mu4e-account-aliases`
-
-Per-account alias list.
-
-#### `+mu4e-auto-bcc-address`
-
-Auto add this/these addresses as BCC.
-
-#### `+mu4e-gmail-accounts`
-
-Gmail accounts that do not contain "gmail" in address and maildir.
-An alist of Gmail addresses of the format
-\='(("username@domain.com" . "account-maildir"))
-to which Gmail integrations (behind the `+gmail` flag of the `mu4e`
-module) should be applied. See `+mu4e-msg-gmail-p` and
-`mu4e-sent-messages-behavior`.
 
 #### `+org-responsive-image-percentage`
 
@@ -282,6 +254,34 @@ List of files to ignore in "fd".
 #### `+project-cache-project-files`
 
 Cache project files when using the generic fd/find backend.
+
+#### `+mpv-command`
+
+The MPV command.
+
+#### `+git-commit-prefix-in-project`
+
+Propose to insert a commit prefix in the current project.
+
+Set this variable in your project's ".dir-locals.el". You can set it
+to `conventional` or `prefix`.
+
+#### `+mu4e-account-aliases`
+
+Per-account alias list.
+
+#### `+mu4e-auto-bcc-address`
+
+Auto add this/these addresses as BCC.
+
+#### `+mu4e-gmail-accounts`
+
+Gmail accounts that do not contain "gmail" in address and maildir.
+An alist of Gmail addresses of the format
+\='(("username@domain.com" . "account-maildir"))
+to which Gmail integrations (behind the `+gmail` flag of the `mu4e`
+module) should be applied. See `+mu4e-msg-gmail-p` and
+`mu4e-sent-messages-behavior`.
 
 ### Function and Macro Documentation
 
@@ -1004,34 +1004,6 @@ Extract the descriptions of MinEmacs packages.
 
 Show the list of declared external dependencies.
 
-#### `(+adb-run-command &rest ARGS)`
-
-Run adb with command ARGS.
-
-#### `(+adb-push SRC DEST)`
-
-Run adb push SRC DEST.
-
-#### `(+adb-remount AUTO-REBOOT-DEVICE)`
-
-Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
-
-#### `(+adb-reboot &optional MODE NO-CONFIRM)`
-
-Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
-
-#### `(+adb-root &optional ARG)`
-
-Run adb root (or unroot with C-u).
-
-#### `(+cocogitto-bump LEVEL &optional PRE)`
-
-Bump version LEVEL (`auto`, `major`, `minor` or `patch`).
-When PRE is provided, it is used as pre-release suffix.
-Call with C-u for applying an `auto` bump.
-This command stashes the current workspace before bumping the version, and
-restores it after that.
-
 #### `(eglot-ltex-ls-install PRE)`
 
 Download the latest release of LTeX+ LS.
@@ -1050,81 +1022,6 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 #### `(eglot-ltex-disable-handling-client-commands)`
 
 Disable Eglot hack to handle code actions of LTeX-LS.
-
-#### `(+git-get-commit-kind CONV KIND)`
-
-CONV can be `conventional` or `prefix`, KIND can be `types` or `scopes`.
-
-#### `(+git-insert-commit-prefix &optional CLEAN-CACHE)`
-
-Prompt for conventional commit type with scope completion.
-When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
-will be generated each `+git-types-cache-age`.
-
-#### `(+mu4e-part-selectors PARTS)`
-
-Generate selection strings for PARTS.
-
-#### `(+mu4e-view-select-attachment)`
-
-Use `completing-read` to select a single attachment.
-Acts like a singular `mu4e-view-save-attachments`, without the saving.
-
-#### `(+mu4e-view-open-attachment)`
-
-Select an attachment, and open it.
-
-#### `(+mu4e-view-select-mime-part-action)`
-
-Select a MIME part, and perform an action on it.
-
-#### `(+mu4e-view-save-all-attachments &optional ASK-DIR)`
-
-Save all files from the current view buffer.
-With ASK-DIR is non-nil, user can specify the target-directory; otherwise
-one is determined using `mu4e-attachment-dir`.
-
-#### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
-
-Register a mu4e context named LABEL, located in MAILDIR.
-LETVARS contains the alist of local variables with their values.
-If DEFAULT-P is non-nil, the context is placed first and considered the default
-one. If GMAIL-P is non-nil, addresses are saved to `+mu4e-gmail-accounts` to be
-used later for Gmail specific actions.
-
-#### `(+mu4e-save-message-at-point &optional MSG)`
-
-Copy MSG at point to somewhere else as <date>_<subject>.eml.
-
-#### `(+mu4e-view-save-mail-as-pdf &optional MSG SKIP-HEADERS)`
-
-Save current MSG as PDF.
-If SKIP-HEADERS is set, do not show include message headers.
-
-#### `(+mu4e-extras-locks-setup)`
-
-Setup locks for mu4e's server.
-
-#### `(+mu4e-sent-from-gmail-p &optional MSG)`
-
-Return the "from" address if it is in the registred Gmail accounts.
-If MSG is provided, use it, else, extract the "from" field
-from the envelope of the current message.
-
-#### `(+mu4e-colorize-str STR &optional UNIQUE HERRING)`
-
-Apply a face from `+mu4e-header-colorized-faces` to STR.
-If HERRING is set, it will be used to determine the face instead of STR.
-Will try to make unique when non-nil UNIQUE,
-a quoted symbol for a alist of current strings and faces provided.
-
-#### `(+mu4e-ui-setup)`
-
-Apply UI setup.
-
-#### `(+mu4e-ui-modeline-tweaks)`
-
-Apply UI tweaks based on `nerd-icons`.
 
 #### `(+org-extras-toggle-latex-equation-numbering &optional ENABLE)`
 
@@ -1196,6 +1093,26 @@ Can override `project--files-in-directory` for x3.5 faster listing.
 
 Clear project's files cache.
 When ALL is non-nil, clear the cache of all projects.
+
+#### `(+smerge-first)`
+
+Got to the first occurrence.
+
+#### `(+smerge-last)`
+
+Got to the last occurrence.
+
+#### `(+smerge-vc-next-conflict-recenter)`
+
+Like `smerge-vc-next-conflict` but recenters the buffer.
+
+#### `(+smerge-next-recenter)`
+
+Like `smerge-next` but recenters the buffer.
+
+#### `(+smerge-prev-recenter)`
+
+Like `smerge-prev` but recenters the buffer.
 
 #### `(+viper-operate-inside-delimiters OPEN CLOSE OP)`
 
@@ -1278,6 +1195,109 @@ Close the current window (mimics Vim's `C-w c`).
 #### `(+viper-window-maximize)`
 
 Maximize the current window (mimics Vim's `C-w o`).
+
+#### `(+adb-run-command &rest ARGS)`
+
+Run adb with command ARGS.
+
+#### `(+adb-push SRC DEST)`
+
+Run adb push SRC DEST.
+
+#### `(+adb-remount AUTO-REBOOT-DEVICE)`
+
+Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
+
+#### `(+adb-reboot &optional MODE NO-CONFIRM)`
+
+Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
+
+#### `(+adb-root &optional ARG)`
+
+Run adb root (or unroot with C-u).
+
+#### `(+cocogitto-bump LEVEL &optional PRE)`
+
+Bump version LEVEL (`auto`, `major`, `minor` or `patch`).
+When PRE is provided, it is used as pre-release suffix.
+Call with C-u for applying an `auto` bump.
+This command stashes the current workspace before bumping the version, and
+restores it after that.
+
+#### `(+git-get-commit-kind CONV KIND)`
+
+CONV can be `conventional` or `prefix`, KIND can be `types` or `scopes`.
+
+#### `(+git-insert-commit-prefix &optional CLEAN-CACHE)`
+
+Prompt for conventional commit type with scope completion.
+When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
+will be generated each `+git-types-cache-age`.
+
+#### `(+mu4e-part-selectors PARTS)`
+
+Generate selection strings for PARTS.
+
+#### `(+mu4e-view-select-attachment)`
+
+Use `completing-read` to select a single attachment.
+Acts like a singular `mu4e-view-save-attachments`, without the saving.
+
+#### `(+mu4e-view-open-attachment)`
+
+Select an attachment, and open it.
+
+#### `(+mu4e-view-select-mime-part-action)`
+
+Select a MIME part, and perform an action on it.
+
+#### `(+mu4e-view-save-all-attachments &optional ASK-DIR)`
+
+Save all files from the current view buffer.
+With ASK-DIR is non-nil, user can specify the target-directory; otherwise
+one is determined using `mu4e-attachment-dir`.
+
+#### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
+
+Register a mu4e context named LABEL, located in MAILDIR.
+LETVARS contains the alist of local variables with their values.
+If DEFAULT-P is non-nil, the context is placed first and considered the default
+one. If GMAIL-P is non-nil, addresses are saved to `+mu4e-gmail-accounts` to be
+used later for Gmail specific actions.
+
+#### `(+mu4e-save-message-at-point &optional MSG)`
+
+Copy MSG at point to somewhere else as <date>_<subject>.eml.
+
+#### `(+mu4e-view-save-mail-as-pdf &optional MSG SKIP-HEADERS)`
+
+Save current MSG as PDF.
+If SKIP-HEADERS is set, do not show include message headers.
+
+#### `(+mu4e-extras-locks-setup)`
+
+Setup locks for mu4e's server.
+
+#### `(+mu4e-sent-from-gmail-p &optional MSG)`
+
+Return the "from" address if it is in the registred Gmail accounts.
+If MSG is provided, use it, else, extract the "from" field
+from the envelope of the current message.
+
+#### `(+mu4e-colorize-str STR &optional UNIQUE HERRING)`
+
+Apply a face from `+mu4e-header-colorized-faces` to STR.
+If HERRING is set, it will be used to determine the face instead of STR.
+Will try to make unique when non-nil UNIQUE,
+a quoted symbol for a alist of current strings and faces provided.
+
+#### `(+mu4e-ui-setup)`
+
+Apply UI setup.
+
+#### `(+mu4e-ui-modeline-tweaks)`
+
+Apply UI tweaks based on `nerd-icons`.
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">
