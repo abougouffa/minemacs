@@ -151,16 +151,6 @@ a project, call `multi-vterm-dedicated-toggle'."
   :commands (journalctl-mode))
 
 
-;; Emacs mode for viewing log files
-(use-package logview
-  :straight t
-  :custom
-  (logview-cache-filename (concat minemacs-cache-dir "logview-cache.extmap"))
-  (logview-additional-timestamp-formats '(("RDK-CCSP" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))))
-  (logview-additional-submodes '(("RDK-CCSP" (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]") (levels . "RDK-CCSP"))))
-  (logview-additional-level-mappings '(("RDK-CCSP" (error "ERROR") (warning "WARN") (information "INFO") (debug "DEBUG") (trace "NOTICE")))))
-
-
 ;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
   :straight t
