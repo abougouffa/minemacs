@@ -302,23 +302,13 @@ Example: \"#+TITLE\" -> \"#+title\"
 
 (defun +org-extras-pretty-latex-fragments-setup ()
   "Enable prettifing Org's LaTeX fragments."
-  (require 'org-src)
-  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
+  (with-eval-after-load 'org-src
+    (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t))))
 
-  ;; Can be dvipng, dvisvgm, imagemagick
-  (setq org-preview-latex-default-process 'dvisvgm)
+  (when (and (featurep 'feat/rsvg) (executable-find "dvisvgm"))
+    (setopt org-preview-latex-default-process 'dvisvgm))
 
-  (setq org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
-
-  (unless (featurep 'feat/pgtk) ;; PGTK not need extra up-scaling
-    (add-hook
-     'org-mode-hook
-     (satch-defun +org--set-format-latex-scale-h ()
-       (setq-local
-        org-format-latex-options
-        (plist-put
-         org-format-latex-options
-         :scale (/ (float (or (face-attribute 'default :height) 100)) 100.0)))))))
+  (setopt org-format-latex-options (plist-put org-format-latex-options :background "Transparent")))
 
 (defun +org-extras-lower-case-keywords-and-properties-setup ()
   "Automatically convert KEYWORDS to lower case on save."
