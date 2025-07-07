@@ -140,11 +140,6 @@ a project, call `multi-vterm-dedicated-toggle'."
         apptainer-boxed-sections t))
 
 
-;; Major mode for editing systemd units
-(use-package systemd
-  :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
-
-
 ;; Major mode to view journalctl's output in Emacs
 (use-package journalctl-mode
   :straight t
