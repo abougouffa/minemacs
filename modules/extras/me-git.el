@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-22
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -33,6 +33,7 @@ to `conventional' or `prefix'."
         (format . ("%s%s: " . "(%s)"))))
     (prefix
      . ((type . ,(rx (seq bol "[" (group-n 1 (+ (not (any "]" space)))) (* any))))
+        (type-sep . "][")
         (scope . ,(rx (seq bol "[" (+ (not (any "]" space))) (group-n 1 (+ (not (any "]")))))))
         (scope-sep . " ")
         (format . ("[%s%s] " . " %s"))))))
@@ -86,7 +87,9 @@ will be generated each `+git-types-cache-age'."
                    (and (+first-line-empty-p) ; Skip when amending a commit
                         (y-or-n-p (format "Use %s commit format? " (symbol-name conv))))))
       (let-alist (alist-get conv +git-commit-format-alist)
-        (let* ((type (completing-read "Commit type: " (+git-get-commit-kind conv 'types)))
+        (let* ((type (if .type-sep ; Multiple types
+                         (string-join (completing-read-multiple "Commit types: " (+git-get-commit-kind conv 'types)) .type-sep)
+                       (completing-read "Commit type: " (+git-get-commit-kind conv 'types))))
                (known-scopes (+git-get-commit-kind conv 'scopes))
                (scopes (and known-scopes (completing-read-multiple "Scope: " known-scopes))))
           (insert (format (car .format) type
