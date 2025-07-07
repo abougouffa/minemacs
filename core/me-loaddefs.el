@@ -771,7 +771,7 @@ Show the list of declared external dependencies." t)
 
 (defconst +maxima-path (if-let* ((sys-path "/usr/share/emacs/site-lisp/maxima/") ((file-directory-p sys-path))) sys-path (mapcar (apply-partially #'concat minemacs-on-demand-modules-dir "third-party/maxima/") '("emaxima/" "imaxima/" "misc/"))))
 (defconst +maxima-available-p (and (executable-find "maxima") t))
-(minemacs-register-on-demand-module 'me-maxima :define-loader '+maxima-available-p)
+(minemacs-register-on-demand-module 'me-maxima :define-loader '+maxima-available-p :auto-mode '(("\\.ma[cx]\\'" . maxima-mode)) :interpreter-mode '(("maxima" . maxima-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mercury.el
