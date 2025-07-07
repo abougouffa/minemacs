@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-23
+;; Last modified: 2025-07-07
 
 ;;; Commentary:
 
@@ -119,14 +119,6 @@ a project, call `multi-vterm-dedicated-toggle'."
               (pop-to-buffer buf))
           (multi-vterm-project))
       (multi-vterm-dedicated-toggle))))
-
-
-;; Emulate A Terminal, in a region, in a buffer and in Eshell
-(use-package eat
-  :straight t
-  :hook (eat-mode . minemacs-reduce-font-size)
-  :config
-  (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit))
 
 
 ;; Manage docker from Emacs
