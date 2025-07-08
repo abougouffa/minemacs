@@ -184,13 +184,6 @@ Fallback to the default function if none is found."
    :initial (+region-or-thing-at-point)))
 
 
-;; Clink integration to Emacs
-(use-package clink
-  :straight (:host github :repo "abougouffa/clink.el")
-  :when (featurep 'feat/sqlite3)
-  :hook (minemacs-first-c/c++-file . global-clink-mode))
-
-
 ;; Generate call graph for C/C++ functions
 (use-package call-graph
   :straight t)
