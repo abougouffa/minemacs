@@ -4,17 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-06-30
+;; Last modified: 2025-07-08
 
 ;;; Commentary:
 
 ;;; Code:
-
-
-;; Extra non-standard functionalities for Eglot
-(use-package eglot-x
-  :straight (:host github :repo "nemethf/eglot-x")
-  :commands (eglot-x-setup))
 
 
 ;; A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
