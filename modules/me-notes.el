@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-16
+;; Last modified: 2025-07-08
 
 ;;; Commentary:
 
@@ -85,6 +85,7 @@
 ;; Use Consult in tandem with Denote
 (use-package consult-denote
   :straight t
+  :unless (+package-disabled-p 'consult 'me-completion)
   :after consult
   :init
   (consult-denote-mode 1)

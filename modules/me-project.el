@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-06-15
+;; Last modified: 2025-07-08
 
 ;;; Commentary:
 
@@ -41,6 +41,7 @@
 ;; Consulting read support for `compile-multi'
 (use-package consult-compile-multi
   :straight t
+  :unless (+package-disabled-p 'consult 'me-completion)
   :after consult
   :init
   (consult-compile-multi-mode 1))

@@ -119,6 +119,7 @@
 ;; Consult integration with Eglot
 (use-package consult-eglot
   :straight t
+  :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (consult-customize
    consult-eglot-symbols

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-06-10
+;; Last modified: 2025-07-08
 
 ;;; Commentary:
 
@@ -162,6 +162,7 @@ Fall back to the default `citre--project-root'."
 ;; Cscope integration for Emacs' Consult
 (use-package consult-cscope
   :straight (:host github :repo "blorbx/consult-cscope")
+  :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (defun +consult--cscope-find-database-file (start-dir)
     "Looks first for the dominating directory that includes the database file.

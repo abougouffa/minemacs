@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2025-05-17
+;; Last modified: 2025-07-08
 
 ;;; Commentary:
 
@@ -44,7 +44,8 @@
 
 ;; A consulting-read interface for yasnippet
 (use-package consult-yasnippet
-  :straight t)
+  :straight t
+  :unless (+package-disabled-p 'consult 'me-completion))
 
 
 ;; The Doom Emacs snippets library
