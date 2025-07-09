@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-06
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -34,6 +34,7 @@
         (satch-advice-add +vundo-diff-commands :after #'+vundo--diff-wrapper)
       (satch-advice-remove +vundo-diff-commands #'+vundo--diff-wrapper)))
   (+vundo-diff-mode 1))
+
 
 ;; Persistent undo tree between sessions
 (use-package undo-fu-session
@@ -200,16 +201,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
          ("M-<down>" . drag-stuff-down)
          ("M-<left>" . drag-stuff-left)
          ("M-<right>" . drag-stuff-right)))
-
-
-;; Collaborative editing using Conflict-free Replicated Data Types
-(use-package crdt
-  :straight t
-  :when (or (executable-find "tuntox") (executable-find "stunnel"))
-  :custom
-  (crdt-tuntox-password-in-url t)
-  (crdt-use-tuntox (executable-find "tuntox"))
-  (crdt-use-stunnel (executable-find "stunnel")))
 
 
 ;; Perform a backup on each file save, real backup for Emacs!
