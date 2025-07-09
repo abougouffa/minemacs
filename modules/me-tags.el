@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-07-08
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -85,10 +85,8 @@ This complements `citre-auto-enable-citre-mode-modes'."
   ;; Use `citre' with Emacs Lisp, see: https://github.com/universal-ctags/citre/blob/master/docs/user-manual/adapt-an-existing-xref-backend.md
   (defvar +citre-elisp-backend
     (citre-xref-backend-to-citre-backend
-     ;; This is the xref backend name
-     'elisp
-     ;; A function to tell if the backend is usable
-     (lambda () (derived-mode-p 'emacs-lisp-mode))))
+     'elisp ; This is the xref backend name
+     (lambda () (derived-mode-p 'emacs-lisp-mode)))) ; A function to tell if the backend is usable
 
   ;; Register the backend, which means to bind it with the symbol `elisp'.
   (citre-register-backend 'elisp +citre-elisp-backend)
@@ -172,8 +170,8 @@ Fallback to the default function if none is found."
         (expand-file-name consult-cscope-database-file dir)
       (consult--cscope-find-database-file start-dir)))
 
-  ;; Use my modified database finder, particularly useful in "workspaces with
-  ;; multiple-projects" (super-projects)
+  ;; Use my modified database finder, particularly useful in workspaces with
+  ;; multiple projects (a.k.a. super-projects)
   (setq consult--cscope-database-finder #'+consult--cscope-find-database-file)
 
   ;; Use `+region-or-thing-at-point' for initial input
