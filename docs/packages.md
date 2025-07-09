@@ -49,14 +49,12 @@
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `wgrep`: Writable grep buffer and apply the changes to files
-* `symbol-overlay`: Highlight symbols with keymap-enabled overlays
 * `rainbow-delimiters`: Emacs rainbow delimiters mode
 * `highlight-numbers`: Highlight numbers in source code
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
 * `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 * `expreg`: Your friendly neighborhood expand-region clone
 * `drag-stuff`: Drag stuff around in Emacs
-* `crdt`: Collaborative editing using Conflict-free Replicated Data Types
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
 * `xclip`: Copy&paste GUI clipboard from text terminal
 
@@ -75,7 +73,6 @@
 * `me-mu4e-gmail`: My tweaks to use Gmail accounts via `mu4e`
 * `me-mu4e-extras`: My extra `mu4e` customizations
 * `org-msg`: Global minor mode mixing up `org-mode` and `message-mode` to compose and reply to emails in a Outlook HTML friendly style
-* `org-mime`: Send HTML email using Org-mode HTML export (alternative to `org-msg`)
 * `mu4e-alert`: Desktop notifications and modeline display for `mu4e`
 * `mu4e-crypto`: Encrypt and decrypt mails in `mu4e`
 
@@ -85,11 +82,6 @@
 * `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
 
 ## `me-experimental`
-* `eglot-x`: Extra non-standard functionalities for Eglot
-* `webkit`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
-* `webkit-dark`: A Dynamic Module for WebKit, aka a fully fledged browser inside Emacs
-* `dash-docs`: Offline documentation browser using Dash/Zeal docsets
-* `consult-dash`: Integration of `consult` with `dash-docs`
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -105,11 +97,6 @@
 * `fd-dired`: Same functionality as `find-dired` and `find-grep-dired`, using fd/rg instead
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 * `cascading-dir-locals`: Apply all (!) ".dir-locals.el" from root to current directory
-
-## `me-fun`
-* `xkcd`: Implementation of an xkcd reader for Emacs
-* `speed-type`: Practice touch/speed typing in Emacs
-* `wordel`: Play Wordle (a.k.a. Lingo) in Emacs
 
 ## `me-lifestyle`
 * `awqat`: Islamic prayer times for Emacs
@@ -151,12 +138,10 @@
 * `denote-markdown`: Extensions to better integrate Markdown with Denote
 * `consult-denote`: Use Consult in tandem with Denote
 * `denote-menu`: View and filter Denote files in a tabulated list
-* `clue`: Connecting clues (a.k.a., note taking) while reading code
 
 ## `me-org`
 * `org-contrib`: Contributed packages to Org in search for new maintainers
 * `engrave-faces`: Convert font-lock faces to other formats
-* `ox-hugo`: A carefully crafted Org exporter back-end for Hugo
 * `ox-extra`: Convenience functions for Org export
 * `org-appear`: Auto-toggle Org elements
 * `org-modern`: Modern Org style
@@ -171,7 +156,6 @@
 * `gambol`: Emacs text actions using LSP symbol information
 * `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
-* `reformatter`: Define commands which run reformatters on the current Emacs buffer
 * `quickrun`: Out of the box code execution from editing buffer
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `xref-union`: Combine multiple Xref backends
@@ -179,6 +163,8 @@
 * `macrostep`: Interactive macro-expander for Emacs Lisp and C
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
+* `dash-docs`: Offline documentation browser using Dash/Zeal docsets
+* `consult-dash`: Integration of `consult` with `dash-docs`
 * `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
 * `sr-speedbar`: Same frame speedbar
 
@@ -221,9 +207,6 @@
 * `ggtags`: Emacs frontend to GNU Global source code tagging system
 * `citre`: Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 * `citre-config`: Apply the default configuration (part of `citre`)
-* `xcscope`: Cscope interface for Emacs
-* `consult-cscope`: Cscope integration for Emacs' Consult
-* `clink`: Clink integration to Emacs
 * `call-graph`: Generate call graph for C/C++ functions
 
 ## `me-tools`
@@ -237,13 +220,10 @@
 * `tldr`: Browse "tldr" pages from Emacs
 * `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
 * `multi-vterm`: Managing multiple vterm buffers in Emacs
-* `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
 * `apptainer-mode`: Major mode for Apptainer definition files
-* `systemd`: Major mode for editing systemd units
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
-* `logview`: Emacs mode for viewing log files
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `envrc`: Buffer-local "direnv" integration for Emacs
 * `pet`: Python Executable Tracker
@@ -266,7 +246,6 @@
 * `virtual-format`: Format buffers visually without modification
 * `casual`: A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 * `casual-avy`: An opinionated `transient` menu for `avy`
-* `casual-symbol-overlay`: An opinionated `transient` menu for `symbol-overlay`
 * `ligature`: Display typographical ligatures in major modes
 * `easysession`: Effortlessly persist and restore your Emacs sessions
 
@@ -529,6 +508,9 @@
 * `llvm-ts-mode`: LLVM major mode using Tree-sitter
 * `demangle-mode`: Automatically demangle C++, D, and Rust symbols in LLVM code
 
+## `on-demand/me-logs`
+* `logview`: Emacs mode for viewing log files
+
 ## `on-demand/me-lua`
 * `lua-mode`: Major mode for editing Lua scripts
 
@@ -672,6 +654,9 @@
 ## `on-demand/me-swift`
 * `swift-mode`: Major-mode for Apple's Swift programming language
 * `swift-ts-mode`: Major mode for Swift based on Tree-sitter
+
+## `on-demand/me-systemd`
+* `systemd`: Major mode for editing systemd units
 
 ## `on-demand/me-textile`
 * `textile-mode`: Textile markup editing major mode
