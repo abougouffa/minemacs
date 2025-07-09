@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -196,12 +196,6 @@
 (use-package casual-avy
   :straight t
   :bind ("M-g a" . casual-avy-tmenu))
-
-
-;; An opinionated `transient' menu for `symbol-overlay'
-(use-package casual-symbol-overlay
-  :straight t
-  :bind (:package symbol-overlay :map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
 
 
 ;; Display typographical ligatures in major modes

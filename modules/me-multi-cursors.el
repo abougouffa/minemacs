@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-06-09
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -57,8 +57,7 @@
       ;; `org'
       org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
 
-  (cl-callf append mc--default-cmds-to-run-once
-    '(pixel-scroll-precision +mc/mark-all-symbol-overlays))
+  (cl-callf append mc--default-cmds-to-run-once '(pixel-scroll-precision))
 
   (with-eval-after-load 'transient
     (transient-define-prefix +mc/transient ()
@@ -79,41 +78,7 @@
         ("<mouse-1>" "click" mc/add-cursor-on-click :transient t)]
        ["Insert"
         ("0" "insert numbers" mc/insert-numbers)
-        ("A" "insert letters" mc/insert-letters)]]))
-
-  ;; Integrate with `symbol-overlay'
-  (with-eval-after-load 'symbol-overlay
-    ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
-    (defun +mc/mark-all-symbol-overlays (&optional discard)
-      "Mark all symbol overlays using multiple cursors.
-When DISCARD is non-nil, discard the current cursors before creating the
-new ones."
-      (interactive "P")
-      (when discard (mc/remove-fake-cursors))
-      (when-let* ((overlays (symbol-overlay-get-list 0))
-                  (point (point))
-                  (point-overlay (seq-find
-                                  (lambda (overlay)
-                                    (and (<= (overlay-start overlay) point)
-                                         (<= point (overlay-end overlay))))
-                                  overlays))
-                  (offset (- point (overlay-start point-overlay))))
-        (setq deactivate-mark t)
-        (mapc (lambda (overlay)
-                (unless (eq overlay point-overlay)
-                  (mc/save-excursion
-                   (goto-char (+ (overlay-start overlay) offset))
-                   (mc/create-fake-cursor-at-point))))
-              overlays)
-        (mc/maybe-multiple-cursors-mode)))
-
-    (with-eval-after-load 'transient
-      ;; Add to the transient menu after the "s"
-      (transient-append-suffix '+mc/transient "s" '("S" "symbol overlays" +mc/mark-all-symbol-overlays)))
-
-    (with-eval-after-load 'casual-symbol-overlay
-      (transient-append-suffix 'casual-symbol-overlay-tmenu '(-2)
-        ["Multiple cursors" ("c" "Mark all" +mc/mark-all-symbol-overlays)]))))
+        ("A" "insert letters" mc/insert-letters)]])))
 
 
 (provide 'me-multi-cursors)
