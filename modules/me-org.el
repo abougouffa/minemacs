@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -31,13 +31,6 @@
 ;; Convert font-lock faces to other formats
 (use-package engrave-faces
   :straight t)
-
-
-;; A carefully crafted Org exporter back-end for Hugo
-(use-package ox-hugo
-  :straight t
-  :after ox
-  :demand)
 
 
 ;; Convenience functions for Org export
