@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.41.0](https://github.com/abougouffa/minemacs/compare/c02765381b815d0866c3507d945ad6e3d4e131a3..v12.41.0) - 2025-07-09
+#### Bug Fixes
+- **(core)** check for disabled when using only built-in packages - ([d8a0493](https://github.com/abougouffa/minemacs/commit/d8a0493cdf3d137d7081ceb6cc4f787662669d00)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** don't use FD when in remote server - ([4107abe](https://github.com/abougouffa/minemacs/commit/4107abee92a22ae905eea57f0fea7189c014cb6d)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** disable `projection-hook`, buggy on ADB over Tramp - ([123ed36](https://github.com/abougouffa/minemacs/commit/123ed36c450f6ddca38cb27c0d0ad4faaef290b9)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(tags)** minor comment edits - ([82f74f0](https://github.com/abougouffa/minemacs/commit/82f74f0b7e8276ed68020260af6407f6851e5966)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([29bb6a5](https://github.com/abougouffa/minemacs/commit/29bb6a50ee4c9456d3fde75b7739d85fe05c48df)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(editor)** make `symbol-overlay` obsolete - ([1886102](https://github.com/abougouffa/minemacs/commit/18861020d79c32384aa2c1e93c44d983cceeb93f)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make unused `crdt` obsolete - ([b4cb2da](https://github.com/abougouffa/minemacs/commit/b4cb2dacf419f8c2f15aa42fb555d8fc1781774a)) - [@abougouffa](https://github.com/abougouffa)
+- **(email)** make `org-mime` obsolete - ([d0e2ad3](https://github.com/abougouffa/minemacs/commit/d0e2ad388c3814d1b465e518cced1cf947908f5f)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** make `webkit` obsolete - ([ba03156](https://github.com/abougouffa/minemacs/commit/ba03156dc2b7dfda49431fc76b7541c4b46ffbe1)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** make `eglot-x` obsolete - ([c027653](https://github.com/abougouffa/minemacs/commit/c02765381b815d0866c3507d945ad6e3d4e131a3)) - [@abougouffa](https://github.com/abougouffa)
+- **(fun)** make `me-fun` obsolete - ([25f2962](https://github.com/abougouffa/minemacs/commit/25f29626d141411a4b2ad0cb1020b4e2095a1c5b)) - [@abougouffa](https://github.com/abougouffa)
+- **(notes)** make unused `clue` obsolete - ([bd15756](https://github.com/abougouffa/minemacs/commit/bd15756528104213f04c222660e75a3fb907627a)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** make `ox-hugo` obsolete - ([46b40d0](https://github.com/abougouffa/minemacs/commit/46b40d04a26e774d8ce052e1df7fd90726fb7748)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** make `reformatter` obsolete - ([58cc571](https://github.com/abougouffa/minemacs/commit/58cc571c4d8e2f7f141dfed90e257c9d1a9bee44)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** move `dash-docs` and `consult-dash` to `me-prog` - ([9b8b952](https://github.com/abougouffa/minemacs/commit/9b8b9520f551c36ff5c88d040d094de9fe8c69d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `xcscope` and `consult-cscope` obsolete - ([47731c7](https://github.com/abougouffa/minemacs/commit/47731c7450df321e60f970449edcf1c2ad7f73d7)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `clink` obsolete - ([bc77d03](https://github.com/abougouffa/minemacs/commit/bc77d03b65aa4f38b7ed8ccd4694ba3d4e6555d3)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `symbol-overlay` and its dependencies obsolete - ([566f26b](https://github.com/abougouffa/minemacs/commit/566f26b9763994e0b42296b2063cb629a2177165)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(consult)** enable consult extensions only when consult is enabled - ([5a1a8b4](https://github.com/abougouffa/minemacs/commit/5a1a8b48d53bc6441b1fe6734ec8f15e32bcf880)) - [@abougouffa](https://github.com/abougouffa)
+- **(embark)** prefer `embark` over `which-key` - ([6fb8ea4](https://github.com/abougouffa/minemacs/commit/6fb8ea41947a64ae40aab9772f614c13ecea7f90)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** add support for running remote `fd/fdfind` - ([2673b14](https://github.com/abougouffa/minemacs/commit/2673b1475c9fc699baf45d8a642ad15b633fc09b)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp)** don't change the default remote shell - ([295d4c7](https://github.com/abougouffa/minemacs/commit/295d4c73d2b3bfc583a85b9728c1d1e5387b2d4f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0218223](https://github.com/abougouffa/minemacs/commit/0218223d91e1082dac4d69d2abc817fe189295dd)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([f4ac6d6](https://github.com/abougouffa/minemacs/commit/f4ac6d67990243556528290f6e302d2557afa777)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.40.0](https://github.com/abougouffa/minemacs/compare/5e4984e134ede78aa7eebd9102d5e571232626d0..v12.40.0) - 2025-07-07
 #### Bug Fixes
 - **(on-demand/maxima)** ensure adding `maxima-mode` to `auto-mode-alist` - ([cae0f80](https://github.com/abougouffa/minemacs/commit/cae0f8003ac9bdf25b0e9da5d1125ca1e923960e)) - [@abougouffa](https://github.com/abougouffa)
