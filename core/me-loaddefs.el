@@ -752,6 +752,11 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-llvm :auto-mode '(("\\.ll\\'" . llvm-ts-mode)) :companion-packages '(((llvm-mode llvm-ts-mode) . demangle-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-logs.el
+
+(minemacs-register-on-demand-module 'me-logs :auto-mode '(("\\.log\\(?:\\.[0-9\\-]+\\)?\\'" . logview-mode)) :define-loader t)
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-lua.el
 
 (minemacs-register-on-demand-module 'me-lua :auto-mode '(("\\.lua\\'" . lua-mode)) :interpreter-mode '(("lua" . lua-mode)))
@@ -985,6 +990,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-swift.el
 
 (minemacs-register-on-demand-module 'me-swift :auto-mode '(("\\.swift\\(interface\\)?\\'" . swift-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-systemd.el
+
+(minemacs-register-on-demand-module 'me-systemd :auto-mode `(("\\.nspawn\\'" . systemd-mode) (,(rx (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network") string-end) . systemd-mode) (,(rx ".#" (or (and (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network")) "override.conf") (= 16 (char hex-digit)) string-end) . systemd-mode) (,(rx "/systemd/" (+? anything) ".d/" (+? (not (any 47))) ".conf" string-end) . systemd-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-textile.el
