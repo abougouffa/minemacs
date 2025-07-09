@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-27
-;; Last modified: 2025-03-21
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -27,6 +27,6 @@
   :straight t)
 
 
-(provide 'me-fun)
+(provide 'obsolete/me-fun)
 
 ;;; me-fun.el ends here
