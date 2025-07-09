@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -123,21 +123,21 @@ Can override `project--files-in-directory' for x3.5 faster listing."
                (sort res #'string<))))))
 
 ;; x3.5 faster than the default
-(defun +project--files-in-directory-fd-with-caching (dir ignores &optional files)
+(defun +project--files-in-directory-fd-with-caching (orig-fn dir ignores &optional files)
   "Like `project--files-in-directory', uses \"fd\" with optional caching."
-  (if (and +project-cache-project-files (not files))
-      (if-let* ((cached-value (gethash dir +project--caches)))
-          (progn
-            (+log! "Reusing cached files list for %S" dir)
-            cached-value)
-        (+log! "Caching files list for %S" dir)
-        (let ((value (+fd-files-in-directory dir ignores files)))
-          (puthash dir value +project--caches)
-          value))
-    (+fd-files-in-directory dir ignores files)))
+  (let ((use-fd (and (executable-find +fd-program) (not (file-remote-p dir)))))
+    (if (and +project-cache-project-files (not files))
+        (if-let* ((cached-value (gethash dir +project--caches)))
+            (progn
+              (+log! "Reusing cached files list for %S" dir)
+              cached-value)
+          (+log! "Caching files list for %S" dir)
+          (let ((value (funcall (if use-fd #'+fd-files-in-directory orig-fn) dir ignores files)))
+            (puthash dir value +project--caches)
+            value))
+      (funcall (if use-fd #'+fd-files-in-directory orig-fn) dir ignores files))))
 
-(when (executable-find +fd-program)
-  (advice-add 'project--files-in-directory :override '+project--files-in-directory-fd-with-caching))
+(advice-add 'project--files-in-directory :around '+project--files-in-directory-fd-with-caching)
 
 (defun +project-clear-cache (all)
   "Clear project's files cache.
