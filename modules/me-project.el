@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-08
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -62,15 +62,14 @@
   :demand
   :bind-keymap ("C-x P" . projection-map)
   :init
+  ;; BUG: `projection-hook' causes Tramp issues, don't enable `global-projection-hook-mode'
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
   (add-hook 'ibuffer-hook (lambda () (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update)))))
   ;; Mark compile commands as safe (customized in ".dir-locals.el")
   (dolist (var '( projection-commands-configure-command projection-commands-build-command
                   projection-commands-test-command projection-commands-run-command
                   projection-commands-package-command projection-commands-install-command))
-    (put var 'safe-local-variable #'stringp))
-  ;; Enable `projection-hook', adds the possibility to run functions in per-project basis
-  (global-projection-hook-mode 1))
+    (put var 'safe-local-variable #'stringp)))
 
 
 ;; Projection extension to jump between related files in a project
