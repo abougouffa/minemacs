@@ -271,7 +271,6 @@ or file path may exist now."
    'remote-direct-async-process)
 
   (setq tramp-temp-name-prefix (expand-file-name "tramp." temporary-file-directory)
-        tramp-default-remote-shell "/bin/bash"
         ;; PERF: More responsive file editing via TRAMP.
         ;; See: "(tramp) Ssh setup" and https://news.ycombinator.com/item?id=39193252
         tramp-ssh-controlmaster-options
