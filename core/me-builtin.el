@@ -229,6 +229,7 @@ or file path may exist now."
 (use-package which-key
   :straight (which-key :source gnu-elpa-mirror)
   :hook (minemacs-lazy . which-key-mode)
+  :when (+package-disabled-p 'embark 'me-completion) ; prefer `embark', see https://www.matem.unam.mx/~omar/apropos-emacs.html#the-case-against-which-key-a-polemic
   :custom
   (which-key-idle-delay 1.0)
   (which-key-idle-secondary-delay nil)

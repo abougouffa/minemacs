@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-14
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -294,6 +294,7 @@
   (minemacs-lazy . vertico-mode)
   (minemacs-lazy . vertico-mouse-mode)
   (vertico-mode . vertico-indexed-mode)
+  (vertico-mode . vertico-multiform-mode)
   (rfn-eshadow-update-overlay . vertico-directory-tidy)
   (minibuffer-setup . vertico-repeat-save)
   :bind (("M-R" . vertico-repeat)
@@ -304,8 +305,10 @@
          ("M-h" . vertico-directory-up))
   :custom
   (vertico-cycle t)
+  (vertico-count 12)
   (vertico-resize nil)
-  (vertico-count 12))
+  ;; When `C-h' in the middle of a keybindg chain, show commands in a grid (like `which-key')
+  (vertico-multiform-categories '((embark-keybinding grid))))
 
 
 (provide 'me-completion)
