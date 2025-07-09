@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -186,17 +186,6 @@
    (satch-defun +org-msg-attach-attach--save-default-directory:after-a (file &rest _)
      (when-let* ((dir (file-name-directory file)))
        (setq-local default-directory dir)))))
-
-
-;; Send HTML email using Org-mode HTML export (alternative to `org-msg')
-(use-package org-mime
-  :straight t
-  :when +mu4e-available-p
-  :after mu4e org
-  :demand
-  :config
-  ;; Do not export table of contents nor author name
-  (setq org-mime-export-options '(:with-latex dvipng :section-numbers t :with-author nil :with-toc nil)))
 
 
 ;; Desktop notifications and modeline display for `mu4e'
