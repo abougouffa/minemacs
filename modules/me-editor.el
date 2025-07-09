@@ -118,11 +118,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   (wgrep-auto-save-buffer t))
 
 
-;; Highlight symbols with keymap-enabled overlays
-(use-package symbol-overlay
-  :straight t)
-
-
 ;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
   :straight t
