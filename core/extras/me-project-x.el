@@ -90,7 +90,7 @@ Can override `project--files-in-directory' for x3.5 faster listing."
          ;; Make sure ~/ etc. in local directory name is expanded and not left
          ;; for the shell command to interpret.
          (localdir (file-name-unquote (file-local-name (expand-file-name dir))))
-         (command (format "%s -H %s -t f -0 %s"
+         (command (format "%s -c never -H %s -t f -0 %s"
                           +fd-program
                           (+fd-ignores-arguments (append ignores +fd-ignores) "./")
                           (if files
@@ -123,21 +123,25 @@ Can override `project--files-in-directory' for x3.5 faster listing."
                (sort res #'string<))))))
 
 ;; x3.5 faster than the default
-(defun +project--files-in-directory-fd-with-caching (orig-fn dir ignores &optional files)
+(defun +project--files-in-directory-faster (orig-fn dir ignores &optional files)
   "Like `project--files-in-directory', uses \"fd\" with optional caching."
-  (let ((use-fd (and (executable-find +fd-program) (not (file-remote-p dir)))))
+  (let ((+fd-program (if (file-remote-p dir)
+                         (seq-some (lambda (prog)
+                                     (tramp-find-executable (tramp-dissect-file-name dir) prog nil))
+                                   (seq-uniq `(,+fd-program "fd" "fdfind")))
+                       (executable-find +fd-program))))
     (if (and +project-cache-project-files (not files))
         (if-let* ((cached-value (gethash dir +project--caches)))
             (progn
               (+log! "Reusing cached files list for %S" dir)
               cached-value)
           (+log! "Caching files list for %S" dir)
-          (let ((value (funcall (if use-fd #'+fd-files-in-directory orig-fn) dir ignores files)))
+          (let ((value (funcall (if +fd-program #'+fd-files-in-directory orig-fn) dir ignores files)))
             (puthash dir value +project--caches)
             value))
-      (funcall (if use-fd #'+fd-files-in-directory orig-fn) dir ignores files))))
+      (funcall (if +fd-program #'+fd-files-in-directory orig-fn) dir ignores files))))
 
-(advice-add 'project--files-in-directory :around '+project--files-in-directory-fd-with-caching)
+(advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
 
 (defun +project-clear-cache (all)
   "Clear project's files cache.
