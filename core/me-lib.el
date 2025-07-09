@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-06-25
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -433,6 +433,7 @@ function.
 
 Optionally, check also for the containing MODULE."
   (or
+   (and minemacs-builtin-only-p module (not (eq module 'me-builtin)))
    (and (memq package (flatten-list minemacs-disabled-packages)))
    (and module (not (memq module minemacs-modules)))))
 

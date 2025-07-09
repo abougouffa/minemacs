@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-06
+;; Last modified: 2025-07-09
 
 ;;; Commentary:
 
@@ -90,16 +90,16 @@
                 tab-width 4) ; Default (8) is too big!
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
-  (when (or minemacs-builtin-only-p (+package-disabled-p 'vertico 'me-completion))
+  (when (+package-disabled-p 'vertico 'me-completion)
     (fido-vertical-mode 1))
 
   ;; When `me-completion/corfu' is disabled, enable `global-completion-preview-mode'
-  (when (and (fboundp 'global-completion-preview-mode) (or minemacs-builtin-only-p (+package-disabled-p 'corfu 'me-completion)))
+  (when (and (fboundp 'global-completion-preview-mode) (+package-disabled-p 'corfu 'me-completion))
     (global-completion-preview-mode 1)
     (add-hook 'minibuffer-mode-hook 'completion-preview-mode)) ; Use also in the minibuffer
 
   ;; When `me-editor/smartparens' is disabled, enable `electric-pair-mode'
-  (when (or minemacs-builtin-only-p (+package-disabled-p 'smartparens 'me-editor))
+  (when (+package-disabled-p 'smartparens 'me-editor)
     (electric-pair-mode 1))
 
   ;; Buffer boundaries looks uggly in these modes, disable them
