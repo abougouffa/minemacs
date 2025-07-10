@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-07
+;; Last modified: 2025-07-10
 
 ;;; Commentary:
 
@@ -188,9 +188,18 @@ a project, call `multi-vterm-dedicated-toggle'."
              (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
   :hook (pet-mode . +pet-quickrun-setup)
   :init
+  ;; BUG: When accessing files via ADB, `pet-mode' fails at some stage because
+  ;; `tramp' isn't able to give a relavant information in
+  ;; `tramp-handle-file-directory-p'. After tracing this down, it seems like
+  ;; `file-attributes' doesn't support "adb" for now, it returns always nil.
+  (defun +pet-mode-maybe ()
+    (when-let* ((path (or (buffer-file-name (or (buffer-base-buffer) (current-buffer))) default-directory))
+                ((not (equal "adb" (file-remote-p path 'method)))))
+      (pet-mode +1)))
+
   ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
   ;; down opening Python buffers (or reverting them)
-  (add-hook 'python-base-mode-hook 'pet-mode -10)
+  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10)
   :config
   ;; BUG+TODO: When the path contains spaces, this will fail to work. Using
   ;; `shell-quote-argument' don't work either.
