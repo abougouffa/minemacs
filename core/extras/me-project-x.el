@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-10
 
 ;;; Commentary:
 
@@ -125,11 +125,9 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 ;; x3.5 faster than the default
 (defun +project--files-in-directory-faster (orig-fn dir ignores &optional files)
   "Like `project--files-in-directory', uses \"fd\" with optional caching."
-  (let ((+fd-program (if (file-remote-p dir)
-                         (seq-some (lambda (prog)
-                                     (tramp-find-executable (tramp-dissect-file-name dir) prog nil))
-                                   (seq-uniq `(,+fd-program "fd" "fdfind")))
-                       (executable-find +fd-program))))
+  (let ((+fd-program (let ((default-directory dir))
+                       (seq-some (+apply-partially-right #'executable-find 'remote)
+                                 (seq-uniq `(,+fd-program "fd" "fdfind"))))))
     (if (and +project-cache-project-files (not files))
         (if-let* ((cached-value (gethash dir +project--caches)))
             (progn
