@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-06
+;; Last modified: 2025-07-11
 
 ;;; Commentary:
 
@@ -60,7 +60,11 @@ Based on `jinx-mode' if available. Falls back to the built-in
 ;; Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
   :straight (:host github :repo "SqrtMinusOne/reverso.el")
-  :bind (:map minemacs-open-thing-map ("r" . reverso)))
+  :bind (:map minemacs-open-thing-map ("r" . reverso))
+  :config
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'reverso--history))
+  (reverso-history-mode 1))
 
 
 (provide 'me-natural-langs)
