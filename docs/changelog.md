@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.42.0](https://github.com/abougouffa/minemacs/compare/bc252202c16d0c2fb2ca4f2d36ae0998afe6d370..v12.42.0) - 2025-07-11
+#### Bug Fixes
+- **(gee)** add support for basic HTTP authentication - ([bc25220](https://github.com/abougouffa/minemacs/commit/bc252202c16d0c2fb2ca4f2d36ae0998afe6d370)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** ensure loading the package correctly - ([734dc9a](https://github.com/abougouffa/minemacs/commit/734dc9a17c88a71f3f428bf61913536249ede4bc)) - [@abougouffa](https://github.com/abougouffa)
+- **(pet)** don't enable when editing files via ADB - ([276d189](https://github.com/abougouffa/minemacs/commit/276d189fbefd25725142b27cf36a74ee66cae9a1)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** Alchemy modules aren't necessarily separate projects - ([8e889ba](https://github.com/abougouffa/minemacs/commit/8e889ba6fac6d03f1a9dc0c81900f917c591f1a7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(tramp-x)** enhance TRAMP performances WIP - ([d310c7e](https://github.com/abougouffa/minemacs/commit/d310c7e21f20c2206494ced8c4c69b37479621ae)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** add support for `gerrit` via REST API - ([63d4b89](https://github.com/abougouffa/minemacs/commit/63d4b890d0124ae13467d3ed828eec72e09d005e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(project-x)** simplify finding the `fd` executable - ([1c4bdaa](https://github.com/abougouffa/minemacs/commit/1c4bdaa059890512c04f5cf936d7f538f6083506)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(tramp-x)** don't memoize TRAMP projects - ([9b8f629](https://github.com/abougouffa/minemacs/commit/9b8f62952aa3d2bc8723cbbd6037769a012fcfe2)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** enable line numbers in `authinfo-mode` - ([5a0f0d0](https://github.com/abougouffa/minemacs/commit/5a0f0d0706abd84f0dc245702fd3c516848e7905)) - [@abougouffa](https://github.com/abougouffa)
+- **(casual)** bind the new `casual-eshell-tmenu` - ([c4b751c](https://github.com/abougouffa/minemacs/commit/c4b751c66bda40ed25f5511389c10d96503308be)) - [@abougouffa](https://github.com/abougouffa)
+- **(multiple-cursors)** add some more commands to run only once - ([8700ee8](https://github.com/abougouffa/minemacs/commit/8700ee816ebb04e1ac334b9290a51b0232ffa25c)) - [@abougouffa](https://github.com/abougouffa)
+- **(reverso)** enable persistent history - ([1bb01de](https://github.com/abougouffa/minemacs/commit/1bb01dea494fc6d29d6013b4f17b1ac0931090bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(reverso)** bind to `C-o r` - ([e5e9bae](https://github.com/abougouffa/minemacs/commit/e5e9bae929f10b3ff29de7b0720618f5c49606bd)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([fa60b46](https://github.com/abougouffa/minemacs/commit/fa60b46ea01c5453b1d6d15671b9ded6f92aca57)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.41.0](https://github.com/abougouffa/minemacs/compare/c02765381b815d0866c3507d945ad6e3d4e131a3..v12.41.0) - 2025-07-09
 #### Bug Fixes
 - **(core)** check for disabled when using only built-in packages - ([d8a0493](https://github.com/abougouffa/minemacs/commit/d8a0493cdf3d137d7081ceb6cc4f787662669d00)) - [@abougouffa](https://github.com/abougouffa)
