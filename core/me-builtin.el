@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-10
+;; Last modified: 2025-07-11
 
 ;;; Commentary:
 
@@ -352,7 +352,6 @@ or file path may exist now."
      "autogen.sh" ; Autotools
      "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
      ".code-workspace" ; VSCode, ".vscode" is present also in the user home
-     ".MODULE_NAME_*" "atom.mk" ; Alchemy
      "requirements.txt" ; Python
      ".magic" ; MAX + Mojo
      "package.json" ; Node.js
