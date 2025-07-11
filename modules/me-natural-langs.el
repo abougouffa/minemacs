@@ -59,7 +59,8 @@ Based on `jinx-mode' if available. Falls back to the built-in
 
 ;; Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
-  :straight (:host github :repo "SqrtMinusOne/reverso.el"))
+  :straight (:host github :repo "SqrtMinusOne/reverso.el")
+  :bind (:map minemacs-open-thing-map ("r" . reverso)))
 
 
 (provide 'me-natural-langs)
