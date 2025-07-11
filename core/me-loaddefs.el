@@ -1007,6 +1007,26 @@ Show the list of declared external dependencies." t)
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
+;;; Generated autoloads from extras/me-tramp-x.el
+
+(autoload '+memoize-project-current "extras/me-tramp-x" "\
+
+
+(fn ORIG &optional PROMPT DIRECTORY)")
+(advice-add 'project-current :around #'+memoize-project-current)
+(autoload '+memoize-magit-toplevel "extras/me-tramp-x" "\
+
+
+(fn ORIG &optional DIRECTORY)")
+(advice-add 'magit-toplevel :around #'+memoize-magit-toplevel)
+(autoload '+memoize-vc-git-root "extras/me-tramp-x" "\
+
+
+(fn ORIG FILE)")
+(advice-add 'vc-git-root :around #'+memoize-vc-git-root)
+(register-definition-prefixes "extras/me-tramp-x" '("+m" "+project-current-cache" "+vc-git-root-cache"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-typst.el
 
 (minemacs-register-on-demand-module 'me-typst :auto-mode '(("\\.typ\\'" . typst-ts-mode)))
