@@ -59,7 +59,11 @@
       ;; `org'
       org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
 
-  (cl-callf append mc--default-cmds-to-run-once '(pixel-scroll-precision))
+  (cl-callf append mc--default-cmds-to-run-once
+    '(;; Some extra Emacs commands
+      pixel-scroll-precision beginning-of-buffer end-of-buffer
+      ;; `iedit'
+      iedit-switch-to-mc-mode))
 
   (with-eval-after-load 'transient
     (transient-define-prefix +mc/transient ()
