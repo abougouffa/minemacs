@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-11
 
 ;;; Commentary:
 
@@ -19,6 +19,8 @@
 ;; Multiple cursors implementation for Emacs
 (use-package multiple-cursors
   :straight t
+  :after minemacs-first-file
+  :demand ; Otherwise, the `multiple-cursors' will not be loaded (the commands are defined in `multiple-cursors-core')
   :bind (("C->"           . mc/mark-next-like-this)
          ("C-<"           . mc/mark-previous-like-this)
          ("C-M->"         . mc/skip-to-next-like-this)
