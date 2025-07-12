@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-07-10
+;; Last modified: 2025-07-12
 
 ;;; Commentary:
 
@@ -68,6 +68,11 @@
   :group 'minemacs-project
   :type '(repeat string))
 
+(defcustom +project-use-fd-on-remote t
+  "Whether to use fd (if found) on remote machines' projects or not."
+  :group 'minemacs-project
+  :type 'boolean)
+
 (defcustom +project-cache-project-files t
   "Cache project files when using the generic fd/find backend."
   :group 'minemacs-project
@@ -125,19 +130,22 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 ;; x3.5 faster than the default
 (defun +project--files-in-directory-faster (orig-fn dir ignores &optional files)
   "Like `project--files-in-directory', uses \"fd\" with optional caching."
-  (let ((+fd-program (let ((default-directory dir))
-                       (seq-some (+apply-partially-right #'executable-find 'remote)
-                                 (seq-uniq `(,+fd-program "fd" "fdfind"))))))
+  (let ((+fd-program (let ((default-directory dir)
+                           (remote (and (file-remote-p dir) t)))
+                       (and (or (not remote) +project-use-fd-on-remote)
+                            (seq-some (+apply-partially-right #'executable-find remote)
+                                      (seq-uniq `(,+fd-program "fd" "fdfind"))))))
+        (find-fn (if +fd-program #'+fd-files-in-directory orig-fn)))
     (if (and +project-cache-project-files (not files))
         (if-let* ((cached-value (gethash dir +project--caches)))
             (progn
               (+log! "Reusing cached files list for %S" dir)
               cached-value)
           (+log! "Caching files list for %S" dir)
-          (let ((value (funcall (if +fd-program #'+fd-files-in-directory orig-fn) dir ignores files)))
+          (let ((value (funcall find-fn dir ignores files)))
             (puthash dir value +project--caches)
             value))
-      (funcall (if +fd-program #'+fd-files-in-directory orig-fn) dir ignores files))))
+      (funcall find-fn dir ignores files))))
 
 (advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
 
