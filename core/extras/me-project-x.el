@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-07-12
+;; Last modified: 2025-07-13
 
 ;;; Commentary:
 
@@ -95,7 +95,7 @@ Can override `project--files-in-directory' for x3.5 faster listing."
          ;; Make sure ~/ etc. in local directory name is expanded and not left
          ;; for the shell command to interpret.
          (localdir (file-name-unquote (file-local-name (expand-file-name dir))))
-         (command (format "%s -c never -H %s -t f -0 %s"
+         (command (format "%s -c never -H %s -t f -0 --strip-cwd-prefix %s"
                           +fd-program
                           (+fd-ignores-arguments (append ignores +fd-ignores) "./")
                           (if files
