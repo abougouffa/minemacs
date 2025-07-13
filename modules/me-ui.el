@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-12
+;; Last modified: 2025-07-13
 
 ;;; Commentary:
 
@@ -155,7 +155,7 @@
   :bind (:package calc :map calc-mode-map ("C-o" . casual-calc-tmenu))
   :bind (:package calendar :map calendar-mode-map ("C-o" . casual-calendar))
   :bind (:package dired :map dired-mode-map ("C-o" . casual-dired-tmenu))
-  :bind (:package eshell :map eshell-mode-map ("C-o" . casual-eshell-tmenu))
+  :bind (:package esh-mode :map eshell-mode-map ("C-o" . casual-eshell-tmenu))
   :bind (:package ibuffer :map ibuffer-mode-map ("C-o" . casual-ibuffer-tmenu))
   :bind (:package image-mode :map image-mode-map ("C-o" . casual-image-tmenu))
   :bind (:package info :map Info-mode-map ("C-o" . casual-info-tmenu))
