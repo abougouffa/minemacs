@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-11
+;; Last modified: 2025-07-13
 
 ;;; Commentary:
 
@@ -44,7 +44,7 @@
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
       beginning-of-visual-line end-of-visual-line kill-region forward-sexp backward-sexp
-      tab-to-tab-stop indent-for-tab-command transient-noop comment-line comment-dwim
+      tab-to-tab-stop indent-for-tab-command comment-line comment-dwim
       ;; MinEmacs' commands
       +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
       +dtrt-indent-tab-to-tab-stop
@@ -61,7 +61,7 @@
 
   (cl-callf append mc--default-cmds-to-run-once
     '(;; Some extra Emacs commands
-      pixel-scroll-precision beginning-of-buffer end-of-buffer
+      pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop
       ;; `iedit'
       iedit-switch-to-mc-mode))
 
