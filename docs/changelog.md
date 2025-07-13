@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v12.42.1](https://github.com/abougouffa/minemacs/compare/e8a01ac92c078ad686538b6a494d423fde913bc6..v12.42.1) - 2025-07-13
+#### Bug Fixes
+- **(casual)** fix the binding of `casual-eshell-tmenu` - ([de46aa6](https://github.com/abougouffa/minemacs/commit/de46aa6a50ea11705f737b3a3d1f7e13bb4e01a0)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- minor comment edits - ([240f4a2](https://github.com/abougouffa/minemacs/commit/240f4a25000f814b2e2a6adbe665ccb7ab2ac406)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(multiple-cursors)** make `transient-noop` run once - ([fb11a92](https://github.com/abougouffa/minemacs/commit/fb11a923e0037b3e60cd05749aeb9a0213aa95da)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** don't modify the behavior of `project-name` - ([c925c73](https://github.com/abougouffa/minemacs/commit/c925c731d78486889dc37bb96bfcea9b7e154b11)) - [@abougouffa](https://github.com/abougouffa)
+- **(project-x)** add an option to disable using `fd` in remote projects - ([e8a01ac](https://github.com/abougouffa/minemacs/commit/e8a01ac92c078ad686538b6a494d423fde913bc6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d1b2723](https://github.com/abougouffa/minemacs/commit/d1b2723b927d7690e30681beb035647787ffba30)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v12.42.0](https://github.com/abougouffa/minemacs/compare/bc252202c16d0c2fb2ca4f2d36ae0998afe6d370..v12.42.0) - 2025-07-11
 #### Bug Fixes
 - **(gee)** add support for basic HTTP authentication - ([bc25220](https://github.com/abougouffa/minemacs/commit/bc252202c16d0c2fb2ca4f2d36ae0998afe6d370)) - [@abougouffa](https://github.com/abougouffa)
