@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-11
+;; Last modified: 2025-07-13
 
 ;;; Commentary:
 
@@ -359,19 +359,6 @@ or file path may exist now."
      "pyproject.toml" ; uv (Python)
      "Cargo.toml")) ; Cargo (Rust)
   :config
-  ;; BUG+HACK: Project name should not be inherited from super-projects
-  (cl-defmethod project-name ((project (head vc)))
-    (let ((proj-root (project-root project)))
-      (with-temp-buffer
-        (setq default-directory proj-root)
-        (let (project-vc-name)
-          ;; Apply the `project-vc-name' only if it comes from the ".dir-locals.el" file located in the project's root
-          (when-let* ((dir-locals-root (car (ensure-list (dir-locals-find-file (expand-file-name "dummy-file" proj-root)))))
-                      (_ (equal (expand-file-name proj-root) (expand-file-name dir-locals-root))))
-            (hack-dir-local-variables-non-file-buffer))
-          (or project-vc-name
-              (cl-call-next-method))))))
-
   (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands))))
 
 (use-package tab-bar
