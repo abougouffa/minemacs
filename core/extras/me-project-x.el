@@ -127,7 +127,7 @@ Can override `project--files-in-directory' for x3.5 faster listing."
     (if project-files-relative-names
         (sort res #'string<)
       (project--remote-file-names
-       (mapcar (lambda (s) (concat localdir s))
+       (mapcar (apply-partially #'concat localdir)
                (sort res #'string<))))))
 
 ;; x3.5 faster than the default
