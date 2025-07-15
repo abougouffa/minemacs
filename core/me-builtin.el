@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-13
+;; Last modified: 2025-07-15
 
 ;;; Commentary:
 
@@ -515,7 +515,8 @@ or file path may exist now."
 (use-package c-ts-mode
   :when (featurep 'feat/tree-sitter)
   :custom
-  (c-ts-mode-indent-style 'k&r))
+  (c-ts-mode-indent-style 'k&r)
+  (c-ts-mode-enable-doxygen t))
 
 (use-package conf-mode
   :mode "\\.prop\\'")
