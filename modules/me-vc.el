@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-10
+;; Last modified: 2025-07-16
 
 ;;; Commentary:
 
@@ -106,6 +106,10 @@
   (minemacs-first-file . global-diff-hl-mode)
   (diff-hl-mode . +diff-hl-update-on-buffer-change)
   (dired-mode . diff-hl-dired-mode)
+  :init
+  ;; FIX: Don't pollute the shared memory devfs (`diff-hl' uses "/dev/shm/" as
+  ;; temporary directory!)
+  (setq diff-hl-temporary-directory temporary-file-directory)
   :config
   ;; BUG+HACK: After commiting changes from `magit' and switching back to the
   ;; buffer, the diff-hl doesn't go away until an input happens. This hook will
