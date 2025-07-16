@@ -134,6 +134,9 @@
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
 
+  (with-eval-after-load 'help
+    (keymap-set help-map "h" #'+describe-at-point))
+
   ;; Enable some useful Emacs commands by default
   (dolist (command '(narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
     (put command 'disabled nil))

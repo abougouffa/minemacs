@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-17
 
 ;;; Commentary:
 
@@ -1304,6 +1304,23 @@ you might need install some of these tools.\n\n")
     (markdown-mode)
     (read-only-mode 1)
     (pop-to-buffer (current-buffer))))
+
+
+
+;;;###autoload
+(defun +describe-at-point ()
+  "Show help for the symbol at point."
+  (interactive)
+  (if-let* ((sym (symbol-at-point))
+            (fn (cond ((and (fboundp sym) (boundp sym))
+                       (if (= ?v (read-char-choice (format "Ambiguous `%s', describe [v]ariable or [c]allable? " sym) '(?v ?c)))
+                           'describe-variable
+                         'describe-function))
+                      ((fboundp sym) 'describe-function)
+                      ((boundp sym) 'describe-variable)
+                      ((symbolp sym) 'describe-symbol))))
+      (funcall fn sym)
+    (user-error "There is no symbol at point")))
 
 
 
