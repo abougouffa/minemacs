@@ -19,24 +19,6 @@
   (eglot-booster-io-only (>= emacs-major-version 30)))
 
 
-;; Emacs text actions using LSP symbol information
-(use-package gambol
-  :straight (:host codeberg :repo "woolsweater/gambol.el")
-  :hook (eglot-managed-mode . gambol-mode)
-  :bind
-  ( :map gambol-mode-map
-    ("M-g ," . gambol:go-to-previous)
-    ("M-g ." . gambol:go-to-next)
-    ([remap mc/mark-all-dwim] . gambol:edit-all)
-    :map gambol-repeat-map
-    ("," . gambol:go-to-previous)
-    ("." . gambol:go-to-next)
-    ("e" . gambol:edit-all)
-    ("o" . gambol:occur))
-  :init
-  (with-eval-after-load 'embark (gambol:install-embark-integration))) ; Integrate with `embark'
-
-
 ;; Consult integration with Eglot
 (use-package consult-eglot
   :straight t
