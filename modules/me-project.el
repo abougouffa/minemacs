@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-15
+;; Last modified: 2025-07-16
 
 ;;; Commentary:
 
@@ -98,13 +98,6 @@
 (use-package projection-dape
   :straight t
   :bind (:map projection-map ("D" . #'projection-dape)))
-
-
-;; Quick access to project files using `fd'
-(use-package find-file-in-project
-  :straight t
-  :custom
-  (ffip-use-rust-fd (and (executable-find "fd") t)))
 
 
 (provide 'me-project)
