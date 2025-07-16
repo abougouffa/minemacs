@@ -204,13 +204,5 @@
   :mode ("\\.cocci$" . cocci-mode))
 
 
-;; Same frame speedbar
-(use-package sr-speedbar
-  :straight t
-  :custom
-  (sr-speedbar-right-side nil)
-  (sr-speedbar-default-width 35))
-
-
 (provide 'me-prog)
 ;;; me-prog.el ends here
