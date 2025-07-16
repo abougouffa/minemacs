@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-15
+;; Last modified: 2025-07-16
 
 ;;; Commentary:
 
@@ -450,7 +450,12 @@ or file path may exist now."
   :when (featurep 'feat/tree-sitter)
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
-  (treesit-font-lock-level 4))
+  (treesit-font-lock-level 4)
+  :init
+  (cl-callf append major-mode-remap-alist
+    '((c-or-c++-mode . c-or-c++-ts-mode) (c++-mode . c++-ts-mode) (c-mode . c-ts-mode)
+      (java-mode . java-ts-mode) (js-mode . js-ts-mode) (sh-mode . bash-ts-mode)
+      (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode))))
 
 (use-package markdown-ts-mode
   :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
