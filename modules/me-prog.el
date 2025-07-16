@@ -196,13 +196,5 @@
     (consult-customize consult-dash :initial (or (thing-at-point 'region t) (thing-at-point 'symbol t)))))
 
 
-;; Coccinelle: Complex style-preserving source-to-source transformations
-(use-package cocci
-  :when (file-exists-p "/usr/share/emacs/site-lisp/cocci.el")
-  :load-path "/usr/share/emacs/site-lisp/"
-  :mode ("\\.iso$" . cocci-mode)
-  :mode ("\\.cocci$" . cocci-mode))
-
-
 (provide 'me-prog)
 ;;; me-prog.el ends here
