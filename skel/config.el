@@ -90,6 +90,14 @@
    ;; modes from `eglot-server-programs'
    (+eglot-use-on-all-supported-modes eglot-server-programs)))
 
+;; Or, for example, you can automatically enable Eglot in C/C++ buffers when a
+;; "compile_commands.json" file exists:
+(satch-add-hook ; Automatically enable clangd when there is the required config
+ '(c-mode-hook c++-mode-hook c-ts-mode-hook c++-ts-mode-hook)
+ (satch-defun +eglot-clangd-maybe ()
+   (when (+project-have-compile-commands-p)
+     (eglot-ensure))))
+
 ;; If you installed Emacs from source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
 ;; (setq source-directory "~/Sources/emacs-git/")

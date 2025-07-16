@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-06
+;; Last modified: 2025-07-16
 
 ;;; Commentary:
 
@@ -1223,6 +1223,12 @@ it forget them only when we are sure they don't exist."
      (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
    (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
+
+(defun +project-have-compile-commands-p (&optional proj)
+  "Check if PROJ have a \"compile_commands.json\" file."
+  (and-let* ((proj (or proj (project-current)))
+             (root (project-root proj))
+             ((file-exists-p (expand-file-name "compile_commands.json" root))))))
 
 
 
