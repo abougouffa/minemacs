@@ -14,7 +14,7 @@
 
 (use-package emacs
   :hook
-  (after-save . +save--guess-file-mode-h)
+  (after-save . +save-guess-file-mode-h)
   (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
   :custom
   ;; ====== Default directories for builtin packages ======
@@ -164,19 +164,17 @@
   ;; By default, Emacs asks before quitting with "C-x C-c", but when running an
   ;; Emacs Client session, it won't ask unless a file is not saved. I hit "C-x
   ;; C-c" a lot by error, so lets make it ask before quitting.
-  (defun +emacs--ask-on-emacsclient:around-a (origfn arg)
+  (defun +save-buffers-kill-terminal--ask-on-emacsclient:around-a (origfn arg)
     (if (frame-parameter nil 'client)
-        (pcase (read-answer "Quit Emacs? " '(("yes"  ?y "quit Emacs Client")
-                                             ("no"   ?n "don't quit")
-                                             ("quit" ?q "kill Emacs")))
+        (pcase (read-answer "Quit Emacs? " '(("yes" ?y "quit Emacs Client") ("no" ?n "don't quit") ("quit" ?q "kill Emacs")))
           ("yes" (apply origfn arg))
           ("quit" (kill-emacs)))
       (apply origfn arg)))
 
-  (advice-add 'save-buffers-kill-terminal :around #'+emacs--ask-on-emacsclient:around-a)
+  (advice-add 'save-buffers-kill-terminal :around #'+save-buffers-kill-terminal--ask-on-emacsclient:around-a)
 
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
-  (defun +save--guess-file-mode-h ()
+  (defun +save-guess-file-mode-h ()
     "Guess major mode when saving a file in `fundamental-mode'.
 Likely, something has changed since the buffer was opened. e.g. A shebang line
 or file path may exist now."
@@ -208,7 +206,7 @@ or file path may exist now."
   :init
   ;; Inline comments have to be preceded by at least this many spaces. Python's
   ;; PEP8 recommends two spaces
-  (+setq-hook! python-mode comment-inline-offset 2))
+  (+setq-hook! python-base-mode comment-inline-offset 2))
 
 (use-package crm
   :custom
@@ -290,7 +288,7 @@ or file path may exist now."
   (auth-source-do-cache t) ; Enable caching, do not keep asking about GPG key
   (auth-source-cache-expiry 86400)) ; All day (def. 7200s = 2h)
 
-(use-package epa
+(use-package epa-config
   :custom
   (epg-pinentry-mode 'loopback)) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
 
@@ -318,8 +316,9 @@ or file path may exist now."
   (dired-vc-rename-file t)
   (dired-create-destination-dirs 'ask)
   :config
-  (push '("\\.tgz\\'" . "tar -cf - %i | gzip -c9 > %o") dired-compress-files-alist)
-  (push '("\\.tar\\'" . "tar -cf %o %i") dired-compress-files-alist))
+  (cl-callf append dired-compress-files-alist
+    '(("\\.tgz\\'" . "tar -cf - %i | gzip -c9 > %o")
+      ("\\.tar\\'" . "tar -cf %o %i"))))
 
 (use-package dired-x
   :hook (dired-mode . dired-omit-mode)
