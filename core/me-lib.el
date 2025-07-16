@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-16
 
 ;;; Commentary:
 
@@ -1206,10 +1206,10 @@ To be used as a predicate generator for `display-buffer-alist'."
   (when (file-exists-p minemacs-loaddefs-file) (delete-file minemacs-loaddefs-file))
   (loaddefs-generate
    (list minemacs-core-dir
-	 (concat minemacs-core-dir "extras/")
-	 minemacs-elisp-dir
-	 (concat minemacs-modules-dir "extras/")
-	 minemacs-on-demand-modules-dir)
+         (concat minemacs-core-dir "extras/")
+         minemacs-elisp-dir
+         (concat minemacs-modules-dir "extras/")
+         minemacs-on-demand-modules-dir)
    minemacs-loaddefs-file))
 
 ;; Functions
