@@ -47,12 +47,6 @@
   (doom-modeline-continuous-word-count-modes '(markdown-mode markdown-ts-mode gfm-mode org-mode rst-mode latex-mode tex-mode)))
 
 
-;; Visually distinguish "real" buffers (i.e. file-visiting code buffers) from "unreal" buffers (like popups, sidebars, etc)
-(use-package solaire-mode
-  :straight t
-  :hook (minemacs-after-startup . solaire-global-mode))
-
-
 ;; Highly customizable startup screen for Emacs
 (use-package enlight
   :straight (:host github :repo "ichernyshovvv/enlight")
