@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-17
 
 ;;; Commentary:
 
@@ -526,7 +526,8 @@ or file path may exist now."
   (c-ts-mode-enable-doxygen t))
 
 (use-package conf-mode
-  :mode "\\.prop\\'")
+  :mode "\\.prop\\'"
+  :mode "\\.rc\\'")
 
 (use-package hideshow
   :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding
