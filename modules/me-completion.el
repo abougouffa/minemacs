@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-17
 
 ;;; Commentary:
 
@@ -141,10 +141,6 @@
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c k"   . consult-kmacro)
-         ("C-c h"   . consult-history)
-         ("C-c r"   . consult-ripgrep)
-         ("C-c c t" . consult-theme)
-         ("C-c i"   . consult-info)
          ([remap Info-search] . consult-info)
          ([remap recentf-open-files] . consult-recent-file)
          ([remap recentf] . consult-recent-file)
