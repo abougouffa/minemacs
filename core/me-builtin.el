@@ -881,7 +881,6 @@ Typing these will trigger reindentation of the current line.")
    `(file-remote-p
      ,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
      ,(rx bol "/tmp/")))
-  :bind (("C-c c r" . recentf-open-files))
   :init
   ;; Enable `recentf-mode' to remember recent files
   (+shutup! (recentf-mode 1))
