@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-18
 
 ;;; Commentary:
 
@@ -31,20 +31,6 @@
     (doom-themes-org-config))
   ;; Enable blinking modeline on errors (`visible-bell')
   (+with-delayed-1! (doom-themes-visual-bell-config)))
-
-
-;; A fancy and fast mode-line inspired by minimalism design
-(use-package doom-modeline
-  :straight t
-  :hook (minemacs-lazy . doom-modeline-mode)
-  :custom
-  (doom-modeline-height 24)
-  (doom-modeline-time-icon nil)
-  (doom-modeline-buffer-encoding 'nondefault)
-  (doom-modeline-unicode-fallback t)
-  (doom-modeline-total-line-number t)
-  (doom-modeline-enable-word-count t)
-  (doom-modeline-continuous-word-count-modes '(markdown-mode markdown-ts-mode gfm-mode org-mode rst-mode latex-mode tex-mode)))
 
 
 ;; Highly customizable startup screen for Emacs
