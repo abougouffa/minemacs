@@ -201,7 +201,7 @@
   ;; - Fira Code: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
   ;; - Cascadia Code: https://github.com/microsoft/cascadia-code/wiki/Coding-ligature-coverage
   (defvar +ligature-common-prog
-    `("<<" "<<<" ">>>" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "=="
+    `("<<" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "==" ;; "<<<" ">>>" buggy
       "*=" "+=" "<|" "<|>" "|>" "++" "+++" "&&" "||" "/=" "--" "#!" "::="
       "#[" "]#" "{|" "|}" "__"))
 
