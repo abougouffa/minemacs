@@ -609,6 +609,7 @@ or file path may exist now."
   (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   (eglot-stay-out-of '(yasnippet))
+  (eglot-advertise-cancellation t)
   :config
   ;; PERF: Optimization, inspired by: https://reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
