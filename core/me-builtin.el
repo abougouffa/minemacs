@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-17
+;; Last modified: 2025-07-18
 
 ;;; Commentary:
 
@@ -1098,6 +1098,12 @@ Typing these will trigger reindentation of the current line.")
   (goto-address-url-face '+goto-addr-url-face))
 
 (use-package visual-wrap
+  ;; BUG: Enabling this with the current config may result in some weird
+  ;; behaviors. For example, when doing `M-;' on a region in `c++-mode', random
+  ;; spaces are displayed (kind of overlays). Enabling this on a "emacs -q"
+  ;; session didn't reproduce the issue. It seems it is caused by a friction
+  ;; with other settings in MinEmacs.
+  :disabled
   :when (>= emacs-major-version 30)
   :hook ((prog-mode conf-mode org-mode) . visual-wrap-prefix-mode)) ; Respect indentation whein wrapping long lines
 
