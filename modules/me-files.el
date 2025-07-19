@@ -22,6 +22,11 @@
   (dired-subtree-use-backgrounds nil))
 
 
+;; Viewing and editing system trash can
+(use-package trashed
+  :straight t)
+
+
 ;; Sort and browse disk usage listings
 (use-package disk-usage
   :straight t)
