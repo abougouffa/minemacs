@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-19
 
 ;;; Commentary:
 
@@ -12,7 +12,14 @@
 
 ;; Collection of useful dired additions
 (use-package dired-hacks
-  :straight t)
+  :straight t
+  :after dired
+  :bind
+  ( :map dired-mode-map
+    ([tab] . dired-subtree-toggle)
+    ([backtab] . dired-subtree-remove))
+  :custom
+  (dired-subtree-use-backgrounds nil))
 
 
 ;; Sort and browse disk usage listings
