@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-18
+;; Last modified: 2025-07-19
 
 ;;; Commentary:
 
@@ -617,6 +617,10 @@ or file path may exist now."
     (with-eval-after-load 'jsonrpc ; Disable logging in `jsonrpc'
       (fset 'jsonrpc--log-event #'ignore)
       (remove-hook 'jsonrpc-event-hook 'jsonrpc--log-event)))
+
+  ;; Don't spit messages to the echo area
+  (advice-add 'jsonrpc--message :around #'+suppress-messages)
+  (advice-add 'eglot--message :around #'+suppress-messages)
 
   ;; When a sub/super project with a separate Python virtual environment is detected,
   ;; limit to this one.

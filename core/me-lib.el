@@ -204,6 +204,12 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
       (+debug! "Inhibiting messages of %s" (symbol-name fn))
       (apply fn args))))
 
+(defun +apply-suppress-messages (fn &rest args) ; Helper functions to be used as advises
+  "Call FN with ARGS while to suppressing the messages in echo area.
+The messages are still printed to *Messages* buffer."
+  (with-temp-message (or (current-message) "")
+    (apply fn args)))
+
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
   (interactive)
