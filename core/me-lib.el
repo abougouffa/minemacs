@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-19
 
 ;;; Commentary:
 
@@ -1021,7 +1021,11 @@ When RESET is non-nil, restore the original font size."
   (set-face-attribute
    'mode-line-active nil
    :overline (face-attribute 'default :foreground nil t)
-   :background (face-attribute 'default :background nil t)))
+   :background (face-attribute 'default :background nil t))
+
+  (set-face-attribute
+   'mode-line-inactive nil
+   :overline (face-attribute 'mode-line-inactive :foreground nil t)))
 
 (autoload 'color-darken-name "color")
 (autoload 'color-lighten-name "color")
