@@ -307,7 +307,7 @@ or file path may exist now."
   :hook (dired-mode . turn-on-gnus-dired-mode)
   :custom
   (dired-dwim-target t)
-  (dired-listing-switches "-alFh") ; show files linkes by symlinks (F) and human readable sizes (h)
+  (dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso")
   (dired-auto-revert-buffer t)
   (dired-movement-style 'cycle)
   (dired-recursive-copies 'always)
