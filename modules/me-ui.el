@@ -33,43 +33,6 @@
   (+with-delayed-1! (doom-themes-visual-bell-config)))
 
 
-;; Highly customizable startup screen for Emacs
-(use-package enlight
-  :straight (:host github :repo "ichernyshovvv/enlight")
-  :hook (enlight-mode . +enlight-responsive-h)
-  :custom
-  (enlight-content
-   (enlight-menu
-    `(("Org Mode"
-       ("Org-Agenda (today)" (org-agenda nil "a") "a")
-       ("Org directory" (dired org-directory) "o"))
-      ("Emacs"
-       ("Calendar" calendar "c"))
-      ,@(unless (+package-disabled-p 'denote 'me-notes)
-          `(("Notes"
-             ("Denote" denote "n")
-             ("Open or create" denote-open-or-create "N")
-             ("Journal new or existing" denote-journal-new-or-existing-entry "j"))))
-      ("Projects"
-       ("Switch to project" project-switch-project "p"))
-      ,@(unless (+package-disabled-p 'easysession 'me-ui)
-          `(("Session"
-             ("Load session" easysession-load "l")
-             ("Switch to session" easysession-switch-to "s")))))))
-  :init
-  (if minemacs-started-with-extra-args-p
-      (enlight-open)
-    (setq initial-buffer-choice #'enlight))
-  :config
-  (defun +enlight-responsive-h ()
-    (satch-add-hook
-     '(window-size-change-functions window-state-change-functions)
-     (satch-defun +enlight--recenter-h (&optional _frame)
-       ;; When Enlight's buffer is visible, we recall `enlight' to refresh/recenter it
-       (and (get-buffer-window enlight-buffer-name) (enlight)))
-     nil 'local)))
-
-
 ;; Display "^L" page breaks as tidy horizontal lines
 (use-package page-break-lines
   :straight t
