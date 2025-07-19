@@ -305,6 +305,7 @@ or file path may exist now."
   ;; Enable adding mail attachments from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
   :hook (dired-mode . turn-on-gnus-dired-mode)
+  :hook (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
   (dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso")
@@ -509,7 +510,7 @@ or file path may exist now."
   (hide-ifdef-initially t))
 
 (use-package hl-line
-  :hook ((prog-mode conf-mode text-mode) . hl-line-mode)) ; Highlight the current line
+  :hook ((prog-mode conf-mode text-mode dired-mode) . hl-line-mode)) ; Highlight the current line
 
 (use-package cc-vars
   :config
