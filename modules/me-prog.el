@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-19
 
 ;;; Commentary:
 
@@ -67,13 +67,6 @@
   ;; append the "-style" option
   (let ((clang (assq 'clang-format apheleia-formatters)))
     (setcdr clang (cons +clang-format-command (append (cddr clang) '((+clang-format-get-style)))))))
-
-
-;; Out of the box code execution from editing buffer
-(use-package quickrun
-  :straight t
-  :hook (quickrun--mode . minemacs-reduce-font-size)
-  :bind (([f5] . quickrun)))
 
 
 ;; An Emacs "jump to definition" package for 50+ languages

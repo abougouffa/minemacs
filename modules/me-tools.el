@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-15
+;; Last modified: 2025-07-19
 
 ;;; Commentary:
 
@@ -186,7 +186,6 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
-  :hook (pet-mode . +pet-quickrun-setup)
   :init
   ;; BUG: When accessing files via ADB, `pet-mode' fails at some stage because
   ;; `tramp' isn't able to give a relavant information in
@@ -200,18 +199,7 @@ a project, call `multi-vterm-dedicated-toggle'."
 
   ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
   ;; down opening Python buffers (or reverting them)
-  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10)
-  :config
-  ;; BUG+TODO: When the path contains spaces, this will fail to work. Using
-  ;; `shell-quote-argument' don't work either.
-  (defun +pet-quickrun-setup ()
-    (with-eval-after-load 'quickrun
-      (let ((cmd-alist (copy-alist (quickrun--command-info "python"))))
-        (dolist (key '(:command :compile-only))
-          (let* ((cmd (assq key cmd-alist))
-                 (args (string-split (cdr cmd))))
-            (setcdr cmd (string-join `(,(pet-executable-find (car args)) ,@(cdr args)) " "))))
-        (setq-local quickrun-option-cmd-alist cmd-alist)))))
+  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10))
 
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
