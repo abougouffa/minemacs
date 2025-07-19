@@ -46,32 +46,7 @@
 ;; Utilities for opening files with "sudo"
 (use-package sudo-edit
   :straight t
-  :hook (minemacs-first-file . sudo-edit-indicator-mode)
-  :commands (+sudo-edit-save)
-  :config
-  (defun +sudo-edit-save (choose-user save-as)
-    "Save currently visited file/buffer as another user.
-
-When called with \\[universal-argument], prompt for the user, otherwise,
-save as `sudo-edit-user'. When called with \\[universal-argument] \\[universal-argument],
-write to a new file name."
-    (interactive (let ((num (prefix-numeric-value current-prefix-arg)))
-                   (list (> num 1) (> num 4))))
-    (if-let* ((user (if choose-user
-                        (completing-read "User: " (system-users) nil nil nil 'sudo-edit-user-history sudo-edit-user)
-                      sudo-edit-user))
-              (file (if (or (not buffer-file-name) save-as)
-                        (read-file-name (format "Save (as %S) to: " sudo-edit-user))
-                      buffer-file-name))
-              (file (sudo-edit-filename file user))
-              (dest-buffer (find-file-noselect file))
-              (src-buffer (current-buffer)))
-        (progn
-          (copy-to-buffer dest-buffer (point-min) (point-max))
-          (unwind-protect (with-current-buffer dest-buffer (save-buffer))
-            (unless (eq src-buffer dest-buffer) (kill-buffer dest-buffer))
-            (with-current-buffer src-buffer (revert-buffer t t))))
-      (user-error "Unable to open %S" (abbreviate-file-name file)))))
+  :hook (minemacs-first-file . sudo-edit-indicator-mode))
 
 
 ;; Asynchronous "rsync" from `dired'
