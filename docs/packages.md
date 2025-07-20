@@ -61,7 +61,6 @@
 ## `me-emacs-lisp`
 * `elisp-plus`: Better Emacs Lisp code viewing
 * `parinfer-rust-mode`: Simplifying how you write Lisp
-* `helpful`: A better Emacs *help* buffer
 * `eros`: Evaluation Result OverlayS for Emacs Lisp
 * `relint`: Elisp regexp mistake finder
 
@@ -89,12 +88,11 @@
 
 ## `me-files`
 * `dired-hacks`: Collection of useful dired additions
+* `trashed`: Viewing and editing system trash can
 * `disk-usage`: Sort and browse disk usage listings
 * `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
 * `sudo-edit`: Utilities for opening files with "sudo"
-* `dired-rsync`: Asynchronous "rsync" from `dired`
-* `fd-dired`: Same functionality as `find-dired` and `find-grep-dired`, using fd/rg instead
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 * `cascading-dir-locals`: Apply all (!) ".dir-locals.el" from root to current directory
 
@@ -151,12 +149,9 @@
 * `citar-embark`: Citar integration with Embark
 
 ## `me-prog`
-* `treesit-auto`: Automatically manage `treesit` grammars
 * `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
-* `gambol`: Emacs text actions using LSP symbol information
 * `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
-* `quickrun`: Out of the box code execution from editing buffer
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `xref-union`: Combine multiple Xref backends
 * `hl-todo`: Highlight TODO keywords
@@ -165,8 +160,7 @@
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 * `dash-docs`: Offline documentation browser using Dash/Zeal docsets
 * `consult-dash`: Integration of `consult` with `dash-docs`
-* `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
-* `sr-speedbar`: Same frame speedbar
+* `simpc-mode`: Simple and fast C mode for amalgamated (big) files
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
@@ -179,7 +173,6 @@
 * `projection-multi`: Projection integration for `compile-multi`
 * `projection-multi-embark`: Integration for `projection-multi` and `embark`
 * `projection-dape`: Projection integration for `dape`
-* `find-file-in-project`: Quick access to project files using `fd`
 
 ## `me-robot`
 * `ros`: A package to ease the interaction ROS nodes and the development of ROS software
@@ -233,10 +226,6 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
-* `doom-two-tone-themes`: A sophisticated collection of two-tone themes
-* `doom-modeline`: A fancy and fast mode-line inspired by minimalism design
-* `solaire-mode`: Visually distinguish "real" buffers (i.e. file-visiting code buffers) from "unreal" buffers (like popups, sidebars, etc)
-* `enlight`: Highly customizable startup screen for Emacs
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
@@ -257,6 +246,7 @@
 * `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `magit-delta`: Use delta when viewing diffs in `magit`
 * `magit-gerrit`: Gerrit integration with Magit
+* `gerrit`: Gerrit integration via the REST API
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
@@ -503,6 +493,7 @@
 
 ## `on-demand/me-linux`
 * `kconfig-mode`: Major mode for editing Kconfig files
+* `cocci`: Coccinelle: Complex style-preserving source-to-source transformations
 
 ## `on-demand/me-llvm`
 * `llvm-ts-mode`: LLVM major mode using Tree-sitter

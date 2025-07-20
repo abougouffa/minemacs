@@ -251,6 +251,10 @@ The fd program to use.
 
 List of files to ignore in "fd".
 
+#### `+project-use-fd-on-remote`
+
+Whether to use fd (if found) on remote machines' projects or not.
+
 #### `+project-cache-project-files`
 
 Cache project files when using the generic fd/find backend.
@@ -385,6 +389,11 @@ provided as the first argument, inhibit messages but keep writing them to the
 Call FN with ARGS while to suppressing the messages in echo area.
 If `minemacs-verbose-p` is non-nil, do not print any message to
 *Messages* buffer.
+
+#### `(+apply-suppress-messages FN &rest ARGS)`
+
+Call FN with ARGS while to suppressing the messages in echo area.
+The messages are still printed to *Messages* buffer.
 
 #### `(+load-theme)`
 
@@ -992,6 +1001,10 @@ Forget all duplicate known projects (like /home/user/proj and ~/proj).
 
 Initialize project list from `+project-root-wildcards`.
 
+#### `(+project-have-compile-commands-p &optional PROJ)`
+
+Check if PROJ have a "compile_commands.json" file.
+
 #### `(+xref-find-references-at-point)`
 
 Find references to the identifier at or around point.
@@ -1003,6 +1016,10 @@ Extract the descriptions of MinEmacs packages.
 #### `(+list-external-dependencies)`
 
 Show the list of declared external dependencies.
+
+#### `(+describe-at-point)`
+
+Show help for the symbol at point.
 
 #### `(eglot-ltex-ls-install PRE)`
 
