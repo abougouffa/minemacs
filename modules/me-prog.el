@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-19
+;; Last modified: 2025-07-20
 
 ;;; Commentary:
 
@@ -169,6 +169,12 @@
   :config
   (with-eval-after-load 'consult
     (consult-customize consult-dash :initial (or (thing-at-point 'region t) (thing-at-point 'symbol t)))))
+
+
+;; Simple and fast C mode for amalgamated (big) files
+(use-package simpc-mode
+  :straight (:host github :repo "rexim/simpc-mode")
+  :commands (simpc-mode))
 
 
 (provide 'me-prog)
