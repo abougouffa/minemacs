@@ -4,13 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-05
+;; Last modified: 2025-07-20
 
 ;;; Commentary:
 
 ;;; Code:
 
-(let ((min-ver 29) (recommended-ver 30)) ; Check if Emacs version is supported.
+(let ((min-ver 30) (recommended-ver 31)) ; Check if Emacs version is supported.
   (when (< emacs-major-version min-ver)
     (error "Emacs v%s is not supported, MinEmacs requires v%d or higher" emacs-version min-ver))
   (when (< emacs-major-version recommended-ver)

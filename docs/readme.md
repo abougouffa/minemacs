@@ -65,7 +65,7 @@ etc.)
 > branch mainly on two machines, one based on Manjaro Linux and the other on
 > Debian 12. However, I have set up some basic [Github CI
 > actions](https://github.com/abougouffa/minemacs/actions) that automatically
-> test running this configuration on Emacs 29, 30 and 31 in [Ubuntu
+> test running this configuration on Emacs 30 and 31 in [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
