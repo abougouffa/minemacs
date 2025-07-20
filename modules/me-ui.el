@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-19
+;; Last modified: 2025-07-20
 
 ;;; Commentary:
 
@@ -103,33 +103,7 @@
   :bind (:package man :map Man-mode-map ("C-o" . casual-man-tmenu))
   :bind (:package help-mode :map help-mode-map ("C-o" . casual-help-tmenu))
   :bind (:package org-agenda :map org-agenda-mode-map ("C-o" . casual-agenda-tmenu))
-  :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu))
-  :bind (:package smerge-mode :map smerge-mode-map ("C-o" . +casual-smerge-tmenu))
-  :config
-  ;; Partially from kickingvegas/casual#184
-  (transient-define-prefix +casual-smerge-tmenu ()
-    "Transient menu for smerge-mode operations."
-    [["Smerge Keep"
-      ("RET" "Keep current"      smerge-keep-current :transient t)
-      ("a"   "Keep all"          smerge-keep-all :transient t)
-      ("b"   "Keep base"         smerge-keep-base :transient t)
-      ("u"   "Keep upper"        smerge-keep-upper :transient t)
-      ("l"   "Keep lower"        smerge-keep-lower :transient t)]
-     ["Smerge Diff"
-      ("<" "Diff base vs upper"  smerge-diff-base-upper)
-      ("=" "Diff upper vs lower" smerge-diff-upper-lower)
-      (">" "Diff base vs lower"  smerge-diff-base-lower)]
-     ["Smerge Merge"
-      ("C" "Combine with next"   smerge-combine-with-next :transient t)
-      ("E" "Ediff"               smerge-ediff :transient t)
-      ("R" "Refine"              smerge-refine :transient t)
-      ("r" "Resolve"             smerge-resolve :transient t)]
-     ["Navigation"
-      ("F" "First"               +smerge-first :transient t)
-      ("L" "Last"                +smerge-last :transient t)
-      ("n" "Next conflict"       +smerge-next-recenter :transient t)
-      ("p" "Previous conflict"   +smerge-prev-recenter :transient t)
-      ("N" "Next conflict (vc)"  +smerge-vc-next-conflict-recenter :transient t)]]))
+  :bind (:package re-builder :map reb-mode-map ("C-o" . casual-re-builder-tmenu)))
 
 
 ;; An opinionated `transient' menu for `avy'
