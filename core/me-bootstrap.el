@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-04
+;; Last modified: 2025-07-20
 
 ;;; Commentary:
 
@@ -47,6 +47,7 @@
 ;;; `straight' customization
 
 (add-to-list 'straight-built-in-pseudo-packages 'treesit) ; Some packages like `ts-movement' depends on it
+(add-to-list 'straight-built-in-pseudo-packages 'org)
 
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
 ;; This cuts the size of the "straight/repos" directory by more than half (from
@@ -120,7 +121,7 @@
   "Like `minemacs-bump-packages', but runs asynchronously."
   (interactive)
   (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
-    (compile (string-join (list (car command-line-args) "--batch" "--script" user-init-file "--eval='(minemacs-bump-packages)'") " "))))
+    (compile (concat (car command-line-args) " --batch --eval='(minemacs-bump-packages)' --script " user-init-file))))
 
 (defun minemacs-upgrade (pull)
   "Upgrade the packages list to the locked revisions.
@@ -145,15 +146,6 @@ MinEmacs directory before upgrading."
       (lambda (name)
         (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
       (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
-
-
-
-;;; Extra stuff
-
-(use-package compat
-  :straight (compat :source gnu-elpa-mirror)
-  :when (< emacs-major-version 30)
-  :demand)
 
 
 (provide 'me-bootstrap)

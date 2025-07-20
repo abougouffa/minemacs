@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-19
+;; Last modified: 2025-07-20
 
 ;;; Commentary:
 
@@ -17,22 +17,11 @@
   (after-save . +save-guess-file-mode-h)
   (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
   :custom
-  ;; ====== Default directories for builtin packages ======
-  (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
-  (backup-directory-alist (list (cons "." (+directory-ensure minemacs-local-dir "backup/"))))
-
-  ;; ====== Better defaults ======
-  (auto-save-file-name-transforms ; Set file naming transform for `auto-save'
-   `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") sha1)
-     (".*" ,auto-save-list-file-prefix sha1)))
   (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
   (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
   (scroll-margin 2) ; Scroll at a margin of one line
   (create-lockfiles nil) ; Disable lockfiles
-  (make-backup-files t) ; Enable making backup files
-  (version-control t) ; Number each backup file
-  (backup-by-copying t) ; Copy instead of renaming current file
-  (delete-old-versions t) ; Clean up after itself
+  (make-backup-files nil) ; Disable making backup files
   (tab-always-indent 'complete) ; Make TAB indents first, then inserts the TAB character
   (require-final-newline t) ; End files with newline
   (undo-limit 2000000) ; 2MB, soft limit for undo data (per-buffer, size of `buffer-undo-list') to keep (def. 160kB)
@@ -44,8 +33,6 @@
   (x-stretch-cursor t) ; Stretch cursor to the glyph width
   (frame-resize-pixelwise t) ; Do force frame size to be a multiple of char size
   (frame-title-format '("GNU Emacs (%b)")) ; Custom frame title
-  (help-window-select t) ; Select help window for faster quit!
-  (Man-notify-method 'aggressive) ; Same thing with `man'
   (read-process-output-max ; Increase single chunk bytes to read from subprocess (def. 4096)
    (condition-case nil
        (with-temp-buffer ; On GNU/Linux systems, the value should not exceed `pipe-max-size'
@@ -56,7 +43,6 @@
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t) ; Ignores case when completing files names
   (read-extended-command-predicate #'command-completion-default-include-p) ; In `M-x', hide commands not relevant for the current mode
-  (completions-detailed t) ; More info on completions
   (completions-sort (if (>= emacs-major-version 30) 'historical 'alphabetical))
   (enable-recursive-minibuffers t) ; Enable recursive calls to minibuffer
   (minibuffer-prompt-properties ; Do not allow the cursor in the minibuffer prompt (works with `cursor-intangible-mode')
@@ -74,20 +60,19 @@
   (display-fill-column-indicator-character ?\u250a) ; Use a dashed line for `display-fill-column-indicator-mode'
   (indicate-buffer-boundaries 'right) ; Show buffer boundaries in the right fringe
   (apropos-do-all t) ; Make apropos commands search more extensively
-  (vc-follow-symlinks t) ; Do not ask obvious questions, follow symlinks
   (shell-kill-buffer-on-exit t) ; Kill the shell buffer after exit
   (widget-image-enable nil) ; No ugly button for widgets
   (tooltip-hide-delay 20) ; Make tooltips last a bit longer (default 10s)
   (image-animate-loop t) ; Animated images loop forever instead of playing the animation only once
   (icomplete-compute-delay 0.01) ; Don't delay displaying completion candidates in `fido-mode' (def. 0.15)
-  (ring-bell-function #'ignore) ; Don't beep (will be overwritten by `doom-modeline')
   (inhibit-compacting-font-caches t) ; Trade memory usage for less lagging
   (set-mark-command-repeat-pop t) ; Use C-u C-SPC C-SPC... instead of C-u C-SPC C-u C-SPC...
   (mode-line-collapse-minor-modes t) ; Collapse minor modes in mode line lighters (Emacs 31+)
+  (password-cache-expiry 60) ; Cache for one minute (def. 16s)
+  (epg-pinentry-mode 'loopback) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
+  (doc-view-continuous t)
   :init
-  (setq-default truncate-lines nil ; Don't truncate long line, display them
-                fill-column 80 ; Default fill column width
-                tab-width 4) ; Default (8) is too big!
+  (setq-default fill-column 80) ; Default fill column width
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (+package-disabled-p 'vertico 'me-completion)
@@ -102,13 +87,17 @@
   (when (+package-disabled-p 'smartparens 'me-editor)
     (electric-pair-mode 1))
 
+  ;; Prefer `embark', see https://www.matem.unam.mx/~omar/apropos-emacs.html#the-case-against-which-key-a-polemic
+  (when (+package-disabled-p 'embark 'me-completion)
+    (which-key-mode 1))
+
   ;; Buffer boundaries looks uggly in these modes, disable them
   (+setq-hook! (magit-status-mode magit-log-mode enlight-mode)
     indicate-buffer-boundaries nil)
 
-  ;; Inhibit startup message in echo area the brutal way!
-  ;; The `inhibit-startup-echo-area-message' variable is very restrictive, there is only one unique way of setting it right!
-  ;; See: https://reddit.com/r/emacs/comments/6e9o4o/comment/di8q1t5
+  (eval-after-load 'minemacs-first-file (+shutup! (epa-file-enable)))
+
+  ;; Inhibit startup message and screen
   (fset 'display-startup-echo-area-message #'ignore)
   (fset 'display-startup-screen #'ignore)
 
@@ -138,17 +127,15 @@
     (keymap-set help-map "h" #'+describe-at-point))
 
   ;; Enable some useful Emacs commands by default
-  (dolist (command '(narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
+  (dolist (command '(list-timers narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
     (put command 'disabled nil))
 
   (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
   (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
 
-  (defun +theme--disable-previous-themes:before-a (&rest _args)
-    "Disable previously enabled themes before enabling the new one."
-    (mapc #'disable-theme custom-enabled-themes))
-
   ;; Disable previously enabled custom themes before enabling a new one.
+  (defun +theme--disable-previous-themes:before-a (&rest _args)
+    (mapc #'disable-theme custom-enabled-themes))
   (advice-add 'load-theme :before '+theme--disable-previous-themes:before-a)
 
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
@@ -178,9 +165,6 @@
 
   ;; Guess the major mode after saving a file in `fundamental-mode' (adapted from Doom Emacs).
   (defun +save-guess-file-mode-h ()
-    "Guess major mode when saving a file in `fundamental-mode'.
-Likely, something has changed since the buffer was opened. e.g. A shebang line
-or file path may exist now."
     (when (eq major-mode 'fundamental-mode)
       (let ((buffer (or (buffer-base-buffer) (current-buffer))))
         (and (buffer-file-name buffer)
@@ -207,9 +191,7 @@ or file path may exist now."
   :custom
   (comment-multi-line t)
   :init
-  ;; Inline comments have to be preceded by at least this many spaces. Python's
-  ;; PEP8 recommends two spaces
-  (+setq-hook! python-base-mode comment-inline-offset 2))
+  (+setq-hook! python-base-mode comment-inline-offset 2)) ; Python's PEP8 recommends two spaces
 
 (use-package crm
   :custom
@@ -227,41 +209,14 @@ or file path may exist now."
             (cdr args)))
     (advice-add #'completing-read-multiple :filter-args #'+crm--indicator:filter-args-a)))
 
-(use-package which-key
-  :straight (which-key :source gnu-elpa-mirror)
-  :hook (minemacs-lazy . which-key-mode)
-  :when (+package-disabled-p 'embark 'me-completion) ; prefer `embark', see https://www.matem.unam.mx/~omar/apropos-emacs.html#the-case-against-which-key-a-polemic
-  :custom
-  (which-key-idle-delay 1.0)
-  (which-key-idle-secondary-delay nil)
-  (which-key-ellipsis "..")
-  (which-key-prefix-prefix "+")
-  (which-key-sort-order #'which-key-key-order-alpha)
-  (which-key-min-display-lines 3)
-  (which-key-max-display-columns nil)
-  (which-key-allow-multiple-replacements t) ; Allow multiple rules in `which-key-replacement-alist'
-  :config
-  ;; Setup `which-key' integration with the minibuffer
-  (which-key-setup-minibuffer))
-
 (use-package tramp
-  :straight (tramp :source gnu-elpa-mirror)
-  :init
-  (if (featurep 'os/win)
-      (when (executable-find "plink")
-        (setopt tramp-default-method "plink")) ; When available, use "plink", the PuTTY Link SSH
-    (setopt tramp-default-method "ssh")) ; This is faster than the default "scp"
   :custom
-  (tramp-use-connection-share t)
-  (tramp-auto-save-directory (concat minemacs-local-dir "tramp-auto-save/"))
   (tramp-backup-directory-alist backup-directory-alist)
-  ;; TRAMP optimizations from:
-  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+  ;; TRAMP optimizations from: https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
   (tramp-use-scp-direct-remote-copying t)
   (tramp-copy-size-limit (* 1024 1024)) ; 1MB (def. 10kB)
   (tramp-verbose (if minemacs-verbose-p 4 2))
   (remote-file-name-inhibit-locks t)
-  (remote-file-name-inhibit-auto-save-visited t)
   :config
   (connection-local-set-profile-variables
    'remote-direct-async-process
@@ -279,27 +234,6 @@ or file path may exist now."
          "-o ControlPath=" (file-name-as-directory temporary-file-directory) "tramp.ssh-controlpath-%%C "
          "-o ControlMaster=auto -o ControlPersist=1800 " ; persist for 30min
          "-o ServerAliveInterval=5 -o ServerAliveCountMax=2")))
-
-(use-package password-cache
-  :custom
-  (password-cache t) ; Enable password caching
-  (password-cache-expiry 60)) ; Cache for one minute (def. 16s)
-
-(use-package auth-source
-  :custom
-  (auth-sources '("~/.authinfo.gpg")) ; Default auth-sources to GPG
-  (auth-source-do-cache t) ; Enable caching, do not keep asking about GPG key
-  (auth-source-cache-expiry 86400)) ; All day (def. 7200s = 2h)
-
-(use-package epa-config
-  :custom
-  (epg-pinentry-mode 'loopback)) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
-
-(use-package epa-file
-  :after minemacs-first-file
-  :demand
-  :config
-  (+shutup! (epa-file-enable)))
 
 (use-package dired
   ;; Enable adding mail attachments from dired "C-c RET C-a" for
@@ -338,13 +272,7 @@ or file path may exist now."
     "\\|\\(?:\\.js\\)?\\.meta\\'"
     "\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"))
 
-(use-package doc-view
-  :custom
-  (doc-view-continuous t)
-  (doc-view-mupdf-use-svg (featurep 'feat/rsvg)))
-
 (use-package project
-  :straight (project :source gnu-elpa-mirror)
   :commands (project-remember-projects-under)
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
@@ -392,7 +320,6 @@ or file path may exist now."
        'face (funcall tab-bar-tab-face-function tab)))))
 
 (use-package editorconfig
-  :straight (editorconfig :source nongnu-elpa)
   :hook (minemacs-first-file . editorconfig-mode)
   :init
   (add-hook 'prog-mode-hook #'+editorconfig-guess-style-from-clang-format 80)
@@ -400,7 +327,6 @@ or file path may exist now."
   (add-to-list 'editorconfig-indentation-alist '(protobuf-ts-mode . protobuf-ts-mode-indent-offset)))
 
 (use-package flymake
-  :straight (flymake :source gnu-elpa-mirror)
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
@@ -585,7 +511,6 @@ or file path may exist now."
         hs-special-modes-alist '((t)))))
 
 (use-package xref
-  :straight (xref :source gnu-elpa-mirror)
   :hook (xref--xref-buffer-mode . minemacs-reduce-font-size)
   :custom
   ;; Use completion in the minibuffer instead of definitions buffer
@@ -603,7 +528,6 @@ or file path may exist now."
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
-  :straight (eglot :source gnu-elpa-mirror)
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ; async, do not block
@@ -638,7 +562,6 @@ or file path may exist now."
   (imenu-max-item-length 120)) ; Show longer definitions (def. 60)
 
 (use-package eldoc
-  :straight (eldoc :source gnu-elpa-mirror)
   :custom
   (eldoc-documentation-strategy #'eldoc-documentation-compose))
 
@@ -707,7 +630,6 @@ or file path may exist now."
   (gdb-display-io-nopopup nil)) ; in case we enabled the IO buffer, we don't want it to popup when hidden
 
 (use-package org
-  :straight (org :source gnu-elpa-mirror)
   :defer 10
   :preface
   ;; Set to the default value, this can be overwritten in the user config file.
@@ -719,7 +641,6 @@ or file path may exist now."
   (org-id-locations-file (concat minemacs-cache-dir "org/id-locations.el"))
   (org-auto-align-tags nil)
   (org-edit-src-content-indentation 0) ; do not indent the content of src blocks
-  (org-edit-src-turn-on-auto-save t) ; auto-save org-edit-src
   (org-ellipsis " ↩")
   (org-export-in-background t) ; run export processes in external emacs process
   (org-export-with-broken-links 'mark) ; Do not rise error on broken links, but mark them in the output file
