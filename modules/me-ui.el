@@ -60,7 +60,11 @@
                   "  "
                   prot-modeline-flymake
                   "  "
-                  prot-modeline-misc-info)))
+                  prot-modeline-misc-info
+                  " "))
+
+  (+subtle-mode-line)
+  (add-hook 'minemacs-after-load-theme-hook #'+subtle-mode-line))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines

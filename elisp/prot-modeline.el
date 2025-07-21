@@ -32,6 +32,7 @@
 ;;; Code:
 
 (require 'prot-common)
+(require 'nerd-icons)
 
 (defgroup prot-modeline nil
   "Custom modeline that is stylistically close to the default."
@@ -319,7 +320,7 @@ Specific to the current window's mode line.")
      ((and (mode-line-window-selected-p)
            file
            (buffer-modified-p))
-      '(italic mode-line-buffer-id))
+      '(error italic mode-line-buffer-id))
      ((and file (buffer-modified-p))
       'italic)
      ((mode-line-window-selected-p)
@@ -350,24 +351,23 @@ See `prot-modeline-string-cut-middle'."
 
 (defvar-local prot-modeline-buffer-identification
   '(:eval
-    (propertize (prot-modeline-buffer-name)
-                'face (prot-modeline-buffer-identification-face)
-                'mouse-face 'mode-line-highlight
-                'help-echo (prot-modeline-buffer-name-help-echo)))
+    (concat (prot-modeline-file-icon)
+            " "
+            (propertize (prot-modeline-buffer-name)
+                        'face (prot-modeline-buffer-identification-face)
+                        'mouse-face 'mode-line-highlight
+                        'help-echo (prot-modeline-buffer-name-help-echo))))
   "Mode line construct for identifying the buffer being displayed.
 Propertize the current buffer with the `mode-line-buffer-id'
 face.  Let other buffers have no face.")
 
 ;;;; Major mode
 
-(defun prot-modeline-major-mode-indicator ()
+(defun prot-modeline-file-icon ()
   "Return appropriate propertized mode line indicator for the major mode."
-  (let ((indicator (cond
-                    ((derived-mode-p 'text-mode) "§")
-                    ((derived-mode-p 'prog-mode) "λ")
-                    ((derived-mode-p 'comint-mode) ">_")
-                    (t "◦"))))
-    (propertize indicator 'face 'shadow)))
+  (cond ((buffer-file-name) (nerd-icons-icon-for-file (buffer-file-name) :height 1.0))
+        ((and (bound-and-true-p dired-mode) dired-directory) (nerd-icons-icon-for-dir dired-directory :height 1.0))
+        (t (nerd-icons-icon-for-mode major-mode :height 1.0))))
 
 (defun prot-modeline-major-mode-name ()
   "Return capitalized `major-mode' without the -mode suffix."
@@ -384,8 +384,6 @@ face.  Let other buffers have no face.")
    (propertize "%[" 'face 'prot-modeline-indicator-red)
    '(:eval
      (concat
-      (prot-modeline-major-mode-indicator)
-      " "
       (propertize
        (prot-modeline-string-abbreviate-but-last
         (prot-modeline-major-mode-name)
@@ -454,10 +452,10 @@ With optional FACE, use it to propertize the BRANCH."
                'face face
                'mouse-face 'mode-line-highlight
                'help-echo (prot-modeline--vc-help-echo file)
-               'local-map prot-modeline-vc-map)
-   ;; " "
-   ;; (prot-modeline-diffstat file)
-   ))
+               'local-map prot-modeline-vc-map)))
+;; " "
+;; (prot-modeline-diffstat file)
+
 
 (defun prot-modeline--vc-details (file branch &optional face)
   "Return Git BRANCH details for FILE, truncating it if necessary.

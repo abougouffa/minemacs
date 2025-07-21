@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-19
+;; Last modified: 2025-07-21
 
 ;;; Commentary:
 
@@ -1024,14 +1024,17 @@ When RESET is non-nil, restore the original font size."
 ;; Reproduce the look of the subtle mode-line of the `spacious-padding' package
 (defun +subtle-mode-line ()
   "Subtle look for the mode-line."
-  (set-face-attribute
-   'mode-line-active nil
-   :overline (face-attribute 'default :foreground nil t)
-   :background (face-attribute 'default :background nil t))
+  (when (display-graphic-p)
+    (set-face-attribute
+     'mode-line-active nil
+     :box `(:line-width 4 :color ,(face-attribute 'default :background nil t) :style nil)
+     :overline (face-attribute 'default :foreground nil t)
+     :background (face-attribute 'default :background nil t))
 
-  (set-face-attribute
-   'mode-line-inactive nil
-   :overline (face-attribute 'mode-line-inactive :foreground nil t)))
+    (set-face-attribute
+     'mode-line-inactive nil
+     :box `(:line-width 4 :color ,(face-attribute 'mode-line-inactive :background nil t) :style nil)
+     :overline (face-attribute 'mode-line-inactive :foreground nil t))))
 
 (autoload 'color-darken-name "color")
 (autoload 'color-lighten-name "color")
