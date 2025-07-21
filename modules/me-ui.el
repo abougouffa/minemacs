@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-20
+;; Last modified: 2025-07-21
 
 ;;; Commentary:
 
@@ -31,6 +31,36 @@
     (doom-themes-org-config))
   ;; Enable blinking modeline on errors (`visible-bell')
   (+with-delayed-1! (doom-themes-visual-bell-config)))
+
+
+(use-package prot-modeline
+  :demand
+  :config
+  (setq mode-line-compact nil)
+  (setq mode-line-right-align-edge 'right-margin)
+  (setq-default mode-line-format
+                '("%e"
+                  prot-modeline-kbd-macro
+                  prot-modeline-narrow
+                  prot-modeline-buffer-status
+                  prot-modeline-window-dedicated-status
+                  prot-modeline-input-method
+                  "  "
+                  prot-modeline-buffer-identification
+                  "  "
+                  prot-modeline-major-mode
+                  prot-modeline-process
+                  "  "
+                  prot-modeline-eglot
+                  "  "
+                  mode-line-format-right-align ; Emacs 30
+                  prot-modeline-notmuch-indicator
+                  "  "
+                  prot-modeline-vc-branch
+                  "  "
+                  prot-modeline-flymake
+                  "  "
+                  prot-modeline-misc-info)))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines
