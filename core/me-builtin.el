@@ -439,7 +439,7 @@
   (cl-callf append major-mode-remap-alist
     '((c-or-c++-mode . c-or-c++-ts-mode) (c++-mode . c++-ts-mode) (c-mode . c-ts-mode)
       (java-mode . java-ts-mode) (js-mode . js-ts-mode) (sh-mode . bash-ts-mode)
-      (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode))))
+      (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode) (python-mode . python-ts-mode))))
 
 (use-package markdown-ts-mode
   :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
