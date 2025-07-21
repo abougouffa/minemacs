@@ -33,34 +33,33 @@
   (+with-delayed-1! (doom-themes-visual-bell-config)))
 
 
-(use-package prot-modeline
+(use-package me-modeline
   :demand
   :config
   (setq mode-line-compact nil)
   (setq mode-line-right-align-edge 'right-margin)
   (setq-default mode-line-format
                 '("%e"
-                  prot-modeline-kbd-macro
-                  prot-modeline-narrow
-                  prot-modeline-buffer-status
-                  prot-modeline-window-dedicated-status
-                  prot-modeline-input-method
+                  me-modeline-kbd-macro
+                  me-modeline-narrow
+                  me-modeline-buffer-status
+                  me-modeline-window-dedicated-status
+                  me-modeline-input-method
                   "  "
-                  prot-modeline-buffer-identification
+                  me-modeline-buffer-identification
                   "  "
-                  prot-modeline-major-mode
-                  prot-modeline-process
+                  me-modeline-major-mode
+                  me-modeline-process
                   "  "
-                  prot-modeline-eglot
+                  me-modeline-eglot
                   "  "
-                  mode-line-format-right-align ; Emacs 30
-                  prot-modeline-notmuch-indicator
+                  mode-line-format-right-align
                   "  "
-                  prot-modeline-vc-branch
+                  me-modeline-vc-branch
                   "  "
-                  prot-modeline-flymake
+                  me-modeline-flymake
                   "  "
-                  prot-modeline-misc-info
+                  me-modeline-misc-info
                   " "))
 
   (+subtle-mode-line)
