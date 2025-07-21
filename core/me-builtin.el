@@ -599,8 +599,8 @@
       (remove-hook 'jsonrpc-event-hook 'jsonrpc--log-event)))
 
   ;; Don't spit messages to the echo area
-  (advice-add 'jsonrpc--message :around #'+suppress-messages)
-  (advice-add 'eglot--message :around #'+suppress-messages)
+  (advice-add 'jsonrpc--message :around #'+apply-suppress-messages)
+  (advice-add 'eglot--message :around #'+apply-suppress-messages)
 
   ;; When a sub/super project with a separate Python virtual environment is detected,
   ;; limit to this one.
