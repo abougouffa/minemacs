@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-20
+;; Last modified: 2025-07-21
 
 ;;; Commentary:
 
@@ -296,10 +296,9 @@
   :hook (minemacs-lazy . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
-  (tab-bar-tab-name-format-function #'+tab-bar-tab-spaced-name-format)
+  (tab-bar-tab-name-format-function #'+tab-bar--tab-spaced-name-format)
   (tab-bar-close-button-show nil)
-  (tab-bar-auto-width-max '((150) 20))
-  (tab-bar-tab-hints t)
+  (tab-bar-auto-width nil)
   (tab-bar-show t)
   :init
   (defcustom +tab-bar-tab-name-function-ignored-buffers '("\\*Bookmark List\\*")
@@ -307,17 +306,73 @@
     :type '(repeat regexp)
     :group 'minemacs-ui)
   :config
-  (defun +tab-bar-tab-spaced-name-format (tab i)
+  (setq tab-bar-separator "\u200B")
+
+  (defun +tab-bar--tab-spaced-name-format (tab i)
     (let ((current-p (eq (car tab) 'current-tab)))
       (propertize
-       (concat (if tab-bar-tab-hints (format " %c " (+ ?❶ (1- i))) " ")
-               (alist-get 'name tab)
-               (or (and tab-bar-close-button-show
-                        (not (eq tab-bar-close-button-show
-                                 (if current-p 'non-selected 'selected)))
-                        tab-bar-close-button)
-                   ""))
-       'face (funcall tab-bar-tab-face-function tab)))))
+       (concat " " (alist-get 'name tab) " ") 'face (funcall tab-bar-tab-face-function tab))))
+
+  (defun +tab-bar--set-faces ()
+    (let* ((fallback-fg (face-attribute 'default :foreground))
+           (fallback-bg (face-attribute 'default :background))
+           (bg-tab-active (or (face-attribute 'default :background) fallback-fg))
+           (fg-tab-active (or (face-attribute 'default :foreground) fallback-bg))
+           (bg-tab-inactive (or (face-attribute 'mode-line-inactive :background) fallback-bg))
+           (fg-tab-inactive (or (face-attribute 'mode-line-inactive :foreground) fallback-fg)))
+
+      ;; The tab bar's appearance
+      (set-face-attribute
+       'tab-bar nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      ;; Inactive tabs
+      (set-face-attribute
+       'tab-bar-tab-inactive nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      ;; Active tab
+      (set-face-attribute
+       'tab-bar-tab nil :background bg-tab-active :foreground fg-tab-active :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      ;; The tab bar's ungrouped appearance
+      (set-face-attribute
+       'tab-bar-tab-ungrouped nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      ;; Inactive tab groups
+      (set-face-attribute
+       'tab-bar-tab-group-inactive nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      ;; Current tab group
+      (set-face-attribute
+       'tab-bar-tab-group-current nil :background bg-tab-inactive :foreground fg-tab-active :inverse-video 'unspecified
+       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
+       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
+       :strike-through 'unspecified :stipple 'unspecified)
+
+      (when (and (display-graphic-p) (not (daemonp)))
+        (set-face-attribute 'tab-bar nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
+        (set-face-attribute 'tab-bar-tab-inactive nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
+        (set-face-attribute 'tab-bar-tab nil :box `(:line-width 3 :color ,bg-tab-active :style nil))
+        (set-face-attribute 'tab-bar-tab-ungrouped nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
+        (set-face-attribute 'tab-bar-tab-group-inactive nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
+        (set-face-attribute 'tab-bar-tab-group-current nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil)))))
+
+  (add-hook 'minemacs-after-load-theme-hook #'+tab-bar--set-faces)
+  (+tab-bar--set-faces))
 
 (use-package editorconfig
   :hook (minemacs-first-file . editorconfig-mode)
