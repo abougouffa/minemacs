@@ -1022,7 +1022,7 @@ When RESET is non-nil, restore the original font size."
       (setq minemacs-reduce-font-remap-cookie (face-remap-add-relative 'default :height minemacs-reduce-font-size-ratio)))))
 
 ;; Reproduce the look of the subtle mode-line of the `spacious-padding' package
-(defun +subtle-mode-line ()
+(defun +subtle-mode-line (&rest _args)
   "Subtle look for the mode-line."
   (when (display-graphic-p)
     (set-face-attribute

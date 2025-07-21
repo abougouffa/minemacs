@@ -63,7 +63,8 @@
                   " "))
 
   (+subtle-mode-line)
-  (add-hook 'minemacs-after-load-theme-hook #'+subtle-mode-line))
+  (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)
+  (add-hook 'enable-theme-functions #'+subtle-mode-line))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines
