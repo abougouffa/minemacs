@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-20
+;; Last modified: 2025-07-21
 
 ;;; Commentary:
 
@@ -66,7 +66,7 @@
                        (vertical-scroll-bars)
                        (left-fringe . 8)
                        (right-fringe . 13)
-                       (internal-border-width . 15)
+                       (internal-border-width . 5)
                        (fullscreen . maximized))
  ;; Explicitly set modes disabled in `default-frame-alist' to nil
  tool-bar-mode nil
