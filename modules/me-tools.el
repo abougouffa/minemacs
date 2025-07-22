@@ -186,7 +186,11 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight (:host github :repo "aiguofer/pyenv.el")
   :hook (minemacs-first-file . global-pyenv-mode)
   :custom
-  (pyenv-show-active-python-in-modeline nil))
+  (pyenv-show-active-python-in-modeline nil)
+  :init
+  (when-let* ((exe (executable-find "pyenv")))
+    (setq pyenv-executable exe)) ; In some cases, pyenv is installed under "/usr/bin/pyenv"
+  (advice-add 'pyenv-use :around #'+apply-suppress-messages))
 
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
