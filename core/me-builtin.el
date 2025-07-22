@@ -73,7 +73,8 @@
   (doc-view-continuous t)
   (mouse-autoselect-window t)
   :init
-  (setq-default fill-column 80) ; Default fill column width
+  (setq-default fill-column 80
+                cursor-type 'bar)
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (+package-disabled-p 'vertico 'me-completion)
