@@ -238,6 +238,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
      (when-let* ((count (me-modeline-flymake-counter
                          ,(intern (format ":%s" type)))))
        (concat
+        " "
         (+nerd-icons-icon ,icon :face ',(or face type))
         " "
         (propertize count
