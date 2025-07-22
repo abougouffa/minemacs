@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-19
+;; Last modified: 2025-07-22
 
 ;;; Commentary:
 
@@ -179,6 +179,14 @@ a project, call `multi-vterm-dedicated-toggle'."
   ;; Ensure loading envrc for babel source blocks
   (with-eval-after-load 'ob
     (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
+
+
+;; Emacs integration for "pyenv"
+(use-package pyenv
+  :straight (:host github :repo "aiguofer/pyenv.el")
+  :hook (minemacs-first-file . global-pyenv-mode)
+  :custom
+  (pyenv-show-active-python-in-modeline nil))
 
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
