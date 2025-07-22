@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-13
+;; Last modified: 2025-07-22
 
 ;;; Commentary:
 
@@ -28,8 +28,8 @@
          ("C-c C-<"       . mc/mark-all-like-this)
          ("C-S-c x"       . mc/mark-more-like-this-extended)
          ("C-S-c a"       . mc/mark-all-dwim)
-         ("C-S-c s"       . mc/mark-next-symbol-like-this)
-         ("C-S-c S"       . mc/mark-previous-like-this-symbol)
+         ("C-S-c n"       . mc/mark-next-like-this-symbol)
+         ("C-S-c p"       . mc/mark-previous-like-this-symbol)
          ("C-S-c C-s"     . mc/mark-all-symbols-like-this)
          ("C-S-c C-S-c"   . mc/edit-lines)
          ("C-S-c C-e"     . mc/edit-ends-of-lines)
