@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-21
+;; Last modified: 2025-07-22
 
 ;;; Commentary:
 
@@ -199,16 +199,20 @@ provided as the first argument, inhibit messages but keep writing them to the
   "Call FN with ARGS while to suppressing the messages in echo area.
 If `minemacs-verbose-p' is non-nil, do not print any message to
 *Messages* buffer."
-  (let ((message-log-max (and minemacs-verbose-p message-log-max)))
-    (with-temp-message (or (current-message) "")
-      (+debug! "Inhibiting messages of %s" (symbol-name fn))
-      (apply fn args))))
+  (if (interactive-p)
+      (apply fn args)
+    (let ((message-log-max (and minemacs-verbose-p message-log-max)))
+      (with-temp-message (or (current-message) "")
+        (+debug! "Inhibiting messages of %s" (symbol-name fn))
+        (apply fn args)))))
 
 (defun +apply-suppress-messages (fn &rest args) ; Helper functions to be used as advises
   "Call FN with ARGS while to suppressing the messages in echo area.
 The messages are still printed to *Messages* buffer."
-  (with-temp-message (or (current-message) "")
-    (apply fn args)))
+  (if (interactive-p)
+      (apply fn args)
+    (with-temp-message (or (current-message) "")
+      (apply fn args))))
 
 (defun +load-theme ()
   "Load Emacs' theme from `minemacs-theme'."
