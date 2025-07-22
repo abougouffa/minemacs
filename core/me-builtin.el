@@ -51,7 +51,6 @@
   (delete-by-moving-to-trash t) ; Move stuff to trash
   (save-some-buffers-default-predicate #'save-some-buffers-root) ; Save files only in sub-directories of current project
   (inhibit-startup-screen t) ; Inhibit startup message
-  (initial-major-mode 'fundamental-mode) ; Set initial buffer to fundamental-mode for faster load
   (large-file-warning-threshold (* 20 1024 1024)) ; Increase the large file threshold to 20MiB (10MB)
   (use-dialog-box nil) ; Always prompt in minibuffer (no GUI)
   (use-short-answers t) ; Use y or n instead of yes or no
@@ -1006,6 +1005,8 @@ Typing these will trigger reindentation of the current line.")
 
 (use-package frame
   :hook (minemacs-lazy . window-divider-mode) ; Display divider between windows
+  :hook (minemacs-after-startup . undelete-frame-mode)
+  :bind ("C-x u" . undelete-frame) ; I use C-_ for `undo'
   :custom
   ;; Set line width for the divider in `window-divider-mode' to 2px
   (window-divider-default-bottom-width 2)
