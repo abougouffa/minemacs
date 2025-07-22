@@ -49,7 +49,7 @@ indicators.")
     (when (and (mode-line-window-selected-p)
                (buffer-narrowed-p)
                (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode)))
-      (concat " " (nerd-icons-mdicon "nf-md-arrow_collapse_vertical")))))
+      (concat " " (+nerd-icons-icon "nf-md-arrow_collapse_vertical")))))
 
 ;;;; Input method
 

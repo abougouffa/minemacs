@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-21
+;; Last modified: 2025-07-22
 
 ;;; Commentary:
 
@@ -48,7 +48,8 @@
                   "  "
                   me-modeline-buffer-identification
                   "  "
-                  me-modeline-major-mode
+                  mode-line-position
+                  "  "
                   me-modeline-process
                   "  "
                   me-modeline-eglot
