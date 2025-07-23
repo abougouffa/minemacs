@@ -43,6 +43,7 @@
                   me-modeline-buffer-status
                   me-modeline-window-dedicated-status
                   me-modeline-input-method
+                  me-modeline-multiple-cursors
                   "  "
                   me-modeline-buffer-identification
                   "  "

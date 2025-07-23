@@ -51,6 +51,16 @@ indicators.")
                (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode)))
       (concat " " (+nerd-icons-icon "nf-md-arrow_collapse_vertical")))))
 
+(defvar-local me-modeline-multiple-cursors
+  '(:eval
+    (concat
+     (when (bound-and-true-p multiple-cursors-mode)
+       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-blue)
+               (propertize (format " %d " (mc/num-cursors)) 'face 'nerd-icons-blue)))
+     (when (and (bound-and-true-p iedit-mode) (bound-and-true-p iedit-occurrences-overlays))
+       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-green)
+               (propertize (format " %d " (length iedit-occurrences-overlays)) 'face 'nerd-icons-green))))))
+
 ;;;; Input method
 
 (defvar-local me-modeline-input-method
@@ -284,6 +294,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      me-modeline-narrow
                      me-modeline-input-method
                      me-modeline-buffer-status
+                     me-modeline-multiple-cursors
                      me-modeline-window-dedicated-status
                      me-modeline-buffer-identification
                      me-modeline-major-mode
