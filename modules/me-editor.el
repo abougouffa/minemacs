@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -137,7 +137,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :straight t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
-  (setq highlight-numbers-generic-regexp (rx (and symbol-start (one-or-more digit)) (optional "." (* digit)) symbol-end))
+  (setq highlight-numbers-generic-regexp (rx symbol-start (? "-") (+ digit) (? "." (* digit)) symbol-end))
   ;; Define the right format for numbers in `dts-mode'
   (puthash 'dts-mode
            (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
