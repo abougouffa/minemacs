@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -29,7 +29,9 @@
 
 ;; Major mode for editing Python's pip requirements files
 (use-package pip-requirements
-  :straight t)
+  :straight t
+  :init
+  (advice-add 'pip-requirements-fetch-packages :override #'ignore))
 
 
 (provide 'on-demand/me-python)
