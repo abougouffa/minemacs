@@ -75,19 +75,21 @@ indicators.")
 (defvar-local me-modeline-buffer-status
   '(:eval
     (when-let* ((method (file-remote-p default-directory 'method))
-                (icon (pcase method
-                        ("ssh" "nf-md-ssh")
-                        ("adb" "nf-dev-android")
-                        ("mtp" "nf-fa-mobile_phone")
-                        ("gdrive" "nf-fa-google")
-                        ("davs" "nf-fa-globe")
-                        ("nextcloud" "nf-fa-cloud")
-                        ("kubernetes" "nf-dev-kubernetes")
-                        ((rx (or "sudo" "su" "doas" "sudoedit")) "nf-md-pound_box")
-                        ((rx (or "docker" "dockercp")) "nf-fa-docker")
-                        ((rx (or "podman" "podmancp")) "nf-dev-podman")
-                        (t "nf-md-folder_network_outline"))))
-      (concat " " (+nerd-icons-icon icon :face 'nerd-icons-dblue)))))
+                (icon-face (pcase method
+                             ("ssh" "nf-md-ssh")
+                             ("adb" "nf-dev-android")
+                             ("mtp" "nf-fa-mobile_phone")
+                             ("gdrive" "nf-fa-google")
+                             ("davs" "nf-fa-globe")
+                             ("nextcloud" "nf-fa-cloud")
+                             ("kubernetes" "nf-dev-kubernetes")
+                             ((rx (or "docker" "dockercp")) "nf-fa-docker")
+                             ((rx (or "podman" "podmancp")) "nf-dev-podman")
+                             ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
+                             (t "nf-md-folder_network_outline")))
+                (icon (if (consp icon-face) (car icon-face) icon-face))
+                (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
+      (concat " " (+nerd-icons-icon icon :face face)))))
 
 ;;;; Dedicated window
 
