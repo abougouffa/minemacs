@@ -632,7 +632,7 @@ Setup fonts.
 Reduce the font size in the buffer by `minemacs-reduce-font-size-ratio`.
 When RESET is non-nil, restore the original font size.
 
-#### `(+subtle-mode-line)`
+#### `(+subtle-mode-line &rest ARGS)`
 
 Subtle look for the mode-line.
 

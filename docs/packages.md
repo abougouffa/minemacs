@@ -219,7 +219,7 @@
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `envrc`: Buffer-local "direnv" integration for Emacs
-* `pet`: Python Executable Tracker
+* `pyenv`: Emacs integration for "pyenv"
 * `add-node-modules-path`: Adds the "node_modules/.bin" directory to the buffer "exec_path"
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
