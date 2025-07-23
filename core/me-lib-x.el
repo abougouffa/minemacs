@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-20
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -699,6 +699,16 @@ you have `editorconfig' or `dtrt-indent' installed."
   (let ((+webjump-read-string-initial-query (+region-or-thing-at-point)))
     (cl-letf (((symbol-function 'webjump-read-string) #'+webjump-read-string-with-initial-query))
       (webjump))))
+
+;;;###autoload
+(defun +bookmark-set-at-mouse (event)
+  (interactive "e")
+  (save-excursion
+    (mouse-set-point event)
+    (bookmark-set
+     (truncate-string-to-width
+      (format "%s: %s" (buffer-name) (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
+      60 nil nil t))))
 
 
 
