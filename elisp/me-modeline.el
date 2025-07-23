@@ -248,7 +248,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                     'help-echo "mouse-1: buffer diagnostics\nmouse-3: project diagnostics")))))
 
 (me-modeline-flymake-type error "nf-cod-error")
-(me-modeline-flymake-type warning "nf-fa-warning")
+(me-modeline-flymake-type warning "nf-cod-warning")
 (me-modeline-flymake-type note "nf-oct-info" success)
 
 (defvar-local me-modeline-flymake

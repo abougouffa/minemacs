@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-22
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -36,8 +36,6 @@
 (use-package me-modeline
   :demand
   :config
-  (setq mode-line-compact nil)
-  (setq mode-line-right-align-edge 'right-margin)
   (setq-default mode-line-format
                 '("%e"
                   me-modeline-kbd-macro
