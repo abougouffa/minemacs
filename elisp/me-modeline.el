@@ -98,36 +98,23 @@ indicators.")
 
 ;;;; Buffer name and modified status
 
-(defun me-modeline-buffer-identification-face ()
-  "Return appropriate face or face list for `me-modeline-buffer-identification'."
-  (let ((file (buffer-file-name)))
-    (cond
-     ((and (mode-line-window-selected-p) file (buffer-modified-p))
-      '(error italic mode-line-buffer-id))
-     ((and file (buffer-modified-p))
-      'italic)
-     ((mode-line-window-selected-p)
-      'mode-line-buffer-id))))
-
-(defun me-modeline-buffer-name-help-echo ()
-  "Return `help-echo' value for `me-modeline-buffer-identification'."
-  (concat
-   (propertize (buffer-name) 'face 'mode-line-buffer-id)
-   "\n"
-   (propertize
-    (or (buffer-file-name)
-        (format "No underlying file.\nDirectory is: %s" default-directory))
-    'face 'font-lock-doc-face)))
-
 (defvar-local me-modeline-buffer-identification
   '(:eval
     (concat (me-modeline-file-icon)
             (and buffer-read-only (concat " " (+nerd-icons-icon "nf-fa-lock")))
             " "
-            (propertize (buffer-name)
-                        'face (me-modeline-buffer-identification-face)
-                        'mouse-face 'mode-line-highlight
-                        'help-echo (me-modeline-buffer-name-help-echo)))))
+            (propertize
+             (buffer-name)
+             'face (let ((file (buffer-file-name)))
+                     (cond ((and (mode-line-window-selected-p) file (buffer-modified-p)) '(error italic mode-line-buffer-id))
+                           ((and file (buffer-modified-p)) 'italic)
+                           ((mode-line-window-selected-p) 'mode-line-buffer-id)))
+             'mouse-face 'mode-line-highlight
+             'help-echo (concat
+                         (propertize (buffer-name) 'face 'mode-line-buffer-id) "\n"
+                         (propertize
+                          (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
+                          'face 'font-lock-doc-face))))))
 
 ;;;; Major mode
 
@@ -259,8 +246,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 ;;;; Risky local variables
 
-;; NOTE 2023-04-28: The `risky-local-variable' is critical, as those variables
-;; will not work without it.
+;; The `risky-local-variable' is critical, as those variables will not work
+;; without it.
 (dolist (construct '(me-modeline-kbd-macro
                      me-modeline-narrow
                      me-modeline-input-method
