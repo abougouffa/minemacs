@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-07-09
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -59,7 +59,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
     "r"   #'citre-jump-to-reference
     "q"   #'citre-query-peek
     "Q"   #'citre-query-jump)
-  (keymap-set citre-mode-map "C-c C-p" `("citre-navigation" . ,+citre-navigation-map))
+  (keymap-set citre-mode-map "C-z C-p" `("citre-navigation" . ,+citre-navigation-map))
 
   ;; HACK: Don't enable `citre-mode' in some modes, this fixes the too slow
   ;; `bash-ts-mode' in large code bases
