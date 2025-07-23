@@ -72,8 +72,6 @@ indicators.")
 
 ;;;; Buffer status
 
-;; TODO 2023-07-05: What else is there beside remote files?  If
-;; nothing, this must be renamed accordingly.
 (defvar-local me-modeline-buffer-status
   '(:eval
     (when-let* ((method (file-remote-p default-directory 'method))
@@ -89,12 +87,12 @@ indicators.")
                         ((rx (or "docker" "dockercp")) "nf-fa-docker")
                         ((rx (or "podman" "podmancp")) "nf-dev-podman")
                         (t "nf-md-folder_network_outline"))))
-      (concat " " (+nerd-icons-icon icon)))))
+      (concat " " (+nerd-icons-icon icon :face 'nerd-icons-dblue)))))
 
 ;;;; Dedicated window
 
 (defvar-local me-modeline-window-dedicated-status
-  '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-md-equal_box")))))
+  '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-md-equal_box" :face 'nerd-icons-dred)))))
 
 ;;;; Buffer name and modified status
 
@@ -156,41 +154,11 @@ indicators.")
 
 (declare-function vc-git--symbolic-ref "vc-git" (file))
 
-(defun me-modeline--vc-branch-name (file backend)
-  "Return capitalized VC branch name for FILE with BACKEND."
-  (when-let* ((rev (vc-working-revision file backend))
-              (branch (or (vc-git--symbolic-ref file)
-                          (substring rev 0 7))))
-    branch))
-
 (defvar me-modeline-vc-map
   (let ((map (make-sparse-keymap)))
     (define-key map [mode-line down-mouse-1] 'vc-diff)
     (define-key map [mode-line down-mouse-3] 'vc-root-diff)
     map))
-
-(defun me-modeline--vc-help-echo (file)
-  "Return `help-echo' message for FILE tracked by VC."
-  (format "Revision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'"
-          (vc-working-revision file)))
-
-(defun me-modeline--vc-text (file branch &optional face)
-  "Prepare text for Git controlled FILE, given BRANCH.
-With optional FACE, use it to propertize the BRANCH."
-  (concat
-   (+nerd-icons-icon "nf-fa-code_branch" :face 'shadow)
-   " "
-   (propertize branch
-               'face face
-               'mouse-face 'mode-line-highlight
-               'help-echo (me-modeline--vc-help-echo file)
-               'local-map me-modeline-vc-map)))
-
-(defun me-modeline--vc-details (file branch &optional face)
-  "Return Git BRANCH details for FILE, truncating it if necessary.
-The string is truncated if the width of the window is smaller
-than `split-width-threshold'."
-  (me-modeline--vc-text file branch face))
 
 (defvar me-modeline--vc-faces
   '((added . vc-locally-added-state)
@@ -201,24 +169,25 @@ than `split-width-threshold'."
     (locked . vc-locked-state)
     (up-to-date . vc-up-to-date-state)))
 
-(defun me-modeline--vc-get-face (key)
-  "Get face from KEY in `me-modeline--vc-faces'."
-  (alist-get key me-modeline--vc-faces 'vc-up-to-date-state))
-
-(defun me-modeline--vc-face (file backend)
-  "Return VC state face for FILE with BACKEND."
-  (when-let* ((key (vc-state file backend)))
-    (me-modeline--vc-get-face key)))
-
 (defvar-local me-modeline-vc-branch
   '(:eval
     (when-let* (((mode-line-window-selected-p))
                 (file (or buffer-file-name default-directory))
+                ((not (file-remote-p file))) ;; Can be too slow for remote files
                 (backend (or (vc-backend file) 'Git))
-                ;; ((vc-git-registered file))
-                (branch (me-modeline--vc-branch-name file backend))
-                (face (me-modeline--vc-face file backend)))
-      (me-modeline--vc-details file branch face))))
+                (file-state (vc-state file backend))
+                (face (alist-get file-state me-modeline--vc-faces 'vc-up-to-date-state))
+                (rev (vc-working-revision file backend))
+                (branch (or (vc-git--symbolic-ref file) (substring rev 0 7)))
+                (help-echo-msg (format "Revision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'" rev)))
+      (concat
+       (+nerd-icons-icon "nf-fa-code_branch" :face 'shadow)
+       " "
+       (propertize branch
+                   'face face
+                   'mouse-face 'mode-line-highlight
+                   'help-echo help-echo-msg
+                   'local-map me-modeline-vc-map)))))
 
 ;;;; Flymake errors, warnings, notes
 
