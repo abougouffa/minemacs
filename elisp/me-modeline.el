@@ -94,7 +94,7 @@ indicators.")
 ;;;; Dedicated window
 
 (defvar-local me-modeline-window-dedicated-status
-  '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-md-equal_box" :face 'nerd-icons-dred)))))
+  '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-oct-pin" :face 'nerd-icons-dred)))))
 
 ;;;; Buffer name and modified status
 
