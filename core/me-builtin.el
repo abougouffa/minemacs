@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-22
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -112,7 +112,7 @@
   (set-selection-coding-system (if (featurep 'os/win) 'utf-16-le 'utf-8))
   :config
   ;; Unbind some annoying commands
-  (keymap-global-unset "C-z" 'remove)
+  (keymap-global-unset "C-z" 'remove) ; `suspend-frame'
   (keymap-global-unset "C-x C-z" 'remove)
 
   ;; Remap some keys/page
@@ -130,6 +130,9 @@
   ;; Enable some useful Emacs commands by default
   (dolist (command '(list-timers narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
     (put command 'disabled nil))
+
+  (defvar-keymap minemacs-prefix-map :doc "MinEmacs' prefix, under `C-z'." :name "MinEmacs' prefix")
+  (keymap-global-set "C-z" `("minemacs-prefix" . ,minemacs-prefix-map))
 
   (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
   (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
