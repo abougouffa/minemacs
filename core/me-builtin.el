@@ -444,8 +444,8 @@
   :init
   (cl-callf append major-mode-remap-alist
     '((c-or-c++-mode . c-or-c++-ts-mode) (c++-mode . c++-ts-mode) (c-mode . c-ts-mode)
-      (java-mode . java-ts-mode) (js-mode . js-ts-mode) (sh-mode . bash-ts-mode)
-      (yaml-mode . yaml-ts-mode) (json-mode . json-ts-mode) (mhtml-mode . mhtml-ts-mode)
+      (java-mode . java-ts-mode) (js-mode . js-ts-mode) (sh-mode . bash-ts-mode) (yaml-mode . yaml-ts-mode)
+      (json-mode . json-ts-mode) (mhtml-mode . mhtml-ts-mode) (cmake-mode . cmake-ts-mode) (toml-mode . toml-ts-mode)
       (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode) (python-mode . python-ts-mode))))
 
 (use-package markdown-ts-mode
