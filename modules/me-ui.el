@@ -60,7 +60,7 @@
                   me-modeline-flymake
                   "  "
                   me-modeline-misc-info
-                  " "))
+                  "  "))
 
   (+subtle-mode-line)
   (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)

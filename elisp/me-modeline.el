@@ -48,7 +48,7 @@ indicators.")
   '(:eval
     (when (and (mode-line-window-selected-p)
                (buffer-narrowed-p)
-               (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode)))
+               (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode 'archive-mode)))
       (concat " " (+nerd-icons-icon "nf-md-arrow_collapse_vertical")))))
 
 (defvar-local me-modeline-multiple-cursors
