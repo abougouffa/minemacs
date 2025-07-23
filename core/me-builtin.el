@@ -677,8 +677,11 @@
   :after minemacs-first-elisp-file ; prevent elisp-mode from being loaded too early
   :custom-face ; better the default cyan color!
   (elisp-shorthand-font-lock-face ((t :inherit font-lock-keyword-face :foreground "red")))
-  :init
-  (+setq-hook! emacs-lisp-mode tab-width 8)) ; to view built-in packages correctly
+  :custom
+  (trusted-content
+   (when-let* ((proj (project-current nil minemacs-root-dir))
+               (default-directory (project-root proj)))
+     (mapcar #'expand-file-name (seq-filter (apply-partially #'string-suffix-p ".el") (project-files proj))))))
 
 (use-package gdb-mi
   :custom
