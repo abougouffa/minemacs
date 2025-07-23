@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (concat "abougouffa" "@" "fedora" "project" "." "org")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-22
+;; Last modified: 2025-07-23
 
 ;;; Commentary:
 
@@ -34,11 +34,9 @@
          ("C-S-c C-S-c"   . mc/edit-lines)
          ("C-S-c C-e"     . mc/edit-ends-of-lines)
          ("C-S-c C-a"     . mc/edit-beginnings-of-lines)
-         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
-         ("C-S-c SPC"     . +mc/transient))
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click))
   :custom
   (mc/list-file (concat minemacs-local-dir "mc-list.el"))
-  :commands (+mc/transient)
   :config
   ;; Add some extra commands to be run on all cursors
   (cl-callf append mc--default-cmds-to-run-for-all
@@ -63,28 +61,7 @@
     '(;; Some extra Emacs commands
       pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop
       ;; `iedit'
-      iedit-switch-to-mc-mode))
-
-  (with-eval-after-load 'transient
-    (transient-define-prefix +mc/transient ()
-      "Multiple-cursors transient menu."
-      [["Up"
-        ("p" "prev" mc/mark-previous-like-this :transient t)
-        ("P" "skip" mc/skip-to-previous-like-this :transient t)
-        ("M-p" "unmark" mc/unmark-previous-like-this :transient t)
-        ("|" "align with input CHAR" mc/vertical-align :transient t)]
-       ["Down"
-        ("n" "next" mc/mark-next-like-this :transient t)
-        ("N" "skip" mc/skip-to-next-like-this :transient t)
-        ("M-n" "unmark" mc/unmark-next-like-this :transient t)]
-       ["Misc"
-        ("l" "edit lines" mc/edit-lines)
-        ("a" "mark all" mc/mark-all-like-this)
-        ("s" "search" mc/mark-all-in-region-regexp)
-        ("<mouse-1>" "click" mc/add-cursor-on-click :transient t)]
-       ["Insert"
-        ("0" "insert numbers" mc/insert-numbers)
-        ("A" "insert letters" mc/insert-letters)]])))
+      iedit-switch-to-mc-mode)))
 
 
 (provide 'me-multi-cursors)
