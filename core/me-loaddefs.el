@@ -622,6 +622,10 @@ Add the ;;;###autoload to region (BEG . END).
 (fn BEG END)" t)
 (autoload '+webjump "me-lib-x" "\
 Like `webjump', with initial query filled from `+region-or-thing-at-point'." t)
+(autoload '+bookmark-set-at-mouse "me-lib-x" "\
+
+
+(fn EVENT)" t)
 (autoload '+eglot-ccls-inheritance-hierarchy "me-lib-x" "\
 Show inheritance hierarchy for the thing at point.
 If DERIVED is non-nil (interactively, with prefix argument), show
@@ -739,6 +743,8 @@ Find references to the identifier at or around point." t)
 Extract the descriptions of MinEmacs packages." t)
 (autoload '+list-external-dependencies "me-lib-x" "\
 Show the list of declared external dependencies." t)
+(autoload '+describe-at-point "me-lib-x" "\
+Show help for the symbol at point." t)
 (register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+p" "+s" "+webjump-read-string-"))
 
 
@@ -797,6 +803,11 @@ Show the list of declared external dependencies." t)
 ;;; Generated autoloads from ../modules/on-demand/me-modelica.el
 
 (minemacs-register-on-demand-module 'me-modelica :auto-mode '(("\\.mo\\'" . modelica-mode)))
+
+
+;;; Generated autoloads from ../elisp/me-modeline.el
+
+(register-definition-prefixes "../elisp/me-modeline" '("me-modeline-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mojo.el
