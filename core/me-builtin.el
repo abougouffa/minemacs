@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-23
+;; Last modified: 2025-07-24
 
 ;;; Commentary:
 
@@ -17,6 +17,10 @@
   (after-save . +save-guess-file-mode-h)
   (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
   :custom
+  (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
+  (auto-save-file-name-transforms ; Set file naming transform for `auto-save'
+   `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") sha1)
+     (".*" ,auto-save-list-file-prefix sha1)))
   (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
   (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
   (scroll-margin 2) ; Scroll at a margin of one line
