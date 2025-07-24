@@ -58,8 +58,8 @@ indicators.")
        (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-blue)
                (propertize (format " %d " (mc/num-cursors)) 'face 'nerd-icons-blue)))
      (when (and (bound-and-true-p iedit-mode) (bound-and-true-p iedit-occurrences-overlays))
-       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-green)
-               (propertize (format " %d " (length iedit-occurrences-overlays)) 'face 'nerd-icons-green))))))
+       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-purple)
+               (propertize (format " %d " (length iedit-occurrences-overlays)) 'face 'nerd-icons-purple))))))
 
 ;;;; Input method
 
@@ -168,11 +168,15 @@ indicators.")
                 (face (alist-get file-state me-modeline--vc-faces 'vc-up-to-date-state))
                 (rev (vc-working-revision file backend))
                 (branch (or (vc-git--symbolic-ref file) (substring rev 0 7)))
-                (help-echo-msg (format "Revision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'" rev)))
+                (help-echo-msg (format "Branch: %s\nRevision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'" branch rev))
+                (branch-trim (if-let* ((len (length branch))
+                                       ((> len 15)))
+                                 (concat "··" (substring branch (- len 15) len))
+                               branch)))
       (concat
        (+nerd-icons-icon "nf-fa-code_branch" :face 'shadow)
        " "
-       (propertize branch
+       (propertize branch-trim
                    'face face
                    'mouse-face 'mode-line-highlight
                    'help-echo help-echo-msg
