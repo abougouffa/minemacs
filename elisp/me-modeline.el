@@ -35,6 +35,11 @@ indicators.")
   "Face for modeline indicators with a background."
   :group 'me-modeline-faces)
 
+(defface me-modeline-inverse-video-face
+  '((t (:inverse-video t)))
+  "Inverse video face."
+  :group 'me-modeline-faces)
+
 ;;;; Keyboard macro indicator
 
 (defvar-local me-modeline-kbd-macro
@@ -55,11 +60,11 @@ indicators.")
   '(:eval
     (concat
      (when (bound-and-true-p multiple-cursors-mode)
-       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-blue)
-               (propertize (format " %d " (mc/num-cursors)) 'face 'nerd-icons-blue)))
+       (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (mc/num-cursors)))
+                   'face '(nerd-icons-blue me-modeline-inverse-video-face)))
      (when (and (bound-and-true-p iedit-mode) (bound-and-true-p iedit-occurrences-overlays))
-       (concat (+nerd-icons-icon "nf-fa-i_cursor" :face 'nerd-icons-purple)
-               (propertize (format " %d " (length iedit-occurrences-overlays)) 'face 'nerd-icons-purple))))))
+       (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (length iedit-occurrences-overlays)))
+                   'face '(nerd-icons-purple me-modeline-inverse-video-face))))))
 
 ;;;; Input method
 
@@ -74,22 +79,26 @@ indicators.")
 
 (defvar-local me-modeline-buffer-status
   '(:eval
-    (when-let* ((method (file-remote-p default-directory 'method))
-                (icon-face (pcase method
-                             ("ssh" "nf-md-ssh")
-                             ("adb" "nf-dev-android")
-                             ("mtp" "nf-fa-mobile_phone")
-                             ("gdrive" "nf-fa-google")
-                             ("davs" "nf-fa-globe")
-                             ("nextcloud" "nf-fa-cloud")
-                             ("kubernetes" "nf-dev-kubernetes")
-                             ((rx (or "docker" "dockercp")) "nf-fa-docker")
-                             ((rx (or "podman" "podmancp")) "nf-dev-podman")
-                             ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
-                             (t "nf-md-folder_network_outline")))
-                (icon (if (consp icon-face) (car icon-face) icon-face))
-                (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-      (concat " " (+nerd-icons-icon icon :face face)))))
+    (concat
+     (when overwrite-mode
+       (concat " " (+nerd-icons-icon "nf-fa-pencil" :face 'nerd-icons-red)))
+     (when-let* ((method (file-remote-p default-directory 'method))
+                 (icon-face
+                  (pcase method
+                    ("ssh" "nf-md-ssh")
+                    ("adb" "nf-dev-android")
+                    ("mtp" "nf-fa-mobile_phone")
+                    ("gdrive" "nf-fa-google")
+                    ("davs" "nf-fa-globe")
+                    ("nextcloud" "nf-fa-cloud")
+                    ("kubernetes" "nf-dev-kubernetes")
+                    ((rx (or "docker" "dockercp")) "nf-fa-docker")
+                    ((rx (or "podman" "podmancp")) "nf-dev-podman")
+                    ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
+                    (t "nf-md-folder_network_outline")))
+                 (icon (if (consp icon-face) (car icon-face) icon-face))
+                 (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
+       (concat " " (+nerd-icons-icon icon :face face))))))
 
 ;;;; Dedicated window
 
