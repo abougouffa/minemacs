@@ -316,10 +316,9 @@
   :config
   (setq tab-bar-separator "\u200B")
 
-  (defun +tab-bar--tab-spaced-name-format (tab i)
-    (let ((current-p (eq (car tab) 'current-tab)))
-      (propertize
-       (concat " " (alist-get 'name tab) " ") 'face (funcall tab-bar-tab-face-function tab))))
+  (defun +tab-bar--tab-spaced-name-format (tab _i)
+    (propertize
+     (concat " " (alist-get 'name tab) " ") 'face (funcall tab-bar-tab-face-function tab)))
 
   ;; Inspired by `vim-tab-bar'
   (defun +tab-bar--set-faces (&rest _args)
