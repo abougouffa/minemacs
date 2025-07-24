@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-23
+;; Last modified: 2025-07-24
 
 ;;; Commentary:
 
@@ -943,13 +943,13 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
           (puthash 'indent_size (number-to-string iw) hash)
           (puthash 'tab_width (number-to-string tw) hash)
           (editorconfig-set-local-variables hash))
-        (when (interactive-p)
+        (when (called-interactively-p 'interactive)
           (message "Set fill-column=%s, tab-width=%s, indent-offset=%s and indent-style=%s" fc tw iw is)))
-    (when (interactive-p)
+    (when (called-interactively-p 'interactive)
       (user-error "No applicable \".clang-format\" for buffer %S" (buffer-name)))))
 
 (put '+editorconfig-guess-style-from-clang-format 'completion-predicate
-     (lambda (cmd buf)
+     (lambda (_cmd buf)
        (with-current-buffer buf
          (and (+clang-format-get-lang) (+clang-format-config-file) (+clang-format-dump-config) t))))
 

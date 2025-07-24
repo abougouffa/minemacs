@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-28
-;; Last modified: 2025-03-21
+;; Last modified: 2025-07-24
 
 ;;; Commentary:
 
@@ -17,8 +17,7 @@
   :custom
   (org-present-text-scale 2.5)
   :config
-  (defvar-local +org-present--vcm-params
-      '(:enabled nil :width nil :center-text nil)
+  (defvar-local +org-present--vcm-params '(:enabled nil :width nil :center-text nil)
     "Variable to hold `visual-fill-column-mode' parameters")
 
   (defun +org-present--on-h ()
@@ -33,11 +32,6 @@
     (org-display-inline-images)
     (org-present-hide-cursor)
     (org-present-read-only)
-    (when (bound-and-true-p visual-fill-column-mode)
-      (+plist-push! +org-present--vcm-params
-        :enabled visual-fill-column-mode
-        :width visual-fill-column-width
-        :center-text visual-fill-column-center-text))
     (setq-local visual-fill-column-width 120
                 visual-fill-column-center-text t)
     (visual-fill-column-mode 1))

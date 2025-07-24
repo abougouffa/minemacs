@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-22
+;; Last modified: 2025-07-24
 
 ;;; Commentary:
 
@@ -36,15 +36,6 @@
 
 ;;; Some plist and alist missing functions
 
-(defun +varplist-get (vplist keyword &optional car-p)
-  "Get KEYWORD's value from variable value length VPLIST.
-Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
-  (funcall
-   (if car-p #'cadr #'cdr)
-   (cl-loop for element in (memq keyword vplist)
-            until (and (not (eq element keyword)) (keywordp element))
-            collect element)))
-
 (defun +plist-keys (plist)
   "Return the keys of PLIST."
   (let (keys)
@@ -52,61 +43,6 @@ Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
       (push (car plist) keys)
       (setq plist (cddr plist)))
     keys))
-
-(defmacro +plist-push! (plist &rest key-vals)
-  "Push KEY-VALS to PLIST."
-  (declare (indent 1))
-  (let ((out (list 'progn)))
-    (while (length> key-vals 0)
-      (let ((key (pop key-vals))
-            (val (pop key-vals)))
-        (cl-callf append out `((setq ,plist (plist-put ,plist ,key ,val))))))
-    out))
-
-(defun +plist-combine (&rest plists)
-  "Create a single property list from all plists in PLISTS.
-Modified from `org-combine-plists'. This supposes the values to be vectors,
-and concatenate them."
-  (let ((res (copy-sequence (pop plists)))
-        prop val plist)
-    (while plists
-      (setq plist (pop plists))
-      (while plist
-        (setq prop (pop plist) val (pop plist))
-        (setq res (plist-put res prop (vconcat val (plist-get res prop))))))
-    res))
-
-(defun +plist-delete (plist prop)
-  "Delete property PROP from PLIST.
-Adapted from `org-plist-delete'."
-  (let (p)
-    (while plist
-      (if (not (eq prop (car plist)))
-          (setq p (plist-put p (car plist) (nth 1 plist))))
-      (setq plist (cddr plist)))
-    p))
-
-(defun +plist-to-alist (plist &optional trim-col)
-  "Convert PLIST to an alist, trim first colon when TRIM-COL."
-  (let (res)
-    (while plist
-      (let* ((key (pop plist))
-             (val (pop plist))
-             (key (if (and trim-col (string-prefix-p ":" (symbol-name key)))
-                      (intern (substring (symbol-name key) 1))
-                    key)))
-        (push (cons key val) res)))
-    (nreverse res)))
-
-(defun +alist-to-plist (alist &optional add-col)
-  "Convert ALIST to a plist, add colon to the keys when ADD-COL."
-  (let (res)
-    (dolist (x alist)
-      (let ((key (car x)))
-        (cl-assert (or (and (not nil) (atom key)) (stringp key)) t "The alist should have keys that are symbols or strings")
-        (push (if add-col (intern (format ":%s" key)) key) res)
-        (push (cdr x) res)))
-    (nreverse res)))
 
 ;; Taken from: https://emacs.stackexchange.com/q/33892/12534
 (defun +alist-set (key val alist &optional symbol)
@@ -140,10 +76,6 @@ If INDEX is 0, ELEMENT is inserted before the first element."
   (while (memq (car-safe expr) '(quote function))
     (setq expr (cadr expr)))
   expr)
-
-(defun +quoted-p (expr)
-  "Return t when EXPR is quoted."
-  (memq (car-safe expr) '(quote function)))
 
 (defun +apply-partially-right (fun &rest args)
   "Like `apply-partially', but apply the ARGS to the right of FUN."
@@ -199,7 +131,7 @@ provided as the first argument, inhibit messages but keep writing them to the
   "Call FN with ARGS while to suppressing the messages in echo area.
 If `minemacs-verbose-p' is non-nil, do not print any message to
 *Messages* buffer."
-  (if (interactive-p)
+  (if (called-interactively-p 'interactive)
       (apply fn args)
     (let ((message-log-max (and minemacs-verbose-p message-log-max)))
       (with-temp-message (or (current-message) "")
@@ -209,7 +141,7 @@ If `minemacs-verbose-p' is non-nil, do not print any message to
 (defun +apply-suppress-messages (fn &rest args) ; Helper functions to be used as advises
   "Call FN with ARGS while to suppressing the messages in echo area.
 The messages are still printed to *Messages* buffer."
-  (if (interactive-p)
+  (if (called-interactively-p 'interactive)
       (apply fn args)
     (with-temp-message (or (current-message) "")
       (apply fn args))))
