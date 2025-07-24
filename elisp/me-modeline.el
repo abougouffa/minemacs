@@ -207,8 +207,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (defmacro me-modeline-flymake-type (type icon &optional face)
   "Return function that handles Flymake TYPE with stylistic ICON and FACE."
   `(defun ,(intern (format "me-modeline-flymake-%s" type)) ()
-     (when-let* ((count (me-modeline-flymake-counter
-                         ,(intern (format ":%s" type)))))
+     (when-let* ((count (me-modeline-flymake-counter ,(intern (format ":%s" type)))))
        (concat
         " "
         (+nerd-icons-icon ,icon :face ',(or face type))
@@ -219,9 +218,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                     'local-map me-modeline-flymake-map
                     'help-echo "mouse-1: buffer diagnostics\nmouse-3: project diagnostics")))))
 
-(me-modeline-flymake-type error "nf-cod-error")
-(me-modeline-flymake-type warning "nf-cod-warning")
-(me-modeline-flymake-type note "nf-oct-info" success)
+(me-modeline-flymake-type error "nf-cod-error" nerd-icons-red)
+(me-modeline-flymake-type warning "nf-cod-warning" nerd-icons-orange)
+(me-modeline-flymake-type note "nf-cod-info" nerd-icons-green)
 
 (defvar-local me-modeline-flymake
   `(:eval
