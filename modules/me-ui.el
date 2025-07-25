@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-23
+;; Last modified: 2025-07-25
 
 ;;; Commentary:
 
@@ -34,37 +34,8 @@
 
 
 (use-package me-modeline
-  :demand
-  :config
-  (setq-default mode-line-format
-                '("%e"
-                  me-modeline-kbd-macro
-                  me-modeline-narrow
-                  me-modeline-buffer-status
-                  me-modeline-window-dedicated-status
-                  me-modeline-input-method
-                  me-modeline-multiple-cursors
-                  "  "
-                  me-modeline-buffer-identification
-                  "  "
-                  mode-line-position
-                  "  "
-                  me-modeline-process
-                  "  "
-                  me-modeline-eglot
-                  "  "
-                  mode-line-format-right-align
-                  "  "
-                  me-modeline-vc-branch
-                  "  "
-                  me-modeline-flymake
-                  "  "
-                  me-modeline-misc-info
-                  "  "))
-
-  (+subtle-mode-line)
-  (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)
-  (add-hook 'enable-theme-functions #'+subtle-mode-line))
+  :init
+  (me-modeline-mode 1))
 
 
 ;; Display "^L" page breaks as tidy horizontal lines

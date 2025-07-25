@@ -9,6 +9,7 @@
 ;;; Code:
 
 (require 'nerd-icons)
+(require 'me-lib)
 
 (defgroup me-modeline nil
   "Custom modeline that is stylistically close to the default."
@@ -18,36 +19,25 @@
   "Faces for my custom modeline."
   :group 'me-modeline)
 
-;;;; Faces
+;;; Faces
 
 (defface me-modeline-indicator-button nil
   "Generic face used for indicators that have a background.
 Modify this face to, for example, add a :box attribute to all relevant
 indicators.")
 
-(defface me-modeline-indicator-green-bg
-  '((default :inherit (bold me-modeline-indicator-button))
-    (((class color) (min-colors 88) (background light))
-     :background "#207b20" :foreground "white")
-    (((class color) (min-colors 88) (background dark))
-     :background "#77d077" :foreground "black")
-    (t :background "green" :foreground "black"))
-  "Face for modeline indicators with a background."
-  :group 'me-modeline-faces)
-
-(defface me-modeline-inverse-video-face
-  '((t (:inverse-video t)))
+(defface me-modeline-inverse-video-face '((t (:inverse-video t)))
   "Inverse video face."
   :group 'me-modeline-faces)
 
-;;;; Keyboard macro indicator
+;;; Keyboard macro indicator
 
 (defvar-local me-modeline-kbd-macro
   '(:eval
     (when (and (mode-line-window-selected-p) defining-kbd-macro)
       (concat " " (+nerd-icons-icon "nf-md-record_rec")))))
 
-;;;; Narrow indicator
+;;; Narrow indicator
 
 (defvar-local me-modeline-narrow
   '(:eval
@@ -66,16 +56,16 @@ indicators.")
        (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (length iedit-occurrences-overlays)))
                    'face '(nerd-icons-purple me-modeline-inverse-video-face))))))
 
-;;;; Input method
+;;; Input method
 
 (defvar-local me-modeline-input-method
   '(:eval
     (when current-input-method-title
       (propertize (format " %s " current-input-method-title)
-                  'face 'me-modeline-indicator-green-bg
+                  'face '(nerd-icons-green me-modeline-inverse-video-face)
                   'mouse-face 'mode-line-highlight))))
 
-;;;; Buffer status
+;;; Buffer status
 
 (defvar-local me-modeline-buffer-status
   '(:eval
@@ -100,12 +90,12 @@ indicators.")
                  (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
        (concat " " (+nerd-icons-icon icon :face face))))))
 
-;;;; Dedicated window
+;;; Dedicated window
 
 (defvar-local me-modeline-window-dedicated-status
   '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-oct-pin" :face 'nerd-icons-dred)))))
 
-;;;; Buffer name and modified status
+;;; Buffer name and modified status
 
 (defvar-local me-modeline-buffer-identification
   '(:eval
@@ -125,7 +115,7 @@ indicators.")
                           (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
                           'face 'font-lock-doc-face))))))
 
-;;;; Major mode
+;;; Major mode
 
 (defun me-modeline-file-icon ()
   "Return appropriate propertized mode line indicator for the major mode."
@@ -148,7 +138,7 @@ indicators.")
 (defvar-local me-modeline-process
   (list '("" mode-line-process)))
 
-;;;; Git branch and diffstat
+;;; Git branch and diffstat
 
 (declare-function vc-git--symbolic-ref "vc-git" (file))
 
@@ -191,7 +181,7 @@ indicators.")
                    'help-echo help-echo-msg
                    'local-map me-modeline-vc-map)))))
 
-;;;; Flymake errors, warnings, notes
+;;; Flymake errors, warnings, notes
 
 (declare-function flymake--severity "flymake" (type))
 (declare-function flymake-diagnostic-type "flymake" (diag))
@@ -239,7 +229,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
        '(:eval (me-modeline-flymake-warning))
        '(:eval (me-modeline-flymake-note))))))
 
-;;;; Eglot
+;;; Eglot
 
 (with-eval-after-load 'eglot
   (setq mode-line-misc-info
@@ -250,13 +240,13 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
     (when (and (mode-line-window-selected-p) (featurep 'eglot))
       '(eglot--managed-mode eglot--mode-line-format))))
 
-;;;; Miscellaneous
+;;; Miscellaneous
 
 (defvar-local me-modeline-misc-info
   '(:eval
     (when (mode-line-window-selected-p) mode-line-misc-info)))
 
-;;;; Risky local variables
+;;; Risky local variables
 
 ;; The `risky-local-variable' is critical, as those variables will not work
 ;; without it.
@@ -274,6 +264,50 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      me-modeline-eglot
                      me-modeline-misc-info))
   (put construct 'risky-local-variable t))
+
+(defvar me-modeline--mode-line-format-orig nil)
+
+;;;###autoload
+(define-minor-mode me-modeline-mode
+  "MinEmacs' mode-line."
+  :global t
+  (if me-modeline-mode
+      (progn
+        (unless me-modeline--mode-line-format-orig
+          (setq me-modeline--mode-line-format-orig (default-value 'mode-line-format)))
+        (setq-default mode-line-format
+                      '("%e"
+                        me-modeline-kbd-macro
+                        me-modeline-narrow
+                        me-modeline-buffer-status
+                        me-modeline-window-dedicated-status
+                        me-modeline-input-method
+                        me-modeline-multiple-cursors
+                        "  "
+                        me-modeline-buffer-identification
+                        "  "
+                        mode-line-position
+                        "  "
+                        me-modeline-process
+                        "  "
+                        me-modeline-eglot
+                        "  "
+                        mode-line-format-right-align
+                        "  "
+                        me-modeline-vc-branch
+                        "  "
+                        me-modeline-flymake
+                        "  "
+                        me-modeline-misc-info
+                        "  "))
+        (+subtle-mode-line)
+        (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)
+        (add-hook 'enable-theme-functions #'+subtle-mode-line))
+    (setq-default mode-line-format me-modeline--mode-line-format-orig)
+    (remove-hook 'server-after-make-frame-hook #'+subtle-mode-line)
+    (remove-hook 'enable-theme-functions #'+subtle-mode-line))
+  (force-mode-line-update t))
+
 
 (provide 'me-modeline)
 ;;; me-modeline.el ends here
