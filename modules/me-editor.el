@@ -68,14 +68,11 @@
   (dtrt-indent-max-lines 2500) ; Faster than the default 5000
   (dtrt-indent-run-after-smie t)
   :init
-  (defvar +dtrt-indent-tab-context-lines 20 "The number of lines above and below point to consider in `+dtrt-indent-tab-to-tab-stop'.")
+  (defvar +dtrt-indent-context-lines 20 "The number of lines above and below point to consider in `+dtrt-indent-tab-to-tab-stop'.")
   ;; Better predicates for enabling `dtrt-indent', inspired by Doom Emacs
   (defvar +dtrt-indent-excluded-modes
-    '(emacs-lisp-mode
-      lisp-mode
-      pascal-mode
-      org-mode ; a non-standard `tab-width' causes an error in `org-mode'.
-      coq-mode) ; see doomemacs/doomemacs#5823
+    '( emacs-lisp-mode lisp-mode pascal-mode coq-mode ; see doomemacs/doomemacs#5823
+       org-mode) ; a non-standard `tab-width' causes an error in `org-mode'.
     "A list of major modes where indentation shouldn't be auto-detected.")
   (defun +dtrt-indent-mode-maybe ()
     (unless (or (not (featurep 'minemacs-first-file))
@@ -94,14 +91,12 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 `dtrt-indent' to detect which one to insert at point."
     (interactive)
     (let* ((lang (cadr (dtrt-indent--search-hook-mapping major-mode)))
-           (result
-            (and lang
-                 (save-excursion
-                   (save-restriction
-                     (narrow-to-region
-                      (line-beginning-position (- +dtrt-indent-tab-context-lines))
-                      (line-end-position +dtrt-indent-tab-context-lines))
-                     (dtrt-indent--analyze (dtrt-indent--calc-histogram lang))))))
+           (result (and lang
+                        (save-excursion
+                          (save-restriction
+                            (narrow-to-region (line-beginning-position (- +dtrt-indent-context-lines))
+                                              (line-end-position +dtrt-indent-context-lines))
+                            (dtrt-indent--analyze (dtrt-indent--calc-histogram lang))))))
            (modify-indentation (and (not (cdr (assoc :rejected result))) (cdr (assoc :change-indent-tabs-mode result))))
            (new-indent-tabs-mode (cdr (assoc :indent-tabs-mode-setting result))))
       (when (and modify-indentation (not (eq indent-tabs-mode new-indent-tabs-mode)))
