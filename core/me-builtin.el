@@ -286,16 +286,9 @@
   :custom
   (project-vc-extra-root-markers
    '(".projectile.el" ".project.el" ".project" ; Emacs
-     ".repo" ; Repo workspaces
-     ".jj" ; Jujutsu
-     "autogen.sh" ; Autotools
+     ".repo" ; Repo tool workspaces
      "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
-     ".code-workspace" ; VSCode, ".vscode" is present also in the user home
-     ".magic" ; MAX + Mojo
-     "package.json" ; Node.js
-     "pom.xml" ; Apache Maven (Java/Kotlin)
-     "pyproject.toml" ; uv (Python)
-     "Cargo.toml")) ; Cargo (Rust)
+     ".code-workspace")) ; VSCode, ".vscode" is present also in the user home
   :config
   (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands))))
 
