@@ -1,10 +1,13 @@
-;;; minemacs-modeline.el --- Code for my custom mode line -*- lexical-binding: t -*-
+;;; me-modeline.el --- Light, modern and opinionated mode-line for MinEmacs -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2023-2025  Protesilaos Stavrou
+;; Copyright (C) 2025  Abdelhak Bougouffa
 
 ;; Based on: https://protesilaos.com/emacs/dotemacs
 ;; By: Protesilaos Stavrou <info@protesilaos.com>
 ;; SPDX-License-Identifier: GPL-3.0
+
+;;; Commentary:
 
 ;;; Code:
 

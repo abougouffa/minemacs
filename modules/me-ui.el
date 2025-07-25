@@ -33,6 +33,7 @@
   (+with-delayed-1! (doom-themes-visual-bell-config)))
 
 
+;; Light, modern and opinionated mode-line for MinEmacs
 (use-package me-modeline
   :init
   (me-modeline-mode 1))
