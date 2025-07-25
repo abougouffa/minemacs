@@ -424,7 +424,7 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+quoted-p" "+re" "+s" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+re" "+s" "+un" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -807,6 +807,32 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from ../elisp/me-modeline.el
 
+(defvar me-modeline-mode nil "\
+Non-nil if Me-Modeline mode is enabled.
+See the `me-modeline-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `me-modeline-mode'.")
+(custom-autoload 'me-modeline-mode "../elisp/me-modeline" nil)
+(autoload 'me-modeline-mode "../elisp/me-modeline" "\
+MinEmacs' mode-line.
+
+This is a global minor mode.  If called interactively, toggle the
+`Me-Modeline mode' mode.  If the prefix argument is positive, enable the
+mode, and if it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='me-modeline-mode)'.
+
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
+
+(fn &optional ARG)" t)
 (register-definition-prefixes "../elisp/me-modeline" '("me-modeline-"))
 
 
