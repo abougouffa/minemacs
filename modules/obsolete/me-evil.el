@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-05-09
+;; Last modified: 2025-07-25
 
 ;;; Commentary:
 
@@ -324,11 +324,8 @@ It is deferred until `general' gets loaded and configured."
    "bS"   #'save-some-buffers
    "bs"   #'+scratch-open-project-scratch-buffer
    "bM"   #'view-echo-area-messages
-   "bA"   #'+kill-some-buffers
    "bk"   `(,(+cmdfy! (kill-buffer (current-buffer)))
             :wk "Kill this buffer")
-   "bK"   `(,(+cmdfy! (+kill-buffer-and-its-windows (current-buffer)))
-            :wk "Kill this buffer and its windows")
    "br"   '(revert-buffer :wk "Revert")
    "bR"   '(rename-buffer :wk "Rename")
    ;; Lines

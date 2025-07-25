@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-24
+;; Last modified: 2025-07-25
 
 ;;; Commentary:
 
@@ -146,7 +146,6 @@ RECURSIVE is non-nil."
 
 (defvar +apply-patch-dwim-proj-dir nil)
 (defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
-(autoload 'project-files "project")
 (autoload 'diff-hunk-next "diff-mode")
 (autoload 'diff-hunk-file-names "diff-mode")
 
@@ -980,29 +979,6 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 ;;; Buffer related tweaks
 
 ;; From: https://emacswiki.org/emacs/download/misc-cmds.el
-;; Candidate as a replacement for `kill-buffer', at least when used interactively.
-;; For example: (define-key global-map [remap kill-buffer] 'kill-buffer-and-its-windows)
-;; We cannot just redefine `kill-buffer', because some programs count on a
-;; specific other buffer taking the place of the killed buffer (in the window).
-;;;###autoload
-(defun +kill-buffer-and-its-windows (buffer &optional msgp)
-  "Kill BUFFER and delete its windows.
-Default is `current-buffer'. When MSGP is non-nil, signal an error when
-the buffer isn't alive. BUFFER may be either a buffer or its name (a
-string)."
-  (interactive (list (read-buffer "Kill buffer: " (current-buffer) t) t))
-  (setq buffer (get-buffer buffer))
-  (if (buffer-live-p buffer) ; Kill live buffer only.
-      (let ((wins (get-buffer-window-list buffer nil t))) ; On all frames.
-        (when (kill-buffer buffer) ; Only delete windows if buffer killed.
-          (dolist (win wins) ; (User might keep buffer if modified.)
-            (when (window-live-p win)
-              ;; Ignore error, in particular,
-              ;; "Attempt to delete the sole visible or iconified frame".
-              (condition-case nil (delete-window win) (error nil))))))
-    (when msgp (user-error "Cannot kill buffer. Not a live buffer: `%s'" buffer))))
-
-;; From: https://emacswiki.org/emacs/download/misc-cmds.el
 ;;;###autoload
 (defun +region-to-buffer (start end buffer arg)
   "Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
@@ -1065,77 +1041,6 @@ Prefix ARG nil means write region to FILENAME, replacing contents."
           (t (message "OK.  Not written.")))))
 
 ;;;###autoload
-(defun +kill-some-buffers (&optional list)
-  "Kill some buffers.  Asks the user whether to kill the modified ones.
-Non-interactively, if optional argument LIST is non-nil, it
-specifies the list of buffers to kill, asking for approval for each one.
-See `kill-some-buffers'."
-  (interactive)
-  ;; Replace the `kill-buffer-ask' locally (used by `kill-some-buffers')
-  ;; with our function which don't ask about unmodified buffers.
-  (cl-letf (((symbol-function 'kill-buffer-ask) #'+kill-buffer-ask-if-modified))
-    (kill-some-buffers list)))
-
-(defcustom +kill-buffer-no-ask-list
-  (list (or (bound-and-true-p messages-buffer-name) "*Messages*") "*Warnings*")
-  "A list of buffer names to be killed without confirmation."
-  :group 'minemacs-buffer
-  :type '(repeat string))
-
-(with-eval-after-load 'comp
-  (when (featurep 'native-compile)
-    (cl-callf append +kill-buffer-no-ask-list
-      (ensure-list (bound-and-true-p comp-async-buffer-name))
-      (ensure-list (bound-and-true-p comp-log-buffer-name)))))
-
-;;;###autoload
-(defun +kill-buffer-ask-if-modified (buffer)
-  "Like `kill-buffer-ask', but don't ask if BUFFER isn't modified.
-Kill without asking for buffer names in `+kill-buffer-no-ask-list'."
-  (when (or (not (buffer-modified-p buffer))
-            (member (buffer-name buffer) +kill-buffer-no-ask-list)
-            (yes-or-no-p (format "Buffer %s HAS BEEN MODIFIED.  Kill? "
-                                 (buffer-name buffer))))
-    (kill-buffer buffer)))
-
-;; From: https://emacswiki.org/emacs/download/misc-cmds.el
-;;;###autoload
-(defun +delete-extra-windows-for-buffer ()
-  "Delete all other windows showing the selected window's buffer."
-  (interactive)
-  (let* ((selwin (selected-window))
-         (buf (window-buffer selwin)))
-    (walk-windows
-     (lambda (ww)
-       (unless (eq ww selwin)
-         (when (eq (window-buffer ww) buf)
-           (delete-window ww))))
-     'NO-MINI 'THIS-FRAME)))
-
-;; From: https://emacswiki.org/emacs/download/misc-cmds.el
-;;;###autoload
-(defun +delete-window-maybe-kill-buffer ()
-  "Delete selected window.
-If no other window shows its buffer, kill the buffer too."
-  (interactive)
-  (let* ((selwin (selected-window))
-         (buf (window-buffer selwin)))
-    (delete-window selwin)
-    (unless (get-buffer-window buf 'visible) (kill-buffer buf))))
-
-;;;###autoload
-(defun +replace-in-buffer (old new)
-  "Replace OLD with NEW in the current buffer."
-  (save-excursion
-    (goto-char (point-min))
-    (let ((case-fold-search nil)
-          (matches 0))
-      (while (re-search-forward old nil t)
-        (replace-match new)
-        (cl-incf matches))
-      matches)))
-
-;;;###autoload
 (defun +clear-frenchy-ponctuations ()
   "Replace french ponctuations (like unsectable space) by regular ones."
   (interactive)
@@ -1147,7 +1052,14 @@ If no other window shows its buffer, kill the buffer too."
            ("[“”„”«»]" . "\"")))
         (matches 0))
     (dolist (pair chars)
-      (cl-incf matches (+replace-in-buffer (car pair) (cdr pair))))
+      (cl-incf matches (save-excursion
+                         (goto-char (point-min))
+                         (let ((case-fold-search nil)
+                               (matches 0))
+                           (while (re-search-forward (car pair) nil t)
+                             (replace-match (cdr pair))
+                             (cl-incf matches))
+                           matches))))
     (message "Replaced %d match%s." matches (if (> matches 1) "es" ""))))
 
 ;; https://emacs.stackexchange.com/a/13549
@@ -1161,8 +1073,8 @@ If no other window shows its buffer, kill the buffer too."
     (set-visited-file-modtime original-time)))
 
 ;;;###autoload
-(defun +kill-region-as-paragraph ()
-  "Kill (copy) region as one paragraph.
+(defun +copy-region-as-paragraph ()
+  "Copy region as one paragraph.
 This command removes new line characters between lines."
   (interactive)
   (when (use-region-p)

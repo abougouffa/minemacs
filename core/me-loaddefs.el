@@ -667,13 +667,6 @@ Set some editor settings from \".clang-format\" when available." t)
 (fn ORIG-FN PROC MSG)")
 (autoload '+server-restart "me-lib-x" "\
 Restart the Emacs server." t)
-(autoload '+kill-buffer-and-its-windows "me-lib-x" "\
-Kill BUFFER and delete its windows.
-Default is `current-buffer'. When MSGP is non-nil, signal an error when
-the buffer isn't alive. BUFFER may be either a buffer or its name (a
-string).
-
-(fn BUFFER &optional MSGP)" t)
 (autoload '+region-to-buffer "me-lib-x" "\
 Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
 START and END are the region boundaries.
@@ -695,33 +688,12 @@ Prefix ARG non-nil means append region to end of file FILENAME.
 Prefix ARG nil means write region to FILENAME, replacing contents.
 
 (fn START END FILENAME ARG)" t)
-(autoload '+kill-some-buffers "me-lib-x" "\
-Kill some buffers.  Asks the user whether to kill the modified ones.
-Non-interactively, if optional argument LIST is non-nil, it
-specifies the list of buffers to kill, asking for approval for each one.
-See `kill-some-buffers'.
-
-(fn &optional LIST)" t)
-(autoload '+kill-buffer-ask-if-modified "me-lib-x" "\
-Like `kill-buffer-ask', but don't ask if BUFFER isn't modified.
-Kill without asking for buffer names in `+kill-buffer-no-ask-list'.
-
-(fn BUFFER)")
-(autoload '+delete-extra-windows-for-buffer "me-lib-x" "\
-Delete all other windows showing the selected window's buffer." t)
-(autoload '+delete-window-maybe-kill-buffer "me-lib-x" "\
-Delete selected window.
-If no other window shows its buffer, kill the buffer too." t)
-(autoload '+replace-in-buffer "me-lib-x" "\
-Replace OLD with NEW in the current buffer.
-
-(fn OLD NEW)")
 (autoload '+clear-frenchy-ponctuations "me-lib-x" "\
 Replace french ponctuations (like unsectable space) by regular ones." t)
 (autoload '+save-buffer-preserving-modtime "me-lib-x" "\
 Call `save-buffer', but keep the visited file's modtime the same." t)
-(autoload '+kill-region-as-paragraph "me-lib-x" "\
-Kill (copy) region as one paragraph.
+(autoload '+copy-region-as-paragraph "me-lib-x" "\
+Copy region as one paragraph.
 This command removes new line characters between lines." t)
 (autoload '+first-line-empty-p "me-lib-x" "\
 Return t when the first line of the buffer is empty.")
@@ -745,7 +717,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+kill-buffer-no-ask-list" "+net-default-device" "+p" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+net-default-device" "+p" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el

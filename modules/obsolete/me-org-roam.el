@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-07-25
 
 ;;; Commentary:
 
@@ -27,18 +27,7 @@
   (org-roam-capture-ref-templates
    '(("r" "ref" plain "%?"
       :if-new (file+head "web/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+created: %U\n\n${body}\n")
-      :unnarrowed t)))
-  :config
-  ;; Save a local snapshot of the captured web page using "single-file-cli"
-  (advice-add
-   'org-roam-protocol-open-ref :after
-   (satch-defun +org-roam-protocol--single-file-snapshot:after-a (info)
-     (+single-file
-      (plist-get info :ref)
-      (+file-name-incremental
-       (expand-file-name
-        (concat "web/snapshots/" (+clean-file-name (plist-get info :title)) ".html")
-        org-roam-directory))))))
+      :unnarrowed t))))
 
 (use-package org-roam-ui
   :straight t)
@@ -71,11 +60,11 @@
                          `(("r" "reference" plain
                             "%?"
                             :if-new (file+head "references/${citekey}.org"
-                                     ,(concat
-                                       ":properties:\n"
-                                       ":roam_refs: [cite:@${citekey}]\n"
-                                       ":end:\n"
-                                       "#+title: ${title}\n"))
+                                               ,(concat
+                                                 ":properties:\n"
+                                                 ":roam_refs: [cite:@${citekey}]\n"
+                                                 ":end:\n"
+                                                 "#+title: ${title}\n"))
                             :immediate-finish t
                             :unnarrowed t))
                          :info (list :citekey entry-key)
