@@ -156,13 +156,11 @@ In some dirty files, there is a mix of spaces and tabs. This uses
    '(enable-theme-functions disable-theme-functions server-after-make-frame-hook)
    (satch-defun +selection-highlight--set-face-h (&rest _args)
      (with-eval-after-load 'selection-highlight-mode
-       (when (display-graphic-p)
-         (require 'isearch)
-         (when-let* ((attr `(:background ,(+color-subtle 'isearch 65) :box (:line-width (-1 . -1) :color ,(+color-subtle 'isearch -10)))))
-           (dolist (face '(selection-highlight-mode-match-face selection-highlight-mode-alternate-match-face))
-             (apply #'set-face-attribute `( ,face nil
-                                            :background ,(+color-subtle 'isearch 65)
-                                            :box (:line-width (-1 . -1) :color ,(+color-subtle 'isearch -10)))))))))))
+       (with-eval-after-load 'isearch
+         (when (display-graphic-p)
+           (when-let* ((new-color (+color-subtle 'isearch 20)))
+             (set-face-background 'selection-highlight-mode-match-face new-color)
+             (set-face-background 'selection-highlight-mode-alternate-match-face new-color))))))))
 
 
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
