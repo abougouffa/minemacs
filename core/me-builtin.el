@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-24
+;; Last modified: 2025-07-25
 
 ;;; Commentary:
 
@@ -291,7 +291,6 @@
      "autogen.sh" ; Autotools
      "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
      ".code-workspace" ; VSCode, ".vscode" is present also in the user home
-     "requirements.txt" ; Python
      ".magic" ; MAX + Mojo
      "package.json" ; Node.js
      "pom.xml" ; Apache Maven (Java/Kotlin)
