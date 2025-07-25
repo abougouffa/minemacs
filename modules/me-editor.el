@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-25
+;; Last modified: 2025-07-26
 
 ;;; Commentary:
 
@@ -42,6 +42,13 @@
   :hook (minemacs-lazy . undo-fu-session-global-mode)
   :custom
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz)))
+
+
+;; Modify multiple occurrences simultaneously
+(use-package iedit
+  :straight t
+  :bind (("C-;" . iedit-mode)
+         ("C-x r ;" . iedit-rectangle-mode)))
 
 
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
