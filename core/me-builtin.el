@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-25
+;; Last modified: 2025-07-26
 
 ;;; Commentary:
 
@@ -857,8 +857,7 @@ Typing these will trigger reindentation of the current line.")
   (recentf-case-fold-search t) ; Ignore case when searching recentf files
   (recentf-save-file (concat minemacs-local-dir "recentf")) ; Needed, otherwise Emacs will still create a file under "~/.emacs.d"
   (recentf-exclude ; Exclude some files from being remembered by recentf
-   `(file-remote-p
-     ,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
+   `(,(rx (or "/elfeed-db/" "/eln-cache/" "/cache/" "/.maildir/" "/.cache/"))
      ,(rx bol "/tmp/")))
   :init
   ;; Enable `recentf-mode' to remember recent files
