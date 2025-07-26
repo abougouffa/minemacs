@@ -22,8 +22,7 @@
   :config
   (defun +vundo--diff-wrapper (&rest _) (vundo-diff))
   (defcustom +vundo-diff-commands
-    '( vundo-next vundo-previous vundo-forward vundo-backward
-       vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved)
+    '(vundo-next vundo-forward vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved)
     "A list of commands after which `vundo-diff' gets called."
     :group 'minemacs-editor
     :type '(repeat function))
