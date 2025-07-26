@@ -45,6 +45,7 @@
 ## `me-editor`
 * `vundo`: Visualize and navigate the undo tree
 * `undo-fu-session`: Persistent undo tree between sessions
+* `iedit`: Modify multiple occurrences simultaneously
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
@@ -81,6 +82,7 @@
 * `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
 
 ## `me-experimental`
+* `kmacro-x`: A collection of commands, modes and functions built on top of the keyboard macros (kmacros)
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -102,10 +104,6 @@
 ## `me-media`
 * `empv`: An Emacs media player, media library manager, radio player, YouTube frontend
 * `ready-player`: An Emacs major mode to open media (audio/video) files like any other file (via `find-file`, `dired`, etc)
-
-## `me-multi-cursors`
-* `iedit`: Modify multiple occurrences simultaneously
-* `multiple-cursors`: Multiple cursors implementation for Emacs
 
 ## `me-natural-langs`
 * `jinx`: Just-in-time spell checker based on the Enchanted library

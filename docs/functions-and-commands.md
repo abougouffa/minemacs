@@ -211,10 +211,6 @@ The default baudrate to use.
 
 A list of commands to run in the serial terminal after creation.
 
-#### `+kill-buffer-no-ask-list`
-
-A list of buffer names to be killed without confirmation.
-
 #### `eglot-ltex-user-rules-path`
 
 Path to save user rules.
@@ -297,37 +293,9 @@ Delay evaluating BODY with priority 0 (high priority).
 
 Delay evaluating BODY with priority 1.
 
-#### `(+varplist-get VPLIST KEYWORD &optional CAR-P)`
-
-Get KEYWORD's value from variable value length VPLIST.
-Ex: (+varplist-get '(:a 'a :b 'b1 'b2) :b) -> '(b1 b2).
-
 #### `(+plist-keys PLIST)`
 
 Return the keys of PLIST.
-
-#### `(+plist-push! PLIST &rest KEY-VALS)` (macro)
-
-Push KEY-VALS to PLIST.
-
-#### `(+plist-combine &rest PLISTS)`
-
-Create a single property list from all plists in PLISTS.
-Modified from `org-combine-plists`. This supposes the values to be vectors,
-and concatenate them.
-
-#### `(+plist-delete PLIST PROP)`
-
-Delete property PROP from PLIST.
-Adapted from `org-plist-delete`.
-
-#### `(+plist-to-alist PLIST &optional TRIM-COL)`
-
-Convert PLIST to an alist, trim first colon when TRIM-COL.
-
-#### `(+alist-to-plist ALIST &optional ADD-COL)`
-
-Convert ALIST to a plist, add colon to the keys when ADD-COL.
 
 #### `(+alist-set KEY VAL ALIST &optional SYMBOL)`
 
@@ -348,10 +316,6 @@ If INDEX is 0, ELEMENT is inserted before the first element.
 
 Return EXPR unquoted.
   This function does not change global state, including the match data.
-
-#### `(+quoted-p EXPR)`
-
-Return t when EXPR is quoted.
 
 #### `(+apply-partially-right FUN &rest ARGS)`
 
@@ -913,13 +877,6 @@ Set some editor settings from ".clang-format" when available.
 
 Restart the Emacs server.
 
-#### `(+kill-buffer-and-its-windows BUFFER &optional MSGP)`
-
-Kill BUFFER and delete its windows.
-Default is `current-buffer`. When MSGP is non-nil, signal an error when
-the buffer isn't alive. BUFFER may be either a buffer or its name (a
-string).
-
 #### `(+region-to-buffer START END BUFFER ARG)`
 
 Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
@@ -941,31 +898,6 @@ START and END are the region boundaries.
 Prefix ARG non-nil means append region to end of file FILENAME.
 Prefix ARG nil means write region to FILENAME, replacing contents.
 
-#### `(+kill-some-buffers &optional LIST)`
-
-Kill some buffers.  Asks the user whether to kill the modified ones.
-Non-interactively, if optional argument LIST is non-nil, it
-specifies the list of buffers to kill, asking for approval for each one.
-See `kill-some-buffers`.
-
-#### `(+kill-buffer-ask-if-modified BUFFER)`
-
-Like `kill-buffer-ask`, but don't ask if BUFFER isn't modified.
-Kill without asking for buffer names in `+kill-buffer-no-ask-list`.
-
-#### `(+delete-extra-windows-for-buffer)`
-
-Delete all other windows showing the selected window's buffer.
-
-#### `(+delete-window-maybe-kill-buffer)`
-
-Delete selected window.
-If no other window shows its buffer, kill the buffer too.
-
-#### `(+replace-in-buffer OLD NEW)`
-
-Replace OLD with NEW in the current buffer.
-
 #### `(+clear-frenchy-ponctuations)`
 
 Replace french ponctuations (like unsectable space) by regular ones.
@@ -974,9 +906,9 @@ Replace french ponctuations (like unsectable space) by regular ones.
 
 Call `save-buffer`, but keep the visited file's modtime the same.
 
-#### `(+kill-region-as-paragraph)`
+#### `(+copy-region-as-paragraph)`
 
-Kill (copy) region as one paragraph.
+Copy region as one paragraph.
 This command removes new line characters between lines.
 
 #### `(+first-line-empty-p)`
