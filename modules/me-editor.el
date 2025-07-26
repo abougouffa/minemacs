@@ -119,20 +119,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   (wgrep-auto-save-buffer t))
 
 
-;; Emacs rainbow delimiters mode
-(use-package rainbow-delimiters
-  :straight t
-  :hook (prog-mode . rainbow-delimiters-mode)
-  :init
-  (defvar +rainbow-delimiters-disabled-modes '(makefile-mode))
-  :config
-  (advice-add
-   'rainbow-delimiters-mode :around
-   (satch-defun +rainbow-delimiters--maybe:around-a (orig-fn &rest args)
-     (unless (derived-mode-p +rainbow-delimiters-disabled-modes)
-       (apply orig-fn args)))))
-
-
 ;; Highlight numbers in source code
 (use-package highlight-numbers
   :straight t
