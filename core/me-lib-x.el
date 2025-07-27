@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-25
+;; Last modified: 2025-07-27
 
 ;;; Commentary:
 
@@ -335,25 +335,22 @@ When MAIL-MODE-P is non-nil, treat INFILE as a mail."
                  (truncate-string-to-width (abbreviate-file-name outfile) (/ (window-width (minibuffer-window)) 2) nil nil t))
       (user-error (if (file-exists-p outfile) "PDF created but with some errors!" "An error occurred, cannot create the PDF!")))))
 
-(defcustom +single-file-executable "single-file"
-  "The executable for \"single-file\" which is used archive HTML pages."
+(defcustom +monolith-program "monolith"
+  "The executable for \"monolith\" which is used archive HTML pages."
   :type 'string
   :group 'minemacs-utils)
 
 ;;;###autoload
-(defun +single-file (url out-file)
+(defun +save-url-to-html-file (url out-file)
   "Save URL into OUT-FILE as a standalone HTML file."
   (interactive
    (let ((url (or (thing-at-point 'url) (read-string "URL to save: "))))
      (list url (read-file-name "Save to: " nil nil nil (url-filename (url-generic-parse-url url))))))
-  (if (executable-find +single-file-executable)
+  (if (executable-find +monolith-program)
       (make-process
-       :name "single-file-cli"
-       :buffer "*single-file*"
-       :command (list +single-file-executable
-                      "--browser-executable-path" browse-url-chromium-program
-                      url (expand-file-name out-file)))
-    (user-error "Please set `+single-file-executable' accordingly")))
+       :name "monolith" :buffer "*monolith*"
+       :command (list +monolith-program url "-o" (expand-file-name out-file)))
+    (user-error "Please set `+monolith-program' accordingly")))
 
 (defvar +browse-html-file-browser-priority '(xwidget-webkit-browse-url eww-browse-url)
   "A list of `browse-url' functions for `+browse-html-file'.
