@@ -2,6 +2,47 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.1.0](https://github.com/abougouffa/minemacs/compare/a7d698b89d0db19d722a1d179834341c39ed78e3..v13.1.0) - 2025-07-27
+#### Bug Fixes
+- **(builtin)** restore `auto-save` customization - ([9c2f3bf](https://github.com/abougouffa/minemacs/commit/9c2f3bf0a78144ead4e0b3864f4e97831585e8b6)) - [@abougouffa](https://github.com/abougouffa)
+- **(mu4e)** fix `+mu4e-view-save-mail-as-pdf` - ([b3609f8](https://github.com/abougouffa/minemacs/commit/b3609f8fd5a15f6b2f76584e6d4d75cc4c83e073)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([4b9525a](https://github.com/abougouffa/minemacs/commit/4b9525a8e0056073605e9f8b96a18f079fcb1e79)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([d82c23a](https://github.com/abougouffa/minemacs/commit/d82c23a0e67368dd16844454bae36cee8b34678f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** use Chromium/Brave to convert HTML to PDF - ([3053160](https://github.com/abougouffa/minemacs/commit/3053160ef390510491e47974d39afb2fa0bc2148)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** replace `single-file` facilities with `monolith` - ([c3a778d](https://github.com/abougouffa/minemacs/commit/c3a778d3f621b7b2f9d0bbc2dd8cc8e111ad3d6b)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `rainbow-delimiters` obsolete - ([c442162](https://github.com/abougouffa/minemacs/commit/c44216218ace5b14fa1e01c8f0c98604cd9795e1)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** move `iedit` to `me-editor`, remove `me-multi-cursors` - ([5d57439](https://github.com/abougouffa/minemacs/commit/5d574399982dde28bae11667d8e333091fab3bad)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add `kmacro-x`, maybe replace `multiple-cursors` - ([68b6ce3](https://github.com/abougouffa/minemacs/commit/68b6ce315f9e81ea0c600ea0f30514deb6d1a3a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-cursors)** make `multiple-cursors` obsolete - ([f96717d](https://github.com/abougouffa/minemacs/commit/f96717da18651d7a2d7421f9549da001daa44a4b)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(core)** cleanup unneeded stuff - ([e0ed344](https://github.com/abougouffa/minemacs/commit/e0ed34419e88768e8a60a6976f45370de925045f)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** remove some unneeded stuff - ([a9355d7](https://github.com/abougouffa/minemacs/commit/a9355d7d30ce2638d025b155612f4baa7d583a4c)) - [@abougouffa](https://github.com/abougouffa)
+- **(dtrl-indent)** minor tweaks in `+dtrt-indent-tab-to-tab-stop` - ([b0f81fc](https://github.com/abougouffa/minemacs/commit/b0f81fc4d82a0f40f2aa937e6796b9cdad3e2699)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** simplify and add `me-modeline-mode` - ([ce0469f](https://github.com/abougouffa/minemacs/commit/ce0469f483f749fa1266deaafe936fe782e2e901)) - [@abougouffa](https://github.com/abougouffa)
+- **(tab-bar)** minor cleanup - ([4049620](https://github.com/abougouffa/minemacs/commit/404962032ca258cab4a07ac1d2d093e057f6c881)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(highlight-selection)** boxed looks ugly on multi-line regions - ([3f91020](https://github.com/abougouffa/minemacs/commit/3f910204d4f7aee2d039c142873e7761b6d864f9)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(core)** minor tweak - ([afb6b48](https://github.com/abougouffa/minemacs/commit/afb6b48aa38cb613e7b09c4bab2c70ffe70e967d)) - [@abougouffa](https://github.com/abougouffa)
+- **(external-tools)** update the programs list - ([0ecc778](https://github.com/abougouffa/minemacs/commit/0ecc778c32fc23d5d94ff2ba765b9a1469f2bd24)) - [@abougouffa](https://github.com/abougouffa)
+- **(highlight-selection)** better looking face for highlighted regions - ([6e5dddc](https://github.com/abougouffa/minemacs/commit/6e5dddc568bed16e0dc74d2edb99d8d4b1e1049b)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** better looking mode-line - ([c6afac5](https://github.com/abougouffa/minemacs/commit/c6afac5e423c6620a471c373eabb6acfb4817494)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** minor edits - ([5a8b0d3](https://github.com/abougouffa/minemacs/commit/5a8b0d3ff60718028fd21798bcb6a9ded9434b62)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** shorten branch names longer than 15 chars - ([0deb28d](https://github.com/abougouffa/minemacs/commit/0deb28daa867bf6affeb730c5917d27e4fa3e34e)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** better icon for dedicated buffers - ([a7d698b](https://github.com/abougouffa/minemacs/commit/a7d698b89d0db19d722a1d179834341c39ed78e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** cleanup `project-vc-extra-root-markers` - ([867b860](https://github.com/abougouffa/minemacs/commit/867b860123fc145b4c238a34825b43fbd96962a5)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** remove `requirements.txt` from project markers - ([53968aa](https://github.com/abougouffa/minemacs/commit/53968aab80e332e0d3adba1c658133a0d44feccc)) - [@abougouffa](https://github.com/abougouffa)
+- **(recentf)** don't exclude remote files from the saved recent files - ([1d56aa2](https://github.com/abougouffa/minemacs/commit/1d56aa2f08f819afae9e72c3c0d0a6a495726f7c)) - [@abougouffa](https://github.com/abougouffa)
+- **(vc)** follow symlinks - ([15af03b](https://github.com/abougouffa/minemacs/commit/15af03b99f43efb6178aa3978d684fe88a84a824)) - [@abougouffa](https://github.com/abougouffa)
+- **(vundo)** remove duplicates (ex. `vundo-previous` uses `vundo-next`) - ([4499a7d](https://github.com/abougouffa/minemacs/commit/4499a7d2b2118e6be7f4f3c934de361d61f3f632)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4544dd4](https://github.com/abougouffa/minemacs/commit/4544dd495242b7699a714624cb7f35af08e90959)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([abeeebd](https://github.com/abougouffa/minemacs/commit/abeeebddc5bb1209ce52c04835d80402230f25d0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cfd2efe](https://github.com/abougouffa/minemacs/commit/cfd2efe668c8c3de7422199bc65bc00b5cab98ca)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.0.0](https://github.com/abougouffa/minemacs/compare/b5accf003652d669911a95f2111c2f7d4c90e120..v13.0.0) - 2025-07-23
 #### Bug Fixes
 - **(builtin)** disable `visual-wrap` until properly identify the issue - ([740c32b](https://github.com/abougouffa/minemacs/commit/740c32b471556dc23ae0adaaa937501ee24748a3)) - [@abougouffa](https://github.com/abougouffa)
