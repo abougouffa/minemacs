@@ -241,12 +241,14 @@ When a region is active, propose to use it as the patch buffer."
   (cond ((executable-find "wkhtmltopdf") 'wkhtmltopdf)
         ((executable-find "htmldoc") 'htmldoc)
         ((executable-find "weasyprint") 'weasyprint)
+        ((and (require 'browse-url) (executable-find browse-url-chromium-program)) 'chromium)
         ((and (executable-find "pandoc") (executable-find "context")) 'pandoc+context)
         ((executable-find "pandoc") 'pandoc))
   "The default backend to convert HTML files to PDFs in `+html2pdf'."
   :group 'minemacs-utils
   :type '(choice
           (const wkhtmltopdf)
+          (const chromium)
           (const htmldoc)
           (const weasyprint)
           (const pandoc+context)
@@ -271,6 +273,10 @@ value of `+html2pdf-default-backend' is used."
                       "--images" "--disable-javascript" "--enable-local-file-access"
                       "--encoding" "utf-8"
                       infile outfile))
+               ('chromium
+                (list browse-url-chromium-program
+                      "--headless" "--disable-gpu" "--no-pdf-header-footer"
+                      (format "--print-to-pdf=%s" outfile) infile))
                ('htmldoc
                 (list "htmldoc"
                       "--charset" "utf-8"
