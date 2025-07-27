@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-20
+;; Last modified: 2025-07-27
 
 ;;; Commentary:
 
@@ -238,11 +238,12 @@ preferred alias"
      (format "%s/%s" (or (when current-prefix-arg (read-directory-name "Copy message to: "))
                          mu4e-attachment-dir) target) 1)))
 
-;; Based on: mu4e-action-view-in-browser
+;; Based on: `mu4e-action-view-in-browser'
 (defun +mu4e-view-save-mail-as-pdf (&optional msg skip-headers)
   "Save current MSG as PDF.
-If SKIP-HEADERS is set, do not show include message headers."
-  (interactive)
+If SKIP-HEADERS is set (or when called with \\[universal-argument]), do
+not show include message headers."
+  (interactive (list nil current-prefix-arg))
   (when-let* ((msg (or msg (mu4e-message-at-point))))
     (with-temp-buffer
       (insert-file-contents-literally
@@ -257,28 +258,26 @@ If SKIP-HEADERS is set, do not show include message headers."
         (when (and (bufferp (car parts))
                    (stringp (car (mm-handle-type parts))))
           (setq parts (list parts)))
-        ;; Process the list
-        ;; First, `+save-as-pdf' is set as browse-url function,
-        ;; and the appropriate file output file name is bound to `+save-as-pdf-filename'
-        (let ((browse-url-browser-function #'+save-as-pdf)
-              (+save-as-pdf-filename
-               (expand-file-name
-                (format "%s_%s.pdf"
-                        (format-time-string
-                         "%F" (mu4e-message-field msg :date))
-                        (+clean-file-name
-                         (or (mu4e-message-field msg :subject) "No subject") t))
-                mu4e-attachment-dir)))
-          ;; `gnus-article-browse-html-parts' will try to display the text/html part
-          ;; of the message, but as `+save-as-pdf' is used as browse-url function,
-          ;; it will be called with the proper arguments.
-          (unless (gnus-article-browse-html-parts parts header)
-            ;; If the mail doesn't contain a text/html part, we save the plain-text message
-            ;; and then we explicitly use `+save-as-pdf' to save it.
-            (let ((outfile (make-temp-file "plaintext-mail-" nil ".txt")))
-              (with-temp-file outfile
-                (insert (mu4e-view-message-text msg)))
-              (+save-as-pdf outfile t))))
+        ;; First, `+save-as-pdf' is bound to `browse-url-of-file', and the
+        ;; appropriate file output file name is bound to `+save-as-pdf-filename'
+        (cl-letf (((symbol-function 'browse-url-of-file) #'+save-as-pdf))
+          (let ((+save-as-pdf-filename
+                 (expand-file-name
+                  (format "%s_%s.pdf"
+                          (format-time-string "%F" (mu4e-message-field msg :date))
+                          (+clean-file-name (or (mu4e-message-field msg :subject) "No subject") t))
+                  mu4e-attachment-dir)))
+            ;; `gnus-article-browse-html-parts' will try to display the
+            ;; text/html part of the message using `browse-url-of-file', but as
+            ;; we bind that function to `+save-as-pdf', it will save the HTML
+            ;; part as PDF.
+            (unless (gnus-article-browse-html-parts parts header)
+              ;; If the mail doesn't contain a text/html part, we save the plain-text message
+              ;; and then we explicitly use `+save-as-pdf' to save it.
+              (let ((outfile (make-temp-file "plaintext-mail-" nil ".txt")))
+                (with-temp-file outfile
+                  (insert (mu4e-view-message-text msg)))
+                (+save-as-pdf outfile t)))))
         (mm-destroy-parts parts)))))
 
 (defun +mu4e-extras-locks-setup ()
