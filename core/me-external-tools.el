@@ -20,9 +20,9 @@
     (:tool (gcc g++)
      :link "https://gcc.gnu.org"
      :desc "The GNU Compiler for C/C++")
-    (:tool single-file
-     :link "https://github.com/gildas-lormeau/single-file-cli"
-     :desc "CLI tool for saving a faithful copy of a complete web page in a single HTML file")
+    (:tool monolith
+     :link "https://github.com/Y2Z/monolith"
+     :desc "CLI tool and library for saving complete web pages as a single HTML file")
     (:tool jq
      :link "https://github.com/jqlang/jq"
      :desc "A lightweight and flexible command-line JSON processor")
@@ -293,6 +293,9 @@
     (:tool mpv
      :link "https://github.com/mpv-player/mpv"
      :desc "Command line video player")
+    (:tool txt2html
+     :url "https://txt2html.sourceforge.net"
+     :desc "Convert plain text file to HTML")
     (:tool ollama
      :link "https://github.com/ollama/ollama"
      :desc "Get up and running with Llama 2, Mistral, and other large language models locally")
