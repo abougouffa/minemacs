@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-20
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -175,6 +175,11 @@
 (use-package simpc-mode
   :straight (:host github :repo "rexim/simpc-mode")
   :commands (simpc-mode))
+
+
+;; Generate C++ method implementations from declarations using `treesit'
+(use-package cpp-func-impl
+  :straight (:host github :repo "dheerajshenoy/cpp-func-impl.el"))
 
 
 (provide 'me-prog)
