@@ -50,7 +50,6 @@
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `wgrep`: Writable grep buffer and apply the changes to files
-* `rainbow-delimiters`: Emacs rainbow delimiters mode
 * `highlight-numbers`: Highlight numbers in source code
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
 * `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it

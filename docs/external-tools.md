@@ -10,7 +10,7 @@ you might need install some of these tools.
 4. [`msmtp`](https://github.com/marlam/msmtp) - SMTP client with sendmail compatible interface
 5. [`objdump`, `binutils`](https://en.wikipedia.org/wiki/Objdump) - A tool to display information from object files
 6. [`gcc`, `g++`](https://gcc.gnu.org) - The GNU Compiler for C/C++
-7. [`single-file`](https://github.com/gildas-lormeau/single-file-cli) - CLI tool for saving a faithful copy of a complete web page in a single HTML file
+7. [`monolith`](https://github.com/Y2Z/monolith) - CLI tool and library for saving complete web pages as a single HTML file
 8. [`jq`](https://github.com/jqlang/jq) - A lightweight and flexible command-line JSON processor
 9. [`yq`](https://github.com/mikefarah/yq) - A portable command-line YAML, JSON, XML, CSV, TOML and properties processor
 10. [`xq`](https://github.com/sibprogrammer/xq) - Command-line XML and HTML beautifier and content extractor
@@ -101,5 +101,6 @@ you might need install some of these tools.
 95. [`eslint`](https://github.com/eslint/eslint) - Find and fix problems in your JavaScript code
 96. [`jsonlint`](https://github.com/zaach/jsonlint) - A JSON parser and validator with a CLI
 97. [`mpv`](https://github.com/mpv-player/mpv) - Command line video player
-98. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
-99. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
+98. [`txt2html`](nil) - Convert plain text file to HTML
+99. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
+100. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model

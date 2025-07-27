@@ -195,9 +195,9 @@ The default backend to convert HTML files to PDFs in `+html2pdf`.
 
 A config file to use with the backend tool (pandoc, weasyprint, ...).
 
-#### `+single-file-executable`
+#### `+monolith-program`
 
-The executable for "single-file" which is used archive HTML pages.
+The executable for "monolith" which is used archive HTML pages.
 
 #### `+serial-port`
 
@@ -720,7 +720,7 @@ This function's signature is compatible with `browse-url-browser-function`
 so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
-#### `(+single-file URL OUT-FILE)`
+#### `(+save-url-to-html-file URL OUT-FILE)`
 
 Save URL into OUT-FILE as a standalone HTML file.
 
@@ -1221,7 +1221,8 @@ Copy MSG at point to somewhere else as <date>_<subject>.eml.
 #### `(+mu4e-view-save-mail-as-pdf &optional MSG SKIP-HEADERS)`
 
 Save current MSG as PDF.
-If SKIP-HEADERS is set, do not show include message headers.
+If SKIP-HEADERS is set (or when called with C-u), do
+not show include message headers.
 
 #### `(+mu4e-extras-locks-setup)`
 
