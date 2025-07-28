@@ -37,7 +37,8 @@ indicators.")
 
 (defvar-local me-modeline-kbd-macro
   '(:eval
-    (when (and (mode-line-window-selected-p) defining-kbd-macro)
+    (when (and (mode-line-window-selected-p) defining-kbd-macro
+               (not (bound-and-true-p kmacro-x-mc-mode))) ;; `kmacro-x-mc' is handled as multiple cursors
       (concat " " (+nerd-icons-icon "nf-md-record_rec")))))
 
 ;;; Narrow indicator
@@ -51,13 +52,17 @@ indicators.")
 
 (defvar-local me-modeline-multiple-cursors
   '(:eval
-    (concat
-     (when (bound-and-true-p multiple-cursors-mode)
-       (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (mc/num-cursors)))
-                   'face '(nerd-icons-blue me-modeline-inverse-video-face)))
-     (when (and (bound-and-true-p iedit-mode) (bound-and-true-p iedit-occurrences-overlays))
-       (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (length iedit-occurrences-overlays)))
-                   'face '(nerd-icons-purple me-modeline-inverse-video-face))))))
+    (when-let* ((count-face
+                 (cond ((and (or (bound-and-true-p iedit-mode) (bound-and-true-p iedit-rectangle-mode))
+                             (bound-and-true-p iedit-occurrences-overlays))
+                        (cons (length iedit-occurrences-overlays) 'nerd-icons-purple))
+                       ((bound-and-true-p iedit-rectangle-mode) (bound-and-true-p iedit-occurrences-overlays))
+                       ((bound-and-true-p kmacro-x-mc-mode)
+                        (cons (length kmacro-x-mc-cursors) 'nerd-icons-red))
+                       ((bound-and-true-p multiple-cursors-mode)
+                        (cons (mc/num-cursors) 'nerd-icons-blue)))))
+      (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (car count-face)))
+                  'face `(,(cdr count-face) me-modeline-inverse-video-face)))))
 
 ;;; Input method
 
@@ -102,8 +107,7 @@ indicators.")
 
 (defvar-local me-modeline-buffer-identification
   '(:eval
-    (concat (me-modeline-file-icon)
-            (and buffer-read-only (concat " " (+nerd-icons-icon "nf-fa-lock")))
+    (concat (and buffer-read-only (concat (+nerd-icons-icon "nf-fa-lock")))
             " "
             (propertize
              (buffer-name)
@@ -120,23 +124,13 @@ indicators.")
 
 ;;; Major mode
 
-(defun me-modeline-file-icon ()
-  "Return appropriate propertized mode line indicator for the major mode."
-  (cond ((buffer-file-name)
-         (nerd-icons-icon-for-file (buffer-file-name)))
-        ((and (bound-and-true-p dired-mode) dired-directory)
-         (nerd-icons-icon-for-dir dired-directory))
-        (t (nerd-icons-icon-for-mode major-mode))))
-
-(defvar-local me-modeline-major-mode
+(defvar-local me-modeline-major-mode-icon
   '(:eval
-    (concat
-     (propertize
-      (capitalize (string-replace "-mode" "" (symbol-name major-mode)))
-      'mouse-face 'mode-line-highlight
-      'help-echo (if-let* ((parent (get major-mode 'derived-mode-parent)))
-                     (format "Symbol: `%s'.  Derived from: `%s'" major-mode parent)
-                   (format "Symbol: `%s'." major-mode))))))
+    (cond ((buffer-file-name)
+           (nerd-icons-icon-for-file (buffer-file-name)))
+          ((and (bound-and-true-p dired-mode) dired-directory)
+           (nerd-icons-icon-for-dir dired-directory))
+          (t (nerd-icons-icon-for-mode major-mode)))))
 
 (defvar-local me-modeline-process
   (list '("" mode-line-process)))
@@ -260,7 +254,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      me-modeline-multiple-cursors
                      me-modeline-window-dedicated-status
                      me-modeline-buffer-identification
-                     me-modeline-major-mode
+                     me-modeline-major-mode-icon
                      me-modeline-process
                      me-modeline-vc-branch
                      me-modeline-flymake
@@ -280,13 +274,14 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
           (setq me-modeline--mode-line-format-orig (default-value 'mode-line-format)))
         (setq-default mode-line-format
                       '("%e"
+                        me-modeline-multiple-cursors
                         me-modeline-kbd-macro
                         me-modeline-narrow
                         me-modeline-buffer-status
                         me-modeline-window-dedicated-status
                         me-modeline-input-method
-                        me-modeline-multiple-cursors
                         "  "
+                        me-modeline-major-mode-icon
                         me-modeline-buffer-identification
                         "  "
                         mode-line-position
