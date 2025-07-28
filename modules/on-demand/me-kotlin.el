@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -24,7 +24,10 @@
 (use-package kotlin-ts-mode
   :straight t
   :when (featurep 'feat/tree-sitter)
-  :mode "\\.kts?\\'")
+  :mode "\\.kts?\\'"
+  :config
+  (add-to-list 'treesit-language-source-alist '(kotlin "https://github.com/fwcd/tree-sitter-kotlin"))
+  (treesit-ensure-installed 'kotlin))
 
 
 (provide 'on-demand/me-kotlin)

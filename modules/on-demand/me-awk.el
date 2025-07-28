@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -19,7 +19,10 @@
 ;; Major mode for AWK using Tree-sitter
 (use-package awk-ts-mode
   :straight t
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :config
+  (add-to-list 'treesit-language-source-alist '(awk "https://github.com/Beaglefoot/tree-sitter-awk"))
+  (treesit-ensure-installed 'awk))
 
 
 (provide 'on-demand/me-awk)

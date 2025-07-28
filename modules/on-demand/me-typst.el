@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-13
-;; Last modified: 2025-06-04
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -18,7 +18,10 @@
 ;; Typst tree sitter major mode for Emacs
 (use-package typst-ts-mode
   :straight t
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :config
+  (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst"))
+  (treesit-ensure-installed 'typst))
 
 
 ;; Typst live preview minor mode

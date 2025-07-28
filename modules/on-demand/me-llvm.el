@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-14
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -19,7 +19,10 @@
 ;; LLVM major mode using Tree-sitter
 (use-package llvm-ts-mode
   :straight t
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :config
+  (add-to-list 'treesit-language-source-alist '(llvm "https://github.com/benwilliamgraham/tree-sitter-llvm"))
+  (treesit-ensure-installed 'llvm))
 
 
 ;; Automatically demangle C++, D, and Rust symbols in LLVM code

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -27,6 +27,9 @@
   :when (featurep 'feat/tree-sitter)
   :mode "\\.nix\\'"
   :config
+  (add-to-list 'treesit-language-source-alist '(nix "https://github.com/nix-community/tree-sitter-nix"))
+  (treesit-ensure-installed 'nix)
+
   ;; Register Eglot servers on the `nix-ts-mode' in addition to the already configured `nix-mode'
   (with-eval-after-load 'eglot
     (when-let* ((server (assoc 'nix-mode eglot-server-programs)))

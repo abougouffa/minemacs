@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-05-18
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -27,7 +27,10 @@
 (use-package julia-ts-mode
   :straight t
   :when (featurep 'feat/tree-sitter)
-  :interpreter "julia")
+  :interpreter "julia"
+  :config
+  (add-to-list 'treesit-language-source-alist '(julia "https://github.com/tree-sitter/tree-sitter-julia"))
+  (treesit-ensure-installed 'julia))
 
 
 ;; A minor mode for a Julia REPL

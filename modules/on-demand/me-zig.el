@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-05-13
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -23,7 +23,11 @@
 ;; Tree-sitter based major mode for the Zig programming language
 (use-package zig-ts-mode
   :straight t
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :config
+  (add-to-list 'treesit-language-source-alist '(zig "https://github.com/GrayJack/tree-sitter-zig"))
+  (treesit-ensure-installed 'zig))
+
 
 (provide 'on-demand/me-zig)
 ;;; me-zig.el ends here
