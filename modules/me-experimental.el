@@ -15,8 +15,8 @@
 (use-package kmacro-x
   :straight t
   :hook (minemacs-first-file . kmacro-x-atomic-undo-mode)
-  ;; :bind (("C-<" . kmacro-x-mc-mark-previous)
-  ;;        ("C->" . kmacro-x-mc-mark-next))
+  :bind (("C-<" . kmacro-x-mc-mark-previous)
+         ("C->" . kmacro-x-mc-mark-next))
   :custom
   (kmacro-x-mc-live-preview t))
 
