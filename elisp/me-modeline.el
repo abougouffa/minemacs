@@ -107,7 +107,7 @@ indicators.")
 
 (defvar-local me-modeline-buffer-identification
   '(:eval
-    (concat (and buffer-read-only (concat (+nerd-icons-icon "nf-fa-lock")))
+    (concat (and buffer-read-only (concat " " (+nerd-icons-icon "nf-fa-lock")))
             " "
             (propertize
              (buffer-name)
@@ -237,6 +237,16 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
     (when (and (mode-line-window-selected-p) (featurep 'eglot))
       '(eglot--managed-mode eglot--mode-line-format))))
 
+
+;;; Compilation
+
+(defvar-local me-modeline-compile
+  `(:eval
+    (when (and (mode-line-window-selected-p) (bound-and-true-p compilation-in-progress))
+      (propertize (+nerd-icons-icon "nf-fa-hammer" :face 'nerd-icons-red)
+                  'mouse-face 'mode-line-highlight
+                  'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n")))))
+
 ;;; Miscellaneous
 
 (defvar-local me-modeline-misc-info
@@ -259,6 +269,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      me-modeline-vc-branch
                      me-modeline-flymake
                      me-modeline-eglot
+                     me-modeline-compile
                      me-modeline-misc-info))
   (put construct 'risky-local-variable t))
 
@@ -291,6 +302,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         me-modeline-eglot
                         "  "
                         mode-line-format-right-align
+                        "  "
+                        me-modeline-compile
                         "  "
                         me-modeline-vc-branch
                         "  "
