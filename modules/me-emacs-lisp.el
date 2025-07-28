@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -74,11 +74,6 @@
   :hook (minemacs-first-elisp-file . eros-mode)
   :custom
   (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>")))
-
-
-;; Elisp regexp mistake finder
-(use-package relint
-  :straight t)
 
 
 (provide 'me-emacs-lisp)
