@@ -29,6 +29,7 @@
   (parinfer-rust-auto-download (featurep 'arch/x86_64))
   :hook ((lisp-mode emacs-lisp-mode clojure-mode scheme-mode racket-mode hy-mode janet-mode) . +parinfer-rust-mode-maybe)
   :config
+  (cl-callf2 remq 'electric-pair-mode parinfer-rust-troublesome-modes) ; `electric-pair-mode' looks fine!
   (defun +parinfer-rust-mode-maybe ()
     (when (or parinfer-rust-auto-download (file-exists-p parinfer-rust-library))
       ;; BUG+HACK: Defer calling `parinfer-rust-mode', this should fix the issue

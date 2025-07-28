@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-27
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -88,10 +88,6 @@
   (when (and (fboundp 'global-completion-preview-mode) (+package-disabled-p 'corfu 'me-completion))
     (global-completion-preview-mode 1)
     (add-hook 'minibuffer-mode-hook 'completion-preview-mode)) ; Use also in the minibuffer
-
-  ;; When `me-editor/smartparens' is disabled, enable `electric-pair-mode'
-  (when (+package-disabled-p 'smartparens 'me-editor)
-    (electric-pair-mode 1))
 
   ;; Prefer `embark', see https://www.matem.unam.mx/~omar/apropos-emacs.html#the-case-against-which-key-a-polemic
   (when (+package-disabled-p 'embark 'me-completion)
@@ -820,6 +816,9 @@ Typing these will trigger reindentation of the current line.")
         (backward-word)
         (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))
   (add-hook 'electric-indent-functions #'+electric-indent-char-fn))
+
+(use-package elec-pair
+  :hook (minemacs-after-startup . electric-pair-mode))
 
 (use-package ediff
   :hook (ediff-before-setup . +ediff--save-window-config-h)
