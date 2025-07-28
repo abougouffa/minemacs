@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-25
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -19,8 +19,8 @@
   (when (and (display-graphic-p) (not (+font-installed-p "Symbols Nerd Font Mono")))
     (nerd-icons-install-fonts t))
   :config
-  ;; Show .m files as Matlab/Octave files (integral icon)
-  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-mdicon "nf-md-math_integral_box" :face nerd-icons-orange)))
+  ;; Show .m files as Matlab/Octave files instead of Objective-C
+  (setcdr (assoc "m" nerd-icons-extension-icon-alist) '(nerd-icons-devicon "nf-dev-matlab" :face nerd-icons-orange)))
 
 
 ;; A megapack of themes for Emacs
