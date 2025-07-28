@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-21
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -77,8 +77,6 @@
 
 ;; Native compilation settings
 (when (and (featurep 'native-compile) (native-comp-available-p))
-  ;; FIX: Require `battery', otherwise, setting `native-comp-async-on-battery-power' can cause problems
-  (require 'battery)
   (setq
    ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
    native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
