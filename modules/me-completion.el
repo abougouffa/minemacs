@@ -116,12 +116,6 @@
        (corfu-popupinfo--hide)))))
 
 
-;; Corfu popup on terminal
-(use-package corfu-terminal
-  :straight t
-  :hook (corfu-mode . corfu-terminal-mode))
-
-
 ;; Icons for Corfu using `nerd-icons'
 (use-package nerd-icons-corfu
   :straight t
