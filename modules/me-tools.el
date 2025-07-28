@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-22
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -46,11 +46,6 @@
   :straight (:host github :repo "SebastienWae/app-launcher")
   :when (or (featurep 'os/linux) (featurep 'os/bsd))
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
-
-
-;; Manipulate "tmux" from Emacs
-(use-package emamux
-  :straight t)
 
 
 ;; System-wide popup Emacs windows for quick edits
