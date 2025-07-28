@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-07-28
+;; Last modified: 2025-07-29
 
 ;;; Commentary:
 
@@ -25,11 +25,12 @@
 (use-package lspce
   :straight `( :host github :repo "zbelial/lspce"
                :files (:defaults ,(file-name-with-extension "lspce-module" module-file-suffix))
-               :pre-build (("cargo" "build" "--release")
-                           ("cp"
-                            ,(file-name-with-extension "./target/release/liblspce_module" module-file-suffix)
-                            ,(file-name-with-extension "./lspce-module" module-file-suffix))))
-  :when (and (featurep 'feat/modules) (executable-find "cargo"))
+               :pre-build ,(when (executable-find "cargo")
+                             `(("cargo" "build" "--release")
+                               ("cp"
+                                ,(file-name-with-extension "./target/release/liblspce_module" module-file-suffix)
+                                ,(file-name-with-extension "./lspce-module" module-file-suffix)))))
+  :when (featurep 'feat/modules)
   :config
   (add-to-list
    'lspce-server-programs
