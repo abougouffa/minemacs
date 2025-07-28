@@ -53,16 +53,6 @@
   :straight t)
 
 
-;; Browse "tldr" pages from Emacs
-(use-package tldr
-  :straight t
-  :hook
-  (minemacs-build-functions . tldr-update-docs)
-  (tldr-mode . visual-line-mode)
-  :custom
-  (tldr-enabled-categories '("common" "linux" "netbsd" "openbsd" "freebsd" "osx" "windows")))
-
-
 ;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
 (use-package vterm
   :straight t

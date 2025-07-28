@@ -140,37 +140,6 @@
                      (nerd-icons-icon-for-mode major-mode)))))))
 
 
-;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
-(use-package devdocs
-  :straight t
-  :when (featurep 'feat/libxml2))
-
-
-;; Offline documentation browser using Dash/Zeal docsets
-(use-package dash-docs
-  :straight (:host github :repo "abougouffa/dash-docs")
-  :custom
-  (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
-  (dash-docs-browser-func #'eww-browse-url)
-  :init
-  (+setq-hook! (sh-mode bash-ts-mode) dash-docs-docsets '("Bash"))
-  (+setq-hook! (python-mode python-ts-mode) dash-docs-docsets '("Python 3" "OpenCV Python" "NumPy" "SciPy" "PyTorch" "TensorFlow" "SymPy" "mypy"))
-  (+setq-hook! (c-mode c-ts-mode) dash-docs-docsets '("C" "OpenCV" "OpenCV C"))
-  (+setq-hook! (c++-mode c++-ts-mode) dash-docs-docsets '("C++" "OpenCV" "OpenCV C++"))
-  (+setq-hook! (json-mode json-ts-mode) dash-docs-docsets '("jq"))
-  (+setq-hook! cuda-mode dash-docs-docsets '("CUDA"))
-  (+setq-hook! opencl-c-mode dash-docs-docsets '("OpenCL")))
-
-
-;; Integration of `consult' with `dash-docs'
-(use-package consult-dash
-  :straight t
-  :unless (+package-disabled-p 'consult 'me-completion)
-  :config
-  (with-eval-after-load 'consult
-    (consult-customize consult-dash :initial (or (thing-at-point 'region t) (thing-at-point 'symbol t)))))
-
-
 ;; Simple and fast C mode for amalgamated (big) files
 (use-package simpc-mode
   :straight (:host github :repo "rexim/simpc-mode")
