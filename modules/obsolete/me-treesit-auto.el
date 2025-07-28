@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -25,7 +25,7 @@
   (add-to-list 'display-buffer-alist '("\\*Treesit-auto install candidates\\*" (display-buffer-no-window) (allow-no-window . t)))
   :config
   ;; Add extra grammars
-  ;; BUG+FIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
+  ;; BUGFIX: Remove the Markdown grammar to install it correctly (renzmann/treesit-auto#102)
   (let* ((extra-recipes
           (list (make-treesit-auto-recipe
                  :lang 'xml :ts-mode 'xml-ts-mode :remap '(nxml-mode xml-mode)

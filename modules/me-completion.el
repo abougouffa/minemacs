@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-17
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -42,7 +42,7 @@
 
   (satch-add-hook
    'completion-at-point-functions
-   ;; BUG+TEMP: `cape-dict' is causing problems on Emacs 31
+   ;; BUGFIX+TEMP: `cape-dict' is causing problems on Emacs 31
    (append '(cape-file cape-keyword) (when (< emacs-major-version 31) '(cape-dict))))
 
   (satch-add-hook

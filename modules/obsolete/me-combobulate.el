@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-30
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -22,7 +22,7 @@
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
-  ;; TEMP+FIX: Basically, load the same features that would be loaded by "combobulate.el"
+  ;; TEMP+BUGFIX: Basically, load the same features that would be loaded by "combobulate.el"
   (dolist (feature '(combobulate-rules
                      combobulate-procedure combobulate-navigation
                      combobulate-manipulation combobulate-envelope combobulate-display

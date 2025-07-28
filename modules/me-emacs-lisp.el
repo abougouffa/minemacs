@@ -31,8 +31,8 @@
   :config
   (defun +parinfer-rust-mode-maybe ()
     (when (or parinfer-rust-auto-download (file-exists-p parinfer-rust-library))
-      ;; BUG+HACK: Defer applying `parinfer-rust-mode', this should fix the
-      ;; issue of unusable `parinfer-rust-mode' until disabled and enabled again
+      ;; BUG+HACK: Defer calling `parinfer-rust-mode', this should fix the issue
+      ;; of unusable `parinfer-rust-mode' until disabled and enabled again
       (run-with-timer
        0.5 nil
        (lambda (buffer)
@@ -61,8 +61,7 @@
       (parinfer-rust-mode -1)
       (+info! "Disabled `parinfer-rust-mode'")))
 
-  ;; HACK: Fix the issue of `vundo' (related to `track-changes') when exploring
-  ;; the undo tree
+  ;; BUGFIX: Fix the issue of `vundo' (related to `track-changes') when exploring the undo tree
   (with-eval-after-load 'vundo
     (add-hook 'vundo-pre-enter-hook #'+parinfer-rust--disable)
     (add-hook 'vundo-post-exit-hook #'+parinfer-rust--restore)))

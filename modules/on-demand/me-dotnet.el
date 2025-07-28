@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-04-21
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -63,7 +63,7 @@ the lanugage and the type."
   :straight t
   :mode "\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'"
   :config
-  ;; BUG+FIX: Switch to a working function
+  ;; BUGFIX: Switch to a working function
   (advice-add 'csproj-mode--get-dotnet-new-templates :override #'+dotnet-get-templates))
 
 
@@ -92,7 +92,7 @@ the lanugage and the type."
          (desc :face 'marginalia-file-name))))
     (add-to-list 'marginalia-annotator-registry '(dotnet-template +marginalia-annotate-dotnet-template builtin none)))
 
-  ;; TWEAK+FIX: Fix the path issue and provide a more smart prompting for templates and languages
+  ;; TWEAK+BUGFIX: Fix the path issue and provide a more smart prompting for templates and languages
   (advice-add
    'dotnet-new :override
    (lambda (path template language)

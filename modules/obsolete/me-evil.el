@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-07-25
+;; Last modified: 2025-07-28
 
 ;;; Commentary:
 
@@ -690,7 +690,7 @@ It is deferred until `general' gets loaded and configured."
   (when iedit-toggle-key-default
     (keymap-global-set (key-description iedit-toggle-key-default) 'evil-iedit-state/iedit-mode))
   :config
-  ;; FIX: When we press "C-;" (`iedit-toggle-key-default') to enter `iedit-mode'
+  ;; BUGFIX: When we press "C-;" (`iedit-toggle-key-default') to enter `iedit-mode'
   ;; and then "C-;" to quit it, `evil-iedit-state' will stay in `iedit-mode'
   ;; even if the selections aren't displayed and no `iedit' indication is
   ;; displayed in minibuffer.

@@ -106,7 +106,7 @@
   :config
   (cl-callf append hl-todo-keyword-faces
     '(("BUG"   . "#ee5555")
-      ("FIX"   . "#0fa050")
+      ("BUGFIX"   . "#ee5555")
       ("PROJ"  . "#447f44")
       ("IDEA"  . "#0fa050")
       ("INFO"  . "#0e9030")
