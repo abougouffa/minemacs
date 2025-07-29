@@ -48,13 +48,5 @@
   :unless (+package-disabled-p 'consult 'me-completion))
 
 
-;; Insert SPDX license header
-(use-package spdx
-  :straight (:host github :repo "condy0919/spdx.el")
-  :custom
-  (spdx-copyright-holder 'user)
-  (spdx-project-detection 'auto))
-
-
 (provide 'me-snippets)
 ;;; me-snippets.el ends here
