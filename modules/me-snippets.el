@@ -26,17 +26,6 @@
   (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
 
 
-;; Completion-At-Point Extension for YASnippet
-(use-package yasnippet-capf
-  :straight t
-  :hook ((prog-mode text-mode conf-mode) . +cape-yasnippet--setup-h)
-  :bind (("C-c p y" . yasnippet-capf))
-  :init
-  (defun +cape-yasnippet--setup-h ()
-    (when (bound-and-true-p yas-minor-mode)
-      (add-to-list 'completion-at-point-functions #'yasnippet-capf))))
-
-
 ;; A collection of yasnippet snippets for many languages
 (use-package yasnippet-snippets
   :straight t)
