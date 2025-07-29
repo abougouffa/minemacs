@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2025-07-08
+;; Last modified: 2025-07-29
 
 ;;; Commentary:
 
@@ -46,11 +46,6 @@
 (use-package consult-yasnippet
   :straight t
   :unless (+package-disabled-p 'consult 'me-completion))
-
-
-;; The Doom Emacs snippets library
-(use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
 
 
 ;; Insert SPDX license header
