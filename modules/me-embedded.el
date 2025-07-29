@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-06-14
+;; Last modified: 2025-07-29
 
 ;;; Commentary:
 
@@ -72,7 +72,12 @@
 (use-package bitbake-ts-mode
   :straight t
   :disabled ; TEMP: No good syntax highlighting
-  :when (featurep 'feat/tree-sitter))
+  :when (featurep 'feat/tree-sitter)
+  :config
+  (add-to-list
+   'treesit-language-source-alist
+   '(bitbake "https://github.com/tree-sitter-grammars/tree-sitter-bitbake"))
+  (treesit-ensure-installed 'bitbake))
 
 
 (provide 'me-embedded)
