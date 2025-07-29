@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-28
+;; Last modified: 2025-07-29
 
 ;;; Commentary:
 
@@ -76,6 +76,7 @@
   (doc-view-continuous t)
   (mouse-autoselect-window t)
   (vc-follow-symlinks t)
+  (initial-major-mode 'fundamental-mode)
   :init
   (setq-default fill-column 80
                 cursor-type 'bar)
