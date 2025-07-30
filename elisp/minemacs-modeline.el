@@ -14,6 +14,20 @@
 (require 'nerd-icons)
 (require 'me-lib)
 
+(defvar minemacs-modeline--icon-alist
+  (cl-loop for glyph-set in nerd-icons-glyph-sets
+           for sym = (intern (format "nerd-icons/%s-alist" glyph-set))
+           for name = (caar (symbol-value sym))
+           collect (cons (nth 1 (string-split name "-"))
+                         (intern (format "nerd-icons-%s" glyph-set)))))
+
+(defun minemacs-modeline--icon (name &rest args)
+  "Generic function to get icons by NAME, with ARGS."
+  (if-let* ((variant (nth 1 (string-split name "-")))
+            (fn (alist-get variant minemacs-modeline--icon-alist nil nil #'equal)))
+      (apply fn (cons name args))
+    (error "Cannot detect the function which provides %S" name)))
+
 (defgroup minemacs-modeline nil
   "Custom modeline that is stylistically close to the default."
   :group 'mode-line)
@@ -39,7 +53,7 @@ indicators.")
   '(:eval
     (when (and (mode-line-window-selected-p) defining-kbd-macro
                (not (bound-and-true-p kmacro-x-mc-mode))) ;; `kmacro-x-mc' is handled as multiple cursors
-      (concat " " (+nerd-icons-icon "nf-md-record_rec")))))
+      (concat " " (minemacs-modeline--icon "nf-md-record_rec")))))
 
 ;;; Narrow indicator
 
@@ -48,7 +62,7 @@ indicators.")
     (when (and (mode-line-window-selected-p)
                (buffer-narrowed-p)
                (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode 'archive-mode)))
-      (concat " " (+nerd-icons-icon "nf-md-arrow_collapse_vertical")))))
+      (concat " " (minemacs-modeline--icon "nf-md-arrow_collapse_vertical")))))
 
 (defvar-local minemacs-modeline-multiple-cursors
   '(:eval
@@ -61,7 +75,7 @@ indicators.")
                         (cons (length kmacro-x-mc-cursors) 'nerd-icons-red))
                        ((bound-and-true-p multiple-cursors-mode)
                         (cons (mc/num-cursors) 'nerd-icons-blue)))))
-      (propertize (concat " " (+nerd-icons-icon "nf-fa-i_cursor") (format " %d " (car count-face)))
+      (propertize (concat " " (minemacs-modeline--icon "nf-fa-i_cursor") (format " %d " (car count-face)))
                   'face `(,(cdr count-face) minemacs-modeline-inverse-video-face)))))
 
 ;;; Input method
@@ -79,7 +93,7 @@ indicators.")
   '(:eval
     (concat
      (when overwrite-mode
-       (concat " " (+nerd-icons-icon "nf-fa-pencil" :face 'nerd-icons-red)))
+       (concat " " (minemacs-modeline--icon "nf-fa-pencil" :face 'nerd-icons-red)))
      (when-let* ((method (file-remote-p default-directory 'method))
                  (icon-face
                   (pcase method
@@ -96,18 +110,18 @@ indicators.")
                     (t "nf-md-folder_network_outline")))
                  (icon (if (consp icon-face) (car icon-face) icon-face))
                  (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-       (concat " " (+nerd-icons-icon icon :face face))))))
+       (concat " " (minemacs-modeline--icon icon :face face))))))
 
 ;;; Dedicated window
 
 (defvar-local minemacs-modeline-window-dedicated-status
-  '(:eval (when (window-dedicated-p) (concat " " (+nerd-icons-icon "nf-oct-pin" :face 'nerd-icons-dred)))))
+  '(:eval (when (window-dedicated-p) (concat " " (minemacs-modeline--icon "nf-oct-pin" :face 'nerd-icons-dred)))))
 
 ;;; Buffer name and modified status
 
 (defvar-local minemacs-modeline-buffer-identification
   '(:eval
-    (concat (and buffer-read-only (concat " " (+nerd-icons-icon "nf-fa-lock")))
+    (concat (and buffer-read-only (concat " " (minemacs-modeline--icon "nf-fa-lock")))
             " "
             (propertize
              (buffer-name)
@@ -170,7 +184,7 @@ indicators.")
                                  (concat "··" (substring branch (- len 15) len))
                                branch)))
       (concat
-       (+nerd-icons-icon "nf-fa-code_branch" :face 'shadow)
+       (minemacs-modeline--icon "nf-fa-code_branch" :face 'shadow)
        " "
        (propertize branch-trim
                    'face face
@@ -206,7 +220,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
      (when-let* ((count (minemacs-modeline-flymake-counter ,(intern (format ":%s" type)))))
        (concat
         " "
-        (+nerd-icons-icon ,icon :face ',(or face type))
+        (minemacs-modeline--icon ,icon :face ',(or face type))
         " "
         (propertize count
                     'face ',(or face type)
@@ -243,7 +257,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (defvar-local minemacs-modeline-compile
   `(:eval
     (when (and (mode-line-window-selected-p) (bound-and-true-p compilation-in-progress))
-      (propertize (+nerd-icons-icon "nf-fa-hammer" :face 'nerd-icons-red)
+      (propertize (minemacs-modeline--icon "nf-fa-hammer" :face 'nerd-icons-red)
                   'mouse-face 'mode-line-highlight
                   'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n")))))
 
