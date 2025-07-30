@@ -6,5 +6,5 @@
                      (time-stamp-format . "%04Y-%02m-%02d")
                      (eval . (and (fboundp 'apheleia-mode) (apheleia-mode 1)))
                      (copyright-query . nil)
-                     (eval . (add-hook 'before-save-hook #'copyright-update))))
+                     (eval . (add-hook 'before-save-hook #'copyright-update nil 'local))))
  (text-mode . ((+git-commit-prefix-in-project . conventional))))
