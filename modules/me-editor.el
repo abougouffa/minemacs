@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-29
+;; Last modified: 2025-07-30
 
 ;;; Commentary:
 
@@ -157,15 +157,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 (use-package vim-file-locals
   :straight (:host github :repo "abougouffa/emacs-vim-file-locals")
   :hook (minemacs-first-file . vim-file-locals-mode))
-
-
-;; Writable grep buffer and apply the changes to files
-(use-package wgrep
-  :straight t
-  :when (< emacs-major-version 31) ; Emacs 31+ natively supports editing `grep-mode' buffers via `grep-edit-mode'
-  :commands (wgrep-change-to-wgrep-mode)
-  :custom
-  (wgrep-auto-save-buffer t))
 
 
 ;; Highlight numbers in source code
