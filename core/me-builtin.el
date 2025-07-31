@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-29
+;; Last modified: 2025-07-31
 
 ;;; Commentary:
 
@@ -133,7 +133,12 @@
   (dolist (command '(list-timers narrow-to-region narrow-to-defun narrow-to-page upcase-region downcase-region))
     (put command 'disabled nil))
 
-  (defvar-keymap minemacs-prefix-map :doc "MinEmacs' prefix, under `C-z'." :name "MinEmacs' prefix")
+  (defvar-keymap minemacs-prefix-map
+    :doc "MinEmacs' prefix, under `C-z'."
+    :name "MinEmacs' prefix"
+    "b f" #'follow-mode
+    "b x" #'bury-buffer)
+
   (keymap-global-set "C-z" `("minemacs-prefix" . ,minemacs-prefix-map))
 
   (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
