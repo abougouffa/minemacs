@@ -14,7 +14,7 @@
 (require 'nerd-icons)
 (require 'me-lib)
 
-(defvar minemacs-modeline--icon-alist
+(defconst minemacs-modeline--icon-alist
   (cl-loop for glyph-set in nerd-icons-glyph-sets
            for sym = (intern (format "nerd-icons/%s-alist" glyph-set))
            for name = (caar (symbol-value sym))
