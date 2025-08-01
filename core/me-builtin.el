@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-07-31
+;; Last modified: 2025-08-01
 
 ;;; Commentary:
 
@@ -74,7 +74,6 @@
   (password-cache-expiry 60) ; Cache for one minute (def. 16s)
   (epg-pinentry-mode 'loopback) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
   (doc-view-continuous t)
-  (mouse-autoselect-window t)
   (vc-follow-symlinks t)
   (initial-major-mode 'fundamental-mode)
   :init
