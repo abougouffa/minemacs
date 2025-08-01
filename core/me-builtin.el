@@ -125,6 +125,10 @@
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
 
+  (with-eval-after-load 'prog-mode
+    (keymap-set prog-mode-map "C-<down-mouse-1>" #'mouse-drag-region)
+    (keymap-set prog-mode-map "C-<mouse-1>" #'xref-find-definitions-at-mouse))
+
   (with-eval-after-load 'help
     (keymap-set help-map "h" #'+describe-at-point))
 
