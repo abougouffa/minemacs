@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-16
+;; Last modified: 2025-08-03
 
 ;;; Commentary:
 
@@ -51,7 +51,7 @@
 (use-package compile-multi-nerd-icons
   :straight t
   :after compile-multi
-  :demand t)
+  :demand)
 
 
 ;; Projectile like project management library built on Emacs' `project'
@@ -63,14 +63,8 @@
   :bind-keymap ("C-x P" . projection-map)
   :bind (:map projection-map ("f" . projection-find-other-file))
   :init
-  ;; BUG: `projection-hook' causes Tramp issues, don't enable `global-projection-hook-mode'
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
-  (add-hook 'ibuffer-hook (lambda () (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update)))))
-  ;; Mark compile commands as safe (customized in ".dir-locals.el")
-  (dolist (var '( projection-commands-configure-command projection-commands-build-command
-                  projection-commands-test-command projection-commands-run-command
-                  projection-commands-package-command projection-commands-install-command))
-    (put var 'safe-local-variable #'stringp)))
+  (add-hook 'ibuffer-hook (lambda () (run-at-time 0.1 nil (lambda () (call-interactively #'ibuffer-update))))))
 
 
 ;; Projection extension to jump between related files in a project
