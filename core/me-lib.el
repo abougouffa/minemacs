@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-07-24
+;; Last modified: 2025-08-03
 
 ;;; Commentary:
 
@@ -1101,7 +1101,7 @@ To be used as a predicate generator for `display-buffer-alist'."
                   (+load minemacs-on-demand-modules-dir (format "%s.el" module)))))))))
     (when module-found
       (set-auto-mode t) ; we set the mode automatically after loading the module
-      (revert-buffer t t)) ; this is needed, otherwise, it will only work on the second file
+      (normal-mode)) ; this is needed, otherwise, it will only work on the second file
     nil)) ; return nil so the placeholder mode added to `magit-mode-alist' doesn't get applied
 
 (defun minemacs-on-demand-try-load-companion-packages ()
