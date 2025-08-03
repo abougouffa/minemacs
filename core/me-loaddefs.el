@@ -642,8 +642,8 @@ Describe a ShellCheck message CODES.
 Get an explanation of the shell COMMAND from explainshell.com.
 
 (fn COMMAND)" t)
-(autoload '+yaml-insert-schema "me-lib-x" "\
-Insert a schema for the current buffer file.
+(autoload '+insert-schema "me-lib-x" "\
+Insert a schema for the current buffer's file (YAML or TOML).
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 

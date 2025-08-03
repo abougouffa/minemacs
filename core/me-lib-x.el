@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-07-27
+;; Last modified: 2025-08-03
 
 ;;; Commentary:
 
@@ -859,8 +859,8 @@ reloading the JSON file."
     catalog))
 
 ;;;###autoload
-(defun +yaml-insert-schema (&optional ask)
-  "Insert a schema for the current buffer file.
+(defun +insert-schema (&optional ask)
+  "Insert a schema for the current buffer's file (YAML or TOML).
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name."
   (interactive "P")
@@ -873,7 +873,10 @@ the schema from the file name."
       (save-restriction
         (widen)
         (goto-char (point-min))
-        (insert "# yaml-language-server: $schema=" url "\n\n")))))
+        (cond ((derived-mode-p '(yaml-mode yaml-ts-mode))
+               (insert "# yaml-language-server: $schema=" url "\n\n"))
+              ((derived-mode-p '(toml-mode toml-ts-mode conf-toml-mode))
+               (insert "\"$schema\" = '" url "'\n\n")))))))
 
 ;;;###autoload
 (defun +clang-format-config-file (&optional dir)
