@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-13
-;; Last modified: 2025-07-28
+;; Last modified: 2025-08-03
 
 ;;; Commentary:
 
@@ -21,7 +21,12 @@
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst"))
-  (treesit-ensure-installed 'typst))
+  (treesit-ensure-installed 'typst)
+  (+eglot-register '(typst-mode typst-ts-mode) '("tinymist")))
+
+
+(use-package websocket ; Needed by `typst-preview'
+  :straight t)
 
 
 ;; Typst live preview minor mode
