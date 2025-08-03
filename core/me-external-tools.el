@@ -299,6 +299,15 @@
     (:tool ollama
      :link "https://github.com/ollama/ollama"
      :desc "Get up and running with Llama 2, Mistral, and other large language models locally")
+    (:tool typst
+     :link "https://github.com/typst/typst"
+     :desc "A new markup-based typesetting system that is powerful and easy to learn")
+    (:tool hayagriva
+     :link "https://github.com/typst/hayagriva"
+     :desc "Rusty bibliography management for Typst")
+    (:tool tinymist
+     :link "https://github.com/Myriad-Dreamin/tinymist"
+     :desc "Tinymist is an integrated language service for Typst")
     (:tool whisper.cpp
      :link "https://github.com/ggerganov/whisper.cpp"
      :desc "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model")))
