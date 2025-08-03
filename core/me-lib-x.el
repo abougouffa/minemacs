@@ -1206,7 +1206,7 @@ it forget them only when we are sure they don't exist."
             (with-current-buffer doc-buff (insert (format "* `%s`: %s\n" pkg desc))))))
       (with-current-buffer doc-buff (insert "\n")))
     (with-current-buffer doc-buff
-      (markdown-ts-mode 1)
+      (markdown-ts-mode)
       (view-mode)
       (pop-to-buffer (current-buffer)))))
 
@@ -1232,7 +1232,7 @@ you might need install some of these tools.\n\n")
                                      ", ")
                         (plist-get dep :link)
                         (plist-get dep :desc)))))
-    (markdown-ts-mode 1)
+    (markdown-ts-mode)
     (read-only-mode 1)
     (pop-to-buffer (current-buffer))))
 
