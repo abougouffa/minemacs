@@ -854,9 +854,9 @@ Get the catalog of schemas from JSON Schemas Store.
 When REFRESH is non-nil, don't use the cached version and force
 reloading the JSON file.
 
-#### `(+yaml-insert-schema &optional ASK)`
+#### `(+insert-schema &optional ASK)`
 
-Insert a schema for the current buffer file.
+Insert a schema for the current buffer's file (YAML or TOML).
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 

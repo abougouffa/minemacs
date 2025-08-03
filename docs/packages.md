@@ -20,7 +20,6 @@
 * `cape`: Completion at point extensions which can be used in combination with Corfu, Company or the default completion UI
 * `corfu`: Corfu enhances in-buffer completion with a small completion popup
 * `corfu-popupinfo`: Candidate information popup for Corfu
-* `corfu-terminal`: Corfu popup on terminal
 * `nerd-icons-corfu`: Icons for Corfu using `nerd-icons`
 * `consult`: Consult provides search and navigation commands based on the Emacs completion function `completing-read`
 * `consult-dir`: Insert paths into the minibuffer prompt
@@ -41,18 +40,21 @@
 * `pdf-tools`: Emacs support library for PDF files
 * `pdfgrep`: PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 * `rfc-mode`: An Emacs major mode to read and browse RFC documents
+* `tldr`: Browse "tldr" pages from Emacs
+* `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
+* `dash-docs`: Offline documentation browser using Dash/Zeal docsets
+* `consult-dash`: Integration of `consult` with `dash-docs`
 
 ## `me-editor`
 * `vundo`: Visualize and navigate the undo tree
 * `undo-fu-session`: Persistent undo tree between sessions
 * `iedit`: Modify multiple occurrences simultaneously
+* `multiple-cursors`: Multiple cursors implementation for Emacs
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
-* `wgrep`: Writable grep buffer and apply the changes to files
 * `highlight-numbers`: Highlight numbers in source code
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
-* `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 * `expreg`: Your friendly neighborhood expand-region clone
 * `drag-stuff`: Drag stuff around in Emacs
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
@@ -62,7 +64,6 @@
 * `elisp-plus`: Better Emacs Lisp code viewing
 * `parinfer-rust-mode`: Simplifying how you write Lisp
 * `eros`: Evaluation Result OverlayS for Emacs Lisp
-* `relint`: Elisp regexp mistake finder
 
 ## `me-email`
 * `mu4e`: Emacs Email agent based on the "mu" indexer
@@ -82,6 +83,7 @@
 
 ## `me-experimental`
 * `kmacro-x`: A collection of commands, modes and functions built on top of the keyboard macros (kmacros)
+* `lspce`: LSP Client for Emacs implemented as a module using Rust
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -154,10 +156,8 @@
 * `hl-todo`: Highlight TODO keywords
 * `macrostep`: Interactive macro-expander for Emacs Lisp and C
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
-* `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
-* `dash-docs`: Offline documentation browser using Dash/Zeal docsets
-* `consult-dash`: Integration of `consult` with `dash-docs`
 * `simpc-mode`: Simple and fast C mode for amalgamated (big) files
+* `cpp-func-impl`: Generate C++ method implementations from declarations using `treesit`
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
@@ -187,11 +187,8 @@
 
 ## `me-snippets`
 * `yasnippet`: A template system for Emacs
-* `yasnippet-capf`: Completion-At-Point Extension for YASnippet
 * `yasnippet-snippets`: A collection of yasnippet snippets for many languages
 * `consult-yasnippet`: A consulting-read interface for yasnippet
-* `doom-snippets`: The Doom Emacs snippets library
-* `spdx`: Insert SPDX license header
 
 ## `me-tags`
 * `ggtags`: Emacs frontend to GNU Global source code tagging system
@@ -205,9 +202,7 @@
 * `lxc-tramp`: TRAMP integration for LXC containers
 * `lxd-tramp`: TRAMP integration for LXD containers
 * `app-launcher`: Launch system applications from Emacs
-* `emamux`: Manipulate "tmux" from Emacs
 * `emacs-everywhere`: System-wide popup Emacs windows for quick edits
-* `tldr`: Browse "tldr" pages from Emacs
 * `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
 * `multi-vterm`: Managing multiple vterm buffers in Emacs
 * `docker`: Manage docker from Emacs
@@ -223,6 +218,7 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
+* `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`

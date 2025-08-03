@@ -103,4 +103,7 @@ you might need install some of these tools.
 97. [`mpv`](https://github.com/mpv-player/mpv) - Command line video player
 98. [`txt2html`](nil) - Convert plain text file to HTML
 99. [`ollama`](https://github.com/ollama/ollama) - Get up and running with Llama 2, Mistral, and other large language models locally
-100. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
+100. [`typst`](https://github.com/typst/typst) - A new markup-based typesetting system that is powerful and easy to learn
+101. [`hayagriva`](https://github.com/typst/hayagriva) - Rusty bibliography management for Typst
+102. [`tinymist`](https://github.com/Myriad-Dreamin/tinymist) - Tinymist is an integrated language service for Typst
+103. [`whisper.cpp`](https://github.com/ggerganov/whisper.cpp) - High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
