@@ -2,6 +2,58 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.2.0](https://github.com/abougouffa/minemacs/compare/6fb9d66ed10b3fc3ad247ba7c5435321306aeff5..v13.2.0) - 2025-08-03
+#### Bug Fixes
+- **(core)** don't revert buffer in `minemacs-on-demand-try`, use `normal-mode` - ([d341f2e](https://github.com/abougouffa/minemacs/commit/d341f2e4087a5639e24c614d88015c32092ffffb)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** minor fix for `clang-format` integration with `csharp-ts-mode` - ([3039e2c](https://github.com/abougouffa/minemacs/commit/3039e2c30507dcd129b8327358de0a20adeb1919)) - [@abougouffa](https://github.com/abougouffa)
+- **(lspce)** check for `cargo` before build - ([8d1595f](https://github.com/abougouffa/minemacs/commit/8d1595f25acf62a956aef9bdd69790b447983b93)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/typst)** register LSP and fix `typst-preview` dependency - ([faac20b](https://github.com/abougouffa/minemacs/commit/faac20b20240d731cfb46820a25775223176b005)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([374441f](https://github.com/abougouffa/minemacs/commit/374441fc2b35eecdcfeaa438a8e64bb715b77a90)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(completion)** remove unneeded `corfu-terminal` - ([7f5e7fa](https://github.com/abougouffa/minemacs/commit/7f5e7fa2cd05b73932e098287a99994b61f6d16b)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `wgrep` obsolete - ([74f386b](https://github.com/abougouffa/minemacs/commit/74f386bdb3c13c73c85a5272d415fb8c2871b288)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** restore `multiple-cursors` - ([7911c8d](https://github.com/abougouffa/minemacs/commit/7911c8dd72544ff01e28a9c5228a302003d9cb46)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `smartparens` obsolete, replace with `electric-pair-mode` - ([9a54fa4](https://github.com/abougouffa/minemacs/commit/9a54fa44359b32d17c80d1cf4264a0e4a7a7ff57)) - [@abougouffa](https://github.com/abougouffa)
+- **(emacs-lisp)** make `relint` obsolete - ([ca31942](https://github.com/abougouffa/minemacs/commit/ca31942aa32b5e5a663b6d104050818b5a56cb29)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** add `lspce` - ([2430f85](https://github.com/abougouffa/minemacs/commit/2430f855ccb3b385ceee447fc5120d5fc78e2188)) - [@abougouffa](https://github.com/abougouffa)
+- **(prog)** add `cpp-func-impl` - ([6fb9d66](https://github.com/abougouffa/minemacs/commit/6fb9d66ed10b3fc3ad247ba7c5435321306aeff5)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** make `yasnippet-capf` obsolete - ([8f80d30](https://github.com/abougouffa/minemacs/commit/8f80d30d6cd1fd7560649426e433f8b9bd7d36bb)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** make `spdx` obsolete - ([c053132](https://github.com/abougouffa/minemacs/commit/c053132c3fa510e6cf7c538ea2478c4d934c1dde)) - [@abougouffa](https://github.com/abougouffa)
+- **(snippets)** make `doom-snippets` obsolete - ([625b905](https://github.com/abougouffa/minemacs/commit/625b905d16be4c15116efd695f80c7739dd58d62)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `emamux` obsolete - ([92c35e2](https://github.com/abougouffa/minemacs/commit/92c35e24d0c56954504ef38912fed0eb8310884a)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- hook the `copyright-update` locally - ([e37cdcc](https://github.com/abougouffa/minemacs/commit/e37cdcc137cd21e50614db79468a8f4df60382c0)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(mode-line)** add some comments for `me-modeline` - ([c68ffc9](https://github.com/abougouffa/minemacs/commit/c68ffc945a4383ca775c3bf757388c1d691f0b7a)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(mode-line)** rename to `minemacs-modeline-mode` - ([fcde7b9](https://github.com/abougouffa/minemacs/commit/fcde7b932a232320d077217563f9b62f1ec54315)) - [@abougouffa](https://github.com/abougouffa)
+- move `tldr`, `devdocs` & `dash-docs` to `me-docs` - ([034e597](https://github.com/abougouffa/minemacs/commit/034e59786d5706d9e92eb807921e8b66f9514781)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- auto select windows on mouse hover - ([e3d25a8](https://github.com/abougouffa/minemacs/commit/e3d25a8871768ca2242348e8701f57b5e5c4f9b3)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake-ts-mode)** ensure installing the grammar - ([c6c2954](https://github.com/abougouffa/minemacs/commit/c6c2954ee1329cb8d4c61941abd136a3f36de245)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** bound `C-<mouse-1>` to `xref-find-definitions-at-mouse` - ([80ff53f](https://github.com/abougouffa/minemacs/commit/80ff53f5edad2331278d335fea2e2981adcc77bd)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** bind some commands under `C-z` - ([f10bec0](https://github.com/abougouffa/minemacs/commit/f10bec08cbffa471b26683ed6c11d47643e2b5fb)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** set initial major mode to `fundamental-mode` - ([e7c8251](https://github.com/abougouffa/minemacs/commit/e7c8251350d8676f23d49d1a1421f32ebeed8fca)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add TOML support in `+insert-schema` - ([ce49aa4](https://github.com/abougouffa/minemacs/commit/ce49aa49160b83cd478524b471a21ae934e09a19)) - [@abougouffa](https://github.com/abougouffa)
+- **(early-init)** remove unneeded code - ([7445d3f](https://github.com/abougouffa/minemacs/commit/7445d3f5f1538d5890a2989dadbe5f5c952f83f7)) - [@abougouffa](https://github.com/abougouffa)
+- **(hl-todo)** replace the `FIX` keyword with `BUGFIX` - ([0a15c58](https://github.com/abougouffa/minemacs/commit/0a15c5850f8ecac622dce6d4a98319b1d1f10b9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(kmacro-x)** bind `C->` and `C-<` - ([0e32508](https://github.com/abougouffa/minemacs/commit/0e32508261d358e8018b24da471fcb0b3e10c6a4)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** make a constant const - ([3894a14](https://github.com/abougouffa/minemacs/commit/3894a149dbc1e65b1c0037acf1e2715e62409851)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** better generic `nerd-icons` function - ([a8fa48a](https://github.com/abougouffa/minemacs/commit/a8fa48af98390a84c473970ae8b6e443be573290)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** add an icon to signal the compilations in progress - ([247d55a](https://github.com/abougouffa/minemacs/commit/247d55afb480e7481296ff23ce2578871bb9b604)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** better integration of `iedit` and `kmacro-x` - ([489b134](https://github.com/abougouffa/minemacs/commit/489b13409f2d6cdef5211b578da0ba44d7677fd4)) - [@abougouffa](https://github.com/abougouffa)
+- **(nerd-icons)** use Matlab icon for `*.m` files - ([e625269](https://github.com/abougouffa/minemacs/commit/e625269bbd04dded6c177f77ecfe04f4f29b218a)) - [@abougouffa](https://github.com/abougouffa)
+- **(projection)** don't assume the commands are safe - ([0358602](https://github.com/abougouffa/minemacs/commit/03586027d25014324619ff96245889ddcf02639a)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit)** register tree-sitter grammars for 3rd party packages - ([3832300](https://github.com/abougouffa/minemacs/commit/3832300191fb414ae7fb2544d508d79d106921de)) - [@abougouffa](https://github.com/abougouffa)
+- include Typst related stuff in the list of external tools - ([7d59000](https://github.com/abougouffa/minemacs/commit/7d59000e7805ac10e7b1d8a35d9436a8d3684c0d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0033035](https://github.com/abougouffa/minemacs/commit/00330357a1d59bc41c446fcce6d53afb1a90cec0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0978686](https://github.com/abougouffa/minemacs/commit/09786863f8ffd119ff648b79ea4e4f5099fb9b59)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([eae7c98](https://github.com/abougouffa/minemacs/commit/eae7c987061692455de5185ce46462c9b922252b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.1.0](https://github.com/abougouffa/minemacs/compare/a7d698b89d0db19d722a1d179834341c39ed78e3..v13.1.0) - 2025-07-27
 #### Bug Fixes
 - **(builtin)** restore `auto-save` customization - ([9c2f3bf](https://github.com/abougouffa/minemacs/commit/9c2f3bf0a78144ead4e0b3864f4e97831585e8b6)) - [@abougouffa](https://github.com/abougouffa)
