@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-13
-;; Last modified: 2025-08-03
+;; Last modified: 2025-08-04
 
 ;;; Commentary:
 
@@ -32,6 +32,11 @@
 ;; Typst live preview minor mode
 (use-package typst-preview
   :straight (:host github :repo "havarddj/typst-preview.el"))
+
+
+;; Typst back-end for Org export engine
+(use-package ox-typst
+  :straight (:host github :repo "jmpunkt/ox-typst"))
 
 
 (provide 'on-demand/me-typst)
