@@ -32,20 +32,11 @@
   "Custom modeline that is stylistically close to the default."
   :group 'mode-line)
 
-(defgroup minemacs-modeline-faces nil
-  "Faces for my custom modeline."
-  :group 'minemacs-modeline)
-
 ;;; Faces
-
-(defface minemacs-modeline-indicator-button nil
-  "Generic face used for indicators that have a background.
-Modify this face to, for example, add a :box attribute to all relevant
-indicators.")
 
 (defface minemacs-modeline-inverse-video-face '((t (:inverse-video t)))
   "Inverse video face."
-  :group 'minemacs-modeline-faces)
+  :group 'minemacs-modeline)
 
 ;;; Keyboard macro indicator
 
@@ -121,8 +112,7 @@ indicators.")
 
 (defvar-local minemacs-modeline-buffer-identification
   '(:eval
-    (concat (and buffer-read-only (concat " " (minemacs-modeline--icon "nf-fa-lock")))
-            " "
+    (concat (and buffer-read-only (concat (minemacs-modeline--icon "nf-fa-lock") " "))
             (propertize
              (buffer-name)
              'face (let ((file (buffer-file-name)))
@@ -135,6 +125,21 @@ indicators.")
                          (propertize
                           (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
                           'face 'font-lock-doc-face))))))
+
+(defvar-local minemacs-modeline-project
+  '(:eval
+    (when-let* ((fname (buffer-file-name))
+                ((not (file-remote-p fname)))
+                (proj (project-current))
+                (name (project-name proj)))
+      (concat
+       " "
+       (propertize
+        (concat " " name " ")
+        'face `(,(if (mode-line-window-selected-p) '(mode-line-buffer-id)) minemacs-modeline-inverse-video-face)
+        'mouse-face 'mode-line-highlight
+        'help-echo (propertize (concat "Project root: " (project-root proj)) 'face 'font-lock-doc-face))
+       " "))))
 
 ;;; Major mode
 
@@ -278,6 +283,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      minemacs-modeline-multiple-cursors
                      minemacs-modeline-window-dedicated-status
                      minemacs-modeline-buffer-identification
+                     minemacs-modeline-project
                      minemacs-modeline-major-mode-icon
                      minemacs-modeline-process
                      minemacs-modeline-vc-branch
@@ -306,7 +312,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         minemacs-modeline-window-dedicated-status
                         minemacs-modeline-input-method
                         "  "
+                        minemacs-modeline-project
                         minemacs-modeline-major-mode-icon
+                        " "
                         minemacs-modeline-buffer-identification
                         "  "
                         mode-line-position
