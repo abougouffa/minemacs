@@ -994,6 +994,11 @@ Show help for the symbol at point." t)
 (minemacs-register-on-demand-module 'me-toml :auto-mode '(("\\.toml\\'" . toml-mode)) :companion-packages '((toml-ts-mode . toml-mode)))
 
 
+;;; Generated autoloads from extras/me-tramp-adb-x.el
+
+(with-eval-after-load 'tramp-adb (require 'me-tramp-adb-x))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-typst.el
 
 (minemacs-register-on-demand-module 'me-typst :auto-mode '(("\\.typ\\'" . typst-ts-mode)))
