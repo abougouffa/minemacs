@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-01
+;; Last modified: 2025-08-05
 
 ;;; Commentary:
 
@@ -77,8 +77,7 @@
   (vc-follow-symlinks t)
   (initial-major-mode 'fundamental-mode)
   :init
-  (setq-default fill-column 80
-                cursor-type 'bar)
+  (setq-default fill-column 80)
 
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (+package-disabled-p 'vertico 'me-completion)

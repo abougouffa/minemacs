@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-30
+;; Last modified: 2025-08-06
 
 ;;; Commentary:
 
@@ -71,7 +71,6 @@
          ("C-S-<mouse-1>" . mc/add-cursor-on-click))
   :custom
   (mc/list-file (concat minemacs-local-dir "mc-list.el"))
-  (mc/match-cursor-style nil) ; BUG: the bar cursor is too thin, and can be invisible in `emacsclient'
   :config
   ;; Add some extra commands to be run on all cursors
   (cl-callf append mc--default-cmds-to-run-for-all
