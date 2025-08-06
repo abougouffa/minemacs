@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-06-14
+;; Last modified: 2025-08-06
 
 ;;; Commentary:
 
@@ -30,7 +30,9 @@
   :when (featurep 'feat/tree-sitter)
   :hook
   (yaml-mode . yaml-pro-mode)
-  (yaml-ts-mode . yaml-pro-ts-mode))
+  (yaml-ts-mode . yaml-pro-ts-mode)
+  :custom
+  (yaml-pro-ts-yank-subtrees nil))
 
 
 ;; Ansible minor mode
