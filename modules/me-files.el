@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-07-19
+;; Last modified: 2025-08-07
 
 ;;; Commentary:
 
@@ -30,15 +30,6 @@
 ;; Sort and browse disk usage listings
 (use-package disk-usage
   :straight t)
-
-
-;; View, edit, search and compare very large files in batches, trading memory for processor time
-(use-package vlf-setup
-  :straight (vlf :source gnu-elpa-mirror)
-  :demand
-  :config
-  (with-eval-after-load 'so-long
-    (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
 
 ;; Fast opening of large files
