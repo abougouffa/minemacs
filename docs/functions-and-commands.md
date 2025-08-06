@@ -766,10 +766,6 @@ Is it relevant to auto reload dir-locals for his buffer.
 
 Decode and apply ANSI color chars in the curernt buffer.
 
-#### `(+what-faces POS)`
-
-Get the font faces at POS.
-
 #### `(+completion-mark-category SEQ CATEGORY)`
 
 Mark SEQ as being in CATEGORY for use with `completing-read`.

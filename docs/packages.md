@@ -218,6 +218,7 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
+* `lambda-themes`: Themes that provide for a reasonable compromise between aesthetics and readability, inspired by: https://arxiv.org/abs/2008.06030
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
@@ -651,6 +652,7 @@
 ## `on-demand/me-typst`
 * `typst-ts-mode`: Typst tree sitter major mode for Emacs
 * `typst-preview`: Typst live preview minor mode
+* `ox-typst`: Typst back-end for Org export engine
 
 ## `on-demand/me-v`
 * `v-mode`: Major mode for the V programming language
