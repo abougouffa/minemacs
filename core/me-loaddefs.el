@@ -578,10 +578,6 @@ disabled.
 (fn &optional ARG)" t)
 (autoload '+ansi-color-apply-on-buffer "me-lib-x" "\
 Decode and apply ANSI color chars in the curernt buffer." t)
-(autoload '+what-faces "me-lib-x" "\
-Get the font faces at POS.
-
-(fn POS)" t)
 (autoload '+completion-mark-category "me-lib-x" "\
 Mark SEQ as being in CATEGORY for use with `completing-read'.
 

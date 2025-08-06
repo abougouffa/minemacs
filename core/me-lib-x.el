@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-08-03
+;; Last modified: 2025-08-06
 
 ;;; Commentary:
 
@@ -562,18 +562,6 @@ prerelease if no :VER is provided."
   (interactive)
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
-
-;; Adapted from: https://github.com/rougier/nano-emacs
-;;;###autoload
-(defun +what-faces (pos)
-  "Get the font faces at POS."
-  (interactive "d")
-  (let ((faces (seq-filter
-                #'identity
-                (list (get-char-property pos 'read-face-name)
-                      (get-char-property pos 'face)
-                      (plist-get (text-properties-at pos) 'face)))))
-    (message "Faces: %s" faces)))
 
 ;;;###autoload
 (defun +completion-mark-category (seq category)
