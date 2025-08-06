@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.3.0](https://github.com/abougouffa/minemacs/compare/5e175d13482fb5c6c3da0b1f8f441e68035161c3..v13.3.0) - 2025-08-06
+#### Bug Fixes
+- **(tramp-adb)** edge case of a remote having a minimal version of BusyBox - ([2c94a99](https://github.com/abougouffa/minemacs/commit/2c94a99bf9e0de846ab917801f6c269e9f01f77c)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([e07dfdc](https://github.com/abougouffa/minemacs/commit/e07dfdc5efb01302dfa6aa0cf4a99151eceffc2f)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** remove `+what-faces`, `describe-char` do the work - ([c997092](https://github.com/abougouffa/minemacs/commit/c9970922b7255932507b1f4cc7b3d7de167e07b0)) - [@abougouffa](https://github.com/abougouffa)
+- **(modus-themes)** some customization - ([a05ab54](https://github.com/abougouffa/minemacs/commit/a05ab54b6b9d8b8031e246d86071664a0d9535f2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** embrase simplicity, add `lambda-themes` - ([5372310](https://github.com/abougouffa/minemacs/commit/537231010953fbce18d8e29a04ec0917e162b1e5)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(projection)** restore marking compilation commands as safe - ([3647e1f](https://github.com/abougouffa/minemacs/commit/3647e1fcde45d0d49e7b4cfd05003c099310beb5)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** reset the cursor to `t` - ([8bbd400](https://github.com/abougouffa/minemacs/commit/8bbd40002ccbf482d671fe75345dd9195f1cdc9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(mode-line)** add project name, minor tweaks - ([66bea4b](https://github.com/abougouffa/minemacs/commit/66bea4b6a2f1b1ebeb293797202ce928fd95cf47)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/typst)** add `ox-typst` - ([5e175d1](https://github.com/abougouffa/minemacs/commit/5e175d13482fb5c6c3da0b1f8f441e68035161c3)) - [@abougouffa](https://github.com/abougouffa)
+- **(yaml-pro)** don't mess with yank - ([222a832](https://github.com/abougouffa/minemacs/commit/222a832f7fb284c5ae62d1100e1a9022d31e1a31)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.2.0](https://github.com/abougouffa/minemacs/compare/6fb9d66ed10b3fc3ad247ba7c5435321306aeff5..v13.2.0) - 2025-08-03
 #### Bug Fixes
 - **(core)** don't revert buffer in `minemacs-on-demand-try`, use `normal-mode` - ([d341f2e](https://github.com/abougouffa/minemacs/commit/d341f2e4087a5639e24c614d88015c32092ffffb)) - [@abougouffa](https://github.com/abougouffa)
