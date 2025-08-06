@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-05
+;; Last modified: 2025-08-06
 
 ;;; Commentary:
 
@@ -1276,6 +1276,19 @@ Returns either nil, or the position of the first null byte."
 (use-package eww
   :custom
   (eww-auto-rename-buffer 'title))
+
+(use-package modus-themes
+  :custom
+  (modus-themes-bold-constructs t)
+  (modus-themes-italic-constructs t)
+  (modus-themes-prompts '(semibold))
+  (modus-themes-completions '((selection . (semibold)) (matches . (extrabold underline))))
+  (modus-themes-variable-pitch-ui t)
+  :config
+  (setq modus-themes-common-palette-overrides
+        '((bg-region bg-cyan-intense) ; try to replace `bg-ochre' with `bg-lavender', `bg-sage'
+          (fg-region unspecified)
+          (variable fg-main))))
 
 
 (provide 'me-builtin)
