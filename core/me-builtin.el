@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-06
+;; Last modified: 2025-08-09
 
 ;;; Commentary:
 
@@ -294,6 +294,7 @@
      ".repo" ; Repo tool workspaces
      "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
      ".code-workspace")) ; VSCode, ".vscode" is present also in the user home
+  (project-vc-ignores '(".ccls-cache/" ".cache/" ".cppcheck-build/"))
   :config
   (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands))))
 
@@ -1107,9 +1108,6 @@ Typing these will trigger reindentation of the current line.")
 (use-package subword
   :hook (minemacs-lazy . global-subword-mode)) ; Global SubWord mode
 
-(use-package battery
-  :hook (minemacs-lazy . display-battery-mode))
-
 (use-package window
   :bind (("<f8>" . window-toggle-side-windows))
   :init
@@ -1283,7 +1281,6 @@ Returns either nil, or the position of the first null byte."
   (modus-themes-italic-constructs t)
   (modus-themes-prompts '(semibold))
   (modus-themes-completions '((selection . (semibold)) (matches . (extrabold underline))))
-  (modus-themes-variable-pitch-ui t)
   :config
   (setq modus-themes-common-palette-overrides
         '((bg-region bg-cyan-intense) ; try to replace `bg-ochre' with `bg-lavender', `bg-sage'
