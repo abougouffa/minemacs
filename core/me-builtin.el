@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-09
+;; Last modified: 2025-08-11
 
 ;;; Commentary:
 
@@ -1277,15 +1277,59 @@ Returns either nil, or the position of the first null byte."
 
 (use-package modus-themes
   :custom
-  (modus-themes-bold-constructs t)
-  (modus-themes-italic-constructs t)
   (modus-themes-prompts '(semibold))
   (modus-themes-completions '((selection . (semibold)) (matches . (extrabold underline))))
   :config
   (setq modus-themes-common-palette-overrides
-        '((bg-region bg-cyan-intense) ; try to replace `bg-ochre' with `bg-lavender', `bg-sage'
-          (fg-region unspecified)
-          (variable fg-main))))
+        '((fg-main       "#282b35")
+          (bg-main       "#f0f0f0")
+          (ultralight    "#cfd6e2")
+          (highlight     "#dbe1eb")
+          (lowlight      "#e3e7ef")
+          (urgent        "#f53137")
+          (crucial       "#303db4")
+          (focus         "#940B96")
+          (strong        "#000000")
+          (meek          "#727d97")
+          (mild          "#C8CDD8")
+          (faint         "#eceff1")
+          (black         "#000000")
+          (white         "#FFFFFF")
+          (red           "#960d36")
+          (green         "#00796b")
+          (blue          "#30608c")
+          (yellow        "#e0a500")
+          (orange        "#966e53")
+          (aqua          "#278C87")
+          (cyan          "#66CCCC")
+          (purple        "#833AE6")
+          (bg-region     bg-cyan-intense)
+          (fg-region     unspecified)
+          (keyword       fg-main)
+          (builtin       fg-main)
+          (function      focus)
+          (number        yellow)
+          (operator      fg-main)
+          (constant      blue)
+          (comment       meek)
+          (doc           meek)
+          (string        meek)
+          (property      fg-main)
+          (type          crucial)
+          (variable      fg-main)))
+
+  (add-hook 'enable-theme-functions #'+modus-themes-tweak-fonts)
+  (add-hook 'modus-themes-after-load-theme-hook #'+modus-themes-tweak-fonts)
+
+  (defun +modus-themes-tweak-fonts (&optional theme)
+    (when (or (not theme) (memq theme modus-themes-items))
+      (set-face-attribute 'font-lock-builtin-face nil :weight 'semi-bold :slant 'normal)
+      (set-face-attribute 'font-lock-keyword-face nil :weight 'semi-bold :slant 'italic)
+      (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold)
+      (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
+      (set-face-attribute 'font-lock-string-face nil :background "#dbe1eb")
+      (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
+      (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal))))
 
 
 (provide 'me-builtin)
