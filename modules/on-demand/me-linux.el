@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-27
-;; Last modified: 2025-07-16
+;; Last modified: 2025-08-11
 
 ;;; Commentary:
 
@@ -12,7 +12,9 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-linux
-  :auto-mode '(("/Kconfig\\'" . kconfig-mode)))
+  :auto-mode '(("/Kconfig\\'" . kconfig-mode)
+               ("\\.cocci$" . cocci-mode)
+               ("\\.iso$" . cocci-mode)))
 
 
 ;; Major mode for editing Kconfig files
