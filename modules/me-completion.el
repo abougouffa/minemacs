@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-28
+;; Last modified: 2025-08-12
 
 ;;; Commentary:
 
@@ -91,9 +91,8 @@
                 corfu-auto nil)
     (corfu-mode 1))
 
-  ;; Ensure `savehist-mode' is on and add `corfu-history' to the saved variables
-  (unless (bound-and-true-p savehist-mode) (savehist-mode 1))
-  (add-to-list 'savehist-additional-variables 'corfu-history))
+  (with-eval-after-load 'savehist
+    (add-to-list 'savehist-additional-variables 'corfu-history)))
 
 
 ;; Candidate information popup for Corfu
