@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-06
+;; Last modified: 2025-08-12
 
 ;;; Commentary:
 
@@ -156,18 +156,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 (use-package vim-file-locals
   :straight (:host github :repo "abougouffa/emacs-vim-file-locals")
   :hook (minemacs-first-file . vim-file-locals-mode))
-
-
-;; Highlight numbers in source code
-(use-package highlight-numbers
-  :straight t
-  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
-  :config
-  (setq highlight-numbers-generic-regexp (rx symbol-start (? "-") (+ digit) (? "." (* digit)) symbol-end))
-  ;; Define the right format for numbers in `dts-mode'
-  (puthash 'dts-mode
-           (rx (and symbol-start (or (+ digit) (+ hex-digit) (and "0" (any "xX") (+ hex-digit))) symbol-end))
-           highlight-numbers-modelist))
 
 
 ;; An Emacs minor mode for highlighting matches to the selection
