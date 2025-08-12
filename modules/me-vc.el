@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-28
+;; Last modified: 2025-08-13
 
 ;;; Commentary:
 
@@ -106,6 +106,8 @@
   (minemacs-first-file . global-diff-hl-mode)
   (diff-hl-mode . +diff-hl-update-on-buffer-change)
   (dired-mode . diff-hl-dired-mode)
+  :custom
+  (diff-hl-draw-borders nil) ; Don't draw ugly borders
   :init
   ;; BUGFIX: Don't pollute the shared memory devfs (`diff-hl' uses "/dev/shm/" as
   ;; temporary directory!)
