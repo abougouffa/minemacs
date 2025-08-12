@@ -227,16 +227,6 @@
    :initial (thing-at-point 'region t)))
 
 
-;; Insert paths into the minibuffer prompt
-(use-package consult-dir
-  :straight t
-  :bind (("C-x C-d" . consult-dir)
-         :package vertico
-         :map minibuffer-local-completion-map
-         ("C-x C-d" . consult-dir)
-         ("C-x C-j" . consult-dir-jump-file)))
-
-
 ;; Choose a command to run based on what is near point, both in minibuffer and in normal buffers
 (use-package embark
   :straight t
