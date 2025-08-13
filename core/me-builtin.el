@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-11
+;; Last modified: 2025-08-13
 
 ;;; Commentary:
 
@@ -1246,7 +1246,6 @@ surrounded by word boundaries."
   :when (featurep 'feat/tree-sitter)
   :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
 
-
 (use-package hexl
   :autoload (+hexl-buffer-p)
   :init
@@ -1280,7 +1279,7 @@ Returns either nil, or the position of the first null byte."
   (modus-themes-prompts '(semibold))
   (modus-themes-completions '((selection . (semibold)) (matches . (extrabold underline))))
   :config
-  (setq modus-themes-common-palette-overrides
+  (setq modus-operandi-palette-user
         '((fg-main       "#282b35")
           (bg-main       "#f0f0f0")
           (ultralight    "#cfd6e2")
@@ -1324,17 +1323,17 @@ Returns either nil, or the position of the first null byte."
 
   (defun +modus-themes-tweak-fonts (&optional theme)
     (when (or (not theme) (memq theme modus-themes-items))
-      (set-face-attribute 'font-lock-builtin-face nil :weight 'semi-bold :slant 'normal)
-      (set-face-attribute 'font-lock-keyword-face nil :weight 'semi-bold :slant 'italic)
-      (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold)
-      (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
-      (set-face-attribute 'font-lock-string-face nil :background "#dbe1eb")
-      (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
-      (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal)
-      (with-eval-after-load 'eglot
-        (set-face-attribute 'eglot-highlight-symbol-face nil :underline t)))))
+      (modus-themes-with-colors
+        (set-face-attribute 'font-lock-builtin-face nil :weight 'semi-bold :slant 'normal)
+        (set-face-attribute 'font-lock-keyword-face nil :weight 'semi-bold :slant 'italic)
+        (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold)
+        (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
+        (set-face-attribute 'font-lock-string-face nil :background highlight)
+        (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
+        (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal)
+        (with-eval-after-load 'eglot
+          (set-face-attribute 'eglot-highlight-symbol-face nil :underline t))))))
 
 
 (provide 'me-builtin)
-
 ;;; me-builtin.el ends here
