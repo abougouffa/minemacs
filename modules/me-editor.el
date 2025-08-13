@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-12
+;; Last modified: 2025-08-13
 
 ;;; Commentary:
 
@@ -183,14 +183,13 @@ In some dirty files, there is a mix of spaces and tabs. This uses
          ("S-C-M-SPC" . expreg-contract)))
 
 
-;; Drag stuff around in Emacs
-(use-package drag-stuff
+;; Eclipse-like moving and duplicating lines or rectangles
+(use-package move-dup
   :straight t
-  :init
-  :bind (("M-<up>" . drag-stuff-up)
-         ("M-<down>" . drag-stuff-down)
-         ("M-<left>" . drag-stuff-left)
-         ("M-<right>" . drag-stuff-right)))
+  :bind (("M-<up>" . move-dup-move-lines-up)
+         ("M-<down>" . move-dup-move-lines-down)
+         ("C-M-<up>" . move-dup-duplicate-up)
+         ("C-M-<down>" . move-dup-duplicate-down)))
 
 
 ;; Perform a backup on each file save, real backup for Emacs!
