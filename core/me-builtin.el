@@ -1344,6 +1344,7 @@ Returns either nil, or the position of the first null byte."
         (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
         (set-face-attribute 'font-lock-string-face nil :background highlight)
         (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
+        (set-face-attribute 'font-lock-escape-face nil :background highlight :foreground "#282b35")
         (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal)
         (with-eval-after-load 'eglot
           (set-face-attribute 'eglot-highlight-symbol-face nil :underline t))))))
