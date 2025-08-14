@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-20
+;; Last modified: 2025-08-14
 
 ;;; Commentary:
 
@@ -46,8 +46,9 @@
 
 ;;; `straight' customization
 
-(add-to-list 'straight-built-in-pseudo-packages 'treesit) ; Some packages like `ts-movement' depends on it
-(add-to-list 'straight-built-in-pseudo-packages 'org)
+;; For `straight' to not install built-in packages from ELPA
+(cl-callf append straight-built-in-pseudo-packages
+  '(treesit org tramp project editorconfig flymake eldoc eglot xref imenu modus-themes))
 
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
 ;; This cuts the size of the "straight/repos" directory by more than half (from
