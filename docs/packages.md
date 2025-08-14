@@ -22,7 +22,6 @@
 * `corfu-popupinfo`: Candidate information popup for Corfu
 * `nerd-icons-corfu`: Icons for Corfu using `nerd-icons`
 * `consult`: Consult provides search and navigation commands based on the Emacs completion function `completing-read`
-* `consult-dir`: Insert paths into the minibuffer prompt
 * `embark`: Choose a command to run based on what is near point, both in minibuffer and in normal buffers
 * `embark-consult`: Consult integration for Embark
 * `marginalia`: Marginalia (i.e., description) in the minibuffer
@@ -53,10 +52,9 @@
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
-* `highlight-numbers`: Highlight numbers in source code
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
 * `expreg`: Your friendly neighborhood expand-region clone
-* `drag-stuff`: Drag stuff around in Emacs
+* `move-dup`: Eclipse-like moving and duplicating lines or rectangles
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
 * `xclip`: Copy&paste GUI clipboard from text terminal
 
@@ -93,7 +91,6 @@
 * `dired-hacks`: Collection of useful dired additions
 * `trashed`: Viewing and editing system trash can
 * `disk-usage`: Sort and browse disk usage listings
-* `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
 * `sudo-edit`: Utilities for opening files with "sudo"
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
@@ -142,7 +139,6 @@
 * `ox-extra`: Convenience functions for Org export
 * `org-appear`: Auto-toggle Org elements
 * `org-modern`: Modern Org style
-* `org-modern-indent`: Add `org-indent` styling for `org-modern`
 * `org-fragtog`: Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 * `citar`: Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 * `citar-embark`: Citar integration with Embark
@@ -286,6 +282,8 @@
 ## `on-demand/me-bqn`
 * `bqn-mode`: Major mode for editing BQN grammar files
 
+## `on-demand/me-c3`
+
 ## `on-demand/me-cc`
 * `flymake-cppcheck`: Flymake backend for CppCheck
 
@@ -427,6 +425,10 @@
 
 ## `on-demand/me-graphviz`
 * `graphviz-dot-mode`: Mode for the dot-language used by GraphViz
+
+## `on-demand/me-hare`
+* `hare-mode`: Hare programming lanugage mode
+* `hare-ts-mode`: Tree-sitter based mode for Hare
 
 ## `on-demand/me-haskell`
 * `haskell-mode`: Major mode for editing Haskell code
