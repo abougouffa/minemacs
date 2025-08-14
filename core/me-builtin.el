@@ -722,7 +722,6 @@
   (org-pretty-entities t)
   (org-return-follows-link t) ; RET follows link
   (org-special-ctrl-a/e t)
-  (org-startup-indented t)
   (org-tags-column 0)
   (org-use-property-inheritance t) ; it's convenient to have properties inherited
   (org-use-sub-superscripts '{}) ; Do the same when rendering the Org buffer
