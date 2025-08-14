@@ -1338,16 +1338,8 @@ Returns either nil, or the position of the first null byte."
   (defun +modus-themes-tweak-fonts (&optional theme)
     (when (or (not theme) (memq theme modus-themes-items))
       (modus-themes-with-colors
-        (set-face-attribute 'font-lock-builtin-face nil :weight 'semi-bold :slant 'normal)
-        (set-face-attribute 'font-lock-keyword-face nil :weight 'semi-bold :slant 'italic)
-        (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold)
-        (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
-        (set-face-attribute 'font-lock-string-face nil :background highlight)
-        (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
-        (set-face-attribute 'font-lock-escape-face nil :background highlight :foreground "#282b35")
-        (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal)
-        (with-eval-after-load 'eglot
-          (set-face-attribute 'eglot-highlight-symbol-face nil :underline t))))))
+       (set-face-attribute 'font-lock-string-face nil :background highlight)
+       (set-face-attribute 'font-lock-escape-face nil :background highlight :foreground "#282b35")))))
 
 
 (provide 'me-builtin)

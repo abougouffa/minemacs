@@ -974,6 +974,21 @@ When RESET is non-nil, restore the original font size."
      :box `(:line-width 4 :color ,(face-attribute 'mode-line-inactive :background nil t) :style nil)
      :overline (face-attribute 'mode-line-inactive :foreground nil t))))
 
+(defvar +tweak-faces t "Enable extra tweaks for faces, set to nil to disable it.")
+
+(defun +tweak-faces (&optional _theme)
+  (when +tweak-faces
+    (set-face-attribute 'font-lock-builtin-face nil :weight 'medium :slant 'normal)
+    (set-face-attribute 'font-lock-keyword-face nil :weight 'medium :slant 'italic)
+    (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold)
+    (set-face-attribute 'font-lock-number-face nil :weight 'semi-bold)
+    (set-face-attribute 'font-lock-function-name-face nil :weight 'medium :slant 'normal)
+    (set-face-attribute 'font-lock-function-call-face nil :weight 'medium :slant 'normal)
+    (with-eval-after-load 'eglot
+      (set-face-attribute 'eglot-highlight-symbol-face nil :underline t))))
+
+(add-hook 'enable-theme-functions #'+tweak-faces)
+
 (autoload 'color-darken-name "color")
 (autoload 'color-lighten-name "color")
 
