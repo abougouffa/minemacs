@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-13
+;; Last modified: 2025-08-14
 
 ;;; Commentary:
 
@@ -391,9 +391,24 @@
 (use-package flymake
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
+  (flymake-indicator-type 'margins)
   (flymake-fringe-indicator-position 'right-fringe)
   (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30 (see `flymake-indicator-type')
+  (flymake-margin-indicators-string `((error ,(nerd-icons-octicon "nf-oct-x_circle" :face 'nerd-icons-red) compilation-error)
+                                      (warning ,(nerd-icons-codicon "nf-cod-warning" :face 'nerd-icons-orange) compilation-warning)
+                                      (note ,(nerd-icons-sucicon "nf-seti-info" :face 'nerd-icons-green) compilation-info)))
   :config
+  ;; This helps keeping only one icon in the margin (for lines with multiple issues)
+  (advice-add #'flymake--indicator-overlay-spec
+              :filter-return
+              (lambda (indicator)
+                (concat indicator (propertize " " 'face 'default 'display `((margin right-margin) (space :width 5))))))
+
+  ;; Tu use when we switch to `fringes'
+  (put 'flymake-error 'flymake-bitmap (propertize "⛔" 'face `(:inherit (error default) :underline nil)))
+  (put 'flymake-warning 'flymake-bitmap (propertize "⚠️" 'face `(:inherit (warning default) :underline nil)))
+  (put 'flymake-note 'flymake-bitmap (propertize "🟢" 'face `(:inherit (success default) :underline nil)))
+
   (with-eval-after-load 'transient
     (transient-define-prefix +flymake-transient ()
       "Transient for flymake."
@@ -405,7 +420,7 @@
        [("S" "Start" flymake-start :transient t)
         ("Q" "Quit" ignore :transient t)]]))
 
-  (with-eval-after-load 'elisp-mode ; Use the session's `load-path' with flymake
+  (with-eval-after-load 'elisp-mode ; Use the session's `load-path' with `flymake'
     (cl-callf append elisp-flymake-byte-compile-load-path load-path)))
 
 (use-package eshell
