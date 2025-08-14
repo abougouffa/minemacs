@@ -768,7 +768,7 @@
 
   (setopt org-babel-load-languages
           (cl-loop
-           for lang in '(C R js dot awk sed sql org shell ditaa latex julia sqlite octave
+           for lang in '(C R js dot awk sed sql org shell latex julia sqlite octave ; BUG: for some reason, loading `ditaa' causes an error, disabled for now
                            maxima eshell scheme python fortran gnuplot plantuml makefile)
            collect (cons lang t)))
 
