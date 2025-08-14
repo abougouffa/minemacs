@@ -4,21 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-07-29
+;; Last modified: 2025-08-14
 
 ;;; Commentary:
 
 ;;; Code:
-
-
-;; A collection of commands, modes and functions built on top of the keyboard macros (kmacros)
-(use-package kmacro-x
-  :straight t
-  :hook (minemacs-first-file . kmacro-x-atomic-undo-mode)
-  ;; :bind (("C-<" . kmacro-x-mc-mark-previous)
-  ;;        ("C->" . kmacro-x-mc-mark-next))
-  :custom
-  (kmacro-x-mc-live-preview t))
 
 
 ;; LSP Client for Emacs implemented as a module using Rust
