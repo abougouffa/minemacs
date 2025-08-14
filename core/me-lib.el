@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-08-03
+;; Last modified: 2025-08-14
 
 ;;; Commentary:
 
@@ -792,6 +792,7 @@ file dont exist."
      (:family "Martian Mono" :height 100)
      (:family "Cascadia Code" :height 110 :weight semi-light)
      (:family "Fira Code" :height 110)
+     (:family "Geist Mono" :height 110)
      (:family "Jetbrains Mono" :height 100)
      (:family "Iosevka Comfy" :height 110)
      (:family "Iosevka Fixed Curly Slab" :height 110)
@@ -813,6 +814,7 @@ file dont exist."
     ((:inherit default))
     :variable-pitch
     ((:family "Iosevka Comfy Motion Duo" :height 110)
+     (:family "Geist" :height 110)
      (:family "Lato" :height 120)
      (:family "Roboto" :height 120)
      (:family "Inter" :height 120)
