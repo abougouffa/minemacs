@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.4.0](https://github.com/abougouffa/minemacs/compare/84e6ff86e0550ac9563d0f3277b8ea9e5647741f..v13.4.0) - 2025-08-15
+#### Bug Fixes
+- **(org)** don't load `ditaa` in Org Babel - ([82d063d](https://github.com/abougouffa/minemacs/commit/82d063d8dc9f02d6d8b6304c3269f4250f51b7fc)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([1993cfd](https://github.com/abougouffa/minemacs/commit/1993cfd0977d968da2d447ac4da15c8314be1bc3)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(completion)** make `consult-dir` obsolete - ([06a839a](https://github.com/abougouffa/minemacs/commit/06a839afb6947445a55fa37091a068b7615966d3)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** replace `drag-stuff` with `move-dup` - ([27522d0](https://github.com/abougouffa/minemacs/commit/27522d03f534a711e99bda5f18650f68281559a2)) - [@abougouffa](https://github.com/abougouffa)
+- **(editor)** make `highlight-numbers` obsolete - ([167fdd2](https://github.com/abougouffa/minemacs/commit/167fdd20ea836940930571ae0f648d9171a52bd1)) - [@abougouffa](https://github.com/abougouffa)
+- **(experimental)** make `kmacro-x` obsolete - ([0eea490](https://github.com/abougouffa/minemacs/commit/0eea4903292bebf141988af3326bac83740fcce9)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `vlf` obsolete, `lf-guard` works well with files up to 1G - ([84e6ff8](https://github.com/abougouffa/minemacs/commit/84e6ff86e0550ac9563d0f3277b8ea9e5647741f)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for C3 - ([de38a8d](https://github.com/abougouffa/minemacs/commit/de38a8df0a9fdef7b99f0a5a94291a4baff40b0f)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** add support for Hare - ([c4f6118](https://github.com/abougouffa/minemacs/commit/c4f6118c58bb52beb74015df16d3656e88a4aacb)) - [@abougouffa](https://github.com/abougouffa)
+- **(org)** remove `org-modern-indent`, disable `org-startup-indented` - ([dd79b47](https://github.com/abougouffa/minemacs/commit/dd79b473411e80d05d15fb4f0cd7b87e15be6a01)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `lambda-themes` obsolete - ([c3bdf70](https://github.com/abougouffa/minemacs/commit/c3bdf70016db4cbdf1ffd2df4686d250a077fa09)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** minor edits - ([c359bd1](https://github.com/abougouffa/minemacs/commit/c359bd17bb67e649c34733ccd860037870438eec)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** move generic face tweaks to separate function - ([83521d0](https://github.com/abougouffa/minemacs/commit/83521d06bc05f7858de1a67799a2d4ea0f34a084)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** add the `Geist` font family to the default fonts list - ([d8e241b](https://github.com/abougouffa/minemacs/commit/d8e241b4b5f03e0650e7574375a86db777ad4075)) - [@abougouffa](https://github.com/abougouffa)
+- **(corfu)** minor tweak - ([8f45d4f](https://github.com/abougouffa/minemacs/commit/8f45d4f270d393f6f73ff14b0e1b30d81e3b69f1)) - [@abougouffa](https://github.com/abougouffa)
+- **(diff-hl)** don't draw ugly borders - ([2980ba4](https://github.com/abougouffa/minemacs/commit/2980ba4a9b2786a76e7fea162a8b8c0d2256becf)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** nicer icons in `margins` and `fringes` - ([b37bd1b](https://github.com/abougouffa/minemacs/commit/b37bd1b3abb459ea66186bd70ef8a39eeb58b9df)) - [@abougouffa](https://github.com/abougouffa)
+- **(modus-themes)** minor customization - ([1500196](https://github.com/abougouffa/minemacs/commit/15001966bb2dd573dedb1a46179bb4a3ac87f0b4)) - [@abougouffa](https://github.com/abougouffa)
+- **(modus-themes)** apply the custom palette only to `modus-operandi` - ([aebbf10](https://github.com/abougouffa/minemacs/commit/aebbf10ee733171ec6600e004ad33ae0c21b3f87)) - [@abougouffa](https://github.com/abougouffa)
+- **(modus-themes)** minor tweaks - ([27458cb](https://github.com/abougouffa/minemacs/commit/27458cbd6fffaa4a884a03d3b08844cce7eeacab)) - [@abougouffa](https://github.com/abougouffa)
+- **(modus-themes)** initial tweaks based on `lambda-themes` - ([4506e4b](https://github.com/abougouffa/minemacs/commit/4506e4b1ba2883258bec8c7d7137cf64c85e937f)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/linux)** declare `cocci-mode` extensions - ([8523a0b](https://github.com/abougouffa/minemacs/commit/8523a0b96a1969ac697efb76ba624624fd11a934)) - [@abougouffa](https://github.com/abougouffa)
+- **(straight)** don't install builtin packages, I'm using a fresh Emacs build - ([86e4bbd](https://github.com/abougouffa/minemacs/commit/86e4bbd85fd3bcbf0a44c3eb3d5d4a4145fdd5f9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([53c27d0](https://github.com/abougouffa/minemacs/commit/53c27d0e968d0c84b746a81a6b96cf73d530d2ca)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([846d26f](https://github.com/abougouffa/minemacs/commit/846d26f451d01a74312f8f630da80dbb73fa8409)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d7acf64](https://github.com/abougouffa/minemacs/commit/d7acf646714b26c13eaa2e36b64c34ce37fa6838)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4b10f1c](https://github.com/abougouffa/minemacs/commit/4b10f1c2b6b412d36e2298eb8a11c24a56b38921)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.3.0](https://github.com/abougouffa/minemacs/compare/5e175d13482fb5c6c3da0b1f8f441e68035161c3..v13.3.0) - 2025-08-06
 #### Bug Fixes
 - **(tramp-adb)** edge case of a remote having a minimal version of BusyBox - ([2c94a99](https://github.com/abougouffa/minemacs/commit/2c94a99bf9e0de846ab917801f6c269e9f01f77c)) - [@abougouffa](https://github.com/abougouffa)
