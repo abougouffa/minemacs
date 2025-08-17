@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-14
+;; Last modified: 2025-08-18
 
 ;;; Commentary:
 
@@ -391,12 +391,15 @@
 (use-package flymake
   :hook ((prog-mode conf-mode) . flymake-mode)
   :custom
-  (flymake-indicator-type 'margins)
   (flymake-fringe-indicator-position 'right-fringe)
   (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30 (see `flymake-indicator-type')
-  (flymake-margin-indicators-string `((error ,(nerd-icons-octicon "nf-oct-x_circle" :face 'nerd-icons-red) compilation-error)
-                                      (warning ,(nerd-icons-codicon "nf-cod-warning" :face 'nerd-icons-orange) compilation-warning)
-                                      (note ,(nerd-icons-sucicon "nf-seti-info" :face 'nerd-icons-green) compilation-info)))
+  :init
+  (with-eval-after-load 'nerd-icons
+    (setopt flymake-indicator-type 'margins
+            flymake-margin-indicators-string
+            `((error ,(nerd-icons-octicon "nf-oct-x_circle" :face 'nerd-icons-red) compilation-error)
+              (warning ,(nerd-icons-codicon "nf-cod-warning" :face 'nerd-icons-orange) compilation-warning)
+              (note ,(nerd-icons-sucicon "nf-seti-info" :face 'nerd-icons-green) compilation-info))))
   :config
   ;; This helps keeping only one icon in the margin (for lines with multiple issues)
   (advice-add #'flymake--indicator-overlay-spec
