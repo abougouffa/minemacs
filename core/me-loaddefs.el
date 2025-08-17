@@ -86,6 +86,11 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-bqn :auto-mode '(("\\.bqn\\'" . bqn-mode)) :interpreter-mode '(("bqn" . bqn-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-c3.el
+
+(minemacs-register-on-demand-module 'me-c3 :auto-mode '(("\\.c3[it]?\\'" . c3-ts-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-cc.el
 
 (minemacs-register-on-demand-module 'me-cc :companion-packages '(((c-mode c++-mode c-ts-mode c++-ts-mode) . flymake-cppcheck)))
@@ -347,6 +352,11 @@ will be generated each `+git-types-cache-age'.
 (minemacs-register-on-demand-module 'me-graphviz :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-hare.el
+
+(minemacs-register-on-demand-module 'me-hare :auto-mode '(("\\.ha\\'" . hare-ts-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-haskell.el
 
 (minemacs-register-on-demand-module 'me-haskell :auto-mode '((("\\.hsig\\'" "\\.[gh]s\\'" "\\.hsc\\'") . haskell-mode) ("\\.l[gh]s\\'" . haskell-literate-mode)) :interpreter-mode '(("runghc" . haskell-mode) ("runhaskell" . haskell-mode)))
@@ -375,6 +385,30 @@ will be generated each `+git-types-cache-age'.
 ;;; Generated autoloads from ../modules/on-demand/me-idris.el
 
 (minemacs-register-on-demand-module 'me-idris :auto-mode '(("\\.l?idr\\'" . idris-mode)))
+
+
+;;; Generated autoloads from extras/me-iwyu.el
+
+(autoload 'iwyu-start-process-for "extras/me-iwyu" "\
+Start the `include-what-you-use' process for FILE.
+The process output is redirected to *IWYU* buffer.  The buffer is
+cleared before starting the process.  The is FILE is searched
+inside the specified COMPILE-COMMANDS-DB compilation database,
+typically `compile-commands.json'..
+
+The arguments for `include-what-you-use' are constructed as
+follows.  From the JSON value of \\='command\\=' property it
+filters out any flag that matches `iwyu-filter-args'.
+Such constructed list then is appended to arguments in
+`iwyu-extra-args'.
+
+(fn COMPILE-COMMANDS-DB FILE)")
+(autoload 'iwyu-reparse "extras/me-iwyu" "\
+Reparse the current buffer with `include-what-you-use'.
+For headers (files with \\='.h\\=' extension) it uses the
+corresponding implementation, i.e., the file with \\='.cpp\\='
+extension." t)
+(register-definition-prefixes "extras/me-iwyu" '("iwyu-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-java.el
@@ -424,7 +458,7 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+re" "+s" "+un" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+re" "+s" "+tweak-faces" "+un" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -718,7 +752,7 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
 
-(minemacs-register-on-demand-module 'me-linux :auto-mode '(("/Kconfig\\'" . kconfig-mode)))
+(minemacs-register-on-demand-module 'me-linux :auto-mode '(("/Kconfig\\'" . kconfig-mode) ("\\.cocci$" . cocci-mode) ("\\.iso$" . cocci-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-llvm.el
