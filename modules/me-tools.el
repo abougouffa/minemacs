@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-28
+;; Last modified: 2025-08-18
 
 ;;; Commentary:
 
@@ -155,14 +155,13 @@ a project, call `multi-vterm-dedicated-toggle'."
   :straight t
   :hook (minemacs-first-file . envrc-global-mode)
   :when (and (not (featurep 'os/win)) (executable-find "direnv"))
-  :bind (:map minemacs-open-thing-map ("v" . envrc-command-map))
   :custom
   (envrc-debug minemacs-debug-p)
   (envrc-remote t)
   (envrc-supported-tramp-methods '("ssh" "docker"))
   :config
-  ;; Ensure loading envrc for babel source blocks
-  (with-eval-after-load 'ob
+  (keymap-set minemacs-open-thing-map "v" envrc-command-map)
+  (with-eval-after-load 'ob ; Ensure loading envrc for babel source blocks
     (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
 
 
