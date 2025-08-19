@@ -3,7 +3,7 @@
 ;; Copyright (C) 2022-2025  Abdelhak Bougouffa
 
 ;; Created: 2025-08-18
-;; Last modified: 2025-08-18
+;; Last modified: 2025-08-19
 
 ;; Stolen from https://github.com/emacs-exordium/exordium
 
@@ -167,7 +167,7 @@ extension."
   (if-let* ((compile-commands-json
              (cl-find-if #'file-exists-p
                          (mapcar (lambda (build-dir)
-                                   (expand-file-name "compile_commands.json" (expand-file-name "" (+project-safe-root))))
+                                   (expand-file-name "compile_commands.json" (expand-file-name build-dir (+project-safe-root))))
                                  '("" "cmake.bld/Linux" "build" "bld" "cmake-build"
                                    "cmake-build/linux_64_static_ninja_Debug"
                                    "cmake-build/linux_64_static_make_Debug"
