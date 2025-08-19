@@ -387,30 +387,6 @@ will be generated each `+git-types-cache-age'.
 (minemacs-register-on-demand-module 'me-idris :auto-mode '(("\\.l?idr\\'" . idris-mode)))
 
 
-;;; Generated autoloads from extras/me-iwyu.el
-
-(autoload 'iwyu-start-process-for "extras/me-iwyu" "\
-Start the `include-what-you-use' process for FILE.
-The process output is redirected to *IWYU* buffer.  The buffer is
-cleared before starting the process.  The is FILE is searched
-inside the specified COMPILE-COMMANDS-DB compilation database,
-typically `compile-commands.json'..
-
-The arguments for `include-what-you-use' are constructed as
-follows.  From the JSON value of \\='command\\=' property it
-filters out any flag that matches `iwyu-filter-args'.
-Such constructed list then is appended to arguments in
-`iwyu-extra-args'.
-
-(fn COMPILE-COMMANDS-DB FILE)")
-(autoload 'iwyu-reparse "extras/me-iwyu" "\
-Reparse the current buffer with `include-what-you-use'.
-For headers (files with \\='.h\\=' extension) it uses the
-corresponding implementation, i.e., the file with \\='.cpp\\='
-extension." t)
-(register-definition-prefixes "extras/me-iwyu" '("iwyu-"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-java.el
 
 (minemacs-register-on-demand-module 'me-java :auto-mode '((("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" "/Jenkinsfile\\'") . groovy-mode)) :interpreter-mode '(("groovy" . groovy-mode)) :companion-packages '(((java-mode java-ts-mode) groovy-mode android-mode)))
@@ -747,7 +723,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+clang-format-" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+p" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+h" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
