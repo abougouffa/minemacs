@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-18
+;; Last modified: 2025-08-19
 
 ;;; Commentary:
 
@@ -613,6 +613,20 @@
   ;; window manager), so we need to disable it in the WM for this to work.
   :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse)
   :config
+  ;; Impose a specific order for the backends, prefer `eglot', then `citre', and keep `dumb-jump' at the end
+  (defun +xref-if-exist (backend) (and (memq backend xref-backend-functions) backend))
+  (advice-add
+   'xref-find-backend :before
+   (defun +xref-find-backend-ordered:before-a ()
+     (let* ((ordered-backends
+             `(,(+xref-if-exist 'xref-union--backend)
+               ,(+xref-if-exist 'eglot-xref-backend)
+               ,(+xref-if-exist 'citre-xref-backend)
+               ,(+xref-if-exist 'ggtags--xref-backend)
+               ,(+xref-if-exist 'dumb-jump-xref-activate)))
+            (rest (seq-difference xref-backend-functions ordered-backends)))
+       (setq xref-backend-functions (seq-filter #'identity `(,@ordered-backends ,@rest))))))
+
   ;; Truncate lines in the references buffer
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
