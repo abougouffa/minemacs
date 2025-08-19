@@ -991,6 +991,15 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                               (plist-get entry :file))
           (throw 'found entry))))))
 
+(defun +hide-ifdef-get-env-from-compile-commands ()
+  "Integrate `hideif' with \"compile_commands.json\"."
+  (when-let* ((entry (+compile-commands-get-entry (buffer-file-name)))
+              (command (plist-get entry :command)))
+    (dolist (str (string-split command))
+      (when-let* (((string-prefix-p "-D" str))
+                  (def-val (string-split (substring str 2) "=")))
+        (hide-ifdef-define (car def-val) (cadr def-val))))))
+
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
 (defun +kill-buffer-after-sentinel-exit (orig-fn proc msg)

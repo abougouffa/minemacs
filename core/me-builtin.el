@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-19
+;; Last modified: 2025-08-20
 
 ;;; Commentary:
 
@@ -514,7 +514,8 @@
 (use-package hideif
   :custom
   (hide-ifdef-shadow t)
-  (hide-ifdef-initially t))
+  (hide-ifdef-initially t)
+  :hook (hide-ifdef-mode . +hide-ifdef-get-env-from-compile-commands))
 
 (use-package hl-line
   :hook ((prog-mode conf-mode text-mode dired-mode) . hl-line-mode)) ; Highlight the current line
