@@ -969,6 +969,8 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                (expand-file-name "compile_commands.json" (expand-file-name dir proj-root)))
              +compile-commands-json-directories))))
 
+(define-obsolete-function-alias '+project-have-compile-commands-p '+compile-commands-find-file "13.5.0")
+
 (defvar +compile-commands-cache (make-hash-table :test #'equal))
 
 (defun +get-compile-commands-json (&optional proj-root)
@@ -1197,12 +1199,6 @@ it forget them only when we are sure they don't exist."
      (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
    (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
-
-(defun +project-have-compile-commands-p (&optional proj)
-  "Check if PROJ have a \"compile_commands.json\" file."
-  (and-let* ((proj (or proj (project-current)))
-             (root (project-root proj))
-             ((file-exists-p (expand-file-name "compile_commands.json" root))))))
 
 
 

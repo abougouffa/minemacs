@@ -95,7 +95,7 @@
 (satch-add-hook ; Automatically enable clangd when there is the required config
  '(c-mode-hook c++-mode-hook c-ts-mode-hook c++-ts-mode-hook)
  (satch-defun +eglot-clangd-maybe ()
-   (when (+project-have-compile-commands-p)
+   (when (+compile-commands-find-file)
      (eglot-ensure))))
 
 ;; If you installed Emacs from source, you can add the source code

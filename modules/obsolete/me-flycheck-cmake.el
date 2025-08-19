@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-04
-;; Last modified: 2025-05-06
+;; Last modified: 2025-08-20
 
 ;;; Commentary:
 
@@ -20,19 +20,6 @@
   (interactive)
   (setq-local +flycheck-cmake-json nil
               +flycheck-cmake-compiler nil))
-
-(defun +flycheck-cmake-get-compile-db-file (&optional root)
-  "Get the \"compile_commands.json\" file starting from ROOT path.
-When ROOT is nil, use the project root."
-  (catch 'file-found
-    (let ((proj-root (or root (+project-safe-root))))
-      (dolist (file '("compile_commands.json"
-                      "build/compile_commands.json"
-                      "build/release/compile_commands.json"
-                      "build/debug/compile_commands.json"))
-        (let ((full-file-name (expand-file-name file proj-root)))
-          (when (file-exists-p full-file-name)
-            (throw 'file-found full-file-name)))))))
 
 (defun +flycheck-cmake-extract-args (&optional filename)
   "Extract compiler arguments for FILENAME.
@@ -52,7 +39,7 @@ When FILENAME is nil, use the file name of the current buffer."
     (when (and (derived-mode-p '(c-mode c++-mode c-ts-mode c++-ts-mode))
                (string-match (file-truename proj-root) file))
       (unless +flycheck-cmake-json
-        (when-let* ((db-file (+flycheck-cmake-get-compile-db-file)))
+        (when-let* ((db-file (+compile-commands-find-file project-root)))
           (setq-local +flycheck-cmake-json (json-read-file db-file))))
       (let* ((matched-entry (cl-find-if
                              (lambda (entry)
