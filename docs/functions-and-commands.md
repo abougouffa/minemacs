@@ -869,6 +869,14 @@ When NO-OPT isn non-nil, don't return the "-style=" part.
 
 Set some editor settings from ".clang-format" when available.
 
+#### `(+get-compilation-db &optional PROJ-ROOT)`
+
+Get the  "compile_commands.json" for project at PROJ-ROOT as a plist.
+
+#### `(+hide-ifdef-get-env-from-compilation-db)`
+
+Integrate `hideif` with "compile_commands.json".
+
 #### `(+server-restart)`
 
 Restart the Emacs server.
@@ -928,10 +936,6 @@ Forget all duplicate known projects (like /home/user/proj and ~/proj).
 #### `(+project-root-initialize)`
 
 Initialize project list from `+project-root-wildcards`.
-
-#### `(+project-have-compile-commands-p &optional PROJ)`
-
-Check if PROJ have a "compile_commands.json" file.
 
 #### `(+xref-find-references-at-point)`
 

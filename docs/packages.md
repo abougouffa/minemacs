@@ -80,7 +80,6 @@
 * `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
 
 ## `me-experimental`
-* `kmacro-x`: A collection of commands, modes and functions built on top of the keyboard macros (kmacros)
 * `lspce`: LSP Client for Emacs implemented as a module using Rust
 
 ## `me-extra`
@@ -214,7 +213,6 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
-* `lambda-themes`: Themes that provide for a reasonable compromise between aesthetics and readability, inspired by: https://arxiv.org/abs/2008.06030
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
 * `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
