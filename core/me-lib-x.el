@@ -971,31 +971,31 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 
 (define-obsolete-function-alias '+project-have-compile-commands-p '+compile-commands-find-file "13.5.0")
 
-(defvar +compile-commands-cache (make-hash-table :test #'equal))
+(defvar +compilation-db-cache (make-hash-table :test #'equal))
 
-(defun +get-compile-commands-json (&optional proj-root)
+(defun +get-compilation-db (&optional proj-root)
   "Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist."
   (when-let* ((compile-commands-file (+compile-commands-find-file proj-root)))
-    (or (gethash proj-root +compile-commands-cache)
+    (or (gethash proj-root +compilation-db-cache)
         (when-let* ((json-object-type 'plist)
                     (json-array-type 'list)
                     (compile-commands (json-read-file compile-commands-file)))
-          (puthash proj-root compile-commands +compile-commands-cache)
+          (puthash proj-root compile-commands +compilation-db-cache)
           compile-commands))))
 
-(defun +compile-commands-get-entry (file-name &optional proj-root)
+(defun +compilation-db-get-entry (file-name &optional proj-root)
   (when-let* ((proj-root (or proj-root (+project-safe-root) (file-name-directory file-name)))
               (file-name (file-relative-name file-name proj-root))
-              (compile-commands (+get-compile-commands-json proj-root)))
+              (compile-commands (+get-compilation-db proj-root)))
     (catch 'found
       (dolist (entry compile-commands)
         (when (string-match-p (rx-to-string `(seq ,(file-name-sans-extension file-name) "." (or "cpp" "cc" "c" "cxx" "c++")))
                               (plist-get entry :file))
           (throw 'found entry))))))
 
-(defun +hide-ifdef-get-env-from-compile-commands ()
+(defun +hide-ifdef-get-env-from-compilation-db ()
   "Integrate `hideif' with \"compile_commands.json\"."
-  (when-let* ((entry (+compile-commands-get-entry (buffer-file-name)))
+  (when-let* ((entry (+compilation-db-get-entry (buffer-file-name)))
               (command (plist-get entry :command)))
     (dolist (str (string-split command))
       (when-let* (((string-prefix-p "-D" str))

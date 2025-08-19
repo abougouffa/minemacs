@@ -515,7 +515,7 @@
   :custom
   (hide-ifdef-shadow t)
   (hide-ifdef-initially t)
-  :hook (hide-ifdef-mode . +hide-ifdef-get-env-from-compile-commands))
+  :hook (hide-ifdef-mode . +hide-ifdef-get-env-from-compilation-db))
 
 (use-package hl-line
   :hook ((prog-mode conf-mode text-mode dired-mode) . hl-line-mode)) ; Highlight the current line
