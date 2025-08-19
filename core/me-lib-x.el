@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-08-06
+;; Last modified: 2025-08-20
 
 ;;; Commentary:
 
@@ -944,6 +944,52 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
      (lambda (_cmd buf)
        (with-current-buffer buf
          (and (+clang-format-get-lang) (+clang-format-config-file) (+clang-format-dump-config) t))))
+
+(defvar +compile-commands-json-directories
+  '(""
+    "build"
+    "build/debug"
+    "build/release"
+    "build/linux"
+    "bld"
+    "cmake.bld/Linux"
+    "cmake-build"
+    "cmake-build/debug"
+    "cmake-build/release"
+    "cmake-build/linux_64_static_ninja_Debug"
+    "cmake-build/linux_64_static_make_Debug"
+    "cmake-build/linux_64_static_ninja_Release"
+    "cmake-build/linux_64_static_make_Release"))
+
+(defun +compile-commands-find-file (&optional proj-root)
+  (let ((proj-root (or proj-root (+project-safe-root))))
+    (cl-find-if
+     #'file-exists-p
+     (mapcar (lambda (dir)
+               (expand-file-name "compile_commands.json" (expand-file-name dir proj-root)))
+             +compile-commands-json-directories))))
+
+(defvar +compile-commands-cache (make-hash-table :test #'equal))
+
+(defun +get-compile-commands-json (&optional proj-root)
+  "Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist."
+  (when-let* ((compile-commands-file (+compile-commands-find-file proj-root)))
+    (or (gethash proj-root +compile-commands-cache)
+        (when-let* ((json-object-type 'plist)
+                    (json-array-type 'list)
+                    (compile-commands (json-read-file compile-commands-file)))
+          (puthash proj-root compile-commands +compile-commands-cache)
+          compile-commands))))
+
+(defun +compile-commands-get-entry (file-name &optional proj-root)
+  (when-let* ((proj-root (or proj-root (+project-safe-root) (file-name-directory file-name)))
+              (file-name (file-relative-name file-name proj-root))
+              (compile-commands (+get-compile-commands-json proj-root)))
+    (catch 'found
+      (dolist (entry compile-commands)
+        (when (string-match-p (rx-to-string `(seq ,(file-name-sans-extension file-name) "." (or "cpp" "cc" "c" "cxx" "c++")))
+                              (plist-get entry :file))
+          (throw 'found entry))))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
