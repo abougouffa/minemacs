@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.5.0](https://github.com/abougouffa/minemacs/compare/13f0e0c40b6c7748ca7bc67bee61062d5ae43534..v13.5.0) - 2025-08-19
+#### Bug Fixes
+- **(envrc)** fix the keybinding - ([825bb7c](https://github.com/abougouffa/minemacs/commit/825bb7c4ab33b83798c51ca39787bf80c8a13b7f)) - [@abougouffa](https://github.com/abougouffa)
+- **(flymake)** don't assure `nerd-icons` is available immediately - ([13f0e0c](https://github.com/abougouffa/minemacs/commit/13f0e0c40b6c7748ca7bc67bee61062d5ae43534)) - [@abougouffa](https://github.com/abougouffa)
+- **(iwyu)** fix `compile_commands.json` finding in `iwyu-reparse` - ([65d059f](https://github.com/abougouffa/minemacs/commit/65d059f1fc455b329cb891133d91d3df83f001e9)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([da0204f](https://github.com/abougouffa/minemacs/commit/da0204f80cdffe3abff676c9ab6094f649b3d8e9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add some primitives to handle `compile_commands.json` files - ([df22d23](https://github.com/abougouffa/minemacs/commit/df22d2303446263587751f8fc756e81c35a85d2d)) - [@abougouffa](https://github.com/abougouffa)
+- **(iwyu)** add support for `include-what-you-use` from Exordium - ([7e2898f](https://github.com/abougouffa/minemacs/commit/7e2898fb996000bab085ce20ddaf9a0e7a88c6b4)) - [@abougouffa](https://github.com/abougouffa)
+- delete unneeded `iwyu`, `clangd` can do it - ([f3c2026](https://github.com/abougouffa/minemacs/commit/f3c202626d5e7989d7539611f13a0b5e3b1dd96a)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(dumb-jump)** add a note on which ripgrep version is needed - ([91a48aa](https://github.com/abougouffa/minemacs/commit/91a48aada44452e3c563f90a880ed9d23dcb6e2e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(iwyu)** several minor tweaks - ([2696c24](https://github.com/abougouffa/minemacs/commit/2696c24dde11b4fd7bbc242a9d01d2321b46d837)) - [@abougouffa](https://github.com/abougouffa)
+- rename newly added functions - ([2bd190e](https://github.com/abougouffa/minemacs/commit/2bd190ec04e389dc133530136d62960bab786596)) - [@abougouffa](https://github.com/abougouffa)
+- cleanup compilation database related stuff - ([ca6ebc8](https://github.com/abougouffa/minemacs/commit/ca6ebc87d00006ff100b98fa31ca1583b78c98fa)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(eglot)** use the right `compile_commands.json` file with `clangd` - ([d7768d9](https://github.com/abougouffa/minemacs/commit/d7768d94bc882612b8ad4de6facf3ab6d7e2cb01)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideif)** use definitions from `compile_commands.json` - ([996fbd3](https://github.com/abougouffa/minemacs/commit/996fbd3c60706b63281f970ae7068182a3df37cf)) - [@abougouffa](https://github.com/abougouffa)
+- **(semantic)** add file patterns for `c-ts-mode` and `c++-ts-mode` - ([d3e2b57](https://github.com/abougouffa/minemacs/commit/d3e2b57d2be05e8df9dbab691dee14fc16335af2)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** impose a specific order for backends - ([a815e1b](https://github.com/abougouffa/minemacs/commit/a815e1b0fc3e0afde2b58270972403e02625e22f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([554084e](https://github.com/abougouffa/minemacs/commit/554084e415adc4aac38d869ad73a51c4878c82ce)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([bbd37ab](https://github.com/abougouffa/minemacs/commit/bbd37abd61f4fdec1da0aa0fe3073d520367581e)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([808e2e8](https://github.com/abougouffa/minemacs/commit/808e2e88dbeeea1991e59224729886728d05568e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.4.0](https://github.com/abougouffa/minemacs/compare/84e6ff86e0550ac9563d0f3277b8ea9e5647741f..v13.4.0) - 2025-08-15
 #### Bug Fixes
 - **(org)** don't load `ditaa` in Org Babel - ([82d063d](https://github.com/abougouffa/minemacs/commit/82d063d8dc9f02d6d8b6304c3269f4250f51b7fc)) - [@abougouffa](https://github.com/abougouffa)
