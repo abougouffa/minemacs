@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-25
-;; Last modified: 2025-07-05
+;; Last modified: 2025-08-20
 
 ;;; Commentary:
 
@@ -242,11 +242,16 @@ When STORE is non-nil, this will also store the new plist in the directory
 
 (+eglot-register ; better (!) parameters for Clangd
   '(c++-mode c++-ts-mode c-mode c-ts-mode)
-  '("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
-    "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-    "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
-    "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")
-  "ccls")
+  (lambda (_interactive project)
+    (let ((proj-root (project-root project)))
+      `("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
+        ,(format "--compile-commands-dir=%s"
+                 (or (when-let* ((file (+compile-commands-find-file proj-root)))
+                       (file-name-directory file))
+                     proj-root))
+        "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
+        "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
+        "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory"))))
 
 (+eglot-register
   '(text-mode org-mode markdown-mode markdown-ts-mode rst-mode git-commit-mode)
