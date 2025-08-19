@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-28
+;; Last modified: 2025-08-19
 
 ;;; Commentary:
 
@@ -73,6 +73,7 @@
 (use-package dumb-jump
   :straight t
   :custom
+  ;; NOTE: Make sure "rg" has PCRE2 support, install using "cargo install ripgrep --features pcre2"
   (dumb-jump-selector 'completing-read)
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate) ; Use `dumb-jump' as `xref' backend
