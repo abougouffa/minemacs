@@ -52,7 +52,7 @@ typically bound to g) to reparse recent file."
       (3 font-lock-string-face)
       (4 font-lock-comment-face))
      (,(concat "\\(^\\|\\(for \\)\\)\\(\\(/[-[:alnum:]_.]+\\)+\\."
-               (regexp-opt '("h" "hh" "hpp" "c" "cc" "cpp"))
+               (regexp-opt '("h" "hh" "hpp" "hxx" "h++" "c" "cc" "cpp" "c++"))
                "\\)")
       (3 font-lock-function-name-face)))))
 
@@ -85,14 +85,10 @@ The first word (assumed: the compiler) is skipped.  The
 returned as single element."
   (let* ((quote-match
           (lambda (list start)
-            (cl-position-if
-             (lambda (x) (string-match (rx "\\\"") x))
-             list
-             :start start)))
+            (cl-position-if (lambda (x) (string-match (rx "\\\"") x)) list :start start)))
          (args (cdr (split-string command)))
          (start (funcall quote-match args 0))
-         (end (funcall quote-match args
-                       (if start (+ start 1) (- (cl-list-length args) 1)))))
+         (end (funcall quote-match args (if start (+ start 1) (- (cl-list-length args) 1)))))
     (while (and start end)
       (setq args
             (append
@@ -100,8 +96,7 @@ returned as single element."
              (list (mapconcat 'identity (cl-subseq args start (+ end 1)) " "))
              (cl-subseq args (+ end 1))))
       (setq start (funcall quote-match args (+ start 1)))
-      (setq end (funcall quote-match args
-                         (if start (+ start 1) (- (cl-list-length args) 1)))))
+      (setq end (funcall quote-match args (if start (+ start 1) (- (cl-list-length args) 1)))))
     args))
 
 ;;;###autoload
@@ -119,8 +114,7 @@ Such constructed list then is appended to arguments in
 `iwyu-extra-args'."
   (let* ((json-object-type 'plist)
          (json-array-type 'list)
-         (compile-commands-json
-          (json-read-file compile-commands-db)))
+         (compile-commands-json (json-read-file compile-commands-db)))
     (catch 'found
       (dolist (entry compile-commands-json)
         (when (string-suffix-p file (plist-get entry :file))
@@ -130,8 +124,7 @@ Such constructed list then is appended to arguments in
               (read-only-mode 0)
               (delete-region (point-min) (point-max))
               (goto-char (point-min))
-              (insert
-               (format "include-what-you-use results for file %s:\n" file))
+              (insert (format "include-what-you-use results for file %s:\n" file))
               (read-only-mode)
               (iwyu-mode)
               (compat-call keymap-substitute ; Since Emacs-29
@@ -141,21 +134,18 @@ Such constructed list then is appended to arguments in
                              (interactive)
                              (iwyu-start-process-for compile-commands-db file))
                            compilation-mode-map))
-            (apply
-             'start-process
-             "iwyu-process"
-             buffer
-             "include-what-you-use"
-             (append
-              iwyu-extra-args
-              (cl-remove-if (lambda (x) (member x iwyu-filter-args))
-                            (iwyu-prepare-args (plist-get entry :command)))))
+            (apply 'start-process "iwyu-process" buffer
+                   "include-what-you-use"
+                   (append
+                    iwyu-extra-args
+                    (cl-remove-if (lambda (x) (member x iwyu-filter-args))
+                                  (iwyu-prepare-args (plist-get entry :command)))))
             (display-buffer buffer-name)
             (other-window 1)
             (set-window-dedicated-p (get-buffer-window (current-buffer)) t)
             (other-window -1))
           (throw 'found t)))
-      (message (format "Cannot find file %s in compile_commands.json" file)))))
+      (message "Cannot find file %s in compile_commands.json" file))))
 
 ;;;###autoload
 (defun iwyu-reparse ()
@@ -176,10 +166,10 @@ extension."
             (file-name (file-name-nondirectory buffer-file-name)))
       (iwyu-start-process-for
        compile-commands-json
-       (if (string= "h" (file-name-extension file-name))
-           (concat (file-name-sans-extension file-name) ".cpp")
+       (if (member (file-name-extension file-name) (rx bol (or "h" "hh" "hpp" "hxx" "h++") eol))
+           (file-name-with-extension (file-name-sans-extension file-name) "cpp")
          file-name))
-    (message "Cannot find compile_commands.json for this project")))
+    (user-error "Cannot find compile_commands.json for this project")))
 
 (provide 'me-iwyu)
 ;;; me-iwyu.el ends here
