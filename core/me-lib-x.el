@@ -1000,7 +1000,15 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
     (dolist (str (string-split command))
       (when-let* (((string-prefix-p "-D" str))
                   (def-val (string-split (substring str 2) "=")))
-        (hide-ifdef-define (car def-val) (cadr def-val))))))
+        (hif-set-var
+         (intern (car def-val))
+         (or (when-let* ((val (cadr def-val)))
+               (cond ((string-match-p "^\"\\(.*\\)\"$" val)
+                      (match-string 1 val))
+                     ((equal val (number-to-string (string-to-number val)))
+                      (string-to-number val))
+                     (t (intern val))))
+             1))))))
 
 ;; To use as an advice for sentinel functions, for example for `term-sentinel' or `eat--sentinel'
 ;;;###autoload
