@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-13
+;; Last modified: 2025-08-21
 
 ;;; Commentary:
 
@@ -47,7 +47,9 @@
 (use-package iedit
   :straight t
   :bind (("C-;" . iedit-mode)
-         ("C-x r ;" . iedit-rectangle-mode)))
+         ("C-x r ;" . iedit-rectangle-mode)
+         (:map esc-map ("C-;" . iedit-execute-last-modification)))
+  :bind (:package isearch :map isearch-mode-map ("C-c ;" . iedit-mode-from-isearch)))
 
 
 ;; Multiple cursors implementation for Emacs
