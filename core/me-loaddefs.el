@@ -955,7 +955,7 @@ Show help for the symbol at point." t)
 ;;; Generated autoloads from extras/me-smerge-x.el
 
 (with-eval-after-load 'smerge-mode (require 'me-smerge-x))
-(register-definition-prefixes "extras/me-smerge-x" '("+smerge-"))
+(register-definition-prefixes "extras/me-smerge-x" '("+recenter:after-a" "+smerge-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-sml.el
@@ -1003,6 +1003,12 @@ Show help for the symbol at point." t)
 ;;; Generated autoloads from extras/me-tramp-adb-x.el
 
 (with-eval-after-load 'tramp-adb (require 'me-tramp-adb-x))
+
+
+;;; Generated autoloads from extras/me-treesit-x.el
+
+(with-eval-after-load 'treesit (require 'me-treesit-x))
+(register-definition-prefixes "extras/me-treesit-x" '("+treesit-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-typst.el
