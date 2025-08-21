@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-08-20
+;; Last modified: 2025-08-21
 
 ;;; Commentary:
 
@@ -452,7 +452,8 @@ Emacs-specific early exit in \".bashrc\"."
   (interactive)
   (unless (featurep 'os/win)
     (with-temp-buffer
-      (insert ";; -*- mode: emacs-lisp; no-byte-compile: t; no-native-compile: t; -*-\n\n")
+      (insert ";; -*- mode: emacs-lisp; lexical-binding: t; no-byte-compile: t; no-native-compile: t; -*-\n\n"
+              ";; This file is generated automatically via `+env-save'.\n\n")
       (let ((env-vars
              (mapcar ; Get environment variables from shell into an alist
               (lambda (line)
