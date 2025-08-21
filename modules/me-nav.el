@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2025-05-25
+;; Last modified: 2025-08-21
 
 ;;; Commentary:
 
@@ -30,12 +30,6 @@
 (use-package avy-zap
   :straight t
   :bind ("M-z" . avy-zap-to-char-dwim))
-
-
-;; Jump around your source code in emacs using `treesit' and `avy'
-(use-package treesit-jump
-  :straight (:host github :repo "abougouffa/treesit-jump" :branch "enhancements" :files (:defaults "treesit-queries"))
-  :when (featurep 'feat/tree-sitter))
 
 
 ;; Never lose your place in Emacs again
