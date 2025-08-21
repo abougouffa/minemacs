@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-05
+;; Last modified: 2025-08-21
 
 ;;; Commentary:
 
@@ -226,7 +226,6 @@ it automatically."
     ;; me-fun
     ;; me-lifestyle
     ;; me-media
-    me-multi-cursors
     me-natural-langs
     me-nav
     me-notes
