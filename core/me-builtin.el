@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-20
+;; Last modified: 2025-08-22
 
 ;;; Commentary:
 
@@ -97,6 +97,9 @@
     indicate-buffer-boundaries nil)
 
   (eval-after-load 'minemacs-first-file (+shutup! (epa-file-enable)))
+
+  ;; Replace some keybindings (like `C-x C-f', `C-x C-d', etc.) with `ffap's ones
+  (ffap-bindings)
 
   ;; Inhibit startup message and screen
   (fset 'display-startup-echo-area-message #'ignore)
