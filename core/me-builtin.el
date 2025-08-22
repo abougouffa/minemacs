@@ -638,7 +638,6 @@
   :custom
   (eglot-autoshutdown t) ; shutdown after closing the last managed buffer
   (eglot-sync-connect 0) ; async, do not block
-  (eglot-extend-to-xref t) ; can be interesting!
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   (eglot-stay-out-of '(yasnippet))
   (eglot-advertise-cancellation t)
