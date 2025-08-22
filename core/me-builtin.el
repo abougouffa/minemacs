@@ -656,9 +656,10 @@
   ;; When a sub/super project with a separate Python virtual environment is detected,
   ;; limit to this one.
   ;; See: https://lists.gnu.org/archive/html/emacs-devel/2022-11/msg01087.html
+  (defvar +python-virtualenv-dir-names '(".virtualenv" ".venv"))
   (defun +project-find-virtualenv-for-eglot (dir)
-    (when (bound-and-true-p eglot-lsp-context)
-      (when-let* ((root (locate-dominating-file dir ".virtualenv")))
+    (when (and (bound-and-true-p eglot-lsp-context) (derived-mode-p 'python-mode))
+      (when-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +python-virtualenv-dir-names)))
         (cons 'transient root))))
 
   (add-hook 'project-find-functions #'+project-find-virtualenv-for-eglot))
