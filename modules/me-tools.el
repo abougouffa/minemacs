@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-18
+;; Last modified: 2025-08-23
 
 ;;; Commentary:
 
@@ -115,14 +115,6 @@ a project, call `multi-vterm-dedicated-toggle'."
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
   :straight (:host github :repo "johannes-mueller/devcontainer.el"))
-
-
-;; Major mode for Apptainer definition files
-(use-package apptainer-mode
-  :straight (:host github :repo "jrgant/apptainer-mode")
-  :config
-  (setq apptainer-boxed-headers t
-        apptainer-boxed-sections t))
 
 
 ;; Major mode to view journalctl's output in Emacs
