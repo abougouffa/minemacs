@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-07-23
+;; Last modified: 2025-08-23
 
 ;;; Commentary:
 
@@ -46,8 +46,12 @@ This complements `citre-auto-enable-citre-mode-modes'."
   (defvar-local +citre-gtags-absolete-files-list nil "Output absolete pathes in the created files list.")
   (defvar-local +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh")
     "List of filename suffixes globs to index (for extensions for example).")
-  (defvar-local +citre-gtags-files-list-ignored-directories '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian")
-    "List of directories to be ignored when creating the file list using `+citre-gtags-find-files-command'.")
+  (defvar-local +citre-gtags-files-list-ignored-directories
+    '("CVS" "RCS" "SCCS"
+      ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo"
+      "_MTN" "_darcs" "_sgbak" "debian"
+      ".ccls-cache" ".cache")
+    "List of directories to be ignored when creating C/C++ files list.")
   :config
   (defvar-keymap +citre-navigation-map
     :doc "Citre navigation commands." :name "citre-navigation"
