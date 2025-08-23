@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2025-08-21
+;; Last modified: 2025-08-23
 
 ;;; Commentary:
 
@@ -52,11 +52,6 @@
   :straight t
   :bind (("M-é" . goto-last-change) ; For French AZERTY keybords
          ("C-M-é" . goto-last-change-reverse)))
-
-
-;; Extensions to `isearch'
-(use-package isearch+
-  :straight t)
 
 
 ;; Another incremental search command, compatible with `multiple-cursors'
