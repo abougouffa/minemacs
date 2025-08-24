@@ -44,12 +44,6 @@
   (minemacs-modeline-mode 1))
 
 
-;; Display "^L" page breaks as tidy horizontal lines
-(use-package page-break-lines
-  :straight t
-  :hook ((prog-mode text-mode special-mode) . page-break-lines-mode))
-
-
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
   :straight (:host github :repo "protesilaos/pulsar")
