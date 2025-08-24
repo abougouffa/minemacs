@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-08-16
+;; Last modified: 2025-08-25
 
 ;;; Commentary:
 
@@ -31,6 +31,11 @@
     (doom-themes-org-config))
   ;; Enable blinking modeline on errors (`visible-bell')
   (+with-delayed-1! (doom-themes-visual-bell-config)))
+
+
+;; Highly legible minimalist themes with precise typography
+(use-package doric-themes
+  :straight t)
 
 
 ;; Light, modern and opinionated mode-line for MinEmacs
