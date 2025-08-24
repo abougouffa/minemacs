@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-22
+;; Last modified: 2025-08-25
 
 ;;; Commentary:
 
@@ -953,6 +953,9 @@ Typing these will trigger reindentation of the current line.")
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S")) ; Timestamp format
 
 (use-package whitespace
+  :init
+  (when (fboundp 'whitespace-page-delimiters-mode) ; Emacs 31+
+    (satch-add-hook '(prog-mode-hook text-mode-hook conf-mode-hook) #'whitespace-page-delimiters-mode))
   :custom
   (whitespace-action '(cleanup auto-cleanup))) ; Default behavior for `whitespace-cleanup'
 
