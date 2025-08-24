@@ -4,11 +4,13 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-13
+;; Last modified: 2025-08-24
 
 ;;; Commentary:
 
 ;;; Code:
+
+(use-package cond-let :straight t) ; dependency of `magit'
 
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
