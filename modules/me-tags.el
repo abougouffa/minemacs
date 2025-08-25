@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-08-23
+;; Last modified: 2025-08-25
 
 ;;; Commentary:
 
@@ -24,6 +24,7 @@
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   (citre-project-root-function #'+citre-dominating-project-root) ; Better (!) project root detection function
+  (citre-default-create-tags-file-location 'in-dir) ; Always create the tags in the project's directory
   (citre-gtags-args
    `("--compact"
      ;; TEMP: Sane defaults, see: universal-ctags/citre#184
