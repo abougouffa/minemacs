@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-08-20
+;; Last modified: 2025-08-26
 
 ;;; Commentary:
 
@@ -948,20 +948,21 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 (defvar +compile-commands-json-directories
   '(""
     "build"
-    "build/debug"
     "build/release"
+    "build/debug"
     "build/linux"
     "bld"
     "cmake.bld/Linux"
     "cmake-build"
-    "cmake-build/debug"
     "cmake-build/release"
-    "cmake-build/linux_64_static_ninja_Debug"
-    "cmake-build/linux_64_static_make_Debug"
+    "cmake-build/debug"
     "cmake-build/linux_64_static_ninja_Release"
-    "cmake-build/linux_64_static_make_Release"))
+    "cmake-build/linux_64_static_make_Release"
+    "cmake-build/linux_64_static_ninja_Debug"
+    "cmake-build/linux_64_static_make_Debug"))
 
-(defun +compile-commands-find-file (&optional proj-root)
+;;;###autoload
+(defun +compilation-db-find-file (&optional proj-root)
   (let ((proj-root (or proj-root (+project-safe-root))))
     (cl-find-if
      #'file-exists-p
@@ -969,13 +970,15 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                (expand-file-name "compile_commands.json" (expand-file-name dir proj-root)))
              +compile-commands-json-directories))))
 
-(define-obsolete-function-alias '+project-have-compile-commands-p '+compile-commands-find-file "13.5.0")
+(define-obsolete-function-alias '+project-have-compile-commands-p '+compilation-db-find-file "13.5.0")
+(define-obsolete-function-alias '+compile-commands-find-file '+compilation-db-find-file "13.6.0")
 
 (defvar +compilation-db-cache (make-hash-table :test #'equal))
 
+;;;###autoload
 (defun +get-compilation-db (&optional proj-root)
   "Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist."
-  (when-let* ((compile-commands-file (+compile-commands-find-file proj-root)))
+  (when-let* ((compile-commands-file (+compilation-db-find-file proj-root)))
     (or (gethash proj-root +compilation-db-cache)
         (when-let* ((json-object-type 'plist)
                     (json-array-type 'list)
@@ -983,6 +986,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
           (puthash proj-root compile-commands +compilation-db-cache)
           compile-commands))))
 
+;;;###autoload
 (defun +compilation-db-get-entry (file-name &optional proj-root)
   (when-let* ((proj-root (or proj-root (+project-safe-root) (file-name-directory file-name)))
               (file-name (file-relative-name file-name proj-root))
@@ -993,6 +997,34 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                               (plist-get entry :file))
           (throw 'found entry))))))
 
+;;;###autoload
+(defun +cmd-split-rm-single (cmd flag &optional test)
+  "Remove a single FLAG from CMD.  Test according to TEST."
+  (mapconcat #'identity (cl-remove flag (split-string cmd) :test (or test #'string=)) " "))
+
+;;;###autoload
+(defun +cmd-split-rm-double (cmd flag)
+  "Remove a FLAG and subsequent arg from CMD."
+  (cl-loop while split with split = (split-string cmd)
+           for i from 0
+           for probe = (car split)
+           if (string= probe flag) do (setq split (cddr split))
+           else
+           concat (and (cl-plusp i) " ")
+           and concat probe and do (setq split (cdr split))))
+
+;;;###autoload
+(defun +guess-args-from-compilation-db (file-name)
+  (when-let* ((ccj (+compilation-db-get-entry file-name))
+              (cmd (or (ensure-list (plist-get ccj :command))
+                       (butlast (plist-get ccj :arguments))))
+              (cmd (string-join cmd " "))
+              (cmd (+cmd-split-rm-double cmd "-o"))
+              (cmd (+cmd-split-rm-double cmd "-c"))
+              (cmd (+cmd-split-rm-single cmd "-flto" #'string-prefix-p)))
+    (cons (plist-get ccj :directory) cmd)))
+
+;;;###autoload
 (defun +hide-ifdef-get-env-from-compilation-db ()
   "Integrate `hideif' with \"compile_commands.json\"."
   (when-let* ((entry (+compilation-db-get-entry (buffer-file-name)))
