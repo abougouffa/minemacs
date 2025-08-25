@@ -41,7 +41,19 @@
   :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
-  (add-to-list 'beardbolt-languages '(rust-ts-mode beardbolt--rust-setup)))
+  (add-to-list 'beardbolt-languages '(rust-ts-mode beardbolt--rust-setup))
+  (defvar-local +beardbolt-default-directory nil)
+  (advice-add 'beardbolt--guess-from-ccj :override #'+beardbolt--guess-from-ccj:override-a)
+  (advice-add 'beardbolt-compile :around #'+beardbolt--set-compilation-dir:around-a)
+
+  (defun +beardbolt--guess-from-ccj:override-a ()
+    (when-let* ((dir-cmd (+guess-args-from-compilation-db (buffer-file-name))))
+      (list (cdr dir-cmd) beardbolt-ccj-extra-flags)))
+
+  (defun +beardbolt--set-compilation-dir:around-a (origfn &rest args)
+    (let* ((ccj (+compilation-db-get-entry (buffer-file-name)))
+           (default-directory (or (plist-get ccj :directory) default-directory)))
+      (apply origfn args))))
 
 
 ;; Use "objdump" to display disassembled executable and object files
