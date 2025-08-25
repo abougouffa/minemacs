@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2025-06-14
+;; Last modified: 2025-08-26
 
 ;;; Commentary:
 
@@ -27,7 +27,13 @@
 ;; A compiler output viewer
 (use-package rmsbolt
   :straight t
-  :hook (rmsbolt-mode . (lambda () (when (derived-mode-p 'asm-mode) (flymake-mode-off)))))
+  :hook (rmsbolt-mode . (lambda () (when (derived-mode-p 'asm-mode) (flymake-mode-off))))
+  :hook (rmsbolt-mode . +rmsbolt-set-command-form-compilaiton-db)
+  :config
+  (defun +rmsbolt-set-command-form-compilaiton-db ()
+    (when-let* ((dir-cmd (+guess-args-from-compilation-db (buffer-file-name))))
+      (setq-local rmsbolt-command (cdr dir-cmd)
+                  rmsbolt-default-directory (car dir-cmd)))))
 
 
 ;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
