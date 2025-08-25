@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-04
-;; Last modified: 2025-08-20
+;; Last modified: 2025-08-25
 
 ;;; Commentary:
 
@@ -39,7 +39,7 @@ When FILENAME is nil, use the file name of the current buffer."
     (when (and (derived-mode-p '(c-mode c++-mode c-ts-mode c++-ts-mode))
                (string-match (file-truename proj-root) file))
       (unless +flycheck-cmake-json
-        (when-let* ((db-file (+compile-commands-find-file project-root)))
+        (when-let* ((db-file (+compilation-db-find-file project-root)))
           (setq-local +flycheck-cmake-json (json-read-file db-file))))
       (let* ((matched-entry (cl-find-if
                              (lambda (entry)

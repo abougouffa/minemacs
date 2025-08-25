@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-25
-;; Last modified: 2025-08-20
+;; Last modified: 2025-08-25
 
 ;;; Commentary:
 
@@ -246,7 +246,7 @@ When STORE is non-nil, this will also store the new plist in the directory
     (let ((proj-root (project-root project)))
       `("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
         ,(format "--compile-commands-dir=%s"
-                 (or (when-let* ((file (+compile-commands-find-file proj-root)))
+                 (or (when-let* ((file (+compilation-db-find-file proj-root)))
                        (file-name-directory file))
                      proj-root))
         "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
