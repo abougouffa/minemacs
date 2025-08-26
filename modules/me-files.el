@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-08-07
+;; Last modified: 2025-08-26
 
 ;;; Commentary:
 
@@ -20,6 +20,14 @@
     ([backtab] . dired-subtree-remove))
   :custom
   (dired-subtree-use-backgrounds nil))
+
+
+;; Asynchronous "rsync" from `dired'
+(use-package dired-rsync
+  :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
+  :bind ( :package dired :map dired-mode-map
+          ("C-c C-r" . dired-rsync)
+          ("C-c C-x" . dired-rsync-transient)))
 
 
 ;; Viewing and editing system trash can
