@@ -52,12 +52,6 @@
   (guard-lf-mode 1))
 
 
-;; Utilities for opening files with "sudo"
-(use-package sudo-edit
-  :straight t
-  :hook (minemacs-first-file . sudo-edit-indicator-mode))
-
-
 ;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 (use-package ztree
   :straight t
