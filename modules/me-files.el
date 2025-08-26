@@ -37,7 +37,8 @@
 
 ;; Viewing and editing system trash can
 (use-package trashed
-  :straight t)
+  :straight t
+  :bind (:map minemacs-open-thing-map ("T" . trashed)))
 
 
 ;; Sort and browse disk usage listings
