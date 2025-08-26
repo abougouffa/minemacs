@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-25
+;; Last modified: 2025-08-26
 
 ;;; Commentary:
 
@@ -16,6 +16,7 @@
   :hook
   (after-save . +save-guess-file-mode-h)
   (minibuffer-setup . cursor-intangible-mode) ; See the `minibuffer-prompt-properties' below
+  (minemacs-first-file . +sudo-indicator-mode)
   :custom
   (auto-save-list-file-prefix (+directory-ensure minemacs-local-dir "auto-save/"))
   (auto-save-file-name-transforms ; Set file naming transform for `auto-save'

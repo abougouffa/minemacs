@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-08-21
+;; Last modified: 2025-08-26
 
 ;;; Commentary:
 
@@ -654,6 +654,32 @@ Examples:
           (add-to-list 'eglot-server-programs (cons modes contact))
         (unless (equal (car orig-val) modes) (setcar orig-val modes))
         (setcdr orig-val contact)))))
+
+
+
+;;; Tramp
+
+(defun +root-set-header ()
+  "*Display a warning in header line of the current buffer.
+This function is suitable to add to `find-file-hook' and `dired-file-hook'."
+  (when-let* ((file (or buffer-file-name default-directory))
+              ((string-equal (file-remote-p file 'user) "root")))
+    (setq header-line-format (concat " "
+                                     (+nerd-icons-icon "nf-md-pound_box" :face 'nerd-icons-red)
+                                     (propertize " --- WARNING: EDITING FILE AS ROOT! %-" 'face 'error)))))
+
+;;;###autoload
+(define-minor-mode +sudo-indicator-mode
+  "Indicates editing as root by displaying a message in the header line."
+  :global t
+  :lighter nil
+  :group 'sudo-edit
+  (if +sudo-indicator-mode
+      (progn
+        (add-hook 'find-file-hook #'+root-set-header)
+        (add-hook 'dired-mode-hook #'+root-set-header))
+    (remove-hook 'find-file-hook #'+root-set-header)
+    (remove-hook 'dired-mode-hook #'+root-set-header)))
 
 
 
