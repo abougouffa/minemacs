@@ -29,6 +29,8 @@
   :straight t
   :hook (rmsbolt-mode . (lambda () (when (derived-mode-p 'asm-mode) (flymake-mode-off))))
   :hook (rmsbolt-mode . +rmsbolt-set-command-form-compilaiton-db)
+  :custom
+  (rmsbolt-asm-format nil) ; don't impose a format, use the tool's defaults
   :config
   (defun +rmsbolt-set-command-form-compilaiton-db ()
     (when-let* ((dir-cmd (+guess-args-from-compilation-db (buffer-file-name))))
