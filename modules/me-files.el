@@ -30,6 +30,11 @@
           ("C-c C-x" . dired-rsync-transient)))
 
 
+;; Same functionality as `find-dired' and `find-grep-dired', using fd/rg instead
+(use-package fd-dired
+  :straight t)
+
+
 ;; Viewing and editing system trash can
 (use-package trashed
   :straight t)
