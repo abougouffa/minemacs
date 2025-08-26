@@ -213,7 +213,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-docker.el
 
-(minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
+(minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode) ("/Apptainer\\(?:[/]*\\)?\\'" . apptainer-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
@@ -667,6 +667,32 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part.
 (fn &optional NO-OPT)")
 (autoload '+editorconfig-guess-style-from-clang-format "me-lib-x" "\
 Set some editor settings from \".clang-format\" when available." t)
+(autoload '+compilation-db-find-file "me-lib-x" "\
+
+
+(fn &optional PROJ-ROOT)")
+(autoload '+get-compilation-db "me-lib-x" "\
+Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist.
+
+(fn &optional PROJ-ROOT)")
+(autoload '+compilation-db-get-entry "me-lib-x" "\
+
+
+(fn FILE-NAME &optional PROJ-ROOT)")
+(autoload '+cmd-split-rm-single "me-lib-x" "\
+Remove a single FLAG from CMD.  Test according to TEST.
+
+(fn CMD FLAG &optional TEST)")
+(autoload '+cmd-split-rm-double "me-lib-x" "\
+Remove a FLAG and subsequent arg from CMD.
+
+(fn CMD FLAG)")
+(autoload '+guess-args-from-compilation-db "me-lib-x" "\
+
+
+(fn FILE-NAME)")
+(autoload '+hide-ifdef-get-env-from-compilation-db "me-lib-x" "\
+Integrate `hideif' with \"compile_commands.json\".")
 (autoload '+kill-buffer-after-sentinel-exit "me-lib-x" "\
 
 
@@ -723,7 +749,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+h" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
