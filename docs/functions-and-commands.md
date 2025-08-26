@@ -873,6 +873,14 @@ Set some editor settings from ".clang-format" when available.
 
 Get the  "compile_commands.json" for project at PROJ-ROOT as a plist.
 
+#### `(+cmd-split-rm-single CMD FLAG &optional TEST)`
+
+Remove a single FLAG from CMD.  Test according to TEST.
+
+#### `(+cmd-split-rm-double CMD FLAG)`
+
+Remove a FLAG and subsequent arg from CMD.
+
 #### `(+hide-ifdef-get-env-from-compilation-db)`
 
 Integrate `hideif` with "compile_commands.json".
@@ -1051,17 +1059,9 @@ Got to the first occurrence.
 
 Got to the last occurrence.
 
-#### `(+smerge-vc-next-conflict-recenter)`
+#### `(+treesit-create-parser-in-buffer &optional BUFFER)`
 
-Like `smerge-vc-next-conflict` but recenters the buffer.
-
-#### `(+smerge-next-recenter)`
-
-Like `smerge-next` but recenters the buffer.
-
-#### `(+smerge-prev-recenter)`
-
-Like `smerge-prev` but recenters the buffer.
+Create a `treesit` grammar in BUFFER even if the mode isn't a ts-mode.
 
 #### `(+viper-operate-inside-delimiters OPEN CLOSE OP)`
 

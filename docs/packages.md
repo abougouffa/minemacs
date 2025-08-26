@@ -112,10 +112,8 @@
 * `ace-window`: Quickly switch windows in Emacs
 * `avy`: Jump to things in Emacs tree-style
 * `avy-zap`: Zap to char using `avy`
-* `treesit-jump`: Jump around your source code in emacs using `treesit` and `avy`
 * `dogears`: Never lose your place in Emacs again
 * `goto-chg`: Go to last change
-* `isearch+`: Extensions to `isearch`
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
 * `rg`: Emacs search tool based on "ripgrep"
 * `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
@@ -202,7 +200,6 @@
 * `multi-vterm`: Managing multiple vterm buffers in Emacs
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
-* `apptainer-mode`: Major mode for Apptainer definition files
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `envrc`: Buffer-local "direnv" integration for Emacs
@@ -213,8 +210,8 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
+* `doric-themes`: Highly legible minimalist themes with precise typography
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
-* `page-break-lines`: Display "^L" page breaks as tidy horizontal lines
 * `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
 * `nerd-icons-multimodal`: Integrate `nerd-icons` with `archive-mode`, `tar-mode`, `dired-mode`, and `ztree`
@@ -357,6 +354,7 @@
 ## `on-demand/me-docker`
 * `dockerfile-mode`: Major mode for editing Docker's Dockerfiles
 * `docker-compose-mode`: Major mode for editing docker-compose files
+* `apptainer-mode`: Major mode for Apptainer definition files
 
 ## `on-demand/me-dotnet`
 * `sln-mode`: A major mode to edit Visual Studio's solution files `*.sln`
