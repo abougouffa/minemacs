@@ -2,6 +2,51 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.6.0](https://github.com/abougouffa/minemacs/compare/27eff87c69f0f2f543723678a1dd0b71417f69d4..v13.6.0) - 2025-08-28
+#### Bug Fixes
+- **(hideif)** fix the definition from `compile_commands.json` - ([9d812b1](https://github.com/abougouffa/minemacs/commit/9d812b14646e3ef2faee623fa4a6ee62c276f19a)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit)** explicitly add the `cond-let` dependency - ([8671f41](https://github.com/abougouffa/minemacs/commit/8671f41fad5eb7ecf68ed7eb58923984cd2065a1)) - [@abougouffa](https://github.com/abougouffa)
+- **(tramp-adb)** disable the extension + WIP fix - ([efac9f5](https://github.com/abougouffa/minemacs/commit/efac9f5f85544a14f82d9dad82ecdbf1e5f09d2e)) - [@abougouffa](https://github.com/abougouffa)
+- **(vars)** fix default `minemacs-modules` list - ([d8c8210](https://github.com/abougouffa/minemacs/commit/d8c8210af08b3d932fd9d4cfd0b5d89cea4b2ecb)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- **(skel)** update the list of modules - ([74a2486](https://github.com/abougouffa/minemacs/commit/74a248678b1a89162f14399a47a6fe2908d49c23)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([4d7a089](https://github.com/abougouffa/minemacs/commit/4d7a08901867265557e774faa7d5e62c0cc60e4c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(core)** add `+sudo-indicator-mode` - ([eded467](https://github.com/abougouffa/minemacs/commit/eded4673ef2bde519e76b43220c28f771702e4e4)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** more compilation database helpers - ([39713ce](https://github.com/abougouffa/minemacs/commit/39713cee2f9d4ffe1e75cb2d2ea6ae83e22f8db0)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** make `sudo-edit` obsolete, just use `tramp-revert-buffer-with-sudo` - ([f58c3a6](https://github.com/abougouffa/minemacs/commit/f58c3a63f21f747dc03d3aabc2a66f4efad8e711)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** restore `fd-dired` - ([ab99172](https://github.com/abougouffa/minemacs/commit/ab99172d438a58868112259bd3047fdb06a4f91b)) - [@abougouffa](https://github.com/abougouffa)
+- **(files)** restore `dired-rsync`, useful when working over Tramp - ([46b02a4](https://github.com/abougouffa/minemacs/commit/46b02a4c55452aa034967f88c71cf301d513c83d)) - [@abougouffa](https://github.com/abougouffa)
+- **(nav)** remove unused `isearch+` - ([45f5d3c](https://github.com/abougouffa/minemacs/commit/45f5d3c3d9bf5fa441ebf9c6c4b373b533cbb81f)) - [@abougouffa](https://github.com/abougouffa)
+- **(nav)** make `treesit-jump` obsolete - ([df8b0d8](https://github.com/abougouffa/minemacs/commit/df8b0d8ef47a313b262e15148cbe97283ee813f7)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** move `apptainer-mode` to `on-demand/me-docker` - ([cf219c7](https://github.com/abougouffa/minemacs/commit/cf219c73a6041cde902b8b8ebc9e024771420383)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit)** add `me-treesit-x` with some extras - ([41e0929](https://github.com/abougouffa/minemacs/commit/41e0929343db8365117dbe64955c9fffe26382c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** make `page-break-lines` obsolete - ([2a92c00](https://github.com/abougouffa/minemacs/commit/2a92c00dd3dc4920d1ecae14cef2bb385fffa793)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `doric-themes` - ([5233006](https://github.com/abougouffa/minemacs/commit/523300650e8b747d4f6ebb5ec32d8ae3a5bc3ff3)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(beardbolt)** better integration with compilation-db - ([24d9d8a](https://github.com/abougouffa/minemacs/commit/24d9d8af1a561eee87b08c742f247dcf92b705ce)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** set the default tags file location - ([aa41cfa](https://github.com/abougouffa/minemacs/commit/aa41cfad9d72871edf16a95c45258e434a149d33)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** more ignored directories when generating files list - ([74c6026](https://github.com/abougouffa/minemacs/commit/74c602653cf435e91f6750dace687df5b7e1c3d8)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** check for configurable venv directories only in Python - ([c835c68](https://github.com/abougouffa/minemacs/commit/c835c68cada3b5c7cdd2e0ab5f2086711dd5017d)) - [@abougouffa](https://github.com/abougouffa)
+- **(eglot)** don't extend to `xref` - ([2962b16](https://github.com/abougouffa/minemacs/commit/2962b160c30ab9921dc71aae8bf775fd4d9dd8b6)) - [@abougouffa](https://github.com/abougouffa)
+- **(ffap)** enable `ffap` bindings - ([b2b416e](https://github.com/abougouffa/minemacs/commit/b2b416ef53850fc64aaab2dbb07e57dffeb5f441)) - [@abougouffa](https://github.com/abougouffa)
+- **(iedit)** some extra keybindings - ([7593060](https://github.com/abougouffa/minemacs/commit/7593060e7c2f842ed5981a7f4574cd2257136f70)) - [@abougouffa](https://github.com/abougouffa)
+- **(modeline)** add indicator for `dired-rsync`, support projects on dired - ([bbc81df](https://github.com/abougouffa/minemacs/commit/bbc81df573d11ef56361c8de640e26bf29f2e0e1)) - [@abougouffa](https://github.com/abougouffa)
+- **(multi-cursors)** unbind ENTER, let me insert new lines! - ([156be47](https://github.com/abougouffa/minemacs/commit/156be47a60ef5e766c69a97ebac5de2f6be24501)) - [@abougouffa](https://github.com/abougouffa)
+- **(rmsbolt)** don't enforce Intel's format, useful for ARM64 targets - ([a08233a](https://github.com/abougouffa/minemacs/commit/a08233a12ea2cc9d5d9838cf82d9389137c068b9)) - [@abougouffa](https://github.com/abougouffa)
+- **(rmsbolt)** better integration with compilation-db - ([14b9573](https://github.com/abougouffa/minemacs/commit/14b9573912ab38f4642676efacde9eb3026ae6df)) - [@abougouffa](https://github.com/abougouffa)
+- **(smerge)** recenter by default on navigation commands - ([27eff87](https://github.com/abougouffa/minemacs/commit/27eff87c69f0f2f543723678a1dd0b71417f69d4)) - [@abougouffa](https://github.com/abougouffa)
+- **(trashed)** bind to `C-c o T` - ([5a67965](https://github.com/abougouffa/minemacs/commit/5a67965451eeea0e8b91568f43399733e3e68fb5)) - [@abougouffa](https://github.com/abougouffa)
+- **(whitespace)** enable the new `whitespace-page-delimiters-mode` - ([238d476](https://github.com/abougouffa/minemacs/commit/238d4769167bb601c57411cc30d1be263cfcd5a4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7ab1eb3](https://github.com/abougouffa/minemacs/commit/7ab1eb39d04ac7021ff0463a74e65466d0eed181)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([c175385](https://github.com/abougouffa/minemacs/commit/c1753850cec5a8ae35f077b73e86b57ef71a4be2)) - [@abougouffa](https://github.com/abougouffa)
+- use the new definitions - ([e2d8639](https://github.com/abougouffa/minemacs/commit/e2d8639a5e9c0b741bc6dbe2e7098c61763d6f8a)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e43fd73](https://github.com/abougouffa/minemacs/commit/e43fd7392a3fe4b0cf78f9aff1c8aa6c998213fe)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([6719b19](https://github.com/abougouffa/minemacs/commit/6719b1951c218af31c73ad124916e530c95c0bb3)) - [@abougouffa](https://github.com/abougouffa)
+- enable lexical binding in saved system environment - ([b0d8ebb](https://github.com/abougouffa/minemacs/commit/b0d8ebbafbbb6003f7173e7584f5f8c545a68024)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.5.0](https://github.com/abougouffa/minemacs/compare/13f0e0c40b6c7748ca7bc67bee61062d5ae43534..v13.5.0) - 2025-08-19
 #### Bug Fixes
 - **(envrc)** fix the keybinding - ([825bb7c](https://github.com/abougouffa/minemacs/commit/825bb7c4ab33b83798c51ca39787bf80c8a13b7f)) - [@abougouffa](https://github.com/abougouffa)
