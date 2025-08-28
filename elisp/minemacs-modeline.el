@@ -128,7 +128,7 @@
 
 (defvar-local minemacs-modeline-project
   '(:eval
-    (when-let* ((fname (buffer-file-name))
+    (when-let* ((fname (or (buffer-file-name) default-directory))
                 ((not (file-remote-p fname)))
                 (proj (project-current))
                 (name (project-name proj)))
@@ -266,6 +266,23 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                   'mouse-face 'mode-line-highlight
                   'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n")))))
 
+;;; `dired-rsync'
+
+(defvar minemacs-modeline-dired-rsync-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map [mode-line down-mouse-1] (lambda () (interactive)
+                                               (when-let* ((proc (get-process "*rsync*")))
+                                                 (pop-to-buffer (process-buffer proc)))))
+    map))
+
+(defvar-local minemacs-modeline-dired-rsync
+  `(:eval
+    (when-let* ((proc (get-process "*rsync*")))
+      (propertize (minemacs-modeline--icon "nf-oct-sync" :face 'nerd-icons-blue)
+                  'mouse-face 'mode-line-highlight
+                  'help-echo (buffer-name (process-buffer proc))
+                  'local-map minemacs-modeline-dired-rsync-map))))
+
 ;;; Miscellaneous
 
 (defvar-local minemacs-modeline-misc-info
@@ -290,6 +307,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                      minemacs-modeline-flymake
                      minemacs-modeline-eglot
                      minemacs-modeline-compile
+                     minemacs-modeline-dired-rsync
                      minemacs-modeline-misc-info))
   (put construct 'risky-local-variable t))
 
@@ -326,6 +344,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         mode-line-format-right-align
                         "  "
                         minemacs-modeline-compile
+                        "  "
+                        minemacs-modeline-dired-rsync
                         "  "
                         minemacs-modeline-vc-branch
                         "  "
