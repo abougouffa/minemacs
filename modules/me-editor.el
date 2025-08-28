@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-21
+;; Last modified: 2025-08-28
 
 ;;; Commentary:
 
@@ -74,6 +74,7 @@
   :custom
   (mc/list-file (concat minemacs-local-dir "mc-list.el"))
   :config
+  (keymap-unset mc/keymap "<return>" t) ; default `multiple-cursors-mode', I want to be able to insert newlines at fake cursors!
   ;; Add some extra commands to be run on all cursors
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
