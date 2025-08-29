@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-29
+;; Last modified: 2025-08-30
 
 ;;; Commentary:
 
@@ -39,6 +39,21 @@
 ;; TRAMP integration for LXD containers
 (use-package lxd-tramp
   :straight t)
+
+
+;; Emulate A Terminal, in a region, in a buffer and in Eshell
+(use-package eat
+  :straight (eat :type git
+                 :host codeberg
+                 :repo "akib/emacs-eat"
+                 :files ("*.el" ("term" "term/*.el") "*.texi"
+                         "*.ti" ("terminfo/e" "terminfo/e/*")
+                         ("terminfo/65" "terminfo/65/*")
+                         ("integration" "integration/*")
+                         (:exclude ".dir-locals.el" "*-tests.el")))
+  :hook (eat-mode . minemacs-reduce-font-size)
+  :config
+  (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit))
 
 
 ;; Launch system applications from Emacs
