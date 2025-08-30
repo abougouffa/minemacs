@@ -63,11 +63,6 @@
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 
-;; System-wide popup Emacs windows for quick edits
-(use-package emacs-everywhere
-  :straight t)
-
-
 ;; Manage docker from Emacs
 (use-package docker
   :straight t
