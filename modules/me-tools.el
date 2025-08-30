@@ -126,15 +126,6 @@
   (advice-add 'pyenv-use :around #'+apply-suppress-messages))
 
 
-;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
-(use-package add-node-modules-path
-  :straight t
-  :hook (js-base-mode . add-node-modules-path)
-  :config
-  (when (executable-find "pnpm")
-    (setopt add-node-modules-path-command '("pnpm bin" "pnpm bin -w"))))
-
-
 ;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
