@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-04-30
+;; Last modified: 2025-08-31
 
 ;;; Commentary:
 
@@ -21,6 +21,13 @@
   :straight t
   :custom
   (rust-mode-treesitter-derive (featurep 'feat/tree-sitter)))
+
+
+;; Rust development environment
+(use-package rustic
+  :straight t
+  :custom
+  (rustic-lsp-client 'eglot))
 
 
 (provide 'on-demand/me-rust)
