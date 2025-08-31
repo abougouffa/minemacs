@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-26
+;; Last modified: 2025-08-31
 
 ;;; Commentary:
 
@@ -1291,7 +1291,11 @@ surrounded by word boundaries."
 
 (use-package yaml-ts-mode
   :when (featurep 'feat/tree-sitter)
-  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
+  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol)
+  :init
+  ;; BUG+TEMP: Editing YAML files in `yaml-ts-mode' cause Emacs to crash, especially when the file contain invalid YAML
+  (cl-callf2 remove '(yaml-mode . yaml-ts-mode) major-mode-remap-alist)
+  (cl-callf2 remove '(yaml-mode . yaml-ts-mode) treesit-major-mode-remap-alist))
 
 (use-package hexl
   :autoload (+hexl-buffer-p)
