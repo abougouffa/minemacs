@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.7.0](https://github.com/abougouffa/minemacs/compare/e02885fc59651177af0b0757ceecc7910865d6d6..v13.7.0) - 2025-08-31
+#### Bug Fixes
+- **(builtin)** temporary disable `yaml-ts-mode` - ([a999041](https://github.com/abougouffa/minemacs/commit/a99904185dbca156e1d0dde429a111b0c6e33a83)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand/dart)** add `dart-ts-mode` - ([4f714be](https://github.com/abougouffa/minemacs/commit/4f714be52d4c765d82eb2758c2e42433166ae8a8)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/rust)** add `rustic` - ([7a5bc25](https://github.com/abougouffa/minemacs/commit/7a5bc25b2ac0feab063a1ae7601932f2f32c6f2f)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `emacs-everywhere` obsolete - ([4d83f28](https://github.com/abougouffa/minemacs/commit/4d83f287fc60c0af10c50fa8adea507f14335e1f)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** restore `eat` - ([a9fc4da](https://github.com/abougouffa/minemacs/commit/a9fc4da913f3356c4b7d7fd5e6ef65d512cdfedc)) - [@abougouffa](https://github.com/abougouffa)
+- **(tools)** make `vterm` and `multi-vterm` obsolete, cause Emacs to crash very often - ([e02885f](https://github.com/abougouffa/minemacs/commit/e02885fc59651177af0b0757ceecc7910865d6d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(treesit)** add `+treesit-install-all-grammars` - ([3e4e1ec](https://github.com/abougouffa/minemacs/commit/3e4e1ec91a5b860338723f1c61be4cbd4f202fd0)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(on-demand)** move `add-node-modules-path` to an on-demand module - ([84a5d67](https://github.com/abougouffa/minemacs/commit/84a5d67d96d754a3bae2e22e85d18df23c178dd3)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.6.0](https://github.com/abougouffa/minemacs/compare/27eff87c69f0f2f543723678a1dd0b71417f69d4..v13.6.0) - 2025-08-28
 #### Bug Fixes
 - **(hideif)** fix the definition from `compile_commands.json` - ([9d812b1](https://github.com/abougouffa/minemacs/commit/9d812b14646e3ef2faee623fa4a6ee62c276f19a)) - [@abougouffa](https://github.com/abougouffa)
