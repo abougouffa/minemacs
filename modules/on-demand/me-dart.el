@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-08-31
 
 ;;; Commentary:
 
@@ -19,6 +19,16 @@
 ;; Major mode for editing Dart files
 (use-package dart-mode
   :straight t)
+
+
+;; A major mode for Dart programming language with tree-sitter supports
+(use-package dart-ts-mode
+  :straight (:host github :repo "50ways2sayhard/dart-ts-mode")
+  :config
+  (add-to-list
+   'treesit-language-source-alist
+   '(dart "https://github.com/UserNobody14/tree-sitter-dart"))
+  (treesit-ensure-installed 'dart))
 
 
 ;; Tools for working with Flutter SDK
