@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-08-26
+;; Last modified: 2025-09-01
 
 ;;; Commentary:
 
@@ -914,6 +914,8 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                 (format "{IndentWidth: %d, TabWidth: %d}"
                         (or (and indent-sym (symbol-value indent-sym)) standard-indent)
                         (or (and indent-sym (symbol-value indent-sym)) tab-width)))))))
+
+(autoload 'editorconfig-set-local-variables "editorconfig")
 
 ;;;###autoload
 (defun +editorconfig-guess-style-from-clang-format ()
