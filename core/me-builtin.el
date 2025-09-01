@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-08-31
+;; Last modified: 2025-09-01
 
 ;;; Commentary:
 
@@ -675,20 +675,11 @@
 
 (use-package comint
   :hook (comint-mode . minemacs-reduce-font-size)
-  :commands (+comint-clear-buffer)
-  :bind (:map comint-mode-map ("C-l" . +comint-clear-buffer))
   :custom
   (comint-scroll-to-bottom-on-input 'this) ; Move to bottom on input in the current window
   (comint-scroll-to-bottom-on-output 'this) ; Move to bottom on output in the current window
   (comint-buffer-maximum-size (* 64 1024)) ; Increase the maximum buffer size (def. 1024)
-  (comint-input-ring-size 5000) ; Increase the size of the input history ring (def. 500)
-  :config
-  (defun +comint-clear-buffer ()
-    "Clears the current comint buffer, removing all its content."
-    (interactive)
-    (when (derived-mode-p 'comint-mode)
-      (let ((comint-buffer-maximum-size 0))
-        (comint-truncate-buffer)))))
+  (comint-input-ring-size 5000)) ; Increase the size of the input history ring (def. 500)
 
 (use-package compile
   :hook
