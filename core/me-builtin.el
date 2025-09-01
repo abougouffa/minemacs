@@ -679,6 +679,7 @@
   (comint-scroll-to-bottom-on-input 'this) ; Move to bottom on input in the current window
   (comint-scroll-to-bottom-on-output 'this) ; Move to bottom on output in the current window
   (comint-buffer-maximum-size (* 64 1024)) ; Increase the maximum buffer size (def. 1024)
+  (comint-prompt-read-only t)
   (comint-input-ring-size 5000)) ; Increase the size of the input history ring (def. 500)
 
 (use-package compile
