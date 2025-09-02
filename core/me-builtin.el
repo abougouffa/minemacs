@@ -255,8 +255,9 @@
 (use-package dired
   ;; Enable adding mail attachments from dired "C-c RET C-a" for
   ;; `gnus-dired-attach'
-  :hook (dired-mode . turn-on-gnus-dired-mode)
-  :hook (dired-mode . dired-hide-details-mode)
+  :hook
+  (dired-mode . turn-on-gnus-dired-mode)
+  (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
   (dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso")
