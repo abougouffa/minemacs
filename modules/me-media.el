@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2025-06-23
+;; Last modified: 2025-09-03
 
 ;;; Commentary:
 
@@ -65,7 +65,7 @@
 
 ;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
 (use-package ready-player
-  :straight (:host github :repo "xenodium/ready-player")
+  :straight (:host github :repo "xenodium/ready-player" :files (:defaults "*.el"))
   :after minemacs-first-file
   :demand
   :custom
