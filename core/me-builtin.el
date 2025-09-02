@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-01
+;; Last modified: 2025-09-02
 
 ;;; Commentary:
 
@@ -294,14 +294,13 @@
   :commands (project-remember-projects-under)
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
+  (project-switch-use-entire-map t) ; Provide all `project-prefix-map' commands when switching projects
   (project-vc-extra-root-markers
    '(".projectile.el" ".project.el" ".project" ; Emacs
      ".repo" ; Repo tool workspaces
      "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
      ".code-workspace")) ; VSCode, ".vscode" is present also in the user home
-  (project-vc-ignores '(".ccls-cache/" ".cache/" ".cppcheck-build/"))
-  :config
-  (+add-to-list-at 'project-switch-commands '(project-shell "Shell") (1- (length project-switch-commands))))
+  (project-vc-ignores '(".ccls-cache/" ".cache/" ".cppcheck-build/")))
 
 (use-package tab-bar
   :hook (minemacs-lazy . tab-bar-mode)
