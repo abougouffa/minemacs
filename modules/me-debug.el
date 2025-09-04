@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2025-08-26
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -22,6 +22,13 @@
   :config
   (dape-breakpoint-load) ; Load breakpoints on startup, with laziness
   (add-hook 'kill-emacs-hook #'dape-breakpoint-save)) ; Save breakpoints on quit
+
+
+;; `dape' integration for cortex-debug (https://github.com/Marus/cortex-debug)
+(use-package dape-cortex-debug
+  :straight (:host github :repo "svaante/dape-cortex-debug")
+  :after dape
+  :demand)
 
 
 ;; A compiler output viewer
