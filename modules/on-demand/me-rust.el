@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-08-31
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -12,8 +12,8 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-rust
-  :auto-mode '(("\\.rs\\'" . rust-mode))
-  :companion-packages '((rust-ts-mode . rust-mode)))
+  :auto-mode '(("\\.rs\\'" . (rustic-mode rust-mode)))
+  :companion-packages '((rust-ts-mode . (rust-mode rustic))))
 
 
 ;; Major mode for editing Rust source code
