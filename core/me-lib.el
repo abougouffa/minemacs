@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-08-26
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -35,6 +35,15 @@
 
 
 ;;; Some plist and alist missing functions
+
+(defun +varplist-get (vplist keyword &optional car-p)
+  "Get KEYWORD's value from variable value length VPLIST.
+Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
+  (funcall
+   (if car-p #'cadr #'cdr)
+   (cl-loop for element in (memq keyword vplist)
+            until (and (not (eq element keyword)) (keywordp element))
+            collect element)))
 
 (defun +plist-keys (plist)
   "Return the keys of PLIST."
@@ -1101,7 +1110,8 @@ To be used as a predicate generator for `display-buffer-alist'."
 
 (defun minemacs-on-demand-try ()
   "Loop over on-demand modules and load the ones available for the buffer."
-  (let (module-found)
+  (let ((+use-package-check-for-disabled t)
+        module-found)
     (dolist (module-spec minemacs-on-demand-modules-alist)
       (when-let* ((module (car module-spec))
                   (keys (+plist-keys (cdr module-spec))))

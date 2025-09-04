@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-21
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -311,6 +311,11 @@ This allows us to use a specific Clang-format version (like
 `+editorconfig-guess-style-from-clang-format',
 `reformatter', `apheleia', etc."
   :group 'minemacs-prog)
+
+;; If you don't want to keep the `+use-package--check-if-disabled:around-a'
+;; advice (see `me-bootstrap') after loading MinEmacs' modules. You need to set
+;; in the begining of your "$MINEMACSDIR/config.el"
+(defvar +use-package-check-for-disabled t)
 
 
 (provide 'me-vars)
