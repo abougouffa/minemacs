@@ -293,6 +293,11 @@ Delay evaluating BODY with priority 0 (high priority).
 
 Delay evaluating BODY with priority 1.
 
+#### `(+varplist-get VPLIST KEYWORD &optional CAR-P)`
+
+Get KEYWORD's value from variable value length VPLIST.
+Ex: (+varplist-get '(:a 'a :b 'b1 'b2) :b) -> '(b1 b2).
+
 #### `(+plist-keys PLIST)`
 
 Return the keys of PLIST.
@@ -527,6 +532,11 @@ Examples:
 (+eglot-register 'vhdl-mode "vhdl_ls")
 (+eglot-register 'lua-mode "lua-language-server" "lua-lsp")
 (+eglot-register '(c-mode c++-mode) '("clangd" "--clang-tidy" "-j=12") "ccls")
+
+#### `(+root-set-header)`
+
+*Display a warning in header line of the current buffer.
+This function is suitable to add to `find-file-hook` and `dired-file-hook`.
 
 #### `(+project-super-project-try DIR)`
 
@@ -1058,6 +1068,10 @@ Got to the first occurrence.
 #### `(+smerge-last)`
 
 Got to the last occurrence.
+
+#### `(+treesit-install-all-grammars)`
+
+Install all grammars in `treesit-language-source-alist`.
 
 #### `(+treesit-create-parser-in-buffer &optional BUFFER)`
 

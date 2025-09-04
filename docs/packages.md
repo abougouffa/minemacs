@@ -88,10 +88,12 @@
 
 ## `me-files`
 * `dired-hacks`: Collection of useful dired additions
+* `dired-rsync`: Asynchronous "rsync" from `dired`
+* `fd-dired`: Same functionality as `find-dired` and `find-grep-dired`, using fd/rg instead
 * `trashed`: Viewing and editing system trash can
 * `disk-usage`: Sort and browse disk usage listings
+* `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
-* `sudo-edit`: Utilities for opening files with "sudo"
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 * `cascading-dir-locals`: Apply all (!) ".dir-locals.el" from root to current directory
 
@@ -194,17 +196,14 @@
 * `incus-tramp`: TRAMP integration for Incus containers
 * `lxc-tramp`: TRAMP integration for LXC containers
 * `lxd-tramp`: TRAMP integration for LXD containers
+* `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `app-launcher`: Launch system applications from Emacs
-* `emacs-everywhere`: System-wide popup Emacs windows for quick edits
-* `vterm`: Fully-fledged terminal emulator inside Emacs based on "libvterm"
-* `multi-vterm`: Managing multiple vterm buffers in Emacs
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `envrc`: Buffer-local "direnv" integration for Emacs
 * `pyenv`: Emacs integration for "pyenv"
-* `add-node-modules-path`: Adds the "node_modules/.bin" directory to the buffer "exec_path"
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
 ## `me-ui`
@@ -319,6 +318,7 @@
 
 ## `on-demand/me-cuda`
 * `cuda-mode`: Major mode for editing Nvidia CUDA C++ files
+* `cuda-ts-mode`: CUDA mode based on tree-sitter
 
 ## `on-demand/me-cue`
 * `cue-mode`: Major mode for CUE language files
@@ -338,6 +338,7 @@
 
 ## `on-demand/me-dart`
 * `dart-mode`: Major mode for editing Dart files
+* `dart-ts-mode`: A major mode for Dart programming language with tree-sitter supports
 * `flutter`: Tools for working with Flutter SDK
 
 ## `on-demand/me-devicetree`
@@ -449,6 +450,9 @@
 ## `on-demand/me-java`
 * `groovy-mode`: Major mode for Groovy source files
 * `android-mode`: Minor mode for Android application development
+
+## `on-demand/me-javascript`
+* `add-node-modules-path`: Adds the "node_modules/.bin" directory to the buffer "exec_path"
 
 ## `on-demand/me-jenkins`
 * `jenkinsfile-mode`: Major mode for editing Jenkins declarative pipeline syntax
@@ -594,6 +598,7 @@
 
 ## `on-demand/me-rust`
 * `rust-mode`: Major mode for editing Rust source code
+* `rustic`: Rust development environment
 
 ## `on-demand/me-scala`
 * `scala-mode`: Major mode for editing Scala
