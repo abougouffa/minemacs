@@ -78,7 +78,7 @@ Ask the MODE to run.
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "minemacs-"))
+(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "+use-package--check-if-disabled:around-a" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-bqn.el
@@ -163,7 +163,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-cuda.el
 
-(minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-mode)))
+(minemacs-register-on-demand-module 'me-cuda :auto-mode '(("\\.cu[h]?\\'" . cuda-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-cue.el
@@ -392,6 +392,11 @@ will be generated each `+git-types-cache-age'.
 (minemacs-register-on-demand-module 'me-java :auto-mode '((("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" "/Jenkinsfile\\'") . groovy-mode)) :interpreter-mode '(("groovy" . groovy-mode)) :companion-packages '(((java-mode java-ts-mode) groovy-mode android-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-javascript.el
+
+(minemacs-register-on-demand-module 'me-javascript :companion-packages '(((js-mode js-ts-mode typescript-mode typescript-ts-mode) . add-node-modules-path)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-jenkins.el
 
 (minemacs-register-on-demand-module 'me-jenkins :auto-mode '(("Jenkinsfile\\'" . jenkinsfile-mode)))
@@ -434,7 +439,33 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from me-lib.el
 
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+re" "+s" "+tweak-faces" "+un" "+with-" "minemacs-"))
+(defvar +sudo-indicator-mode nil "\
+Non-nil if +Sudo-Indicator mode is enabled.
+See the `+sudo-indicator-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `+sudo-indicator-mode'.")
+(custom-autoload '+sudo-indicator-mode "me-lib" nil)
+(autoload '+sudo-indicator-mode "me-lib" "\
+Indicates editing as root by displaying a message in the header line.
+
+This is a global minor mode.  If called interactively, toggle the
+`+Sudo-Indicator mode' mode.  If the prefix argument is positive, enable
+the mode, and if it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `(default-value \\='+sudo-indicator-mode)'.
+
+The mode's hook is called both when the mode is enabled and when it is
+disabled.
+
+(fn &optional ARG)" t)
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -774,7 +805,7 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-markdown.el
 
-(minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-ts-mode . markdown-mode)))
+(minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-ts-mode . markdown-mode)) :define-loader t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mathematica.el
@@ -950,7 +981,7 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-rust.el
 
-(minemacs-register-on-demand-module 'me-rust :auto-mode '(("\\.rs\\'" . rust-mode)) :companion-packages '((rust-ts-mode . rust-mode)))
+(minemacs-register-on-demand-module 'me-rust :auto-mode '(("\\.rs\\'" rustic-mode rust-mode)) :companion-packages '((rust-ts-mode rust-mode rustic)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-scala.el
@@ -1054,7 +1085,7 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "minemacs-"))
+(register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
