@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-06-09
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -13,7 +13,8 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-markdown
   :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
-  :companion-packages '((markdown-ts-mode . markdown-mode)))
+  :companion-packages '((markdown-ts-mode . markdown-mode))
+  :define-loader t)
 
 
 ;; Major mode for Markdown-formatted text
