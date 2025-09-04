@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.7.1](https://github.com/abougouffa/minemacs/compare/459d6b021b71f95137eea4cd7eb846e90a4bf15d..v13.7.1) - 2025-09-04
+#### Bug Fixes
+- **(editorconfig)** autoload function to avoid void function error - ([a38966d](https://github.com/abougouffa/minemacs/commit/a38966dd66e22b21e4bbcdd46e915b33b9adfc03)) - [@abougouffa](https://github.com/abougouffa)
+- **(ready-player)** fix recipe - ([9aeb725](https://github.com/abougouffa/minemacs/commit/9aeb7259898aa909124460176a5fde24acfc923d)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([168c3e2](https://github.com/abougouffa/minemacs/commit/168c3e2a699336a91389c6eb63910185088229f7)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- **(dired)** minor edit - ([1b0f2ed](https://github.com/abougouffa/minemacs/commit/1b0f2ed2ce9bcd6e56e02324babb5fc249d3f18a)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** check for updates for third-party included packages - ([23adbd2](https://github.com/abougouffa/minemacs/commit/23adbd26b410d372e235abe9f08feff26a2d18d8)) - [@abougouffa](https://github.com/abougouffa)
+- add some scheme program examples - ([b4d7048](https://github.com/abougouffa/minemacs/commit/b4d704828738ee3ec94da2c3b40ee37534ce6c54)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(files)** restore `vlf`, still useful for big files - ([4212575](https://github.com/abougouffa/minemacs/commit/4212575cb68fe4334d603ef47a2302e324a88baf)) - [@abougouffa](https://github.com/abougouffa)
+- **(use-package)** restore the hack of `use-package`'s conditionals - ([d052bd0](https://github.com/abougouffa/minemacs/commit/d052bd010eaaf807e4baead3be44056001dd0bd8)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(comint)** read-only prompt - ([68adece](https://github.com/abougouffa/minemacs/commit/68adece75d07b824b1d4cdc1595ff4ecc0a0ffe0)) - [@abougouffa](https://github.com/abougouffa)
+- **(comint)** remove duplicate command `+comint-clear-buffer` - ([459d6b0](https://github.com/abougouffa/minemacs/commit/459d6b021b71f95137eea4cd7eb846e90a4bf15d)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand)** check for Tree-sitter before using ts modes - ([989ea5b](https://github.com/abougouffa/minemacs/commit/989ea5b493633271d113685b31c63dd026c5c9ba)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/cuda)** add `cuda-ts-mode` - ([4b29ae3](https://github.com/abougouffa/minemacs/commit/4b29ae3f667ba2e66a3ab9cbf786fde70b438b7e)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/erlang)** update included third-party package - ([bd89ca3](https://github.com/abougouffa/minemacs/commit/bd89ca38792f861aee43e1214f1efc59db1451c3)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/markdown)** define a loader command - ([eca87d1](https://github.com/abougouffa/minemacs/commit/eca87d1908d01b824347babd4fd3f62e6b068da7)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/rust)** minor tweaks - ([6263245](https://github.com/abougouffa/minemacs/commit/6263245278538d7e4b00743524972e0247d4c9b1)) - [@abougouffa](https://github.com/abougouffa)
+- **(project)** enable `project-switch-use-entire-map` - ([573d445](https://github.com/abougouffa/minemacs/commit/573d4457504b2a2eb899ba4b7fb70aae54693618)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([ffc0a76](https://github.com/abougouffa/minemacs/commit/ffc0a761efd132964fd45f6ceaa7c614cbb9c10c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([01cb851](https://github.com/abougouffa/minemacs/commit/01cb851f802a1c999d2d941a0784cde999758d25)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([74488d8](https://github.com/abougouffa/minemacs/commit/74488d820def0c1a5b8280be01602a442510c93f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.7.0](https://github.com/abougouffa/minemacs/compare/e02885fc59651177af0b0757ceecc7910865d6d6..v13.7.0) - 2025-08-31
 #### Bug Fixes
 - **(builtin)** temporary disable `yaml-ts-mode` - ([a999041](https://github.com/abougouffa/minemacs/commit/a99904185dbca156e1d0dde429a111b0c6e33a83)) - [@abougouffa](https://github.com/abougouffa)
