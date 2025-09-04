@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.7.2](https://github.com/abougouffa/minemacs/compare/1991258d11f5a565381d6b1296c24b87914be3cd..v13.7.2) - 2025-09-04
+#### Bug Fixes
+- **(lspce)** fix the recipe - ([3d11f90](https://github.com/abougouffa/minemacs/commit/3d11f90577a105ba1d90f87eceed318484d0eda6)) - [@abougouffa](https://github.com/abougouffa)
+- **(lspce)** disable on Windows - ([df8a1bc](https://github.com/abougouffa/minemacs/commit/df8a1bcc1bd53bbd3cdf19bafc476c89bd81d803)) - [@abougouffa](https://github.com/abougouffa)
+- an error when using Emacs without Tree-sitter support - ([1991258](https://github.com/abougouffa/minemacs/commit/1991258d11f5a565381d6b1296c24b87914be3cd)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.7.1](https://github.com/abougouffa/minemacs/compare/459d6b021b71f95137eea4cd7eb846e90a4bf15d..v13.7.1) - 2025-09-04
 #### Bug Fixes
 - **(editorconfig)** autoload function to avoid void function error - ([a38966d](https://github.com/abougouffa/minemacs/commit/a38966dd66e22b21e4bbcdd46e915b33b9adfc03)) - [@abougouffa](https://github.com/abougouffa)
