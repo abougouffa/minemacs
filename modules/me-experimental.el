@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2025-09-04
+;; Last modified: 2025-09-05
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; LSP Client for Emacs implemented as a module using Rust
 (use-package lspce
-  :straight `( :host github :repo "zbelial/lspce"
+  :straight `( lspce :host github :repo "zbelial/lspce"
                :files (:defaults ,(file-name-with-extension "lspce-module" module-file-suffix))
                :pre-build ,(when (executable-find "cargo")
                              `(("cargo" "build" "--release")
