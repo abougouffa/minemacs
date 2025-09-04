@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-08-31
+;; Last modified: 2025-09-03
 
 ;;; Commentary:
 
@@ -24,6 +24,7 @@
 ;; A major mode for Dart programming language with tree-sitter supports
 (use-package dart-ts-mode
   :straight (:host github :repo "50ways2sayhard/dart-ts-mode")
+  :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list
    'treesit-language-source-alist

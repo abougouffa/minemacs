@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-07-28
+;; Last modified: 2025-09-04
 
 ;;; Commentary:
 
@@ -17,7 +17,8 @@
 
 ;; Major mode for the Kotlin programming language
 (use-package kotlin-mode
-  :straight t)
+  :straight t
+  :unless (featurep 'feat/tree-sitter))
 
 
 ;; Tree-sitter based major mode for the Kotlin programming language
