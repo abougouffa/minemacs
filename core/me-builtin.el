@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-04
+;; Last modified: 2025-09-05
 
 ;;; Commentary:
 
@@ -198,6 +198,7 @@
       (make-directory parent-directory t)
       t))
 
+  (advice-add 'copy-file :before #'+create-non-existent-directory)
   (advice-add 'rename-file :before #'+create-non-existent-directory)
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory 80))
 
