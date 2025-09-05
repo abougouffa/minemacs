@@ -565,6 +565,7 @@ prerelease if no :VER is provided."
 (define-minor-mode +dir-locals-autoreload-mode
   "Autoload buffers affected by editing the current `dir-locals-file'."
   :global t
+  :group 'minemacs-edit
   (if +dir-locals-autoreload-mode
       (add-hook 'after-save-hook #'+dir-locals-autoreload)
     (remove-hook 'after-save-hook #'+dir-locals-autoreload)))
