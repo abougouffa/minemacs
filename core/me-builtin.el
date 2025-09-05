@@ -280,16 +280,7 @@
 (use-package dired-x
   :hook (dired-mode . dired-omit-mode)
   :custom
-  (dired-omit-verbose nil)
-  :config
-  (cl-callf concat dired-omit-files
-    "\\|^\\.\\(?:svn\\|git\\|hg\\|repo\\)\\'"
-    "\\|^\\.DS_Store\\'"
-    "\\|^flycheck_.*"
-    "\\|^\\.ccls-cache\\'"
-    "\\|^\\.tags\\|\\.clink.db\\|GTAGS\\|GPATH\\|GRTAGS\\'"
-    "\\|\\(?:\\.js\\)?\\.meta\\'"
-    "\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"))
+  (dired-omit-verbose nil))
 
 (use-package project
   :commands (project-remember-projects-under)
