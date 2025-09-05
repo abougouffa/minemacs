@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-06
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -174,10 +174,13 @@ RECURSIVE is non-nil."
   "Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer."
   (interactive (list (current-buffer)))
-  (when-let* ((default-directory (or proj-dir (if (or current-prefix-arg (not +apply-patch-dwim-proj-dir))
-                                                  (read-directory-name "Apply patch in directory: ")
-                                                +apply-patch-dwim-proj-dir)))
+  (when-let* ((default-directory (expand-file-name
+                                  (or proj-dir
+                                      (if (or current-prefix-arg (not +apply-patch-dwim-proj-dir))
+                                          (read-directory-name "Apply patch in directory: ")
+                                        +apply-patch-dwim-proj-dir))))
               (proj (project-current))
+              (proj-root (project-root proj))
               (patch-buf
                (or (cond ((use-region-p) ; When a region is selected, use it as a patch
                           (let ((patch-region (buffer-substring-no-properties (region-beginning) (region-end))))
@@ -203,14 +206,15 @@ When a region is active, propose to use it as the patch buffer."
         (when-let* ((cand-files (seq-filter (apply-partially #'string-suffix-p (concat "/" existing-patched-file)) proj-files)))
           (push (cons existing-patched-file (mapcar (lambda (str) (substring str 0 (- (length str) (length existing-patched-file)))) cand-files)) candidates)))
       ;; Accurate strategy, the directory that applies to all files
-      (let ((results (cdr (car candidates))))
+      (let ((results (cdar candidates)))
         (dolist (candidate (cdr candidates))
           (setq results (seq-intersection candidate results #'equal)))
         ;; TODO: Frequency strategy, merge all directories and sort them by frequencies (maybe use dash's `-frequencies')
-        (let ((target-dir (cond ((length= results 1) (car results))
-                                ((length> results 1) (completing-read "Select a target directory: " results))
-                                (t (read-directory-name "Cannot deduce the target directory, select one: ")))))
-          (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) target-dir))
+        (let* ((rel-target-dir (cond ((length= results 1) (car results))
+                                     ((length> results 1) (completing-read "Select a target directory: " results))
+                                     (t (read-directory-name "Cannot deduce the target directory, select one: "))))
+               (target-dir (expand-file-name rel-target-dir proj-root)))
+          (when (y-or-n-p (format "Apply patch %S in directory %S?" (file-name-nondirectory (buffer-file-name patch-buf)) rel-target-dir))
             (let* ((default-directory target-dir)
                    (patch-file
                     (or (buffer-file-name patch-buf)
