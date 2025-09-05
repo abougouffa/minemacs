@@ -472,6 +472,10 @@
       (json-mode . json-ts-mode) (mhtml-mode . mhtml-ts-mode) (cmake-mode . cmake-ts-mode) (toml-mode . toml-ts-mode)
       (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode) (python-mode . python-ts-mode))))
 
+(use-package rust-ts-mode
+  :when (featurep 'feat/tree-sitter)
+  :mode ("/Cargo\\.lock\\'" . toml-ts-mode))
+
 (use-package markdown-ts-mode
   :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
   :config
