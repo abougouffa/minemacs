@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-01
+;; Last modified: 2025-09-06
 
 ;;; Commentary:
 
@@ -144,6 +144,10 @@ RECURSIVE is non-nil."
         (kill-ring-save (point-min) (point-max)))
     (user-error "This buffer is not visiting a file")))
 
+
+
+;;; Diffs and patches
+
 (defvar +apply-patch-dwim-proj-dir nil)
 (defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
 (autoload 'diff-hunk-next "diff-mode")
@@ -232,6 +236,17 @@ When a region is active, propose to use it as the patch buffer."
                                    (pop-to-buffer out-buf))))))
                 (view-mode 1))
               (run-hook-with-args '+apply-patch-dwim-post-patch-functions patch-buf patch-files target-dir))))))))
+
+;; From: https://www.reddit.com/r/emacs/comments/1n8z8yg/comment/nckh0yl
+;;;###autoload
+(defun +diff-last-two-kills (&optional ediff-p)
+  "Diff last couple of things in the kill-ring. With prefix open `ediff'."
+  (interactive "P")
+  (let ((old-buffer (generate-new-buffer " *old-kill*"))
+        (new-buffer (generate-new-buffer " *new-kill*")))
+    (with-current-buffer new-buffer (insert (current-kill 0 t)))
+    (with-current-buffer old-buffer (insert (current-kill 1 t)))
+    (if ediff-p (ediff-buffers old-buffer new-buffer) (diff old-buffer new-buffer nil t))))
 
 
 
