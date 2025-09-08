@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.8.0](https://github.com/abougouffa/minemacs/compare/b4bb6dee693e43a3119a88ec26cc8ab445674658..v13.8.0) - 2025-09-08
+#### Features
+- **(core)** add `+diff-last-two-kills` - ([8f95753](https://github.com/abougouffa/minemacs/commit/8f9575396b5fb5985e9e59b7ede126eeb23bf033)) - [@abougouffa](https://github.com/abougouffa)
+- **(debug)** add `dape-cortex-debug` - ([b4bb6de](https://github.com/abougouffa/minemacs/commit/b4bb6dee693e43a3119a88ec26cc8ab445674658)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(builtin)** use `toml-ts-mode` for `Cargo.lock` - ([b643a07](https://github.com/abougouffa/minemacs/commit/b643a072f2929ea46f6b827013312b53a935b498)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** create non-existing directories on `copy-file` - ([ac91ace](https://github.com/abougouffa/minemacs/commit/ac91acefbc4fadfa892ddb67c43780c157c8a143)) - [@abougouffa](https://github.com/abougouffa)
+- **(hideshow)** add rules for `ruby-ts-mode` and `octave-mode` - ([87fec04](https://github.com/abougouffa/minemacs/commit/87fec04321ee6c04ab9abe8e2eb1fe372f26ff3b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e9b14d6](https://github.com/abougouffa/minemacs/commit/e9b14d604c2c8b04b841ee4152ccf8c35078812f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.7.2](https://github.com/abougouffa/minemacs/compare/1991258d11f5a565381d6b1296c24b87914be3cd..v13.7.2) - 2025-09-04
 #### Bug Fixes
 - **(lspce)** fix the recipe - ([3d11f90](https://github.com/abougouffa/minemacs/commit/3d11f90577a105ba1d90f87eceed318484d0eda6)) - [@abougouffa](https://github.com/abougouffa)
