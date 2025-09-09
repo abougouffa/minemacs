@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-06-19
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -53,7 +53,11 @@
 (defun +adb-push (src dest)
   "Run adb push SRC DEST."
   (interactive
-   (let* ((src-path (if current-prefix-arg (read-file-name "Source path: ") (buffer-file-name)))
+   (let* ((src-path (or (when (not current-prefix-arg)
+                          (if (derived-mode-p 'dired-mode)
+                              (dired-file-name-at-point)
+                            (buffer-file-name)))
+                        (read-file-name "Source path: ")))
           (dest-path (alist-get (expand-file-name src-path) +adb-push-src-dest-cache nil nil #'equal)))
      (list src-path
            (read-string "Destination path: " dest-path '+adb-push-dest-history))))
