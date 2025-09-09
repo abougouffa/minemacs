@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-16
-;; Last modified: 2025-03-21
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -13,18 +13,16 @@
 (use-package pyvenv
   :straight t)
 
+;; Emacs integration for "pyenv"
 (use-package pyenv
   :straight (:host github :repo "aiguofer/pyenv.el")
-  :hook (minemacs-first-python-file . +global-pyenv-mode-maybe)
+  :hook (minemacs-first-file . global-pyenv-mode)
   :custom
   (pyenv-show-active-python-in-modeline nil)
-  :config
-  (defun +global-pyenv-mode-maybe (&optional arg)
-    "Enable `pyenv-global-mode' if it can be enabled."
-    (interactive (list (if current-prefix-arg (prefix-numeric-value current-prefix-arg) 'toggle)))
-    (if (file-executable-p pyenv-executable)
-        (global-pyenv-mode arg)
-      (+log! "The %S file doesn't exist or is not executable, `pyenv' cannot be enabled." pyenv-executable))))
+  :init
+  (when-let* ((exe (executable-find "pyenv")))
+    (setq pyenv-executable exe)) ; In some cases, pyenv is installed under "/usr/bin/pyenv"
+  (advice-add 'pyenv-use :around #'+apply-suppress-messages))
 
 
 (provide 'obsolete/me-pyenv)

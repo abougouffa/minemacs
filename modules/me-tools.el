@@ -127,16 +127,25 @@ When in a project, toggle `eat-project', else, toggle `eat'."
     (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
 
 
-;; Emacs integration for "pyenv"
-(use-package pyenv
-  :straight (:host github :repo "aiguofer/pyenv.el")
-  :hook (minemacs-first-file . global-pyenv-mode)
-  :custom
-  (pyenv-show-active-python-in-modeline nil)
+;; Python Executable Tracker
+(use-package pet
+  :straight t
+  :when (and (or (executable-find "dasel") (executable-find "yq"))
+             (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
   :init
-  (when-let* ((exe (executable-find "pyenv")))
-    (setq pyenv-executable exe)) ; In some cases, pyenv is installed under "/usr/bin/pyenv"
-  (advice-add 'pyenv-use :around #'+apply-suppress-messages))
+  ;; BUG: When accessing files via ADB, `pet-mode' fails at some stage because
+  ;; `tramp' isn't able to give a relavant information in
+  ;; `tramp-handle-file-directory-p'. After tracing this down, it seems like
+  ;; `file-attributes' doesn't support my "adb" for now.
+  (defun +pet-mode-maybe ()
+    (when-let* ((path (or (buffer-file-name (or (buffer-base-buffer) (current-buffer))) default-directory))
+                ((or (not (equal "adb" (file-remote-p path 'method)))
+                     (file-attributes path))))
+      (pet-mode 1)))
+
+  ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
+  ;; down opening Python buffers (or reverting them)
+  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10))
 
 
 ;; Mount/umount eCryptfs private directory from Emacs
