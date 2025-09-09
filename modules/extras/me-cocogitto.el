@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-08
-;; Last modified: 2025-06-18
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -32,15 +32,16 @@ This command stashes the current workspace before bumping the version, and
 restores it after that."
   (interactive
    (if current-prefix-arg
-       '("auto")
+       '("auto" nil)
      (list
       (if (yes-or-no-p "Manually set the target version? ")
           (concat "version " (read-string "Version: "))
         (completing-read "Increment the version: " '(auto major minor patch)
                          (when (yes-or-no-p "Is this version a pre-release? ")
                            (read-string "Pre-release version: ")))))))
-  (if-let* ((default-directory (or (vc-root-dir) (and (fboundp 'magit-git-dir) (magit-git-dir)))))
+  (if-let* ((root-dir (+project-safe-root)))
       (with-current-buffer (get-buffer-create +cocogitto-buffer-name)
+        (setq default-directory root-dir)
         (conf-colon-mode)
         (insert (format "############ Cocogitto bump (%s) ############\n" level))
         (let ((stashed (string-match-p "COCOGITTO SAVED STATE" (shell-command-to-string "git stash -u -m \"COCOGITTO SAVED STATE\""))))
@@ -48,7 +49,7 @@ restores it after that."
           (when stashed
             (call-process-shell-command "git stash pop" nil (current-buffer))))
         (message "Cocogitto finished!"))
-    (user-error "Not in a VC managed directory")))
+    (user-error "Not in a Git managed directory")))
 
 ;;;###autoload
 (put '+cocogitto-bump 'completion-predicate (lambda (_cmd _buf) (+cocogitto-available-p)))
