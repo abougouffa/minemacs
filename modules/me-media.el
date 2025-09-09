@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2025-09-03
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -32,10 +32,21 @@
   :straight (:host github :repo "isamert/empv.el")
   :when (executable-find +mpv-command)
   :custom
-  (empv-invidious-instance "https://invidious.privacydev.net/api/v1") ; Pick from: https://api.invidious.io
   (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
+  ;; Pick an Individous instance that supports API from https://api.invidious.io
+  (when-let* ((instances (with-current-buffer (url-retrieve-synchronously "https://api.invidious.io/instances.json?sort_by=api,type,users")
+                           (goto-char url-http-end-of-headers)
+                           (let ((json-key-type 'symbol)
+                                 (json-array-type 'list)
+                                 (json-object-type 'alist))
+                             (json-read))))
+              (instance (cadar instances)))
+    (if (eq (alist-get 'api instance) json-false)
+        (message "There is no available Invidious instance with API support.")
+      (setopt empv-invidious-instance (alist-get 'uri instance))))
+
   (defun +empv--dl-playlist (playlist &optional dist)
     (let ((proc-name "empv-yt-dlp")
           (default-directory (or dist (let ((dir (expand-file-name "empv-downloads" empv-audio-dir)))
