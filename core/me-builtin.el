@@ -122,7 +122,7 @@
   ;; Remap some keys/page
   (keymap-global-set "M-:" #'pp-eval-expression) ; Instead of `eval-expression'
   (keymap-global-set "C-c f" #'recentf) ; Instead of `find-file-read-only'
-  (keymap-global-set "<f1>" #'shell) ; Instead of `help-map' (accessible via `C-h')
+  (keymap-global-set "<f1>" #'ansi-term) ; Instead of `help-map' (accessible via `C-h')
   (keymap-global-set "C-c D" #'+delete-current-file-and-buffer)
   (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
