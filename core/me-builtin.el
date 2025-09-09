@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-06
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -997,6 +997,7 @@ Typing these will trigger reindentation of the current line.")
 (use-package display-line-numbers
   :hook ((prog-mode conf-mode text-mode authinfo-mode) . display-line-numbers-mode) ; Show line numbers
   :custom
+  (display-line-numbers-type 'relative)
   (display-line-numbers-width 4) ; Width for line numbers
   (display-line-numbers-widen t)) ; Display absolute line numbers in narrowed regions
 
