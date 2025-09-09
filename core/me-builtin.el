@@ -62,7 +62,6 @@
   (confirm-kill-emacs #'y-or-n-p) ; Confirm before quitting
   (prettify-symbols-unprettify-at-point t) ; Show unprettified symbol under cursor (when in `prettify-symbols-mode')
   (display-fill-column-indicator-character ?\u250a) ; Use a dashed line for `display-fill-column-indicator-mode'
-  (indicate-buffer-boundaries 'right) ; Show buffer boundaries in the right fringe
   (apropos-do-all t) ; Make apropos commands search more extensively
   (shell-kill-buffer-on-exit t) ; Kill the shell buffer after exit
   (widget-image-enable nil) ; No ugly button for widgets
@@ -92,10 +91,6 @@
   ;; Prefer `embark', see https://www.matem.unam.mx/~omar/apropos-emacs.html#the-case-against-which-key-a-polemic
   (when (+package-disabled-p 'embark 'me-completion)
     (which-key-mode 1))
-
-  ;; Buffer boundaries looks uggly in these modes, disable them
-  (+setq-hook! (magit-status-mode magit-log-mode enlight-mode)
-    indicate-buffer-boundaries nil)
 
   (eval-after-load 'minemacs-first-file (+shutup! (epa-file-enable)))
 
