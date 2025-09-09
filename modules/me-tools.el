@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-30
+;; Last modified: 2025-09-09
 
 ;;; Commentary:
 
@@ -52,8 +52,21 @@
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
   :hook (eat-mode . minemacs-reduce-font-size)
+  :bind ([f1] . +eat-toggle-dwim)
   :config
-  (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit))
+  (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit)
+  (defun +eat-toggle-dwim ()
+    "Toggle the EAT window.
+When in a project, toggle `eat-project', else, toggle `eat'."
+    (interactive)
+    (let* ((buf-name (if (project-current) (project-prefixed-buffer-name "eat") eat-buffer-name))
+           (eat-func (if (project-current) #'eat-project #'eat)))
+      (if-let* ((buf (get-buffer buf-name))
+                ((buffer-live-p buf)))
+          (if-let* ((win (get-buffer-window buf)))
+              (delete-window win)
+            (pop-to-buffer buf))
+        (call-interactively eat-func)))))
 
 
 ;; Launch system applications from Emacs
