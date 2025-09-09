@@ -537,6 +537,11 @@
       `((c-ts-mode ,@(alist-get 'c-mode semantic-symref-filepattern-alist))
         (c++-ts-mode ,@(alist-get 'c++-mode semantic-symref-filepattern-alist))))))
 
+(use-package python
+  :custom
+  (python-shell-dedicated 'project)
+  (python-indent-guess-indent-offset-verbose nil))
+
 (use-package conf-mode
   :mode "\\.prop\\'"
   :mode "\\.rc\\'")
