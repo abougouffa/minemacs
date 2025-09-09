@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.9.0](https://github.com/abougouffa/minemacs/compare/69eba60d2f47e1f4f5c9bf38fed8d3178c00f631..v13.9.0) - 2025-09-09
+#### Bug Fixes
+- **(cocogitto)** edge case, `+cocogitto-bump` fails always if it fail once - ([eadb5d6](https://github.com/abougouffa/minemacs/commit/eadb5d60dedaf4e823cf7a22be9133868f74da98)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** fix `+apply-patch-dwim` - ([69eba60](https://github.com/abougouffa/minemacs/commit/69eba60d2f47e1f4f5c9bf38fed8d3178c00f631)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(tools)** restore `pet`, make `pyenv` obsolete - ([664c65f](https://github.com/abougouffa/minemacs/commit/664c65f5983ea65d762d88925be137de8c366727)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** steal config from Protesilaos Stavrou's configuration (WIP) - ([0f1c2cc](https://github.com/abougouffa/minemacs/commit/0f1c2ccf27f9799e5ac2d1aabeab46bc7055d883)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- **(dired-x)** don't hide special files, just stick to defaults - ([ed22481](https://github.com/abougouffa/minemacs/commit/ed224816d7c1ba75205334ab9f904a7d65855052)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(adb)** support `dired` in `+adb-push` - ([d30004d](https://github.com/abougouffa/minemacs/commit/d30004d37eb369fb6accbc3dea4324b68ed99fbb)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** don't indicate buffer boundries - ([e7715c4](https://github.com/abougouffa/minemacs/commit/e7715c411b887473021c284e0c224b16fd4362d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** bind F1 to `ansi-term` instead of `shell` - ([5589856](https://github.com/abougouffa/minemacs/commit/55898566d92b69ec077099a321e079d96b0136d0)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** use relative line numbers - ([01864e4](https://github.com/abougouffa/minemacs/commit/01864e4264620e45d0de707d9721aba35f363303)) - [@abougouffa](https://github.com/abougouffa)
+- **(core)** specify a group for `+dir-locals-autoreload-mode` - ([bce5cb5](https://github.com/abougouffa/minemacs/commit/bce5cb59a35e7fb11fb9438ace368b290495eca2)) - [@abougouffa](https://github.com/abougouffa)
+- **(eat)** add `+eat-toggle-dwim`, bind it to F1 - ([0c1742b](https://github.com/abougouffa/minemacs/commit/0c1742bea4f069c28e1e013347bca1604892c8d6)) - [@abougouffa](https://github.com/abougouffa)
+- **(empv)** automatically pick an Invidious instance - ([b34b344](https://github.com/abougouffa/minemacs/commit/b34b344cfa792670b0a3f697bbcb7e8632123562)) - [@abougouffa](https://github.com/abougouffa)
+- **(python)** project-dedicated shells, no verbose indent-guess - ([ece0382](https://github.com/abougouffa/minemacs/commit/ece0382fb9be4f02e1262909d1ad2fa5feabff16)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6da310e](https://github.com/abougouffa/minemacs/commit/6da310ed15355ec6d85a4b4c3a56812918a8248f)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.8.0](https://github.com/abougouffa/minemacs/compare/b4bb6dee693e43a3119a88ec26cc8ab445674658..v13.8.0) - 2025-09-08
 #### Features
 - **(core)** add `+diff-last-two-kills` - ([8f95753](https://github.com/abougouffa/minemacs/commit/8f9575396b5fb5985e9e59b7ede126eeb23bf033)) - [@abougouffa](https://github.com/abougouffa)
