@@ -32,26 +32,25 @@
          '("--objdir"))))
   (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
+  (require 'citre-config) ; Apply the default Citre configuration, lazily
+
   (defcustom +citre-auto-enable-ignore-modes '(bash-ts-mode sh-mode)
     "Don't auto-enable `citre-mode' in these modes.
 This complements `citre-auto-enable-citre-mode-modes'."
     :type '(repeat symbol)
     :group 'minemacs-prog)
 
-  (defcustom +citre-recursive-root-project-detection-files '(".tags" ".repo" ".citre-root")
+  (defcustom +citre-recursive-root-project-detection-files '(".tags" "tags" ".repo" ".citre-root")
     "A list of files/directories to use as a project root markers."
     :type '(repeat string)
     :group 'minemacs-prog)
 
   (defvar-local +citre-gtags-recursive-files-list t "Find files to index recursively.")
-  (defvar-local +citre-gtags-absolete-files-list nil "Output absolete pathes in the created files list.")
-  (defvar-local +citre-gtags-files-list-suffixes '("*.[chly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh")
+  (defvar-local +citre-gtags-absolete-files-list nil "Output absolute paths in the created files list.")
+  (defvar-local +citre-gtags-files-list-suffixes '("*.[CHchly]" "*.[ch]xx" "*.[ch]pp" "*.[ch]++" "*.cc" "*.hh")
     "List of filename suffixes globs to index (for extensions for example).")
   (defvar-local +citre-gtags-files-list-ignored-directories
-    '("CVS" "RCS" "SCCS"
-      ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo"
-      "_MTN" "_darcs" "_sgbak" "debian"
-      ".ccls-cache" ".cache")
+    '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian" ".ccls-cache" ".cache")
     "List of directories to be ignored when creating C/C++ files list.")
   :config
   (advice-add ; We prefer passing by Citre when it is enabled, it uses Eglot as a backend
@@ -94,15 +93,8 @@ This complements `citre-auto-enable-citre-mode-modes'."
               citre-tags-file-global-cache-dir))))
 
   ;; Use `citre' with Emacs Lisp, see: https://github.com/universal-ctags/citre/blob/master/docs/user-manual/adapt-an-existing-xref-backend.md
-  (defvar +citre-elisp-backend
-    (citre-xref-backend-to-citre-backend
-     'elisp ; This is the xref backend name
-     (lambda () (derived-mode-p 'emacs-lisp-mode)))) ; A function to tell if the backend is usable
-
-  ;; Register the backend, which means to bind it with the symbol `elisp'.
+  (defvar +citre-elisp-backend (citre-xref-backend-to-citre-backend 'elisp (lambda () (derived-mode-p 'emacs-lisp-mode))))
   (citre-register-backend 'elisp +citre-elisp-backend)
-
-  ;; Add Elisp to the backend lists.
   (add-to-list 'citre-find-definition-backends 'elisp)
   (add-to-list 'citre-find-reference-backends 'elisp)
 
@@ -157,12 +149,6 @@ Fall back to the default `citre--project-root'."
       (dolist (dir (+bitbake-poky-sources build-dir))
         (shell-command (+citre-gtags-find-files-command dir top-dir 'append) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*"))
       (message "Done creating list of files to index."))))
-
-
-;; Apply the default configuration (part of `citre')
-(use-package citre-config
-  :after minemacs-lazy
-  :demand)
 
 
 ;; Generate call graph for C/C++ functions
