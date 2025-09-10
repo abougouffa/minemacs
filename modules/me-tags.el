@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-08-25
+;; Last modified: 2025-09-10
 
 ;;; Commentary:
 
@@ -54,6 +54,12 @@ This complements `citre-auto-enable-citre-mode-modes'."
       ".ccls-cache" ".cache")
     "List of directories to be ignored when creating C/C++ files list.")
   :config
+  (advice-add ; We prefer passing by Citre when it is enabled, it uses Eglot as a backend
+   'eglot--managed-mode :before
+   (satch-defun +citre--prefer-over-eglot-h (&rest _args)
+     (when (bound-and-true-p citre-mode)
+       (setq-local eglot-stay-out-of (append eglot-stay-out-of '(xref imenu))))))
+
   (defvar-keymap +citre-navigation-map
     :doc "Citre navigation commands." :name "citre-navigation"
     "C-p" #'citre-peek
@@ -71,7 +77,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
   (advice-add
    'citre-auto-enable-citre-mode :around
    (satch-defun +citre--auto-enable-ignore-modes (fn)
-     (unless (and +citre-auto-enable-ignore-modes (derived-mode-p +citre-auto-enable-ignore-modes))
+     (unless (derived-mode-p +citre-auto-enable-ignore-modes)
        (funcall fn))))
 
   ;; BUG: The tilde "~" character cannot be expanded in some Tramp methods (like
