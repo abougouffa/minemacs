@@ -106,6 +106,13 @@ This complements `citre-auto-enable-citre-mode-modes'."
   (add-to-list 'citre-find-definition-backends 'elisp)
   (add-to-list 'citre-find-reference-backends 'elisp)
 
+  ;; Register `dumb-jump' as a Citre backend, append to the end
+  (when (require 'dumb-jump nil t)
+    (defvar +citre-dumb-jump-backend (citre-xref-backend-to-citre-backend 'dumb-jump #'always))
+    (citre-register-backend 'dumb-jump +citre-dumb-jump-backend)
+    (add-to-list 'citre-find-definition-backends 'dumb-jump t)
+    (add-to-list 'citre-find-reference-backends 'dumb-jump t))
+
   (defun +citre-dominating-project-root ()
     "Search upward until we find one of `+citre-recursive-root-project-detection-files'.
 Fall back to the default `citre--project-root'."
