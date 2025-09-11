@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-07
-;; Last modified: 2025-07-07
+;; Last modified: 2025-09-11
 
 ;;; Commentary:
 
@@ -21,9 +21,31 @@
   :straight t
   :custom
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.extmap"))
-  (logview-additional-timestamp-formats '(("RDK-CCSP" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))))
-  (logview-additional-submodes '(("RDK-CCSP" (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]") (levels . "RDK-CCSP"))))
-  (logview-additional-level-mappings '(("RDK-CCSP" (error "ERROR") (warning "WARN") (information "INFO") (debug "DEBUG") (trace "NOTICE")))))
+  (logview-additional-timestamp-formats
+   '(("RDK-CCSP" (java-pattern . "yyMMdd-HH:mm:ss.SSSSSS"))
+     ("ISO 8601 datetime + millis, no year" (java-pattern . "MM-dd HH:mm:ss.SSS"))))
+  (logview-additional-submodes
+   `(("RDK-CCSP"
+      (format . "TIMESTAMP [mod=NAME, lvl=LEVEL] [tid=THREAD]")
+      (levels . "RDK-CCSP")
+      (timestamp . "RDK-CCSP"))
+     ("ulogcat-minimal"
+      (format . "LEVEL <<RX:NAME:[^[:space:]()]*>>: MESSAGE")
+      (levels . "ulogcat"))
+     ("ulogcat-std"
+      (format . "LEVEL <<RX:NAME:[^[:space:]()]*>><<RX:IGNORED:[[:space:]]*>>(THREAD)<<RX:IGNORED:[[:space:]]*>>: MESSAGE")
+      (levels . "ulogcat"))
+     ("ulogcat-long"
+      (format . ,(concat
+                  "<<RX:IGNORED:\\([UK][[:space:]]\\)?>>"
+                  "TIMESTAMP LEVEL "
+                  "<<RX:NAME:[^[:space:]()]*>>"
+                  "<<RX:IGNORED:[[:space:]]*>>(THREAD)<<RX:IGNORED:[[:space:]]*>>: MESSAGE"))
+      (levels . "ulogcat")
+      (timestamp . "ISO 8601 datetime + millis, no year"))))
+  (logview-additional-level-mappings
+   '(("RDK-CCSP" (error "ERROR") (warning "WARN") (information "INFO") (debug "DEBUG") (trace "NOTICE"))
+     ("ulogcat" (error "E" "C") (warning "W") (information "I" "N") (debug "D") (trace)))))
 
 
 (provide 'on-demand/me-logs)
