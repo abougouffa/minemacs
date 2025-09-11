@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-09-10
+;; Last modified: 2025-09-11
 
 ;;; Commentary:
 
@@ -136,8 +136,6 @@ Fall back to the default `citre--project-root'."
             (append +citre-gtags-files-list-ignored-directories
                     ;; Ignore searching the build directory, the right paths will used from `+bitbake-poky-sources' below
                     (list (file-name-nondirectory (directory-file-name build-dir)) "downloads"))))
-      (unless (fboundp '+bitbake-poky-sources)
-        (user-error "Make sure you've enabled the `me-embedded' module"))
       (shell-command (+citre-gtags-find-files-command top-dir) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*")
       (dolist (dir (+bitbake-poky-sources build-dir))
         (shell-command (+citre-gtags-find-files-command dir top-dir 'append) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*"))

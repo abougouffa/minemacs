@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-07-29
+;; Last modified: 2025-09-11
 
 ;;; Commentary:
 
@@ -25,47 +25,17 @@
   (require 'bitbake-insert)
   (require 'bitbake-electric)
   :init
-  (defun +bitbake-poky-sources (build-dir &optional include-native)
-    "Get all source directories for BUILD-DIR. Optionally INCLUDE-NATIVE."
-    ;; From the build-dir "yocto-ws/build-MACHINE/", this will extract all source
-    ;; directories of these formats:
-    ;; yocto-ws/build-MACHINE/tmp/work/aarch64-rdk-linux/procps/3.3.16-r0/git/
-    ;; yocto-ws/build-MACHINE/tmp/work/aarch64-rdk-linux/ppp/2.4.7-r0/ppp-2.4.7/
-    (let* (result
-           (base-dir (expand-file-name "tmp/work/" build-dir))
-           (arch-dirs (seq-filter #'file-directory-p (directory-files base-dir t directory-files-no-dot-files-regexp))))
-      (dolist (arch-dir arch-dirs)
-        (let* ((package-dirs (directory-files arch-dir t directory-files-no-dot-files-regexp))
-               (package-dirs (if include-native package-dirs (seq-filter (lambda (dir) (not (string-suffix-p "-native" dir))) package-dirs))))
-          (dolist (package-dir package-dirs)
-            (let ((ver-dirs (directory-files package-dir t directory-files-no-dot-files-regexp)))
-              (dolist (ver-dir ver-dirs)
-                (let* ((ver (string-trim-right (file-name-nondirectory (directory-file-name ver-dir)) "-r[[:digit:]]*$"))
-                       (dir-git (expand-file-name "git/" ver-dir))
-                       (dir-non-git (expand-file-name (format "%s-%s/" (file-name-nondirectory (directory-file-name package-dir)) ver) ver-dir)))
-                  (cond ((file-directory-p dir-git)
-                         (push dir-git result))
-                        ((file-directory-p dir-non-git)
-                         (push dir-non-git result)))))))))
-      result))
-
   (defun +widget-choose-completion (prompt items &optional _event)
     "Same interface as `widget-choose' but uses `completing-read' under the hood."
     (let ((choice (completing-read (format "%s: " prompt) (mapcar #'car items))))
       (alist-get choice items nil nil #'equal)))
 
-  ;; `bitbake' uses `widget-choose' to choose, but I prefer `completing-read',
-  ;; so lets overwrite it!
+  ;; `bitbake' uses `widget-choose' to choose, but I prefer `completing-read', so lets overwrite it!
   (satch-advice-add
    '(bitbake-recipe-build-dir bitbake-recipe-build-dir-dired) :around
    (satch-defun +widget-choose--use-completion-read (fn &rest args)
      (cl-letf (((symbol-function 'widget-choose) #'+widget-choose-completion))
-       (apply fn args))))
-
-  (defun +bitbake-insert-poky-sources (build-dir)
-    "Insert poky source directories for BUILD-DIR."
-    (interactive "DSelect the build directory: ")
-    (insert (string-join (+bitbake-poky-sources build-dir) "\n"))))
+       (apply fn args)))))
 
 
 ;; A `treesit'-based Bitbake major mode
