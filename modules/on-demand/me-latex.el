@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-29
-;; Last modified: 2025-09-12
+;; Last modified: 2025-09-13
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-latex
-  :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) . (auctex auctex-latexmk latex-preview-pane))))
+  :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) . (auctex auctex-latexmk latex-preview-pane xenops))))
 
 
 ;; Integrated environment for TeX
