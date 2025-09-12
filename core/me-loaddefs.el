@@ -76,6 +76,18 @@ Ask the MODE to run.
 (minemacs-register-on-demand-module 'me-bazel :auto-mode '(("/\\(?:\\(?:bazel\\)?\\.bazelrc\\)\\'" . bazelrc-mode) ("/Android\\.bp\\'" . bazel-build-mode) ("/\\(?:BUILD\\(?:\\.bazel\\)?\\)\\'" . bazel-build-mode) ("/MODULE\\.bazel\\'" . bazel-module-mode) ("/.+\\.bzl\\'" . bazel-starlark-mode) ("/\\.bazelignore\\'" . bazelignore-mode) ("/\\.bazeliskrc\\'" . bazeliskrc-mode) ("/\\(?:WORKSPACE\\(?:\\.b\\(?:azel\\|zlmod\\)\\)?\\)\\'" . bazel-workspace-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-bitbake.el
+
+(autoload '+bitbake-poky-sources "../modules/extras/me-bitbake" "\
+Get all source directories for BUILD-DIR. Optionally INCLUDE-NATIVE.
+
+(fn BUILD-DIR &optional INCLUDE-NATIVE)")
+(autoload '+bitbake-insert-poky-sources "../modules/extras/me-bitbake" "\
+Insert poky source directories for BUILD-DIR.
+
+(fn BUILD-DIR)" t)
+
+
 ;;; Generated autoloads from me-bootstrap.el
 
 (register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "+use-package--check-if-disabled:around-a" "minemacs-"))
@@ -434,7 +446,7 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from ../modules/on-demand/me-latex.el
 
-(minemacs-register-on-demand-module 'me-latex :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) auctex auctex-latexmk latex-preview-pane)))
+(minemacs-register-on-demand-module 'me-latex :companion-packages '(((latex-mode tex-mode doctex-mode bibtex-mode bibtex-style-mode) auctex auctex-latexmk latex-preview-pane xenops)))
 
 
 ;;; Generated autoloads from me-lib.el
@@ -521,6 +533,10 @@ Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
 
 (fn PATCH-BUF &optional PROJ-DIR)" t)
+(autoload '+diff-last-two-kills "me-lib-x" "\
+Diff last couple of things in the kill-ring. With prefix open `ediff'.
+
+(fn &optional EDIFF-P)" t)
 (autoload '+html2pdf "me-lib-x" "\
 Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
@@ -1297,6 +1313,139 @@ See `once-x-call' for more information, including how to specify CONDITION.
 (fn CONDITION &rest BODY)" nil t)
 (function-put 'once 'lisp-indent-function 1)
 (register-definition-prefixes "../elisp/once" '("once-"))
+
+
+;;; Generated autoloads from ../elisp/prot-common.el
+
+(autoload 'prot-common-number-even-p "../elisp/prot-common" "\
+Test if N is an even number.
+
+(fn N)")
+(autoload 'prot-common-number-integer-p "../elisp/prot-common" "\
+Test if N is an integer.
+
+(fn N)")
+(autoload 'prot-common-number-integer-positive-p "../elisp/prot-common" "\
+Test if N is a positive integer.
+
+(fn N)")
+(autoload 'prot-common-number-negative "../elisp/prot-common" "\
+Make N negative.
+
+(fn N)")
+(autoload 'prot-common-reverse-percentage "../elisp/prot-common" "\
+Determine the original value of NUMBER given PERCENT.
+
+CHANGE-P should specify the increase or decrease.  For simplicity,
+nil means decrease while non-nil stands for an increase.
+
+NUMBER must satisfy `numberp', while PERCENT must be `natnump'.
+
+(fn NUMBER PERCENT CHANGE-P)")
+(autoload 'prot-common-percentage-change "../elisp/prot-common" "\
+Find percentage change between N-ORIGINAL and N-FINAL numbers.
+
+When the percentage is not an integer, it is rounded to 4
+floating points: 16.666666666666664 => 16.667.
+
+(fn N-ORIGINAL N-FINAL)")
+(autoload 'prot-common-seconds-to-minutes-or-hours "../elisp/prot-common" "\
+Convert SECONDS to either minutes or hours, depending on the value.
+
+(fn SECONDS)")
+(autoload 'prot-common-rotate-list-of-symbol "../elisp/prot-common" "\
+Rotate list value of SYMBOL by moving its car to the end.
+Return the first element before performing the rotation.
+
+This means that if `sample-list' has an initial value of `(one
+two three)', this function will first return `one' and update the
+value of `sample-list' to `(two three one)'.  Subsequent calls
+will continue rotating accordingly.
+
+(fn SYMBOL)")
+(autoload 'prot-common-empty-buffer-p "../elisp/prot-common" "\
+Test whether the buffer is empty.")
+(autoload 'prot-common-minor-modes-active "../elisp/prot-common" "\
+Return list of active minor modes for the current buffer.")
+(autoload 'prot-common-truncate-lines-silently "../elisp/prot-common" "\
+Toggle line truncation without printing messages.")
+(autoload 'prot-common-clear-minibuffer-message "../elisp/prot-common" "\
+Print an empty message to clear the echo area.
+Use this as advice :after a noisy function.
+
+(fn &rest _)")
+(autoload 'prot-common-disable-hl-line "../elisp/prot-common" "\
+Disable Hl-Line-Mode (for hooks).")
+(autoload 'prot-common-window-bounds "../elisp/prot-common" "\
+Return start and end points in the window as a cons cell.")
+(autoload 'prot-common-page-p "../elisp/prot-common" "\
+Return non-nil if there is a `page-delimiter' in the buffer.")
+(autoload 'prot-common-window-small-p "../elisp/prot-common" "\
+Return non-nil if window is small.
+Check if the `window-width' or `window-height' is less than
+`split-width-threshold' and `split-height-threshold',
+respectively.")
+(autoload 'prot-common-three-or-more-windows-p "../elisp/prot-common" "\
+Return non-nil if three or more windows occupy FRAME.
+If FRAME is non-nil, inspect the current frame.
+
+(fn &optional FRAME)")
+(autoload 'prot-common-read-data "../elisp/prot-common" "\
+Read Elisp data from FILE.
+
+(fn FILE)")
+(autoload 'prot-common-completion-category "../elisp/prot-common" "\
+Return completion category.")
+(autoload 'prot-common-completion-table "../elisp/prot-common" "\
+Pass appropriate metadata CATEGORY to completion CANDIDATES.
+
+This is intended for bespoke functions that need to pass
+completion metadata that can then be parsed by other
+tools (e.g. `embark').
+
+(fn CATEGORY CANDIDATES)")
+(autoload 'prot-common-completion-table-no-sort "../elisp/prot-common" "\
+Pass appropriate metadata CATEGORY to completion CANDIDATES.
+Like `prot-common-completion-table' but also disable sorting.
+
+(fn CATEGORY CANDIDATES)")
+(autoload 'prot-common-crm-exclude-selected-p "../elisp/prot-common" "\
+Filter out INPUT from `completing-read-multiple'.
+Hide non-destructively the selected entries from the completion
+table, thus avoiding the risk of inputting the same match twice.
+
+To be used as the PREDICATE of `completing-read-multiple'.
+
+(fn INPUT)")
+(autoload 'prot-common-auth-get-field "../elisp/prot-common" "\
+Find PROP in `auth-sources' for HOST entry.
+
+(fn HOST PROP)")
+(autoload 'prot-common-parse-file-as-list "../elisp/prot-common" "\
+Return the contents of FILE as a list of strings.
+Strings are split at newline characters and are then trimmed for
+negative space.
+
+Use this function to provide a list of candidates for
+completion (per `completing-read').
+
+(fn FILE)")
+(autoload 'prot-common-contrast "../elisp/prot-common" "\
+Measure WCAG contrast ratio between C1 and C2.
+C1 and C2 are color values written in hexadecimal RGB.
+
+(fn C1 C2)")
+(register-definition-prefixes "../elisp/prot-common" '("prot-common-"))
+
+
+;;; Generated autoloads from ../elisp/prot-window.el
+
+ (autoload 'prot-window-shell "prot-window")
+ (autoload 'prot-window-coach "prot-window")
+ (autoload 'prot-window-popup-org-capture "prot-window")
+ (autoload 'prot-window-popup-tmr "prot-window")
+ (autoload 'prot-window-popup-tmr "prot-window")
+(register-definition-prefixes "../elisp/prot-window" '("prot-window-"))
 
 
 ;;; Generated autoloads from ../elisp/satch.el
