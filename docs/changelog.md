@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.10.0](https://github.com/abougouffa/minemacs/compare/6bfe727ca6ae30cc32d0b1a50eb20f12bbe62c9a..v13.10.0) - 2025-09-12
+#### Bug Fixes
+- **(eat)** EAT don't like smaller font sizes! - ([a25ddb8](https://github.com/abougouffa/minemacs/commit/a25ddb8bbb8c3604fab7ae10cc97e621b2bb991a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([332d2e0](https://github.com/abougouffa/minemacs/commit/332d2e02fe7a29ef4370a6f94a033dae18161089)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(on-demand/latex)** add `xenops` - ([a12033f](https://github.com/abougouffa/minemacs/commit/a12033fa888ac3fc1f3ad50dfd43c423b4a45d10)) - [@abougouffa](https://github.com/abougouffa)
+- **(tags)** make `ggtags` obsolete, `citre` should be sufficient - ([6ea943e](https://github.com/abougouffa/minemacs/commit/6ea943ee912f04e6be4942e25df13c6054d73bf3)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(bitbake)** move extra functions to `me-bitbake-x.el` - ([7600f6e](https://github.com/abougouffa/minemacs/commit/7600f6e68c2d3bf21367bb8a22b50e3ef841b74f)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(citre)** minor tweaks - ([0600273](https://github.com/abougouffa/minemacs/commit/06002737e6624bc56fdda21de331d000d37b38ad)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** register `dumb-jump` as a Citre backend, append it to the end - ([100c623](https://github.com/abougouffa/minemacs/commit/100c62357877d7bbcd7ccf4785cbfee1da58af56)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** Make Citre manage Eglot's integration with `xref` - ([6bfe727](https://github.com/abougouffa/minemacs/commit/6bfe727ca6ae30cc32d0b1a50eb20f12bbe62c9a)) - [@abougouffa](https://github.com/abougouffa)
+- **(dape)** add `+dape-gud-switch-keybinding` - ([d6d1ae0](https://github.com/abougouffa/minemacs/commit/d6d1ae0aefa4a16d8858e1e380312d0b9b555e2b)) - [@abougouffa](https://github.com/abougouffa)
+- **(logview)** make the thread optional in `ulogcat-long` - ([2399ae3](https://github.com/abougouffa/minemacs/commit/2399ae3f2ea139c623fbf7026931974b34997679)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/latex)** declare `xenops` as a companion package - ([b2dfd1f](https://github.com/abougouffa/minemacs/commit/b2dfd1f5855a577165833f2afa008163f00e5613)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/logview)** add support for `ulogcat` format - ([ddd89a6](https://github.com/abougouffa/minemacs/commit/ddd89a628ce17dd37fd872d862a20d0f267ac7de)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([49b1f04](https://github.com/abougouffa/minemacs/commit/49b1f04797c4a1f072381a293cdd5106c50ed0f5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cf27ae5](https://github.com/abougouffa/minemacs/commit/cf27ae5baacbdea4f41e3fbb7d3e3f69679b5d16)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.9.0](https://github.com/abougouffa/minemacs/compare/69eba60d2f47e1f4f5c9bf38fed8d3178c00f631..v13.9.0) - 2025-09-09
 #### Bug Fixes
 - **(cocogitto)** edge case, `+cocogitto-bump` fails always if it fail once - ([eadb5d6](https://github.com/abougouffa/minemacs/commit/eadb5d60dedaf4e823cf7a22be9133868f74da98)) - [@abougouffa](https://github.com/abougouffa)
