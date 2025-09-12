@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-09-09
+;; Last modified: 2025-09-12
 
 ;;; Commentary:
 
@@ -51,7 +51,6 @@
                          ("terminfo/65" "terminfo/65/*")
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
-  :hook (eat-mode . minemacs-reduce-font-size)
   :bind ([f1] . +eat-toggle-dwim)
   :config
   (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit)
