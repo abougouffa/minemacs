@@ -712,6 +712,10 @@ Get the list of the patches A/B files mentioned in PATCH-BUFF.
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
 
+#### `(+diff-last-two-kills &optional EDIFF-P)`
+
+Diff last couple of things in the kill-ring. With prefix open `ediff`.
+
 #### `(+html2pdf INFILE OUTFILE &optional BACKEND)`
 
 Convert HTML file INFILE to PDF and save it to OUTFILE.
@@ -1178,6 +1182,14 @@ Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
 #### `(+adb-root &optional ARG)`
 
 Run adb root (or unroot with C-u).
+
+#### `(+bitbake-poky-sources BUILD-DIR &optional INCLUDE-NATIVE)`
+
+Get all source directories for BUILD-DIR. Optionally INCLUDE-NATIVE.
+
+#### `(+bitbake-insert-poky-sources BUILD-DIR)`
+
+Insert poky source directories for BUILD-DIR.
 
 #### `(+cocogitto-bump LEVEL &optional PRE)`
 

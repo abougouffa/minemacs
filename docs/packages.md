@@ -31,6 +31,7 @@
 
 ## `me-debug`
 * `dape`: Debug Adapter Protocol for Emacs
+* `dape-cortex-debug`: `dape` integration for cortex-debug (https://github.com/Marus/cortex-debug)
 * `rmsbolt`: A compiler output viewer
 * `beardbolt`: Compiler Explorer clone (fork of `rmsbolt` optimized for C/C++)
 * `objdump-disassemble`: Use "objdump" to display disassembled executable and object files
@@ -186,9 +187,7 @@
 * `consult-yasnippet`: A consulting-read interface for yasnippet
 
 ## `me-tags`
-* `ggtags`: Emacs frontend to GNU Global source code tagging system
 * `citre`: Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
-* `citre-config`: Apply the default configuration (part of `citre`)
 * `call-graph`: Generate call graph for C/C++ functions
 
 ## `me-tools`
@@ -203,7 +202,7 @@
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `envrc`: Buffer-local "direnv" integration for Emacs
-* `pyenv`: Emacs integration for "pyenv"
+* `pet`: Python Executable Tracker
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
 ## `me-ui`
@@ -486,6 +485,7 @@
 * `latex`: Integrated environment for LaTeX
 * `auctex-latexmk`: Add LatexMk support to AUCTeX
 * `latex-preview-pane`: Makes LaTeX editing less painful by providing a updatable preview pane
+* `xenops`: An editing environment for LaTeX mathematical documents
 
 ## `on-demand/me-linux`
 * `kconfig-mode`: Major mode for editing Kconfig files
