@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-29
-;; Last modified: 2025-06-14
+;; Last modified: 2025-09-12
 
 ;;; Commentary:
 
@@ -97,6 +97,14 @@
 ;; Makes LaTeX editing less painful by providing a updatable preview pane
 (use-package latex-preview-pane
   :straight t)
+
+
+;; An editing environment for LaTeX mathematical documents
+(use-package xenops
+  :straight t
+  :hook
+  (latex-mode . xenops-mode)
+  (LaTeX-mode . xenops-mode))
 
 
 (provide 'on-demand/me-latex)
