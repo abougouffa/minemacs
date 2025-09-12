@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2025-09-04
+;; Last modified: 2025-09-12
 
 ;;; Commentary:
 
@@ -21,7 +21,21 @@
   (dape-start . (lambda () (project-save-some-buffers t))) ; Save buffers on startup, useful for interpreted languages
   :config
   (dape-breakpoint-load) ; Load breakpoints on startup, with laziness
-  (add-hook 'kill-emacs-hook #'dape-breakpoint-save)) ; Save breakpoints on quit
+  (add-hook 'kill-emacs-hook #'dape-breakpoint-save) ; Save breakpoints on quit
+
+  ;; When using `gud' and `dape' in the same session, the last to be loaded will
+  ;; overwrite the C-x C-a keybinding, this command let us switch between the two
+  (defun +dape-gud-switch-keybinding ()
+    "Switch binding between GUD and dape."
+    (interactive)
+    (require 'gud)
+    (if (not (equal dape-key-prefix gud-key-prefix))
+        (message "No switching is necessary, GUD uses `%s' while Dape uses `%s'" (key-description gud-key-prefix) (key-description dape-key-prefix))
+      (let ((type (read-answer "Set to [d]ape or [g]ud? " '(("dape" ?d "Set the keybinding to `dape-global-map'") ("gud" ?g "Set the keybinding to `gud-global-map'")))))
+        (if (equal type "dape")
+            (global-set-key dape-key-prefix dape-global-map)
+          (global-set-key gud-key-prefix gud-global-map))
+        (message "Set to %s" type)))))
 
 
 ;; `dape' integration for cortex-debug (https://github.com/Marus/cortex-debug)
