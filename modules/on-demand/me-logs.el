@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-07
-;; Last modified: 2025-09-11
+;; Last modified: 2025-09-12
 
 ;;; Commentary:
 
@@ -40,7 +40,9 @@
                   "<<RX:IGNORED:\\([UK][[:space:]]\\)?>>"
                   "TIMESTAMP LEVEL "
                   "<<RX:NAME:[^[:space:]()]*>>"
-                  "<<RX:IGNORED:[[:space:]]*>>(THREAD)<<RX:IGNORED:[[:space:]]*>>: MESSAGE"))
+                  "<<RX:IGNORED:[[:space:]]*>>"
+                  "<<RX:THREAD:\\(([^[:space:]])\\)?*>>"
+                  "<<RX:IGNORED:[[:space:]]*>>: MESSAGE"))
       (levels . "ulogcat")
       (timestamp . "ISO 8601 datetime + millis, no year"))))
   (logview-additional-level-mappings
