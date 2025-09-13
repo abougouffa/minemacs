@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-09
+;; Last modified: 2025-09-13
 
 ;;; Commentary:
 
@@ -541,6 +541,20 @@
   :custom
   (python-shell-dedicated 'project)
   (python-indent-guess-indent-offset-verbose nil))
+
+(use-package modula2
+  :custom
+  (m2-compile-command "gm2 -fiso") ; Use GNU GCC Modula-2 compiler with ISO dialect
+  :mode ("\\.m2\\'" . m2-mode)
+  :init
+  (add-to-list 'magic-mode-alist '(+m2-definition-p . m2-mode))
+  (defun +m2-definition-p ()
+    (when-let* ((fname (buffer-file-name))
+                (ext (file-name-extension fname))
+                ((equal (downcase ext) "def")))
+      (save-excursion
+        (goto-char (point-min))
+        (re-search-forward "DEFINITION[[:space:]]*MODULE[[:space:]]*[[:alnum:]_]*[[:space:]]*;" nil t)))))
 
 (use-package conf-mode
   :mode "\\.prop\\'"
