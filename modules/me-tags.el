@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-09-11
+;; Last modified: 2025-09-13
 
 ;;; Commentary:
 
@@ -25,7 +25,12 @@
          '("--objdir"))))
   (citre-peek-fill-fringe nil) ; don't looks good with `display-line-numbers-mode'
   :init
-  (require 'citre-config) ; Apply the default Citre configuration, lazily
+  (add-hook 'find-file-hook #'citre-auto-enable-citre-mode -50)
+
+  ;; Language supports
+  (with-eval-after-load 'cc-mode (require 'citre-lang-c))
+  (with-eval-after-load 'dired (require 'citre-lang-fileref))
+  (with-eval-after-load 'verilog-mode (require 'citre-lang-verilog))
 
   (defcustom +citre-auto-enable-ignore-modes '(bash-ts-mode sh-mode)
     "Don't auto-enable `citre-mode' in these modes.
@@ -48,7 +53,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
   :config
   (advice-add ; We prefer passing by Citre when it is enabled, it uses Eglot as a backend
    'eglot--managed-mode :before
-   (satch-defun +citre--prefer-over-eglot-h (&rest _args)
+   (satch-defun +citre--prefer-over-eglot:before-a (&rest _args)
      (when (bound-and-true-p citre-mode)
        (setq-local eglot-stay-out-of (append eglot-stay-out-of '(xref imenu))))))
 
