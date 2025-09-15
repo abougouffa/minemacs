@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-09-13
+;; Last modified: 2025-09-15
 
 ;;; Commentary:
 
@@ -55,7 +55,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
    'eglot--managed-mode :before
    (satch-defun +citre--prefer-over-eglot:before-a (&rest _args)
      (when (bound-and-true-p citre-mode)
-       (setq-local eglot-stay-out-of (append eglot-stay-out-of '(xref imenu))))))
+       (setq-local eglot-stay-out-of (seq-uniq (append eglot-stay-out-of '(xref imenu)))))))
 
   (defvar-keymap +citre-navigation-map
     :doc "Citre navigation commands." :name "citre-navigation"
