@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-09
+;; Last modified: 2025-09-15
 
 ;;; Commentary:
 
@@ -942,9 +942,10 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
   "Set some editor settings from \".clang-format\" when available."
   (interactive)
   (if-let* (((and (require 'yaml nil t)
+                  (+clang-format-config-file)
                   (executable-find +clang-format-command)
                   (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))))
-            (out (+clang-format-dump-config (car (+clang-format-get-lang))))
+            (out (+clang-format-dump-config))
             (yaml-hash (yaml-parse-string out))
             (fc (gethash 'ColumnLimit yaml-hash))
             (iw (gethash 'IndentWidth yaml-hash))
