@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-15
+;; Last modified: 2025-09-16
 
 ;;; Commentary:
 
@@ -693,22 +693,6 @@ you have `editorconfig' or `dtrt-indent' installed."
              (beginning-of-line)
              (unless (looking-at "^$")
                (insert ";;;###autoload")))))
-
-(defvar +webjump-read-string-initial-query nil)
-
-(defun +webjump-read-string-with-initial-query (prompt)
-  "To be used as a replacement for `webjump-read-string', PROMPT."
-  (let ((input (read-string (concat prompt ": ") +webjump-read-string-initial-query)))
-    (unless (webjump-null-or-blank-string-p input) input)))
-
-;;;###autoload
-(defun +webjump ()
-  "Like `webjump', with initial query filled from `+region-or-thing-at-point'."
-  (interactive)
-  (require 'webjump)
-  (let ((+webjump-read-string-initial-query (+region-or-thing-at-point)))
-    (cl-letf (((symbol-function 'webjump-read-string) #'+webjump-read-string-with-initial-query))
-      (webjump))))
 
 ;;;###autoload
 (defun +bookmark-set-at-mouse (event)

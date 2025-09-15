@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-15
+;; Last modified: 2025-09-16
 
 ;;; Commentary:
 
@@ -44,7 +44,6 @@
          (insert-file-contents "/proc/sys/fs/pipe-max-size")
          (string-to-number (buffer-string)))
      (error (* 1024 1024))))
-  (completion-ignore-case t) ; Ignore case when completing
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t) ; Ignores case when completing files names
   (read-extended-command-predicate #'command-completion-default-include-p) ; In `M-x', hide commands not relevant for the current mode
@@ -282,11 +281,7 @@
   :hook (kill-emacs . +project-forget-zombie-projects)
   :custom
   (project-switch-use-entire-map t) ; Provide all `project-prefix-map' commands when switching projects
-  (project-vc-extra-root-markers
-   '(".projectile.el" ".project.el" ".project" ; Emacs
-     ".repo" ; Repo tool workspaces
-     "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ; Visual Studio
-     ".code-workspace")) ; VSCode, ".vscode" is present also in the user home
+  (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project" ".repo" "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ".code-workspace"))
   (project-vc-ignores '(".ccls-cache/" ".cache/" ".cppcheck-build/")))
 
 (use-package tab-bar
@@ -296,81 +291,7 @@
   (tab-bar-tab-name-format-function #'+tab-bar--tab-spaced-name-format)
   (tab-bar-close-button-show nil)
   (tab-bar-auto-width nil)
-  (tab-bar-show t)
-  :init
-  (defcustom +tab-bar-tab-name-function-ignored-buffers '("\\*Bookmark List\\*")
-    "Regexps matching buffers to be ignored."
-    :type '(repeat regexp)
-    :group 'minemacs-ui)
-  :config
-  (setq tab-bar-separator "\u200B")
-
-  (defun +tab-bar--tab-spaced-name-format (tab _i)
-    (propertize
-     (concat " " (alist-get 'name tab) " ") 'face (funcall tab-bar-tab-face-function tab)))
-
-  ;; Inspired by `vim-tab-bar'
-  (defun +tab-bar--set-faces (&rest _args)
-    (let* ((fallback-fg (face-attribute 'default :foreground))
-           (fallback-bg (face-attribute 'default :background))
-           (bg-tab-active (or (face-attribute 'default :background) fallback-fg))
-           (fg-tab-active (or (face-attribute 'default :foreground) fallback-bg))
-           (bg-tab-inactive (or (face-attribute 'mode-line-inactive :background) fallback-bg))
-           (fg-tab-inactive (or (face-attribute 'mode-line-inactive :foreground) fallback-fg)))
-
-      ;; The tab bar's appearance
-      (set-face-attribute
-       'tab-bar nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      ;; Inactive tabs
-      (set-face-attribute
-       'tab-bar-tab-inactive nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      ;; Active tab
-      (set-face-attribute
-       'tab-bar-tab nil :background bg-tab-active :foreground fg-tab-active :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      ;; The tab bar's ungrouped appearance
-      (set-face-attribute
-       'tab-bar-tab-ungrouped nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      ;; Inactive tab groups
-      (set-face-attribute
-       'tab-bar-tab-group-inactive nil :background bg-tab-inactive :foreground fg-tab-inactive :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      ;; Current tab group
-      (set-face-attribute
-       'tab-bar-tab-group-current nil :background bg-tab-inactive :foreground fg-tab-active :inverse-video 'unspecified
-       :inherit 'unspecified :family 'unspecified :foundry 'unspecified :width 'unspecified :height 'unspecified
-       :weight 'unspecified :slant 'unspecified :underline 'unspecified :overline 'unspecified :extend 'unspecified
-       :strike-through 'unspecified :stipple 'unspecified)
-
-      (when (and (display-graphic-p) (not (daemonp)))
-        (set-face-attribute 'tab-bar nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
-        (set-face-attribute 'tab-bar-tab-inactive nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
-        (set-face-attribute 'tab-bar-tab nil :box `(:line-width 3 :color ,bg-tab-active :style nil))
-        (set-face-attribute 'tab-bar-tab-ungrouped nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
-        (set-face-attribute 'tab-bar-tab-group-inactive nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil))
-        (set-face-attribute 'tab-bar-tab-group-current nil :box `(:line-width 3 :color ,bg-tab-inactive :style nil)))))
-
-  (add-hook 'server-after-make-frame-hook #'+tab-bar--set-faces)
-  (add-hook 'enable-theme-functions #'+tab-bar--set-faces)
-  (+tab-bar--set-faces))
+  (tab-bar-show t))
 
 (use-package editorconfig
   :hook (minemacs-first-file . editorconfig-mode)
@@ -384,36 +305,7 @@
   :custom
   (flymake-fringe-indicator-position 'right-fringe)
   (flymake-margin-indicator-position 'right-margin) ; Added in Emacs 30 (see `flymake-indicator-type')
-  :init
-  (with-eval-after-load 'nerd-icons
-    (setopt flymake-indicator-type 'margins
-            flymake-margin-indicators-string
-            `((error ,(nerd-icons-octicon "nf-oct-x_circle" :face 'nerd-icons-red) compilation-error)
-              (warning ,(nerd-icons-codicon "nf-cod-warning" :face 'nerd-icons-orange) compilation-warning)
-              (note ,(nerd-icons-sucicon "nf-seti-info" :face 'nerd-icons-green) compilation-info))))
   :config
-  ;; This helps keeping only one icon in the margin (for lines with multiple issues)
-  (advice-add #'flymake--indicator-overlay-spec
-              :filter-return
-              (lambda (indicator)
-                (concat indicator (propertize " " 'face 'default 'display `((margin right-margin) (space :width 5))))))
-
-  ;; Tu use when we switch to `fringes'
-  (put 'flymake-error 'flymake-bitmap (propertize "⛔" 'face `(:inherit (error default) :underline nil)))
-  (put 'flymake-warning 'flymake-bitmap (propertize "⚠️" 'face `(:inherit (warning default) :underline nil)))
-  (put 'flymake-note 'flymake-bitmap (propertize "🟢" 'face `(:inherit (success default) :underline nil)))
-
-  (with-eval-after-load 'transient
-    (transient-define-prefix +flymake-transient ()
-      "Transient for flymake."
-      [[("n" "Next error" flymake-goto-next-error :transient t)
-        ("p" "Prev error" flymake-goto-prev-error :transient t)]
-       [("B" "Buffer diagnostics" flymake-show-buffer-diagnostics :transient t)
-        ("P" "Project diagnostics" flymake-show-project-diagnostics :transient t)
-        ("L" "Log buffer" flymake-switch-to-log-buffer :transient t)]
-       [("S" "Start" flymake-start :transient t)
-        ("Q" "Quit" ignore :transient t)]]))
-
   (with-eval-after-load 'elisp-mode ; Use the session's `load-path' with `flymake'
     (cl-callf append elisp-flymake-byte-compile-load-path load-path)))
 
@@ -451,12 +343,9 @@
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
   :custom
   (treesit-font-lock-level 4)
-  :init
-  (cl-callf append major-mode-remap-alist
-    '((c-or-c++-mode . c-or-c++-ts-mode) (c++-mode . c++-ts-mode) (c-mode . c-ts-mode)
-      (java-mode . java-ts-mode) (js-mode . js-ts-mode) (sh-mode . bash-ts-mode) (yaml-mode . yaml-ts-mode)
-      (json-mode . json-ts-mode) (mhtml-mode . mhtml-ts-mode) (cmake-mode . cmake-ts-mode) (toml-mode . toml-ts-mode)
-      (rust-mode . rust-ts-mode) (markdown-mode . markdown-ts-mode) (python-mode . python-ts-mode))))
+  (treesit-enabled-modes
+   '( c-ts-mode c++-ts-mode csharp-ts-mode java-ts-mode python-ts-mode rust-ts-mode bash-ts-mode
+      markdown-ts-mode cmake-ts-mode mhtml-ts-mode js-ts-mode typescript-ts-mode toml-ts-mode json-ts-mode)))
 
 (use-package rust-ts-mode
   :when (featurep 'feat/tree-sitter)
@@ -937,7 +826,8 @@ Typing these will trigger reindentation of the current line.")
 (use-package whitespace
   :init
   (when (fboundp 'whitespace-page-delimiters-mode) ; Emacs 31+
-    (satch-add-hook '(prog-mode-hook text-mode-hook conf-mode-hook) #'whitespace-page-delimiters-mode))
+    (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+      (add-hook hook #'whitespace-page-delimiters-mode)))
   :custom
   (whitespace-action '(cleanup auto-cleanup))) ; Default behavior for `whitespace-cleanup'
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-28
+;; Last modified: 2025-09-15
 
 ;;; Commentary:
 
@@ -54,7 +54,7 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p)
  ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup nil
+ package-enable-at-startup minemacs-builtin-only-p
  ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
  gc-cons-threshold (* 100 1000 1000)
  gc-cons-percentage 0.2
