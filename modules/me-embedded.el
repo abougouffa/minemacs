@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-07
-;; Last modified: 2025-09-11
+;; Last modified: 2025-09-15
 
 ;;; Commentary:
 
@@ -19,23 +19,9 @@
 (use-package bitbake
   :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode)
-  :autoload (+bitbake-poky-sources)
-  :commands (+bitbake-insert-poky-sources)
   :config
   (require 'bitbake-insert)
-  (require 'bitbake-electric)
-  :init
-  (defun +widget-choose-completion (prompt items &optional _event)
-    "Same interface as `widget-choose' but uses `completing-read' under the hood."
-    (let ((choice (completing-read (format "%s: " prompt) (mapcar #'car items))))
-      (alist-get choice items nil nil #'equal)))
-
-  ;; `bitbake' uses `widget-choose' to choose, but I prefer `completing-read', so lets overwrite it!
-  (satch-advice-add
-   '(bitbake-recipe-build-dir bitbake-recipe-build-dir-dired) :around
-   (satch-defun +widget-choose--use-completion-read (fn &rest args)
-     (cl-letf (((symbol-function 'widget-choose) #'+widget-choose-completion))
-       (apply fn args)))))
+  (require 'bitbake-electric))
 
 
 ;; A `treesit'-based Bitbake major mode
