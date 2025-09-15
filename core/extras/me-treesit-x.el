@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-08-31
+;; Last modified: 2025-09-15
 
 ;;; Commentary:
 
@@ -32,7 +32,8 @@
     (latex "https://github.com/latex-lsp/tree-sitter-latex")
     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
     (clojure "https://github.com/sogaiu/tree-sitter-clojure")
-    (commonlisp "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp")))
+    (commonlisp "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp")
+    (bitbake "https://github.com/tree-sitter-grammars/tree-sitter-bitbake")))
 
 (defun +treesit-install-all-grammars ()
   "Install all grammars in `treesit-language-source-alist'."
