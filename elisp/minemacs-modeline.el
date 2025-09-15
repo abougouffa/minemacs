@@ -161,7 +161,7 @@
 (defvar minemacs-modeline-vc-map
   (let ((map (make-sparse-keymap)))
     (define-key map [mode-line down-mouse-1] 'vc-diff)
-    (define-key map [mode-line down-mouse-3] 'vc-root-diff)
+    (define-key map [mode-line mouse-3] 'vc-root-diff)
     map))
 
 (defvar minemacs-modeline--vc-faces
@@ -183,7 +183,7 @@
                 (face (alist-get file-state minemacs-modeline--vc-faces 'vc-up-to-date-state))
                 (rev (vc-working-revision file backend))
                 (branch (or (vc-git--symbolic-ref file) (substring rev 0 7)))
-                (help-echo-msg (format "Branch: %s\nRevision: %s\nmouse-1: `vc-diff'\nmouse-3: `vc-root-diff'" branch rev))
+                (help-echo-msg (format "Branch: %s\nRevision: %s\nmouse-1: `vc-diff', diff the current file\nmouse-3: `vc-root-diff', diff all project files" branch rev))
                 (branch-trim (if-let* ((len (length branch))
                                        ((> len 15)))
                                  (concat "··" (substring branch (- len 15) len))
@@ -216,7 +216,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (defvar minemacs-modeline-flymake-map
   (let ((map (make-sparse-keymap)))
     (define-key map [mode-line down-mouse-1] 'flymake-show-buffer-diagnostics)
-    (define-key map [mode-line down-mouse-3] 'flymake-show-project-diagnostics)
+    (define-key map [mode-line mouse-3] 'flymake-show-project-diagnostics)
     map))
 
 (defmacro minemacs-modeline-flymake-type (type icon &optional face)
