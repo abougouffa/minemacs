@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-08-25
+;; Last modified: 2025-09-16
 
 ;;; Commentary:
 
@@ -36,6 +36,14 @@
 ;; Highly legible minimalist themes with precise typography
 (use-package doric-themes
   :straight t)
+
+
+;; Vim-like tab bar
+(use-package vim-tab-bar
+  :straight t
+  :after minemacs-loaded
+  :init
+  (vim-tab-bar-mode 1))
 
 
 ;; Light, modern and opinionated mode-line for MinEmacs
