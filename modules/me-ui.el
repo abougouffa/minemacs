@@ -41,9 +41,11 @@
 ;; Vim-like tab bar
 (use-package vim-tab-bar
   :straight t
-  :after minemacs-loaded
-  :init
-  (vim-tab-bar-mode 1))
+  :hook
+  (minemacs-after-startup . vim-tab-bar-mode)
+  (server-after-make-frame . vim-tab-bar--apply)
+  :custom
+  (vim-tab-bar-show-groups t))
 
 
 ;; Light, modern and opinionated mode-line for MinEmacs
