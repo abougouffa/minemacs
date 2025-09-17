@@ -1062,11 +1062,6 @@ Show help for the symbol at point." t)
 (minemacs-register-on-demand-module 'me-systemd :auto-mode `(("\\.nspawn\\'" . systemd-mode) (,(rx (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network") string-end) . systemd-mode) (,(rx ".#" (or (and (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network")) "override.conf") (= 16 (char hex-digit)) string-end) . systemd-mode) (,(rx "/systemd/" (+? anything) ".d/" (+? (not (any 47))) ".conf" string-end) . systemd-mode)))
 
 
-;;; Generated autoloads from extras/me-tab-bar-x.el
-
-(register-definition-prefixes "extras/me-tab-bar-x" '("+tab-bar--set-faces"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-textile.el
 
 (minemacs-register-on-demand-module 'me-textile :auto-mode '(("\\.textile\\'" . textile-mode)))
@@ -1106,15 +1101,6 @@ Show help for the symbol at point." t)
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
-
-
-;;; Generated autoloads from extras/me-vc-x.el
-
-(with-eval-after-load 'vc-git (require 'me-vc-x))
-(keymap-global-set "C-x C-g" '+switch-git-status-buffer)
-(autoload '+switch-git-status-buffer "extras/me-vc-x" "\
-Parse git status from an expanded path and switch to a file.
-The completion candidates include the Git status of each file." t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
