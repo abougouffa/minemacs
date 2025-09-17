@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-24
+;; Last modified: 2025-09-17
 
 ;;; Commentary:
 
@@ -77,8 +77,9 @@
 
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
-  :straight (:host github :repo "darcylee/magit-gerrit" :fork "abougouffa/magit-gerrit")
+  :straight (:host github :repo "abougouffa/magit-gerrit" :branch "fix/font-lock")
   :after magit
+  :bind (:map magit-status-mode-map ("_" . magit-gerrit-mode))
   :demand
   :custom
   (magit-gerrit-popup-prefix "_"))
