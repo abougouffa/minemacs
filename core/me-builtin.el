@@ -1088,7 +1088,7 @@ Typing these will trigger reindentation of the current line.")
       (body-function . prot-window-select-fit-size))
      (prot-window-shell-or-term-p
       (display-buffer-reuse-mode-window display-buffer-at-bottom)
-      (mode . (shell-mode eshell-mode comint-mode))
+      (mode . (shell-mode eshell-mode comint-mode eat-mode))
       (body-function . prot-window-select-fit-size))
      ("\\*\\(Calendar\\|Bookmark Annotation\\|ert\\).*"
       (display-buffer-reuse-mode-window display-buffer-below-selected)

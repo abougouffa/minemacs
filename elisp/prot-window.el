@@ -38,9 +38,9 @@
 
 (defvar prot-window-window-sizes
   '( :max-height (lambda () (floor (frame-height) 3))
-     :min-height 10
+     :min-height 12
      :max-width (lambda () (floor (frame-width) 4))
-     :min-width 20)
+     :min-width 24)
   "Property list of maximum and minimum window sizes.
 The property keys are `:max-height', `:min-height', `:max-width',
 and `:min-width'.  They all accept a value of either a
@@ -105,11 +105,11 @@ This as the action function in a `display-buffer-alist' entry."
   "Check if BUFFER is a shell or terminal.
 This is a predicate function for `buffer-match-p', intended for
 use in `display-buffer-alist'."
-  (when (string-match-p "\\*.*\\(e?shell\\|v?term\\).*" (buffer-name (get-buffer buffer)))
+  (when (string-match-p "\\*.*\\(e?shell\\|v?term\\|eat\\).*" (buffer-name (get-buffer buffer)))
     (with-current-buffer buffer
       ;; REVIEW 2022-07-14: Is this robust?
-      (and (not (derived-mode-p 'message-mode 'text-mode))
-           (derived-mode-p 'eshell-mode 'shell-mode 'comint-mode 'fundamental-mode)))))
+      (and (not (derived-mode-p '(message-mode text-mode)))
+           (derived-mode-p '(eshell-mode shell-mode comint-mode fundamental-mode eat-mode))))))
 
 (defun prot-window-remove-dedicated (&rest _)
   "Remove dedicated window parameter.
