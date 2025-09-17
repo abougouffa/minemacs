@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.11.0](https://github.com/abougouffa/minemacs/compare/c644869acea54693978cd8e5f792407eb44e54ff..v13.11.0) - 2025-09-17
+#### Bug Fixes
+- **(citre)** minor fix - ([4d9a1b3](https://github.com/abougouffa/minemacs/commit/4d9a1b3d363e839ee1672f73a47edbf13e5198a0)) - [@abougouffa](https://github.com/abougouffa)
+- **(citre)** fix an unpredictable issue of `eglot` taking over `xref` and `imenu` - ([6c46cfb](https://github.com/abougouffa/minemacs/commit/6c46cfbf32bdce8ad39dcb5a3eb3be8324767aec)) - [@abougouffa](https://github.com/abougouffa)
+- **(clangformat)** don't guess editor config unless the `.clangformat` file exists - ([50e613c](https://github.com/abougouffa/minemacs/commit/50e613cecce08da730c466e9190babcc206859e3)) - [@abougouffa](https://github.com/abougouffa)
+- **(modeline)** fix mouse interactions - ([8fef801](https://github.com/abougouffa/minemacs/commit/8fef80166bd981e89c02208e321ef05e4c6868c2)) - [@abougouffa](https://github.com/abougouffa)
+- **(parinfer-rust)** don't enable in files with unresolved merge conflicts - ([7312b78](https://github.com/abougouffa/minemacs/commit/7312b78ec26dc569d8c857437789823dd9e1f5ea)) - [@abougouffa](https://github.com/abougouffa)
+- remove undefined functions from autoloads file - ([69c37d9](https://github.com/abougouffa/minemacs/commit/69c37d9474d3b51708005b07740fc5cfc2075c8e)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- **(embedded)** remove `bitbake-ts-mode`, move grammar recipe to `me-treesit-x` - ([aa2dc7d](https://github.com/abougouffa/minemacs/commit/aa2dc7d4cc7272b5146e4c5f5df887eb62075fed)) - [@abougouffa](https://github.com/abougouffa)
+- **(on-demand/wiki)** replace `wikitext-mode` with `mediawiki-file-mode` - ([eb641a4](https://github.com/abougouffa/minemacs/commit/eb641a424f867df527220cb6988284a30fe4dbd2)) - [@abougouffa](https://github.com/abougouffa)
+- **(ui)** add `vim-tab-bar` - ([ee36976](https://github.com/abougouffa/minemacs/commit/ee369764c5778138e279fa6deff102bfeac91808)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- **(builtin)** cleanup - ([a00ee21](https://github.com/abougouffa/minemacs/commit/a00ee21fea2a352c1d148262c472abc6c7ed2dca)) - [@abougouffa](https://github.com/abougouffa)
+- **(xref)** remove unneeded backend sorting advice - ([30b5254](https://github.com/abougouffa/minemacs/commit/30b52543b6c67d0dfafbe78aa54e0495dc33a163)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- **(bitbake)** remove no more needed tweak, merged upstream - ([0ed1f05](https://github.com/abougouffa/minemacs/commit/0ed1f05858bfb47819c2ddff785d7298a9b3c56c)) - [@abougouffa](https://github.com/abougouffa)
+- **(builtin)** add alternative `ctrl-x` numeric keybindings suitable for AZERTY keyboards - ([ab23dce](https://github.com/abougouffa/minemacs/commit/ab23dce9ba7cd4724f2e6d5c08532e7aa62c67bf)) - [@abougouffa](https://github.com/abougouffa)
+- **(magit-gerrit)** use my fork, toggle `magit-gerrit-mode` with `_` - ([c343c1c](https://github.com/abougouffa/minemacs/commit/c343c1c4c359d64a00434c53c21858300642caec)) - [@abougouffa](https://github.com/abougouffa)
+- **(modula2)** add a predicate for Modula 2 definition files - ([c644869](https://github.com/abougouffa/minemacs/commit/c644869acea54693978cd8e5f792407eb44e54ff)) - [@abougouffa](https://github.com/abougouffa)
+- **(vim-tab-bar)** ensure applying correctly when in daemon mode - ([68cdab5](https://github.com/abougouffa/minemacs/commit/68cdab5cc2cee65766b29319cf6cf2976df98667)) - [@abougouffa](https://github.com/abougouffa)
+- **(window)** add display rules for `eat` buffers - ([ab13cf0](https://github.com/abougouffa/minemacs/commit/ab13cf05e2e770856d795b5b404da3a46b2e5a44)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4733701](https://github.com/abougouffa/minemacs/commit/4733701d30d858bce736d4c9117935e8f04f2616)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([c8df722](https://github.com/abougouffa/minemacs/commit/c8df722d6fb5d35f17e00b7949beaa479a376ef7)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a4f023a](https://github.com/abougouffa/minemacs/commit/a4f023a357e4f8ccecfef106fa78d3f44426a971)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([405adfa](https://github.com/abougouffa/minemacs/commit/405adfacb72377c7be2d1710799dc95e847d8a62)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.10.0](https://github.com/abougouffa/minemacs/compare/6bfe727ca6ae30cc32d0b1a50eb20f12bbe62c9a..v13.10.0) - 2025-09-12
 #### Bug Fixes
 - **(eat)** EAT don't like smaller font sizes! - ([a25ddb8](https://github.com/abougouffa/minemacs/commit/a25ddb8bbb8c3604fab7ae10cc97e621b2bb991a)) - [@abougouffa](https://github.com/abougouffa)
