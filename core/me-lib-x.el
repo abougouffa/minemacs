@@ -148,6 +148,13 @@ RECURSIVE is non-nil."
 
 ;;; Diffs and patches
 
+;;;###autoload
+(defun +unresolved-merge-conflict-p ()
+  (save-excursion (goto-char (point-min))
+                  ;; Regexps from `smerge-begin-re' and `smerge-end-re'
+                  (or (re-search-forward "^<<<<<<< \\(.*\\)\n" nil t)
+                      (re-search-forward "^>>>>>>> \\(.*\\)\n" nil t))))
+
 (defvar +apply-patch-dwim-proj-dir nil)
 (defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
 (autoload 'diff-hunk-next "diff-mode")

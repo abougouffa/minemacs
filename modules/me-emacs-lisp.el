@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-07-28
+;; Last modified: 2025-09-16
 
 ;;; Commentary:
 
@@ -31,7 +31,8 @@
   :config
   (cl-callf2 remq 'electric-pair-mode parinfer-rust-troublesome-modes) ; `electric-pair-mode' looks fine!
   (defun +parinfer-rust-mode-maybe ()
-    (when (or parinfer-rust-auto-download (file-exists-p parinfer-rust-library))
+    (when (and (or parinfer-rust-auto-download (file-exists-p parinfer-rust-library))
+               (not (+unresolved-merge-conflict-p)))
       ;; BUG+HACK: Defer calling `parinfer-rust-mode', this should fix the issue
       ;; of unusable `parinfer-rust-mode' until disabled and enabled again
       (run-with-timer
