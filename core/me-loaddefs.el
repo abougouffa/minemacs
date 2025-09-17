@@ -528,6 +528,7 @@ Delete FILENAME and its associated visiting buffer.
 (fn &optional FILENAME)" t)
 (autoload '+copy-current-file-name "me-lib-x" "\
 Save (copy) the file name of this buffer to the kill ring." t)
+(autoload '+unresolved-merge-conflict-p "me-lib-x")
 (autoload '+apply-patch-dwim "me-lib-x" "\
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
@@ -673,8 +674,6 @@ you have `editorconfig' or `dtrt-indent' installed.
 Add the ;;;###autoload to region (BEG . END).
 
 (fn BEG END)" t)
-(autoload '+webjump "me-lib-x" "\
-Like `webjump', with initial query filled from `+region-or-thing-at-point'." t)
 (autoload '+bookmark-set-at-mouse "me-lib-x" "\
 
 
@@ -796,7 +795,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+webjump-read-string-"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -1063,6 +1062,11 @@ Show help for the symbol at point." t)
 (minemacs-register-on-demand-module 'me-systemd :auto-mode `(("\\.nspawn\\'" . systemd-mode) (,(rx (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network") string-end) . systemd-mode) (,(rx ".#" (or (and (+? (any "a-zA-Z0-9-_.@\\")) "." (or "automount" "busname" "mount" "path" "service" "slice" "socket" "swap" "target" "timer" "link" "netdev" "network")) "override.conf") (= 16 (char hex-digit)) string-end) . systemd-mode) (,(rx "/systemd/" (+? anything) ".d/" (+? (not (any 47))) ".conf" string-end) . systemd-mode)))
 
 
+;;; Generated autoloads from extras/me-tab-bar-x.el
+
+(register-definition-prefixes "extras/me-tab-bar-x" '("+tab-bar--set-faces"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-textile.el
 
 (minemacs-register-on-demand-module 'me-textile :auto-mode '(("\\.textile\\'" . textile-mode)))
@@ -1104,6 +1108,15 @@ Show help for the symbol at point." t)
 (register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
 
 
+;;; Generated autoloads from extras/me-vc-x.el
+
+(with-eval-after-load 'vc-git (require 'me-vc-x))
+(keymap-global-set "C-x C-g" '+switch-git-status-buffer)
+(autoload '+switch-git-status-buffer "extras/me-vc-x" "\
+Parse git status from an expanded path and switch to a file.
+The completion candidates include the Git status of each file." t)
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
 
 (minemacs-register-on-demand-module 'me-vimscript :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
@@ -1122,7 +1135,7 @@ Show help for the symbol at point." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-wiki.el
 
-(minemacs-register-on-demand-module 'me-wiki :auto-mode '(("\\.wiki\\'" . wikitext-mode)))
+(minemacs-register-on-demand-module 'me-wiki :auto-mode '(("\\.\\(media\\)?wiki\\'" . mediawiki-file-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
