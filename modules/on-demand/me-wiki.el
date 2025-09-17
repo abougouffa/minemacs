@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-23
-;; Last modified: 2025-03-21
+;; Last modified: 2025-09-17
 
 ;;; Commentary:
 
@@ -12,19 +12,13 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-wiki
-  :auto-mode '(("\\.wiki\\'" . wikitext-mode)))
-
-
-;; Major mode for editing Wikitexts
-(use-package wikitext-mode
-  :straight t
-  :mode "\\.wiki\\'")
+  :auto-mode '(("\\.\\(media\\)?wiki\\'" . mediawiki-file-mode)))
 
 
 ;; MediaWiki frontend
 (use-package mediawiki
   :straight t
-  :commands (mediawiki-mode))
+  :commands (mediawiki-mode mediawiki-file-mode))
 
 
 (provide 'on-demand/me-wiki)
