@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-16
+;; Last modified: 2025-09-17
 
 ;;; Commentary:
 
@@ -121,6 +121,17 @@
   (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
+
+  ;; Save pressing Shift when entering numbers on AZERTY keyboards
+  (with-eval-after-load 'window
+    (keymap-set ctl-x-map "à" #'delete-window)            ; C-x 0
+    (keymap-set ctl-x-map "&" #'delete-other-windows)     ; C-x 1
+    (keymap-set ctl-x-map "é" #'split-window-below)       ; C-x 2
+    (keymap-set ctl-x-map "\"" #'split-window-right)      ; C-x 3
+    (keymap-set ctl-x-map "'" ctl-x-4-map)                ; C-x 4
+    (keymap-set ctl-x-4-map "à" #'kill-buffer-and-window) ; C-x 4 0
+    (keymap-set ctl-x-4-map "&" #'same-window-prefix)     ; C-x 4 1
+    (keymap-set ctl-x-4-map "'" #'other-window-prefix))   ; C-x 4 4
 
   (with-eval-after-load 'prog-mode
     (keymap-set prog-mode-map "C-<down-mouse-1>" #'mouse-drag-region)
