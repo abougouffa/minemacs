@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-16
+;; Last modified: 2025-09-19
 
 ;;; Commentary:
 
@@ -877,10 +877,18 @@ the schema from the file name."
               ((derived-mode-p '(toml-mode toml-ts-mode conf-toml-mode))
                (insert "\"$schema\" = '" url "'\n\n")))))))
 
+(defvar-local +clang-format-config-file nil)
+
+(defun +clang-format-set-config-file (path)
+  "Explicitly set the config file PATH for clang-format."
+  (interactive "fSelect the \".clang-format\" file: ")
+  (setq +clang-format-config-file (expand-file-name path)))
+
 ;;;###autoload
 (defun +clang-format-config-file (&optional dir)
-  (when-let* ((config-dir (locate-dominating-file (or dir default-directory) ".clang-format")))
-    (expand-file-name ".clang-format" config-dir)))
+  (or +clang-format-config-file
+      (when-let* ((config-dir (locate-dominating-file (or dir default-directory) ".clang-format")))
+        (expand-file-name ".clang-format" config-dir))))
 
 (defvar +clang-format-mode-alist
   '(((c-ts-mode) "c" c-ts-mode-indent-offset)
@@ -909,6 +917,11 @@ the schema from the file name."
 (defun +clang-format-get-lang ()
   (alist-get major-mode +clang-format-mode-alist nil nil (+reverse-args #'provided-mode-derived-p)))
 
+(defun +clang-format-get-version ()
+  (when-let* ((ver (string-trim (shell-command-to-string (format "%s --version" +clang-format-command))))
+              ((string-match "[[:digit:]]*\\.[[:digit:]]*\\.[[:digit:]]*" ver)))
+    (match-string 0 ver)))
+
 ;; Helper function to get the style for "clang-format"
 ;;;###autoload
 (defun +clang-format-get-style (&optional no-opt)
@@ -920,7 +933,12 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
             (if (and (+clang-format-config-file)
                      ;; In case of a missing config for the language or a malformed ".clang-format" file
                      (+clang-format-dump-config (car lang)))
-                "file"
+                (concat
+                 "file"
+                 ;; The "file:path/to/config" option is available in version 14+
+                 (when-let* (((version<= "14" (+clang-format-get-version)))
+                             (file (+clang-format-config-file)))
+                   (concat ":" (shell-quote-argument file))))
               (let ((indent-sym (cadr lang)))
                 (format "{IndentWidth: %d, TabWidth: %d}"
                         (or (and indent-sym (symbol-value indent-sym)) standard-indent)
