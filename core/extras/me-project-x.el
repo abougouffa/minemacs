@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-07-14
+;; Last modified: 2025-09-19
 
 ;;; Commentary:
 
@@ -82,6 +82,8 @@
   :type 'boolean)
 
 (defvar +project--caches (make-hash-table :test #'equal))
+(defvar +project--name-caches (make-hash-table :test #'equal))
+(defvar +project--current-caches (make-hash-table :test #'equal))
 
 (defun +fd-ignores-arguments (ignores dir)
   "Like `xref--find-ignores-arguments', but for \"fd\"."
@@ -150,6 +152,28 @@ Can override `project--files-in-directory' for x3.5 faster listing."
             value))
       (funcall find-fn dir ignores files))))
 
+(defun +project--name-cached (orig-fn proj)
+  (if-let* ((root (project-root proj))
+            (root (expand-file-name root)))
+      (if-let* ((val (gethash root +project--name-caches)))
+          val
+        (let ((val (funcall orig-fn proj)))
+          (puthash root val +project--name-caches)
+          val))
+    (funcall orig-fn proj)))
+
+(defun +project--current-cached (orig-fn &optional maybe dir)
+  (if-let* ((dir (or dir project-current-directory-override default-directory))
+            (dir (expand-file-name dir)))
+      (if-let* ((val (gethash dir +project--current-caches)))
+          val
+        (let ((val (funcall orig-fn maybe dir)))
+          (puthash dir val +project--current-caches)
+          val))
+    (funcall orig-fn maybe dir)))
+
+(advice-add 'project-name :around '+project--name-cached)
+(advice-add 'project-current :around '+project--current-cached)
 (advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
 
 (defun +project-clear-cache (all)
@@ -164,7 +188,7 @@ When ALL is non-nil, clear the cache of all projects."
           (progn
             (remhash root +project--caches)
             (message "Cleared cache for %s" root))
-        (when (interactive-p)
+        (when (called-interactively-p 'interactive)
           (user-error "The current project doesn't have any cache"))))))
 
 
