@@ -1103,6 +1103,15 @@ Show help for the symbol at point." t)
 (register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
 
 
+;;; Generated autoloads from extras/me-vc-x.el
+
+(with-eval-after-load 'vc-git (require 'me-vc-x))
+(keymap-global-set "C-x C-g" '+switch-git-status-buffer)
+(autoload '+switch-git-status-buffer "extras/me-vc-x" "\
+Parse git status from an expanded path and switch to a file.
+The completion candidates include the Git status of each file." t)
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-vimscript.el
 
 (minemacs-register-on-demand-module 'me-vimscript :auto-mode '((("\\.vim\\'" "[._]?g?vimrc\\'" "\\.exrc\\'") . vimrc-mode)))
