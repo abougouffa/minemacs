@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-09-04
+;; Last modified: 2025-09-20
 
 ;;; Commentary:
 
@@ -430,6 +430,43 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
       (minemacs-run-build-functions (not (interactive-p))))))
+
+
+
+;;; Memoization
+
+(defvar +memoization-caches nil)
+
+(defmacro +memoize-function (func &rest hash-symbols)
+  "Advice FUNC to cache its return value.
+When HASH-SYMBOLS are provided, append them the FUNC args and evaluate
+them to construct the hashing key."
+  (let ((cache-sym (intern (format "+%s--memoization-cache" (+unquote func))))
+        (advice-sym (intern (format "+%s--memoization-cache-a" (+unquote func))))
+        (func-sym (+unquote func)))
+    `(progn
+       (defvar ,cache-sym (make-hash-table :test #'equal))
+       (add-to-list '+memoization-caches (cons ',func-sym ',cache-sym))
+       (defun ,advice-sym (orig-fn &rest args)
+         (let* ((explicit-hashing-args ',hash-symbols)
+                (args-hash (sha1 (format "%S" (append args (mapcar #'symbol-value explicit-hashing-args))))))
+           (if-let* ((cached-value (gethash args-hash ,cache-sym)))
+               cached-value
+             (let ((value (apply orig-fn args)))
+               (puthash args-hash value ,cache-sym)
+               value))))
+       (advice-add ',(+unquote func-sym) :around ',advice-sym))))
+
+(defun +memoization-clear-cache (all)
+  "Clear memoization caches, when ALL is provided, clean all caches."
+  (interactive "P")
+  (if all
+      (dolist (cache +memoization-caches)
+        (set (cdr cache) (make-hash-table :test #'equal)))
+    (let* ((func (intern (completing-read "Select a memoized function: " (mapcar #'car +memoization-caches) nil t)))
+           (var (alist-get func +memoization-caches)))
+      (set var (make-hash-table :test #'equal))
+      (message "Cleared cache for `%s'" func))))
 
 
 

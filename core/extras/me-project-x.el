@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-09-19
+;; Last modified: 2025-09-20
 
 ;;; Commentary:
 
@@ -16,6 +16,8 @@
 
 ;; Define some `projectile' wrapper functions on top of `project' (required by
 ;; some packages like `fzf', `neotree', `platformio-mode', etc.)
+
+(require 'me-lib)
 
 ;;;###autoload
 (progn
@@ -76,15 +78,6 @@
   :group 'minemacs-project
   :type 'boolean)
 
-(defcustom +project-cache-project-files t
-  "Cache project files when using the generic fd/find backend."
-  :group 'minemacs-project
-  :type 'boolean)
-
-(defvar +project--caches (make-hash-table :test #'equal))
-(defvar +project--name-caches (make-hash-table :test #'equal))
-(defvar +project--current-caches (make-hash-table :test #'equal))
-
 (defun +fd-ignores-arguments (ignores dir)
   "Like `xref--find-ignores-arguments', but for \"fd\"."
   (cl-assert (not (string-match-p "\\`~" dir)))
@@ -141,55 +134,17 @@ Can override `project--files-in-directory' for x3.5 faster listing."
                             (seq-some (+apply-partially-right #'executable-find remote)
                                       (seq-uniq `(,+fd-program "fd" "fdfind"))))))
         (find-fn (if +fd-program #'+fd-files-in-directory orig-fn)))
-    (if (and +project-cache-project-files (not files))
-        (if-let* ((cached-value (gethash dir +project--caches)))
-            (progn
-              (+log! "Reusing cached files list for %S" dir)
-              cached-value)
-          (+log! "Caching files list for %S" dir)
-          (let ((value (funcall find-fn dir ignores files)))
-            (puthash dir value +project--caches)
-            value))
-      (funcall find-fn dir ignores files))))
+    (funcall find-fn dir ignores files)))
 
-(defun +project--name-cached (orig-fn proj)
-  (if-let* ((root (project-root proj))
-            (root (expand-file-name root)))
-      (if-let* ((val (gethash root +project--name-caches)))
-          val
-        (let ((val (funcall orig-fn proj)))
-          (puthash root val +project--name-caches)
-          val))
-    (funcall orig-fn proj)))
-
-(defun +project--current-cached (orig-fn &optional maybe dir)
-  (if-let* ((dir (or dir project-current-directory-override default-directory))
-            (dir (expand-file-name dir)))
-      (if-let* ((val (gethash dir +project--current-caches)))
-          val
-        (let ((val (funcall orig-fn maybe dir)))
-          (puthash dir val +project--current-caches)
-          val))
-    (funcall orig-fn maybe dir)))
-
-(advice-add 'project-name :around '+project--name-cached)
-(advice-add 'project-current :around '+project--current-cached)
 (advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
 
-(defun +project-clear-cache (all)
-  "Clear project's files cache.
-When ALL is non-nil, clear the cache of all projects."
-  (interactive "P")
-  (if all
-      (setq +project--caches (make-hash-table :test #'equal))
-    (let* ((proj (project-current t))
-           (root (project-root proj)))
-      (if (gethash root +project--caches)
-          (progn
-            (remhash root +project--caches)
-            (message "Cleared cache for %s" root))
-        (when (called-interactively-p 'interactive)
-          (user-error "The current project doesn't have any cache"))))))
+
+
+;;; Memoization
+
+(+memoize-function project--value-in-dir)
+(+memoize-function project--files-in-directory)
+(+memoize-function project-current project-current-directory-override default-directory)
 
 
 (provide 'me-project-x)
