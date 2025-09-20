@@ -32,6 +32,17 @@
   "Custom modeline that is stylistically close to the default."
   :group 'mode-line)
 
+(defvar-local minemacs-modeline-disabled-sections nil)
+
+(defmacro minemacs-modeline-define-section (name &rest body)
+  "Define section NAME with BODY in the :eval part."
+  (declare (indent 1))
+  (let ((var-sym (intern (format "minemacs-modeline-%s" (+unquote name)))))
+    `(progn
+       (defvar ,var-sym
+         '(:eval (when (not (memq ',(+unquote name) minemacs-modeline-disabled-sections)) ,@body)))
+       (put ',var-sym 'risky-local-variable t))))
+
 ;;; Faces
 
 (defface minemacs-modeline-inverse-video-face '((t (:inverse-video t)))
@@ -40,118 +51,110 @@
 
 ;;; Keyboard macro indicator
 
-(defvar-local minemacs-modeline-kbd-macro
-  '(:eval
-    (when (and (mode-line-window-selected-p) defining-kbd-macro
-               (not (bound-and-true-p kmacro-x-mc-mode))) ;; `kmacro-x-mc' is handled as multiple cursors
-      (concat " " (minemacs-modeline--icon "nf-md-record_rec")))))
+(minemacs-modeline-define-section kbd-macro
+  (when (and (mode-line-window-selected-p) defining-kbd-macro
+             (not (bound-and-true-p kmacro-x-mc-mode))) ;; `kmacro-x-mc' is handled as multiple cursors
+    (concat " " (minemacs-modeline--icon "nf-md-record_rec"))))
 
 ;;; Narrow indicator
 
-(defvar-local minemacs-modeline-narrow
-  '(:eval
-    (when (and (mode-line-window-selected-p)
-               (buffer-narrowed-p)
-               (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode 'archive-mode)))
-      (concat " " (minemacs-modeline--icon "nf-md-arrow_collapse_vertical")))))
+(minemacs-modeline-define-section narrow
+  (when (and (mode-line-window-selected-p)
+             (buffer-narrowed-p)
+             (not (derived-mode-p 'Info-mode 'help-mode 'special-mode 'message-mode 'archive-mode)))
+    (concat " " (minemacs-modeline--icon "nf-md-arrow_collapse_vertical"))))
 
-(defvar-local minemacs-modeline-multiple-cursors
-  '(:eval
-    (when-let* ((count-face
-                 (cond ((and (or (bound-and-true-p iedit-mode) (bound-and-true-p iedit-rectangle-mode))
-                             (bound-and-true-p iedit-occurrences-overlays))
-                        (cons (length iedit-occurrences-overlays) 'nerd-icons-purple))
-                       ((bound-and-true-p iedit-rectangle-mode) (bound-and-true-p iedit-occurrences-overlays))
-                       ((bound-and-true-p kmacro-x-mc-mode)
-                        (cons (length kmacro-x-mc-cursors) 'nerd-icons-red))
-                       ((bound-and-true-p multiple-cursors-mode)
-                        (cons (mc/num-cursors) 'nerd-icons-blue)))))
-      (propertize (concat " " (minemacs-modeline--icon "nf-fa-i_cursor") (format " %d " (car count-face)))
-                  'face `(,(cdr count-face) minemacs-modeline-inverse-video-face)))))
+(minemacs-modeline-define-section multiple-cursors
+  (when-let* ((count-face
+               (cond ((and (or (bound-and-true-p iedit-mode) (bound-and-true-p iedit-rectangle-mode))
+                           (bound-and-true-p iedit-occurrences-overlays))
+                      (cons (length iedit-occurrences-overlays) 'nerd-icons-purple))
+                     ((bound-and-true-p iedit-rectangle-mode) (bound-and-true-p iedit-occurrences-overlays))
+                     ((bound-and-true-p kmacro-x-mc-mode)
+                      (cons (length kmacro-x-mc-cursors) 'nerd-icons-red))
+                     ((bound-and-true-p multiple-cursors-mode)
+                      (cons (mc/num-cursors) 'nerd-icons-blue)))))
+    (propertize (concat " " (minemacs-modeline--icon "nf-fa-i_cursor") (format " %d " (car count-face)))
+                'face `(,(cdr count-face) minemacs-modeline-inverse-video-face))))
 
 ;;; Input method
 
-(defvar-local minemacs-modeline-input-method
-  '(:eval
-    (when current-input-method-title
-      (propertize (format " %s " current-input-method-title)
-                  'face '(nerd-icons-green minemacs-modeline-inverse-video-face)
-                  'mouse-face 'mode-line-highlight))))
+(minemacs-modeline-define-section input-method
+  (when current-input-method-title
+    (propertize (format " %s " current-input-method-title)
+                'face '(nerd-icons-green minemacs-modeline-inverse-video-face)
+                'mouse-face 'mode-line-highlight)))
 
 ;;; Buffer status
 
-(defvar-local minemacs-modeline-buffer-status
-  '(:eval
-    (concat
-     (when overwrite-mode
-       (concat " " (minemacs-modeline--icon "nf-fa-pencil" :face 'nerd-icons-red)))
-     (when-let* ((method (file-remote-p default-directory 'method))
-                 (icon-face
-                  (pcase method
-                    ("ssh" "nf-md-ssh")
-                    ("adb" "nf-dev-android")
-                    ("mtp" "nf-fa-mobile_phone")
-                    ("gdrive" "nf-fa-google")
-                    ("davs" "nf-fa-globe")
-                    ("nextcloud" "nf-fa-cloud")
-                    ("kubernetes" "nf-dev-kubernetes")
-                    ((rx (or "docker" "dockercp")) "nf-fa-docker")
-                    ((rx (or "podman" "podmancp")) "nf-dev-podman")
-                    ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
-                    (t "nf-md-folder_network_outline")))
-                 (icon (if (consp icon-face) (car icon-face) icon-face))
-                 (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-       (concat " " (minemacs-modeline--icon icon :face face))))))
+(minemacs-modeline-define-section buffer-status
+  (concat
+   (when overwrite-mode
+     (concat " " (minemacs-modeline--icon "nf-fa-pencil" :face 'nerd-icons-red)))
+   (when-let* ((method (file-remote-p default-directory 'method))
+               (icon-face
+                (pcase method
+                  ("ssh" "nf-md-ssh")
+                  ("adb" "nf-dev-android")
+                  ("mtp" "nf-fa-mobile_phone")
+                  ("gdrive" "nf-fa-google")
+                  ("davs" "nf-fa-globe")
+                  ("nextcloud" "nf-fa-cloud")
+                  ("kubernetes" "nf-dev-kubernetes")
+                  ((rx (or "docker" "dockercp")) "nf-fa-docker")
+                  ((rx (or "podman" "podmancp")) "nf-dev-podman")
+                  ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
+                  (t "nf-md-folder_network_outline")))
+               (icon (if (consp icon-face) (car icon-face) icon-face))
+               (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
+     (concat " " (minemacs-modeline--icon icon :face face)))))
 
 ;;; Dedicated window
 
-(defvar-local minemacs-modeline-window-dedicated-status
-  '(:eval (when (window-dedicated-p) (concat " " (minemacs-modeline--icon "nf-oct-pin" :face 'nerd-icons-dred)))))
+(minemacs-modeline-define-section window-dedicated-status
+  (when (window-dedicated-p) (concat " " (minemacs-modeline--icon "nf-oct-pin" :face 'nerd-icons-dred))))
 
 ;;; Buffer name and modified status
 
-(defvar-local minemacs-modeline-buffer-identification
-  '(:eval
-    (concat (and buffer-read-only (concat (minemacs-modeline--icon "nf-fa-lock") " "))
-            (propertize
-             (buffer-name)
-             'face (let ((file (buffer-file-name)))
-                     (cond ((and (mode-line-window-selected-p) file (buffer-modified-p)) '(error italic mode-line-buffer-id))
-                           ((and file (buffer-modified-p)) 'italic)
-                           ((mode-line-window-selected-p) 'mode-line-buffer-id)))
-             'mouse-face 'mode-line-highlight
-             'help-echo (concat
-                         (propertize (buffer-name) 'face 'mode-line-buffer-id) "\n"
-                         (propertize
-                          (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
-                          'face 'font-lock-doc-face))))))
+(minemacs-modeline-define-section buffer-identification
+  (concat (and buffer-read-only (concat (minemacs-modeline--icon "nf-fa-lock") " "))
+          (propertize
+           (buffer-name)
+           'face (let ((file (buffer-file-name)))
+                   (cond ((and (mode-line-window-selected-p) file (buffer-modified-p)) '(error italic mode-line-buffer-id))
+                         ((and file (buffer-modified-p)) 'italic)
+                         ((mode-line-window-selected-p) 'mode-line-buffer-id)))
+           'mouse-face 'mode-line-highlight
+           'help-echo (concat
+                       (propertize (buffer-name) 'face 'mode-line-buffer-id) "\n"
+                       (propertize
+                        (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
+                        'face 'font-lock-doc-face)))))
 
-(defvar-local minemacs-modeline-project
-  '(:eval
-    (when-let* ((fname (or (buffer-file-name) default-directory))
-                ((not (file-remote-p fname)))
-                (proj (project-current))
-                (name (project-name proj)))
-      (concat
-       " "
-       (propertize
-        (concat " " name " ")
-        'face `(,(if (mode-line-window-selected-p) '(mode-line-buffer-id)) minemacs-modeline-inverse-video-face)
-        'mouse-face 'mode-line-highlight
-        'help-echo (propertize (concat "Project root: " (project-root proj)) 'face 'font-lock-doc-face))
-       " "))))
+(minemacs-modeline-define-section project
+  (when-let* ((fname (or (buffer-file-name) default-directory))
+              ((not (file-remote-p fname)))
+              (proj (project-current))
+              (name (project-name proj)))
+    (concat
+     " "
+     (propertize
+      (concat " " name " ")
+      'face `(,(if (mode-line-window-selected-p) '(mode-line-buffer-id)) minemacs-modeline-inverse-video-face)
+      'mouse-face 'mode-line-highlight
+      'help-echo (propertize (concat "Project root: " (project-root proj)) 'face 'font-lock-doc-face))
+     " ")))
 
 ;;; Major mode
 
-(defvar-local minemacs-modeline-major-mode-icon
-  '(:eval
-    (cond ((buffer-file-name)
-           (nerd-icons-icon-for-file (buffer-file-name)))
-          ((and (bound-and-true-p dired-mode) dired-directory)
-           (nerd-icons-icon-for-dir dired-directory))
-          (t (nerd-icons-icon-for-mode major-mode)))))
+(minemacs-modeline-define-section major-mode-icon
+  (cond ((buffer-file-name)
+         (nerd-icons-icon-for-file (buffer-file-name)))
+        ((and (bound-and-true-p dired-mode) dired-directory)
+         (nerd-icons-icon-for-dir dired-directory))
+        (t (nerd-icons-icon-for-mode major-mode))))
 
-(defvar-local minemacs-modeline-process
+(minemacs-modeline-define-section process
   (list '("" mode-line-process)))
 
 ;;; Git branch and diffstat
@@ -173,29 +176,28 @@
     (locked . vc-locked-state)
     (up-to-date . vc-up-to-date-state)))
 
-(defvar-local minemacs-modeline-vc-branch
-  '(:eval
-    (when-let* (((mode-line-window-selected-p))
-                (file (or buffer-file-name default-directory))
-                ((not (file-remote-p file))) ;; Can be too slow for remote files
-                (backend (or (vc-backend file) 'Git))
-                (file-state (vc-state file backend))
-                (face (alist-get file-state minemacs-modeline--vc-faces 'vc-up-to-date-state))
-                (rev (vc-working-revision file backend))
-                (branch (or (vc-git--symbolic-ref file) (substring rev 0 7)))
-                (help-echo-msg (format "Branch: %s\nRevision: %s\nmouse-1: `vc-diff', diff the current file\nmouse-3: `vc-root-diff', diff all project files" branch rev))
-                (branch-trim (if-let* ((len (length branch))
-                                       ((> len 15)))
-                                 (concat "··" (substring branch (- len 15) len))
-                               branch)))
-      (concat
-       (minemacs-modeline--icon "nf-fa-code_branch" :face 'shadow)
-       " "
-       (propertize branch-trim
-                   'face face
-                   'mouse-face 'mode-line-highlight
-                   'help-echo help-echo-msg
-                   'local-map minemacs-modeline-vc-map)))))
+(minemacs-modeline-define-section vc-branch
+  (when-let* (((mode-line-window-selected-p))
+              (file (or buffer-file-name default-directory))
+              ((not (file-remote-p file))) ;; Can be too slow for remote files
+              (backend (or (vc-backend file) 'Git))
+              (file-state (vc-state file backend))
+              (face (alist-get file-state minemacs-modeline--vc-faces 'vc-up-to-date-state))
+              (rev (vc-working-revision file backend))
+              (branch (or (vc-git--symbolic-ref file) (substring rev 0 7)))
+              (help-echo-msg (format "Branch: %s\nRevision: %s\nmouse-1: `vc-diff', diff the current file\nmouse-3: `vc-root-diff', diff all project files" branch rev))
+              (branch-trim (if-let* ((len (length branch))
+                                     ((> len 15)))
+                               (concat "··" (substring branch (- len 15) len))
+                             branch)))
+    (concat
+     (minemacs-modeline--icon "nf-fa-code_branch" :face 'shadow)
+     " "
+     (propertize branch-trim
+                 'face face
+                 'mouse-face 'mode-line-highlight
+                 'help-echo help-echo-msg
+                 'local-map minemacs-modeline-vc-map))))
 
 ;;; Flymake errors, warnings, notes
 
@@ -237,13 +239,12 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (minemacs-modeline-flymake-type warning "nf-cod-warning" nerd-icons-orange)
 (minemacs-modeline-flymake-type note "nf-cod-info" nerd-icons-green)
 
-(defvar-local minemacs-modeline-flymake
-  `(:eval
-    (when (and (mode-line-window-selected-p) (bound-and-true-p flymake-mode))
-      (list ; See the calls to the macro `minemacs-modeline-flymake-type'
-       '(:eval (minemacs-modeline-flymake-error))
-       '(:eval (minemacs-modeline-flymake-warning))
-       '(:eval (minemacs-modeline-flymake-note))))))
+(minemacs-modeline-define-section flymake
+  (when (and (mode-line-window-selected-p) (bound-and-true-p flymake-mode))
+    (list ; See the calls to the macro `minemacs-modeline-flymake-type'
+     '(:eval (minemacs-modeline-flymake-error))
+     '(:eval (minemacs-modeline-flymake-warning))
+     '(:eval (minemacs-modeline-flymake-note)))))
 
 ;;; Eglot
 
@@ -251,20 +252,17 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
   (setq mode-line-misc-info
         (delete '(eglot--managed-mode (" [" eglot--mode-line-format "] ")) mode-line-misc-info)))
 
-(defvar-local minemacs-modeline-eglot
-  `(:eval
-    (when (and (mode-line-window-selected-p) (featurep 'eglot))
-      '(eglot--managed-mode eglot--mode-line-format))))
-
+(minemacs-modeline-define-section eglot
+  (when (and (mode-line-window-selected-p) (featurep 'eglot))
+    '(eglot--managed-mode eglot--mode-line-format)))
 
 ;;; Compilation
 
-(defvar-local minemacs-modeline-compile
-  `(:eval
-    (when (and (mode-line-window-selected-p) (bound-and-true-p compilation-in-progress))
-      (propertize (minemacs-modeline--icon "nf-fa-hammer" :face 'nerd-icons-red)
-                  'mouse-face 'mode-line-highlight
-                  'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n")))))
+(minemacs-modeline-define-section compile
+  (when (and (mode-line-window-selected-p) (bound-and-true-p compilation-in-progress))
+    (propertize (minemacs-modeline--icon "nf-fa-hammer" :face 'nerd-icons-red)
+                'mouse-face 'mode-line-highlight
+                'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n"))))
 
 ;;; `dired-rsync'
 
@@ -275,41 +273,19 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                                                  (pop-to-buffer (process-buffer proc)))))
     map))
 
-(defvar-local minemacs-modeline-dired-rsync
-  `(:eval
-    (when-let* ((proc (get-process "*rsync*")))
-      (propertize (minemacs-modeline--icon "nf-oct-sync" :face 'nerd-icons-blue)
-                  'mouse-face 'mode-line-highlight
-                  'help-echo (buffer-name (process-buffer proc))
-                  'local-map minemacs-modeline-dired-rsync-map))))
+(minemacs-modeline-define-section dired-rsync
+  (when-let* ((proc (get-process "*rsync*")))
+    (propertize (minemacs-modeline--icon "nf-oct-sync" :face 'nerd-icons-blue)
+                'mouse-face 'mode-line-highlight
+                'help-echo (buffer-name (process-buffer proc))
+                'local-map minemacs-modeline-dired-rsync-map)))
 
 ;;; Miscellaneous
 
-(defvar-local minemacs-modeline-misc-info
-  '(:eval
-    (when (mode-line-window-selected-p) mode-line-misc-info)))
+(minemacs-modeline-define-section misc-info
+  (when (mode-line-window-selected-p) mode-line-misc-info))
 
-;;; Risky local variables
-
-;; The `risky-local-variable' is critical, as those variables will not work
-;; without it.
-(dolist (construct '(minemacs-modeline-kbd-macro
-                     minemacs-modeline-narrow
-                     minemacs-modeline-input-method
-                     minemacs-modeline-buffer-status
-                     minemacs-modeline-multiple-cursors
-                     minemacs-modeline-window-dedicated-status
-                     minemacs-modeline-buffer-identification
-                     minemacs-modeline-project
-                     minemacs-modeline-major-mode-icon
-                     minemacs-modeline-process
-                     minemacs-modeline-vc-branch
-                     minemacs-modeline-flymake
-                     minemacs-modeline-eglot
-                     minemacs-modeline-compile
-                     minemacs-modeline-dired-rsync
-                     minemacs-modeline-misc-info))
-  (put construct 'risky-local-variable t))
+;;; Mode
 
 (defvar minemacs-modeline--mode-line-format-orig nil)
 
