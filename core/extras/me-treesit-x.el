@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-09-15
+;; Last modified: 2025-09-24
 
 ;;; Commentary:
 
@@ -28,6 +28,7 @@
 
 (cl-callf append treesit-language-source-alist
   '((xml "https://github.com/tree-sitter-grammars/tree-sitter-xml")
+    (tcl "https://github.com/tree-sitter-grammars/tree-sitter-tcl")
     (hurl "https://github.com/pfeiferj/tree-sitter-hurl")
     (latex "https://github.com/latex-lsp/tree-sitter-latex")
     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
@@ -47,7 +48,7 @@
 
 (defun +treesit-get-lang (mode)
   (or (alist-get mode +treesit-mode-lang)
-      (intern (string-remove-suffix "-mode" (symbol-name mode)))))
+      (intern (string-remove-suffix "-ts" (string-remove-suffix "-mode" (symbol-name mode))))))
 
 (defun +treesit-create-parser-in-buffer (&optional buffer)
   "Create a `treesit' grammar in BUFFER even if the mode isn't a ts-mode."
