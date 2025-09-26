@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-17
+;; Last modified: 2025-09-26
 
 ;;; Commentary:
 
@@ -167,7 +167,7 @@
   (defun +face--subtle-trailing-whitespace-h (&rest _args)
     (with-eval-after-load 'faces
       (when (display-graphic-p)
-        (when-let* ((new-color (+color-subtle 'error 50)))
+        (when-let* ((new-color (+color-subtle 'trailing-whitespace 50)))
           (set-face-background 'trailing-whitespace new-color)))))
 
   (dolist (hook '(enable-theme-functions disable-theme-functions server-after-make-frame-hook))
