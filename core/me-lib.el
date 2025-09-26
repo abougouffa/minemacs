@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-09-20
+;; Last modified: 2025-09-26
 
 ;;; Commentary:
 
@@ -437,9 +437,9 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
 
 (defvar +memoization-caches nil)
 
-(defmacro +memoize-function (func &rest hash-symbols)
+(defmacro +memoize-function (func &rest hash-sexps)
   "Advice FUNC to cache its return value.
-When HASH-SYMBOLS are provided, append them the FUNC args and evaluate
+When HASH-SEXPS are provided, append them the FUNC args and evaluate
 them to construct the hashing key."
   (let ((cache-sym (intern (format "+%s--memoization-cache" (+unquote func))))
         (advice-sym (intern (format "+%s--memoization-cache-a" (+unquote func))))
@@ -448,8 +448,8 @@ them to construct the hashing key."
        (defvar ,cache-sym (make-hash-table :test #'equal))
        (add-to-list '+memoization-caches (cons ',func-sym ',cache-sym))
        (defun ,advice-sym (orig-fn &rest args)
-         (let* ((explicit-hashing-args ',hash-symbols)
-                (args-hash (sha1 (format "%S" (append args (mapcar #'symbol-value explicit-hashing-args))))))
+         (let* ((explicit-hashing-args ',hash-sexps)
+                (args-hash (sha1 (format "%S" (append args (mapcar #'eval explicit-hashing-args))))))
            (if-let* ((cached-value (gethash args-hash ,cache-sym)))
                cached-value
              (let ((value (apply orig-fn args)))
