@@ -838,9 +838,7 @@ Typing these will trigger reindentation of the current line.")
   :init
   (when (fboundp 'whitespace-page-delimiters-mode) ; Emacs 31+
     (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
-      (add-hook hook #'whitespace-page-delimiters-mode)))
-  :custom
-  (whitespace-action '(cleanup auto-cleanup))) ; Default behavior for `whitespace-cleanup'
+      (add-hook hook #'whitespace-page-delimiters-mode))))
 
 (use-package autorevert
   :hook (minemacs-first-file . global-auto-revert-mode) ; Auto load files changed on disk
