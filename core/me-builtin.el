@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-26
+;; Last modified: 2025-09-28
 
 ;;; Commentary:
 
@@ -428,14 +428,6 @@
   :custom
   (c-ts-mode-indent-style 'k&r)
   (c-ts-mode-enable-doxygen t))
-
-(use-package semantic
-  :config
-  (with-eval-after-load 'semantic/symref/grep
-    ;; Register file patterns for `c-ts-mode' and `c++-ts-mode'
-    (cl-callf append semantic-symref-filepattern-alist
-      `((c-ts-mode ,@(alist-get 'c-mode semantic-symref-filepattern-alist))
-        (c++-ts-mode ,@(alist-get 'c++-mode semantic-symref-filepattern-alist))))))
 
 (use-package python
   :custom
