@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-19
+;; Last modified: 2025-09-28
 
 ;;; Commentary:
 
@@ -1030,40 +1030,34 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
           (throw 'found entry))))))
 
 ;;;###autoload
-(defun +cmd-split-rm-single (cmd flag &optional test)
-  "Remove a single FLAG from CMD.  Test according to TEST."
-  (mapconcat #'identity (cl-remove flag (split-string cmd) :test (or test #'string=)) " "))
+(defun +args-rm-double (args &rest flags)
+  "Remove FLAGS and subsequent arg from ARGS."
+  (let (out)
+    (while args
+      (let ((arg (car args)))
+        (setq args (cdr args))
+        (if (member arg flags)
+            (setq args (cddr args))
+          (push arg out))))
+    (nreverse out)))
 
 ;;;###autoload
-(defun +cmd-split-rm-double (cmd flag)
-  "Remove a FLAG and subsequent arg from CMD."
-  (cl-loop while split with split = (split-string cmd)
-           for i from 0
-           for probe = (car split)
-           if (string= probe flag) do (setq split (cddr split))
-           else
-           concat (and (cl-plusp i) " ")
-           and concat probe and do (setq split (cdr split))))
-
-;;;###autoload
-(defun +guess-args-from-compilation-db (file-name)
-  (when-let* ((ccj (+compilation-db-get-entry file-name))
-              (cmd (or (ensure-list (plist-get ccj :command))
-                       (butlast (plist-get ccj :arguments))))
-              (cmd (string-join cmd " "))
-              (cmd (+cmd-split-rm-double cmd "-o"))
-              (cmd (+cmd-split-rm-double cmd "-c"))
-              (cmd (+cmd-split-rm-single cmd "-flto" #'string-prefix-p)))
+(defun +guess-args-from-compilation-db (&optional file-name)
+  (when-let* ((file-name (or file-name (buffer-file-name (buffer-base-buffer))))
+              (ccj (+compilation-db-get-entry file-name))
+              (cmd (or (plist-get ccj :arguments) (plist-get ccj :command)))
+              (cmd (if (stringp cmd) (split-string-shell-command cmd) cmd))
+              (cmd (+args-rm-double cmd "-o" "-c"))
+              (cmd (cl-remove "-flto" cmd :test #'string-prefix-p)))
     (cons (plist-get ccj :directory) cmd)))
 
 ;;;###autoload
 (defun +hide-ifdef-get-env-from-compilation-db ()
   "Integrate `hideif' with \"compile_commands.json\"."
-  (when-let* ((entry (+compilation-db-get-entry (buffer-file-name)))
-              (command (plist-get entry :command)))
-    (dolist (str (string-split command))
-      (when-let* (((string-prefix-p "-D" str))
-                  (def-val (string-split (substring str 2) "=")))
+  (when-let* ((args (+guess-args-from-compilation-db)))
+    (dolist (arg args)
+      (when-let* (((string-prefix-p "-D" arg))
+                  (def-val (string-split (substring arg 2) "=")))
         (hif-set-var
          (intern (car def-val))
          (or (when-let* ((val (cadr def-val)))
