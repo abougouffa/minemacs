@@ -75,11 +75,6 @@
   (magit-gerrit-popup-prefix "_"))
 
 
-;; Gerrit integration via the REST API
-(use-package gerrit
-  :straight (:host github :repo "twmr/gerrit.el"))
-
-
 ;; Store EIEIO objects using EmacSQL
 (use-package closql
   :straight t)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-11
-;; Last modified: 2025-07-10
+;; Last modified: 2025-10-08
 
 ;;; Commentary:
 
@@ -30,14 +30,14 @@
       (concat "Basic " (base64-encode-string (concat user ":" (funcall token)))))))
 
 
-;; Gerrit integration from ChromiumOS development utils
+;; Gerrit integration via the REST API
 (use-package gerrit
-  :straight (chromiumos-dev-utils :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*")))
+  :straight (:host github :repo "twmr/gerrit.el"))
 
 
 ;; Transient menus to use some "repo" commands within Magit
 (use-package repo-transient
-  :straight chromiumos-dev-utils
+  :straight (chromiumos-dev-utils :type git :repo "https://chromium.googlesource.com/chromiumos/platform/dev-util" :files ("contrib/emacs/gerrit/*"))
   :commands (repo-main-menu))
 
 
