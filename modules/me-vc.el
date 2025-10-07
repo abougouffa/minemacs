@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-09-24
+;; Last modified: 2025-10-08
 
 ;;; Commentary:
 
@@ -44,11 +44,6 @@
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
   :init
   (global-git-commit-mode 1))
-
-
-;; Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
-(use-package magit-todos
-  :straight t)
 
 
 ;; Magit extension for "git-imerge"
