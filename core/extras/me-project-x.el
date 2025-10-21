@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-09-20
+;; Last modified: 2025-10-21
 
 ;;; Commentary:
 
@@ -145,6 +145,14 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 (+memoize-function project--value-in-dir)
 (+memoize-function project--files-in-directory)
 (+memoize-function project-current project-current-directory-override default-directory)
+
+;;; Fixes
+
+;; When opening a project via Tramp, calling this can trigger "File is missing: /ssh:.../.gitmodules"
+(advice-add
+ 'project--git-submodules :around
+ (satch-defun +project--git-submodules-check-file:around-a (fn)
+   (when (file-exists-p ".gitmodules") (funcall fn))))
 
 
 (provide 'me-project-x)
