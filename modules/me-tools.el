@@ -80,21 +80,6 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   (add-to-list 'with-editor-envvars "JJ_EDITOR")) ; Add support for Jujutsu (`jj')
 
 
-;; Buffer-local "direnv" integration for Emacs
-(use-package envrc
-  :straight t
-  :hook (minemacs-first-file . envrc-global-mode)
-  :when (and (not (featurep 'os/win)) (executable-find "direnv"))
-  :custom
-  (envrc-debug minemacs-debug-p)
-  (envrc-remote t)
-  (envrc-supported-tramp-methods '("ssh" "docker"))
-  :config
-  (keymap-set minemacs-open-thing-map "v" envrc-command-map)
-  (with-eval-after-load 'ob ; Ensure loading envrc for babel source blocks
-    (advice-add #'org-babel-execute-src-block :around #'envrc-propagate-environment)))
-
-
 ;; Python Executable Tracker
 (use-package pet
   :straight t
