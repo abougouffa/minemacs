@@ -23,24 +23,6 @@
   (ssh-deploy-revision-folder (concat minemacs-cache-dir "ssh-deploy-revisions/")))
 
 
-;; TRAMP integration for Incus containers
-(use-package incus-tramp
-  :straight t
-  :after tramp
-  :init
-  (incus-tramp-add-method))
-
-
-;; TRAMP integration for LXC containers
-(use-package lxc-tramp
-  :straight t)
-
-
-;; TRAMP integration for LXD containers
-(use-package lxd-tramp
-  :straight t)
-
-
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
   :straight (eat :type git
