@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-09-12
+;; Last modified: 2025-10-23
 
 ;;; Commentary:
 
@@ -138,8 +138,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   ;; `file-attributes' doesn't support my "adb" for now.
   (defun +pet-mode-maybe ()
     (when-let* ((path (or (buffer-file-name (or (buffer-base-buffer) (current-buffer))) default-directory))
-                ((or (not (equal "adb" (file-remote-p path 'method)))
-                     (file-attributes path))))
+                ((not (file-remote-p path))))
       (pet-mode 1)))
 
   ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
