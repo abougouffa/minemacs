@@ -78,7 +78,6 @@
 ## `me-embedded`
 * `embed`: Emacs package with utilities for embedded development with OpenOCD
 * `bitbake`: A set of Emacs modes for various Yocto/Bitbake file formats
-* `bitbake-ts-mode`: A `treesit`-based Bitbake major mode
 
 ## `me-experimental`
 * `lspce`: LSP Client for Emacs implemented as a module using Rust
@@ -144,11 +143,9 @@
 * `citar-embark`: Citar integration with Embark
 
 ## `me-prog`
-* `eglot-booster`: Boost `eglot` using `emacs-lsp-booster` (github.com/blahgeek/emacs-lsp-booster)
 * `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
-* `xref-union`: Combine multiple Xref backends
 * `hl-todo`: Highlight TODO keywords
 * `macrostep`: Interactive macro-expander for Emacs Lisp and C
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
@@ -191,17 +188,12 @@
 * `call-graph`: Generate call graph for C/C++ functions
 
 ## `me-tools`
-* `ssh-deploy`: A deployment plugin via Tramp for Emacs
-* `incus-tramp`: TRAMP integration for Incus containers
-* `lxc-tramp`: TRAMP integration for LXC containers
-* `lxd-tramp`: TRAMP integration for LXD containers
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `app-launcher`: Launch system applications from Emacs
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
-* `envrc`: Buffer-local "direnv" integration for Emacs
 * `pet`: Python Executable Tracker
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
 
@@ -209,6 +201,7 @@
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
 * `doric-themes`: Highly legible minimalist themes with precise typography
+* `vim-tab-bar`: Vim-like tab bar
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
 * `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
@@ -224,12 +217,9 @@
 ## `me-vc`
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
 * `git-commit`: Edit Git commit messages - part of `magit`
-* `magit-todos`: Show source files' TODOs (and FIXMEs, etc) in Magit status buffer
 * `magit-imerge`: Magit extension for "git-imerge"
-* `multi-magit`: A set of extensions for `magit` to handle multiple repositories simultaneously
 * `magit-delta`: Use delta when viewing diffs in `magit`
 * `magit-gerrit`: Gerrit integration with Magit
-* `gerrit`: Gerrit integration via the REST API
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
@@ -676,7 +666,6 @@
 * `flymake-biome`: Flymake integration for checking JavaScript files using `biome`
 
 ## `on-demand/me-wiki`
-* `wikitext-mode`: Major mode for editing Wikitexts
 * `mediawiki`: MediaWiki frontend
 
 ## `on-demand/me-yaml`

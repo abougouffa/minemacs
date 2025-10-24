@@ -251,10 +251,6 @@ List of files to ignore in "fd".
 
 Whether to use fd (if found) on remote machines' projects or not.
 
-#### `+project-cache-project-files`
-
-Cache project files when using the generic fd/find backend.
-
 #### `+mpv-command`
 
 The MPV command.
@@ -459,6 +455,16 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
+
+#### `(+memoize-function FUNC &rest HASH-SEXPS)` (macro)
+
+Advice FUNC to cache its return value.
+When HASH-SEXPS are provided, append them the FUNC args and evaluate
+them to construct the hashing key.
+
+#### `(+memoization-clear-cache ALL)`
+
+Clear memoization caches, when ALL is provided, clean all caches.
 
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
@@ -824,14 +830,6 @@ Go to line N, like `goto-line` but for Lisp code.
 
 Add the ;;;###autoload to region (BEG . END).
 
-#### `(+webjump-read-string-with-initial-query PROMPT)`
-
-To be used as a replacement for `webjump-read-string`, PROMPT.
-
-#### `(+webjump)`
-
-Like `webjump`, with initial query filled from `+region-or-thing-at-point`.
-
 #### `(+eglot-ccls-inheritance-hierarchy &optional DERIVED)`
 
 Show inheritance hierarchy for the thing at point.
@@ -870,6 +868,10 @@ Insert a schema for the current buffer's file (YAML or TOML).
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
+#### `(+clang-format-set-config-file PATH)`
+
+Explicitly set the config file PATH for clang-format.
+
 #### `(+clang-format-dump-config &optional EXTENSION)`
 
 Dump config for the current buffer assuming a file with EXTENSION.
@@ -887,13 +889,9 @@ Set some editor settings from ".clang-format" when available.
 
 Get the  "compile_commands.json" for project at PROJ-ROOT as a plist.
 
-#### `(+cmd-split-rm-single CMD FLAG &optional TEST)`
+#### `(+args-rm-double ARGS &rest FLAGS)`
 
-Remove a single FLAG from CMD.  Test according to TEST.
-
-#### `(+cmd-split-rm-double CMD FLAG)`
-
-Remove a FLAG and subsequent arg from CMD.
+Remove FLAGS and subsequent arg from ARGS.
 
 #### `(+hide-ifdef-get-env-from-compilation-db)`
 
@@ -1060,11 +1058,6 @@ Like `xref--find-ignores-arguments`, but for "fd".
 Find FILES (or all) using "fd" in directory DIR, excluding IGNORES.
 Can override `project--files-in-directory` for x3.5 faster listing.
 
-#### `(+project-clear-cache ALL)`
-
-Clear project's files cache.
-When ALL is non-nil, clear the cache of all projects.
-
 #### `(+smerge-first)`
 
 Got to the first occurrence.
@@ -1080,6 +1073,11 @@ Install all grammars in `treesit-language-source-alist`.
 #### `(+treesit-create-parser-in-buffer &optional BUFFER)`
 
 Create a `treesit` grammar in BUFFER even if the mode isn't a ts-mode.
+
+#### `(+switch-git-status-buffer)`
+
+Parse git status from an expanded path and switch to a file.
+The completion candidates include the Git status of each file.
 
 #### `(+viper-operate-inside-delimiters OPEN CLOSE OP)`
 
