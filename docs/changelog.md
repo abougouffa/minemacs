@@ -2,6 +2,46 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.12.0](https://github.com/abougouffa/minemacs/compare/7eb4c8e4583411b5aef008038ad1d4f650b4f743..v13.12.0) - 2025-10-24
+#### Tweaks
+- (**clang-format**) add support for custom config file in version 14+ - ([2b65378](https://github.com/abougouffa/minemacs/commit/2b65378f32cbb92de741c4e7762febd1f6bee1a3)) - [@abougouffa](https://github.com/abougouffa)
+- (**core**) cleanup compilation database functions - ([ee9f45d](https://github.com/abougouffa/minemacs/commit/ee9f45d8299e69357a1c32bbe68735c6c5604ded)) - [@abougouffa](https://github.com/abougouffa)
+- (**core**) accept sexps in `+memoize-function` - ([2de91e4](https://github.com/abougouffa/minemacs/commit/2de91e4149df326ddb71f57abab925a33806dfee)) - [@abougouffa](https://github.com/abougouffa)
+- (**docs**) regenerate the documentation - ([dee3aa7](https://github.com/abougouffa/minemacs/commit/dee3aa7588922779f6ffa4fdf1d12c394ed738a2)) - [@abougouffa](https://github.com/abougouffa)
+- (**magit-gerrit**) use my fork - ([dcbf63a](https://github.com/abougouffa/minemacs/commit/dcbf63a8ac347f5b9559af38b3728cfaad35f87f)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) more caching, this helps speeding up `magit` (WIP) - ([7eb4c8e](https://github.com/abougouffa/minemacs/commit/7eb4c8e4583411b5aef008038ad1d4f650b4f743)) - [@abougouffa](https://github.com/abougouffa)
+- (**semantic**) remove unused customization - ([2bab9b1](https://github.com/abougouffa/minemacs/commit/2bab9b1923ed72a6d71b05506ed49dbe046d1630)) - [@abougouffa](https://github.com/abougouffa)
+- (**treesit**) add grammar for TCL and better infer lang ID from mode - ([965a8ea](https://github.com/abougouffa/minemacs/commit/965a8eacb645526e723f270711281c1ff2396e49)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([45781b4](https://github.com/abougouffa/minemacs/commit/45781b452e687f7c1d069cdcbfe0a00503eb7e05)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([22ef7af](https://github.com/abougouffa/minemacs/commit/22ef7af06df6adb278e4f1c39b241cf9cfb55775)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5d91f62](https://github.com/abougouffa/minemacs/commit/5d91f62f4b899eebf03b7765cc095f941b27b922)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8b77bc9](https://github.com/abougouffa/minemacs/commit/8b77bc9619377528eb0890fe2d32576d9d0aa2e4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([aa76f7d](https://github.com/abougouffa/minemacs/commit/aa76f7ddc0aad0de81fd7c4bada181005fb711a8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cda46cd](https://github.com/abougouffa/minemacs/commit/cda46cd3aca94cb95e879a43d9259ddbc325ae39)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([93ccfea](https://github.com/abougouffa/minemacs/commit/93ccfea5a6720f12ea1bee6feb02945bae12e103)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([057fb59](https://github.com/abougouffa/minemacs/commit/057fb597df93426350aaf54a7c11fdf56d4e0462)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**prog**) make `eglot-booster` obsolete - ([755297a](https://github.com/abougouffa/minemacs/commit/755297ae3e784591f1245f6907fd4ded61f5effb)) - [@abougouffa](https://github.com/abougouffa)
+- (**prog**) make `xref-union` obsolete - ([480a9df](https://github.com/abougouffa/minemacs/commit/480a9dfd55c0508a51004d5526ea79adfb4bc82c)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) make `envrc` obsolete - ([1006fd1](https://github.com/abougouffa/minemacs/commit/1006fd1bd1346248bc125c31216a8cc23c5d52d3)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) make `ssh-deploy` obsolete - ([9115cea](https://github.com/abougouffa/minemacs/commit/9115cea44ea5c787bf4d4b4e67d4209633c42325)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) make `incus-tramp`, `lxc-tramp` and `lxd-tramp` obsoletes - ([4fd76dc](https://github.com/abougouffa/minemacs/commit/4fd76dc74b49a15743bcd369cc8a78824d32115f)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) make `gerrit` obsolete - ([3ab4d6c](https://github.com/abougouffa/minemacs/commit/3ab4d6c13e52b43aeca346a224231905ef7febb6)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) make `multi-magit` obsolete - ([3f018a6](https://github.com/abougouffa/minemacs/commit/3f018a66aeba09f56f0f49a14eab3422df80e155)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) make `magit-todos` obsolete - ([942005a](https://github.com/abougouffa/minemacs/commit/942005a5330028b931baf3b00490a05246ce2417)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc-x**) add `+switch-git-status-buffer` - ([84cab93](https://github.com/abougouffa/minemacs/commit/84cab937997cb61989eeef0be15082137a92a72b)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**apheleia**) don't format remote files, don't enable if inhibited - ([6e96fa0](https://github.com/abougouffa/minemacs/commit/6e96fa000f5457b245dae8105864a4c64fcd548e)) - [@abougouffa](https://github.com/abougouffa)
+- (**builtin**) fix `trailing-whitespace` face - ([2cfc5cb](https://github.com/abougouffa/minemacs/commit/2cfc5cbdd7fac4ca348a4450d65d745fd796dfef)) - [@abougouffa](https://github.com/abougouffa)
+- (**pet**) disable on remote files - ([d926107](https://github.com/abougouffa/minemacs/commit/d92610727a61754a677f615edd1100534960206e)) - [@abougouffa](https://github.com/abougouffa)
+- (**project**) fix a problem when opening a Git project over Tramp - ([a35e2ba](https://github.com/abougouffa/minemacs/commit/a35e2ba8be4a8e22d675bb5c8a0e7a6e7d07cdbc)) - [@abougouffa](https://github.com/abougouffa)
+- (**whitespace**) `whitespace-action` was messing up `ws-butler` - ([d0b37de](https://github.com/abougouffa/minemacs/commit/d0b37de4418b965aff13900c048d6bc0a5eb184e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**core**) extract function call memoization helpers to `me-lib` - ([7f19902](https://github.com/abougouffa/minemacs/commit/7f19902393717d361078c5cc6ce8c17c3934df21)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) refactor and add an option to disable sections - ([a609bf0](https://github.com/abougouffa/minemacs/commit/a609bf0f14abae0036c56629413bb7f19edd54e7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.11.0](https://github.com/abougouffa/minemacs/compare/c644869acea54693978cd8e5f792407eb44e54ff..v13.11.0) - 2025-09-17
 #### Bug Fixes
 - **(citre)** minor fix - ([4d9a1b3](https://github.com/abougouffa/minemacs/commit/4d9a1b3d363e839ee1672f73a47edbf13e5198a0)) - [@abougouffa](https://github.com/abougouffa)
