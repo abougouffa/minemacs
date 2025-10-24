@@ -725,18 +725,14 @@ Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist.
 
 
 (fn FILE-NAME &optional PROJ-ROOT)")
-(autoload '+cmd-split-rm-single "me-lib-x" "\
-Remove a single FLAG from CMD.  Test according to TEST.
+(autoload '+args-rm-double "me-lib-x" "\
+Remove FLAGS and subsequent arg from ARGS.
 
-(fn CMD FLAG &optional TEST)")
-(autoload '+cmd-split-rm-double "me-lib-x" "\
-Remove a FLAG and subsequent arg from CMD.
-
-(fn CMD FLAG)")
+(fn ARGS &rest FLAGS)")
 (autoload '+guess-args-from-compilation-db "me-lib-x" "\
 
 
-(fn FILE-NAME)")
+(fn &optional FILE-NAME)")
 (autoload '+hide-ifdef-get-env-from-compilation-db "me-lib-x" "\
 Integrate `hideif' with \"compile_commands.json\".")
 (autoload '+kill-buffer-after-sentinel-exit "me-lib-x" "\
