@@ -23,9 +23,7 @@
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia
   :straight t
-  :custom
-  (apheleia-remote-algorithm 'local) ; format remote files using local formatters
-  :hook (prog-mode . +apheleia-mode-maybe)
+  :hook (prog-mode . +apheleia-on-clang-format)
   :config
   (advice-add
    'apheleia--run-formatter-process :around
@@ -44,9 +42,9 @@
 
   (add-hook 'apheleia-skip-functions #'+unresolved-merge-conflict-p)
 
-  (defun +apheleia-mode-maybe ()
+  (defun +apheleia-on-clang-format ()
     (when (and (+clang-format-get-lang) (+clang-format-config-file))
-      (apheleia-mode 1)))
+      (apheleia-mode-maybe)))
 
   ;; For `clang-format', use the command from `+clang-format-command', and
   ;; append the "-style" option
