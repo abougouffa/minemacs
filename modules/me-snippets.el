@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2025-07-29
+;; Last modified: 2025-10-28
 
 ;;; Commentary:
 
@@ -35,6 +35,14 @@
 (use-package consult-yasnippet
   :straight t
   :unless (+package-disabled-p 'consult 'me-completion))
+
+
+;; Completion-At-Point Extension for YASnippet
+(use-package yasnippet-capf
+  :straight t
+  :hook (yas-minor-mode . +corfu-add-yasnippet-capf-h)
+  :config
+  (defun +corfu-add-yasnippet-capf-h () (add-hook 'completion-at-point-functions #'yasnippet-capf 30 t)))
 
 
 (provide 'me-snippets)
