@@ -101,9 +101,9 @@
               (icons
                (or (gethash vec minemacs-modeline--remotes-cache)
                    (puthash vec (cl-loop
-                                 for method in (mapcar #'tramp-file-name-method (tramp-compute-multi-hops vec))
+                                 for file in (tramp-compute-multi-hops vec)
                                  collect
-                                 (let* ((icon-face (pcase method
+                                 (let* ((icon-face (pcase (tramp-file-name-method file)
                                                      ((rx (or "scp" "ssh" "sshx" "sshfs")) '("nf-md-ssh" . nerd-icons-lred))
                                                      ("adb" "nf-dev-android")
                                                      ("mtp" "nf-fa-mobile_phone")
@@ -119,7 +119,10 @@
                                                      (_ "nf-md-folder_network_outline")))
                                         (icon (if (consp icon-face) (car icon-face) icon-face))
                                         (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-                                   (propertize (minemacs-modeline--icon icon :face face) 'help-echo method)))
+                                   (propertize (minemacs-modeline--icon icon :face face) 'help-echo (concat (tramp-file-name-method file)
+                                                                                                            ":"
+                                                                                                            (when-let* ((u (tramp-file-name-user file))) (concat u "@"))
+                                                                                                            (tramp-file-name-host file)))))
                             minemacs-modeline--remotes-cache))))
     (concat " " (string-join icons (minemacs-modeline--icon "nf-oct-arrow_right" :face 'nerd-icons-dsilver)))))
 
