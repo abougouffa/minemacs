@@ -91,23 +91,37 @@
   (concat
    (when overwrite-mode
      (concat " " (minemacs-modeline--icon "nf-fa-pencil" :face 'nerd-icons-red)))
-   (when-let* ((method (file-remote-p default-directory 'method))
-               (icon-face
-                (pcase method
-                  ("ssh" "nf-md-ssh")
-                  ("adb" "nf-dev-android")
-                  ("mtp" "nf-fa-mobile_phone")
-                  ("gdrive" "nf-fa-google")
-                  ("davs" "nf-fa-globe")
-                  ("nextcloud" "nf-fa-cloud")
-                  ("kubernetes" "nf-dev-kubernetes")
-                  ((rx (or "docker" "dockercp")) "nf-fa-docker")
-                  ((rx (or "podman" "podmancp")) "nf-dev-podman")
-                  ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
-                  (t "nf-md-folder_network_outline")))
-               (icon (if (consp icon-face) (car icon-face) icon-face))
-               (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-     (concat " " (minemacs-modeline--icon icon :face face)))))
+   (minemacs-modeline--remote-indicator)))
+
+(defvar minemacs-modeline--remotes-cache (make-hash-table :test #'equal))
+
+(defun minemacs-modeline--remote-indicator ()
+  (when-let* (((file-remote-p default-directory))
+              (vec (and (fboundp 'tramp-dissect-file-name) (tramp-dissect-file-name default-directory)))
+              (icons
+               (or (gethash vec minemacs-modeline--remotes-cache)
+                   (puthash vec (cl-loop
+                                 for method in (mapcar #'tramp-file-name-method (tramp-compute-multi-hops vec))
+                                 collect
+                                 (let* ((icon-face (pcase method
+                                                     ((rx (or "scp" "ssh" "sshx" "sshfs")) '("nf-md-ssh" . nerd-icons-lred))
+                                                     ("adb" "nf-dev-android")
+                                                     ("mtp" "nf-fa-mobile_phone")
+                                                     ("gdrive" "nf-fa-google")
+                                                     ((rx (or "dav" "davs")) "nf-fa-globe")
+                                                     ("nextcloud" "nf-fa-cloud")
+                                                     ("kubernetes" "nf-dev-kubernetes")
+                                                     ((rx (or "rsync" "rclone")) "nf-fa-clone")
+                                                     ((rx (or "docker" "dockercp")) '("nf-fa-docker" . nerd-icons-blue))
+                                                     ((rx (or "podman" "podmancp")) '("nf-dev-podman" . nerd-icons-purple))
+                                                     ((rx (or "lxc" "lxd" "incus")) '("nf-oct-container" . nerd-icons-yellow))
+                                                     ((rx (or "sudo" "su" "doas" "sudoedit")) '("nf-md-pound_box" . nerd-icons-red))
+                                                     (_ "nf-md-folder_network_outline")))
+                                        (icon (if (consp icon-face) (car icon-face) icon-face))
+                                        (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
+                                   (propertize (minemacs-modeline--icon icon :face face) 'help-echo method)))
+                            minemacs-modeline--remotes-cache))))
+    (concat " " (string-join icons (minemacs-modeline--icon "nf-oct-arrow_right" :face 'nerd-icons-dsilver)))))
 
 ;;; Dedicated window
 
