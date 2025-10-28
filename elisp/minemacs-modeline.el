@@ -111,6 +111,9 @@
                                                      ((rx (or "dav" "davs")) "nf-fa-globe")
                                                      ("nextcloud" "nf-fa-cloud")
                                                      ("kubernetes" "nf-dev-kubernetes")
+                                                     ("ftp" "nf-md-folder_network_outline")
+                                                     ("sftp" "nf-md-folder_key_network_outline")
+                                                     ("smb" '("nf-dev-windows" . nerd-icons-blue))
                                                      ((rx (or "rsync" "rclone")) "nf-fa-clone")
                                                      ((rx (or "docker" "dockercp")) '("nf-fa-docker" . nerd-icons-blue))
                                                      ((rx (or "podman" "podmancp")) '("nf-dev-podman" . nerd-icons-purple))
@@ -119,10 +122,11 @@
                                                      (_ "nf-md-folder_network_outline")))
                                         (icon (if (consp icon-face) (car icon-face) icon-face))
                                         (face (if (consp icon-face) (cdr icon-face) 'nerd-icons-green)))
-                                   (propertize (minemacs-modeline--icon icon :face face) 'help-echo (concat (tramp-file-name-method file)
-                                                                                                            ":"
-                                                                                                            (when-let* ((u (tramp-file-name-user file))) (concat u "@"))
-                                                                                                            (tramp-file-name-host file)))))
+                                   (propertize (minemacs-modeline--icon icon :face face)
+                                               'help-echo (concat
+                                                           (tramp-file-name-method file) ":"
+                                                           (when-let* ((u (tramp-file-name-user file))) (concat u "@"))
+                                                           (tramp-file-name-host file)))))
                             minemacs-modeline--remotes-cache))))
     (concat " " (string-join icons (minemacs-modeline--icon "nf-oct-arrow_right" :face 'nerd-icons-dsilver)))))
 
