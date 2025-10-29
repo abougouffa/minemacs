@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-09-28
+;; Last modified: 2025-10-29
 
 ;;; Commentary:
 
@@ -352,15 +352,12 @@
 (use-package treesit
   :when (featurep 'feat/tree-sitter)
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
+  :mode ("/Cargo\\.lock\\'" . toml-ts-mode)
+  :mode ((rx (any ?. ?_) (or "clang-format" "clang-tidy") eol) . yaml-ts-mode)
   :custom
   (treesit-font-lock-level 4)
-  (treesit-enabled-modes
-   '( c-ts-mode c++-ts-mode csharp-ts-mode java-ts-mode python-ts-mode rust-ts-mode bash-ts-mode
-      markdown-ts-mode cmake-ts-mode mhtml-ts-mode js-ts-mode typescript-ts-mode toml-ts-mode json-ts-mode)))
-
-(use-package rust-ts-mode
-  :when (featurep 'feat/tree-sitter)
-  :mode ("/Cargo\\.lock\\'" . toml-ts-mode))
+  ;; BUG+TEMP: Editing YAML files in `yaml-ts-mode' cause Emacs to crash, especially when the file contain invalid YAML
+  (treesit-enabled-modes (delq 'yaml-ts-mode (seq-uniq (mapcar #'cdr treesit-major-mode-remap-alist)))))
 
 (use-package markdown-ts-mode
   :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
@@ -372,15 +369,6 @@
     '((elisp . emacs-lisp-mode)
       (lisp . lisp-mode)
       (scheme . scheme-mode))))
-
-(use-package dockerfile-ts-mode
-  :when (featurep 'feat/tree-sitter)
-  :mode "/Dockerfile\\'")
-
-(use-package cmake-ts-mode
-  :when (featurep 'feat/tree-sitter)
-  :mode "CMakeLists\\.txt\\'"
-  :mode "\\.cmake\\'")
 
 (use-package autoinsert
   :custom
@@ -1186,15 +1174,6 @@ surrounded by word boundaries."
           (setq +reb--points nil)
           (reb-quit)
           (query-replace-regexp re replacement delimited beg end backward))))))
-
-(use-package yaml-ts-mode
-  :when (featurep 'feat/tree-sitter)
-  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol)
-  :init
-  ;; BUG+TEMP: Editing YAML files in `yaml-ts-mode' cause Emacs to crash, especially when the file contain invalid YAML
-  (cl-callf2 remove '(yaml-mode . yaml-ts-mode) major-mode-remap-alist)
-  (when (boundp 'treesit-major-mode-remap-alist)
-    (cl-callf2 remove '(yaml-mode . yaml-ts-mode) treesit-major-mode-remap-alist)))
 
 (use-package hexl
   :autoload (+hexl-buffer-p)
