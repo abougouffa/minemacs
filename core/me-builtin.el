@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-10-29
+;; Last modified: 2025-11-01
 
 ;;; Commentary:
 
@@ -240,6 +240,7 @@
   (tramp-copy-size-limit (* 1024 1024)) ; 1MB (def. 10kB)
   (tramp-verbose (if minemacs-verbose-p 4 2))
   (remote-file-name-inhibit-locks t)
+  (tramp-save-ad-hoc-proxies t)
   :config
   (connection-local-set-profile-variables
    'remote-direct-async-process
