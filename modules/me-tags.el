@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-09-15
+;; Last modified: 2025-11-01
 
 ;;; Commentary:
 
@@ -145,11 +145,6 @@ Fall back to the default `citre--project-root'."
       (dolist (dir (+bitbake-poky-sources build-dir))
         (shell-command (+citre-gtags-find-files-command dir top-dir 'append) "*+citre-gtags-files-list*" "*+citre-gtags-files-list*"))
       (message "Done creating list of files to index."))))
-
-
-;; Generate call graph for C/C++ functions
-(use-package call-graph
-  :straight t)
 
 
 (provide 'me-tags)
