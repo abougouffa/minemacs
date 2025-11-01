@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-28
+;; Last modified: 2025-11-01
 
 ;;; Commentary:
 
@@ -49,7 +49,9 @@
   :bind (("C-;" . iedit-mode)
          ("C-x r ;" . iedit-rectangle-mode)
          (:map esc-map ("C-;" . iedit-execute-last-modification)))
-  :bind (:package isearch :map isearch-mode-map ("C-c ;" . iedit-mode-from-isearch)))
+  :bind (:package isearch :map isearch-mode-map ("C-c ;" . iedit-mode-from-isearch))
+  :custom
+  (iedit-auto-save-occurrence-in-kill-ring nil))
 
 
 ;; Multiple cursors implementation for Emacs
