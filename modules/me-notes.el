@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-09
+;; Last modified: 2025-11-01
 
 ;;; Commentary:
 
@@ -95,11 +95,6 @@
     (setopt consult-denote-find-command #'consult-fd))
   (when (executable-find "rg")
     (setopt consult-denote-grep-command #'consult-ripgrep)))
-
-
-;; View and filter Denote files in a tabulated list
-(use-package denote-menu
-  :straight t)
 
 
 (provide 'me-notes)
