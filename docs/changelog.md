@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.13.0](https://github.com/abougouffa/minemacs/compare/592607169cc591261bf227033958fedb8a007794..v13.13.0) - 2025-11-02
+#### Tweaks
+- (**iedit**) use `C-;` to start `iedit` from `isearch` results - ([307ebe1](https://github.com/abougouffa/minemacs/commit/307ebe1427f35068aa629f86ef18a8c857142659)) - [@abougouffa](https://github.com/abougouffa)
+- (**iedit**) don't save occurrences in kill ring - ([598bfa3](https://github.com/abougouffa/minemacs/commit/598bfa3631a42cddaf92df9c69fc864306a8f4c8)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) minor edits - ([2b6b5a7](https://github.com/abougouffa/minemacs/commit/2b6b5a714b707647bcd89be94157560eb51acc79)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) add icons for some methods - ([4d25a21](https://github.com/abougouffa/minemacs/commit/4d25a214c3d76429a1608383093db4057c1827b6)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) show hosts in echo - ([94b2efa](https://github.com/abougouffa/minemacs/commit/94b2efa4b84e24d950afd159e60c0eb98cb3a856)) - [@abougouffa](https://github.com/abougouffa)
+- (**tramp**) persistently save ad-hoc proxies - ([59cf538](https://github.com/abougouffa/minemacs/commit/59cf538ac408627b32c3d60da2122718fa96a875)) - [@abougouffa](https://github.com/abougouffa)
+- (**treesit**) better auto enabling + cleanup - ([c8af164](https://github.com/abougouffa/minemacs/commit/c8af16487438edd964f29430a874c54bb06a3703)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b07912b](https://github.com/abougouffa/minemacs/commit/b07912b69bb7522336305ff1716290476f5e3dcc)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**modeline**) display multi-hop protocols in modeline, with memoization - ([5926071](https://github.com/abougouffa/minemacs/commit/592607169cc591261bf227033958fedb8a007794)) - [@abougouffa](https://github.com/abougouffa)
+- (**notes**) remove `denote-menu` - ([b64604d](https://github.com/abougouffa/minemacs/commit/b64604db29719e4be72d3f168b8df19e5bca4102)) - [@abougouffa](https://github.com/abougouffa)
+- (**prog**) make `consult-eglot` obsolete - ([648158b](https://github.com/abougouffa/minemacs/commit/648158b485e486437a17b0204a3b41ea260005e3)) - [@abougouffa](https://github.com/abougouffa)
+- (**snippets**) restore `yasnippet-capf` - ([703e8cf](https://github.com/abougouffa/minemacs/commit/703e8cfcd5ff67e7e80018ac064787b95f3cd98f)) - [@abougouffa](https://github.com/abougouffa)
+- (**tags**) make `call-graph` obsolete - ([bb4a038](https://github.com/abougouffa/minemacs/commit/bb4a03841918bfd6c2208c3765d368d8feb8d443)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) make `info-colors` obsolete - ([1db51f9](https://github.com/abougouffa/minemacs/commit/1db51f95eb76724b811661af73187858dfa20851)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**snippets**) make `yasnippet-capf` obsolete again - ([06a0623](https://github.com/abougouffa/minemacs/commit/06a0623536c28c2c11ac71e79912d1f5e4496a5c)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([20f5db1](https://github.com/abougouffa/minemacs/commit/20f5db1e11110c1304042c7e2b374788d1a5128a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.12.0](https://github.com/abougouffa/minemacs/compare/7eb4c8e4583411b5aef008038ad1d4f650b4f743..v13.12.0) - 2025-10-24
 #### Tweaks
 - (**clang-format**) add support for custom config file in version 14+ - ([2b65378](https://github.com/abougouffa/minemacs/commit/2b65378f32cbb92de741c4e7762febd1f6bee1a3)) - [@abougouffa](https://github.com/abougouffa)
