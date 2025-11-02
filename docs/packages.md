@@ -130,7 +130,6 @@
 * `denote-org`: Extensions to better integrate Org with Denote
 * `denote-markdown`: Extensions to better integrate Markdown with Denote
 * `consult-denote`: Use Consult in tandem with Denote
-* `denote-menu`: View and filter Denote files in a tabulated list
 
 ## `me-org`
 * `org-contrib`: Contributed packages to Org in search for new maintainers
@@ -143,7 +142,6 @@
 * `citar-embark`: Citar integration with Embark
 
 ## `me-prog`
-* `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `hl-todo`: Highlight TODO keywords
@@ -185,7 +183,6 @@
 
 ## `me-tags`
 * `citre`: Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
-* `call-graph`: Generate call graph for C/C++ functions
 
 ## `me-tools`
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
@@ -207,7 +204,6 @@
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
 * `nerd-icons-multimodal`: Integrate `nerd-icons` with `archive-mode`, `tar-mode`, `dired-mode`, and `ztree`
 * `diredfl`: Extra font lock rules for a more colourful `dired`
-* `info-colors`: Extra colors for `Info-mode`
 * `virtual-format`: Format buffers visually without modification
 * `casual`: A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 * `casual-avy`: An opinionated `transient` menu for `avy`
