@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-09-16
+;; Last modified: 2025-11-02
 
 ;;; Commentary:
 
@@ -88,12 +88,6 @@
   :hook (dired-mode . diredfl-mode)
   :config
   (cl-callf append diredfl-compressed-extensions '(".zst" ".rar" ".7z" ".cab" ".arc" ".zoo")))
-
-
-;; Extra colors for `Info-mode'
-(use-package info-colors
-  :straight t
-  :hook (Info-selection . info-colors-fontify-node))
 
 
 ;; Format buffers visually without modification
