@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-10-23
+;; Last modified: 2025-11-05
 
 ;;; Commentary:
 
@@ -21,6 +21,8 @@
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
   :bind ([f1] . +eat-toggle-dwim)
+  :init
+  (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
   :config
   (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit)
   (defun +eat-toggle-dwim ()
