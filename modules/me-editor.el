@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-11-02
+;; Last modified: 2025-11-06
 
 ;;; Commentary:
 
@@ -155,6 +155,35 @@ In some dirty files, there is a mix of spaces and tabs. This uses
         (+log! "Temporary changing `indent-tabs-mode' to %S for context-aware indentation" new-indent-tabs-mode))
       (let ((indent-tabs-mode (if modify-indentation new-indent-tabs-mode indent-tabs-mode)))
         (call-interactively #'tab-to-tab-stop)))))
+
+
+;; Structured editing and navigation in Emacs with Tree-Sitter
+(use-package combobulate-setup
+  :straight (combobulate
+             :host github
+             :repo "mickeynp/combobulate"
+             :nonrecursive t ; Cloning the `html-ts-mode' submodule causes problems
+             :files (:defaults (:exclude "combobulate.el"))) ; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading
+  :when (and (not (featurep 'os/win)) (featurep 'feat/tree-sitter)) ; TEMP: disable on Windows
+  :custom
+  (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
+  :config
+  ;; TEMP+BUGFIX: Basically, load the same features that would be loaded by "combobulate.el"
+  (dolist (feature '(combobulate-rules
+                     combobulate-procedure combobulate-navigation
+                     combobulate-manipulation combobulate-envelope combobulate-display
+                     combobulate-ui combobulate-misc combobulate-query combobulate-cursor
+                     combobulate-toml combobulate-html combobulate-python combobulate-js-ts
+                     combobulate-css combobulate-yaml combobulate-json combobulate-go))
+    (require feature))
+
+  ;; The "M-<up/down/left/right>" keys are used globally by `move-dup', lets
+  ;; unset them for `combobulate' and use "M-S-<up/down/left/right>" instead.
+  (mapc (lambda (k) (keymap-unset combobulate-key-map k 'remove)) '("M-<up>" "M-<down>" "M-<left>" "M-<right>"))
+  (keymap-set combobulate-key-map "M-S-<up>" #'combobulate-splice-up)
+  (keymap-set combobulate-key-map "M-S-<down>" #'combobulate-splice-down)
+  (keymap-set combobulate-key-map "M-S-<left>" #'combobulate-splice-self)
+  (keymap-set combobulate-key-map "M-S-<right>" #'combobulate-splice-parent))
 
 
 ;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
