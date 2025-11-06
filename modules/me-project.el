@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-08-04
+;; Last modified: 2025-11-06
 
 ;;; Commentary:
 
@@ -61,7 +61,6 @@
   :after project
   :demand
   :bind-keymap ("C-x P" . projection-map)
-  :bind (:map projection-map ("f" . projection-find-other-file))
   :init
   ;; BUG: `projection-hook' causes Tramp issues, don't enable `global-projection-hook-mode'
   ;; This ensures that `ibuffer-projection-set-filter-groups' takes effect
