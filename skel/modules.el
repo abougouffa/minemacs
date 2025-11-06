@@ -76,24 +76,4 @@
 ;;          obsolete/me-blamer         ; M-x git blame
 ;;          obsolete/me-chezmoi        ; Integrate chezmoi with Emacs
 ;;          obsolete/me-cov            ; Show code coverage results (cov, ...)
-;;          obsolete/me-eaf            ; EAF apps (browser, jupyter, file-sender, ...)
-;;          obsolete/me-evil           ; Evil integration (evil, evil-snipe, general, ...)
-;;          obsolete/me-meow           ; Yet another modal editing on Emacs (meow, ...)
-;;          obsolete/me-expand-region  ; Expand region (included as an alternative for `expreg' in non tree-sitter builds)
-;;          obsolete/me-flycheck       ; Static checkers (flycheck, ...)
-;;          obsolete/me-flycheck-cmake ; Flycheck + CMake
-;;          obsolete/me-flycheck-eglot ; Flycheck + Eglot
-;;          obsolete/me-lexic          ; Offline dictionary using sdcv
-;;          obsolete/me-ligature       ; Ligatures (needs further customization in function of the used font)
-;;          obsolete/me-lsp            ; LSP and DAP (lsp-mode, dap-mode, consult-lsp, lsp-pyright, ccls, ...)
-;;          obsolete/me-netextender    ; NetExtender integration (start/stop VPN sessions from Emacs)
-;;          obsolete/me-org-present    ; Org presentations in Emacs
-;;          obsolete/me-org-roam       ; Org roam configuration (org-roam, consult-org-roam, ...)
-;;          obsolete/me-projectile     ; Project management (projectile, consult-projectile, treemacs-projectile, ...)
-;;          obsolete/me-smartparens    ; Smartparens
-;;          obsolete/me-spell-fu       ; Spell checking (included as an alternative when `jinx' cannot be used)
-;;          obsolete/me-tree-sitter    ; Tree-sitter module configuration (this module is automatically activated for Emacs 28 or 29+ built without treesitter support)
-;;          obsolete/me-unicode-fonts  ; Better Unicode management mainly for non-latin fonts
-;;          obsolete/me-writeroom      ; Replacement for `+writing-mode' (writeroom-mode, ...)
-;;          obsolete/me-yasnippet      ; Yasnippet (yasnippet, cape-yasnippet, yasnippet-snippets, ...)
 ;;         )))
