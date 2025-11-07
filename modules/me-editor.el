@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-11-06
+;; Last modified: 2025-11-07
 
 ;;; Commentary:
 
@@ -106,7 +106,10 @@
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
 (use-package ws-butler
   :straight (:host github :repo "emacsmirror/nongnu_elpa" :local-repo "ws-butler" :branch "elpa/ws-butler")
-  :hook (minemacs-first-file . ws-butler-global-mode))
+  :hook (minemacs-first-file . ws-butler-global-mode)
+  :config
+  ;; Don't delete trailing whitespaces in `diff-mode', it is part of the syntax
+  (add-to-list 'ws-butler-global-exempt-modes 'diff-mode))
 
 
 ;; Smart guessing the indentation offset originally used in the opened source files
