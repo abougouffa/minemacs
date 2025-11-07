@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-01
+;; Last modified: 2025-11-07
 
 ;;; Commentary:
 
@@ -162,6 +162,10 @@
 
   ;; Show trailing whitespace in `prog-mode' and `conf-mode'
   (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
+
+  ;; Don't mess up with whitespaces in `diff-mode', they are part of the syntax
+  (+setq-hook! diff-mode show-trailing-whitespace t)
+  (add-hook 'diff-mode-hook (lambda () (electric-indent-local-mode -1)))
 
   ;; Subtle color for trailing whitespaces
   (defun +face--subtle-trailing-whitespace-h (&rest _args)
