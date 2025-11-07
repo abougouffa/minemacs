@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.14.0](https://github.com/abougouffa/minemacs/compare/50922d3881d2534e9ad0b52c42f02e238330cfe1..v13.14.0) - 2025-11-07
+#### Tweaks
+- (**eat**) declare a command to open EAT in a dedicated tab - ([50922d3](https://github.com/abougouffa/minemacs/commit/50922d3881d2534e9ad0b52c42f02e238330cfe1)) - [@abougouffa](https://github.com/abougouffa)
+- (**projection**) remove duplicate confusing keybinding - ([bb961b7](https://github.com/abougouffa/minemacs/commit/bb961b7222c2235ed209127652574ccbcdf7ada2)) - [@abougouffa](https://github.com/abougouffa)
+- (**ws-butler**) don't enable in `diff-mode` - ([da2c8fb](https://github.com/abougouffa/minemacs/commit/da2c8fbd62e143a668f168442a1c6966c81c9029)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a0b377d](https://github.com/abougouffa/minemacs/commit/a0b377de8b9643ba0eabe59427f49219b3386aa7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**editor**) restore `combobulate` to `me-editor` - ([1904ee9](https://github.com/abougouffa/minemacs/commit/1904ee92b5e406f0b5a164f9ed53fc28b94594df)) - [@abougouffa](https://github.com/abougouffa)
+- (**obsolete**) cleanup obsolete modules - ([f7f0986](https://github.com/abougouffa/minemacs/commit/f7f0986b418cd7686b1693dd82489d0bc06e9e7e)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**diff**) Don't mess up with whitespaces in `diff-mode', they are part of the syntax - ([87c40ef](https://github.com/abougouffa/minemacs/commit/87c40effe1dd9fcb49c6138a674a4c297c13a2a2)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**tools**) restore `ssh-deploy` - ([8da640f](https://github.com/abougouffa/minemacs/commit/8da640fe86d711ed3971f266bb955b99877423c1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.13.0](https://github.com/abougouffa/minemacs/compare/592607169cc591261bf227033958fedb8a007794..v13.13.0) - 2025-11-02
 #### Tweaks
 - (**iedit**) use `C-;` to start `iedit` from `isearch` results - ([307ebe1](https://github.com/abougouffa/minemacs/commit/307ebe1427f35068aa629f86ef18a8c857142659)) - [@abougouffa](https://github.com/abougouffa)
