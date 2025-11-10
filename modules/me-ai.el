@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2025-05-24
+;; Last modified: 2025-11-10
 
 ;;; Commentary:
 
@@ -20,10 +20,9 @@
   :straight llm
   :autoload make-llm-ollama +ollama-list-installed-models
   :config
-  (defconst +ollama-embedding-models '("paraphrase-multilingual" "granite-embedding"
-                                       "nomic-embed-text" "mxbai-embed-large"
-                                       "bge-m3" "bge-large" "all-minilm"
-                                       "snowflake-arctic-embed" "snowflake-arctic-embed2"))
+  (defconst +ollama-embedding-models
+    '("paraphrase-multilingual" "granite-embedding" "nomic-embed-text" "mxbai-embed-large"
+      "qwen3-embedding" "bge-m3" "bge-large" "all-minilm" "embeddinggemma" "snowflake-arctic-embed"))
   (defvar +ollama-prefer-embedding-model nil) ; See https://ollama.com/search?c=embedding
 
   (defun +ollama-list-installed-models ()
