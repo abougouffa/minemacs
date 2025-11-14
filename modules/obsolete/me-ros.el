@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-11-14
 
 ;;; Commentary:
 
@@ -21,6 +21,6 @@
   :straight (:host github :repo "abougouffa/rosbag-info"))
 
 
-(provide 'me-robot)
+(provide 'obsolete/me-ros)
 
-;;; me-robot.el ends here
+;;; me-ros.el ends here
