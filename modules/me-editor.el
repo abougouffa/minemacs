@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-11-07
+;; Last modified: 2025-11-13
 
 ;;; Commentary:
 
@@ -171,6 +171,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
+  (with-eval-after-load 'combobulate-query (keymap-unset combobulate-query-mode-map "q"))
   ;; TEMP+BUGFIX: Basically, load the same features that would be loaded by "combobulate.el"
   (dolist (feature '(combobulate-rules
                      combobulate-procedure combobulate-navigation
