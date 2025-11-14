@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-07
+;; Last modified: 2025-11-12
 
 ;;; Commentary:
 
@@ -760,7 +760,7 @@ Typing these will trigger reindentation of the current line.")
     (add-hook hook #'+ediff--restore-window-config-h 99)))
 
 (use-package octave
-  :mode ("\\.m\\'" . octave-maybe-mode))
+  :mode ("\\.m\\'" . octave-mode)) ; `octave-maybe-mode' only works when the file starts with `function', not generic enough
 
 (use-package bookmark
   :custom
