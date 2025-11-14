@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-06-16
+;; Last modified: 2025-11-14
 
 ;;; Commentary:
 
@@ -21,9 +21,15 @@
   :straight t)
 
 
+;; Taken from: https://github.com/millejoh/emacs-ipython-notebook/pull/925#issuecomment-3443730354
+;; Native compilation causes problems for pdb in ein so prevent native compilation for ein.
+(with-eval-after-load 'comp
+  (add-to-list 'native-comp-jit-compilation-deny-list "ein"))
+
+
 ;; Jupyter notebook client in Emacs
 (use-package ein
-  :straight t
+  :straight (ein :host github :repo "natsirtguy/emacs-ipython-notebook" :branch "fix-polymode-compatibility")
   :custom
   (ein:output-area-inlined-images t)
   :config
