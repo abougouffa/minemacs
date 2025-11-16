@@ -52,6 +52,7 @@
 * `multiple-cursors`: Multiple cursors implementation for Emacs
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
+* `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
 * `expreg`: Your friendly neighborhood expand-region clone
@@ -162,10 +163,6 @@
 * `projection-multi-embark`: Integration for `projection-multi` and `embark`
 * `projection-dape`: Projection integration for `dape`
 
-## `me-robot`
-* `ros`: A package to ease the interaction ROS nodes and the development of ROS software
-* `rosbag-info`: Show information about ROS bag files in Emacs
-
 ## `me-rss`
 * `elfeed`: An Emacs RSS web feeds client
 * `elfeed-protocol`: Extra `elfeed` protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
@@ -185,6 +182,7 @@
 * `citre`: Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 
 ## `me-tools`
+* `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
 * `app-launcher`: Launch system applications from Emacs
 * `docker`: Manage docker from Emacs
