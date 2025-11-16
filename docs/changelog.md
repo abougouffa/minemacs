@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.15.0](https://github.com/abougouffa/minemacs/compare/55b48d2f27793fe6f152a1b6bca928f1ae4dd29a..v13.15.0) - 2025-11-16
+#### Tweaks
+- (**llm-ollama**) update the list of embedding models - ([55b48d2](https://github.com/abougouffa/minemacs/commit/55b48d2f27793fe6f152a1b6bca928f1ae4dd29a)) - [@abougouffa](https://github.com/abougouffa)
+- (**octave**) enable `octave-mode` for `*.m` files - ([b1b90df](https://github.com/abougouffa/minemacs/commit/b1b90df5e1363d26d346d716e4c3a9fa48867a3f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0fb08ba](https://github.com/abougouffa/minemacs/commit/0fb08baa196db009bc44a87a465958c0ea59a025)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d2558c8](https://github.com/abougouffa/minemacs/commit/d2558c881c028fe5eed085b4f1890a205f02a929)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6b9625e](https://github.com/abougouffa/minemacs/commit/6b9625e18c2ff8cd87087aed70214261cafd35f9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- make `me-robot` obsolete (at `obsolete/me-ros`) - ([eb40639](https://github.com/abougouffa/minemacs/commit/eb4063977ad7552a887c04d528013da8ad2d41d8)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**combobulate**) can't type "q" in `combobulate-query-mode` - ([9dbb6b3](https://github.com/abougouffa/minemacs/commit/9dbb6b389d2789d07da4d283bac3eaea2cdb8544)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/jupyter**) use a fixed branch for `ein` - ([a887174](https://github.com/abougouffa/minemacs/commit/a887174d3cd8f34e3b75852e78af4a52f17d5464)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([d6672ab](https://github.com/abougouffa/minemacs/commit/d6672abafce986bbd4ed7db0bf02147492c092fd)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.14.0](https://github.com/abougouffa/minemacs/compare/50922d3881d2534e9ad0b52c42f02e238330cfe1..v13.14.0) - 2025-11-07
 #### Tweaks
 - (**eat**) declare a command to open EAT in a dedicated tab - ([50922d3](https://github.com/abougouffa/minemacs/commit/50922d3881d2534e9ad0b52c42f02e238330cfe1)) - [@abougouffa](https://github.com/abougouffa)
