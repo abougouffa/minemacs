@@ -54,21 +54,6 @@
   (minemacs-modeline-mode 1))
 
 
-;; Pulse highlight on demand or after select functions
-(use-package pulsar
-  :straight (:host github :repo "protesilaos/pulsar")
-  :hook (minemacs-first-file . pulsar-global-mode)
-  :custom
-  (pulsar-iterations 6)
-  (pulsar-pulse-on-window-change t)
-  (pulsar-region-face 'pulsar-green)
-  (pulsar-highlight-face 'pulsar-cyan)
-  (pulsar-region-change-face 'pulsar-red)
-  (pulsar-window-change-face 'pulsar-yellow)
-  :config
-  (cl-callf append pulsar-pulse-functions '(what-cursor-position)))
-
-
 ;; Integrate `nerd-icons' with `ibuffer'
 (use-package nerd-icons-ibuffer
   :straight t
