@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-11-02
+;; Last modified: 2025-11-16
 
 ;;; Commentary:
 
@@ -61,7 +61,6 @@
   :custom
   (pulsar-iterations 6)
   (pulsar-pulse-on-window-change t)
-  (pulsar-pulse-region-functions pulsar-pulse-region-common-functions)
   (pulsar-region-face 'pulsar-green)
   (pulsar-highlight-face 'pulsar-cyan)
   (pulsar-region-change-face 'pulsar-red)
