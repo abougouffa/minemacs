@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-11
+;; Last modified: 2025-11-19
 
 ;;; Commentary:
 
@@ -65,6 +65,20 @@ Based on `jinx-mode' if available. Falls back to the built-in
   (with-eval-after-load 'savehist
     (add-to-list 'savehist-additional-variables 'reverso--history))
   (reverso-history-mode 1))
+
+
+;; Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
+(use-package gt
+  :straight t
+  :config
+  (advice-add
+   'gt-make-completion-table :override
+   (lambda (items &optional order)
+     (lambda (input pred action)
+       (if (eq action 'metadata)
+           `(metadata (category . gt) ; BUGFIX: This was a string which triggers: vertico--debug((wrong-type-argument symbolp "gt"))
+                      (display-sort-function . ,(or order #'identity)))
+         (complete-with-action action items input pred))))))
 
 
 (provide 'me-natural-langs)
