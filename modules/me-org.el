@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-13
+;; Last modified: 2025-11-22
 
 ;;; Commentary:
 
@@ -25,7 +25,7 @@
 
 ;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
-  :straight (:host github :repo "abougouffa/org-contrib" :branch "master"))
+  :straight (:host github :repo "minemacs/org-contrib"))
 
 
 ;; Convert font-lock faces to other formats
