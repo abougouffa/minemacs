@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-12
+;; Last modified: 2025-11-23
 
 ;;; Commentary:
 
@@ -1250,16 +1250,7 @@ Returns either nil, or the position of the first null byte."
           (docstring     meek)
           (property      fg-main)
           (type          crucial)
-          (variable      fg-main)))
-
-  (add-hook 'enable-theme-functions #'+modus-themes-tweak-fonts)
-  (add-hook 'modus-themes-after-load-theme-hook #'+modus-themes-tweak-fonts)
-
-  (defun +modus-themes-tweak-fonts (&optional theme)
-    (when (or (not theme) (memq theme modus-themes-items))
-      (modus-themes-with-colors
-       (set-face-attribute 'font-lock-string-face nil :background highlight)
-       (set-face-attribute 'font-lock-escape-face nil :background highlight :foreground "#282b35")))))
+          (variable      fg-main))))
 
 
 (provide 'me-builtin)
