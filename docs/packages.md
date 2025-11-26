@@ -110,6 +110,7 @@
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
 * `lexic`: Fancy Emacs integration with the console version of StarDict
 * `reverso`: Emacs client for Reverso.net for translation, grammar check, context and synonyms search
+* `gt`: Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 
 ## `me-nav`
 * `ace-window`: Quickly switch windows in Emacs
@@ -143,6 +144,7 @@
 * `citar-embark`: Citar integration with Embark
 
 ## `me-prog`
+* `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `hl-todo`: Highlight TODO keywords
@@ -198,7 +200,6 @@
 * `doric-themes`: Highly legible minimalist themes with precise typography
 * `vim-tab-bar`: Vim-like tab bar
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
-* `pulsar`: Pulse highlight on demand or after select functions
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
 * `nerd-icons-multimodal`: Integrate `nerd-icons` with `archive-mode`, `tar-mode`, `dired-mode`, and `ztree`
 * `diredfl`: Extra font lock rules for a more colourful `dired`
