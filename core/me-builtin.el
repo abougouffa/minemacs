@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-23
+;; Last modified: 2025-11-26
 
 ;;; Commentary:
 
@@ -1084,6 +1084,8 @@ Typing these will trigger reindentation of the current line.")
       (display-buffer-reuse-mode-window display-buffer-at-bottom)
       (mode . (shell-mode eshell-mode comint-mode eat-mode))
       (body-function . prot-window-select-fit-size))
+     ((derived-mode . compilation-mode)
+      (display-buffer-reuse-mode-window display-buffer-at-bottom))
      ("\\*\\(Calendar\\|Bookmark Annotation\\|ert\\).*"
       (display-buffer-reuse-mode-window display-buffer-below-selected)
       (mode . (calendar-mode bookmark-edit-annotation-mode ert-results-mode))
