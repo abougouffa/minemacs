@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-26
+;; Last modified: 2025-11-28
 
 ;;; Commentary:
 
@@ -406,7 +406,7 @@
   :hook (hide-ifdef-mode . +hide-ifdef-get-env-from-compilation-db))
 
 (use-package hl-line
-  :hook ((prog-mode conf-mode text-mode dired-mode) . hl-line-mode)) ; Highlight the current line
+  :hook ((prog-mode conf-mode text-mode dired-mode profiler-report-mode) . hl-line-mode)) ; Highlight the current line
 
 (use-package cc-vars
   :config
