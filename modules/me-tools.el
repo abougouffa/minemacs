@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-11-05
+;; Last modified: 2025-11-28
 
 ;;; Commentary:
 
@@ -112,7 +112,10 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
   ;; TODO: Try to find a better way of applying `pet-mode', currently, it slows
   ;; down opening Python buffers (or reverting them)
-  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10))
+  (add-hook 'python-base-mode-hook '+pet-mode-maybe -10)
+  :config
+  ;; Remove the slow recursive finder
+  (cl-callf2 remq 'pet-find-file-from-project-root-recursively pet-find-file-functions))
 
 
 ;; Mount/umount eCryptfs private directory from Emacs
