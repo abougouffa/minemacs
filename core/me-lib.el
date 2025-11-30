@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-09-26
+;; Last modified: 2025-11-30
 
 ;;; Commentary:
 
@@ -770,6 +770,11 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
                         (project-root proj)
                       (vc-root-dir))))
     (expand-file-name root)))
+
+(defun +project-root-for-dir (&optional dir)
+  "Return the project's root of DIR, don't fail."
+  (let ((default-directory (expand-file-name (or dir default-directory))))
+    (+project-safe-root)))
 
 
 
