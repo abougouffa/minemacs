@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.16.0](https://github.com/abougouffa/minemacs/compare/e0ea49ae59d595f0d12d204d092aa46be7122a8b..v13.16.0) - 2025-11-30
+#### Tweaks
+- (**hl-line**) enable in `profiler-report-mode` - ([e8fa657](https://github.com/abougouffa/minemacs/commit/e8fa65753d23d66e3843a9682ccd0ce100f37494)) - [@abougouffa](https://github.com/abougouffa)
+- (**modus-themes**) remove unneeded face customization - ([8e09f21](https://github.com/abougouffa/minemacs/commit/8e09f21460ada65b095179952333808ab3f4fe4c)) - [@abougouffa](https://github.com/abougouffa)
+- (**org-contrib**) change mirror's URL - ([b01aa0c](https://github.com/abougouffa/minemacs/commit/b01aa0c4f1e5ab0b472638e4d720f6e08894cab0)) - [@abougouffa](https://github.com/abougouffa)
+- (**pet**) enhance performances by disabling recursive finder - ([6e5b5a4](https://github.com/abougouffa/minemacs/commit/6e5b5a449de3d0cadbf16b58baa061aa69cc6925)) - [@abougouffa](https://github.com/abougouffa)
+- (**window**) display compilation buffers at the bottom - ([9e895d3](https://github.com/abougouffa/minemacs/commit/9e895d3799de155f0cb600356c8ca5bd12164def)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([41bef29](https://github.com/abougouffa/minemacs/commit/41bef29fca113f5dbbcfd4d902be2ed59e515c4e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([96d60e5](https://github.com/abougouffa/minemacs/commit/96d60e5f2631fce367766041f3e3c84e3fca8d01)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**natural-langs**) add support for `gt` - ([e116230](https://github.com/abougouffa/minemacs/commit/e116230e3db2b136592ba9413eb1e017641888db)) - [@abougouffa](https://github.com/abougouffa)
+- (**obsolete**) remove `me-go-translate`, package no longer exist - ([031dc47](https://github.com/abougouffa/minemacs/commit/031dc475a33a05ec13d8adaf0c34b38877081a26)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) steal `+def-project-mode!` from Doom Emacs - ([27c32ab](https://github.com/abougouffa/minemacs/commit/27c32abf3181b20d23537e0f153e7fc348407244)) - [@abougouffa](https://github.com/abougouffa)
+- (**pulsar**) make buggy `pulsar` obsolete - ([2262e1b](https://github.com/abougouffa/minemacs/commit/2262e1b0107949a4ba74be2e74679cbaa60ff436)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**doom-themes**) avoid face-inheritance cycles, forbidden in Emacs 30.2+ - ([4ddba35](https://github.com/abougouffa/minemacs/commit/4ddba359dd4e07f27355c72210661b8050893a8f)) - [@abougouffa](https://github.com/abougouffa)
+- (**pulsar**) remove reverence to obsolete variable - ([e0ea49a](https://github.com/abougouffa/minemacs/commit/e0ea49ae59d595f0d12d204d092aa46be7122a8b)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**prog**) restore `consult-eglot` - ([e0cabef](https://github.com/abougouffa/minemacs/commit/e0cabef3341341ec147678bd53ca9e83ca540f34)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([b5a24c9](https://github.com/abougouffa/minemacs/commit/b5a24c957253b6f22467a0795a075af60d45a5ce)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.15.0](https://github.com/abougouffa/minemacs/compare/55b48d2f27793fe6f152a1b6bca928f1ae4dd29a..v13.15.0) - 2025-11-16
 #### Tweaks
 - (**llm-ollama**) update the list of embedding models - ([55b48d2](https://github.com/abougouffa/minemacs/commit/55b48d2f27793fe6f152a1b6bca928f1ae4dd29a)) - [@abougouffa](https://github.com/abougouffa)
