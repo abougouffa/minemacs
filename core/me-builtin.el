@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-11-28
+;; Last modified: 2025-12-01
 
 ;;; Commentary:
 
@@ -517,6 +517,9 @@
   (eglot-stay-out-of '(yasnippet))
   (eglot-advertise-cancellation t)
   :config
+  ;; Showing pending requests are just visual pollution of the mode-line
+  (cl-callf2 remq 'eglot-mode-line-pending-requests eglot-mode-line-format)
+
   ;; PERF: Optimization, inspired by: https://reddit.com/r/emacs/comments/1gv556t/comment/lxzbfw8
   (unless minemacs-debug-p
     (cl-callf plist-put eglot-events-buffer-config :size 0) ; Disable logs in `eglot-events-buffer' (def. 2000000)
