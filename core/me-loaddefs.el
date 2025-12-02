@@ -230,8 +230,8 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
 
-(minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . csproj-mode) ("\\.sln\\'" . sln-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet csproj-mode sharper)))
-(register-definition-prefixes "../modules/on-demand/me-dotnet" '("+dotnet-get-templates"))
+(minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.sln\\'" . sln-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . +dotnet-proj-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet sharper sln-mode)))
+(register-definition-prefixes "../modules/on-demand/me-dotnet" '("+dotnet-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-ebuild.el
