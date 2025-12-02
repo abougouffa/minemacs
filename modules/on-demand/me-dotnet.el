@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-02
 
 ;;; Commentary:
 
@@ -90,7 +90,7 @@ the lanugage and the type."
         (marginalia--fields
          (lang :face 'marginalia-size :width -10)
          (desc :face 'marginalia-file-name))))
-    (add-to-list 'marginalia-annotator-registry '(dotnet-template +marginalia-annotate-dotnet-template builtin none)))
+    (add-to-list 'marginalia-annotators '(dotnet-template +marginalia-annotate-dotnet-template builtin none)))
 
   ;; TWEAK+BUGFIX: Fix the path issue and provide a more smart prompting for templates and languages
   (advice-add
