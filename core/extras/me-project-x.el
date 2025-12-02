@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-11-30
+;; Last modified: 2025-12-02
 
 ;;; Commentary:
 
@@ -218,6 +218,7 @@ unless they begin with a slash."
   "A hook that runs when a project is enabled.
 The name of the project's mode and its state are passed in.")
 
+;;;###autoload
 (cl-defmacro +def-project-mode! (name &key modes files when match add-hooks on-load on-enter on-exit)
   "Define a project minor mode named NAME and where/how it is activated.
 
