@@ -21,21 +21,21 @@
 (defun +dotnet-get-templates (&optional full-desc)
   "Get the supported templates from \"dotnet new list\".
 
-When FULL-DESC, return an alist with the short and long names alongside
-the lanugage and the type."
+When FULL-DESC, return an alist of templates names, short names,
+lanugages and types."
   (let ((lines (string-lines (shell-command-to-string "dotnet new list --columns=language --columns=type")))
         (regexp (rx (group (+ ?-))    ; 1. Template Name
-                    (group (+ space))
-                    (group (+ ?-))    ; 3. Short Name
-                    (group (+ space))
-                    (group (+ ?-))    ; 5. Language
-                    (group (+ space))
-                    (group (+ ?-))))  ; 7. Type
+                    (+ space)
+                    (group (+ ?-))    ; 2. Short Name
+                    (+ space)
+                    (group (+ ?-))    ; 3. Language
+                    (+ space)
+                    (group (+ ?-))))  ; 4. Type
         skel templates)
     (dolist (line lines)
       (cond ((string-match regexp line)
              (setq skel (mapcar (lambda (n) (cons (match-beginning n) (match-end n)))
-                                (number-sequence 1 7 2))))
+                                (number-sequence 1 4))))
             ((and skel (length> line 1))
              (let ((l-name (cl-destructuring-bind (beg . end) (nth 0 skel) (string-trim (substring line beg end))))
                    (l-shrt (cl-destructuring-bind (beg . end) (nth 1 skel) (string-trim (substring line beg end))))
