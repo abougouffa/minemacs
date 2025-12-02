@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-12-02
+;; Last modified: 2025-12-03
 
 ;;; Commentary:
 
@@ -13,9 +13,9 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-dotnet
   :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode)
-               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . csproj-mode)
+               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . xml-mode)
                ("\\.sln\\'" . sln-mode))
-  :companion-packages '(((csharp-mode csharp-ts-mode) . (dotnet csproj-mode sharper))))
+  :companion-packages '(((csharp-mode csharp-ts-mode) . (dotnet sharper))))
 
 
 (defun +dotnet-get-templates (&optional full-desc)
@@ -56,15 +56,6 @@ the lanugage and the type."
 (use-package sln-mode
   :straight t
   :mode "\\.sln\\'")
-
-
-;; Work with .NET project files (csproj, vbproj, fsproj, vdproj, vcxproj)
-(use-package csproj-mode
-  :straight t
-  :mode "\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'"
-  :config
-  ;; BUGFIX: Switch to a working function
-  (advice-add 'csproj-mode--get-dotnet-new-templates :override #'+dotnet-get-templates))
 
 
 ;; Interact with dotnet CLI tool
