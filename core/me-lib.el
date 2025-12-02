@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-11-30
+;; Last modified: 2025-12-03
 
 ;;; Commentary:
 
@@ -1189,7 +1189,7 @@ To be used as a predicate generator for `display-buffer-alist'."
                                                          (looking-at func-or-regexp))))))
                                       (throw 'match-found t)))))))
                             ((or (eq enable 'no-ask)
-                                 (and (not noninteractive) ; ask only when in an interactive session
+                                 (and (called-interactively-p 'interactive) ; ask only when in an interactive session
                                       (y-or-n-p (format "Buffer %s can be opened with a mode from `%s', load it? "
                                                         (current-buffer) module))))))
                   (setq module-found t)
@@ -1214,7 +1214,7 @@ To be used as a predicate generator for `display-buffer-alist'."
                 (when-let* (((and (derived-mode-p cur-modes)
                                   (cl-find-if-not #'fboundp modes)
                                   (or (eq enable 'no-ask)
-                                      (and (not noninteractive) ; ask only when in an interactive session
+                                      (and (called-interactively-p 'interactive) ; ask only when in an interactive session
                                            (y-or-n-p (format "Module `%s' can be useful for buffer %s, load it? "
                                                              module (current-buffer))))))))
                   (push module modules)
@@ -1227,8 +1227,11 @@ To be used as a predicate generator for `display-buffer-alist'."
   (interactive)
   (let ((minemacs-on-demand-enable-plist '(:companion-packages t)))
     (if-let* ((modules (minemacs-on-demand-try-load-companion-packages)))
-        (message "Loaded on-demand modules %s." (string-join (mapcar (apply-partially #'format "`%s'") modules) ", "))
-      (message "No suitable on-demand module for the current buffer."))))
+        (+log! "Loaded on-demand modules %s." (string-join (mapcar (apply-partially #'format "`%s'") modules) ", "))
+      (when (called-interactively-p 'interactive)
+        (message "No suitable on-demand module for the current buffer.")))))
+
+(add-hook 'after-change-major-mode-hook #'minemacs-on-demand-try-load-companion-packages)
 
 ;; We hook to `magic-mode-alist' and not `magit-fallback-mode-alist', this is
 ;; important for files that can be opened in some available mode but have a
