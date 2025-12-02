@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-02
 
 ;;; Commentary:
 
@@ -19,6 +19,7 @@
   (defvar-local +jira-open-status '("open" "to do" "in progress"))
   (defvar-local +jira-commit-auto-insert-ticket-id-function nil)
   :config
+  (defvar +jira-prompt-tickets nil)
   (defun +jira-get-ticket ()
     "Get ticket ID, choose from states defined in `+jira-open-status'."
     (when-let* ((user (or jiralib-user-login-name jiralib-user))
@@ -31,12 +32,15 @@
                                  issues)))
       (if (length= tickets 1)
           (car tickets)
-        (let ((completion-extra-properties
-               '(:annotation-function
-                 ,(lambda (ticket)
-                    (when-let* ((desc (alist-get ticket minibuffer-completion-table)))
-                      (concat (make-string (- 15 (length ticket)) ?\ ) (propertize desc 'face 'font-lock-comment-face)))))))
-          (assoc (completing-read "Select ticket: " tickets) tickets #'string=)))))
+        (let* ((+jira-prompt-tickets tickets))
+          (assoc (completing-read "Select ticket: " (+completion-mark-category tickets 'jiralib-ticket)) tickets)))))
+
+  (with-eval-after-load 'marginalia
+    (defun +marginalia-annotate-jira-ticket-id (cand)
+      (when-let* ((desc (alist-get cand +jira-prompt-tickets nil nil #'equal)))
+        (marginalia--fields
+         (desc :face 'marginalia-file-name))))
+    (add-to-list 'marginalia-annotators '(jiralib-ticket +marginalia-annotate-jira-ticket-id builtin none)))
 
   (defun +jira-insert-ticket-id (with-summary)
     "Insert ticket ID, optionally WITH-SUMMARY.
