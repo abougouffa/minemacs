@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-10-08
+;; Last modified: 2025-12-02
 
 ;;; Commentary:
 
@@ -73,6 +73,11 @@
   :demand
   :custom
   (magit-gerrit-popup-prefix "_"))
+
+
+;; Gerrit integration via the REST API
+(use-package gerrit
+  :straight (:host github :repo "twmr/gerrit.el"))
 
 
 ;; Store EIEIO objects using EmacSQL
