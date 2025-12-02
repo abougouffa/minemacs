@@ -115,8 +115,13 @@ LANGUAGE is a supported language."
 ;; A mode for editing Visual Basic .NET code
 (use-package vbnet-mode
   :straight t
+  :hook (vbnet-mode . display-line-numbers-mode)
   :mode "\\.\\(frm\\|bas\\|cls\\|vbs?\\)\\'"
-  :commands (vbnet-mode))
+  :commands (vbnet-mode)
+  :config
+  ;; Needed for `flymake-proc-allowed-file-name-masks', but not loaded
+  ;; systematically by `flymake'
+  (require 'flymake-proc))
 
 
 (provide 'on-demand/me-dotnet)
