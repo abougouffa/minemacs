@@ -959,7 +959,60 @@ Show help for the symbol at point." t)
 (defun projectile-expand-root (name &optional dir) (when (projectile-project-p dir) (expand-file-name name (projectile-project-root dir))))
 (defun projectile-verify-file (file &optional dir) (when-let* ((file (projectile-expand-root file dir))) (file-exists-p file)))
 (defun projectile-project-buffer-p (buffer proj-root) (and (let ((default-directory proj-root)) (member buffer (projectile-project-buffers))) t))
-(register-definition-prefixes "extras/me-project-x" '("+fd-" "+project-"))
+(autoload '+file-exists-p! "extras/me-project-x" "\
+Returns non-nil if the FILES in DIRECTORY all exist.
+
+DIRECTORY is a path; defaults to `default-directory'.
+
+Returns the last file found to meet the rules set by FILES, which can be a
+single file or nested compound statement of `and' and `or' statements.
+
+(fn FILES &optional DIRECTORY)" nil t)
+(autoload '+project-file-exists-p! "extras/me-project-x" "\
+Checks if FILES exist at the current project's root.
+
+The project's root is determined by `projectile', starting from BASE-DIRECTORY
+(defaults to `default-directory'). FILES are paths relative to the project root,
+unless they begin with a slash.
+
+(fn FILES &optional BASE-DIRECTORY)" nil t)
+(autoload '+def-project-mode! "extras/me-project-x" "\
+Define a project minor mode named NAME and where/how it is activated.
+
+Project modes allow you to configure 'sub-modes' for major-modes that are
+specific to a folder, project structure, framework or whatever arbitrary context
+you define. These project modes can have their own settings, keymaps, hooks,
+snippets, etc.
+
+This creates NAME-hook and NAME-map as well.
+
+PLIST may contain any of these properties, which are all checked to see if NAME
+should be activated. If they are *all* true, NAME is activated.
+
+  :modes MODES -- if buffers are derived from MODES (one or a list of symbols).
+
+  :files FILES -- if project contains FILES; takes a string or a form comprised
+    of nested (and ...) and/or (or ...) forms. Each path is relative to the
+    project root, however, if prefixed with a '.' or '..', it is relative to the
+    current buffer.
+
+  :match REGEXP -- if file name matches REGEXP.
+
+  :when PREDICATE -- if PREDICATE returns true (can be a form or the symbol of a
+    function).
+
+  :add-hooks HOOKS -- HOOKS is a list of hooks to add this mode's hook.
+
+  :on-load FORM -- FORM to run the first time this project mode is enabled.
+
+  :on-enter FORM -- FORM is run each time the mode is activated.
+
+  :on-exit FORM -- FORM is run each time the mode is disabled.
+
+Relevant: `minemacs-project-hook'.
+
+(fn NAME &key MODES FILES WHEN MATCH ADD-HOOKS ON-LOAD ON-ENTER ON-EXIT)" nil t)
+(register-definition-prefixes "extras/me-project-x" '("+f" "+project-" "minemacs-project-hook"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-protobuf.el
@@ -1199,7 +1252,6 @@ from `after-load-alist' after it runs.  See `eval-after-load' for more
 information.
 
 (fn FILE &rest BODY)" nil t)
-(function-put 'once-with-eval-after-load 'lisp-indent-function 1)
 (defalias 'once-with #'once-with-eval-after-load)
 (autoload 'once-x-call "../elisp/once" "\
 When CONDITION is first met, call FUNCTIONS once.
@@ -1315,7 +1367,6 @@ be a function body:
 See `once-x-call' for more information, including how to specify CONDITION.
 
 (fn CONDITION &rest BODY)" nil t)
-(function-put 'once 'lisp-indent-function 1)
 (register-definition-prefixes "../elisp/once" '("once-"))
 
 
@@ -1560,7 +1611,6 @@ technically has an undefined return value).
 
 (fn NAME ARGLIST &optional DOCSTRING &rest BODY)" nil t)
 (function-put 'satch-defun 'doc-string-elt 3)
-(function-put 'satch-defun 'lisp-indent-function 2)
 (autoload 'satch-disable "../elisp/satch" "\
 Return a named function that disables MODE.
 
