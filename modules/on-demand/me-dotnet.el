@@ -13,10 +13,13 @@
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-dotnet
   :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode)
-               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . xml-mode)
-               ("\\.sln\\'" . sln-mode))
-  :companion-packages '(((csharp-mode csharp-ts-mode) . (dotnet sharper))))
+               ("\\.sln\\'" . sln-mode)
+               ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . +dotnet-proj-mode))
+  :companion-packages '(((csharp-mode csharp-ts-mode) . (dotnet sharper sln-mode))))
 
+
+(define-derived-mode +dotnet-proj-mode nxml-mode ".NET Proj" "Major mode to view .NET project files.")
+(add-hook 'auto-mode-alist '("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . +dotnet-proj-mode))
 
 (defun +dotnet-get-templates (&optional full-desc)
   "Get the supported templates from \"dotnet new list\".
