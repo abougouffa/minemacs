@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-09-28
+;; Last modified: 2025-12-08
 
 ;;; Commentary:
 
@@ -565,6 +565,9 @@ prerelease if no :VER is provided."
   "Is it relevant to auto reload dir-locals for his buffer."
   (when (and (buffer-file-name)
              (equal dir-locals-file (file-name-nondirectory (buffer-file-name))))
+    ;; Mark the direcotry of the current `dir-locals-file' as safe
+    (let ((dir-locals-dir (car (ensure-list (dir-locals-find-file default-directory)))))
+      (add-to-list 'safe-local-variable-directories (expand-file-name dir-locals-dir)))
     (+dir-locals-reload-for-all-buffers-in-this-directory)
     (+log! "Reloaded directory-local variables defined in %s to buffer %S" dir-locals-file (current-buffer))))
 
