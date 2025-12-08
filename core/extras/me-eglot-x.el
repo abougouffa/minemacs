@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-25
-;; Last modified: 2025-08-25
+;; Last modified: 2025-12-08
 
 ;;; Commentary:
 
@@ -233,12 +233,15 @@ When STORE is non-nil, this will also store the new plist in the directory
   '(python-mode python-ts-mode)
   "pylsp"
   "pyls"
-  '("pylyzer" "--server")
-  '("ty" "server")
   '("basedpyright-langserver" "--stdio")
   '("pyright-langserver" "--stdio")
+  '("pyrefly" "lsp")
   "jedi-language-server"
-  "ruff-lsp")
+  '("ruff" "server")
+  "ruff-lsp"
+  '("pylyzer" "--server")
+  '("ty" "server")
+  '("rass" "--" "pyright-langserver" "--stdio" "--" "ty" "server" "--" "ruff" "server"))
 
 (+eglot-register ; better (!) parameters for Clangd
   '(c++-mode c++-ts-mode c-mode c-ts-mode)
