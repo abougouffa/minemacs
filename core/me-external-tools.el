@@ -59,9 +59,9 @@
     (:tool gawk
      :link "https://www.gnu.org/software/gawk"
      :desc "A domain-specific language designed for text processing")
-    (:tool emacs-lsp-booster
-     :link "https://github.com/blahgeek/emacs-lsp-booster"
-     :desc "Emacs LSP performance booster")
+    (:tool rassumfrassum
+     :link "https://github.com/abougouffa/rassumfrassum"
+     :desc "Connects one LSP client to multiple LSP servers")
     (:tool cmake
      :link "https://github.com/Kitware/CMake"
      :desc "A Powerful Software Build System")
