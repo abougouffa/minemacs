@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-12-08
+;; Last modified: 2025-12-09
 
 ;;; Commentary:
 
@@ -143,6 +143,30 @@ RECURSIVE is non-nil."
         (insert filename)
         (kill-ring-save (point-min) (point-max)))
     (user-error "This buffer is not visiting a file")))
+
+(defun +tramp--convert-sshfs-filename-local (filename)
+  "If FILENAME is an sshfs TRAMP file, convert it to the local mounted path."
+  (if (and (stringp filename)
+           (file-remote-p filename )
+           (equal "sshfs" (tramp-file-name-method (tramp-dissect-file-name filename))))
+      (tramp-fuse-local-file-name filename)
+    filename))
+
+;;;###autoload
+(defun +open-with (file)
+  "Open FILE in default external program.
+When in `dired-mode', open file under the cursor.
+
+With a prefix, always prompt for command to use."
+  (interactive (list (if (derived-mode-p 'dired-mode) (dired-get-file-for-visit) buffer-file-name)))
+  (let* ((file (+tramp--convert-sshfs-filename-local file))
+         (open (pcase system-type
+                 ('darwin "open")
+                 ((or 'gnu 'gnu/linux 'gnu/kfreebsd) "xdg-open")))
+         (program (if (or current-prefix-arg (not open))
+                      (read-shell-command "Open current file with: ")
+                    open)))
+    (call-process program nil 0 nil file)))
 
 
 

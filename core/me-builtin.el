@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-12-01
+;; Last modified: 2025-12-09
 
 ;;; Commentary:
 
@@ -154,6 +154,7 @@
 
   (defvar-keymap minemacs-open-thing-map :doc "Open/toggle thing, under `C-c o'." :name "Open/toggle thing")
   (keymap-global-set "C-c o" `("open-thing" . ,minemacs-open-thing-map))
+  (keymap-set minemacs-open-thing-map "o" #'+open-with)
 
   ;; Disable previously enabled custom themes before enabling a new one.
   (defun +theme--disable-previous-themes:before-a (&rest _args)
