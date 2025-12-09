@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-11-28
+;; Last modified: 2025-12-09
 
 ;;; Commentary:
 
@@ -123,6 +123,12 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   :straight (:host github :repo "abougouffa/emacs-ecryptfs")
   :when (and (or (featurep 'os/linux) (featurep 'os/bsd)) (executable-find "ecryptfs-verify"))
   :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
+
+
+;; Package manager for LSPs, DAPs, linters, and more
+(use-package mason
+  :straight t
+  :hook (minemacs-lazy . mason-ensure))
 
 
 (provide 'me-tools)
