@@ -128,7 +128,8 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 ;; Package manager for LSPs, DAPs, linters, and more
 (use-package mason
   :straight t
-  :hook (minemacs-lazy . mason-ensure))
+  :init
+  (add-to-list 'exec-path (expand-file-name "mason/bin" minemacs-local-dir)))
 
 
 (provide 'me-tools)
