@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-02
+;; Last modified: 2025-12-10
 
 ;;; Commentary:
 
@@ -69,7 +69,9 @@
 (use-package magit-gerrit
   :straight (:host github :repo "abougouffa/magit-gerrit")
   :after magit
-  :bind (:map magit-status-mode-map ("_" . magit-gerrit-mode))
+  :bind ( :map magit-status-mode-map
+          ("_" . magit-gerrit-mode)
+          ("M-_" . magit-gerrit-dispatch))
   :demand
   :custom
   (magit-gerrit-popup-prefix "_"))
