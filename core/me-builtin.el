@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-12-09
+;; Last modified: 2025-12-10
 
 ;;; Commentary:
 
@@ -950,15 +950,6 @@ Typing these will trigger reindentation of the current line.")
   :custom
   (speedbar-update-flag t) ; Auto-update when the attached frame changes directory
   (speedbar-use-images nil) ; Disable icon images, instead use text
-  (speedbar-frame-parameters ; Customize Speedbar Frame
-   '((name . "speedbar")
-     (title . "speedbar")
-     (minibuffer . nil)
-     (border-width . 2)
-     (menu-bar-lines . 0)
-     (tool-bar-lines . 0)
-     (unsplittable . t)
-     (left-fringe . 10)))
   :config
   ;; File Extensions
   (speedbar-add-supported-extension
