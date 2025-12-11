@@ -4,27 +4,17 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-11
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; Emacs support library for PDF files
-(use-package pdf-tools
-  :straight t
-  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :magic ("%PDF" . pdf-view-mode)
-  :hook (minemacs-build-functions . pdf-tools-install)
-  :custom
-  (pdf-view-display-size 'fit-page)
-  (pdf-view-image-relief 2)
-  (pdf-view-use-scaling t))
-
 
 ;; PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 (use-package pdfgrep
   :straight t
+  :when (executable-find "pdfgrep")
   :commands (pdfgrep-mode pdfgrep)
   :custom
   (pdfgrep-options " -H -n -r --include \"*.pdf\" ")
