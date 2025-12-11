@@ -560,6 +560,10 @@ Define PACKAGE's COMMANDS for super-project context.
 
 Return the root of PROJ using several backends, don't fail.
 
+#### `(+project-root-for-dir &optional DIR)`
+
+Return the project's root of DIR, don't fail.
+
 #### `(minemacs-get-enabled-proxies)`
 
 Get a list of enabled proxies.
@@ -708,6 +712,12 @@ Delete FILENAME and its associated visiting buffer.
 #### `(+copy-current-file-name)`
 
 Save (copy) the file name of this buffer to the kill ring.
+
+#### `(+open-with FILE)`
+
+Open FILE in default external program.
+When in `dired-mode`, open file under the cursor.
+With a prefix, always prompt for command to use.
 
 #### `(+patch-get-patched-files PATCH-BUFF)`
 
@@ -1057,6 +1067,20 @@ Like `xref--find-ignores-arguments`, but for "fd".
 
 Find FILES (or all) using "fd" in directory DIR, excluding IGNORES.
 Can override `project--files-in-directory` for x3.5 faster listing.
+
+#### `(+file-exists-p! FILES &optional DIRECTORY)` (macro)
+
+Returns non-nil if the FILES in DIRECTORY all exist.
+DIRECTORY is a path; defaults to `default-directory`.
+Returns the last file found to meet the rules set by FILES, which can be a
+single file or nested compound statement of `and` and `or` statements.
+
+#### `(+project-file-exists-p! FILES &optional BASE-DIRECTORY)` (macro)
+
+Checks if FILES exist at the current project's root.
+The project's root is determined by `projectile`, starting from BASE-DIRECTORY
+(defaults to `default-directory`). FILES are paths relative to the project root,
+unless they begin with a slash.
 
 #### `(+smerge-first)`
 

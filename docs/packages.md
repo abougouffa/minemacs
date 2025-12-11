@@ -109,7 +109,6 @@
 * `jinx`: Just-in-time spell checker based on the Enchanted library
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
 * `lexic`: Fancy Emacs integration with the console version of StarDict
-* `reverso`: Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 * `gt`: Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 
 ## `me-nav`
@@ -193,6 +192,7 @@
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `pet`: Python Executable Tracker
 * `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
+* `mason`: Package manager for LSPs, DAPs, linters, and more
 
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
@@ -204,10 +204,7 @@
 * `nerd-icons-multimodal`: Integrate `nerd-icons` with `archive-mode`, `tar-mode`, `dired-mode`, and `ztree`
 * `diredfl`: Extra font lock rules for a more colourful `dired`
 * `virtual-format`: Format buffers visually without modification
-* `casual`: A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
-* `casual-avy`: An opinionated `transient` menu for `avy`
 * `ligature`: Display typographical ligatures in major modes
-* `easysession`: Effortlessly persist and restore your Emacs sessions
 
 ## `me-vc`
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
@@ -215,6 +212,7 @@
 * `magit-imerge`: Magit extension for "git-imerge"
 * `magit-delta`: Use delta when viewing diffs in `magit`
 * `magit-gerrit`: Gerrit integration with Magit
+* `gerrit`: Gerrit integration via the REST API
 * `closql`: Store EIEIO objects using EmacSQL
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
@@ -343,10 +341,12 @@
 
 ## `on-demand/me-dotnet`
 * `sln-mode`: A major mode to edit Visual Studio's solution files `*.sln`
-* `csproj-mode`: Work with .NET project files (csproj, vbproj, fsproj, vdproj, vcxproj)
 * `dotnet`: Interact with dotnet CLI tool
 * `sharper`: A dotnet CLI wrapper, using Transient
 * `vbnet-mode`: A mode for editing Visual Basic .NET code
+
+## `on-demand/me-easysession`
+* `easysession`: Effortlessly persist and restore your Emacs sessions
 
 ## `on-demand/me-ebuild`
 * `ebuild-mode`: Major mode for editing Gentoo's ebuild and eclass files
@@ -579,6 +579,7 @@
 
 ## `on-demand/me-qt`
 * `qml-mode`: Major mode for editing QT Declarative (QML) code
+* `qml-ts-mode`: Tree-sitter based major mode for editing QT Declarative (QML) code
 * `qt-pro-mode`: Major mode for Qt's Pro/Pri files
 
 ## `on-demand/me-rust`

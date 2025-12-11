@@ -23,7 +23,7 @@ you might need install some of these tools.
 17. [`cscope`](https://cscope.sourceforge.net) - Interactively examine a C program
 18. [`ctags`](https://github.com/universal-ctags/ctags) - Universal Ctags (abbreviated as u-ctags) is a maintained implementation of ctags
 19. [`gawk`](https://www.gnu.org/software/gawk) - A domain-specific language designed for text processing
-20. [`emacs-lsp-booster`](https://github.com/blahgeek/emacs-lsp-booster) - Emacs LSP performance booster
+20. [`rassumfrassum`](https://github.com/abougouffa/rassumfrassum) - Connects one LSP client to multiple LSP servers
 21. [`cmake`](https://github.com/Kitware/CMake) - A Powerful Software Build System
 22. [`make`](https://www.gnu.org/software/make) - GNU Make utility to maintain groups of programs
 23. [`ipdb`](https://github.com/gotcha/ipdb) - Integration of IPython pdb
