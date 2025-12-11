@@ -2,6 +2,41 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.17.0](https://github.com/abougouffa/minemacs/compare/cec3169d7e6f0bd4334033c7d7356c922e721144..v13.17.0) - 2025-12-11
+#### Tweaks
+- (**eglot**) don't show pending requests in mode-line - ([cec3169](https://github.com/abougouffa/minemacs/commit/cec3169d7e6f0bd4334033c7d7356c922e721144)) - [@abougouffa](https://github.com/abougouffa)
+- (**eglot-x**) add LSP multiplexer for `pyright`, `ty` and `ruff` - ([e043a8b](https://github.com/abougouffa/minemacs/commit/e043a8bbb6c5d6519c05e64c9591a9d052ec9cbf)) - [@abougouffa](https://github.com/abougouffa)
+- (**external-tools**) add `rassumfrassum`, remove `emacs-lsp-booster` - ([a95e16e](https://github.com/abougouffa/minemacs/commit/a95e16eaec69a83165b56c62063b835bf2cc0f1a)) - [@abougouffa](https://github.com/abougouffa)
+- (**mason**) don't load, just add the bin directory to `exec-path` - ([d2a291b](https://github.com/abougouffa/minemacs/commit/d2a291b302324968f1b70185d88937ab01b2f7a7)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/dotnet**) minor simplification in `+dotnet-get-templates` - ([c7dc46b](https://github.com/abougouffa/minemacs/commit/c7dc46bd9650040ba3f7589ba089a3bcd90cb83a)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) autolaod `+def-project-mode!` - ([bbb0b74](https://github.com/abougouffa/minemacs/commit/bbb0b7472b5025161ff395e054ae0214ee1dd83b)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([45e6c8a](https://github.com/abougouffa/minemacs/commit/45e6c8a9c45d4703a78127ff7d0056274f527f6f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([57fd55e](https://github.com/abougouffa/minemacs/commit/57fd55e1e7ee42ee1cf72b711db7104a19c7d0e9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([ef442a2](https://github.com/abougouffa/minemacs/commit/ef442a2ad9a37e0c2e1cdbd1699884787ab1f0a1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([2ee5767](https://github.com/abougouffa/minemacs/commit/2ee5767f917809675bcf9d8968c19ffa23742bea)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**lib**) add smarter `+open-with` command - ([7a20b20](https://github.com/abougouffa/minemacs/commit/7a20b20d2e4000fb31236563554f9cb0dd807ab0)) - [@abougouffa](https://github.com/abougouffa)
+- (**natural-langs**) make `reverso` obsolete - ([25ae1a9](https://github.com/abougouffa/minemacs/commit/25ae1a9b4b95184a190f2c2ce634b050ebda7787)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/dotnet**) create `+dotnet-proj-mode` derived from `nxml-mode` - ([d492d92](https://github.com/abougouffa/minemacs/commit/d492d9233d5df58448a7e7b49cd645025c606987)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/dotnet**) remove `csproj-mode` - ([e252179](https://github.com/abougouffa/minemacs/commit/e2521799316f06ca9ab94f9982e48dd8eade9fc9)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/qt**) add `qml-ts-mode` - ([2217ac0](https://github.com/abougouffa/minemacs/commit/2217ac06070579b65285f6d7dc5261d36465b35c)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) add `mason` - ([d9ad6d7](https://github.com/abougouffa/minemacs/commit/d9ad6d79a96daf669ae4a88c048e8ff44ec4f960)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) make the `casual` suite obsolete - ([639900f](https://github.com/abougouffa/minemacs/commit/639900ff814e99d6e8923698550ee81c4fa58beb)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) make `easysession` obsolete - ([3f7c820](https://github.com/abougouffa/minemacs/commit/3f7c820b39e96b4cefbbb31d52de130329a8d4ce)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) restore `gerrit` - ([01ba678](https://github.com/abougouffa/minemacs/commit/01ba67856e45c9f8437447db07f3a06c441f229e)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**jiralib**) fix `marginalia` decoration - ([4cb4768](https://github.com/abougouffa/minemacs/commit/4cb47684aa0d45c5822ad5e6c718bf451af8ea34)) - [@abougouffa](https://github.com/abougouffa)
+- (**lib**) make sure no questions are asked when reloading dir-locals - ([f7ec91e](https://github.com/abougouffa/minemacs/commit/f7ec91ed8f4465699192060433cea3a6dbfe5267)) - [@abougouffa](https://github.com/abougouffa)
+- (**lib**) automatically load on-demand companion packages - ([f8a66a2](https://github.com/abougouffa/minemacs/commit/f8a66a29b0a6ea25db07d499e4c68e2aa22efd7f)) - [@abougouffa](https://github.com/abougouffa)
+- (**mason**) make sure to invoke `mason-ensure` - ([9dfe453](https://github.com/abougouffa/minemacs/commit/9dfe4534f915f1707860788de89701057cfc29c2)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/dotnet**) fix the `marginalia` integration - ([7d4e16b](https://github.com/abougouffa/minemacs/commit/7d4e16b5ad521379bf00c3986d53b0a29555f852)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/vbnet-mode**) fix flymake-related error - ([0b32b95](https://github.com/abougouffa/minemacs/commit/0b32b95c1a6dc153957fbf694adc387b2016f39e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**faq**) remove irrelevant old question - ([65ec310](https://github.com/abougouffa/minemacs/commit/65ec31070e8fc021d62b80d29079f142ce72379c)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([ee045f9](https://github.com/abougouffa/minemacs/commit/ee045f995aa066cc0675d78408ce69b9267ba9ec)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.16.0](https://github.com/abougouffa/minemacs/compare/e0ea49ae59d595f0d12d204d092aa46be7122a8b..v13.16.0) - 2025-11-30
 #### Tweaks
 - (**hl-line**) enable in `profiler-report-mode` - ([e8fa657](https://github.com/abougouffa/minemacs/commit/e8fa65753d23d66e3843a9682ccd0ce100f37494)) - [@abougouffa](https://github.com/abougouffa)
