@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-09
+;; Last modified: 2025-12-11
 
 ;;; Commentary:
 
@@ -129,7 +129,9 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 (use-package mason
   :straight t
   :init
-  (add-to-list 'exec-path (expand-file-name "mason/bin" minemacs-local-dir)))
+  (add-to-list 'exec-path (expand-file-name "mason/bin" minemacs-local-dir))
+  :config
+  (mason-ensure))
 
 
 (provide 'me-tools)
