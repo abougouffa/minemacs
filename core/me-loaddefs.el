@@ -528,6 +528,13 @@ Delete FILENAME and its associated visiting buffer.
 (fn &optional FILENAME)" t)
 (autoload '+copy-current-file-name "me-lib-x" "\
 Save (copy) the file name of this buffer to the kill ring." t)
+(autoload '+open-with "me-lib-x" "\
+Open FILE in default external program.
+When in `dired-mode', open file under the cursor.
+
+With a prefix, always prompt for command to use.
+
+(fn FILE)" t)
 (autoload '+unresolved-merge-conflict-p "me-lib-x")
 (autoload '+apply-patch-dwim "me-lib-x" "\
 Apply PATCH-BUF to the relevant file in PROJ-DIR.
@@ -791,7 +798,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+tramp--convert-sshfs-filename-local"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -1038,7 +1045,7 @@ Relevant: `minemacs-project-hook'.
 
 ;;; Generated autoloads from ../modules/on-demand/me-qt.el
 
-(minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
+(minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.qml\\'" . qml-ts-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 (add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
 
