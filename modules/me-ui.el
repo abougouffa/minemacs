@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-11-28
+;; Last modified: 2025-12-11
 
 ;;; Commentary:
 
@@ -179,12 +179,6 @@
       purescript-ts-mode ml-mode caml-mode tuareg-mode fsharp-mode fstar-mode
       fsharp-ts-mode dafny-mode swift-mode coq-mode idris-mode)
    +ligature-functional))
-
-
-;; Effortlessly persist and restore your Emacs sessions
-(use-package easysession
-  :straight t
-  :hook (minemacs-lazy . easysession-save-mode))
 
 
 (provide 'me-ui)
