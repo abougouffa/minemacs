@@ -4,9 +4,19 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-12-25
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-15
 
 ;;; Commentary:
+
+;; The `spell-fu' configuration is obsolete now (in favor of `jinx'). However,
+;; you can tell MinEmacs to load obsolete configurations by adding
+;; `obsolete/me-spell-fu' to your modules.el file. Then you can configure the
+;; package like this:
+;;
+;; (with-eval-after-load 'spell-fu
+;;   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
+;;   ;; to enable multi-language spell checking.
+;;   (+spell-fu-register-dictionaries! "en" "fr"))
 
 ;;; Code:
 

@@ -77,9 +77,7 @@
 
 (+deferred!
  ;; Auto enable Eglot in modes `+eglot-auto-enable-modes' using
- ;; `+eglot-auto-enable' (from the `me-prog' module). You can use
- ;; `+lsp-auto-enable' instead to automatically enable LSP mode in supported
- ;; modes (from the `me-lsp' module).
+ ;; `+eglot-auto-enable'.
  (+eglot-auto-enable)
 
  ;; Add `ocaml-mode' to `eglot' auto-enable modes
@@ -126,13 +124,6 @@
   :custom
   (devdocs-data-dir (concat minemacs-local-dir "devdocs/")))
 
-;; Module: `me-tools' -- Package: `vterm'
-;; When the libvterm present in the system is too old, you can face VTERM_COLOR
-;; related compilation errors. Thil parameter tells `vterm' to download libvterm
-;; for you, see the FAQ at: https://github.com/akermu/emacs-libvterm.
-;; (with-eval-after-load 'vterm
-;;   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
-
 ;; Module: `me-tags' -- Package: `citre'
 (with-eval-after-load 'citre
   ;; In case you get "gtags: Objdir not found." when trying to run `citre-global-update-database' in the *citre-gtags* buffer
@@ -142,16 +133,6 @@
 (with-eval-after-load 'jinx
   ;; Check spelling for Arabic, English and French by default.
   (setq-default jinx-languages "ar en fr"))
-
-;; The `spell-fu' configuration is obsolete now (in favor of `jinx'). However,
-;; you can force MinEmacs to load obsolete configurations by loading them
-;; manually. Here is an example of how to force loading an obsolete module, you
-;; can do this here or in modules.el.
-;; (+load minemacs-obsolete-modules-dir "me-spell-fu.el")
-;; (with-eval-after-load 'spell-fu
-;;   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
-;;   ;; to enable multi-language spell checking.
-;;   (+spell-fu-register-dictionaries! "en" "fr"))
 
 ;; Module: `me-rss' -- Package: `elfeed'
 (with-eval-after-load 'elfeed
@@ -306,3 +287,8 @@
   ;; machine my-jira-server.tld login my-username password MY-pAsSwOrD-123
   (with-eval-after-load 'jiralib
     (+jiralib-auto-login)))
+
+;; Module: `me-prog' -- Package: `dumb-jump'
+(with-eval-after-load 'dumb-jump
+  (when (executable-find "rg")
+    (setopt dumb-jump-force-searcher 'rg)))

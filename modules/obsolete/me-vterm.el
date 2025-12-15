@@ -4,9 +4,15 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-08-29
-;; Last modified: 2025-08-29
+;; Last modified: 2025-12-15
 
 ;;; Commentary:
+
+;; When the libvterm present in the system is too old, you can face VTERM_COLOR
+;; related compilation errors. This parameter tells `vterm' to download libvterm
+;; for you, see the FAQ at: https://github.com/akermu/emacs-libvterm.
+;; (with-eval-after-load 'vterm
+;;   (setq vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=Off"))
 
 ;;; Code:
 
