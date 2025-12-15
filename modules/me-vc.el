@@ -29,9 +29,7 @@
       (setcdr vc '("Magit project status"))))
   :config
   ;; Make `magit' collaborate with `tramp-direct-async-process' (magit/magit#5220)
-  (setq magit-tramp-pipe-stty-settings 'pty)
-  ;; Automatically refresh Magit after save
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status))
+  (setq magit-tramp-pipe-stty-settings 'pty))
 
 
 ;; Edit Git commit messages - part of `magit'
