@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-12-14
+;; Last modified: 2025-12-17
 
 ;;; Commentary:
 
@@ -996,7 +996,7 @@ Typing these will trigger reindentation of the current line.")
 (use-package subword
   :hook (minemacs-lazy . global-subword-mode)) ; Global SubWord mode
 
-(use-package prot-window
+(use-package minemacs-window
   :demand t
   :custom
   (window-min-width 30)
@@ -1053,12 +1053,12 @@ Typing these will trigger reindentation of the current line.")
              (derived-mode . help-mode) ; See the hooks for `visual-line-mode'
              "\\*\\(|Buffer List\\|Occur\\|vc-change-log\\|eldoc.*\\).*"
              "\\*\\vc-\\(incoming\\|outgoing\\|git : \\).*"))
-      (prot-window-display-buffer-below-or-pop)
-      (body-function . prot-window-select-fit-size))
-     (prot-window-shell-or-term-p
+      (+window-display-buffer-below-or-pop)
+      (body-function . +window-select-fit-size))
+     (+window-shell-or-term-p
       (display-buffer-reuse-mode-window display-buffer-at-bottom)
       (mode . (shell-mode eshell-mode comint-mode eat-mode))
-      (body-function . prot-window-select-fit-size))
+      (body-function . +window-select-fit-size))
      ((derived-mode . compilation-mode)
       (display-buffer-reuse-mode-window display-buffer-at-bottom))
      ("\\*\\(Calendar\\|Bookmark Annotation\\|ert\\).*"
@@ -1066,19 +1066,10 @@ Typing these will trigger reindentation of the current line.")
       (mode . (calendar-mode bookmark-edit-annotation-mode ert-results-mode))
       (dedicated . t)
       (window-height . fit-window-to-buffer))
-     ;; NOTE 2022-09-10: The following is for `ispell-word', though
-     ;; it only works because I override `ispell-display-buffer'
-     ;; with `prot-spell-ispell-display-buffer' and change the
-     ;; value of `ispell-choices-buffer'.
      ("\\*ispell-top-choices\\*.*"
       (display-buffer-below-selected)
       (window-height . fit-window-to-buffer))
      ;; same window
-
-     ;; NOTE 2023-02-17: `man' does not fully obey the
-     ;; `display-buffer-alist'.  It works for new frames and for
-     ;; `display-buffer-below-selected', but otherwise is
-     ;; unpredictable.  See `Man-notify-method'.
      ((or . ((derived-mode . Man-mode)
              (derived-mode . woman-mode)
              "\\*\\(Man\\|woman\\).*"))
