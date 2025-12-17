@@ -497,6 +497,7 @@
   (eglot-report-progress nil) ; disable annoying messages in echo area!
   (eglot-stay-out-of '(yasnippet))
   (eglot-advertise-cancellation t)
+  (eglot-ignored-server-capabilities '(:semanticTokensProvider)) ; Tree-sitter does a good job at semantic fontifying
   :config
   ;; Showing pending requests are just visual pollution of the mode-line
   (cl-callf2 remq 'eglot-mode-line-pending-requests eglot-mode-line-format)
