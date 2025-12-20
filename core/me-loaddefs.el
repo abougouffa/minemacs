@@ -49,7 +49,8 @@ Run adb root (or unroot with \\[universal-argument]).
 
 ;;; Generated autoloads from ../modules/on-demand/me-arduino.el
 
-(minemacs-register-on-demand-module 'me-arduino :auto-mode '((("\\.ino\\'" "\\.pde\\'") . arduino-mode)))
+(minemacs-register-on-demand-module 'me-arduino :auto-mode '((("\\.ino\\'" "\\.pde\\'") . +arduino-mode)))
+(register-definition-prefixes "../modules/on-demand/me-arduino" '("+arduino-mode"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-assembly.el
