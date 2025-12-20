@@ -154,6 +154,10 @@
                         (or (buffer-file-name) (format "No underlying file.\nDirectory is: %s" default-directory))
                         'face 'font-lock-doc-face)))))
 
+(minemacs-modeline-define-section region-size
+  (when (region-active-p)
+    (format " %s %d" (+nerd-icons-icon "nf-fa-arrow_right_from_bracket" 'face 'region) (- (region-end) (region-beginning)))))
+
 (minemacs-modeline-define-section project
   (when-let* ((fname (or (buffer-file-name) default-directory))
               ((not (file-remote-p fname)))
@@ -335,6 +339,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         minemacs-modeline-buffer-identification
                         "  "
                         mode-line-position
+                        minemacs-modeline-region-size
                         "  "
                         minemacs-modeline-process
                         "  "
