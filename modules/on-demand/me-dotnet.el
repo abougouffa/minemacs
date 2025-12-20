@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-12-03
+;; Last modified: 2025-12-20
 
 ;;; Commentary:
 
@@ -72,9 +72,7 @@ lanugages and types."
 
   (defvar +dotnet--templates-cache nil)
   (defun +dotnet--templates-cache ()
-    (or +dotnet--templates-cache
-        (and (executable-find "dotnet")
-             (setq +dotnet--templates-cache (+dotnet-get-templates t)))))
+    (with-memoization +dotnet--templates-cache (when (executable-find "dotnet") (+dotnet-get-templates t))))
 
   ;; Register the annonater for Marginalia
   (with-eval-after-load 'marginalia
