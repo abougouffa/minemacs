@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-08-12
+;; Last modified: 2025-12-23
 
 ;;; Commentary:
 
@@ -126,11 +126,6 @@
 ;; Consult provides search and navigation commands based on the Emacs completion function `completing-read'
 (use-package consult
   :straight t
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode)
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI.
-  (completion-list-mode . consult-preview-at-point-mode)
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c k"   . consult-kmacro)
