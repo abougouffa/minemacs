@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-21
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Use a variable pitch, keeping fixed pitch where it's sensible
 (use-package mixed-pitch
-  :straight t
+  :ensure t
   :custom
   (mixed-pitch-variable-pitch-cursor nil)
   :config

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-23
-;; Last modified: 2025-04-20
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; GTD workflow with Org mode
 (use-package org-gtd
-  :straight t
+  :ensure t
   :custom
   (org-gtd-directory (+directory-ensure org-directory "gtd/")))
 

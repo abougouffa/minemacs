@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-17
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Support for the P4_16 programming language
 (use-package p4-16-mode
-  :straight t
+  :ensure t
   :mode "\\.p4\\'")
 
 

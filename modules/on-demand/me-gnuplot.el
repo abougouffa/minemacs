@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-14
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode and interactive frontend for GNUPlot
 (use-package gnuplot
-  :straight t
+  :ensure t
   :mode ("\\.gnuplot\\'" . gnuplot-mode)
   :mode ("\\.plt\\'" . gnuplot-mode)
   :mode ("\\.gplt\\'" . gnuplot-mode)

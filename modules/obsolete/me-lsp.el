@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-31
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package lsp-mode
-  :straight t
+  :ensure t
   :preface
   ;; HACK: Define the `$LSP_USE_PLISTS=true` to improve `lsp-mode' performances.
   ;; We set this environment variable here so we don't need to relay on the
@@ -58,7 +58,7 @@
     (remove-hook 'after-change-major-mode-hook #'+eglot--ensure-maybe-h)))
 
 (use-package ccls
-  :straight t
+  :ensure t
   :custom
   ;; Customization of CCLS, see:
   ;; https://github.com/MaskRay/ccls/wiki/Customization#initialization-options
@@ -89,16 +89,16 @@
              :excludeArgs []))))
 
 (use-package lsp-pyright
-  :straight t
+  :ensure t
   :after lsp-mode
   :demand)
 
 (use-package consult-lsp
-  :straight t
+  :ensure t
   :after consult lsp-mode)
 
 (use-package dap-mode
-  :straight t
+  :ensure t
   :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
   :custom
   (dap-utils-extension-path (concat minemacs-local-dir "dap/extension/"))

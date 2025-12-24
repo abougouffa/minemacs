@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-11-01
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
-  :straight t
+  :ensure t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   (citre-project-root-function #'+citre-dominating-project-root) ; Better (!) project root detection function

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 ;; Created: 2024-11-06
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; A C/C++ minor mode for Emacs powered by "libclang"
 (use-package irony-mode
-  :straight t
+  :ensure t
   :config
   (when (featurep 'os/win) ; Windows performance tweaks
     (when (boundp 'w32-pipe-read-delay) (setq w32-pipe-read-delay 0))
@@ -22,7 +22,7 @@
 
 ;; Integration of `irony-mode' with `eldoc'
 (use-package irony-eldoc
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-irony)

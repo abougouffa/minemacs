@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-08
-;; Last modified: 2025-07-08
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Extra non-standard functionalities for Eglot
 (use-package eglot-x
-  :straight (:host github :repo "nemethf/eglot-x")
+  :vc (:url "https://github.com/nemethf/eglot-x")
   :commands (eglot-x-setup))
 
 

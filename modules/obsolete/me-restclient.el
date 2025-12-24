@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-01
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 
 (use-package restclient
-  :straight (:host github :repo "pashky/restclient.el" :files ("*.el") :fork (:repo "abougouffa/restclient.el"))
+  :vc (:url "https://github.com/abougouffa/restclient.el")
   :hook (restclient-mode . +prog-mode-run-hooks)
   :mode ("\\.http\\'" . restclient-mode)
   :config
@@ -30,10 +30,10 @@ certs, rather than reject them silently."
      (let (gnutls-verify-error) (apply orig-fn args)))))
 
 (use-package restclient-test
-  :straight t)
+  :ensure t)
 
 (use-package ob-restclient
-  :straight t
+  :ensure t
   :after org
   :init
   (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t))))

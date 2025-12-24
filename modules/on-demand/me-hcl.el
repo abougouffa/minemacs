@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-23
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,12 +17,12 @@
 
 ;; Major mode for Hashicorp Configuration Language (HCL)
 (use-package hcl-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Terraform configuration files
 (use-package terraform-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-hcl)

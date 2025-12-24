@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-10-23
-;; Last modified: 2025-10-23
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; TRAMP integration for Incus containers
 (use-package incus-tramp
-  :straight t
+  :ensure t
   :after tramp
   :init
   (incus-tramp-add-method))
@@ -21,12 +21,12 @@
 
 ;; TRAMP integration for LXC containers
 (use-package lxc-tramp
-  :straight t)
+  :ensure t)
 
 
 ;; TRAMP integration for LXD containers
 (use-package lxd-tramp
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-tramp-containers)

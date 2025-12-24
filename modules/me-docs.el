@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 (use-package pdfgrep
-  :straight t
+  :ensure t
   :when (executable-find "pdfgrep")
   :commands (pdfgrep-mode pdfgrep)
   :custom
@@ -24,7 +24,7 @@
 
 ;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
-  :straight t
+  :ensure t
   :custom
   (rfc-mode-directory (concat minemacs-local-dir "rfc"))
   :init
@@ -41,7 +41,7 @@
 
 ;; Browse "tldr" pages from Emacs
 (use-package tldr
-  :straight t
+  :ensure t
   :hook
   (minemacs-build-functions . tldr-update-docs)
   (tldr-mode . visual-line-mode)
@@ -51,13 +51,13 @@
 
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
-  :straight t
+  :ensure t
   :when (featurep 'feat/libxml2))
 
 
 ;; Offline documentation browser using Dash/Zeal docsets
 (use-package dash-docs
-  :straight (:host github :repo "abougouffa/dash-docs")
+  :vc (:url "https://github.com/abougouffa/dash-docs")
   :custom
   (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
   (dash-docs-browser-func #'eww-browse-url)
@@ -73,7 +73,7 @@
 
 ;; Integration of `consult' with `dash-docs'
 (use-package consult-dash
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (with-eval-after-load 'consult

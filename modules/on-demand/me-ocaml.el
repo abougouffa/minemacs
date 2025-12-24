@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-07-07
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -20,12 +20,12 @@
 
 ;; Major mode and REPL for the OCaml programming language
 (use-package tuareg
-  :straight t)
+  :ensure t)
 
 
 ;; Select OCaml opam switches via a menu
 (use-package opam-switch-mode
-  :straight t)
+  :ensure t)
 
 
 (defconst +dune-path (concat minemacs-on-demand-modules-dir "third-party/dune/"))
@@ -51,7 +51,7 @@
 
 ;; Universal toplevel for OCaml
 (use-package utop
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-ocaml)

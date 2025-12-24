@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-09-04
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package expand-region
-  :straight t
+  :ensure t
   :bind (("C-M-SPC" . er/expand-region) ; orig. `mark-sexp'
          ("S-C-M-SPC" . er/contract-region)))
 

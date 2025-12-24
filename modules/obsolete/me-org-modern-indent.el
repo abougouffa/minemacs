@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-14
-;; Last modified: 2025-08-14
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Add `org-indent' styling for `org-modern'
 (use-package org-modern-indent
-  :straight (org-modern-indent :type git :host github :repo "jdtsmith/org-modern-indent")
+  :vc (:url "https://github.com/jdtsmith/org-modern-indent")
   :hook (org-modern-mode . org-modern-indent-mode))
 
 

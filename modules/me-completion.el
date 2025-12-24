@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-23
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Completion at point extensions which can be used in combination with Corfu, Company or the default completion UI
 (use-package cape
-  :straight t
+  :ensure t
   :after minemacs-first-file
   :bind (("C-c p p" . completion-at-point) ; capf
          ("C-c p t" . complete-tag) ; etags
@@ -60,7 +60,7 @@
 
 ;; Corfu enhances in-buffer completion with a small completion popup
 (use-package corfu
-  :straight (:files (:defaults "extensions/*.el"))
+  :ensure t
   :hook
   ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
   (minibuffer-setup . +corfu-enable-in-minibuffer-h)
@@ -117,7 +117,7 @@
 
 ;; Icons for Corfu using `nerd-icons'
 (use-package nerd-icons-corfu
-  :straight t
+  :ensure t
   :after corfu
   :init
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
@@ -125,7 +125,7 @@
 
 ;; Consult provides search and navigation commands based on the Emacs completion function `completing-read'
 (use-package consult
-  :straight t
+  :ensure t
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c k"   . consult-kmacro)
@@ -224,7 +224,7 @@
 
 ;; Choose a command to run based on what is near point, both in minibuffer and in normal buffers
 (use-package embark
-  :straight t
+  :ensure t
   :bind (([remap describe-bindings] . embark-bindings)
          ("C-²" . embark-act) ; In a French AZERTY keyboard, the ² key is right above TAB
          ("M-²" . embark-collect)
@@ -236,18 +236,18 @@
 
 ;; Consult integration for Embark
 (use-package embark-consult
-  :straight t)
+  :ensure t)
 
 
 ;; Marginalia (i.e., description) in the minibuffer
 (use-package marginalia
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . marginalia-mode))
 
 
 ;; Use nerd-icons for completion
 (use-package nerd-icons-completion
-  :straight t
+  :ensure t
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
   (nerd-icons-completion-mode 1))
@@ -255,7 +255,7 @@
 
 ;; Emacs completion style that matches multiple regexps in any order
 (use-package orderless
-  :straight t
+  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -263,7 +263,7 @@
 
 ;; Vertico provides a performant and minimalistic vertical completion UI based on the default completion system
 (use-package vertico
-  :straight (:files (:defaults "extensions/*.el"))
+  :ensure t
   :hook
   (minemacs-lazy . vertico-mode)
   (minemacs-lazy . vertico-mouse-mode)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-17
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A `treesit'-based package to show code context, dim surrouding text, and fold code
 (use-package treesitter-context
-  :straight (:host github :repo "zbelial/treesitter-context.el")
+  :vc (:url "https://github.com/zbelial/treesitter-context.el")
   :when (featurep 'feat/tree-sitter)
   :custom
   (treesitter-context-idle-time 0.5)

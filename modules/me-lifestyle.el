@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-05-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Islamic prayer times for Emacs
 (use-package awqat
-  :straight (:host github :repo "zkry/awqat")
+  :vc (:url "https://github.com/zkry/awqat")
   :commands (awqat-times-for-day)
   :custom
   ;; In your "config.el", you need to set `calendar-latitude' and

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Mode for the dot-language used by GraphViz
 (use-package graphviz-dot-mode
-  :straight (:files ("graphviz-dot-mode.el" "texinfo"))
+  :ensure t
   :custom
   (graphviz-dot-view-command "xdot %s")
   (graphviz-dot-preview-extension "svg")

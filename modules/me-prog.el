@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Consult integration with Eglot
 (use-package consult-eglot
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (consult-customize
@@ -22,7 +22,7 @@
 
 ;; Run code formatter on buffer contents without moving point
 (use-package apheleia
-  :straight t
+  :ensure t
   :hook (prog-mode . +apheleia-on-clang-format)
   :config
   (advice-add
@@ -54,7 +54,7 @@
 
 ;; An Emacs "jump to definition" package for 50+ languages
 (use-package dumb-jump
-  :straight t
+  :ensure t
   :custom
   ;; NOTE: Make sure "rg" has PCRE2 support, install using "cargo install ripgrep --features pcre2"
   (dumb-jump-selector 'completing-read)
@@ -68,7 +68,7 @@
 
 ;; Highlight TODO keywords
 (use-package hl-todo
-  :straight (:host github :repo "tarsius/hl-todo")
+  :vc (:url "https://github.com/tarsius/hl-todo")
   :hook (prog-mode . hl-todo-mode)
   :config
   (cl-callf append hl-todo-keyword-faces
@@ -83,7 +83,7 @@
 
 ;; Interactive macro-expander for Emacs Lisp and C
 (use-package macrostep
-  :straight t
+  :ensure t
   :hook ((c-mode c++-mode c-ts-mode c++-ts-mode) . macrostep-c-mode-hook)
   :bind (:package elisp-mode :map emacs-lisp-mode-map ("C-c m" . macrostep-expand))
   :bind (:package cc-mode :map c-mode-map ("C-c m" . macrostep-expand))
@@ -94,7 +94,7 @@
 
 ;; Emacs headerline indication of where you are in a large project
 (use-package breadcrumb
-  :straight t
+  :ensure t
   :hook ((c-mode c++-mode c-ts-base-mode python-base-mode rust-ts-mode sh-mode bash-ts-mode) . breadcrumb-local-mode)
   :config
   ;; Don't show the project/file name in the header, show only an icon
@@ -109,13 +109,13 @@
 
 ;; Simple and fast C mode for amalgamated (big) files
 (use-package simpc-mode
-  :straight (:host github :repo "rexim/simpc-mode")
+  :vc (:url "https://github.com/rexim/simpc-mode")
   :commands (simpc-mode))
 
 
 ;; Generate C++ method implementations from declarations using `treesit'
 (use-package cpp-func-impl
-  :straight (:host github :repo "dheerajshenoy/cpp-func-impl.el"))
+  :vc (:url "https://github.com/dheerajshenoy/cpp-func-impl.el"))
 
 
 (provide 'me-prog)

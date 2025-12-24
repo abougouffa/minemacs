@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-09-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,14 +17,14 @@
 
 ;; Major mode for editing Nvidia CUDA C++ files
 (use-package cuda-mode
-  :straight t
+  :ensure t
   :unless (featurep 'feat/tree-sitter)
   :hook (cuda-mode . +prog-mode-run-hooks))
 
 
 ;; CUDA mode based on tree-sitter
 (use-package cuda-ts-mode
-  :straight (:host github :repo "Ergus/cuda-ts-mode")
+  :vc (:url "https://github.com/Ergus/cuda-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list

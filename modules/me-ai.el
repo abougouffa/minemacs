@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2025-11-10
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,12 +12,12 @@
 
 ;; A library abstracting LLM capabilities for Emacs
 (use-package llm
-  :straight t)
+  :ensure t)
 
 
 ;; `llm' module for integrating with Ollama
 (use-package llm-ollama
-  :straight llm
+  :ensure llm
   :autoload make-llm-ollama +ollama-list-installed-models
   :config
   (defconst +ollama-embedding-models
@@ -48,7 +48,7 @@
 
 ;; A package for interacting with LLMs from Emacs
 (use-package ellama
-  :straight t
+  :ensure t
   :config
   (defun +ellama-set-available-providers ()
     "Automatically set the available providers from Ollama."
@@ -69,7 +69,7 @@
 
 ;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 (use-package elisa
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . elisa-download-sqlite-vss)
   :config
   (require 'ellama)
@@ -85,7 +85,7 @@
 
 ;; Pair-programming with AI agents using Aider
 (use-package aidermacs
-  :straight (:host github :repo "MatthewZMD/aidermacs")
+  :vc (:url "https://github.com/MatthewZMD/aidermacs")
   :custom
   (aidermacs-default-model ; Get the first available model
    (cl-loop for model in (+ollama-list-installed-models)
@@ -101,7 +101,7 @@
 
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
-  :straight (:host github :repo "natrys/whisper.el")
+  :vc (:url "https://github.com/natrys/whisper.el")
   :custom
   (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
   (whisper-use-threads (/ (num-processors) 2))

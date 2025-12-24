@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-05
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for editing GenExpr files
 (use-package genexpr-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-genexpr)

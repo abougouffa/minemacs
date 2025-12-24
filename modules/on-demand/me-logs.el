@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-07
-;; Last modified: 2025-09-12
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
 
 ;; Emacs mode for viewing log files
 (use-package logview
-  :straight t
+  :ensure t
   :custom
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.extmap"))
   (logview-additional-timestamp-formats

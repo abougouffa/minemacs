@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-12-11
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A collection of opinionated keyboard-driven user interfaces for various built-in Emacs modes
 (use-package casual
-  :straight (:host github :repo "kickingvegas/casual")
+  :vc (:url "https://github.com/kickingvegas/casual")
   :bind ("C-o" . casual-editkit-main-tmenu)
   :bind (:package bookmark :map bookmark-bmenu-mode-map ("C-o" . casual-bookmarks-tmenu))
   :bind (:package calc :map calc-mode-map ("C-o" . casual-calc-tmenu))
@@ -33,7 +33,7 @@
 
 ;; An opinionated `transient' menu for `avy'
 (use-package casual-avy
-  :straight t
+  :ensure t
   :bind ("M-g a" . casual-avy-tmenu))
 
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-09
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Reborn Cscope extension for Emacs
 (use-package rscope
-  :straight (:host github :repo "rjarzmik/rscope")
+  :vc (:url "https://github.com/rjarzmik/rscope")
   :commands (rscope-init rscope-regenerate-database))
 
 

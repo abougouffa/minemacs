@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-01
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 
 (use-package highlight-indent-guides
-  :straight t
+  :ensure t
   :custom
   (highlight-indent-guides-method 'character)
   (highlight-indent-guides-character #x2506)

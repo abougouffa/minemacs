@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,13 +19,13 @@
 
 ;; Major mode for editing Julia source code
 (use-package julia-mode
-  :straight t
+  :ensure t
   :interpreter "julia")
 
 
 ;; Major mode for Julia source code using Tree-sitter
 (use-package julia-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :interpreter "julia"
   :config
@@ -35,12 +35,12 @@
 
 ;; A minor mode for a Julia REPL
 (use-package julia-repl
-  :straight t)
+  :ensure t)
 
 
 ;; An Emacs development environment for Julia
 (use-package julia-snail
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-julia)

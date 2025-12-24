@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-12-20
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -23,7 +23,7 @@
 
 ;; Arduino CLI command wrapper
 (use-package arduino-cli-mode
-  :straight t
+  :ensure t
   :hook +arduino-mode
   :custom
   (arduino-cli-verify t)

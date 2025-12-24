@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-03
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for editing SELinux TE-RBAC
 (use-package selinux-policy
-  :straight (:host github :repo "pierre-rouleau/selinux-policy")
+  :vc (:url "https://github.com/pierre-rouleau/selinux-policy")
   :commands (selinuxpolicy-mode)
   :mode "\\.te\\'")
 

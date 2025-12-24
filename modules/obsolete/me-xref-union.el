@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-10-20
-;; Last modified: 2025-10-20
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Combine multiple Xref backends
 (use-package xref-union
-  :straight t
+  :ensure t
   :commands (xref-union-mode)
   :custom
   ;; BUG+HACK: When in `xref-union-mode', the `xref-union--backend' seems to

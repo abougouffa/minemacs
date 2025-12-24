@@ -4,21 +4,21 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-09
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package org-re-reveal
-  :straight t)
+  :ensure t)
 
 (use-package oer-reveal
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . oer-reveal-setup-submodules))
 
 (use-package org-re-reveal-citeproc
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-org-re-reveal)

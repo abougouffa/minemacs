@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-04-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package bitwarden
-  :straight (:host github :repo "seanfarley/emacs-bitwarden")
+  :vc (:url "https://github.com/seanfarley/emacs-bitwarden")
   :when (executable-find "bw")
   :custom
   (bitwarden-automatic-unlock

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-22
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; A major mode for editing ballerina source code
 (use-package ballerina-mode
-  :straight (:host github :repo "heshanpadmasiri/ballerina-mode")
+  :vc (:url "https://github.com/heshanpadmasiri/ballerina-mode")
   :config
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(ballerina-mode . ("bal" "start-language-server")))))

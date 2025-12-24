@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Automatically manage `treesit' grammars
 (use-package treesit-auto
-  :straight (:host github :repo "renzmann/treesit-auto")
+  :vc (:url "https://github.com/renzmann/treesit-auto")
   :when (featurep 'feat/tree-sitter)
   :hook
   (minemacs-build-functions . treesit-auto-install-all)

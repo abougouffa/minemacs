@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-09-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -54,7 +54,18 @@
  ;; Make the expanded code as minimal as possible, do not try to catch errors
  use-package-expand-minimally (not minemacs-debug-p)
  ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup minemacs-builtin-only-p
+ package-enable-at-startup nil
+ package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                    ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                    ("melpa" . "https://melpa.org/packages/"))
+ ;; Highest number gets priority
+ package-archive-priorities '(("gnu" . 3)
+                              ("melpa" . 2)
+                              ("nongnu" . 1))
+ use-package-vc-prefer-newest t
+ package-vc-allow-build-commands t
+ package-quickstart t
+ package-user-dir (concat minemacs-local-dir "package-archives")
  ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
  gc-cons-threshold (* 100 1000 1000)
  gc-cons-percentage 0.2

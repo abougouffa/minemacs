@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-14
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -34,7 +34,6 @@
                             "Assembly flavor for this file: "
                             '(("asm"  . "Default (builtin `asm-mode')")
                               ("fasm" . "Flat Assembler")
-                              ("gas"  . "GNU Assembler")
                               ("masm" . "Microsoft Macro Assembler")
                               ("mips" . "MIPS Assembly")
                               ("nasm" . "Netwide Assembler")
@@ -47,43 +46,38 @@
 
 ;; Major mode for MIPS assembly
 (use-package mips-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for RISC V assembly
 (use-package riscv-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Flat Assembler
 (use-package fasm-mode
-  :straight t)
+  :vc (:url "https://github.com/emacsattic/fasm-mode"))
 
 
 ;; Major mode for Microsoft Macro Assembler
 (use-package masm-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Netwide Assembler
 (use-package nasm-mode
-  :straight t)
-
-
-;; Major mode for GNU Assembler
-(use-package gas-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing Advanced RISC Machine (a.k.a. ARM) assembly code
 (use-package arm-mode
-  :straight (:host github :repo "charJe/arm-mode")
+  :vc (:url "https://github.com/charJe/arm-mode")
   :commands (arm-mode))
 
 
 ;; Quickly jump to Intel's x86 documentation from Emacs
 (use-package x86-lookup
-  :straight t
+  :ensure t
   :custom
   ;; Get manual from https://intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
   (x86-lookup-pdf (concat minemacs-local-dir "intel-64-and-ia32-volumes-1234.pdf"))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,13 +19,13 @@
 
 ;; VHDL Tree-sitter major mode
 (use-package vhdl-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter))
 
 
 ;; Verilog Tree-sitter major mode
 (use-package verilog-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter))
 
 

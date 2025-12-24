@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-11-22
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -25,12 +25,12 @@
 
 ;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
-  :straight (:host github :repo "minemacs/org-contrib"))
+  :vc (:url "https://github.com/minemacs/org-contrib"))
 
 
 ;; Convert font-lock faces to other formats
 (use-package engrave-faces
-  :straight t)
+  :ensure t)
 
 
 ;; Convenience functions for Org export
@@ -43,7 +43,7 @@
 
 ;; Auto-toggle Org elements
 (use-package org-appear
-  :straight t
+  :ensure t
   :hook (org-mode . org-appear-mode)
   :custom
   (org-appear-inside-latex t)
@@ -59,7 +59,7 @@
 
 ;; Modern Org style
 (use-package org-modern
-  :straight t
+  :ensure t
   :after org
   :custom-face
   ;; Force monospaced font for tags
@@ -85,7 +85,7 @@
 
 ;; Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 (use-package org-fragtog
-  :straight t
+  :ensure t
   :hook (org-mode . org-fragtog-mode)
   :custom
   (org-fragtog-preview-delay 0.2))
@@ -93,7 +93,7 @@
 
 ;; Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 (use-package citar
-  :straight t
+  :ensure t
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
@@ -109,7 +109,7 @@
 
 ;; Citar integration with Embark
 (use-package citar-embark
-  :straight t
+  :ensure t
   :after citar embark
   :init
   (citar-embark-mode 1))

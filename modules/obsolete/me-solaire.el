@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Visually distinguish "real" buffers (i.e. file-visiting code buffers) from "unreal" buffers (like popups, sidebars, etc)
 (use-package solaire-mode
-  :straight t
+  :ensure t
   :hook (minemacs-after-startup . solaire-global-mode))
 
 

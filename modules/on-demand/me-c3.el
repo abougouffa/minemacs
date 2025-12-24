@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-11
-;; Last modified: 2025-09-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -16,7 +16,7 @@
 
 
 (use-package c3-ts-mode
-  :straight (:host github :repo "c3lang/c3-ts-mode")
+  :vc (:url "https://github.com/c3lang/c3-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(c3 "https://github.com/c3lang/tree-sitter-c3"))

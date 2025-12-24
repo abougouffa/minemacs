@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-01
-;; Last modified: 2025-06-01
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -16,7 +16,7 @@
 
 ;; Tree-sitter based code folding
 (use-package treesit-fold
-  :straight (:host github :repo "emacs-tree-sitter/treesit-fold")
+  :vc (:url "https://github.com/emacs-tree-sitter/treesit-fold")
   :when (featurep 'feat/tree-sitter))
 
 

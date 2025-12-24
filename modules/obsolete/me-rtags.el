@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-21
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A client/server indexer for C/C++/Objc[++] with integration for Emacs based on Clang
 (use-package rtags
-  :straight t
+  :ensure t
   :custom
   (rtags-use-bookmarks nil)
   (rtags-autostart-diagnostics t)
@@ -26,7 +26,7 @@
 
 ;; RTags backend for `xref'
 (use-package rtags-xref
-  :straight t
+  :ensure t
   :commands (rtags-xref-enable))
 
 

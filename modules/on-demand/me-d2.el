@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,13 +17,13 @@
 
 ;; Major mode for working with D2 graphs
 (use-package d2-mode
-  :straight t
+  :ensure t
   :mode "\\.d2\\'")
 
 
 ;; Org Babel code evaluation for the D2 graph lanugage
 (use-package ob-d2
-  :straight t
+  :ensure t
   :after minemacs-first-org-file ob
   :demand
   :config

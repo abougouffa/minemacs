@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-05
-;; Last modified: 2025-04-22
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; An Emacs RSS web feeds client
 (use-package elfeed
-  :straight t
+  :ensure t
   :init
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."
@@ -42,7 +42,7 @@
 
 ;; Extra `elfeed' protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
 (use-package elfeed-protocol
-  :straight t
+  :ensure t
   :after elfeed
   :init
   (elfeed-protocol-enable))

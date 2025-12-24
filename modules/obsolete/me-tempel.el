@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-08
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package tempel
-  :straight t
+  :ensure t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path (list (concat minemacs-assets-dir "templates/tempel/*.eld")
@@ -28,7 +28,7 @@
     (add-hook 'completion-at-point-functions #'tempel-complete -90 t)))
 
 (use-package tempel-collection
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-tempel)

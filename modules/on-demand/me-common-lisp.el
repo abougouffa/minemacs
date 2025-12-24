@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Sylvester the Cat's Common Lisp IDE
 (use-package sly
-  :straight t
+  :ensure t
   :custom
   (sly-mrepl-history-file-name (+directory-ensure minemacs-local-dir "sly/mrepl-history.el"))
   (sly-net-coding-system 'utf-8-unix)
@@ -41,28 +41,28 @@
 
 ;; Quicklisp support for SLY
 (use-package sly-quicklisp
-  :straight t
+  :ensure t
   :after sly
   :demand)
 
 
 ;; ASDF system support for SLY
 (use-package sly-asdf
-  :straight t
+  :ensure t
   :after sly
   :demand)
 
 
 ;; Add ANSI colors support to the `sly-mrepl'
 (use-package sly-repl-ansi-color
-  :straight t
+  :ensure t
   :after sly
   :demand)
 
 
 ;; Fancy macro-expansion via `macrostep'
 (use-package sly-macrostep
-  :straight t
+  :ensure t
   :after sly
   :demand)
 

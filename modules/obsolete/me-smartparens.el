@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-28
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . smartparens-global-mode)
   :custom
   (sp-ignore-modes-list '(minibuffer-inactive-mode)) ; Enable in `minibuffer-mode'

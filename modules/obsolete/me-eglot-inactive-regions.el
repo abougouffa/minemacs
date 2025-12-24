@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-11
-;; Last modified: 2025-06-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Highlight inactive code regions with eglot power (mainly C/C++ preprocessor directives)
 (use-package eglot-inactive-regions
-  :straight t
+  :ensure t
   :commands (eglot-inactive-regions-mode))
 
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-04-27
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,12 +17,12 @@
 
 ;; Upcase SQL words for you
 (use-package sqlup-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Flymake backend for sqlfluff
 (use-package flymake-sqlfluff
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-sql)

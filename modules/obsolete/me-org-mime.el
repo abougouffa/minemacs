@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@tznvy.pbz")
 ;; Created: 2025-07-09
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Send HTML email using Org-mode HTML export (alternative to `org-msg')
 (use-package org-mime
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e org
   :demand

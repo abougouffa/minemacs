@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-11-01
-;; Last modified: 2025-11-01
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Generate call graph for C/C++ functions
 (use-package call-graph
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-call-graph)

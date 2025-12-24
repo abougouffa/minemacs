@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Quick access to project files using `fd'
 (use-package find-file-in-project
-  :straight t
+  :ensure t
   :custom
   (ffip-use-rust-fd (and (executable-find "fd") t)))
 

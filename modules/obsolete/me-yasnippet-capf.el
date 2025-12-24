@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-29
-;; Last modified: 2025-07-29
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Completion-At-Point Extension for YASnippet
 (use-package yasnippet-capf
-  :straight t
+  :ensure t
   :bind (("C-c p y" . yasnippet-capf))
   :init
   (add-to-list 'completion-at-point-functions #'yasnippet-capf))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-13
-;; Last modified: 2025-08-13
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Drag stuff around in Emacs
 (use-package drag-stuff
-  :straight t
+  :ensure t
   :init
   :bind (("M-<up>" . drag-stuff-up)
          ("M-<down>" . drag-stuff-down)

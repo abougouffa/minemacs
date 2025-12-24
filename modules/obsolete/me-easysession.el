@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-12-11
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Effortlessly persist and restore your Emacs sessions
 (use-package easysession
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . easysession-save-mode))
 
 

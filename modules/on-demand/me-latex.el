@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-11-29
-;; Last modified: 2025-09-13
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Integrated environment for TeX
 (use-package tex
-  :straight auctex
+  :ensure auctex
   :hook
   ((tex-mode TeX-mode latex-mode LaTeX-mode) . TeX-source-correlate-mode)
   ((tex-mode TeX-mode latex-mode LaTeX-mode) . hs-minor-mode)
@@ -46,7 +46,7 @@
 
 ;; Integrated environment for LaTeX
 (use-package latex
-  :straight auctex
+  :ensure auctex
   :hook
   (LaTeX-mode . latex-math-mode)
   (LaTeX-mode . turn-on-reftex)
@@ -73,7 +73,7 @@
 
 ;; Add LatexMk support to AUCTeX
 (use-package auctex-latexmk
-  :straight t
+  :ensure t
   :after latex
   :demand
   :custom
@@ -96,12 +96,12 @@
 
 ;; Makes LaTeX editing less painful by providing a updatable preview pane
 (use-package latex-preview-pane
-  :straight t)
+  :ensure t)
 
 
 ;; An editing environment for LaTeX mathematical documents
 (use-package xenops
-  :straight t
+  :ensure t
   :hook
   (latex-mode . xenops-mode)
   (LaTeX-mode . xenops-mode))

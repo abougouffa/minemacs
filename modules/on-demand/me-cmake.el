@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,12 +18,12 @@
 
 ;; Major mode for editing CMake sources
 (use-package cmake-mode
-  :straight (:host github :repo "emacsmirror/cmake-mode" :files (:defaults "*")))
+  :ensure t)
 
 
 ;; Advanced, type aware, highlight support for CMake
 (use-package cmake-font-lock
-  :straight (:host github :repo "Lindydancer/cmake-font-lock" :files (:defaults "*"))
+  :ensure t
   :custom
   (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
 

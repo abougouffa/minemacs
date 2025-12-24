@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-10-23
-;; Last modified: 2025-10-23
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Buffer-local "direnv" integration for Emacs
 (use-package envrc
-  :straight t
+  :ensure t
   :hook (minemacs-first-file . envrc-global-mode)
   :when (and (not (featurep 'os/win)) (executable-find "direnv"))
   :custom

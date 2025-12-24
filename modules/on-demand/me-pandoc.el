@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-16
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Minor mode for interacting with Pandoc
 (use-package pandoc-mode
-  :straight t
+  :ensure t
   :hook ((markdown-mode markdown-ts-mode org-mode tex-mode latex-mode) . conditionally-turn-on-pandoc))
 
 

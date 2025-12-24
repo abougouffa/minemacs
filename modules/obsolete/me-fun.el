@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-27
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,19 +12,19 @@
 
 ;; Implementation of an xkcd reader for Emacs
 (use-package xkcd
-  :straight t
+  :ensure t
   :config
   (+ignore-root xkcd-cache-dir))
 
 
 ;; Practice touch/speed typing in Emacs
 (use-package speed-type
-  :straight t)
+  :ensure t)
 
 
 ;; Play Wordle (a.k.a. Lingo) in Emacs
 (use-package wordel
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-fun)

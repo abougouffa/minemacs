@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-07-04
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package consult-notes
-  :straight t
+  :ensure t
   :init
   (defun +consult-notes--unbound-org-roam ()
     (fmakunbound 'consult-notes-org-roam-mode)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; A major mode to edit Franca IDL code
 (use-package franca-idl
-  :straight (:host github :repo "zeph1e/franca-idl.el"))
+  :vc (:url "https://github.com/zeph1e/franca-idl.el"))
 
 
 (provide 'on-demand/me-franca-idl)

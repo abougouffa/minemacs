@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-19
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Show current command and its key in the mode line
 (use-package keycast
-  :straight t
+  :ensure t
   :commands (keycast-doom-modeline-mode)
   :config
   (define-minor-mode keycast-doom-modeline-mode

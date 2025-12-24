@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-21
-;; Last modified: 2025-11-06
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Interactively-editable recursive "grep" implementation in Elisp
 (use-package phi-grep
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-phi-search)

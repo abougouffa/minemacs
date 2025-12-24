@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Emacs major mode for Alloy language
 (use-package alloy-mode
-  :straight (:host github :repo "dwwmmn/alloy-mode")
+  :vc (:url "https://github.com/dwwmmn/alloy-mode")
   :mode "\\.als\\'")
 
 

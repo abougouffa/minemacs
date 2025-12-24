@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-03
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -15,10 +15,7 @@
 ;; need to load this module only on-demand using "C-u M-x minemacs-load-module"
 
 (use-package gdb-mi
-  ;; I use my own fork in which I've merged some open PRs on the upstream.
-  :straight `(:host github
-              :repo "weirdNox/emacs-gdb" :files (:defaults "*.c" "*.h" "Makefile")
-              :fork (:repo "abougouffa/emacs-gdb"))
+  :vc (:url "https://github.com/abougouffa/emacs-gdb") ; I use my own fork in which I've merged some open PRs on the upstream.
   :demand
   :init
   (fmakunbound 'gdb)

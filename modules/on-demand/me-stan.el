@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,17 +18,17 @@
 
 ;; Major mode for editing Stan files
 (use-package stan-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Eldoc Eldoc support for Stan functions
 (use-package eldoc-stan
-  :straight t)
+  :ensure t)
 
 
 ;; Yasnippets for Stan
 (use-package stan-snippets
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-stan)

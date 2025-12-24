@@ -109,7 +109,7 @@
 ;; like:
 (use-package devdocs
   ;; The installation recipe (from Github)
-  :straight (:host github :repo "astoff/devdocs.el" :files ("*.el"))
+  :vc (:url "https://github.com/astoff/devdocs.el")
   ;; Autoload the package when invoking these commands, note that if the
   ;; commands are already autoloaded (defined with `autoload'), this is not
   ;; needed.

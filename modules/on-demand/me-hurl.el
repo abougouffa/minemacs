@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
 
 ;; Major mode to edit, run and test HTTP requests using Hurl
 (use-package hurl-mode
-  :straight (:host github :repo "JasZhe/hurl-mode")
+  :vc (:url "https://github.com/JasZhe/hurl-mode")
   :mode "\\.hurl\\'")
 
 

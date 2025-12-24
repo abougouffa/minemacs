@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-27
-;; Last modified: 2025-08-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
 
 ;; Major mode for editing Kconfig files
 (use-package kconfig-mode
-  :straight t
+  :ensure t
   :mode "/Kconfig\\'")
 
 

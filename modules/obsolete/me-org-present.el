@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-10-28
-;; Last modified: 2025-07-24
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package org-present
-  :straight t
+  :ensure t
   :hook (org-present-mode . +org-present--on-h)
   :hook (org-present-mode-quit . +org-present--off-h)
   :custom

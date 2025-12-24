@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-26
-;; Last modified: 2025-04-26
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Inspection tool for Emacs Lisp objects
 (use-package inspector
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-inspector)

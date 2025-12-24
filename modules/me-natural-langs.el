@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
-  :straight t
+  :ensure t
   :when (featurep 'feat/modules)
   :autoload jinx--load-module
   :preface
@@ -48,18 +48,18 @@ Based on `jinx-mode' if available. Falls back to the built-in
 
 ;; Distraction-free words correction with `flyspell' via `completing-read'
 (use-package flyspell-correct
-  :straight t)
+  :ensure t)
 
 
 ;; Fancy Emacs integration with the console version of StarDict
 (use-package lexic
-  :straight t
+  :ensure t
   :when (executable-find "sdcv"))
 
 
 ;; Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 (use-package gt
-  :straight t
+  :ensure t
   :config
   (advice-add
    'gt-make-completion-table :override

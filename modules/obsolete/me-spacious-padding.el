@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-23
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package spacious-padding
-  :straight t
+  :ensure t
   :hook (minemacs-after-startup . spacious-padding-mode)
   :custom
   (spacious-padding-subtle-mode-line t)

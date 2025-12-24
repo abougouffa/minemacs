@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-11-16
-;; Last modified: 2025-11-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Pulse highlight on demand or after select functions
 (use-package pulsar
-  :straight (:host github :repo "protesilaos/pulsar")
+  :vc (:url "https://github.com/protesilaos/pulsar")
   :hook (minemacs-first-file . pulsar-global-mode)
   :custom
   (pulsar-pulse-on-window-change t)

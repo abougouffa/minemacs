@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-15
+;; Last modified: 2025-12-24
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -106,22 +106,12 @@
 ;; loading all modules, including on-demand ones.
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
-;; When only built-in packages are loaded, we define `:straight' to do nothing.
-;; This is important for the updates installed for built-in packages in
-;; `me-builtin' like `transient', `eglot', `xref', etc.
-(if minemacs-builtin-only-p
-    (progn
-      (add-to-list 'use-package-keywords :straight)
-      (defalias 'use-package-normalize/:straight #'ignore)
-      (defun use-package-handler/:straight (name _keyword _arg rest state)
-        (use-package-concat (use-package-process-keywords name rest state))))
-  (require 'me-bootstrap))
-
 (require 'once)
 (require 'satch)
 (require 'me-builtin)
 
 (unless minemacs-builtin-only-p
+  (package-initialize)
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
 (unless +use-package-keep-checking-for-disabled-p

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Emacs text actions using LSP symbol information
 (use-package gambol
-  :straight (:host codeberg :repo "woolsweater/gambol.el")
+  :vc (:url "https://codeberg.com/woolsweater/gambol.el")
   :hook (eglot-managed-mode . gambol-mode)
   :bind
   ( :map gambol-mode-map

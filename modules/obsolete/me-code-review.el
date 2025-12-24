@@ -4,21 +4,21 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-04-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package emojify ; Needed by `code-review'
-  :straight t
+  :ensure t
   :custom
   (emojify-emoji-set "emojione-v2.2.6")
   (emojify-display-style 'image)
   (emojify-download-emojis-p t))
 
 (use-package code-review
-  :straight (:host github :repo "doomelpa/code-review")
+  :vc (:url "https://github.com/doomelpa/code-review")
   :after magit
   :custom
   (code-review-download-dir (concat minemacs-cache-dir "code-review/"))

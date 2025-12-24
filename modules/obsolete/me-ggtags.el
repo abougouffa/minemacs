@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-09-10
-;; Last modified: 2025-09-10
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Emacs frontend to GNU Global source code tagging system
 (use-package ggtags
-  :straight t
+  :ensure t
   :custom
   (ggtags-extra-args (when (or (getenv "GTAGSOBJDIRPREFIX") (getenv "MAKEOBJDIRPREFIX")) '("--objdir")))
   (ggtags-use-sqlite3 t))

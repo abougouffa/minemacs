@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-12-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; A Collection of Ridiculously Useful eXtensions for Emacs
 (use-package crux
-  :straight t
+  :ensure t
   :bind (("C-k" . crux-smart-kill-line)
          ("C-<return>" . crux-smart-open-line)
          ("C-S-<return>" . crux-smart-open-line-above)
@@ -25,7 +25,7 @@
 
 ;; Persistent per-project scratch buffers for Emacs
 (use-package pscratch
-  :straight (:host github :repo "abougouffa/persistent-scratch")
+  :vc (:url "https://github.com/abougouffa/persistent-scratch")
   :hook (minemacs-after-startup . pscratch-mode))
 
 

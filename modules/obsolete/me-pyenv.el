@@ -4,18 +4,18 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-16
-;; Last modified: 2025-09-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package pyvenv
-  :straight t)
+  :ensure t)
 
 ;; Emacs integration for "pyenv"
 (use-package pyenv
-  :straight (:host github :repo "aiguofer/pyenv.el")
+  :vc (:url "https://github.com/aiguofer/pyenv.el")
   :hook (minemacs-first-file . global-pyenv-mode)
   :custom
   (pyenv-show-active-python-in-modeline nil)

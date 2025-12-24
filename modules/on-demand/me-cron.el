@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-23
-;; Last modified: 2025-06-26
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for crontab
 (use-package crontab-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cron)

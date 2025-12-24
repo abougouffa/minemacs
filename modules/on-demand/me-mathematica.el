@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -16,7 +16,7 @@
 
 ;; Mathematica editing and inferior mode
 (use-package wolfram-mode
-  :straight (:host github :repo "kawabata/wolfram-mode"))
+  :vc (:url "https://github.com/kawabata/wolfram-mode"))
 
 
 (provide 'on-demand/me-mathematica)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-12-17
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -75,6 +75,7 @@
   (doc-view-continuous t)
   (vc-follow-symlinks t)
   (initial-major-mode 'fundamental-mode)
+  (ring-bell-function #'ignore)
   :init
   (setq-default fill-column 80)
 
@@ -213,7 +214,7 @@
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory 80))
 
 (use-package transient
-  :straight (:host github :repo "magit/transient")) ; Magit depends on the fresh version
+  :vc (:url "https://github.com/magit/transient")) ; Magit depends on the fresh version
 
 (use-package newcomment
   :custom
@@ -305,7 +306,6 @@
   :hook (minemacs-lazy . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
-  (tab-bar-tab-name-format-function #'+tab-bar--tab-spaced-name-format)
   (tab-bar-close-button-show nil)
   (tab-bar-auto-width nil)
   (tab-bar-show t))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,8 @@
 
 ;; A deployment plugin via Tramp for Emacs
 (use-package ssh-deploy
-  :straight (ssh-deploy :source gnu-elpa-mirror)
+  :ensure t
+  :pin gnu
   ;; Should be configured in per-project basis, good documentation at:
   ;; https://github.com/emacs-straight/ssh-deploy#deployment-configuration-examples
   :hook
@@ -25,14 +26,7 @@
 
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
-  :straight (eat :type git
-                 :host codeberg
-                 :repo "akib/emacs-eat"
-                 :files ("*.el" ("term" "term/*.el") "*.texi"
-                         "*.ti" ("terminfo/e" "terminfo/e/*")
-                         ("terminfo/65" "terminfo/65/*")
-                         ("integration" "integration/*")
-                         (:exclude ".dir-locals.el" "*-tests.el")))
+  :ensure t
   :bind ([f1] . +eat-toggle-dwim)
   :init
   (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
@@ -54,31 +48,31 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 ;; Launch system applications from Emacs
 (use-package app-launcher
-  :straight (:host github :repo "SebastienWae/app-launcher")
+  :vc (:url "https://github.com/SebastienWae/app-launcher")
   :when (or (featurep 'os/linux) (featurep 'os/bsd))
   :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
 
 
 ;; Manage docker from Emacs
 (use-package docker
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("d" . docker)))
 
 
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
-  :straight (:host github :repo "johannes-mueller/devcontainer.el"))
+  :vc (:url "https://github.com/johannes-mueller/devcontainer.el"))
 
 
 ;; Major mode to view journalctl's output in Emacs
 (use-package journalctl-mode
-  :straight t
+  :ensure t
   :commands (journalctl-mode))
 
 
 ;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
-  :straight t
+  :ensure t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
   :init
   (once-x-call '(:before shell-command) #'shell-command-with-editor-mode)
@@ -97,7 +91,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 ;; Python Executable Tracker
 (use-package pet
-  :straight t
+  :ensure t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
   :init
@@ -120,14 +114,14 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 ;; Mount/umount eCryptfs private directory from Emacs
 (use-package ecryptfs
-  :straight (:host github :repo "abougouffa/emacs-ecryptfs")
+  :vc (:url "https://github.com/abougouffa/emacs-ecryptfs")
   :when (and (or (featurep 'os/linux) (featurep 'os/bsd)) (executable-find "ecryptfs-verify"))
   :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
 
 
 ;; Package manager for LSPs, DAPs, linters, and more
 (use-package mason
-  :straight t
+  :ensure t
   :init
   (add-to-list 'exec-path (expand-file-name "mason/bin" minemacs-local-dir))
   :config

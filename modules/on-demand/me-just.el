@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,12 +18,12 @@
 
 ;; Major mode for editing Justfile
 (use-package just-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for driving just files
 (use-package justl
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-just)

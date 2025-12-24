@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-02-23
-;; Last modified: 2025-02-23
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Rich text clipboard for org-mode: Paste as a #+BEGIN_SRC block of correct mode, with link to where it came from
 (use-package org-rich-yank
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . org-rich-yank-enable))
 
 

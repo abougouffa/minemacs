@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 ;; Created: 2024-12-06
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 
 (use-package jira-markup-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-jira)

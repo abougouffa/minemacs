@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-01
-;; Last modified: 2025-05-01
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -21,12 +21,12 @@
   (+setq-hook! term-mode buffer-display-table (make-display-table)))
 
 (use-package nano-theme
-  :straight (:host github :repo "rougier/nano-theme")
+  :vc (:url "https://github.com/rougier/nano-theme")
   :init
   (setq minemacs-theme 'nano-light))
 
 (use-package nano-modeline
-  :straight (:host github :repo "rougier/nano-modeline")
+  :vc (:url "https://github.com/rougier/nano-modeline")
   :after minemacs-loaded
   :demand
   :custom
@@ -54,7 +54,7 @@
   (add-hook 'org-agenda-mode-hook      #'nano-modeline-org-agenda-mode))
 
 (use-package nano-vertico
-  :straight (:host github :repo "rougier/nano-vertico")
+  :vc (:url "https://github.com/rougier/nano-vertico")
   :hook (minemacs-lazy . nano-vertico-mode)
   :disabled)
 

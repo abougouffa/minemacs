@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Same frame speedbar
 (use-package sr-speedbar
-  :straight t
+  :ensure t
   :custom
   (sr-speedbar-right-side nil)
   (sr-speedbar-default-width 35))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Nerd Font icons for Emacs
 (use-package nerd-icons
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . nerd-icons-install-fonts)
   :init
   ;; Ensure installing the font
@@ -25,7 +25,7 @@
 
 ;; A megapack of themes for Emacs
 (use-package doom-themes
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'org
     (doom-themes-org-config))
@@ -38,12 +38,12 @@
 
 ;; Highly legible minimalist themes with precise typography
 (use-package doric-themes
-  :straight t)
+  :ensure t)
 
 
 ;; Vim-like tab bar
 (use-package vim-tab-bar
-  :straight t
+  :ensure t
   :hook
   (minemacs-after-startup . vim-tab-bar-mode)
   (server-after-make-frame . vim-tab-bar--apply)
@@ -59,19 +59,19 @@
 
 ;; Integrate `nerd-icons' with `ibuffer'
 (use-package nerd-icons-ibuffer
-  :straight t
+  :ensure t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 
 ;; Integrate `nerd-icons' with `archive-mode', `tar-mode', `dired-mode', and `ztree'
 (use-package nerd-icons-multimodal
-  :straight (:host github :repo "abougouffa/nerd-icons-multimodal")
+  :vc (:url "https://github.com/abougouffa/nerd-icons-multimodal")
   :hook ((archive-mode tar-mode dired-mode ztree-mode vc-dir-mode) . nerd-icons-multimodal-mode))
 
 
 ;; Extra font lock rules for a more colourful `dired'
 (use-package diredfl
-  :straight t
+  :ensure t
   :hook (dired-mode . diredfl-mode)
   :config
   (cl-callf append diredfl-compressed-extensions '(".zst" ".rar" ".7z" ".cab" ".arc" ".zoo")))
@@ -79,12 +79,12 @@
 
 ;; Format buffers visually without modification
 (use-package virtual-format
-  :straight (:host github :repo "abougouffa/virtual-format"))
+  :vc (:url "https://github.com/abougouffa/virtual-format"))
 
 
 ;; Display typographical ligatures in major modes
 (use-package ligature
-  :straight t
+  :ensure t
   :when (and (featurep 'feat/harfbuzz) (featurep 'feat/cairo) (version<= "1.16.0" cairo-version-string))
   :hook
   (prog-mode . ligature-mode)

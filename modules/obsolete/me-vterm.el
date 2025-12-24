@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-08-29
-;; Last modified: 2025-12-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
 
 ;; Fully-fledged terminal emulator inside Emacs based on "libvterm"
 (use-package vterm
-  :straight t
+  :ensure t
   :when (and (not (featurep 'os/win)) (featurep 'feat/modules))
   :hook
   (minemacs-build-functions . vterm-module-compile)
@@ -38,7 +38,7 @@
 
 ;; Managing multiple vterm buffers in Emacs
 (use-package multi-vterm
-  :straight t
+  :ensure t
   :when (and (not (featurep 'os/win)) (featurep 'feat/modules))
   :bind (([remap project-shell] . multi-vterm-project)
          ([f1] . +multi-vterm-toggle-dwim)

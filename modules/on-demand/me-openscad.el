@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-20
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; A major mode for editing OpenSCAD code
 (use-package scad-mode
-  :straight t
+  :ensure t
   :init
   (with-eval-after-load 'nerd-icons
     (add-to-list

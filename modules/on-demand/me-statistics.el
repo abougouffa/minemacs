@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-05-18
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -27,17 +27,17 @@
 
 ;; Emacs Speaks Statistics
 (use-package ess
-  :straight t)
+  :ensure t)
 
 
 ;; View R dataframes in a spreadsheet software
 (use-package ess-view
-  :straight t)
+  :ensure t)
 
 
 ;; Data viewer for GNU R
 (use-package ess-R-data-view
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-statistics)

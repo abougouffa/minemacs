@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-25
-;; Last modified: 2025-11-06
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,16 +12,16 @@
 
 
 (use-package realgud
-  :straight (:build (:not compile)))
+  :ensure t)
 
 (use-package realgud-lldb
-  :straight t
+  :ensure t
   :init
   (defalias 'realgud:lldb #'realgud--lldb)
   :commands (realgud--lldb realgud:lldb lldb))
 
 (use-package realgud-ipdb
-  :straight t
+  :ensure t
   :commands (ipdb realgud:ipdb))
 
 ;; Add some missing gdb/rr commands

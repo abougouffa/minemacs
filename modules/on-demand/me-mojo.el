@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-27
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for the Mojo programming lanugage
 (use-package mojo
-  :straight (:host github :repo "andcarnivorous/mojo-hl")
+  :vc (:url "https://github.com/andcarnivorous/mojo-hl")
   :commands (mojo-mode mojo-compile)
   :mode ("\\.🔥\\'" . mojo-mode))
 

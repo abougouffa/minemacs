@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
 
 ;; Major mode for editing Lua scripts
 (use-package lua-mode
-  :straight t
+  :ensure t
   :custom
   (lua-indent-level 2))
 

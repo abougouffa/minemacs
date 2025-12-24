@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-16
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
 
 ;; View and annotate PDF files
 (use-package pdf-tools
-  :straight t
+  :ensure t
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :hook (minemacs-build-functions . pdf-tools-install)
@@ -36,7 +36,7 @@
 
 ;; Support for opening last known pdf position in `pdf-view-mode'
 (use-package pdf-view-restore
-  :straight t
+  :ensure t
   :hook (pdf-view-mode . pdf-view-restore-mode)
   :custom
   (use-file-base-name-flag nil)

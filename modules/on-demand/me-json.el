@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -20,13 +20,13 @@
 
 ;; Major mode for editing JSON files
 (use-package json-mode
-  :straight t
+  :ensure t
   :mode "\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'")
 
 
 ;; Major mode for interactively editing jq queries
 (use-package jq-mode
-  :straight t
+  :ensure t
   :custom
   (jq-interactive-font-lock-mode (if (featurep 'feat/tree-sitter) #'json-ts-mode #'json-mode))
   :commands (+yq-interactively +xq-interactively)

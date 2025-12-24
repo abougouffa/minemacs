@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-09-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -97,7 +97,7 @@
                (and (memq :unless args) (eval (+varplist-get args :unless t)))))
       ;; Register the package but don't enable it, useful when creating the lockfile,
       ;; this is the official straight.el way for conditionally installing packages
-      (when-let* ((recipe (+varplist-get args :straight t)))
+      (when-let* ((recipe (+varplist-get args :ensure t)))
         (let* ((recipe (if (eq recipe t) (list package) recipe))
                (car-recipe (and (listp recipe) (car recipe)))
                (car-recipe-is-pkg (and (symbolp car-recipe) (not (keywordp car-recipe))))

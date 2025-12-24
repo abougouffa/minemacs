@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-12-09
+;; Last modified: 2025-12-23
 
 ;;; Commentary:
 
@@ -147,7 +147,7 @@ RECURSIVE is non-nil."
 (defun +tramp--convert-sshfs-filename-local (filename)
   "If FILENAME is an sshfs TRAMP file, convert it to the local mounted path."
   (if (and (stringp filename)
-           (file-remote-p filename )
+           (file-remote-p filename)
            (equal "sshfs" (tramp-file-name-method (tramp-dissect-file-name filename))))
       (tramp-fuse-local-file-name filename)
     filename))

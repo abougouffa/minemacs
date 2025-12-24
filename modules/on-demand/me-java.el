@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,12 +19,12 @@
 
 ;; Major mode for Groovy source files
 (use-package groovy-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Minor mode for Android application development
 (use-package android-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-java)

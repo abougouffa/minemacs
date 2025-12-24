@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2025-07-29
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A template system for Emacs
 (use-package yasnippet
-  :straight t
+  :ensure t
   :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
   :init
   (defvar yas-verbosity (if minemacs-verbose-p 4 2))
@@ -28,12 +28,12 @@
 
 ;; A collection of yasnippet snippets for many languages
 (use-package yasnippet-snippets
-  :straight t)
+  :ensure t)
 
 
 ;; A consulting-read interface for yasnippet
 (use-package consult-yasnippet
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'consult 'me-completion))
 
 

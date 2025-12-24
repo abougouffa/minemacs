@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A better Emacs *help* buffer
 (use-package helpful
-  :straight t
+  :ensure t
   :bind (("C-h h" . helpful-at-point) ; orig. `view-hello-file'
          ([remap describe-variable] . helpful-variable)
          ([remap describe-symbol] . helpful-symbol)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@tznvy.pbz")
 ;; Created: 2025-07-19
-;; Last modified: 2025-07-19
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Highly customizable startup screen for Emacs
 (use-package enlight
-  :straight (:host github :repo "ichernyshovvv/enlight")
+  :vc (:url "https://github.com/ichernyshovvv/enlight")
   :hook (enlight-mode . +enlight-responsive-h)
   :custom
   (enlight-content

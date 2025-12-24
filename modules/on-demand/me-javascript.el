@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-08-30
-;; Last modified: 2025-08-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Adds the "node_modules/.bin" directory to the buffer "exec_path"
 (use-package add-node-modules-path
-  :straight t
+  :ensure t
   :hook (js-base-mode . add-node-modules-path)
   :config
   (when (executable-find "pnpm")

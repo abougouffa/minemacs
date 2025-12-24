@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -15,13 +15,9 @@
   :auto-mode '(("\\.nim\\'" . nim-mode) ("\\.nim\\(ble\\|s\\)\\'" . nimscript-mode-maybe)))
 
 
-(push 'flycheck-nimsuggest straight-built-in-pseudo-packages)
-
 ;; A major mode for the Nim programming language
 (use-package nim-mode
-  :straight t)
-
-(cl-callf2 remq 'flycheck-nimsuggest straight-built-in-pseudo-packages)
+  :ensure t)
 
 
 (provide 'on-demand/me-nim)

@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-04-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package treemacs
-  :straight t
+  :ensure t
   :custom
   (treemacs-persist-file (concat minemacs-local-dir "treemacs/persist.el"))
   (treemacs-last-error-persist-file (concat minemacs-local-dir "treemacs/last-error-persist.el"))
@@ -21,7 +21,7 @@
   (set-face-attribute 'treemacs-root-face nil :height 1.0))
 
 (use-package treemacs-nerd-icons
-  :straight t
+  :ensure t
   :after treemacs nerd-icons
   :demand
   :config

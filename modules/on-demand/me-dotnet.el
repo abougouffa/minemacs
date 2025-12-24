@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-20
-;; Last modified: 2025-12-20
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -52,18 +52,18 @@ lanugages and types."
 
 
 (use-package font-lock-ext ; Dependency of `sln-mode'
-  :straight t)
+  :vc (:url "https://github.com/sensorflo/font-lock-ext"))
 
 
 ;; A major mode to edit Visual Studio's solution files `*.sln'
 (use-package sln-mode
-  :straight t
+  :vc (:url "https://github.com/sensorflo/sln-mode")
   :mode "\\.sln\\'")
 
 
 ;; Interact with dotnet CLI tool
 (use-package dotnet
-  :straight t
+  :ensure t
   :config
   (defun +dotnet-goto-vbproj ()
     "Search for a VB.Net project file in any enclosing folders relative to current directory."
@@ -106,13 +106,13 @@ LANGUAGE is a supported language."
 
 ;; A dotnet CLI wrapper, using Transient
 (use-package sharper
-  :straight t
+  :ensure t
   :commands (sharper-main-transient))
 
 
 ;; A mode for editing Visual Basic .NET code
 (use-package vbnet-mode
-  :straight t
+  :vc (:url "https://github.com/emacsmirror/vbnet-mode")
   :hook (vbnet-mode . display-line-numbers-mode)
   :mode "\\.\\(frm\\|bas\\|cls\\|vbs?\\)\\'"
   :commands (vbnet-mode)

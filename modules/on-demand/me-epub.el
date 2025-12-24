@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Featureful EPUB reader mode
 (use-package nov
-  :straight t
+  :ensure t
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 

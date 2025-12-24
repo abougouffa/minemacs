@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-24
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Disassemble C, C++ or Fortran code under cursor
 (use-package disaster
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-disaster)

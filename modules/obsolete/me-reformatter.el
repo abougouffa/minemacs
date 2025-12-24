@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@tznvy.pbz")
 ;; Created: 2025-07-09
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Define commands which run reformatters on the current Emacs buffer
 (use-package reformatter
-  :straight t
+  :ensure t
   :config
   (reformatter-define ref-black
     :program "black"

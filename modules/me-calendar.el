@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-06-17
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,11 +12,11 @@
 
 ;; Schedule your day visually, using timeblocking technique inside Emacs
 (use-package org-timeblock
-  :straight t)
+  :ensure t)
 
 
 (use-package org-caldav
-  :straight (:host github :repo "dengste/org-caldav")
+  :vc (:url "https://github.com/dengste/org-caldav")
   :custom
   (org-caldav-files (list (concat org-directory "appointements.org"))))
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for PlantUML
 (use-package plantuml-mode
-  :straight t
+  :ensure t
   :hook (plantuml-mode . +plantuml-mode-setup)
   :custom
   (plantuml-indent-level 2)
@@ -49,7 +49,7 @@
 
 ;; Add `flymake' support for editing PlantUML files
 (use-package flymake-plantuml
-  :straight (:host github :repo "shaohme/flymake-plantuml")
+  :vc (:url "https://github.com/shaohme/flymake-plantuml")
   :hook (plantuml-mode . flymake-plantuml-setup))
 
 

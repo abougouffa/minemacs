@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-06
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package logos
-  :straight t
+  :ensure t
   :custom
   ;; If you want to use outlines instead of page breaks (the ^L):
   (logos-outlines-are-pages t)

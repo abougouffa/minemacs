@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
 
 ;; Major mode for editing (Standard) ML
 (use-package sml-mode
-  :straight t
+  :ensure t
   :mode "\\.s\\(?:ml\\|ig\\)\\'"
   :config
   ;; Don't auto-close apostrophes and backticks

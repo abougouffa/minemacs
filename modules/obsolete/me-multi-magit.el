@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-10-08
-;; Last modified: 2025-10-08
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; A set of extensions for `magit' to handle multiple repositories simultaneously
 (use-package multi-magit
-  :straight (:host github :repo "luismbo/multi-magit"))
+  :vc (:url "https://github.com/luismbo/multi-magit"))
 
 
 (provide 'obsolete/me-multi-magit)

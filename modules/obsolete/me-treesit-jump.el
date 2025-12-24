@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-21
-;; Last modified: 2025-08-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Jump around your source code in emacs using `treesit' and `avy'
 (use-package treesit-jump
-  :straight (:host github :repo "abougouffa/treesit-jump" :branch "enhancements" :files (:defaults "treesit-queries"))
+  :vc (:url "https://github.com/abougouffa/treesit-jump" :branch "enhancements")
   :when (featurep 'feat/tree-sitter))
 
 

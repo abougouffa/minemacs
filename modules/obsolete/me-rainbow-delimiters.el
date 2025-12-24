@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-26
-;; Last modified: 2025-07-26
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Emacs rainbow delimiters mode
 (use-package rainbow-delimiters
-  :straight t
+  :ensure t
   :hook (prog-mode . rainbow-delimiters-mode)
   :init
   (defvar +rainbow-delimiters-disabled-modes '(makefile-mode))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Move and edit code blocks based on tree-sitter AST
 (use-package ts-movement
-  :straight (:host github :repo "haritkapadia/ts-movement")
+  :vc (:url "https://github.com/haritkapadia/ts-movement")
   :when (featurep 'feat/tree-sitter)
   :hook ((prog-mode conf-mode) . +ts-movement-maybe)
   :init

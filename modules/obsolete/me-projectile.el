@@ -4,18 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; Remove `projectile' form the `straight-built-in-pseudo-packages' in case it
-;; has been added
-(cl-callf2 remq 'projectile straight-built-in-pseudo-packages)
-
 (use-package projectile
-  :straight t
+  :ensure t
   :after minemacs-loaded
   :demand
   :custom
@@ -54,10 +50,10 @@
   (add-hook 'kill-emacs-hook #'projectile--cleanup-known-projects))
 
 (use-package consult-projectile
-  :straight t)
+  :ensure t)
 
 (use-package treemacs-projectile
-  :straight t
+  :ensure t
   :after projectile treemacs
   :demand)
 

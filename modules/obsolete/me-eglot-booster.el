@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-10-24
-;; Last modified: 2025-10-24
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Boost `eglot' using `emacs-lsp-booster' (github.com/blahgeek/emacs-lsp-booster)
 (use-package eglot-booster
-  :straight (:host github :repo "jdtsmith/eglot-booster")
+  :vc (:url "https://github.com/jdtsmith/eglot-booster")
   :custom
   ;; Emacs' 30 JSON parser is much faster, no need to byte-encode, see:
   ;; https://github.com/jdtsmith/eglot-booster?tab=readme-ov-file#io-only

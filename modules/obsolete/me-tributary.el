@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-16
-;; Last modified: 2025-06-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Edit Confluence wiki pages in Emacs
 (use-package tributary
-  :straight (:host github :repo "mrkrd/tributary" :files (:defaults "confluence.rnc"))
+  :vc ("https://github.com/mrkrd/tributary")
   :commands (tributary-mode tributary-push tributary-pull-id tributary-pull-url))
 
 

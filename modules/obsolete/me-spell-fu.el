@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-12-25
-;; Last modified: 2025-12-15
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
 ;;; Code:
 
 (use-package spell-fu
-  :straight t
+  :ensure t
   :when (executable-find "aspell")
   :hook (spell-fu-mode . +spell-fu--init-excluded-faces-h)
   :custom

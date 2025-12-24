@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,12 +18,12 @@
 
 ;; Major mode for DeviceTree source code
 (use-package dts-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Device Tree Binary (`*.dtb') files
 (use-package virtual-dts-mode
-  :straight (:host github :repo "connorfeeley/virtual-dts-mode"))
+  :vc (:url "https://github.com/connorfeeley/virtual-dts-mode"))
 
 
 (provide 'on-demand/me-devicetree)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-28
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
 ;;; Code:
 
 (use-package dirvish
-  :straight t
+  :ensure t
   :after dired
   :demand
   :custom

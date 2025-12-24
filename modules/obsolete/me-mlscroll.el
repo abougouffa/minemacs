@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-09
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package mlscroll
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . +mlscroll-right-mode)
   :config
   ;; For `doom-modeline'

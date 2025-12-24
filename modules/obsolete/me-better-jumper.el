@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-15
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package better-jumper
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . better-jumper-mode)
   ;; Map extra mouse buttons to jump forward/backward
   :bind (("<mouse-8>" . better-jumper-jump-backward)

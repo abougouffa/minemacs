@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-29
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package matlab-mode
-  :straight (:url "https://git.code.sf.net/p/matlab-emacs/src" :files (:defaults (:exclude "company-matlab-shell.el"))))
+  :vc (:url "https://git.code.sf.net/p/matlab-emacs/src"))
 
 
 (provide 'obsolete/me-matlab)

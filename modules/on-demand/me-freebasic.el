@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; A major mode for the FreeBASIC programming language
 (use-package fb-mode
-  :straight (:host github :repo "rversteegen/fb-mode")
+  :vc (:url "https://github.com/rversteegen/fb-mode")
   :commands (fb-mode)
   :mode "\\.b\\(i\\|as\\)\\'")
 

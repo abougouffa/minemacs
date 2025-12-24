@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-11
-;; Last modified: 2025-08-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,12 +17,12 @@
 
 ;; Hare programming lanugage mode
 (use-package hare-mode
-  :straight (:host sourcehut :repo "laumann/hare-mode"))
+  :vc (:url "https://git.sr.ht/~laumann/hare-mode"))
 
 
 ;; Tree-sitter based mode for Hare
 (use-package hare-ts-mode
-  :straight (:host sourcehut :repo "p00f/hare-ts-mode")
+  :vc (:url "https://git.sr.ht/~p00f/hare-ts-mode")
   :config
   (add-to-list
    'treesit-language-source-alist

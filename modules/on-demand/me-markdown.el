@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-09-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
 
 ;; Major mode for Markdown-formatted text
 (use-package markdown-mode
-  :straight t
+  :ensure t
   :custom
   (markdown-enable-html t)
   (markdown-enable-math t)

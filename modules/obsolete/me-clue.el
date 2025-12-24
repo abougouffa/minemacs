@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-09
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Connecting clues (a.k.a., note taking) while reading code
 (use-package clue
-  :straight (:host github :repo "AmaiKinono/clue")
+  :vc (:url "https://github.com/AmaiKinono/clue")
   :custom
   (clue-project-root-function
    (if (fboundp '+citre-dominating-project-root) #'+citre-dominating-project-root #'clue-project-root))

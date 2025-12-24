@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-28
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Collection of checkers for Flymake
 (use-package flymake-collection
-  :straight t
+  :ensure t
   :init
   (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
   :custom
@@ -21,12 +21,12 @@
 
 ;; Transient menu for Flymake
 (use-package flymenu
-  :straight (:host github :repo "KarimAziev/flymenu"))
+  :vc (:url "https://github.com/KarimAziev/flymenu"))
 
 
 ;; Flymake backend for PMD, the extensible cross-language static code analyzer
 (use-package flymake-pmd
-  :straight (:host github :repo "rody/flymake-pmd")
+  :vc (:url "https://github.com/rody/flymake-pmd")
   :custom
   (flymake-pmd-pmd-6-app-name "pmd")
   :config
@@ -40,7 +40,7 @@
 
 ;; A `flymake' integration with the linting library (`package-lint') for Elisp package metadata
 (use-package package-lint-flymake
-  :straight t
+  :ensure t
   :after minemacs-first-elisp-file
   :hook (emacs-lisp-mode . package-lint-flymake-setup))
 

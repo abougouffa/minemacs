@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-05-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Lightweight notebooks in Emacs
 (use-package code-cells
-  :straight t
+  :ensure t
   :init
   ;; Both `ein' and `code-cells' registers auto-mode for ".ipynb" files,
   ;; we remove `code-cells' so `ein' gets used by default.

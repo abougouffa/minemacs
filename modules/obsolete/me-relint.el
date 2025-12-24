@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-28
-;; Last modified: 2025-07-28
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Elisp regexp mistake finder
 (use-package relint
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-relint)

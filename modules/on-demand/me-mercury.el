@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-22
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Concise mercury major mode
 (use-package metal-mercury-mode
-  :straight (:host github :repo "ahungry/metal-mercury-mode"))
+  :vc (:url "https://github.com/ahungry/metal-mercury-mode"))
 
 
 (provide 'on-demand/me-mercury)

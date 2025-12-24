@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-23
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for the Q# programming language
 (use-package qsharp-mode
-  :straight (:host github :repo "forked-from-1kasper/emacs-qsharp-mode"))
+  :vc (:url "https://github.com/forked-from-1kasper/emacs-qsharp-mode"))
 
 
 (provide 'on-demand/me-qsharp)

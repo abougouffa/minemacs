@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-06-17
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package calfw
-  :straight t
+  :ensure t
   :custom
   (cfw:face-item-separator-color nil)
   (cfw:render-line-breaker #'cfw:render-line-breaker-none)
@@ -41,17 +41,17 @@
        text))))
 
 (use-package calfw-ical
-  :straight t
+  :ensure t
   :demand
   :after calfw)
 
 (use-package calfw-cal
-  :straight t
+  :ensure t
   :demand
   :after calfw)
 
 (use-package calfw-org
-  :straight t
+  :ensure t
   :demand
   :after calfw
   :commands (+cfw-open-calendar)

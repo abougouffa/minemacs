@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-09
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Highlight symbols with keymap-enabled overlays
 (use-package symbol-overlay
-  :straight t
+  :ensure t
   :config
   (with-eval-after-load 'multiple-cursors
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
@@ -51,7 +51,7 @@ new ones."
 
 ;; An opinionated `transient' menu for `symbol-overlay'
 (use-package casual-symbol-overlay
-  :straight t
+  :ensure t
   :bind (:package symbol-overlay :map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu)))
 
 

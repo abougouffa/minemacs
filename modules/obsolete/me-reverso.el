@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-12-11
-;; Last modified: 2025-12-11
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Emacs client for Reverso.net for translation, grammar check, context and synonyms search
 (use-package reverso
-  :straight (:host github :repo "SqrtMinusOne/reverso.el")
+  :vc (:url "https://github.com/SqrtMinusOne/reverso.el")
   :bind (:map minemacs-open-thing-map ("r" . reverso))
   :config
   (with-eval-after-load 'savehist

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-02
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
-  :straight (:host github :repo "ahungry/org-jira" :files ("jiralib.el"))
+  :vc (:url "https://github.com/ahungry/org-jira" :main-file "jiralib.el" :ignored-files ("org-jira.el" "org-jira-sdk.el"))
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init
@@ -94,21 +94,21 @@ projects to uses the convention of commit messages like:
 
 ;; Paste text to pastebin-like services
 (use-package webpaste
-  :straight t
+  :ensure t
   :custom
   (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
 
 
 ;; Simply shortening URLs using the is.gd service
 (use-package isgd
-  :straight t
+  :ensure t
   :custom
   (isgd-ask-custom-url t))
 
 
 ;; Work seamlessly with GitHub gists from Emacs
 (use-package igist
-  :straight t
+  :ensure t
   :config
   (advice-add ; BUGFIX: Don't save the Gist unless it has been modified
    'igist-save-gist-buffer :around

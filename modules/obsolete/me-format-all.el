@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-19
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Auto-format source code in many languages with one command
 (use-package format-all
-  :straight t)
+  :ensure t)
 
 
 (provide 'obsolete/me-format-all)

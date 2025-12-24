@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-29
-;; Last modified: 2025-07-29
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; The Doom Emacs snippets library
 (use-package doom-snippets
-  :straight (:host github :repo "hlissner/doom-snippets" :files ("*.el" "*")))
+  :vc (:url "https://github.com/hlissner/doom-snippets"))
 
 
 (provide 'obsolete/me-doom-snippets)

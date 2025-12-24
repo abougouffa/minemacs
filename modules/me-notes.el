@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-11-01
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -16,7 +16,7 @@
 
 ;; Simple notes for Emacs with an efficient file-naming scheme
 (use-package denote
-  :straight t
+  :ensure t
   :commands (denote-create-note denote-insert-link denote-show-backlinks-buffer)
   :hook (dired-mode . denote-dired-mode)
   :custom
@@ -58,33 +58,33 @@
 
 ;; Convenience functions for working with multiple silos
 (use-package denote-silo
-  :straight t)
+  :ensure t)
 
 
 ;; Convenience functions for daily journaling with Denote
 (use-package denote-journal
-  :straight t
+  :ensure t
   :hook (calendar-mode . denote-journal-calendar-mode))
 
 
 ;; Sequence notes or Folgezettel with Denote
 (use-package denote-sequence
-  :straight t)
+  :ensure t)
 
 
 ;; Extensions to better integrate Org with Denote
 (use-package denote-org
-  :straight t)
+  :ensure t)
 
 
 ;; Extensions to better integrate Markdown with Denote
 (use-package denote-markdown
-  :straight t)
+  :ensure t)
 
 
 ;; Use Consult in tandem with Denote
 (use-package consult-denote
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'consult 'me-completion)
   :after consult
   :init

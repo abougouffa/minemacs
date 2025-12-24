@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-04-30
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package tree-sitter
-  :straight t
+  :ensure t
   :defer 5
   :when (featurep 'arch/x86_64)
   :preface
@@ -21,7 +21,7 @@
   (global-tree-sitter-mode 1))
 
 (use-package tree-sitter-langs
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . tree-sitter-langs-install-grammars)
   :preface
   (advice-add 'tree-sitter-langs-install-grammars :around '+apply-inhibit-messages)
@@ -29,7 +29,7 @@
   :demand)
 
 (use-package ts-fold
-  :straight (:host github :repo "emacs-tree-sitter/ts-fold")
+  :vc (:url "https://github.com/emacs-tree-sitter/ts-fold")
   :after tree-sitter
   :init
   (global-ts-fold-mode 1))

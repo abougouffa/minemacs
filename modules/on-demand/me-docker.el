@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-08-23
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,17 +19,17 @@
 
 ;; Major mode for editing Docker's Dockerfiles
 (use-package dockerfile-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing docker-compose files
 (use-package docker-compose-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for Apptainer definition files
 (use-package apptainer-mode
-  :straight (:host github :repo "jrgant/apptainer-mode")
+  :vc (:url "https://github.com/jrgant/apptainer-mode")
   :config
   (setq apptainer-boxed-headers t
         apptainer-boxed-sections t))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-12
-;; Last modified: 2025-08-12
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Highlight numbers in source code
 (use-package highlight-numbers
-  :straight t
+  :ensure t
   :hook ((prog-mode conf-mode) . highlight-numbers-mode)
   :config
   (setq highlight-numbers-generic-regexp (rx symbol-start (? "-") (+ digit) (? "." (* digit)) symbol-end))

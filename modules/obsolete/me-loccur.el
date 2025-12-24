@@ -4,14 +4,14 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-07-27
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package loccur
-  :straight t
+  :ensure t
   :bind (("C-S-o" . loccur-current)
          ("C-M-S-o" . loccur)
          ("M-s C-o" . loccur-isearch)

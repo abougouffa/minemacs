@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-19
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Execute menu items as commands, with completion
 (use-package lacarte
-  :straight t
+  :ensure t
   :bind ([f10] . lacarte-execute-menu-command))
 
 

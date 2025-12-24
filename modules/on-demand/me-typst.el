@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-13
-;; Last modified: 2025-08-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Typst tree sitter major mode for Emacs
 (use-package typst-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst"))
@@ -26,17 +26,17 @@
 
 
 (use-package websocket ; Needed by `typst-preview'
-  :straight t)
+  :ensure t)
 
 
 ;; Typst live preview minor mode
 (use-package typst-preview
-  :straight (:host github :repo "havarddj/typst-preview.el"))
+  :vc (:url "https://github.com/havarddj/typst-preview.el"))
 
 
 ;; Typst back-end for Org export engine
 (use-package ox-typst
-  :straight (:host github :repo "jmpunkt/ox-typst"))
+  :vc (:url "https://github.com/jmpunkt/ox-typst"))
 
 
 (provide 'on-demand/me-typst)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -112,7 +112,7 @@
 
 ;; Send ical calendar invites by email
 (use-package varuga
-  :straight t
+  :ensure t
   :commands (varuga-invite))
 
 
@@ -159,7 +159,7 @@
 
 ;; Global minor mode mixing up `org-mode' and `message-mode' to compose and reply to emails in a Outlook HTML friendly style
 (use-package org-msg
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e
   :custom
@@ -190,7 +190,7 @@
 
 ;; Desktop notifications and modeline display for `mu4e'
 (use-package mu4e-alert
-  :straight t
+  :ensure t
   :when +mu4e-available-p
   :after mu4e
   :demand
@@ -245,7 +245,7 @@
 
 ;; Encrypt and decrypt mails in `mu4e'
 (use-package mu4e-crypto
-  :straight t
+  :vc (:url "https://github.com/emacsattic/mu4e-crypto")
   :when +mu4e-available-p
   :after mu4e
   :bind (:map mu4e-compose-mode-map ("C-c C-m e" . mu4e-crypto-encrypt-message))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Major mode for editing Gentoo's ebuild and eclass files
 (use-package ebuild-mode
-  :straight t)
+  :vc (:url "https://github.com/emacsmirror/ebuild-mode"))
 
 
 (provide 'on-demand/me-ebuild)

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-16
-;; Last modified: 2025-03-21
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
 
 ;; Edit and view Djvu files via `djvused'
 (use-package djvu
-  :straight t
+  :ensure t
   :magic ("%DJVU" . djvu-read-mode)
   :config
   (defun +djvu-toggle-continuous-scrolling ()
@@ -29,7 +29,7 @@
 
 ;; Extend `djvu' to display annotations and more
 (use-package djvu3
-  :straight (:host github :repo "dalanicolai/djvu3")
+  :vc (:url "https://github.com/dalanicolai/djvu3")
   :after djvu
   :demand
   :init

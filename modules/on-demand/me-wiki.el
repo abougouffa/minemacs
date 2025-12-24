@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-23
-;; Last modified: 2025-09-17
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; MediaWiki frontend
 (use-package mediawiki
-  :straight t
+  :ensure t
   :commands (mediawiki-mode mediawiki-file-mode))
 
 

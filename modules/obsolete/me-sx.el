@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-04-19
-;; Last modified: 2025-04-19
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Stack Exchange for Emacs
 (use-package sx
-  :straight t
+  :ensure t
   :custom
   (sx-cache-directory (concat minemacs-cache-dir "sx/")))
 

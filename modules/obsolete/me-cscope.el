@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@tznvy.pbz")
 ;; Created: 2025-07-09
-;; Last modified: 2025-07-09
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Cscope interface for Emacs
 (use-package xcscope
-  :straight t
+  :ensure t
   :unless (featurep 'os/win)
   :commands (cscope-create-list-of-files-to-index cscope-index-files)
   :custom
@@ -23,7 +23,7 @@
 
 ;; Cscope integration for Emacs' Consult
 (use-package consult-cscope
-  :straight (:host github :repo "blorbx/consult-cscope")
+  :vc (:url "https://github.com/blorbx/consult-cscope")
   :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (defun +consult--cscope-find-database-file (start-dir)

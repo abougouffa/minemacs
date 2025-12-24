@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 ;; Created: 2025-02-04
-;; Last modified: 2025-02-04
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -13,7 +13,7 @@
 
 ;; Copilot integration
 (use-package copilot
-  :straight (:host github :repo "copilot-emacs/copilot.el")
+  :vc (:url "https://github.com/copilot-emacs/copilot.el")
   :bind (:map copilot-completion-map ([tab] . copilot-accept-completion))
   :custom
   (copilot-install-dir (expand-file-name "copilot" minemacs-local-dir)))

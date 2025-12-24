@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-16
+;; Last modified: 2025-12-24
 
 ;;; Commentary:
 
@@ -19,12 +19,12 @@
 
 ;; Mode for editing GitLab CI files
 (use-package gitlab-ci-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs-GitLab integration
 (use-package lab
-  :straight (:host github :repo "isamert/lab.el"))
+  :vc (:url "https://github.com/isamert/lab.el"))
 
 
 (provide 'on-demand/me-gitlab)
