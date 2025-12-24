@@ -111,6 +111,7 @@
 (require 'me-builtin)
 
 (unless minemacs-builtin-only-p
+  (require 'me-bootstrap)
   (package-initialize)
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
