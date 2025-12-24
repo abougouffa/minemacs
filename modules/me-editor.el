@@ -162,7 +162,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate-setup
-  :vc (combobulate :url "https://github.com/mickeynp/combobulate" :ignored-files "combobulate.el")
+  :vc (combobulate :url "https://github.com/mickeynp/combobulate" :ignored-files ("combobulate.el" "tests"))
   :when (and (not (featurep 'os/win)) (featurep 'feat/tree-sitter)) ; TEMP: disable on Windows
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
