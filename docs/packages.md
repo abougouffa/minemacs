@@ -37,7 +37,6 @@
 * `objdump-disassemble`: Use "objdump" to display disassembled executable and object files
 
 ## `me-docs`
-* `pdf-tools`: Emacs support library for PDF files
 * `pdfgrep`: PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 * `rfc-mode`: An Emacs major mode to read and browse RFC documents
 * `tldr`: Browse "tldr" pages from Emacs
@@ -235,7 +234,7 @@
 * `gnu-apl-mode`: Major mode for GNU APL
 
 ## `on-demand/me-arduino`
-* `arduino-mode`: Major mode for the Arduino language
+* `arduino-cli-mode`: Arduino CLI command wrapper
 
 ## `on-demand/me-assembly`
 * `mips-mode`: Major mode for MIPS assembly
@@ -344,9 +343,6 @@
 * `dotnet`: Interact with dotnet CLI tool
 * `sharper`: A dotnet CLI wrapper, using Transient
 * `vbnet-mode`: A mode for editing Visual Basic .NET code
-
-## `on-demand/me-easysession`
-* `easysession`: Effortlessly persist and restore your Emacs sessions
 
 ## `on-demand/me-ebuild`
 * `ebuild-mode`: Major mode for editing Gentoo's ebuild and eclass files
