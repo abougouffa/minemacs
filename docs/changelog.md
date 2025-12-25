@@ -2,6 +2,40 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.18.0](https://github.com/abougouffa/minemacs/compare/ab482b64d347de325e64738d24edd8686a77cd80..v13.18.0) - 2025-12-25
+#### Tweaks
+- (**consult**) remove obsolete references - ([e316e0b](https://github.com/abougouffa/minemacs/commit/e316e0ba56cedfd874d1edbba076b78817060d91)) - [@abougouffa](https://github.com/abougouffa)
+- (**dash-docs**) register some docsets for C/C++ - ([6b43935](https://github.com/abougouffa/minemacs/commit/6b439357d0fba89a1cdcebab9f66bc4c2944926a)) - [@abougouffa](https://github.com/abougouffa)
+- (**docs**) remove `pdf-tools`, already included in `on-demand/me-pdf` - ([ab482b6](https://github.com/abougouffa/minemacs/commit/ab482b64d347de325e64738d24edd8686a77cd80)) - [@abougouffa](https://github.com/abougouffa)
+- (**dumb-jump**) use both `xref` the backend and the legacy commands - ([77fa3a1](https://github.com/abougouffa/minemacs/commit/77fa3a1c36359f0ad20e91531cf5dbb6cb13320e)) - [@abougouffa](https://github.com/abougouffa)
+- (**eglot**) disable fontifying semantic tokens - ([82cfbee](https://github.com/abougouffa/minemacs/commit/82cfbee1e2c9e05194b1315e10bd1cdd7df5b3de)) - [@abougouffa](https://github.com/abougouffa)
+- (**hideshow**) remove obsolete option - ([9c181d0](https://github.com/abougouffa/minemacs/commit/9c181d09a88436ada0463852307090471e943015)) - [@abougouffa](https://github.com/abougouffa)
+- (**lib**) remove unneeded variable - ([491254f](https://github.com/abougouffa/minemacs/commit/491254f3d246d72a31518fc908c7f9fe888c2b26)) - [@abougouffa](https://github.com/abougouffa)
+- (**magit-gerrit**) remove no more needed customization - ([12754d3](https://github.com/abougouffa/minemacs/commit/12754d3c61eacf2a383704ae318e98a00ad373db)) - [@abougouffa](https://github.com/abougouffa)
+- (**magit-gerrit**) bind `magit-gerrit-dispatch` to `M-_` - ([3b078b4](https://github.com/abougouffa/minemacs/commit/3b078b4b70270c437bacd9c423411b648a72334b)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) display region size in mode-line - ([afae9db](https://github.com/abougouffa/minemacs/commit/afae9db27a142e6954ca3a34fbccf255b0d2565d)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/dotnet**) make use of the `with-memoization` macro - ([6a2bd21](https://github.com/abougouffa/minemacs/commit/6a2bd2188dfbabc3f9586174008dca620ece624e)) - [@abougouffa](https://github.com/abougouffa)
+- (**satch**) cleanup and remove unneeded stuff - ([50cfd66](https://github.com/abougouffa/minemacs/commit/50cfd664551606e313cb11b70d8e4414b0be32be)) - [@abougouffa](https://github.com/abougouffa)
+- (**speedbar**) remove unneeded customization - ([629656f](https://github.com/abougouffa/minemacs/commit/629656f180596ad364c066a5ce717d24f5ec726f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([4997e66](https://github.com/abougouffa/minemacs/commit/4997e666f3b569c45b48428bc98340a3281da9e1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4eb29cb](https://github.com/abougouffa/minemacs/commit/4eb29cb2f251771566c85c6afb5881be40f5bd05)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([124612b](https://github.com/abougouffa/minemacs/commit/124612ba2bb2962d397e0b0831752651425b3f4e)) - [@abougouffa](https://github.com/abougouffa)
+- remove unused stolen code - ([8493d55](https://github.com/abougouffa/minemacs/commit/8493d5582ef6eb4f2af4690050e4599780e40f42)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**on-demand/arduino**) add the `+arduino-cli-set-board` command - ([a7336cd](https://github.com/abougouffa/minemacs/commit/a7336cd97af9f3432b6abcfc95060f54d2d334c2)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/arduino**) replace obsolete mode, add `arduino-cli-mode` - ([aa30725](https://github.com/abougouffa/minemacs/commit/aa307250e6e725930b2fe7640cbedd11fe56e5db)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**magit**) auto refreshing after saving buffers can be slow - ([2257c21](https://github.com/abougouffa/minemacs/commit/2257c21fd24bdbb9c6e9ed35994c47bd551eeda8)) - [@abougouffa](https://github.com/abougouffa)
+- (**skel**) update example, remove examples for obsolete packages - ([d4c5206](https://github.com/abougouffa/minemacs/commit/d4c52063b1bc93d2810c660062e41fede813c5fe)) - [@abougouffa](https://github.com/abougouffa)
+- (**skel**) fix out of date configuration example - ([efbe620](https://github.com/abougouffa/minemacs/commit/efbe62002d2f6b1fa47c4af9084208aba4e2932f)) - [@abougouffa](https://github.com/abougouffa)
+- add the window configuration file - ([309d616](https://github.com/abougouffa/minemacs/commit/309d616ad734b2d80f3d2d11d9aeb16e16ad6eb5)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([4106dfb](https://github.com/abougouffa/minemacs/commit/4106dfb08f5948549b894b3bba32b7a193858c88)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- move a file to the right directory - ([a5108bf](https://github.com/abougouffa/minemacs/commit/a5108bf9a70b4b853b9e67033a4f16792809af5b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.17.0](https://github.com/abougouffa/minemacs/compare/cec3169d7e6f0bd4334033c7d7356c922e721144..v13.17.0) - 2025-12-11
 #### Tweaks
 - (**eglot**) don't show pending requests in mode-line - ([cec3169](https://github.com/abougouffa/minemacs/commit/cec3169d7e6f0bd4334033c7d7356c922e721144)) - [@abougouffa](https://github.com/abougouffa)
