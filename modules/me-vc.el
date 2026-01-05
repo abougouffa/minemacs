@@ -1,10 +1,10 @@
 ;;; me-vc.el --- Git and version control -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-15
+;; Last modified: 2026-01-05
 
 ;;; Commentary:
 
@@ -130,7 +130,8 @@
 ;; Emacs major modes for Git configuration files
 (use-package git-modes
   :straight t
-  :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode))
+  :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode)
+  :mode ("\\.dumbjump\\'" . gitignore-mode))
 
 
 ;; Running "repo" from Emacs
