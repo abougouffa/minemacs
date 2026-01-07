@@ -1,6 +1,6 @@
 ;;; minemacs-modeline.el --- Light, modern and opinionated mode-line for MinEmacs -*- lexical-binding: t -*-
 
-;; Copyright (C) 2023-2025  Protesilaos Stavrou
+;; Copyright (C) 2023-2026  Protesilaos Stavrou
 ;; Copyright (C) 2025  Abdelhak Bougouffa
 
 ;; Based on: https://protesilaos.com/emacs/dotemacs
@@ -156,7 +156,10 @@
 
 (minemacs-modeline-define-section region-size
   (when (region-active-p)
-    (format " %s %d" (+nerd-icons-icon "nf-fa-arrow_right_from_bracket" 'face 'region) (- (region-end) (region-beginning)))))
+    (format " %s %d:%d"
+            (+nerd-icons-icon "nf-fa-arrow_right_from_bracket" 'face 'region)
+            (- (line-number-at-pos (region-end)) (line-number-at-pos (region-beginning)))
+            (- (region-end) (region-beginning)))))
 
 (minemacs-modeline-define-section project
   (when-let* ((fname (or (buffer-file-name) default-directory))
