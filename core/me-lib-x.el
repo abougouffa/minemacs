@@ -1,10 +1,10 @@
 ;; me-lib-x.el -- MinEmacs Library (extra features and commands) -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2025-12-09
+;; Last modified: 2026-01-06
 
 ;;; Commentary:
 
@@ -147,7 +147,7 @@ RECURSIVE is non-nil."
 (defun +tramp--convert-sshfs-filename-local (filename)
   "If FILENAME is an sshfs TRAMP file, convert it to the local mounted path."
   (if (and (stringp filename)
-           (file-remote-p filename )
+           (file-remote-p filename)
            (equal "sshfs" (tramp-file-name-method (tramp-dissect-file-name filename))))
       (tramp-fuse-local-file-name filename)
     filename))
@@ -1292,6 +1292,24 @@ it forget them only when we are sure they don't exist."
      (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
    (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
+
+(defun +repo-projects (&rest exclude-prefixes)
+  "Return the list of repo projects in the current directory.
+
+When EXCLUDE-PREFIXES is provided (string or a list of strings),
+directories starting with these prefixes will be excluded from the
+results."
+  (when-let* ((projs (shell-command-to-string "repo list"))
+              ((not (string-prefix-p "error: " projs)))
+              (projs (mapcar (lambda (str) (car (string-split str " : ")))
+                             (string-lines projs))))
+    (if exclude-prefixes
+        (seq-filter (lambda (path)
+                      (not (seq-some
+                            (lambda (prefix) (string-prefix-p prefix path))
+                            exclude-prefixes)))
+                    projs)
+      projs)))
 
 
 
