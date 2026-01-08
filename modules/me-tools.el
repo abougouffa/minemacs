@@ -123,12 +123,9 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 ;; Package manager for LSPs, DAPs, linters, and more
 (use-package mason
   :straight t
-  :init
-  (let ((mason-bin-dir (expand-file-name "mason/bin" minemacs-local-dir)))
-    (add-to-list 'exec-path mason-bin-dir)
-    (setenv "PATH" (concat mason-bin-dir ":" (getenv "PATH"))))
+  :defer 2
   :config
-  (mason-ensure))
+  (+shutup! :log (mason-ensure)))
 
 
 (provide 'me-tools)
