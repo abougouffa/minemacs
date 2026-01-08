@@ -1,10 +1,10 @@
 ;;  me-tools.el -- System tools -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-27
+;; Last modified: 2026-01-08
 
 ;;; Commentary:
 
@@ -67,7 +67,8 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
-  :straight (:host github :repo "johannes-mueller/devcontainer.el"))
+  :straight (:host github :repo "johannes-mueller/devcontainer.el")
+  :hook (minemacs-after-startup . devcontainer-mode))
 
 
 ;; Major mode to view journalctl's output in Emacs
