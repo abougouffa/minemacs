@@ -80,20 +80,14 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 ;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
   :straight t
-  :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-all)
+  :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-editor-maybe)
   :init
   (once-x-call '(:before shell-command) #'shell-command-with-editor-mode)
   ;; `julia-repl' seems to start on `term-mode', so let's check for it before exporting the editor
   (defvar +with-editor-ignore-matching-buffers '("\\*julia\\*"))
-  (defun +with-editor-export-all ()
+  (defun +with-editor-export-editor-maybe ()
     (unless (seq-some (+apply-partially-right #'string-match-p (buffer-name)) +with-editor-ignore-matching-buffers)
-      (+shutup! ; Export "EDITOR", then "(HG|GIT|JJ)_EDITOR" when needed
-       (with-editor-export-editor)
-       (when (getenv "HG_EDITOR") (with-editor-export-hg-editor))
-       (when (getenv "GIT_EDITOR") (with-editor-export-git-editor))
-       (when (getenv "JJ_EDITOR") (with-editor-export-editor "JJ_EDITOR")))))
-  :config
-  (add-to-list 'with-editor-envvars "JJ_EDITOR")) ; Add support for Jujutsu (`jj')
+      (+shutup! (with-editor-export-editor)))))
 
 
 ;; Python Executable Tracker
