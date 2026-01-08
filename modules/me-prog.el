@@ -1,10 +1,10 @@
 ;;; me-prog.el --- Programming stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-15
+;; Last modified: 2026-01-08
 
 ;;; Commentary:
 
@@ -72,13 +72,13 @@
   :hook (prog-mode . hl-todo-mode)
   :config
   (cl-callf append hl-todo-keyword-faces
-    '(("BUG"   . "#ee5555")
-      ("BUGFIX"   . "#ee5555")
-      ("PROJ"  . "#447f44")
-      ("IDEA"  . "#0fa050")
-      ("INFO"  . "#0e9030")
-      ("TWEAK" . "#fe9030")
-      ("PERF"  . "#e09030"))))
+    '(("BUG"    . "#ee5555")
+      ("BUGFIX" . "#ee5555")
+      ("PROJ"   . "#447f44")
+      ("IDEA"   . "#0fa050")
+      ("INFO"   . "#0e9030")
+      ("TWEAK"  . "#fe9030")
+      ("PERF"   . "#e09030"))))
 
 
 ;; Interactive macro-expander for Emacs Lisp and C
