@@ -1,10 +1,10 @@
 ;;; completion.el --- Completion packages -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-23
+;; Last modified: 2026-01-08
 
 ;;; Commentary:
 
@@ -60,7 +60,7 @@
 
 ;; Corfu enhances in-buffer completion with a small completion popup
 (use-package corfu
-  :straight (:files (:defaults "extensions/*.el"))
+  :straight t
   :hook
   ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
   (minibuffer-setup . +corfu-enable-in-minibuffer-h)
