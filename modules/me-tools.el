@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-08
+;; Last modified: 2026-01-11
 
 ;;; Commentary:
 
@@ -68,7 +68,10 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
   :straight (:host github :repo "johannes-mueller/devcontainer.el")
-  :hook (minemacs-after-startup . devcontainer-mode))
+  :hook (minemacs-after-startup . devcontainer-mode)
+  :config
+  ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
+  (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn)))))
 
 
 ;; Major mode to view journalctl's output in Emacs
