@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.19.0](https://github.com/abougouffa/minemacs/compare/a9a24d7c37c27e29b68228c35dd663b7d7071bea..v13.19.0) - 2026-01-11
+#### Nitpicks, changes with no side effect
+- (**hl-todo**) code formatting - ([07becda](https://github.com/abougouffa/minemacs/commit/07becda7081310ed7cb1e9a46a95231541ed46fd)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- (**devcontainer**) auto enable - ([702d86e](https://github.com/abougouffa/minemacs/commit/702d86ecf5cd9251169fd5257e59914b50ec58f4)) - [@abougouffa](https://github.com/abougouffa)
+- (**eglot**) minor refactor - ([7ebb72c](https://github.com/abougouffa/minemacs/commit/7ebb72cb690d3f2a13b319c33362c17902b3573d)) - [@abougouffa](https://github.com/abougouffa)
+- (**git-modes**) user `gitignore-mode` in `.dumbjump` files - ([e5c8352](https://github.com/abougouffa/minemacs/commit/e5c835280d0a64225904a9a323625850f28f35cc)) - [@abougouffa](https://github.com/abougouffa)
+- (**mason**) auto ensure, but with laziness - ([78b0455](https://github.com/abougouffa/minemacs/commit/78b04553419d6d3c3c6c293d227713c40ab5a132)) - [@abougouffa](https://github.com/abougouffa)
+- (**with-editor**) remove unneeded customization - ([517b01f](https://github.com/abougouffa/minemacs/commit/517b01ffa0b255a1bdfc3367b11f5217614f614e)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([efe3849](https://github.com/abougouffa/minemacs/commit/efe38495592faa4d908ef7cf3526524222b52707)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6427642](https://github.com/abougouffa/minemacs/commit/642764225dc1c6a323d4d3949172a6b61db6beb0)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**modeline**) show selected number of lines - ([ec52f8b](https://github.com/abougouffa/minemacs/commit/ec52f8b059e033dc259a86db4abe84ca69374df0)) - [@abougouffa](https://github.com/abougouffa)
+- add `+repo-projects` helper function - ([97a21bf](https://github.com/abougouffa/minemacs/commit/97a21bf9d54d88a002ec879e1bb2ca34c09d65c2)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**corfu**) use the default recipe - ([17b0725](https://github.com/abougouffa/minemacs/commit/17b072524cafcd64d95d912f1a38ca728794f948)) - [@abougouffa](https://github.com/abougouffa)
+- (**devcontainer**) fix a bug on non-project files - ([797571a](https://github.com/abougouffa/minemacs/commit/797571a5d8f19bb4c66e3942c7b77c8f5985c7f1)) - [@abougouffa](https://github.com/abougouffa)
+- (**mason**) properly set the mason bin directory in PATH - ([a9a24d7](https://github.com/abougouffa/minemacs/commit/a9a24d7c37c27e29b68228c35dd663b7d7071bea)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.18.0](https://github.com/abougouffa/minemacs/compare/ab482b64d347de325e64738d24edd8686a77cd80..v13.18.0) - 2025-12-25
 #### Tweaks
 - (**consult**) remove obsolete references - ([e316e0b](https://github.com/abougouffa/minemacs/commit/e316e0ba56cedfd874d1edbba076b78817060d91)) - [@abougouffa](https://github.com/abougouffa)
