@@ -1,10 +1,10 @@
 ;;; me-bazel.el --- Description -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-04
-;; Last modified: 2025-06-04
+;; Last modified: 2026-01-13
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 
 (use-package bazel
   :straight t
-  :mode ("Android\\.bp\\'" . bazel-mode))
+  :mode ("/Android\\.bp\\'" . bazel-mode))
 
 
 (provide 'on-demand/me-bazel)

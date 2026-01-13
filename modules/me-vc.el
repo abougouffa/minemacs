@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-05
+;; Last modified: 2026-01-13
 
 ;;; Commentary:
 
@@ -131,7 +131,7 @@
 (use-package git-modes
   :straight t
   :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode)
-  :mode ("\\.dumbjump\\'" . gitignore-mode))
+  :mode ("/\\.dumbjump\\'" . gitignore-mode))
 
 
 ;; Running "repo" from Emacs

@@ -1,10 +1,10 @@
 ;;; me-builtin.el --- Emacs built-in packages -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2025-12-17
+;; Last modified: 2026-01-13
 
 ;;; Commentary:
 
@@ -444,7 +444,8 @@
 
 (use-package conf-mode
   :mode "\\.prop\\'"
-  :mode "\\.rc\\'")
+  :mode "\\.rc\\'"
+  :mode "/\\.style.\\yapf\\'")
 
 (use-package hideshow
   :hook ((prog-mode conf-mode nxml-mode) . +hs-minor-mode-maybe) ; Hide/show code blocks, a.k.a. code folding

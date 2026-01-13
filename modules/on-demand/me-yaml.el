@@ -1,10 +1,10 @@
 ;;; me-yaml.el --- YAML language -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-08-06
+;; Last modified: 2026-01-13
 
 ;;; Commentary:
 
@@ -20,8 +20,8 @@
 ;; Major mode for editing YAML files
 (use-package yaml-mode
   :straight t
-  :mode "Procfile\\'"
-  :mode (rx (any ?. ?_) (or "clang-format" "clang-tidy") eol))
+  :mode "/Procfile\\'"
+  :mode (rx "/" (any ?. ?_) (or "clang-format" "clang-tidy" "clangd") eol))
 
 
 ;; Parser-aided YAML editing features
