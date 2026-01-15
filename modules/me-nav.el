@@ -1,10 +1,10 @@
 ;;; me-nav.el --- MinEmacs search & navigation packages -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2025-08-23
+;; Last modified: 2026-01-15
 
 ;;; Commentary:
 
@@ -62,7 +62,9 @@
 ;; Emacs search tool based on "ripgrep"
 (use-package rg
   :straight t
-  :bind (("C-c s" . rg-menu)))
+  :bind (("C-c s" . rg-menu))
+  :init
+  (+super-project-define-commands 'rg 'rg-project))
 
 
 ;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
