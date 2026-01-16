@@ -133,9 +133,9 @@
   (blamer-self-author-name "You")
   (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
   :config
-  ;; Use 15% smaller font size for blamer's text
+  ;; Use 20% smaller font size for blamer's text
   (when-let* ((height (face-attribute 'default :height nil t)))
-    (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 height)) 1))))
+    (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.8 height)) 1))))
 
 
 ;; Emacs major modes for Git configuration files
