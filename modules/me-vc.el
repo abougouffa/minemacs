@@ -4,13 +4,12 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-13
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package cond-let :straight t) ; dependency of `magit'
 
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
@@ -125,6 +124,18 @@
        (setq header-line-format
              (concat (format "  %s " (or (+nerd-icons-icon "nf-oct-git_branch") ""))
                      (funcall orig-fn revision)))))))
+
+
+;; Show Git blame info about current line
+(use-package blamer
+  :straight t
+  :custom
+  (blamer-self-author-name "You")
+  (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
+  :config
+  ;; Use 15% smaller font size for blamer's text
+  (when-let* ((height (face-attribute 'default :height nil t)))
+    (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 height)) 1))))
 
 
 ;; Emacs major modes for Git configuration files
