@@ -1,10 +1,10 @@
 ;;; me-blamer.el --- Blamer - show git blame information on each line -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-22
-;; Last modified: 2025-03-21
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -21,7 +21,8 @@
   (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
   :config
   ;; Use 15% smaller font size for blamer's text
-  (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 (face-attribute 'default :height))) 1)))
+  (when-let* ((height (face-attribute 'default :height nil t)))
+    (set-face-attribute 'blamer-face nil :height (max (truncate (* 0.85 height)) 1))))
 
 
 (provide 'obsolete/me-blamer)
