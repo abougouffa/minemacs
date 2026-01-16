@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-08
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -195,12 +195,11 @@
   (register-preview-function #'consult-register-format) ; Better formatting for `view-register'
   (consult-narrow-key "<")
   :commands (+consult-tab +consult-xref-history +consult-fd-super-project +consult-grep-super-project +consult-ripgrep-super-project +consult-find-super-project)
+  :init
+  ;; Define super-project variants of `consult' find/grep commands
+  (+super-project-define-commands 'consult-fd 'consult-find 'consult-grep 'consult-ripgrep)
   :config
   (setq-default completion-in-region-function #'consult-completion-in-region)
-
-  ;; Define super-project variants of `consult' find/grep commands
-  (+super-project-define-commands 'consult
-    'consult-fd 'consult-find 'consult-grep 'consult-ripgrep)
 
   (defun +consult-tab (tab)
     "Switch to TAB by name."

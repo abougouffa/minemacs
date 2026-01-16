@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2026-01-15
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -64,7 +64,7 @@
   :straight t
   :bind (("C-c s" . rg-menu))
   :init
-  (+super-project-define-commands 'rg 'rg-project))
+  (+super-project-define-commands 'rg-project))
 
 
 ;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
@@ -92,9 +92,7 @@
   :commands (+fzf-project-super-project)
   :init
   (defalias '+fzf-project 'fzf-projectile)
-  :config
-  ;; Define a super-project variant of `+fzf-project'
-  (+super-project-define-commands 'fzf '+fzf-project))
+  (+super-project-define-commands '+fzf-project)) ; Define a super-project variant of `+fzf-project'
 
 
 (provide 'me-nav)

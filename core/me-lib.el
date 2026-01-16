@@ -1,10 +1,10 @@
 ;; me-lib.el -- MinEmacs Library (helper functions, extra features and commands) -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2025-12-17
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -746,23 +746,21 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
   (let ((project-find-functions '(+project-super-project-try)))
     (project-current nil dir)))
 
-(defun +super-project-define-commands (package &rest commands)
+(defun +super-project-define-commands (&rest commands)
   "Define PACKAGE's COMMANDS for super-project context."
-  (declare (indent 1))
-  (with-eval-after-load package
-    (let (form)
-      (dolist (command commands)
-        (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (symbol-name command)) "" "+") command))))
-          (push
-           `(defun ,new-cmd (&rest args)
-              ,(format "Call `%s' in a super-project context." command)
-              ,(interactive-form command) ; Use the same interactive form as the original command
-              (if-let* ((project-find-functions '(+project-super-project-try))
-                        ((project-current)))
-                  (apply (function ,command) args)
-                (user-error "It doesn't seem that we are in a super-project")))
-           form)))
-      (eval (macroexp-progn form)))))
+  (let (form)
+    (dolist (command commands)
+      (let ((new-cmd (intern (format "%s%s-super-project" (if (string-prefix-p "+" (symbol-name command)) "" "+") command))))
+        (push
+         `(defun ,new-cmd (&rest args)
+            ,(format "Call `%s' in a super-project context." command)
+            ,(interactive-form command) ; Use the same interactive form as the original command
+            (if-let* ((project-find-functions '(+project-super-project-try))
+                      ((project-current)))
+                (apply (function ,command) args)
+              (user-error "It doesn't seem that we are in a super-project")))
+         form)))
+    (eval (macroexp-progn form))))
 
 (defun +project-safe-root (&optional proj)
   "Return the root of PROJ using several backends, don't fail."

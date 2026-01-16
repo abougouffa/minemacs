@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-13
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -36,7 +36,7 @@
   :bind ([f1] . +eat-toggle-dwim)
   :init
   (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
-  (+super-project-define-commands 'eat 'eat-project)
+  (+super-project-define-commands 'eat-project)
   :config
   (advice-add 'eat--sentinel :around #'+kill-buffer-after-sentinel-exit)
   (defun +eat-toggle-dwim ()
