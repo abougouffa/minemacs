@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-13
+;; Last modified: 2026-01-16
 
 ;;; Commentary:
 
@@ -161,11 +161,10 @@
     (mapc #'disable-theme custom-enabled-themes))
   (advice-add 'load-theme :before '+theme--disable-previous-themes:before-a)
 
-  ;; Show trailing whitespace in `prog-mode' and `conf-mode'
-  (+setq-hook! (prog-mode conf-mode) show-trailing-whitespace t)
+  ;; Show trailing whitespace in `prog-mode', `conf-mode' and `diff-mode'
+  (+setq-hook! (prog-mode conf-mode diff-mode) show-trailing-whitespace t)
 
   ;; Don't mess up with whitespaces in `diff-mode', they are part of the syntax
-  (+setq-hook! diff-mode show-trailing-whitespace t)
   (add-hook 'diff-mode-hook (lambda () (electric-indent-local-mode -1)))
 
   ;; Subtle color for trailing whitespaces
