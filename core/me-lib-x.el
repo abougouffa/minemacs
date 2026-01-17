@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-01-06
+;; Last modified: 2026-01-17
 
 ;;; Commentary:
 
@@ -1388,17 +1388,23 @@ you might need install some of these tools.\n\n")
 
 
 
+(defvar +describe-at-point-kinds
+  '((?c :predicate fboundp :desc "[c]allable" :call describe-function)
+    (?f :predicate facep   :desc "[f]ace"     :call describe-face)
+    (?v :predicate (lambda (s) (and (boundp s) (symbol-value s))) :desc "[v]ariable" :call describe-variable)
+    (?k :predicate (lambda (s) (and (boundp s) (keymapp (symbol-value s)))) :desc "[k]eymap" :call describe-keymap)))
+
 ;;;###autoload
 (defun +describe-at-point ()
   "Show help for the symbol at point."
   (interactive)
   (if-let* ((sym (symbol-at-point))
-            (fn (cond ((and (fboundp sym) (boundp sym))
-                       (if (= ?v (read-char-choice (format "Ambiguous `%s', describe [v]ariable or [c]allable? " sym) '(?v ?c)))
-                           'describe-variable
-                         'describe-function))
-                      ((fboundp sym) 'describe-function)
-                      ((boundp sym) 'describe-variable)
+            (matches (seq-filter (lambda (e) (funcall (plist-get (cdr e) :predicate) sym)) +describe-at-point-kinds))
+            (fn (cond (matches
+                       (if (length= matches 1)
+                           (plist-get (cdar matches) :call)
+                         (let ((key (read-char-choice (format "Ambiguous `%s', describe %s? " sym (string-join (mapcar (lambda (e) (plist-get (cdr e) :desc)) matches) ", ")) (mapcar #'car matches))))
+                           (plist-get (alist-get key matches) :call))))
                       ((symbolp sym) 'describe-symbol))))
       (funcall fn sym)
     (user-error "There is no symbol at point")))
