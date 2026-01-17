@@ -1,10 +1,10 @@
 ;; me-bootstrap.el --- Bootstrap packages (straight & use-package) -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-09-04
+;; Last modified: 2026-01-18
 
 ;;; Commentary:
 
@@ -63,25 +63,6 @@
        `("git" "clone" "--filter=tree:0" ,@(cddr args))
      args)))
 
-;; Do some tweaks to avoid asking questions when running
-;; `minemacs-bump-packages'
-(defun +minemacs--straight--popup-raw:around-a (orig-fn prompt actions)
-  (let (action-func action-args)
-    (dolist (action actions)
-      (let ((desc (nth 1 action))
-            (func (nth 2 action))
-            (args (cdddr action)))
-        (when (or (string-match-p "Stash changes" desc)
-                  (string-match-p "Rename remote .* to .*, re-create .* with correct URL, and fetch" desc)
-                  (string-match-p "Skip this repository for now and come back to it later" desc)
-                  (string-match-p "Reset .* to .*" desc)
-                  (string-match-p "Checkout .*" desc))
-          (setq action-func func
-                action-args args))))
-    (if action-func
-        (apply action-func action-args)
-      (funcall orig-fn prompt actions))))
-
 ;; HACK: This advice around `use-package' checks if a package is disabled in
 ;; `minemacs-disabled-packages' before calling `use-package'. This can come
 ;; handy if the user wants to enable some module while excluding some packages
@@ -109,6 +90,24 @@
     (apply origfn package args)))
 
 (advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
+
+;; Do some tweaks to avoid asking questions when running
+;; `minemacs-bump-packages'
+(defun +minemacs--straight--popup-raw:around-a (orig-fn prompt actions)
+  (let (action-func action-args)
+    (dolist (action actions)
+      (let ((desc (nth 1 action))
+            (func (nth 2 action))
+            (args (cdddr action)))
+        (when (seq-some (lambda (str) (string-match-p str desc))
+                        '("Stash changes" "Reset .* to .*" "Checkout .*"
+                          "Skip this repository for now and come back to it later"
+                          "Rename remote .* to .*, re-create .* with correct URL, and fetch"))
+          (setq action-func func
+                action-args args))))
+    (if action-func
+        (apply action-func action-args)
+      (funcall orig-fn prompt actions))))
 
 (defun +minemacs--read-string:around-a (orig-fn prompt &rest args)
   (cond
