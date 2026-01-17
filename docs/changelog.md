@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.20.0](https://github.com/abougouffa/minemacs/compare/8b060d9e75512dd2b17dedc125ac6ba8755215cd..v13.20.0) - 2026-01-17
+#### Tweaks
+- (**blamer**) use 20% smaller font size instead of 15% - ([f9bd115](https://github.com/abougouffa/minemacs/commit/f9bd1154e7b73310be56039b5ad27c94df4258fb)) - [@abougouffa](https://github.com/abougouffa)
+- (**eat**) add super-project variant of `eat-project` - ([8b060d9](https://github.com/abougouffa/minemacs/commit/8b060d9e75512dd2b17dedc125ac6ba8755215cd)) - [@abougouffa](https://github.com/abougouffa)
+- (**rg**) add super-project variant of `rg-project` - ([be417d3](https://github.com/abougouffa/minemacs/commit/be417d38f2d76b1932f526ad54d66382db348e63)) - [@abougouffa](https://github.com/abougouffa)
+- minor refactor - ([78cadbf](https://github.com/abougouffa/minemacs/commit/78cadbfdea01058551c62d770d944ef169869f95)) - [@abougouffa](https://github.com/abougouffa)
+- minor edit - ([95c25ac](https://github.com/abougouffa/minemacs/commit/95c25ac37543deea5728be97826e80b3d28f8008)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of `+super-project-define-commands` - ([9a05ba5](https://github.com/abougouffa/minemacs/commit/9a05ba5571d585a17b16d55544f38d97d8390888)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**vc**) restore `blamer` - ([7773d50](https://github.com/abougouffa/minemacs/commit/7773d5076ee5ed20f330d276b884c0da04995fe9)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of `+describe-at-point` - ([82cc8cd](https://github.com/abougouffa/minemacs/commit/82cc8cdbfe1e2acc09da98c1ee2c5f35908da8ca)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**obsolete/blamer**) fix height calculation - ([fc32687](https://github.com/abougouffa/minemacs/commit/fc3268755e381dbd1ac14e77c1e5301c4b64f852)) - [@abougouffa](https://github.com/abougouffa)
+- correct regexps of auto mode matching for some special files - ([607ca42](https://github.com/abougouffa/minemacs/commit/607ca42a434a52a83ecc4ee087af216431c2c3e9)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.19.0](https://github.com/abougouffa/minemacs/compare/a9a24d7c37c27e29b68228c35dd663b7d7071bea..v13.19.0) - 2026-01-11
 #### Nitpicks, changes with no side effect
 - (**hl-todo**) code formatting - ([07becda](https://github.com/abougouffa/minemacs/commit/07becda7081310ed7cb1e9a46a95231541ed46fd)) - [@abougouffa](https://github.com/abougouffa)
