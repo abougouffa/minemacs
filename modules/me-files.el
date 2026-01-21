@@ -1,10 +1,10 @@
 ;;; me-files.el --- File management -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2025-09-01
+;; Last modified: 2026-01-21
 
 ;;; Commentary:
 
@@ -71,13 +71,6 @@
     (setq ztree-draw-unicode-lines t)
     (keymap-set ztree-mode-map "n" #'ztree-next-line)
     (keymap-set ztree-mode-map "p" #'ztree-previous-line)))
-
-
-;; Apply all (!) ".dir-locals.el" from root to current directory
-(use-package cascading-dir-locals
-  :straight t
-  :custom
-  (cascading-dir-locals-debug minemacs-debug-p))
 
 
 (provide 'me-files)
