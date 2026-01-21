@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-16
+;; Last modified: 2026-01-21
 
 ;;; Commentary:
 
@@ -722,6 +722,7 @@ Typing these will trigger reindentation of the current line.")
   (add-hook 'electric-indent-functions #'+electric-indent-char-fn))
 
 (use-package elec-pair
+  :when (+package-disabled-p 'smartparens 'me-editor)
   :hook (minemacs-after-startup . electric-pair-mode))
 
 (use-package ediff
