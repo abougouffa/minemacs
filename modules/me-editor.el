@@ -193,7 +193,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
   :straight t
-  :hook (minemacs-lazy . smartparens-global-mode)
+  :hook (minemacs-first-file . smartparens-global-mode)
   :custom
   (sp-ignore-modes-list '(minibuffer-inactive-mode)) ; Enable in `minibuffer-mode'
   :config
