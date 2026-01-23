@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-21
+;; Last modified: 2026-01-23
 
 ;;; Commentary:
 
@@ -304,7 +304,6 @@
   :hook (minemacs-lazy . tab-bar-mode)
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs tab-bar-separator))
-  (tab-bar-tab-name-format-function #'+tab-bar--tab-spaced-name-format)
   (tab-bar-close-button-show nil)
   (tab-bar-auto-width nil)
   (tab-bar-show t))
