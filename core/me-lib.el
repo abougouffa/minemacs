@@ -864,7 +864,8 @@ file dont exist."
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "Google Sans Code" :height 110)
+    ((:family "Google Sans Code NF" :height 110)
+     (:family "Google Sans Code" :height 110)
      (:family "Iosevka" :height 110)
      (:family "Martian Mono" :height 100)
      (:family "Cascadia Code" :height 110 :weight semi-light)
