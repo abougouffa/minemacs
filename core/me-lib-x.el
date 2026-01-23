@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-01-17
+;; Last modified: 2026-01-23
 
 ;;; Commentary:
 
@@ -1391,7 +1391,7 @@ you might need install some of these tools.\n\n")
 (defvar +describe-at-point-kinds
   '((?c :predicate fboundp :desc "[c]allable" :call describe-function)
     (?f :predicate facep   :desc "[f]ace"     :call describe-face)
-    (?v :predicate (lambda (s) (and (boundp s) (symbol-value s))) :desc "[v]ariable" :call describe-variable)
+    (?v :predicate boundp  :desc "[v]ariable" :call describe-variable)
     (?k :predicate (lambda (s) (and (boundp s) (keymapp (symbol-value s)))) :desc "[k]eymap" :call describe-keymap)))
 
 ;;;###autoload
