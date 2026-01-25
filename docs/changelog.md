@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.21.0](https://github.com/abougouffa/minemacs/compare/0b1a60b62a96ab7d05f632ceefe53b44e24cd2db..v13.21.0) - 2026-01-25
+#### Tweaks
+- (**eglot**) disable tramp direct async process in Eglot connections - ([5abd22f](https://github.com/abougouffa/minemacs/commit/5abd22f8491142f7c4a04c2176a62c074aa69419)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/plantuml**) update the PlanUML JAR release - ([0be8426](https://github.com/abougouffa/minemacs/commit/0be8426ba6f2ae43661752631ed902d4f764e7c3)) - [@abougouffa](https://github.com/abougouffa)
+- (**smartparens**) enable on the first file - ([5372097](https://github.com/abougouffa/minemacs/commit/5372097e45a573897bbc3da45795f0549e399af6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([53c706b](https://github.com/abougouffa/minemacs/commit/53c706bba73ace620d836a267be8a0e099f3b307)) - [@abougouffa](https://github.com/abougouffa)
+- support wildcards in `+compilation-db-find-file` - ([c9647f4](https://github.com/abougouffa/minemacs/commit/c9647f4e8f74dfba8edd3e2c0d08fedb321db9a3)) - [@abougouffa](https://github.com/abougouffa)
+- handle themes and packages in `+describe-at-point` - ([e6ebcbd](https://github.com/abougouffa/minemacs/commit/e6ebcbd35a8066922103be10e68df4613e19a359)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c88b31d](https://github.com/abougouffa/minemacs/commit/c88b31d89e33e14b44977fd1f9b91d1e2edff88c)) - [@abougouffa](https://github.com/abougouffa)
+- add Google Sans Code NF - ([bb9885d](https://github.com/abougouffa/minemacs/commit/bb9885d1227dd678d01cf18d3f163762adef8db5)) - [@abougouffa](https://github.com/abougouffa)
+- prefer the new Google Sans Code font - ([b064dbd](https://github.com/abougouffa/minemacs/commit/b064dbd8c243f4cbcacdf3f1a1cf98c17debc3de)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([355156c](https://github.com/abougouffa/minemacs/commit/355156cbad5b595f427c166b07adb218e919ce34)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**editor**) restore `smartparens` - ([637b92c](https://github.com/abougouffa/minemacs/commit/637b92cb7148a7f4834a177bbd65baff2e8bd13c)) - [@abougouffa](https://github.com/abougouffa)
+- (**files**) make `cascading-dir-locals` obsolete, unpredictable behavior - ([0b1a60b](https://github.com/abougouffa/minemacs/commit/0b1a60b62a96ab7d05f632ceefe53b44e24cd2db)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- remove reference to deleted function - ([39876ff](https://github.com/abougouffa/minemacs/commit/39876ff230fddef2cc16ffad5e850fb24624a005)) - [@abougouffa](https://github.com/abougouffa)
+- handling of nil variables in `+describe-at-point` - ([498ed46](https://github.com/abougouffa/minemacs/commit/498ed46e0f8160a8c67c38bd3bf3b5ce1c01994b)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**window**) restore my initial window configuration - ([e1a1c6e](https://github.com/abougouffa/minemacs/commit/e1a1c6ee60a15be5441e9872334f8ebcc8615c8a)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([abe6c56](https://github.com/abougouffa/minemacs/commit/abe6c567b80b3f88028f3d6252f840ac9bf4031e)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- remove an unneeded command - ([6ff3769](https://github.com/abougouffa/minemacs/commit/6ff3769abd192d9621694f9eba823db384609161)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.20.0](https://github.com/abougouffa/minemacs/compare/8b060d9e75512dd2b17dedc125ac6ba8755215cd..v13.20.0) - 2026-01-17
 #### Tweaks
 - (**blamer**) use 20% smaller font size instead of 15% - ([f9bd115](https://github.com/abougouffa/minemacs/commit/f9bd1154e7b73310be56039b5ad27c94df4258fb)) - [@abougouffa](https://github.com/abougouffa)
