@@ -778,11 +778,6 @@ Copy region as one paragraph.
 This command removes new line characters between lines." t)
 (autoload '+first-line-empty-p "me-lib-x" "\
 Return t when the first line of the buffer is empty.")
-(autoload '+project-forget-zombie-projects "me-lib-x" "\
-Forget all known projects that don't exist any more.
-
-Like `project-forget-zombie-projects', but handles remote projects differently,
-it forget them only when we are sure they don't exist." t)
 (autoload '+project-gdb "me-lib-x" "\
 Invoke `gdb' in the project's root." t)
 (autoload '+project-list-cleanup "me-lib-x" "\
@@ -798,7 +793,7 @@ Extract the descriptions of MinEmacs packages." t)
 Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x" "\
 Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+dir-locals-" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+tramp--convert-sshfs-filename-local"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+repo-projects" "+s" "+tramp--convert-sshfs-filename-local"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -1240,21 +1235,6 @@ disabled.
 (register-definition-prefixes "../elisp/minemacs-modeline" '("minemacs-modeline-"))
 
 
-;;; Generated autoloads from ../elisp/minemacs-window.el
-
-(autoload '+window-small-p "../elisp/minemacs-window" "\
-Return non-nil if window is small.
-Check if the `window-width' or `window-height' is less than
-`split-width-threshold' and `split-height-threshold',
-respectively.")
-(autoload '+window-three-or-more-p "../elisp/minemacs-window" "\
-Return non-nil if three or more windows occupy FRAME.
-If FRAME is non-nil, inspect the current frame.
-
-(fn &optional FRAME)")
-(register-definition-prefixes "../elisp/minemacs-window" '("+get-window-size" "+window-"))
-
-
 ;;; Generated autoloads from ../elisp/once.el
 
 (autoload 'once-eval-after-load "../elisp/once" "\
@@ -1520,7 +1500,7 @@ move to the source code that caused it.
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; no-native-compile: t
-;; coding: utf-8
+;; coding: utf-8-emacs-unix
 ;; End:
 
 ;;; me-loaddefs.el ends here
