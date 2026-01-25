@@ -1011,23 +1011,23 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
     "build/debug"
     "build/linux"
     "bld"
-    "cmake.bld/Linux"
+    "cmake.bld/*"
     "cmake-build"
     "cmake-build/release"
     "cmake-build/debug"
-    "cmake-build/linux_64_static_ninja_Release"
-    "cmake-build/linux_64_static_make_Release"
-    "cmake-build/linux_64_static_ninja_Debug"
-    "cmake-build/linux_64_static_make_Debug"))
+    "cmake-build/*_ninja_Releaseb"
+    "cmake-build/*_ninja_Debug"
+    "cmake-build/*_make_Release"
+    "cmake-build/*_make_Debug"))
 
 ;;;###autoload
 (defun +compilation-db-find-file (&optional proj-root)
-  (let ((proj-root (or proj-root (+project-safe-root))))
+  (let* ((default-directory (or proj-root (+project-safe-root) default-directory)))
     (cl-find-if
      #'file-exists-p
      (mapcar (lambda (dir)
-               (expand-file-name "compile_commands.json" (expand-file-name dir proj-root)))
-             +compile-commands-json-directories))))
+               (expand-file-name "compile_commands.json" (expand-file-name dir)))
+             (mapcan #'file-expand-wildcards +compile-commands-json-directories)))))
 
 (define-obsolete-function-alias '+project-have-compile-commands-p '+compilation-db-find-file "13.5.0")
 (define-obsolete-function-alias '+compile-commands-find-file '+compilation-db-find-file "13.6.0")
