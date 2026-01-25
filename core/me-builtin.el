@@ -1003,84 +1003,74 @@ Typing these will trigger reindentation of the current line.")
 (use-package subword
   :hook (minemacs-lazy . global-subword-mode)) ; Global SubWord mode
 
-(use-package minemacs-window
-  :demand t
-  :custom
-  (window-min-width 30)
-  (window-min-height 3)
-  (even-window-sizes 'height-only)
-  (split-window-preferred-direction 'horizontal)
-  (switch-to-buffer-in-dedicated-window 'pop)
+(use-package window
   :bind (("<f8>" . window-toggle-side-windows))
-  :config
-  (setopt ; Stolen from Protesilaos Stavrou's configuration
+  :init
+  ;; NOTE: Set `display-buffer-alist' via `setopt' instead of `:custom' to
+  ;; ensure showing warnings when the condition isn't correct
+  (setopt
    display-buffer-alist
-   `(;; no window
-     ("\\`\\*\\(Warnings\\|Compile-Log\\|Org Links\\)\\*\\'"
-      (display-buffer-no-window)
-      (allow-no-window . t))
-     ;; bottom side window
-     ("\\*\\(Org \\(Select\\|Note\\)\\|Agenda Commands\\)\\*" ; the `org-capture' key selection and `org-add-log-note'
+   `((,(lambda (buff-or-name &rest _args)
+         (with-current-buffer (get-buffer buff-or-name)
+           (or ; Generic way of detecting interactive modes
+            (string-match-p "\\(inferior\\|repl\\|interactive\\|-comint\\)-" (symbol-name major-mode))
+            (string-match-p (rx bol "*" (or "imaxima" "lua" "Lua" "Nix-REPL" "forth" "julia" "sbt") "*") (buffer-name)))))
       (display-buffer-in-side-window)
+      (side . right)
+      (slot . 1)
       (dedicated . t)
-      (side . bottom)
-      (slot . 0)
-      (window-parameters . ((mode-line-format . none))))
-     ;; bottom buffer (NOT side window)
-     ((or . ((derived-mode . flymake-diagnostics-buffer-mode)
-             (derived-mode . flymake-project-diagnostics-mode)
-             (derived-mode . messages-buffer-mode)
-             (derived-mode . backtrace-mode)))
-      (display-buffer-reuse-mode-window display-buffer-at-bottom)
-      (mode . ( flymake-diagnostics-buffer-mode flymake-project-diagnostics-mode
-                messages-buffer-mode backtrace-mode))
-      (window-height . 0.3)
-      (dedicated . t)
-      (preserve-size . (t . t))
-      (body-function . select-window))
+      (window-width . 80)
+      (reusable-frames . visible))
+     (,(+make-buffer-conds
+        'help-mode 'helpful-mode 'Info-mode 'Man-mode 'woman-mode 'tldr-mode 'dictionary-mode 'lexic-mode
+        (rx bol "*" (or "Metahelp" "Printing Help" "Org Entity Help"
+                        (seq (or "eldoc" "Tcl help" "eglot-help for " "shellcheck:" "show-marks") (* any)))
+            "*" eol)))
      ("\\*Embark Actions\\*"
       (display-buffer-below-selected)
       (window-height . fit-window-to-buffer)
-      (window-parameters . ((no-other-window . t)
-                            (mode-line-format . none))))
+      (window-parameters . ((no-other-window . t) (mode-line-format . none))))
      ("\\*\\(Output\\|Register Preview\\).*"
       (display-buffer-reuse-mode-window display-buffer-at-bottom))
-     ;; below current window
      ("\\(\\*Capture\\*\\|CAPTURE-.*\\)"
-      (display-buffer-reuse-mode-window display-buffer-below-selected))
-     ((derived-mode . reb-mode) ; M-x re-builder
       (display-buffer-reuse-mode-window display-buffer-below-selected)
-      (window-height . 4) ; note this is literal lines, not relative
+      (display-buffer-in-side-window)
+      (window-width . 85)
+      (side . right)
+      (slot . 0))
+     (,(+make-buffer-conds 'ibuffer-mode 'Buffer-menu-mode)
+      (display-buffer-in-side-window)
+      (window-width . 100)
+      (side . right)
+      (slot . 1))
+     (,(+make-buffer-conds
+        'term-mode 'eshell-mode 'shell-mode 'vterm-mode 'eat-mode
+        (rx bol "*" (or "eshell" "vterm" "vterminal" "shell" "terminal") (* any) "*"))
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (reusable-frames . visible)
       (dedicated . t)
-      (preserve-size . (t . t)))
-     ((or . ((derived-mode . occur-mode)
-             (derived-mode . grep-mode)
-             (derived-mode . Buffer-menu-mode)
-             (derived-mode . log-view-mode)
-             (derived-mode . help-mode) ; See the hooks for `visual-line-mode'
-             "\\*\\(|Buffer List\\|Occur\\|vc-change-log\\|eldoc.*\\).*"
-             "\\*\\vc-\\(incoming\\|outgoing\\|git : \\).*"))
-      (+window-display-buffer-below-or-pop)
-      (body-function . +window-select-fit-size))
-     (+window-shell-or-term-p
-      (display-buffer-reuse-mode-window display-buffer-at-bottom)
-      (mode . (shell-mode eshell-mode comint-mode eat-mode))
-      (body-function . +window-select-fit-size))
-     ((derived-mode . compilation-mode)
-      (display-buffer-reuse-mode-window display-buffer-at-bottom))
-     ("\\*\\(Calendar\\|Bookmark Annotation\\|ert\\).*"
-      (display-buffer-reuse-mode-window display-buffer-below-selected)
-      (mode . (calendar-mode bookmark-edit-annotation-mode ert-results-mode))
-      (dedicated . t)
-      (window-height . fit-window-to-buffer))
-     ("\\*ispell-top-choices\\*.*"
-      (display-buffer-below-selected)
-      (window-height . fit-window-to-buffer))
-     ;; same window
-     ((or . ((derived-mode . Man-mode)
-             (derived-mode . woman-mode)
-             "\\*\\(Man\\|woman\\).*"))
-      (display-buffer-same-window)))))
+      (side . bottom)
+      (slot . -1))
+     (,(+make-buffer-conds
+        'compilation-mode 'bookmark-bmenu-mode 'messages-buffer-mode 'backtrace-mode 'quickrun--mode
+        "\\*\\(?:Compile-Log\\|Warnings\\|envrc\\|Pp Eval Output\\)\\*")
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 0))
+     (,(+make-buffer-conds
+        'flymake-diagnostics-buffer-mode 'flymake-project-diagnostics-mode 'xref--xref-buffer-mode
+        "\\*Completions")
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 1))
+     (,(+make-buffer-conds 'grep-mode 'occur-mode 'rg-mode "\\*find\\*")
+      (display-buffer-in-side-window)
+      (window-height . 0.2)
+      (side . bottom)
+      (slot . 2)))))
 
 (use-package windmove
   :after minemacs-lazy

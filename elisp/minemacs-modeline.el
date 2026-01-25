@@ -1,7 +1,6 @@
 ;;; minemacs-modeline.el --- Light, modern and opinionated mode-line for MinEmacs -*- lexical-binding: t -*-
 
-;; Copyright (C) 2023-2026  Protesilaos Stavrou
-;; Copyright (C) 2025  Abdelhak Bougouffa
+;; Copyright (C) 2025-2026  Abdelhak Bougouffa
 
 ;; Based on: https://protesilaos.com/emacs/dotemacs
 ;; By: Protesilaos Stavrou <info@protesilaos.com>
