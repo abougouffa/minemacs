@@ -294,7 +294,7 @@
 
 (use-package project
   :commands (project-remember-projects-under)
-  :hook (kill-emacs . +project-forget-zombie-projects)
+  :hook (kill-emacs . project-forget-zombie-projects)
   :custom
   (project-switch-use-entire-map t) ; Provide all `project-prefix-map' commands when switching projects
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project" ".repo" "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ".code-workspace"))

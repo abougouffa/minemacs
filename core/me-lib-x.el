@@ -1244,19 +1244,6 @@ This command removes new line characters between lines."
 ;;; Project tweaks
 
 ;;;###autoload
-(defun +project-forget-zombie-projects ()
-  "Forget all known projects that don't exist any more.
-
-Like `project-forget-zombie-projects', but handles remote projects differently,
-it forget them only when we are sure they don't exist."
-  (interactive)
-  (dolist (proj (project-known-project-roots))
-    (unless (or (and (file-remote-p proj nil t) (file-readable-p proj)) ; Connected remote + existent project
-                (file-remote-p proj) ; Non connected remote project
-                (file-directory-p proj)) ; Existent local project
-      (project-forget-project proj))))
-
-;;;###autoload
 (defun +project-gdb ()
   "Invoke `gdb' in the project's root."
   (interactive)
@@ -1270,7 +1257,7 @@ it forget them only when we are sure they don't exist."
   (let* ((projs (mapcar #'expand-file-name (project-known-project-roots)))
          (projs-dups (cl-set-difference projs (cl-remove-duplicates projs :test #'string=))))
     (mapc #'project-forget-project projs-dups)
-    (+project-forget-zombie-projects)
+    (project-forget-zombie-projects (called-interactively-p 'interactive))
     (dolist (proj (reverse projs))
       (let ((proj-abbrev (abbreviate-file-name proj)))
         (unless (string= proj proj-abbrev)
@@ -1286,7 +1273,7 @@ it forget them only when we are sure they don't exist."
 (defun +project-root-initialize ()
   "Initialize project list from `+project-root-wildcards'."
   (interactive)
-  (+project-forget-zombie-projects) ; Forget non-existent projects
+  (project-forget-zombie-projects (called-interactively-p 'interactive)) ; Forget non-existent projects
   (mapc ; Remember some Git repositories as projects by path
    (lambda (dir)
      (when-let* ((project (project--find-in-directory dir)))
