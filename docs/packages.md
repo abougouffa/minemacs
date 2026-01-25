@@ -52,6 +52,7 @@
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
+* `smartparens`: Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 * `vim-file-locals`: Parse and respect Vim modeline options (`tab-width`, `fill-column`, etc.)
 * `selection-highlight-mode`: An Emacs minor mode for highlighting matches to the selection
 * `expreg`: Your friendly neighborhood expand-region clone
@@ -95,7 +96,6 @@
 * `vlf-setup`: View, edit, search and compare very large files in batches, trading memory for processor time
 * `guard-lf`: Fast opening of large files
 * `ztree`: Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
-* `cascading-dir-locals`: Apply all (!) ".dir-locals.el" from root to current directory
 
 ## `me-lifestyle`
 * `awqat`: Islamic prayer times for Emacs
@@ -216,6 +216,7 @@
 * `forge`: Work with Git forges from the comfort of Magit
 * `diff-hl`: Emacs package for highlighting uncommitted changes
 * `git-timemachine`: Walk through Git revisions of a file
+* `blamer`: Show Git blame info about current line
 * `git-modes`: Emacs major modes for Git configuration files
 * `repo`: Running "repo" from Emacs
 * `vc-jj`: Jujutsu (jj) integration with Emacs `vc` and `project`

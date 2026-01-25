@@ -552,7 +552,7 @@ Find super-project root starting from DIR.
 
 Return the current super-project instance in DIR.
 
-#### `(+super-project-define-commands PACKAGE &rest COMMANDS)`
+#### `(+super-project-define-commands &rest COMMANDS)`
 
 Define PACKAGE's COMMANDS for super-project context.
 
@@ -949,12 +949,6 @@ This command removes new line characters between lines.
 
 Return t when the first line of the buffer is empty.
 
-#### `(+project-forget-zombie-projects)`
-
-Forget all known projects that don't exist any more.
-Like `project-forget-zombie-projects`, but handles remote projects differently,
-it forget them only when we are sure they don't exist.
-
 #### `(+project-gdb)`
 
 Invoke `gdb` in the project's root.
@@ -966,6 +960,13 @@ Forget all duplicate known projects (like /home/user/proj and ~/proj).
 #### `(+project-root-initialize)`
 
 Initialize project list from `+project-root-wildcards`.
+
+#### `(+repo-projects &rest EXCLUDE-PREFIXES)`
+
+Return the list of repo projects in the current directory.
+When EXCLUDE-PREFIXES is provided (string or a list of strings),
+directories starting with these prefixes will be excluded from the
+results.
 
 #### `(+xref-find-references-at-point)`
 
