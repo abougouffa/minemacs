@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-01-23
+;; Last modified: 2026-01-25
 
 ;;; Commentary:
 
@@ -1392,7 +1392,17 @@ you might need install some of these tools.\n\n")
   '((?c :predicate fboundp :desc "[c]allable" :call describe-function)
     (?f :predicate facep   :desc "[f]ace"     :call describe-face)
     (?v :predicate boundp  :desc "[v]ariable" :call describe-variable)
-    (?k :predicate (lambda (s) (and (boundp s) (keymapp (symbol-value s)))) :desc "[k]eymap" :call describe-keymap)))
+    (?t :predicate (lambda (s) (memq s (custom-available-themes)))          :desc "[t]heme"  :call describe-theme)
+    (?k :predicate (lambda (s) (and (boundp s) (keymapp (symbol-value s)))) :desc "[k]eymap" :call describe-keymap)
+    (?p :predicate
+        (lambda (s)
+          (require 'finder-inf nil t)
+          (unless package--initialized (package-initialize t))
+          (let ((packages (append (mapcar #'car package-alist)
+                                  (mapcar #'car package-archive-contents)
+                                  (mapcar #'car package--builtins))))
+            (memq s packages)))
+        :desc "[p]ackage" :call describe-package)))
 
 ;;;###autoload
 (defun +describe-at-point ()
