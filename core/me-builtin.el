@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-23
+;; Last modified: 2026-01-25
 
 ;;; Commentary:
 
@@ -511,6 +511,12 @@
   ;; Don't spit messages to the echo area
   (advice-add 'jsonrpc--message :around #'+apply-suppress-messages)
   (advice-add 'eglot--message :around #'+apply-suppress-messages)
+
+  ;; HACK: TRAMP's direct async process doesn't work with Eglot
+  (defun +eglot--disable-tramp-direct-async-a (fn &rest args)
+    (cl-letf (((symbol-function 'tramp-direct-async-process-p) #'ignore))
+      (apply fn args)))
+  (advice-add 'eglot--connect :around #'+eglot--disable-tramp-direct-async-a)
 
   ;; When a sub/super project with a separate Python virtual environment is detected,
   ;; limit to this one.
