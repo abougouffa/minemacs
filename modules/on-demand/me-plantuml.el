@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-04-15
+;; Last modified: 2026-01-25
 
 ;;; Commentary:
 
@@ -26,7 +26,7 @@
   (if (executable-find "plantuml")
       (setopt plantuml-default-exec-mode 'executable)
     (setopt plantuml-default-exec-mode 'jar
-            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-\\([[:digit:]]*\\.\\)\\{3\\}jar" nil :ver "v1.2025.2")))
+            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-\\([[:digit:]]*\\.\\)\\{3\\}jar" nil :ver "v1.2026.1")))
 
   ;; Define `capf' function, based on `plantuml-complete-symbol'
   (defun +plantuml-completion-at-point ()
