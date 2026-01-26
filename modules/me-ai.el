@@ -106,13 +106,7 @@
   (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
   (whisper-use-threads (/ (num-processors) 2))
   (whisper-model "medium")
-  (whisper-language "auto")
-  :config
-  (defvar +whisper-languages '("auto" "fr" "en" "ar"))
-  (defun +whisper-change-language (lang)
-    "Select the language LANG."
-    (interactive (list (completing-read "Select language: " +whisper-languages)))
-    (setopt whisper-language lang)))
+  (whisper-language "auto"))
 
 
 (provide 'me-ai)
