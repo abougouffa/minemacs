@@ -43,6 +43,18 @@
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434"))
 
 
+;; Integration for Model Context Protocol (MCP)
+(use-package mcp-hub
+  :straight mcp
+  :custom
+  (mcp-hub-servers `(("ddg" . (:command "uvx" :args ("duckduckgo-mcp-server")))))
+  :config
+  (mcp-hub-start-all-server
+   (lambda ()
+     (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+       (mapcar (lambda (tool) (apply #'ellama-tools-define-tool)) (mapcar #'list tools))))))
+
+
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
   :straight (:host github :repo "natrys/whisper.el")
