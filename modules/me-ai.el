@@ -1,10 +1,10 @@
 ;; me-ai.el --- AI assistants -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2025-11-10
+;; Last modified: 2026-01-26
 
 ;;; Commentary:
 
@@ -65,22 +65,6 @@
 
   ;; Ensure loading all the available providers from Ollama
   (ignore-errors (+ellama-set-available-providers)))
-
-
-;; Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
-(use-package elisa
-  :straight t
-  :hook (minemacs-build-functions . elisa-download-sqlite-vss)
-  :config
-  (require 'ellama)
-  (require 'llm-ollama)
-  (defun +elisa-set-providers-from-ellama ()
-    (setopt elisa-embeddings-provider (make-llm-ollama :embedding-model (+ollama-get-default-embedding-model))
-            elisa-chat-provider (make-llm-ollama :chat-model (copy-sequence ellama-provider)
-                                                 :embedding-model (+ollama-get-default-embedding-model))))
-
-  (advice-add 'ellama-provider-select :after #'+elisa-set-providers-from-ellama)
-  (+elisa-set-providers-from-ellama))
 
 
 ;; Pair-programming with AI agents using Aider
