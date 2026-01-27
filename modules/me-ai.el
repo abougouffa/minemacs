@@ -77,7 +77,7 @@
                             :test (lambda (a b) (string-prefix-p b a)))
             return (concat "ollama_chat/" model)))
   :config
-  (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434"))
+  (setenv "OLLAMA_API_BASE" (concat "http://" (or (getenv "OLLAMA_HOST") "127.0.0.1:11434"))))
 
 
 ;; Integration for Model Context Protocol (MCP)
