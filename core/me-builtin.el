@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-25
+;; Last modified: 2026-01-27
 
 ;;; Commentary:
 
@@ -1030,6 +1030,9 @@ Typing these will trigger reindentation of the current line.")
       (display-buffer-below-selected)
       (window-height . fit-window-to-buffer)
       (window-parameters . ((no-other-window . t) (mode-line-format . none))))
+     ("\\*Async Shell Command.*"
+      (display-buffer-reuse-mode-window display-buffer-at-bottom)
+      (window-height . 20))
      ("\\*\\(Output\\|Register Preview\\).*"
       (display-buffer-reuse-mode-window display-buffer-at-bottom))
      ("\\(\\*Capture\\*\\|CAPTURE-.*\\)"
