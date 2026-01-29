@@ -107,6 +107,10 @@
 (use-package symbol-overlay
   :straight t
   :config
+  (when (display-graphic-p)
+    (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background)))
+      (set-face-background 'symbol-overlay-default-face bg)))
+
   (with-eval-after-load 'multiple-cursors
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
     (defun +mc/mark-all-symbol-overlays (&optional discard)
