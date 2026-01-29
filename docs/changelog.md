@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.22.0](https://github.com/abougouffa/minemacs/compare/013b0ff07905787420e568a6320235cecbc6a88d..v13.22.0) - 2026-01-29
+#### Tweaks
+- (**aidermacs**) set the Ollama API URL from environment when available - ([6aa5141](https://github.com/abougouffa/minemacs/commit/6aa51415fa76d8f315b86f2d2f38593d80141c19)) - [@abougouffa](https://github.com/abougouffa)
+- (**llm-ollama**) add some missing models - ([6765840](https://github.com/abougouffa/minemacs/commit/6765840875b3a42c87d5a7d2552f670ad91f45dd)) - [@abougouffa](https://github.com/abougouffa)
+- (**symbol-overlay**) use a lighter face for `symbol-overlay-mode` - ([7096407](https://github.com/abougouffa/minemacs/commit/7096407adcf892391add9ac37d0211bb5e72f99d)) - [@abougouffa](https://github.com/abougouffa)
+- (**whisper**) remove unneeded custom command - ([013b0ff](https://github.com/abougouffa/minemacs/commit/013b0ff07905787420e568a6320235cecbc6a88d)) - [@abougouffa](https://github.com/abougouffa)
+- (**window**) display the "Async Shell Command" buffet at bottom - ([fec7d57](https://github.com/abougouffa/minemacs/commit/fec7d57b27e8dfc3e84f5b17287f4a8a9c5a2ad9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate autoloads - ([4b65c80](https://github.com/abougouffa/minemacs/commit/4b65c808856f9af26524a4853372520e8682a11c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([09ccc8b](https://github.com/abougouffa/minemacs/commit/09ccc8b4492e88c4bac0fcb5ab38459fe6fb77e2)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**ai**) add support for `mcp` - ([8a9d90c](https://github.com/abougouffa/minemacs/commit/8a9d90c547ec1065349091c4f7334d01b96d88f6)) - [@abougouffa](https://github.com/abougouffa)
+- (**ai**) remove `elisa` - ([9e12fa6](https://github.com/abougouffa/minemacs/commit/9e12fa69caa3b5688a21310aea5116e8e72ee306)) - [@abougouffa](https://github.com/abougouffa)
+- (**editor**) restore `symbol-overlay` - ([1b7d94b](https://github.com/abougouffa/minemacs/commit/1b7d94b423b58d220cd2cf79afb1aae6d555aced)) - [@abougouffa](https://github.com/abougouffa)
+- smarter `C-a` and `C-e` stolen from Doom Emacs - ([0fa21ff](https://github.com/abougouffa/minemacs/commit/0fa21ff5c96e2adc2bdf45e00543bed6b9b699b2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**ellama**) remove unneeded customization - ([8fcfc42](https://github.com/abougouffa/minemacs/commit/8fcfc42734f87147adbcea648a597a212d7621db)) - [@abougouffa](https://github.com/abougouffa)
+- (**llm-ollama**) remove unneeded custom functions - ([168300e](https://github.com/abougouffa/minemacs/commit/168300e532dcb7a2f9b661d18487d9a0941e1b19)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.21.0](https://github.com/abougouffa/minemacs/compare/0b1a60b62a96ab7d05f632ceefe53b44e24cd2db..v13.21.0) - 2026-01-25
 #### Tweaks
 - (**eglot**) disable tramp direct async process in Eglot connections - ([5abd22f](https://github.com/abougouffa/minemacs/commit/5abd22f8491142f7c4a04c2176a62c074aa69419)) - [@abougouffa](https://github.com/abougouffa)
