@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-21
+;; Last modified: 2026-01-29
 
 ;;; Commentary:
 
@@ -101,6 +101,36 @@
       pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop
       ;; `iedit'
       iedit-switch-to-mc-mode)))
+
+
+;; Highlight symbols with keymap-enabled overlays
+(use-package symbol-overlay
+  :straight t
+  :config
+  (with-eval-after-load 'multiple-cursors
+    ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
+    (defun +mc/mark-all-symbol-overlays (&optional discard)
+      "Mark all symbol overlays using multiple cursors.
+When DISCARD is non-nil, discard the current cursors before creating the
+new ones."
+      (interactive "P")
+      (when discard (mc/remove-fake-cursors))
+      (when-let* ((overlays (symbol-overlay-get-list 0))
+                  (point (point))
+                  (point-overlay (seq-find
+                                  (lambda (overlay)
+                                    (and (<= (overlay-start overlay) point)
+                                         (<= point (overlay-end overlay))))
+                                  overlays))
+                  (offset (- point (overlay-start point-overlay))))
+        (setq deactivate-mark t)
+        (mapc (lambda (overlay)
+                (unless (eq overlay point-overlay)
+                  (mc/save-excursion
+                   (goto-char (+ (overlay-start overlay) offset))
+                   (mc/create-fake-cursor-at-point))))
+              overlays)
+        (mc/maybe-multiple-cursors-mode)))))
 
 
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
