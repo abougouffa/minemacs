@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-16
+;; Last modified: 2026-01-31
 
 ;;; Commentary:
 
@@ -33,6 +33,7 @@
                          ("terminfo/65" "terminfo/65/*")
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
+  :autoload eat-make
   :bind ([f1] . +eat-toggle-dwim)
   :init
   (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
@@ -54,10 +55,13 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 
 ;; Launch system applications from Emacs
-(use-package app-launcher
-  :straight (:host github :repo "SebastienWae/app-launcher")
+(use-package xdg-launcher
+  :straight (:host github :repo "emacs-exwm/xdg-launcher")
   :when (or (featurep 'os/linux) (featurep 'os/bsd))
-  :bind (:map minemacs-open-thing-map ("a" . app-launcher-run-app)))
+  :bind (:map minemacs-open-thing-map ("a" . xdg-launcher-run-app))
+  :config
+  (when (featurep 'eat)
+    (setopt xdg-launcher-terminal-function #'eat-make)))
 
 
 ;; Manage docker from Emacs
