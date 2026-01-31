@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-01-30
+;; Last modified: 2026-01-31
 
 ;;; Commentary:
 
@@ -738,16 +738,13 @@ PT defaults to the current position."
               ;; we are inside a comment or not (e.g. / can be a division or
               ;; comment starter...).
               (when-let* ((s (car (syntax-after pt))))
-                (or (and (/= 0 (logand (ash 1 16) s))
-                         (nth 4 (syntax-ppss (+ pt 2))))
-                    (and (/= 0 (logand (ash 1 17) s))
-                         (nth 4 (syntax-ppss (+ pt 1))))
-                    (and (/= 0 (logand (ash 1 18) s))
-                         (nth 4 (syntax-ppss (- pt 1))))
-                    (and (/= 0 (logand (ash 1 19) s))
-                         (nth 4 (syntax-ppss (- pt 2))))))))))))
+                (or (and (/= 0 (logand (ash 1 16) s)) (nth 4 (syntax-ppss (+ pt 2))))
+                    (and (/= 0 (logand (ash 1 17) s)) (nth 4 (syntax-ppss (+ pt 1))))
+                    (and (/= 0 (logand (ash 1 18) s)) (nth 4 (syntax-ppss (- pt 1))))
+                    (and (/= 0 (logand (ash 1 19) s)) (nth 4 (syntax-ppss (- pt 2))))))))))))
 
 (defun +bol-bot-eot-eol (&optional pos)
+  "Return (BOL BOT EOT EOL) for POS or the current point."
   (save-mark-and-excursion
     (when pos (goto-char pos))
     (let* ((bol (if visual-line-mode
@@ -769,14 +766,10 @@ PT defaults to the current position."
                             (when (re-search-forward comment-start-skip eol t)
                               (or (match-end 1) (match-beginning 0))))
                         (goto-char eol)
-                        (while (and (+point-in-comment-p)
-                                    (> (point) bol))
+                        (while (and (+point-in-comment-p) (> (point) bol))
                           (backward-char))
                         (skip-chars-backward " " bol)
-                        (or (eq (char-after) 32)
-                            (eolp)
-                            (bolp)
-                            (forward-char))
+                        (or (eq (char-after) 32) (eolp) (bolp) (forward-char))
                         (point)))
                     eol)))
       (list bol bot eot eol))))
@@ -784,9 +777,11 @@ PT defaults to the current position."
 (defvar minemacs--last-backward-pt nil)
 ;;;###autoload
 (defun +backward-to-bol-or-indent (&optional point)
-  "Jump between the indentation column (first non-whitespace character) and the
-beginning of the line. The opposite of
-`+forward-to-last-non-comment-or-eol'."
+  "Jump between indentation column and the beginning of the line.
+
+Indentation column is defined by the first non-whitespace character.
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+forward-to-last-non-comment-or-eol'."
   (interactive "^d")
   (let ((pt (or point (point))))
     (cl-destructuring-bind (bol bot _eot _eol)
@@ -807,8 +802,10 @@ beginning of the line. The opposite of
 (defvar minemacs--last-forward-pt nil)
 ;;;###autoload
 (defun +forward-to-last-non-comment-or-eol (&optional point)
-  "Jumps between the last non-blank, non-comment character in the line and the
-true end of the line. The opposite of `+backward-to-bol-or-indent'."
+  "Jump between the last non-blank, non-comment character and EOL.
+
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+backward-to-bol-or-indent'."
   (interactive "^d")
   (let ((pt (or point (point))))
     (cl-destructuring-bind (_bol _bot eot eol)
