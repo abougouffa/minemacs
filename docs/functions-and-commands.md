@@ -826,6 +826,33 @@ Kill backward whitespace or word.
 With argument ARG, do this that many times.
 Restricts the effect of `backward-kill-word` to the current line.
 
+#### `(+syntax-ppss-memoized &optional P)`
+
+Memoize the last result of `syntax-ppss`.
+P is the point at which we run `syntax-ppss`
+
+#### `(+point-in-comment-p &optional PT)`
+
+Return non-nil if point is in a comment.
+PT defaults to the current position.
+
+#### `(+bol-bot-eot-eol &optional POS)`
+
+Return (BOL BOT EOT EOL) for POS or the current point.
+
+#### `(+backward-to-bol-or-indent &optional POINT)`
+
+Jump between indentation column and the beginning of the line.
+Indentation column is defined by the first non-whitespace character.
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+forward-to-last-non-comment-or-eol`.
+
+#### `(+forward-to-last-non-comment-or-eol &optional POINT)`
+
+Jump between the last non-blank, non-comment character and EOL.
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+backward-to-bol-or-indent`.
+
 #### `(+set-indent-width WIDTH)`
 
 Change the indentation size to WIDTH of the current buffer.

@@ -3,8 +3,8 @@
 * `llm`: A library abstracting LLM capabilities for Emacs
 * `llm-ollama`: `llm` module for integrating with Ollama
 * `ellama`: A package for interacting with LLMs from Emacs
-* `elisa`: Emacs Lisp Information System Assistant, LLM-based information agent leveraging a Retrieval Augmented Generation (RAG) approach
 * `aidermacs`: Pair-programming with AI agents using Aider
+* `mcp-hub`: Integration for Model Context Protocol (MCP)
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 
 ## `me-calendar`
@@ -49,6 +49,7 @@
 * `undo-fu-session`: Persistent undo tree between sessions
 * `iedit`: Modify multiple occurrences simultaneously
 * `multiple-cursors`: Multiple cursors implementation for Emacs
+* `symbol-overlay`: Highlight symbols with keymap-enabled overlays
 * `ws-butler`: Unobtrusively trim extraneous white-space *ONLY* in lines edited
 * `dtrt-indent`: Smart guessing the indentation offset originally used in the opened source files
 * `combobulate-setup`: Structured editing and navigation in Emacs with Tree-Sitter
