@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-18
+;; Last modified: 2026-02-02
 
 ;;; Commentary:
 
@@ -48,7 +48,7 @@
 
 ;; For `straight' to not install built-in packages from ELPA
 (cl-callf append straight-built-in-pseudo-packages
-  '(treesit org tramp project editorconfig flymake eldoc eglot xref imenu modus-themes))
+  '(treesit org tramp project editorconfig flymake eldoc eglot xref imenu modus-themes jsonrpc))
 
 ;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
 ;; This cuts the size of the "straight/repos" directory by more than half (from
