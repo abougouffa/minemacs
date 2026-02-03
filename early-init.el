@@ -1,10 +1,10 @@
 ;;; early-init.el --- MinEmacs early initialization tweaks -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-09-15
+;; Last modified: 2026-02-03
 
 ;;; Commentary:
 
@@ -64,11 +64,13 @@
  default-frame-alist '((tool-bar-lines . 0)
                        (menu-bar-lines . 0)
                        (vertical-scroll-bars)
+                       (height . 50)
+                       (width . 80)
                        (left-fringe . 8)
                        (right-fringe . 13)
                        (internal-border-width . 5)
                        (fullscreen . maximized))
- ;; Explicitly set modes disabled in `default-frame-alist' to nil
+ ;; Explicitly set modes disabled in `default-frame-alist' above
  tool-bar-mode nil
  menu-bar-mode nil
  scroll-bar-mode nil
