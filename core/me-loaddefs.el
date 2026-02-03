@@ -671,14 +671,18 @@ Restricts the effect of `backward-kill-word' to the current line.
 
 (fn ARG)" t)
 (autoload '+backward-to-bol-or-indent "me-lib-x" "\
-Jump between the indentation column (first non-whitespace character) and the
-beginning of the line. The opposite of
-`+forward-to-last-non-comment-or-eol'.
+Jump between indentation column and the beginning of the line.
+
+Indentation column is defined by the first non-whitespace character.
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+forward-to-last-non-comment-or-eol'.
 
 (fn &optional POINT)" t)
 (autoload '+forward-to-last-non-comment-or-eol "me-lib-x" "\
-Jumps between the last non-blank, non-comment character in the line and the
-true end of the line. The opposite of `+backward-to-bol-or-indent'.
+Jump between the last non-blank, non-comment character and EOL.
+
+Jump relative to POINT or the current point if not provided.
+This is the opposite of `+backward-to-bol-or-indent'.
 
 (fn &optional POINT)" t)
 (autoload '+set-indent-width "me-lib-x" "\
@@ -913,6 +917,11 @@ Show help for the symbol at point." t)
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
 
 (minemacs-register-on-demand-module 'me-opencl :auto-mode '(("\\.\\(?:clc?\\|opencl\\)'" . opencl-c-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-opengl.el
+
+(minemacs-register-on-demand-module 'me-opengl :auto-mode `((,(rx "." (or "vert" "frag" "geom" "tesc" "tese" "mesh" "task" "comp" "rgen" "rint" "rchit" "rahit" "rcall" "rmiss" "glsl") eol) . glsl-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-openscad.el
