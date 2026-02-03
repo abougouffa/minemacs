@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-29
+;; Last modified: 2026-02-03
 
 ;;; Commentary:
 
@@ -106,6 +106,7 @@
 ;; Highlight symbols with keymap-enabled overlays
 (use-package symbol-overlay
   :straight t
+  :hook ((prog-mode conf-mode) . symbol-overlay-mode)
   :config
   (when (display-graphic-p)
     (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background)))
