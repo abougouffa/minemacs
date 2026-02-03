@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-01-30
+;; Last modified: 2026-02-03
 
 ;;; Commentary:
 
@@ -74,6 +74,7 @@
   (epg-pinentry-mode 'loopback) ; Force gpg-agent to use minibuffer to prompt for passphrase (GPG 2.1+).
   (doc-view-continuous t)
   (vc-follow-symlinks t)
+  (shift-select-mode nil)
   (initial-major-mode 'fundamental-mode)
   :init
   (setq-default fill-column 80)
