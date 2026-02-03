@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-01-27
+;; Last modified: 2026-02-03
 
 ;;; Commentary:
 
@@ -62,6 +62,24 @@
 (use-package ellama
   :straight t
   :autoload ellama-get-ollama-model-names ellama-get-ollama-chat-model-names ellama-get-ollama-embedding-model-names)
+
+
+;; Interact with LLMs
+(use-package gptel
+  :straight t
+  :config
+  (defvar +gptel-llama-cpp-models '(ggml-org/Ministral-3-8B-Instruct-2512-GGUF))
+  (defun +gptel-llama-cpp-setup (model)
+    "Set `gptel' to use a llama.cpp MODEL."
+    (interactive (list (make-symbol (completing-read "Select a model: " +gptel-llama-cpp-models))))
+    (setopt gptel-model model
+            gptel-backend (gptel-make-openai "llama-cpp"
+                            :stream t
+                            :protocol "http"
+                            :host "localhost:8080"
+                            :models (cl-remove-duplicates (cons model +gptel-llama-cpp-models)))))
+  (setopt gptel-model 'mistral:latest
+          gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :stream t :models '(mistral:latest))))
 
 
 ;; Pair-programming with AI agents using Aider
