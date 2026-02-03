@@ -81,10 +81,11 @@
   (cl-callf append mc--default-cmds-to-run-for-all
     '(;; Some extra Emacs commands
       beginning-of-visual-line end-of-visual-line kill-region forward-sexp backward-sexp
-      tab-to-tab-stop indent-for-tab-command comment-line comment-dwim
+      kill-sexp backward-kill-sexp tab-to-tab-stop indent-for-tab-command comment-line comment-dwim
+      c-electric-backspace c-electric-delete c-electric-delete-forward
       ;; MinEmacs' commands
       +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
-      +dtrt-indent-tab-to-tab-stop
+      +dtrt-indent-tab-to-tab-stop +forward-to-last-non-comment-or-eol +backward-to-bol-or-indent
       ;; `avy'
       avy-goto-char avy-goto-char-timer avy-goto-char-in-line avy-goto-char-2
       ;; `avy-zap'
@@ -93,12 +94,16 @@
       crux-smart-kill-line crux-smart-open-line crux-smart-open-line-above
       ;; `expreg'
       expreg-expand expreg-contract
+      ;; `consult'
+      consult-yank-pop
+      ;; `yaml-mode'
+      yaml-electric-backspace
       ;; `org'
       org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
 
   (cl-callf append mc--default-cmds-to-run-once
     '(;; Some extra Emacs commands
-      pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop
+      pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop tab-next tab-previous
       ;; `iedit'
       iedit-switch-to-mc-mode)))
 
