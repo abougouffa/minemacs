@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-16
+;; Last modified: 2026-02-04
 
 ;;; Commentary:
 
@@ -157,6 +157,12 @@
   :when (executable-find "jj")
   :after vc
   :demand)
+
+
+;; Magit-inspired interface for Jujutsu
+(use-package jj-mode
+  :straight (:host github :repo "bolivier/jj-mode.el")
+  :when (executable-find "jj"))
 
 
 ;; View diffs side-by-side in Emacs
