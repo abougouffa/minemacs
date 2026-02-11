@@ -2,6 +2,33 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.23.0](https://github.com/abougouffa/minemacs/compare/b6f57b6331e2bcdbfbb2baa6433759d95873573e..v13.23.0) - 2026-02-11
+#### Tweaks
+- (**early-init**) set default frame size - ([6d0ea7a](https://github.com/abougouffa/minemacs/commit/6d0ea7a28b86cadc927117d7003a51ee8ecc55f8)) - [@abougouffa](https://github.com/abougouffa)
+- (**multiple-cursors**) mark some extra commands to run once/for-all - ([3b7fb1d](https://github.com/abougouffa/minemacs/commit/3b7fb1d7294693b881b54a1d3402dafecd15e725)) - [@abougouffa](https://github.com/abougouffa)
+- (**symbol-overlay**) fix setting the `symbol-overlay-mode` face - ([b4a6615](https://github.com/abougouffa/minemacs/commit/b4a6615c059047bd1f9e9c17c3988b7b201c43e8)) - [@abougouffa](https://github.com/abougouffa)
+- (**symbol-overlay**) enable `symbol-overlay-mode` in `prog-mode` & `conf-mode` - ([6a53b47](https://github.com/abougouffa/minemacs/commit/6a53b4761b0d2b839e3424d0708b1cd80c1fba35)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([4421020](https://github.com/abougouffa/minemacs/commit/4421020ba9fecb8c1c9f01f8fcc32a2faff0eb26)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9389b29](https://github.com/abougouffa/minemacs/commit/9389b292a320b8f248f021c3580c65610cbd0f9b)) - [@abougouffa](https://github.com/abougouffa)
+- don't select with shift-motion keys - ([e4a68eb](https://github.com/abougouffa/minemacs/commit/e4a68eb1b7cf88a6671cdd63432686a300474021)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([dd3d838](https://github.com/abougouffa/minemacs/commit/dd3d838f7ff910007080eb2cfe6cea7243caf2bd)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**ai**) add support for `gptel` - ([b64d090](https://github.com/abougouffa/minemacs/commit/b64d0905edc5ecbf611fc81b142d3e03936e2063)) - [@abougouffa](https://github.com/abougouffa)
+- (**ai**) restore deleted `elisa` as a obsolete module - ([62c31c6](https://github.com/abougouffa/minemacs/commit/62c31c66081d2aee0e89b6c92bd636c68e46ecd9)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for `meson-mode` - ([0797bcd](https://github.com/abougouffa/minemacs/commit/0797bcd23d84bbf4b66f7dd325a5363706e61427)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for OpenGL Shading Language (GLSL) - ([eb8311b](https://github.com/abougouffa/minemacs/commit/eb8311b7b11b894aeca918eff853082445bc3b8a)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) replace deprecated `app-launcher` with `xdg-launcher` - ([e5d6ed0](https://github.com/abougouffa/minemacs/commit/e5d6ed0e60f2cae83e977495eea1871cf0af4f09)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) restore `casual` - ([5d52a3f](https://github.com/abougouffa/minemacs/commit/5d52a3f252ad907c28d0081ccedfa67e02115ec1)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) add support for `jj-mode` - ([d5b5708](https://github.com/abougouffa/minemacs/commit/d5b570829eb11300123a06f00911e166728e7fd0)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**straight**) mark `jsonrpc` as builtin, otherwise, `eglot` won't work - ([7346d66](https://github.com/abougouffa/minemacs/commit/7346d66e2b9e771a2e25573dbf248055c8883232)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([8747d50](https://github.com/abougouffa/minemacs/commit/8747d50f71dba904926d591a84bd60c77218d815)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([424c7f2](https://github.com/abougouffa/minemacs/commit/424c7f2c7e3bbcaa98e97d3f0f57d8ada8a80c2e)) - [@abougouffa](https://github.com/abougouffa)
+- better documentation of some custom commands - ([b6f57b6](https://github.com/abougouffa/minemacs/commit/b6f57b6331e2bcdbfbb2baa6433759d95873573e)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.22.0](https://github.com/abougouffa/minemacs/compare/013b0ff07905787420e568a6320235cecbc6a88d..v13.22.0) - 2026-01-29
 #### Tweaks
 - (**aidermacs**) set the Ollama API URL from environment when available - ([6aa5141](https://github.com/abougouffa/minemacs/commit/6aa51415fa76d8f315b86f2d2f38593d80141c19)) - [@abougouffa](https://github.com/abougouffa)
