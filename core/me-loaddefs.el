@@ -13,20 +13,20 @@
 (defvar +adb-available-p nil)
 (defun +adb-available-p (&rest _args) (with-memoization +adb-available-p (and (executable-find +adb-program) t)))
 (dolist (cmd '(+adb-push +adb-remount +adb-reboot +adb-root)) (put cmd 'completion-predicate #'+adb-available-p))
-(autoload '+adb-push "../modules/extras/me-adb" "\
-Run adb push SRC DEST.
+(autoload '+adb-push "../modules/extras/me-adb"
+"Run adb push SRC DEST.
 
 (fn SRC DEST)" t)
-(autoload '+adb-remount "../modules/extras/me-adb" "\
-Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
+(autoload '+adb-remount "../modules/extras/me-adb"
+"Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
 
 (fn AUTO-REBOOT-DEVICE)" t)
-(autoload '+adb-reboot "../modules/extras/me-adb" "\
-Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
+(autoload '+adb-reboot "../modules/extras/me-adb"
+"Run adb reboot MODE, when NO-CONFIRM is non-nil, don't ask.
 
 (fn &optional MODE NO-CONFIRM)" t)
-(autoload '+adb-root "../modules/extras/me-adb" "\
-Run adb root (or unroot with \\[universal-argument]).
+(autoload '+adb-root "../modules/extras/me-adb"
+"Run adb root (or unroot with \\[universal-argument]).
 
 (fn &optional ARG)" t)
 (register-definition-prefixes "../modules/extras/me-adb" '("+adb-"))
@@ -55,8 +55,8 @@ Run adb root (or unroot with \\[universal-argument]).
 ;;; Generated autoloads from ../modules/on-demand/me-assembly.el
 
 (minemacs-register-on-demand-module 'me-assembly :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)) :companion-packages '((asm-mode . x86-lookup)))
-(autoload '+asm-ask-for-mode "../modules/on-demand/me-assembly" "\
-Ask the MODE to run.
+(autoload '+asm-ask-for-mode "../modules/on-demand/me-assembly"
+"Ask the MODE to run.
 
 (fn MODE)" t)
 
@@ -78,12 +78,12 @@ Ask the MODE to run.
 
 ;;; Generated autoloads from ../modules/extras/me-bitbake.el
 
-(autoload '+bitbake-poky-sources "../modules/extras/me-bitbake" "\
-Get all source directories for BUILD-DIR. Optionally INCLUDE-NATIVE.
+(autoload '+bitbake-poky-sources "../modules/extras/me-bitbake"
+"Get all source directories for BUILD-DIR. Optionally INCLUDE-NATIVE.
 
 (fn BUILD-DIR &optional INCLUDE-NATIVE)")
-(autoload '+bitbake-insert-poky-sources "../modules/extras/me-bitbake" "\
-Insert poky source directories for BUILD-DIR.
+(autoload '+bitbake-insert-poky-sources "../modules/extras/me-bitbake"
+"Insert poky source directories for BUILD-DIR.
 
 (fn BUILD-DIR)" t)
 
@@ -133,8 +133,8 @@ Insert poky source directories for BUILD-DIR.
 (defvar +cocogitto-program "cog")
 (defvar +cocogitto-available-p nil)
 (defun +cocogitto-available-p (&rest _args) (with-memoization +cocogitto-available-p (and (executable-find +cocogitto-program) t)))
-(autoload '+cocogitto-bump "../modules/extras/me-cocogitto" "\
-Bump version LEVEL (`auto', `major', `minor' or `patch').
+(autoload '+cocogitto-bump "../modules/extras/me-cocogitto"
+"Bump version LEVEL (`auto', `major', `minor' or `patch').
 
 When PRE is provided, it is used as pre-release suffix.
 
@@ -242,15 +242,15 @@ restores it after that.
 ;;; Generated autoloads from extras/me-eglot-x.el
 
 (with-eval-after-load 'eglot (require 'me-eglot-x))
-(autoload 'eglot-ltex-ls-install "extras/me-eglot-x" "\
-Download the latest release of LTeX+ LS.
+(autoload 'eglot-ltex-ls-install "extras/me-eglot-x"
+"Download the latest release of LTeX+ LS.
 
 When PRE is non-nil, allow downloading the latest prerelease.
 
 (fn PRE)" t)
 (put 'eglot-ltex-language 'safe-local-variable 'stringp)
-(autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-x" "\
-Enable Eglot hack to handle code actions of LTeX-LS." t)
+(autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-x"
+"Enable Eglot hack to handle code actions of LTeX-LS." t)
 (with-eval-after-load 'eglot (eglot-ltex-enable-handling-client-commands))
 (register-definition-prefixes "extras/me-eglot-x" '("eglot-ltex-"))
 
@@ -323,15 +323,15 @@ Enable Eglot hack to handle code actions of LTeX-LS." t)
 
 ;;; Generated autoloads from ../modules/extras/me-git.el
 
-(defvar +git-commit-prefix-in-project nil "\
-Propose to insert a commit prefix in the current project.
+(defvar +git-commit-prefix-in-project nil
+"Propose to insert a commit prefix in the current project.
 
 Set this variable in your project's \".dir-locals.el\". You can set it
 to `conventional' or `prefix'.")
 (custom-autoload '+git-commit-prefix-in-project "../modules/extras/me-git" t)
 (make-variable-buffer-local '+git-commit-prefix-in-project)
-(autoload '+git-insert-commit-prefix "../modules/extras/me-git" "\
-Prompt for conventional commit type with scope completion.
+(autoload '+git-insert-commit-prefix "../modules/extras/me-git"
+"Prompt for conventional commit type with scope completion.
 When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
 will be generated each `+git-types-cache-age'.
 
@@ -451,16 +451,16 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from me-lib.el
 
-(defvar +sudo-indicator-mode nil "\
-Non-nil if +Sudo-Indicator mode is enabled.
+(defvar +sudo-indicator-mode nil
+"Non-nil if +Sudo-Indicator mode is enabled.
 See the `+sudo-indicator-mode' command
 for a description of this minor mode.
 Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `+sudo-indicator-mode'.")
 (custom-autoload '+sudo-indicator-mode "me-lib" nil)
-(autoload '+sudo-indicator-mode "me-lib" "\
-Indicates editing as root by displaying a message in the header line.
+(autoload '+sudo-indicator-mode "me-lib"
+"Indicates editing as root by displaying a message in the header line.
 
 This is a global minor mode.  If called interactively, toggle the
 `+Sudo-Indicator mode' mode.  If the prefix argument is positive, enable
@@ -482,93 +482,93 @@ disabled.
 
 ;;; Generated autoloads from me-lib-x.el
 
-(autoload 'minemacs-run-build-functions "me-lib-x" "\
-Run all build functions in `minemacs-build-functions'.
+(autoload 'minemacs-run-build-functions "me-lib-x"
+"Run all build functions in `minemacs-build-functions'.
 
 Call functions without asking when DONT-ASK-P is non-nil.
 
 (fn &optional DONT-ASK-P)" t)
-(autoload 'minemacs-root-dir-cleanup "me-lib-x" "\
-Cleanup MinEmacs' root directory.")
-(autoload 'minemacs-cleanup-emacs-directory "me-lib-x" "\
-Cleanup unwanted files/directories from MinEmacs' directory." t)
-(autoload 'minemacs-user-config "me-lib-x" "\
-Open MinEmacs user configuration.
+(autoload 'minemacs-root-dir-cleanup "me-lib-x"
+"Cleanup MinEmacs' root directory.")
+(autoload 'minemacs-cleanup-emacs-directory "me-lib-x"
+"Cleanup unwanted files/directories from MinEmacs' directory." t)
+(autoload 'minemacs-user-config "me-lib-x"
+"Open MinEmacs user configuration.
 
 When ASK is non-nil (\\[universal-argument]), ask about which file to open.
 
 (fn ASK)" t)
-(autoload '+clean-file-name "me-lib-x" "\
-Clean FILENAME, optionally convert to DOWNCASE-P.
+(autoload '+clean-file-name "me-lib-x"
+"Clean FILENAME, optionally convert to DOWNCASE-P.
 
 (fn FILENAME &optional DOWNCASE-P)")
-(autoload '+file-name-incremental "me-lib-x" "\
-Return a unique file name for FILENAME.
+(autoload '+file-name-incremental "me-lib-x"
+"Return a unique file name for FILENAME.
 If \"file.ext\" exists, returns \"file-0.ext\".
 
 (fn FILENAME)")
-(autoload '+delete-this-file "me-lib-x" "\
-Delete PATH.
+(autoload '+delete-this-file "me-lib-x"
+"Delete PATH.
 
 If PATH is not specified, default to the current buffer's file.
 
 If FORCE-P, delete without confirmation.
 
 (fn &optional PATH FORCE-P)" t)
-(autoload '+delete-file-or-directory "me-lib-x" "\
-Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'.
+(autoload '+delete-file-or-directory "me-lib-x"
+"Delete FILE-OR-DIRECTORY with `delete-file' or `delete-directory'.
 
 Move to trash when TRASH is non-nil, delete directories recursively when
 RECURSIVE is non-nil.
 
 (fn FILE-OR-DIRECTORY &optional TRASH RECURSIVE)")
-(autoload '+delete-current-file-and-buffer "me-lib-x" "\
-Delete FILENAME and its associated visiting buffer.
+(autoload '+delete-current-file-and-buffer "me-lib-x"
+"Delete FILENAME and its associated visiting buffer.
 
 (fn &optional FILENAME)" t)
-(autoload '+copy-current-file-name "me-lib-x" "\
-Save (copy) the file name of this buffer to the kill ring." t)
-(autoload '+open-with "me-lib-x" "\
-Open FILE in default external program.
+(autoload '+copy-current-file-name "me-lib-x"
+"Save (copy) the file name of this buffer to the kill ring." t)
+(autoload '+open-with "me-lib-x"
+"Open FILE in default external program.
 When in `dired-mode', open file under the cursor.
 
 With a prefix, always prompt for command to use.
 
 (fn FILE)" t)
 (autoload '+unresolved-merge-conflict-p "me-lib-x")
-(autoload '+apply-patch-dwim "me-lib-x" "\
-Apply PATCH-BUF to the relevant file in PROJ-DIR.
+(autoload '+apply-patch-dwim "me-lib-x"
+"Apply PATCH-BUF to the relevant file in PROJ-DIR.
 When a region is active, propose to use it as the patch buffer.
 
 (fn PATCH-BUF &optional PROJ-DIR)" t)
-(autoload '+diff-last-two-kills "me-lib-x" "\
-Diff last couple of things in the kill-ring. With prefix open `ediff'.
+(autoload '+diff-last-two-kills "me-lib-x"
+"Diff last couple of things in the kill-ring. With prefix open `ediff'.
 
 (fn &optional EDIFF-P)" t)
-(autoload '+html2pdf "me-lib-x" "\
-Convert HTML file INFILE to PDF and save it to OUTFILE.
+(autoload '+html2pdf "me-lib-x"
+"Convert HTML file INFILE to PDF and save it to OUTFILE.
 When BACKEND is provided, the corresponding program is used, otherwise, the
 value of `+html2pdf-default-backend' is used.
 
 (fn INFILE OUTFILE &optional BACKEND)")
-(autoload '+txt2html "me-lib-x" "\
-Convert plain-text file INFILE to HTML and save it to OUTFILE.
+(autoload '+txt2html "me-lib-x"
+"Convert plain-text file INFILE to HTML and save it to OUTFILE.
 When MAIL-MODE-P is non-nil, --mailmode is passed to \"txt2html\".
 
 (fn INFILE OUTFILE &optional MAIL-MODE-P)")
-(autoload '+save-as-pdf "me-lib-x" "\
-Save URL as PDF.
+(autoload '+save-as-pdf "me-lib-x"
+"Save URL as PDF.
 This function's signature is compatible with `browse-url-browser-function'
 so it can be used to save HTML pages or emails to PDF.
 When MAIL-MODE-P is non-nil, treat INFILE as a mail.
 
 (fn INFILE &optional MAIL-MODE-P)")
-(autoload '+save-url-to-html-file "me-lib-x" "\
-Save URL into OUT-FILE as a standalone HTML file.
+(autoload '+save-url-to-html-file "me-lib-x"
+"Save URL into OUT-FILE as a standalone HTML file.
 
 (fn URL OUT-FILE)" t)
-(autoload '+browse-html-file "me-lib-x" "\
-Browser HTML FILE following `+browse-html-file-browser-priority'.
+(autoload '+browse-html-file "me-lib-x"
+"Browser HTML FILE following `+browse-html-file-browser-priority'.
 
 If no function from `+browse-html-file-browser-priority' is available,
 use `browse-url'.
@@ -576,26 +576,26 @@ use `browse-url'.
 When called with universal argument, open the current buffer's file.
 
 (fn FILE)" t)
-(autoload '+serial-running-p "me-lib-x" "\
-Is there a serial port terminal running?")
-(autoload '+serial-run-commands "me-lib-x" "\
-Run COMMANDS on a device via serial communication.
+(autoload '+serial-running-p "me-lib-x"
+"Is there a serial port terminal running?")
+(autoload '+serial-run-commands "me-lib-x"
+"Run COMMANDS on a device via serial communication.
 
 If PORT or BAUD are nil, use values from `+serial-port' and `+serial-baudrate'.
 
 (fn COMMANDS &optional PORT BAUD)" t)
-(autoload '+net-get-ip-address "me-lib-x" "\
-Get the IP-address for device DEV of the current machine.
+(autoload '+net-get-ip-address "me-lib-x"
+"Get the IP-address for device DEV of the current machine.
 
 (fn &optional DEV)")
-(autoload '+github-latest-release "me-lib-x" "\
-Get the latest release of REPO. Strips the \"v\" at left.
+(autoload '+github-latest-release "me-lib-x"
+"Get the latest release of REPO. Strips the \"v\" at left.
 Fallback to FALLBACK-RELEASE when it can't get the last one.
 When TRIM-V-PREFIX is non-nil, trim the \"v\" prefix from the version.
 
 (fn REPO &optional FALLBACK-RELEASE TRIM-V-PREFIX)")
-(autoload '+github-download-release "me-lib-x" "\
-Download release from REPO.
+(autoload '+github-download-release "me-lib-x"
+"Download release from REPO.
 
 If FILENAME-REGEXP is a string, use it as a regexp to match against the
 file name.
@@ -611,20 +611,20 @@ non-nil value is provided for :PRERELEASE, we download the latest
 prerelease if no :VER is provided.
 
 (fn REPO FILENAME-REGEXP &optional OK-IF-ALREADY-EXISTS &key VER OUT-FILE PRERELEASE)")
-(autoload '+dir-locals-reload-for-this-buffer "me-lib-x" "\
-Reload directory-local for the current buffer." t)
-(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-x" "\
-Reload dir-locals for all buffers under `default-directory'." t)
-(defvar +dir-locals-autoreload-mode nil "\
-Non-nil if +Dir-Locals-Autoreload mode is enabled.
+(autoload '+dir-locals-reload-for-this-buffer "me-lib-x"
+"Reload directory-local for the current buffer." t)
+(autoload '+dir-locals-reload-for-all-buffers-in-this-directory "me-lib-x"
+"Reload dir-locals for all buffers under `default-directory'." t)
+(defvar +dir-locals-autoreload-mode nil
+"Non-nil if +Dir-Locals-Autoreload mode is enabled.
 See the `+dir-locals-autoreload-mode' command
 for a description of this minor mode.
 Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `+dir-locals-autoreload-mode'.")
 (custom-autoload '+dir-locals-autoreload-mode "me-lib-x" nil)
-(autoload '+dir-locals-autoreload-mode "me-lib-x" "\
-Autoload buffers affected by editing the current `dir-locals-file'.
+(autoload '+dir-locals-autoreload-mode "me-lib-x"
+"Autoload buffers affected by editing the current `dir-locals-file'.
 
 This is a global minor mode.  If called interactively, toggle the
 `+Dir-Locals-Autoreload mode' mode.  If the prefix argument is positive,
@@ -641,130 +641,130 @@ The mode's hook is called both when the mode is enabled and when it is
 disabled.
 
 (fn &optional ARG)" t)
-(autoload '+ansi-color-apply-on-buffer "me-lib-x" "\
-Decode and apply ANSI color chars in the curernt buffer." t)
-(autoload '+completion-mark-category "me-lib-x" "\
-Mark SEQ as being in CATEGORY for use with `completing-read'.
+(autoload '+ansi-color-apply-on-buffer "me-lib-x"
+"Decode and apply ANSI color chars in the curernt buffer." t)
+(autoload '+completion-mark-category "me-lib-x"
+"Mark SEQ as being in CATEGORY for use with `completing-read'.
 
 (fn SEQ CATEGORY)")
-(autoload '+region-or-thing-at-point "me-lib-x" "\
-Return the region or the thing at point.
+(autoload '+region-or-thing-at-point "me-lib-x"
+"Return the region or the thing at point.
 
 If LEAVE-REGION-MARKED is no-nil, don't call `desactivate-mark'
 when a region is selected.
 
 (fn &optional LEAVE-REGION-MARKED)")
-(autoload '+insert-thing-at-point "me-lib-x" "\
-Insert region or symbol in the minibuffer." t)
-(autoload '+kill-region-or-backward-word "me-lib-x" "\
-Kill selected region if region is active. Otherwise kill a backward word." t)
-(autoload '+kill-whitespace-or-word "me-lib-x" "\
-Kill forward whitespace or word.
+(autoload '+insert-thing-at-point "me-lib-x"
+"Insert region or symbol in the minibuffer." t)
+(autoload '+kill-region-or-backward-word "me-lib-x"
+"Kill selected region if region is active. Otherwise kill a backward word." t)
+(autoload '+kill-whitespace-or-word "me-lib-x"
+"Kill forward whitespace or word.
 With argument ARG, do this that many times.
 Restricts the effect of `kill-word' to the current line.
 
 (fn ARG)" t)
-(autoload '+backward-kill-whitespace-or-word "me-lib-x" "\
-Kill backward whitespace or word.
+(autoload '+backward-kill-whitespace-or-word "me-lib-x"
+"Kill backward whitespace or word.
 With argument ARG, do this that many times.
 Restricts the effect of `backward-kill-word' to the current line.
 
 (fn ARG)" t)
-(autoload '+backward-to-bol-or-indent "me-lib-x" "\
-Jump between indentation column and the beginning of the line.
+(autoload '+backward-to-bol-or-indent "me-lib-x"
+"Jump between indentation column and the beginning of the line.
 
 Indentation column is defined by the first non-whitespace character.
 Jump relative to POINT or the current point if not provided.
 This is the opposite of `+forward-to-last-non-comment-or-eol'.
 
 (fn &optional POINT)" t)
-(autoload '+forward-to-last-non-comment-or-eol "me-lib-x" "\
-Jump between the last non-blank, non-comment character and EOL.
+(autoload '+forward-to-last-non-comment-or-eol "me-lib-x"
+"Jump between the last non-blank, non-comment character and EOL.
 
 Jump relative to POINT or the current point if not provided.
 This is the opposite of `+backward-to-bol-or-indent'.
 
 (fn &optional POINT)" t)
-(autoload '+set-indent-width "me-lib-x" "\
-Change the indentation size to WIDTH of the current buffer.
+(autoload '+set-indent-width "me-lib-x"
+"Change the indentation size to WIDTH of the current buffer.
 
 The effectiveness of this command is significantly improved if
 you have `editorconfig' or `dtrt-indent' installed.
 
 (fn WIDTH)" t)
-(autoload '+autoload-region "me-lib-x" "\
-Add the ;;;###autoload to region (BEG . END).
+(autoload '+autoload-region "me-lib-x"
+"Add the ;;;###autoload to region (BEG . END).
 
 (fn BEG END)" t)
-(autoload '+bookmark-set-at-mouse "me-lib-x" "\
-
+(autoload '+bookmark-set-at-mouse "me-lib-x"
+"
 
 (fn EVENT)" t)
-(autoload '+eglot-ccls-inheritance-hierarchy "me-lib-x" "\
-Show inheritance hierarchy for the thing at point.
+(autoload '+eglot-ccls-inheritance-hierarchy "me-lib-x"
+"Show inheritance hierarchy for the thing at point.
 If DERIVED is non-nil (interactively, with prefix argument), show
 the children of class at point.
 
 (fn &optional DERIVED)" t)
-(autoload '+eglot-help-at-point "me-lib-x" "\
-Request documentation for the thing at point." t)
-(autoload '+shellcheck-describe-error "me-lib-x" "\
-Describe a ShellCheck message CODES.
+(autoload '+eglot-help-at-point "me-lib-x"
+"Request documentation for the thing at point." t)
+(autoload '+shellcheck-describe-error "me-lib-x"
+"Describe a ShellCheck message CODES.
 
 (fn &rest CODES)" t)
-(autoload '+explainshell "me-lib-x" "\
-Get an explanation of the shell COMMAND from explainshell.com.
+(autoload '+explainshell "me-lib-x"
+"Get an explanation of the shell COMMAND from explainshell.com.
 
 (fn COMMAND)" t)
-(autoload '+insert-schema "me-lib-x" "\
-Insert a schema for the current buffer's file (YAML or TOML).
+(autoload '+insert-schema "me-lib-x"
+"Insert a schema for the current buffer's file (YAML or TOML).
 When ASK is non-nil, ask which schema to insert without trying to guess
 the schema from the file name.
 
 (fn &optional ASK)" t)
-(autoload '+clang-format-config-file "me-lib-x" "\
-
+(autoload '+clang-format-config-file "me-lib-x"
+"
 
 (fn &optional DIR)")
 (autoload '+clang-format-get-lang "me-lib-x")
-(autoload '+clang-format-get-style "me-lib-x" "\
-Get the \"-style=XXX\" argument for clang-format.
+(autoload '+clang-format-get-style "me-lib-x"
+"Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part.
 
 (fn &optional NO-OPT)")
-(autoload '+editorconfig-guess-style-from-clang-format "me-lib-x" "\
-Set some editor settings from \".clang-format\" when available." t)
-(autoload '+compilation-db-find-file "me-lib-x" "\
-
-
-(fn &optional PROJ-ROOT)")
-(autoload '+get-compilation-db "me-lib-x" "\
-Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist.
+(autoload '+editorconfig-guess-style-from-clang-format "me-lib-x"
+"Set some editor settings from \".clang-format\" when available." t)
+(autoload '+compilation-db-find-file "me-lib-x"
+"
 
 (fn &optional PROJ-ROOT)")
-(autoload '+compilation-db-get-entry "me-lib-x" "\
+(autoload '+get-compilation-db "me-lib-x"
+"Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist.
 
+(fn &optional PROJ-ROOT)")
+(autoload '+compilation-db-get-entry "me-lib-x"
+"
 
 (fn FILE-NAME &optional PROJ-ROOT)")
-(autoload '+args-rm-double "me-lib-x" "\
-Remove FLAGS and subsequent arg from ARGS.
+(autoload '+args-rm-double "me-lib-x"
+"Remove FLAGS and subsequent arg from ARGS.
 
 (fn ARGS &rest FLAGS)")
-(autoload '+guess-args-from-compilation-db "me-lib-x" "\
-
+(autoload '+guess-args-from-compilation-db "me-lib-x"
+"
 
 (fn &optional FILE-NAME)")
-(autoload '+hide-ifdef-get-env-from-compilation-db "me-lib-x" "\
-Integrate `hideif' with \"compile_commands.json\".")
-(autoload '+kill-buffer-after-sentinel-exit "me-lib-x" "\
-
+(autoload '+hide-ifdef-get-env-from-compilation-db "me-lib-x"
+"Integrate `hideif' with \"compile_commands.json\".")
+(autoload '+kill-buffer-after-sentinel-exit "me-lib-x"
+"
 
 (fn ORIG-FN PROC MSG)")
-(autoload '+server-restart "me-lib-x" "\
-Restart the Emacs server." t)
-(autoload '+region-to-buffer "me-lib-x" "\
-Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
+(autoload '+server-restart "me-lib-x"
+"Restart the Emacs server." t)
+(autoload '+region-to-buffer "me-lib-x"
+"Copy region to BUFFER: At beginning (prefix >= 0), end (< 0), or replace.
 START and END are the region boundaries.
 BUFFER is a buffer or its name (a string).
 With prefix ARG >= 0: `append-to-buffer':
@@ -777,37 +777,37 @@ With no prefix ARG (nil): `copy-to-buffer'.
   Write region to BUFFER, replacing any previous contents.
 
 (fn START END BUFFER ARG)" t)
-(autoload '+region-to-file "me-lib-x" "\
-With prefix arg, this is `append-to-file'.  Without, it is `write-region'.
+(autoload '+region-to-file "me-lib-x"
+"With prefix arg, this is `append-to-file'.  Without, it is `write-region'.
 START and END are the region boundaries.
 Prefix ARG non-nil means append region to end of file FILENAME.
 Prefix ARG nil means write region to FILENAME, replacing contents.
 
 (fn START END FILENAME ARG)" t)
-(autoload '+clear-frenchy-ponctuations "me-lib-x" "\
-Replace french ponctuations (like unsectable space) by regular ones." t)
-(autoload '+save-buffer-preserving-modtime "me-lib-x" "\
-Call `save-buffer', but keep the visited file's modtime the same." t)
-(autoload '+copy-region-as-paragraph "me-lib-x" "\
-Copy region as one paragraph.
+(autoload '+clear-frenchy-ponctuations "me-lib-x"
+"Replace french ponctuations (like unsectable space) by regular ones." t)
+(autoload '+save-buffer-preserving-modtime "me-lib-x"
+"Call `save-buffer', but keep the visited file's modtime the same." t)
+(autoload '+copy-region-as-paragraph "me-lib-x"
+"Copy region as one paragraph.
 This command removes new line characters between lines." t)
-(autoload '+first-line-empty-p "me-lib-x" "\
-Return t when the first line of the buffer is empty.")
-(autoload '+project-gdb "me-lib-x" "\
-Invoke `gdb' in the project's root." t)
-(autoload '+project-list-cleanup "me-lib-x" "\
-Forget all duplicate known projects (like /home/user/proj and ~/proj)." t)
+(autoload '+first-line-empty-p "me-lib-x"
+"Return t when the first line of the buffer is empty.")
+(autoload '+project-gdb "me-lib-x"
+"Invoke `gdb' in the project's root." t)
+(autoload '+project-list-cleanup "me-lib-x"
+"Forget all duplicate known projects (like /home/user/proj and ~/proj)." t)
 (defvar +project-root-wildcards '("~/Projects/*/*"))
-(autoload '+project-root-initialize "me-lib-x" "\
-Initialize project list from `+project-root-wildcards'." t)
-(autoload '+xref-find-references-at-point "me-lib-x" "\
-Find references to the identifier at or around point." t)
-(autoload 'minemacs-extract-packages-descriptions "me-lib-x" "\
-Extract the descriptions of MinEmacs packages." t)
-(autoload '+list-external-dependencies "me-lib-x" "\
-Show the list of declared external dependencies." t)
-(autoload '+describe-at-point "me-lib-x" "\
-Show help for the symbol at point." t)
+(autoload '+project-root-initialize "me-lib-x"
+"Initialize project list from `+project-root-wildcards'." t)
+(autoload '+xref-find-references-at-point "me-lib-x"
+"Find references to the identifier at or around point." t)
+(autoload 'minemacs-extract-packages-descriptions "me-lib-x"
+"Extract the descriptions of MinEmacs packages." t)
+(autoload '+list-external-dependencies "me-lib-x"
+"Show the list of declared external dependencies." t)
+(autoload '+describe-at-point "me-lib-x"
+"Show help for the symbol at point." t)
 (register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+b" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+p" "+repo-projects" "+s" "+tramp--convert-sshfs-filename-local" "minemacs--"))
 
 
@@ -856,6 +856,11 @@ Show help for the symbol at point." t)
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
 
 (minemacs-register-on-demand-module 'me-mermaid :auto-mode '(("\\.mmd\\'" . mermaid-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-meson.el
+
+(minemacs-register-on-demand-module 'me-meson :auto-mode '(("/meson\\(\\.build\\|_options\\.txt\\|\\.options\\)\\'" . meson-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mode-framework.el
@@ -981,8 +986,8 @@ Show help for the symbol at point." t)
 (defun projectile-expand-root (name &optional dir) (when (projectile-project-p dir) (expand-file-name name (projectile-project-root dir))))
 (defun projectile-verify-file (file &optional dir) (when-let* ((file (projectile-expand-root file dir))) (file-exists-p file)))
 (defun projectile-project-buffer-p (buffer proj-root) (and (let ((default-directory proj-root)) (member buffer (projectile-project-buffers))) t))
-(autoload '+file-exists-p! "extras/me-project-x" "\
-Returns non-nil if the FILES in DIRECTORY all exist.
+(autoload '+file-exists-p! "extras/me-project-x"
+"Returns non-nil if the FILES in DIRECTORY all exist.
 
 DIRECTORY is a path; defaults to `default-directory'.
 
@@ -990,16 +995,16 @@ Returns the last file found to meet the rules set by FILES, which can be a
 single file or nested compound statement of `and' and `or' statements.
 
 (fn FILES &optional DIRECTORY)" nil t)
-(autoload '+project-file-exists-p! "extras/me-project-x" "\
-Checks if FILES exist at the current project's root.
+(autoload '+project-file-exists-p! "extras/me-project-x"
+"Checks if FILES exist at the current project's root.
 
 The project's root is determined by `projectile', starting from BASE-DIRECTORY
 (defaults to `default-directory'). FILES are paths relative to the project root,
 unless they begin with a slash.
 
 (fn FILES &optional BASE-DIRECTORY)" nil t)
-(autoload '+def-project-mode! "extras/me-project-x" "\
-Define a project minor mode named NAME and where/how it is activated.
+(autoload '+def-project-mode! "extras/me-project-x"
+"Define a project minor mode named NAME and where/how it is activated.
 
 Project modes allow you to configure 'sub-modes' for major-modes that are
 specific to a folder, project structure, framework or whatever arbitrary context
@@ -1178,8 +1183,8 @@ Relevant: `minemacs-project-hook'.
 
 (with-eval-after-load 'vc-git (require 'me-vc-x))
 (keymap-global-set "C-x C-g" '+switch-git-status-buffer)
-(autoload '+switch-git-status-buffer "extras/me-vc-x" "\
-Parse git status from an expanded path and switch to a file.
+(autoload '+switch-git-status-buffer "extras/me-vc-x"
+"Parse git status from an expanded path and switch to a file.
 The completion candidates include the Git status of each file." t)
 
 
@@ -1226,16 +1231,16 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
 
-(defvar minemacs-modeline-mode nil "\
-Non-nil if Minemacs-Modeline mode is enabled.
+(defvar minemacs-modeline-mode nil
+"Non-nil if Minemacs-Modeline mode is enabled.
 See the `minemacs-modeline-mode' command
 for a description of this minor mode.
 Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `minemacs-modeline-mode'.")
 (custom-autoload 'minemacs-modeline-mode "../elisp/minemacs-modeline" nil)
-(autoload 'minemacs-modeline-mode "../elisp/minemacs-modeline" "\
-MinEmacs' mode-line.
+(autoload 'minemacs-modeline-mode "../elisp/minemacs-modeline"
+"MinEmacs' mode-line.
 
 This is a global minor mode.  If called interactively, toggle the
 `Minemacs-Modeline mode' mode.  If the prefix argument is positive,
@@ -1257,8 +1262,8 @@ disabled.
 
 ;;; Generated autoloads from ../elisp/once.el
 
-(autoload 'once-eval-after-load "../elisp/once" "\
-Like `eval-after-load' but don't always add to `after-load-alist'.
+(autoload 'once-eval-after-load "../elisp/once"
+"Like `eval-after-load' but don't always add to `after-load-alist'.
 When FILE has already been loaded, execute FORM immediately without adding it to
 `after-load-alist'.  Otherwise add it to `after-load-alist' but remove the FORM
 from `after-load-alist' after it runs.  See `eval-after-load' for more
@@ -1266,8 +1271,8 @@ information.
 
 (fn FILE FORM)")
 (defalias 'once-after-load #'once-eval-after-load)
-(autoload 'once-with-eval-after-load "../elisp/once" "\
-Like `with-eval-after-load' but don't always add to `after-load-alist'.
+(autoload 'once-with-eval-after-load "../elisp/once"
+"Like `with-eval-after-load' but don't always add to `after-load-alist'.
 When FILE has already been loaded, execute BODY immediately without adding it to
 `after-load-alist'.  Otherwise add it to `after-load-alist' but remove the FORM
 from `after-load-alist' after it runs.  See `eval-after-load' for more
@@ -1275,8 +1280,8 @@ information.
 
 (fn FILE &rest BODY)" nil t)
 (defalias 'once-with #'once-with-eval-after-load)
-(autoload 'once-x-call "../elisp/once" "\
-When CONDITION is first met, call FUNCTIONS once.
+(autoload 'once-x-call "../elisp/once"
+"When CONDITION is first met, call FUNCTIONS once.
 
 The \"once\" has two meanings:
 - Run something once some condition is met (hook OR advice with optional extra
@@ -1373,8 +1378,8 @@ For real examples, see the README or specific once \"x\" utilities like
 
 (fn CONDITION &rest FUNCTIONS)")
 (function-put 'once-x-call 'lisp-indent-function 1)
-(autoload 'once "../elisp/once" "\
-When CONDITION is met for the first time, execute BODY.
+(autoload 'once "../elisp/once"
+"When CONDITION is met for the first time, execute BODY.
 If the first item is BODY is anything that could be a function, it will be
 considered to be a list of functions:
 (once condition #\\='foo \\='bar some-func-in-var (lambda ()))
@@ -1394,8 +1399,8 @@ See `once-x-call' for more information, including how to specify CONDITION.
 
 ;;; Generated autoloads from ../elisp/satch.el
 
-(autoload 'satch-setq "../elisp/satch" "\
-A stripped-down `customize-set-variable' with the syntax of `setq'.
+(autoload 'satch-setq "../elisp/satch"
+"A stripped-down `customize-set-variable' with the syntax of `setq'.
 Like `setq', multiple variables can be set at once; SETTINGS should consist of
 variable to value pairs.
 
@@ -1420,23 +1425,23 @@ default value.  See `satch-setq-default' for an equivalent that falls back to
 In the future, this will automatically record user SETTINGS using annalist.el.
 
 (fn &rest SETTINGS)" nil t)
-(autoload 'satch-set "../elisp/satch" "\
-Like `satch-setq' but evaluate variable positions like `set'.
+(autoload 'satch-set "../elisp/satch"
+"Like `satch-setq' but evaluate variable positions like `set'.
 In the future, this will automatically record user SETTINGS using annalist.el.
 
 (fn &rest SETTINGS)" nil t)
-(autoload 'satch-setq-default "../elisp/satch" "\
-Like `satch-setq' but fall back to `set-default' if no custom setter.
+(autoload 'satch-setq-default "../elisp/satch"
+"Like `satch-setq' but fall back to `set-default' if no custom setter.
 In the future, this will automatically record user SETTINGS using annalist.el.
 
 (fn &rest SETTINGS)" nil t)
-(autoload 'satch-setq-local "../elisp/satch" "\
-Like `satch-set' but make all variables in SETTINGS buffer-local.
+(autoload 'satch-setq-local "../elisp/satch"
+"Like `satch-set' but make all variables in SETTINGS buffer-local.
 In the future, this will automatically record user settings using annalist.el.
 
 (fn &rest SETTINGS)" nil t)
-(autoload 'satch-add-hook "../elisp/satch" "\
-A drop-in replacement for `add-hook'.
+(autoload 'satch-add-hook "../elisp/satch"
+"A drop-in replacement for `add-hook'.
 Unlike `add-hook', HOOKS and FUNCTIONS can be single items or lists.  DEPTH and
 LOCAL are passed directly to `add-hook'.
 
@@ -1453,14 +1458,14 @@ nothing.  If it returns non-nil, run the function and remove it from HOOKS.
 In the future, this will automatically record hook additions using annalist.el.
 
 (fn HOOKS FUNCTIONS &optional DEPTH LOCAL &key TRANSIENT)")
-(autoload 'satch-remove-hook "../elisp/satch" "\
-A drop-in replacement for `remove-hook'.
+(autoload 'satch-remove-hook "../elisp/satch"
+"A drop-in replacement for `remove-hook'.
 Unlike `remove-hook', HOOKS and FUNCTIONS can be single items or lists.  LOCAL
 is passed directly to `remove-hook'.
 
 (fn HOOKS FUNCTIONS &optional LOCAL)")
-(autoload 'satch-advice-add "../elisp/satch" "\
-A drop-in replacement for `advice-add'.
+(autoload 'satch-advice-add "../elisp/satch"
+"A drop-in replacement for `advice-add'.
 SYMBOLS, WHERE, FUNCTIONS, and PROPS correspond to the arguments for
 `advice-add'.  Unlike `advice-add', SYMBOLS and FUNCTIONS can be single items or
 lists.
@@ -1479,21 +1484,21 @@ In the future, this will automatically record advice using annalist.el.
 
 (fn SYMBOLS WHERE FUNCTIONS &optional PROPS &key TRANSIENT)")
  (autoload 'satch-add-advice "satch")
-(autoload 'satch-advice-remove "../elisp/satch" "\
-A drop-in replacement for `advice-remove'.
+(autoload 'satch-advice-remove "../elisp/satch"
+"A drop-in replacement for `advice-remove'.
 Unlike `advice-remove', SYMBOLS and FUNCTIONS can be single items or lists.
 
 (fn SYMBOLS FUNCTIONS)")
  (autoload 'satch-remove-advice "satch")
-(autoload 'satch-defun "../elisp/satch" "\
-Define NAME as a function, returning the function.
+(autoload 'satch-defun "../elisp/satch"
+"Define NAME as a function, returning the function.
 This is `defun' but it is guaranteed to return the created function (`defun'
 technically has an undefined return value).
 
 (fn NAME ARGLIST &optional DOCSTRING &rest BODY)" nil t)
 (function-put 'satch-defun 'doc-string-elt 3)
-(autoload 'satch-disable "../elisp/satch" "\
-Return a named function that disables MODE.
+(autoload 'satch-disable "../elisp/satch"
+"Return a named function that disables MODE.
 
 (fn MODE)" nil t)
 (register-definition-prefixes "../elisp/satch" '("satch--"))
@@ -1501,8 +1506,8 @@ Return a named function that disables MODE.
 
 ;;; Generated autoloads from ../elisp/valgrind.el
 
-(autoload 'valgrind "../elisp/valgrind" "\
-Run valgrind.
+(autoload 'valgrind "../elisp/valgrind"
+"Run valgrind.
 Runs a shell COMMAND in a separate process asynchronously with output going to
 the buffer `*valgrind*'.
 You can then use the command \\[next-error] to find the next error message and
