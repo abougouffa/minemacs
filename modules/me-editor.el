@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-02-03
+;; Last modified: 2026-02-11
 
 ;;; Commentary:
 
@@ -112,11 +112,15 @@
 (use-package symbol-overlay
   :straight t
   :hook ((prog-mode conf-mode) . symbol-overlay-mode)
+  :init
+  (satch-add-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
+  (defun +symbol-overlay--lighter-face ()
+    (when (display-graphic-p)
+      (satch-remove-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
+      (with-eval-after-load 'symbol-overlay
+        (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background)))
+          (set-face-background 'symbol-overlay-default-face bg)))))
   :config
-  (when (display-graphic-p)
-    (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background)))
-      (set-face-background 'symbol-overlay-default-face bg)))
-
   (with-eval-after-load 'multiple-cursors
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
     (defun +mc/mark-all-symbol-overlays (&optional discard)
