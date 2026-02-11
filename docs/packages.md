@@ -3,6 +3,7 @@
 * `llm`: A library abstracting LLM capabilities for Emacs
 * `llm-ollama`: `llm` module for integrating with Ollama
 * `ellama`: A package for interacting with LLMs from Emacs
+* `gptel`: Interact with LLMs
 * `aidermacs`: Pair-programming with AI agents using Aider
 * `mcp-hub`: Integration for Model Context Protocol (MCP)
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
@@ -185,7 +186,7 @@
 ## `me-tools`
 * `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
-* `app-launcher`: Launch system applications from Emacs
+* `xdg-launcher`: Launch system applications from Emacs
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
@@ -205,6 +206,7 @@
 * `diredfl`: Extra font lock rules for a more colourful `dired`
 * `virtual-format`: Format buffers visually without modification
 * `ligature`: Display typographical ligatures in major modes
+* `casual-suite`: A collection of opinionated keyboard-driven transient menus for various Emacs modes
 
 ## `me-vc`
 * `magit`: It's Magit! A Git Porcelain inside Emacs.
@@ -221,6 +223,7 @@
 * `git-modes`: Emacs major modes for Git configuration files
 * `repo`: Running "repo" from Emacs
 * `vc-jj`: Jujutsu (jj) integration with Emacs `vc` and `project`
+* `jj-mode`: Magit-inspired interface for Jujutsu
 * `diffview`: View diffs side-by-side in Emacs
 * `difftastic`: A structural diff that understands syntax
 
@@ -501,6 +504,8 @@
 * `mermaid-mode`: Major mode for working with Mermaid graphs
 * `ob-mermaid`: Org Babel support for Mermaid evaluation
 
+## `on-demand/me-meson`
+
 ## `on-demand/me-mode-framework`
 * `robot-mode`: Major mode for Robot Framework files
 
@@ -532,6 +537,10 @@
 
 ## `on-demand/me-opencl`
 * `opencl-c-mode`: Major mode with for OpenCL kernels
+
+## `on-demand/me-opengl`
+* `glsl-mode`: OpenGL Shading Language (GLSL)
+* `glsl-ts-mode`: OpenGL Shading Language (GLSL), Tree-sitter based
 
 ## `on-demand/me-openscad`
 * `scad-mode`: A major mode for editing OpenSCAD code
