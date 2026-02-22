@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.24.0](https://github.com/abougouffa/minemacs/compare/a28bb949bb4fd45befab49a8648835ba342f75af..v13.24.0) - 2026-02-22
+#### Tweaks
+- (**on-demand/yaml**) use `yaml-mode` in `.cmake-format` files - ([a28bb94](https://github.com/abougouffa/minemacs/commit/a28bb949bb4fd45befab49a8648835ba342f75af)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([12462cc](https://github.com/abougouffa/minemacs/commit/12462cc58fc1cb14281148f38e4a192cc8f9c7d9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**prog**) add explicit support for `string-inflection` - ([51f6039](https://github.com/abougouffa/minemacs/commit/51f6039758935412dafce6c8d5a031ba064b11f1)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- update the `benchmark-init` Git submodule - ([c6666ae](https://github.com/abougouffa/minemacs/commit/c6666ae5aa3c93cedf1db3c5cb0e887ea69ef6c8)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.23.0](https://github.com/abougouffa/minemacs/compare/b6f57b6331e2bcdbfbb2baa6433759d95873573e..v13.23.0) - 2026-02-11
 #### Tweaks
 - (**early-init**) set default frame size - ([6d0ea7a](https://github.com/abougouffa/minemacs/commit/6d0ea7a28b86cadc927117d7003a51ee8ecc55f8)) - [@abougouffa](https://github.com/abougouffa)
