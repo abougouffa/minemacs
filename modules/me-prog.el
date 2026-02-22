@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-08
+;; Last modified: 2026-02-22
 
 ;;; Commentary:
 
@@ -116,6 +116,11 @@
 ;; Generate C++ method implementations from declarations using `treesit'
 (use-package cpp-func-impl
   :straight (:host github :repo "dheerajshenoy/cpp-func-impl.el"))
+
+
+;; Naming conversions: foo_bar -> FOO_BAR -> FooBar -> fooBar -> foo-bar -> Foo_Bar -> foo_bar
+(use-package string-inflection
+  :straight t)
 
 
 (provide 'me-prog)
