@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2026-01-13
+;; Last modified: 2026-02-21
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
 (use-package yaml-mode
   :straight t
   :mode "/Procfile\\'"
-  :mode (rx "/" (any ?. ?_) (or "clang-format" "clang-tidy" "clangd") eol))
+  :mode (rx "/" (any ?. ?_) (or "clang-format" "clang-tidy" "clangd" "cmake-format") eol))
 
 
 ;; Parser-aided YAML editing features
