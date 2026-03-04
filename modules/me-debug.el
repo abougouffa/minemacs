@@ -1,10 +1,10 @@
 ;;; me-debug.el --- Debugging stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2025-09-12
+;; Last modified: 2026-03-04
 
 ;;; Commentary:
 
@@ -81,8 +81,7 @@
 
 ;; Use "objdump" to display disassembled executable and object files
 (use-package objdump-disassemble
-  :straight (:host github :repo "abougouffa/objdump-disassemble")
-  :hook (minemacs-first-file . global-objdump-disassemble-mode))
+  :straight (:host github :repo "abougouffa/objdump-disassemble"))
 
 
 (provide 'me-debug)
