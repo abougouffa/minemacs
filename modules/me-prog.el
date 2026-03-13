@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-02-22
+;; Last modified: 2026-03-13
 
 ;;; Commentary:
 
@@ -58,10 +58,17 @@
   :custom
   ;; NOTE: Make sure "rg" has PCRE2 support, install using "cargo install ripgrep --features pcre2"
   (dumb-jump-selector 'completing-read)
+  (dumb-jump-disable-obsolete-warnings t)
+  (dumb-jump-extra-search-paths-function #'+dumb-jump-python-poetry-search-paths)
   :init
-  (setq dumb-jump-disable-obsolete-warnings t)
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate) ; Use `dumb-jump' as `xref' backend
   :config
+  (defun +dumb-jump-python-poetry-search-paths (lang proj-root)
+    (when (and (string= lang "python") (executable-find "poetry") (locate-dominating-file (buffer-file-name) "pyproject.toml"))
+      (let* ((default-directory proj-root)
+             (path (string-trim (shell-command-to-string "poetry run python -c 'import site; print(site.getsitepackages()[0])'"))))
+        (when (file-directory-p path)
+          (list path)))))
   (with-eval-after-load 'project
     (cl-callf append dumb-jump-project-denoters project-vc-extra-root-markers)))
 
