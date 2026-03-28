@@ -1,10 +1,10 @@
 ;;; me-web.el --- Web development modes -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-05-04
+;; Last modified: 2026-03-28
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
                ("\\.haml\\'" . haml-mode)
                ("\\.sass\\'" . sass-mode)
                ("\\.was?t\\'" . wat-mode))
-  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode emmet-mode sass-mode))
+  :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode temmet-mode sass-mode))
                         ((js-mode js-ts-mode) . flymake-biome)))
 
 
@@ -36,8 +36,8 @@
 
 
 ;; Support for Emmet, the essential toolkit for web-developers
-(use-package emmet-mode
-  :straight t)
+(use-package temmet-mode
+  :straight (:host github :repo "Lycomedes1814/temme-mode"))
 
 
 ;; Major mode for editing Haml files
