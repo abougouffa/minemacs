@@ -1,4 +1,0 @@
-# -*- mode: conf; -*-
-
-source = https://github.com/ocaml/dune/tree/main/editor-integration/emacs
-updated = 2025-09-04 22:33
