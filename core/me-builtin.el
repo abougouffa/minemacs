@@ -125,6 +125,11 @@
   (keymap-global-set "C-a" #'+backward-to-bol-or-indent) ; Instead of `move-beginning-of-line' or `beginning-of-visual-line'
   (keymap-global-set "C-e" #'+forward-to-last-non-comment-or-eol) ; Instead of `move-end-of-line' or `end-of-visual-line'
 
+  ;; Use DWIM commands for M-l, M-u and M-c
+  (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim) ; M-l
+  (keymap-global-set "<remap> <upcase-word>" #'upcase-dwim) ; M-u
+  (keymap-global-set "<remap> <capitalize-word>" #'capitalize-dwim) ; M-c
+
   ;; Save pressing Shift when entering numbers on AZERTY keyboards
   (with-eval-after-load 'window
     (keymap-set ctl-x-map "à" #'delete-window)            ; C-x 0
