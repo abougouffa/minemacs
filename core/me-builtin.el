@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-02-03
+;; Last modified: 2026-03-29
 
 ;;; Commentary:
 
@@ -137,8 +137,7 @@
     (keymap-set ctl-x-4-map "'" #'other-window-prefix))   ; C-x 4 4
 
   (with-eval-after-load 'prog-mode
-    (keymap-set prog-mode-map "C-<down-mouse-1>" #'mouse-drag-region)
-    (keymap-set prog-mode-map "C-<mouse-1>" #'xref-find-definitions-at-mouse))
+    (keymap-set prog-mode-map "C-<down-mouse-1>" #'mouse-drag-region))
 
   (with-eval-after-load 'help
     (keymap-set help-map "h" #'+describe-at-point))
@@ -490,6 +489,10 @@
   ;; window manager), so we need to disable it in the WM for this to work.
   :bind ("M-<down-mouse-1>" . xref-find-references-at-mouse)
   :config
+  ;; Use the new `global-xref-mouse-mode' when available
+  (if (fboundp 'global-xref-mouse-mode)
+      (global-xref-mouse-mode 1)
+    (keymap-set prog-mode-map "C-<mouse-1>" #'xref-find-definitions-at-mouse))
   (+setq-hook! xref--xref-buffer-mode truncate-lines t))
 
 (use-package eglot
