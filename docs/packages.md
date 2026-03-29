@@ -152,6 +152,7 @@
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `simpc-mode`: Simple and fast C mode for amalgamated (big) files
 * `cpp-func-impl`: Generate C++ method implementations from declarations using `treesit`
+* `string-inflection`: Naming conversions: foo_bar -> FOO_BAR -> FooBar -> fooBar -> foo-bar -> Foo_Bar -> foo_bar
 
 ## `me-project`
 * `otpp`: One tab per project, with unique names - simple implementation of workspaces
@@ -525,12 +526,8 @@
 ## `on-demand/me-nushell`
 
 ## `on-demand/me-ocaml`
-* `tuareg`: Major mode and REPL for the OCaml programming language
-* `opam-switch-mode`: Select OCaml opam switches via a menu
-* `dune`: Integration with the dune build system
-* `dune-watch`: Integration with dune --watch tasks
-* `dune-flymake`: Integrate `dune` with `flymake`
-* `utop`: Universal toplevel for OCaml
+* `neocaml`:  A modern, TreeSitter-powered, Emacs major mode for OCaml
+* `ocaml-eglot`: An overlay on Eglot for editing OCaml code using LSP
 
 ## `on-demand/me-odin`
 * `odin-mode`: Major mode for Odin
@@ -588,6 +585,9 @@
 * `qml-mode`: Major mode for editing QT Declarative (QML) code
 * `qml-ts-mode`: Tree-sitter based major mode for editing QT Declarative (QML) code
 * `qt-pro-mode`: Major mode for Qt's Pro/Pri files
+
+## `on-demand/me-rtf`
+* `rtf-view`: View Rich Text Format (.rtf) files
 
 ## `on-demand/me-rust`
 * `rust-mode`: Major mode for editing Rust source code
@@ -662,7 +662,7 @@
 
 ## `on-demand/me-web`
 * `web-mode`: Major mode for editing web templates
-* `emmet-mode`: Support for Emmet, the essential toolkit for web-developers
+* `temmet-mode`: Support for Emmet, the essential toolkit for web-developers
 * `haml-mode`: Major mode for editing Haml files
 * `sass-mode`: Major mode for editing Sass files
 * `wat-mode`: Major mode for WebAssembly
