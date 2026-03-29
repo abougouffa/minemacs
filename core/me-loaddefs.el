@@ -910,8 +910,7 @@ This command removes new line characters between lines." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
-(minemacs-register-on-demand-module 'me-ocaml :auto-mode '(("\\.mly\\'" . tuareg-menhir-mode) (("\\.eliomi?\\'" "\\.ml[ip]?\\'") . tuareg-mode) ("\\(?:\\`\\|/\\)dune\\(?:\\.inc\\|\\-project\\|\\-workspace\\)?\\'" . dune-mode)) :interpreter-mode '(("ocamlrun" . tuareg-mode) ("ocaml" . tuareg-mode)))
-(register-definition-prefixes "../modules/on-demand/me-ocaml" '("+dune-path"))
+(minemacs-register-on-demand-module 'me-ocaml :auto-mode `(("\\.mly\\'" . neocaml-menhir-mode) ("\\.mll\\'" . neocaml-ocamllex-mode) ("\\.ml\\'" . neocaml-mode) ("\\.mli\\'" . neocaml-interface-mode) ("[./]opam\\'" . neocaml-opam-mode) ("/dune\\(-project\\|-workspace\\)\\'" . neocaml-dune-mode) (,(rx "." (or "cmi" "cmo" "cmx" "cma" "cmxa" "cmxs" "cmt" "cmti") eol) . neocaml-objinfo-mode)) :interpreter-mode '(("ocamlrun" . neocaml-mode) ("ocaml" . neocaml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-odin.el
@@ -1070,6 +1069,11 @@ Relevant: `minemacs-project-hook'.
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-rtf.el
+
+(minemacs-register-on-demand-module 'me-rtf :auto-mode '(("\\.rtf\\'" . rtf-view)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-rust.el
 
 (minemacs-register-on-demand-module 'me-rust :auto-mode '(("\\.rs\\'" rustic-mode rust-mode)) :companion-packages '((rust-ts-mode rust-mode rustic)))
@@ -1201,7 +1205,7 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode emmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode temmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-wiki.el
