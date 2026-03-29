@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.25.0](https://github.com/abougouffa/minemacs/compare/ccc0fc2fd4b686524764e2828fe3042ded8c709e..v13.25.0) - 2026-03-29
+#### Tweaks
+- (**dumb-jump**) add search paths for Python's projects using poetry - ([f218cbd](https://github.com/abougouffa/minemacs/commit/f218cbd660e38f443103c9c992ead36bdb230eae)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/web**) replace `emmet-mode` with `temmet-mode` - ([684b0a5](https://github.com/abougouffa/minemacs/commit/684b0a57bd2cddb2906c81e409fcc698e8570b31)) - [@abougouffa](https://github.com/abougouffa)
+- (**xref**) make use of the new `xref-mouse-mode` - ([387cb59](https://github.com/abougouffa/minemacs/commit/387cb59b70a994415f20187fd9e9cec5ae9e2047)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([435ea9a](https://github.com/abougouffa/minemacs/commit/435ea9a35bd799e7fdee6bad86cd9c2097b756fc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6bfa32b](https://github.com/abougouffa/minemacs/commit/6bfa32bc7ece10efd1189fd56006d62be2df2b38)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c741fe5](https://github.com/abougouffa/minemacs/commit/c741fe503ba1b3dea11f7a6fe16b8dfafde69fa1)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f90f7c9](https://github.com/abougouffa/minemacs/commit/f90f7c94b08e2775a4e12d977021c33c4a61ed8b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ccc0fc2](https://github.com/abougouffa/minemacs/commit/ccc0fc2fd4b686524764e2828fe3042ded8c709e)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**on-demand/ocaml**) replace the whole stack with `neocaml` and `ocaml-eglot` - ([248bc20](https://github.com/abougouffa/minemacs/commit/248bc2096f11a2c0a7ec0178b663de17ae05cdf5)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/rtf**) add support for `rtf-view` - ([9ac0713](https://github.com/abougouffa/minemacs/commit/9ac0713d76f30a7d47d3be68e72366b990acc87f)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**objdump-disassemble**) don't enable globally by default - ([5064d64](https://github.com/abougouffa/minemacs/commit/5064d6465a9c17ce3477a9e2be081cd713fcbbd7)) - [@abougouffa](https://github.com/abougouffa)
+- use the new treesit indent offset names - ([426da22](https://github.com/abougouffa/minemacs/commit/426da221f2edbf0b7114588bf7a6ea143a760042)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([1d433a8](https://github.com/abougouffa/minemacs/commit/1d433a8cd9a8a763d68fe02c43ecc73ad21a9586)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- (**cocogitto**) remove the invalid `packages` section - ([cd62efd](https://github.com/abougouffa/minemacs/commit/cd62efdd647ec87aef086f32ff6c90b011af438c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.24.0](https://github.com/abougouffa/minemacs/compare/a28bb949bb4fd45befab49a8648835ba342f75af..v13.24.0) - 2026-02-22
 #### Tweaks
 - (**on-demand/yaml**) use `yaml-mode` in `.cmake-format` files - ([a28bb94](https://github.com/abougouffa/minemacs/commit/a28bb949bb4fd45befab49a8648835ba342f75af)) - [@abougouffa](https://github.com/abougouffa)
