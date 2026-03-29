@@ -158,6 +158,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-cpio.el
+
+(minemacs-register-on-demand-module 'me-cpio :auto-mode '(("\\.cpio\\'" . cpio-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-cron.el
 
 (minemacs-register-on-demand-module 'me-cron :auto-mode '(("\\.?cron\\(tab\\)?\\(\\.X*[[:alnum:]]+\\)?\\'" . crontab-mode)))
@@ -863,11 +868,6 @@ This command removes new line characters between lines." t)
 (minemacs-register-on-demand-module 'me-meson :auto-mode '(("/meson\\(\\.build\\|_options\\.txt\\|\\.options\\)\\'" . meson-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-mode-framework.el
-
-(minemacs-register-on-demand-module 'me-mode-framework :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-modelica.el
 
 (minemacs-register-on-demand-module 'me-modelica :auto-mode '(("\\.mo\\'" . modelica-mode)))
@@ -1067,6 +1067,11 @@ Relevant: `minemacs-project-hook'.
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.qml\\'" . qml-ts-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 (add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-robot-framework.el
+
+(minemacs-register-on-demand-module 'me-robot-framework :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rtf.el
