@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-01-31
+;; Last modified: 2026-03-29
 
 ;;; Commentary:
 
@@ -1049,18 +1049,18 @@ the schema from the file name."
         (expand-file-name ".clang-format" config-dir))))
 
 (defvar +clang-format-mode-alist
-  '(((c-ts-mode) "c" c-ts-mode-indent-offset)
-    ((c++-ts-mode) "cpp" c-ts-mode-indent-offset)
+  '(((c-ts-mode) "c" c-ts-indent-offset)
+    ((c++-ts-mode) "cpp" c-ts-indent-offset)
     ((js-mode js-ts-mode) "js" js-indent-level)
-    ((typescript-ts-base-mode) "ts" typescript-ts-mode-indent-offset)
-    ((csharp-mode csharp-ts-mode) "cs" csharp-ts-mode-indent-offset)
+    ((typescript-ts-base-mode) "ts" typescript-ts-indent-offset)
+    ((csharp-mode csharp-ts-mode) "cs" csharp-ts-indent-offset)
     ((protobuf-ts-mode) "proto" protobuf-ts-mode-indent-offset)
-    ((java-ts-mode) "java" java-ts-mode-indent-offset)
+    ((java-ts-mode) "java" java-ts-indent-offset)
     ((java-mode) "java" c-basic-offset)
     ((c-mode cuda-mode opencl-c-mode) "c" c-basic-offset)
     ((c++-mode) "cpp" c-basic-offset)
     ((json-mode) "json" c-basic-offset)
-    ((json-ts-mode) "json" json-ts-mode-indent-offset)
+    ((json-ts-mode) "json" json-ts-indent-offset)
     ((verilog-mode) "v" verilog-indent-level)
     ((verilog-ts-mode) "v" verilog-ts-indent-level)))
 
