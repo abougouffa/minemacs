@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-03-29
+;; Last modified: 2026-03-31
 
 ;;; Commentary:
 
@@ -1049,20 +1049,21 @@ the schema from the file name."
         (expand-file-name ".clang-format" config-dir))))
 
 (defvar +clang-format-mode-alist
-  '(((c-ts-mode) "c" c-ts-indent-offset)
-    ((c++-ts-mode) "cpp" c-ts-indent-offset)
+  '(((c-ts-mode) "c" c-ts-indent-offset c-ts-mode-indent-offset)
+    ((c++-ts-mode) "cpp" c-ts-indent-offset c-ts-mode-indent-offset)
+    ((typescript-ts-base-mode) "ts" typescript-ts-indent-offset typescript-ts-mode-indent-offset)
     ((js-mode js-ts-mode) "js" js-indent-level)
-    ((typescript-ts-base-mode) "ts" typescript-ts-indent-offset)
-    ((csharp-mode csharp-ts-mode) "cs" csharp-ts-indent-offset)
-    ((protobuf-ts-mode) "proto" protobuf-ts-mode-indent-offset)
-    ((java-ts-mode) "java" java-ts-indent-offset)
+    ((csharp-mode csharp-ts-mode) "cs" csharp-ts-indent-offset csharp-ts-mode-indent-offset)
+    ((protobuf-ts-mode) "proto" protobuf-ts-indent-offset protobuf-ts-mode-indent-offset)
+    ((protobuf-ts-mode) "proto" protobuf-ts-indent-offset protobuf-ts-mode-indent-offset)
+    ((java-ts-mode) "java" java-ts-indent-offset java-ts-mode-indent-offset)
     ((java-mode) "java" c-basic-offset)
-    ((c-mode cuda-mode opencl-c-mode) "c" c-basic-offset)
+    ((c-mode cuda-mode opencl-c-mode protobuf-mode) "c" c-basic-offset)
     ((c++-mode) "cpp" c-basic-offset)
     ((json-mode) "json" c-basic-offset)
-    ((json-ts-mode) "json" json-ts-indent-offset)
+    ((json-ts-mode) "json" json-ts-indent-offset json-ts-mode-indent-offset)
     ((verilog-mode) "v" verilog-indent-level)
-    ((verilog-ts-mode) "v" verilog-ts-indent-level)))
+    ((verilog-ts-mode) "v" verilog-ts-indent-level verilog-ts-mode-indent-level)))
 
 (defun +clang-format-dump-config (&optional extension)
   "Dump config for the current buffer assuming a file with EXTENSION."
@@ -1097,7 +1098,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                  (when-let* (((version<= "14" (+clang-format-get-version)))
                              (file (+clang-format-config-file)))
                    (concat ":" (shell-quote-argument file))))
-              (let ((indent-sym (cadr lang)))
+              (let ((indent-sym (cl-find-if #'boundp (cdr lang))))
                 (format "{IndentWidth: %d, TabWidth: %d}"
                         (or (and indent-sym (symbol-value indent-sym)) standard-indent)
                         (or (and indent-sym (symbol-value indent-sym)) tab-width)))))))
