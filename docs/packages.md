@@ -83,7 +83,6 @@
 * `bitbake`: A set of Emacs modes for various Yocto/Bitbake file formats
 
 ## `me-experimental`
-* `lspce`: LSP Client for Emacs implemented as a module using Rust
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -260,6 +259,9 @@
 
 ## `on-demand/me-bazel`
 
+## `on-demand/me-bc`
+* `bc-mode`: BC code editing commands for Emacs
+
 ## `on-demand/me-bqn`
 * `bqn-mode`: Major mode for editing BQN grammar files
 
@@ -291,6 +293,9 @@
 * `sly-asdf`: ASDF system support for SLY
 * `sly-repl-ansi-color`: Add ANSI colors support to the `sly-mrepl`
 * `sly-macrostep`: Fancy macro-expansion via `macrostep`
+
+## `on-demand/me-cpio`
+* `cpio-mode`: Handle cpio archives in the style of dired
 
 ## `on-demand/me-cron`
 * `crontab-mode`: Major mode for crontab
@@ -507,9 +512,6 @@
 
 ## `on-demand/me-meson`
 
-## `on-demand/me-mode-framework`
-* `robot-mode`: Major mode for Robot Framework files
-
 ## `on-demand/me-modelica`
 * `modelica-mode`: Major mode for editing Modelica files
 
@@ -585,6 +587,9 @@
 * `qml-mode`: Major mode for editing QT Declarative (QML) code
 * `qml-ts-mode`: Tree-sitter based major mode for editing QT Declarative (QML) code
 * `qt-pro-mode`: Major mode for Qt's Pro/Pri files
+
+## `on-demand/me-robot-framework`
+* `robot-mode`: Major mode for Robot Framework files
 
 ## `on-demand/me-rtf`
 * `rtf-view`: View Rich Text Format (.rtf) files
