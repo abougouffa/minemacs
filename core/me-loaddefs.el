@@ -76,6 +76,11 @@
 (minemacs-register-on-demand-module 'me-bazel :auto-mode '(("/\\(?:\\(?:bazel\\)?\\.bazelrc\\)\\'" . bazelrc-mode) ("/Android\\.bp\\'" . bazel-build-mode) ("/\\(?:BUILD\\(?:\\.bazel\\)?\\)\\'" . bazel-build-mode) ("/MODULE\\.bazel\\'" . bazel-module-mode) ("/.+\\.bzl\\'" . bazel-starlark-mode) ("/\\.bazelignore\\'" . bazelignore-mode) ("/\\.bazeliskrc\\'" . bazeliskrc-mode) ("/\\(?:WORKSPACE\\(?:\\.b\\(?:azel\\|zlmod\\)\\)?\\)\\'" . bazel-workspace-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-bc.el
+
+(minemacs-register-on-demand-module 'me-bc :auto-mode '((".bc\\'" . bc-mode)) :interpreter-mode '(("bc" . bc-mode)))
+
+
 ;;; Generated autoloads from ../modules/extras/me-bitbake.el
 
 (autoload '+bitbake-poky-sources "../modules/extras/me-bitbake"
