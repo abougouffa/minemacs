@@ -2,6 +2,47 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.26.0](https://github.com/abougouffa/minemacs/compare/d6fbb83f8b935d5bb550bf1b20daecc123419eb6..v13.26.0) - 2026-04-02
+#### Tweaks
+- (**builtin**) use DWIM commands for M-l, M-u and M-c - ([8fb4129](https://github.com/abougouffa/minemacs/commit/8fb4129e987f4f25aed758ffc9c6bc2fddd2be6f)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) remove memoization, Emacs 31 have native caching - ([8a6eca8](https://github.com/abougouffa/minemacs/commit/8a6eca88005e1583662068ed41aab6541af79050)) - [@abougouffa](https://github.com/abougouffa)
+- (**symbol-overlay**) fancier face for symbol overlays - ([73b5b93](https://github.com/abougouffa/minemacs/commit/73b5b937bbb4d4b584ec9fdd136ff7116cc0e9fe)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([0c03f15](https://github.com/abougouffa/minemacs/commit/0c03f15b312e644ab66dbd755df17544fbb46faf)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5343cc9](https://github.com/abougouffa/minemacs/commit/5343cc96ea7d2b02e78b8023f7ef395ec91a4a00)) - [@abougouffa](https://github.com/abougouffa)
+- more robust `+fetch-json-from-url` - ([021e11e](https://github.com/abougouffa/minemacs/commit/021e11ed32e56996b46492f87928376fd7ba71ad)) - [@abougouffa](https://github.com/abougouffa)
+- make the `--force` arg in `+apply-patch-dwim` configurable - ([95c6cab](https://github.com/abougouffa/minemacs/commit/95c6cab3cfb4fc2faaa17b68f0dab86fef2a77a2)) - [@abougouffa](https://github.com/abougouffa)
+- replace obsolete `interactive-p` calls - ([4326957](https://github.com/abougouffa/minemacs/commit/4326957a3b75696aef9494b9d35a8fdd4b908c9a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([58c9aa0](https://github.com/abougouffa/minemacs/commit/58c9aa02be7765ce60cb7f84178d2b7460b217bc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e166048](https://github.com/abougouffa/minemacs/commit/e166048ad5af215bfb3465e0e849a77ceffc36a5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4809340](https://github.com/abougouffa/minemacs/commit/480934081c1426ef77f54f44376a01a2d14f62a6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([92688c3](https://github.com/abougouffa/minemacs/commit/92688c3df005553b09aee2aaab295aad1b22c6a0)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([9ddd969](https://github.com/abougouffa/minemacs/commit/9ddd969342df4588bf03f14d693fa1f247690383)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**experimental**) make `lspce` obsolete - ([3d24aa9](https://github.com/abougouffa/minemacs/commit/3d24aa908cb4581982d841c35e2068ec9197987d)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for BC - ([7fe706c](https://github.com/abougouffa/minemacs/commit/7fe706cabab5869c01df6bdb96426c9f922bf423)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for CPIO archives - ([34ac5af](https://github.com/abougouffa/minemacs/commit/34ac5af6be59bc751469b0c9bc3318fdf7669e7c)) - [@abougouffa](https://github.com/abougouffa)
+- add Windows support in `+open-with` - ([3fc3f51](https://github.com/abougouffa/minemacs/commit/3fc3f51dbbdc193a7c38b481373724c8c7051f35)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**cc-mode**) fix the mode extension regexp - ([ad42752](https://github.com/abougouffa/minemacs/commit/ad42752a7b9cf0765162ef733b4aab0a2fcb310d)) - [@abougouffa](https://github.com/abougouffa)
+- (**dired**) OS aware listing switches - ([749227d](https://github.com/abougouffa/minemacs/commit/749227d46fff5fb0d5cedac0064c87e22a2bafac)) - [@abougouffa](https://github.com/abougouffa)
+- (**early-init**) decouple the `use-package` advice from the one in `me-bootstrap` - ([ca1f835](https://github.com/abougouffa/minemacs/commit/ca1f8356e731619bf42546f02572b3a56410dba4)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) rename module - ([d6fbb83](https://github.com/abougouffa/minemacs/commit/d6fbb83f8b935d5bb550bf1b20daecc123419eb6)) - [@abougouffa](https://github.com/abougouffa)
+- typo in Apple Color Emoji font definition - ([1190799](https://github.com/abougouffa/minemacs/commit/1190799ee863cc74b1d6e206664845201adc2128)) - [@abougouffa](https://github.com/abougouffa)
+- safe shell quoting in `minemacs-bump-packages-async` - ([80d40d1](https://github.com/abougouffa/minemacs/commit/80d40d18537f41b6731171fa568f375eb130f9fe)) - [@abougouffa](https://github.com/abougouffa)
+- minor logic fix in `+forward-to-last-non-comment-or-eol` - ([48e6af0](https://github.com/abougouffa/minemacs/commit/48e6af002c1ed67793140b2ce38d28ed6eb67ce8)) - [@abougouffa](https://github.com/abougouffa)
+- fix the implementation of on-demand `:magic-fallback-mode` - ([612918e](https://github.com/abougouffa/minemacs/commit/612918e718d30880eade544750c11fb8c8e31bff)) - [@abougouffa](https://github.com/abougouffa)
+- robust integration of the new treesit offsets - ([0f9d511](https://github.com/abougouffa/minemacs/commit/0f9d51170a96e01da2f0270477256ce5895ccc30)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**on-demand/bazel**) add a comment - ([0dfc096](https://github.com/abougouffa/minemacs/commit/0dfc0961327cc28041fe8c7229eb76b07c0ff87a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([f04b1bf](https://github.com/abougouffa/minemacs/commit/f04b1bf33795a3d45cb6d9a288b37bf0adcc337f)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate documentation - ([3640837](https://github.com/abougouffa/minemacs/commit/3640837d76647206cb1783343df4896e9cdc5ce2)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- simplify and robustify lazy forms handling - ([f9d178c](https://github.com/abougouffa/minemacs/commit/f9d178cf543c342373613cedc0c10094449941c0)) - [@abougouffa](https://github.com/abougouffa)
+- remove dead code in `minemacs-set-enabled-proxies` - ([fddae68](https://github.com/abougouffa/minemacs/commit/fddae68da522d2fe5b51500895b56858a236cee4)) - [@abougouffa](https://github.com/abougouffa)
+- make use of `prin1-to-string` - ([3072e14](https://github.com/abougouffa/minemacs/commit/3072e14e456a13966cc5c93099e5fdc9ed1d3328)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.25.0](https://github.com/abougouffa/minemacs/compare/ccc0fc2fd4b686524764e2828fe3042ded8c709e..v13.25.0) - 2026-03-29
 #### Tweaks
 - (**dumb-jump**) add search paths for Python's projects using poetry - ([f218cbd](https://github.com/abougouffa/minemacs/commit/f218cbd660e38f443103c9c992ead36bdb230eae)) - [@abougouffa](https://github.com/abougouffa)
