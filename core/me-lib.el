@@ -871,7 +871,7 @@ file dont exist."
      (:family "Symbol" :prepend t))
     :emoji
     ((:family "Noto Color Emoji" :prepend t)
-     (:family "Apple Color Emoji" :prepent t)
+     (:family "Apple Color Emoji" :prepend t)
      (:family "Segoe UI Emoji" :prepend t)
      (:family "Quivira" :prepend t))
     ;; Arabic script
