@@ -487,7 +487,7 @@ The mode's hook is called both when the mode is enabled and when it is
 disabled.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -1240,7 +1240,7 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from minemacs-loaded.el
 
-(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-"))
+(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-high-priority-timer"))
 
 
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
