@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-02-02
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -149,7 +149,9 @@
   "Like `minemacs-bump-packages', but runs asynchronously."
   (interactive)
   (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
-    (compile (concat (car command-line-args) " --batch --eval='(minemacs-bump-packages)' --script " user-init-file))))
+    (compile (concat (shell-quote-argument (car command-line-args))
+                     " --batch --eval='(minemacs-bump-packages)' --script "
+                     (shell-quote-argument user-init-file)))))
 
 (defun minemacs-upgrade (pull)
   "Upgrade the packages list to the locked revisions.
