@@ -815,7 +815,7 @@ This is the opposite of `+backward-to-bol-or-indent'."
              (goto-char (or minemacs--last-forward-pt eot))
              (setq minemacs--last-forward-pt nil))
             ((>= pt eot)
-             (setq minemacs--last-backward-pt pt)
+             (setq minemacs--last-forward-pt pt)
              (goto-char eol))))))
 
 ;; Inspired by Doom Emacs
