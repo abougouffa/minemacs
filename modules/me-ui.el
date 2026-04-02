@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-02-06
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -30,7 +30,7 @@
   (with-eval-after-load 'org
     (doom-themes-org-config))
   ;; Enable blinking modeline on errors (`visible-bell')
-  (+with-delayed-1! (doom-themes-visual-bell-config))
+  (+with-delayed! (doom-themes-visual-bell-config))
 
   ;; BUG: Fix face-inheritance cycle doomemacs/themes#875
   (setcdr (assoc 'gnus-group-news-low-empty doom-themes-base-faces) '(:inherit 'gnus-group-mail-1-empty :weight 'normal)))

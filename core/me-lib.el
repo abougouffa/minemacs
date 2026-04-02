@@ -19,18 +19,14 @@
 
 
 
-(defvar minemacs--lazy-low-priority-forms nil)
-(defvar minemacs--lazy-high-priority-forms nil)
+(defvar minemacs--deferred-forms nil)
 
 (defmacro +with-delayed! (&rest body)
   "Delay evaluating BODY with priority 0 (high priority)."
   (declare (indent 0))
-  `(push ',(macroexp-progn body) minemacs--lazy-high-priority-forms))
+  `(push ',(macroexp-progn body) minemacs--deferred-forms))
 
-(defmacro +with-delayed-1! (&rest body)
-  "Delay evaluating BODY with priority 1."
-  (declare (indent 0))
-  `(push ',(macroexp-progn body) minemacs--lazy-low-priority-forms))
+(define-obsolete-function-alias '+with-delayed-1! '+with-delayed! "13.25.0")
 
 
 

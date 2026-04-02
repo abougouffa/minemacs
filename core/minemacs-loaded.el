@@ -1,10 +1,10 @@
 ;; minemacs-loaded.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-25
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -15,7 +15,8 @@
   (setq minemacs-after-startup-hook (reverse minemacs-after-startup-hook))
   (+log! "Running %d `minemacs-after-startup-hook' hooks."
          (length minemacs-after-startup-hook))
-  (run-hooks 'minemacs-after-startup-hook))
+  (with-demoted-errors "[MinEmacs:AfterStartupLoadError] %s"
+    (run-hooks 'minemacs-after-startup-hook)))
 
 (+log! "Providing `minemacs-loaded'.")
 
@@ -25,29 +26,24 @@
   (if minemacs-not-lazy-p
       (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
-        (run-hooks 'minemacs-lazy-hook)
+        (with-demoted-errors "[MinEmacs:LazyLoadError] %s"
+          (run-hooks 'minemacs-lazy-hook))
         (provide 'minemacs-lazy))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
     (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook)
-               minemacs--lazy-high-priority-forms
+               minemacs--deferred-forms
       '((provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
 
 (defvar minemacs--lazy-high-priority-timer
   (run-with-timer
    0.1 0.001
    (lambda ()
-     (if minemacs--lazy-high-priority-forms
-         (let ((inhibit-message (not minemacs-verbose-p)))
-           (eval (pop minemacs--lazy-high-priority-forms)))
+     (if minemacs--deferred-forms
+         (let ((inhibit-message (not minemacs-verbose-p))
+               (form (pop minemacs--deferred-forms)))
+           (with-demoted-errors "[MinEmacs:DeferredLoadError] %s"
+             (eval form)))
        (cancel-timer minemacs--lazy-high-priority-timer)))))
 
-(defvar minemacs--lazy-low-priority-timer
-  (run-with-timer
-   0.3 0.001
-   (lambda ()
-     (if minemacs--lazy-low-priority-forms
-         (let ((inhibit-message (not minemacs-verbose-p)))
-           (eval (pop minemacs--lazy-low-priority-forms)))
-       (cancel-timer minemacs--lazy-low-priority-timer)))))
 
 ;;; minemacs-loaded.el ends here
