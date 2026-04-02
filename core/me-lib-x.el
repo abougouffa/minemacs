@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-03-31
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -180,7 +180,7 @@ With a prefix, always prompt for command to use."
                       (re-search-forward "^>>>>>>> \\(.*\\)\n" nil t))))
 
 (defvar +apply-patch-dwim-proj-dir nil)
-(defvar +apply-patch-dwim-extra-options '("--ignore-whitespace"))
+(defvar +apply-patch-dwim-extra-options '("--force" "--ignore-whitespace")) ; TODO: "--silent" instead of "--force" might be interesting!
 (autoload 'diff-hunk-next "diff-mode")
 (autoload 'diff-hunk-file-names "diff-mode")
 
@@ -261,8 +261,7 @@ When a region is active, propose to use it as the patch buffer."
                   (make-process
                    :name (format "patch-%s" (file-name-nondirectory patch-file))
                    :buffer out-buf
-                   ;; TODO: "--silent" instead of "--force" might be interesting!
-                   :command `("patch" "-p1" "--force" ,@+apply-patch-dwim-extra-options "-i" ,patch-file)
+                   :command `("patch" "-p1" ,@+apply-patch-dwim-extra-options "-i" ,patch-file)
                    :sentinel (lambda (proc _event)
                                (unless (process-live-p proc)
                                  (if (zerop (process-exit-status proc))
