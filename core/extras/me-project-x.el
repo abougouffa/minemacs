@@ -1,10 +1,10 @@
 ;;; me-project-x.el --- Extensions for the builtin `project' -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2025-12-02
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -60,8 +60,7 @@
 
 
 
-;;; Find files x3.5 times faster using "fd", with optional caching for x1000
-;;; faster listing
+;;; Find files x3.5 times faster using "fd"
 
 (defcustom +fd-program (if (executable-find "fdfind") "fdfind" "fd")
   "The fd program to use."
@@ -127,7 +126,7 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 
 ;; x3.5 faster than the default
 (defun +project--files-in-directory-faster (orig-fn dir ignores &optional files)
-  "Like `project--files-in-directory', uses \"fd\" with optional caching."
+  "Like `project--files-in-directory', but uses \"fd\" instead of \"find\"."
   (let ((+fd-program (let ((default-directory dir)
                            (remote (and (file-remote-p dir) t)))
                        (and (or (not remote) +project-use-fd-on-remote)
@@ -139,12 +138,6 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 (advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
 
 
-
-;;; Memoization
-
-(+memoize-function project--value-in-dir)
-(+memoize-function project--files-in-directory)
-(+memoize-function project-current project-current-directory-override default-directory)
 
 ;;; Fixes
 
