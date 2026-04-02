@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-02-03
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -99,12 +99,12 @@
 
 ;; HACK: This advice around `use-package' checks if a package is disabled in
 ;; `minemacs-disabled-packages' before calling `use-package'.
-(defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+(defun +use-package--check-if-disabled-1:around-a (origfn package &rest args)
   (unless (+package-disabled-p package)
     (add-to-list 'minemacs-configured-packages package t)
     (apply origfn package args)))
 
-(advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
+(advice-add 'use-package :around '+use-package--check-if-disabled-1:around-a)
 
 (defcustom +use-package-keep-checking-for-disabled-p nil
   "If you want to keep the advice that skip disabled packages.

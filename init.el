@@ -1,10 +1,10 @@
 ;; init.el --- MinEmacs core initialization file -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-06-15
+;; Last modified: 2026-04-02
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -125,6 +125,7 @@
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
 (unless +use-package-keep-checking-for-disabled-p
+  (advice-remove 'use-package '+use-package--check-if-disabled-1:around-a)
   (advice-remove 'use-package '+use-package--check-if-disabled:around-a))
 
 (+load-user-configs 'config 'local/config) ; Load user configuration
