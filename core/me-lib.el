@@ -474,7 +474,7 @@ Emacs-specific early exit in \".bashrc\"."
         (when-let* ((path (alist-get "PATH" env-vars nil nil #'string=)))
           (insert "\n;; Adding PATH content to `exec-path'\n"
                   (format "(setq exec-path (delete-dups (append exec-path '%s)))\n\n"
-                          (mapcar (apply-partially #'format "\"%s\"") (parse-colon-path path)))))
+                          (mapcar #'prin1-to-string (parse-colon-path path)))))
         ;; Save the environment variables to `process-environment' using `setenv'
         (insert ";; Adding the rest of the environment variables\n")
         (dolist (env-var env-vars)
