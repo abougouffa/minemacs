@@ -258,6 +258,7 @@
 * `ballerina-mode`: A major mode for editing ballerina source code
 
 ## `on-demand/me-bazel`
+* `bazel`: Bazel support for Emacs
 
 ## `on-demand/me-bc`
 * `bc-mode`: BC code editing commands for Emacs

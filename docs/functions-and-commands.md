@@ -285,10 +285,6 @@ module) should be applied. See `+mu4e-msg-gmail-p` and
 
 Delay evaluating BODY with priority 0 (high priority).
 
-#### `(+with-delayed-1! &rest BODY)` (macro)
-
-Delay evaluating BODY with priority 1.
-
 #### `(+varplist-get VPLIST KEYWORD &optional CAR-P)`
 
 Get KEYWORD's value from variable value length VPLIST.
@@ -455,16 +451,6 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
-
-#### `(+memoize-function FUNC &rest HASH-SEXPS)` (macro)
-
-Advice FUNC to cache its return value.
-When HASH-SEXPS are provided, append them the FUNC args and evaluate
-them to construct the hashing key.
-
-#### `(+memoization-clear-cache ALL)`
-
-Clear memoization caches, when ALL is provided, clean all caches.
 
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
