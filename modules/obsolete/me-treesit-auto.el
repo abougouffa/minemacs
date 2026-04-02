@@ -1,10 +1,10 @@
 ;;; me-treesit-auto.el --- Description -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-07-16
-;; Last modified: 2025-07-28
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -71,7 +71,7 @@
     "Create `treesit' in BUFF-NAME, even if the mode isn't a ts-mode."
     (interactive (list (when current-prefix-arg (get-buffer (read-buffer "Create treesit parser in buffer: ")))))
     (let ((buffer (or buffer (current-buffer)))
-          (interact-p (interactive-p)))
+          (interact-p (called-interactively-p 'interactive)))
       (if (treesit-available-p)
           (when (or (not (derived-mode-p +treesit-auto-create-parser-modes-deny))
                     (and interact-p (y-or-n-p "Creating parsers for `%S' is blacklisted in `+treesit-auto-create-parser-modes-deny', continue?")))

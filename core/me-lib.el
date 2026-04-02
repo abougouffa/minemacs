@@ -429,7 +429,7 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
             old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
-      (minemacs-run-build-functions (not (interactive-p))))))
+      (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
 
 
 
