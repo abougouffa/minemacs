@@ -37,8 +37,10 @@
    0.1 0.001
    (lambda ()
      (if minemacs--lazy-high-priority-forms
-         (let ((inhibit-message (not minemacs-verbose-p)))
-           (eval (pop minemacs--lazy-high-priority-forms)))
+         (let ((inhibit-message (not minemacs-verbose-p))
+               (form (pop minemacs--lazy-high-priority-forms)))
+           (with-demoted-errors "[MinEmacs:LazyLoadError] %s"
+             (eval form)))
        (cancel-timer minemacs--lazy-high-priority-timer)))))
 
 (defvar minemacs--lazy-low-priority-timer
@@ -46,8 +48,10 @@
    0.3 0.001
    (lambda ()
      (if minemacs--lazy-low-priority-forms
-         (let ((inhibit-message (not minemacs-verbose-p)))
-           (eval (pop minemacs--lazy-low-priority-forms)))
+         (let ((inhibit-message (not minemacs-verbose-p))
+               (form (pop minemacs--lazy-low-priority-forms)))
+           (with-demoted-errors "[MinEmacs:LazyLoadError] %s"
+             (eval form)))
        (cancel-timer minemacs--lazy-low-priority-timer)))))
 
 ;;; minemacs-loaded.el ends here
