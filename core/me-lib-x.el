@@ -162,6 +162,7 @@ With a prefix, always prompt for command to use."
   (let* ((file (+tramp--convert-sshfs-filename-local file))
          (open (pcase system-type
                  ('darwin "open")
+                 ('windows-nt "start")
                  ((or 'gnu 'gnu/linux 'gnu/kfreebsd) "xdg-open")))
          (program (if (or current-prefix-arg (not open))
                       (read-shell-command "Open current file with: ")
