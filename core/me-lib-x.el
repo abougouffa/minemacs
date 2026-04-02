@@ -983,9 +983,15 @@ the children of class at point."
 
 (defun +fetch-json-from-url (url)
   "Get an Emacs JSON object from a specified URL."
-  (with-current-buffer (url-retrieve-synchronously url)
-    (goto-char url-http-end-of-headers)
-    (prog1 (json-read) (kill-buffer (current-buffer)))))
+  (condition-case err
+      (with-current-buffer (url-retrieve-synchronously url nil nil 10)
+        (unwind-protect
+            (progn
+              (goto-char url-http-end-of-headers)
+              (json-read))
+          (kill-buffer (current-buffer))))
+    (error (+error! "Failed to fetch %s: %s" url (error-message-string err))
+           nil)))
 
 (declare-function string-remove-prefix "subr-x")
 
