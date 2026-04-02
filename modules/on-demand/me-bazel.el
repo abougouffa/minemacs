@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-04
-;; Last modified: 2026-01-13
+;; Last modified: 2026-04-03
 
 ;;; Commentary:
 
@@ -22,6 +22,7 @@
                ("/\\(?:WORKSPACE\\(?:\\.b\\(?:azel\\|zlmod\\)\\)?\\)\\'" . bazel-workspace-mode)))
 
 
+;; Bazel support for Emacs
 (use-package bazel
   :straight t
   :mode ("/Android\\.bp\\'" . bazel-mode))
