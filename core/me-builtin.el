@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-03-29
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -278,7 +278,10 @@
   (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
-  (dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso")
+  (dired-listing-switches
+   (if (or (featurep 'os/mac) (featurep 'os/bsd))
+       "-AGFhlv"
+     "-AGFhlv --group-directories-first --time-style=long-iso")) ; GNU coreutils
   (dired-auto-revert-buffer t)
   (dired-movement-style 'cycle)
   (dired-recursive-copies 'always)
