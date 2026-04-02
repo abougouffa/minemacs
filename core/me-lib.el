@@ -1094,7 +1094,7 @@ To be used as a predicate generator for `display-buffer-alist'."
       (when magic-mode
         (setq plist (append plist `(:magic-mode ,(ensure-list magic-mode)))))
       (when magic-fallback-mode
-        (setq plist (append plist `(:magic-fallback-mode ,(ensure-list magic-mode)))))
+        (setq plist (append plist `(:magic-fallback-mode ,(ensure-list magic-fallback-mode)))))
       (when interpreter-mode
         (setq plist (append plist `(:interpreter-mode ,(ensure-list interpreter-mode)))))
       (when companion-packages
