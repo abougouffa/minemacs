@@ -755,7 +755,7 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
    for prox in proxies
    do (cl-loop
        for fn in '(upcase downcase)
-       do (cons (funcall fn (car prox)) (setenv (funcall fn (format "%s_proxy" (car prox))) (cdr prox))))))
+       do (setenv (funcall fn (format "%s_proxy" (car prox))) (cdr prox)))))
 
 (defun minemacs-enable-proxy (proxies)
   "Set *_proxy Linux environment variables from PROXIES."
