@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-02-11
+;; Last modified: 2026-04-02
 
 ;;; Commentary:
 
@@ -118,8 +118,9 @@
     (when (display-graphic-p)
       (satch-remove-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
       (with-eval-after-load 'symbol-overlay
-        (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background)))
-          (set-face-background 'symbol-overlay-default-face bg)))))
+        (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background))
+                    (fg (face-background 'symbol-overlay-default-face)))
+          (set-face-attribute 'symbol-overlay-default-face nil :background bg :box `(:line-width (-1 . -1) :color ,fg))))))
   :config
   (with-eval-after-load 'multiple-cursors
     ;; https://lmno.lol/alvaro/its-all-up-for-grabs-and-it-compounds
