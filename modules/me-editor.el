@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-03
 
 ;;; Commentary:
 
@@ -308,6 +308,12 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   (defun +xclip--enable-in-tty-h ()
     (let ((inhibit-message t))
       (with-demoted-errors "%s" (xclip-mode 1)))))
+
+
+;; An all-in-one comment command to rule them all
+(use-package comment-dwim-2
+  :straight t
+  :bind (([remap comment-dwim] . comment-dwim-2)))
 
 
 (provide 'me-editor)
