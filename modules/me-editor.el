@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-05
+;; Last modified: 2026-04-07
 
 ;;; Commentary:
 
@@ -119,7 +119,7 @@
       (satch-remove-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
       (with-eval-after-load 'symbol-overlay
         (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background))
-                    (fg (face-background 'symbol-overlay-default-face nil t)))
+                    (fg (+color-subtle 'symbol-overlay-default-face 20 :background 'opposite)))
           (set-face-attribute 'symbol-overlay-default-face nil :background bg :box `(:line-width (-1 . -1) :color ,fg))))))
   :config
   (with-eval-after-load 'multiple-cursors
@@ -272,10 +272,9 @@ In some dirty files, there is a mix of spaces and tabs. This uses
      (with-eval-after-load 'selection-highlight-mode
        (with-eval-after-load 'isearch
          (when (display-graphic-p)
-           (when-let* ((fg (face-background 'isearch nil t))
-                       (new-color (+color-subtle 'isearch 20)))
-             (set-face-attribute 'selection-highlight-mode-match-face nil :background new-color :box `(:line-width (-1 . -1) :color ,fg))
-             (set-face-attribute 'selection-highlight-mode-alternate-match-face nil :background new-color :box `(:line-width (-1 . -1) :color ,fg)))))))))
+           (when-let* ((new-color (+color-subtle 'isearch 20)))
+             (set-face-attribute 'selection-highlight-mode-match-face nil :background new-color)
+             (set-face-attribute 'selection-highlight-mode-alternate-match-face nil :background new-color))))))))
 
 
 ;; Your friendly neighborhood expand-region clone

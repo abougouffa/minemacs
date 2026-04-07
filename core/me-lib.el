@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-07
 
 ;;; Commentary:
 
@@ -1026,7 +1026,7 @@ When RESET is non-nil, restore the original font size."
 (autoload 'color-darken-name "color")
 (autoload 'color-lighten-name "color")
 
-(defun +color-subtle (base-color percentage &optional face-attr)
+(defun +color-subtle (base-color percentage &optional face-attr bg-mode)
   "Make a more subtle color based on BASE-COLOR and PERCENTAGE.
 
 We mean by subtle here, a darker color in dark themes and a lighter
@@ -1034,12 +1034,20 @@ color in light themes.
 
 BASE-COLOR can be a color (string) or a face.
 When it is a face, the FACE-ATTR needs to be provided, otherwise, the
-:background attribute will be used."
-  (let ((base-color (if (facep base-color)
-                        (face-attribute base-color (or face-attr :background) nil t)
-                      base-color)))
+:background attribute will be used.
+
+If BG-MODE is provided, it should be symbol `light' or `dark' or
+`opposite', otherwise, it will be deduced from the frame's
+background-mode parameter."
+  (let* ((base-color (if (facep base-color)
+                         (face-attribute base-color (or face-attr :background) nil t)
+                       base-color))
+         (frame-bg-mode (frame-parameter nil 'background-mode))
+         (bg-mode (if (eq bg-mode 'opposite)
+                      (if (eq 'light frame-bg-mode) 'dark 'light)
+                    (or bg-mode frame-bg-mode))))
     (when (color-defined-p base-color)
-      (funcall (if (eq 'light (frame-parameter nil 'background-mode)) #'color-lighten-name #'color-darken-name)
+      (funcall (if (eq 'light bg-mode) #'color-lighten-name #'color-darken-name)
                base-color percentage))))
 
 (defun +nerd-icons-icon (name &rest args)
