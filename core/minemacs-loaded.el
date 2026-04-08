@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-08
 
 ;;; Commentary:
 
@@ -15,35 +15,39 @@
   (setq minemacs-after-startup-hook (reverse minemacs-after-startup-hook))
   (+log! "Running %d `minemacs-after-startup-hook' hooks."
          (length minemacs-after-startup-hook))
-  (with-demoted-errors "[MinEmacs:AfterStartupLoadError] %s"
-    (run-hooks 'minemacs-after-startup-hook)))
+  (dolist (hook minemacs-after-startup-hook)
+    (condition-case err
+        (run-hooks hook)
+      (error (+msg! "AfterStartupLoadError" "In %s: %S" hook err)))))
 
 (+log! "Providing `minemacs-loaded'.")
-
 (provide 'minemacs-loaded)
 
 (when minemacs-lazy-hook
   (if minemacs-not-lazy-p
       (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
-        (with-demoted-errors "[MinEmacs:LazyLoadError] %s"
-          (run-hooks 'minemacs-lazy-hook))
+        (dolist (hook minemacs-lazy-hook)
+          (condition-case err
+              (run-hooks hook)
+            (error (+msg! "ImmediateLoadError" "In %s: %S" hook err))))
         (provide 'minemacs-lazy))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
     (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook)
                minemacs--deferred-forms
       '((provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
 
-(defvar minemacs--lazy-high-priority-timer
+(defvar minemacs--lazy-timer
   (run-with-timer
    0.1 0.001
    (lambda ()
      (if minemacs--deferred-forms
          (let ((inhibit-message (not minemacs-verbose-p))
                (form (pop minemacs--deferred-forms)))
-           (with-demoted-errors "[MinEmacs:DeferredLoadError] %s"
-             (eval form)))
-       (cancel-timer minemacs--lazy-high-priority-timer)))))
+           (condition-case err
+               (eval form)
+             (error (+msg! "DeferredLoadError" "In %s: %S" form err))))
+       (cancel-timer minemacs--lazy-timer)))))
 
 
 ;;; minemacs-loaded.el ends here

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-07
+;; Last modified: 2026-04-08
 
 ;;; Commentary:
 
@@ -95,6 +95,11 @@ If INDEX is 0, ELEMENT is inserted before the first element."
 
 
 ;;; Minemacs' core functions and macros
+
+(defmacro +msg! (level msg &rest vars)
+  "Log error MSG with LEVEL and VARS using `message'."
+  `(let ((inhibit-message t))
+     (apply #'message (list (format "[MinEmacs:%s] %s" ,level ,msg) ,@vars))))
 
 (defmacro +error! (msg &rest vars)
   "Log error MSG and VARS using `message'."
