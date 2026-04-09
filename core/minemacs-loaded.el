@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-04-08
+;; Last modified: 2026-04-09
 
 ;;; Commentary:
 
@@ -15,10 +15,9 @@
   (setq minemacs-after-startup-hook (reverse minemacs-after-startup-hook))
   (+log! "Running %d `minemacs-after-startup-hook' hooks."
          (length minemacs-after-startup-hook))
-  (dolist (hook minemacs-after-startup-hook)
-    (condition-case err
-        (run-hooks hook)
-      (error (+msg! "AfterStartupLoadError" "In %s: %S" hook err)))))
+  (condition-case err
+      (run-hooks 'minemacs-after-startup-hook)
+    (error (+msg! "AfterStartupLoadError" "%S" err))))
 
 (+log! "Providing `minemacs-loaded'.")
 (provide 'minemacs-loaded)
@@ -27,10 +26,9 @@
   (if minemacs-not-lazy-p
       (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
         (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
-        (dolist (hook minemacs-lazy-hook)
-          (condition-case err
-              (run-hooks hook)
-            (error (+msg! "ImmediateLoadError" "In %s: %S" hook err))))
+        (condition-case err
+            (run-hooks 'minemacs-lazy-hook)
+          (error (+msg! "ImmediateLoadError" "%S" err)))
         (provide 'minemacs-lazy))
     (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
     (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook)
