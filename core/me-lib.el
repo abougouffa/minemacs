@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-08
+;; Last modified: 2026-04-11
 
 ;;; Commentary:
 
@@ -703,7 +703,10 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
 (defun +project-super-project-try (dir)
   "Find super-project root starting from DIR."
   (when-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
-    (cons 'transient root)))
+    ;; Avoid returing the user's home directory if a marker is found at home
+    (unless (equal (file-name-as-directory (expand-file-name root))
+                   (file-name-as-directory (expand-file-name "~")))
+      (cons 'transient root))))
 
 (defun +super-project-current (&optional dir)
   "Return the current super-project instance in DIR."
