@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.27.0](https://github.com/abougouffa/minemacs/compare/1ff083e9d522f3db3c62b6acfb3490d511e3f00e..v13.27.0) - 2026-04-11
+#### Tweaks
+- bump packages versions - ([dffea04](https://github.com/abougouffa/minemacs/commit/dffea04b30d40a34afe86512919484cfe8e677a5)) - [@abougouffa](https://github.com/abougouffa)
+- don't return user directory as a super-project root - ([ee8dc92](https://github.com/abougouffa/minemacs/commit/ee8dc92579018c7d07091f2eebc47f36bb860435)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e6331e9](https://github.com/abougouffa/minemacs/commit/e6331e9145661cdbf03736c0c8de3c95d82f3311)) - [@abougouffa](https://github.com/abougouffa)
+- minor faces tweaks - ([55297ed](https://github.com/abougouffa/minemacs/commit/55297ed7c086f39b5227c64079fdf679a582b2d0)) - [@abougouffa](https://github.com/abougouffa)
+- minor faces tweaks - ([ae70dbe](https://github.com/abougouffa/minemacs/commit/ae70dbee49b27c0e5598e59cd067e640005fdb30)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**editor**) add `comment-dwim-2` - ([1ff083e](https://github.com/abougouffa/minemacs/commit/1ff083e9d522f3db3c62b6acfb3490d511e3f00e)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- fix regression in lazy loading - ([e3b7a97](https://github.com/abougouffa/minemacs/commit/e3b7a9771f082eb328fe978d7de9bb7d735f90bb)) - [@abougouffa](https://github.com/abougouffa)
+- more fine and informative logging on loading errors - ([9658f58](https://github.com/abougouffa/minemacs/commit/9658f581b7687744e3c62beb61408d3974a522b5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.26.0](https://github.com/abougouffa/minemacs/compare/d6fbb83f8b935d5bb550bf1b20daecc123419eb6..v13.26.0) - 2026-04-02
 #### Tweaks
 - (**builtin**) use DWIM commands for M-l, M-u and M-c - ([8fb4129](https://github.com/abougouffa/minemacs/commit/8fb4129e987f4f25aed758ffc9c6bc2fddd2be6f)) - [@abougouffa](https://github.com/abougouffa)
