@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-11
+;; Last modified: 2026-04-15
 
 ;;; Commentary:
 
@@ -1244,8 +1244,10 @@ To be used as a predicate generator for `display-buffer-alist'."
   "Load a file, the FILENAME-PARTS are concatenated to form the file name."
   (let ((filename (file-truename (apply #'file-name-concat filename-parts))))
     (if (file-exists-p filename)
-        (with-demoted-errors "[MinEmacs:LoadError] %s"
-          (load filename nil (not minemacs-verbose-p)))
+        (condition-case err
+            (load filename nil (not minemacs-verbose-p))
+          ((debug error)
+           (message "[MinEmacs:LoadError] at %S: %s" (abbreviate-file-name filename) err)))
       (+log! "Cannot load \"%s\", the file doesn't exists." filename))))
 
 
