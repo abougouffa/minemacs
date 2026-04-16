@@ -1,10 +1,10 @@
 ;;; me-restclient.el --- Restclient -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-01
-;; Last modified: 2025-03-21
+;; Last modified: 2026-04-16
 
 ;;; Commentary:
 
@@ -12,11 +12,10 @@
 
 
 (use-package restclient
-  :straight (:host github :repo "pashky/restclient.el" :files ("*.el") :fork (:repo "abougouffa/restclient.el"))
+  :straight t
   :hook (restclient-mode . +prog-mode-run-hooks)
   :mode ("\\.http\\'" . restclient-mode)
   :config
-  (require 'restclient-jq)
   (+setq-hook! restclient-mode
     imenu-generic-expression '((nil "^[A-Z]+\s+.+" 0)))
 
@@ -28,6 +27,11 @@
 certs, rather than reject them silently."
      (require 'gnutls)
      (let (gnutls-verify-error) (apply orig-fn args)))))
+
+(use-package restclient-jq
+  :straight t
+  :after restclient
+  :demand)
 
 (use-package restclient-test
   :straight t)
