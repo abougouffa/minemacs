@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v13.27.1](https://github.com/abougouffa/minemacs/compare/5bffda42e3f0b8d48037fb3b0dcf42b4cfb4a112..v13.27.1) - 2026-04-16
+#### Tweaks
+- (**obsolete/restclient**) use the default (Emacs Mirrors) fork - ([451b695](https://github.com/abougouffa/minemacs/commit/451b69561868ac85b4e5b6e3cdfaecd36e12cb26)) - [@abougouffa](https://github.com/abougouffa)
+- (**real-backup**) show diff - ([5bffda4](https://github.com/abougouffa/minemacs/commit/5bffda42e3f0b8d48037fb3b0dcf42b4cfb4a112)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([810b104](https://github.com/abougouffa/minemacs/commit/810b104ecab18c33b05ab9cc53aadcc5a65efda1)) - [@abougouffa](https://github.com/abougouffa)
+- finer error messages in `+load` - ([615e349](https://github.com/abougouffa/minemacs/commit/615e3494b2b5f7f350e023113ea45a4017ea05ee)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5ec6c83](https://github.com/abougouffa/minemacs/commit/5ec6c830d9f2737f7c70b79e1633a99b16f6005d)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- make documentation - ([3f12027](https://github.com/abougouffa/minemacs/commit/3f12027882fb3aa9d7f226d6d4434d63e4c8318c)) - [@abougouffa](https://github.com/abougouffa)
+- remove obsolete envvar from readme - ([f3873b1](https://github.com/abougouffa/minemacs/commit/f3873b15897bb2925f7a64c5874321fcdc8fecbb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.27.0](https://github.com/abougouffa/minemacs/compare/1ff083e9d522f3db3c62b6acfb3490d511e3f00e..v13.27.0) - 2026-04-11
 #### Tweaks
 - bump packages versions - ([dffea04](https://github.com/abougouffa/minemacs/commit/dffea04b30d40a34afe86512919484cfe8e677a5)) - [@abougouffa](https://github.com/abougouffa)
