@@ -322,6 +322,10 @@ Like `apply-partially`, but apply the ARGS to the right of FUN.
 
 Return a function that calls FUN with arguments in the reversed order.
 
+#### `(+msg! LEVEL MSG &rest VARS)` (macro)
+
+Log error MSG with LEVEL and VARS using `message`.
+
 #### `(+error! MSG &rest VARS)` (macro)
 
 Log error MSG and VARS using `message`.
@@ -606,7 +610,7 @@ When RESET is non-nil, restore the original font size.
 
 Subtle look for the mode-line.
 
-#### `(+color-subtle BASE-COLOR PERCENTAGE &optional FACE-ATTR)`
+#### `(+color-subtle BASE-COLOR PERCENTAGE &optional FACE-ATTR BG-MODE)`
 
 Make a more subtle color based on BASE-COLOR and PERCENTAGE.
 We mean by subtle here, a darker color in dark themes and a lighter
@@ -614,6 +618,9 @@ color in light themes.
 BASE-COLOR can be a color (string) or a face.
 When it is a face, the FACE-ATTR needs to be provided, otherwise, the
 :background attribute will be used.
+If BG-MODE is provided, it should be symbol `light` or `dark` or
+`opposite`, otherwise, it will be deduced from the frame's
+background-mode parameter.
 
 #### `(+nerd-icons-icon NAME &rest ARGS)`
 
