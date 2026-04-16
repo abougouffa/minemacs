@@ -145,8 +145,6 @@ You can customize MinEmacs' behavior via some environment variables.
   messages).
 - `MINEMACS_VERBOSE`: Be more verbose (useful for debugging).
 - `MINEMACS_DEBUG`: Enable debugging at startup (and be verbose).
-- `MINEMACS_ALPHA`: Set frame `background-alpha` to percentage (value from 0 to
-  100).
 - `MINEMACS_NOT_LAZY`: Load lazy packages immediately after loading Emacs.
 - `MINEMACS_ALWAYS_DEMAND`: Load all packages immediately (this works by setting
   `use-package-always-demand` to `t` and `use-package-always-defer` to `nil` (by
