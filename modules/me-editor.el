@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-14
+;; Last modified: 2026-04-19
 
 ;;; Commentary:
 
@@ -297,7 +297,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 ;; Perform a backup on each file save, real backup for Emacs!
 (use-package real-backup
   :straight (:host github :repo "abougouffa/real-backup")
-  :hook (minemacs-first-file . real-backup-mode)
+  :hook (minemacs-first-file . global-real-backup-mode)
   :custom
   (real-backup-preview-show-diff t))
 
