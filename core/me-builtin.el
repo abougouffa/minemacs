@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-20
 
 ;;; Commentary:
 
@@ -203,6 +203,15 @@
         (and (buffer-file-name buffer)
              (eq buffer (window-buffer (selected-window))) ; Only when the buffer is in the current window
              (set-auto-mode)))))
+
+  ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
+  (defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
+    "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+    (concat x-win-dir (file-name-nondirectory session-filename)))
+
+  (let ((x-win-dir (+directory-ensure minemacs-local-dir "x-win/")))
+    (+ignore-root x-win-dir) ; Don't show session files in recentf list and so on
+    (advice-add 'emacs-session-filename :filter-return #'+emacs-session-filename--in-subdir:filter-return-a))
 
   ;; Offer to create parent directories if they do not exist. The arguments are
   ;; made optional so we can use it with both `find-file' and `rename-file'
