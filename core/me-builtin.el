@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-20
+;; Last modified: 2026-04-21
 
 ;;; Commentary:
 
@@ -460,6 +460,7 @@
         (re-search-forward "DEFINITION[[:space:]]*MODULE[[:space:]]*[[:alnum:]_]*[[:space:]]*;" nil t)))))
 
 (use-package conf-mode
+  :mode "/Doxyfile\\'"
   :mode "\\.prop\\'"
   :mode "\\.rc\\'"
   :mode "/\\.style.\\yapf\\'")
