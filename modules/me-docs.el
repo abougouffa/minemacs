@@ -1,10 +1,10 @@
 ;;; me-docs.el --- Documents (PDF, EPUB, DOC...) -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-12-15
+;; Last modified: 2026-04-23
 
 ;;; Commentary:
 
@@ -25,6 +25,7 @@
 ;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
   :straight t
+  :hook (minemacs-build-functions . rfc-mode-update-index)
   :custom
   (rfc-mode-directory (concat minemacs-local-dir "rfc"))
   :init
@@ -52,7 +53,8 @@
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
   :straight t
-  :when (featurep 'feat/libxml2))
+  :when (featurep 'feat/libxml2)
+  :hook (minemacs-build-functions . devdocs-update-all))
 
 
 ;; Offline documentation browser using Dash/Zeal docsets

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-01-31
+;; Last modified: 2026-04-23
 
 ;;; Commentary:
 
@@ -132,6 +132,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 (use-package mason
   :straight t
   :defer 2
+  :hook (minemacs-build-functions . mason-update-registry)
   :config
   (+shutup! :log (mason-ensure)))
 
