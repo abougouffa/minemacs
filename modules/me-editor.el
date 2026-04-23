@@ -77,34 +77,37 @@
   :config
   (keymap-unset mc/keymap "<return>" t) ; default `multiple-cursors-mode', I want to be able to insert newlines at fake cursors!
   ;; Add some extra commands to be run on all cursors
-  (cl-callf append mc--default-cmds-to-run-for-all
-    '(;; Some extra Emacs commands
-      beginning-of-visual-line end-of-visual-line kill-region forward-sexp backward-sexp
-      kill-sexp backward-kill-sexp tab-to-tab-stop indent-for-tab-command comment-line comment-dwim
-      c-electric-backspace c-electric-delete c-electric-delete-forward
-      ;; MinEmacs' commands
-      +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
-      +dtrt-indent-tab-to-tab-stop +forward-to-last-non-comment-or-eol +backward-to-bol-or-indent
-      ;; `avy'
-      avy-goto-char avy-goto-char-timer avy-goto-char-in-line avy-goto-char-2
-      ;; `avy-zap'
-      avy-zap-to-char avy-zap-up-to-char avy-zap-to-char-dwim avy-zap-up-to-char-dwim
-      ;; `crux'
-      crux-smart-kill-line crux-smart-open-line crux-smart-open-line-above
-      ;; `expreg'
-      expreg-expand expreg-contract
-      ;; `consult'
-      consult-yank-pop
-      ;; `yaml-mode'
-      yaml-electric-backspace
-      ;; `org'
-      org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
+  (with-eval-after-load 'multiple-cursors-core
+    (cl-callf append mc--default-cmds-to-run-for-all
+      '(;; Some extra Emacs commands
+        beginning-of-visual-line end-of-visual-line kill-region forward-sexp backward-sexp
+        kill-sexp backward-kill-sexp tab-to-tab-stop indent-for-tab-command comment-line comment-dwim
+        c-electric-backspace c-electric-delete c-electric-delete-forward
+        capitalize-dwim capitalize-word capitalize-region upcase-dwim upcase-word upcase-region
+        downcase-dwim downcase-word downcase-region
+        ;; MinEmacs' commands
+        +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
+        +dtrt-indent-tab-to-tab-stop +forward-to-last-non-comment-or-eol +backward-to-bol-or-indent
+        ;; `avy'
+        avy-goto-char avy-goto-char-timer avy-goto-char-in-line avy-goto-char-2
+        ;; `avy-zap'
+        avy-zap-to-char avy-zap-up-to-char avy-zap-to-char-dwim avy-zap-up-to-char-dwim
+        ;; `crux'
+        crux-smart-kill-line crux-smart-open-line crux-smart-open-line-above crux-downcase-region crux-upcase-region
+        ;; `expreg'
+        expreg-expand expreg-contract
+        ;; `consult'
+        consult-yank-pop
+        ;; `yaml-mode'
+        yaml-electric-backspace
+        ;; `org'
+        org-delete-char org-self-insert-command org-force-self-insert org-return-and-maybe-indent))
 
-  (cl-callf append mc--default-cmds-to-run-once
-    '(;; Some extra Emacs commands
-      pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop tab-next tab-previous
-      ;; `iedit'
-      iedit-switch-to-mc-mode)))
+    (cl-callf append mc--default-cmds-to-run-once
+      '(;; Some extra Emacs commands
+        pixel-scroll-precision beginning-of-buffer end-of-buffer transient-noop tab-next tab-previous
+        ;; `iedit'
+        iedit-switch-to-mc-mode))))
 
 
 ;; Highlight symbols with keymap-enabled overlays
