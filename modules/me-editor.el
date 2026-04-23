@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-19
+;; Last modified: 2026-04-23
 
 ;;; Commentary:
 
@@ -14,25 +14,24 @@
 (use-package vundo
   :straight t
   :bind (:map minemacs-open-thing-map ("u" . vundo))
-  :commands (+vundo-diff-mode)
   :custom
   (vundo-compact-display t)
   (vundo-window-max-height 8)
   (vundo-glyph-alist vundo-unicode-symbols)
   :config
-  (defun +vundo--diff-wrapper (&rest _) (vundo-diff))
-  (defcustom +vundo-diff-commands
+  (defun +vundo--show-diff-wrapper (&rest _) (vundo-diff))
+  (defcustom +vundo-show-diff-commands
     '(vundo-next vundo-forward vundo-stem-root vundo-stem-end vundo-goto-last-saved vundo-goto-next-saved)
     "A list of commands after which `vundo-diff' gets called."
     :group 'minemacs-editor
     :type '(repeat function))
-  (define-minor-mode +vundo-diff-mode
+  (define-minor-mode +vundo-show-diff-mode
     "Automatically show diffs when navigating the undo tree."
     :global t
-    (if +vundo-diff-mode
-        (satch-advice-add +vundo-diff-commands :after #'+vundo--diff-wrapper)
-      (satch-advice-remove +vundo-diff-commands #'+vundo--diff-wrapper)))
-  (+vundo-diff-mode 1))
+    (if +vundo-show-diff-mode
+        (satch-advice-add +vundo-show-diff-commands :after #'+vundo--show-diff-wrapper)
+      (satch-advice-remove +vundo-show-diff-commands #'+vundo--show-diff-wrapper)))
+  (+vundo-show-diff-mode 1))
 
 
 ;; Persistent undo tree between sessions
