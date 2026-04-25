@@ -1,4 +1,0 @@
-# -*- mode: conf; -*-
-
-source = https://github.com/erlang/otp/tree/master/lib/tools/emacs
-updated = 2025-09-04 22:24

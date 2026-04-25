@@ -1,10 +1,10 @@
 ;;; me-erlang.el --- Erlang language -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-06-03
+;; Last modified: 2026-04-25
 
 ;;; Commentary:
 
@@ -15,11 +15,9 @@
   :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
 
 
-(defconst +erlang-path (concat minemacs-on-demand-modules-dir "third-party/erlang/"))
-
 ;; Major modes for editing and running Erlang files
 (use-package erlang
-  :load-path +erlang-path
+  :straight t
   :init
   (require 'erlang-start)) ; This file will define autoloads for the different Erlang commands
 
