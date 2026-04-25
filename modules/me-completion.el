@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-01-16
+;; Last modified: 2026-04-25
 
 ;;; Commentary:
 
@@ -64,8 +64,8 @@
   :hook
   ((eshell-mode shell-mode) . +corfu-less-intrusive-h)
   (minibuffer-setup . +corfu-enable-in-minibuffer-h)
-  (corfu-mode . corfu-history-mode)
-  (corfu-mode . corfu-indexed-mode)
+  (global-corfu-mode . corfu-history-mode)
+  (global-corfu-mode . corfu-indexed-mode)
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
