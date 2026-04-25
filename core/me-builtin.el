@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-21
+;; Last modified: 2026-04-26
 
 ;;; Commentary:
 
@@ -299,7 +299,6 @@
 
 (use-package dired-aux
   :custom
-  (dired-vc-rename-file t)
   (dired-create-destination-dirs 'ask)
   :config
   (cl-callf append dired-compress-files-alist
