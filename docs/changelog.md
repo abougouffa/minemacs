@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.0.0](https://github.com/abougouffa/minemacs/compare/691341b51c31f1fbfd94a1ef364fde9b26d05d1b..v14.0.0) - 2026-04-25
+#### Tweaks
+- (**corfu**) minor tweak - ([4d1730c](https://github.com/abougouffa/minemacs/commit/4d1730c573e466fa0d5cde33f332e890bc3200da)) - [@abougouffa](https://github.com/abougouffa)
+- (**multiple-cursors**) make some commands to run for all cursors - ([6251ab8](https://github.com/abougouffa/minemacs/commit/6251ab824070e34447049d21285b5fe152f1d04d)) - [@abougouffa](https://github.com/abougouffa)
+- (**real-backup**) use the new `global-real-backup-mode` - ([691341b](https://github.com/abougouffa/minemacs/commit/691341b51c31f1fbfd94a1ef364fde9b26d05d1b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([cfaf4f0](https://github.com/abougouffa/minemacs/commit/cfaf4f093275be39a1591834063759cab63599ca)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([af89c32](https://github.com/abougouffa/minemacs/commit/af89c3261182b1ab1069b789b977f431b8e397bb)) - [@abougouffa](https://github.com/abougouffa)
+- register extra commands in `minemacs-build-functions` - ([c377b4e](https://github.com/abougouffa/minemacs/commit/c377b4e036afa71e4fb3e49b9a7cd9c9f946e56f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([598b8b6](https://github.com/abougouffa/minemacs/commit/598b8b6b7a62094e8de7299ad227dc230c2c79a9)) - [@abougouffa](https://github.com/abougouffa)
+- use `conf-mode` for Doxygen's `Doxyfile`s - ([e8a63c5](https://github.com/abougouffa/minemacs/commit/e8a63c5d3e015d82739ee4b3dac24a4044114375)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([640493d](https://github.com/abougouffa/minemacs/commit/640493df798035ef47b10ed785e5b7b76b0b4dab)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([32f2502](https://github.com/abougouffa/minemacs/commit/32f25026546275d82baf255407335ec52351b7a7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- ![BREAKING](https://img.shields.io/badge/BREAKING-red) (**on-demand**) make unused modules obsolete - ([04a0514](https://github.com/abougouffa/minemacs/commit/04a0514755cbaac8d463832b75abc1d3b97f41ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**dired**) dired VC rename is buggy in some cases - ([fc09ceb](https://github.com/abougouffa/minemacs/commit/fc09ceb39ceefd2073929a261d6f8d05e6aba8b7)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- create session.ID files in a sub-directory - ([4b3ee6b](https://github.com/abougouffa/minemacs/commit/4b3ee6baeed51ce7e712b9811f670034f26e83ba)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([2968cfc](https://github.com/abougouffa/minemacs/commit/2968cfcc3f2273841511f71992caead8285b7c47)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**vundo**) rename `+vundo-diff-mode` to `+vundo-show-diff-mode` - ([920c088](https://github.com/abougouffa/minemacs/commit/920c0883662afc2119b67471f375139918204073)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v13.27.1](https://github.com/abougouffa/minemacs/compare/5bffda42e3f0b8d48037fb3b0dcf42b4cfb4a112..v13.27.1) - 2026-04-16
 #### Tweaks
 - (**obsolete/restclient**) use the default (Emacs Mirrors) fork - ([451b695](https://github.com/abougouffa/minemacs/commit/451b69561868ac85b4e5b6e3cdfaecd36e12cb26)) - [@abougouffa](https://github.com/abougouffa)
