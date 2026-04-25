@@ -32,21 +32,6 @@
 (register-definition-prefixes "../modules/extras/me-adb" '("+adb-"))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-agda.el
-
-(minemacs-register-on-demand-module 'me-agda :auto-mode '(("\\.l?agda\\'" . agda2-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-alloy.el
-
-(minemacs-register-on-demand-module 'me-alloy :auto-mode '(("\\.als\\'" . alloy-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-apl.el
-
-(minemacs-register-on-demand-module 'me-apl :auto-mode '(("\\.apl\\'" . gnu-apl-mode)) :interpreter-mode '(("apl" . gnu-apl-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-arduino.el
 
 (minemacs-register-on-demand-module 'me-arduino :auto-mode '((("\\.ino\\'" "\\.pde\\'") . +arduino-mode)))
@@ -118,11 +103,6 @@
 (minemacs-register-on-demand-module 'me-chapel :auto-mode '(("\\.chpl\\'" . chapel-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-clojure.el
-
-(minemacs-register-on-demand-module 'me-clojure :auto-mode '(("\\.cljs\\'" . clojurescript-mode) (("\\.cljc\\'" "\\.\\(clj\\|cljd\\|dtm\\|edn\\|lpy\\)\\'" "\\(?:build\\|profile\\)\\.boot\\'") . clojure-mode)) :interpreter-mode '(("bb" . clojure-mode) ("nbb" . clojurescript-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-cmake.el
 
 (minemacs-register-on-demand-module 'me-cmake :auto-mode '((("CMakeLists\\.txt\\'" "\\.cmake\\'") . cmake-mode)) :companion-packages '((cmake-ts-mode cmake-font-lock cmake-mode)))
@@ -158,11 +138,6 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-coffee :auto-mode '((("\\.coffee\\'" "\\.iced\\'" "Cakefile\\'" "\\.cson\\'") . coffee-mode)) :interpreter-mode '(("coffee" . coffee-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-common-lisp.el
-
-(minemacs-register-on-demand-module 'me-common-lisp :companion-packages '((lisp-mode sly sly-macrostep sly-quicklisp sly-asdf sly-macrostep)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-cpio.el
 
 (minemacs-register-on-demand-module 'me-cpio :auto-mode '(("\\.cpio\\'" . cpio-mode)))
@@ -171,11 +146,6 @@ restores it after that.
 ;;; Generated autoloads from ../modules/on-demand/me-cron.el
 
 (minemacs-register-on-demand-module 'me-cron :auto-mode '(("\\.?cron\\(tab\\)?\\(\\.X*[[:alnum:]]+\\)?\\'" . crontab-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-crystal.el
-
-(minemacs-register-on-demand-module 'me-crystal :auto-mode '(("\\(?:\\.cr\\)\\'" . crystal-mode)) :interpreter-mode '(("crystal" . crystal-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-csv.el
@@ -265,25 +235,9 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (register-definition-prefixes "extras/me-eglot-x" '("eglot-ltex-"))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-elixir.el
-
-(minemacs-register-on-demand-module 'me-elixir :auto-mode '((("\\.elixir\\'" "\\.exs?\\'" "/mix\\.lock") . elixir-mode)) :companion-packages '((elixir-mode . ob-elixir)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-elm.el
-
-(minemacs-register-on-demand-module 'me-elm :auto-mode '(("\\.elm\\'" . elm-mode)) :companion-packages '((elm-mode . elm-test-runner)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-epub.el
 
 (minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-erlang.el
-
-(minemacs-register-on-demand-module 'me-erlang :auto-mode '((("\\.erl$" "\\.app\\.src$" "\\.escript" "\\.hrl$" "\\.xrl$" "\\.yrl" "/ebin/.+\\.app") . erlang-mode)))
-(register-definition-prefixes "../modules/on-demand/me-erlang" '("+erlang-path"))
 
 
 ;;; Generated autoloads from me-external-tools.el
@@ -294,11 +248,6 @@ When PRE is non-nil, allow downloading the latest prerelease.
 ;;; Generated autoloads from ../modules/on-demand/me-fish.el
 
 (minemacs-register-on-demand-module 'me-fish :auto-mode '((("\\.fish\\'" "/fish_funced\\..*\\'") . fish-mode)) :interpreter-mode '(("fish" . fish-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-forth.el
-
-(minemacs-register-on-demand-module 'me-forth :auto-mode '(("\\.\\(fth\\|4th\\)\\'" . forth-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-fpga.el
@@ -314,11 +263,6 @@ When PRE is non-nil, allow downloading the latest prerelease.
 ;;; Generated autoloads from ../modules/on-demand/me-freebasic.el
 
 (minemacs-register-on-demand-module 'me-freebasic :auto-mode '(("\\.b\\(i\\|as\\)\\'" . fb-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-fsharp.el
-
-(minemacs-register-on-demand-module 'me-fsharp :auto-mode '(("\\.fs[iylx]?\\'" . fsharp-mode) ("\\.fsproj\\'" . nxml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-gecode.el
@@ -359,11 +303,6 @@ will be generated each `+git-types-cache-age'.
 (minemacs-register-on-demand-module 'me-gnuplot :auto-mode '((("\\.plot\\'" "\\.gpi\\'" "\\.gplt\\'" "\\.plt\\'" "\\.gnuplot\\'") . gnuplot-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-godot.el
-
-(minemacs-register-on-demand-module 'me-godot :auto-mode '(("\\.gd\\'" . gdscript-mode) ("\\.tres\\'" . conf-toml-mode) ("\\.tscn\\'" . conf-toml-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-graphql.el
 
 (minemacs-register-on-demand-module 'me-graphql :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
@@ -374,19 +313,9 @@ will be generated each `+git-types-cache-age'.
 (minemacs-register-on-demand-module 'me-graphviz :auto-mode '(("\\.gv\\'" . graphviz-dot-mode) ("\\.dot\\'" . graphviz-dot-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-hare.el
-
-(minemacs-register-on-demand-module 'me-hare :auto-mode '(("\\.ha\\'" . hare-ts-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-haskell.el
 
 (minemacs-register-on-demand-module 'me-haskell :auto-mode '((("\\.hsig\\'" "\\.[gh]s\\'" "\\.hsc\\'") . haskell-mode) ("\\.l[gh]s\\'" . haskell-literate-mode)) :interpreter-mode '(("runghc" . haskell-mode) ("runhaskell" . haskell-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-haxe.el
-
-(minemacs-register-on-demand-module 'me-haxe :auto-mode '(("\\.hx\\'" . haxe-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-hcl.el
@@ -397,16 +326,6 @@ will be generated each `+git-types-cache-age'.
 ;;; Generated autoloads from ../modules/on-demand/me-hurl.el
 
 (minemacs-register-on-demand-module 'me-hurl :auto-mode '(("\\.hurl\\'" . hurl-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-hy.el
-
-(minemacs-register-on-demand-module 'me-hy :auto-mode '(("\\.hy\\'" . hy-mode)) :interpreter-mode '(("hy" . hy-mode)) :companion-packages '((hy-mode . ob-hy)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-idris.el
-
-(minemacs-register-on-demand-module 'me-idris :auto-mode '(("\\.l?idr\\'" . idris-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-java.el
@@ -432,11 +351,6 @@ will be generated each `+git-types-cache-age'.
 ;;; Generated autoloads from ../modules/on-demand/me-json.el
 
 (minemacs-register-on-demand-module 'me-json :auto-mode '((("\\.js\\(?:on\\|[hl]int\\(?:rc\\)?\\)\\'" "/.babelrc\\'" "/.bowerrc\\'" "/composer.lock\\'") . json-mode)) :companion-packages '((json-ts-mode jq-mode json-mode) ((nxml-mode yaml-mode yaml-ts-mode) . jq-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-julia.el
-
-(minemacs-register-on-demand-module 'me-julia :auto-mode '(("\\.jl\\'" . julia-mode)) :interpreter-mode '(("julia" . julia-mode)) :companion-packages '(((julia-mode julia-ts-mode ess-julia-mode) julia-repl julia-snail julia-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-jupyter.el
@@ -487,7 +401,7 @@ The mode's hook is called both when the mode is enabled and when it is
 disabled.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+make-" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -846,21 +760,11 @@ This command removes new line characters between lines." t)
 (minemacs-register-on-demand-module 'me-markdown :auto-mode '(("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode)) :companion-packages '((markdown-ts-mode . markdown-mode)) :define-loader t)
 
 
-;;; Generated autoloads from ../modules/on-demand/me-mathematica.el
-
-(minemacs-register-on-demand-module 'me-mathematica)
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-maxima.el
 
 (defconst +maxima-path (if-let* ((sys-path "/usr/share/emacs/site-lisp/maxima/") ((file-directory-p sys-path))) sys-path (mapcar (apply-partially #'concat minemacs-on-demand-modules-dir "third-party/maxima/") '("emaxima/" "imaxima/" "misc/"))))
 (defconst +maxima-available-p (and (executable-find "maxima") t))
 (minemacs-register-on-demand-module 'me-maxima :define-loader '+maxima-available-p :auto-mode '(("\\.ma[cx]\\'" . maxima-mode)) :interpreter-mode '(("maxima" . maxima-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-mercury.el
-
-(minemacs-register-on-demand-module 'me-mercury :companion-packages '((mercury-mode . metal-mercury-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mermaid.el
@@ -871,11 +775,6 @@ This command removes new line characters between lines." t)
 ;;; Generated autoloads from ../modules/on-demand/me-meson.el
 
 (minemacs-register-on-demand-module 'me-meson :auto-mode '(("/meson\\(\\.build\\|_options\\.txt\\|\\.options\\)\\'" . meson-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-modelica.el
-
-(minemacs-register-on-demand-module 'me-modelica :auto-mode '(("\\.mo\\'" . modelica-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-mojo.el
@@ -898,11 +797,6 @@ This command removes new line characters between lines." t)
 (register-definition-prefixes "../modules/extras/me-mu4e-ui" '("+icon-colors" "+mu4e-"))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-nim.el
-
-(minemacs-register-on-demand-module 'me-nim :auto-mode '(("\\.nim\\'" . nim-mode) ("\\.nim\\(ble\\|s\\)\\'" . nimscript-mode-maybe)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-nix.el
 
 (minemacs-register-on-demand-module 'me-nix :auto-mode '(("\\.nix\\'" . nix-mode) ("\\.nix\\'" . nix-ts-mode)))
@@ -916,11 +810,6 @@ This command removes new line characters between lines." t)
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
 
 (minemacs-register-on-demand-module 'me-ocaml :auto-mode `(("\\.mly\\'" . neocaml-menhir-mode) ("\\.mll\\'" . neocaml-ocamllex-mode) ("\\.ml\\'" . neocaml-mode) ("\\.mli\\'" . neocaml-interface-mode) ("[./]opam\\'" . neocaml-opam-mode) ("/dune\\(-project\\|-workspace\\)\\'" . neocaml-dune-mode) (,(rx "." (or "cmi" "cmo" "cmx" "cma" "cmxa" "cmxs" "cmt" "cmti") eol) . neocaml-objinfo-mode)) :interpreter-mode '(("ocamlrun" . neocaml-mode) ("ocaml" . neocaml-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-odin.el
-
-(minemacs-register-on-demand-module 'me-odin :auto-mode '(("\\.odin\\'" . odin-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-opencl.el
@@ -941,11 +830,6 @@ This command removes new line characters between lines." t)
 ;;; Generated autoloads from extras/me-org-x.el
 
 (register-definition-prefixes "extras/me-org-x" '("+org-"))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-p4.el
-
-(minemacs-register-on-demand-module 'me-p4 :auto-mode '(("\\.p4\\(info\\)?\\'" . p4-16-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-pandoc.el
@@ -1062,21 +946,11 @@ Relevant: `minemacs-project-hook'.
 (minemacs-register-on-demand-module 'me-python :companion-packages '(((python-mode python-ts-mode) . python-docstring-mode)) :auto-mode '((("requirements\\.in" "\\.pip\\'" "requirements[^z-a]*\\.txt\\'") . pip-requirements-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-qsharp.el
-
-(minemacs-register-on-demand-module 'me-qsharp :auto-mode '(("\\.qs\\'" . qsharp-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-qt.el
 
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.qml\\'" . qml-ts-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 (add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-robot-framework.el
-
-(minemacs-register-on-demand-module 'me-robot-framework :auto-mode '(("\\.\\(robot\\|resource\\)\\'" . robot-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rtf.el
@@ -1099,19 +973,9 @@ Relevant: `minemacs-project-hook'.
 (minemacs-register-on-demand-module 'me-scallop :auto-mode '(("\\.scl\\'" . scallop-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-scheme.el
-
-(minemacs-register-on-demand-module 'me-scheme :auto-mode '(("\\.rkt[dl]?\\'" . racket-mode)) :interpreter-mode '(("racket" . racket-mode)) :companion-packages '(((racket-mode scheme-mode) geiser-mode flymake-guile)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-selinux-policy.el
 
 (minemacs-register-on-demand-module 'me-selinux-policy :auto-mode '(("\\.te\\'" . selinuxpolicy-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-smalltalk.el
-
-(minemacs-register-on-demand-module 'me-smalltalk :auto-mode '(("\\.st\\'" . smalltalk-mode)))
 
 
 ;;; Generated autoloads from extras/me-smerge-x.el
@@ -1120,26 +984,9 @@ Relevant: `minemacs-project-hook'.
 (register-definition-prefixes "extras/me-smerge-x" '("+recenter:after-a" "+smerge-"))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-sml.el
-
-(minemacs-register-on-demand-module 'me-sml :auto-mode '(("\\.s\\(?:ml\\|ig\\)\\'" . sml-mode) ("\\.cm\\'" . sml-cm-mode) ("\\.grm\\'" . sml-yacc-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-sql.el
 
 (minemacs-register-on-demand-module 'me-sql :companion-packages '((sql-mode . sqlup-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-stan.el
-
-(minemacs-register-on-demand-module 'me-stan :auto-mode '(("\\.stan\\'" . stan-mode)) :companion-packages '(((stan-mode stan-ts-mode) eldoc-stan stan-snippets)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-statistics.el
-
-(minemacs-register-on-demand-module 'me-statistics :auto-mode '((("\\(NAMESPACE\\|CITATION\\)\\'" "/R/.*\\.q\\'" "\\.[rR]\\(profile\\)?\\'") . ess-r-mode) (("\\.[Bb][Uu][Gg]\\'" "\\.[Bb][Oo][Gg]\\'" "\\.[Bb][Mm][Dd]\\'") . ess-bugs-mode) ("\\.[Rr]out\\'" . ess-r-transcript-mode) ("\\.Rd\\'" . Rd-mode) ("\\.[Jj][Aa][Gg]\\'" . ess-jags-mode) ("\\.inp\\'" . ess-gretl-mode)) :interpreter-mode '((("r" "Rscript") . ess-r-mode)))
-(add-to-list 'auto-mode-alist '("/Makevars\\(\\.win\\)?\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("DESCRIPTION\\'" . conf-colon-mode))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-swift.el
@@ -1178,16 +1025,6 @@ Relevant: `minemacs-project-hook'.
 (minemacs-register-on-demand-module 'me-typst :auto-mode '(("\\.typ\\'" . typst-ts-mode)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-v.el
-
-(minemacs-register-on-demand-module 'me-v :auto-mode '(("\\(\\.v?v\\|\\.vsh\\)$" . v-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-vala.el
-
-(minemacs-register-on-demand-module 'me-vala :auto-mode '(("\\.vala\\'" . vala-mode) ("\\.vapi\\'" . vala-mode)) :companion-packages '((vala-mode . vala-snippets)))
-
-
 ;;; Generated autoloads from me-vars.el
 
 (register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
@@ -1218,19 +1055,9 @@ The completion candidates include the Git status of each file." t)
 (minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode temmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
 
 
-;;; Generated autoloads from ../modules/on-demand/me-wiki.el
-
-(minemacs-register-on-demand-module 'me-wiki :auto-mode '(("\\.\\(media\\)?wiki\\'" . mediawiki-file-mode)))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
 
 (minemacs-register-on-demand-module 'me-yaml :auto-mode '(("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode)) :magic-mode '(("^%YAML\\s-+[0-9]+\\.[0-9]+\\(\\s-+#\\|\\s-*$\\)" . yaml-mode)) :companion-packages '((yaml-ts-mode yaml-mode yaml-pro-ts-mode ansible-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-yang.el
-
-(minemacs-register-on-demand-module 'me-yang :auto-mode '(("\\.[Yy][Aa][Nn][Gg]\\'" . yang-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-zig.el
@@ -1240,7 +1067,7 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from minemacs-loaded.el
 
-(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-high-priority-timer"))
+(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-timer"))
 
 
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
