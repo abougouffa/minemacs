@@ -595,7 +595,10 @@
       default)))
 
 (use-package nxml-mode
+  :mode "\\.rss\\'"
   :mode "\\.xmpi\\'"
+  :mode "\\.p\\(?:list\\|om\\)\\'" ; plist, pom
+  :mode "\\.xs\\(?:d\\|lt\\)\\'"   ; xslt, xsd
   :hook (nxml-mode . sgml-electric-tag-pair-mode)) ; Auto rename matching tags
 
 (use-package elisp-mode
