@@ -1,10 +1,10 @@
 ;;; me-media.el --- Multimedia stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2025-09-09
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -72,19 +72,6 @@
   (defun +empv-download-playtlist-files (&optional path)
     (interactive "DSave download playlist files to: ")
     (empv--playlist-apply #'+empv--dl-playlist path)))
-
-
-;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
-(use-package ready-player
-  :straight (:host github :repo "xenodium/ready-player" :files (:defaults "*.el"))
-  :after minemacs-first-file
-  :demand
-  :custom
-  (ready-player-minor-mode-map-prefix "C-c o p")
-  :config
-  ;; Enable only when we have at least one supported media player installed
-  (when (seq-some #'executable-find (mapcar #'car ready-player-open-playback-commands))
-    (ready-player-mode 1)))
 
 
 (provide 'me-media)
