@@ -37,6 +37,11 @@
 (minemacs-register-on-demand-module 'me-arduino :auto-mode '((("\\.ino\\'" "\\.pde\\'") . +arduino-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-asciidoc.el
+
+(minemacs-register-on-demand-module 'me-asciidoc :auto-mode '(("\\.adoc\\'" . asciidoc-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-assembly.el
 
 (minemacs-register-on-demand-module 'me-assembly :auto-mode '(("\\.S\\'" . gas-mode) (("\\.asm\\'" "\\.inc\\'") . masm-mode) ("\\.mips\\'" . mips-mode) ("\\.riscv\\'" . riscv-mode)) :companion-packages '((asm-mode . x86-lookup)))
