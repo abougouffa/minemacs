@@ -1,10 +1,10 @@
 ;;; me-c3.el --- C3 language -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2025-08-11
-;; Last modified: 2025-09-04
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -15,6 +15,7 @@
   :auto-mode '(("\\.c3[it]?\\'" . c3-ts-mode)))
 
 
+;; Major mode for C3 using Tree-sitter
 (use-package c3-ts-mode
   :straight (:host github :repo "c3lang/c3-ts-mode")
   :when (featurep 'feat/tree-sitter)

@@ -1,10 +1,10 @@
 ;;; me-jira.el --- Description -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn-rkg@fntrzpbz.pbz")
 ;; Created: 2024-12-06
-;; Last modified: 2025-03-21
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -16,6 +16,7 @@
                ("jira.*\\.txt$" . jira-markup-mode)))
 
 
+;; Emacs Major mode for JIRA-markup-formatted text files
 (use-package jira-markup-mode
   :straight t)
 

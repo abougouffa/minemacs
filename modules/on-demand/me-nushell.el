@@ -1,10 +1,10 @@
 ;;; me-nushell.el --- Nushell scripts -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-30
-;; Last modified: 2025-03-21
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -16,6 +16,7 @@
   :interpreter-mode '(("nu" . nushell-mode)))
 
 
+;; Major mode for Nushell scripts
 (use-package nushell-mode
   :straight t)
 
