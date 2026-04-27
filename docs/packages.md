@@ -104,7 +104,6 @@
 
 ## `me-media`
 * `empv`: An Emacs media player, media library manager, radio player, YouTube frontend
-* `ready-player`: An Emacs major mode to open media (audio/video) files like any other file (via `find-file`, `dired`, etc)
 
 ## `me-natural-langs`
 * `jinx`: Just-in-time spell checker based on the Enchanted library
@@ -233,6 +232,9 @@
 ## `on-demand/me-arduino`
 * `arduino-cli-mode`: Arduino CLI command wrapper
 
+## `on-demand/me-asciidoc`
+* `asciidoc-mode`: Tree-sitter based major mode for AsciiDoc markup
+
 ## `on-demand/me-assembly`
 * `mips-mode`: Major mode for MIPS assembly
 * `riscv-mode`: Major mode for RISC V assembly
@@ -259,6 +261,7 @@
 * `bqn-mode`: Major mode for editing BQN grammar files
 
 ## `on-demand/me-c3`
+* `c3-ts-mode`: Major mode for C3 using Tree-sitter
 
 ## `on-demand/me-cc`
 * `flymake-cppcheck`: Flymake backend for CppCheck
@@ -393,6 +396,7 @@
 * `jenkinsfile-mode`: Major mode for editing Jenkins declarative pipeline syntax
 
 ## `on-demand/me-jira`
+* `jira-markup-mode`: Emacs Major mode for JIRA-markup-formatted text files
 
 ## `on-demand/me-json`
 * `json-mode`: Major mode for editing JSON files
@@ -443,6 +447,7 @@
 * `ob-mermaid`: Org Babel support for Mermaid evaluation
 
 ## `on-demand/me-meson`
+* `meson-mode`: Major mode for the Meson build system files
 
 ## `on-demand/me-mojo`
 * `mojo`: Major mode for the Mojo programming lanugage
@@ -452,6 +457,7 @@
 * `nix-ts-mode`: Tree-sitter based major mode for editing Nix files
 
 ## `on-demand/me-nushell`
+* `nushell-mode`: Major mode for Nushell scripts
 
 ## `on-demand/me-ocaml`
 * `neocaml`:  A modern, TreeSitter-powered, Emacs major mode for OCaml

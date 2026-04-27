@@ -534,7 +534,7 @@ Examples:
 *Display a warning in header line of the current buffer.
 This function is suitable to add to `find-file-hook` and `dired-file-hook`.
 
-#### `(+project-super-project-try DIR)`
+#### `(+project-try-super DIR)`
 
 Find super-project root starting from DIR.
 
