@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-26
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -1050,8 +1050,14 @@ Typing these will trigger reindentation of the current line.")
      (,(+make-buffer-conds
         'help-mode 'helpful-mode 'Info-mode 'Man-mode 'woman-mode 'tldr-mode 'dictionary-mode 'lexic-mode
         (rx bol "*" (or "Metahelp" "Printing Help" "Org Entity Help"
-                        (seq (or "eldoc" "Tcl help" "eglot-help for " "shellcheck:" "show-marks") (* any)))
-            "*" eol)))
+                        (seq (or "eldoc" "Tcl help" "eglot-help for " "shellcheck:" "show-marks") (* not-newline)))
+            "*" eol))
+      (display-buffer-in-side-window)
+      (side . right)
+      (slot . 1)
+      (dedicated . t)
+      (window-width . 100)
+      (reusable-frames . visible))
      ("\\*Embark Actions\\*"
       (display-buffer-below-selected)
       (window-height . fit-window-to-buffer)
