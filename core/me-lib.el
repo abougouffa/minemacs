@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-15
+;; Last modified: 2026-04-27
 
 ;;; Commentary:
 
@@ -700,7 +700,7 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
   :group 'minemacs-project
   :type '(repeat string))
 
-(defun +project-super-project-try (dir)
+(defun +project-try-super (dir)
   "Find super-project root starting from DIR."
   (when-let* ((root (cl-some (apply-partially #'locate-dominating-file dir) +super-project-root-markers)))
     ;; Avoid returing the user's home directory if a marker is found at home
@@ -710,7 +710,7 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
 
 (defun +super-project-current (&optional dir)
   "Return the current super-project instance in DIR."
-  (let ((project-find-functions '(+project-super-project-try)))
+  (let ((project-find-functions '(+project-try-super)))
     (project-current nil dir)))
 
 (defun +super-project-define-commands (&rest commands)
@@ -722,7 +722,7 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
          `(defun ,new-cmd (&rest args)
             ,(format "Call `%s' in a super-project context." command)
             ,(interactive-form command) ; Use the same interactive form as the original command
-            (if-let* ((project-find-functions '(+project-super-project-try))
+            (if-let* ((project-find-functions '(+project-try-super))
                       ((project-current)))
                 (apply (function ,command) args)
               (user-error "It doesn't seem that we are in a super-project")))
