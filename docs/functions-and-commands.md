@@ -981,13 +981,6 @@ Forget all duplicate known projects (like /home/user/proj and ~/proj).
 
 Initialize project list from `+project-root-wildcards`.
 
-#### `(+repo-projects &rest EXCLUDE-PREFIXES)`
-
-Return the list of repo projects in the current directory.
-When EXCLUDE-PREFIXES is provided (string or a list of strings),
-directories starting with these prefixes will be excluded from the
-results.
-
 #### `(+xref-find-references-at-point)`
 
 Find references to the identifier at or around point.
@@ -1093,15 +1086,33 @@ Can override `project--files-in-directory` for x3.5 faster listing.
 
 Returns non-nil if the FILES in DIRECTORY all exist.
 DIRECTORY is a path; defaults to `default-directory`.
-Returns the last file found to meet the rules set by FILES, which can be a
-single file or nested compound statement of `and` and `or` statements.
+Returns the last file found to meet the rules set by FILES, which can be
+a single file or nested compound statement of `and` and `or` statements.
 
 #### `(+project-file-exists-p! FILES &optional BASE-DIRECTORY)` (macro)
 
 Checks if FILES exist at the current project's root.
-The project's root is determined by `projectile`, starting from BASE-DIRECTORY
-(defaults to `default-directory`). FILES are paths relative to the project root,
-unless they begin with a slash.
+The project's root is determined by `project`, starting from
+BASE-DIRECTORY (defaults to `default-directory`).
+FILES are paths relative to the project root, unless they begin with a
+slash.
+
+#### `(+repo-root &optional DIR)`
+
+Return Repo's root directory starting from DIR.
+
+#### `(+repo-projects &rest EXCLUDE-PREFIXES)`
+
+Return the list of repo projects in the current directory.
+When EXCLUDE-PREFIXES is provided (string or a list of strings),
+directories starting with these prefixes will be excluded from the
+results.
+
+#### `(+repo-project-p &optional PROJ)`
+
+Retrun non-nil when PROJ (or the current project) is a Repo project.
+When in a Repo project, return the project path relative to the Repo
+root.
 
 #### `(+smerge-first)`
 
