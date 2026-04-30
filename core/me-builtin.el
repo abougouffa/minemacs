@@ -289,9 +289,10 @@
   (dired-dwim-target t)
   (dired-mouse-drag-files t)
   (dired-listing-switches
-   (if (or (featurep 'os/mac) (featurep 'os/bsd))
-       "-AGFhlv"
-     "-AGFhlv --group-directories-first --time-style=long-iso")) ; GNU coreutils
+   (if (and (executable-find "ls")
+            (string-match-p "GNU" (shell-command-to-string "ls --version"))) ; GNU coreutils
+       "-AGFhlv --group-directories-first --time-style=long-iso"
+     "-AGFhlv"))
   (dired-auto-revert-buffer t)
   (dired-movement-style 'cycle)
   (dired-recursive-copies 'always)
