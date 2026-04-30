@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-30
 
 ;;; Commentary:
 
@@ -193,8 +193,8 @@ This is used by `+file-exists-p!' and `+project-file-exists-p!'."
 
 DIRECTORY is a path; defaults to `default-directory'.
 
-Returns the last file found to meet the rules set by FILES, which can be a
-single file or nested compound statement of `and' and `or' statements."
+Returns the last file found to meet the rules set by FILES, which can be
+a single file or nested compound statement of `and' and `or' statements."
   `(let ((p ,(+files--build-checks files directory)))
      (and p (expand-file-name p ,directory))))
 
@@ -202,9 +202,11 @@ single file or nested compound statement of `and' and `or' statements."
 (defmacro +project-file-exists-p! (files &optional base-directory)
   "Checks if FILES exist at the current project's root.
 
-The project's root is determined by `projectile', starting from BASE-DIRECTORY
-(defaults to `default-directory'). FILES are paths relative to the project root,
-unless they begin with a slash."
+The project's root is determined by `project', starting from
+BASE-DIRECTORY (defaults to `default-directory').
+
+FILES are paths relative to the project root, unless they begin with a
+slash."
   `(+file-exists-p! ,files (+project-root-for-dir ,base-directory)))
 
 (defvar minemacs-project-hook nil
@@ -215,31 +217,33 @@ The name of the project's mode and its state are passed in.")
 (cl-defmacro +def-project-mode! (name &key modes files when match add-hooks on-load on-enter on-exit)
   "Define a project minor mode named NAME and where/how it is activated.
 
-Project modes allow you to configure 'sub-modes' for major-modes that are
-specific to a folder, project structure, framework or whatever arbitrary context
-you define. These project modes can have their own settings, keymaps, hooks,
-snippets, etc.
+Project modes allow you to configure 'sub-modes' for major-modes that
+are specific to a folder, project structure, framework or whatever
+arbitrary context you define. These project modes can have their own
+settings, keymaps, hooks, snippets, etc.
 
 This creates NAME-hook and NAME-map as well.
 
-PLIST may contain any of these properties, which are all checked to see if NAME
-should be activated. If they are *all* true, NAME is activated.
+PLIST may contain any of these properties, which are all checked to see
+if NAME should be activated. If they are *all* true, NAME is activated.
 
-  :modes MODES -- if buffers are derived from MODES (one or a list of symbols).
+  :modes MODES -- if buffers are derived from MODES (one or a list of
+    symbols).
 
-  :files FILES -- if project contains FILES; takes a string or a form comprised
-    of nested (and ...) and/or (or ...) forms. Each path is relative to the
-    project root, however, if prefixed with a '.' or '..', it is relative to the
-    current buffer.
+  :files FILES -- if project contains FILES; takes a string or a form
+    comprised of nested (and ...) and/or (or ...) forms. Each path is
+    relative to the project root, however, if prefixed with a '.' or
+    '..', it is relative to the current buffer.
 
   :match REGEXP -- if file name matches REGEXP.
 
-  :when PREDICATE -- if PREDICATE returns true (can be a form or the symbol of a
-    function).
+  :when PREDICATE -- if PREDICATE returns true (can be a form or the
+    symbol of a function).
 
   :add-hooks HOOKS -- HOOKS is a list of hooks to add this mode's hook.
 
-  :on-load FORM -- FORM to run the first time this project mode is enabled.
+  :on-load FORM -- FORM to run the first time this project mode is
+    enabled.
 
   :on-enter FORM -- FORM is run each time the mode is activated.
 
