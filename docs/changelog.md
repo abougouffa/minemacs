@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.1.0](https://github.com/abougouffa/minemacs/compare/f5631c09d59881b0ccda695e9fa5b2fcd1d3754d..v14.1.0) - 2026-04-30
+#### Tweaks
+- (**dired**) better check for GNU ls's specific switches - ([7e521b0](https://github.com/abougouffa/minemacs/commit/7e521b054b12195a80dfc5d2ce4ef1e07dbdc495)) - [@abougouffa](https://github.com/abougouffa)
+- (**dired**) copy file by dragging them in dired buffer - ([68c327f](https://github.com/abougouffa/minemacs/commit/68c327f828dd060f5915c927e9e9ddcea0453ec1)) - [@abougouffa](https://github.com/abougouffa)
+- (**nxml**) register more extensions - ([a74cbbe](https://github.com/abougouffa/minemacs/commit/a74cbbe2106497f92ee09dce8265954e6f56fc3d)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) better implementation of `+def-project-mode!` - ([c0f7095](https://github.com/abougouffa/minemacs/commit/c0f7095075a319f02c1147f7c8809f9fea0ac288)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8af17e5](https://github.com/abougouffa/minemacs/commit/8af17e592f6c2147c4e2ec2d3442e37771249947)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([0215da8](https://github.com/abougouffa/minemacs/commit/0215da80423b11808574f805de3b1d107df4feec)) - [@abougouffa](https://github.com/abougouffa)
+- minor super-project tweaks - ([61e432b](https://github.com/abougouffa/minemacs/commit/61e432b9fd5a8ab0affce2a0cbd7a3412d8f6751)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8160592](https://github.com/abougouffa/minemacs/commit/8160592a8ebb3bd4864226388670a858203cabeb)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([89bfbe3](https://github.com/abougouffa/minemacs/commit/89bfbe38c8291a2283df9b604cbf62a52e17d656)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0570661](https://github.com/abougouffa/minemacs/commit/0570661494198dfd8660f1bef92474e1cfec1b1e)) - [@abougouffa](https://github.com/abougouffa)
+- larger undo limits - ([f5631c0](https://github.com/abougouffa/minemacs/commit/f5631c09d59881b0ccda695e9fa5b2fcd1d3754d)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- rename a function - ([fa497df](https://github.com/abougouffa/minemacs/commit/fa497dfdee613bdd610427470b8b0acb23797210)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**media**) make `ready-player` obsolete, it f* up `dired` - ([1a3cb0e](https://github.com/abougouffa/minemacs/commit/1a3cb0e14b78757ddf8ff3cb081122a7844dae29)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for AsciiDoc - ([6958cc0](https://github.com/abougouffa/minemacs/commit/6958cc0d8e3f6f34e6dc9052531a6e1a3850426c)) - [@abougouffa](https://github.com/abougouffa)
+- (**repo-x**) enhanced support for Repo workspaces - ([666c2a2](https://github.com/abougouffa/minemacs/commit/666c2a2b642f76d14e518521ec1c9e44a9785206)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- load `once` and `satch` early - ([134ede9](https://github.com/abougouffa/minemacs/commit/134ede961cfc0d133b6ef1afcb1fdd450617e303)) - [@abougouffa](https://github.com/abougouffa)
+- invalid `display-buffer-alist` - ([c6f0d48](https://github.com/abougouffa/minemacs/commit/c6f0d4860a3b41917ea1691dfda2ee2d7817f7c1)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**project-x**) minor docs formatting - ([13b6f3a](https://github.com/abougouffa/minemacs/commit/13b6f3adf156c39fef9b66d172b98a2ae0b8cc08)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([c474de8](https://github.com/abougouffa/minemacs/commit/c474de8ff2457740a7517b11abeb7e8439c5bcad)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([6e02433](https://github.com/abougouffa/minemacs/commit/6e02433cd8dbcea3840092e5474980053713c7ea)) - [@abougouffa](https://github.com/abougouffa)
+- document undocumented on-demand modules - ([e298db6](https://github.com/abougouffa/minemacs/commit/e298db6220cc8f5bb148395f33ef34a88a705086)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.0.0](https://github.com/abougouffa/minemacs/compare/691341b51c31f1fbfd94a1ef364fde9b26d05d1b..v14.0.0) - 2026-04-25
 #### Tweaks
 - (**corfu**) minor tweak - ([4d1730c](https://github.com/abougouffa/minemacs/commit/4d1730c573e466fa0d5cde33f332e890bc3200da)) - [@abougouffa](https://github.com/abougouffa)
