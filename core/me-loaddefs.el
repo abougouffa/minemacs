@@ -737,7 +737,7 @@ This command removes new line characters between lines." t)
 "Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x"
 "Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+b" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+p" "+repo-projects" "+s" "+tramp--convert-sshfs-filename-local" "minemacs--"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+b" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+p" "+s" "+tramp--convert-sshfs-filename-local" "minemacs--"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -884,46 +884,55 @@ This command removes new line characters between lines." t)
 
 DIRECTORY is a path; defaults to `default-directory'.
 
-Returns the last file found to meet the rules set by FILES, which can be a
-single file or nested compound statement of `and' and `or' statements.
+Returns the last file found to meet the rules set by FILES, which can be
+a single file or nested compound statement of `and' and `or' statements.
 
 (fn FILES &optional DIRECTORY)" nil t)
 (autoload '+project-file-exists-p! "extras/me-project-x"
 "Checks if FILES exist at the current project's root.
 
-The project's root is determined by `projectile', starting from BASE-DIRECTORY
-(defaults to `default-directory'). FILES are paths relative to the project root,
-unless they begin with a slash.
+The project's root is determined by `project', starting from
+BASE-DIRECTORY (defaults to `default-directory').
+
+FILES are paths relative to the project root, unless they begin with a
+slash.
 
 (fn FILES &optional BASE-DIRECTORY)" nil t)
 (autoload '+def-project-mode! "extras/me-project-x"
 "Define a project minor mode named NAME and where/how it is activated.
 
-Project modes allow you to configure 'sub-modes' for major-modes that are
-specific to a folder, project structure, framework or whatever arbitrary context
-you define. These project modes can have their own settings, keymaps, hooks,
-snippets, etc.
+DOC provides the documentation.
+
+Project modes allow you to configure 'sub-modes' for major-modes that
+are specific to a folder, project structure, framework or whatever
+arbitrary context you define. These project modes can have their own
+settings, keymaps, hooks, snippets, etc.
 
 This creates NAME-hook and NAME-map as well.
 
-PLIST may contain any of these properties, which are all checked to see if NAME
-should be activated. If they are *all* true, NAME is activated.
+PLIST may contain any of these properties, which are all checked to see
+if NAME should be activated. If they are *all* true, NAME is activated.
 
-  :modes MODES -- if buffers are derived from MODES (one or a list of symbols).
+  :modes MODES -- if buffers are derived from MODES (one or a list of
+    symbols).
 
-  :files FILES -- if project contains FILES; takes a string or a form comprised
-    of nested (and ...) and/or (or ...) forms. Each path is relative to the
-    project root, however, if prefixed with a '.' or '..', it is relative to the
-    current buffer.
+  :files FILES -- if project contains FILES; takes a string or a form
+    comprised of nested (and ...) and/or (or ...) forms. Each path is
+    relative to the project root, however, if prefixed with a '.' or
+    '..', it is relative to the current buffer.
+
+  :fileless-buffers BOOLEAN -- activate on fileless buffers (mainly,
+    based on `default-directory')
 
   :match REGEXP -- if file name matches REGEXP.
 
-  :when PREDICATE -- if PREDICATE returns true (can be a form or the symbol of a
-    function).
+  :when PREDICATE -- if PREDICATE returns true (can be a form or the
+    symbol of a function).
 
   :add-hooks HOOKS -- HOOKS is a list of hooks to add this mode's hook.
 
-  :on-load FORM -- FORM to run the first time this project mode is enabled.
+  :on-load FORM -- FORM to run the first time this project mode is
+    enabled.
 
   :on-enter FORM -- FORM is run each time the mode is activated.
 
@@ -931,7 +940,8 @@ should be activated. If they are *all* true, NAME is activated.
 
 Relevant: `minemacs-project-hook'.
 
-(fn NAME &key MODES FILES WHEN MATCH ADD-HOOKS ON-LOAD ON-ENTER ON-EXIT)" nil t)
+(fn NAME DOC &key MODES FILES FILELESS-BUFFERS WHEN MATCH ADD-HOOKS ON-LOAD ON-ENTER ON-EXIT)" nil t)
+(function-put '+def-project-mode! 'doc-string-elt 2)
 (register-definition-prefixes "extras/me-project-x" '("+f" "+project-" "minemacs-project-hook"))
 
 
@@ -956,6 +966,30 @@ Relevant: `minemacs-project-hook'.
 (minemacs-register-on-demand-module 'me-qt :auto-mode '(("\\.qml\\'" . qml-mode) ("\\.qml\\'" . qml-ts-mode) ("\\.pr[io]\\'" . qt-pro-mode)))
 (add-to-list 'auto-mode-alist '("\\.qss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.qrc\\'" . xml-mode))
+
+
+;;; Generated autoloads from extras/me-repo-x.el
+
+(autoload '+repo-root "extras/me-repo-x"
+"Return Repo's root directory starting from DIR.
+
+(fn &optional DIR)")
+(autoload '+repo-projects "extras/me-repo-x"
+"Return the list of repo projects in the current directory.
+
+When EXCLUDE-PREFIXES is provided (string or a list of strings),
+directories starting with these prefixes will be excluded from the
+results.
+
+(fn &rest EXCLUDE-PREFIXES)")
+(autoload '+repo-project-p "extras/me-repo-x"
+"Retrun non-nil when PROJ (or the current project) is a Repo project.
+
+When in a Repo project, return the project path relative to the Repo
+root.
+
+(fn &optional PROJ)")
+(+def-project-mode! +repo-project-mode "A minor mode enabled in files/buffers opened in a Repo workspace." :when (+repo-project-p) :fileless-buffers t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rtf.el
