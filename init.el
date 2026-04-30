@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-30
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -59,6 +59,8 @@
 
 (require 'me-lib) ; Load MinEmacs' core library
 (require 'use-package)
+(require 'once)
+(require 'satch)
 
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (+load custom-file))
@@ -117,8 +119,6 @@
         (use-package-concat (use-package-process-keywords name rest state))))
   (require 'me-bootstrap))
 
-(require 'once)
-(require 'satch)
 (require 'me-builtin)
 
 (unless minemacs-builtin-only-p
