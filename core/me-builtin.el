@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-27
+;; Last modified: 2026-04-30
 
 ;;; Commentary:
 
@@ -287,6 +287,7 @@
   (dired-mode . dired-hide-details-mode)
   :custom
   (dired-dwim-target t)
+  (dired-mouse-drag-files t)
   (dired-listing-switches
    (if (or (featurep 'os/mac) (featurep 'os/bsd))
        "-AGFhlv"
