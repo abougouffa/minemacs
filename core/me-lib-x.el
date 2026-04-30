@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-04-02
+;; Last modified: 2026-04-30
 
 ;;; Commentary:
 
@@ -1417,24 +1417,6 @@ This command removes new line characters between lines."
      (when-let* ((project (project--find-in-directory dir)))
        (project-remember-project project)))
    (seq-filter #'file-directory-p (mapcan #'file-expand-wildcards +project-root-wildcards))))
-
-(defun +repo-projects (&rest exclude-prefixes)
-  "Return the list of repo projects in the current directory.
-
-When EXCLUDE-PREFIXES is provided (string or a list of strings),
-directories starting with these prefixes will be excluded from the
-results."
-  (when-let* ((projs (shell-command-to-string "repo list"))
-              ((not (string-prefix-p "error: " projs)))
-              (projs (mapcar (lambda (str) (car (string-split str " : ")))
-                             (string-lines projs))))
-    (if exclude-prefixes
-        (seq-filter (lambda (path)
-                      (not (seq-some
-                            (lambda (prefix) (string-prefix-p prefix path))
-                            exclude-prefixes)))
-                    projs)
-      projs)))
 
 
 
