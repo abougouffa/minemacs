@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-27
+;; Last modified: 2026-04-30
 
 ;;; Commentary:
 
@@ -695,7 +695,7 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
 
 ;;; Project tweaks
 
-(defcustom +super-project-root-markers '(".super-project" ".super-project.el" ".repo" ".code-workspace" ".workspace")
+(defcustom +super-project-root-markers '(".super-project" ".super-project.el" ".workspace" ".repo/" ".code-workspace/")
   "List of super-project markers."
   :group 'minemacs-project
   :type '(repeat string))
