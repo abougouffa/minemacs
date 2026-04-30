@@ -52,7 +52,10 @@ root."
 
 
 ;;;###autoload
-(+def-project-mode! +repo-project-mode :when (+repo-project-p))
+(+def-project-mode! +repo-project-mode
+  "A minor mode enabled in files/buffers opened in a Repo workspace."
+  :when (+repo-project-p)
+  :fileless-buffers t)
 
 
 (provide 'me-repo-x)
