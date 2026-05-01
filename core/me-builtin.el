@@ -205,11 +205,11 @@
              (set-auto-mode)))))
 
   ;; Advice `emacs-session-filename' to ensure creating "session.ID" files in a sub-directory
-  (defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
-    "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
-    (concat x-win-dir (file-name-nondirectory session-filename)))
-
   (let ((x-win-dir (+directory-ensure minemacs-local-dir "x-win/")))
+    (defun +emacs-session-filename--in-subdir:filter-return-a (session-filename)
+      "Put the SESSION-FILENAME in the \"x-win/\" sub-directory."
+      (concat x-win-dir (file-name-nondirectory session-filename)))
+
     (+ignore-root x-win-dir) ; Don't show session files in recentf list and so on
     (advice-add 'emacs-session-filename :filter-return #'+emacs-session-filename--in-subdir:filter-return-a))
 
