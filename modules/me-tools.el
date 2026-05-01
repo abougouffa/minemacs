@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-04-23
+;; Last modified: 2026-05-02
 
 ;;; Commentary:
 
@@ -75,6 +75,9 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   :straight (:host github :repo "johannes-mueller/devcontainer.el")
   :hook (minemacs-after-startup . devcontainer-mode)
   :config
+  (when (featurep 'eat)
+    (setopt devcontainer-term-function #'eat))
+
   ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
   (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn)))))
 
