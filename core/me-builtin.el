@@ -834,8 +834,6 @@ Typing these will trigger reindentation of the current line.")
 (use-package time-stamp
   :hook (before-save . time-stamp) ; Update time stamp (if available) before saving a file.
   :custom
-  (time-stamp-active t) ; Do enable time-stamps
-  (time-stamp-line-limit 12) ; Check the first 12 buffer lines for Time-stamp: <>
   (time-stamp-format "%04Y-%02m-%02d %02H:%02M:%02S")) ; Timestamp format
 
 (use-package whitespace
