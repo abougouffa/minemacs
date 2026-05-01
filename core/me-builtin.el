@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-04-30
+;; Last modified: 2026-05-01
 
 ;;; Commentary:
 
@@ -867,10 +867,11 @@ Typing these will trigger reindentation of the current line.")
   (defun +auto-revert--on-buffer-switch-h (_frame)
     (unless +auto-revert-buffer-time
       (setq +auto-revert-buffer-time (+file-mtime buffer-file-name)))
-    (when-let* ((mtime (+file-mtime buffer-file-name)))
-      (unless (equal mtime +auto-revert-buffer-time)
-        (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
-        (+shutup! (revert-buffer t t)))))
+    (when (or auto-revert-mode global-auto-revert-mode)
+      (when-let* ((mtime (+file-mtime buffer-file-name)))
+        (unless (equal mtime +auto-revert-buffer-time)
+          (+log! "File %S modified externally, reverting immediately!" buffer-file-name)
+          (+shutup! (revert-buffer t t))))))
 
   (add-hook 'window-buffer-change-functions #'+auto-revert--on-buffer-switch-h))
 
