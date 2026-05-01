@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-04-30
+;; Last modified: 2026-05-02
 
 ;;; Commentary:
 
@@ -573,7 +573,7 @@ current process."
 ;;; Misc Emacs tweaks
 
 (defmacro +def-dedicated-tab! (cmd &rest body)
-  "Define +CMD command to run BODY in a dedicated tab.
+  "Define CMD command to run BODY in a dedicated tab.
 If not specified, BODY defaults to `(CMD)'.
 
 You can pass an exit hook or exit function on which, the created workspace will
@@ -592,11 +592,10 @@ be deleted.
         (:exit-hook (setq exit-hook (+unquote (pop body))))))
     (setq sexp (if (null body) `((,cmd)) body))
     (when (or exit-func exit-hook)
-      (setq
-       fn-body
-       `((defun ,exit-fn-name (&rest _)
-           (when-let* ((tab-num (seq-position (tab-bar-tabs) ,tab-name (lambda (tab name) (string= name (alist-get 'name tab))))))
-             (tab-close (1+ tab-num))))))
+      (setq fn-body
+            `((defun ,exit-fn-name (&rest _)
+                (when-let* ((idx (tab-bar--tab-index-by-name ,tab-name)))
+                  (tab-close (1+ idx))))))
       (when exit-func
         (setq fn-body (append fn-body `((advice-add ',exit-func :after #',exit-fn-name)))))
       (when exit-hook
@@ -607,8 +606,10 @@ be deleted.
          ,fn-doc
          (interactive)
          (when ,tab-name
-           (tab-new)
-           (tab-rename ,tab-name))
+           (if-let* ((idx (tab-bar--tab-index-by-name ,tab-name)))
+               (tab-bar-select-tab (1+ idx))
+             (tab-new)
+             (tab-rename ,tab-name)))
          (let (display-buffer-alist) ; To by pass the defined rules
            ,@sexp))
        ,(macroexp-progn fn-body)
