@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.1.1](https://github.com/abougouffa/minemacs/compare/aae5a985d9025f28765b5d1986b2b52067fb267d..v14.1.1) - 2026-05-01
+#### Tweaks
+- (**autorevert**) immediate auto-revert only when the mode is active - ([aae5a98](https://github.com/abougouffa/minemacs/commit/aae5a985d9025f28765b5d1986b2b52067fb267d)) - [@abougouffa](https://github.com/abougouffa)
+- (**devcontainer**) use `eat` as term function - ([ae24f8e](https://github.com/abougouffa/minemacs/commit/ae24f8e63198d60cdde0952823c9c68efd6ec3f9)) - [@abougouffa](https://github.com/abougouffa)
+- (**time-stamp**) remove unneeded customization - ([cc7ffab](https://github.com/abougouffa/minemacs/commit/cc7ffab8befa6032d70e4537891793662d8925bb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6c5afc8](https://github.com/abougouffa/minemacs/commit/6c5afc827aeb872411d315a93868991785b0cbc0)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- don't recreate "dedicated" command tabs - ([4e63fd8](https://github.com/abougouffa/minemacs/commit/4e63fd8122de816f7caea9154479f78d3c1d0163)) - [@abougouffa](https://github.com/abougouffa)
+- bug in `x-win` directory advice - ([9607d9e](https://github.com/abougouffa/minemacs/commit/9607d9eab6d7a9bb7a60af2d056920359f9d4673)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.1.0](https://github.com/abougouffa/minemacs/compare/f5631c09d59881b0ccda695e9fa5b2fcd1d3754d..v14.1.0) - 2026-04-30
 #### Tweaks
 - (**dired**) better check for GNU ls's specific switches - ([7e521b0](https://github.com/abougouffa/minemacs/commit/7e521b054b12195a80dfc5d2ce4ef1e07dbdc495)) - [@abougouffa](https://github.com/abougouffa)
