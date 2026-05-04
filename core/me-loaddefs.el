@@ -844,7 +844,7 @@ This command removes new line characters between lines." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-pcap.el
 
-(minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:5vw\\|apc\\|bfr\\|cap\\|dmp\\|eth\\|fdc\\|mplog\\|n\\(?:cf\\|tar\\)\\|p\\(?:cap\\(?:ng\\)?\\|kt\\)\\|rf5\\|s\\(?:noop\\|yc\\)\\|t\\(?:pc\\|r\\(?:c[01]\\|[1c]\\)\\)\\|vn\\(?:tc\\)?\\|wpz\\)$" . pcap-mode)))
+(minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:5vw\\|ap[cs]\\|bfr\\|c\\(?:ap\\|scpkt\\)\\|dmp\\|eth\\|fdc\\|mplog\\|n\\(?:cf\\|tar\\)\\|p\\(?:cap\\(?:ng\\)?\\|kt\\)\\|rf5\\|s\\(?:noop\\|yc\\)\\|t\\(?:pc\\|r\\(?:c[01]\\|[1c]\\)\\)\\|vn\\(?:tc\\)?\\|wpz\\)$" . pcap-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-pdf.el
