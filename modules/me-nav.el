@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2026-01-16
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -71,19 +71,6 @@
 (use-package p-search
   :straight (:host github :repo "zkry/p-search")
   :commands (p-search))
-
-
-;; Asynchronous fuzzy finder for Emacs
-(use-package affe
-  :straight t
-  :custom
-  (affe-regexp-compiler #'+affe-orderless-regexp-compiler)
-  :config
-  ;; Setup orderless regexp compiler, as recommended in the README.md
-  (require 'orderless)
-  (defun +affe-orderless-regexp-compiler (input _type _ignorecase)
-    (setq input (cdr (orderless-compile input)))
-    (cons input (apply-partially #'orderless--highlight input t))))
 
 
 ;; An Emacs front-end for "fzf"
