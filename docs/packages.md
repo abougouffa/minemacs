@@ -8,9 +8,6 @@
 * `mcp-hub`: Integration for Model Context Protocol (MCP)
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 
-## `me-calendar`
-* `org-timeblock`: Schedule your day visually, using timeblocking technique inside Emacs
-
 ## `me-checkers`
 * `flymake-collection`: Collection of checkers for Flymake
 * `flymenu`: Transient menu for Flymake
@@ -35,7 +32,6 @@
 * `dape-cortex-debug`: `dape` integration for cortex-debug (https://github.com/Marus/cortex-debug)
 * `rmsbolt`: A compiler output viewer
 * `beardbolt`: Compiler Explorer clone (fork of `rmsbolt` optimized for C/C++)
-* `objdump-disassemble`: Use "objdump" to display disassembled executable and object files
 
 ## `me-docs`
 * `pdfgrep`: PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
@@ -108,7 +104,6 @@
 ## `me-natural-langs`
 * `jinx`: Just-in-time spell checker based on the Enchanted library
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
-* `lexic`: Fancy Emacs integration with the console version of StarDict
 * `gt`: Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 
 ## `me-nav`
@@ -120,7 +115,6 @@
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
 * `rg`: Emacs search tool based on "ripgrep"
 * `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
-* `affe`: Asynchronous fuzzy finder for Emacs
 * `fzf`: An Emacs front-end for "fzf"
 
 ## `me-notes`
@@ -143,7 +137,6 @@
 * `citar-embark`: Citar integration with Embark
 
 ## `me-prog`
-* `consult-eglot`: Consult integration with Eglot
 * `apheleia`: Run code formatter on buffer contents without moving point
 * `dumb-jump`: An Emacs "jump to definition" package for 50+ languages
 * `hl-todo`: Highlight TODO keywords
@@ -198,7 +191,6 @@
 ## `me-ui`
 * `nerd-icons`: Nerd Font icons for Emacs
 * `doom-themes`: A megapack of themes for Emacs
-* `doric-themes`: Highly legible minimalist themes with precise typography
 * `vim-tab-bar`: Vim-like tab bar
 * `minemacs-modeline`: Light, modern and opinionated mode-line for MinEmacs
 * `nerd-icons-ibuffer`: Integrate `nerd-icons` with `ibuffer`
