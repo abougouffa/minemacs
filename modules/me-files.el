@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-01-21
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -70,7 +70,17 @@
   (with-eval-after-load 'ztree-view
     (setq ztree-draw-unicode-lines t)
     (keymap-set ztree-mode-map "n" #'ztree-next-line)
-    (keymap-set ztree-mode-map "p" #'ztree-previous-line)))
+    (keymap-set ztree-mode-map "p" #'ztree-previous-line))
+  :config
+  ;; BUGFIX: If a directory reports a "Permission denied" error, the diff will
+  ;; fail. This forces a "continue-on-error" strategy while reporting the
+  ;; problematic paths.
+  (advice-add
+   #'ztree-directory-files :around
+   (satch-defun +ztree--ignore-errors-a:around (fn dir)
+     (condition-case-unless-debug err
+         (funcall fn dir)
+       (error (message "Error: %s" (error-message-string err)) nil)))))
 
 
 (provide 'me-files)
