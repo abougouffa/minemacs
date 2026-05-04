@@ -1023,6 +1023,20 @@ root.
 (register-definition-prefixes "extras/me-smerge-x" '("+recenter:after-a" "+smerge-"))
 
 
+;;; Generated autoloads from ../modules/extras/me-spellcheck.el
+
+(autoload '+spellcheck-mode "../modules/extras/me-spellcheck"
+"Spell checking mode, with ARG.
+Based on `jinx-mode' if available. Falls back to the built-in
+`flyspell-mode'.
+
+(fn &optional ARG)" t)
+(autoload '+spellcheck-correct "../modules/extras/me-spellcheck"
+"Correct word at point." t)
+(add-hook 'text-mode-hook #'+spellcheck-mode)
+(with-eval-after-load 'git-commit (add-hook 'git-commit-mode-hook #'+spellcheck-mode))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-sql.el
 
 (minemacs-register-on-demand-module 'me-sql :companion-packages '((sql-mode . sqlup-mode)))
