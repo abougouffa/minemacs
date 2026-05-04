@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-02
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -832,14 +832,14 @@ file dont exist."
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "Google Sans Code NF" :height 110)
-     (:family "Google Sans Code" :height 110)
-     (:family "Iosevka" :height 110)
-     (:family "Martian Mono" :height 100)
+    ((:family "JetBrains Mono" :height 100)
      (:family "Cascadia Code" :height 110 :weight semi-light)
      (:family "Fira Code" :height 110)
+     (:family "Google Sans Code NF" :height 110)
+     (:family "Google Sans Code" :height 110)
+     (:family "Iosevka" :height 110)
      (:family "Geist Mono" :height 110)
-     (:family "Jetbrains Mono" :height 100)
+     (:family "Martian Mono" :height 100)
      (:family "Iosevka Comfy" :height 110)
      (:family "Iosevka Fixed Curly Slab" :height 110)
      (:family "Iosevka Fixed Curly" :height 110)
