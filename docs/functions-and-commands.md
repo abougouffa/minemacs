@@ -508,7 +508,7 @@ current process.
 
 #### `(+def-dedicated-tab! NAME [[:exit-hook HOOK] [:exit-func FUNC]]FORMS...)` (macro)
 
-Define +CMD command to run BODY in a dedicated tab.
+Define CMD command to run BODY in a dedicated tab.
 If not specified, BODY defaults to `(CMD)`.
 You can pass an exit hook or exit function on which, the created workspace will
 be deleted.
@@ -1328,6 +1328,10 @@ Apply UI setup.
 #### `(+mu4e-ui-modeline-tweaks)`
 
 Apply UI tweaks based on `nerd-icons`.
+
+#### `(+spellcheck-correct)`
+
+Correct word at point.
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">
