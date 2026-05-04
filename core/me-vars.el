@@ -1,10 +1,10 @@
 ;; me-vars.el --- MinEmacs -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-09-04
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -211,7 +211,6 @@ it automatically."
 
 (defcustom minemacs-modules
   '(;; me-ai
-    ;; me-calendar
     me-checkers
     me-completion
     me-debug

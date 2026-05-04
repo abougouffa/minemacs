@@ -1,13 +1,12 @@
 ;;; modules.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025 Abdelhak Bougouffa
+;; Copyright (C) 2022-2026 Abdelhak Bougouffa
 
 ;; This file can be used to override `minemacs-modules'
 
 ;;; List of enabled modules
 (setq minemacs-modules
       '(;; me-ai          ; AI assistant using Ollama (ellama, llm, ...)
-        ;; me-calendar    ; Calendar (org-timeblock, org-caldav, ...)
         me-checkers       ; Static checkers (flymake-collection, flymenu, ...)
         me-completion     ; Completion (vertico, marginalia, corfu, cape, consult, embark, ...)
         me-debug          ; Debugging tools (dape, rmsbolt, beardbolt, ...)
