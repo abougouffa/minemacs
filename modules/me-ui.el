@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-04-02
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -34,11 +34,6 @@
 
   ;; BUG: Fix face-inheritance cycle doomemacs/themes#875
   (setcdr (assoc 'gnus-group-news-low-empty doom-themes-base-faces) '(:inherit 'gnus-group-mail-1-empty :weight 'normal)))
-
-
-;; Highly legible minimalist themes with precise typography
-(use-package doric-themes
-  :straight t)
 
 
 ;; Vim-like tab bar
