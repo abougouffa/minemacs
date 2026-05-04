@@ -34,12 +34,6 @@
   :straight t)
 
 
-;; Fancy Emacs integration with the console version of StarDict
-(use-package lexic
-  :straight t
-  :when (executable-find "sdcv"))
-
-
 ;; Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 (use-package gt
   :straight t
