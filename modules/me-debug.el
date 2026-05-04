@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-15
-;; Last modified: 2026-03-04
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -77,11 +77,6 @@
     (let* ((ccj (+compilation-db-get-entry (buffer-file-name)))
            (default-directory (or (plist-get ccj :directory) default-directory)))
       (apply origfn args))))
-
-
-;; Use "objdump" to display disassembled executable and object files
-(use-package objdump-disassemble
-  :straight (:host github :repo "abougouffa/objdump-disassemble"))
 
 
 (provide 'me-debug)
