@@ -1,10 +1,10 @@
 ;;; me-services.el --- Integration with web services -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-12-02
+;; Last modified: 2026-05-04
 
 ;;; Commentary:
 
@@ -96,7 +96,7 @@ projects to uses the convention of commit messages like:
 (use-package webpaste
   :straight t
   :custom
-  (webpaste-provider-priority '("paste.mozilla.org" "dpaste.org")))
+  (webpaste-provider-priority '("paste.rs" "dpaste.com" "bpa.st")))
 
 
 ;; Simply shortening URLs using the is.gd service
