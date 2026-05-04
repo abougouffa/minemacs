@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.2.0](https://github.com/abougouffa/minemacs/compare/6e4b2872bec087d7e1bec64a1fa3feb9ea9ed6fe..v14.2.0) - 2026-05-04
+#### Tweaks
+- (**on-demand/pcap**) register the `aps` and `cscpkt` extensions - ([6153052](https://github.com/abougouffa/minemacs/commit/615305275ae8ba295eabd23f643a380ad1e9dc21)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d4b7fe7](https://github.com/abougouffa/minemacs/commit/d4b7fe7cf3a9fe85118248a6e6e18c12ad449747)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([0868584](https://github.com/abougouffa/minemacs/commit/086858410650bb44c62fa52deadce802ecedf19a)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([7d75830](https://github.com/abougouffa/minemacs/commit/7d75830e2281d0739620065bcf07162e364d8869)) - [@abougouffa](https://github.com/abougouffa)
+- prefer fonts with native support for ligatures - ([7f81bc3](https://github.com/abougouffa/minemacs/commit/7f81bc3986fb72a4b54a98efda710ab86ad289f6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6e4b287](https://github.com/abougouffa/minemacs/commit/6e4b2872bec087d7e1bec64a1fa3feb9ea9ed6fe)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**calendar**) make `org-timeblock` obsolete, remove `me-calendar` - ([2e080d1](https://github.com/abougouffa/minemacs/commit/2e080d1d22f3ea18edc11daebc04b379aad8cc28)) - [@abougouffa](https://github.com/abougouffa)
+- (**calendar**) make `org-caldav` obsolete - ([7462cfe](https://github.com/abougouffa/minemacs/commit/7462cfe62aaa11945a259f073adfc37e42f53d69)) - [@abougouffa](https://github.com/abougouffa)
+- (**debug**) make `objdump-disassemble` obsolete - ([71746a7](https://github.com/abougouffa/minemacs/commit/71746a7555f2ac41375e61d69a3a79e8f5a02381)) - [@abougouffa](https://github.com/abougouffa)
+- (**natural-langs**) make `lexic` obsolete - ([75b3c6c](https://github.com/abougouffa/minemacs/commit/75b3c6c6727de4a0dc39d3c8be093c021232d201)) - [@abougouffa](https://github.com/abougouffa)
+- (**nav**) make `affe` obsolete - ([adc5c71](https://github.com/abougouffa/minemacs/commit/adc5c714c96260e451c398bd2958bbb106f6e255)) - [@abougouffa](https://github.com/abougouffa)
+- (**prog**) make `consult-eglot` obsolete - ([07e16fb](https://github.com/abougouffa/minemacs/commit/07e16fbdeb4a0e45c218e1dadbeeaff23d21e961)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) make `doric-themes` obsolete - ([7b04d77](https://github.com/abougouffa/minemacs/commit/7b04d7777e2d95fa5fe7111391a219ee01070a78)) - [@abougouffa](https://github.com/abougouffa)
+- move the generic spell check mode stuff to separate file - ([690fc28](https://github.com/abougouffa/minemacs/commit/690fc283cec7781513cef1bf40b8ef0833aa6673)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**webpaste**) change non-working providers - ([1804a56](https://github.com/abougouffa/minemacs/commit/1804a568afae0781bd2c0fc5d05aed431993bf7e)) - [@abougouffa](https://github.com/abougouffa)
+- (**ztree**) continue-on-error if some directories aren't accessible - ([9dd19e4](https://github.com/abougouffa/minemacs/commit/9dd19e4a8a474ddf468bdc309e99c82c5da1deaf)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([a717a98](https://github.com/abougouffa/minemacs/commit/a717a98e51dc3e76a5592e1de07bfe366f4ba507)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([30ebe26](https://github.com/abougouffa/minemacs/commit/30ebe263780d87a4e938087787b312afcb3d422c)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.1.1](https://github.com/abougouffa/minemacs/compare/aae5a985d9025f28765b5d1986b2b52067fb267d..v14.1.1) - 2026-05-01
 #### Tweaks
 - (**autorevert**) immediate auto-revert only when the mode is active - ([aae5a98](https://github.com/abougouffa/minemacs/commit/aae5a985d9025f28765b5d1986b2b52067fb267d)) - [@abougouffa](https://github.com/abougouffa)
