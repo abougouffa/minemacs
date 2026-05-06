@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-04-30
+;; Last modified: 2026-05-06
 
 ;;; Commentary:
 
@@ -96,16 +96,16 @@ Can override `project--files-in-directory' for x3.5 faster listing."
                           +fd-program
                           (+fd-ignores-arguments (append ignores +fd-ignores) "./")
                           (if files
-                              (concat (shell-quote-argument "(")
-                                      (shell-quote-argument
-                                       (mapconcat (lambda (wildcard)
-                                                    (thread-last
-                                                      (wildcard-to-regexp wildcard)
-                                                      (string-remove-suffix "\\'")
-                                                      (string-remove-prefix "\\`")))
-                                                  (string-split files)
-                                                  (concat "|")))
-                                      (shell-quote-argument ")"))
+                              (mapconcat #'shell-quote-argument
+                                         `("("
+                                           ,(mapconcat (lambda (wildcard)
+                                                         (thread-last
+                                                           (wildcard-to-regexp wildcard)
+                                                           (string-remove-suffix "\\'")
+                                                           (string-remove-prefix "\\`")))
+                                                       (string-split files)
+                                                       (concat "|"))
+                                           ")"))
                             "")))
          res)
     (with-temp-buffer
