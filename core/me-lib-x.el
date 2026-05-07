@@ -1036,9 +1036,6 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                (expand-file-name "compile_commands.json" (expand-file-name dir)))
              (mapcan #'file-expand-wildcards +compile-commands-json-directories)))))
 
-(define-obsolete-function-alias '+project-have-compile-commands-p '+compilation-db-find-file "13.5.0")
-(define-obsolete-function-alias '+compile-commands-find-file '+compilation-db-find-file "13.6.0")
-
 (defvar +compilation-db-cache (make-hash-table :test #'equal))
 
 ;;;###autoload

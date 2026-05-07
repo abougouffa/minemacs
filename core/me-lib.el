@@ -26,8 +26,6 @@
   (declare (indent 0))
   `(push ',(macroexp-progn body) minemacs--deferred-forms))
 
-(define-obsolete-function-alias '+with-delayed-1! '+with-delayed! "13.25.0")
-
 
 
 ;;; Some plist and alist missing functions

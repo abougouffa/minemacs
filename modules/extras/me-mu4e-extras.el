@@ -1,10 +1,10 @@
 ;;; me-mu4e-extras.el --- Extra tweaks and utilities for mu4e -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-07-27
+;; Last modified: 2026-05-07
 
 ;;; Commentary:
 
@@ -166,8 +166,6 @@ for :EXTRA-LINES."
    (string-join lines "\\\\\n")
    "\n"
    "#+end_signature"))
-
-(make-obsolete '+org-msg-make-signature '+org-msg-signature "8.6.1")
 
 ;; I always synchronize Spams with `mbsync' and index them with `mu'. However, I
 ;; don't like to see them all the time, I would rather jump to the spam folder
