@@ -2,6 +2,30 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.3.0](https://github.com/abougouffa/minemacs/compare/560dd09660d475e46e6eaf168cd1e6ab2a337b01..v14.3.0) - 2026-05-07
+#### Tweaks
+- (**dogears**) add `dump-jump-after-jump-hook` to the `dogears-hooks` - ([143a24c](https://github.com/abougouffa/minemacs/commit/143a24cff2ced47dcc66a4fd1890811cb3600dd6)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([3833fef](https://github.com/abougouffa/minemacs/commit/3833feff9d786b5e00286653421b75ce732757ea)) - [@abougouffa](https://github.com/abougouffa)
+- remove some unused stuff - ([e60f555](https://github.com/abougouffa/minemacs/commit/e60f555206782dccc260aa0c3eaf05031d2becef)) - [@abougouffa](https://github.com/abougouffa)
+- slightly bigger font size for JetBrains Mono - ([ae48091](https://github.com/abougouffa/minemacs/commit/ae480915079093c1e496e2a68a686dad7c7a6d06)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([d7aa095](https://github.com/abougouffa/minemacs/commit/d7aa0953476f6a2d1c8f285fbe07c4c24878a99d)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**nav**) replace Doom hacks by `mwim` - ([1bcf885](https://github.com/abougouffa/minemacs/commit/1bcf88526e9c82b3e723c5599407d35e114154ed)) - [@abougouffa](https://github.com/abougouffa)
+- allow disabling packages via an environment variable - ([679866e](https://github.com/abougouffa/minemacs/commit/679866eae8b26c9d3e27f7e065874b224f4c3901)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- correct a search directory for compile_commands.json - ([09e8ae7](https://github.com/abougouffa/minemacs/commit/09e8ae785a490d8c8f802209736dc46108df1cab)) - [@abougouffa](https://github.com/abougouffa)
+- edge case for `+describe-at-point` - ([7a432be](https://github.com/abougouffa/minemacs/commit/7a432be952eb4e79593c14654865779c047c0792)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([2eefd54](https://github.com/abougouffa/minemacs/commit/2eefd54ffc6c1d5bbce4bb5921b245cabf6eb33d)) - [@abougouffa](https://github.com/abougouffa)
+- document the new environment variable - ([7fda6a1](https://github.com/abougouffa/minemacs/commit/7fda6a1498191b17ff1f383f81a2101b8a8ffc7c)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**project-x**) minor refactoring - ([560dd09](https://github.com/abougouffa/minemacs/commit/560dd09660d475e46e6eaf168cd1e6ab2a337b01)) - [@abougouffa](https://github.com/abougouffa)
+- refactor for a slightly faster `+clang-format-get-style` - ([4c3b1e0](https://github.com/abougouffa/minemacs/commit/4c3b1e0f16b503191c184cffbea37de8cd7905b4)) - [@abougouffa](https://github.com/abougouffa)
+- remove old obsolete aliases - ([44972fa](https://github.com/abougouffa/minemacs/commit/44972fa599ca7e98ea936015084cb3639ba15a6a)) - [@abougouffa](https://github.com/abougouffa)
+- minor refactoring of `minemacs-load-module` - ([332b4cc](https://github.com/abougouffa/minemacs/commit/332b4ccaeda2b71ee99e96afdc83a8f07f6e1d30)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.2.0](https://github.com/abougouffa/minemacs/compare/6e4b2872bec087d7e1bec64a1fa3feb9ea9ed6fe..v14.2.0) - 2026-05-04
 #### Tweaks
 - (**on-demand/pcap**) register the `aps` and `cscpkt` extensions - ([6153052](https://github.com/abougouffa/minemacs/commit/615305275ae8ba295eabd23f643a380ad1e9dc21)) - [@abougouffa](https://github.com/abougouffa)
