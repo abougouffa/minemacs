@@ -111,6 +111,7 @@
 * `avy`: Jump to things in Emacs tree-style
 * `avy-zap`: Zap to char using `avy`
 * `dogears`: Never lose your place in Emacs again
+* `mwim`: Move to the beginning/end of line, code or comment
 * `goto-chg`: Go to last change
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
 * `rg`: Emacs search tool based on "ripgrep"
