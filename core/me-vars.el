@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-07
 
 ;;; Commentary:
 
@@ -40,6 +40,11 @@ Accepted values are: early-config, init-tweaks, modules, config,
 local/early-config, local/init-tweaks, local/modules and local/config.
 This list is automatically constructed from the space-separated values in the
 environment variable \"$MINEMACS_IGNORE_USER_CONFIG\".")
+
+(defconst minemacs-disabled-packages-env
+  (when-let* ((pkgs (or (getenv "MINEMACS_DISABLED_PACKAGES") (getenv "MINEMACS_DISABLED_PKGS"))))
+    (mapcar #'intern (split-string pkgs nil t)))
+  "Space-separated list of packages to disable at startup.")
 
 (defconst minemacs-debug-p
   (and (or (getenv "MINEMACS_DEBUG") init-file-debug) t)

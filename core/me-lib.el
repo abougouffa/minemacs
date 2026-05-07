@@ -386,7 +386,7 @@ function.
 Optionally, check also for the containing MODULE."
   (or
    (and minemacs-builtin-only-p module (not (eq module 'me-builtin)))
-   (and (memq package (flatten-list minemacs-disabled-packages)))
+   (and (memq package (flatten-list (append minemacs-disabled-packages-env minemacs-disabled-packages))))
    (and module (not (memq module minemacs-modules)))))
 
 (defun +package-configured-p (package)
