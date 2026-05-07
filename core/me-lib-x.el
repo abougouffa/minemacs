@@ -1373,7 +1373,7 @@ you might need install some of these tools.\n\n")
     (?p :predicate
         (lambda (s)
           (require 'finder-inf nil t)
-          (unless package--initialized (package-initialize t))
+          (unless (bound-and-true-p package--initialized) (package-initialize t))
           (let ((packages (append (mapcar #'car package-alist)
                                   (mapcar #'car package-archive-contents)
                                   (mapcar #'car package--builtins))))
