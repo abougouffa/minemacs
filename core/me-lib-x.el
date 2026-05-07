@@ -1022,7 +1022,7 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
     "cmake-build"
     "cmake-build/release"
     "cmake-build/debug"
-    "cmake-build/*_ninja_Releaseb"
+    "cmake-build/*_ninja_Release"
     "cmake-build/*_ninja_Debug"
     "cmake-build/*_make_Release"
     "cmake-build/*_make_Debug"))
