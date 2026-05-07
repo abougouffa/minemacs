@@ -599,21 +599,6 @@ With argument ARG, do this that many times.
 Restricts the effect of `backward-kill-word' to the current line.
 
 (fn ARG)" t)
-(autoload '+backward-to-bol-or-indent "me-lib-x"
-"Jump between indentation column and the beginning of the line.
-
-Indentation column is defined by the first non-whitespace character.
-Jump relative to POINT or the current point if not provided.
-This is the opposite of `+forward-to-last-non-comment-or-eol'.
-
-(fn &optional POINT)" t)
-(autoload '+forward-to-last-non-comment-or-eol "me-lib-x"
-"Jump between the last non-blank, non-comment character and EOL.
-
-Jump relative to POINT or the current point if not provided.
-This is the opposite of `+backward-to-bol-or-indent'.
-
-(fn &optional POINT)" t)
 (autoload '+set-indent-width "me-lib-x"
 "Change the indentation size to WIDTH of the current buffer.
 
@@ -737,7 +722,7 @@ This command removes new line characters between lines." t)
 "Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x"
 "Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+b" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+p" "+s" "+tramp--convert-sshfs-filename-local" "minemacs--"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+tramp--convert-sshfs-filename-local"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
