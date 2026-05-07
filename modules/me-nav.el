@@ -44,7 +44,7 @@
          ([mouse-8] . dogears-back)
          ([mouse-9] . dogears-forward))
   :custom
-  (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
+  (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook dumb-jump-after-jump-hook rtags-jump-hook)))
 
 
 ;; Move to the beginning/end of line, code or comment
