@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-01
+;; Last modified: 2026-05-07
 
 ;;; Commentary:
 
@@ -122,8 +122,6 @@
   (keymap-global-set "<remap> <kill-word>" #'+kill-whitespace-or-word) ; M-d
   (keymap-global-set "<remap> <kill-region>" #'+kill-region-or-backward-word) ; C-w
   (keymap-global-set "<remap> <backward-kill-word>" #'+backward-kill-whitespace-or-word) ; M-delete or C-backspace
-  (keymap-global-set "C-a" #'+backward-to-bol-or-indent) ; Instead of `move-beginning-of-line' or `beginning-of-visual-line'
-  (keymap-global-set "C-e" #'+forward-to-last-non-comment-or-eol) ; Instead of `move-end-of-line' or `end-of-visual-line'
 
   ;; Use DWIM commands for M-l, M-u and M-c
   (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim) ; M-l

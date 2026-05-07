@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-04-30
+;; Last modified: 2026-05-07
 
 ;;; Commentary:
 
@@ -687,137 +687,6 @@ Restricts the effect of `backward-kill-word' to the current line."
       (narrow-to-region (line-beginning-position) (line-end-position))
       (backward-kill-word arg)
       (widen))))
-
-;; Inspired by Doom Emacs
-
-(defvar-local minemacs--sppss-memo-last-point nil)
-(defvar-local minemacs--sppss-memo-last-result nil)
-
-(defun minemacs--sppss-memo-reset-h (&rest _ignored)
-  "Reset memoization as a safety precaution.
-
-IGNORED is a dummy argument used to eat up arguments passed from
-the hook where this is executed."
-  (setq minemacs--sppss-memo-last-point nil
-        minemacs--sppss-memo-last-result nil))
-
-(defun +syntax-ppss-memoized (&optional p)
-  "Memoize the last result of `syntax-ppss'.
-
-P is the point at which we run `syntax-ppss'"
-  (let ((p (or p (point)))
-        (mem-p minemacs--sppss-memo-last-point))
-    (if (and (eq p (nth 0 mem-p))
-             (eq (point-min) (nth 1 mem-p))
-             (eq (point-max) (nth 2 mem-p)))
-        minemacs--sppss-memo-last-result
-      ;; Add hook to reset memoization if necessary
-      (unless minemacs--sppss-memo-last-point
-        (add-hook 'before-change-functions #'minemacs--sppss-memo-reset-h t t))
-      (setq minemacs--sppss-memo-last-point (list p (point-min) (point-max))
-            minemacs--sppss-memo-last-result (syntax-ppss p)))))
-
-(defun +point-in-comment-p (&optional pt)
-  "Return non-nil if point is in a comment.
-PT defaults to the current position."
-  (let ((pt (or pt (point))))
-    (ignore-errors
-      (save-excursion
-        ;; We cannot be in a comment if we are inside a string
-        (unless (nth 3 (+syntax-ppss-memoized pt))
-          (or (nth 4 (+syntax-ppss-memoized pt))
-              ;; this also test opening and closing comment delimiters... we
-              ;; need to chack that it is not newline, which is in "comment
-              ;; ender" class in elisp-mode, but we just want it to be treated
-              ;; as whitespace
-              (and (< pt (point-max))
-                   (memq (char-syntax (char-after pt)) '(?< ?>))
-                   (not (eq (char-after pt) ?\n)))
-              ;; we also need to test the special syntax flag for comment
-              ;; starters and enders, because `syntax-ppss' does not yet know if
-              ;; we are inside a comment or not (e.g. / can be a division or
-              ;; comment starter...).
-              (when-let* ((s (car (syntax-after pt))))
-                (or (and (/= 0 (logand (ash 1 16) s)) (nth 4 (syntax-ppss (+ pt 2))))
-                    (and (/= 0 (logand (ash 1 17) s)) (nth 4 (syntax-ppss (+ pt 1))))
-                    (and (/= 0 (logand (ash 1 18) s)) (nth 4 (syntax-ppss (- pt 1))))
-                    (and (/= 0 (logand (ash 1 19) s)) (nth 4 (syntax-ppss (- pt 2))))))))))))
-
-(defun +bol-bot-eot-eol (&optional pos)
-  "Return (BOL BOT EOT EOL) for POS or the current point."
-  (save-mark-and-excursion
-    (when pos (goto-char pos))
-    (let* ((bol (if visual-line-mode
-                    (save-excursion
-                      (beginning-of-visual-line)
-                      (point))
-                  (line-beginning-position)))
-           (bot (save-excursion
-                  (goto-char bol)
-                  (skip-chars-forward " \t\r")
-                  (point)))
-           (eol (if visual-line-mode
-                    (save-excursion (end-of-visual-line) (point))
-                  (line-end-position)))
-           (eot (or (save-excursion
-                      (if (not comment-use-syntax)
-                          (progn
-                            (goto-char bol)
-                            (when (re-search-forward comment-start-skip eol t)
-                              (or (match-end 1) (match-beginning 0))))
-                        (goto-char eol)
-                        (while (and (+point-in-comment-p) (> (point) bol))
-                          (backward-char))
-                        (skip-chars-backward " " bol)
-                        (or (eq (char-after) 32) (eolp) (bolp) (forward-char))
-                        (point)))
-                    eol)))
-      (list bol bot eot eol))))
-
-(defvar minemacs--last-backward-pt nil)
-;;;###autoload
-(defun +backward-to-bol-or-indent (&optional point)
-  "Jump between indentation column and the beginning of the line.
-
-Indentation column is defined by the first non-whitespace character.
-Jump relative to POINT or the current point if not provided.
-This is the opposite of `+forward-to-last-non-comment-or-eol'."
-  (interactive "^d")
-  (let ((pt (or point (point))))
-    (cl-destructuring-bind (bol bot _eot _eol)
-        (+bol-bot-eot-eol pt)
-      (cond ((> pt bot)
-             (goto-char bot))
-            ((= pt bol)
-             (or (and minemacs--last-backward-pt
-                      (= (line-number-at-pos minemacs--last-backward-pt)
-                         (line-number-at-pos pt)))
-                 (setq minemacs--last-backward-pt nil))
-             (goto-char (or minemacs--last-backward-pt bot))
-             (setq minemacs--last-backward-pt nil))
-            ((<= pt bot)
-             (setq minemacs--last-backward-pt pt)
-             (goto-char bol))))))
-
-(defvar minemacs--last-forward-pt nil)
-;;;###autoload
-(defun +forward-to-last-non-comment-or-eol (&optional point)
-  "Jump between the last non-blank, non-comment character and EOL.
-
-Jump relative to POINT or the current point if not provided.
-This is the opposite of `+backward-to-bol-or-indent'."
-  (interactive "^d")
-  (let ((pt (or point (point))))
-    (cl-destructuring-bind (_bol _bot eot eol)
-        (+bol-bot-eot-eol pt)
-      (cond ((< pt eot)
-             (goto-char eot))
-            ((= pt eol)
-             (goto-char (or minemacs--last-forward-pt eot))
-             (setq minemacs--last-forward-pt nil))
-            ((>= pt eot)
-             (setq minemacs--last-forward-pt pt)
-             (goto-char eol))))))
 
 ;; Inspired by Doom Emacs
 ;;;###autoload

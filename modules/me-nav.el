@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-07
 
 ;;; Commentary:
 
@@ -45,6 +45,13 @@
          ([mouse-9] . dogears-forward))
   :custom
   (dogears-hooks '(imenu-after-jump-hook xref-after-jump-hook xref-after-return-hook consult-after-jump-hook rtags-jump-hook)))
+
+
+;; Move to the beginning/end of line, code or comment
+(use-package mwim
+  :straight t
+  :bind (("C-a" . mwim-beginning) ; Instead of `move-beginning-of-line' or `beginning-of-visual-line'
+         ("C-e" . mwim-end))) ; Instead of `move-end-of-line' or `end-of-visual-line'
 
 
 ;; Go to last change
