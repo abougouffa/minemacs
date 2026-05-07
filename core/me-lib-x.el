@@ -962,16 +962,16 @@ the schema from the file name."
   "Get the \"-style=XXX\" argument for clang-format.
 
 When NO-OPT isn non-nil, don't return the \"-style=\" part."
-  (let ((lang (+clang-format-get-lang)))
+  (let ((lang (+clang-format-get-lang))
+        (file (+clang-format-config-file)))
     (concat (if no-opt "" "-style=")
-            (if (and (+clang-format-config-file)
+            (if (and file
                      ;; In case of a missing config for the language or a malformed ".clang-format" file
                      (+clang-format-dump-config (car lang)))
                 (concat
                  "file"
                  ;; The "file:path/to/config" option is available in version 14+
-                 (when-let* (((version<= "14" (+clang-format-get-version)))
-                             (file (+clang-format-config-file)))
+                 (when (and (version<= "14" (+clang-format-get-version)) file)
                    (concat ":" (shell-quote-argument file))))
               (let ((indent-sym (cl-find-if #'boundp (cdr lang))))
                 (format "{IndentWidth: %d, TabWidth: %d}"
