@@ -707,13 +707,8 @@ Prefix ARG nil means write region to FILENAME, replacing contents.
 This command removes new line characters between lines." t)
 (autoload '+first-line-empty-p "me-lib-x"
 "Return t when the first line of the buffer is empty.")
-(autoload '+project-gdb "me-lib-x"
-"Invoke `gdb' in the project's root." t)
 (autoload '+project-list-cleanup "me-lib-x"
 "Forget all duplicate known projects (like /home/user/proj and ~/proj)." t)
-(defvar +project-root-wildcards '("~/Projects/*/*"))
-(autoload '+project-root-initialize "me-lib-x"
-"Initialize project list from `+project-root-wildcards'." t)
 (autoload '+xref-find-references-at-point "me-lib-x"
 "Find references to the identifier at or around point." t)
 (autoload 'minemacs-extract-packages-descriptions "me-lib-x"
