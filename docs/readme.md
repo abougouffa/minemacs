@@ -153,6 +153,8 @@ You can customize MinEmacs' behavior via some environment variables.
 - `MINEMACS_BUILTIN_ONLY`: Load only built-in packages, no need to install any
   external package, including `straight`. This can be useful when you want to
   use MinEmacs on a machine with limited internet access.
+- `MINEMACS_DISABLED_PACKAGES` or `MINEMACS_DISABLED_PKGS`: space-separated list
+  of packages to disable.
 - `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables
   loading `~/.minemacs.d/<file>.el` user configuration files. Accepted values
   for `<file>` are: `early-config`, `init-tweaks`, `modules`, `config`,
