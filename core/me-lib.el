@@ -406,6 +406,11 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE."
                                          (directory-files minemacs-on-demand-modules-dir nil "\\`me-.*\\.el\\'"))))
     (mapcar #'intern (mapcar #'file-name-sans-extension mod-files))))
 
+(defun +all-minemacs-hooks ()
+  (append minemacs-after-startup-hook minemacs-lazy-hook
+          minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
+          (cl-loop for hook in +first-file-hooks append (eval hook))))
+
 (defun minemacs-load-module (&rest modules)
   "Interactively install and load MODULES that aren't enabled in \"modules.el\".
 
@@ -416,18 +421,11 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
                 (seq-filter (lambda (module) (not (featurep module)))
                             (let ((prefix (prefix-numeric-value current-prefix-arg)))
                               (minemacs-modules (>= prefix 4) (>= prefix 16))))))
-  (let ((old-hooks ; save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
-         (append minemacs-after-startup-hook minemacs-lazy-hook
-                 minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                 (cl-loop for hook in +first-file-hooks append (eval hook))))
-        (old-fns minemacs-build-functions-hook))
+  ;; Save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
+  (let ((old-hooks (+all-minemacs-hooks))
+        (old-fns minemacs-build-functions))
     (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) (flatten-list modules)))
-    (let ((new-hooks
-           (cl-set-difference
-            (append minemacs-after-startup-hook minemacs-lazy-hook
-                    minemacs-after-load-theme-hook minemacs-after-setup-fonts-hook
-                    (cl-loop for hook in +first-file-hooks append (eval hook)))
-            old-hooks))
+    (let ((new-hooks (cl-set-difference (+all-minemacs-hooks) old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))
       (mapc #'funcall new-hooks)
       (minemacs-run-build-functions (not (called-interactively-p 'interactive))))))
