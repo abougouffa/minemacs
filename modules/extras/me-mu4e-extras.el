@@ -27,81 +27,6 @@
 
 ;; Some of these functions are adapted from Doom Emacs
 
-(defun +mu4e-part-selectors (parts)
-  "Generate selection strings for PARTS."
-  (if parts
-      (let (partinfo labeledparts maxfnamelen fnamefmt maxsizelen sizefmt)
-        (dolist (part parts)
-          (push (list :index (car part)
-                      :mimetype (if (and (string= "text/plain" (caaddr part))
-                                         (alist-get 'charset (cdaddr part)))
-                                    (format "%s (%s)"
-                                            (caaddr part)
-                                            (alist-get 'charset (cdaddr part)))
-                                  (caaddr part))
-                      :type (car (nth 5 part))
-                      :filename (cdr (assoc 'filename (assoc "attachment" (cdr part))))
-                      :size (file-size-human-readable (with-current-buffer (cadr part) (buffer-size)))
-                      :part part)
-                partinfo))
-        (setq maxfnamelen (apply #'max 7 (mapcar (lambda (i) (length (plist-get i :filename))) partinfo))
-              fnamefmt (format " %%-%ds  " maxfnamelen)
-              maxsizelen (apply #'max (mapcar (lambda (i) (length (plist-get i :size))) partinfo))
-              sizefmt (format "%%-%ds " maxsizelen))
-        (dolist (pinfo partinfo)
-          (push (cons
-                 (concat
-                  (propertize (format "%-2s " (plist-get pinfo :index)) 'face '(bold font-lock-type-face))
-                  (if (fboundp 'nerd-icons-icon-for-file)
-                      (nerd-icons-icon-for-file (or (plist-get pinfo :filename) ""))
-                    "")
-                  (format fnamefmt (or (plist-get pinfo :filename)
-                                       (propertize (plist-get pinfo :type) 'face '(italic font-lock-doc-face))))
-                  (format sizefmt (propertize (plist-get pinfo :size) 'face 'font-lock-builtin-face))
-                  (propertize (plist-get pinfo :mimetype) 'face 'font-lock-constant-face))
-                 (plist-get pinfo :part))
-                labeledparts))
-        labeledparts)))
-
-(defun +mu4e-view-select-attachment ()
-  "Use `completing-read' to select a single attachment.
-Acts like a singular `mu4e-view-save-attachments', without the saving."
-  (if-let* ((parts (delq nil (mapcar
-                              (lambda (part)
-                                (when (assoc "attachment" (cdr part))
-                                  part))
-                              (mu4e-view-mime-parts))))
-            (files (+mu4e-part-selectors parts)))
-      (cdr (assoc (completing-read "Select attachment: " (mapcar #'car files)) files))
-    (user-error (mu4e-format "No attached files found"))))
-
-(defun +mu4e-view-open-attachment ()
-  "Select an attachment, and open it."
-  (interactive)
-  (mu4e--view-open-file
-   (mu4e--view-mime-part-to-temp-file (cdr (+mu4e-view-select-attachment)))))
-
-(defun +mu4e-view-select-mime-part-action ()
-  "Select a MIME part, and perform an action on it."
-  (interactive)
-  (let ((labeledparts (+mu4e-part-selectors (mu4e-view-mime-parts))))
-    (if labeledparts
-        (mu4e-view-mime-part-action
-         (cadr (assoc (completing-read "Select part: " (mapcar #'car labeledparts))
-                      labeledparts)))
-      (user-error (mu4e-format "No parts found")))))
-
-(defun +mu4e-view-save-all-attachments (&optional ask-dir)
-  "Save all files from the current view buffer.
-
-With ASK-DIR is non-nil, user can specify the target-directory; otherwise
-one is determined using `mu4e-attachment-dir'."
-  (interactive "P")
-  (cl-letf (((symbol-function 'mu4e--completing-read)
-             (lambda (_prompt candidates &rest _args)
-               (mapcar (lambda (cand) (plist-get (cdr cand) :filename)) candidates))))
-    (mu4e-view-save-attachments ask-dir)))
-
 (defun +mu4e-register-account (label maildir letvars &optional default-p gmail-p)
   "Register a mu4e context named LABEL, located in MAILDIR.
 LETVARS contains the alist of local variables with their values.
@@ -154,16 +79,6 @@ for :EXTRA-LINES."
    (when suffix (concat ", " suffix))
    "\\\\\n"
    (string-join (ensure-list extra-lines) "\\\\\n")
-   "\n"
-   "#+end_signature"))
-
-(defun +org-msg-make-signature (closing-phrase firstname lastname &rest lines)
-  (concat
-   "\n\n" closing-phrase "\n\n"
-   "#+begin_signature"
-   "\n"
-   "-- *" (capitalize firstname) " " (upcase lastname) "*" "\\\\\n"
-   (string-join lines "\\\\\n")
    "\n"
    "#+end_signature"))
 
