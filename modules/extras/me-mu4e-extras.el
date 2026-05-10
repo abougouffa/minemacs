@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-07
+;; Last modified: 2026-05-11
 
 ;;; Commentary:
 
@@ -224,17 +224,18 @@ preferred alias"
         (insert (read-string "Subject (optional): "))
         (message "Sending...")))))
 
-(defun +mu4e-save-message-at-point (&optional msg)
-  "Copy MSG at point to somewhere else as <date>_<subject>.eml."
-  (interactive)
-  (let* ((msg (or msg (mu4e-message-at-point)))
-         (target (format "%s_%s.eml"
-                         (format-time-string "%F" (mu4e-message-field msg :date))
-                         (+clean-file-name (or (mu4e-message-field msg :subject) "No subject") :downcase))))
-    (copy-file
-     (mu4e-message-field msg :path)
-     (format "%s/%s" (or (when current-prefix-arg (read-directory-name "Copy message to: "))
-                         mu4e-attachment-dir) target) 1)))
+(defun +mu4e-save-message-at-point (&optional ask)
+  "Save the message at point to somewhere else as <date>_<subject>.eml.
+
+When ASK (called with \\[universal-argument]), ask for the destination
+directory."
+  (interactive "P")
+  (when-let* ((target (expand-file-name (format "%s_%s.eml" (format-time-string "%F" (mu4e-field-at-point :date))
+                                                (+clean-file-name (or (mu4e-field-at-point :subject) "No subject") :downcase))
+                                        (or (and ask (read-directory-name "Save message to: ")) mu4e-attachment-dir)))
+              (default-dest (mu4e-save-message t t)))
+    (rename-file default-dest target 1)
+    (mu4e-message "Saved to %s" (abbreviate-file-name target))))
 
 ;; Based on: `mu4e-action-view-in-browser'
 (defun +mu4e-view-save-mail-as-pdf (&optional msg skip-headers)
