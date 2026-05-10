@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-10
 
 ;;; Commentary:
 
@@ -72,11 +72,16 @@
   (cl-callf append hl-todo-keyword-faces
     '(("BUG"    . "#ee5555")
       ("BUGFIX" . "#ee5555")
+      ("FIX"    . "#0e9030")
       ("PROJ"   . "#447f44")
       ("IDEA"   . "#0fa050")
       ("INFO"   . "#0e9030")
       ("TWEAK"  . "#fe9030")
-      ("PERF"   . "#e09030"))))
+      ("PERF"   . "#e09030")))
+
+  ;; I want to highlight keywords grouped by the "+", for example: PERF+HACK, so
+  ;; lets mark the "+" symbol as ponctuation "."
+  (modify-syntax-entry ?+ "." hl-todo-syntax-table))
 
 
 ;; Interactive macro-expander for Emacs Lisp and C
