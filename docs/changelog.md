@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.4.0](https://github.com/abougouffa/minemacs/compare/711ec25bc2c18f6fbdbd69f2551116985cea0b2b..v14.4.0) - 2026-05-10
+#### Tweaks
+- (**eldoc**) minor strategy change - ([bae42af](https://github.com/abougouffa/minemacs/commit/bae42afa01b1aa902868021f11d05a9511faf99a)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e**) better implementation of `+mu4e-save-message-at-point` - ([109ff70](https://github.com/abougouffa/minemacs/commit/109ff70ece1167ec75dbc162eea0feb75a9bc44c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages verions - ([742aa64](https://github.com/abougouffa/minemacs/commit/742aa640bb63f734d883381b3a736f5525c4c589)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**tools**) add support for `ghostel`, use as default terminal - ([71308fc](https://github.com/abougouffa/minemacs/commit/71308fcb94ed46450bff47373f43929f706ddf04)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**hl-todo**) highlight keywords separated by "+", ex. `PERF+HACK` - ([10c0d60](https://github.com/abougouffa/minemacs/commit/10c0d6053fbf1760b6786348cfeab2dc0ab7c0aa)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**mu4e**) remove unneeded commands - ([a6473de](https://github.com/abougouffa/minemacs/commit/a6473dea3e0d4f524a6f898ac1462f3ef34b4092)) - [@abougouffa](https://github.com/abougouffa)
+- more readable condition - ([711ec25](https://github.com/abougouffa/minemacs/commit/711ec25bc2c18f6fbdbd69f2551116985cea0b2b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.3.0](https://github.com/abougouffa/minemacs/compare/560dd09660d475e46e6eaf168cd1e6ab2a337b01..v14.3.0) - 2026-05-07
 #### Tweaks
 - (**dogears**) add `dump-jump-after-jump-hook` to the `dogears-hooks` - ([143a24c](https://github.com/abougouffa/minemacs/commit/143a24cff2ced47dcc66a4fd1890811cb3600dd6)) - [@abougouffa](https://github.com/abougouffa)
