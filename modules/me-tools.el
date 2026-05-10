@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-02
+;; Last modified: 2026-05-10
 
 ;;; Commentary:
 
@@ -34,7 +34,6 @@
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
   :autoload eat-make
-  :bind ([f1] . +eat-toggle-dwim)
   :init
   (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
   (+super-project-define-commands 'eat-project)
@@ -52,6 +51,30 @@ When in a project, toggle `eat-project', else, toggle `eat'."
               (delete-window win)
             (pop-to-buffer buf))
         (call-interactively eat-func)))))
+
+
+;; Terminal emulator powered by libghostty
+(use-package ghostel
+  :straight t
+  :bind ([f1] . +ghostel-toggle-dwim)
+  :init
+  (+def-dedicated-tab! ghostel :exit-hook ghostel-exit-functions)
+  (+super-project-define-commands 'ghostel-project)
+  :config
+  (defun +ghostel-toggle-dwim ()
+    "Toggle the Ghostel window.
+When in a project, toggle `ghostel-project', else, toggle `ghostel'."
+    (interactive)
+    (let* ((buf-name (if (project-current)
+                         (project-prefixed-buffer-name (string-trim ghostel-buffer-name "*" "*"))
+                       ghostel-buffer-name))
+           (ghostel-func (if (project-current) #'ghostel-project #'ghostel)))
+      (if-let* ((buf (get-buffer buf-name))
+                ((buffer-live-p buf)))
+          (if-let* ((win (get-buffer-window buf)))
+              (delete-window win)
+            (pop-to-buffer buf))
+        (call-interactively ghostel-func)))))
 
 
 ;; Launch system applications from Emacs

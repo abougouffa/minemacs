@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-07
+;; Last modified: 2026-05-10
 
 ;;; Commentary:
 
@@ -1078,7 +1078,7 @@ Typing these will trigger reindentation of the current line.")
       (side . right)
       (slot . 1))
      (,(+make-buffer-conds
-        'term-mode 'eshell-mode 'shell-mode 'vterm-mode 'eat-mode
+        'term-mode 'eshell-mode 'shell-mode 'vterm-mode 'eat-mode 'ghostel-mode
         (rx bol "*" (or "eshell" "vterm" "vterminal" "shell" "terminal") (* any) "*"))
       (display-buffer-in-side-window)
       (window-height . 0.2)
