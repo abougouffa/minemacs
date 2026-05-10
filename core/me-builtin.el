@@ -558,7 +558,7 @@
 
 (use-package eldoc
   :custom
-  (eldoc-documentation-strategy #'eldoc-documentation-compose))
+  (eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly))
 
 (use-package comint
   :hook (comint-mode . minemacs-reduce-font-size)
