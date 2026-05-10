@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-07
+;; Last modified: 2026-05-10
 
 ;;; Commentary:
 
@@ -1109,8 +1109,8 @@ To be used as a predicate generator for `display-buffer-alist'."
       (when companion-packages
         (setq plist (append plist `(:companion-packages ,(ensure-list companion-packages)))))
       ;; We can pass a function or a form to `:define-loader'
-      (when (cond ((functionp define-loader) (funcall define-loader))
-                  (t (eval define-loader)))
+      (when (or (and (functionp define-loader) (funcall define-loader))
+                (eval define-loader))
         (let* ((mod-name (intern (format "on-demand/%s" module)))
                (cmd (intern (format "minemacs-load-%s" (string-remove-prefix "me-" (symbol-name module)))))
                (docstr (format "Load the `%s' module." mod-name)))
