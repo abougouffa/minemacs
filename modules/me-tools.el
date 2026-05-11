@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-10
+;; Last modified: 2026-05-11
 
 ;;; Commentary:
 
@@ -57,6 +57,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 (use-package ghostel
   :straight t
   :bind ([f1] . +ghostel-toggle-dwim)
+  :hook (minemacs-build-functions . ghostel-download-module)
   :init
   (+def-dedicated-tab! ghostel :exit-hook ghostel-exit-functions)
   (+super-project-define-commands 'ghostel-project)
