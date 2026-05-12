@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-10
+;; Last modified: 2026-05-12
 
 ;;; Commentary:
 
@@ -380,17 +380,6 @@
   (treesit-font-lock-level 4)
   ;; BUG+TEMP: Editing YAML files in `yaml-ts-mode' cause Emacs to crash, especially when the file contain invalid YAML
   (treesit-enabled-modes (delq 'yaml-ts-mode (seq-uniq (mapcar #'cdr treesit-major-mode-remap-alist)))))
-
-(use-package markdown-ts-mode
-  :when (and (featurep 'feat/tree-sitter) (>= emacs-major-version 31)) ; Built-in in Emacs 31+
-  :config
-  (cl-callf append markdown-ts--code-block-language-map
-    '(("emacs-lisp" . elisp)
-      ("shell" . bash)))
-  (cl-callf append markdown-ts-code-block-source-mode-map
-    '((elisp . emacs-lisp-mode)
-      (lisp . lisp-mode)
-      (scheme . scheme-mode))))
 
 (use-package autoinsert
   :custom
