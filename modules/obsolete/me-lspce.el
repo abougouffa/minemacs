@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2026-04-01
-;; Last modified: 2026-04-01
+;; Last modified: 2026-05-12
 
 ;;; Commentary:
 
@@ -22,11 +22,8 @@
                                 ,(file-name-with-extension "./lspce-module" module-file-suffix)))))
   :when (and (featurep 'feat/modules) (not (featurep 'os/win)))
   :config
-  (add-to-list
-   'lspce-server-programs
-   '("C/C++" "clangd" "--background-index" "-j=12" "--clang-tidy"
-     "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
-     "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")))
+  (satch-defun +lspce-clangd-params () (string-join (cdr (+eglot-clangd-contact nil (project-current))) " "))
+  (setcdr (assoc "C" lspce-server-programs) (list "clangd" #'+lspce-clangd-params)))
 
 
 (provide 'obsolete/me-lspce)
