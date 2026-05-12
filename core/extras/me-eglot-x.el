@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-25
-;; Last modified: 2026-01-07
+;; Last modified: 2026-05-12
 
 ;;; Commentary:
 
@@ -243,18 +243,33 @@ When STORE is non-nil, this will also store the new plist in the directory
   '("ty" "server")
   '("rass" "--" "pyright-langserver" "--stdio" "--" "ty" "server" "--" "ruff" "server"))
 
-(+eglot-register ; better (!) parameters for Clangd
+(defvar +eglot-clangd-query-driver nil)
+;;;###autoload(put '+eglot-clangd-query-driver 'safe-local-variable 'stringp)
+
+(defvar +eglot-clangd-compile-commands-dir nil)
+;;;###autoload(put '+eglot-clangd-compile-commands-dir 'safe-local-variable 'stringp)
+
+(defvar +eglot-clangd-num-threads (max 1 (/ (num-processors) 2)))
+;;;###autoload(put '+eglot-clangd-num-threads 'safe-local-variable 'natnump)
+
+;;;###autoload
+(defun +eglot-clangd-contact (_interactive project)
+  "Better Clangd arguments with configurable parts."
+  (list "clangd" "--background-index" "--clang-tidy" ;; "--clang-tidy-checks=*"
+        (format "-j=%d" +eglot-clangd-num-threads)
+        (format "--compile-commands-dir=%s"
+                (or +eglot-clangd-compile-commands-dir
+                    (let ((proj-root (project-root project)))
+                      (if-let* ((file (+compilation-db-find-file proj-root)))
+                          (file-name-directory file)
+                        proj-root))))
+        (format "--query-driver=%s" (or +eglot-clangd-query-driver "/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"))
+        "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
+        "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory"))
+
+(+eglot-register
   '(c++-mode c++-ts-mode c-mode c-ts-mode)
-  (lambda (_interactive project)
-    `("clangd" "--background-index" "-j=12" "--clang-tidy" ;; "--clang-tidy-checks=*"
-      ,(format "--compile-commands-dir=%s"
-               (let ((proj-root (project-root project)))
-                 (or (when-let* ((file (+compilation-db-find-file proj-root)))
-                       (file-name-directory file))
-                     proj-root)))
-      "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++"
-      "--all-scopes-completion" "--cross-file-rename" "--completion-style=detailed"
-      "--header-insertion-decorators" "--header-insertion=iwyu" "--pch-storage=memory")))
+  #'+eglot-clangd-contact)
 
 (+eglot-register
   '(text-mode org-mode markdown-mode markdown-ts-mode rst-mode git-commit-mode)
