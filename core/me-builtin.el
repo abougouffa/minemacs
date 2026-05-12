@@ -347,22 +347,8 @@
   :custom
   (eshell-scroll-to-bottom-on-input 'this))
 
-(use-package reftex ;; Inspired by Doom Emacs
-  :hook (reftex-toc-mode . reftex-toc-rescan)
-  :custom
-  ;; Get RefTeX working with BibLaTeX. See: https://tex.stackexchange.com/a/31992/43165
-  (reftex-cite-format
-   '((?a . "\\autocite[]{%l}")
-     (?b . "\\blockcquote[]{%l}{}")
-     (?c . "\\cite[]{%l}")
-     (?f . "\\footcite[]{%l}")
-     (?n . "\\nocite{%l}")
-     (?p . "\\parencite[]{%l}")
-     (?s . "\\smartcite[]{%l}")
-     (?t . "\\textcite[]{%l}"))
-   ;; This is needed when `reftex-cite-format' is set. See: https://superuser.com/a/1386206
-   (reftex-plug-into-AUCTeX t)
-   (reftex-toc-split-windows-fraction 0.3)))
+(use-package reftex
+  :hook (reftex-toc-mode . reftex-toc-rescan))
 
 (use-package bibtex
   :hook (bibtex-mode . display-line-numbers-mode)
