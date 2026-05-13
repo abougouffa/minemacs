@@ -1,10 +1,10 @@
 ;;; me-rss.el --- News and RSS -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-05
-;; Last modified: 2025-04-22
+;; Last modified: 2026-05-14
 
 ;;; Commentary:
 
@@ -38,14 +38,6 @@
     (if-let* ((url (get-text-property (point) 'image-url)))
         (url-copy-file url (expand-file-name (url-file-nondirectory url) (+directory-ensure +elfeed-images-dir)))
       (user-error "No image at point!"))))
-
-
-;; Extra `elfeed' protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
-(use-package elfeed-protocol
-  :straight t
-  :after elfeed
-  :init
-  (elfeed-protocol-enable))
 
 
 (provide 'me-rss)
