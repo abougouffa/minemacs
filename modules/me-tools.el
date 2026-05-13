@@ -148,6 +148,13 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   (cl-callf2 remq 'pet-find-file-from-project-root-recursively pet-find-file-functions))
 
 
+;; Mount/umount gocryptfs vaults from Emacs
+(use-package gocryptfs
+  :straight (:host github :repo "abougouffa/emacs-gocryptfs")
+  :when (or (featurep 'os/linux) (featurep 'os/bsd))
+  :bind (:map minemacs-open-thing-map ("e" . gocryptfs-toggle-mount)))
+
+
 ;; Package manager for LSPs, DAPs, linters, and more
 (use-package mason
   :straight t
