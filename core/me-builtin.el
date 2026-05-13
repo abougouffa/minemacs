@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-12
+;; Last modified: 2026-05-13
 
 ;;; Commentary:
 
@@ -311,7 +311,6 @@
   (dired-omit-verbose nil))
 
 (use-package project
-  :commands (project-remember-projects-under)
   :hook (kill-emacs . project-forget-zombie-projects)
   :custom
   (project-switch-use-entire-map t) ; Provide all `project-prefix-map' commands when switching projects
