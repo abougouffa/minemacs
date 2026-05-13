@@ -981,6 +981,10 @@ Enable Eglot hack to handle code actions of LTeX-LS.
 
 Disable Eglot hack to handle code actions of LTeX-LS.
 
+#### `(+eglot-clangd-contact INTERACTIVE PROJECT)`
+
+Better Clangd arguments with configurable parts.
+
 #### `(+org-extras-toggle-latex-equation-numbering &optional ENABLE)`
 
 Toggle whether LaTeX fragments are numbered.
@@ -1182,6 +1186,24 @@ Close the current window (mimics Vim's `C-w c`).
 
 Maximize the current window (mimics Vim's `C-w o`).
 
+#### `(+yaml-ls-notify-schema-support SERVER)`
+
+Send yaml/supportSchemaSelection to SERVER if it is yaml-language-server.
+Added to `eglot-connect-hook`, which fires after the LSP :initialized
+handshake completes -- the correct moment for post-connect notifications.
+
+#### `(+eglot-yaml-show-all-schemas)`
+
+Display all schemas known to yaml-language-server for the current buffer.
+Shows each schema's name, URI, description, whether it is currently
+applied to this file, and whether it originates from the schema store.
+Requires an active eglot connection to yaml-language-server.
+
+#### `(+eglot-yaml-show-schemas-for-buffer)`
+
+Display schemas applied to the current YAML buffer by yaml-language-server.
+Requires an active eglot connection to yaml-language-server.
+
 #### `(+adb-run-command &rest ARGS)`
 
 Run adb with command ARGS.
@@ -1228,29 +1250,6 @@ Prompt for conventional commit type with scope completion.
 When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
 will be generated each `+git-types-cache-age`.
 
-#### `(+mu4e-part-selectors PARTS)`
-
-Generate selection strings for PARTS.
-
-#### `(+mu4e-view-select-attachment)`
-
-Use `completing-read` to select a single attachment.
-Acts like a singular `mu4e-view-save-attachments`, without the saving.
-
-#### `(+mu4e-view-open-attachment)`
-
-Select an attachment, and open it.
-
-#### `(+mu4e-view-select-mime-part-action)`
-
-Select a MIME part, and perform an action on it.
-
-#### `(+mu4e-view-save-all-attachments &optional ASK-DIR)`
-
-Save all files from the current view buffer.
-With ASK-DIR is non-nil, user can specify the target-directory; otherwise
-one is determined using `mu4e-attachment-dir`.
-
 #### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
 
 Register a mu4e context named LABEL, located in MAILDIR.
@@ -1259,9 +1258,11 @@ If DEFAULT-P is non-nil, the context is placed first and considered the default
 one. If GMAIL-P is non-nil, addresses are saved to `+mu4e-gmail-accounts` to be
 used later for Gmail specific actions.
 
-#### `(+mu4e-save-message-at-point &optional MSG)`
+#### `(+mu4e-save-message-at-point &optional ASK)`
 
-Copy MSG at point to somewhere else as <date>_<subject>.eml.
+Save the message at point to somewhere else as <date>_<subject>.eml.
+When ASK (called with C-u), ask for the destination
+directory.
 
 #### `(+mu4e-view-save-mail-as-pdf &optional MSG SKIP-HEADERS)`
 

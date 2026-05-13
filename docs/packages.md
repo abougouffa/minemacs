@@ -80,6 +80,7 @@
 * `bitbake`: A set of Emacs modes for various Yocto/Bitbake file formats
 
 ## `me-experimental`
+* `lspce`: LSP Client for Emacs implemented as a module using Rust
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -180,13 +181,14 @@
 ## `me-tools`
 * `ssh-deploy`: A deployment plugin via Tramp for Emacs
 * `eat`: Emulate A Terminal, in a region, in a buffer and in Eshell
+* `ghostel`: Terminal emulator powered by libghostty
 * `xdg-launcher`: Launch system applications from Emacs
 * `docker`: Manage docker from Emacs
 * `devcontainer`: Rudimentary devcontainer support for Emacs
 * `journalctl-mode`: Major mode to view journalctl's output in Emacs
 * `with-editor`: Use the Emacsclient as the "$EDITOR" of child processes
 * `pet`: Python Executable Tracker
-* `ecryptfs`: Mount/umount eCryptfs private directory from Emacs
+* `gocryptfs`: Mount/umount gocryptfs vaults from Emacs
 * `mason`: Package manager for LSPs, DAPs, linters, and more
 
 ## `me-ui`
