@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-11
+;; Last modified: 2026-05-13
 
 ;;; Commentary:
 
@@ -146,13 +146,6 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   :config
   ;; Remove the slow recursive finder
   (cl-callf2 remq 'pet-find-file-from-project-root-recursively pet-find-file-functions))
-
-
-;; Mount/umount eCryptfs private directory from Emacs
-(use-package ecryptfs
-  :straight (:host github :repo "abougouffa/emacs-ecryptfs")
-  :when (and (or (featurep 'os/linux) (featurep 'os/bsd)) (executable-find "ecryptfs-verify"))
-  :bind (:map minemacs-open-thing-map ("e" . ecryptfs-toggle-mount-private)))
 
 
 ;; Package manager for LSPs, DAPs, linters, and more
