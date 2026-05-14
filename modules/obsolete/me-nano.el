@@ -1,10 +1,10 @@
 ;; me-nano.el --- N Λ N O Emacs UI tweaks -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-01
-;; Last modified: 2025-05-01
+;; Last modified: 2026-05-15
 
 ;;; Commentary:
 
@@ -15,7 +15,7 @@
       window-divider-default-places 'right-only
       x-underline-at-descent-line t)
 
-;; (setq default-frame-alist (+alist-set 'internal-border-width 20 default-frame-alist))
+;; (+alist-set! 'internal-border-width 20 default-frame-alist)
 
 (when (featurep 'os/mac)
   (+setq-hook! term-mode buffer-display-table (make-display-table)))

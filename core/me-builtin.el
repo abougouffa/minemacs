@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-13
+;; Last modified: 2026-05-15
 
 ;;; Commentary:
 
@@ -401,7 +401,7 @@
 
 (use-package cc-vars
   :config
-  (mapc (lambda (m) (setq-default c-default-style (+alist-set (car m) (cdr m) c-default-style)))
+  (mapc (lambda (m) (setq-default c-default-style (+alist-set! (car m) (cdr m) c-default-style)))
         '((c-mode . "k&r") (c++-mode . "k&r"))))
 
 (use-package cc-mode
@@ -659,7 +659,7 @@
            collect (cons lang t)))
 
   (with-eval-after-load 'org-src
-    (+alist-set "dot" 'graphviz-dot org-src-lang-modes))
+    (+alist-set! "dot" 'graphviz-dot org-src-lang-modes))
 
   (with-eval-after-load 'plantuml-mode
     (setq org-plantuml-jar-path plantuml-jar-path

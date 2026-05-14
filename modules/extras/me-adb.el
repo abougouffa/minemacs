@@ -1,10 +1,10 @@
 ;;; me-adb.el --- Interface for ADB commands -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-09-09
+;; Last modified: 2026-05-15
 
 ;;; Commentary:
 
@@ -62,7 +62,7 @@
      (list src-path
            (read-string "Destination path: " dest-path '+adb-push-dest-history))))
   (let ((src (expand-file-name src)))
-    (setq +adb-push-src-dest-cache (+alist-set src dest +adb-push-src-dest-cache))
+    (+alist-set! src dest +adb-push-src-dest-cache)
     (+adb-run-command "push" src dest)))
 
 ;;;###autoload

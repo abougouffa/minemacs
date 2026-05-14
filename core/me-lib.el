@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-10
+;; Last modified: 2026-05-15
 
 ;;; Commentary:
 
@@ -47,20 +47,21 @@ Ex: (+varplist-get \\='(:a \\='a :b \\='b1 \\='b2) :b) -> \\='(b1 b2)."
       (setq plist (cddr plist)))
     keys))
 
-;; Taken from: https://emacs.stackexchange.com/q/33892/12534
-(defun +alist-set (key val alist &optional symbol)
+;; Inspired by: https://emacs.stackexchange.com/q/33892/12534
+(define-obsolete-function-alias '+alist-set '+alist-set! "v14.5.0")
+(defmacro +alist-set! (key val alist &optional symbol)
   "Set property KEY to VAL in ALIST. Return new alist.
 This creates the association if it is missing, and otherwise sets the cdr of the
 first matching association in the list. It does not create duplicate
 associations. By default, key comparison is done with `equal'. However, if
 SYMBOL is non-nil, then `eq' is used instead.
 
-This method may mutate the original alist, but you still need to use the return
-value of this method instead of the original alist, to ensure correct results."
-  (if-let* ((pair (if symbol (assq key alist) (assoc key alist))))
-      (setcdr pair val)
-    (push (cons key val) alist))
-  alist)
+This macro will mutate the original alist, and returns it."
+  `(progn
+     (if-let* ((pair (if ,symbol (assq ,key ,alist) (assoc ,key ,alist))))
+         (setcdr pair ,val)
+       (push (cons ,key ,val) ,alist))
+     ,alist))
 
 (defun +add-to-list-at (list-var element index)
   "Insert into LIST-VAR an ELEMENT at INDEX.
@@ -981,7 +982,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
 
     ;; Set the tooltip font accordingly
     (when-let* ((font (car (and (fboundp 'fontset-list) (fontset-list)))))
-      (setq tooltip-frame-parameters (+alist-set 'font font tooltip-frame-parameters))))
+      (+alist-set! 'font font tooltip-frame-parameters)))
 
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
