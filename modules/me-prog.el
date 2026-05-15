@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-10
+;; Last modified: 2026-05-15
 
 ;;; Commentary:
 
@@ -113,7 +113,14 @@
 ;; Simple and fast C mode for amalgamated (big) files
 (use-package simpc-mode
   :straight (:host github :repo "rexim/simpc-mode")
-  :commands (simpc-mode))
+  :commands (simpc-mode)
+  :init
+  (defvar +big-c-file-size (* 512 1000))
+  (defun +simpc-mode-maybe ()
+    "Use `simpc-mode' in big C files, otherwise, use `c-ts-mode'."
+    (if (> (buffer-size) +big-c-file-size) (simpc-mode) (c-ts-mode)))
+  (+alist-set! 'c-mode '+simpc-mode-maybe major-mode-remap-alist t)
+  (+alist-set! 'c-ts-mode '+simpc-mode-maybe major-mode-remap-alist t))
 
 
 ;; Generate C++ method implementations from declarations using `treesit'
