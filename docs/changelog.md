@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.5.0](https://github.com/abougouffa/minemacs/compare/b34c02525176dbbe7c7ca7d01206555a83e65c32..v14.5.0) - 2026-05-15
+#### Tweaks
+- (**eglot-x**) make Clangd's contact configurable - ([b616007](https://github.com/abougouffa/minemacs/commit/b6160072db30fcf90a964bed8d03ad668d31bce4)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) hook `ghostel-download-module` to build functions - ([b34c025](https://github.com/abougouffa/minemacs/commit/b34c02525176dbbe7c7ca7d01206555a83e65c32)) - [@abougouffa](https://github.com/abougouffa)
+- (**obsolete/lspce**) make use of the new `+eglot-clangd-contact` - ([656ff97](https://github.com/abougouffa/minemacs/commit/656ff97158b258637ea90fb676fc9b918815ef17)) - [@abougouffa](https://github.com/abougouffa)
+- (**reftex**) remove unneeded customization - ([d425b53](https://github.com/abougouffa/minemacs/commit/d425b5319a8e9d60522d769aa55424755a82d997)) - [@abougouffa](https://github.com/abougouffa)
+- (**simpc-mode**) use `simpc-mode` for big C files - ([9625a3b](https://github.com/abougouffa/minemacs/commit/9625a3ba69b26618c2c49d33173df02031dd54c3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1ce0b9f](https://github.com/abougouffa/minemacs/commit/1ce0b9fadac3f6e97bd230a983ad1fc59ecf110c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**ecryptfs**) make `ecryptfs` obsolete, will be replaced with `gocryptfs` - ([475a5a6](https://github.com/abougouffa/minemacs/commit/475a5a6be4d503fd21f12c8eea7799bc7b4ed08b)) - [@abougouffa](https://github.com/abougouffa)
+- (**experimental**) restore `lspce` - ([7c836b6](https://github.com/abougouffa/minemacs/commit/7c836b6d037e05707c81f1db07a62505af7df634)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) add support for `gocryptfs` - ([d4a6b27](https://github.com/abougouffa/minemacs/commit/d4a6b27462495fa244d991619539b9e89e27abf0)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**elfeed**) remove `elfeed-protocol` which was breaking `elfeed` - ([97afb69](https://github.com/abougouffa/minemacs/commit/97afb699cfc72b64b343e2e62f84597a181491f4)) - [@abougouffa](https://github.com/abougouffa)
+- remove a no more needed customization, broken on Emacs 31 - ([d43ec70](https://github.com/abougouffa/minemacs/commit/d43ec703469ba5be10df10de3d2322828dc804ae)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([43ba81c](https://github.com/abougouffa/minemacs/commit/43ba81c858c203d3a928c574e590559d607c0ae7)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- replace `+alist-set` with `+alist-set!` that mutates the alist - ([0932884](https://github.com/abougouffa/minemacs/commit/0932884b5c3bb8d8d995566fa4c0874e10c126d2)) - [@abougouffa](https://github.com/abougouffa)
+- remove unused autoload - ([fe54860](https://github.com/abougouffa/minemacs/commit/fe54860a18926460350ef5d4da376f3e150bc559)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.4.0](https://github.com/abougouffa/minemacs/compare/711ec25bc2c18f6fbdbd69f2551116985cea0b2b..v14.4.0) - 2026-05-10
 #### Tweaks
 - (**eldoc**) minor strategy change - ([bae42af](https://github.com/abougouffa/minemacs/commit/bae42afa01b1aa902868021f11d05a9511faf99a)) - [@abougouffa](https://github.com/abougouffa)
