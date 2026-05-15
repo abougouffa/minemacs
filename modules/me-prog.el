@@ -54,6 +54,10 @@
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate) ; Use `dumb-jump' as `xref' backend
   :config
+  ;; PERF: Add caching for `dumb-jump-fetch-results'
+  (+memoize-function dumb-jump-fetch-results
+    :filter-args (lambda (&rest args) ; Remove text properties for the symbol name
+                   (append (butlast args) (list (substring-no-properties (car (last args)))))))
   (defun +dumb-jump-python-poetry-search-paths (lang proj-root)
     (when (and (string= lang "python") (executable-find "poetry") (locate-dominating-file (buffer-file-name) "pyproject.toml"))
       (let* ((default-directory proj-root)

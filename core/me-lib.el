@@ -439,6 +439,7 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
   "Advice FUNC to cache its return value.
 When HASH-SEXPS are provided, append them the FUNC args and evaluate
 them to construct the hashing key."
+  (declare (indent 1))
   (let ((cache-sym (intern (format "+%s--memoization-cache" (+unquote func))))
         (advice-sym (intern (format "+%s--memoization-cache-a" (+unquote func))))
         (func-sym (+unquote func)))
@@ -446,7 +447,9 @@ them to construct the hashing key."
        (defvar ,cache-sym (make-hash-table :test #'equal))
        (add-to-list '+memoization-caches (cons ',func-sym ',cache-sym))
        (defun ,advice-sym (orig-fn &rest args)
-         (let* ((explicit-hashing-args ',hash-sexps)
+         (let* ((filter-args-fn (when (eq :filter-args ',(car hash-sexps)) ',(cadr hash-sexps)))
+                (explicit-hashing-args (if filter-args-fn ',(cddr hash-sexps) ',hash-sexps))
+                (args (if filter-args-fn (apply filter-args-fn args) args))
                 (args-hash (sha1 (format "%S" (append args (mapcar #'eval explicit-hashing-args))))))
            (if-let* ((cached-value (gethash args-hash ,cache-sym)))
                cached-value
