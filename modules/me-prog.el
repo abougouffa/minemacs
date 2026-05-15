@@ -55,7 +55,7 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate) ; Use `dumb-jump' as `xref' backend
   :config
   ;; PERF: Add caching for `dumb-jump-fetch-results', valid for 60s
-  (+memoize-function dumb-jump-fetch-results
+  (+cache-function dumb-jump-fetch-results
     :filter-args (lambda (&rest args) ; Remove text properties for the symbol name
                    (append (butlast args) (list (substring-no-properties (car (last args))))))
     :cache-pred 60.0)

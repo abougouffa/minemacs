@@ -431,11 +431,11 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
 
 
 
-;;; Memoization
+;;; Caching/Memoization
 
-(defvar +memoization-caches nil)
+(defvar +cached-functions nil)
 
-(defun +memoize-cache-time (delay obj)
+(defun +cache-time-based (delay obj)
   (let ((last-cached-time (plist-get (cdr obj) :cached-time)))
     (let ((now (float-time)))
       (if (< (- now last-cached-time) delay)
@@ -443,13 +443,13 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
         (plist-put (cdr obj) :cached-time (float-time))
         nil))))
 
-(defmacro +memoize-function (func &rest hash-sexps)
+(defmacro +cache-function (func &rest hash-sexps)
   "Advice FUNC to cache its return value.
 When HASH-SEXPS are provided, append them the FUNC args and evaluate
 them to construct the hashing key."
   (declare (indent 1))
-  (let* ((cache-sym (intern (format "+%s--memoization-cache" (+unquote func))))
-         (advice-sym (intern (format "+%s--memoization-cache-a" (+unquote func))))
+  (let* ((cache-sym (intern (format "+%s--cache-results" (+unquote func))))
+         (advice-sym (intern (format "+%s--cache-results-a" (+unquote func))))
          (func-sym (+unquote func))
          (obj (cons func-sym `(:cache-sym ,cache-sym :cached-time 0.0)))
          filter-args
@@ -460,7 +460,7 @@ them to construct the hashing key."
         (:cache-pred (setq valid-cache-pred (+unquote (pop hash-sexps))))))
     `(progn
        (defvar ,cache-sym (make-hash-table :test #'equal))
-       (add-to-list '+memoization-caches ',obj)
+       (add-to-list '+cached-functions ',obj)
        (defun ,advice-sym (orig-fn &rest args)
          (let* ((filter-args ',filter-args)
                 (valid-cache-pred ',valid-cache-pred)
@@ -468,7 +468,7 @@ them to construct the hashing key."
                 (args (if filter-args (apply filter-args args) args))
                 (valid-cache (if valid-cache-pred
                                  (if (numberp valid-cache-pred)
-                                     (+memoize-cache-time valid-cache-pred ',obj)
+                                     (+cache-time-based valid-cache-pred ',obj)
                                    (apply valid-cache-pred orig-fn (append args explicit-hashing-args)))
                                t))
                 (args-hash (sha1 (format "%S" (append args (mapcar #'eval explicit-hashing-args))))))
@@ -479,14 +479,14 @@ them to construct the hashing key."
                value))))
        (advice-add ',(+unquote func-sym) :around ',advice-sym))))
 
-(defun +memoization-clear-cache (all)
+(defun +cached-function-clear (all)
   "Clear memoization caches, when ALL is provided, clean all caches."
   (interactive "P")
   (if all
-      (dolist (cache +memoization-caches)
+      (dolist (cache +cached-functions)
         (set (cdr cache) (make-hash-table :test #'equal)))
-    (let* ((func (intern (completing-read "Select a memoized function: " (mapcar #'car +memoization-caches) nil t)))
-           (var (plist-get (alist-get func +memoization-caches) :cache-sym)))
+    (let* ((func (intern (completing-read "Select a memoized function: " (mapcar #'car +cached-functions) nil t)))
+           (var (plist-get (alist-get func +cached-functions) :cache-sym)))
       (set var (make-hash-table :test #'equal))
       (message "Cleared cache for `%s'" func))))
 
