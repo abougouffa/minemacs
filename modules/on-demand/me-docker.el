@@ -1,10 +1,10 @@
 ;;; me-docker.el --- Docker extra stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-08-23
+;; Last modified: 2026-05-18
 
 ;;; Commentary:
 
@@ -12,7 +12,11 @@
 
 ;;;###autoload
 (minemacs-register-on-demand-module 'me-docker
-  :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode)
+  :auto-mode `((,(rx (or (and (any "/\\") (or "Dockerfile" "Containerfile" "Podmanfile")
+                              (? "." (* nonl)))
+                         (and "." (or (and (any "Dd") "ocker") (and (any "Pp") "odman")) "file"))
+                     eos)
+                . dockerfile-mode)
                ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)
                ("/Apptainer\\(?:[/]*\\)?\\'" . apptainer-mode)))
 

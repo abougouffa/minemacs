@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-15
+;; Last modified: 2026-05-18
 
 ;;; Commentary:
 
@@ -359,6 +359,11 @@
 (use-package treesit
   :when (featurep 'feat/tree-sitter)
   :hook (treesit--explorer-tree-mode . show-paren-local-mode)
+  :mode ((rx (or (and (any "/\\") (or "Dockerfile" "Containerfile" "Podmanfile")
+                      (? "." (* nonl)))
+                 (and "." (or (and (any "Dd") "ocker") (and (any "Pp") "odman")) "file"))
+             eos)
+         . dockerfile-ts-mode-maybe)
   :mode ("/Cargo\\.lock\\'" . toml-ts-mode)
   :mode ((rx (any ?. ?_) (or "clang-format" "clang-tidy") eol) . yaml-ts-mode)
   :custom
