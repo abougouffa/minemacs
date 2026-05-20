@@ -162,7 +162,6 @@
 
 ## `me-rss`
 * `elfeed`: An Emacs RSS web feeds client
-* `elfeed-protocol`: Extra `elfeed` protocols to add support for Fever, NewsBlur, Nextcloud/ownCloud News and Tiny Tiny RSS
 
 ## `me-services`
 * `jiralib`: Provide connectivity to Jira SOAP/REST services

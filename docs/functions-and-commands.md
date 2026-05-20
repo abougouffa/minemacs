@@ -294,15 +294,14 @@ Ex: (+varplist-get '(:a 'a :b 'b1 'b2) :b) -> '(b1 b2).
 
 Return the keys of PLIST.
 
-#### `(+alist-set KEY VAL ALIST &optional SYMBOL)`
+#### `(+alist-set! KEY VAL ALIST &optional SYMBOL)` (macro)
 
 Set property KEY to VAL in ALIST. Return new alist.
 This creates the association if it is missing, and otherwise sets the cdr of the
 first matching association in the list. It does not create duplicate
 associations. By default, key comparison is done with `equal`. However, if
 SYMBOL is non-nil, then `eq` is used instead.
-This method may mutate the original alist, but you still need to use the return
-value of this method instead of the original alist, to ensure correct results.
+This macro will mutate the original alist, and returns it.
 
 #### `(+add-to-list-at LIST-VAR ELEMENT INDEX)`
 
@@ -455,6 +454,16 @@ With optional INCLUDE-ON-DEMAND and INCLUDE-OBSOLETE.
 Interactively install and load MODULES that aren't enabled in "modules.el".
 When called with C-u, it prompts also for on-demand modules.
 When called with C-u C-u, it prompts also for obsolete modules.
+
+#### `(+cache-function FUNC &rest HASH-SEXPS)` (macro)
+
+Advice FUNC to cache its return value.
+When HASH-SEXPS are provided, append them the FUNC args and evaluate
+them to construct the hashing key.
+
+#### `(+cached-function-clear ALL)`
+
+Clear memoization caches, when ALL is provided, clean all caches.
 
 #### `(+shell-command-to-string-ignore-stderr COMMAND)`
 
@@ -1091,9 +1100,10 @@ Got to the first occurrence.
 
 Got to the last occurrence.
 
-#### `(+treesit-install-all-grammars)`
+#### `(+treesit-install-all-grammars ARG)`
 
-Install all grammars in `treesit-language-source-alist`.
+Ensure all grammars in `treesit-language-source-alist` are installed.
+When called with ARG, reinstall all.
 
 #### `(+treesit-create-parser-in-buffer &optional BUFFER)`
 
@@ -1185,24 +1195,6 @@ Close the current window (mimics Vim's `C-w c`).
 #### `(+viper-window-maximize)`
 
 Maximize the current window (mimics Vim's `C-w o`).
-
-#### `(+yaml-ls-notify-schema-support SERVER)`
-
-Send yaml/supportSchemaSelection to SERVER if it is yaml-language-server.
-Added to `eglot-connect-hook`, which fires after the LSP :initialized
-handshake completes -- the correct moment for post-connect notifications.
-
-#### `(+eglot-yaml-show-all-schemas)`
-
-Display all schemas known to yaml-language-server for the current buffer.
-Shows each schema's name, URI, description, whether it is currently
-applied to this file, and whether it originates from the schema store.
-Requires an active eglot connection to yaml-language-server.
-
-#### `(+eglot-yaml-show-schemas-for-buffer)`
-
-Display schemas applied to the current YAML buffer by yaml-language-server.
-Requires an active eglot connection to yaml-language-server.
 
 #### `(+adb-run-command &rest ARGS)`
 
