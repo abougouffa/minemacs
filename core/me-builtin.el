@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-18
+;; Last modified: 2026-05-20
 
 ;;; Commentary:
 
@@ -417,6 +417,11 @@
   :custom
   (c-ts-mode-indent-style 'k&r)
   (c-ts-mode-enable-doxygen t))
+
+(use-package java-ts-mode
+  :when (featurep 'feat/tree-sitter)
+  :custom
+  (java-ts-mode-enable-doxygen t))
 
 (use-package python
   :custom
