@@ -1,10 +1,10 @@
 ;;; me-treesit-x.el --- Extra tweaks Org mode -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-09-24
+;; Last modified: 2026-05-20
 
 ;;; Commentary:
 
@@ -36,13 +36,19 @@
     (commonlisp "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp")
     (bitbake "https://github.com/tree-sitter-grammars/tree-sitter-bitbake")))
 
-(defun +treesit-install-all-grammars ()
-  "Install all grammars in `treesit-language-source-alist'."
-  (interactive)
-  (cl-letf (((symbol-function #'y-or-n-p) #'always))
-    (mapc (lambda (lib) (with-demoted-errors "Error, feature not fount `%S'" (require lib)))
-          (mapcar #'car +treesit-builtin-feature-mode-alist))
-    (mapc #'treesit-ensure-installed (seq-uniq (mapcar #'car treesit-language-source-alist)))))
+(defun +treesit-install-all-grammars (arg)
+  "Ensure all grammars in `treesit-language-source-alist' are installed.
+
+When called with ARG, reinstall all."
+  (interactive "P")
+  (let ((func (if arg #'treesit-install-language-grammar #'treesit-ensure-installed)))
+    (cl-letf (((symbol-function #'y-or-n-p) #'always))
+      (mapc (lambda (lib) (with-demoted-errors "Error, feature not fount `%S'" (require lib)))
+            (mapcar #'car +treesit-builtin-feature-mode-alist))
+      (dolist (lang-src treesit-language-source-alist)
+        (when (or arg (not (treesit-language-available-p (car lang-src))))
+          (message "Installing grammar for %s from %s" (car lang-src) (cadr lang-src)))
+        (funcall func (car lang-src))))))
 
 (defvar +treesit-mode-lang '((emacs-lisp-mode . elisp) (c++-mode . cpp) (c++-ts-mode . cpp)))
 
