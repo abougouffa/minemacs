@@ -210,7 +210,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-docker.el
 
-(minemacs-register-on-demand-module 'me-docker :auto-mode `((("\\.dockerfile\\'" "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'") . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode) ("/Apptainer\\(?:[/]*\\)?\\'" . apptainer-mode)))
+(minemacs-register-on-demand-module 'me-docker :auto-mode `((,(rx (or (and (any "/\\") (or "Dockerfile" "Containerfile" "Podmanfile") (32 "." (* nonl))) (and "." (or (and (any "Dd") "ocker") (and (any "Pp") "odman")) "file")) eos) . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode) ("/Apptainer\\(?:[/]*\\)?\\'" . apptainer-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
@@ -237,7 +237,14 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (autoload 'eglot-ltex-enable-handling-client-commands "extras/me-eglot-x"
 "Enable Eglot hack to handle code actions of LTeX-LS." t)
 (with-eval-after-load 'eglot (eglot-ltex-enable-handling-client-commands))
-(register-definition-prefixes "extras/me-eglot-x" '("eglot-ltex-"))
+(put '+eglot-clangd-query-driver 'safe-local-variable 'stringp)
+(put '+eglot-clangd-compile-commands-dir 'safe-local-variable 'stringp)
+(put '+eglot-clangd-num-threads 'safe-local-variable 'natnump)
+(autoload '+eglot-clangd-contact "extras/me-eglot-x"
+"Better Clangd arguments with configurable parts.
+
+(fn INTERACTIVE PROJECT)")
+(register-definition-prefixes "extras/me-eglot-x" '("+eglot-clangd-" "eglot-ltex-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-epub.el
@@ -406,7 +413,7 @@ The mode's hook is called both when the mode is enabled and when it is
 disabled.
 
 (fn &optional ARG)" t)
-(register-definition-prefixes "me-lib" '("+a" "+color-subtle" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
+(register-definition-prefixes "me-lib" '("+a" "+c" "+d" "+e" "+f" "+i" "+known-scripts" "+l" "+m" "+nerd-icons-icon" "+p" "+r" "+s" "+tweak-faces" "+un" "+varplist-get" "+with-" "minemacs-"))
 
 
 ;;; Generated autoloads from me-lib-x.el
@@ -769,7 +776,7 @@ This command removes new line characters between lines." t)
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-extras.el
 
-(register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-" "+org-msg-make-signature"))
+(register-definition-prefixes "../modules/extras/me-mu4e-extras" '("+mu4e-"))
 
 
 ;;; Generated autoloads from ../modules/extras/me-mu4e-gmail.el
