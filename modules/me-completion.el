@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-25
+;; Last modified: 2026-05-24
 
 ;;; Commentary:
 
@@ -227,6 +227,7 @@
   :bind (([remap describe-bindings] . embark-bindings)
          ("C-²" . embark-act) ; In a French AZERTY keyboard, the ² key is right above TAB
          ("M-²" . embark-collect)
+         ("C-\"" . embark-export)
          ("C-&" . embark-dwim))
   :init
   ;; Use Embark to show bindings in a key prefix with `C-h`
