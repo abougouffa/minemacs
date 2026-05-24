@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-23
+;; Last modified: 2026-05-24
 
 ;;; Commentary:
 
@@ -318,6 +318,12 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 (use-package comment-dwim-2
   :straight t
   :bind (([remap comment-dwim] . comment-dwim-2)))
+
+
+;; Pulse modified regions
+(use-package goggles
+  :straight t
+  :hook ((text-mode prog-mode) . goggles-mode))
 
 
 (provide 'me-editor)
