@@ -2,6 +2,37 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.6.0](https://github.com/abougouffa/minemacs/compare/4427c09fd98ba57cac6451f1ca7a0599d03e514c..v14.6.0) - 2026-05-24
+#### Nitpicks, changes with no side effect
+- rename some symbols for clarity - ([d3373ce](https://github.com/abougouffa/minemacs/commit/d3373ce37b4d7f9b6c768875119b8f2ab0632d16)) - [@abougouffa](https://github.com/abougouffa)
+- set `otpp-project-name` instead of `project-vc-name` in locals - ([db595b8](https://github.com/abougouffa/minemacs/commit/db595b827ad9b53477e24179367ddcb31a6e0601)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- (**dumb-jump**) use cache invalidation - ([23efd03](https://github.com/abougouffa/minemacs/commit/23efd03d212776dbe56bd136180739798527e98f)) - [@abougouffa](https://github.com/abougouffa)
+- (**dumb-jump**) add caching - ([23990b5](https://github.com/abougouffa/minemacs/commit/23990b527ca805c8388a23b95517b900ff9606fe)) - [@abougouffa](https://github.com/abougouffa)
+- (**embark**) bind `embark-collect` to `M-"` - ([595ef05](https://github.com/abougouffa/minemacs/commit/595ef05f216e8d080c4f6ece9fa33c02c4aa3bdd)) - [@abougouffa](https://github.com/abougouffa)
+- (**eshell**) kill buffer when process dies - ([36f7be1](https://github.com/abougouffa/minemacs/commit/36f7be1bf9d19c096bf3fa3df6c57a79a1eec267)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) deeper integration with `compile`, `eshell` and `comint` - ([5047ccc](https://github.com/abougouffa/minemacs/commit/5047ccc7a6145eab43eab48ce0fdac869412176c)) - [@abougouffa](https://github.com/abougouffa)
+- (**java-ts-mode**) enable Doxygen comments - ([b25c003](https://github.com/abougouffa/minemacs/commit/b25c0032d2d8072cfbae597238671f24ea4e0061)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) Ask to kill project buffers on tab close - ([4292781](https://github.com/abougouffa/minemacs/commit/4292781a083963eecb2d467f142ebd1f4c92be5f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f698880](https://github.com/abougouffa/minemacs/commit/f698880bfcbfa17f91cd4db07bb7916d58a49ee8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([055e753](https://github.com/abougouffa/minemacs/commit/055e75308bdf6395adfd3fdc4741bfec55967cb1)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([3955274](https://github.com/abougouffa/minemacs/commit/3955274d2a77958c2d08d88fb897db7cab342e4c)) - [@abougouffa](https://github.com/abougouffa)
+- `+treesit-install-all-grammars` now can be forced to reinstall - ([0a18ef9](https://github.com/abougouffa/minemacs/commit/0a18ef94f478e68e2059c6e812bd27f10635889f)) - [@abougouffa](https://github.com/abougouffa)
+- use `dockerfile[-ts]-mode` for `Podmanfile`s - ([618a6a7](https://github.com/abougouffa/minemacs/commit/618a6a71ce507cbe0c0409b98ddb66a7bfae1b5b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c84d796](https://github.com/abougouffa/minemacs/commit/c84d796666fdd5f3fc783da68aa6bb43049a986c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([50ab4e7](https://github.com/abougouffa/minemacs/commit/50ab4e7149c208bc50824189838f35045b88f7c6)) - [@abougouffa](https://github.com/abougouffa)
+- add cache invalidation in `+memoize-function` - ([310b01e](https://github.com/abougouffa/minemacs/commit/310b01ee0a9dc7ed2e5f2b2ec5d4dfaca38cce43)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**editor**) restore `goggles` - ([fb21c12](https://github.com/abougouffa/minemacs/commit/fb21c12edf31184bb9dff9abf1ef910fb7a03c8b)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- restore `+memoize-function` - ([4427c09](https://github.com/abougouffa/minemacs/commit/4427c09fd98ba57cac6451f1ca7a0599d03e514c)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([6dcbdc7](https://github.com/abougouffa/minemacs/commit/6dcbdc77b5d18e10ce59813fde2dfecf1e3e8978)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- rename `+memoize-function` to `+cache-function` - ([4276a02](https://github.com/abougouffa/minemacs/commit/4276a02110156fd8b9fd474cb8282cf12f6fcd0b)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.5.0](https://github.com/abougouffa/minemacs/compare/b34c02525176dbbe7c7ca7d01206555a83e65c32..v14.5.0) - 2026-05-15
 #### Tweaks
 - (**eglot-x**) make Clangd's contact configurable - ([b616007](https://github.com/abougouffa/minemacs/commit/b6160072db30fcf90a964bed8d03ad668d31bce4)) - [@abougouffa](https://github.com/abougouffa)
