@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-05-20
+;; Last modified: 2026-05-25
 
 ;;; Commentary:
 
@@ -344,6 +344,7 @@
 (use-package eshell
   :hook (eshell-mode . minemacs-reduce-font-size)
   :custom
+  (eshell-destroy-buffer-when-process-dies t)
   (eshell-scroll-to-bottom-on-input 'this))
 
 (use-package reftex
