@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-15
+;; Last modified: 2026-05-25
 
 ;;; Commentary:
 
@@ -634,15 +634,15 @@ current process."
   "Define CMD command to run BODY in a dedicated tab.
 If not specified, BODY defaults to `(CMD)'.
 
-You can pass an exit hook or exit function on which, the created workspace will
-be deleted.
+You can pass an exit hook or exit function on which, the created tab
+will be deleted.
 
 \(fn NAME [[:exit-hook HOOK] [:exit-func FUNC]] FORMS...)"
   (let* ((cmd (+unquote cmd))
          (fn-name (intern (format "+%s-dedicated-tab" cmd)))
-         (fn-doc (format "Launch %s in a dedicated workspace." cmd))
+         (fn-doc (format "Launch %s in a dedicated tab." cmd))
          (tab-name (intern (format "+%s-tab-name" cmd)))
-         (exit-fn-name (intern (format "+%s--close-workspace" cmd)))
+         (exit-fn-name (intern (format "+%s--close-tab" cmd)))
          exit-func exit-hook sexp fn-body)
     (while (keywordp (car body))
       (pcase (pop body)
