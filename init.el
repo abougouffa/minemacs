@@ -59,7 +59,6 @@
 
 (require 'me-lib) ; Load MinEmacs' core library
 (require 'use-package)
-(require 'once)
 
 (setq custom-file (concat minemacs-config-dir "custom-vars.el"))
 (when (file-exists-p custom-file) (+load custom-file))

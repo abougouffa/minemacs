@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-25
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -121,7 +121,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   :straight t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-editor-maybe)
   :init
-  (once-x-call '(:before shell-command) #'shell-command-with-editor-mode)
+  (+add-transient-advice 'shell-command :before (lambda (&rest _args) (shell-command-with-editor-mode 1)))
   ;; `julia-repl' seems to start on `term-mode', so let's check for it before exporting the editor
   (defvar +with-editor-ignore-matching-buffers '("\\*julia\\*"))
   (defun +with-editor-export-editor-maybe ()

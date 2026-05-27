@@ -1,10 +1,10 @@
 ;;; me-mu4e-ui.el --- Better UI for mu4e -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2025-05-21
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -162,7 +162,7 @@ characters."
          (space-factor (- 2.0 (/ (float icon-width) space-width))))
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
 
-(defun +mu4e--ui-setup ()
+(defun +mu4e--tweak-ui-elements ()
   "Tweak UI elements."
   ;; Add a column to display what email account the email belongs to,
   ;; and an account color stripe column
@@ -258,9 +258,15 @@ characters."
   (advice-add 'mu4e--key-val :filter-return #'+mu4e--main-keyval-str-prettier:filter-return-a)
   (advice-add 'mu4e--main-action :override #'+mu4e--main-action-prettier:override-a))
 
+(defun +mu4e--ui-setup ()
+  (with-eval-after-load 'mu4e
+    (when (display-graphic-p)
+      (+mu4e--tweak-ui-elements))))
+
 (defun +mu4e-ui-setup ()
   "Apply UI setup."
-  (once-x-call '(:check display-graphic-p :hook server-after-make-frame-hook :packages (mu4e)) #'+mu4e--ui-setup))
+  (+mu4e--ui-setup)
+  (add-hook 'server-after-make-frame-hook #'+mu4e--ui-setup))
 
 (defun +mu4e-ui-modeline-tweaks ()
   "Apply UI tweaks based on `nerd-icons'."
