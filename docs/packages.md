@@ -58,6 +58,7 @@
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
 * `xclip`: Copy&paste GUI clipboard from text terminal
 * `comment-dwim-2`: An all-in-one comment command to rule them all
+* `goggles`: Pulse modified regions
 
 ## `me-emacs-lisp`
 * `elisp-plus`: Better Emacs Lisp code viewing

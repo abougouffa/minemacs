@@ -363,6 +363,10 @@ The messages are still printed to *Messages* buffer.
 
 Load Emacs' theme from `minemacs-theme`.
 
+#### `(+defun NAME ARGLIST &rest BODY)` (macro)
+
+Like `defun`, but returns the function NAME.
+
 #### `(+eval-when-idle DELAY &rest FNS)`
 
 Queue FNS to be processed when Emacs becomes idle after DELAY seconds.
@@ -519,8 +523,8 @@ current process.
 
 Define CMD command to run BODY in a dedicated tab.
 If not specified, BODY defaults to `(CMD)`.
-You can pass an exit hook or exit function on which, the created workspace will
-be deleted.
+You can pass an exit hook or exit function on which, the created tab
+will be deleted.
 
 #### `(+eglot-auto-enable)`
 
@@ -1195,6 +1199,24 @@ Close the current window (mimics Vim's `C-w c`).
 #### `(+viper-window-maximize)`
 
 Maximize the current window (mimics Vim's `C-w o`).
+
+#### `(+yaml-ls-notify-schema-support SERVER)`
+
+Send yaml/supportSchemaSelection to SERVER if it is yaml-language-server.
+Added to `eglot-connect-hook`, which fires after the LSP :initialized
+handshake completes -- the correct moment for post-connect notifications.
+
+#### `(+eglot-yaml-show-all-schemas)`
+
+Display all schemas known to yaml-language-server for the current buffer.
+Shows each schema's name, URI, description, whether it is currently
+applied to this file, and whether it originates from the schema store.
+Requires an active eglot connection to yaml-language-server.
+
+#### `(+eglot-yaml-show-schemas-for-buffer)`
+
+Display schemas applied to the current YAML buffer by yaml-language-server.
+Requires an active eglot connection to yaml-language-server.
 
 #### `(+adb-run-command &rest ARGS)`
 
