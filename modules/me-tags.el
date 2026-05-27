@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2025-11-01
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -53,7 +53,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
   :config
   (advice-add ; We prefer passing by Citre when it is enabled, it uses Eglot as a backend
    'eglot--managed-mode :before
-   (satch-defun +citre--prefer-over-eglot:before-a (&rest _args)
+   (+defun +citre--prefer-over-eglot:before-a (&rest _args)
      (when (bound-and-true-p citre-mode)
        (setq-local eglot-stay-out-of (seq-uniq (append eglot-stay-out-of '(xref imenu)))))))
 
@@ -73,7 +73,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
   ;; `bash-ts-mode' in large code bases
   (advice-add
    'citre-auto-enable-citre-mode :around
-   (satch-defun +citre--auto-enable-ignore-modes (fn)
+   (+defun +citre--auto-enable-ignore-modes (fn)
      (unless (derived-mode-p +citre-auto-enable-ignore-modes)
        (funcall fn))))
 
@@ -83,7 +83,7 @@ This complements `citre-auto-enable-citre-mode-modes'."
   ;; a remote project over SSHFS for example.
   (advice-add
    'citre--tags-file-in-global-cache :around
-   (satch-defun +citre--tags-file-in-global-cache-no-fail (fn dir)
+   (+defun +citre--tags-file-in-global-cache-no-fail (fn dir)
      (condition-case err
          (let ((inhibit-message t))
            (funcall fn dir))

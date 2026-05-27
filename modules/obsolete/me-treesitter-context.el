@@ -1,10 +1,10 @@
 ;;; me-treesitter-context.el --- Description -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-17
-;; Last modified: 2025-04-30
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
           treesitter-context-border-color (face-foreground 'line-number)))
 
   (+treesitter-context--set-colors-from-theme)
-  (satch-add-hook '(enable-theme-functions disable-theme-functions) '+treesitter-context--set-colors-from-theme))
+  (+add-hooks '(enable-theme-functions disable-theme-functions) #'+treesitter-context--set-colors-from-theme))
 
 
 (provide 'obsolete/me-treesitter-context)

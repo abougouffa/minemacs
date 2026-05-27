@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-24
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -36,24 +36,24 @@
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
 
   ;; Make these capfs composable
-  (satch-advice-add
+  (+add-advice
    '(comint-completion-at-point eglot-completion-at-point pcomplete-completions-at-point)
    :around #'cape-wrap-nonexclusive)
 
-  (satch-add-hook
+  (+add-hooks
    'completion-at-point-functions
    ;; BUGFIX+TEMP: `cape-dict' is causing problems on Emacs 31
    (append '(cape-file cape-keyword) (when (< emacs-major-version 31) '(cape-dict))))
 
-  (satch-add-hook
+  (+add-hooks
    '(emacs-lisp-mode-hook git-commit-mode-hook)
    (lambda () (add-hook 'completion-at-point-functions #'cape-elisp-symbol nil t)))
 
-  (satch-add-hook
+  (add-hook
    'org-mode-hook
    (lambda () (add-hook 'completion-at-point-functions #'cape-elisp-block nil t)))
 
-  (satch-add-hook
+  (+add-hooks
    '(TeX-mode-hook LaTeX-mode-hook)
    (lambda () (add-hook 'completion-at-point-functions #'cape-tex nil t))))
 
@@ -72,7 +72,7 @@
   (corfu-min-width 25)
   (corfu-preview-current nil) ; Disable previewing the current candidate
   :init
-  (satch-add-hook 'prog-mode-hook #'global-corfu-mode nil nil :transient t)
+  (+add-transient-hook 'prog-mode-hook #'global-corfu-mode)
   :config
   ;; HACK: Prevent the annoting completion error when no `ispell' dictionary is set, prefer `cape-dict'
   (when (>= emacs-major-version 30)
@@ -110,7 +110,7 @@
   ;; Otherwise, the popupinfo will stay open on ESC or `C-g'!
   (add-hook
    'completion-in-region-mode-hook
-   (satch-defun +corfu--hide-popupinfo-h ()
+   (+defun +corfu--hide-popupinfo-h ()
      (when (and (not completion-in-region-mode) (boundp 'corfu-popupinfo--hide))
        (corfu-popupinfo--hide)))))
 

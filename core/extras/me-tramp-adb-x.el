@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-08-05
-;; Last modified: 2025-08-22
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -38,7 +38,7 @@
   ;; Special case of a minimal Busybox compile
   (advice-add
    'tramp-adb-get-ls-command :around
-   (satch-defun +tramp-adb-get-ls-command:try-another-command-a (orig vec)
+   (+defun +tramp-adb-get-ls-command:try-another-command-a (orig vec)
      (let ((ret (funcall orig vec)))
        (if (and (member ret '("ls --color=never" "ls"))
                 (tramp-adb-send-command-and-check vec (concat "ls --color=never --full-time -al " (tramp-get-remote-null-device vec))))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -77,7 +77,7 @@
   ;; problematic paths.
   (advice-add
    #'ztree-directory-files :around
-   (satch-defun +ztree--ignore-errors-a:around (fn dir)
+   (+defun +ztree--ignore-errors-a:around (fn dir)
      (condition-case-unless-debug err
          (funcall fn dir)
        (error (message "Error: %s" (error-message-string err)) nil)))))

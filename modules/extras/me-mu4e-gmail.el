@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-05
-;; Last modified: 2025-03-21
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -107,7 +107,7 @@ from the envelope of the current message."
   ;;       -> Choose: "Move the message to the Trash"
   (add-hook
    'mu4e-mark-execute-pre-hook
-   (satch-defun +mu4e-gmail--fix-flags-h (mark msg)
+   (+defun +mu4e-gmail--fix-flags-h (mark msg)
      (when (+mu4e-msg-gmail-p msg)
        (pcase mark
          ((or 'trash 'delete) (mu4e-action-retag-message msg "-\\Inbox,+\\Trash,-\\Draft,-\\Spam"))

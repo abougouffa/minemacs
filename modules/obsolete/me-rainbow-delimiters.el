@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-07-26
-;; Last modified: 2025-07-26
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
   :config
   (advice-add
    'rainbow-delimiters-mode :around
-   (satch-defun +rainbow-delimiters--maybe:around-a (orig-fn &rest args)
+   (+defun +rainbow-delimiters--maybe:around-a (orig-fn &rest args)
      (unless (derived-mode-p +rainbow-delimiters-disabled-modes)
        (apply orig-fn args)))))
 

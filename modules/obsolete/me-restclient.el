@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-01
-;; Last modified: 2026-04-16
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -22,7 +22,7 @@
   ;; From Doom Emacs (in case `gnutls-verify-error' policy is set to something)
   (advice-add
    #'restclient-http-do :around
-   (satch-defun +restclient--permit-self-signed-ssl:around-a (orig-fn &rest args)
+   (+defun +restclient--permit-self-signed-ssl:around-a (orig-fn &rest args)
      "Forces underlying SSL verification to prompt for self-signed or invalid
 certs, rather than reject them silently."
      (require 'gnutls)

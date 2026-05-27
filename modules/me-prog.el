@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-15
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
   :config
   (advice-add
    'apheleia--run-formatter-process :around
-   (satch-defun +apheleia--set-process-environment:around-a (orig-fn command buffer remote callback stdin formatter)
+   (+defun +apheleia--set-process-environment:around-a (orig-fn command buffer remote callback stdin formatter)
      (let ((process-environment
             (if (eq formatter 'xmllint)
                 (cons (format "XMLLINT_INDENT=%s" (if indent-tabs-mode "\t" (make-string nxml-child-indent (string-to-char " "))))
@@ -109,7 +109,7 @@
   (with-eval-after-load 'nerd-icons
     (advice-add
      'breadcrumb-project-crumbs :override
-     (satch-defun +breadcrumb--project:override-a ()
+     (+defun +breadcrumb--project:override-a ()
        (concat " " (if-let* ((file buffer-file-name))
                        (nerd-icons-icon-for-file file)
                      (nerd-icons-icon-for-mode major-mode)))))))

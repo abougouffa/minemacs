@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-02-04
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -118,7 +118,7 @@
   :config
   (advice-add
    'git-timemachine--show-minibuffer-details :around
-   (satch-defun +git-timemachine--show-revision-in-header-line:around-a (orig-fn revision)
+   (+defun +git-timemachine--show-revision-in-header-line:around-a (orig-fn revision)
      "Show the current revision in the header-line instead of the echo area."
      (let ((inhibit-message t))
        (setq header-line-format

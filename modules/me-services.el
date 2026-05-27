@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -112,7 +112,7 @@ projects to uses the convention of commit messages like:
   :config
   (advice-add ; BUGFIX: Don't save the Gist unless it has been modified
    'igist-save-gist-buffer :around
-   (satch-defun igist--check-if-modified:around-a (orig-fn buffer &optional callback)
+   (+defun igist--check-if-modified:around-a (orig-fn buffer &optional callback)
      (when (igist-gist-modified-p buffer)
        (funcall orig-fn buffer callback)))))
 

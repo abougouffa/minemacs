@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2025-07-05
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -170,7 +170,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Enable multi-files documents."
   (advice-add
    'org-latex-export-to-pdf :around
-   (satch-defun +org--latex-export-to-pdf-main-file:around-a (orig-fn &rest orig-args)
+   (+defun +org--latex-export-to-pdf-main-file:around-a (orig-fn &rest orig-args)
      (let* ((main-file (and (file-exists-p (expand-file-name +org-export-to-pdf-main-file))
                             +org-export-to-pdf-main-file))
             (out-file (if main-file
@@ -294,7 +294,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Fix the font size issue in Org's outline in the echo area."
   (advice-add
    #'org-format-outline-path :around
-   (satch-defun +org--strip-properties-from-outline:around-a (fn &rest args)
+   (+defun +org--strip-properties-from-outline:around-a (fn &rest args)
      (let ((org-level-faces
             (cl-loop for face in org-level-faces
                      collect `(:foreground ,(face-foreground face nil t) :weight regular))))
@@ -314,7 +314,7 @@ Example: \"#+TITLE\" -> \"#+title\"
   "Automatically convert KEYWORDS to lower case on save."
   (add-hook
    'before-save-hook
-   (satch-defun +org--lower-case-keywords-and-properties-h ()
+   (+defun +org--lower-case-keywords-and-properties-h ()
      (when (and +org-use-lower-case-keywords-and-properties (derived-mode-p 'org-mode))
        (+org-lower-case-keywords-and-properties)))))
 

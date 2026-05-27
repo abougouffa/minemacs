@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@tznvy.pbz")
 ;; Created: 2025-07-19
-;; Last modified: 2025-07-19
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -40,9 +40,9 @@
     (setq initial-buffer-choice #'enlight))
   :config
   (defun +enlight-responsive-h ()
-    (satch-add-hook
+    (+add-hooks
      '(window-size-change-functions window-state-change-functions)
-     (satch-defun +enlight--recenter-h (&optional _frame)
+     (+defun +enlight--recenter-h (&optional _frame)
        ;; When Enlight's buffer is visible, we recall `enlight' to refresh/recenter it
        (and (get-buffer-window enlight-buffer-name) (enlight)))
      nil 'local)))

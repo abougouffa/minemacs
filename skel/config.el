@@ -90,9 +90,9 @@
 
 ;; Or, for example, you can automatically enable Eglot in C/C++ buffers when a
 ;; "compile_commands.json" file exists:
-(satch-add-hook ; Automatically enable clangd when there is the required config
+(+add-hooks ; Automatically enable clangd when there is the required config
  '(c-mode-hook c++-mode-hook c-ts-mode-hook c++-ts-mode-hook)
- (satch-defun +eglot-clangd-maybe ()
+ (+defun +eglot-clangd-maybe ()
    (when (+compilation-db-find-file)
      (eglot-ensure))))
 

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-24
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -29,8 +29,8 @@
     "Automatically show diffs when navigating the undo tree."
     :global t
     (if +vundo-show-diff-mode
-        (satch-advice-add +vundo-show-diff-commands :after #'+vundo--show-diff-wrapper)
-      (satch-advice-remove +vundo-show-diff-commands #'+vundo--show-diff-wrapper)))
+        (+advice-add +vundo-show-diff-commands :after #'+vundo--show-diff-wrapper)
+      (+advice-remove +vundo-show-diff-commands #'+vundo--show-diff-wrapper)))
   (+vundo-show-diff-mode 1))
 
 
@@ -115,10 +115,10 @@
   :straight t
   :hook ((prog-mode conf-mode) . symbol-overlay-mode)
   :init
-  (satch-add-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
+  (+add-hooks '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
   (defun +symbol-overlay--lighter-face ()
     (when (display-graphic-p)
-      (satch-remove-hook '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
+      (+remove-hooks '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
       (with-eval-after-load 'symbol-overlay
         (when-let* ((bg (+color-subtle 'symbol-overlay-default-face 60 :background))
                     (fg (+color-subtle 'symbol-overlay-default-face 20 :background 'opposite)))
@@ -268,9 +268,9 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
   ;; Automatically set the face for `selection-highlight-mode'
-  (satch-add-hook
+  (+add-hooks
    '(enable-theme-functions disable-theme-functions server-after-make-frame-hook)
-   (satch-defun +selection-highlight--set-face-h (&rest _args)
+   (+defun +selection-highlight--set-face-h (&rest _args)
      (with-eval-after-load 'selection-highlight-mode
        (with-eval-after-load 'isearch
          (when (display-graphic-p)

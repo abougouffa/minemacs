@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-11
-;; Last modified: 2025-12-02
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -18,7 +18,7 @@
   :config
   (advice-add
    'gee--prest-request :around
-   (satch-defun +gee--basic-http-auth (orig-fn &rest args)
+   (+defun +gee--basic-http-auth (orig-fn &rest args)
      (let ((url-request-extra-headers (when-let* ((token (+gee--get-basic-http-authentication-token)))
                                         `(("Authorization" . ,token)))))
        (apply orig-fn args))))

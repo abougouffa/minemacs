@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-08-29
-;; Last modified: 2025-12-15
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -50,7 +50,7 @@
   ;; `multi-vterm' don't get the working directory right, lets fix it!
   (advice-add
    'multi-vterm-dedicated-open :after
-   (satch-defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
+   (+defun +multi-vterm--remote-change-working-directory:after-a (&rest _)
      (when-let* ((dir (file-remote-p default-directory 'localname)))
        (vterm-send-string (format "cd " (shell-quote-argument dir)))
        (vterm-send-return))))

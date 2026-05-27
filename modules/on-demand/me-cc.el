@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-15
-;; Last modified: 2025-03-21
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
   :straight (:host github :repo "shaohme/flymake-cppcheck")
   :init
   (when (executable-find "cppcheck")
-    (satch-add-hook '(c-mode-hook c-ts-mode-hook c++-mode-hook c++-ts-mode-hook) #'flymake-cppcheck-setup)))
+    (+add-hooks '(c-mode-hook c-ts-mode-hook c++-mode-hook c++-ts-mode-hook) #'flymake-cppcheck-setup)))
 
 
 (provide 'on-demand/me-cc)

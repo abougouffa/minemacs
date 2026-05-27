@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-28
-;; Last modified: 2025-03-21
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -14,7 +14,7 @@
 (use-package flymake-collection
   :straight t
   :init
-  (satch-add-hook 'prog-mode-hook #'flymake-collection-hook-setup nil nil :transient t)
+  (+add-transient-hook 'prog-mode-hook #'flymake-collection-hook-setup)
   :custom
   (flymake-collection-hook-inherit-config t))
 

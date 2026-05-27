@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-06-17
-;; Last modified: 2025-03-21
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -29,7 +29,7 @@
   :config
   (advice-add
    'cfw:render-button :override
-   (satch-defun +cfw:render-button-flat:override-a (title command &optional state)
+   (+defun +cfw:render-button-flat:override-a (title command &optional state)
      "Render a flat button with TITLE, COMMAND and STATE."
      (let ((text (concat " " title " "))
            (keymap (make-sparse-keymap)))

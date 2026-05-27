@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-05-06
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -144,7 +144,7 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 ;; When opening a project via Tramp, calling this can trigger "File is missing: /ssh:.../.gitmodules"
 (advice-add
  'project--git-submodules :around
- (satch-defun +project--git-submodules-check-file:around-a (fn)
+ (+defun +project--git-submodules-check-file:around-a (fn)
    (when (file-exists-p ".gitmodules") (funcall fn))))
 
 
