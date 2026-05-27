@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-25
+;; Last modified: 2026-05-27
 
 ;;; Commentary:
 
@@ -173,6 +173,70 @@ The messages are still printed to *Messages* buffer."
             (load-theme 'modus-operandi t)))))))
   ;; Run hooks
   (run-hooks 'minemacs-after-load-theme-hook))
+
+(defmacro +defun (name arglist &rest body)
+  "Like `defun', but returns the function NAME."
+  (declare (doc-string 3) (indent 2)
+           (autoload-macro expand))
+  `(progn
+     (defun ,name ,arglist ,@body)
+     #',name))
+
+(defvar +transient-hook-count 0)
+(defun +get-transient-function (function check &optional hook advice)
+  (let ((fname (intern (format "minemacs--transient-%s%s%s"
+                               (cl-incf +transient-hook-count)
+                               (if (symbolp function)
+                                   (concat "-" (symbol-name function))
+                                 "")
+                               (if (functionp check)
+                                   (if (symbolp function)
+                                       (format "-on-%s" check)
+                                     (format "-on-lambda-check"))
+                                 "")))))
+    (defalias fname
+      (lambda (&rest args)
+        (when (or (not (functionp check)) (apply check args))
+          (when hook (remove-hook hook fname))
+          (when advice (advice-remove hook fname))
+          ;; BUG: In some cases, `fname' gets called twice (Emacs bug?), so we ensure calling the internal function only once
+          (unless (get fname 'transient-called-p)
+            (apply function args))
+          (put fname 'transient-called-p t))))
+    fname))
+
+(defun +add-transient-hook (hook function &optional depth local check)
+  (let ((func (+get-transient-function function check hook)))
+    (add-hook hook func depth local)))
+
+(defun +add-transient-advice (symbol how function &optional props check)
+  (let ((func (+get-transient-function function check nil symbol)))
+    (advice-add symbol how func props)))
+
+(defun +add-hooks (hooks functions &optional depth local)
+  (dolist (hook (ensure-list hooks))
+    (dolist (func (ensure-list functions))
+      (add-hook hook func depth local))))
+
+(defun +remove-hooks (hooks functions &optional local)
+  (dolist (hook (ensure-list hooks))
+    (dolist (func (ensure-list functions))
+      (remove-hook hook func local))))
+
+(defun +add-advice (symbols how functions &optional props)
+  (dolist (symbol (ensure-list symbols))
+    (dolist (func (ensure-list functions))
+      (advice-add symbol how func props))))
+
+(defun +remove-advice (symbols functions)
+  (dolist (symbol (ensure-list symbols))
+    (dolist (func (ensure-list functions))
+      (advice-remove symbol func))))
+
+(defalias '+advice-remove #'+remove-advice)
+(defalias '+advice-add #'+add-advice)
+(defalias '+add-hook #'+add-hooks)
+(defalias '+remove-hook #'+remove-hooks)
 
 ;; An internal variable to keep track of the tasks
 (defvar +eval-when-idle--task-num 0)
