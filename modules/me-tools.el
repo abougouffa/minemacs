@@ -102,10 +102,11 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 (use-package devcontainer
   :straight (:host github :repo "johannes-mueller/devcontainer.el")
   :hook (minemacs-after-startup . devcontainer-mode)
+  :custom
+  (devcontainer-term-function (cond ((featurep 'ghostel) 'ghostel)
+                                    ((featurep 'eat) 'eat)
+                                    (t 'ansi-term)))
   :config
-  (when (featurep 'eat)
-    (setopt devcontainer-term-function #'eat))
-
   ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
   (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn)))))
 
