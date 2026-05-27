@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.7.0](https://github.com/abougouffa/minemacs/compare/18f73e2638189e8f31869c5ceda176e4351a7512..v14.7.0) - 2026-05-27
+#### Tweaks
+- (**devcontainer**) prefer `ghostel` to `eat` - ([6b21e5b](https://github.com/abougouffa/minemacs/commit/6b21e5b069d9ffc7a398dc09c74e3a9850f8879d)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([4b466c1](https://github.com/abougouffa/minemacs/commit/4b466c1da7716c54b9f2c1d5156200ee592dcfdc)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- remove `once` and replace it with some primitives - ([da1182a](https://github.com/abougouffa/minemacs/commit/da1182a2ed64f4bc267ed99c3ffe803664bc09c3)) - [@abougouffa](https://github.com/abougouffa)
+- remove `satch` and replace by simpler helpers - ([124926a](https://github.com/abougouffa/minemacs/commit/124926aee0727ed195be7158e784fd232268fe27)) - [@abougouffa](https://github.com/abougouffa)
+- add some advises/hooks primitives - ([18f73e2](https://github.com/abougouffa/minemacs/commit/18f73e2638189e8f31869c5ceda176e4351a7512)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- generate the documentation - ([dbfc276](https://github.com/abougouffa/minemacs/commit/dbfc276746f7edf5bcfdd51d673702dc7b8f1138)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.6.0](https://github.com/abougouffa/minemacs/compare/4427c09fd98ba57cac6451f1ca7a0599d03e514c..v14.6.0) - 2026-05-24
 #### Nitpicks, changes with no side effect
 - rename some symbols for clarity - ([d3373ce](https://github.com/abougouffa/minemacs/commit/d3373ce37b4d7f9b6c768875119b8f2ab0632d16)) - [@abougouffa](https://github.com/abougouffa)
