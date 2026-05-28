@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-27
+;; Last modified: 2026-05-29
 
 ;;; Commentary:
 
@@ -12,8 +12,6 @@
 
 (require 'mu4e)
 (require 'me-mu4e-gmail)
-
-(autoload 'nerd-icons-icon-for-file "nerd-icons")
 
 (defcustom +mu4e-account-aliases nil
   "Per-account alias list."
@@ -85,15 +83,16 @@ for :EXTRA-LINES."
 ;; I always synchronize Spams with `mbsync' and index them with `mu'. However, I
 ;; don't like to see them all the time, I would rather jump to the spam folder
 ;; from time to time to check if a mail has been falsely classified as spam.
-;; This function sets the `mu4e-bookmarks' to ignore the mails located in the
-;; Spam or Junk folders.
 (defun +mu4e-extras-ignore-spams-query (query)
+  "Takes a mu QUERY and adds a part to ignore spams.
+The mails located in the Spam or Junk folders are considered spams."
   (let ((spam-filter "NOT maildir:/.*\\(spam\\|junk\\).*/"))
     (if (string-match-p spam-filter query)
         query
       (format "(%s) AND (%s)" query spam-filter))))
 
 (defun +mu4e-extras-ignore-spams-in-bookmarks-setup ()
+  "Set the `mu4e-bookmarks' queries to exclude spams."
   (dolist (bookmark mu4e-bookmarks)
     (plist-put bookmark :query (+mu4e-extras-ignore-spams-query (plist-get bookmark :query)))))
 
@@ -147,7 +146,7 @@ directory."
   (interactive "P")
   (when-let* ((target (expand-file-name (format "%s_%s.eml" (format-time-string "%F" (mu4e-field-at-point :date))
                                                 (+clean-file-name (or (mu4e-field-at-point :subject) "No subject") :downcase))
-                                        (or (and ask (read-directory-name "Save message to: ")) mu4e-attachment-dir)))
+                                        (or (and ask (read-directory-name "Save message to: ")) temporary-file-directory)))
               (default-dest (mu4e-save-message t t)))
     (rename-file default-dest target 1)
     (mu4e-message "Saved to %s" (abbreviate-file-name target))))
