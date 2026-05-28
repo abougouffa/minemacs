@@ -1,10 +1,10 @@
 ;;; me-bitbake.el --- Interface for ADB commands -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2025-09-11
+;; Last modified: 2026-05-28
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
   ;; yocto-ws/build-MACHINE/tmp/work/aarch64-rdk-linux/ppp/2.4.7-r0/ppp-2.4.7/
   (let* (result
          (base-dir (expand-file-name "tmp/work/" build-dir))
-         (arch-dirs (seq-filter #'file-directory-p (directory-files base-dir t directory-files-no-dot-files-regexp))))
+         (arch-dirs (+directory-subdirs base-dir)))
     (dolist (arch-dir arch-dirs)
       (let* ((package-dirs (directory-files arch-dir t directory-files-no-dot-files-regexp))
              (package-dirs (if include-native package-dirs (seq-filter (lambda (dir) (not (string-suffix-p "-native" dir))) package-dirs))))
