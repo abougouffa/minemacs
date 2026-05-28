@@ -1,10 +1,10 @@
 ;;; me-mu4e.el --- Email stuff using mu4e -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-05-29
 
 ;;; Commentary:
 
@@ -35,12 +35,11 @@
   :custom-face
   (mu4e-thread-fold-face ((t (:inherit default))))
   :init
+  (+def-dedicated-tab! mu4e :exit-func mu4e-quit) ; Make a dedicated tab for `mu4e'
   (defcustom +mu4e-auto-start nil
-    "Automatically start `mu4e' in background in `me-daemon'."
+    "Automatically start `mu4e' in background."
     :group 'minemacs-mu4e
     :type 'boolean)
-  ;; Make `+mu4e' dedicated tab for `mu4e'
-  (+def-dedicated-tab! mu4e :exit-func mu4e-quit)
   (+lazy! ; Keep mu4e running in the background based on `+mu4e-auto-start'
    (when (and +mu4e-available-p +mu4e-auto-start (require 'mu4e nil :noerror))
      (defvar +daemon--mu4e-persist-timer
@@ -88,7 +87,7 @@
                 ((featurep 'xwidget-webkit) #'xwidget-webkit-browse-url)
                 (t #'browse-url-xdg-open))))
         (mu4e-action-view-in-browser msg)
-      (message "No message at point.")))
+      (user-error "No message at point.")))
 
   ;; Force running update and index in background
   (advice-add
@@ -196,24 +195,26 @@
   :demand
   :custom
   (mu4e-alert-icon
-   (let ((icon "/usr/share/icons/Papirus/64x64/apps/mail-client.svg"))
-     (when (file-exists-p icon) icon)))
+   (when-let* ((default-directory "/usr/share/icons/")
+               (icons '("Papirus/64x64/apps/mail-client.svg" "Tela/scalable/apps/mail-client.svg" "breeze/apps/48/mail-client.svg"))
+               (icon (cl-find-if #'file-exists-p icons)))
+     (expand-file-name icon)))
   (mu4e-alert-set-window-urgency nil)
   (mu4e-alert-group-by :to)
   (mu4e-alert-email-notification-types '(subjects))
   :init
   (defcustom +mu4e-alert-bell-command
-    (when (or (featurep 'os/linux) (featurep 'os/bsd))
+    (when (and (or (featurep 'os/linux) (featurep 'os/bsd)) (executable-find "paplay"))
       '("paplay" . "/usr/share/sounds/freedesktop/stereo/message.oga"))
     "A cons list of the command and arguments to play the notification bell."
     :group 'minemacs-mu4e
     :type '(cons string string))
   :config
-  ;; Enable `mu4e' segment in `doom-modeline'
-  (setq doom-modeline-mu4e t)
+  ;; Enable `mu4e' segment in `doom-modeline' when available
+  (when (featurep 'doom-modeline) (setq doom-modeline-mu4e t))
 
   ;; Ignore spams!
-  (setq mu4e-alert-interesting-mail-query (+mu4e-extras-ignore-spams-query mu4e-alert-interesting-mail-query))
+  (cl-callf +mu4e-extras-ignore-spams-query mu4e-alert-interesting-mail-query)
 
   (mu4e-alert-enable-mode-line-display)
   (mu4e-alert-enable-notifications)
@@ -222,7 +223,7 @@
   (defun +mu4e-name-or-email (msg)
     (let* ((from (car (plist-get msg :from)))
            (name (plist-get from :name)))
-      (if (or (null name) (eq name "")) (plist-get from :email) name)))
+      (if (string-empty-p name) (plist-get from :email) name)))
 
   (defun +mu4e-alert-grouped-mail-notif-formatter (mail-group _all-mails)
     "This function can be used for `mu4e-alert-grouped-mail-notification-formatter'."
@@ -240,7 +241,7 @@
                 mail-group)
                "\n• ")))))
 
-  (setq mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notif-formatter))
+  (setopt mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notif-formatter))
 
 
 ;; Encrypt and decrypt mails in `mu4e'
