@@ -78,19 +78,7 @@
   (mail-specify-envelope-from t)
   (mail-user-agent 'mu4e-user-agent)
   :config
-  (defun +mu4e-open-mail-as-html ()
-    "Open the HTML mail in EAF Browser."
-    (interactive)
-    (if-let* ((msg (mu4e-message-at-point t))
-              (browse-url-browser-function
-               (cond
-                ((featurep 'xwidget-webkit) #'xwidget-webkit-browse-url)
-                (t #'browse-url-xdg-open))))
-        (mu4e-action-view-in-browser msg)
-      (user-error "No message at point.")))
-
-  ;; Force running update and index in background
-  (advice-add
+  (advice-add ; Force running update and index in background
    'mu4e-update-mail-and-index :around
    (+defun +mu4e--update-mail-quitely:around-a (origfn _run-in-background)
      (+info! "Getting new emails")

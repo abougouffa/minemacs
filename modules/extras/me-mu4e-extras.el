@@ -151,6 +151,10 @@ directory."
     (rename-file default-dest target 1)
     (mu4e-message "Saved to %s" (abbreviate-file-name target))))
 
+(defun +mu4e-buffer-p (&optional buffer)
+  (with-current-buffer (or buffer (current-buffer))
+    (and (derived-mode-p '(mu4e-view-mode mu4e-headers-mode)) t)))
+
 ;; Based on: `mu4e-action-view-in-browser'
 (defun +mu4e-view-save-mail-as-pdf (&optional msg skip-headers)
   "Save current MSG as PDF.
@@ -192,6 +196,21 @@ not show include message headers."
                   (insert (mu4e-view-message-text msg)))
                 (+save-as-pdf outfile t)))))
         (mm-destroy-parts parts)))))
+
+(defun +mu4e-open-mail-as-html ()
+  "Open the HTML mail in EAF Browser."
+  (interactive)
+  (if-let* ((msg (mu4e-message-at-point t))
+            (browse-url-browser-function
+             (cond
+              ((featurep 'xwidget-webkit) #'xwidget-webkit-browse-url)
+              (t #'browse-url-xdg-open))))
+      (mu4e-action-view-in-browser msg)
+    (user-error "No message at point.")))
+
+;; Show only in mu4e buffers
+(dolist (cmd '(+mu4e-view-save-mail-as-pdf +mu4e-open-mail-as-html))
+  (put cmd 'completion-predicate (lambda (_cmd buf) (+mu4e-buffer-p buf))))
 
 (defun +mu4e-extras-locks-setup ()
   "Setup locks for mu4e's server."
