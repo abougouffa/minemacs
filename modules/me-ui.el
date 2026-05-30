@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-05-04
+;; Last modified: 2026-05-30
 
 ;;; Commentary:
 
@@ -170,6 +170,13 @@
   :bind (:map reb-mode-map ("C-o" . casual-re-builder-tmenu))
   :bind (:map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu))
   :bind (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
+
+
+;; Effortlessly persist and restore your Emacs sessions
+(use-package easysession
+  :straight t
+  :init
+  (easysession-setup))
 
 
 (provide 'me-ui)
