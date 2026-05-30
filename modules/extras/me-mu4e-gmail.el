@@ -1,10 +1,10 @@
 ;;; me-mu4e-gmail.el --- Better integration of mu4e with Gmail accounts -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-05
-;; Last modified: 2026-05-27
+;; Last modified: 2026-05-30
 
 ;;; Commentary:
 
@@ -49,49 +49,38 @@ from the envelope of the current message."
 (defun +mu4e--mark-seen (docid _msg target)
   (mu4e--server-move docid (mu4e--mark-check-target target) "+S-u-N"))
 
-(defun +mu4e-gmail-setup ()
-  ;; Don't save message to Sent Messages, Gmail/IMAP takes care of this
-  (setq mu4e-sent-messages-behavior
-        (lambda ()
-          (if (or (+mu4e-sent-from-gmail-p)
-                  (string-match-p
-                   "@gmail.com\\'" (message-sendmail-envelope-from)))
-              'delete 'sent))
-        mu4e-marks (delq (assq 'delete mu4e-marks) mu4e-marks))
+(defun +mu4e--gmail-sent-behavior ()
+  "Don't save message for Gmail, the remote server takes care of this."
+  (if (or (+mu4e-sent-from-gmail-p) (string-match-p "@gmail.com\\'" (message-sendmail-envelope-from)))
+      'delete
+    'sent))
 
-  (setf (alist-get 'delete mu4e-marks)
-        (list
-         :char '("D" . "✘")
-         :prompt "Delete"
-         :show-target (lambda (_target) "delete")
-         :action
-         (lambda (docid msg target)
-           (if (+mu4e-msg-gmail-p msg)
-               (progn
-                 (message "Unsupported delete operation for Gmail. Trashing instead.")
-                 (+mu4e--mark-seen docid msg target))
-             (mu4e--server-remove docid))))
-        (alist-get 'trash mu4e-marks)
-        (list
-         :char '("d" . "▼")
-         :prompt "dtrash"
-         :dyn-target (lambda (_target msg) (mu4e-get-trash-folder msg))
-         :action
-         (lambda (docid msg target)
-           (if (+mu4e-msg-gmail-p msg)
-               (+mu4e--mark-seen docid msg target)
-             (mu4e--server-move docid (mu4e--mark-check-target target) "+T-N"))))
-        ;; Refile will be my "archive" function.
-        (alist-get 'refile mu4e-marks)
-        (list
-         :char '("r" . "▼")
-         :prompt "rrefile"
-         :dyn-target (lambda (_target msg) (mu4e-get-refile-folder msg))
-         :action
-         (lambda (docid msg target)
-           (if (+mu4e-msg-gmail-p msg)
-               (+mu4e--mark-seen docid msg target)
-             (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))))
+;; Gmail-aware actions for `mu4e-marks'
+(defun +mu4e-gmail--delete-action (docid msg target)
+  (if (+mu4e-msg-gmail-p msg)
+      (progn
+        (mu4e-message "Unsupported delete operation for Gmail. Trashing instead.")
+        (+mu4e--mark-seen docid msg target))
+    (mu4e--server-remove docid)))
+
+(defun +mu4e-gmail--trash-action (docid msg target)
+  (if (+mu4e-msg-gmail-p msg)
+      (+mu4e--mark-seen docid msg target)
+    (mu4e--server-move docid (mu4e--mark-check-target target) (if mu4e-trash-without-flag "-N" "+T-N"))))
+
+;; Refile will be my "archive" function
+(defun +mu4e-gmail--refile-action (docid msg target)
+  (if (+mu4e-msg-gmail-p msg)
+      (+mu4e--mark-seen docid msg target)
+    (mu4e--server-move docid (mu4e--mark-check-target target) "-N")))
+
+(defun +mu4e-gmail-setup ()
+  (setopt mu4e-sent-messages-behavior #'+mu4e--gmail-sent-behavior)
+
+  (dolist (action '(delete trash refile))
+    (let ((action-fn (intern (format "+mu4e-gmail--%s-action" action))))
+      (let ((mark (assq action mu4e-marks)))
+        (plist-put (cdr mark) :action action-fn))))
 
   ;; This hook correctly modifies gmail flags on emails when they are marked.
   ;; Without it, refiling (archiving), trashing/deleting, and flagging
