@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-05-07
+;; Last modified: 2026-05-31
 
 ;;; Commentary:
 
@@ -975,8 +975,8 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                    (concat ":" (shell-quote-argument file))))
               (let ((indent-sym (cl-find-if #'boundp (cdr lang))))
                 (format "{IndentWidth: %d, TabWidth: %d}"
-                        (or (and indent-sym (symbol-value indent-sym)) standard-indent)
-                        (or (and indent-sym (symbol-value indent-sym)) tab-width)))))))
+                        (if indent-sym (symbol-value indent-sym) standard-indent)
+                        (if indent-sym (symbol-value indent-sym) tab-width)))))))
 
 (autoload 'editorconfig-set-local-variables "editorconfig")
 
@@ -984,8 +984,9 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
 (defun +editorconfig-guess-style-from-clang-format ()
   "Set some editor settings from \".clang-format\" when available."
   (interactive)
-  (if-let* (((and (require 'yaml nil t)
-                  (+clang-format-config-file)
+  (when (and (not (require 'yaml nil t)) (called-interactively-p 'interactive))
+    (user-error "The `yaml' package is not installed"))
+  (if-let* (((and (+clang-format-config-file)
                   (executable-find +clang-format-command)
                   (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))))
             (out (+clang-format-dump-config))
