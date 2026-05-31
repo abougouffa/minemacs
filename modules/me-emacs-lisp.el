@@ -1,10 +1,10 @@
 ;;; me-emacs-lisp.el --- Lisp, Scheme, Elisp -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-07-31
-;; Last modified: 2025-09-16
+;; Last modified: 2026-05-31
 
 ;;; Commentary:
 
@@ -75,6 +75,11 @@
   :hook (minemacs-first-elisp-file . eros-mode)
   :custom
   (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>")))
+
+
+;; Elisp regexp mistake finder
+(use-package relint
+  :straight t)
 
 
 (provide 'me-emacs-lisp)
