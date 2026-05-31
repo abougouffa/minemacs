@@ -320,12 +320,6 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :bind (([remap comment-dwim] . comment-dwim-2)))
 
 
-;; Pulse modified regions
-(use-package goggles
-  :straight t
-  :hook ((text-mode prog-mode) . goggles-mode))
-
-
 (provide 'me-editor)
 
 ;;; me-editor.el ends here
