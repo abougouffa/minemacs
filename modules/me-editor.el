@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-05-31
 
 ;;; Commentary:
 
@@ -87,7 +87,15 @@
         downcase-dwim downcase-word downcase-region
         ;; MinEmacs' commands
         +kill-whitespace-or-word +kill-region-or-backward-word +backward-kill-whitespace-or-word
-        +dtrt-indent-tab-to-tab-stop +forward-to-last-non-comment-or-eol +backward-to-bol-or-indent
+        +dtrt-indent-tab-to-tab-stop
+        ;; `mwim'
+        mwim mwim-end mwim-end-of-code mwim-end-of-line mwim-end-of-code-or-line mwim-end-of-line-or-code
+        mwim-beginning mwim-beginning-of-code mwim-beginning-of-line mwim-beginning-of-comment
+        mwim-beginning-of-code-or-line mwim-beginning-of-line-or-code mwim-beginning-of-code-or-line-or-comment
+        ;; `comment-dwim-2'
+        comment-dwim-2
+        ;; `move-dup'
+        move-dup-move-lines-up move-dup-move-lines-down move-dup-duplicate-up move-dup-duplicate-down
         ;; `avy'
         avy-goto-char avy-goto-char-timer avy-goto-char-in-line avy-goto-char-2
         ;; `avy-zap'
