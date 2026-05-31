@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.8.0](https://github.com/abougouffa/minemacs/compare/69f93dcaf77d04fb70d909476ecafc744a91d3d6..v14.8.0) - 2026-05-31
+#### Tweaks
+- (**bitbake**) make use of `+directory-subdirs` - ([69f93dc](https://github.com/abougouffa/minemacs/commit/69f93dcaf77d04fb70d909476ecafc744a91d3d6)) - [@abougouffa](https://github.com/abougouffa)
+- (**multiple-cursors**) add extra commands to run for all cursors - ([0bf59c0](https://github.com/abougouffa/minemacs/commit/0bf59c041e53d1111f76c5feedd9055560e8e698)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) move `goggles` from `me-editor` to `me-ui` - ([6bdaf71](https://github.com/abougouffa/minemacs/commit/6bdaf71208db5e8388b1d7961642bc1d4e2aa3f3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([d851379](https://github.com/abougouffa/minemacs/commit/d851379a92374824dffeb77f3decbde66246ca1d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3715d87](https://github.com/abougouffa/minemacs/commit/3715d87784565e8723e77de4df781ceeea4b7bf9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5edf6fe](https://github.com/abougouffa/minemacs/commit/5edf6fe3496d813e35e92e29306c4630ec8b6ba1)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**emacs-lisp**) add `relint` - ([1ad498c](https://github.com/abougouffa/minemacs/commit/1ad498cb9c4ace0b271e138b018a9f036ea4a764)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**ui**) restore and update `easysession` - ([95144c3](https://github.com/abougouffa/minemacs/commit/95144c3d5114f08951f4340fe1db280a826a6656)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**mu4e**) move a command to `me-mu4e-extra` - ([7ee3377](https://github.com/abougouffa/minemacs/commit/7ee3377452c923f28552abae5507145211d7eee3)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e-alert**) minor refactoring - ([770f3c2](https://github.com/abougouffa/minemacs/commit/770f3c29c2fbbed658ce8972e8e84e19e3c83be7)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e-extras**) minor refactoring - ([4a61a39](https://github.com/abougouffa/minemacs/commit/4a61a39440720063146e49ede0fcd16e215a4920)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e-gmail**) refactor and fix missing delete action - ([abff45e](https://github.com/abougouffa/minemacs/commit/abff45ef9c3eb64facf350581d754f06aa2e77ae)) - [@abougouffa](https://github.com/abougouffa)
+- minor edits in `clang-format` helpers - ([31d8540](https://github.com/abougouffa/minemacs/commit/31d854054c0bd15cfa8025f5cb24eee57ccd23f2)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.7.0](https://github.com/abougouffa/minemacs/compare/18f73e2638189e8f31869c5ceda176e4351a7512..v14.7.0) - 2026-05-27
 #### Tweaks
 - (**devcontainer**) prefer `ghostel` to `eat` - ([6b21e5b](https://github.com/abougouffa/minemacs/commit/6b21e5b069d9ffc7a398dc09c74e3a9850f8879d)) - [@abougouffa](https://github.com/abougouffa)
