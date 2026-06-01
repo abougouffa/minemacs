@@ -277,13 +277,24 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 ;;; Eglot
 
+(setopt eglot-menu-string (+nerd-icons-icon "nf-fa-rocket"))
 (with-eval-after-load 'eglot
-  (setq mode-line-misc-info
-        (delete '(eglot--managed-mode (" [" eglot--mode-line-format "] ")) mode-line-misc-info)))
-
-(minemacs-modeline-define-section eglot
-  (when (and (mode-line-window-selected-p) (featurep 'eglot))
-    '(eglot--managed-mode eglot--mode-line-format)))
+  (when-let* ((sect (assq 'eglot--managed-mode mode-line-misc-info)))
+    ;; The same as in eglot.el, just we change the ":" to " " and we remove the brackets
+    (setcdr sect
+            `(((:eval
+                (cl-loop for e in eglot-mode-line-format
+                         for render = (format-mode-line e)
+                         unless (eq render "")
+                         collect (cons render
+                                       (eq e 'eglot-mode-line-menu))
+                         into rendered
+                         finally
+                         (return (cl-loop for (rspec . rest) on rendered
+                                          for (r . titlep) = rspec
+                                          concat r
+                                          when rest concat (if titlep " " "/")))))
+               " ")))))
 
 ;;; Compilation
 
@@ -344,8 +355,6 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         minemacs-modeline-region-size
                         "  "
                         minemacs-modeline-process
-                        "  "
-                        minemacs-modeline-eglot
                         "  "
                         mode-line-format-right-align
                         "  "
