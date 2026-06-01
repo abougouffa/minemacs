@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-05-31
+;; Last modified: 2026-06-01
 
 ;;; Commentary:
 
@@ -177,12 +177,6 @@
   :straight t
   :init
   (easysession-setup))
-
-
-;; Pulse modified regions
-(use-package goggles
-  :straight t
-  :hook ((text-mode prog-mode) . goggles-mode))
 
 
 (provide 'me-ui)
