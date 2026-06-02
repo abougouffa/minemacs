@@ -19,12 +19,14 @@
 
 
 
-(defvar minemacs--deferred-forms nil)
+(defvar minemacs--lazy-functions nil)
 
 (defmacro +with-delayed! (&rest body)
   "Delay evaluating BODY with priority 0 (high priority)."
   (declare (indent 0))
-  `(push ',(macroexp-progn body) minemacs--deferred-forms))
+  (if (featurep 'minemacs-lazy)
+      (macroexp-progn body)
+    `(push (lambda () ,(macroexp-progn body)) minemacs--lazy-functions)))
 
 
 

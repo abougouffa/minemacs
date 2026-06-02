@@ -10,39 +10,38 @@
 
 ;;; Code:
 
+(defun +minemacs-run-hook-wrapper (func &optional prefix)
+  "Wrapper to run FUNC in `run-hook-wrapped', use PREFIX for logs."
+  (let ((prefix (or prefix "RunHook")))
+    (condition-case err
+        (funcall func)
+      (error (+msg! (concat prefix "Error") "%S" err))
+      (:success (when (or minemacs-debug-p minemacs-verbose-p) (+msg! (concat prefix "Success") "Executed %S" func))))
+    ;; Return nil to continue running hooks, otherwise, `run-hook-wrapped' will stop running hooks
+    nil))
+
 ;; Run hooks
-(when minemacs-after-startup-hook
-  (+log! "Running %d `minemacs-after-startup-hook' hooks." (length minemacs-after-startup-hook))
-  (condition-case err
-      (run-hooks 'minemacs-after-startup-hook)
-    (error (+msg! "AfterStartupLoadError" "%S" err))))
+(+log! "Running %d `minemacs-after-startup-hook' hooks." (length minemacs-after-startup-hook))
+(run-hook-wrapped 'minemacs-after-startup-hook #'+minemacs-run-hook-wrapper "AfterStartupLoad")
 
 (+log! "Providing `minemacs-loaded'.")
 (provide 'minemacs-loaded)
 
-(when minemacs-lazy-hook
-  (if minemacs-not-lazy-p
-      (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
-        (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
-        (condition-case err
-            (run-hooks 'minemacs-lazy-hook)
-          (error (+msg! "ImmediateLoadError" "%S" err)))
-        (provide 'minemacs-lazy))
-    (+log! "Loading %d lazy packages incrementally." (length minemacs-lazy-hook))
-    (cl-callf2 append (mapcar #'ensure-list minemacs-lazy-hook)
-               minemacs--deferred-forms
-      '((provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
+(if minemacs-not-lazy-p
+    (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
+      (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
+      (run-hook-wrapped 'minemacs-lazy-hook #'+minemacs-run-hook-wrapper "ImmediateLoad")
+      (provide 'minemacs-lazy))
+  (+log! "loading %d lazy packages incrementally." (length minemacs-lazy-hook))
+  (cl-callf2 append minemacs-lazy-hook minemacs--lazy-functions
+    '((lambda () (provide 'minemacs-lazy))))) ;; Provide `minemacs-lazy' at the end
 
 (defvar minemacs--lazy-timer
   (run-with-timer
    0.1 0.001
    (lambda ()
-     (if minemacs--deferred-forms
-         (let ((inhibit-message (not minemacs-verbose-p))
-               (form (pop minemacs--deferred-forms)))
-           (condition-case err
-               (eval form)
-             (error (+msg! "DeferredLoadError" "In %s: %S" form err))))
+     (if minemacs--lazy-functions
+         (+minemacs-run-hook-wrapper (pop minemacs--lazy-functions) "DeferredLoad")
        (cancel-timer minemacs--lazy-timer)))))
 
 
