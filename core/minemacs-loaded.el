@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-04-09
+;; Last modified: 2026-06-02
 
 ;;; Commentary:
 
@@ -12,9 +12,7 @@
 
 ;; Run hooks
 (when minemacs-after-startup-hook
-  (setq minemacs-after-startup-hook (reverse minemacs-after-startup-hook))
-  (+log! "Running %d `minemacs-after-startup-hook' hooks."
-         (length minemacs-after-startup-hook))
+  (+log! "Running %d `minemacs-after-startup-hook' hooks." (length minemacs-after-startup-hook))
   (condition-case err
       (run-hooks 'minemacs-after-startup-hook)
     (error (+msg! "AfterStartupLoadError" "%S" err))))
