@@ -320,6 +320,14 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                 'help-echo (buffer-name (process-buffer proc))
                 'local-map minemacs-modeline-dired-rsync-map)))
 
+;;; Debug mode
+
+(minemacs-modeline-define-section debug
+  (when-let* ((debug-vars (seq-filter #'symbol-value '(minemacs-debug-p debug-on-error debug-on-quit debug-on-signal debug-on-message))))
+    (propertize (minemacs-modeline--icon "nf-fa-bug" :face 'nerd-icons-red)
+                'mouse-face 'mode-line-highlight
+                'help-echo (format "Debug mode: %S" debug-vars))))
+
 ;;; Miscellaneous
 
 (minemacs-modeline-define-section misc-info
@@ -367,6 +375,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         minemacs-modeline-flymake
                         "  "
                         minemacs-modeline-misc-info
+                        "  "
+                        minemacs-modeline-debug
                         "  "))
         (+subtle-mode-line)
         (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)
