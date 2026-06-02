@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-02
 
 ;;; Commentary:
 
@@ -954,7 +954,8 @@ file dont exist."
 
 (defcustom minemacs-fonts-plist
   '(:default
-    ((:family "JetBrains Mono" :height 105)
+    ((:family "Maple Mono" :height 105)
+     (:family "JetBrains Mono" :height 105)
      (:family "Cascadia Code" :height 110 :weight semi-light)
      (:family "Fira Code" :height 110)
      (:family "Google Sans Code NF" :height 110)
