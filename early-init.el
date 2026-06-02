@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-02
+;; Last modified: 2026-06-02
 
 ;;; Commentary:
 
@@ -113,6 +113,9 @@ You need to set in in your \"early-config.el\"."
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)
+
+;; Useful if I set `debug-on-error' in "local/early-config.el"
+(when debug-on-error (setq minemacs-debug-p t))
 
 (provide 'early-init)
 ;;; early-init.el ends here
