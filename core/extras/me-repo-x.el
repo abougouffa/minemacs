@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2026-04-30
-;; Last modified: 2026-04-30
+;; Last modified: 2026-06-03
 
 ;;; Commentary:
 
@@ -40,12 +40,12 @@ results."
       projs)))
 
 ;;;###autoload
-(defun +repo-project-p (&optional proj)
-  "Retrun non-nil when PROJ (or the current project) is a Repo project.
+(defun +repo-project-p (&optional dir)
+  "Retrun non-nil when DIR is inside a Repo project.
 
 When in a Repo project, return the project path relative to the Repo
 root."
-  (when-let* ((repo-root (+repo-root))
+  (when-let* ((repo-root (+repo-root dir))
               (projs (mapcar #'file-name-as-directory (+repo-projects)))
               (proj-path (+project-safe-root)))
     (car (member (file-name-as-directory (file-relative-name (+project-safe-root) repo-root)) projs))))
@@ -54,7 +54,8 @@ root."
 ;;;###autoload
 (+def-project-mode! +repo-project-mode
   "A minor mode enabled in files/buffers opened in a Repo workspace."
-  :when (+repo-project-p)
+  :when (when-let* ((path (or (buffer-file-name) default-directory)))
+          (and (not (file-remote-p path)) (+repo-project-p)))
   :fileless-buffers t)
 
 
