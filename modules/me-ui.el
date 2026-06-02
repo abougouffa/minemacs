@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-06-01
+;; Last modified: 2026-06-02
 
 ;;; Commentary:
 
@@ -175,17 +175,7 @@
 ;; Effortlessly persist and restore your Emacs sessions
 (use-package easysession
   :straight t
-  :hook (minemacs-lazy . easysession-save-mode)
-  :demand
-  :config
-  (easysession--update-modeline-misc-info easysession-mode-line-misc-info-format)
-  (when easysession-setup-load-session
-    (if (daemonp)
-        (progn
-          (when (seq-some (lambda (frame) (frame-parameter frame 'client)) (frame-list))
-            (easysession--setup-load-session))
-          (add-hook 'server-after-make-frame-hook #'easysession--setup-load-session easysession-setup-add-hook-depth))
-      (add-hook 'minemacs-after-startup-hook #'easysession--setup-load-session easysession-setup-add-hook-depth))))
+  :hook (minemacs-lazy . easysession-save-mode))
 
 
 (provide 'me-ui)
