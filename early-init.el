@@ -51,8 +51,7 @@
  ;; Defer loading packages by default, use `:demand' to force loading a package
  use-package-always-defer (not minemacs-always-demand-p)
  use-package-always-demand minemacs-always-demand-p
- ;; Make the expanded code as minimal as possible, do not try to catch errors
- use-package-expand-minimally (not minemacs-debug-p)
+ use-package-expand-minimally (not minemacs-debug-p) ; Minimize expanded code & do not try to catch errors, unless in debug mode
  ;; Do not make installed packages available when Emacs starts (we use `straight')
  package-enable-at-startup minemacs-builtin-only-p
  ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
@@ -79,13 +78,11 @@
 
 ;; Native compilation settings
 (when (and (featurep 'native-compile) (native-comp-available-p))
-  (setq
-   ;; Silence compiler warnings unless we are running in `minemacs-verbose-p' mode
-   native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent)
-   native-comp-verbose (if minemacs-verbose-p 1 0)
-   native-comp-debug (if minemacs-debug-p 1 0)
-   native-comp-jit-compilation t ; Make native compilation happens asynchronously
-   native-comp-async-query-on-exit t) ; Ask before terminating asynchronous compilations on exit
+  (setq native-comp-async-report-warnings-errors (when minemacs-verbose-p 'silent) ; Silent reporting in `minemacs-verbose-p' mode, none otherwise
+        native-comp-verbose (if minemacs-verbose-p 1 0)
+        native-comp-debug (if minemacs-debug-p 1 0)
+        native-comp-jit-compilation t ; Make native compilation happens asynchronously
+        native-comp-async-query-on-exit t) ; Ask before terminating asynchronous compilations on exit
   ;; Set the directory for storing the native compilation cache
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
 
