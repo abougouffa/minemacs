@@ -89,20 +89,24 @@
   ;; - Iosevka: https://typeof.net/Iosevka/customizer
   ;; - Fira Code: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
   ;; - Cascadia Code: https://github.com/microsoft/cascadia-code/wiki/Coding-ligature-coverage
+  ;; - Maple Mono: https://font.subf.dev/en/playground/?normal
+  (defvar +ligature-common
+    '("Cl" "Fl" "Tl" "al" "all" "cl" "el" "ell" "ff" "ffi" "fi" "fj" "fl"
+      "ft" "il" "ill" "ll" "tl" "tt" "ul" "ull" "www" "xl"))
+
   (defvar +ligature-common-prog
-    `("<<" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "==" ;; "<<<" ">>>" buggy
+    `("!=" "<<" ">>" ">>=" "<<=" "<=" ">=" "::" ":::" "..=" "::<" "==" ;; "<<<" ">>>" buggy
       "*=" "+=" "<|" "<|>" "|>" "++" "+++" "&&" "||" "/=" "--" "#!" "::="
       "#[" "]#" "{|" "|}" "__"))
 
   (defvar +ligature-c-like ; C, C++, C#, Java, Rust, JS, PHP, Go, V
-    `("!=" "<>" "/*" "*/" "//" "///" "^=" "|=" "?." "??" "<~>"))
+    `("<>" "/*" "*/" "//" "///" "^=" "|=" "?." "??" "<~>"))
 
   (defvar +ligature-html ; HTML, XML, JS, PHP
     `("</" "</>" "/>" "<!--" "<!---" "www"))
 
   (defvar +ligature-brackets ; Ruby, PHP, Julia, ML, Haskell, Raku, Dafny, Swift, Idris, PHP
-    `("<>" "<:" ":=" "*+" "<*" "<*>" "*>" "<." "<.>" ".>" "+*" "=*"
-      "=:" ":>" "(*" "*)" "/*" "*/"))
+    `("<>" "<:" ":=" "*+" "<*" "<*>" "*>" "<." "<.>" ".>" "+*" "=*" "=:" ":>" "(*" "*)" "/*" "*/"))
 
   (defvar +ligature-js `(,@+ligature-c-like ,@+ligature-html "!==" "!===" "==="))
 
@@ -127,7 +131,7 @@
       "<<==<<==<<" ">>==>>==>>" "|--|--|" "||--||--||" "<--<--<" ">-->-->"
       "<<--<<--<<" ">>-->>-->>"))
 
-  (ligature-set-ligatures 't '("ff" "ffi" "Fl" "Tl" "fi" "fj" "fl" "ft" "www"))
+  (ligature-set-ligatures 't +ligature-common)
   (ligature-set-ligatures '(prog-mode conf-mode) `(,@+ligature-common-prog ,@+ligature-arrows ,@+ligature-arrows-extra))
   (ligature-set-ligatures '(text-mode) `(,@+ligature-arrows ,@+ligature-arrows-extra))
   (ligature-set-ligatures '(js-mode typescript-mode typescript-ts-mode php-ts-mode php-mode) +ligature-js)
