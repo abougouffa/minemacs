@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-04
 
 ;;; Commentary:
 
@@ -66,20 +66,30 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   (+def-dedicated-tab! ghostel :exit-hook ghostel-exit-functions)
   (+super-project-define-commands 'ghostel-project)
   :config
-  (defun +ghostel-toggle-dwim ()
-    "Toggle the Ghostel window.
+  ;; TWEAK: Bind the F1 key to toggle in `ghostel' modes, otherwise, it will be bound to `ghostel--send-event'
+  (dolist (map (list ghostel-mode-map ghostel-line-mode-map ghostel-readonly-mode-map ghostel-char-mode-map ghostel-semi-char-mode-map))
+    (keymap-set map "<f1>" #'+ghostel-toggle-dwim))
+  (defun +ghostel-toggle-dwim (arg)
+    "Toggle the Ghostel window, step to the current directory when ARG.
 When in a project, toggle `ghostel-project', else, toggle `ghostel'."
-    (interactive)
+    (interactive "P")
     (let* ((buf-name (if (project-current)
                          (project-prefixed-buffer-name (string-trim ghostel-buffer-name "*" "*"))
                        ghostel-buffer-name))
-           (ghostel-func (if (project-current) #'ghostel-project #'ghostel)))
-      (if-let* ((buf (get-buffer buf-name))
-                ((buffer-live-p buf)))
+           (ghostel-func (if (project-current) #'ghostel-project #'ghostel))
+           (buf (get-buffer buf-name))
+           (active-p (and buf (buffer-live-p buf))))
+      (if active-p
           (if-let* ((win (get-buffer-window buf)))
               (delete-window win)
             (pop-to-buffer buf))
-        (call-interactively ghostel-func)))))
+        (setq buf (call-interactively ghostel-func)))
+      (when arg
+        (let ((target-dir (shell-quote-argument (file-local-name (expand-file-name default-directory)))))
+          (with-current-buffer buf
+            (ghostel-send-C-c)
+            (ghostel-send-string (concat "cd " target-dir))
+            (ghostel-send-key "return")))))))
 
 
 ;; Launch system applications from Emacs
