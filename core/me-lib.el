@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-06-02
+;; Last modified: 2026-06-04
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 (defmacro +with-delayed! (&rest body)
   "Delay evaluating BODY with priority 0 (high priority)."
   (declare (indent 0))
-  (if (featurep 'minemacs-lazy)
+  (if (or (featurep 'minemacs-lazy) (daemonp))
       (macroexp-progn body)
     `(push (lambda () ,(macroexp-progn body)) minemacs--lazy-functions)))
 
