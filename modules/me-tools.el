@@ -69,28 +69,31 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   ;; TWEAK: Bind the F1 key to toggle in `ghostel' modes, otherwise, it will be bound to `ghostel--send-event'
   (dolist (map (list ghostel-mode-map ghostel-line-mode-map ghostel-readonly-mode-map ghostel-char-mode-map ghostel-semi-char-mode-map))
     (keymap-set map "<f1>" #'+ghostel-toggle-dwim))
+
+  (defvar +ghostel-proj-terminals nil)
   (defun +ghostel-toggle-dwim (arg)
     "Toggle the Ghostel window, step to the current directory when ARG.
 When in a project, toggle `ghostel-project', else, toggle `ghostel'."
     (interactive "P")
-    (let* ((buf-name (if (project-current)
-                         (project-prefixed-buffer-name (string-trim ghostel-buffer-name "*" "*"))
-                       ghostel-buffer-name))
-           (ghostel-func (if (project-current) #'ghostel-project #'ghostel))
-           (buf (get-buffer buf-name))
-           (active-p (and buf (buffer-live-p buf))))
-      (if active-p
-          (if-let* ((win (get-buffer-window buf)))
-              (delete-window win)
-            (pop-to-buffer buf))
-        (setq buf (call-interactively ghostel-func)))
-      (when arg
-        (let ((target-dir (shell-quote-argument (file-local-name (expand-file-name default-directory)))))
-          (with-current-buffer buf
-            (ghostel-send-C-c)
-            (ghostel-send-string (concat "cd " target-dir))
-            (ghostel-send-key "return")))))))
-
+    (let* ((proj (project-current))
+           (key (or (+project-safe-root proj) "default"))
+           (ghostel-func (if proj #'ghostel-project #'ghostel))
+           (buf (alist-get key +ghostel-proj-terminals nil nil #'equal))
+           (created (and buf (buffer-live-p buf)))
+           (running (and created (get-buffer-process buf)))
+           (visible-win (and buf (get-buffer-window buf)))
+           (target-dir (and arg (not visible-win) (shell-quote-argument (file-local-name (expand-file-name default-directory))))))
+      (if visible-win
+          (delete-window visible-win)
+        (if running
+            (pop-to-buffer visible-win)
+          (setq buf (call-interactively ghostel-func))
+          (+alist-set! key buf +ghostel-proj-terminals)))
+      (when target-dir
+        (with-current-buffer buf
+          (ghostel-send-C-c)
+          (ghostel-send-string (concat "cd " target-dir))
+          (ghostel-send-key))))))
 
 ;; Launch system applications from Emacs
 (use-package xdg-launcher
