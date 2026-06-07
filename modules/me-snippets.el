@@ -4,37 +4,33 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-01
 
 ;;; Commentary:
 
 ;;; Code:
 
 
-;; A template system for Emacs
-(use-package yasnippet
+(use-package tempel
   :straight t
-  :hook ((text-mode prog-mode conf-mode) . yas-minor-mode)
-  :init
-  (defvar yas-verbosity (if minemacs-verbose-p 4 2))
-  (unless minemacs-verbose-p
-    ;; Suppress some annoying messages like: "Multiple snippets with same identity: ...", "Ignoring unknown directive ..."
-    (+add-advice '(yas-define-snippets yas--parse-template) :around '+apply-inhibit-messages))
   :custom
-  (yas-triggers-in-field t) ; Allow nested snippets
-  (yas-alias-to-yas/prefix-p nil) ; Don't define old `yas/*' aliases
-  (yas-snippet-dirs (list (+directory-ensure minemacs-config-dir "snippets/") (concat minemacs-root-dir "snippets/"))))
+  (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
+  (tempel-path (list (concat minemacs-assets-dir "templates/tempel/*.eld")
+                     (concat minemacs-config-dir "templates/tempel/*.eld")))
+  :bind (("M-\"" . tempel-complete) ;; Alternative tempel-expand
+         ("M-*" . tempel-insert)
+         :map tempel-map
+         ("TAB" . tempel-next)
+         ("<backtab>" . tempel-previous))
+  :hook ((prog-mode text-mode) . +tempel-setup-capf-h)
+  :hook (prog-mode . tempel-abbrev-mode)
+  :config
+  (defun +tempel-setup-capf-h ()
+    (add-hook 'completion-at-point-functions #'tempel-complete -90 t)))
 
 
-;; A collection of yasnippet snippets for many languages
-(use-package yasnippet-snippets
+(use-package tempel-collection
   :straight t)
-
-
-;; A consulting-read interface for yasnippet
-(use-package consult-yasnippet
-  :straight t
-  :unless (+package-disabled-p 'consult 'me-completion))
 
 
 (provide 'me-snippets)
