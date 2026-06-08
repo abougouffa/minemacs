@@ -323,7 +323,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 ;;; Debug mode
 
 (minemacs-modeline-define-section debug
-  (when-let* ((debug-vars (seq-filter #'symbol-value '(minemacs-debug-p debug-on-error debug-on-quit debug-on-signal debug-on-message))))
+  (when-let* ((debug-vars (and (mode-line-window-selected-p) (seq-filter #'symbol-value '(minemacs-debug-p debug-on-error debug-on-quit debug-on-signal debug-on-message)))))
     (propertize (minemacs-modeline--icon "nf-fa-bug" :face 'nerd-icons-red)
                 'mouse-face 'mode-line-highlight
                 'help-echo (format "Debug mode: %S" debug-vars))))
