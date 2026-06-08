@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-04
+;; Last modified: 2026-06-08
 
 ;;; Commentary:
 
@@ -558,7 +558,6 @@
   :hook
   (compilation-filter . ansi-color-compilation-filter) ; Enable ANSI colors in compilation buffer
   (shell-mode . compilation-shell-minor-mode)
-  (compilation-mode . minemacs-reduce-font-size)
   :custom
   (compilation-scroll-output t) ; Keep scrolling the compilation buffer, `first-error' can be interesting
   (compilation-always-kill t) ; Always kill current compilation process before starting a new one
@@ -566,6 +565,7 @@
   (compilation-window-height 12) ; Keep it readable
   (compilation-buffer-name-function #'+compilation--project-prefix-buffer-name)
   :config
+  (add-hook 'compilation-mode-hook #'minemacs-reduce-font-size -10)
   ;; Integration of `compile' with `savehist'
   (with-eval-after-load 'savehist
     (add-to-list 'savehist-additional-variables 'compile-history))
