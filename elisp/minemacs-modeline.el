@@ -314,10 +314,11 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
     map))
 
 (minemacs-modeline-define-section dired-rsync
-  (when-let* ((proc (get-process "*rsync*")))
+  (when-let* ((buffers (and (featurep 'dired-rsync) (dired-rsync--get-active-buffers)))
+              (buffers (length buffers)))
     (propertize (minemacs-modeline--icon "nf-oct-sync" :face 'nerd-icons-blue)
                 'mouse-face 'mode-line-highlight
-                'help-echo (buffer-name (process-buffer proc))
+                'help-echo (format "dired-rsync: %d process%s" buffers (if (< 1 buffers) "es" ""))
                 'local-map minemacs-modeline-dired-rsync-map)))
 
 ;;; Debug mode
