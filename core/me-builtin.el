@@ -283,6 +283,7 @@
   :hook
   (dired-mode . turn-on-gnus-dired-mode)
   (dired-mode . dired-hide-details-mode)
+  :bind (:map dired-mode-map ("r" . #'wdired-change-to-wdired-mode))
   :custom
   (dired-dwim-target t)
   (dired-mouse-drag-files t)
