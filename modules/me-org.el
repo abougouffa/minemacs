@@ -1,10 +1,10 @@
 ;;; me-org.el --- Org related stuff -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2025-11-22
+;; Last modified: 2026-06-09
 
 ;;; Commentary:
 
@@ -26,6 +26,16 @@
 ;; Contributed packages to Org in search for new maintainers
 (use-package org-contrib
   :straight (:host github :repo "minemacs/org-contrib"))
+
+
+;; Add Created/Expiry/Expired properties to Org entries
+(use-package org-expiry
+  :after org
+  :demand
+  :custom
+  (org-expiry-inactive-timestamps t)
+  :config
+  (org-expiry-insinuate))
 
 
 ;; Convert font-lock faces to other formats
