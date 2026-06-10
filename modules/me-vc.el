@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-10
 
 ;;; Commentary:
 
@@ -95,7 +95,7 @@
   :hook
   (minemacs-first-file . global-diff-hl-mode)
   (diff-hl-mode . +diff-hl-update-on-buffer-change)
-  (dired-mode . diff-hl-dired-mode)
+  (dired-mode . diff-hl-dired-mode-unless-remote)
   :custom
   (diff-hl-draw-borders nil) ; Don't draw ugly borders
   :init
