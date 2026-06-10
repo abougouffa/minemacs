@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-10
 
 ;;; Commentary:
 
@@ -218,7 +218,20 @@
   ;; Fill the initial query of `consult' commands from region or thing at point.
   (consult-customize
    consult-grep consult-git-grep consult-ripgrep consult-keep-lines consult-man
-   :initial (thing-at-point 'region t)))
+   :initial (thing-at-point 'region t))
+
+  (defvar +consult-source-dired-buffer
+    `( :name     "Dired"
+       :narrow   ?d
+       :category buffer
+       :face     consult-buffer
+       :history  buffer-name-history
+       :state    ,#'consult--buffer-state
+       :items   ,(lambda () (mapcar #'buffer-name (seq-filter (lambda (buf) (eq (buffer-local-value 'major-mode buf) 'dired-mode)) (buffer-list)))))
+    "Consult source for Dired buffers.")
+
+  ;; Add an option to narrow to `dired' buffers usin `d'
+  (add-to-list 'consult-buffer-sources '+consult-source-dired-buffer 'append))
 
 
 ;; Choose a command to run based on what is near point, both in minibuffer and in normal buffers
