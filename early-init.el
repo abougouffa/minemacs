@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-02
+;; Last modified: 2026-06-10
 
 ;;; Commentary:
 
@@ -54,9 +54,6 @@
  use-package-expand-minimally (not minemacs-debug-p) ; Minimize expanded code & do not try to catch errors, unless in debug mode
  ;; Do not make installed packages available when Emacs starts (we use `straight')
  package-enable-at-startup minemacs-builtin-only-p
- ;; Better garbage collection settings, no GCMH required, See: https://zenodo.org/records/10518083
- gc-cons-threshold (* 100 1000 1000)
- gc-cons-percentage 0.2
  ;; Prefer loading newer files
  load-prefer-newer t
  ;; Remove some unneeded UI elements
@@ -75,6 +72,11 @@
  scroll-bar-mode nil
  ;; Set mode-line format to prevent it from showing at startup
  mode-line-format nil)
+
+;; Better garbage collection settings, see: https://zenodo.org/records/10518083
+(unless (fboundp 'igc-info) ; No need when Emacs is built with incremental GC
+  (setq gc-cons-threshold (* 100 1000 1000)
+        gc-cons-percentage 0.2))
 
 ;; Native compilation settings
 (when (and (featurep 'native-compile) (native-comp-available-p))
