@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-08
+;; Last modified: 2026-06-10
 
 ;;; Commentary:
 
@@ -371,7 +371,8 @@
   :custom
   (treesit-font-lock-level 4)
   ;; BUG+TEMP: Editing YAML files in `yaml-ts-mode' cause Emacs to crash, especially when the file contain invalid YAML
-  (treesit-enabled-modes (delq 'yaml-ts-mode (seq-uniq (mapcar #'cdr treesit-major-mode-remap-alist)))))
+  ;; The `dockerfile-ts-mode' is ugly, prefer the regular `dockerfile-mode'
+  (treesit-enabled-modes (seq-difference (seq-uniq (mapcar #'cdr treesit-major-mode-remap-alist)) '(yaml-ts-mode dockerfile-ts-mode))))
 
 (use-package autoinsert
   :custom
