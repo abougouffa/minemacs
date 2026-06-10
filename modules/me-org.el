@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-09
+;; Last modified: 2026-06-10
 
 ;;; Commentary:
 
@@ -35,7 +35,7 @@
   :custom
   (org-expiry-inactive-timestamps t)
   :config
-  (org-expiry-insinuate))
+  (org-expiry-insinuate t))
 
 
 ;; Convert font-lock faces to other formats
