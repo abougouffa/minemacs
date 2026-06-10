@@ -413,7 +413,8 @@
         '((c-mode . "k&r") (c++-mode . "k&r"))))
 
 (use-package cc-mode
-  :mode ("\\.c\\.[Gg][Ee][Nn]\\'" . c-mode)) ; Some automatically generated C files have this format
+  :mode ("\\.[Cc]\\.[Gg][Ee][Nn]\\'" . c-or-c++-mode) ; Some automatically generated C files have this format
+  :mode ("\\.[Cc]\\([Cc]\\|[PpXx+]\\{2\\}\\)\\.[Gg][Ee][Nn]\\'" . c-or-c++-mode))
 
 (use-package c-ts-mode
   :when (featurep 'feat/tree-sitter)
