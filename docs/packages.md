@@ -58,12 +58,12 @@
 * `real-backup`: Perform a backup on each file save, real backup for Emacs!
 * `xclip`: Copy&paste GUI clipboard from text terminal
 * `comment-dwim-2`: An all-in-one comment command to rule them all
-* `goggles`: Pulse modified regions
 
 ## `me-emacs-lisp`
 * `elisp-plus`: Better Emacs Lisp code viewing
 * `parinfer-rust-mode`: Simplifying how you write Lisp
 * `eros`: Evaluation Result OverlayS for Emacs Lisp
+* `relint`: Elisp regexp mistake finder
 
 ## `me-email`
 * `mu4e`: Emacs Email agent based on the "mu" indexer
@@ -131,6 +131,7 @@
 
 ## `me-org`
 * `org-contrib`: Contributed packages to Org in search for new maintainers
+* `org-expiry`: Add Created/Expiry/Expired properties to Org entries
 * `engrave-faces`: Convert font-lock faces to other formats
 * `ox-extra`: Convenience functions for Org export
 * `org-appear`: Auto-toggle Org elements
@@ -171,9 +172,6 @@
 * `igist`: Work seamlessly with GitHub gists from Emacs
 
 ## `me-snippets`
-* `yasnippet`: A template system for Emacs
-* `yasnippet-snippets`: A collection of yasnippet snippets for many languages
-* `consult-yasnippet`: A consulting-read interface for yasnippet
 
 ## `me-tags`
 * `citre`: Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
@@ -530,6 +528,9 @@
 ## `on-demand/me-swift`
 * `swift-mode`: Major-mode for Apple's Swift programming language
 * `swift-ts-mode`: Major mode for Swift based on Tree-sitter
+
+## `on-demand/me-sysml`
+* `sysml-mode`: Major mode for SysML v2 (Systems Modeling Language)
 
 ## `on-demand/me-systemd`
 * `systemd`: Major mode for editing systemd units

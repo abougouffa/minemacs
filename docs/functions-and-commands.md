@@ -1090,9 +1090,9 @@ When EXCLUDE-PREFIXES is provided (string or a list of strings),
 directories starting with these prefixes will be excluded from the
 results.
 
-#### `(+repo-project-p &optional PROJ)`
+#### `(+repo-project-p &optional DIR)`
 
-Retrun non-nil when PROJ (or the current project) is a Repo project.
+Retrun non-nil when DIR is inside a Repo project.
 When in a Repo project, return the project path relative to the Repo
 root.
 
@@ -1200,24 +1200,6 @@ Close the current window (mimics Vim's `C-w c`).
 
 Maximize the current window (mimics Vim's `C-w o`).
 
-#### `(+yaml-ls-notify-schema-support SERVER)`
-
-Send yaml/supportSchemaSelection to SERVER if it is yaml-language-server.
-Added to `eglot-connect-hook`, which fires after the LSP :initialized
-handshake completes -- the correct moment for post-connect notifications.
-
-#### `(+eglot-yaml-show-all-schemas)`
-
-Display all schemas known to yaml-language-server for the current buffer.
-Shows each schema's name, URI, description, whether it is currently
-applied to this file, and whether it originates from the schema store.
-Requires an active eglot connection to yaml-language-server.
-
-#### `(+eglot-yaml-show-schemas-for-buffer)`
-
-Display schemas applied to the current YAML buffer by yaml-language-server.
-Requires an active eglot connection to yaml-language-server.
-
 #### `(+adb-run-command &rest ARGS)`
 
 Run adb with command ARGS.
@@ -1272,6 +1254,15 @@ If DEFAULT-P is non-nil, the context is placed first and considered the default
 one. If GMAIL-P is non-nil, addresses are saved to `+mu4e-gmail-accounts` to be
 used later for Gmail specific actions.
 
+#### `(+mu4e-extras-ignore-spams-query QUERY)`
+
+Takes a mu QUERY and adds a part to ignore spams.
+The mails located in the Spam or Junk folders are considered spams.
+
+#### `(+mu4e-extras-ignore-spams-in-bookmarks-setup)`
+
+Set the `mu4e-bookmarks` queries to exclude spams.
+
 #### `(+mu4e-save-message-at-point &optional ASK)`
 
 Save the message at point to somewhere else as <date>_<subject>.eml.
@@ -1283,6 +1274,10 @@ directory.
 Save current MSG as PDF.
 If SKIP-HEADERS is set (or when called with C-u), do
 not show include message headers.
+
+#### `(+mu4e-open-mail-as-html)`
+
+Open the HTML mail in EAF Browser.
 
 #### `(+mu4e-extras-locks-setup)`
 
