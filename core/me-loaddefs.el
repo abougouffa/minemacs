@@ -846,7 +846,7 @@ This command removes new line characters between lines." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-plantuml.el
 
-(minemacs-register-on-demand-module 'me-plantuml :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\)\\'" . plantuml-mode)))
+(minemacs-register-on-demand-module 'me-plantuml :auto-mode '(("\\.\\(plantuml\\|pum\\|plu\\|puml\\)\\'" . plantuml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-powershell.el
@@ -970,13 +970,13 @@ results.
 
 (fn &rest EXCLUDE-PREFIXES)")
 (autoload '+repo-project-p "extras/me-repo-x"
-"Retrun non-nil when PROJ (or the current project) is a Repo project.
+"Retrun non-nil when DIR is inside a Repo project.
 
 When in a Repo project, return the project path relative to the Repo
 root.
 
-(fn &optional PROJ)")
-(+def-project-mode! +repo-project-mode "A minor mode enabled in files/buffers opened in a Repo workspace." :when (+repo-project-p) :fileless-buffers t)
+(fn &optional DIR)")
+(+def-project-mode! +repo-project-mode "A minor mode enabled in files/buffers opened in a Repo workspace." :when (when-let* ((path (or (buffer-file-name) default-directory))) (and (not (file-remote-p path nil 'never)) (+repo-project-p))) :fileless-buffers t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rtf.el
@@ -1032,6 +1032,11 @@ Based on `jinx-mode' if available. Falls back to the built-in
 ;;; Generated autoloads from ../modules/on-demand/me-swift.el
 
 (minemacs-register-on-demand-module 'me-swift :auto-mode '(("\\.swift\\(interface\\)?\\'" . swift-mode)))
+
+
+;;; Generated autoloads from ../modules/on-demand/me-sysml.el
+
+(minemacs-register-on-demand-module 'me-sysml :auto-mode '(("\\.sysml\\'" . sysml-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-systemd.el
@@ -1107,7 +1112,7 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from minemacs-loaded.el
 
-(register-definition-prefixes "minemacs-loaded" '("minemacs--lazy-timer"))
+(register-definition-prefixes "minemacs-loaded" '("+minemacs-run-hook-wrapper" "minemacs--lazy-timer"))
 
 
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
