@@ -2,6 +2,57 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.9.0](https://github.com/abougouffa/minemacs/compare/11be386a00ddf7ba81510799f1dcf8cb3ca8c2d4..v14.9.0) - 2026-06-11
+#### Tweaks
+- (**cc-mode**) bind generated C/C++ files - ([3758892](https://github.com/abougouffa/minemacs/commit/37588929c973d54ec7f4065ea18e719fe935fd29)) - [@abougouffa](https://github.com/abougouffa)
+- (**dired**) bind `r` to `wdired-change-to-wdired-mode` - ([2a7a171](https://github.com/abougouffa/minemacs/commit/2a7a171b63f02a340466b3256d04c9b71d81c86a)) - [@abougouffa](https://github.com/abougouffa)
+- (**early-init**) set `minemacs-debug-p` rom `debug-on-error` if changed by user - ([5614fc3](https://github.com/abougouffa/minemacs/commit/5614fc393cc2145e024e2dba0f9bdf09ffcc1908)) - [@abougouffa](https://github.com/abougouffa)
+- (**easysession**) don't restore at startup, too slow and not lazy friendly - ([3b27f6d](https://github.com/abougouffa/minemacs/commit/3b27f6d3a49419d22eb7943b4505f8125894ace6)) - [@abougouffa](https://github.com/abougouffa)
+- (**forge**) disable `bug-reference-mode` on remote files - ([b9b072b](https://github.com/abougouffa/minemacs/commit/b9b072b02fbf9881eb54a091b4eec712889ad2fa)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) `C-u F1` toggles a terminal and cd to the current directory - ([61a87b3](https://github.com/abougouffa/minemacs/commit/61a87b3ac1547cbd8300b284f8ff422989747a38)) - [@abougouffa](https://github.com/abougouffa)
+- (**ligature**) add some more common ligatures, fix `!=` in `prog-mode` - ([b3d30ad](https://github.com/abougouffa/minemacs/commit/b3d30ad8b0f9920ab3632ca2a940616ed91148cd)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) better handling of `dired-rsync` - ([802c5f7](https://github.com/abougouffa/minemacs/commit/802c5f7c46c6c5644eff2ff1d94e845734c951e8)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) show the debug icon only in active window - ([ba33cd3](https://github.com/abougouffa/minemacs/commit/ba33cd3402df9860d9a3c7678452c17e3a7235ca)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) add debug mode information - ([11770f2](https://github.com/abougouffa/minemacs/commit/11770f21bf8ce47d207179b68a330aa575366710)) - [@abougouffa](https://github.com/abougouffa)
+- (**org-contrib**) enable `org-expiry` - ([2205c6b](https://github.com/abougouffa/minemacs/commit/2205c6beac1e3a766e94989a3c2c9e5e9cb399c1)) - [@abougouffa](https://github.com/abougouffa)
+- (**org-expiry**) hook to `before-save-hook` - ([a95ed0e](https://github.com/abougouffa/minemacs/commit/a95ed0e29f97dfdb9f1bf53871d5c3a8331979c5)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([0462dbd](https://github.com/abougouffa/minemacs/commit/0462dbd0b3e590fa4c57881223a29995587766db)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3b86703](https://github.com/abougouffa/minemacs/commit/3b867030e5a66e94d14949746a9fc6d4671f69f6)) - [@abougouffa](https://github.com/abougouffa)
+- don't auto-save-visited remote files - ([642c623](https://github.com/abougouffa/minemacs/commit/642c623d88c287699ada334a8f659c08f9e602a9)) - [@abougouffa](https://github.com/abougouffa)
+- don't tweaks GC options when IGC/MPS is available - ([9efe695](https://github.com/abougouffa/minemacs/commit/9efe6950a8d30e77e8b40ad26a470ad5835f990b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b0811c7](https://github.com/abougouffa/minemacs/commit/b0811c775cb973c995eae93b3821fc6c8c25dfdf)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8cfc799](https://github.com/abougouffa/minemacs/commit/8cfc799ea9002e4d0384173621789458b0d2d236)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([02a0663](https://github.com/abougouffa/minemacs/commit/02a066326be41fd97bf7300a031fb94522bf8273)) - [@abougouffa](https://github.com/abougouffa)
+- accept `Dockerfile-XXXX` in `dockerfile-ts-mode-maybe` - ([53f345d](https://github.com/abougouffa/minemacs/commit/53f345df6d0fa83d0fbdbcb482730173c3ec294f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3171b6c](https://github.com/abougouffa/minemacs/commit/3171b6c892e3a159fd240dd255fd92635fe2e6c7)) - [@abougouffa](https://github.com/abougouffa)
+- better execution of deferred and lazy hooks/forms - ([da0ecd5](https://github.com/abougouffa/minemacs/commit/da0ecd51340c68cf45524d14a9534095e2f6ae01)) - [@abougouffa](https://github.com/abougouffa)
+- add `Maple Mono` font as default - ([15d69a6](https://github.com/abougouffa/minemacs/commit/15d69a67b48dfbed24e43715843adc128c39e9c0)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a918d9a](https://github.com/abougouffa/minemacs/commit/a918d9a98f75bdc90ca6d4b6f51a1d8ab145a5a5)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**consult**) add an option to narrow `dired` buffers with `d` - ([5f11e2c](https://github.com/abougouffa/minemacs/commit/5f11e2c50b9aa572e02fe57fc13c4cb17fbfc0fd)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for SysML - ([16a9fdc](https://github.com/abougouffa/minemacs/commit/16a9fdc10cfa17ed3777446a61b57c256a6fc6d4)) - [@abougouffa](https://github.com/abougouffa)
+- (**snippets**) replace `yasnippet` with `tempel` - ([b2188ad](https://github.com/abougouffa/minemacs/commit/b2188adb10d3cf6f00e13dd5a308cf69b9e0fb2c)) - [@abougouffa](https://github.com/abougouffa)
+- (**ui**) make `goggles` obsolete again - ([11be386](https://github.com/abougouffa/minemacs/commit/11be386a00ddf7ba81510799f1dcf8cb3ca8c2d4)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**compilation**) order seems to matter, use lower depth for reducing font size - ([75bf44b](https://github.com/abougouffa/minemacs/commit/75bf44b9c49df325f89752103ab80d543d65b0a7)) - [@abougouffa](https://github.com/abougouffa)
+- (**diff-hl**) don't enable on remote `dired` buffers, too slow - ([7794786](https://github.com/abougouffa/minemacs/commit/779478603fa8ca81c1f02d1e64b819ada903aebe)) - [@abougouffa](https://github.com/abougouffa)
+- (**easysession**) manually load session - ([de40697](https://github.com/abougouffa/minemacs/commit/de40697d64963ae4ebd93a5cda2545dd3d3c0a90)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) partially fix the toggle command - ([a95965c](https://github.com/abougouffa/minemacs/commit/a95965c371096b2c42159a06ffe1ab3f8e62fe51)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) out of date Eglot modeline settings - ([e930a9f](https://github.com/abougouffa/minemacs/commit/e930a9ffc46d1c6b053af0fb451b0e5cd9ac87b1)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/plantuml**) update config, fix capf and bump .jar version - ([6813ed1](https://github.com/abougouffa/minemacs/commit/6813ed128191dd2df95fba01767aa2a1ff63038a)) - [@abougouffa](https://github.com/abougouffa)
+- (**repo**) don't try to check for Repo projects on remote files - ([0371cca](https://github.com/abougouffa/minemacs/commit/0371cca62a33e38c6a547b1ecd42b15223d8ee60)) - [@abougouffa](https://github.com/abougouffa)
+- (**repo-x**) buggy on remote files - ([f4a7867](https://github.com/abougouffa/minemacs/commit/f4a7867659a315686b053a3bf22f9d289a111a8b)) - [@abougouffa](https://github.com/abougouffa)
+- (**treesit**) disable `dockerfile-ts-mode`, ugly rendering - ([892d546](https://github.com/abougouffa/minemacs/commit/892d546b9ce811e2bb5fa30f78359bd7463932d3)) - [@abougouffa](https://github.com/abougouffa)
+- fix `+with-delayed` when used from an Emacs client - ([d233327](https://github.com/abougouffa/minemacs/commit/d23332748377f95ed0e13fd246e77be372bb4c77)) - [@abougouffa](https://github.com/abougouffa)
+- don't reverse after startup hooks - ([eb7eb92](https://github.com/abougouffa/minemacs/commit/eb7eb9256a5b254d3bcc905acab5b0a4b2e25901)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**ui**) make `easysession` obsolete again, not working as expected - ([d33d661](https://github.com/abougouffa/minemacs/commit/d33d661a09bf0d40587925cb40e03327a82bbecc)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**early-init**) better comments - ([61abad2](https://github.com/abougouffa/minemacs/commit/61abad204c1b0efa9a9926c68f19298e88fc842d)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documenatation - ([19fc9ec](https://github.com/abougouffa/minemacs/commit/19fc9ec10474b7945ab1517a18a5b3601eeedd43)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.8.0](https://github.com/abougouffa/minemacs/compare/69f93dcaf77d04fb70d909476ecafc744a91d3d6..v14.8.0) - 2026-05-31
 #### Tweaks
 - (**bitbake**) make use of `+directory-subdirs` - ([69f93dc](https://github.com/abougouffa/minemacs/commit/69f93dcaf77d04fb70d909476ecafc744a91d3d6)) - [@abougouffa](https://github.com/abougouffa)
