@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-10
+;; Last modified: 2026-06-11
 
 ;;; Commentary:
 
@@ -86,7 +86,8 @@
 (use-package forge
   :straight t
   :config
-  (require 'on-demand/me-markdown))
+  (require 'on-demand/me-markdown)
+  (setq forge-bug-reference-remote-files nil)) ; Don't enable `bug-reference-mode' on remote files, may slowdown some commands
 
 
 ;; Emacs package for highlighting uncommitted changes
