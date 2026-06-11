@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2026-04-30
-;; Last modified: 2026-06-03
+;; Last modified: 2026-06-11
 
 ;;; Commentary:
 
@@ -45,7 +45,9 @@ results."
 
 When in a Repo project, return the project path relative to the Repo
 root."
-  (when-let* ((repo-root (+repo-root dir))
+  (when-let* ((dir (or dir default-directory))
+              ((not (file-remote-p dir nil 'never)))
+              (repo-root (+repo-root dir))
               (projs (mapcar #'file-name-as-directory (+repo-projects)))
               (proj-path (+project-safe-root)))
     (car (member (file-name-as-directory (file-relative-name (+project-safe-root) repo-root)) projs))))
@@ -55,7 +57,7 @@ root."
 (+def-project-mode! +repo-project-mode
   "A minor mode enabled in files/buffers opened in a Repo workspace."
   :when (when-let* ((path (or (buffer-file-name) default-directory)))
-          (and (not (file-remote-p path)) (+repo-project-p)))
+          (and (not (file-remote-p path nil 'never)) (+repo-project-p)))
   :fileless-buffers t)
 
 
