@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-10
+;; Last modified: 2026-06-11
 
 ;;; Commentary:
 
@@ -22,6 +22,7 @@
   (auto-save-file-name-transforms ; Set file naming transform for `auto-save'
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") sha1)
      (".*" ,auto-save-list-file-prefix sha1)))
+  (remote-file-name-inhibit-auto-save-visited t)
   (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
   (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
   (scroll-margin 2) ; Scroll at a margin of one line
