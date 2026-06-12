@@ -788,7 +788,13 @@ Typing these will trigger reindentation of the current line.")
   ;; Enable `recentf-mode' to remember recent files
   (+shutup! (recentf-mode 1))
   :config
-  (add-to-list 'recentf-exclude +serialized-symbols-directory))
+  (add-to-list 'recentf-exclude +serialized-symbols-directory)
+  (advice-add
+   'recentf-cleanup :around
+   (+defun recentf-cleanup--quite:around-a (origfn)
+     (if (called-interactively-p 'interactive)
+         (+shutup! :log (funcall origfn))
+       (funcall origfn)))))
 
 (use-package url
   :custom
