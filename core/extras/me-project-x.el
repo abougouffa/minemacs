@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-05-27
+;; Last modified: 2026-06-12
 
 ;;; Commentary:
 
@@ -257,9 +257,12 @@ if NAME should be activated. If they are *all* true, NAME is activated.
 Relevant: `minemacs-project-hook'."
   (declare (doc-string 2)
            (indent defun))
-  (let ((init-var (intern (format "%s-init" name))))
+  (let ((init-var (intern (format "%s-init" name)))
+        (mode-hook (intern (format "%s-hook" name)))
+        (remote-policy (intern (format "%s-remote-policy" name))))
     (macroexp-progn
      (append
+      `((defvar ,remote-policy nil "Parameter to pass to `file-remote-p'."))
       (when on-load
         `((defvar ,init-var nil)))
       `((define-minor-mode ,name
@@ -276,14 +279,14 @@ Relevant: `minemacs-project-hook'."
                   (setq ,init-var t)))
             ,on-enter))
         (dolist (hook ,add-hooks)
-          (add-hook ',(intern (format "%s-hook" name)) hook)))
+          (add-hook ',mode-hook hook)))
       (cond ((or files modes when fileless-buffers)
              (cl-check-type files (or null list string))
              (let ((fn
                     `(lambda ()
                        (and (not (bound-and-true-p ,name))
                             (or (and (not buffer-file-name) ,fileless-buffers)
-                                (and buffer-file-name (not (file-remote-p buffer-file-name nil t))))
+                                (and buffer-file-name (not (file-remote-p buffer-file-name nil ,remote-policy))))
                             ,(or (null match)
                                  (and `(not buffer-file-name) fileless-buffers)
                                  `(if buffer-file-name (string-match-p ,match buffer-file-name)))

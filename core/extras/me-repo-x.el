@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "noqryunx.obhtbhssn@cneebg.pbz")
 ;; Created: 2026-04-30
-;; Last modified: 2026-06-11
+;; Last modified: 2026-06-12
 
 ;;; Commentary:
 
@@ -56,8 +56,7 @@ root."
 ;;;###autoload
 (+def-project-mode! +repo-project-mode
   "A minor mode enabled in files/buffers opened in a Repo workspace."
-  :when (when-let* ((path (or (buffer-file-name) default-directory)))
-          (and (not (file-remote-p path nil 'never)) (+repo-project-p)))
+  :when (+repo-project-p)
   :fileless-buffers t)
 
 

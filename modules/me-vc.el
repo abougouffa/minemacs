@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-11
+;; Last modified: 2026-06-12
 
 ;;; Commentary:
 
@@ -99,6 +99,7 @@
   (dired-mode . diff-hl-dired-mode-unless-remote)
   :custom
   (diff-hl-draw-borders nil) ; Don't draw ugly borders
+  (diff-hl-disable-on-remote t) ; Can be blocking when the remote file is disconnected
   :init
   ;; BUGFIX: Don't pollute the shared memory devfs (`diff-hl' uses "/dev/shm/" as
   ;; temporary directory!)

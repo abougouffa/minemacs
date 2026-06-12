@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-11
+;; Last modified: 2026-06-12
 
 ;;; Commentary:
 
@@ -839,7 +839,10 @@ Typing these will trigger reindentation of the current line.")
   ;; modification time of the file on save and on buffer switch.
   (defvar-local +auto-revert-buffer-time nil)
   (defun +file-mtime (file)
-    (when-let* ((file-attr (and file (file-exists-p file) (file-attributes file))))
+    (when-let* ((file-attr (and file
+                                (not (file-remote-p file)) ; Can block Emacs on disconnected remote files
+                                (file-exists-p file)
+                                (file-attributes file))))
       (file-attribute-modification-time file-attr)))
 
   (defun +auto-revert--save-file-mtime (&rest _args)
