@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-29
+;; Last modified: 2026-06-14
 
 ;;; Commentary:
 
@@ -46,9 +46,10 @@
        (run-at-time
         (* 10) (* 60 3) ; Run after 10s, recheck every 3min
         (lambda ()
-          (unless (or (+lockedp 'mu) (mu4e-running-p))
-            (+info! "Starting `mu4e' in background.")
-            (+shutup! :log (mu4e t))))))))
+          (while-no-input
+            (unless (or (+lockedp 'mu) (mu4e-running-p))
+              (+info! "Starting `mu4e' in background.")
+              (+shutup! :log (mu4e t)))))))))
   :custom
   (mu4e-confirm-quit t)
   (mu4e-search-results-limit 1000)
