@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-12
+;; Last modified: 2026-06-14
 
 ;;; Commentary:
 
@@ -269,14 +269,7 @@
    '(:application tramp :protocol "scp")
    'remote-direct-async-process)
 
-  (setq tramp-temp-name-prefix (expand-file-name "tramp." temporary-file-directory)
-        ;; PERF: More responsive file editing via TRAMP.
-        ;; See: "(tramp) Ssh setup" and https://news.ycombinator.com/item?id=39193252
-        tramp-ssh-controlmaster-options
-        (concat
-         "-o ControlPath=" (file-name-as-directory temporary-file-directory) "tramp.ssh-controlpath-%%C "
-         "-o ControlMaster=auto -o ControlPersist=1800 " ; persist for 30min
-         "-o ServerAliveInterval=5 -o ServerAliveCountMax=2")))
+  (setq tramp-temp-name-prefix (expand-file-name "tramp." temporary-file-directory)))
 
 (use-package dired
   ;; Enable adding mail attachments from dired "C-c RET C-a" for
