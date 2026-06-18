@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-04
+;; Last modified: 2026-06-18
 
 ;;; Commentary:
 
@@ -86,7 +86,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
       (if visible-win
           (delete-window visible-win)
         (if running
-            (pop-to-buffer visible-win)
+            (pop-to-buffer buf)
           (setq buf (call-interactively ghostel-func))
           (+alist-set! key buf +ghostel-proj-terminals)))
       (when target-dir
