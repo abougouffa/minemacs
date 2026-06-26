@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-07
+;; Last modified: 2026-06-26
 
 ;;; Commentary:
 
@@ -184,6 +184,11 @@ of being enabled."
 MinEmacs hooks will be run in this order:
 1. `minemacs-after-startup-hook'
 2. `minemacs-lazy-hook'"
+  :group 'minemacs-core
+  :type 'hook)
+
+(defcustom minemacs-after-emacs-version-change-hook '(minemacs-run-build-functions)
+  "This hook will be run after we detect a change in Emacs version."
   :group 'minemacs-core
   :type 'hook)
 

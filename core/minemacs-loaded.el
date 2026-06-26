@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-02
+;; Last modified: 2026-06-26
 
 ;;; Commentary:
 
@@ -26,6 +26,19 @@
 
 (+log! "Providing `minemacs-loaded'.")
 (provide 'minemacs-loaded)
+
+(let* ((ver-file (expand-file-name "last-emacs-version" minemacs-cache-dir))
+       (curr-ver (format "%s-%d-%s" emacs-version emacs-build-number (substring emacs-repository-version 0 8)))
+       (prev-ver (and (file-exists-p ver-file)
+                      (with-temp-buffer
+                        (insert-file-contents ver-file)
+                        (string-trim (buffer-substring-no-properties (point-min) (point-max)))))))
+  (unless (equal curr-ver prev-ver)
+    (message "Detected Emacs version change from %s to %s" prev-ver curr-ver)
+    (run-hook-wrapped 'minemacs-after-emacs-version-change-hook #'+minemacs-run-hook-wrapper "AfterEmacsVerChange")
+    (with-temp-buffer
+      (insert curr-ver)
+      (write-file ver-file))))
 
 (if minemacs-not-lazy-p
     (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately

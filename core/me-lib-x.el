@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-05-31
+;; Last modified: 2026-06-26
 
 ;;; Commentary:
 
@@ -16,19 +16,19 @@
 
 
 ;;;###autoload
-(defun minemacs-run-build-functions (&optional dont-ask-p)
+(defun minemacs-run-build-functions (&optional ask-p)
   "Run all build functions in `minemacs-build-functions'.
 
-Call functions without asking when DONT-ASK-P is non-nil."
-  (interactive "P")
+Call functions without asking when ASK-P is nil."
+  (interactive (list (not current-prefix-arg)))
   (dolist (fn minemacs-build-functions)
     (message "Running `%s'" fn)
     (condition-case err
-        (if dont-ask-p ; Do not ask before installing
-            (cl-letf (((symbol-function 'yes-or-no-p) #'always)
-                      ((symbol-function 'y-or-n-p) #'always))
-              (funcall-interactively fn))
-          (funcall-interactively fn))
+        (if ask-p
+            (funcall-interactively fn)
+          (cl-letf (((symbol-function 'yes-or-no-p) #'always)
+                    ((symbol-function 'y-or-n-p) #'always))
+            (funcall-interactively fn)))
       (error (message "While running `%S' got: \"%s\", skipping" fn (error-message-string err))))))
 
 ;;;###autoload
