@@ -32,12 +32,14 @@
   :group 'mode-line)
 
 (defvar-local minemacs-modeline-disabled-sections nil)
+(defvar minemacs-modeline-available-sections nil)
 
 (defmacro minemacs-modeline-define-section (name &rest body)
   "Define section NAME with BODY in the :eval part."
   (declare (indent 1))
   (let ((var-sym (intern (format "minemacs-modeline-%s" (+unquote name)))))
     `(progn
+       (push ',(+unquote name) minemacs-modeline-available-sections)
        (defvar ,var-sym
          '(:eval (when (not (memq ',(+unquote name) minemacs-modeline-disabled-sections)) ,@body)))
        (put ',var-sym 'risky-local-variable t))))
@@ -156,7 +158,7 @@
 (minemacs-modeline-define-section region-size
   (when (region-active-p)
     (format " %s %d:%d"
-            (+nerd-icons-icon "nf-fa-arrow_right_from_bracket" 'face 'region)
+            (minemacs-modeline--icon "nf-fa-arrow_right_from_bracket")
             (- (line-number-at-pos (region-end)) (line-number-at-pos (region-beginning)))
             (- (region-end) (region-beginning)))))
 
@@ -331,6 +333,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 ;;; Miscellaneous
 
+(minemacs-modeline-define-section position mode-line-position)
+
 (minemacs-modeline-define-section misc-info
   (when (mode-line-window-selected-p) mode-line-misc-info))
 
@@ -338,7 +342,6 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 (defvar minemacs-modeline--mode-line-format-orig nil)
 
-;;;###autoload
 (define-minor-mode minemacs-modeline-mode
   "MinEmacs' mode-line."
   :global t
@@ -360,12 +363,16 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         " "
                         minemacs-modeline-buffer-identification
                         "  "
-                        mode-line-position
+                        minemacs-modeline-position
                         minemacs-modeline-region-size
                         "  "
                         minemacs-modeline-process
                         "  "
-                        mode-line-format-right-align
+                        ;; BUG: In my current Emacs version, when I add this to
+                        ;; mode-line, I get strange behavior when I C-SPC then
+                        ;; C-P/C-N, the region gets deselected! For some reason,
+                        ;; taking this fixes the issue.
+                        ;; mode-line-format-right-align
                         "  "
                         minemacs-modeline-compile
                         "  "

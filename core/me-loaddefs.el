@@ -976,7 +976,7 @@ When in a Repo project, return the project path relative to the Repo
 root.
 
 (fn &optional DIR)")
-(+def-project-mode! +repo-project-mode "A minor mode enabled in files/buffers opened in a Repo workspace." :when (when-let* ((path (or (buffer-file-name) default-directory))) (and (not (file-remote-p path nil 'never)) (+repo-project-p))) :fileless-buffers t)
+(+def-project-mode! +repo-project-mode "A minor mode enabled in files/buffers opened in a Repo workspace." :when (+repo-project-p) :fileless-buffers t)
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-rtf.el
@@ -1117,32 +1117,6 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
 
-(defvar minemacs-modeline-mode nil
-"Non-nil if Minemacs-Modeline mode is enabled.
-See the `minemacs-modeline-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `minemacs-modeline-mode'.")
-(custom-autoload 'minemacs-modeline-mode "../elisp/minemacs-modeline" nil)
-(autoload 'minemacs-modeline-mode "../elisp/minemacs-modeline"
-"MinEmacs' mode-line.
-
-This is a global minor mode.  If called interactively, toggle the
-`Minemacs-Modeline mode' mode.  If the prefix argument is positive,
-enable the mode, and if it is zero or negative, disable the mode.
-
-If called from Lisp, toggle the mode if ARG is `toggle'.  Enable the
-mode if ARG is nil, omitted, or is a positive number.  Disable the mode
-if ARG is a negative number.
-
-To check whether the minor mode is enabled in the current buffer,
-evaluate `(default-value \\='minemacs-modeline-mode)'.
-
-The mode's hook is called both when the mode is enabled and when it is
-disabled.
-
-(fn &optional ARG)" t)
 (register-definition-prefixes "../elisp/minemacs-modeline" '("minemacs-modeline-"))
 
 

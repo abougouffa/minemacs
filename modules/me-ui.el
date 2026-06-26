@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-06-03
+;; Last modified: 2026-06-25
 
 ;;; Commentary:
 
@@ -48,7 +48,8 @@
 
 ;; Light, modern and opinionated mode-line for MinEmacs
 (use-package minemacs-modeline
-  :init
+  :demand
+  :config
   (minemacs-modeline-mode 1))
 
 
