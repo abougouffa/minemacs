@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-26
+;; Last modified: 2026-06-27
 
 ;;; Commentary:
 
@@ -38,7 +38,7 @@
     (run-hook-wrapped 'minemacs-after-emacs-version-change-hook #'+minemacs-run-hook-wrapper "AfterEmacsVerChange")
     (with-temp-buffer
       (insert curr-ver)
-      (write-file ver-file))))
+      (+shutup! (write-file ver-file)))))
 
 (if minemacs-not-lazy-p
     (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
