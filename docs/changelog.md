@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.9.1](https://github.com/abougouffa/minemacs/compare/403bbd48fa18f6acdd09d8c1741c22f18a60b866..v14.9.1) - 2026-06-28
+#### Tweaks
+- (**eglot**) don't show code actions icon in fringe, it is used for diffs - ([8c78298](https://github.com/abougouffa/minemacs/commit/8c78298bacb2b227fea187921af488695b3aa9db)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e**) wrap auto-launching `mu4e` in a `while-no-input` block - ([8b3a436](https://github.com/abougouffa/minemacs/commit/8b3a43664cd218a34ea49892313a64f5bc7c3af8)) - [@abougouffa](https://github.com/abougouffa)
+- (**tramp**) don't persist the SSH connections, instable when disconnected - ([cf8a11f](https://github.com/abougouffa/minemacs/commit/cf8a11fce682dfaae531c303c0b91c214a078284)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([bdb2156](https://github.com/abougouffa/minemacs/commit/bdb21567d8babec91fec8d2c511783a359d43003)) - [@abougouffa](https://github.com/abougouffa)
+- don't be verbose when writing the version file - ([5c04d7c](https://github.com/abougouffa/minemacs/commit/5c04d7c705e07df9c480d6557fb78910432de62c)) - [@abougouffa](https://github.com/abougouffa)
+- provide a hook that runs after Emacs version change - ([610ea3d](https://github.com/abougouffa/minemacs/commit/610ea3dd44f97b9cd8bf7bb3b78c4a4009a9b8a8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6b09c0c](https://github.com/abougouffa/minemacs/commit/6b09c0c17affb5b02ebd1c2812915983aeb75ffc)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a031113](https://github.com/abougouffa/minemacs/commit/a031113f6ec5701e5fa6a581d8e0e232880a50c4)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([924eaae](https://github.com/abougouffa/minemacs/commit/924eaaeb618f0e2772797d962bdbd7bc64f963f6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9df667d](https://github.com/abougouffa/minemacs/commit/9df667de0e7bdabd5f3ea1f796ccc1feacb7ffc6)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**ghostel**) fix the DWIM command - ([823b790](https://github.com/abougouffa/minemacs/commit/823b7907c673a9f404c8e799c867ee908aff6a6d)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) fix a strange bug (seems like a bug in Emacs) - ([e75b253](https://github.com/abougouffa/minemacs/commit/e75b2530efc8539ac4f077d8f2714800aab7aea2)) - [@abougouffa](https://github.com/abougouffa)
+- (**recentf**) don't print annoying messages when auto-cleaning the list - ([13bcebe](https://github.com/abougouffa/minemacs/commit/13bcebee433ec9eb1506bdbfbdea17c66317375c)) - [@abougouffa](https://github.com/abougouffa)
+- correctly handle the interactive call to `minemacs-run-build-functions` - ([ac85f66](https://github.com/abougouffa/minemacs/commit/ac85f6606462a019996880092e9483c298a14d32)) - [@abougouffa](https://github.com/abougouffa)
+- several performance fixes for remote files (especially, when disconnected) - ([403bbd4](https://github.com/abougouffa/minemacs/commit/403bbd48fa18f6acdd09d8c1741c22f18a60b866)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([4adfb52](https://github.com/abougouffa/minemacs/commit/4adfb525f94ceb5da23b1e78d4d0e1a777d0c001)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.9.0](https://github.com/abougouffa/minemacs/compare/11be386a00ddf7ba81510799f1dcf8cb3ca8c2d4..v14.9.0) - 2026-06-11
 #### Tweaks
 - (**cc-mode**) bind generated C/C++ files - ([3758892](https://github.com/abougouffa/minemacs/commit/37588929c973d54ec7f4065ea18e719fe935fd29)) - [@abougouffa](https://github.com/abougouffa)
