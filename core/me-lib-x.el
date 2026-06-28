@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-06-26
+;; Last modified: 2026-06-28
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
   "Run all build functions in `minemacs-build-functions'.
 
 Call functions without asking when ASK-P is nil."
-  (interactive (list (not current-prefix-arg)))
+  (interactive "P")
   (dolist (fn minemacs-build-functions)
     (message "Running `%s'" fn)
     (condition-case err

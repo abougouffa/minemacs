@@ -421,9 +421,9 @@ disabled.
 (autoload 'minemacs-run-build-functions "me-lib-x"
 "Run all build functions in `minemacs-build-functions'.
 
-Call functions without asking when DONT-ASK-P is non-nil.
+Call functions without asking when ASK-P is nil.
 
-(fn &optional DONT-ASK-P)" t)
+(fn &optional ASK-P)" t)
 (autoload 'minemacs-root-dir-cleanup "me-lib-x"
 "Cleanup MinEmacs' root directory.")
 (autoload 'minemacs-cleanup-emacs-directory "me-lib-x"

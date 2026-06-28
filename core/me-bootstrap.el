@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-02
+;; Last modified: 2026-06-28
 
 ;;; Commentary:
 
@@ -143,7 +143,7 @@
     (straight-pull-all)
     (straight-freeze-versions)
     (straight-rebuild-all))
-  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
+  (minemacs-run-build-functions)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun minemacs-bump-packages-async ()
   "Like `minemacs-bump-packages', but runs asynchronously."
@@ -164,7 +164,7 @@ MinEmacs directory before upgrading."
     (straight-pull-recipe-repositories) ; Update straight recipe repositories
     (straight-thaw-versions)
     (straight-rebuild-all)) ; Rebuild the packages
-  (minemacs-run-build-functions 'dont-ask)) ; Run package-specific build functions (ex: `pdf-tools-install')
+  (minemacs-run-build-functions)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun +straight-prune-build-cache ()
   "Prune straight.el build directories for old Emacs versions."
