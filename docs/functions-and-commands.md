@@ -77,6 +77,10 @@ MinEmacs hooks will be run in this order:
 1. `minemacs-after-startup-hook`
 2. `minemacs-lazy-hook`
 
+#### `minemacs-after-emacs-version-change-hook`
+
+This hook will be run after we detect a change in Emacs version.
+
 #### `minemacs-lazy-hook`
 
 This hook will be run after loading Emacs, with laziness.
@@ -672,10 +676,10 @@ Load user configurations CONFIGS.
 
 Load a file, the FILENAME-PARTS are concatenated to form the file name.
 
-#### `(minemacs-run-build-functions &optional DONT-ASK-P)`
+#### `(minemacs-run-build-functions &optional ASK-P)`
 
 Run all build functions in `minemacs-build-functions`.
-Call functions without asking when DONT-ASK-P is non-nil.
+Call functions without asking when ASK-P is nil.
 
 #### `(minemacs-root-dir-cleanup)`
 
