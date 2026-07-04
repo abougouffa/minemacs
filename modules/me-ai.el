@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-02-03
+;; Last modified: 2026-07-05
 
 ;;; Commentary:
 
@@ -96,6 +96,14 @@
             return (concat "ollama_chat/" model)))
   :config
   (setenv "OLLAMA_API_BASE" (concat "http://" (or (getenv "OLLAMA_HOST") "127.0.0.1:11434"))))
+
+
+;; Claude Code IDE integration for Emacs
+(use-package claude-code-ide
+  :straight (:host github :repo "manzaltu/claude-code-ide.el")
+  :bind ("C-c C-'" . claude-code-ide-menu)
+  :config
+  (claude-code-ide-emacs-tools-setup))
 
 
 ;; Integration for Model Context Protocol (MCP)
