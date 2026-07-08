@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-18
+;; Last modified: 2026-07-09
 
 ;;; Commentary:
 
@@ -116,8 +116,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   :straight (:host github :repo "johannes-mueller/devcontainer.el")
   :hook (minemacs-after-startup . devcontainer-mode)
   :custom
-  (devcontainer-term-function (cond ((featurep 'ghostel) 'ghostel)
-                                    ((featurep 'eat) 'eat)
+  (devcontainer-term-function (cond ((featurep 'eat) 'eat)
                                     (t 'ansi-term)))
   :config
   ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
