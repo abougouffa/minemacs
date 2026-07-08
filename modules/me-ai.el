@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-07-05
+;; Last modified: 2026-07-09
 
 ;;; Commentary:
 
@@ -102,7 +102,29 @@
 (use-package claude-code-ide
   :straight (:host github :repo "manzaltu/claude-code-ide.el")
   :bind ("C-c C-'" . claude-code-ide-menu)
+  :custom
+  (claude-code-ide-terminal-backend 'eat)
   :config
+  ;; TWEAK+FIX: A hack to make it work with Claude that runs inside a sandboxed
+  ;; DevContainer
+  (when (require 'devcontainer nil t)
+    (defun +claude-code-ide--detect-cli-devcontainer ()
+      "Detect if Claude Code CLI is available."
+      (let ((available (condition-case nil
+                           (let ((args (devcontainer-advise-command (list claude-code-ide-cli-path "--version"))))
+                             (zerop (apply #'call-process `(,(car args) nil nil nil ,@(cdr args)))))
+                         (error nil))))
+        (setq claude-code-ide--cli-available available)))
+
+    (defun +claude-code-ide--build-claude-command-devcontainer (fn &rest fn-args)
+      (let* ((args (devcontainer-advise-command (ensure-list claude-code-ide-cli-path)))
+             (args `(,(car args) ,(cadr args) "-it" ,@(cddr args)))
+             (claude-code-ide-cli-path (string-join args " ")))
+        (apply fn fn-args)))
+
+    (advice-add 'claude-code-ide--detect-cli :override #'+claude-code-ide--detect-cli-devcontainer)
+    (advice-add 'claude-code-ide--build-claude-command :around #'+claude-code-ide--build-claude-command-devcontainer))
+
   (claude-code-ide-emacs-tools-setup))
 
 
