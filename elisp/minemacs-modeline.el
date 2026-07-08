@@ -301,7 +301,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 ;;; Compilation
 
 (minemacs-modeline-define-section compile
-  (when (and (mode-line-window-selected-p) (bound-and-true-p compilation-in-progress))
+  (when (and (mode-line-window-selected-p)
+             (bound-and-true-p compilation-in-progress)
+             (seq-some #'process-live-p compilation-in-progress))
     (propertize (minemacs-modeline--icon "nf-fa-hammer" :face 'nerd-icons-red)
                 'mouse-face 'mode-line-highlight
                 'help-echo (mapconcat #'buffer-name (mapcar #'process-buffer compilation-in-progress) "\n"))))
