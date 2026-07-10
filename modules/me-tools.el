@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-07-09
+;; Last modified: 2026-07-10
 
 ;;; Commentary:
 
@@ -116,11 +116,23 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   :straight (:host github :repo "johannes-mueller/devcontainer.el")
   :hook (minemacs-after-startup . devcontainer-mode)
   :custom
-  (devcontainer-term-function (cond ((featurep 'eat) 'eat)
+  (devcontainer-term-function (cond ((featurep 'ghostel) '+devcontainer-ghostel-term)
+                                    ((featurep 'eat) 'eat)
                                     (t 'ansi-term)))
   :config
   ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
-  (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn)))))
+  (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn))))
+
+  ;; A function to launch a shell program, compatible with `devcontainer' and
+  ;; appends the container's ID
+  (defun +devcontainer-ghostel-term (&optional program _arg)
+    (when-let* ((id (devcontainer-up-container-id))
+                (ghostel-buffer-name (format "*ghostel[%s]*" id))
+                (ghostel-shell (or (if (stringp program)
+                                       (split-string-shell-command program)
+                                     program)
+                                   ghostel-shell)))
+      (ghostel))))
 
 
 ;; Major mode to view journalctl's output in Emacs
