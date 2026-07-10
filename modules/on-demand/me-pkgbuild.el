@@ -1,10 +1,10 @@
 ;;; me-pkgbuild.el --- PKGBUILD support -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2026-07-11
 
 ;;; Commentary:
 
@@ -18,7 +18,9 @@
 
 ;; Edit and run Arch Linux's PKGBUILD recipes
 (use-package pkgbuild-mode
-  :straight t)
+  :straight t
+  :custom
+  (pkgbuild-update-sums-on-save nil)) ; Annoying, slow and buggy in some cases
 
 
 (provide 'on-demand/me-pkgbuild)
