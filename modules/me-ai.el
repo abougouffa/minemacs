@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-07-09
+;; Last modified: 2026-07-10
 
 ;;; Commentary:
 
@@ -103,7 +103,7 @@
   :straight (:host github :repo "manzaltu/claude-code-ide.el")
   :bind ("C-c C-'" . claude-code-ide-menu)
   :custom
-  (claude-code-ide-terminal-backend 'eat)
+  (claude-code-ide-terminal-backend 'ghostel)
   :config
   ;; TWEAK+FIX: A hack to make it work with Claude that runs inside a sandboxed
   ;; DevContainer
