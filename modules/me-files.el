@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-05-27
+;; Last modified: 2026-07-13
 
 ;;; Commentary:
 
@@ -49,8 +49,13 @@
 ;; View, edit, search and compare very large files in batches, trading memory for processor time
 (use-package vlf-setup
   :straight (vlf :source gnu-elpa-mirror)
+  :bind (:map minemacs-open-thing-map ("v" . +vlf-dwim))
   :demand
   :config
+  (defun +vlf-dwim ()
+    "Open a file in VLF mode, when in dired, open the file at point."
+    (interactive)
+    (call-interactively (if (eq major-mode 'dired-mode) #'dired-vlf #'vlf)))
   (with-eval-after-load 'so-long
     (add-to-list 'so-long-mode-preserved-variables 'vlf-mode)))
 
