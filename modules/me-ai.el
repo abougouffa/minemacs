@@ -111,7 +111,9 @@
   :straight (:host github :repo "manzaltu/claude-code-ide.el")
   :bind ("C-c C-'" . claude-code-ide-menu)
   :custom
-  (claude-code-ide-terminal-backend 'ghostel)
+  (claude-code-ide-diagnostics-backend 'flymake)
+  (claude-code-ide-terminal-backend (cond ((featurep 'ghostel) 'ghostel)
+                                          ((featurep 'eat) 'eat)))
   :config
   (require 'web-server) ; Needed by `claude-code-ide' for its MCP server
   ;; TWEAK+FIX: A hack to make it work with Claude that runs inside a sandboxed
