@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-07-10
+;; Last modified: 2026-07-13
 
 ;;; Commentary:
 
@@ -98,6 +98,14 @@
   (setenv "OLLAMA_API_BASE" (concat "http://" (or (getenv "OLLAMA_HOST") "127.0.0.1:11434"))))
 
 
+;; Emacs Web Server
+(use-package web-server
+  ;; HACK+FIX: The `simple-httpd' package, installed as a dependency of other
+  ;; packages, have the same repository name "emacs-web-server", which conflicts
+  ;; with this package's repo, so we change the local repo to "web-server.el"
+  :straight (:host github :repo "eschulte/emacs-web-server" :local-repo "eschulte-web-server"))
+
+
 ;; Claude Code IDE integration for Emacs
 (use-package claude-code-ide
   :straight (:host github :repo "manzaltu/claude-code-ide.el")
@@ -105,6 +113,7 @@
   :custom
   (claude-code-ide-terminal-backend 'ghostel)
   :config
+  (require 'web-server) ; Needed by `claude-code-ide' for its MCP server
   ;; TWEAK+FIX: A hack to make it work with Claude that runs inside a sandboxed
   ;; DevContainer
   (when (require 'devcontainer nil t)
