@@ -5,6 +5,8 @@
 * `ellama`: A package for interacting with LLMs from Emacs
 * `gptel`: Interact with LLMs
 * `aidermacs`: Pair-programming with AI agents using Aider
+* `web-server`: Emacs Web Server
+* `claude-code-ide`: Claude Code IDE integration for Emacs
 * `mcp-hub`: Integration for Model Context Protocol (MCP)
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 
