@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.10.0](https://github.com/abougouffa/minemacs/compare/68ca6e49408449892424ed0c1ddb007e7457d66c..v14.10.0) - 2026-07-15
+#### Tweaks
+- (**claude-code-ide**) better tweaks - ([6fe4780](https://github.com/abougouffa/minemacs/commit/6fe4780c872dcf44a36c69f148fca8f31e010a58)) - [@abougouffa](https://github.com/abougouffa)
+- (**claude-code-ide**) add the `web-server` missing dependency - ([f33bb3f](https://github.com/abougouffa/minemacs/commit/f33bb3f14a4683c0c796980e961ce370e19d5b91)) - [@abougouffa](https://github.com/abougouffa)
+- (**claude-code-ide**) use `ghostel` when available - ([c74391a](https://github.com/abougouffa/minemacs/commit/c74391a706b6c394914d16f9690f3f28502d593b)) - [@abougouffa](https://github.com/abougouffa)
+- (**claude-code-ide**) hackish integration with `devcontainer` - ([561381a](https://github.com/abougouffa/minemacs/commit/561381a314ce47029c01e84ee235916301b8d59a)) - [@abougouffa](https://github.com/abougouffa)
+- (**devcontainer**) use `ghostel` for `devcontainer-term` - ([8044112](https://github.com/abougouffa/minemacs/commit/80441123be50f3ec05b0ea3130fbd0d683ce47d0)) - [@abougouffa](https://github.com/abougouffa)
+- (**devcontainer**) use `eat` as a terminal - ([f94dc53](https://github.com/abougouffa/minemacs/commit/f94dc533a14db8089a671e59e0dd7dde8d58eb7c)) - [@abougouffa](https://github.com/abougouffa)
+- (**tools**) reduce font size in `ghostel` and `eat` buffers - ([22e6248](https://github.com/abougouffa/minemacs/commit/22e6248efb4658a10a6504df9ffe3d12b36390bd)) - [@abougouffa](https://github.com/abougouffa)
+- (**undo-fu-session**) ignore temporary Git buffers - ([ce7bcbc](https://github.com/abougouffa/minemacs/commit/ce7bcbc414ba48fbb04addd600302527d08c09e5)) - [@abougouffa](https://github.com/abougouffa)
+- (**vlf**) bind to `C-c o v` - ([6e686d4](https://github.com/abougouffa/minemacs/commit/6e686d47997d6f98c9879db4945110b65ac42b49)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([354a631](https://github.com/abougouffa/minemacs/commit/354a6313d5e98b6ce869a949da68c645290e4355)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([26c7fcd](https://github.com/abougouffa/minemacs/commit/26c7fcd5b3e75759822927e41a16f8ad24acb20c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([18c7c72](https://github.com/abougouffa/minemacs/commit/18c7c72e8beb3f35470f96c2ecc3b27734534bf3)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([391d7b1](https://github.com/abougouffa/minemacs/commit/391d7b17cf47a00ba040fc57abe66bd4c1bce899)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**ai**) add initial support for `claude-code-ide` - ([68ca6e4](https://github.com/abougouffa/minemacs/commit/68ca6e49408449892424ed0c1ddb007e7457d66c)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**ghostel**) fix the DWIM command - ([0022ee5](https://github.com/abougouffa/minemacs/commit/0022ee5c0a6bf87dc19c5fc1d2ea753491ff6707)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) make sure compilation process is alive - ([c457642](https://github.com/abougouffa/minemacs/commit/c4576427d73946c762c815a85c16b59ed794f253)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/pkgbuild**) don't update checksums on save - ([c7e4225](https://github.com/abougouffa/minemacs/commit/c7e42255f951725c1be0b9a313c9d8a60b9456f6)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([20dbe34](https://github.com/abougouffa/minemacs/commit/20dbe347395b05ebfc86dbd014e9277d8acb1630)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.9.1](https://github.com/abougouffa/minemacs/compare/403bbd48fa18f6acdd09d8c1741c22f18a60b866..v14.9.1) - 2026-06-28
 #### Tweaks
 - (**eglot**) don't show code actions icon in fringe, it is used for diffs - ([8c78298](https://github.com/abougouffa/minemacs/commit/8c78298bacb2b227fea187921af488695b3aa9db)) - [@abougouffa](https://github.com/abougouffa)
