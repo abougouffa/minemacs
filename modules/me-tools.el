@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-07-10
+;; Last modified: 2026-07-15
 
 ;;; Commentary:
 
@@ -93,7 +93,8 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
         (with-current-buffer buf
           (ghostel-send-C-c)
           (ghostel-send-string (concat "cd " target-dir))
-          (ghostel-send-key))))))
+          (ghostel-send-key "return"))))))
+
 
 ;; Launch system applications from Emacs
 (use-package xdg-launcher
