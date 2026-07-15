@@ -34,6 +34,7 @@
                          ("integration" "integration/*")
                          (:exclude ".dir-locals.el" "*-tests.el")))
   :autoload eat-make
+  :hook (eat-mode . minemacs-reduce-font-size)
   :init
   (+def-dedicated-tab! eat :exit-hook eat-exit-hook)
   (+super-project-define-commands 'eat-project)
@@ -58,6 +59,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   :straight t
   :bind ([f1] . +ghostel-toggle-dwim)
   :hook
+  (ghostel-mode . minemacs-reduce-font-size)
   (minemacs-build-functions . ghostel-download-module)
   (eshell-load . ghostel-eshell-visual-command-mode)
   (minemacs-lazy . ghostel-compile-global-mode)
