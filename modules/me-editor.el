@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-31
+;; Last modified: 2026-07-15
 
 ;;; Commentary:
 
@@ -39,6 +39,7 @@
   :straight t
   :hook (minemacs-lazy . undo-fu-session-global-mode)
   :custom
+  (undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (undo-fu-session-compression (if (executable-find "zstd") 'zst 'gz)))
 
 
