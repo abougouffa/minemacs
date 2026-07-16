@@ -1,10 +1,10 @@
 ;;; me-cuda.el --- CUDA integration -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-09-04
+;; Last modified: 2026-07-16
 
 ;;; Commentary:
 
@@ -27,9 +27,7 @@
   :straight (:host github :repo "Ergus/cuda-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
-  (add-to-list
-   'treesit-language-source-alist
-   '(cuda "https://github.com/tree-sitter-grammars/tree-sitter-cuda"))
+  (add-to-list 'treesit-language-source-alist '(cuda "https://github.com/tree-sitter-grammars/tree-sitter-cuda"))
   (treesit-ensure-installed 'cuda))
 
 

@@ -1,10 +1,10 @@
 ;;; me-dart.el --- Dart language -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-12
-;; Last modified: 2025-09-03
+;; Last modified: 2026-07-16
 
 ;;; Commentary:
 
@@ -26,9 +26,7 @@
   :straight (:host github :repo "50ways2sayhard/dart-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
-  (add-to-list
-   'treesit-language-source-alist
-   '(dart "https://github.com/UserNobody14/tree-sitter-dart"))
+  (add-to-list 'treesit-language-source-alist '(dart "https://github.com/UserNobody14/tree-sitter-dart"))
   (treesit-ensure-installed 'dart))
 
 

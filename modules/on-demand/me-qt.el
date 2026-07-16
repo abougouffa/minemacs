@@ -1,10 +1,10 @@
 ;;; me-qt.el --- Qt support -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-12-11
+;; Last modified: 2026-07-16
 
 ;;; Commentary:
 
@@ -28,9 +28,7 @@
   :straight (:host github :repo "xhcoding/qml-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
-  (add-to-list
-   'treesit-language-source-alist
-   '(qmljs "https://github.com/yuja/tree-sitter-qmljs"))
+  (add-to-list 'treesit-language-source-alist '(qmljs "https://github.com/yuja/tree-sitter-qmljs"))
   (treesit-ensure-installed 'dart))
 
 
