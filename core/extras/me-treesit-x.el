@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-11
-;; Last modified: 2026-05-20
+;; Last modified: 2026-07-16
 
 ;;; Commentary:
 
@@ -27,14 +27,18 @@
     (go-ts-mode . (go-ts-mode go-work-ts-mode go-mod-ts-mode))))
 
 (cl-callf append treesit-language-source-alist
-  '((xml "https://github.com/tree-sitter-grammars/tree-sitter-xml")
-    (tcl "https://github.com/tree-sitter-grammars/tree-sitter-tcl")
-    (hurl "https://github.com/pfeiferj/tree-sitter-hurl")
-    (latex "https://github.com/latex-lsp/tree-sitter-latex")
-    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-    (clojure "https://github.com/sogaiu/tree-sitter-clojure")
-    (commonlisp "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp")
-    (bitbake "https://github.com/tree-sitter-grammars/tree-sitter-bitbake")))
+  '((asm                "https://github.com/RubixDev/tree-sitter-asm")
+    (bitbake            "https://github.com/tree-sitter-grammars/tree-sitter-bitbake")
+    (clojure            "https://github.com/sogaiu/tree-sitter-clojure")
+    (commonlisp         "https://github.com/tree-sitter-grammars/tree-sitter-commonlisp")
+    (elisp              "https://github.com/Wilfred/tree-sitter-elisp")
+    (fortran            "https://github.com/stadelmanma/tree-sitter-fortran")
+    (hcl                "https://github.com/tree-sitter-grammars/tree-sitter-hcl")
+    (hurl               "https://github.com/pfeiferj/tree-sitter-hurl")
+    (latex              "https://github.com/latex-lsp/tree-sitter-latex")
+    (make               "https://github.com/tree-sitter-grammars/tree-sitter-make")
+    (tcl                "https://github.com/tree-sitter-grammars/tree-sitter-tcl")
+    (xml                "https://github.com/tree-sitter-grammars/tree-sitter-xml")))
 
 (defun +treesit-install-all-grammars (arg)
   "Ensure all grammars in `treesit-language-source-alist' are installed.
@@ -43,14 +47,14 @@ When called with ARG, reinstall all."
   (interactive "P")
   (let ((func (if arg #'treesit-install-language-grammar #'treesit-ensure-installed)))
     (cl-letf (((symbol-function #'y-or-n-p) #'always))
-      (mapc (lambda (lib) (with-demoted-errors "Error, feature not fount `%S'" (require lib)))
+      (mapc (lambda (lib) (with-demoted-errors "Error, feature not found `%S'" (require lib)))
             (mapcar #'car +treesit-builtin-feature-mode-alist))
       (dolist (lang-src treesit-language-source-alist)
         (when (or arg (not (treesit-language-available-p (car lang-src))))
           (message "Installing grammar for %s from %s" (car lang-src) (cadr lang-src)))
         (funcall func (car lang-src))))))
 
-(defvar +treesit-mode-lang '((emacs-lisp-mode . elisp) (c++-mode . cpp) (c++-ts-mode . cpp)))
+(defvar +treesit-mode-lang '((emacs-lisp-mode . elisp) (c++-mode . cpp) (c++-ts-mode . cpp) (dts-mode . devicetree)))
 
 (defun +treesit-get-lang (mode)
   (or (alist-get mode +treesit-mode-lang)
