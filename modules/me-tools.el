@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-07-15
+;; Last modified: 2026-07-17
 
 ;;; Commentary:
 
@@ -125,6 +125,10 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
   :config
   ;; BUGFIX: When enabling `devcontainer-mode' globally, this can trigger errors for non-project files
   (advice-add 'devcontainer-config-files :around (lambda (fn) (ignore-errors (funcall fn))))
+
+  (defun +devcontainer-invalidate-cache ()
+    (interactive)
+    (devcontainer-invalidate-cache))
 
   ;; A function to launch a shell program, compatible with `devcontainer' and
   ;; appends the container's ID
