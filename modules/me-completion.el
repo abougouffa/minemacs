@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-10
+;; Last modified: 2026-07-20
 
 ;;; Commentary:
 
@@ -66,6 +66,7 @@
   (minibuffer-setup . +corfu-enable-in-minibuffer-h)
   (global-corfu-mode . corfu-history-mode)
   (global-corfu-mode . corfu-indexed-mode)
+  (global-corfu-mode . corfu-mouse-mode)
   :custom
   (corfu-auto t) ; Enable auto completion
   (corfu-cycle t) ; Allows cycling through candidates
