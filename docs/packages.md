@@ -312,6 +312,7 @@
 
 ## `on-demand/me-devicetree`
 * `dts-mode`: Major mode for DeviceTree source code
+* `devicetree-ts-mode`: Tree-sitter support for DeviceTree
 * `virtual-dts-mode`: Major mode for Device Tree Binary (`*.dtb`) files
 
 ## `on-demand/me-dhall`
@@ -366,6 +367,7 @@
 
 ## `on-demand/me-graphql`
 * `graphql-mode`: Major mode for editing GraphQL schemas
+* `graphql-ts-mode`: Tree-sitter based GraphQL mode
 
 ## `on-demand/me-graphviz`
 * `graphviz-dot-mode`: Mode for the dot-language used by GraphViz
