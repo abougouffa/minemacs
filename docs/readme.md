@@ -60,12 +60,10 @@ packages. You might need to run `M-x minemacs-run-build-functions` when Emacs
 loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
-> [!IMPORTANT]
-> Please note that I'm using a fresh Emacs 31.0.50 built from the `emacs-31`
-> branch mainly on two machines, one based on Manjaro Linux and the other on
-> Debian 12. However, I have set up some basic [Github CI
+> [!IMPORTANT] Please note that I'm using a fresh Emacs 32.0.50 build. However,
+> I have set up some basic [Github CI
 > actions](https://github.com/abougouffa/minemacs/actions) that automatically
-> test running this configuration on Emacs 30 and 31 in [Ubuntu
+> test running this configuration on Emacs 30, 31 and 32 in [Ubuntu
 > Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
 > and
 > [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
