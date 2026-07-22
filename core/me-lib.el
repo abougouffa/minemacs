@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-06-04
+;; Last modified: 2026-07-22
 
 ;;; Commentary:
 
@@ -1076,9 +1076,13 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
               (+plist-keys font)
               (if (memq script-or-face +known-scripts) +font-spec-keywords +face-attributes))))))
 
+(defvar +installed-font-families nil)
 (defun +font-installed-p (font-family)
   "Check if FONT-FAMILY is installed on the system."
-  (and font-family (member font-family (and (fboundp 'font-family-list) (font-family-list))) t))
+  (and font-family
+       (member font-family (with-memoization +installed-font-families
+                             (and (fboundp 'font-family-list) (font-family-list))))
+       t))
 
 (defun +apply-font-or-script (script-or-face)
   "Set font for SCRIPT-OR-FACE from `minemacs-fonts-plist'."
