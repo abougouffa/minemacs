@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-04-23
+;; Last modified: 2026-07-31
 
 ;;; Commentary:
 
@@ -48,6 +48,11 @@
   (tldr-mode . visual-line-mode)
   :custom
   (tldr-enabled-categories '("common" "linux" "netbsd" "openbsd" "freebsd" "osx" "windows")))
+
+
+;; Render formulas using MathJax, optional dependency for `devdocs'
+(use-package mathjax
+  :straight t)
 
 
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
