@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-18
+;; Last modified: 2026-07-31
 
 ;;; Commentary:
 
@@ -18,11 +18,18 @@
          ("C-x t C" . otpp-change-tab-root-dir)
          ("C-x t P" . otpp-prefix))
   :custom
+  (otpp-tab-group-name-hook '(+otpp-tab-group-by-repo))
   (otpp-project-aware-commands-regexp (rx (seq bol (or "project-" "+project-" "projection-"))))
   (otpp-kill-project-buffers-on-tab-close "ask")
   :init
   (otpp-mode 1)
-  (otpp-override-mode 1))
+  (otpp-override-mode 1)
+  :config
+  (defun +otpp-tab-group-by-repo ()
+    "Return the Repo directory containing the current tab's root directory."
+    (when-let* ((repo-dir (locate-dominating-file (otpp-get-tab-root-dir) ".repo/"))
+                ((file-directory-p repo-dir)))
+      (file-name-base (directory-file-name repo-dir)))))
 
 
 ;; Multi target interface to compile
