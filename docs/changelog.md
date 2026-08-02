@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.11.0](https://github.com/abougouffa/minemacs/compare/f8674cf1eec6e051f3c2b368b91e63baf79b408c..v14.11.0) - 2026-08-02
+#### Tweaks
+- (**corfu**) enable the new `corfu-mouse-mode` - ([3f790f3](https://github.com/abougouffa/minemacs/commit/3f790f3962aa4ecadd4270358f3a36497b6dace9)) - [@abougouffa](https://github.com/abougouffa)
+- (**devcontainer**) add a helper command to invalidate the cache - ([9a01552](https://github.com/abougouffa/minemacs/commit/9a015526fdf778468f8c0ce14345eff83d23c3d9)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) group tabs by Repo directory if any - ([60fa988](https://github.com/abougouffa/minemacs/commit/60fa988a99c2920aaee123b867e4185990aaf0ff)) - [@abougouffa](https://github.com/abougouffa)
+- (**treesit-x**) more grammars, useful for `treesit` based tools - ([d290fc4](https://github.com/abougouffa/minemacs/commit/d290fc439a2bed51b2a27a45804a1542d3d6676f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([9850095](https://github.com/abougouffa/minemacs/commit/98500955dcde0881f4a85a1224ddbb92be173a85)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6ba0c3c](https://github.com/abougouffa/minemacs/commit/6ba0c3c90400cc6754a03ccc07aedd8430ce2e60)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e22801d](https://github.com/abougouffa/minemacs/commit/e22801d0c9cfefa8c20db97dd9e3dc5511646346)) - [@abougouffa](https://github.com/abougouffa)
+- memoize `font-family-list` when checking for installed fonts - ([d46e2ad](https://github.com/abougouffa/minemacs/commit/d46e2adbb7845a518e134efd90117be3eac38709)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0d55c6c](https://github.com/abougouffa/minemacs/commit/0d55c6c57b819f1ec1d9536fd85a0a1f96cf9b3c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([7c8d213](https://github.com/abougouffa/minemacs/commit/7c8d2136359c3aeb2a80ce9a26d94bc12f5e9be7)) - [@abougouffa](https://github.com/abougouffa)
+#### Nitpicks, changes with no side effect
+- fix the headers/footers of some files - ([e326020](https://github.com/abougouffa/minemacs/commit/e3260206f964f665c29ba8ebe261dc012c46b46e)) - [@abougouffa](https://github.com/abougouffa)
+- minor code formatting - ([f8674cf](https://github.com/abougouffa/minemacs/commit/f8674cf1eec6e051f3c2b368b91e63baf79b408c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**docs**) add the `mathjax` dependency of `devdocs` - ([c08461a](https://github.com/abougouffa/minemacs/commit/c08461acf1e6aceb152fe279592ab3b54dddef60)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/devicetree**) add support for `devicetree-ts-mode` - ([f77583d](https://github.com/abougouffa/minemacs/commit/f77583d5a07be149c20b4ff0c04fd2c7759cf767)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/graphql**) add support for `graphql-ts-mode` - ([0cd0494](https://github.com/abougouffa/minemacs/commit/0cd0494b8dec1e9ef4b95d7067c9951d5cae10e5)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**corfu**) fix `corfu-popupinfo` configuration, remove old hack - ([dd4c09d](https://github.com/abougouffa/minemacs/commit/dd4c09debb92b25f25ab8d438d93dc008bff2499)) - [@abougouffa](https://github.com/abougouffa)
+- fix hanging async bump - ([0f70894](https://github.com/abougouffa/minemacs/commit/0f7089498404762d1d58ce8c7be1e26dbcaa46e1)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- update the list of modules in the examples/comments - ([4c6aefb](https://github.com/abougouffa/minemacs/commit/4c6aefbb2cd579b888aa217ef75aa98b6f278f42)) - [@abougouffa](https://github.com/abougouffa)
+- update readme - ([94ec456](https://github.com/abougouffa/minemacs/commit/94ec456f8b48bd5f9a586ca829dd17ea2bc3ca8d)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([0f95dc8](https://github.com/abougouffa/minemacs/commit/0f95dc8de08aec03db8f199e81bf83b7210b5204)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.10.0](https://github.com/abougouffa/minemacs/compare/68ca6e49408449892424ed0c1ddb007e7457d66c..v14.10.0) - 2026-07-15
 #### Tweaks
 - (**claude-code-ide**) better tweaks - ([6fe4780](https://github.com/abougouffa/minemacs/commit/6fe4780c872dcf44a36c69f148fca8f31e010a58)) - [@abougouffa](https://github.com/abougouffa)
