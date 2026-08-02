@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-26
+;; Last modified: 2026-08-02
 
 ;;; Commentary:
 
@@ -232,7 +232,6 @@ it automatically."
     ;; me-experimental
     me-extra
     me-files
-    ;; me-fun
     ;; me-lifestyle
     ;; me-media
     me-natural-langs
@@ -241,7 +240,6 @@ it automatically."
     me-org
     me-prog
     me-project
-    ;; me-robot
     ;; me-rss
     ;; me-services
     me-snippets
