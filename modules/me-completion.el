@@ -1,4 +1,4 @@
-;;; completion.el --- Completion packages -*- lexical-binding: t; -*-
+;;; me-completion.el --- Completion packages -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 

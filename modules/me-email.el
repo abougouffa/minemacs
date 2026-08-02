@@ -1,4 +1,4 @@
-;;; me-mu4e.el --- Email stuff using mu4e -*- lexical-binding: t; -*-
+;;; me-email.el --- Email stuff using mu4e -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
