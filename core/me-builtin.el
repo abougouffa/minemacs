@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-06-19
+;; Last modified: 2026-08-03
 
 ;;; Commentary:
 
@@ -444,6 +444,7 @@
   :mode "/Doxyfile\\'"
   :mode "\\.prop\\'"
   :mode "\\.rc\\'"
+  :mode "\\.mailrc\\'"
   :mode "/\\.style.\\yapf\\'")
 
 (use-package hideshow

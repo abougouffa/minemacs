@@ -4,13 +4,11 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-14
+;; Last modified: 2026-08-03
 
 ;;; Commentary:
 
 ;;; Code:
-
-(add-to-list 'auto-mode-alist '("\\.mailrc\\'" . conf-space-mode))
 
 (defconst +mu4e-load-path "/usr/share/emacs/site-lisp/mu4e/")
 
