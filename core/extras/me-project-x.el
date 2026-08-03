@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-06-12
+;; Last modified: 2026-08-03
 
 ;;; Commentary:
 
@@ -126,13 +126,13 @@ Can override `project--files-in-directory' for x3.5 faster listing."
 
 ;; x3.5 faster than the default
 (defun +project--files-in-directory-faster (orig-fn dir ignores &optional files)
-  "Like `project--files-in-directory', but uses \"fd\" instead of \"find\"."
-  (let ((+fd-program (let ((default-directory dir)
-                           (remote (and (file-remote-p dir) t)))
-                       (and (or (not remote) +project-use-fd-on-remote)
-                            (seq-some (+apply-partially-right #'executable-find remote)
-                                      (seq-uniq `(,+fd-program "fd" "fdfind"))))))
-        (find-fn (if +fd-program #'+fd-files-in-directory orig-fn)))
+  "Like `project--files-in-directory', but uses \"fd\" when available."
+  (let* ((+fd-program (let ((default-directory dir)
+                            (remote (and (file-remote-p dir) t)))
+                        (and (or (not remote) +project-use-fd-on-remote)
+                             (seq-some (+apply-partially-right #'executable-find remote)
+                                       (seq-filter #'identity (seq-uniq `(,+fd-program "fd" "fdfind")))))))
+         (find-fn (if +fd-program #'+fd-files-in-directory orig-fn)))
     (funcall find-fn dir ignores files)))
 
 (advice-add 'project--files-in-directory :around '+project--files-in-directory-faster)
