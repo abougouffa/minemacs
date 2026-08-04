@@ -166,7 +166,11 @@
   (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
   (whisper-use-threads (/ (num-processors) 2))
   (whisper-model "medium")
-  (whisper-language "auto"))
+  (whisper-language "auto")
+  :config
+  (when (require 'nerd-icons nil t)
+    (setq whisper--mode-line-recording-indicator (concat (+nerd-icons-icon "nf-md-microphone" :face 'font-lock-warning-face) " ")
+          whisper--mode-line-transcribing-indicator (concat (+nerd-icons-icon "nf-md-transcribe" :face 'font-lock-warning-face) " "))))
 
 
 (provide 'me-ai)
