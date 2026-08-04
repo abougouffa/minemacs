@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-07-31
+;; Last modified: 2026-08-04
 
 ;;; Commentary:
 
@@ -18,18 +18,24 @@
          ("C-x t C" . otpp-change-tab-root-dir)
          ("C-x t P" . otpp-prefix))
   :custom
-  (otpp-tab-group-name-hook '(+otpp-tab-group-by-repo))
+  (otpp-tab-group-name-hook '(+otpp-tab-group-name))
   (otpp-project-aware-commands-regexp (rx (seq bol (or "project-" "+project-" "projection-"))))
   (otpp-kill-project-buffers-on-tab-close "ask")
   :init
   (otpp-mode 1)
   (otpp-override-mode 1)
   :config
-  (defun +otpp-tab-group-by-repo ()
-    "Return the Repo directory containing the current tab's root directory."
-    (when-let* ((repo-dir (locate-dominating-file (otpp-get-tab-root-dir) ".repo/"))
-                ((file-directory-p repo-dir)))
-      (file-name-base (directory-file-name repo-dir)))))
+  (defun +otpp-tab-group-name ()
+    "Return the appropriate name (if any) for the current otpp tab."
+    (let ((root-dir (otpp-get-tab-root-dir)))
+      ;; Return "protocol:host" for remote projects
+      (if-let* (((file-remote-p root-dir nil 'never))
+                (file-parts (tramp-dissect-file-name root-dir)))
+          (concat (tramp-file-name-method file-parts) ":" (tramp-file-name-host file-parts))
+        ;; Or, the Repo workspace root, for local Repo based projects
+        (when-let* ((repo-dir (locate-dominating-file (otpp-get-tab-root-dir) ".repo/"))
+                    ((file-directory-p repo-dir)))
+          (file-name-base (directory-file-name repo-dir)))))))
 
 
 ;; Multi target interface to compile
