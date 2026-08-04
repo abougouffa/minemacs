@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-01-25
-;; Last modified: 2026-07-13
+;; Last modified: 2026-08-04
 
 ;;; Commentary:
 
@@ -135,6 +135,14 @@
 
     (advice-add 'claude-code-ide--detect-cli :override #'+claude-code-ide--detect-cli-devcontainer)
     (advice-add 'claude-code-ide--build-claude-command :around #'+claude-code-ide--build-claude-command-devcontainer))
+
+  ;; Inspired by Spacemacs
+  (defun +claude-code-explain-at-point ()
+    "Send a question about the symbol/region at point to Claude Code."
+    (interactive)
+    (if-let* ((symbol (or (thing-at-point 'region t) (thing-at-point 'symbol t))))
+        (claude-code-ide-send-prompt (format "What does %s do?" symbol))
+      (message "No symbol at point")))
 
   (claude-code-ide-emacs-tools-setup))
 
