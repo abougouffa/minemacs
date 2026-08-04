@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-07-15
+;; Last modified: 2026-08-04
 
 ;;; Commentary:
 
@@ -46,7 +46,7 @@
 ;; Modify multiple occurrences simultaneously
 (use-package iedit
   :straight t
-  :bind (("C-;" . iedit-mode)
+  :bind (("C-;" . iedit-mode) ; NOTE: In some Linux-based systems, the "C-;" can be bound in system-level, use "ibus-setup" to choose another shortcut
          ("C-x r ;" . iedit-rectangle-mode)
          (:map esc-map ("C-;" . iedit-execute-last-modification)))
   :bind (:package isearch :map isearch-mode-map ("C-;" . iedit-mode-from-isearch))
