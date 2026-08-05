@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-04
+;; Last modified: 2026-08-05
 
 ;;; Commentary:
 
@@ -28,14 +28,15 @@
   (defun +otpp-tab-group-name ()
     "Return the appropriate name (if any) for the current otpp tab."
     (let ((root-dir (otpp-get-tab-root-dir)))
-      ;; Return "protocol:host" for remote projects
-      (if-let* (((file-remote-p root-dir nil 'never))
-                (file-parts (tramp-dissect-file-name root-dir)))
-          (concat (tramp-file-name-method file-parts) ":" (tramp-file-name-host file-parts))
-        ;; Or, the Repo workspace root, for local Repo based projects
-        (when-let* ((repo-dir (locate-dominating-file (otpp-get-tab-root-dir) ".repo/"))
-                    ((file-directory-p repo-dir)))
-          (file-name-base (directory-file-name repo-dir)))))))
+      (cond-let*
+        ;; Return "protocol:host" for remote projects
+        ([_ (file-remote-p root-dir nil 'never)]
+         [file-parts (tramp-dissect-file-name root-dir)]
+         (concat (tramp-file-name-method file-parts) ":" (tramp-file-name-host file-parts)))
+        ;; Or, the containing workspace root
+        ([super-proj (+super-project-current root-dir)]
+         [super-proj-root (project-root super-proj)]
+         (file-name-base (directory-file-name super-proj-root)))))))
 
 
 ;; Multi target interface to compile
