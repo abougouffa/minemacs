@@ -39,6 +39,7 @@
 * `pdfgrep`: PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 * `rfc-mode`: An Emacs major mode to read and browse RFC documents
 * `tldr`: Browse "tldr" pages from Emacs
+* `mathjax`: Render formulas using MathJax, optional dependency for `devdocs`
 * `devdocs`: Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 * `dash-docs`: Offline documentation browser using Dash/Zeal docsets
 * `consult-dash`: Integration of `consult` with `dash-docs`
