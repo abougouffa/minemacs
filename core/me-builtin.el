@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-08-03
+;; Last modified: 2026-08-06
 
 ;;; Commentary:
 
@@ -306,7 +306,6 @@
   (dired-omit-verbose nil))
 
 (use-package project
-  :hook (kill-emacs . project-forget-zombie-projects)
   :custom
   (project-switch-use-entire-map t) ; Provide all `project-prefix-map' commands when switching projects
   (project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project" ".repo" "*.csproj" "*.fsproj" "*.vbproj" "*.vcxproj" "*.vdproj" "*.sln" ".code-workspace"))
