@@ -36,6 +36,10 @@
   (empv-invidious-instance 'ivjs)
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
+  ;; BUGFIX: Ensure adding the trailing "/" to directories
+  (dolist (dir '(empv-audio-dir empv-video-dir empv-playlist-dir))
+    (set dir (file-name-as-directory (symbol-value dir))))
+
   (defun +empv-pick-individous-instance ()
     "Pick an Individous instance with API support from https://api.invidious.io."
     (when-let* ((instances (with-current-buffer
@@ -55,31 +59,16 @@
           (setopt empv-invidious-instance (concat (alist-get 'uri instance) "/api/v1"))
         (message "There is no available Invidious instance with API support."))))
 
-  (defun +empv--dl-playlist (playlist &optional dist)
-    (let ((proc-name "empv-yt-dlp")
-          (default-directory (or dist (let ((dir (expand-file-name "empv-downloads" empv-audio-dir)))
-                                        (unless (file-directory-p dir) (mkdir dir t)) dir)))
-          (vids (seq-filter
-                 #'identity ; Filter nils
-                 (mapcar
-                  (lambda (item) ; Extract ID from URL patterns https://youtube.com/watch?v=8x7eUKYhBKg or https://youtu.be/8x7eUKYhBKg
-                    (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
-                         (match-string 1 item)))
-                  playlist))))
-      (when (length> vids 0)
-        (message "Downloading %d songs to %s" (length vids) default-directory)
-        (when (get-process proc-name) (kill-process proc-name))
-        (make-process
-         :name proc-name
-         :buffer (format "*%s*" proc-name)
-         :command `("yt-dlp" "--no-abort-on-error" "--no-colors" "--no-progress" "--extract-audio" "-f" "bestaudio" ,@vids)
-         :sentinel (lambda (_proc event)
-                     (when (string= event "finished\n")
-                       (message "Finished downloading playlist files!")))))))
+  (defun +empv--dl-playlist (playlist)
+    (when-let* ((yt-vids (seq-filter (lambda (item) ; Extract Youtube videos
+                                       (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
+                                            item))
+                                     playlist)))
+      (mapcar (lambda (link) (empv-youtube-download link nil (lambda (where) (+log! "Successfully downloaded %s to %s" link where)))) yt-vids)))
 
-  (defun +empv-download-playtlist-files (&optional path)
-    (interactive "DSave download playlist files to: ")
-    (empv--playlist-apply #'+empv--dl-playlist path)))
+  (defun +empv-download-playtlist-files ()
+    (interactive)
+    (empv--playlist-apply #'+empv--dl-playlist)))
 
 
 (provide 'me-media)
