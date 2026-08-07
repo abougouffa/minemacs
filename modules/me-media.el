@@ -33,6 +33,7 @@
   :when (executable-find +mpv-command)
   :custom
   (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))
+  (empv-invidious-instance 'ivjs)
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
   (defun +empv-pick-individous-instance ()
