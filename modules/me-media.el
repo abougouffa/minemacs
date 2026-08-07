@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2026-04-27
+;; Last modified: 2026-08-07
 
 ;;; Commentary:
 
@@ -35,17 +35,24 @@
   (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))
   (empv-audio-file-extensions '("webm" "mp3" "ogg" "wav" "m4a" "flac" "aac" "opus"))
   :config
-  ;; Pick an Individous instance that supports API from https://api.invidious.io
-  (when-let* ((instances (with-current-buffer (url-retrieve-synchronously "https://api.invidious.io/instances.json?sort_by=api,type,users")
-                           (goto-char url-http-end-of-headers)
-                           (let ((json-key-type 'symbol)
-                                 (json-array-type 'list)
-                                 (json-object-type 'alist))
-                             (json-read))))
-              (instance (cadar instances)))
-    (if (eq (alist-get 'api instance) json-false)
-        (message "There is no available Invidious instance with API support.")
-      (setopt empv-invidious-instance (alist-get 'uri instance))))
+  (defun +empv-pick-individous-instance ()
+    "Pick an Individous instance with API support from https://api.invidious.io."
+    (when-let* ((instances (with-current-buffer
+                               (url-retrieve-synchronously "https://api.invidious.io/instances.json?sort_by=api,type,users")
+                             (goto-char url-http-end-of-headers)
+                             (let ((json-key-type 'symbol)
+                                   (json-array-type 'list)
+                                   (json-object-type 'alist))
+                               (json-read)))))
+      (if-let* ((instance (cadr (seq-find
+                                 (lambda (instance)
+                                   (let ((opts (cadr instance)))
+                                     (and
+                                      (string-match-p "^https?$" (alist-get 'type opts)) ; https
+                                      (not (eq (alist-get 'api opts) json-false))))) ; and has API support
+                                 instances))))
+          (setopt empv-invidious-instance (concat (alist-get 'uri instance) "/api/v1"))
+        (message "There is no available Invidious instance with API support."))))
 
   (defun +empv--dl-playlist (playlist &optional dist)
     (let ((proc-name "empv-yt-dlp")
