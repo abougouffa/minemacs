@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-12-11
-;; Last modified: 2026-05-27
+;; Last modified: 2026-08-07
 
 ;;; Commentary:
 
@@ -24,6 +24,11 @@
   :config
   (+defun +lspce-clangd-params () (string-join (cdr (+eglot-clangd-contact nil (project-current))) " "))
   (setcdr (assoc "C" lspce-server-programs) (list "clangd" #'+lspce-clangd-params)))
+
+
+;; Alternative to `shell'/`comint' based on `term'
+(use-package mistty
+  :straight t)
 
 
 (provide 'me-experimental)
