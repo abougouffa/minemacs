@@ -2,6 +2,32 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.12.0](https://github.com/abougouffa/minemacs/compare/9e8621b08bf0e1dcb1243a3682f1fd5c5b1effb1..v14.12.0) - 2026-08-08
+#### Tweaks
+- (**claude-code-ide**) add a command to explain symbol/region at point - ([332c970](https://github.com/abougouffa/minemacs/commit/332c9707f3d8900406e13bfa7e8a2d8837fdffc8)) - [@abougouffa](https://github.com/abougouffa)
+- (**empv**) use the built-in `ivjs` server - ([5c19d6e](https://github.com/abougouffa/minemacs/commit/5c19d6e76774f476383a905c018086c39f9383c9)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/nushell**) use the new tree-sitter mode when possible - ([80c6989](https://github.com/abougouffa/minemacs/commit/80c69897f6b59c51214f6233e4187d4c4f40340a)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) group tabs by super-project, not only Repo - ([bf1da37](https://github.com/abougouffa/minemacs/commit/bf1da37438f0bacab07a72f1c063127643867ffa)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) group remote projects by `protocol:host` - ([23ef1e2](https://github.com/abougouffa/minemacs/commit/23ef1e2af9806549f91fbe3add6d020f0996a16c)) - [@abougouffa](https://github.com/abougouffa)
+- (**whisper**) better mode-line icons - ([f104a6f](https://github.com/abougouffa/minemacs/commit/f104a6f2f1f341020dcd438dee7c99f605d2b646)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the loaddefs - ([949bd6b](https://github.com/abougouffa/minemacs/commit/949bd6bec45c5f1b02b567db34ba346c32169923)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b4f86de](https://github.com/abougouffa/minemacs/commit/b4f86de26aab8c4504f82e76e2b38c2bba474005)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([e3879a3](https://github.com/abougouffa/minemacs/commit/e3879a38bef4d9aba2ee4e41ab429c0c6f411dad)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**experimental**) add initial support for `mistty` - ([fb5ae84](https://github.com/abougouffa/minemacs/commit/fb5ae84ad8780269b4119be6d20154ffe0384bc6)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**empv**) update and fix the `+empv-download-playtlist-files` command - ([3874700](https://github.com/abougouffa/minemacs/commit/38747000384e07f1b536ed5990cc7da221e57223)) - [@abougouffa](https://github.com/abougouffa)
+- (**empv**) correctly pick online Individous instance - ([90c1445](https://github.com/abougouffa/minemacs/commit/90c1445dcc8495e90547203ab40f0d94743342e5)) - [@abougouffa](https://github.com/abougouffa)
+- (**project**) don't freeze on exit (remote zombie projects) - ([8485062](https://github.com/abougouffa/minemacs/commit/8485062289690cee67df05b916d75bc65e875257)) - [@abougouffa](https://github.com/abougouffa)
+- (**project-x**) correctly check for the `fd` presence - ([66d6dce](https://github.com/abougouffa/minemacs/commit/66d6dce515706c50cf02674199416c5cac3d0b8e)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**iedit**) add a useful comment about the potentially used shortcut - ([762c2ab](https://github.com/abougouffa/minemacs/commit/762c2ab070b73c577ed3cdf6a2834dd3c068c60b)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([475202e](https://github.com/abougouffa/minemacs/commit/475202e9f388981aba296d9aec3c463277871bdc)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- move a generic code to `me-builtin` - ([9e8621b](https://github.com/abougouffa/minemacs/commit/9e8621b08bf0e1dcb1243a3682f1fd5c5b1effb1)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.11.0](https://github.com/abougouffa/minemacs/compare/f8674cf1eec6e051f3c2b368b91e63baf79b408c..v14.11.0) - 2026-08-02
 #### Tweaks
 - (**corfu**) enable the new `corfu-mouse-mode` - ([3f790f3](https://github.com/abougouffa/minemacs/commit/3f790f3962aa4ecadd4270358f3a36497b6dace9)) - [@abougouffa](https://github.com/abougouffa)
