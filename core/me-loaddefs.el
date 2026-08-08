@@ -195,7 +195,7 @@ restores it after that.
 
 ;;; Generated autoloads from ../modules/on-demand/me-devicetree.el
 
-(minemacs-register-on-demand-module 'me-devicetree :auto-mode '(("\\.dtsi?\\'" . dts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
+(minemacs-register-on-demand-module 'me-devicetree :auto-mode '(("\\.dtsi?\\'" . devicetree-ts-mode) (".+\\.dtb\\|dtbo\\'" . virtual-dts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-dhall.el
@@ -317,7 +317,7 @@ will be generated each `+git-types-cache-age'.
 
 ;;; Generated autoloads from ../modules/on-demand/me-graphql.el
 
-(minemacs-register-on-demand-module 'me-graphql :auto-mode '((("\\.gql\\'" "\\.graphql\\'") . graphql-mode)))
+(minemacs-register-on-demand-module 'me-graphql :auto-mode '((("\\.gql\\'" "\\.graphqls?\\'") . graphql-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-graphviz.el
@@ -796,7 +796,7 @@ This command removes new line characters between lines." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-nushell.el
 
-(minemacs-register-on-demand-module 'me-nushell :auto-mode '(("\\.nu\\'" . nushell-mode)) :interpreter-mode '(("nu" . nushell-mode)))
+(minemacs-register-on-demand-module 'me-nushell :auto-mode '(("\\.nu\\'" . nushell-ts-mode)) :interpreter-mode '(("nu" . nushell-ts-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-ocaml.el
