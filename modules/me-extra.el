@@ -1,10 +1,10 @@
 ;;; me-extra.el --- Some extra functionalities -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2025-12-09
+;; Last modified: 2026-08-10
 
 ;;; Commentary:
 
@@ -26,7 +26,9 @@
 ;; Persistent per-project scratch buffers for Emacs
 (use-package pscratch
   :straight (:host github :repo "abougouffa/persistent-scratch")
-  :hook (minemacs-after-startup . pscratch-mode))
+  :hook
+  (minemacs-after-startup . pscratch-mode)
+  (minemacs-after-startup . pscratch-override-mode))
 
 
 (provide 'me-extra)
