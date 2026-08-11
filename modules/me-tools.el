@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-07-17
+;; Last modified: 2026-08-11
 
 ;;; Commentary:
 
@@ -111,8 +111,16 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 ;; Manage docker from Emacs
 (use-package docker
   :straight t
-  :bind (:map minemacs-open-thing-map ("d" . docker)))
-
+  :bind (:map minemacs-open-thing-map ("d" . docker))
+  :config
+  ;; HACK: Define a `vterm-other-windo' using `ghostel' as backend so it can be
+  ;; used with `docker-container-vterm*'
+  (when (and (not (require 'vterm nil t)) (require 'ghostel nil t))
+    (defun vterm-other-window (&optional arg)
+      (pop-to-buffer
+       (cond ((stringp arg) (let ((ghostel-buffer-name arg)) (ghostel)))
+             ((numberp arg) (ghostel arg))
+             (t (ghostel)))))))
 
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
