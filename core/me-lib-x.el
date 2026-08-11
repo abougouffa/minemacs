@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-06-28
+;; Last modified: 2026-08-11
 
 ;;; Commentary:
 
@@ -911,6 +911,7 @@ the schema from the file name."
                (insert "\"$schema\" = '" url "'\n\n")))))))
 
 (defvar-local +clang-format-config-file nil)
+(put '+clang-format-config-file 'safe-local-variable #'stringp)
 
 (defun +clang-format-set-config-file (path)
   "Explicitly set the config file PATH for clang-format."
@@ -990,7 +991,8 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                   (executable-find +clang-format-command)
                   (derived-mode-p (flatten-list (mapcar #'car +clang-format-mode-alist)))))
             (out (+clang-format-dump-config))
-            (yaml-hash (yaml-parse-string out))
+            (yaml-hash (and (fboundp 'yaml-parse-string)
+                            (yaml-parse-string out)))
             (fc (gethash 'ColumnLimit yaml-hash))
             (iw (gethash 'IndentWidth yaml-hash))
             (tw (gethash 'TabWidth yaml-hash))
