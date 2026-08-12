@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-05
+;; Last modified: 2026-08-12
 
 ;;; Commentary:
 
@@ -36,7 +36,19 @@
         ;; Or, the containing workspace root
         ([super-proj (+super-project-current root-dir)]
          [super-proj-root (project-root super-proj)]
-         (file-name-base (directory-file-name super-proj-root)))))))
+         (file-name-base (directory-file-name super-proj-root))))))
+
+  ;; TEMP: Until abougouffa/one-tab-per-project#8 get resolved
+  (defun +otpp-skip-external-buffers (window buffer bury-or-kill)
+    "Skip BUFFER if we are in a project and BUFFER doesn't belong to it.
+To be used as a value for `switch-to-prev-buffer-skip'."
+    (when-let* ((current-pr (and (not bury-or-kill)
+                                 (otpp-get-tab-root-dir) ; The current tab is an otpp tab
+                                 (project-current))))
+      ;; We are in a project: skip any buffer not in this project
+      (not (memq buffer (project-buffers current-pr)))))
+
+  (setopt switch-to-prev-buffer-skip #'+otpp-skip-external-buffers))
 
 
 ;; Multi target interface to compile
