@@ -32,11 +32,11 @@
         ;; Return "protocol:host" for remote projects
         ([_ (file-remote-p root-dir nil 'never)]
          [file-parts (tramp-dissect-file-name root-dir)]
-         (concat (tramp-file-name-method file-parts) ":" (tramp-file-name-host file-parts)))
+         (concat "•" (tramp-file-name-method file-parts) ":" (tramp-file-name-host file-parts) "•"))
         ;; Or, the containing workspace root
         ([super-proj (+super-project-current root-dir)]
          [super-proj-root (project-root super-proj)]
-         (file-name-base (directory-file-name super-proj-root))))))
+         (concat "•" (file-name-base (directory-file-name super-proj-root)) "•")))))
 
   ;; Make `switch-to-*-buffer' commands skip non-project buffers on otpp tabs
   (setopt switch-to-prev-buffer-skip #'otpp-skip-external-buffers))
