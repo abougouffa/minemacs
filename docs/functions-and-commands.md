@@ -259,13 +259,6 @@ Whether to use fd (if found) on remote machines' projects or not.
 
 The MPV command.
 
-#### `+git-commit-prefix-in-project`
-
-Propose to insert a commit prefix in the current project.
-
-Set this variable in your project's ".dir-locals.el". You can set it
-to `conventional` or `prefix`.
-
 #### `+mu4e-account-aliases`
 
 Per-account alias list.
@@ -1239,16 +1232,6 @@ When PRE is provided, it is used as pre-release suffix.
 Call with C-u for applying an `auto` bump.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
-
-#### `(+git-get-commit-kind CONV KIND)`
-
-CONV can be `conventional` or `prefix`, KIND can be `types` or `scopes`.
-
-#### `(+git-insert-commit-prefix &optional CLEAN-CACHE)`
-
-Prompt for conventional commit type with scope completion.
-When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
-will be generated each `+git-types-cache-age`.
 
 #### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
 

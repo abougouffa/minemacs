@@ -85,6 +85,7 @@
 
 ## `me-experimental`
 * `lspce`: LSP Client for Emacs implemented as a module using Rust
+* `mistty`: Alternative to `shell`/`comint` based on `term`
 
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
@@ -455,7 +456,8 @@
 * `nix-ts-mode`: Tree-sitter based major mode for editing Nix files
 
 ## `on-demand/me-nushell`
-* `nushell-mode`: Major mode for Nushell scripts
+* `nushell-mode`: Major mode for Nushell scripts (deprecated, used as a fallback if case `treesit` is not available)
+* `nushell-ts-mode`: Major mode for Nushell scripts
 
 ## `on-demand/me-ocaml`
 * `neocaml`:  A modern, TreeSitter-powered, Emacs major mode for OCaml
