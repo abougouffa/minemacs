@@ -287,24 +287,6 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (minemacs-register-on-demand-module 'me-genexpr :auto-mode '(("\\.genexpr\\'" . genexpr-mode)))
 
 
-;;; Generated autoloads from ../modules/extras/me-git.el
-
-(defvar +git-commit-prefix-in-project nil
-"Propose to insert a commit prefix in the current project.
-
-Set this variable in your project's \".dir-locals.el\". You can set it
-to `conventional' or `prefix'.")
-(custom-autoload '+git-commit-prefix-in-project "../modules/extras/me-git" t)
-(make-variable-buffer-local '+git-commit-prefix-in-project)
-(autoload '+git-insert-commit-prefix "../modules/extras/me-git"
-"Prompt for conventional commit type with scope completion.
-When CLEAN-CACHE is non-nil, regenerate the cache, otherwise, the cache
-will be generated each `+git-types-cache-age'.
-
-(fn &optional CLEAN-CACHE)" t)
-(register-definition-prefixes "../modules/extras/me-git" '("+git-"))
-
-
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab.el
 
 (minemacs-register-on-demand-module 'me-gitlab :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)) :define-loader t)

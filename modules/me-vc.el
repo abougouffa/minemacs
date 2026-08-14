@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-12
+;; Last modified: 2026-08-14
 
 ;;; Commentary:
 
@@ -35,7 +35,6 @@
 (use-package git-commit
   :after magit
   :commands (global-git-commit-mode)
-  :hook (git-commit-setup . +git-insert-commit-prefix)
   :custom
   (git-commit-summary-max-length 72) ; defaults to Github's max commit message length
   (git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
