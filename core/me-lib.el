@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-07-22
+;; Last modified: 2026-08-15
 
 ;;; Commentary:
 
@@ -810,11 +810,8 @@ This function is suitable to add to `find-file-hook' and `dired-file-hook'."
   :lighter nil
   :group 'sudo-edit
   (if +sudo-indicator-mode
-      (progn
-        (add-hook 'find-file-hook #'+root-set-header)
-        (add-hook 'dired-mode-hook #'+root-set-header))
-    (remove-hook 'find-file-hook #'+root-set-header)
-    (remove-hook 'dired-mode-hook #'+root-set-header)))
+      (+add-hooks '(find-file-hook dired-mode-hook) #'+root-set-header)
+    (+remove-hooks '(find-file-hook dired-mode-hook) #'+root-set-header)))
 
 
 
@@ -1119,8 +1116,7 @@ scaling factor for the font in Emacs' `face-font-rescale-alist'. See the
   ;; Run hooks
   (run-hooks 'minemacs-after-setup-fonts-hook))
 
-(add-hook 'window-setup-hook #'+setup-fonts)
-(add-hook 'server-after-make-frame-hook #'+setup-fonts)
+(+add-hooks '(window-setup-hook server-after-make-frame-hook) #'+setup-fonts)
 
 (defvar minemacs-reduce-font-size-ratio 0.82)
 (defvar-local minemacs-reduce-font-remap-cookie nil)

@@ -389,11 +389,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         minemacs-modeline-debug
                         "  "))
         (+subtle-mode-line)
-        (add-hook 'server-after-make-frame-hook #'+subtle-mode-line)
-        (add-hook 'enable-theme-functions #'+subtle-mode-line))
+        (+add-hooks '(server-after-make-frame-hook enable-theme-functions) #'+subtle-mode-line))
     (setq-default mode-line-format minemacs-modeline--mode-line-format-orig)
-    (remove-hook 'server-after-make-frame-hook #'+subtle-mode-line)
-    (remove-hook 'enable-theme-functions #'+subtle-mode-line))
+    (+remove-hooks '(server-after-make-frame-hook enable-theme-functions) #'+subtle-mode-line))
   (force-mode-line-update t))
 
 

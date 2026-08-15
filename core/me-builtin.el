@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-08-06
+;; Last modified: 2026-08-15
 
 ;;; Commentary:
 
@@ -222,8 +222,7 @@
       (make-directory parent-directory t)
       t))
 
-  (advice-add 'copy-file :before #'+create-non-existent-directory)
-  (advice-add 'rename-file :before #'+create-non-existent-directory)
+  (+advice-add '(copy-file rename-file) :before #'+create-non-existent-directory)
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory 80))
 
 (use-package transient
@@ -515,8 +514,7 @@
       (remove-hook 'jsonrpc-event-hook 'jsonrpc--log-event)))
 
   ;; Don't spit messages to the echo area
-  (advice-add 'jsonrpc--message :around #'+apply-suppress-messages)
-  (advice-add 'eglot--message :around #'+apply-suppress-messages)
+  (+advice-add '(eglot--message jsonrpc--message) :around #'+apply-suppress-messages)
 
   ;; HACK: TRAMP's direct async process doesn't work with Eglot
   (defun +eglot--disable-tramp-direct-async-a (fn &rest args)
