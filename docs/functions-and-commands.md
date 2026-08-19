@@ -1205,6 +1205,14 @@ Run adb with command ARGS.
 
 Run adb push SRC DEST.
 
+#### `(+adb-devices)`
+
+Run adb devices, return the devices list.
+
+#### `(+adb-get-device)`
+
+Get the ADB connected device, ask with `completing-read` if found many.
+
 #### `(+adb-remount AUTO-REBOOT-DEVICE)`
 
 Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
