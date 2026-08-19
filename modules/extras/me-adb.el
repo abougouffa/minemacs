@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2026-05-15
+;; Last modified: 2026-08-19
 
 ;;; Commentary:
 
@@ -64,6 +64,32 @@
   (let ((src (expand-file-name src)))
     (+alist-set! src dest +adb-push-src-dest-cache)
     (+adb-run-command "push" src dest)))
+
+;;;###autoload
+(defun +adb-devices ()
+  "Run adb devices, return the devices list."
+  (let* ((cmd (format "%s devices -l" +adb-program))
+         (devices (cdr (string-lines (shell-command-to-string cmd) t)))
+         out-plist)
+    (dolist (device devices)
+      (when (string-match (rx (group (+ (not space))) ; serial
+                              (+ space)
+                              (group (+ (not space))) ; device
+                              (+ space)
+                              (group (* not-newline))) ; the rest
+                          device)
+        ;; TEMP: Need to parse the rest at (match-string 3) and return a proper plist
+        (push (match-string 1 device) out-plist)))
+    out-plist))
+
+;;;###autoload
+(defun +adb-get-device ()
+  "Get the ADB connected device, ask with `completing-read' if found many."
+  (if-let* ((devs (+adb-devices)))
+      (if (length= devs 1)
+          (car devs)
+        (completing-read "Select the device: " devs))
+    (error "No connected device")))
 
 ;;;###autoload
 (defun +adb-remount (auto-reboot-device)
