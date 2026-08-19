@@ -443,6 +443,7 @@
   :mode "\\.prop\\'"
   :mode "\\.rc\\'"
   :mode "\\.mailrc\\'"
+  :mode "\\.ioc\\'" ; MicroXplorer configuration settings
   :mode "/\\.style.\\yapf\\'")
 
 (use-package hideshow
