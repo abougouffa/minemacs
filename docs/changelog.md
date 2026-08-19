@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.13.0](https://github.com/abougouffa/minemacs/compare/66babbfc2a217f7fa9f3ab12909c2796bbd86742..v14.13.0) - 2026-08-19
+#### Tweaks
+- (**adb**) add `+adb-devices` and `+adb-get-device` helpers - ([ff52723](https://github.com/abougouffa/minemacs/commit/ff5272369080f70dba1794e527fb91ba678a5a46)) - [@abougouffa](https://github.com/abougouffa)
+- (**clang-format**) don't fail when `yaml` isn't available - ([7fabedc](https://github.com/abougouffa/minemacs/commit/7fabedc3ad55d47001505015a5180b0371dec1cc)) - [@abougouffa](https://github.com/abougouffa)
+- (**conf**) use `conf-mode` to display MicroXplorer's firmware config files - ([4b61aa9](https://github.com/abougouffa/minemacs/commit/4b61aa935710d20cec01ae80f80acc6d0a8bfe0b)) - [@abougouffa](https://github.com/abougouffa)
+- (**docker**) make it work with `ghostel` - ([b5f851c](https://github.com/abougouffa/minemacs/commit/b5f851cab8159e785a81743e01b56d7562ac107d)) - [@abougouffa](https://github.com/abougouffa)
+- (**hideshow**) re-bind `hs-prefix-map` instead of individual commands - ([6af0030](https://github.com/abougouffa/minemacs/commit/6af00308f9fc94ddf0b692f70108359259ddaa11)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) wrap tab-groups in Unicode bullets `•` - ([4122993](https://github.com/abougouffa/minemacs/commit/412299333575e8f9d265695f85704734e8681717)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) use the new `otpp-skip-external-buffers` - ([1e3e2df](https://github.com/abougouffa/minemacs/commit/1e3e2df5259448787b922335f7ae2f77a0b3ae7f)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) limit `switch-to-*-buffer` to the current otpp tab - ([39989c0](https://github.com/abougouffa/minemacs/commit/39989c03a4ece33885feac9b41d73a2739dafe22)) - [@abougouffa](https://github.com/abougouffa)
+- (**pscratch**) update the config for the new release - ([66babbf](https://github.com/abougouffa/minemacs/commit/66babbfc2a217f7fa9f3ab12909c2796bbd86742)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([653c5d3](https://github.com/abougouffa/minemacs/commit/653c5d3a7e140b54c182566eabeffb08408efb17)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([32ce29c](https://github.com/abougouffa/minemacs/commit/32ce29c36de7c7ce3ac65a58c699dfa8785d4060)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([5c28179](https://github.com/abougouffa/minemacs/commit/5c28179ceb70346367a8c5b9273a6afb38ed1507)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4ea0b24](https://github.com/abougouffa/minemacs/commit/4ea0b245b1874b7f10373185bbaa57f44884b99c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([88fbd48](https://github.com/abougouffa/minemacs/commit/88fbd48e78a5ae7676781f45a7d79d79c6a0c5fd)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([72e79e1](https://github.com/abougouffa/minemacs/commit/72e79e1e69d994bb5dc99504840129abdf06d4b8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([c3d9820](https://github.com/abougouffa/minemacs/commit/c3d982083263cd52aaba93e992a5eb68254a3307)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- remove the extra `me-git` - ([065abf3](https://github.com/abougouffa/minemacs/commit/065abf33ac5e9e62fdc493a0ff7800fd7c75836b)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([f496153](https://github.com/abougouffa/minemacs/commit/f4961539b98531359ec66b9bab66a2f027e67464)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([2f32ebc](https://github.com/abougouffa/minemacs/commit/2f32ebcbd331ac2af169f39fd463fa1f69c2cdb9)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- make use of `+advice-add` and `+add-hooks` when possible - ([ea5cba8](https://github.com/abougouffa/minemacs/commit/ea5cba8e590488954e5e51524026a09d6c3bd458)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.12.0](https://github.com/abougouffa/minemacs/compare/9e8621b08bf0e1dcb1243a3682f1fd5c5b1effb1..v14.12.0) - 2026-08-08
 #### Tweaks
 - (**claude-code-ide**) add a command to explain symbol/region at point - ([332c970](https://github.com/abougouffa/minemacs/commit/332c9707f3d8900406e13bfa7e8a2d8837fdffc8)) - [@abougouffa](https://github.com/abougouffa)
