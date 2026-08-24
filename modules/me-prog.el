@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-08-24
 
 ;;; Commentary:
 
@@ -26,8 +26,15 @@
               process-environment)))
        (funcall orig-fn command buffer remote callback stdin formatter))))
 
+  ;; Add some extra formatters
+  (cl-callf append apheleia-formatters
+    '((ffmt . ("ffmt" "-"))
+      (fprettify . ("fprettify"))))
+
   (cl-callf append apheleia-mode-alist
     '((nxml-mode . xmllint)
+      (f90-mode . ffmt)
+      (fortran-mode . ffmt)
       (protobuf-mode . clang-format)
       (protobuf-ts-mode . clang-format)))
 
