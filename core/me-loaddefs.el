@@ -223,6 +223,11 @@ restores it after that.
 (register-definition-prefixes "../modules/on-demand/me-dotnet" '("+dotnet-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-dsdl.el
+
+(minemacs-register-on-demand-module 'me-dsdl :auto-mode '(("\\.dsdl\\'" . dsdl-mode) ("\\.uavcan\\'" . dsdl-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-ebuild.el
 
 (minemacs-register-on-demand-module 'me-ebuild :auto-mode '(("\\.ebuild\\'" . ebuild-mode) ("\\.eclass\\'" . ebuild-eclass-mode)))
