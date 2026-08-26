@@ -1,10 +1,10 @@
 ;;; me-tags.el --- Non-LSP source code tagging tools -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-21
-;; Last modified: 2026-05-27
+;; Last modified: 2026-08-26
 
 ;;; Commentary:
 
@@ -51,6 +51,10 @@ This complements `citre-auto-enable-citre-mode-modes'."
     '("CVS" "RCS" "SCCS" ".git" ".hg" ".bzr" ".cdv" ".pc" ".svn" ".repo" "_MTN" "_darcs" "_sgbak" "debian" ".ccls-cache" ".cache")
     "List of directories to be ignored when creating C/C++ files list.")
   :config
+  ;; When available, use the Tree-Sitter based "treetags" instead of "ctags"
+  (when-let* ((treetags (executable-find "treetags")))
+    (setopt citre-ctags-program treetags))
+
   (advice-add ; We prefer passing by Citre when it is enabled, it uses Eglot as a backend
    'eglot--managed-mode :before
    (+defun +citre--prefer-over-eglot:before-a (&rest _args)
