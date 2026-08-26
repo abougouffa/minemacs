@@ -132,7 +132,7 @@ Return its plist, or with PROPERTY only that property's value."
   "Get the ADB connected device, ask with `completing-read' if found many."
   (if-let* ((devs (+adb-devices)))
       (if (length= devs 1)
-          (car devs)
+          (caar devs)
         (let* ((+adb-devices-alist devs))
           (completing-read "Select the device: " (+completion-mark-category devs '+adb-device))))
     (error "No connected device")))
