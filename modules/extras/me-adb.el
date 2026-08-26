@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-22
-;; Last modified: 2026-08-25
+;; Last modified: 2026-08-26
 
 ;;; Commentary:
 
@@ -68,45 +68,35 @@
 (defconst +adb-devices--header "List of devices attached" "Header line that precedes the device list in `adb devices' output.")
 (defconst +adb-devices--kv-regexp "\\`\\([A-Za-z_][A-Za-z0-9_]*\\):\\(.*\\)\\'" "Regexp matching a complete KEY:VALUE token, e.g. \"transport_id:1\".")
 
-(defun +adb-devices--keyword (name)
-  "Return NAME as a keyword, turning underscores into dashes.
-For example \"transport_id\" becomes `:transport-id'."
-  (intern (concat ":" (subst-char-in-string ?_ ?- (downcase name)))))
-
 (defun +adb-devices--parse-line (line)
   "Parse LINE, a single device line of `adb devices -l' output.
 Return a cons cell (SERIAL . PLIST), or nil if LINE holds no device."
-  (let ((tokens (split-string line "[[:space:]]+" t)))
-    (when (cdr tokens) ; need a serial plus at least a state
-      (let ((serial (car tokens))
-            state
-            plist)
-        (dolist (token (cdr tokens))
-          (if (string-match +adb-devices--kv-regexp token)
-              (let ((key (+adb-devices--keyword (match-string 1 token)))
-                    (value (match-string 2 token)))
-                (push key plist)
-                (push value plist))
-            ;; Tokens before the first KEY:VALUE make up the connection state:
-            ;; "device", "offline", "unauthorized", or the multi-word "no
-            ;; permissions".
-            (unless plist (push token state))))
-        (cons serial
-              (nconc (list :state (string-join (nreverse state) " "))
-                     (nreverse plist)))))))
+  (when-let* ((tokens (split-string line "[[:space:]]+" t))
+              (serial (car tokens)) ; need a serial plus at least a state
+              (tokens (cdr tokens)))
+    (let (state plist)
+      (dolist (token tokens)
+        (if (string-match +adb-devices--kv-regexp token)
+            (let ((key (intern (concat ":" (subst-char-in-string ?_ ?- (downcase (match-string 1 token))))))
+                  (value (match-string 2 token)))
+              (push key plist)
+              (push value plist))
+          ;; Tokens before the first KEY:VALUE make up the connection state:
+          ;; "device", "offline", "unauthorized", or the multi-word "no
+          ;; permissions".
+          (unless plist (push token state))))
+      (cons serial
+            (nconc (list :state (string-join (nreverse state) " "))
+                   (nreverse plist))))))
 
 (defun +adb-devices-parse (output)
   "Parse OUTPUT, the text printed by `adb devices -l', into an alist.
 Each element is (SERIAL . PLIST), where PLIST holds `:state' plus one
-keyword per KEY:VALUE field on the line.  Lines before the
-\"List of devices attached\" header are ignored, so nil is returned if
-that header never appears."
-  (let ((seen-header nil)
-        (devices '()))
-    (dolist (line (split-string output "\n"))
-      (setq line (string-trim line))
+keyword per KEY:VALUE field on the line."
+  (let (seen-header devices)
+    (dolist (line (mapcar #'string-trim (string-lines output t)))
       (cond
-       ((string-empty-p line))          ; blank line: skip
+       ((string-empty-p line)) ; blank line: skip
        ((not seen-header)
         (setq seen-header (string-prefix-p +adb-devices--header line)))
        (t
@@ -118,10 +108,9 @@ that header never appears."
 (defun +adb-devices ()
   "Run `adb devices -l' and return the result of `+adb-devices-parse'."
   (with-temp-buffer
-    (let ((status (call-process +adb-program nil t nil "devices" "-l")))
-      (unless (eq status 0)
-        (error "adb exited with %S: %s" status (string-trim (buffer-string))))
-      (+adb-devices-parse (buffer-string)))))
+    (if (zerop (call-process +adb-program nil t nil "devices" "-l"))
+        (+adb-devices-parse (buffer-string))
+      (error "An error occured when calling adb: %s" (string-trim (buffer-string))))))
 
 ;;;###autoload
 (defun +adb-devices-get (devices serial &optional property)
@@ -139,7 +128,7 @@ Return its plist, or with PROPERTY only that property's value."
   (add-to-list 'marginalia-annotators '(+adb-device +marginalia-annotate-adb-device builtin none)))
 
 ;;;###autoload
-(defun +adb-get-device ()
+(defun +adb-select-device ()
   "Get the ADB connected device, ask with `completing-read' if found many."
   (if-let* ((devs (+adb-devices)))
       (if (length= devs 1)
