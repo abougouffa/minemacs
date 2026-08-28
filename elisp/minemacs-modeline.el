@@ -211,7 +211,7 @@
   (when-let* (((mode-line-window-selected-p))
               (file (or buffer-file-name default-directory))
               ((not (file-remote-p file))) ;; Can be too slow for remote files
-              (backend (or (vc-backend file) 'Git))
+              (backend (vc-backend file))
               (file-state (vc-state file backend))
               (face (alist-get file-state minemacs-modeline--vc-faces 'vc-up-to-date-state))
               (rev (vc-working-revision file backend))
