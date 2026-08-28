@@ -13,16 +13,18 @@
 (require 'nerd-icons)
 (require 'me-lib)
 
+(defun minemacs-modeline--variant (name) (nth 1 (string-split name "-")))
+
 (defconst minemacs-modeline--icon-alist
   (cl-loop for glyph-set in nerd-icons-glyph-sets
            for sym = (intern (format "nerd-icons/%s-alist" glyph-set))
            for name = (caar (symbol-value sym))
-           collect (cons (nth 1 (string-split name "-"))
+           collect (cons (minemacs-modeline--variant name)
                          (intern (format "nerd-icons-%s" glyph-set)))))
 
 (defun minemacs-modeline--icon (name &rest args)
   "Generic function to get icons by NAME, with ARGS."
-  (if-let* ((variant (nth 1 (string-split name "-")))
+  (if-let* ((variant (minemacs-modeline--variant name))
             (fn (alist-get variant minemacs-modeline--icon-alist nil nil #'equal)))
       (apply fn (cons name args))
     (error "Cannot detect the function which provides %S" name)))
