@@ -335,6 +335,9 @@
 * `sharper`: A dotnet CLI wrapper, using Transient
 * `vbnet-mode`: A mode for editing Visual Basic .NET code
 
+## `on-demand/me-dsdl`
+* `dsdl-mode`: Major mode for the Data Structure Description Language (DSDL)
+
 ## `on-demand/me-ebuild`
 * `ebuild-mode`: Major mode for editing Gentoo's ebuild and eclass files
 

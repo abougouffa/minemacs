@@ -1205,11 +1205,22 @@ Run adb with command ARGS.
 
 Run adb push SRC DEST.
 
+#### `(+adb-devices-parse OUTPUT)`
+
+Parse OUTPUT, the text printed by `adb devices -l', into an alist.
+Each element is (SERIAL . PLIST), where PLIST holds `:state` plus one
+keyword per KEY:VALUE field on the line.
+
 #### `(+adb-devices)`
 
-Run adb devices, return the devices list.
+Run `adb devices -l' and return the result of `+adb-devices-parse`.
 
-#### `(+adb-get-device)`
+#### `(+adb-devices-get DEVICES SERIAL &optional PROPERTY)`
+
+Look up SERIAL in DEVICES, as returned by `+adb-devices-parse`.
+Return its plist, or with PROPERTY only that property's value.
+
+#### `(+adb-select-device)`
 
 Get the ADB connected device, ask with `completing-read` if found many.
 
