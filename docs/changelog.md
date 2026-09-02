@@ -2,6 +2,28 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.14.0](https://github.com/abougouffa/minemacs/compare/5f25271479ae72e6c3cdc545ab769733485ad3b4..v14.14.0) - 2026-09-02
+#### Tweaks
+- (**adb**) better parsing and completion of connected devices - ([5dc85db](https://github.com/abougouffa/minemacs/commit/5dc85db3be76f33b272e4abe62f86c4947db51b9)) - [@abougouffa](https://github.com/abougouffa)
+- (**apheleia**) add the `fprettify` and `ffmt` formatters for Fortran - ([4bc268c](https://github.com/abougouffa/minemacs/commit/4bc268cf29d0c6beb2c0fc72e9b2347eb9a0cb35)) - [@abougouffa](https://github.com/abougouffa)
+- (**citre**) use `treetags` when available - ([1830085](https://github.com/abougouffa/minemacs/commit/1830085d4b4107dce7fd3133cbe30b4cc178c8d0)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([b6a552b](https://github.com/abougouffa/minemacs/commit/b6a552b6e8532434787ea7f8b94688e3f11ea3ad)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([0482878](https://github.com/abougouffa/minemacs/commit/0482878cd5b94c0021eafd1cd52139e220ebdc5c)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([783119c](https://github.com/abougouffa/minemacs/commit/783119cf675437c6d46e5325e2eabfae4aca6d82)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the loaddefs - ([99e3e2e](https://github.com/abougouffa/minemacs/commit/99e3e2ee27a5f8783502835fb09860ad79f14af7)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**on-demand**) add support for DroneCAN/UAVCAN DSDL files - ([5f25271](https://github.com/abougouffa/minemacs/commit/5f25271479ae72e6c3cdc545ab769733485ad3b4)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**adb**) always return the serial in `+adb-select-device` - ([f0a37e3](https://github.com/abougouffa/minemacs/commit/f0a37e3c56d41084f8c0735f34de9918d369a256)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) correctly detect the VC backend - ([2f56f18](https://github.com/abougouffa/minemacs/commit/2f56f18baebd8e810eb5e62c174fb276f5c7af77)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([7f668ac](https://github.com/abougouffa/minemacs/commit/7f668ac77f6c85f130212c2467a6dc845a374e71)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**adb**) simplify the parsing of adb devices - ([e82cdfc](https://github.com/abougouffa/minemacs/commit/e82cdfcf4d6275f5dd324b8043ccf21c5d2c420e)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) minor refactoring - ([a218400](https://github.com/abougouffa/minemacs/commit/a218400036b13a5cdb1884cdeeec190e2f6123c5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.13.0](https://github.com/abougouffa/minemacs/compare/66babbfc2a217f7fa9f3ab12909c2796bbd86742..v14.13.0) - 2026-08-19
 #### Tweaks
 - (**adb**) add `+adb-devices` and `+adb-get-device` helpers - ([ff52723](https://github.com/abougouffa/minemacs/commit/ff5272369080f70dba1794e527fb91ba678a5a46)) - [@abougouffa](https://github.com/abougouffa)
