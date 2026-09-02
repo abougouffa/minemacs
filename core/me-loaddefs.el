@@ -18,8 +18,13 @@
 
 (fn SRC DEST)" t)
 (autoload '+adb-devices "../modules/extras/me-adb"
-"Run adb devices, return the devices list.")
-(autoload '+adb-get-device "../modules/extras/me-adb"
+"Run `adb devices -l' and return the result of `+adb-devices-parse'.")
+(autoload '+adb-devices-get "../modules/extras/me-adb"
+"Look up SERIAL in DEVICES, as returned by `+adb-devices-parse'.
+Return its plist, or with PROPERTY only that property's value.
+
+(fn DEVICES SERIAL &optional PROPERTY)")
+(autoload '+adb-select-device "../modules/extras/me-adb"
 "Get the ADB connected device, ask with `completing-read' if found many.")
 (autoload '+adb-remount "../modules/extras/me-adb"
 "Run adb remount, with -R when AUTO-REBOOT-DEVICE is non-nil.
