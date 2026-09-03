@@ -280,7 +280,11 @@ module) should be applied. See `+mu4e-msg-gmail-p` and
 
 #### `(+with-delayed! &rest BODY)` (macro)
 
-Delay evaluating BODY with priority 0 (high priority).
+Delay evaluating BODY.
+The BODY will be incrementally executed after loading MinEmacs.
+When the `+with-delayed!` block is called in daemon mode or when it is
+executed after MinEmacs provides the `minemacs-lazy` feature, the BODY
+will be executed immediately.
 
 #### `(+varplist-get VPLIST KEYWORD &optional CAR-P)`
 

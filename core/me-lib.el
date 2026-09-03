@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-08-15
+;; Last modified: 2026-09-03
 
 ;;; Commentary:
 
@@ -22,7 +22,13 @@
 (defvar minemacs--lazy-functions nil)
 
 (defmacro +with-delayed! (&rest body)
-  "Delay evaluating BODY with priority 0 (high priority)."
+  "Delay evaluating BODY.
+
+The BODY will be incrementally executed after loading MinEmacs.
+
+When the `+with-delayed!' block is called in daemon mode or when it is
+executed after MinEmacs provides the `minemacs-lazy' feature, the BODY
+will be executed immediately."
   (declare (indent 0))
   (if (or (featurep 'minemacs-lazy) (daemonp))
       (macroexp-progn body)
