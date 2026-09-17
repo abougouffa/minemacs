@@ -1,10 +1,10 @@
 ;;; me-just.el --- Justfile support -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2026-09-17
 
 ;;; Commentary:
 
@@ -23,7 +23,12 @@
 
 ;; Major mode for driving just files
 (use-package justl
-  :straight t)
+  :straight t
+  :custom
+  (justl-shell (cond ((require 'ghostel nil t) 'ghostel)
+                     ((require 'eat nil t) 'eat)
+                     ((require 'vterm nil t) 'vterm)
+                     (t 'eshell))))
 
 
 (provide 'on-demand/me-just)
