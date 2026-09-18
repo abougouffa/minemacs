@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2026-08-10
+;; Last modified: 2026-09-18
 
 ;;; Commentary:
 
@@ -29,6 +29,24 @@
   :hook
   (minemacs-after-startup . pscratch-mode)
   (minemacs-after-startup . pscratch-override-mode))
+
+
+;; OpenStreetMap viewer
+(use-package osm
+  :straight t
+  :config
+  (defvar +geojson-file-regexp "\\.geojson\\'" "Regexp matching files that `osm-open' should treat as GeoJSON.")
+
+  ;; Add support for GeoJSON files (convert to a temporary GPX file before opening)
+  (advice-add
+   'osm-open :filter-args
+   (+defun +osm-open:filter-args-a (args)
+     (let ((file (car args)))
+       (if (string-match-p +geojson-file-regexp file)
+           (let ((gpx-file (+geojson-to-gpx file)))
+             (message "Converted input file %s to temporary %s" file gpx-file)
+             (list gpx-file))
+         args)))))
 
 
 (provide 'me-extra)
