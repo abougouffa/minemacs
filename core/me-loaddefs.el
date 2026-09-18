@@ -301,6 +301,17 @@ When PRE is non-nil, allow downloading the latest prerelease.
 (minemacs-register-on-demand-module 'me-genexpr :auto-mode '(("\\.genexpr\\'" . genexpr-mode)))
 
 
+;;; Generated autoloads from ../modules/extras/me-geojson.el
+
+(autoload '+geojson-to-gpx "../modules/extras/me-geojson"
+"Convert the GeoJSON FILE to GPX and return the name of the GPX file.
+The result is written to OUTPUT, or to a temporary file if OUTPUT is nil.
+Interactively, the default OUTPUT sits next to FILE.
+
+(fn FILE &optional OUTPUT)" t)
+(register-definition-prefixes "../modules/extras/me-geojson" '("+geojson-" "+gpx--"))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-gitlab.el
 
 (minemacs-register-on-demand-module 'me-gitlab :auto-mode '(("\\.gitlab-ci.ya?ml\\'" . gitlab-ci-mode)) :companion-packages '(((yaml-mode yaml-ts-mode) . gitlab-ci-mode)) :define-loader t)
