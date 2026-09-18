@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-08-19
+;; Last modified: 2026-09-18
 
 ;;; Commentary:
 
@@ -566,8 +566,10 @@
       default)))
 
 (use-package nxml-mode
-  :mode "\\.rss\\'"
-  :mode "\\.xmpi\\'"
+  :mode "\\.rss\\'" ; Rich Site Summary
+  :mode "\\.xmpi?\\'" ; Extensible Metadata Platform
+  :mode "\\.tcx\\'" ; Training Center XML
+  :mode "\\.gpx\\'" ; GPS Exchange Format
   :mode "\\.p\\(?:list\\|om\\)\\'" ; plist, pom
   :mode "\\.xs\\(?:d\\|lt\\)\\'"   ; xslt, xsd
   :hook (nxml-mode . sgml-electric-tag-pair-mode)) ; Auto rename matching tags
