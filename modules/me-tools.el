@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-11
+;; Last modified: 2026-09-18
 
 ;;; Commentary:
 
@@ -64,6 +64,8 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   (eshell-load . ghostel-eshell-visual-command-mode)
   (minemacs-lazy . ghostel-compile-global-mode)
   (minemacs-lazy . ghostel-comint-global-mode)
+  :custom
+  (ghostel-module-auto-install (if (or (featurep 'arch/x86_64) (featurep 'arch/aarch64)) 'download 'compile))
   :init
   (+def-dedicated-tab! ghostel :exit-hook ghostel-exit-functions)
   (+super-project-define-commands 'ghostel-project)
