@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-09-18
+;; Last modified: 2026-09-25
 
 ;;; Commentary:
 
@@ -570,6 +570,8 @@
   :mode "\\.xmpi?\\'" ; Extensible Metadata Platform
   :mode "\\.tcx\\'" ; Training Center XML
   :mode "\\.gpx\\'" ; GPS Exchange Format
+  :mode "\\.gml\\'" ; Geography Markup Language
+  :mode "\\.kml\\'" ; Keyhole Markup Language
   :mode "\\.p\\(?:list\\|om\\)\\'" ; plist, pom
   :mode "\\.xs\\(?:d\\|lt\\)\\'"   ; xslt, xsd
   :hook (nxml-mode . sgml-electric-tag-pair-mode)) ; Auto rename matching tags
