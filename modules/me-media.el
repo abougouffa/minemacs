@@ -40,28 +40,12 @@
   (dolist (dir '(empv-audio-dir empv-video-dir empv-playlist-dir))
     (set dir (file-name-as-directory (symbol-value dir))))
 
-  (defun +empv-pick-individous-instance ()
-    "Pick an Individous instance with API support from https://api.invidious.io."
-    (when-let* ((instances (with-current-buffer
-                               (url-retrieve-synchronously "https://api.invidious.io/instances.json?sort_by=api,type,users")
-                             (goto-char url-http-end-of-headers)
-                             (json-parse-buffer :object-type 'alist :array-type 'list :null-object nil :false-object json-false))))
-      (if-let* ((instance (cadr (seq-find
-                                 (lambda (instance)
-                                   (let ((opts (cadr instance)))
-                                     (and
-                                      (string-match-p "^https?$" (alist-get 'type opts)) ; https
-                                      (not (eq (alist-get 'api opts) json-false))))) ; and has API support
-                                 instances))))
-          (setopt empv-invidious-instance (concat (alist-get 'uri instance) "/api/v1"))
-        (message "There is no available Invidious instance with API support."))))
-
   (defun +empv--dl-playlist (playlist)
     (when-let* ((yt-vids (seq-filter (lambda (item) ; Extract Youtube videos
                                        (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
                                             item))
                                      playlist)))
-      (mapcar (lambda (link) (empv-youtube-download link nil (lambda (where) (+log! "Successfully downloaded %s to %s" link where)))) yt-vids)))
+      (mapc (lambda (link) (empv-youtube-download link nil (lambda (where) (+log! "Successfully downloaded %s to %s" link where)))) yt-vids)))
 
   (defun +empv-download-playtlist-files ()
     (interactive)
