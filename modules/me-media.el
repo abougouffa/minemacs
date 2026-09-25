@@ -23,7 +23,7 @@
       "Open URL with MPV."
       (start-process "browse-url:mpv" " *MPV:browse-url*" +mpv-command url)))
   (setq browse-url-handlers
-        `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com" "youtu.be"))) . +browse-url-mpv)
+        `((,(rx (seq "http" (? ?s) "://" (? "www.") (or "youtube.com/watch?v=" "youtu.be/") (* (any alnum "_" "-")))) . +browse-url-mpv)
           ("." . ,browse-url-browser-function))))
 
 
@@ -42,7 +42,7 @@
 
   (defun +empv--dl-playlist (playlist)
     (when-let* ((yt-vids (seq-filter (lambda (item) ; Extract Youtube videos
-                                       (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (group-n 1 (* (any alnum "_" "-"))))) item)
+                                       (and (string-match (rx (seq (or "watch?v=" "youtu.be/") (* (any alnum "_" "-")))) item)
                                             item))
                                      playlist)))
       (mapc (lambda (link) (empv-youtube-download link nil (lambda (where) (+log! "Successfully downloaded %s to %s" link where)))) yt-vids)))
