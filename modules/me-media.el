@@ -52,6 +52,21 @@
     (empv--playlist-apply #'+empv--dl-playlist)))
 
 
+;; An Emacs major mode to open media (audio/video) files like any other file (via `find-file', `dired', etc)
+(use-package ready-player
+  :straight (:host github :repo "xenodium/ready-player" :files (:defaults "*.el"))
+  :after minemacs-first-file
+  :demand
+  :custom
+  (ready-player-minor-mode-map-prefix "C-c o p")
+  (ready-player-ask-for-project-sustainability nil)
+  :config
+  ;; Enable only when we have at least one supported media player installed
+  (when (and nil ; BUG: Disabled for now because of this bug: xenodium/ready-player#24
+             (seq-some #'executable-find (mapcar #'car ready-player-open-playback-commands)))
+    (ready-player-mode 1)))
+
+
 (provide 'me-media)
 
 ;;; me-media.el ends here
