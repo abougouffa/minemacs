@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2026-08-07
+;; Last modified: 2026-09-25
 
 ;;; Commentary:
 
@@ -45,10 +45,7 @@
     (when-let* ((instances (with-current-buffer
                                (url-retrieve-synchronously "https://api.invidious.io/instances.json?sort_by=api,type,users")
                              (goto-char url-http-end-of-headers)
-                             (let ((json-key-type 'symbol)
-                                   (json-array-type 'list)
-                                   (json-object-type 'alist))
-                               (json-read)))))
+                             (json-parse-buffer :object-type 'alist :array-type 'list :null-object nil :false-object json-false))))
       (if-let* ((instance (cadr (seq-find
                                  (lambda (instance)
                                    (let ((opts (cadr instance)))
