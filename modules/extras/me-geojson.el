@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2026-09-18
-;; Last modified: 2026-09-18
+;; Last modified: 2026-09-25
 
 ;;; Commentary:
 
@@ -27,8 +27,7 @@
 (require 'json)
 (require 'xml)
 
-(defvar +geojson-name-properties
-  '(name Name NAME title Title label description desc)
+(defvar +geojson-name-properties '(name Name NAME title Title label description desc)
   "Feature properties consulted, in order, for the name of a track or waypoint.")
 
 ;;;; Reading
@@ -38,13 +37,7 @@
   (with-temp-buffer
     (insert-file-contents file)
     (goto-char (point-min))
-    (if (fboundp 'json-parse-buffer)
-        (json-parse-buffer :object-type 'alist :array-type 'list :null-object nil :false-object nil)
-      (let ((json-object-type 'alist)
-            (json-array-type 'list)
-            (json-null nil)
-            (json-false nil))
-        (json-read)))))
+    (json-parse-buffer :object-type 'alist :array-type 'list :null-object nil :false-object nil)))
 
 (defun +geojson--get (key object)
   "Return the value of KEY in the GeoJSON OBJECT."
@@ -64,8 +57,7 @@
 
 (defun +gpx--number (n)
   "Format the number N for GPX output, avoiding exponential notation."
-  (let ((s (format "%s" (float n))))
-    (if (string-match-p "e" s) (format "%.10f" n) s)))
+  (format "%.10f" (float n)))
 
 (defun +gpx--point (tag position name indent)
   "Return the GPX element TAG for POSITION, prefixed by INDENT.
@@ -117,7 +109,8 @@ TITLE, if non-nil, is used as the name in the GPX metadata."
                ("LineString" (push (cons label (list coords)) tracks))
                ((or "MultiLineString" "Polygon") (push (cons label coords) tracks))
                ("MultiPolygon"
-                (dolist (polygon coords) (push (cons label polygon) tracks)))
+                (dolist (polygon coords)
+                  (push (cons label polygon) tracks)))
                ("GeometryCollection"
                 (dolist (geo (+geojson--get 'geometries geom))
                   (geometry geo label)))
@@ -137,10 +130,8 @@ TITLE, if non-nil, is used as the name in the GPX metadata."
       (error "No point or line geometry found in the GeoJSON data"))
     (concat
      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-     "<gpx version=\"1.1\" creator=\"geojson-to-gpx.el\""
-     " xmlns=\"http://www.topografix.com/GPX/1/1\">\n"
-     (and title (format "  <metadata><name>%s</name></metadata>\n"
-                        (xml-escape-string title)))
+     "<gpx version=\"1.1\" creator=\"MinEmacs\" xmlns=\"http://www.topografix.com/GPX/1/1\">\n"
+     (and title (format "  <metadata><name>%s</name></metadata>\n" (xml-escape-string title)))
      (mapconcat (lambda (wpt) (+gpx--point "wpt" (cdr wpt) (car wpt) "  ")) waypoints "")
      (mapconcat (lambda (trk) (+gpx--track (car trk) (cdr trk))) tracks "")
      "</gpx>\n")))
@@ -152,8 +143,7 @@ The result is written to OUTPUT, or to a temporary file if OUTPUT is nil.
 Interactively, the default OUTPUT sits next to FILE."
   (interactive
    (let ((file (read-file-name "GeoJSON file: " nil nil t)))
-     (list file (read-file-name "Write GPX to: " nil nil nil
-                                (concat (file-name-base file) ".gpx")))))
+     (list file (read-file-name "Write GPX to: " nil nil nil (concat (file-name-base file) ".gpx")))))
   (let ((gpx (+geojson-to-gpx-string (+geojson--read file) (file-name-nondirectory file)))
         (out (or output (make-temp-file (file-name-base file) nil ".gpx"))))
     (let ((coding-system-for-write 'utf-8-unix))
