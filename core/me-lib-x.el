@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-08-11
+;; Last modified: 2026-09-28
 
 ;;; Commentary:
 
@@ -1030,8 +1030,14 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
     "cmake-build/*_make_Release"
     "cmake-build/*_make_Debug"))
 
-;;;###autoload
-(defun +compilation-db-find-file (&optional proj-root)
+(defun +get-file-directory (path)
+  "Get the parent directory of file PATH, or the directory itself."
+  (when path
+    (if (file-directory-p path)
+        (file-name-as-directory path)
+      (file-name-parent-directory path))))
+
+(defun +compilation-db-find-file-at-project-root (&optional proj-root)
   (let* ((default-directory (or proj-root (+project-safe-root) default-directory)))
     (cl-find-if
      #'file-exists-p
@@ -1039,17 +1045,37 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
                (expand-file-name "compile_commands.json" (expand-file-name dir)))
              (mapcan #'file-expand-wildcards +compile-commands-json-directories)))))
 
+(defun +compilation-db-find-file-dominating (&optional proj-root start-dir)
+  (let* ((start-dir (expand-file-name (or (+get-file-directory start-dir)
+                                          (and buffer-file-name (file-name-directory buffer-file-name))
+                                          default-directory)))
+         (proj-root (or proj-root (+project-safe-root) default-directory)))
+    (cl-loop with curr-dir = start-dir
+             with compile-db = nil
+             do (setq compile-db (+compilation-db-find-file-at-project-root curr-dir)
+                      curr-dir (file-name-parent-directory curr-dir))
+             until (or compile-db (equal (file-name-as-directory curr-dir) (file-name-as-directory proj-root)))
+             finally return compile-db)))
+
+;;;###autoload
+(defun +compilation-db-find-file (&optional proj-root)
+  (let* ((default-directory (or (+get-file-directory proj-root)
+                                (+project-safe-root)
+                                default-directory)))
+    (or (+compilation-db-find-file-at-project-root proj-root)
+        (+compilation-db-find-file-dominating proj-root buffer-file-name))))
+
 (defvar +compilation-db-cache (make-hash-table :test #'equal))
 
 ;;;###autoload
 (defun +get-compilation-db (&optional proj-root)
   "Get the  \"compile_commands.json\" for project at PROJ-ROOT as a plist."
   (when-let* ((compile-commands-file (+compilation-db-find-file proj-root)))
-    (or (gethash proj-root +compilation-db-cache)
+    (or (gethash compile-commands-file +compilation-db-cache)
         (when-let* ((json-object-type 'plist)
                     (json-array-type 'list)
                     (compile-commands (json-read-file compile-commands-file)))
-          (puthash proj-root compile-commands +compilation-db-cache)
+          (puthash compile-commands-file compile-commands +compilation-db-cache)
           compile-commands))))
 
 ;;;###autoload
