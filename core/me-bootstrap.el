@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-28
+;; Last modified: 2026-09-30
 
 ;;; Commentary:
 
@@ -177,6 +177,10 @@ MinEmacs directory before upgrading."
         (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
       (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
 
+(when (featurep 'os/win)
+  (advice-add ; BUGFIX+TEMP: This fixes a crash in Windows
+   'straight--get-package-version :filter-return
+   (lambda (ver) (and (stringp ver) (string-trim ver)))))
 
 (provide 'me-bootstrap)
 
