@@ -151,7 +151,9 @@
 (use-package mcp-hub
   :straight mcp
   :custom
-  (mcp-hub-servers `(("ddg" . (:command "uvx" :args ("duckduckgo-mcp-server")))))
+  (mcp-hub-servers `(("ddg" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+                     ;; Keyless web search via the You.com free MCP profile
+                     ("you" . (:url "https://api.you.com/mcp?profile=free"))))
   :config
   (mcp-hub-start-all-server
    (lambda ()
