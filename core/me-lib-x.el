@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-09-28
+;; Last modified: 2026-10-02
 
 ;;; Commentary:
 
@@ -1046,15 +1046,16 @@ When NO-OPT isn non-nil, don't return the \"-style=\" part."
              (mapcan #'file-expand-wildcards +compile-commands-json-directories)))))
 
 (defun +compilation-db-find-file-dominating (&optional proj-root start-dir)
-  (let* ((start-dir (expand-file-name (or (+get-file-directory start-dir)
-                                          (and buffer-file-name (file-name-directory buffer-file-name))
-                                          default-directory)))
-         (proj-root (or proj-root (+project-safe-root) default-directory)))
+  (when-let* ((start-dir (or (+get-file-directory start-dir)
+                             (and buffer-file-name (file-name-directory buffer-file-name))
+                             default-directory))
+              (start-dir (expand-file-name start-dir)))
     (cl-loop with curr-dir = start-dir
+             with stop-dir = (or proj-root (+project-safe-root) default-directory)
              with compile-db = nil
              do (setq compile-db (+compilation-db-find-file-at-project-root curr-dir)
                       curr-dir (file-name-parent-directory curr-dir))
-             until (or compile-db (equal (file-name-as-directory curr-dir) (file-name-as-directory proj-root)))
+             until (or compile-db (not curr-dir) (and stop-dir (equal (file-name-as-directory curr-dir) (file-name-as-directory stop-dir))))
              finally return compile-db)))
 
 ;;;###autoload
