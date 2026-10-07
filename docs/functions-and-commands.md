@@ -902,6 +902,10 @@ When NO-OPT isn non-nil, don't return the "-style=" part.
 
 Set some editor settings from ".clang-format" when available.
 
+#### `(+get-file-directory PATH)`
+
+Get the parent directory of file PATH, or the directory itself.
+
 #### `(+get-compilation-db &optional PROJ-ROOT)`
 
 Get the  "compile_commands.json" for project at PROJ-ROOT as a plist.
@@ -1255,6 +1259,17 @@ When PRE is provided, it is used as pre-release suffix.
 Call with C-u for applying an `auto` bump.
 This command stashes the current workspace before bumping the version, and
 restores it after that.
+
+#### `(+geojson-to-gpx-string DATA &optional TITLE)`
+
+Convert the parsed GeoJSON DATA into a GPX document string.
+TITLE, if non-nil, is used as the name in the GPX metadata.
+
+#### `(+geojson-to-gpx FILE &optional OUTPUT)`
+
+Convert the GeoJSON FILE to GPX and return the name of the GPX file.
+The result is written to OUTPUT, or to a temporary file if OUTPUT is nil.
+Interactively, the default OUTPUT sits next to FILE.
 
 #### `(+mu4e-register-account LABEL MAILDIR LETVARS &optional DEFAULT-PGMAIL-P)`
 

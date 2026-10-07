@@ -90,6 +90,7 @@
 ## `me-extra`
 * `crux`: A Collection of Ridiculously Useful eXtensions for Emacs
 * `pscratch`: Persistent per-project scratch buffers for Emacs
+* `osm`: OpenStreetMap viewer
 
 ## `me-files`
 * `dired-hacks`: Collection of useful dired additions
@@ -253,6 +254,9 @@
 
 ## `on-demand/me-bc`
 * `bc-mode`: BC code editing commands for Emacs
+
+## `on-demand/me-bpftrace`
+* `bpftrace-mode`: Major mode for bpftrace scripts
 
 ## `on-demand/me-bqn`
 * `bqn-mode`: Major mode for editing BQN grammar files
