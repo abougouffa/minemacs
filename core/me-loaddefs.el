@@ -97,6 +97,11 @@ Return its plist, or with PROPERTY only that property's value.
 (register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "+use-package--check-if-disabled:around-a" "minemacs-"))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-bpftrace.el
+
+(minemacs-register-on-demand-module 'me-bpftrace :auto-mode '(("\\.bt\\'" . bpftrace-mode)) :interpreter-mode '(("bpftrace" . bpftrace-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-bqn.el
 
 (minemacs-register-on-demand-module 'me-bqn :auto-mode '(("\\.bqn\\'" . bqn-mode)) :interpreter-mode '(("bqn" . bqn-mode)))
