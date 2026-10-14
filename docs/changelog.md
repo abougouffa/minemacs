@@ -2,6 +2,44 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v14.15.0](https://github.com/abougouffa/minemacs/compare/cb28ae5a221cbe31ae587d21a0a3b192dce2ab77..v14.15.0) - 2026-10-14
+#### Tweaks
+- (**empv**) make use of `json-parse-buffer` - ([7835367](https://github.com/abougouffa/minemacs/commit/7835367f3762e57e786c371087adf25571e9a27b)) - [@abougouffa](https://github.com/abougouffa)
+- (**geojson**) minor tweaks in the GeoJSON to GPX conversion utilities - ([734c155](https://github.com/abougouffa/minemacs/commit/734c155751772f97b8f599482ef5e5ecc69c9be8)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) automatically download the module when available - ([d063435](https://github.com/abougouffa/minemacs/commit/d063435cb0811fdba1dd520c86e157445ee3c5ae)) - [@abougouffa](https://github.com/abougouffa)
+- (**media**) better YouTube regexps - ([d888f47](https://github.com/abougouffa/minemacs/commit/d888f47ec278335f9dad10336ed3c516f7eb6476)) - [@abougouffa](https://github.com/abougouffa)
+- (**nxml-mode**) use for `.gml` and `.kml` files - ([97891c3](https://github.com/abougouffa/minemacs/commit/97891c34380165973c7622fb9ffb2e1c96422f8e)) - [@abougouffa](https://github.com/abougouffa)
+- (**nxml-mode**) use with the `.xmp`, `.gpx` and `.tcx` extensions - ([fdd4dec](https://github.com/abougouffa/minemacs/commit/fdd4dec72d9652a9de1f31be3244e21cf466f68c)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/just**) use `ghostel` as a shell if available - ([c514ceb](https://github.com/abougouffa/minemacs/commit/c514ceb59a71384ab28b5bfba53269e7d9140bd6)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([fe05c32](https://github.com/abougouffa/minemacs/commit/fe05c32b79e7be2c828bf69d17505f3db6926fcd)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f356f46](https://github.com/abougouffa/minemacs/commit/f356f46e5e182fdb4a2ea223c9d6a9d605f35f7b)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([a45684b](https://github.com/abougouffa/minemacs/commit/a45684bb3f6d82316793aaab8f2a6f513919cfae)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1c47297](https://github.com/abougouffa/minemacs/commit/1c4729722d0fa180df31f53da1ffdc0bf30e7db7)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([7b11fa8](https://github.com/abougouffa/minemacs/commit/7b11fa8878d4d1488246a73507a5ac2240302654)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([43dfa21](https://github.com/abougouffa/minemacs/commit/43dfa2118f231ba513e2b3aa6d1520bca75524c9)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([aed903c](https://github.com/abougouffa/minemacs/commit/aed903caee05bf41cedaa23ab40e7cbce8adfdcf)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([04a05f3](https://github.com/abougouffa/minemacs/commit/04a05f345902263f566014786e2c9487132c6261)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([396dddc](https://github.com/abougouffa/minemacs/commit/396dddccbebc470140696b42a68b16cc773b4ef5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([950271d](https://github.com/abougouffa/minemacs/commit/950271d5feb7e4aadd74b17ee0317c69f1d8e270)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**extra**) restore `osm` with support for GeoJSON files - ([7ed0e47](https://github.com/abougouffa/minemacs/commit/7ed0e4778be6a6dbd07b285d69193327a40243bf)) - [@abougouffa](https://github.com/abougouffa)
+- (**media**) restore `ready-player`, but don't enable it by default - ([fa62edc](https://github.com/abougouffa/minemacs/commit/fa62edc3c0f2e181d33dacc860e8697314fc6e60)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand**) add support for bpftrace - ([6f32660](https://github.com/abougouffa/minemacs/commit/6f32660bb5aece1737fe3d32ac23925171b946ab)) - [@abougouffa](https://github.com/abougouffa)
+- add support for multi compilation databases per project - ([2c95a00](https://github.com/abougouffa/minemacs/commit/2c95a00117eb60cd4c73f89b8a3cb232aec1c749)) - [@abougouffa](https://github.com/abougouffa)
+- add helpers for converting GeoJSON files to GPX format - ([8e8eda8](https://github.com/abougouffa/minemacs/commit/8e8eda8fedd32dc876bfc0080af1bb92f6ec22b6)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**straight**) crash on Windows when `straight` checks package version - ([577cbcc](https://github.com/abougouffa/minemacs/commit/577cbcc992de26e5296532d039e5ea01e5b78aad)) - [@abougouffa](https://github.com/abougouffa)
+- edge case in the compilation DB discovery code - ([773c3dc](https://github.com/abougouffa/minemacs/commit/773c3dc94f4441db7e259d3feee93231b1043777)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**media**) make `ready-player` obsolete again, too unstable - ([fb2983d](https://github.com/abougouffa/minemacs/commit/fb2983da90d2bce49584047f0315f09fb70038c5)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate the documentation - ([a55467e](https://github.com/abougouffa/minemacs/commit/a55467e7da0544af600cee73220924e2c4a6888b)) - [@abougouffa](https://github.com/abougouffa)
+- better documentation of `+with-delayed!` - ([cb28ae5](https://github.com/abougouffa/minemacs/commit/cb28ae5a221cbe31ae587d21a0a3b192dce2ab77)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**empv**) cleanup old Individous instance picking - ([a803891](https://github.com/abougouffa/minemacs/commit/a8038914ab08e18ac3b7e4a96b028401d6c5ed41)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.14.0](https://github.com/abougouffa/minemacs/compare/5f25271479ae72e6c3cdc545ab769733485ad3b4..v14.14.0) - 2026-09-02
 #### Tweaks
 - (**adb**) better parsing and completion of connected devices - ([5dc85db](https://github.com/abougouffa/minemacs/commit/5dc85db3be76f33b272e4abe62f86c4947db51b9)) - [@abougouffa](https://github.com/abougouffa)
