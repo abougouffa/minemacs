@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-06-27
+;; Last modified: 2026-10-24
 
 ;;; Commentary:
 
@@ -15,7 +15,7 @@
   (let ((prefix (or prefix "RunHook")))
     (condition-case err
         (funcall func)
-      (error (+msg! (concat prefix "Error") "%S" err))
+      (error (+msg! (concat prefix "Error") "%S: %S" func err))
       (:success (when (or minemacs-debug-p minemacs-verbose-p) (+msg! (concat prefix "Success") "Executed %S" func))))
     ;; Return nil to continue running hooks, otherwise, `run-hook-wrapped' will stop running hooks
     nil))
