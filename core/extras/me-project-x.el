@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-06-26
-;; Last modified: 2026-08-03
+;; Last modified: 2026-10-29
 
 ;;; Commentary:
 
@@ -146,6 +146,13 @@ Can override `project--files-in-directory' for x3.5 faster listing."
  'project--git-submodules :around
  (+defun +project--git-submodules-check-file:around-a (fn)
    (when (file-exists-p ".gitmodules") (funcall fn))))
+
+;; Don't search for VC roots on adb remotes, otherwise, it can trigger an error
+(advice-add
+ 'project-try-vc :around
+ (+defun +project-try-vc--no-adb:around-a (orig-fn dir)
+   (unless (equal (file-remote-p dir 'method) "adb")
+     (funcall orig-fn dir))))
 
 
 
