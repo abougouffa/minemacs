@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-20
-;; Last modified: 2026-06-25
+;; Last modified: 2026-11-12
 
 ;;; Commentary:
 
@@ -158,23 +158,7 @@
 ;; A collection of opinionated keyboard-driven transient menus for various Emacs modes
 (use-package casual-suite
   :straight t
-  :bind ("C-o" . casual-editkit-main-tmenu)
-  :bind (("M-g a" . casual-avy-tmenu))
-  :bind (:map Info-mode-map ("C-o" . casual-info-tmenu))
-  :bind (:map Man-mode-map ("C-o" . casual-man-tmenu))
-  :bind (:map bookmark-bmenu-mode-map ("C-o" . casual-bookmarks-tmenu))
-  :bind (:map calendar-mode-map ("C-o" . casual-calendar))
-  :bind (:map dired-mode-map ("C-o" . casual-dired-tmenu))
-  :bind (:map eshell-mode-map ("C-o" . casual-eshell-tmenu))
-  :bind (:map help-mode-map ("C-o" . casual-help-tmenu))
-  :bind (:map ibuffer-mode-map ("C-o" . casual-ibuffer-tmenu))
-  :bind (:map image-mode-map ("C-o" . casual-image-tmenu))
-  :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu))
-  :bind (:map makefile-mode-map ("C-o" . casual-make-tmenu))
-  :bind (:map org-agenda-mode-map ("C-o" . casual-agenda-tmenu))
-  :bind (:map reb-mode-map ("C-o" . casual-re-builder-tmenu))
-  :bind (:map symbol-overlay-map ("C-o" . casual-symbol-overlay-tmenu))
-  :bind (:map calc-mode-map ("C-o" . casual-calc-tmenu)))
+  :hook (minemacs-first-file . casual-suite-init))
 
 
 (provide 'me-ui)
