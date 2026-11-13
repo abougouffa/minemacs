@@ -26,38 +26,7 @@
   :custom
   (claude-code-ide-diagnostics-backend 'flymake)
   (claude-code-ide-terminal-backend (cond ((featurep 'ghostel) 'ghostel)
-                                          ((featurep 'eat) 'eat)))
-  :config
-  (require 'web-server) ; Needed by `claude-code-ide' for its MCP server
-  ;; TWEAK+FIX: A hack to make it work with Claude that runs inside a sandboxed
-  ;; DevContainer
-  (when (require 'devcontainer nil t)
-    (defun +claude-code-ide--detect-cli-devcontainer ()
-      "Detect if Claude Code CLI is available."
-      (let ((available (condition-case nil
-                           (let ((args (devcontainer-advise-command (list claude-code-ide-cli-path "--version"))))
-                             (zerop (apply #'call-process `(,(car args) nil nil nil ,@(cdr args)))))
-                         (error nil))))
-        (setq claude-code-ide--cli-available available)))
-
-    (defun +claude-code-ide--build-claude-command-devcontainer (fn &rest fn-args)
-      (let* ((args (devcontainer-advise-command (ensure-list claude-code-ide-cli-path)))
-             (args `(,(car args) ,(cadr args) "-it" ,@(cddr args)))
-             (claude-code-ide-cli-path (string-join args " ")))
-        (apply fn fn-args)))
-
-    (advice-add 'claude-code-ide--detect-cli :override #'+claude-code-ide--detect-cli-devcontainer)
-    (advice-add 'claude-code-ide--build-claude-command :around #'+claude-code-ide--build-claude-command-devcontainer))
-
-  ;; Inspired by Spacemacs
-  (defun +claude-code-explain-at-point ()
-    "Send a question about the symbol/region at point to Claude Code."
-    (interactive)
-    (if-let* ((symbol (or (thing-at-point 'region t) (thing-at-point 'symbol t))))
-        (claude-code-ide-send-prompt (format "What does %s do?" symbol))
-      (message "No symbol at point")))
-
-  (claude-code-ide-emacs-tools-setup))
+                                          ((featurep 'eat) 'eat))))
 
 
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
