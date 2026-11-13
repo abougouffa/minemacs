@@ -1143,6 +1143,42 @@ move to the source code that caused it.
 
 (fn COMMAND)" t)
 (register-definition-prefixes "../elisp/valgrind" '("valgrind-"))
+
+
+;;; Generated autoloads from ../elisp/yas2tempel.el
+
+(autoload 'yas2tempel-convert-string "../elisp/yas2tempel"
+"Convert the YASnippet snippet BODY into a list of Tempel elements.
+EXPAND-ENV is the snippet's expand-env directive value, if any.
+
+(fn BODY &optional EXPAND-ENV)")
+(autoload 'yas2tempel-convert-snippet "../elisp/yas2tempel"
+"Convert snippet file TEXT (read from FILE) into a Tempel template.
+Return a plist (:template TEMPLATE :condition COND :warnings LIST
+:snippet SNIPPET) or nil plus warnings for unsupported snippets.
+
+(fn TEXT &optional FILE)")
+(autoload 'yas2tempel-convert-tree "../elisp/yas2tempel"
+"Convert the snippet tree ROOT.
+Return a plist (:sections SECTIONS :warnings ALIST :count N) where
+SECTIONS is a list of (MODES CONDITION TEMPLATE-ENTRIES...) and each
+template entry is (TEMPLATE FILE WARNINGS).
+
+(fn ROOT)")
+(autoload 'yas2tempel-convert-directory "../elisp/yas2tempel"
+"Convert the YASnippet tree DIR into the Tempel templates file OUTPUT.
+DIR is either a snippet collection (with one directory per major
+mode, like `yas-snippet-dirs' entries) or a single mode directory.
+OUTPUT is overwritten.  Return the number of converted templates.
+
+(fn DIR OUTPUT)" t)
+(autoload 'yas2tempel-convert-file "../elisp/yas2tempel"
+"Show the Tempel template converted from the snippet FILE.
+
+(fn FILE)" t)
+(autoload 'yas2tempel-convert-buffer "../elisp/yas2tempel"
+"Show the Tempel template converted from the current snippet buffer." t)
+(register-definition-prefixes "../elisp/yas2tempel" '("yas2tempel-"))
 
 ;;; End of scraped data
 
