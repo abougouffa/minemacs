@@ -12,7 +12,7 @@
 
 ;; Better Emacs Lisp code viewing
 (use-package elisp-plus
-  :straight (:host github :repo "abougouffa/elisp-plus")
+  :vc (:url "https://github.com/abougouffa/elisp-plus")
   :after minemacs-first-elisp-file
   :custom
   (elisp-plus-better-lisp-indent nil)
@@ -22,7 +22,7 @@
 
 ;; Simplifying how you write Lisp
 (use-package parinfer-rust-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/modules)
   :autoload +parinfer-rust-mode-maybe
   :custom
@@ -71,7 +71,7 @@
 
 ;; Evaluation Result OverlayS for Emacs Lisp
 (use-package eros
-  :straight t
+  :ensure t
   :hook (minemacs-first-elisp-file . eros-mode)
   :custom
   (eros-eval-result-prefix (if (char-displayable-p ?→) "→ " "=>")))
@@ -79,7 +79,7 @@
 
 ;; Elisp regexp mistake finder
 (use-package relint
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-emacs-lisp)

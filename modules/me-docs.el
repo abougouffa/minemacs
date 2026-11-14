@@ -13,7 +13,7 @@
 
 ;; PDFGrep is an Emacs module providing "grep" comparable facilities but for PDF files
 (use-package pdfgrep
-  :straight t
+  :ensure t
   :when (executable-find "pdfgrep")
   :commands (pdfgrep-mode pdfgrep)
   :custom
@@ -24,7 +24,7 @@
 
 ;; An Emacs major mode to read and browse RFC documents
 (use-package rfc-mode
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . rfc-mode-update-index)
   :custom
   (rfc-mode-directory (concat minemacs-local-dir "rfc"))
@@ -42,7 +42,7 @@
 
 ;; Browse "tldr" pages from Emacs
 (use-package tldr
-  :straight t
+  :ensure t
   :hook
   (minemacs-build-functions . tldr-update-docs)
   (tldr-mode . visual-line-mode)
@@ -52,19 +52,19 @@
 
 ;; Render formulas using MathJax, optional dependency for `devdocs'
 (use-package mathjax
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs viewer for DevDocs, offline documentation for programming languages and libraries
 (use-package devdocs
-  :straight t
+  :ensure t
   :when (featurep 'feat/libxml2)
   :hook (minemacs-build-functions . devdocs-update-all))
 
 
 ;; Offline documentation browser using Dash/Zeal docsets
 (use-package dash-docs
-  :straight (:host github :repo "abougouffa/dash-docs")
+  :vc (:url "https://github.com/abougouffa/dash-docs")
   :custom
   (dash-docs-docsets-path (concat minemacs-local-dir "docsets/"))
   (dash-docs-browser-func #'eww-browse-url)
@@ -80,7 +80,7 @@
 
 ;; Integration of `consult' with `dash-docs'
 (use-package consult-dash
-  :straight t
+  :ensure t
   :unless (+package-disabled-p 'consult 'me-completion)
   :config
   (with-eval-after-load 'consult

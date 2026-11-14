@@ -23,7 +23,7 @@
 
 ;; Arduino CLI command wrapper
 (use-package arduino-cli-mode
-  :straight t
+  :ensure t
   :hook +arduino-mode
   :custom
   (arduino-cli-verify t)

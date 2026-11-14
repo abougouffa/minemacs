@@ -18,7 +18,7 @@
 
 ;; BC code editing commands for Emacs
 (use-package bc-mode
-  :straight t
+  :vc (:url "https://github.com/emacsmirror/bc-mode")
   :mode "\\.bc\\'"
   :interpreter "bc")
 

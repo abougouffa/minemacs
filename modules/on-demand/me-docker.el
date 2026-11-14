@@ -23,17 +23,17 @@
 
 ;; Major mode for editing Docker's Dockerfiles
 (use-package dockerfile-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Major mode for editing docker-compose files
 (use-package docker-compose-mode
-  :straight t)
+  :vc (:url "https://github.com/emacsmirror/docker-compose-mode"))
 
 
 ;; Major mode for Apptainer definition files
 (use-package apptainer-mode
-  :straight (:host github :repo "jrgant/apptainer-mode")
+  :vc (:url "https://github.com/jrgant/apptainer-mode")
   :config
   (setq apptainer-boxed-headers t
         apptainer-boxed-sections t))

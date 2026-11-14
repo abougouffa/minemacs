@@ -16,12 +16,12 @@
   ;; HACK+FIX: The `simple-httpd' package, installed as a dependency of other
   ;; packages, have the same repository name "emacs-web-server", which conflicts
   ;; with this package's repo, so we change the local repo to "web-server.el"
-  :straight (:host github :repo "eschulte/emacs-web-server" :local-repo "eschulte-web-server"))
+  :vc (:url "https://github.com/eschulte/emacs-web-server"))
 
 
 ;; Claude Code IDE integration for Emacs
 (use-package claude-code-ide
-  :straight (:host github :repo "manzaltu/claude-code-ide.el")
+  :vc (:url "https://github.com/manzaltu/claude-code-ide.el")
   :bind ("C-c C-'" . claude-code-ide-menu)
   :custom
   (claude-code-ide-diagnostics-backend 'flymake)
@@ -31,7 +31,7 @@
 
 ;; Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 (use-package whisper
-  :straight (:host github :repo "natrys/whisper.el")
+  :vc (:url "https://github.com/natrys/whisper.el")
   :custom
   (whisper-install-directory (+directory-ensure minemacs-local-dir "whisper/"))
   (whisper-use-threads (/ (num-processors) 2))

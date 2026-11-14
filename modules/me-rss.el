@@ -17,7 +17,7 @@
 
 ;; An Emacs RSS web feeds client
 (use-package elfeed
-  :straight t
+  :ensure t
   :init
   (defcustom +elfeed-images-dir "~/Pictures/elfeed/"
     "Directory of downloaded pictures."

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-05-27
+;; Last modified: 2026-11-14
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -35,7 +35,7 @@
 ;;   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
 ;;   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
 ;;   * `~/.emacs.d/core/me-builtin.el`
-;;   * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`)
+;;   * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`, setup `package' and `use-package')
 ;;   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules', unless `MINEMACS_BUILTIN_ONLY)
 ;;   * `$MINEMACSDIR/config.el`                 (unless disabled)
 ;;   * `$MINEMACSDIR/local/config.el`           (unless disabled)
@@ -106,15 +106,13 @@
 ;; loading all modules, including on-demand ones.
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
-;; When only built-in packages are loaded, we define `:straight' to do nothing.
-;; This is important for the updates installed for built-in packages in
-;; `me-builtin' like `transient', `eglot', `xref', etc.
+;; When only built-in packages are loaded, we make `:ensure' and `:vc' do
+;; nothing. This is important for the updates installed for built-in packages in
+;; `me-builtin' like `transient'.
 (if minemacs-builtin-only-p
     (progn
-      (add-to-list 'use-package-keywords :straight)
-      (defalias 'use-package-normalize/:straight #'ignore)
-      (defun use-package-handler/:straight (name _keyword _arg rest state)
-        (use-package-concat (use-package-process-keywords name rest state))))
+      (setq use-package-ensure-function #'ignore)
+      (advice-add 'use-package-vc-install :override #'ignore))
   (require 'me-bootstrap))
 
 (require 'me-builtin)

@@ -17,7 +17,7 @@
 
 ;; Textile markup editing major mode
 (use-package textile-mode
-  :straight t
+  :ensure t
   :mode "\\.textile\\'")
 
 

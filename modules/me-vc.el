@@ -13,7 +13,7 @@
 
 ;; It's Magit! A Git Porcelain inside Emacs.
 (use-package magit
-  :straight t
+  :ensure t
   :custom
   (magit-diff-refine-hunk t)
   (magit-save-repository-buffers nil)
@@ -44,7 +44,7 @@
 
 ;; Magit extension for "git-imerge"
 (use-package magit-imerge
-  :straight t
+  :ensure t
   :when (executable-find "git-imerge")
   :after magit
   :init
@@ -54,7 +54,7 @@
 
 ;; Use delta when viewing diffs in `magit'
 (use-package magit-delta
-  :straight (:host github :repo "dandavison/magit-delta")
+  :vc (:url "https://github.com/dandavison/magit-delta")
   :when (executable-find "delta")
   :hook (magit-mode . magit-delta-mode)
   :custom
@@ -63,7 +63,7 @@
 
 ;; Gerrit integration with Magit
 (use-package magit-gerrit
-  :straight (:host github :repo "abougouffa/magit-gerrit")
+  :vc (:url "https://github.com/abougouffa/magit-gerrit")
   :after magit
   :demand
   :bind ( :map magit-status-mode-map
@@ -73,17 +73,17 @@
 
 ;; Gerrit integration via the REST API
 (use-package gerrit
-  :straight (:host github :repo "twmr/gerrit.el"))
+  :vc (:url "https://github.com/twmr/gerrit.el"))
 
 
 ;; Store EIEIO objects using EmacSQL
 (use-package closql
-  :straight t)
+  :ensure t)
 
 
 ;; Work with Git forges from the comfort of Magit
 (use-package forge
-  :straight t
+  :ensure t
   :config
   (require 'on-demand/me-markdown)
   (setq forge-bug-reference-remote-files nil)) ; Don't enable `bug-reference-mode' on remote files, may slowdown some commands
@@ -91,7 +91,7 @@
 
 ;; Emacs package for highlighting uncommitted changes
 (use-package diff-hl
-  :straight t
+  :ensure t
   :hook
   (minemacs-first-file . global-diff-hl-mode)
   (diff-hl-mode . +diff-hl-update-on-buffer-change)
@@ -114,7 +114,7 @@
 
 ;; Walk through Git revisions of a file
 (use-package git-timemachine
-  :straight t
+  :ensure t
   :hook (git-timemachine-mode . display-line-numbers-mode)
   :config
   (advice-add
@@ -129,7 +129,7 @@
 
 ;; Show Git blame info about current line
 (use-package blamer
-  :straight t
+  :ensure t
   :custom
   (blamer-self-author-name "You")
   (blamer-avatar-folder (concat minemacs-cache-dir "blamer-avatars/"))
@@ -141,20 +141,20 @@
 
 ;; Emacs major modes for Git configuration files
 (use-package git-modes
-  :straight t
+  :ensure t
   :mode ("/\\.\\(docker\\|fd\\|rg\\|ag\\|hg\\)?ignore\\'" . gitignore-mode)
   :mode ("/\\.dumbjump\\'" . gitignore-mode))
 
 
 ;; Running "repo" from Emacs
 (use-package repo
-  :straight t
+  :ensure t
   :hook (repo-mode . +ansi-color-apply-on-buffer))
 
 
 ;; Jujutsu (jj) integration with Emacs `vc' and `project'
 (use-package vc-jj
-  :straight t
+  :ensure t
   :when (executable-find "jj")
   :after vc
   :demand)
@@ -162,18 +162,18 @@
 
 ;; Magit-inspired interface for Jujutsu
 (use-package jj-mode
-  :straight (:host github :repo "bolivier/jj-mode.el")
+  :vc (:url "https://github.com/bolivier/jj-mode.el")
   :when (executable-find "jj"))
 
 
 ;; View diffs side-by-side in Emacs
 (use-package diffview
-  :straight t)
+  :ensure t)
 
 
 ;; A structural diff that understands syntax
 (use-package difftastic
-  :straight t
+  :ensure t
   :when (executable-find "difft"))
 
 

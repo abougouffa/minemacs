@@ -103,13 +103,16 @@
 ;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
 (setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
 
-;; Install some third-party packages. MinEmacs uses `use-package' and `straight'
-;; for package management. It is recommended to use the same to install
-;; additional packages. For example, to install `devdocs' you can use something
-;; like:
+;; Install some third-party packages. MinEmacs uses `use-package' and the
+;; built-in `package' (and `package-vc') for package management. It is
+;; recommended to use the same to install additional packages. Use `:ensure t'
+;; to install a package from the archives (MELPA, GNU ELPA and NonGNU ELPA) or
+;; `:vc' to install it from its Git repository. For example, to install
+;; `devdocs' you can use something like:
 (use-package devdocs
-  ;; The installation recipe (from Github)
-  :straight (:host github :repo "astoff/devdocs.el" :files ("*.el"))
+  ;; The installation recipe (from Github), `:ensure t' works too as `devdocs'
+  ;; is available in GNU ELPA
+  :vc (:url "https://github.com/astoff/devdocs.el")
   ;; Autoload the package when invoking these commands, note that if the
   ;; commands are already autoloaded (defined with `autoload'), this is not
   ;; needed.

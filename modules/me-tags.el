@@ -13,7 +13,7 @@
 
 ;; Ctags IDE on the True Editor!, a superior code reading & auto-completion tool with pluggable backends
 (use-package citre
-  :straight t
+  :ensure t
   :commands (+citre-gtags-create-list-of-files-to-index +citre-gtags-create-list-of-files-to-index-bitbake-aware)
   :custom
   (citre-project-root-function #'+citre-dominating-project-root) ; Better (!) project root detection function

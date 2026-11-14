@@ -17,7 +17,7 @@
 
 ;; Tree-sitter based major mode for AsciiDoc markup
 (use-package asciidoc-mode
-  :straight t
+  :ensure t
   :hook (minemacs-build-functions . asciidoc-install-grammars))
 
 

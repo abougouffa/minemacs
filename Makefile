@@ -5,7 +5,7 @@ CLOC=cloc
 
 all:
 	@echo "Cleaning rules are: clean, clean-extras, clean-all, clean-cache, prune, clean-loaddefs."
-	@echo "MinEmacs packages rules: bump, upgrade."
+	@echo "MinEmacs packages rules: bump, upgrade, freeze, recompile."
 	@echo "MinEmacs CI rules: ci, ci-daemon."
 	@echo "Extra rules: cloc."
 	@echo "Documentation options: gen-external-tools, gen-descriptions, documentation."
@@ -40,19 +40,16 @@ clean-cache: clean-extras
 	rm $(EMACS_DIR)/local/forge-database*.sqlite || true
 
 clean: clean-extras
-	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache $(EMACS_DIR)/local/straight/build-*
+	rm -rf $(EMACS_DIR)/eln-cache $(EMACS_DIR)/local/eln-cache $(EMACS_DIR)/local/cache
 
 clean-all: clean clean-cache
-	cp $(EMACS_DIR)/local/straight/versions/default.el /tmp/straight-versions-default.el
-	rm -rf $(EMACS_DIR)/local/straight/
-	mkdir -p $(EMACS_DIR)/local/straight/versions/
-	cp /tmp/straight-versions-default.el $(EMACS_DIR)/local/straight/versions/default.el
+	rm -rf $(EMACS_DIR)/local/elpa/
 
 prune: clean
-	cp $(EMACS_DIR)/local/straight/versions/default.el /tmp/straight-versions-default.el
+	cp $(EMACS_DIR)/local/packages/versions.el /tmp/minemacs-packages-versions.el
 	rm -rf $(EMACS_DIR)/local
-	mkdir -p $(EMACS_DIR)/local/straight/versions/
-	cp /tmp/straight-versions-default.el $(EMACS_DIR)/local/straight/versions/default.el
+	mkdir -p $(EMACS_DIR)/local/packages/
+	cp /tmp/minemacs-packages-versions.el $(EMACS_DIR)/local/packages/versions.el
 
 clean-loaddefs:
 	rm $(EMACS_DIR)/core/me-loaddefs.el
@@ -62,6 +59,12 @@ bump:
 
 upgrade:
 	$(EMACS_BATCH) --eval='(minemacs-upgrade nil)'
+
+freeze:
+	$(EMACS_BATCH) --eval='(minemacs-packages-freeze)'
+
+recompile:
+	$(EMACS_BATCH) --eval='(package-recompile-all)'
 
 build:
 	$(EMACS_BATCH) --eval='(minemacs-run-build-functions t)'

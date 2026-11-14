@@ -13,7 +13,7 @@
 
 ;; Just-in-time spell checker based on the Enchanted library
 (use-package jinx
-  :straight t
+  :ensure t
   :when (featurep 'feat/modules)
   :autoload jinx--load-module
   :hook (text-mode . +spellcheck-mode)
@@ -31,7 +31,7 @@
 
 ;; Distraction-free words correction with `flyspell' via `completing-read'
 (use-package flyspell-correct
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-natural-langs)

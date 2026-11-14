@@ -12,12 +12,12 @@
 
 ;; Emacs package with utilities for embedded development with OpenOCD
 (use-package embed
-  :straight (:host github :repo "xal-0/embed-el"))
+  :vc (:url "https://github.com/xal-0/embed-el"))
 
 
 ;; A set of Emacs modes for various Yocto/Bitbake file formats
 (use-package bitbake
-  :straight (bitbake-modes :host bitbucket :repo "olanilsson/bitbake-modes")
+  :vc (bitbake-modes :url "https://bitbucket.org/olanilsson/bitbake-modes")
   :hook (bitbake-mode . bitbake-electric-mode)
   :config
   (require 'bitbake-insert)

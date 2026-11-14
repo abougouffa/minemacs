@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-10
+;; Last modified: 2026-11-14
 
 ;;; Commentary:
 
@@ -52,8 +52,18 @@
  use-package-always-defer (not minemacs-always-demand-p)
  use-package-always-demand minemacs-always-demand-p
  use-package-expand-minimally (not minemacs-debug-p) ; Minimize expanded code & do not try to catch errors, unless in debug mode
- ;; Do not make installed packages available when Emacs starts (we use `straight')
- package-enable-at-startup minemacs-builtin-only-p
+ ;; Make installed packages available when Emacs starts (unless we are loading only built-in packages)
+ package-enable-at-startup (not minemacs-builtin-only-p)
+ ;; Install packages in MinEmacs' local directory
+ package-user-dir (concat minemacs-local-dir "elpa/")
+ ;; Package archives, the user can change these in "early-config.el" or "init-tweaks.el"
+ package-archives '(("melpa" . "https://melpa.org/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+ ;; Prefer MELPA (latest commits, like `straight' which used MELPA recipes first)
+ package-archive-priorities '(("melpa" . 30) ("gnu" . 20) ("nongnu" . 10))
+ ;; Install the latest commit for packages installed from VC with `:vc', like `straight'
+ use-package-vc-prefer-newest t
+ ;; Don't register the cloned packages as projects
+ package-vc-register-as-project nil
  ;; Prefer loading newer files
  load-prefer-newer t
  ;; Remove some unneeded UI elements

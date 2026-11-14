@@ -17,7 +17,7 @@
 
 ;; Major mode for the Meson build system files
 (use-package meson-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-meson)

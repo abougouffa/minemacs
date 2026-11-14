@@ -17,7 +17,7 @@
 
 ;; Major mode for the Data Structure Description Language (DSDL)
 (use-package dsdl-mode
-  :straight (:host github :repo "abougouffa/dsdl-mode"))
+  :vc (:url "https://github.com/abougouffa/dsdl-mode"))
 
 
 (provide 'on-demand/me-dsdl)

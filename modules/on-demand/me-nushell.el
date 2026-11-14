@@ -18,13 +18,13 @@
 
 ;; Major mode for Nushell scripts (deprecated, used as a fallback if case `treesit' is not available)
 (use-package nushell-mode
-  :straight t
+  :ensure t
   :unless (featurep 'feat/tree-sitter))
 
 
 ;; Major mode for Nushell scripts
 (use-package nushell-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(nu "https://github.com/nushell/tree-sitter-nu"))

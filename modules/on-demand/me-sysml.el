@@ -17,7 +17,7 @@
 
 ;; Major mode for SysML v2 (Systems Modeling Language)
 (use-package sysml-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-sysml)

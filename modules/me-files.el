@@ -12,7 +12,7 @@
 
 ;; Collection of useful dired additions
 (use-package dired-hacks
-  :straight t
+  :vc (:url "https://github.com/emacsmirror/dired-hacks")
   :after dired
   :bind
   ( :map dired-mode-map
@@ -24,7 +24,7 @@
 
 ;; Asynchronous "rsync" from `dired'
 (use-package dired-rsync
-  :straight (:files ("dired-rsync.el" "dired-rsync-transient.el"))
+  :vc (:url "https://github.com/stsquad/dired-rsync")
   :bind ( :package dired :map dired-mode-map
           ("C-c C-r" . dired-rsync)
           ("C-c C-x" . dired-rsync-transient)))
@@ -32,23 +32,23 @@
 
 ;; Same functionality as `find-dired' and `find-grep-dired', using fd/rg instead
 (use-package fd-dired
-  :straight t)
+  :ensure t)
 
 
 ;; Viewing and editing system trash can
 (use-package trashed
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("T" . trashed)))
 
 
 ;; Sort and browse disk usage listings
 (use-package disk-usage
-  :straight t)
+  :ensure t)
 
 
 ;; View, edit, search and compare very large files in batches, trading memory for processor time
 (use-package vlf-setup
-  :straight (vlf :source gnu-elpa-mirror)
+  :ensure vlf
   :bind (:map minemacs-open-thing-map ("v" . +vlf-dwim))
   :demand
   :config
@@ -62,14 +62,14 @@
 
 ;; Fast opening of large files
 (use-package guard-lf
-  :straight (:host github :repo "jcs-elpa/guard-lf")
+  :vc (:url "https://github.com/jcs-elpa/guard-lf")
   :init
   (guard-lf-mode 1))
 
 
 ;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
 (use-package ztree
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("z" . ztree-diff))
   :init
   (with-eval-after-load 'ztree-view

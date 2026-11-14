@@ -19,14 +19,14 @@
 
 ;; Major mode for editing YAML files
 (use-package yaml-mode
-  :straight t
+  :ensure t
   :mode "/Procfile\\'"
   :mode (rx "/" (any ?. ?_) (or "clang-format" "clang-tidy" "clangd" "cmake-format") eol))
 
 
 ;; Parser-aided YAML editing features
 (use-package yaml-pro
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :hook
   (yaml-mode . yaml-pro-mode)
@@ -37,7 +37,7 @@
 
 ;; Ansible minor mode
 (use-package ansible
-  :straight (ansible :nonrecursive t))
+  :ensure t)
 
 
 (provide 'on-demand/me-yaml)

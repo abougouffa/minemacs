@@ -17,7 +17,7 @@
 
 ;; Major mode for the Mojo programming lanugage
 (use-package mojo
-  :straight (:host github :repo "andcarnivorous/mojo-hl")
+  :vc (:url "https://github.com/andcarnivorous/mojo-hl")
   :commands (mojo-mode mojo-compile)
   :mode ("\\.🔥\\'" . mojo-mode))
 

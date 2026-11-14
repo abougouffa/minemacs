@@ -12,7 +12,7 @@
 
 ;; Quickly switch windows in Emacs
 (use-package ace-window
-  :straight t
+  :ensure t
   :bind (("M-o" . ace-window))
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
@@ -20,7 +20,7 @@
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
-  :straight t
+  :ensure t
   :bind (("M-j" . avy-goto-char-timer) ; Instead of `default-indent-new-line'
          ("C-é" . avy-goto-line) ; French AZERTY
          ("M-g l" . avy-goto-line)))
@@ -28,13 +28,13 @@
 
 ;; Zap to char using `avy'
 (use-package avy-zap
-  :straight t
+  :ensure t
   :bind ("M-z" . avy-zap-to-char-dwim))
 
 
 ;; Never lose your place in Emacs again
 (use-package dogears
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . dogears-mode)
   :bind (("M-g d"   . dogears-go)
          ("M-g M-b" . dogears-back)
@@ -49,26 +49,26 @@
 
 ;; Move to the beginning/end of line, code or comment
 (use-package mwim
-  :straight t
+  :ensure t
   :bind (("C-a" . mwim-beginning) ; Instead of `move-beginning-of-line' or `beginning-of-visual-line'
          ("C-e" . mwim-end))) ; Instead of `move-end-of-line' or `end-of-visual-line'
 
 
 ;; Go to last change
 (use-package goto-chg
-  :straight t
+  :ensure t
   :bind (("M-é" . goto-last-change) ; For French AZERTY keybords
          ("C-M-é" . goto-last-change-reverse)))
 
 
 ;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs search tool based on "ripgrep"
 (use-package rg
-  :straight t
+  :ensure t
   :bind (("C-c s" . rg-menu))
   :init
   (+super-project-define-commands 'rg-project))
@@ -76,13 +76,13 @@
 
 ;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
 (use-package p-search
-  :straight (:host github :repo "zkry/p-search")
+  :vc (:url "https://github.com/zkry/p-search")
   :commands (p-search))
 
 
 ;; An Emacs front-end for "fzf"
 (use-package fzf
-  :straight t
+  :ensure t
   :commands (+fzf-project-super-project)
   :init
   (defalias '+fzf-project 'fzf-projectile)

@@ -18,7 +18,7 @@
 
 ;; Major mode for editing comma/char separated values
 (use-package csv-mode
-  :straight t
+  :ensure t
   :hook (csv-mode . csv-guess-set-separator)
   :custom
   (csv-separators '("," ";" "\t" "|" " ")))
@@ -26,7 +26,7 @@
 
 ;; Highlight CSV and TSV files in different rainbow colors
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :vc (:url "https://github.com/emacs-vs/rainbow-csv")
   :hook (csv-mode . +rainbow-csv-mode-maybe)
   :config
   (defvar +rainbow-csv-max-file-size (* 10 1024 1024)) ; 10MB
@@ -37,7 +37,7 @@
 
 ;; Interactively generate time series charts, plots and bar charts
 (use-package eplot
-  :straight (:host github :repo "larsmagne/eplot")
+  :vc (:url "https://github.com/larsmagne/eplot")
   :commands (eplot eplot-with-headers))
 
 

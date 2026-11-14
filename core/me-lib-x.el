@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-10-02
+;; Last modified: 2026-11-14
 
 ;;; Commentary:
 
@@ -44,7 +44,7 @@ Call functions without asking when ASK-P is nil."
   (interactive)
   (+shutup!
    (when (featurep 'native-compile) (native-compile-prune-cache))
-   (when (fboundp '+straight-prune-build-cache) (+straight-prune-build-cache))
+   (minemacs-packages-prune)
    (minemacs-root-dir-cleanup))
   (message "Finished cleanup!"))
 

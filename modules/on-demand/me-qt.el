@@ -20,12 +20,12 @@
 
 ;; Major mode for editing QT Declarative (QML) code
 (use-package qml-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter based major mode for editing QT Declarative (QML) code
 (use-package qml-ts-mode
-  :straight (:host github :repo "xhcoding/qml-ts-mode")
+  :vc (:url "https://github.com/xhcoding/qml-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(qmljs "https://github.com/yuja/tree-sitter-qmljs"))
@@ -34,7 +34,7 @@
 
 ;; Major mode for Qt's Pro/Pri files
 (use-package qt-pro-mode
-  :straight t
+  :ensure t
   :mode "\\.pr[io]\\'")
 
 

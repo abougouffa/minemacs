@@ -11,15 +11,14 @@
 ;;; Code:
 
 
+;; Allow `package-vc' to run the build command of `lspce' (builds the Rust module)
+(+package-vc-allow-build-commands 'lspce)
+
 ;; LSP Client for Emacs implemented as a module using Rust
 (use-package lspce
-  :straight `( lspce :host github :repo "zbelial/lspce"
-               :files (:defaults ,(file-name-with-extension "lspce-module" module-file-suffix))
-               :pre-build ,(when (executable-find "cargo")
-                             `(("cargo" "build" "--release")
-                               ("cp"
-                                ,(file-name-with-extension "./target/release/liblspce_module" module-file-suffix)
-                                ,(file-name-with-extension "./lspce-module" module-file-suffix)))))
+  :vc ( :url "https://github.com/zbelial/lspce"
+        ;; Build the dynamic module when `cargo' is available
+        :shell-command "if command -v cargo >/dev/null 2>&1; then cargo build --release && for f in target/release/liblspce_module.so target/release/liblspce_module.dylib; do if [ -f \"$f\" ]; then cp \"$f\" \"lspce-module.${f##*.}\"; fi; done; fi")
   :when (and (featurep 'feat/modules) (not (featurep 'os/win)))
   :config
   (+defun +lspce-clangd-params () (string-join (cdr (+eglot-clangd-contact nil (project-current))) " "))
@@ -28,7 +27,7 @@
 
 ;; Alternative to `shell'/`comint' based on `term'
 (use-package mistty
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-experimental)

@@ -19,7 +19,7 @@
 
 ;; Major mode for Markdown-formatted text
 (use-package markdown-mode
-  :straight t
+  :ensure t
   :custom
   (markdown-enable-html t)
   (markdown-enable-math t)

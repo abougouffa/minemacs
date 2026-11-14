@@ -17,7 +17,7 @@
 
 ;; Major mode for the Dhall configuration language
 (use-package dhall-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-dhall)

@@ -19,12 +19,12 @@
 
 ;; Mode for editing GitLab CI files
 (use-package gitlab-ci-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Emacs-GitLab integration
 (use-package lab
-  :straight (:host github :repo "isamert/lab.el"))
+  :vc (:url "https://github.com/isamert/lab.el"))
 
 
 (provide 'on-demand/me-gitlab)

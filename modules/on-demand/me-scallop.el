@@ -17,7 +17,7 @@
 
 ;; Major mode for editing Scallop programming language
 (use-package scallop-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-scallop)

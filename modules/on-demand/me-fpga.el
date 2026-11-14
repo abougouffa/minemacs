@@ -19,13 +19,13 @@
 
 ;; VHDL Tree-sitter major mode
 (use-package vhdl-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter))
 
 
 ;; Verilog Tree-sitter major mode
 (use-package verilog-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter))
 
 

@@ -18,7 +18,7 @@
 
 ;; Major mode for CoffeeScript code
 (use-package coffee-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-coffee)

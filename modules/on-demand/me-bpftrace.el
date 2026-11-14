@@ -18,7 +18,7 @@
 
 ;; Major mode for bpftrace scripts
 (use-package bpftrace-mode
-  :straight (:host github :repo "abougouffa/bpftrace-mode"))
+  :vc (:url "https://github.com/abougouffa/bpftrace-mode"))
 
 
 (provide 'on-demand/me-bpftrace)

@@ -31,7 +31,7 @@
 
 ;; Major mode for editing systemd units
 (use-package systemd
-  :straight (:host github :repo "holomorph/systemd-mode" :fork (:repo "abougouffa/systemd-mode")))
+  :vc (:url "https://github.com/abougouffa/systemd-mode"))
 
 
 (provide 'on-demand/me-systemd)

@@ -12,7 +12,7 @@
 
 ;; Debug Adapter Protocol for Emacs
 (use-package dape
-  :straight t
+  :ensure t
   :hook
   (dape-compile . kill-buffer) ; Kill compile buffer on build success
   (dape-display-source . pulse-momentary-highlight-one-line) ; Pulse source line (performance hit)
@@ -40,14 +40,14 @@
 
 ;; `dape' integration for cortex-debug (https://github.com/Marus/cortex-debug)
 (use-package dape-cortex-debug
-  :straight (:host github :repo "svaante/dape-cortex-debug")
+  :vc (:url "https://github.com/svaante/dape-cortex-debug")
   :after dape
   :demand)
 
 
 ;; A compiler output viewer
 (use-package rmsbolt
-  :straight t
+  :ensure t
   :hook (rmsbolt-mode . (lambda () (when (derived-mode-p 'asm-mode) (flymake-mode-off))))
   :hook (rmsbolt-mode . +rmsbolt-set-command-form-compilaiton-db)
   :custom
@@ -61,7 +61,7 @@
 
 ;; Compiler Explorer clone (fork of `rmsbolt' optimized for C/C++)
 (use-package beardbolt
-  :straight (:host github :repo "joaotavora/beardbolt" :files (:defaults "starters"))
+  :vc (:url "https://github.com/joaotavora/beardbolt")
   :hook (beardbolt--asm-mode . flymake-mode-off)
   :config
   (add-to-list 'beardbolt-languages '(rust-ts-mode beardbolt--rust-setup))

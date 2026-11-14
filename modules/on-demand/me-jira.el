@@ -18,7 +18,7 @@
 
 ;; Emacs Major mode for JIRA-markup-formatted text files
 (use-package jira-markup-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-jira)

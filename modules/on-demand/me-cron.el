@@ -17,7 +17,7 @@
 
 ;; Major mode for crontab
 (use-package crontab-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-cron)

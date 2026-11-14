@@ -17,7 +17,7 @@
 
 ;; Major mode for the D programming language
 (use-package d-mode
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-d)

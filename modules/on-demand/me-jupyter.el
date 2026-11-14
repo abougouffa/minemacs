@@ -18,7 +18,7 @@
 
 ;; Preview TeX math equations inline
 (use-package math-preview ; Needed by ein to render equations
-  :straight t)
+  :ensure t)
 
 
 ;; Taken from: https://github.com/millejoh/emacs-ipython-notebook/pull/925#issuecomment-3443730354
@@ -29,7 +29,7 @@
 
 ;; Jupyter notebook client in Emacs
 (use-package ein
-  :straight (ein :host github :repo "natsirtguy/emacs-ipython-notebook" :branch "fix-polymode-compatibility")
+  :vc (:url "https://github.com/natsirtguy/emacs-ipython-notebook" :branch "fix-polymode-compatibility" :lisp-dir "lisp")
   :custom
   (ein:output-area-inlined-images t)
   :config
@@ -41,7 +41,7 @@
 
 ;; An interface to communicate with Jupyter kernels
 (use-package jupyter
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-jupyter)

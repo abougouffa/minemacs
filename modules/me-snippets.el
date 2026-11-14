@@ -12,7 +12,7 @@
 
 
 (use-package tempel
-  :straight t
+  :ensure t
   :custom
   (tempel-trigger-prefix "<") ;; Require trigger prefix before template name when completing.
   (tempel-path (list (concat minemacs-assets-dir "templates/tempel/*.eld")
@@ -30,7 +30,7 @@
 
 
 (use-package tempel-collection
-  :straight t)
+  :ensure t)
 
 
 (provide 'me-snippets)

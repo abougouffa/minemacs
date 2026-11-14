@@ -17,12 +17,12 @@
 
 ;; Major mode for editing GraphQL schemas
 (use-package graphql-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter based GraphQL mode
 (use-package graphql-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(graphql "https://github.com/bkegley/tree-sitter-graphql"))

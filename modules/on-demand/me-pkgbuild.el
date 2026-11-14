@@ -18,7 +18,7 @@
 
 ;; Edit and run Arch Linux's PKGBUILD recipes
 (use-package pkgbuild-mode
-  :straight t
+  :ensure t
   :custom
   (pkgbuild-update-sums-on-save nil)) ; Annoying, slow and buggy in some cases
 

@@ -29,7 +29,7 @@
 
 ;; An Emacs media player, media library manager, radio player, YouTube frontend
 (use-package empv
-  :straight (:host github :repo "isamert/empv.el")
+  :vc (:url "https://github.com/isamert/empv.el")
   :when (executable-find +mpv-command)
   :custom
   (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))

@@ -94,7 +94,7 @@ Return its plist, or with PROPERTY only that property's value.
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(register-definition-prefixes "me-bootstrap" '("+minemacs--" "+straight-" "+use-package--check-if-disabled:around-a" "minemacs-"))
+(register-definition-prefixes "me-bootstrap" '("+package-" "+use-package-" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-bpftrace.el

@@ -18,12 +18,12 @@
 
 ;; Major mode for editing Dart files
 (use-package dart-mode
-  :straight t)
+  :ensure t)
 
 
 ;; A major mode for Dart programming language with tree-sitter supports
 (use-package dart-ts-mode
-  :straight (:host github :repo "50ways2sayhard/dart-ts-mode")
+  :vc (:url "https://github.com/50ways2sayhard/dart-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(dart "https://github.com/UserNobody14/tree-sitter-dart"))
@@ -32,7 +32,7 @@
 
 ;; Tools for working with Flutter SDK
 (use-package flutter
-  :straight t)
+  :ensure t)
 
 
 (provide 'on-demand/me-dart)

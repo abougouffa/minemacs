@@ -12,7 +12,7 @@
 
 ;; A Collection of Ridiculously Useful eXtensions for Emacs
 (use-package crux
-  :straight t
+  :ensure t
   :bind (("C-k" . crux-smart-kill-line)
          ("C-<return>" . crux-smart-open-line)
          ("C-S-<return>" . crux-smart-open-line-above)
@@ -25,7 +25,7 @@
 
 ;; Persistent per-project scratch buffers for Emacs
 (use-package pscratch
-  :straight (:host github :repo "abougouffa/persistent-scratch")
+  :vc (:url "https://github.com/abougouffa/persistent-scratch")
   :hook
   (minemacs-after-startup . pscratch-mode)
   (minemacs-after-startup . pscratch-override-mode))
@@ -33,7 +33,7 @@
 
 ;; OpenStreetMap viewer
 (use-package osm
-  :straight t
+  :ensure t
   :config
   (defvar +geojson-file-regexp "\\.geojson\\'" "Regexp matching files that `osm-open' should treat as GeoJSON.")
 

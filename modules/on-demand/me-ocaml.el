@@ -24,7 +24,7 @@
 
 ;;  A modern, TreeSitter-powered, Emacs major mode for OCaml
 (use-package neocaml
-  :straight (:host github :repo "bbatsov/neocaml")
+  :vc (:url "https://github.com/bbatsov/neocaml")
   :config
   ;; Register neocaml modes with Eglot
   (with-eval-after-load 'eglot
@@ -33,7 +33,7 @@
 
 ;; An overlay on Eglot for editing OCaml code using LSP
 (use-package ocaml-eglot
-  :straight (:host github :repo "tarides/ocaml-eglot")
+  :vc (:url "https://github.com/tarides/ocaml-eglot")
   :hook
   (neocaml-base-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))

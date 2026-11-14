@@ -26,7 +26,7 @@
 
 ;; Tree-sitter based major mode for editing Protocol Buffers files
 (use-package protobuf-ts-mode
-  :straight (:host github :repo "emacsattic/protobuf-ts-mode")
+  :vc (:url "https://github.com/emacsattic/protobuf-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(proto "https://github.com/mitchellh/tree-sitter-proto"))

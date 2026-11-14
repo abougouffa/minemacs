@@ -12,7 +12,7 @@
 
 ;; Visualize and navigate the undo tree
 (use-package vundo
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("u" . vundo))
   :custom
   (vundo-compact-display t)
@@ -36,7 +36,7 @@
 
 ;; Persistent undo tree between sessions
 (use-package undo-fu-session
-  :straight t
+  :ensure t
   :hook (minemacs-lazy . undo-fu-session-global-mode)
   :custom
   (undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
@@ -45,7 +45,7 @@
 
 ;; Modify multiple occurrences simultaneously
 (use-package iedit
-  :straight t
+  :ensure t
   :bind (("C-;" . iedit-mode) ; NOTE: In some Linux-based systems, the "C-;" can be bound in system-level, use "ibus-setup" to choose another shortcut
          ("C-x r ;" . iedit-rectangle-mode)
          (:map esc-map ("C-;" . iedit-execute-last-modification)))
@@ -56,7 +56,7 @@
 
 ;; Multiple cursors implementation for Emacs
 (use-package multiple-cursors
-  :straight t
+  :ensure t
   :after minemacs-first-file
   :demand ; Otherwise, the `multiple-cursors' will not be loaded (the commands are defined in `multiple-cursors-core')
   :bind (("C->"           . mc/mark-next-like-this)
@@ -121,7 +121,7 @@
 
 ;; Highlight symbols with keymap-enabled overlays
 (use-package symbol-overlay
-  :straight t
+  :ensure t
   :hook ((prog-mode conf-mode) . symbol-overlay-mode)
   :init
   (+add-hooks '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
@@ -161,7 +161,7 @@ new ones."
 
 ;; Unobtrusively trim extraneous white-space *ONLY* in lines edited
 (use-package ws-butler
-  :straight (:host github :repo "emacsmirror/nongnu_elpa" :local-repo "ws-butler" :branch "elpa/ws-butler")
+  :ensure t
   :hook (minemacs-first-file . ws-butler-global-mode)
   :config
   ;; Don't delete trailing whitespaces in `diff-mode', it is part of the syntax
@@ -170,7 +170,7 @@ new ones."
 
 ;; Smart guessing the indentation offset originally used in the opened source files
 (use-package dtrt-indent
-  :straight t
+  :ensure t
   :after minemacs-first-file
   :hook ((change-major-mode-after-body read-only-mode) . +dtrt-indent-mode-maybe)
   :commands (+dtrt-indent-tab-to-tab-stop)
@@ -216,13 +216,14 @@ In some dirty files, there is a mix of spaces and tabs. This uses
         (call-interactively #'tab-to-tab-stop)))))
 
 
+;; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy
+;; loading, so we don't generate autoloads for it (`package-vc' clones without
+;; submodules, so the problematic `html-ts-mode' submodule isn't cloned)
+(+package-exclude-from-autoloads 'combobulate "combobulate.el")
+
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate-setup
-  :straight (combobulate
-             :host github
-             :repo "mickeynp/combobulate"
-             :nonrecursive t ; Cloning the `html-ts-mode' submodule causes problems
-             :files (:defaults (:exclude "combobulate.el"))) ; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy loading
+  :vc (combobulate :url "https://github.com/mickeynp/combobulate")
   :when (and (not (featurep 'os/win)) (featurep 'feat/tree-sitter)) ; TEMP: disable on Windows
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
@@ -248,7 +249,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Minor mode for Emacs that deals with parens pairs and tries to be smart about it
 (use-package smartparens
-  :straight t
+  :ensure t
   :hook (minemacs-first-file . smartparens-global-mode)
   :custom
   (sp-ignore-modes-list '(minibuffer-inactive-mode)) ; Enable in `minibuffer-mode'
@@ -267,13 +268,13 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Parse and respect Vim modeline options (`tab-width', `fill-column', etc.)
 (use-package vim-file-locals
-  :straight (:host github :repo "abougouffa/emacs-vim-file-locals")
+  :vc (:url "https://github.com/abougouffa/emacs-vim-file-locals")
   :hook (minemacs-first-file . vim-file-locals-mode))
 
 
 ;; An Emacs minor mode for highlighting matches to the selection
 (use-package selection-highlight-mode
-  :straight (:host github :repo "balloneij/selection-highlight-mode" :fork (:repo "abougouffa/selection-highlight-mode"))
+  :vc (:url "https://github.com/abougouffa/selection-highlight-mode")
   :hook (minemacs-lazy . selection-highlight-mode)
   :init
   ;; Automatically set the face for `selection-highlight-mode'
@@ -290,7 +291,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Your friendly neighborhood expand-region clone
 (use-package expreg
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :bind (("C-M-SPC" . expreg-expand) ; orig. `mark-sexp'
          ("S-C-M-SPC" . expreg-contract)))
@@ -298,7 +299,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Eclipse-like moving and duplicating lines or rectangles
 (use-package move-dup
-  :straight t
+  :ensure t
   :bind (("M-<up>" . move-dup-move-lines-up)
          ("M-<down>" . move-dup-move-lines-down)
          ("C-M-<up>" . move-dup-duplicate-up)
@@ -307,7 +308,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Perform a backup on each file save, real backup for Emacs!
 (use-package real-backup
-  :straight (:host github :repo "abougouffa/real-backup")
+  :vc (:url "https://github.com/abougouffa/real-backup")
   :hook (minemacs-first-file . global-real-backup-mode)
   :custom
   (real-backup-preview-show-diff t))
@@ -315,7 +316,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; Copy&paste GUI clipboard from text terminal
 (use-package xclip
-  :straight t
+  :ensure t
   :hook (tty-setup . +xclip--enable-in-tty-h)
   :config
   (defun +xclip--enable-in-tty-h ()
@@ -325,7 +326,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
 
 ;; An all-in-one comment command to rule them all
 (use-package comment-dwim-2
-  :straight t
+  :ensure t
   :bind (([remap comment-dwim] . comment-dwim-2)))
 
 

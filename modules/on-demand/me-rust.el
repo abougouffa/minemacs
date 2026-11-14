@@ -18,14 +18,14 @@
 
 ;; Major mode for editing Rust source code
 (use-package rust-mode
-  :straight t
+  :ensure t
   :custom
   (rust-mode-treesitter-derive (featurep 'feat/tree-sitter)))
 
 
 ;; Rust development environment
 (use-package rustic
-  :straight t
+  :ensure t
   :custom
   (rustic-lsp-client 'eglot))
 

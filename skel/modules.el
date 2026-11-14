@@ -44,8 +44,8 @@
 ;; Adding a package to `minemacs-disabled-packages' guarantees disabling its
 ;; corresponding `use-package' section in MinEmacs' modules. However, please
 ;; note that, if you want to completely disable a package, you need to make sure
-;; you've also disabled its dependent packages (see `M-x straight-dependents'),
-;; otherwise it will get installed as a dependency.
+;; you've also disabled its dependent packages (see the "Required by" section in
+;; `M-x describe-package'), otherwise it will get installed as a dependency.
 ;;
 ;; You can also `push' (or `add-to-list') multiple packages at once (as a list).
 ;; For example, to completely disable all of `magit', `magit-todos' and

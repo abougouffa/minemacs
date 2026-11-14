@@ -17,7 +17,7 @@
 
 ;; Handle cpio archives in the style of dired
 (use-package cpio-mode
-  :straight t
+  :ensure t
   :mode "\\.cpio\\'")
 
 

@@ -18,7 +18,7 @@
 
 ;; Emacs mode for viewing log files
 (use-package logview
-  :straight t
+  :ensure t
   :custom
   (logview-cache-filename (concat minemacs-cache-dir "logview-cache.extmap"))
   (logview-additional-timestamp-formats

@@ -1,148 +1,237 @@
-;; me-bootstrap.el --- Bootstrap packages (straight & use-package) -*- lexical-binding: t; -*-
+;; me-bootstrap.el --- Bootstrap packages (package.el, package-vc & use-package) -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-09-30
+;; Last modified: 2026-11-14
 
 ;;; Commentary:
 
 ;;; Code:
 
 (require 'me-lib)
+(require 'package)
+(require 'package-vc)
+(require 'vc-git)
 (require 'use-package)
+(require 'use-package-ensure)
+
+(defcustom minemacs-packages-lockfile (concat minemacs-local-dir "packages/versions.el")
+  "The file in which the installed packages versions are saved."
+  :group 'minemacs-core
+  :type 'file)
+
+(defvar +package-autoloads-excluded-files nil
+  "Alist of (PACKAGE . FILES), FILES are excluded when generating autoloads.
+This is the equivalent of `straight's \":files (:defaults (:exclude ...))\".")
 
 
 
-;;; Tweak `straight' parameters
+;;; Activation and session state
 
-(setq
- ;; Base directory
- straight-base-dir minemacs-local-dir
- ;; Add Emacs version and the Git hash to the build directory to avoid problems
- straight-build-dir (format "build-%s%s" emacs-version (if emacs-repository-version (format "-%s" (substring emacs-repository-version 0 8)) ""))
- ;; Use the "develop" branch on straight.el's repo
- straight-repository-branch "develop"
- ;; Do not slow startup by checking for package modifs, check only on demand
- straight-check-for-modifications '(check-on-save find-when-checking))
+;; Normally, `package-activate-all' is called by Emacs after loading the
+;; "early-init.el" (as `package-enable-at-startup' is non-nil). But we need to
+;; make sure the packages are activated when MinEmacs is loaded without
+;; "early-init.el" (CI, `make' commands, "emacs --script init.el", etc.)
+(unless (bound-and-true-p package--activated) (package-activate-all))
 
-
-
-;;; Bootstrap `straight'
-;; See: https://github.com/radian-software/straight.el#bootstrapping-straightel
-
-(defvar bootstrap-version)
-(let ((bootstrap-file (concat straight-base-dir "straight/repos/straight.el/bootstrap.el"))
-      (install-url "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el")
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer (url-retrieve-synchronously install-url 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-
-
-;;; `straight' customization
-
-;; For `straight' to not install built-in packages from ELPA
-(cl-callf append straight-built-in-pseudo-packages
-  '(treesit org tramp project editorconfig flymake eldoc eglot xref imenu modus-themes jsonrpc))
-
-;; HACK+PERF: Reduce installation time and disk usage using "--filter=tree:0".
-;; This cuts the size of the "straight/repos" directory by more than half (from
-;; 807M to 362M) while keeping it possible to checkout and download older
-;; commits on-demand (unlike "--depth=N"). The parameter is injected when a "git
-;; clone" command call is requested in `straight--process-run' which is called
-;; from `straight-vc-git--clone-internal'
+;; HACK: Do not persist `package-selected-packages' in the `custom-file', the
+;; source of truth is MinEmacs' modules and the user's "config.el". The packages
+;; declared with `:ensure' and `:vc' are added to it for the current session,
+;; which makes `package-autoremove' work as expected (see
+;; `minemacs-packages-prune'). Note that `package-vc-selected-packages' isn't
+;; saved either, as we register the `:vc' specs before installing.
 (advice-add
- 'straight--process-run :filter-args
- (lambda (args)
-   (if (and (equal (car args) "git") (equal (cadr args) "clone"))
-       `("git" "clone" "--filter=tree:0" ,@(cddr args))
-     args)))
+ 'package--save-selected-packages :override
+ (+defun +package--save-selected-packages:override-a (&optional value)
+   (when (or value after-init-time) (setq package-selected-packages value))))
+
+;; Unlike `straight' which builds packages in a separate process, `package'
+;; builds them in the current session. Delaying the mode hooks prevents the
+;; user's configuration hooks (ex. `prog-mode-hook') from running in the buffers
+;; used when generating the autoloads, compiling or building the documentation.
+(+advice-add
+ '(package-unpack package-vc--unpack-1) :around
+ (+defun +package--delay-mode-hooks:around-a (origfn &rest args)
+   (let ((delay-mode-hooks t)) (apply origfn args))))
+
+
+
+;;; Lockfile
+
+(defvar +package--lockfile 'unset)
+
+(defun +package-lockfile-read ()
+  "Return the content of `minemacs-packages-lockfile'."
+  (setq +package--lockfile
+        (when (file-exists-p minemacs-packages-lockfile)
+          (with-temp-buffer
+            (insert-file-contents minemacs-packages-lockfile)
+            (ignore-errors (read (current-buffer)))))))
+
+(defun +package-locked (package)
+  "Get the locked properties of PACKAGE, a plist like (:rev REV :version VER)."
+  (alist-get package (if (eq +package--lockfile 'unset) (+package-lockfile-read) +package--lockfile)))
+
+(defun +package-vc-revision (pkg-desc)
+  "Return the current revision of the VC package PKG-DESC.
+Like `package-vc-commit', but bypass VC's cache which can be stale after
+pulling or resetting a package in the same session."
+  (vc-clear-context)
+  (package-vc-commit pkg-desc))
+
+(defun minemacs-packages-freeze ()
+  "Save the versions of the installed packages to `minemacs-packages-lockfile'."
+  (interactive)
+  (let ((entries
+         (cl-loop for (name desc) in (sort (copy-sequence package-alist) :key #'car)
+                  collect (cons name (if (package-vc-p desc)
+                                         (let ((dir (package-desc-dir desc)))
+                                           (list :vc (or (plist-get (alist-get name package-vc-selected-packages) :url)
+                                                         (vc-git-repository-url dir))
+                                                 :rev (+package-vc-revision desc)))
+                                       (list :version (package-version-join (package-desc-version desc))))))))
+    (make-directory (file-name-directory minemacs-packages-lockfile) t)
+    (with-temp-file minemacs-packages-lockfile
+      (insert ";; -*- mode: lisp-data; -*-\n"
+              ";; MinEmacs packages lockfile, generated by `minemacs-packages-freeze', do not edit!\n\n"
+              "(" (mapconcat #'prin1-to-string entries "\n ") ")\n"))
+    (setq +package--lockfile entries)
+    (message "[MinEmacs]: Saved %d packages versions to %S" (length entries) (abbreviate-file-name minemacs-packages-lockfile))))
+
+(defun +package-vc-reset (pkg-desc-or-dir rev)
+  "Reset the Git checkout of PKG-DESC-OR-DIR to REV, staying on the same branch.
+Local changes are stashed. Unlike checking out REV (which leaves the repository
+in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
+  (let ((default-directory (if (stringp pkg-desc-or-dir) pkg-desc-or-dir (package-desc-dir pkg-desc-or-dir))))
+    (unless (zerop (vc-git-command nil t nil "cat-file" "-e" (concat rev "^{commit}")))
+      (vc-git-command nil 0 nil "fetch" "--quiet" "origin"))
+    (vc-git-command nil t nil "stash" "push" "--quiet") ; Best effort
+    (vc-git-command nil 0 nil "reset" "--quiet" "--hard" rev)))
+
+
+
+;;; Hooking `package' into `use-package'
+
+;; Install from archives (`:ensure') with `use-package-ensure-elpa', just mark
+;; the packages as selected for this session
+(advice-add
+ 'use-package-ensure-elpa :before
+ (+defun +use-package-ensure-elpa:before-a (name args &rest _)
+   (dolist (ensure args)
+     (when-let* ((package (if (eq ensure t) (use-package-as-symbol name) ensure)))
+       (add-to-list 'package-selected-packages (if (consp package) (car package) package))))))
+
+;; Install from VC (`:vc'), unlike the default `use-package-vc-install':
+;; - Consider only the packages installed in `package-user-dir', this allows
+;;   installing a newer version of a built-in package like `transient'
+;; - Install at the locked revision, if any (see `+package-vc--clone:after-a')
+;; - Register the spec in `package-vc-selected-packages', so `package-vc' doesn't
+;;   save it to the `custom-file', and `package-vc-rebuild'/`package-vc-upgrade'
+;;   can find it (ex. the `:lisp-dir' of `transient')
+;; - Show a warning instead of signaling an error when the installation fails
+(defvar +package--pinned-rev nil)
+
+(advice-add
+ 'use-package-vc-install :around
+ (+defun +use-package-vc-install:around-a (origfn arg &optional local-path)
+   (pcase-let ((`(,name ,opts ,rev) arg))
+     (when opts (setf (alist-get name package-vc-selected-packages) opts))
+     (add-to-list 'package-selected-packages name)
+     (cond (local-path (funcall origfn arg local-path))
+           ((assq name package-alist)) ; Already installed
+           (t (condition-case-unless-debug err
+                  (let ((+package--pinned-rev (plist-get (+package-locked name) :rev)))
+                    (package-vc-install (if opts (cons name opts) name) (unless +package--pinned-rev rev)))
+                (error (display-warning 'minemacs (format "Failed to install `%s' from VC: %s" name (error-message-string err)) :error))))))))
+
+;; Pin the freshly cloned package to the locked revision before building it
+(advice-add
+ 'package-vc--clone :after
+ (+defun +package-vc--clone:after-a (_pkg-desc _pkg-spec dir _rev)
+   (when +package--pinned-rev (+package-vc-reset dir +package--pinned-rev))))
+
+;; Exclude some files from autoloads generation, the equivalent of `straight's
+;; ":files (:defaults (:exclude ...))"
+(advice-add
+ 'package-generate-autoloads :around
+ (+defun +package-generate-autoloads:around-a (origfn name pkg-dir)
+   (if-let* ((files (alist-get (if (stringp name) (intern name) name) +package-autoloads-excluded-files))
+             (orig-loaddefs-generate (symbol-function 'loaddefs-generate)))
+       (cl-letf (((symbol-function 'loaddefs-generate)
+                  (lambda (dir output-file &optional excluded-files &rest args)
+                    (apply orig-loaddefs-generate dir output-file
+                           (append excluded-files (mapcar (lambda (file) (expand-file-name file pkg-dir)) files))
+                           args))))
+         (funcall origfn name pkg-dir))
+     (funcall origfn name pkg-dir))))
+
+;; Like `straight's default recipe files (":defaults"), only byte-compile the
+;; top-level Lisp files of packages installed from VC, and skip test files. This
+;; avoids compiling the tests, examples, etc. which can fail to compile.
+(advice-add
+ 'package--parse-elpaignore :around
+ (+defun +package--parse-elpaignore:around-a (origfn pkg-desc)
+   (let* ((regexps (funcall origfn pkg-desc))
+          (dir (file-name-as-directory (expand-file-name (package-desc-dir pkg-desc))))
+          (git-root (locate-dominating-file dir ".git")))
+     (if (and git-root (file-in-directory-p git-root package-user-dir)) ; A VC package
+         (append (list (concat "\\`" (regexp-quote dir) "[^/]+/") ; Files in sub-directories
+                       "\\(?:\\`\\|/\\)\\(?:tests?\\|[^/]*-tests?\\)\\.el\\'") ; Test files
+                 regexps)
+       regexps))))
+
+(defun +package-exclude-from-autoloads (package &rest files)
+  "Don't generate autoloads from FILES when installing PACKAGE."
+  (setf (alist-get package +package-autoloads-excluded-files) files))
+
+(defun +package-vc-allow-build-commands (&rest packages)
+  "Allow `package-vc' to run `:make' and `:shell-command' for PACKAGES."
+  (unless (eq package-vc-allow-build-commands t)
+    (dolist (package packages)
+      (add-to-list 'package-vc-allow-build-commands package))))
 
 ;; HACK: This advice around `use-package' checks if a package is disabled in
 ;; `minemacs-disabled-packages' before calling `use-package'. This can come
 ;; handy if the user wants to enable some module while excluding some packages
 ;; from it. This advice also evaluates `use-package's conditional sections
 ;; (`:if', `:when' and `:unless') to prevent installing packages with
-;; `straight'.
-(defun +use-package--check-if-disabled:around-a (origfn package &rest args)
-  (if (and +use-package-check-for-disabled
-           (or (+package-disabled-p package)
-               (memq :disabled args)
-               (and (memq :if args) (not (eval (+varplist-get args :if t))))
-               (and (memq :when args) (not (eval (+varplist-get args :when t))))
-               (and (memq :unless args) (eval (+varplist-get args :unless t)))))
-      ;; Register the package but don't enable it, useful when creating the lockfile,
-      ;; this is the official straight.el way for conditionally installing packages
-      (when-let* ((recipe (+varplist-get args :straight t)))
-        (let* ((recipe (if (eq recipe t) (list package) recipe))
-               (car-recipe (and (listp recipe) (car recipe)))
-               (car-recipe-is-pkg (and (symbolp car-recipe) (not (keywordp car-recipe))))
-               (recipe (if (and car-recipe car-recipe-is-pkg) recipe (append (list package) recipe))))
-          (when (fboundp 'straight-register-package)
-            (straight-register-package recipe))))
-    ;; Otherwise, add it to the list of configured packages and apply the `use-package' form
-    (add-to-list 'minemacs-configured-packages package t)
-    (apply origfn package args)))
+;; `:ensure' or `:vc' when they aren't needed.
+(advice-add
+ 'use-package :around
+ (+defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+   (unless (and +use-package-check-for-disabled
+                (or (+package-disabled-p package)
+                    (memq :disabled args)
+                    (and (memq :if args) (not (eval (+varplist-get args :if t))))
+                    (and (memq :when args) (not (eval (+varplist-get args :when t))))
+                    (and (memq :unless args) (eval (+varplist-get args :unless t)))))
+     ;; Add it to the list of configured packages and apply the `use-package' form
+     (add-to-list 'minemacs-configured-packages package t)
+     (apply origfn package args))))
 
-(advice-add 'use-package :around '+use-package--check-if-disabled:around-a)
+
 
-;; Do some tweaks to avoid asking questions when running
-;; `minemacs-bump-packages'
-(defun +minemacs--straight--popup-raw:around-a (orig-fn prompt actions)
-  (let (action-func action-args)
-    (dolist (action actions)
-      (let ((desc (nth 1 action))
-            (func (nth 2 action))
-            (args (cdddr action)))
-        (when (seq-some (lambda (str) (string-match-p str desc))
-                        '("Stash changes" "Reset .* to .*" "Checkout .*"
-                          "Skip this repository for now and come back to it later"
-                          "Rename remote .* to .*, re-create .* with correct URL, and fetch"))
-          (setq action-func func
-                action-args args))))
-    (if action-func
-        (apply action-func action-args)
-      (funcall orig-fn prompt actions))))
+;;; Updating packages
 
-(defun +minemacs--read-string:around-a (orig-fn prompt &rest args)
-  (cond
-   ((string-match-p "Optional stash message:" prompt)
-    (format-time-string "Stashed when bumping the package %F at %T"))
-   (t (apply orig-fn (cons prompt args)))))
-
-(defun +minemacs--y-or-n-p:around-a (orig-fn prompt)
-  (cond
-   ((equal prompt "Caches are outdated, reload init-file? ")
-    nil)
-   (t (funcall orig-fn prompt))))
-
-(defmacro +straight-with-no-questions (&rest body)
-  "Execute BODY and don't ask `straight' questions."
-  (declare (indent 0))
-  `(unwind-protect
-       (progn
-         (advice-add 'straight--popup-raw :around '+minemacs--straight--popup-raw:around-a)
-         (advice-add 'read-string :around '+minemacs--read-string:around-a)
-         (advice-add 'y-or-n-p :around '+minemacs--y-or-n-p:around-a)
-         ,(macroexp-progn body))
-     (advice-remove 'straight--popup-raw '+minemacs--straight--popup-raw:around-a)
-     (advice-remove 'read-string '+minemacs--read-string:around-a)
-     (advice-remove 'y-or-n-p '+minemacs--y-or-n-p:around-a)))
+(defun +package-vc-upgrade (pkg-desc)
+  "Like `package-vc-upgrade' for PKG-DESC, but wait for it to finish.
+`package-vc-upgrade' pulls asynchronously, which doesn't work in batch mode."
+  (let ((procs (process-list)))
+    (package-vc-upgrade pkg-desc)
+    (while-let ((new-procs (seq-filter (lambda (proc) (and (process-live-p proc) (not (memq proc procs))))
+                                       (process-list))))
+      (accept-process-output (car new-procs) 0.5))))
 
 (defun minemacs-bump-packages ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
   (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
-  (+straight-with-no-questions
-    (straight-pull-recipe-repositories) ; Update straight recipe repositories
-    (straight-pull-all)
-    (straight-freeze-versions)
-    (straight-rebuild-all))
+  (package-upgrade-all nil) ; Refresh the archives and upgrade the packages installed from them
+  (dolist (elt package-alist) ; Pull the packages installed from VC
+    (when (package-vc-p (cadr elt)) (+package-vc-upgrade (cadr elt))))
+  (minemacs-packages-freeze)
   (minemacs-run-build-functions)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
 (defun minemacs-bump-packages-async ()
@@ -154,33 +243,41 @@
                      (shell-quote-argument user-init-file)))))
 
 (defun minemacs-upgrade (pull)
-  "Upgrade the packages list to the locked revisions.
-This takes into account the explicitly pinned packages. When called with
-\\[universal-argument] or with PULL, it will run \"git pull\" in
-MinEmacs directory before upgrading."
+  "Upgrade the packages to the versions saved in `minemacs-packages-lockfile'.
+Packages installed from VC are restored to the locked revisions. As the
+package archives only serve the latest version of each package, packages
+installed from the archives are only upgraded when they are older than the
+locked version. When called with \\[universal-argument] or with PULL, it
+will run \"git pull\" in MinEmacs directory before upgrading."
   (interactive "P")
   (when pull (let ((default-directory minemacs-root-dir)) (vc-pull)))
-  (+straight-with-no-questions
-    (straight-pull-recipe-repositories) ; Update straight recipe repositories
-    (straight-thaw-versions)
-    (straight-rebuild-all)) ; Rebuild the packages
+  (package-refresh-contents)
+  (pcase-dolist (`(,name . ,locked) (+package-lockfile-read))
+    (when-let* ((desc (cadr (assq name package-alist))))
+      (condition-case-unless-debug err
+          (if (package-vc-p desc)
+              (when-let* ((rev (plist-get locked :rev))
+                          ((not (equal rev (+package-vc-revision desc)))))
+                (+package-vc-reset desc rev)
+                (package-vc-rebuild desc))
+            (when-let* ((version (plist-get locked :version))
+                        ((version-list-< (package-desc-version desc) (version-to-list version))))
+              (package-upgrade name)))
+        (error (+error! "Cannot restore `%s': %s" name (error-message-string err))))))
   (minemacs-run-build-functions)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
-(defun +straight-prune-build-cache ()
-  "Prune straight.el build directories for old Emacs versions."
-  (let* ((default-directory (file-name-concat straight-base-dir "straight/")))
-    (straight-prune-build) ; Prune the build cache and build directory.
-    (mapc ; Prune old build directories
-     (+apply-partially-right #'+delete-file-or-directory 'trash 'recursive)
-     (seq-filter
-      (lambda (name)
-        (not (member name (list straight-build-dir (concat straight-build-dir "-cache.el") "versions" "repos"))))
-      (directory-files default-directory nil directory-files-no-dot-files-regexp)))))
+(defun minemacs-packages-prune ()
+  "Delete the installed packages that aren't used by MinEmacs nor by the user.
+Packages declared in this session or listed in the lockfile, and their
+dependencies, are kept."
+  (interactive)
+  (let ((package-selected-packages
+         (seq-union package-selected-packages (mapcar #'car (+package-lockfile-read)))))
+    (package-autoremove)))
 
-(when (featurep 'os/win)
-  (advice-add ; BUGFIX+TEMP: This fixes a crash in Windows
-   'straight--get-package-version :filter-return
-   (lambda (ver) (and (stringp ver) (string-trim ver)))))
+;; Byte-compiled files of a different Emacs version can be incompatible
+;; (`straight' used to have a build directory per Emacs version)
+(add-hook 'minemacs-after-emacs-version-change-hook #'package-recompile-all -90)
 
 (provide 'me-bootstrap)
 

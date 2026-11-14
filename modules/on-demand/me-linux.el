@@ -19,7 +19,7 @@
 
 ;; Major mode for editing Kconfig files
 (use-package kconfig-mode
-  :straight t
+  :ensure t
   :mode "/Kconfig\\'")
 
 

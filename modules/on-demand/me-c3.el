@@ -17,7 +17,7 @@
 
 ;; Major mode for C3 using Tree-sitter
 (use-package c3-ts-mode
-  :straight (:host github :repo "c3lang/c3-ts-mode")
+  :vc (:url "https://github.com/c3lang/c3-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(c3 "https://github.com/c3lang/tree-sitter-c3"))

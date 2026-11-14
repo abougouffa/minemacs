@@ -1,5 +1,5 @@
 ;; -*- mode: lisp-data; coding: utf-8 -*-
-;; Tempel templates converted from YASnippet snippets in ~/.emacs.d/local/straight/repos/yasnippet-snippets/snippets/
+;; Tempel templates converted from YASnippet snippets in the `yasnippet-snippets` repository (snippets/ directory)
 ;; by yas2tempel on 2026-11-13.
 
 ada-ts-mode

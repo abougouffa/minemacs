@@ -17,13 +17,13 @@
 
 ;; Major mode for the Kotlin programming language
 (use-package kotlin-mode
-  :straight t
+  :ensure t
   :unless (featurep 'feat/tree-sitter))
 
 
 ;; Tree-sitter based major mode for the Kotlin programming language
 (use-package kotlin-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :mode "\\.kts?\\'"
   :config

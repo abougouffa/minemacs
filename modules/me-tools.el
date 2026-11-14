@@ -12,7 +12,7 @@
 
 ;; A deployment plugin via Tramp for Emacs
 (use-package ssh-deploy
-  :straight (ssh-deploy :source gnu-elpa-mirror)
+  :ensure t
   ;; Should be configured in per-project basis, good documentation at:
   ;; https://github.com/emacs-straight/ssh-deploy#deployment-configuration-examples
   :hook
@@ -25,14 +25,7 @@
 
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
-  :straight (eat :type git
-                 :host codeberg
-                 :repo "akib/emacs-eat"
-                 :files ("*.el" ("term" "term/*.el") "*.texi"
-                         "*.ti" ("terminfo/e" "terminfo/e/*")
-                         ("terminfo/65" "terminfo/65/*")
-                         ("integration" "integration/*")
-                         (:exclude ".dir-locals.el" "*-tests.el")))
+  :vc (:url "https://codeberg.org/akib/emacs-eat")
   :autoload eat-make
   :hook (eat-mode . minemacs-reduce-font-size)
   :init
@@ -56,7 +49,7 @@ When in a project, toggle `eat-project', else, toggle `eat'."
 
 ;; Terminal emulator powered by libghostty
 (use-package ghostel
-  :straight t
+  :ensure t
   :bind ([f1] . +ghostel-toggle-dwim)
   :hook
   (ghostel-mode . minemacs-reduce-font-size)
@@ -102,7 +95,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Launch system applications from Emacs
 (use-package xdg-launcher
-  :straight (:host github :repo "emacs-exwm/xdg-launcher")
+  :vc (:url "https://github.com/emacs-exwm/xdg-launcher")
   :when (or (featurep 'os/linux) (featurep 'os/bsd))
   :bind (:map minemacs-open-thing-map ("a" . xdg-launcher-run-app))
   :config
@@ -112,7 +105,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Manage docker from Emacs
 (use-package docker
-  :straight t
+  :ensure t
   :bind (:map minemacs-open-thing-map ("d" . docker))
   :config
   ;; HACK: Define a `vterm-other-windo' using `ghostel' as backend so it can be
@@ -126,7 +119,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
-  :straight (:host github :repo "johannes-mueller/devcontainer.el")
+  :vc (:url "https://github.com/johannes-mueller/devcontainer.el")
   :hook (minemacs-after-startup . devcontainer-mode)
   :custom
   (devcontainer-term-function (cond ((featurep 'ghostel) '+devcontainer-ghostel-term)
@@ -154,13 +147,13 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Major mode to view journalctl's output in Emacs
 (use-package journalctl-mode
-  :straight t
+  :ensure t
   :commands (journalctl-mode))
 
 
 ;; Use the Emacsclient as the "$EDITOR" of child processes
 (use-package with-editor
-  :straight t
+  :ensure t
   :hook ((shell-mode eshell-mode term-exec vterm-mode) . +with-editor-export-editor-maybe)
   :init
   (+add-transient-advice 'shell-command :before (lambda (&rest _args) (shell-command-with-editor-mode 1)))
@@ -173,7 +166,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Python Executable Tracker
 (use-package pet
-  :straight t
+  :ensure t
   :when (and (or (executable-find "dasel") (executable-find "yq"))
              (or (featurep 'feat/sqlite3) (executable-find "sqlite3")))
   :init
@@ -196,14 +189,14 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Mount/umount gocryptfs vaults from Emacs
 (use-package gocryptfs
-  :straight (:host github :repo "abougouffa/emacs-gocryptfs")
+  :vc (:url "https://github.com/abougouffa/emacs-gocryptfs")
   :when (or (featurep 'os/linux) (featurep 'os/bsd))
   :bind (:map minemacs-open-thing-map ("e" . gocryptfs-toggle-mount)))
 
 
 ;; Package manager for LSPs, DAPs, linters, and more
 (use-package mason
-  :straight t
+  :ensure t
   :defer 2
   :hook (minemacs-build-functions . mason-update-registry)
   :config

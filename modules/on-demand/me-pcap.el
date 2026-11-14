@@ -17,7 +17,7 @@
 
 ;; Major mode for working with PCAP files via Wireshark's `tshark' tool
 (use-package pcap-mode
-  :straight t
+  :ensure t
   ;; An extensive list of extensions can be found at: https://tshark.dev/formats/magic_numbers
   :mode (rx "." (or "pcap" "pcapng" "ntar" "5vw" "ncf" "tr1" "trc" "trc0" "trc1"
                     "cap" "fdc" "syc" "bfr" "dmp" "rf5" "snoop" "eth" "pkt"

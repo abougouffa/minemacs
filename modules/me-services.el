@@ -12,7 +12,7 @@
 
 ;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
-  :straight (:host github :repo "ahungry/org-jira" :files ("jiralib.el"))
+  :vc (:url "https://github.com/ahungry/org-jira")
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init
@@ -94,21 +94,21 @@ projects to uses the convention of commit messages like:
 
 ;; Paste text to pastebin-like services
 (use-package webpaste
-  :straight t
+  :ensure t
   :custom
   (webpaste-provider-priority '("paste.rs" "dpaste.com" "bpa.st")))
 
 
 ;; Simply shortening URLs using the is.gd service
 (use-package isgd
-  :straight t
+  :vc (:url "https://github.com/emacsmirror/isgd")
   :custom
   (isgd-ask-custom-url t))
 
 
 ;; Work seamlessly with GitHub gists from Emacs
 (use-package igist
-  :straight t
+  :ensure t
   :config
   (advice-add ; BUGFIX: Don't save the Gist unless it has been modified
    'igist-save-gist-buffer :around

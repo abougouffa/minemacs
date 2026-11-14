@@ -18,12 +18,12 @@
 
 ;; Major mode for DeviceTree source code
 (use-package dts-mode
-  :straight t)
+  :ensure t)
 
 
 ;; Tree-sitter support for DeviceTree
 (use-package devicetree-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(devicetree "https://github.com/joelspadin/tree-sitter-devicetree"))
@@ -32,7 +32,7 @@
 
 ;; Major mode for Device Tree Binary (`*.dtb') files
 (use-package virtual-dts-mode
-  :straight (:host github :repo "connorfeeley/virtual-dts-mode"))
+  :vc (:url "https://github.com/connorfeeley/virtual-dts-mode"))
 
 
 (provide 'on-demand/me-devicetree)

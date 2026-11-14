@@ -17,7 +17,7 @@
 
 ;; View Rich Text Format (.rtf) files
 (use-package rtf-view
-  :straight t
+  :ensure t
   :when (and (libxml-available-p) (executable-find "unrtf")))
 
 

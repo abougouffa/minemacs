@@ -17,7 +17,7 @@
 
 ;; Mode for editing PowerShell scripts
 (use-package powershell
-  :straight t
+  :ensure t
   :custom
   (powershell-default-langserver-path (expand-file-name "powershell/" minemacs-local-dir)))
 

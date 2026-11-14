@@ -17,12 +17,12 @@
 
 ;; OpenGL Shading Language (GLSL)
 (use-package glsl-mode
-  :straight t)
+  :ensure t)
 
 
 ;; OpenGL Shading Language (GLSL), Tree-sitter based
 (use-package glsl-ts-mode
-  :straight glsl-mode
+  :ensure glsl-mode
   :mode (rx "." (or "vert" "frag" "geom" "tesc" "tese" "mesh" "task" "comp" "rgen" "rint" "rchit" "rahit" "rcall" "rmiss" "glsl") eol)
   :when (featurep 'feat/tree-sitter))
 

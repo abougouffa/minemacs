@@ -17,14 +17,14 @@
 
 ;; Major mode for editing Nvidia CUDA C++ files
 (use-package cuda-mode
-  :straight t
+  :ensure t
   :unless (featurep 'feat/tree-sitter)
   :hook (cuda-mode . +prog-mode-run-hooks))
 
 
 ;; CUDA mode based on tree-sitter
 (use-package cuda-ts-mode
-  :straight (:host github :repo "Ergus/cuda-ts-mode")
+  :vc (:url "https://github.com/Ergus/cuda-ts-mode")
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(cuda "https://github.com/tree-sitter-grammars/tree-sitter-cuda"))

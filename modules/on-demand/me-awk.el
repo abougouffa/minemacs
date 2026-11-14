@@ -18,7 +18,7 @@
 
 ;; Major mode for AWK using Tree-sitter
 (use-package awk-ts-mode
-  :straight t
+  :ensure t
   :when (featurep 'feat/tree-sitter)
   :config
   (add-to-list 'treesit-language-source-alist '(awk "https://github.com/Beaglefoot/tree-sitter-awk"))

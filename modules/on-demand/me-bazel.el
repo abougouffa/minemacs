@@ -24,7 +24,7 @@
 
 ;; Bazel support for Emacs
 (use-package bazel
-  :straight t
+  :ensure t
   :mode ("/Android\\.bp\\'" . bazel-mode))
 
 
