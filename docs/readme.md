@@ -149,8 +149,9 @@ You can customize MinEmacs' behavior via some environment variables.
   default, MinEmacs sets `use-package` to always defer, unless explicit
   `:demand` is added).
 - `MINEMACS_BUILTIN_ONLY`: Load only built-in packages, no need to install any
-  external package, including `straight`. This can be useful when you want to
-  use MinEmacs on a machine with limited internet access.
+  external package (`package.el` won't be used to install packages). This can be
+  useful when you want to use MinEmacs on a machine with limited internet
+  access.
 - `MINEMACS_DISABLED_PACKAGES` or `MINEMACS_DISABLED_PKGS`: space-separated list
   of packages to disable.
 - `MINEMACS_IGNORE_USER_CONFIG`: space-separated values, used to disables
@@ -170,6 +171,30 @@ You can customize MinEmacs' behavior via some environment variables.
   `early-config.el` but you want to start Emacs without passing by these proxies
   (useful if you use some proxies for workplace but you want Emacs to start
   without passing by them to be able to download packages).
+
+## Package management
+
+MinEmacs uses `use-package` with the built-in `package.el` (and `package-vc`) to
+install the packages declared in its modules:
+
+- `:ensure t` (or `:ensure PKG`) installs a package from the package archives
+  (MELPA, GNU ELPA and NonGNU ELPA, see `package-archives`).
+- `:vc (:url "https://...")` installs a package directly from its Git
+  repository.
+
+Packages are installed in `~/.emacs.d/local/elpa/`. The installed revisions are
+recorded in the lockfile `local/packages/versions.el`:
+
+- `M-x minemacs-bump-packages` (or `make bump`) updates all packages to their
+  latest versions and regenerates the lockfile.
+- `M-x minemacs-upgrade` (or `make upgrade`) restores the packages installed
+  from Git to the revisions recorded in the lockfile. As the package archives
+  only serve the latest version of each package, packages installed from the
+  archives are only upgraded when they are older than the locked version.
+- `M-x minemacs-packages-freeze` (or `make freeze`) saves the current versions
+  to the lockfile.
+- `M-x minemacs-packages-prune` deletes the installed packages that are not used
+  anymore.
 
 ## Extra documentation
 For more information about customization variables, functions and commands
