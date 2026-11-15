@@ -1,10 +1,10 @@
 ;;; me-pdf.el --- PDF documents -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-16
-;; Last modified: 2025-03-21
+;; Last modified: 2026-11-15
 
 ;;; Commentary:
 
@@ -26,7 +26,11 @@
   :custom
   (pdf-view-display-size 'fit-page)
   (pdf-view-image-relief 2)
-  (pdf-view-use-scaling t))
+  (pdf-view-use-scaling t)
+  :config
+  (unless (and (stringp pdf-info-epdfinfo-program)
+               (file-executable-p pdf-info-epdfinfo-program))
+    (pdf-tools-install t)))
 
 
 ;; Isearch support in PDF buffers
