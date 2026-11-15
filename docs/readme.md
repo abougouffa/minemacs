@@ -18,7 +18,7 @@ is changing constantly, please refer to the [change log](docs/changelog.md) for
 more information. See also the [list of MinEmacs' modules and
 packages](docs/packages.md).
 
-> [!NOTE]
+> #### Note
 > Please note that I have no intent or availability to create an alternative to
 > Doom Emacs or Spacemacs. While I find joy (like every other Emacser out there)
 > in tinkering with Emacs, MinEmacs remains just a tool that I use in my
@@ -60,13 +60,12 @@ packages. You might need to run `M-x minemacs-run-build-functions` when Emacs
 loads up to install some extra stuff (build some libraries, install Nerd Fonts,
 etc.)
 
-> [!IMPORTANT] Please note that I'm using a fresh Emacs 32.0.50 build. However,
-> I have set up some basic [Github CI
-> actions](https://github.com/abougouffa/minemacs/actions) that automatically
-> test running this configuration on Emacs 30, 31 and 32 in [Ubuntu
-> Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
-> and
-> [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
+> #### Important
+> Please note that I'm using a fresh Emacs 32.0.50 build. However, I have set up
+> some basic [Github CI actions](https://github.com/abougouffa/minemacs/actions)
+> that automatically test running this configuration on Emacs 30, 31 and 32 in
+> [Ubuntu Linux](https://github.com/abougouffa/minemacs/actions/workflows/ci-linux.yaml)
+> and [MacOS](https://github.com/abougouffa/minemacs/actions/workflows/ci-macos.yaml)
 > and on Emacs 30 in
 > [Windows](https://github.com/abougouffa/minemacs/actions/workflows/ci-windows.yaml).
 > These actions ensure that MinEmacs is "runnable" on these systems; with all
