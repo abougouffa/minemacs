@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.0.0](https://github.com/abougouffa/minemacs/compare/f7b94439d16a1f9249f4ecdb75032cdd4a3d457c..v15.0.0) - 2026-11-14
+#### Tweaks
+- (**casual-suite**) use the new `casual-suite-init` helper - ([cd9cdb6](https://github.com/abougouffa/minemacs/commit/cd9cdb6200cc07dd34f0104de2bfb42e66fa2b25)) - [@abougouffa](https://github.com/abougouffa)
+- (**claude-code-ide**) remove unused hack to integrate with `devcontainer` - ([0cc188e](https://github.com/abougouffa/minemacs/commit/0cc188ef3f6f3ca6c2b50e65dece523e9d816e11)) - [@abougouffa](https://github.com/abougouffa)
+- (**natural-langs**) make `gt` obsolete - ([c0e483c](https://github.com/abougouffa/minemacs/commit/c0e483c7fc245263f96e5d1a91c439df67ac01f8)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([50d6d96](https://github.com/abougouffa/minemacs/commit/50d6d96c6538e298720719697b43692bb5e659b9)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([cb57b2f](https://github.com/abougouffa/minemacs/commit/cb57b2f306ff820685c3b072c0014e2c87173f02)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([8d7f95a](https://github.com/abougouffa/minemacs/commit/8d7f95a1008e11496b0deab46705236d41a4d8d5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4c0ca66](https://github.com/abougouffa/minemacs/commit/4c0ca6607e8336c721e098b0539106b2968e6d3b)) - [@abougouffa](https://github.com/abougouffa)
+- better error reporting when loading lazy packages - ([d926855](https://github.com/abougouffa/minemacs/commit/d926855541f8b35940767bc88f48cd8b2a24f64f)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([f7b9443](https://github.com/abougouffa/minemacs/commit/f7b94439d16a1f9249f4ecdb75032cdd4a3d457c)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- ![BREAKING](https://img.shields.io/badge/BREAKING-red) (**ai**) make unused packages obsolete - ([4c4a1ef](https://github.com/abougouffa/minemacs/commit/4c4a1efa31d04bd15a42b291de58fe50032549f6)) - [@abougouffa](https://github.com/abougouffa)
+- add snippets converted from `yasnippet-snippets` - ([22a1bb6](https://github.com/abougouffa/minemacs/commit/22a1bb6a64198cd96c2eefe4657845cbcfe769ae)) - [@abougouffa](https://github.com/abougouffa)
+- add a vibe-coded Yasnippet to Tempel converter - ([3d79d21](https://github.com/abougouffa/minemacs/commit/3d79d218453f4beb1327ad6adfb54b078bf31661)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**project-x**) don't search for VC roots on adb remotes - ([919b6ae](https://github.com/abougouffa/minemacs/commit/919b6ae7bd91b01f748554649ffc72702b2258a2)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- document the new package management changes - ([ebc9cf9](https://github.com/abougouffa/minemacs/commit/ebc9cf9058db0e4970b5bd5e47fb2a5c5d3afb2c)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- remove old `yasnippet` snippets - ([2d6a312](https://github.com/abougouffa/minemacs/commit/2d6a31242ccac9e09dbc879f4231ba9496de9545)) - [@abougouffa](https://github.com/abougouffa)
+- ![BREAKING](https://img.shields.io/badge/BREAKING-red) use `package` instead of `straight` for packages management - ([36089d4](https://github.com/abougouffa/minemacs/commit/36089d4e306cdf472565fd486d5e2cdcca7a5bc8)) - [@abougouffa](https://github.com/abougouffa)
+- ![BREAKING](https://img.shields.io/badge/BREAKING-red) remove obsolete modules - ([0aa8ec4](https://github.com/abougouffa/minemacs/commit/0aa8ec45726b1c66afd885ce553473105231d0d5)) - [@abougouffa](https://github.com/abougouffa)
+#### Miscellaneous Chores
+- (**ci**) bump Emacs versions to 30.2 and 31.1 - ([14df5ac](https://github.com/abougouffa/minemacs/commit/14df5acd7dcd9bf3d89ac7c7e9ad1911df5cfdf5)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v14.15.0](https://github.com/abougouffa/minemacs/compare/cb28ae5a221cbe31ae587d21a0a3b192dce2ab77..v14.15.0) - 2026-10-14
 #### Tweaks
 - (**empv**) make use of `json-parse-buffer` - ([7835367](https://github.com/abougouffa/minemacs/commit/7835367f3762e57e786c371087adf25571e9a27b)) - [@abougouffa](https://github.com/abougouffa)
