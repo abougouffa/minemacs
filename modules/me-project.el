@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-13
+;; Last modified: 2026-11-17
 
 ;;; Commentary:
 
@@ -28,6 +28,7 @@
   (defun +otpp-tab-group-name ()
     "Return the appropriate name (if any) for the current otpp tab."
     (let ((root-dir (otpp-get-tab-root-dir)))
+      (require 'cond-let)
       (cond-let*
         ;; Return "protocol:host" for remote projects
         ([_ (file-remote-p root-dir nil 'never)]
