@@ -72,12 +72,22 @@ that aren't installed (or built-in) are ignored."
 ;; source of truth is MinEmacs' modules and the user's "config.el". The packages
 ;; declared with `:ensure' and `:vc' are added to it for the current session,
 ;; which makes `package-autoremove' work as expected (see
-;; `minemacs-packages-prune'). Note that `package-vc-selected-packages' isn't
-;; saved either, as we register the `:vc' specs before installing.
+;; `minemacs-packages-prune').
 (advice-add
  'package--save-selected-packages :override
  (+defun +package--save-selected-packages:override-a (&optional value)
    (when (or value after-init-time) (setq package-selected-packages value))))
+
+;; HACK: For the same reason, don't persist `package-vc-selected-packages' in the
+;; `custom-file'. `package-vc--unpack' saves it with `customize-save-variable'
+;; when the package spec doesn't come from an archive (always the case for
+;; MinEmacs' `:vc' packages), we only set it for the current session.
+(advice-add
+ 'customize-save-variable :around
+ (+defun +customize-save-variable--package-vc:around-a (origfn variable value &rest args)
+   (if (eq variable 'package-vc-selected-packages)
+       (set-default variable value)
+     (apply origfn variable value args))))
 
 ;; Unlike `straight' which builds packages in a separate process, `package'
 ;; builds them in the current session. Delaying the mode hooks prevents the
