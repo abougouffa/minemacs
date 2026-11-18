@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-09-25
+;; Last modified: 2026-11-18
 
 ;;; Commentary:
 
@@ -1106,7 +1106,11 @@ Typing these will trigger reindentation of the current line.")
 (use-package grep
   :hook (grep-mode . minemacs-reduce-font-size)
   :custom
-  (grep-use-headings t)) ; subdivide grep output into sections, one per file like `rg' (Emacs 30)
+  (grep-use-headings t) ; subdivide grep output into sections, one per file like `rg' (Emacs 30)
+  :config
+  ;; From: https://stegosaurusdormant.com/emacs-ripgrep
+  (when (executable-find "rg")
+    (grep-apply-setting 'grep-find-command '("rg -n -H --no-heading -e '' $(git rev-parse --show-toplevel || pwd)" . 27))))
 
 (use-package isearch
   :custom
