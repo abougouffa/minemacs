@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-14
+;; Last modified: 2026-11-18
 
 ;;; Commentary:
 
@@ -30,11 +30,43 @@ This is the equivalent of `straight's \":files (:defaults (:exclude ...))\".")
 
 ;;; Activation and session state
 
-;; Normally, `package-activate-all' is called by Emacs after loading the
-;; "early-init.el" (as `package-enable-at-startup' is non-nil). But we need to
-;; make sure the packages are activated when MinEmacs is loaded without
-;; "early-init.el" (CI, `make' commands, "emacs --script init.el", etc.)
-(unless (bound-and-true-p package--activated) (package-activate-all))
+;; Packages are activated declaratively, like with `straight': MinEmacs doesn't
+;; call `package-activate-all' at startup (`package-enable-at-startup' is set to
+;; nil in "early-init.el"), instead, each package is activated (added to
+;; `load-path' and its autoloads loaded) when it gets declared with `:ensure' or
+;; `:vc' in a `use-package' form, its dependencies are activated too. This way,
+;; an installed package which isn't declared (anymore) in MinEmacs' modules or
+;; in the user configuration isn't loaded. A package installed manually with
+;; `package-install' or `package-vc-install' is available in the current session
+;; only, until it gets declared in the configuration.
+
+(defvar minemacs-declared-packages nil
+  "The packages declared with `:ensure' or `:vc' in the current session.")
+
+;; Only load the descriptors of the installed packages (fill `package-alist'),
+;; without activating them, nor reading the archives contents (which is slow)
+(package--alist)
+
+(defun +package-activate (&rest packages)
+  "Activate the installed PACKAGES and their dependencies.
+The packages are also registered in `minemacs-declared-packages'. Packages
+that aren't installed (or built-in) are ignored."
+  (dolist (package packages)
+    (when (and package (symbolp package))
+      (add-to-list 'minemacs-declared-packages package t)
+      (unless (memq package package-activated-list)
+        (condition-case-unless-debug err
+            (package-activate package)
+          (error (display-warning 'minemacs (format "Failed to activate `%s': %s" package (error-message-string err)) :error)))))))
+
+;; HACK: Make `package-activate-all' a no-op, so calling it (directly or via
+;; `package-initialize') from the user config or some package doesn't activate
+;; all the installed packages.
+(advice-add
+ 'package-activate-all :override
+ (+defun +package-activate-all:override-a ()
+   (setq package--activated t)
+   (+log! "Ignoring `package-activate-all', only the declared packages are activated")))
 
 ;; HACK: Do not persist `package-selected-packages' in the `custom-file', the
 ;; source of truth is MinEmacs' modules and the user's "config.el". The packages
@@ -151,6 +183,32 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
  'package-vc--clone :after
  (+defun +package-vc--clone:after-a (_pkg-desc _pkg-spec dir _rev)
    (when +package--pinned-rev (+package-vc-reset dir +package--pinned-rev))))
+
+;; Activate the packages declared with `:ensure' and `:vc'. The activation form
+;; is added to the expanded `use-package' body, so it is evaluated at runtime,
+;; even when `use-package' installs the package at compile-time (when the form
+;; is byte-compiled). The order between the activation and the installation
+;; forms doesn't matter, packages are activated by `package' when installed.
+(defun +package--ensure-names (name ensure)
+  "Get the packages names from the normalized `:ensure' argument ENSURE of NAME."
+  (delq nil (mapcar (lambda (elt)
+                      (let ((package (if (eq elt t) (use-package-as-symbol name) elt)))
+                        (if (consp package) (car package) package)))
+                    ensure)))
+
+(advice-add
+ 'use-package-handler/:ensure :around
+ (+defun +use-package-handler/:ensure:around-a (origfn name keyword ensure rest state)
+   (let ((body (funcall origfn name keyword ensure rest state)))
+     (if-let* (((not (plist-member rest :vc))) ; Handled by `:vc'
+               (packages (+package--ensure-names name ensure)))
+         (cons `(+package-activate ,@(mapcar #'macroexp-quote packages)) body)
+       body))))
+
+(advice-add
+ 'use-package-handler/:vc :around
+ (+defun +use-package-handler/:vc:around-a (origfn name keyword arg rest state)
+   (cons `(+package-activate ',(car arg)) (funcall origfn name keyword arg rest state))))
 
 ;; Exclude some files from autoloads generation, the equivalent of `straight's
 ;; ":files (:defaults (:exclude ...))"

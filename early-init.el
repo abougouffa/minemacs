@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-14
+;; Last modified: 2026-11-18
 
 ;;; Commentary:
 
@@ -52,8 +52,10 @@
  use-package-always-defer (not minemacs-always-demand-p)
  use-package-always-demand minemacs-always-demand-p
  use-package-expand-minimally (not minemacs-debug-p) ; Minimize expanded code & do not try to catch errors, unless in debug mode
- ;; Make installed packages available when Emacs starts (unless we are loading only built-in packages)
- package-enable-at-startup (not minemacs-builtin-only-p)
+ ;; Don't make all the installed packages available when Emacs starts, only the
+ ;; packages declared in the modules and the user config are activated (see
+ ;; `+package-activate' in `me-bootstrap')
+ package-enable-at-startup nil
  ;; Install packages in MinEmacs' local directory
  package-user-dir (concat minemacs-local-dir "elpa/")
  ;; Package archives, the user can change these in "early-config.el" or "init-tweaks.el"
