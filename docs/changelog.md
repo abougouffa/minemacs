@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.1.1](https://github.com/abougouffa/minemacs/compare/6c716733f504b763dcdea0140574332cef0e0bf6..v15.1.1) - 2026-11-18
+#### Tweaks
+- bump packages versions - ([49d7c7c](https://github.com/abougouffa/minemacs/commit/49d7c7c56e44cf9147e5bef1576c7fe85e09cea5)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([6c71673](https://github.com/abougouffa/minemacs/commit/6c716733f504b763dcdea0140574332cef0e0bf6)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**bootstrap**) don't rely on advising `use-package-vc-install' - ([4b8d333](https://github.com/abougouffa/minemacs/commit/4b8d3337bb35bd8a63755501567c807e0fe7590f)) - [@abougouffa](https://github.com/abougouffa)
+- (**bootstrap**) don't fail on free-form version headers of VC packages - ([508a5c3](https://github.com/abougouffa/minemacs/commit/508a5c3bfb3f90a8562a61687c19bcc7eb0182d7)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.1.0](https://github.com/abougouffa/minemacs/compare/b7e2c43ed476b10eca332b1d20bf91e242f1ba89..v15.1.0) - 2026-11-18
 #### Tweaks
 - (**early-init**) native compile packages ahead-of-time - ([b5b06ea](https://github.com/abougouffa/minemacs/commit/b5b06ea3e4ca2b2f6434660e3e5d4bf9ac48c357)) - [@abougouffa](https://github.com/abougouffa)
