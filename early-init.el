@@ -96,6 +96,7 @@
         native-comp-verbose (if minemacs-verbose-p 1 0)
         native-comp-debug (if minemacs-debug-p 1 0)
         native-comp-jit-compilation t ; Make native compilation happens asynchronously
+        package-native-compile t ; Natively compile packages ahead-of-time when installing/upgrading them
         native-comp-async-query-on-exit t) ; Ask before terminating asynchronous compilations on exit
   ;; Set the directory for storing the native compilation cache
   (startup-redirect-eln-cache (concat minemacs-cache-dir "eln/")))
