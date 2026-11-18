@@ -64,7 +64,7 @@ freeze:
 	$(EMACS_BATCH) --eval='(minemacs-packages-freeze)'
 
 recompile:
-	$(EMACS_BATCH) --eval='(package-recompile-all)'
+	$(EMACS_BATCH) --eval='(minemacs-packages-recompile)'
 
 build:
 	$(EMACS_BATCH) --eval='(minemacs-run-build-functions t)'

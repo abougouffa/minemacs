@@ -333,9 +333,29 @@ dependencies, are kept."
          (seq-union package-selected-packages (mapcar #'car (+package-lockfile-read)))))
     (package-autoremove)))
 
+(defun +package-lisp-dirs (pkg-desc)
+  "Return the directories containing the Lisp files of PKG-DESC.
+This is where the autoloads file is located, it can be a sub-directory for
+packages installed from VC with a `:lisp-dir' (like `transient')."
+  (let ((dir (package-desc-dir pkg-desc))
+        (autoloads (format "\\`%s-autoloads\\.el\\'" (regexp-quote (symbol-name (package-desc-name pkg-desc))))))
+    (or (delete-dups (mapcar #'file-name-directory
+                             (directory-files-recursively dir autoloads nil (lambda (d) (not (string-suffix-p "/.git" d))))))
+        (list dir))))
+
+(defun minemacs-packages-recompile ()
+  "Byte-compile all the installed packages, like `package-recompile-all'.
+As only the declared packages are activated, the Lisp directories of all the
+installed packages are added to `load-path' while compiling. This way, the
+dependencies of the packages that aren't activated in the current session
+\(ex. the ones declared in on-demand modules) can be found."
+  (interactive)
+  (let ((load-path (append (mapcan (lambda (elt) (+package-lisp-dirs (cadr elt))) package-alist) load-path)))
+    (package-recompile-all)))
+
 ;; Byte-compiled files of a different Emacs version can be incompatible
 ;; (`straight' used to have a build directory per Emacs version)
-(add-hook 'minemacs-after-emacs-version-change-hook #'package-recompile-all -90)
+(add-hook 'minemacs-after-emacs-version-change-hook #'minemacs-packages-recompile -90)
 
 (provide 'me-bootstrap)
 
