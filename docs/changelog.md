@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.1.0](https://github.com/abougouffa/minemacs/compare/b7e2c43ed476b10eca332b1d20bf91e242f1ba89..v15.1.0) - 2026-11-18
+#### Tweaks
+- (**early-init**) native compile packages ahead-of-time - ([b5b06ea](https://github.com/abougouffa/minemacs/commit/b5b06ea3e4ca2b2f6434660e3e5d4bf9ac48c357)) - [@abougouffa](https://github.com/abougouffa)
+- (**grep**) use `rg` when calling `grep-find` - ([7d26be6](https://github.com/abougouffa/minemacs/commit/7d26be64f448bd58641d062c8b15b1b1efe59d3e)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**bootstrap**) only activate the packages declared in the config - ([497ea12](https://github.com/abougouffa/minemacs/commit/497ea12f163c914fba2b591190bb5b1e5c72a34c)) - [@abougouffa](https://github.com/abougouffa)
+- (**nav**) make `rg` obsolete - ([3466b22](https://github.com/abougouffa/minemacs/commit/3466b22d826752227934ad5e1de055ee8fb239f4)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**bootstrap**) don't persist `package-vc-selected-packages` - ([f5c0018](https://github.com/abougouffa/minemacs/commit/f5c0018533a1a5640f952f2b990075808edfef62)) - [@abougouffa](https://github.com/abougouffa)
+- (**bootstrap**) recompile packages with all of them in `load-path` - ([9cca027](https://github.com/abougouffa/minemacs/commit/9cca027e52d77f33f08178221d71fbd7d7b36d98)) - [@abougouffa](https://github.com/abougouffa)
+- (**on-demand/pdf**) auto install `pdf-tools` if needed - ([b7e2c43](https://github.com/abougouffa/minemacs/commit/b7e2c43ed476b10eca332b1d20bf91e242f1ba89)) - [@abougouffa](https://github.com/abougouffa)
+- (**otpp**) load `cond-let` before using it - ([d11babf](https://github.com/abougouffa/minemacs/commit/d11babf5701464386cd29e20fc2ddeb6ea33b57d)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- (**readme**) document the new `package` behavior - ([36251c7](https://github.com/abougouffa/minemacs/commit/36251c73e4b15331a5e8a591c0470206107513ee)) - [@abougouffa](https://github.com/abougouffa)
+- small stylistic edits in README - ([8720854](https://github.com/abougouffa/minemacs/commit/8720854e7199ebc1dce5b57c9222c92b5a7ad60a)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.0.0](https://github.com/abougouffa/minemacs/compare/f7b94439d16a1f9249f4ecdb75032cdd4a3d457c..v15.0.0) - 2026-11-14
 #### Tweaks
 - (**casual-suite**) use the new `casual-suite-init` helper - ([cd9cdb6](https://github.com/abougouffa/minemacs/commit/cd9cdb6200cc07dd34f0104de2bfb42e66fa2b25)) - [@abougouffa](https://github.com/abougouffa)
