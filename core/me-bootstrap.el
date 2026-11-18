@@ -186,28 +186,40 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
      (when-let* ((package (if (eq ensure t) (use-package-as-symbol name) ensure)))
        (add-to-list 'package-selected-packages (if (consp package) (car package) package))))))
 
-;; Install from VC (`:vc'), unlike the default `use-package-vc-install':
+;; Install from VC (`:vc') with `+package-vc-install', unlike the default
+;; `use-package-vc-install':
 ;; - Consider only the packages installed in `package-user-dir', this allows
 ;;   installing a newer version of a built-in package like `transient'
 ;; - Install at the locked revision, if any (see `+package-vc--clone:after-a')
-;; - Register the spec in `package-vc-selected-packages', so `package-vc' doesn't
-;;   save it to the `custom-file', and `package-vc-rebuild'/`package-vc-upgrade'
-;;   can find it (ex. the `:lisp-dir' of `transient')
+;; - Register the spec in `package-vc-selected-packages', so
+;;   `package-vc-rebuild'/`package-vc-upgrade' can find it (ex. the `:lisp-dir'
+;;   of `transient')
 ;; - Show a warning instead of signaling an error when the installation fails
 (defvar +package--pinned-rev nil)
 
-(advice-add
- 'use-package-vc-install :around
- (+defun +use-package-vc-install:around-a (origfn arg &optional local-path)
-   (pcase-let ((`(,name ,opts ,rev) arg))
-     (when opts (setf (alist-get name package-vc-selected-packages) opts))
-     (add-to-list 'package-selected-packages name)
-     (cond (local-path (funcall origfn arg local-path))
-           ((assq name package-alist)) ; Already installed
-           (t (condition-case-unless-debug err
+(defun +package-vc-install (arg &optional local-path)
+  "Install the package described by ARG with `package-vc'.
+ARG is a list (NAME OPTIONS REVISION) as returned by
+`use-package-normalize--vc-arg'. When LOCAL-PATH is non-nil, install from
+the local checkout in LOCAL-PATH."
+  (pcase-let ((`(,name ,opts ,rev) arg))
+    (when opts (setf (alist-get name package-vc-selected-packages) opts))
+    (add-to-list 'package-selected-packages name)
+    (unless (assq name package-alist) ; Already installed
+      (let* ((dir (expand-file-name (symbol-name name) package-user-dir))
+             (dir-existed (file-directory-p dir)))
+        (unwind-protect
+            (condition-case-unless-debug err
+                (if local-path
+                    (with-no-warnings (package-vc-install-from-checkout local-path (symbol-name name)))
                   (let ((+package--pinned-rev (plist-get (+package-locked name) :rev)))
-                    (package-vc-install (if opts (cons name opts) name) (unless +package--pinned-rev rev)))
-                (error (display-warning 'minemacs (format "Failed to install `%s' from VC: %s" name (error-message-string err)) :error))))))))
+                    (package-vc-install (if opts (cons name opts) name) (unless +package--pinned-rev rev))))
+              (error (display-warning 'minemacs (format "Failed to install `%s' from VC: %s" name (error-message-string err)) :error)))
+          ;; When the installation fails (even when the error isn't caught, ex.
+          ;; in debug mode), delete the partial checkout. Otherwise, the next
+          ;; attempt would ask to overwrite it (or fail in batch mode).
+          (when (and (not local-path) (not dir-existed) (not (assq name package-alist)) (file-directory-p dir))
+            (delete-directory dir t)))))))
 
 ;; Pin the freshly cloned package to the locked revision before building it
 (advice-add
@@ -236,10 +248,21 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
          (cons `(+package-activate ,@(mapcar #'macroexp-quote packages)) body)
        body))))
 
+;; HACK: Replace the `:vc' handler instead of advising `use-package-vc-install',
+;; which is defined with `define-inline' in recent Emacs versions (Emacs 31+
+;; development branch). When inlined, the advice is bypassed (ex. when the
+;; `use-package' form is evaluated with `eval-last-sexp' or eagerly
+;; macroexpanded while loading a file).
 (advice-add
- 'use-package-handler/:vc :around
- (+defun +use-package-handler/:vc:around-a (origfn name keyword arg rest state)
-   (cons `(+package-activate ',(car arg)) (funcall origfn name keyword arg rest state))))
+ 'use-package-handler/:vc :override
+ (+defun +use-package-handler/:vc:override-a (name _keyword arg rest state)
+   (let ((body (use-package-process-keywords name rest state))
+         (local-path (car (plist-get state :load-path))))
+     ;; Like `use-package-handler/:vc', install when byte-compiling
+     (if (bound-and-true-p byte-compile-current-file)
+         (+package-vc-install arg local-path)
+       (push `(+package-vc-install ',arg ,local-path) body))
+     (cons `(+package-activate ',(car arg)) body))))
 
 ;; Exclude some files from autoloads generation, the equivalent of `straight's
 ;; ":files (:defaults (:exclude ...))"

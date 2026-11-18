@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-14
+;; Last modified: 2026-11-18
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -112,7 +112,8 @@
 (if minemacs-builtin-only-p
     (progn
       (setq use-package-ensure-function #'ignore)
-      (advice-add 'use-package-vc-install :override #'ignore))
+      ;; Override the handler, `use-package-vc-install' can be inlined
+      (advice-add 'use-package-handler/:vc :override (lambda (name _keyword _arg rest state) (use-package-process-keywords name rest state))))
   (require 'me-bootstrap))
 
 (require 'me-builtin)
