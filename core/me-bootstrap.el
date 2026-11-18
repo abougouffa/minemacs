@@ -89,6 +89,27 @@ that aren't installed (or built-in) are ignored."
        (set-default variable value)
      (apply origfn variable value args))))
 
+;; FIX: Some old packages have free-form "Version" headers (ex. `gas-mode' has
+;; "1.10  2009-2-25 hcz"). Contrary to its docstring, `package-strip-rcs-id'
+;; signals an error for such strings instead of returning nil, which makes
+;; `package-vc' fail when generating the package description. Use the leading
+;; version number when there is one, or return nil as documented.
+(advice-add
+ 'package-strip-rcs-id :around
+ (+defun +package-strip-rcs-id:around-a (origfn str)
+   (condition-case nil
+       (funcall origfn str)
+     (error (when-let* (((stringp str))
+                        ((string-match "\\`[ \t]*\\(?:[$]Revision:[ \t]+\\)?\\([0-9]+\\(?:\\.[0-9]+\\)*\\)" str)))
+              (ignore-errors (funcall origfn (match-string 1 str))))))))
+
+;; `package-vc--version' returns nil when the version can't be parsed, which
+;; produces an invalid package description, fallback to "0" like when the
+;; package doesn't have a version header
+(advice-add
+ 'package-vc--version :filter-return
+ (+defun +package-vc--version:filter-return-a (version) (or version "0")))
+
 ;; Unlike `straight' which builds packages in a separate process, `package'
 ;; builds them in the current session. Delaying the mode hooks prevents the
 ;; user's configuration hooks (ex. `prog-mode-hook') from running in the buffers
