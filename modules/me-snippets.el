@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-11-17
-;; Last modified: 2026-06-01
+;; Last modified: 2026-11-18
 
 ;;; Commentary:
 
@@ -27,10 +27,6 @@
   :config
   (defun +tempel-setup-capf-h ()
     (add-hook 'completion-at-point-functions #'tempel-complete -90 t)))
-
-
-(use-package tempel-collection
-  :ensure t)
 
 
 (provide 'me-snippets)
