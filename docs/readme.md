@@ -181,6 +181,17 @@ install the packages declared in its modules:
 - `:vc (:url "https://...")` installs a package directly from its Git
   repository.
 
+Package activation is declarative, like with `straight`: only the packages
+declared with `:ensure` or `:vc` in the enabled modules and in your
+configuration are activated (added to `load-path` and their autoloads loaded),
+along with their dependencies. MinEmacs doesn't activate all the installed
+packages at startup (`package-enable-at-startup` is `nil`), so a package removed
+from the configuration isn't loaded anymore after restarting Emacs, even if it
+is still installed. A package installed manually with `M-x package-install` or
+`M-x package-vc-install` is available in the current session only, declare it in
+your `config.el` to keep it after restarting Emacs. The packages declared in the
+current session are listed in `minemacs-declared-packages`.
+
 Packages are installed in `~/.emacs.d/local/elpa/`. The installed revisions are
 recorded in the lockfile `local/packages/versions.el`:
 
@@ -194,6 +205,8 @@ recorded in the lockfile `local/packages/versions.el`:
   to the lockfile.
 - `M-x minemacs-packages-prune` deletes the installed packages that are not used
   anymore.
+- `M-x minemacs-packages-recompile` (or `make recompile`) byte-compiles all the
+  installed packages, including the ones that aren't activated.
 
 ## Extra documentation
 For more information about customization variables, functions and commands
