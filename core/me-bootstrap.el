@@ -30,22 +30,42 @@ This is the equivalent of `straight's \":files (:defaults (:exclude ...))\".")
 
 ;;; Activation and session state
 
-;; Packages are activated declaratively, like with `straight': MinEmacs doesn't
-;; call `package-activate-all' at startup (`package-enable-at-startup' is set to
-;; nil in "early-init.el"), instead, each package is activated (added to
-;; `load-path' and its autoloads loaded) when it gets declared with `:ensure' or
-;; `:vc' in a `use-package' form, its dependencies are activated too. This way,
-;; an installed package which isn't declared (anymore) in MinEmacs' modules or
-;; in the user configuration isn't loaded. A package installed manually with
-;; `package-install' or `package-vc-install' is available in the current session
-;; only, until it gets declared in the configuration.
+;; Like with `straight', a package (and its dependencies) is only activated when
+;; declared with `:ensure' or `:vc', so packages removed from the config aren't
+;; loaded anymore. Packages installed manually are available for the current
+;; session only. Newer versions of built-in packages are activated in
+;; "early-init.el".
 
 (defvar minemacs-declared-packages nil
   "The packages declared with `:ensure' or `:vc' in the current session.")
 
-;; Only load the descriptors of the installed packages (fill `package-alist'),
-;; without activating them, nor reading the archives contents (which is slow)
-(package--alist)
+(defun +package-lisp-dirs (pkg-desc)
+  "Return the directories containing the Lisp files of PKG-DESC.
+This is where the autoloads file is located, it can be a sub-directory for
+packages installed from VC with a `:lisp-dir' (like `transient')."
+  (let ((dir (package-desc-dir pkg-desc))
+        (autoloads (format "\\`%s-autoloads\\.el\\'" (regexp-quote (symbol-name (package-desc-name pkg-desc))))))
+    (or (delete-dups (mapcar #'file-name-directory
+                             (directory-files-recursively dir autoloads nil (lambda (d) (not (string-suffix-p "/.git" d))))))
+        (list dir))))
+
+;; FIX: When activating a package with RELOAD (after installing it, or in Emacs
+;; 31+ when a newer version of a built-in package is activated after the
+;; built-in one has been loaded), `package-activate-1' reloads the previously
+;; loaded files of the package *before* adding it to `load-path' (which is done
+;; by its autoloads file). Reloading fails when a file requires another one from
+;; the same package, ex. installing `compat' 31 on Emacs 30 after the built-in
+;; `compat' has been loaded fails with: "Cannot open load file ... compat-31".
+(defvar find-library-source-path)
+
+(advice-add
+ 'package--reload-previously-loaded :around
+ (+defun +package--reload-previously-loaded:around-a (origfn pkg-desc &rest args)
+   ;; The previously loaded files are searched in `find-library-source-path'
+   ;; when bound, keep searching in the original `load-path'
+   (let* ((find-library-source-path (or (bound-and-true-p find-library-source-path) load-path))
+          (load-path (append (+package-lisp-dirs pkg-desc) load-path)))
+     (apply origfn pkg-desc args))))
 
 (defun +package-activate (&rest packages)
   "Activate the installed PACKAGES and their dependencies.
@@ -386,16 +406,6 @@ dependencies, are kept."
   (let ((package-selected-packages
          (seq-union package-selected-packages (mapcar #'car (+package-lockfile-read)))))
     (package-autoremove)))
-
-(defun +package-lisp-dirs (pkg-desc)
-  "Return the directories containing the Lisp files of PKG-DESC.
-This is where the autoloads file is located, it can be a sub-directory for
-packages installed from VC with a `:lisp-dir' (like `transient')."
-  (let ((dir (package-desc-dir pkg-desc))
-        (autoloads (format "\\`%s-autoloads\\.el\\'" (regexp-quote (symbol-name (package-desc-name pkg-desc))))))
-    (or (delete-dups (mapcar #'file-name-directory
-                             (directory-files-recursively dir autoloads nil (lambda (d) (not (string-suffix-p "/.git" d))))))
-        (list dir))))
 
 (defun minemacs-packages-recompile ()
   "Byte-compile all the installed packages, like `package-recompile-all'.

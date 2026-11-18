@@ -192,6 +192,12 @@ is still installed. A package installed manually with `M-x package-install` or
 your `config.el` to keep it after restarting Emacs. The packages declared in the
 current session are listed in `minemacs-declared-packages`.
 
+The only exception is the installed packages that are newer versions of built-in
+packages (ex. `transient`, `compat` or `org`): they are activated at startup,
+before anything loads the built-in versions. After removing such a package from
+the configuration, delete it with `M-x package-delete` to get back to the
+built-in version.
+
 Packages are installed in `~/.emacs.d/local/elpa/`. The installed revisions are
 recorded in the lockfile `local/packages/versions.el`:
 

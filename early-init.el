@@ -29,6 +29,34 @@
     (add-to-list 'load-path (expand-file-name dir minemacs-dir))))
 
 (require 'me-vars)
+
+;; Set before the early activation below (ex. `package-user-dir')
+(setq
+ ;; Only activate the declared packages (see `+package-activate')
+ package-enable-at-startup nil
+ ;; Install packages in MinEmacs' local directory
+ package-user-dir (concat minemacs-local-dir "elpa/")
+ ;; Package archives, the user can change these in "early-config.el" or "init-tweaks.el"
+ package-archives '(("melpa" . "https://melpa.org/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+ ;; Prefer MELPA (latest commits, like `straight' which used MELPA recipes first)
+ package-archive-priorities '(("melpa" . 30) ("gnu" . 20) ("nongnu" . 10))
+ ;; Install the latest commit for packages installed from VC with `:vc', like `straight'
+ use-package-vc-prefer-newest t
+ ;; Don't register the cloned packages as projects
+ package-vc-register-as-project nil)
+
+;; Activate the installed newer versions of built-in packages (ex. `transient',
+;; `compat') before anything loads the built-in ones. Otherwise, the built-in
+;; version stays in use (Emacs 30) or gets reloaded with an "activated too
+;; late" warning (Emacs 31+). The other packages are activated when declared.
+(unless minemacs-builtin-only-p
+  (require 'package)
+  (package--alist) ; Load the installed packages descriptors, without activating them
+  (dolist (package (mapcar #'car package-alist))
+    (when (assq package package--builtin-versions)
+      (with-demoted-errors "Error activating package: %S"
+        (package-activate package)))))
+
 (require 'me-lib)
 
 ;; Avoid spitting messages like "somefile.el: Warning: ‘if-let’ is an obsolete macro (as of 31.1); use ‘if-let*’ instead."
@@ -52,20 +80,6 @@
  use-package-always-defer (not minemacs-always-demand-p)
  use-package-always-demand minemacs-always-demand-p
  use-package-expand-minimally (not minemacs-debug-p) ; Minimize expanded code & do not try to catch errors, unless in debug mode
- ;; Don't make all the installed packages available when Emacs starts, only the
- ;; packages declared in the modules and the user config are activated (see
- ;; `+package-activate' in `me-bootstrap')
- package-enable-at-startup nil
- ;; Install packages in MinEmacs' local directory
- package-user-dir (concat minemacs-local-dir "elpa/")
- ;; Package archives, the user can change these in "early-config.el" or "init-tweaks.el"
- package-archives '(("melpa" . "https://melpa.org/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("nongnu" . "https://elpa.nongnu.org/nongnu/"))
- ;; Prefer MELPA (latest commits, like `straight' which used MELPA recipes first)
- package-archive-priorities '(("melpa" . 30) ("gnu" . 20) ("nongnu" . 10))
- ;; Install the latest commit for packages installed from VC with `:vc', like `straight'
- use-package-vc-prefer-newest t
- ;; Don't register the cloned packages as projects
- package-vc-register-as-project nil
  ;; Prefer loading newer files
  load-prefer-newer t
  ;; Remove some unneeded UI elements
