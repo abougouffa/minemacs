@@ -182,21 +182,16 @@ install the packages declared in its modules:
   repository.
 
 Package activation is declarative, like with `straight`: only the packages
-declared with `:ensure` or `:vc` in the enabled modules and in your
-configuration are activated (added to `load-path` and their autoloads loaded),
-along with their dependencies. MinEmacs doesn't activate all the installed
-packages at startup (`package-enable-at-startup` is `nil`), so a package removed
-from the configuration isn't loaded anymore after restarting Emacs, even if it
-is still installed. A package installed manually with `M-x package-install` or
-`M-x package-vc-install` is available in the current session only, declare it in
-your `config.el` to keep it after restarting Emacs. The packages declared in the
-current session are listed in `minemacs-declared-packages`.
+declared with `:ensure` or `:vc` (in the enabled modules and in your
+configuration) and their dependencies are activated. A package removed from the
+configuration isn't loaded anymore after restarting Emacs, even if it is still
+installed. A package installed with `M-x package-install` or `M-x
+package-vc-install` is only available in the current session. The declared
+packages are listed in `minemacs-declared-packages`.
 
-The only exception is the installed packages that are newer versions of built-in
-packages (ex. `transient`, `compat` or `org`): they are activated at startup,
-before anything loads the built-in versions. After removing such a package from
-the configuration, delete it with `M-x package-delete` to get back to the
-built-in version.
+The exception is the installed newer versions of built-in packages (ex.
+`transient` or `compat`), which are activated at startup. To get back to the
+built-in version, delete the package with `M-x package-delete`.
 
 Packages are installed in `~/.emacs.d/local/elpa/`. The installed revisions are
 recorded in the lockfile `local/packages/versions.el`:
