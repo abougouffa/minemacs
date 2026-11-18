@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2026-05-07
+;; Last modified: 2026-11-18
 
 ;;; Commentary:
 
@@ -64,14 +64,6 @@
 ;; Another incremental search command, compatible with `multiple-cursors'
 (use-package phi-search
   :ensure t)
-
-
-;; Emacs search tool based on "ripgrep"
-(use-package rg
-  :ensure t
-  :bind (("C-c s" . rg-menu))
-  :init
-  (+super-project-define-commands 'rg-project))
 
 
 ;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
