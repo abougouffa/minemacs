@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-05-20
-;; Last modified: 2026-11-14
+;; Last modified: 2026-11-19
 
 ;;; Commentary:
 
@@ -57,6 +57,41 @@ When ASK is non-nil (\\[universal-argument]), ask about which file to open."
   (if ask
       (find-file (read-file-name "Select which file to open: " minemacs-config-dir))
     (dired minemacs-config-dir)))
+
+(defun +package-native-comp-report ()
+  "Report how the functions of the loaded package files are compiled.
+Only files actually loaded are considered (autoload stubs of packages not
+loaded yet are ignored). Columns: natively compiled, byte-compiled,
+interpreted (not compiled at all) and other (macros, aliases, etc.)."
+  (interactive)
+  (let (rows)
+    (dolist (entry load-history)
+      (when-let* ((file (car entry))
+                  ((file-in-directory-p file package-user-dir))
+                  ((not (string-suffix-p "-autoloads.el" file))))
+        (let ((counts (list 0 0 0 0)))
+          (dolist (item (cdr entry))
+            (when-let* (((eq (car-safe item) 'defun))
+                        (sym (cdr item))
+                        ((fboundp sym))
+                        (fn (symbol-function sym)))
+              (cl-incf (nth (cond ((native-comp-function-p fn) 0)
+                                  ((byte-code-function-p fn) 1)
+                                  ((interpreted-function-p fn) 2)
+                                  (t 3))
+                            counts))))
+          (push (cons (file-relative-name file package-user-dir) counts) rows))))
+    (with-current-buffer (get-buffer-create "*native-comp report*")
+      (let ((buffer-read-only nil))
+        (erase-buffer)
+        (insert (format "%-60s %7s %9s %11s %6s\n" "File" "native" "byte-code" "interpreted" "other"))
+        (pcase-dolist (`(,file ,native ,bytecode ,interp ,other) (sort rows :key #'car))
+          (insert (format "%-60s %7d %9d %11d %6d%s\n" file native bytecode interp other
+                          (cond ((and (zerop native) (> bytecode 0)) "  <- not native")
+                                ((> interp 0) "  <- not compiled")
+                                (t ""))))))
+      (read-only-mode 1)
+      (display-buffer (current-buffer)))))
 
 
 
