@@ -1212,50 +1212,6 @@ Returns either nil, or the position of the first null byte."
   :custom
   (eww-auto-rename-buffer 'title))
 
-(use-package modus-themes
-  :custom
-  (modus-themes-prompts '(semibold))
-  (modus-themes-completions '((selection . (semibold)) (matches . (extrabold underline))))
-  :config
-  (setq modus-operandi-palette-user
-        '((fg-main       "#282b35")
-          (bg-main       "#f0f0f0")
-          (ultralight    "#cfd6e2")
-          (highlight     "#dbe1eb")
-          (lowlight      "#e3e7ef")
-          (urgent        "#f53137")
-          (crucial       "#303db4")
-          (focus         "#940B96")
-          (strong        "#000000")
-          (meek          "#727d97")
-          (mild          "#C8CDD8")
-          (faint         "#eceff1")
-          (black         "#000000")
-          (white         "#FFFFFF")
-          (red           "#960d36")
-          (green         "#00796b")
-          (blue          "#30608c")
-          (yellow        "#e0a500")
-          (orange        "#966e53")
-          (aqua          "#278C87")
-          (cyan          "#66CCCC")
-          (purple        "#833AE6")
-          (bg-region     bg-cyan-intense)
-          (fg-region     unspecified)
-          (keyword       fg-main)
-          (builtin       fg-main)
-          (function      focus)
-          (number        yellow)
-          (operator      fg-main)
-          (constant      blue)
-          (comment       meek)
-          (doc           meek)
-          (string        meek)
-          (docstring     meek)
-          (property      fg-main)
-          (type          crucial)
-          (variable      fg-main))))
-
 
 (provide 'me-builtin)
 ;;; me-builtin.el ends here
