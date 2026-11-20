@@ -123,6 +123,8 @@
 (use-package symbol-overlay
   :ensure t
   :hook ((prog-mode conf-mode) . symbol-overlay-mode)
+  :bind (("M-n" . symbol-overlay-jump-next)
+         ("M-p" . symbol-overlay-jump-prev))
   :init
   (+add-hooks '(server-after-make-frame-hook after-init-hook) #'+symbol-overlay--lighter-face)
   (defun +symbol-overlay--lighter-face ()
