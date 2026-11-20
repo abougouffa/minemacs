@@ -80,6 +80,10 @@
   :init
   (setq-default fill-column 80)
 
+  ;; Remove rarely used backends: RCS, CVS, SCCS, SRC and Bzr. It's a lot of
+  ;; work for `vc' to check them all (especially in TRAMP buffers).
+  (setq-default vc-handled-backends '(SVN Git Hg))
+
   ;; When `me-completion/vertico' is disabled, enable `fido-vertical-mode' as a fallback
   (when (+package-disabled-p 'vertico 'me-completion)
     (fido-vertical-mode 1))
