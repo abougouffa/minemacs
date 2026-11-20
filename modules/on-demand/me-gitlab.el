@@ -1,10 +1,10 @@
 ;;; me-gitlab.el --- Gitlab CI format support and interface -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-06-16
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 
 ;; Emacs-GitLab integration
 (use-package lab
-  :vc (:url "https://github.com/isamert/lab.el"))
+  :ensure t)
 
 
 (provide 'on-demand/me-gitlab)

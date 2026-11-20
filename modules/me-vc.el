@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-14
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -54,7 +54,7 @@
 
 ;; Use delta when viewing diffs in `magit'
 (use-package magit-delta
-  :vc (:url "https://github.com/dandavison/magit-delta")
+  :ensure t
   :when (executable-find "delta")
   :hook (magit-mode . magit-delta-mode)
   :custom
@@ -73,7 +73,7 @@
 
 ;; Gerrit integration via the REST API
 (use-package gerrit
-  :vc (:url "https://github.com/twmr/gerrit.el"))
+  :ensure t)
 
 
 ;; Store EIEIO objects using EmacSQL

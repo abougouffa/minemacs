@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-06-14
-;; Last modified: 2026-11-18
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -68,7 +68,7 @@
 
 ;; Emacs search engine which combines concepts from information retrievial and Bayesian search theory
 (use-package p-search
-  :vc (:url "https://github.com/zkry/p-search")
+  :ensure t
   :commands (p-search))
 
 

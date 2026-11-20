@@ -1,10 +1,10 @@
 ;;; me-cc.el --- C/C++ extras -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-15
-;; Last modified: 2026-05-27
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -17,7 +17,7 @@
 
 ;; Flymake backend for CppCheck
 (use-package flymake-cppcheck
-  :vc (:url "https://github.com/shaohme/flymake-cppcheck")
+  :vc (:url "https://codeberg.org/shaohme/flymake-cppcheck")
   :init
   (when (executable-find "cppcheck")
     (+add-hooks '(c-mode-hook c-ts-mode-hook c++-mode-hook c++-ts-mode-hook) #'flymake-cppcheck-setup)))

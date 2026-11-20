@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2026-03-29
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 
 ;;  A modern, TreeSitter-powered, Emacs major mode for OCaml
 (use-package neocaml
-  :vc (:url "https://github.com/bbatsov/neocaml")
+  :ensure t
   :config
   ;; Register neocaml modes with Eglot
   (with-eval-after-load 'eglot
@@ -33,7 +33,7 @@
 
 ;; An overlay on Eglot for editing OCaml code using LSP
 (use-package ocaml-eglot
-  :vc (:url "https://github.com/tarides/ocaml-eglot")
+  :ensure t
   :hook
   (neocaml-base-mode . ocaml-eglot)
   (ocaml-eglot . eglot-ensure))

@@ -1,10 +1,10 @@
 ;;; me-mermaid.el --- Mermaid -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -22,7 +22,7 @@
 
 ;; Org Babel support for Mermaid evaluation
 (use-package ob-mermaid
-  :vc (:url "https://github.com/arnm/ob-mermaid")
+  :ensure t
   :after minemacs-first-org-file ob
   :demand
   :config

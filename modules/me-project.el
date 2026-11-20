@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-11-17
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; One tab per project, with unique names - simple implementation of workspaces
 (use-package otpp
-  :vc (:url "https://github.com/abougouffa/one-tab-per-project")
+  :ensure t
   :after project
   :bind (("C-x t D" . otpp-detach-buffer-to-tab)
          ("C-x t C" . otpp-change-tab-root-dir)

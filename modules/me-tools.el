@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-09-18
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -25,7 +25,7 @@
 
 ;; Emulate A Terminal, in a region, in a buffer and in Eshell
 (use-package eat
-  :vc (:url "https://codeberg.org/akib/emacs-eat")
+  :ensure t
   :autoload eat-make
   :hook (eat-mode . minemacs-reduce-font-size)
   :init
@@ -119,7 +119,7 @@ When in a project, toggle `ghostel-project', else, toggle `ghostel'."
 
 ;; Rudimentary devcontainer support for Emacs
 (use-package devcontainer
-  :vc (:url "https://github.com/johannes-mueller/devcontainer.el")
+  :ensure t
   :hook (minemacs-after-startup . devcontainer-mode)
   :custom
   (devcontainer-term-function (cond ((featurep 'ghostel) '+devcontainer-ghostel-term)

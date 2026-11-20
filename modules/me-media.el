@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-20
-;; Last modified: 2026-09-25
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -29,7 +29,7 @@
 
 ;; An Emacs media player, media library manager, radio player, YouTube frontend
 (use-package empv
-  :vc (:url "https://github.com/isamert/empv.el")
+  :ensure t
   :when (executable-find +mpv-command)
   :custom
   (empv-radio-log-file (concat org-directory "logged-radio-songs.org"))

@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-05-27
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -12,7 +12,7 @@
 
 ;; Provide connectivity to Jira SOAP/REST services
 (use-package jiralib
-  :vc (:url "https://github.com/ahungry/org-jira")
+  :ensure org-jira
   :commands (+jira-insert-ticket-id +jira-insert-ticket-link +jiralib-auto-login)
   :autoload +jira-get-ticket
   :init

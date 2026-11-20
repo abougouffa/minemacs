@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-08-24
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -78,7 +78,7 @@
 
 ;; Highlight TODO keywords
 (use-package hl-todo
-  :vc (:url "https://github.com/tarsius/hl-todo")
+  :ensure t
   :hook (prog-mode . hl-todo-mode)
   :config
   (cl-callf append hl-todo-keyword-faces

@@ -1,10 +1,10 @@
 ;;; me-jupyter.el --- Jupyter integration -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-30
-;; Last modified: 2025-11-14
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -29,7 +29,7 @@
 
 ;; Jupyter notebook client in Emacs
 (use-package ein
-  :vc (:url "https://github.com/natsirtguy/emacs-ipython-notebook" :branch "fix-polymode-compatibility" :lisp-dir "lisp")
+  :ensure t
   :custom
   (ein:output-area-inlined-images t)
   :config

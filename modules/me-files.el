@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-07-13
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -24,7 +24,7 @@
 
 ;; Asynchronous "rsync" from `dired'
 (use-package dired-rsync
-  :vc (:url "https://github.com/stsquad/dired-rsync")
+  :ensure t
   :bind ( :package dired :map dired-mode-map
           ("C-c C-r" . dired-rsync)
           ("C-c C-x" . dired-rsync-transient)))
@@ -62,7 +62,7 @@
 
 ;; Fast opening of large files
 (use-package guard-lf
-  :vc (:url "https://github.com/jcs-elpa/guard-lf")
+  :ensure t
   :init
   (guard-lf-mode 1))
 

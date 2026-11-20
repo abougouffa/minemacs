@@ -1,10 +1,10 @@
 ;;; me-cmake.el --- CMake integration -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-11
-;; Last modified: 2025-03-21
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -18,12 +18,12 @@
 
 ;; Major mode for editing CMake sources
 (use-package cmake-mode
-  :vc (:url "https://github.com/emacsmirror/cmake-mode"))
+  :ensure t)
 
 
 ;; Advanced, type aware, highlight support for CMake
 (use-package cmake-font-lock
-  :vc (:url "https://github.com/Lindydancer/cmake-font-lock")
+  :ensure t
   :custom
   (cmake-font-lock-modes '(cmake-mode cmake-ts-mode)))
 

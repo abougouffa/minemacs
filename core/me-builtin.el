@@ -230,7 +230,7 @@
   (add-hook 'find-file-not-found-functions #'+create-non-existent-directory 80))
 
 (use-package transient
-  :vc (:url "https://github.com/magit/transient" :lisp-dir "lisp")) ; Magit depends on the fresh version (installed even if built-in)
+  :ensure t) ; Magit depends on the fresh version (installed even if built-in)
 
 (use-package newcomment
   :custom

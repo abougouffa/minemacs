@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2026-03-28
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
                 . web-mode)
                ("\\.haml\\'" . haml-mode)
                ("\\.sass\\'" . sass-mode)
-               ("\\.was?t\\'" . wat-mode))
+               ("\\.was?t\\'" . wat-ts-mode))
   :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) . (web-mode haml-mode temmet-mode sass-mode))
                         ((js-mode js-ts-mode) . flymake-biome)))
 
@@ -40,7 +40,7 @@
   :vc (:url "https://github.com/Lycomedes1814/temme-mode"))
 
 
-;; Major mode for editing Haml files
+;; Major mode for editing Hoaml files
 (use-package haml-mode
   :ensure t)
 
@@ -51,9 +51,8 @@
 
 
 ;; Major mode for WebAssembly
-(use-package wat-mode
-  :vc (:url "https://github.com/devonsparks/wat-mode")
-  :commands (wat-mode))
+(use-package wat-ts-mode
+  :ensure t)
 
 
 ;; Flymake integration for checking JavaScript files using `biome'

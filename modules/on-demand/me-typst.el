@@ -1,10 +1,10 @@
 ;;; me-typst.el --- Typst typing system -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2025-05-13
-;; Last modified: 2025-08-04
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -31,12 +31,12 @@
 
 ;; Typst live preview minor mode
 (use-package typst-preview
-  :vc (:url "https://github.com/havarddj/typst-preview.el"))
+  :ensure t)
 
 
 ;; Typst back-end for Org export engine
 (use-package ox-typst
-  :vc (:url "https://github.com/jmpunkt/ox-typst"))
+  :ensure t)
 
 
 (provide 'on-demand/me-typst)
