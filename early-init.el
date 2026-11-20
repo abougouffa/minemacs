@@ -37,9 +37,12 @@
  ;; Install packages in MinEmacs' local directory
  package-user-dir (concat minemacs-local-dir "elpa/")
  ;; Package archives, the user can change these in "early-config.el" or "init-tweaks.el"
- package-archives '(("melpa" . "https://melpa.org/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+ package-archives '(("melpa" . "https://melpa.org/packages/")
+                    ("gnu" . "https://elpa.gnu.org/packages/")
+                    ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                    ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/"))
  ;; Prefer MELPA (latest commits, like `straight' which used MELPA recipes first)
- package-archive-priorities '(("melpa" . 30) ("gnu" . 20) ("nongnu" . 10))
+ package-archive-priorities '(("melpa" . 30) ("gnu" . 20) ("nongnu" . 10) ("jcs-elpa" . 10))
  ;; Install the latest commit for packages installed from VC with `:vc', like `straight'
  use-package-vc-prefer-newest t
  ;; Don't register the cloned packages as projects
