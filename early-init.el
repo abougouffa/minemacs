@@ -32,7 +32,7 @@
 
 ;; Set before the early activation below (ex. `package-user-dir')
 (setq
- ;; Only activate the declared packages (see `+package-activate')
+ ;; Only activate the declared packages (see `+package-ensure' in "me-bootstrap.el")
  package-enable-at-startup nil
  ;; Install packages in MinEmacs' local directory
  package-user-dir (concat minemacs-local-dir "elpa/")
@@ -51,7 +51,7 @@
 ;; late" warning (Emacs 31+). The other packages are activated when declared.
 (unless minemacs-builtin-only-p
   (require 'package)
-  (package--alist) ; Load the installed packages descriptors, without activating them
+  (package-load-all-descriptors) ; Load the installed packages descriptors, without activating them
   (dolist (package (mapcar #'car package-alist))
     (when (assq package package--builtin-versions)
       (with-demoted-errors "Error activating package: %S"
@@ -123,19 +123,23 @@
 ;; Restore `file-name-handler-alist' after startup while conserving the potential new elements
 (add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
 
-;; HACK: This advice around `use-package' checks if a package is disabled in
-;; `minemacs-disabled-packages' before calling `use-package'.
+;; HACK: Skip the `use-package' declarations of the packages disabled in
+;; `minemacs-disabled-packages' (or by their `:disabled', `:if', `:when' and
+;; `:unless' conditions) and register the other ones in
+;; `minemacs-configured-packages'. This is done while loading MinEmacs' modules,
+;; see `+use-package-check-for-disabled'.
 (advice-add
  'use-package :around
- (+defun +use-package--check-if-disabled-1:around-a (origfn package &rest args)
-   (unless (+package-disabled-p package)
-     (add-to-list 'minemacs-configured-packages package t)
-     (apply origfn package args))))
-
-(defcustom +use-package-keep-checking-for-disabled-p nil
-  "If you want to keep the advice that skip disabled packages.
-You need to set in in your \"early-config.el\"."
-  :group 'minemacs :type 'boolean)
+ (+defun +use-package--check-if-disabled:around-a (origfn package &rest args)
+   (if (not +use-package-check-for-disabled)
+       (apply origfn package args)
+     (unless (or (+package-disabled-p package)
+                 (memq :disabled args)
+                 (and (memq :if args) (not (eval (+varplist-get args :if t))))
+                 (and (memq :when args) (not (eval (+varplist-get args :when t))))
+                 (and (memq :unless args) (eval (+varplist-get args :unless t))))
+       (add-to-list 'minemacs-configured-packages package t)
+       (apply origfn package args)))))
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)

@@ -324,10 +324,17 @@ This allows us to use a specific Clang-format version (like
 `reformatter', `apheleia', etc."
   :group 'minemacs-prog)
 
-;; If you don't want to keep the `+use-package--check-if-disabled:around-a'
-;; advice (see `me-bootstrap') after loading MinEmacs' modules. You need to set
-;; in the begining of your "$MINEMACSDIR/config.el"
-(defvar +use-package-check-for-disabled t)
+(defvar +use-package-check-for-disabled t
+  "Skip the `use-package' declarations of the disabled packages.
+This is set to nil after loading MinEmacs' modules (unless
+`+use-package-keep-checking-for-disabled-p' is non-nil), so the user can
+configure the packages disabled in MinEmacs' modules in \"config.el\".")
+
+(defcustom +use-package-keep-checking-for-disabled-p nil
+  "Keep skipping the disabled packages, even in the user's \"config.el\".
+You need to set it in your \"early-config.el\"."
+  :group 'minemacs-core
+  :type 'boolean)
 
 
 (provide 'me-vars)

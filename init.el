@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-18
+;; Last modified: 2026-11-20
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -34,8 +34,8 @@
 ;;   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
 ;;   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
 ;;   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
+;;   * `~/.emacs.d/core/me-bootstrap.el`        (setup `package' and `use-package')
 ;;   * `~/.emacs.d/core/me-builtin.el`
-;;   * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`, setup `package' and `use-package')
 ;;   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules', unless `MINEMACS_BUILTIN_ONLY)
 ;;   * `$MINEMACSDIR/config.el`                 (unless disabled)
 ;;   * `$MINEMACSDIR/local/config.el`           (unless disabled)
@@ -106,24 +106,18 @@
 ;; loading all modules, including on-demand ones.
 (when minemacs-load-all-modules-p (setq minemacs-modules (minemacs-modules t)))
 
-;; When only built-in packages are loaded, we make `:ensure' and `:vc' do
-;; nothing. This is important for the updates installed for built-in packages in
-;; `me-builtin' like `transient'.
-(if minemacs-builtin-only-p
-    (progn
-      (setq use-package-ensure-function #'ignore)
-      ;; Override the handler, `use-package-vc-install' can be inlined
-      (advice-add 'use-package-handler/:vc :override (lambda (name _keyword _arg rest state) (use-package-process-keywords name rest state))))
-  (require 'me-bootstrap))
-
+;; Setup `package' and hook it into `use-package's `:ensure' and `:vc'. When
+;; only built-in packages are loaded (`minemacs-builtin-only-p'), `:ensure' and
+;; `:vc' do nothing.
+(require 'me-bootstrap)
 (require 'me-builtin)
 
 (unless minemacs-builtin-only-p
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
 
+;; Let the user configure the packages disabled in MinEmacs' modules
 (unless +use-package-keep-checking-for-disabled-p
-  (advice-remove 'use-package '+use-package--check-if-disabled-1:around-a)
-  (advice-remove 'use-package '+use-package--check-if-disabled:around-a))
+  (setq +use-package-check-for-disabled nil))
 
 (+load-user-configs 'config 'local/config) ; Load user configuration
 

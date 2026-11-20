@@ -494,7 +494,8 @@ When called with \\[universal-argument] \\[universal-argument], it prompts also 
                               (minemacs-modules (>= prefix 4) (>= prefix 16))))))
   ;; Save the old MinEmacs hooks to detect when the loaded module requires a hook to be run
   (let ((old-hooks (+all-minemacs-hooks))
-        (old-fns minemacs-build-functions))
+        (old-fns minemacs-build-functions)
+        (+use-package-check-for-disabled t)) ; Respect `minemacs-disabled-packages'
     (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) (flatten-list modules)))
     (let ((new-hooks (cl-set-difference (+all-minemacs-hooks) old-hooks))
           (minemacs-build-functions (cl-set-difference minemacs-build-functions old-fns)))

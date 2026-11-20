@@ -8,6 +8,19 @@
 
 ;;; Commentary:
 
+;; Packages are declared with `use-package' and installed with `:ensure' or
+;; `:vc'. Unlike the default `package' behavior, only the declared packages (and
+;; their dependencies) are activated, so packages removed from the configuration
+;; (or belonging to disabled modules) aren't loaded anymore. The installed newer
+;; versions of built-in packages are activated early in "early-init.el".
+;;
+;; The default `use-package' implementation of `:ensure' and `:vc' checks
+;; `package-installed-p', which is non-nil for built-in packages. Hence, it
+;; never installs a newer version of a built-in package (ex. `transient',
+;; `eglot', `org', etc.). In MinEmacs, a package is considered installed only
+;; when it is present in `package-alist', so `:ensure t' and `:vc' work the same
+;; way for built-in and external packages.
+
 ;;; Code:
 
 (require 'me-lib)
@@ -23,89 +36,17 @@
   :type 'file)
 
 (defvar +package-autoloads-excluded-files nil
-  "Alist of (PACKAGE . FILES), FILES are excluded when generating autoloads.
-This is the equivalent of `straight's \":files (:defaults (:exclude ...))\".")
+  "Alist of (PACKAGE . FILES), FILES are excluded when generating autoloads.")
 
-
+(defun +package-exclude-from-autoloads (package &rest files)
+  "Don't generate autoloads from FILES when installing PACKAGE."
+  (setf (alist-get package +package-autoloads-excluded-files) files))
 
-;;; Activation and session state
-
-;; Like with `straight', a package (and its dependencies) is only activated when
-;; declared with `:ensure' or `:vc', so packages removed from the config aren't
-;; loaded anymore. Packages installed manually are available for the current
-;; session only. Newer versions of built-in packages are activated in
-;; "early-init.el".
-
-(defvar minemacs-declared-packages nil
-  "The packages declared with `:ensure' or `:vc' in the current session.")
-
-(defun +package-lisp-dirs (pkg-desc)
-  "Return the directories containing the Lisp files of PKG-DESC.
-This is where the autoloads file is located, it can be a sub-directory for
-packages installed from VC with a `:lisp-dir' (like `transient')."
-  (let ((dir (package-desc-dir pkg-desc))
-        (autoloads (format "\\`%s-autoloads\\.el\\'" (regexp-quote (symbol-name (package-desc-name pkg-desc))))))
-    (or (delete-dups (mapcar #'file-name-directory
-                             (directory-files-recursively dir autoloads nil (lambda (d) (not (string-suffix-p "/.git" d))))))
-        (list dir))))
-
-;; FIX: `package-activate-1' reloads the already loaded files of a package before
-;; adding it to `load-path', which fails when they require other files from the
-;; package (ex. installing `compat' 31 after loading the built-in one).
-(defvar find-library-source-path)
-
-(advice-add
- 'package--reload-previously-loaded :around
- (+defun +package--reload-previously-loaded:around-a (origfn pkg-desc &rest args)
-   ;; Keep looking for the loaded files in the original `load-path'
-   (let* ((find-library-source-path (or (bound-and-true-p find-library-source-path) load-path))
-          (load-path (append (+package-lisp-dirs pkg-desc) load-path)))
-     (apply origfn pkg-desc args))))
-
-(defun +package-activate (&rest packages)
-  "Activate the installed PACKAGES and their dependencies.
-Packages that aren't installed are ignored."
-  (dolist (package packages)
-    (when (and package (symbolp package))
-      (add-to-list 'package-selected-packages package)
-      (unless (memq package package-activated-list)
-        (condition-case-unless-debug err
-            (package-activate package)
-          (error (display-warning 'minemacs (format "Failed to activate `%s': %s" package (error-message-string err)) :error)))))))
-
-;; HACK: Calling `package-activate-all' (or `package-initialize') shouldn't
-;; activate all the installed packages.
-(advice-add
- 'package-activate-all :override
- (+defun +package-activate-all:override-a ()
-   (setq package--activated t)
-   (+log! "Ignoring `package-activate-all', only the declared packages are activated")))
-
-;; FIX: `package-strip-rcs-id' signals an error for free-form versions (ex.
-;; "1.10  2009-2-25 hcz" in `gas-mode') instead of returning nil as documented.
-;; Use the leading version number when available.
-(advice-add
- 'package-strip-rcs-id :around
- (+defun +package-strip-rcs-id:around-a (origfn str)
-   (condition-case nil
-       (funcall origfn str)
-     (error (when-let* (((stringp str))
-                        ((string-match "\\`[ \t]*\\(?:[$]Revision:[ \t]+\\)?\\([0-9]+\\(?:\\.[0-9]+\\)*\\)" str)))
-              (ignore-errors (funcall origfn (match-string 1 str))))))))
-
-;; Fallback to "0" when the version can't be parsed, like when it is missing
-(advice-add
- 'package-vc--version :filter-return
- (+defun +package-vc--version:filter-return-a (version) (or version "0")))
-
-;; Unlike `straight' which builds packages in a separate process, `package'
-;; builds them in the current session. Delaying the mode hooks prevents the
-;; user's configuration hooks (ex. `prog-mode-hook') from running in the buffers
-;; used when generating the autoloads, compiling or building the documentation.
-(+advice-add
- '(package-unpack package-vc--unpack-1) :around
- (+defun +package--delay-mode-hooks:around-a (origfn &rest args)
-   (let ((delay-mode-hooks t)) (apply origfn args))))
+(defun +package-vc-allow-build-commands (&rest packages)
+  "Allow `package-vc' to run `:make' and `:shell-command' for PACKAGES."
+  (unless (eq package-vc-allow-build-commands t)
+    (dolist (package packages)
+      (add-to-list 'package-vc-allow-build-commands package))))
 
 
 
@@ -132,25 +73,6 @@ pulling or resetting a package in the same session."
   (vc-clear-context)
   (package-vc-commit pkg-desc))
 
-(defun minemacs-packages-freeze ()
-  "Save the versions of the installed packages to `minemacs-packages-lockfile'."
-  (interactive)
-  (let ((entries
-         (cl-loop for (name desc) in (sort (copy-sequence package-alist) :key #'car)
-                  collect (cons name (if (package-vc-p desc)
-                                         (let ((dir (package-desc-dir desc)))
-                                           (list :vc (or (plist-get (alist-get name package-vc-selected-packages) :url)
-                                                         (vc-git-repository-url dir))
-                                                 :rev (+package-vc-revision desc)))
-                                       (list :version (package-version-join (package-desc-version desc))))))))
-    (make-directory (file-name-directory minemacs-packages-lockfile) t)
-    (with-temp-file minemacs-packages-lockfile
-      (insert ";; -*- mode: lisp-data; -*-\n"
-              ";; MinEmacs packages lockfile, generated by `minemacs-packages-freeze', do not edit!\n\n"
-              "(" (mapconcat #'prin1-to-string entries "\n ") ")\n"))
-    (setq +package--lockfile entries)
-    (message "[MinEmacs]: Saved %d packages versions to %S" (length entries) (abbreviate-file-name minemacs-packages-lockfile))))
-
 (defun +package-vc-reset (pkg-desc-or-dir rev)
   "Reset the Git checkout of PKG-DESC-OR-DIR to REV, staying on the same branch.
 Local changes are stashed. Unlike checking out REV (which leaves the repository
@@ -161,75 +83,141 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
     (vc-git-command nil t nil "stash" "push" "--quiet") ; Best effort
     (vc-git-command nil 0 nil "reset" "--quiet" "--hard" rev)))
 
+(defun minemacs-packages-freeze ()
+  "Save the versions of the installed packages to `minemacs-packages-lockfile'."
+  (interactive)
+  (let ((entries
+         (cl-loop for (name desc) in (sort (copy-sequence package-alist) :key #'car)
+                  collect (cons name (if (package-vc-p desc)
+                                         (list :vc (or (plist-get (alist-get name package-vc-selected-packages) :url)
+                                                       (vc-git-repository-url (package-desc-dir desc)))
+                                               :rev (+package-vc-revision desc))
+                                       (list :version (package-version-join (package-desc-version desc))))))))
+    (make-directory (file-name-directory minemacs-packages-lockfile) t)
+    (with-temp-file minemacs-packages-lockfile
+      (insert ";; -*- mode: lisp-data; -*-\n"
+              ";; MinEmacs packages lockfile, generated by `minemacs-packages-freeze', do not edit!\n\n"
+              "(" (mapconcat #'prin1-to-string entries "\n ") ")\n"))
+    (setq +package--lockfile entries)
+    (message "[MinEmacs]: Saved %d packages versions to %S" (length entries) (abbreviate-file-name minemacs-packages-lockfile))))
+
 
 
-;;; Hooking `package' into `use-package'
+;;; Installing and activating the declared packages
 
-;; Unlike `use-package-vc-install', `+package-vc-install':
-;; - Ignores built-in packages, to allow installing a newer `transient'
-;; - Installs the locked revision, if any (see `+package-vc--clone:after-a')
-;; - Registers the spec in `package-vc-selected-packages' for
-;;   `package-vc-rebuild'/`package-vc-upgrade' (ex. `transient's `:lisp-dir')
-;; - Shows a warning instead of signaling an error on failure
-(defvar +package--pinned-rev nil)
+(defvar +package--locked-rev nil)
 
-(defun +package-vc-install (arg &optional local-path)
-  "Install the package described by ARG with `package-vc'.
-ARG is a list (NAME OPTIONS REVISION) as returned by
-`use-package-normalize--vc-arg'. When LOCAL-PATH is non-nil, install from
-the local checkout in LOCAL-PATH."
-  (pcase-let ((`(,name ,opts ,rev) arg))
-    (when opts (setf (alist-get name package-vc-selected-packages) opts))
-    (unless (assq name package-alist) ; Already installed
-      (let* ((dir (expand-file-name (symbol-name name) package-user-dir))
-             (dir-existed (file-directory-p dir)))
-        (unwind-protect
-            (condition-case-unless-debug err
-                (if local-path
-                    (with-no-warnings (package-vc-install-from-checkout local-path (symbol-name name)))
-                  (let ((+package--pinned-rev (plist-get (+package-locked name) :rev)))
-                    (package-vc-install (if opts (cons name opts) name) (unless +package--pinned-rev rev))))
-              (error (display-warning 'minemacs (format "Failed to install `%s' from VC: %s" name (error-message-string err)) :error)))
-          ;; On failure, delete the partial checkout (or the next attempt fails)
-          (when (and (not local-path) (not dir-existed) (not (assq name package-alist)) (file-directory-p dir))
-            (delete-directory dir t)))))))
+(defun +package--install-from-archive (name)
+  "Install NAME from `package-archives', even if it is a built-in package."
+  (unless package-archive-contents (package-refresh-contents)) ; Refresh once per session
+  ;; When given a name, `package-install' doesn't install a newer version of a
+  ;; built-in package, so we give it the package descriptor instead
+  (package-install (or (cadr (assq name package-archive-contents))
+                       (error "Package `%s' isn't available in the archives" name))))
 
-;; Pin the freshly cloned package to the locked revision before building it
-(advice-add
- 'package-vc--clone :after
- (+defun +package-vc--clone:after-a (_pkg-desc _pkg-spec dir _rev)
-   (when +package--pinned-rev (+package-vc-reset dir +package--pinned-rev))))
+(defun +package--install-from-vc (name opts rev)
+  "Install NAME from VC using the `package-vc' spec OPTS and revision REV.
+The revision saved in `minemacs-packages-lockfile' takes precedence over REV."
+  (let ((+package--locked-rev (plist-get (+package-locked name) :rev)))
+    (condition-case err
+        (package-vc-install (if opts (cons name opts) name) (unless +package--locked-rev rev))
+      (error ; Delete the partial checkout, otherwise, the next attempt fails
+       (let ((dir (expand-file-name (symbol-name name) package-user-dir)))
+         (when (and (file-directory-p dir) (not (assq name package-alist)))
+           (delete-directory dir t)))
+       (signal (car err) (cdr err))))))
 
-;; Activate the packages declared with `:ensure' and `:vc'. This is done in the
-;; expanded code, so it works for byte-compiled forms too. Installing a package
-;; activates it, so the activation can come before the installation.
-(advice-add
- 'use-package-handler/:ensure :around
- (+defun +use-package-handler/:ensure:around-a (origfn name keyword ensure rest state)
-   (let ((body (funcall origfn name keyword ensure rest state)))
-     (if-let* (((not (plist-member rest :vc))) ; Handled by `:vc'
-               (packages (delq nil (mapcar (lambda (elt) ; `:ensure t', `:ensure PKG' or `:ensure (PKG :pin ARCHIVE)'
-                                             (let ((pkg (if (eq elt t) (use-package-as-symbol name) elt)))
-                                               (if (consp pkg) (car pkg) pkg)))
-                                           ensure))))
-         (cons `(+package-activate ,@(mapcar #'macroexp-quote packages)) body)
-       body))))
+(defun +package-ensure (name &optional vc)
+  "Make sure the package NAME is installed, then activate it.
+When VC is non-nil, it is a list (OPTIONS REVISION) as returned by
+`use-package-normalize--vc-arg', and the package is installed with
+`package-vc'. Otherwise, it is installed from `package-archives'."
+  (unless minemacs-builtin-only-p
+    (pcase-let ((`(,opts ,rev) vc))
+      ;; Register the spec for `package-vc-upgrade' and `package-vc-rebuild'
+      ;; (ex. the `:lisp-dir' of `transient'), it isn't persisted across sessions
+      (when opts
+        (setf (alist-get name package-vc-selected-packages) opts))
+      (condition-case-unless-debug err
+          (progn
+            (unless (assq name package-alist) ; Built-in packages aren't in `package-alist'
+              (if vc (+package--install-from-vc name opts rev) (+package--install-from-archive name)))
+            (add-to-list 'package-selected-packages name) ; Keep it in `minemacs-packages-prune'
+            (package-activate name))
+        (error (display-warning 'minemacs (format "Cannot install or activate `%s': %s" name (error-message-string err)) :error))))))
 
-;; HACK: Override the `:vc' handler, as advising `use-package-vc-install' doesn't
-;; work when it is inlined (it uses `define-inline' in Emacs 32).
+(defun +use-package-ensure (name args _state &optional _no-refresh)
+  "Ensure the packages ARGS of `use-package' NAME."
+  (dolist (pkg args) ; `:ensure t', `:ensure PKG' or `:ensure (PKG :pin ARCHIVE)'
+    (let ((pkg (if (eq pkg t) (use-package-as-symbol name) pkg)))
+      (when (consp pkg)
+        (use-package-pin-package (car pkg) (cdr pkg))
+        (setq pkg (car pkg)))
+      (when pkg (+package-ensure pkg)))))
+
+(setq use-package-ensure-function #'+use-package-ensure)
+
+;; Like the original handler, but use `+package-ensure' instead of
+;; `use-package-vc-install' (which is inlined in Emacs 31+, so it can't be
+;; advised). Packages are installed at runtime, even when byte-compiling.
 (advice-add
  'use-package-handler/:vc :override
  (+defun +use-package-handler/:vc:override-a (name _keyword arg rest state)
-   (let ((body (use-package-process-keywords name rest state))
-         (local-path (car (plist-get state :load-path))))
-     ;; Like `use-package-handler/:vc', install when byte-compiling
-     (if (bound-and-true-p byte-compile-current-file)
-         (+package-vc-install arg local-path)
-       (push `(+package-vc-install ',arg ,local-path) body))
-     (cons `(+package-activate ',(car arg)) body))))
+   (cons `(+package-ensure ',(car arg) ',(cdr arg))
+         (use-package-process-keywords name rest state))))
 
-;; Exclude some files from autoloads generation, the equivalent of `straight's
-;; ":files (:defaults (:exclude ...))"
+;; By default, `:ensure' is processed before `:disabled', `:if', `:when' and
+;; `:unless', which installs disabled packages. Process it right after them.
+(setq use-package-keywords (use-package-list-insert :ensure (remq :ensure use-package-keywords) :unless t))
+
+
+
+;;; Fixes for `package' and `package-vc'
+
+;; Pin the freshly cloned package to the locked revision before building it.
+;; Passing the revision to `package-vc-install' checks it out in a "detached
+;; HEAD" state, which breaks `package-vc-upgrade'.
+(advice-add
+ 'package-vc--clone :after
+ (+defun +package-vc--clone:after-a (_pkg-desc _pkg-spec dir _rev)
+   (when +package--locked-rev (+package-vc-reset dir +package--locked-rev))))
+
+;; FIX: `package-activate-1' reloads the already loaded files of a package before
+;; adding it to `load-path', which fails when they require other files from the
+;; package (ex. installing `compat' 31 after loading the built-in one).
+(defvar find-library-source-path)
+
+(defun +package-lisp-dirs (pkg-desc)
+  "Return the directories containing the autoloads file of PKG-DESC.
+This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
+  (let ((dir (package-desc-dir pkg-desc)))
+    (or (delete-dups (mapcar #'file-name-directory
+                             (directory-files-recursively dir (format "\\`%s-autoloads\\.el\\'" (package-desc-name pkg-desc))
+                                                          nil (lambda (d) (not (string-suffix-p "/.git" d))))))
+        (list dir))))
+
+(advice-add
+ 'package--reload-previously-loaded :around
+ (+defun +package--reload-previously-loaded:around-a (origfn pkg-desc &rest args)
+   (let* ((find-library-source-path (or (bound-and-true-p find-library-source-path) load-path)) ; Look for loaded files in the original `load-path'
+          (load-path (append (+package-lisp-dirs pkg-desc) load-path)))
+     (apply origfn pkg-desc args))))
+
+;; FIX: `package-strip-rcs-id' signals an error for free-form versions (ex.
+;; "1.10  2009-2-25 hcz" in `gas-mode') instead of returning nil as documented.
+;; `package-vc--version' can then return nil, so fallback to "0".
+(advice-add 'package-strip-rcs-id :around (+defun +package-strip-rcs-id:around-a (origfn str) (ignore-errors (funcall origfn str))))
+(advice-add 'package-vc--version :filter-return (+defun +package-vc--version:filter-return-a (version) (or version "0")))
+
+;; Packages are built in the current session. Delaying the mode hooks prevents
+;; the user's hooks (ex. `prog-mode-hook') from running in the buffers used when
+;; generating the autoloads, compiling or building the documentation.
+(+advice-add
+ '(package-unpack package-vc--unpack-1) :around
+ (+defun +package--delay-mode-hooks:around-a (origfn &rest args)
+   (let ((delay-mode-hooks t)) (apply origfn args))))
+
+;; Exclude some files from autoloads generation (see `+package-exclude-from-autoloads')
 (advice-add
  'package-generate-autoloads :around
  (+defun +package-generate-autoloads:around-a (origfn name pkg-dir)
@@ -238,39 +226,10 @@ the local checkout in LOCAL-PATH."
        (cl-letf (((symbol-function 'loaddefs-generate)
                   (lambda (dir output-file &optional excluded-files &rest args)
                     (apply orig-loaddefs-generate dir output-file
-                           (append excluded-files (mapcar (lambda (file) (expand-file-name file pkg-dir)) files))
+                           (append excluded-files (mapcar (+apply-partially-right #'expand-file-name pkg-dir) files))
                            args))))
          (funcall origfn name pkg-dir))
      (funcall origfn name pkg-dir))))
-
-(defun +package-exclude-from-autoloads (package &rest files)
-  "Don't generate autoloads from FILES when installing PACKAGE."
-  (setf (alist-get package +package-autoloads-excluded-files) files))
-
-(defun +package-vc-allow-build-commands (&rest packages)
-  "Allow `package-vc' to run `:make' and `:shell-command' for PACKAGES."
-  (unless (eq package-vc-allow-build-commands t)
-    (dolist (package packages)
-      (add-to-list 'package-vc-allow-build-commands package))))
-
-;; HACK: This advice around `use-package' checks if a package is disabled in
-;; `minemacs-disabled-packages' before calling `use-package'. This can come
-;; handy if the user wants to enable some module while excluding some packages
-;; from it. This advice also evaluates `use-package's conditional sections
-;; (`:if', `:when' and `:unless') to prevent installing packages with
-;; `:ensure' or `:vc' when they aren't needed.
-(advice-add
- 'use-package :around
- (+defun +use-package--check-if-disabled:around-a (origfn package &rest args)
-   (unless (and +use-package-check-for-disabled
-                (or (+package-disabled-p package)
-                    (memq :disabled args)
-                    (and (memq :if args) (not (eval (+varplist-get args :if t))))
-                    (and (memq :when args) (not (eval (+varplist-get args :when t))))
-                    (and (memq :unless args) (eval (+varplist-get args :unless t)))))
-     ;; Add it to the list of configured packages and apply the `use-package' form
-     (add-to-list 'minemacs-configured-packages package t)
-     (apply origfn package args))))
 
 
 
@@ -344,7 +303,6 @@ the non-activated ones are found."
     (package-recompile-all)))
 
 ;; Byte-compiled files of a different Emacs version can be incompatible
-;; (`straight' used to have a build directory per Emacs version)
 (add-hook 'minemacs-after-emacs-version-change-hook #'minemacs-packages-recompile -90)
 
 (provide 'me-bootstrap)
