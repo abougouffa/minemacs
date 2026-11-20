@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-11-18
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -720,16 +720,33 @@ Typing these will trigger reindentation of the current line.")
   (+setq-hook! (sh-mode bash-ts-mode)
     +electric-indent-words (seq-uniq (flatten-list (alist-get :smie-closer-alist sh-smie-sh-grammar))))
 
-  (defun +electric-indent-char-fn (_c) ; Inspired by Doom Emacs
-    (when (and (eolp) +electric-indent-words)
-      (save-excursion
-        (backward-word)
-        (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))
-  (add-hook 'electric-indent-functions #'+electric-indent-char-fn))
+  (add-hook
+   'electric-indent-functions
+   (+defun +electric-indent-char-fn (_c) ; Inspired by Doom Emacs
+     (when (and (eolp) +electric-indent-words)
+       (save-excursion
+         (backward-word)
+         (looking-at-p (concat "\\<" (regexp-opt +electric-indent-words))))))))
 
 (use-package elec-pair
   :when (+package-disabled-p 'smartparens 'me-editor)
-  :hook (minemacs-after-startup . electric-pair-mode))
+  :hook (minemacs-after-startup . electric-pair-mode)
+  :custom
+  (electric-pair-inhibit-predicate #'+electric-pair-inhibit-p)
+  :config
+  (+setq-hook! org-mode
+    electric-pair-pairs (append '((?$ . ?$) (?= . ?=) (?~ . ?~) (?/ . ?/) (?_ . ?_)) electric-pair-pairs))
+
+  (+setq-hook! (markdown-mode markdown-ts-mode)
+    electric-pair-pairs (append '((?* . ?*) (?_ . ?_) (?` . ?`)) electric-pair-pairs))
+
+  (+setq-hook! minibuffer-setup
+    electric-pair-text-pairs (cons '(?` . ?') electric-pair-text-pairs))
+
+  (defun +electric-pair-inhibit-p (char)
+    "Like default, but in the minibuffer, don't pair ' and ` outside strings."
+    (unless (and (minibufferp) (memq char '(?' ?`)) (not (nth 3 (save-excursion (syntax-ppss (1- (point)))))))
+      (electric-pair-default-inhibit char))))
 
 (use-package ediff
   :hook (ediff-before-setup . +ediff--save-window-config-h)
