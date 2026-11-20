@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-08-02
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -167,6 +167,11 @@ of being enabled."
 
 (defvar minemacs-configured-packages nil
   "List of packages installed and configured by MinEmacs during startup.")
+
+(defcustom minemacs-dont-persist-variables '(package-selected-packages package-vc-selected-packages)
+  "List of variables (symbols) to never persist in `customize-save-variable'."
+  :group 'minemacs-core
+  :type '(repeat symbol))
 
 (defcustom minemacs-after-setup-fonts-hook nil
   "Runs after setting MinEmacs fonts, runs at the end of `+setup-fonts'."

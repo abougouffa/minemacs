@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-18
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -82,21 +82,6 @@ in `package-selected-packages'. Packages that aren't installed are ignored."
  (+defun +package-activate-all:override-a ()
    (setq package--activated t)
    (+log! "Ignoring `package-activate-all', only the declared packages are activated")))
-
-;; HACK: Don't persist `package-selected-packages', the config is the source of
-;; truth. It is only set for the current session (see `minemacs-packages-prune').
-(advice-add
- 'package--save-selected-packages :override
- (+defun +package--save-selected-packages:override-a (&optional value)
-   (when (or value after-init-time) (setq package-selected-packages value))))
-
-;; HACK: Same for `package-vc-selected-packages', saved by `package-vc--unpack'.
-(advice-add
- 'customize-save-variable :around
- (+defun +customize-save-variable--package-vc:around-a (origfn variable value &rest args)
-   (if (eq variable 'package-vc-selected-packages)
-       (set-default variable value)
-     (apply origfn variable value args))))
 
 ;; FIX: `package-strip-rcs-id' signals an error for free-form versions (ex.
 ;; "1.10  2009-2-25 hcz" in `gas-mode') instead of returning nil as documented.

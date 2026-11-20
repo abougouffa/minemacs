@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-09-03
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -1381,6 +1381,18 @@ To be used as a predicate generator for `display-buffer-alist'."
           ((debug error)
            (message "[MinEmacs:LoadError] at %S: %s" (abbreviate-file-name filename) err)))
       (+log! "Cannot load \"%s\", the file doesn't exists." filename))))
+
+
+
+;; HACK: Don't persist the variables defined in
+;; `minemacs-dont-persist-variables', by default, this inhibits writing the
+;; selected packages to `custom-file'
+(advice-add
+ 'customize-save-variable :around
+ (+defun +customize-save-variable--dont-persist:around-a (origfn variable value &rest args)
+   (if (memq variable minemacs-dont-persist-variables)
+       (set-default variable value)
+     (apply origfn variable value args))))
 
 
 (provide 'me-lib)
