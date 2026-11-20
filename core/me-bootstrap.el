@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
@@ -34,6 +34,16 @@
   "The file in which the installed packages versions are saved."
   :group 'minemacs-core
   :type 'file)
+
+(defcustom +package-ignored-files '("test" "tests" "*-test.el" "*-tests.el")
+  "Files and directories not to byte-compile when installing packages.
+Test suites often require packages that aren't installed, which makes their
+byte-compilation fail (`straight' didn't build them either). The patterns work
+like the `:ignored-files' of a `package-vc' spec (which are honored too): a
+pattern starting with \"/\" is relative to the package's directory, other
+patterns match at any level."
+  :group 'minemacs-core
+  :type '(repeat string))
 
 (defvar +package-autoloads-excluded-files nil
   "Alist of (PACKAGE . FILES), FILES are excluded when generating autoloads.")
@@ -210,12 +220,37 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
 (advice-add 'package-vc--version :filter-return (+defun +package-vc--version:filter-return-a (version) (or version "0")))
 
 ;; Packages are built in the current session. Delaying the mode hooks prevents
-;; the user's hooks (ex. `prog-mode-hook') from running in the buffers used when
-;; generating the autoloads, compiling or building the documentation.
+;; the user's hooks (ex. `emacs-lisp-mode-hook') from running in the temporary
+;; buffers used to extract the packages, generate the autoloads or build the
+;; documentation. We change the default value, let-binding `delay-mode-hooks'
+;; doesn't work as major modes make it buffer-local (and it causes "Making
+;; delay-mode-hooks buffer-local while locally let-bound!" messages).
 (+advice-add
  '(package-unpack package-vc--unpack-1) :around
  (+defun +package--delay-mode-hooks:around-a (origfn &rest args)
-   (let ((delay-mode-hooks t)) (apply origfn args))))
+   (let ((orig-value (default-value 'delay-mode-hooks)))
+     (unwind-protect
+         (progn (setq-default delay-mode-hooks t)
+                (apply origfn args))
+       (setq-default delay-mode-hooks orig-value)
+       ;; Buffers that changed their major mode in the meantime (ex. "*Compile-Log*")
+       ;; got a buffer-local value of t, which would delay their mode hooks forever
+       (dolist (buf (buffer-list))
+         (when (and (local-variable-p 'delay-mode-hooks buf) (buffer-local-value 'delay-mode-hooks buf))
+           (with-current-buffer buf (kill-local-variable 'delay-mode-hooks))))))))
+
+;; Don't byte-compile the files matching `+package-ignored-files' or the
+;; `:ignored-files' of the package's `package-vc' spec (by default, `package-vc'
+;; only uses it to find dependencies). These are added to the patterns read from
+;; the package's ".elpaignore" by `package--compile'.
+(advice-add
+ 'package--parse-elpaignore :around
+ (+defun +package--parse-elpaignore:around-a (origfn pkg-desc)
+   (let ((dir (directory-file-name (package-desc-dir pkg-desc)))
+         (spec (alist-get (package-desc-name pkg-desc) package-vc-selected-packages)))
+     (append (funcall origfn pkg-desc)
+             (mapcar (lambda (pattern) (wildcard-to-regexp (concat (if (string-prefix-p "/" pattern) dir "*/") pattern)))
+                     (append +package-ignored-files (plist-get spec :ignored-files)))))))
 
 ;; Exclude some files from autoloads generation (see `+package-exclude-from-autoloads')
 (advice-add

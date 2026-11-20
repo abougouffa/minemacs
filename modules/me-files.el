@@ -4,11 +4,17 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
 ;;; Code:
+
+
+;; Emacs Image Manipulation Package (dependency of `dired-hacks')
+(use-package eimp
+  :ensure t)
+
 
 ;; Collection of useful dired additions
 (use-package dired-hacks
