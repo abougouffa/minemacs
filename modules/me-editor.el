@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-08-04
+;; Last modified: 2026-11-20
 
 ;;; Commentary:
 
@@ -216,7 +216,7 @@ In some dirty files, there is a mix of spaces and tabs. This uses
         (call-interactively #'tab-to-tab-stop)))))
 
 
-;; TEMP: The "combobulate.el" contains a lot of autoloads that prevent lazy
+;; TEMP+FIX: The "combobulate.el" contains a lot of autoloads that prevent lazy
 ;; loading, so we don't generate autoloads for it (`package-vc' clones without
 ;; submodules, so the problematic `html-ts-mode' submodule isn't cloned)
 (+package-exclude-from-autoloads 'combobulate "combobulate.el")
@@ -228,15 +228,8 @@ In some dirty files, there is a mix of spaces and tabs. This uses
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
+  (require 'combobulate) ; Require all the `combobulate' features
   (with-eval-after-load 'combobulate-query (keymap-unset combobulate-query-mode-map "q"))
-  ;; TEMP+BUGFIX: Basically, load the same features that would be loaded by "combobulate.el"
-  (dolist (feature '(combobulate-rules
-                     combobulate-procedure combobulate-navigation
-                     combobulate-manipulation combobulate-envelope combobulate-display
-                     combobulate-ui combobulate-misc combobulate-query combobulate-cursor
-                     combobulate-toml combobulate-html combobulate-python combobulate-js-ts
-                     combobulate-css combobulate-yaml combobulate-json combobulate-go))
-    (require feature))
 
   ;; The "M-<up/down/left/right>" keys are used globally by `move-dup', lets
   ;; unset them for `combobulate' and use "M-S-<up/down/left/right>" instead.
