@@ -135,11 +135,6 @@
   (+alist-set! 'c-ts-mode '+simpc-mode-maybe major-mode-remap-alist t))
 
 
-;; Generate C++ method implementations from declarations using `treesit'
-(use-package cpp-func-impl
-  :vc (:url "https://github.com/dheerajshenoy/cpp-func-impl.el"))
-
-
 ;; Naming conversions: foo_bar -> FOO_BAR -> FooBar -> fooBar -> foo-bar -> Foo_Bar -> foo_bar
 (use-package string-inflection
   :ensure t)
