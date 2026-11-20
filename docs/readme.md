@@ -186,8 +186,7 @@ declared with `:ensure` or `:vc` (in the enabled modules and in your
 configuration) and their dependencies are activated. A package removed from the
 configuration isn't loaded anymore after restarting Emacs, even if it is still
 installed. A package installed with `M-x package-install` or `M-x
-package-vc-install` is only available in the current session. The declared
-packages are listed in `minemacs-declared-packages`.
+package-vc-install` is only available in the current session.
 
 The exception is the installed newer versions of built-in packages (ex.
 `transient` or `compat`), which are activated at startup. To get back to the

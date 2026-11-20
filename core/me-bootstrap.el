@@ -64,11 +64,9 @@ packages installed from VC with a `:lisp-dir' (like `transient')."
 
 (defun +package-activate (&rest packages)
   "Activate the installed PACKAGES and their dependencies.
-PACKAGES are registered in `minemacs-declared-packages' and, for this session,
-in `package-selected-packages'. Packages that aren't installed are ignored."
+Packages that aren't installed are ignored."
   (dolist (package packages)
     (when (and package (symbolp package))
-      (add-to-list 'minemacs-declared-packages package t)
       (add-to-list 'package-selected-packages package)
       (unless (memq package package-activated-list)
         (condition-case-unless-debug err
@@ -245,21 +243,6 @@ the local checkout in LOCAL-PATH."
          (funcall origfn name pkg-dir))
      (funcall origfn name pkg-dir))))
 
-;; Like `straight's default recipe files (":defaults"), only byte-compile the
-;; top-level Lisp files of packages installed from VC, and skip test files. This
-;; avoids compiling the tests, examples, etc. which can fail to compile.
-(advice-add
- 'package--parse-elpaignore :around
- (+defun +package--parse-elpaignore:around-a (origfn pkg-desc)
-   (let* ((regexps (funcall origfn pkg-desc))
-          (dir (file-name-as-directory (expand-file-name (package-desc-dir pkg-desc))))
-          (git-root (locate-dominating-file dir ".git")))
-     (if (and git-root (file-in-directory-p git-root package-user-dir)) ; A VC package
-         (append (list (concat "\\`" (regexp-quote dir) "[^/]+/") ; Files in sub-directories
-                       "\\(?:\\`\\|/\\)\\(?:tests?\\|[^/]*-tests?\\)\\.el\\'") ; Test files
-                 regexps)
-       regexps))))
-
 (defun +package-exclude-from-autoloads (package &rest files)
   "Don't generate autoloads from FILES when installing PACKAGE."
   (setf (alist-get package +package-autoloads-excluded-files) files))
@@ -349,8 +332,7 @@ will run \"git pull\" in MinEmacs directory before upgrading."
 Packages declared in this session or listed in the lockfile, and their
 dependencies, are kept."
   (interactive)
-  (let ((package-selected-packages
-         (seq-union package-selected-packages (mapcar #'car (+package-lockfile-read)))))
+  (let ((package-selected-packages (seq-union package-selected-packages (mapcar #'car (+package-lockfile-read)))))
     (package-autoremove)))
 
 (defun minemacs-packages-recompile ()
