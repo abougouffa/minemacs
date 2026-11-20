@@ -2,6 +2,31 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.2.0](https://github.com/abougouffa/minemacs/compare/615c8c32ce6c30aa688f194581ca436639b5502e..v15.2.0) - 2026-11-20
+#### Tweaks
+- (**elec-pair**) better integration in Org, Markdown and minibuffer - ([88adc1d](https://github.com/abougouffa/minemacs/commit/88adc1d90607637823fb76cc8002aa3515ea4aef)) - [@abougouffa](https://github.com/abougouffa)
+- (**package**) add `jcs-elpa` archive - ([1539b3e](https://github.com/abougouffa/minemacs/commit/1539b3e0b12eeb3683d1164108e1666005edee71)) - [@abougouffa](https://github.com/abougouffa)
+- (**symbol-overlay**) bind next and prev to `M-n` and `M-p` - ([b72634a](https://github.com/abougouffa/minemacs/commit/b72634ab90cfa237141e7b600e8625fd68918ea7)) - [@abougouffa](https://github.com/abougouffa)
+- (**vc**) don't handle bizarre backends - ([1085498](https://github.com/abougouffa/minemacs/commit/108549831b6960c7bb50f1f253de9b4eff1d8471)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([4bc31e2](https://github.com/abougouffa/minemacs/commit/4bc31e27acd24e860a1b58cb67c0d7cb3584211d)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([1fb78ed](https://github.com/abougouffa/minemacs/commit/1fb78edb863825f82dddae542d58517cc9cce658)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**builtin**) remove `modus-themes` customization - ([bd4335b](https://github.com/abougouffa/minemacs/commit/bd4335baa8965ba87fc1bbae7f528566edfe5645)) - [@abougouffa](https://github.com/abougouffa)
+- (**prog**) make `cpp-func-impl` obsolete - ([acff5da](https://github.com/abougouffa/minemacs/commit/acff5dab09a2537817f1548c88679485a0c38f58)) - [@abougouffa](https://github.com/abougouffa)
+- (**snippets**) remove `tempel-collection`, the included snippets should be enough - ([9b2b5d6](https://github.com/abougouffa/minemacs/commit/9b2b5d642fff22944d7af6a4b20c1e2cc4d040b4)) - [@abougouffa](https://github.com/abougouffa)
+- add `+package-native-comp-report` - ([f26eee0](https://github.com/abougouffa/minemacs/commit/f26eee0288f83653bacb089220fdd5b4749d4e1c)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**bootstrap**) make sure to activate built-in packages early, fix reload - ([615c8c3](https://github.com/abougouffa/minemacs/commit/615c8c32ce6c30aa688f194581ca436639b5502e)) - [@abougouffa](https://github.com/abougouffa)
+- don't persist interactively installed packages (even in built-in only) - ([a7a2bf5](https://github.com/abougouffa/minemacs/commit/a7a2bf5c95f93dda99433293316f3569dbe31640)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**bootstrap**) simplify package management, fix `:ensure` for built-in packages - ([25376e8](https://github.com/abougouffa/minemacs/commit/25376e86b9764ebb2cbcd61da46b19c65ac1d4a8)) - [@abougouffa](https://github.com/abougouffa)
+- (**bootstrap**) simplify package management, fix `:ensure` for built-in packages - ([e45efb2](https://github.com/abougouffa/minemacs/commit/e45efb20471968719baf7ca9fa54da37d6ad44a0)) - [@abougouffa](https://github.com/abougouffa)
+- (**bootstrap**) remove unneeded hacks - ([02e4f23](https://github.com/abougouffa/minemacs/commit/02e4f23c4bc1d6f7238b4676c781105934c72c87)) - [@abougouffa](https://github.com/abougouffa)
+- (**bootstrap**) refactor and cleanup - ([c69b96e](https://github.com/abougouffa/minemacs/commit/c69b96e7d0e477eadc81453b1c8b945157db1371)) - [@abougouffa](https://github.com/abougouffa)
+- (**combobulate**) simplify the config - ([fe4ac65](https://github.com/abougouffa/minemacs/commit/fe4ac65699ed8514c96fe6d3b041fb983cfe4fe4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.1.1](https://github.com/abougouffa/minemacs/compare/6c716733f504b763dcdea0140574332cef0e0bf6..v15.1.1) - 2026-11-18
 #### Tweaks
 - bump packages versions - ([49d7c7c](https://github.com/abougouffa/minemacs/commit/49d7c7c56e44cf9147e5bef1576c7fe85e09cea5)) - [@abougouffa](https://github.com/abougouffa)
