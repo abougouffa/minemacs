@@ -22,7 +22,9 @@
   (auto-save-file-name-transforms ; Set file naming transform for `auto-save'
    `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat auto-save-list-file-prefix "tramp-\\2") sha1)
      (".*" ,auto-save-list-file-prefix sha1)))
-  (remote-file-name-inhibit-auto-save-visited t)
+  (remote-file-name-inhibit-locks t) ; Don't create file locks for remote files
+  (remote-file-name-inhibit-cache 60) ; A bit longer cache validity (def. 10s)
+  (remote-file-name-inhibit-auto-save-visited t) ; Don't auto-save remote files when `auto-save-visited-mode' is enabled
   (scroll-preserve-screen-position t) ; Keep the point in the same position while scrolling
   (scroll-conservatively 101) ; Do not move cursor to the center when scrolling
   (scroll-margin 2) ; Scroll at a margin of one line
@@ -261,7 +263,6 @@
   (tramp-use-scp-direct-remote-copying t)
   (tramp-copy-size-limit (* 1024 1024)) ; 1MB (def. 10kB)
   (tramp-verbose (if minemacs-verbose-p 4 2))
-  (remote-file-name-inhibit-locks t)
   (tramp-save-ad-hoc-proxies t)
   :config
   (connection-local-set-profile-variables
