@@ -137,6 +137,7 @@
 * `org-fragtog`: Automatically toggle Org mode LaTeX fragment previews as the cursor enters and exits them
 * `citar`: Emacs package to quickly find and act on bibliographic references, and edit org, markdown, and latex academic documents
 * `citar-embark`: Citar integration with Embark
+* `org-timegrid`: SVG week calendar with mouse and keyboard editing
 
 ## `me-prog`
 * `apheleia`: Run code formatter on buffer contents without moving point
@@ -166,7 +167,6 @@
 * `jiralib`: Provide connectivity to Jira SOAP/REST services
 * `webpaste`: Paste text to pastebin-like services
 * `isgd`: Simply shortening URLs using the is.gd service
-* `igist`: Work seamlessly with GitHub gists from Emacs
 
 ## `me-snippets`
 
