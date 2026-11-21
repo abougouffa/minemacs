@@ -106,6 +106,20 @@ projects to uses the convention of commit messages like:
   (isgd-ask-custom-url t))
 
 
+;; Browse any GitHub, Gist or Codeberg repository in Emacs just like any local path, no cloning
+(use-package remoto
+  :ensure t
+  :preface
+  ;; PERF+TWEAK: The `remoto-project' can cause the package to load too early.
+  ;; Also, the other files add rules to `file-name-handler-alist', which is too
+  ;; intrusive and can cause the package to be loaded too early.
+  (+package-exclude-from-autoloads 'remoto "remoto-gist.el" "remoto-github.el" "remoto-forgejo.el" "remoto-project.el")
+  :bind (:package project :map project-prefix-map ("R" . remoto-project-find-file))
+  :config
+  (mapcar #'require '(remoto-github remoto-gist remoto-forgejo remoto-project))
+  (with-eval-after-load 'project (add-hook 'project-find-functions #'remoto-project-try -90)))
+
+
 (provide 'me-services)
 
 ;;; me-services.el ends here
