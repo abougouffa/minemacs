@@ -94,7 +94,7 @@ Return its plist, or with PROPERTY only that property's value.
 
 ;;; Generated autoloads from me-bootstrap.el
 
-(register-definition-prefixes "me-bootstrap" '("+package-" "+use-package-" "minemacs-"))
+(register-definition-prefixes "me-bootstrap" '("+package-" "+use-package-ensure" "minemacs-"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-bpftrace.el
@@ -736,7 +736,7 @@ This command removes new line characters between lines." t)
 "Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x"
 "Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+tramp--convert-sshfs-filename-local"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+pa" "+s" "+tramp--convert-sshfs-filename-local"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -1084,7 +1084,7 @@ Based on `jinx-mode' if available. Falls back to the built-in
 
 ;;; Generated autoloads from me-vars.el
 
-(register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-check-for-disabled" "minemacs-"))
+(register-definition-prefixes "me-vars" '("+clang-format-command" "+env-" "+use-package-" "minemacs-"))
 
 
 ;;; Generated autoloads from extras/me-vc-x.el
@@ -1109,7 +1109,7 @@ The completion candidates include the Git status of each file." t)
 
 ;;; Generated autoloads from ../modules/on-demand/me-web.el
 
-(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode temmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
+(minemacs-register-on-demand-module 'me-web :auto-mode '((("\\.tpl\\.php\\'" "\\.[lh]?eex\\'" "\\.[agj]sp\\'" "\\.ejs\\'" "\\.hbs\\'" "\\.svelte\\'" "\\.twig\\'" "\\.jinja2?\\'" "\\.eco\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.vue\\'" "wp-content/themes/.+/.+\\.php\\'" "\\.\\(?:tpl\\|blade\\)\\(?:\\.php\\)?\\'" "/\\(views\\|html\\|templates\\)/.*\\.php\\'") . web-mode) ("\\.haml\\'" . haml-mode) ("\\.sass\\'" . sass-mode) ("\\.was?t\\'" . wat-ts-mode)) :companion-packages '(((php-mode php-ts-mode html-mode html-ts-mode css-mode) web-mode haml-mode temmet-mode sass-mode) ((js-mode js-ts-mode) . flymake-biome)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-yaml.el
