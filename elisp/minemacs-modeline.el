@@ -99,8 +99,10 @@
 (defvar minemacs-modeline--remotes-cache (make-hash-table :test #'equal))
 
 (defun minemacs-modeline--remote-indicator ()
-  (when-let* (((file-remote-p default-directory))
-              (vec (and (fboundp 'tramp-dissect-file-name) (tramp-dissect-file-name default-directory)))
+  (when-let* (((featurep 'tramp))
+              ((file-remote-p default-directory))
+              ((tramp-tramp-file-p default-directory))
+              (vec (tramp-dissect-file-name default-directory))
               (icons
                (or (gethash vec minemacs-modeline--remotes-cache)
                    (puthash vec (cl-loop
