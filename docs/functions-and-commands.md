@@ -16,8 +16,8 @@ Load and hooks order:
   * `$MINEMACSDIR/init-tweaks.el`            (unless disabled)
   * `$MINEMACSDIR/local/init-tweaks.el`      (unless disabled)
   * `$MINEMACSDIR/local/modules.el`          (unless disabled)
+  * `~/.emacs.d/core/me-bootstrap.el`        (setup `package` and `use-package`)
   * `~/.emacs.d/core/me-builtin.el`
-  * `~/.emacs.d/core/me-bootstrap.el`        (unless `MINEMACS_BUILTIN_ONLY`)
   * `~/.emacs.d/modules/<MODULE>.el`         (for <MODULE> in `minemacs-modules`, unless `MINEMACS_BUILTIN_ONLY)
   * `$MINEMACSDIR/config.el`                 (unless disabled)
   * `$MINEMACSDIR/local/config.el`           (unless disabled)
@@ -38,11 +38,6 @@ Special hooks defined with `+make-first-file-hook!`
 
 ### Customization Documentation
 
-#### `+use-package-keep-checking-for-disabled-p`
-
-If you want to keep the advice that skip disabled packages.
-You need to set in in your "early-config.el".
-
 #### `minemacs-msg-level`
 
 Level of printed messages.
@@ -60,6 +55,10 @@ The theme of MinEmacs.
 List of packages to be disabled when loading MinEmacs modules.
 This can be useful if you want to enable a module but you don't want a package
 of being enabled.
+
+#### `minemacs-dont-persist-variables`
+
+List of variables (symbols) to never persist in `customize-save-variable`.
 
 #### `minemacs-after-setup-fonts-hook`
 
@@ -130,6 +129,11 @@ This allows us to use a specific Clang-format version (like
 "clang-format-12"). This command will be used in
 `+editorconfig-guess-style-from-clang-format`,
 `reformatter`, `apheleia`, etc.
+
+#### `+use-package-keep-checking-for-disabled-p`
+
+Keep skipping the disabled packages, even in the user's "config.el".
+You need to set it in your "early-config.el".
 
 #### `+eval-when-idle-delay`
 
@@ -690,6 +694,13 @@ Cleanup unwanted files/directories from MinEmacs' directory.
 
 Open MinEmacs user configuration.
 When ASK is non-nil (C-u), ask about which file to open.
+
+#### `(+package-native-comp-report)`
+
+Report how the functions of the loaded package files are compiled.
+Only files actually loaded are considered (autoload stubs of packages not
+loaded yet are ignored). Columns: natively compiled, byte-compiled,
+interpreted (not compiled at all) and other (macros, aliases, etc.).
 
 #### `(+clean-file-name FILENAME &optional DOWNCASE-P)`
 

@@ -1,13 +1,7 @@
 # MinEmacs modules and packages
 ## `me-ai`
-* `llm`: A library abstracting LLM capabilities for Emacs
-* `llm-ollama`: `llm` module for integrating with Ollama
-* `ellama`: A package for interacting with LLMs from Emacs
-* `gptel`: Interact with LLMs
-* `aidermacs`: Pair-programming with AI agents using Aider
 * `web-server`: Emacs Web Server
 * `claude-code-ide`: Claude Code IDE integration for Emacs
-* `mcp-hub`: Integration for Model Context Protocol (MCP)
 * `whisper`: Speech-to-Text interface for Emacs using OpenAI's whisper model and whisper.cpp as inference engine
 
 ## `me-checkers`
@@ -93,6 +87,7 @@
 * `osm`: OpenStreetMap viewer
 
 ## `me-files`
+* `eimp`: Emacs Image Manipulation Package (dependency of `dired-hacks`)
 * `dired-hacks`: Collection of useful dired additions
 * `dired-rsync`: Asynchronous "rsync" from `dired`
 * `fd-dired`: Same functionality as `find-dired` and `find-grep-dired`, using fd/rg instead
@@ -111,7 +106,6 @@
 ## `me-natural-langs`
 * `jinx`: Just-in-time spell checker based on the Enchanted library
 * `flyspell-correct`: Distraction-free words correction with `flyspell` via `completing-read`
-* `gt`: Translator on Emacs via multiple engines (Google, Bing, deepL, StarDict and Youdao) and LLMs (ChatGPT, DeepSeek, etc).
 
 ## `me-nav`
 * `ace-window`: Quickly switch windows in Emacs
@@ -121,7 +115,6 @@
 * `mwim`: Move to the beginning/end of line, code or comment
 * `goto-chg`: Go to last change
 * `phi-search`: Another incremental search command, compatible with `multiple-cursors`
-* `rg`: Emacs search tool based on "ripgrep"
 * `p-search`: Emacs search engine which combines concepts from information retrievial and Bayesian search theory
 * `fzf`: An Emacs front-end for "fzf"
 
@@ -152,7 +145,6 @@
 * `macrostep`: Interactive macro-expander for Emacs Lisp and C
 * `breadcrumb`: Emacs headerline indication of where you are in a large project
 * `simpc-mode`: Simple and fast C mode for amalgamated (big) files
-* `cpp-func-impl`: Generate C++ method implementations from declarations using `treesit`
 * `string-inflection`: Naming conversions: foo_bar -> FOO_BAR -> FooBar -> fooBar -> foo-bar -> Foo_Bar -> foo_bar
 
 ## `me-project`
@@ -566,9 +558,9 @@
 ## `on-demand/me-web`
 * `web-mode`: Major mode for editing web templates
 * `temmet-mode`: Support for Emmet, the essential toolkit for web-developers
-* `haml-mode`: Major mode for editing Haml files
+* `haml-mode`: Major mode for editing Hoaml files
 * `sass-mode`: Major mode for editing Sass files
-* `wat-mode`: Major mode for WebAssembly
+* `wat-ts-mode`: Major mode for WebAssembly
 * `flymake-biome`: Flymake integration for checking JavaScript files using `biome`
 
 ## `on-demand/me-yaml`
