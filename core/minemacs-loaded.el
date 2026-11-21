@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-10-24
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
@@ -40,7 +40,7 @@
       (insert curr-ver)
       (+shutup! (write-file ver-file)))))
 
-(if minemacs-not-lazy-p
+(if (or minemacs-not-lazy-p (daemonp))
     (progn ; If `minemacs-not-lazy-p' is true, force loading lazy hooks immediately
       (+log! "Loading %d lazy packages immediately." (length minemacs-lazy-hook))
       (run-hook-wrapped 'minemacs-lazy-hook #'+minemacs-run-hook-wrapper "ImmediateLoad")
