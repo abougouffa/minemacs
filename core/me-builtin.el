@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-03-26
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
@@ -293,6 +293,7 @@
   (dired-movement-style 'cycle)
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'top)
+  (dired-hide-details-hide-absolute-location t)
   (dired-clean-confirm-killing-deleted-buffers nil))
 
 (use-package dired-aux
