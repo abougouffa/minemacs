@@ -374,11 +374,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                         "  "
                         minemacs-modeline-process
                         "  "
-                        ;; BUG: In my current Emacs version, when I add this to
-                        ;; mode-line, I get strange behavior when I C-SPC then
-                        ;; C-P/C-N, the region gets deselected! For some reason,
-                        ;; taking this fixes the issue.
-                        ;; mode-line-format-right-align
+                        mode-line-format-right-align
                         "  "
                         minemacs-modeline-compile
                         "  "
