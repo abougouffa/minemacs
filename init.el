@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-21
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -81,15 +81,19 @@
 ;; by `+env-deny-vars'.
 (+env-load) ; Load environment variables when available.
 
+;; Startup summary: https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html
+(defvar +recorded-startup-time nil)
+(+defun +record-startup-time ()
+  (with-memoization +recorded-startup-time (float-time (time-since before-init-time)))
+  ;; Output to the *Messages* buffer during the initial launch
+  (+info! "Emacs%s loaded in %.2fs, including %.2fs of `emacs-init-time' and %.2fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
+          +recorded-startup-time (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done))
+
+;; Log the actual init time
+(add-hook 'window-setup-hook #'+record-startup-time 99)
+
 ;; This is MinEmacs' synchronization point, add it to the very beginning of `emacs-startup-hook'
-(add-hook
- 'emacs-startup-hook
- (lambda ()
-   (+info! "Emacs%s loaded in %.3fs, including %.3fs for %d GCs." (if (daemonp) " (in daemon mode)" "")
-           (float-time (time-subtract after-init-time before-init-time)) gc-elapsed gcs-done)
-   (+load-theme)
-   (require 'minemacs-loaded))
- -91)
+(add-hook 'emacs-startup-hook (lambda () (+load-theme) (require 'minemacs-loaded)) -91)
 
 ;; ========= Make some special hooks =========
 (+make-first-file-hook! 'org "\\.org$")
