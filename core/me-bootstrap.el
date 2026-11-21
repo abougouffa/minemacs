@@ -256,6 +256,7 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
 (advice-add
  'package-generate-autoloads :around
  (+defun +package-generate-autoloads:around-a (origfn name pkg-dir)
+   (require 'loaddefs-gen) ; Otherwise, `symbol-function' will return an autoload definition, not the actual function
    (if-let* ((files (alist-get (if (stringp name) (intern name) name) +package-autoloads-excluded-files))
              (orig-loaddefs-generate (symbol-function 'loaddefs-generate)))
        (cl-letf (((symbol-function 'loaddefs-generate)
