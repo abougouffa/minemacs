@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
@@ -218,15 +218,15 @@ In some dirty files, there is a mix of spaces and tabs. This uses
         (call-interactively #'tab-to-tab-stop)))))
 
 
-;; TEMP+FIX: The "combobulate.el" contains a lot of autoloads that prevent lazy
-;; loading, so we don't generate autoloads for it (`package-vc' clones without
-;; submodules, so the problematic `html-ts-mode' submodule isn't cloned)
-(+package-exclude-from-autoloads 'combobulate "combobulate.el")
-
 ;; Structured editing and navigation in Emacs with Tree-Sitter
 (use-package combobulate-setup
   :vc (combobulate :url "https://github.com/mickeynp/combobulate")
   :when (and (not (featurep 'os/win)) (featurep 'feat/tree-sitter)) ; TEMP: disable on Windows
+  :preface
+  ;; TEMP+FIX: The "combobulate.el" contains a lot of autoloads that prevent lazy
+  ;; loading, so we don't generate autoloads for it (`package-vc' clones without
+  ;; submodules, so the problematic `html-ts-mode' submodule isn't cloned)
+  (+package-exclude-from-autoloads 'combobulate "combobulate.el")
   :custom
   (combobulate-key-prefix "C-c b") ; "C-c o" is used by `minemacs-open-thing-map'
   :config
