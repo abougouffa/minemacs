@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.2.1](https://github.com/abougouffa/minemacs/compare/2143ca01a6c88127c79704bd2bd92a14e43692e4..v15.2.1) - 2026-11-20
+#### Bug Fixes
+- (**bootstrap**) don't byte-compile packages' test files, fix delaying mode hooks while building packages - ([2143ca0](https://github.com/abougouffa/minemacs/commit/2143ca01a6c88127c79704bd2bd92a14e43692e4)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.2.0](https://github.com/abougouffa/minemacs/compare/615c8c32ce6c30aa688f194581ca436639b5502e..v15.2.0) - 2026-11-20
 #### Tweaks
 - (**elec-pair**) better integration in Org, Markdown and minibuffer - ([88adc1d](https://github.com/abougouffa/minemacs/commit/88adc1d90607637823fb76cc8002aa3515ea4aef)) - [@abougouffa](https://github.com/abougouffa)
