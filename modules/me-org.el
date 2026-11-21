@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-06-10
+;; Last modified: 2026-11-21
 
 ;;; Commentary:
 
@@ -123,6 +123,12 @@
   :after citar embark
   :init
   (citar-embark-mode 1))
+
+
+;; SVG week calendar with mouse and keyboard editing
+(use-package org-timegrid
+  :ensure t
+  :bind (:map minemacs-open-thing-map ("c" . org-timegrid-week)))
 
 
 (provide 'me-org)
