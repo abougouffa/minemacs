@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-16
-;; Last modified: 2026-11-15
+;; Last modified: 2026-11-22
 
 ;;; Commentary:
 
@@ -47,5 +47,5 @@
   (pdf-view-restore-filename (concat minemacs-local-dir "pdf-view-restore.el")))
 
 
-(provide 'on-demand/me-pdf)
+(provide 'obsolute/on-demand/me-pdf)
 ;;; me-pdf.el ends here

@@ -1,10 +1,10 @@
 ;;; me-epub.el --- EPUB support -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025  Abdelhak Bougouffa
+;; Copyright (C) 2022-2026  Abdelhak Bougouffa
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2025-03-21
+;; Last modified: 2026-11-22
 
 ;;; Commentary:
 
@@ -21,5 +21,5 @@
   :mode ("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 
-(provide 'on-demand/me-epub)
+(provide 'obsolete/on-demand/me-epub)
 ;;; me-epub.el ends here
