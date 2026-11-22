@@ -227,6 +227,11 @@ restores it after that.
 (minemacs-register-on-demand-module 'me-docker :auto-mode `((,(rx (or (and (any "/\\") (or "Dockerfile" "Containerfile" "Podmanfile") (32 "." (* nonl))) (and "." (or (and (any "Dd") "ocker") (and (any "Pp") "odman")) "file")) eos) . dockerfile-mode) ("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode) ("/Apptainer\\(?:[/]*\\)?\\'" . apptainer-mode)))
 
 
+;;; Generated autoloads from ../modules/on-demand/me-docs.el
+
+(minemacs-register-on-demand-module 'me-docs :auto-mode `((,(rx "." (or "pdf" "epub" "mobi" "fb2" "xps" "cbz" "docx" "pptx" "xlsx" "odt" "ods" "odp" "odg") eol) . emureader-mode)) :magic-mode '(("%PDF" . emureader-mode)) :companion-packages '((doc-view-mode . emureader-mode)))
+
+
 ;;; Generated autoloads from ../modules/on-demand/me-dotnet.el
 
 (minemacs-register-on-demand-module 'me-dotnet :auto-mode '(("\\.\\(frm\\|bas\\|cls\\|vb\\)\\'" . vbnet-mode) ("\\.sln\\'" . sln-mode) ("\\.\\(vb\\|cs\\|fs\\|vcx\\|vd\\)proj\\'" . +dotnet-proj-mode)) :companion-packages '(((csharp-mode csharp-ts-mode) dotnet sharper sln-mode)))
@@ -264,11 +269,6 @@ When PRE is non-nil, allow downloading the latest prerelease.
 
 (fn INTERACTIVE PROJECT)")
 (register-definition-prefixes "extras/me-eglot-x" '("+eglot-clangd-" "eglot-ltex-"))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-epub.el
-
-(minemacs-register-on-demand-module 'me-epub :auto-mode '(("\\.[eE][pP][uU][bB]\\'" . nov-mode)))
 
 
 ;;; Generated autoloads from me-external-tools.el
@@ -844,11 +844,6 @@ This command removes new line characters between lines." t)
 ;;; Generated autoloads from ../modules/on-demand/me-pcap.el
 
 (minemacs-register-on-demand-module 'me-pcap :auto-mode '(("\\.\\(?:5vw\\|ap[cs]\\|bfr\\|c\\(?:ap\\|scpkt\\)\\|dmp\\|eth\\|fdc\\|mplog\\|n\\(?:cf\\|tar\\)\\|p\\(?:cap\\(?:ng\\)?\\|kt\\)\\|rf5\\|s\\(?:noop\\|yc\\)\\|t\\(?:pc\\|r\\(?:c[01]\\|[1c]\\)\\)\\|vn\\(?:tc\\)?\\|wpz\\)$" . pcap-mode)))
-
-
-;;; Generated autoloads from ../modules/on-demand/me-pdf.el
-
-(minemacs-register-on-demand-module 'me-pdf :auto-mode '(("\\.[pP][dD][fF]\\'" . pdf-view-mode)) :magic-mode '(("%PDF" . pdf-view-mode)) :companion-packages '((doc-view-mode pdf-view-mode pdf-isearch-minor-mode pdf-view-restore-mode)))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-pkgbuild.el
