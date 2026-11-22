@@ -736,7 +736,7 @@ This command removes new line characters between lines." t)
 "Show the list of declared external dependencies." t)
 (autoload '+describe-at-point "me-lib-x"
 "Show help for the symbol at point." t)
-(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+pa" "+s" "+tramp--convert-sshfs-filename-local"))
+(register-definition-prefixes "me-lib-x" '("+apply-patch-dwim-" "+browse-html-file-browser-priority" "+c" "+d" "+eglot--help-buffer" "+fetch-json-from-url" "+g" "+html2pdf-" "+json-schemas-" "+monolith-program" "+net-default-device" "+patch-get-patched-files" "+s" "+tramp--convert-sshfs-filename-local"))
 
 
 ;;; Generated autoloads from ../modules/on-demand/me-linux.el
@@ -1125,6 +1125,18 @@ The completion candidates include the Git status of each file." t)
 ;;; Generated autoloads from ../elisp/minemacs-modeline.el
 
 (register-definition-prefixes "../elisp/minemacs-modeline" '("minemacs-modeline-"))
+
+
+;;; Generated autoloads from ../elisp/native-comp-report.el
+
+(autoload '+native-comp-report "../elisp/native-comp-report"
+"Report how the functions of the loaded package files are compiled.
+Only files actually loaded are considered (autoload stubs of packages not
+loaded yet are ignored). Columns: natively compiled, byte-compiled,
+interpreted (not compiled at all) and other (macros, aliases, etc.).
+
+In the report buffer: \\<+native-comp-report-mode-map>\\[revert-buffer] refreshes, \\[tabulated-list-sort] sorts by the column at point, \\[+native-comp-report-visit] visits the file." t)
+(register-definition-prefixes "../elisp/native-comp-report" '("+native-comp-report-"))
 
 
 ;;; Generated autoloads from ../elisp/valgrind.el
