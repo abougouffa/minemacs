@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-12-26
-;; Last modified: 2026-09-18
+;; Last modified: 2026-11-22
 
 ;;; Commentary:
 
@@ -19,8 +19,7 @@
          ("C-c n" . crux-cleanup-buffer-or-region)
          ("C-c u" . crux-view-url)
          ("C-c d" . crux-duplicate-current-line-or-region)
-         ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)
-         ("C-x 4 t" . crux-transpose-windows)))
+         ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)))
 
 
 ;; Persistent per-project scratch buffers for Emacs
