@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-04
-;; Last modified: 2026-11-21
+;; Last modified: 2026-11-22
 
 ;;; Commentary:
 
@@ -70,7 +70,9 @@
 (use-package guard-lf
   :ensure t
   :init
-  (guard-lf-mode 1))
+  (guard-lf-mode 1)
+  :config
+  (push 'emureader-mode guard-lf-intact-major-modes)) ; TEMP: until jcs-elpa/guard-lf#16 gets merged
 
 
 ;; Directory tree comparison mode for Emacs (inspired by commercial tools like Beyond Compare and Araxis Merge)
