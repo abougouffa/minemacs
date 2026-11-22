@@ -2,6 +2,34 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.3.0](https://github.com/abougouffa/minemacs/compare/b092dd9cc406c375ade26bdb621fb50a45214841..v15.3.0) - 2026-11-21
+#### Nitpicks, changes with no side effect
+- remove unused and unfinished Dockerfile - ([eeaa38a](https://github.com/abougouffa/minemacs/commit/eeaa38a3a71c3ebe01f928343ffb0e6095ba1e26)) - [@abougouffa](https://github.com/abougouffa)
+#### Tweaks
+- (**core**) don't be lazy when launching Emacs in daemon mode - ([932e2fc](https://github.com/abougouffa/minemacs/commit/932e2fcba8fc267e0a0333df57660ab7dcc1ab1d)) - [@abougouffa](https://github.com/abougouffa)
+- (**dired**) hide the absolute location - ([6ee0a4a](https://github.com/abougouffa/minemacs/commit/6ee0a4a94d801749b40a9c6acfe37ba9cdab514e)) - [@abougouffa](https://github.com/abougouffa)
+- (**init**) better reporting of startup time - ([6edf55d](https://github.com/abougouffa/minemacs/commit/6edf55dd3546c51956bf51ed6e4976ea19948307)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) restore the `mode-line-format-right-align` - ([7fadb76](https://github.com/abougouffa/minemacs/commit/7fadb76aac7c0a14ee7e02c17bcd3e9617912be8)) - [@abougouffa](https://github.com/abougouffa)
+- extra config for remote files - ([5e736ee](https://github.com/abougouffa/minemacs/commit/5e736eec6abb41e472536cb54fde4ba9e3feb614)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([3bdd908](https://github.com/abougouffa/minemacs/commit/3bdd908dcbf9354cbda5ac5dbfaa1c58a3bf72bd)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([b092dd9](https://github.com/abougouffa/minemacs/commit/b092dd9cc406c375ade26bdb621fb50a45214841)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**org**) initial support for `org-timegrid` - ([2bdb895](https://github.com/abougouffa/minemacs/commit/2bdb895b359aeda3762726d59e4626d4d0175273)) - [@abougouffa](https://github.com/abougouffa)
+- (**services**) add `remoto`, a better replacement for `igist` - ([1a9dd7a](https://github.com/abougouffa/minemacs/commit/1a9dd7a0eb6f0a409f139ddbb6b60ca6af6d58d0)) - [@abougouffa](https://github.com/abougouffa)
+- (**services**) make `igist` obsolete - ([dbde559](https://github.com/abougouffa/minemacs/commit/dbde5593c301e7984c5f2e629354da47feff9430)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**bootstrap**) fix generating autoloads - ([54048b2](https://github.com/abougouffa/minemacs/commit/54048b2919149e73c0ca45dd89050ea891b62c05)) - [@abougouffa](https://github.com/abougouffa)
+- (**modeline**) ensure files are managed by `tramp` before querying them - ([a24b5c6](https://github.com/abougouffa/minemacs/commit/a24b5c650c8020df902728c9104b38bdad5f4e55)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- restore some of the deleted obsolete modules - ([34a05ad](https://github.com/abougouffa/minemacs/commit/34a05adc1d742e3df6d22af07ceaa464cee7d6d4)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- regenerate documentation - ([7178a83](https://github.com/abougouffa/minemacs/commit/7178a83f987e8274cfb1e0f6c78cfdd47961f9c8)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate the documentation - ([4125025](https://github.com/abougouffa/minemacs/commit/4125025b76c28f6f359a9752392bba0cdc1c5297)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**combobulate**) make use of `use-package`'s `:preface` block - ([c962ae1](https://github.com/abougouffa/minemacs/commit/c962ae1a83dbb2a7c2cd0a05d4b07c154d8bc3a0)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.2.1](https://github.com/abougouffa/minemacs/compare/2143ca01a6c88127c79704bd2bd92a14e43692e4..v15.2.1) - 2026-11-20
 #### Bug Fixes
 - (**bootstrap**) don't byte-compile packages' test files, fix delaying mode hooks while building packages - ([2143ca0](https://github.com/abougouffa/minemacs/commit/2143ca01a6c88127c79704bd2bd92a14e43692e4)) - [@abougouffa](https://github.com/abougouffa)
