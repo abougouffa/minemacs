@@ -649,14 +649,6 @@ when a region is selected."
             (or (+region-or-thing-at-point t) ""))))
 
 ;;;###autoload
-(defun +kill-region-or-backward-word ()
-  "Kill selected region if region is active. Otherwise kill a backward word."
-  (interactive)
-  (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
-    (backward-kill-word 1)))
-
-;;;###autoload
 (defun +kill-whitespace-or-word (arg)
   "Kill forward whitespace or word.
 With argument ARG, do this that many times.
