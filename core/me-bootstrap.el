@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-21
+;; Last modified: 2026-11-23
 
 ;;; Commentary:
 
@@ -37,11 +37,11 @@
 
 (defcustom +package-ignored-files '("test" "tests" "*-test.el" "*-tests.el")
   "Files and directories not to byte-compile when installing packages.
-Test suites often require packages that aren't installed, which makes their
-byte-compilation fail (`straight' didn't build them either). The patterns work
-like the `:ignored-files' of a `package-vc' spec (which are honored too): a
-pattern starting with \"/\" is relative to the package's directory, other
-patterns match at any level."
+Test suites often require packages that aren't installed, which makes
+their byte-compilation fail. The patterns work like the `:ignored-files'
+of a `package-vc' spec (which are honored too): a pattern starting with
+\"/\" is relative to the package's directory, other patterns match at
+any level."
   :group 'minemacs-core
   :type '(repeat string))
 
@@ -90,7 +90,7 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
   (let ((default-directory (if (stringp pkg-desc-or-dir) pkg-desc-or-dir (package-desc-dir pkg-desc-or-dir))))
     (unless (zerop (vc-git-command nil t nil "cat-file" "-e" (concat rev "^{commit}")))
       (vc-git-command nil 0 nil "fetch" "--quiet" "origin"))
-    (vc-git-command nil t nil "stash" "push" "--quiet") ; Best effort
+    (vc-git-command nil t nil "stash" "push" "--quiet")
     (vc-git-command nil 0 nil "reset" "--quiet" "--hard" rev)))
 
 (defun minemacs-packages-freeze ()
@@ -256,7 +256,7 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
 (advice-add
  'package-generate-autoloads :around
  (+defun +package-generate-autoloads:around-a (origfn name pkg-dir)
-   (require 'loaddefs-gen) ; Otherwise, `symbol-function' will return an autoload definition, not the actual function
+   (require 'loaddefs-gen) ; Otherwise, its `symbol-function' will return an autoload definition, not the actual function
    (if-let* ((files (alist-get (if (stringp name) (intern name) name) +package-autoloads-excluded-files))
              (orig-loaddefs-generate (symbol-function 'loaddefs-generate)))
        (cl-letf (((symbol-function 'loaddefs-generate)
