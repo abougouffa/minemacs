@@ -132,7 +132,7 @@
  (flutter :version "20261010.2349")
  (flymake-biome :version "20241007.1626")
  (flymake-collection :version "20260613.1434")
- (flymake-cppcheck :vc "https://codeberg.org/shaohme/flymake-cppcheck" :rev "319bc1471ef227fb15a50ddfb6ea23416cf9893b")
+ (flymake-cppcheck :vc "https://codeberg.org/shaohme/flymake-cppcheck" :rev "db4d96e1f0bc623edf8f36de0ca7d14689f61bd9")
  (flymake-plantuml :vc "https://github.com/shaohme/flymake-plantuml" :rev "81cfe1e46e2f7b75595eb2fe51d882e404eed7a3")
  (flymake-pmd :vc "https://github.com/rody/flymake-pmd" :rev "43753adf73a8ecfd41e1f255894eb30b45a2ae1f")
  (flymake-sqlfluff :version "20240611.1257")
