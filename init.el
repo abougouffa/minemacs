@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-21
+;; Last modified: 2026-11-23
 
 ;;     __  __ _         ______
 ;;    |  \/  (_)       |  ____|
@@ -118,10 +118,6 @@
 
 (unless minemacs-builtin-only-p
   (mapc #'+load (mapcar (apply-partially #'format "%s%s.el" minemacs-modules-dir) minemacs-modules)))
-
-;; Let the user configure the packages disabled in MinEmacs' modules
-(unless +use-package-keep-checking-for-disabled-p
-  (setq +use-package-check-for-disabled nil))
 
 (+load-user-configs 'config 'local/config) ; Load user configuration
 

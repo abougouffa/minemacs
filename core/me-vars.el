@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-23
 
 ;;; Commentary:
 
@@ -165,9 +165,6 @@ of being enabled."
   :group 'minemacs-core
   :type '(repeat symbol))
 
-(defvar minemacs-configured-packages nil
-  "List of packages installed and configured by MinEmacs during startup.")
-
 (defcustom minemacs-dont-persist-variables '(package-selected-packages package-vc-selected-packages)
   "List of variables (symbols) to never persist in `customize-save-variable'."
   :group 'minemacs-core
@@ -323,18 +320,6 @@ This allows us to use a specific Clang-format version (like
 `+editorconfig-guess-style-from-clang-format',
 `reformatter', `apheleia', etc."
   :group 'minemacs-prog)
-
-(defvar +use-package-check-for-disabled t
-  "Skip the `use-package' declarations of the disabled packages.
-This is set to nil after loading MinEmacs' modules (unless
-`+use-package-keep-checking-for-disabled-p' is non-nil), so the user can
-configure the packages disabled in MinEmacs' modules in \"config.el\".")
-
-(defcustom +use-package-keep-checking-for-disabled-p nil
-  "Keep skipping the disabled packages, even in the user's \"config.el\".
-You need to set it in your \"early-config.el\"."
-  :group 'minemacs-core
-  :type 'boolean)
 
 
 (provide 'me-vars)

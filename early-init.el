@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-23
 
 ;;; Commentary:
 
@@ -126,23 +126,13 @@
 ;; Restore `file-name-handler-alist' after startup while conserving the potential new elements
 (add-hook 'emacs-startup-hook (lambda () (setq file-name-handler-alist (delete-dups (append file-name-handler-alist (get 'file-name-handler-alist 'original-value))))) 99)
 
-;; HACK: Skip the `use-package' declarations of the packages disabled in
-;; `minemacs-disabled-packages' (or by their `:disabled', `:if', `:when' and
-;; `:unless' conditions) and register the other ones in
-;; `minemacs-configured-packages'. This is done while loading MinEmacs' modules,
-;; see `+use-package-check-for-disabled'.
+;; HACK: Disable the packages in `minemacs-disabled-packages'.
 (advice-add
  'use-package :around
  (+defun +use-package--check-if-disabled:around-a (origfn package &rest args)
-   (if (not +use-package-check-for-disabled)
-       (apply origfn package args)
-     (unless (or (+package-disabled-p package)
-                 (memq :disabled args)
-                 (and (memq :if args) (not (eval (+varplist-get args :if t))))
-                 (and (memq :when args) (not (eval (+varplist-get args :when t))))
-                 (and (memq :unless args) (eval (+varplist-get args :unless t))))
-       (add-to-list 'minemacs-configured-packages package t)
-       (apply origfn package args)))))
+   (when (and (+package-disabled-p package) (not (memq :disabled args)))
+     (push :disabled args))
+   (apply origfn package args)))
 
 ;; Load the user early configuration files
 (+load-user-configs 'early-config 'local/early-config)

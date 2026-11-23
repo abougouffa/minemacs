@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2023-11-29
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-23
 
 ;;; Commentary:
 
@@ -459,11 +459,6 @@ Optionally, check also for the containing MODULE."
    (and minemacs-builtin-only-p module (not (eq module 'me-builtin)))
    (and (memq package (flatten-list (append minemacs-disabled-packages-env minemacs-disabled-packages))))
    (and module (not (memq module minemacs-modules)))))
-
-(defun +package-configured-p (package)
-  "Check if the PACKAGE has been configured by MinEmacs.
-This is only valable after loading all modules (in the user's \"config.el\")."
-  (and (memq package minemacs-configured-packages) t))
 
 (defun minemacs-modules (&optional include-on-demand include-obsolete)
   "List all the available modules.

@@ -1,6 +1,6 @@
 ;;; config.el -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2022-2025 Abdelhak Bougouffa
+;; Copyright (C) 2022-2026 Abdelhak Bougouffa
 
 ;; =============================================================================
 ;; CAVEAT! PLEASE NOTE THAT THIS CONFIG FILE IS JUST AN EXAMPLE OF HOW TO SET
@@ -256,7 +256,7 @@
 
 ;; Module: `me-services' -- Package: `jiralib' / `org-jira'
 ;; When `jiralib' is enabled, do some extra stuff
-(when (or (+package-configured-p 'jiralib) (+package-configured-p 'org-jira))
+(with-eval-after-load 'jiralib
   ;; You only need to set `jiralib-url'. The `jiralib-host' and `jiralib-user' are optional
   (setq jiralib-url "https://my-jira-server.tld/"
         jiralib-host "my-jira-server.tld"
