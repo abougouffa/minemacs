@@ -293,6 +293,7 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
 (defun minemacs-bump-packages-async ()
   "Like `minemacs-bump-packages', but runs asynchronously."
   (interactive)
+  (when (file-exists-p minemacs-packages-lockfile) (delete-file minemacs-packages-lockfile t))
   (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
     (compile (concat (shell-quote-argument (car command-line-args))
                      " --batch --eval='(minemacs-bump-packages)' --script "
