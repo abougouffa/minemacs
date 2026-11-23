@@ -195,12 +195,13 @@ built-in version, delete the package with `M-x package-delete`.
 Packages are installed in `~/.emacs.d/local/elpa/`. The installed revisions are
 recorded in the lockfile `local/packages/versions.el`:
 
-- `M-x minemacs-bump-packages` (or `make bump`) updates all packages to their
-  latest versions and regenerates the lockfile.
-- `M-x minemacs-upgrade` (or `make upgrade`) restores the packages installed
-  from Git to the revisions recorded in the lockfile. As the package archives
-  only serve the latest version of each package, packages installed from the
-  archives are only upgraded when they are older than the locked version.
+- `M-x minemacs-packages-bump-async` (or `make bump`) updates all packages to
+  their latest versions and regenerates the lockfile.
+- `M-x minemacs-packages-upgrade` (or `make upgrade`) restores the packages
+  installed from Git to the revisions recorded in the lockfile. As the package
+  archives only serve the latest version of each package, packages installed
+  from the archives are only upgraded when they are older than the locked
+  version.
 - `M-x minemacs-packages-freeze` (or `make freeze`) saves the current versions
   to the lockfile.
 - `M-x minemacs-packages-prune` deletes the installed packages that are not used

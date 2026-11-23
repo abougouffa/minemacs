@@ -55,10 +55,10 @@ clean-loaddefs:
 	rm $(EMACS_DIR)/core/me-loaddefs.el
 
 bump:
-	$(EMACS_BATCH) --eval='(minemacs-bump-packages)'
+	$(EMACS_BATCH) --eval='(minemacs-packages-bump)'
 
 upgrade:
-	$(EMACS_BATCH) --eval='(minemacs-upgrade nil)'
+	$(EMACS_BATCH) --eval='(minemacs-packages-upgrade nil)'
 
 freeze:
 	$(EMACS_BATCH) --eval='(minemacs-packages-freeze)'

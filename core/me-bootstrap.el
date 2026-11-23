@@ -280,7 +280,7 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
                                        (process-list))))
       (accept-process-output (car new-procs) 0.5))))
 
-(defun minemacs-bump-packages ()
+(defun minemacs-packages-bump ()
   "Update MinEmacs packages to the last revisions (can cause breakages)."
   (interactive)
   (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
@@ -290,16 +290,20 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
   (minemacs-packages-freeze)
   (minemacs-run-build-functions)) ; Run package-specific build functions (ex: `pdf-tools-install')
 
-(defun minemacs-bump-packages-async ()
-  "Like `minemacs-bump-packages', but runs asynchronously."
+(defun minemacs-packages-bump-async ()
+  "Like `minemacs-packages-bump', but runs asynchronously."
   (interactive)
   (when (file-exists-p minemacs-packages-lockfile) (delete-file minemacs-packages-lockfile t))
-  (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-bump-packages*")))
+  (let* ((compilation-buffer-name-function (lambda (&rest _args) "*minemacs-packages-bump*")))
     (compile (concat (shell-quote-argument (car command-line-args))
-                     " --batch --eval='(minemacs-bump-packages)' --script "
+                     " --batch --eval='(minemacs-packages-bump)' --script "
                      (shell-quote-argument user-init-file)))))
 
-(defun minemacs-upgrade (pull)
+(define-obsolete-function-alias 'minemacs-upgrade 'minemacs-packages-upgrade "v15.4.0")
+(define-obsolete-function-alias 'minemacs-bump-packages 'minemacs-packages-bump "v15.4.0")
+(define-obsolete-function-alias 'minemacs-bump-packages-async 'minemacs-packages-bump-async "v15.4.0")
+
+(defun minemacs-packages-upgrade (pull)
   "Upgrade the packages to the versions saved in `minemacs-packages-lockfile'.
 Packages installed from VC are restored to the locked revisions. As the
 package archives only serve the latest version of each package, packages
