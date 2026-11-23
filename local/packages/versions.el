@@ -199,7 +199,7 @@
  (lv :version "20200507.1518")
  (macrostep :version "20250202.2205")
  (magit :version "20261117.1103")
- (magit-delta :vc "https://github.com/dandavison/magit-delta" :rev "5fc7dbddcfacfe46d3fd876172ad02a9ab6ac616")
+ (magit-delta :version "20220125.50")
  (magit-gerrit :vc "https://github.com/abougouffa/magit-gerrit" :rev "27a053ef8eb02cb4b68db93e2fb9495f33800c98")
  (magit-imerge :version "20260315.29")
  (magit-section :version "20261107.2107")
