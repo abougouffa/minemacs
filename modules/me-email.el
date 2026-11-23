@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-23
 
 ;;; Commentary:
 
@@ -233,7 +233,7 @@
 
 ;; Encrypt and decrypt mails in `mu4e'
 (use-package mu4e-crypto
-  :ensure t
+  :vc (:url "https://github.com/emacsattic/mu4e-crypto")
   :when +mu4e-available-p
   :after mu4e
   :bind (:map mu4e-compose-mode-map ("C-c C-m e" . mu4e-crypto-encrypt-message))
