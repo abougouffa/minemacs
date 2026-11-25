@@ -2,6 +2,35 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v15.4.0](https://github.com/abougouffa/minemacs/compare/daed1b0174f54ef153c7e4a3f769b6ce99c17ee8..v15.4.0) - 2026-11-25
+#### Tweaks
+- (**crux**) don't bind `crux-transpose-windows` - ([80047aa](https://github.com/abougouffa/minemacs/commit/80047aa62c7acbaf9da819353dbdf0b9c9f7bd70)) - [@abougouffa](https://github.com/abougouffa)
+- (**guard-lf**) don't trigger on `emureader-mode` - ([d727a14](https://github.com/abougouffa/minemacs/commit/d727a14e5fd06f5df8d3054d70b09f80ff214b60)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([b38434b](https://github.com/abougouffa/minemacs/commit/b38434b599dc9596f36ba6a53f722f8ade939475)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([ea00b59](https://github.com/abougouffa/minemacs/commit/ea00b592338996456bd9c3ad2a46ea474f4c35d8)) - [@abougouffa](https://github.com/abougouffa)
+- better use of built-in functionality - ([813fcbc](https://github.com/abougouffa/minemacs/commit/813fcbcf103f02ad7dc865527b65703ecb5462fb)) - [@abougouffa](https://github.com/abougouffa)
+- bump packages versions - ([48ef575](https://github.com/abougouffa/minemacs/commit/48ef57559588ea176fa440298871c76550d20353)) - [@abougouffa](https://github.com/abougouffa)
+- regenerate loaddefs - ([c8eb599](https://github.com/abougouffa/minemacs/commit/c8eb599b113dbd9f1eb807337b769d6b25a262e9)) - [@abougouffa](https://github.com/abougouffa)
+#### Features
+- (**on-demand**) replace `nov` and `pdf-tools` by `emureader` - ([daed1b0](https://github.com/abougouffa/minemacs/commit/daed1b0174f54ef153c7e4a3f769b6ce99c17ee8)) - [@abougouffa](https://github.com/abougouffa)
+- better implementation of the native compilation report - ([b136c5a](https://github.com/abougouffa/minemacs/commit/b136c5a982fa30b5a0b55aef09fd9f16b3253bdd)) - [@abougouffa](https://github.com/abougouffa)
+#### Bug Fixes
+- (**bootstrap**) remove the lockfile before bumping - ([0259cc0](https://github.com/abougouffa/minemacs/commit/0259cc097f0b9b5d1662c2c59aa15afee2ba88c8)) - [@abougouffa](https://github.com/abougouffa)
+- (**flymake-cppcheck**) wrong revision in the lockfile - ([872b6f5](https://github.com/abougouffa/minemacs/commit/872b6f5c972cd68b23c7b36addf25c4b1c80535c)) - [@abougouffa](https://github.com/abougouffa)
+- (**ghostel**) exclude `rg-mode` from `ghostel`'s compile integration - ([2cf0426](https://github.com/abougouffa/minemacs/commit/2cf0426ae66c7774e784882de62b989177cf2bf5)) - [@abougouffa](https://github.com/abougouffa)
+- (**mu4e-crypto**) use `:vc` as the MELPA package don't exist anymore - ([ece38aa](https://github.com/abougouffa/minemacs/commit/ece38aaedd092ec78cff02ee3f7a7f3f8a4ccbe1)) - [@abougouffa](https://github.com/abougouffa)
+- consider `cl-defun` and `cl-defmethod` in the byte/native comp report - ([2fa2451](https://github.com/abougouffa/minemacs/commit/2fa2451285041f4f91aece30c0d6ec5142e9b9c9)) - [@abougouffa](https://github.com/abougouffa)
+#### Revert
+- (**nav**) restore `rg` - ([3f2fa41](https://github.com/abougouffa/minemacs/commit/3f2fa412cd7b54c1a71d64eff8c717ff30e5ab65)) - [@abougouffa](https://github.com/abougouffa)
+#### Documentation
+- cleanup some comments/docs - ([ab9ba80](https://github.com/abougouffa/minemacs/commit/ab9ba80d3dce66c8ca52c3564edaadd3ffff65da)) - [@abougouffa](https://github.com/abougouffa)
+- use a recent screenshot - ([4e5c767](https://github.com/abougouffa/minemacs/commit/4e5c7671e37216042e961f0fa11a1c404de935eb)) - [@abougouffa](https://github.com/abougouffa)
+#### Refactoring
+- (**bootstrap**) unify MinEmacs package management commands - ([45ccdfe](https://github.com/abougouffa/minemacs/commit/45ccdfe9d5ab8e40df155f3f8c9b66bc67bf7130)) - [@abougouffa](https://github.com/abougouffa)
+- remove old `use-package` hacks - ([4685fb9](https://github.com/abougouffa/minemacs/commit/4685fb90c244c18905b431a5fef0c0a1945a74cb)) - [@abougouffa](https://github.com/abougouffa)
+
+- - -
+
 ## [v15.3.0](https://github.com/abougouffa/minemacs/compare/b092dd9cc406c375ade26bdb621fb50a45214841..v15.3.0) - 2026-11-21
 #### Nitpicks, changes with no side effect
 - remove unused and unfinished Dockerfile - ([eeaa38a](https://github.com/abougouffa/minemacs/commit/eeaa38a3a71c3ebe01f928343ffb0e6095ba1e26)) - [@abougouffa](https://github.com/abougouffa)
