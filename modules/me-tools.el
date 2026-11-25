@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-11-24
+;; Last modified: 2026-11-25
 
 ;;; Commentary:
 
@@ -64,7 +64,8 @@ When in a project, toggle `eat-project', else, toggle `eat'."
   (+super-project-define-commands 'ghostel-project)
   :config
   ;; FIX: Otherwis, `rg' won't work (see dajva/rg.el#209)
-  (push 'rg-mode ghostel-compile-global-mode-excluded-modes)
+  (with-eval-after-load 'ghostel-compile
+    (push 'rg-mode ghostel-compile-global-mode-excluded-modes))
 
   ;; TWEAK: Bind the F1 key to toggle in `ghostel' modes, otherwise, it will be bound to `ghostel--send-event'
   (dolist (map (list ghostel-mode-map ghostel-line-mode-map ghostel-readonly-mode-map ghostel-char-mode-map ghostel-semi-char-mode-map))
