@@ -197,6 +197,10 @@ recorded in the lockfile `local/packages/versions.el`:
 
 - `M-x minemacs-packages-bump-async` (or `make bump`) updates all packages to
   their latest versions and regenerates the lockfile.
+  `minemacs-packages-sync-sources` is automatically called at the beginning.
+- `M-x minemacs-packages-sync-sources` reinstalls the packages declared in the
+  current session that aren't installed from their declared source (ex. a
+  package changed from `:ensure` to `:vc`).
 - `M-x minemacs-packages-upgrade` (or `make upgrade`) restores the packages
   installed from Git to the revisions recorded in the lockfile. As the package
   archives only serve the latest version of each package, packages installed

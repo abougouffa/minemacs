@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-09-17
-;; Last modified: 2026-11-23
+;; Last modified: 2026-11-25
 
 ;;; Commentary:
 
@@ -117,6 +117,16 @@ in a \"detached HEAD\" state), this keeps `package-vc-upgrade' working."
 
 (defvar +package--locked-rev nil)
 
+(defvar +package--declared-sources nil
+  "Alist of (PACKAGE . VC) for the packages declared in this session.")
+
+(defun +package--declare-source (name vc)
+  "Register VC as the declared source of the package NAME.
+When a package is declared several times, the `:vc' declaration wins."
+  (if-let* ((cell (assq name +package--declared-sources)))
+      (when vc (setcdr cell vc))
+    (push (cons name vc) +package--declared-sources)))
+
 (defun +package--install-from-archive (name)
   "Install NAME from `package-archives', even if it is a built-in package."
   (unless package-archive-contents (package-refresh-contents)) ; Refresh once per session
@@ -143,6 +153,7 @@ When VC is non-nil, it is a list (OPTIONS REVISION) as returned by
 `use-package-normalize--vc-arg', and the package is installed with
 `package-vc'. Otherwise, it is installed from `package-archives'."
   (unless minemacs-builtin-only-p
+    (+package--declare-source name vc)
     (pcase-let ((`(,opts ,rev) vc))
       ;; Register the spec for `package-vc-upgrade' and `package-vc-rebuild'
       ;; (ex. the `:lisp-dir' of `transient'), it isn't persisted across sessions
@@ -280,10 +291,58 @@ This can be a sub-directory for packages installed from VC with a `:lisp-dir'."
                                        (process-list))))
       (accept-process-output (car new-procs) 0.5))))
 
+(defun +package--normalize-url (url)
+  "Normalize the repository URL for comparison."
+  (and url (replace-regexp-in-string "\\(?:\\.git\\)?/*\\'" "" (downcase (string-trim url)))))
+
+(defun +package--source-matches-p (pkg-desc vc)
+  "Return non-nil when PKG-DESC is installed from the source declared by VC.
+VC is nil for packages declared with `:ensure', or a list (OPTIONS REVISION)
+for packages declared with `:vc'. For the latter, the `:url' of OPTIONS, when
+given, is compared to the remote URL of the installed checkout."
+  (if (not vc)
+      (not (package-vc-p pkg-desc))
+    (and (package-vc-p pkg-desc)
+         (let ((url (+package--normalize-url (plist-get (car vc) :url)))
+               (remote (+package--normalize-url (ignore-errors (vc-git-repository-url (package-desc-dir pkg-desc))))))
+           (or (null url) (null remote) (equal url remote))))))
+
+(defun minemacs-packages-sync-sources ()
+  "Reinstall the packages that aren't installed from their declared source.
+For example, when the declaration of a package changes from `:ensure' to
+`:vc' (or vice versa), or when the `:url' of its `:vc' spec changes, the old
+installation is deleted and the package is installed from the newly declared
+source. Only the packages declared in this session are checked, so the modules
+should be loaded first (see `minemacs-packages-bump')."
+  (interactive)
+  (let ((count 0))
+    (pcase-dolist (`(,name . ,vc) (reverse +package--declared-sources))
+      (when-let* ((descs (cdr (assq name package-alist)))
+                  (mismatched (seq-remove (lambda (desc) (+package--source-matches-p desc vc)) descs)))
+        (condition-case-unless-debug err
+            (progn
+              (unless vc ; Don't delete the installed version when the archives don't provide the package
+                (unless package-archive-contents (package-refresh-contents))
+                (unless (assq name package-archive-contents)
+                  (error "Package `%s' isn't available in the archives" name)))
+              (+info! "Replacing `%s' with the version from %s" name (if vc "VC" "the package archives"))
+              (dolist (desc mismatched) (package-delete desc t t))
+              (unless vc ; Not installed from VC anymore, forget the old spec
+                (setf (alist-get name package-vc-selected-packages nil t) nil))
+              (+package-ensure name vc) ; Installs from the declared source unless a matching version is left
+              (cl-incf count))
+          (error (+error! "Cannot replace `%s' with the declared source: %s" name (error-message-string err))))))
+    (when (called-interactively-p 'interactive)
+      (message "[MinEmacs]: Replaced %d package(s) with their declared sources" count))
+    count))
+
 (defun minemacs-packages-bump ()
-  "Update MinEmacs packages to the last revisions (can cause breakages)."
+  "Update MinEmacs packages to the last revisions (can cause breakages).
+Packages installed from a source other than the declared one (ex. from the
+archives while declared with `:vc') are reinstalled from the declared source."
   (interactive)
   (apply #'minemacs-load-module (minemacs-modules t)) ; Load all modules, include on-demand ones
+  (minemacs-packages-sync-sources) ; Replace the packages whose declared source changed (ex. `:ensure' -> `:vc')
   (package-upgrade-all nil) ; Refresh the archives and upgrade the packages installed from them
   (dolist (elt package-alist) ; Pull the packages installed from VC
     (when (package-vc-p (cadr elt)) (+package-vc-upgrade (cadr elt))))
