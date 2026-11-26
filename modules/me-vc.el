@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-26
 
 ;;; Commentary:
 
@@ -146,10 +146,9 @@
   :mode ("/\\.dumbjump\\'" . gitignore-mode))
 
 
-;; Running "repo" from Emacs
-(use-package repo
-  :ensure t
-  :hook (repo-mode . +ansi-color-apply-on-buffer))
+;; Magit integration for Google's repo tool
+(use-package magit-repotool
+  :vc (:url "https://github.com/abougouffa/magit-repotool"))
 
 
 ;; Jujutsu (jj) integration with Emacs `vc' and `project'
