@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2022-10-02
-;; Last modified: 2026-11-20
+;; Last modified: 2026-11-26
 
 ;;; Commentary:
 
@@ -37,7 +37,8 @@
         ;; Or, the containing workspace root
         ([super-proj (+super-project-current root-dir)]
          [super-proj-root (project-root super-proj)]
-         (concat "•" (file-name-base (directory-file-name super-proj-root)) "•")))))
+         (concat "•" (file-name-base (directory-file-name super-proj-root)) "•"))
+        (t (concat "•••")))))
 
   ;; Make `switch-to-*-buffer' commands skip non-project buffers on otpp tabs
   (setopt switch-to-prev-buffer-skip #'otpp-skip-external-buffers))
