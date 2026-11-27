@@ -4,7 +4,7 @@
 
 ;; Author: Abdelhak Bougouffa  (rot13 "nobhtbhssn@srqbencebwrpg.bet")
 ;; Created: 2024-08-10
-;; Last modified: 2026-06-08
+;; Last modified: 2026-11-27
 
 ;;; Commentary:
 
@@ -33,7 +33,7 @@
   (if (executable-find "plantuml")
       (setopt plantuml-default-exec-mode 'executable)
     (setopt plantuml-default-exec-mode 'jar
-            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-\\([[:digit:]]*\\.\\)\\{3\\}jar" nil :ver "v1.2026.5"))))
+            plantuml-jar-path (+github-download-release "plantuml/plantuml" "plantuml-\\([[:digit:]]*\\.\\)\\{3\\}jar" nil :ver "v1.2026.10"))))
 
 
 ;; Add `flymake' support for editing PlantUML files
